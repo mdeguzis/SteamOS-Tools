@@ -15,7 +15,7 @@
 
 # Set initial VAR values
 APPID="False"
-kernel=$(uname -r)
+kernelver=$(uname -r)
 
 clear
 ####################################################################

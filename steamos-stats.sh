@@ -39,10 +39,10 @@ fi
 # GPU testing ONLY!
 clear
 echo "Enabled options:"
-echo "$APPID_ENABLE"
-echo "$APPID"
-echo "$kernelver"
-echo "$active_gpu"
+echo "APP ID used: $APPID_ENABLE"
+echo "APP ID: $APPID"
+echo "Kernel Ver: $kernelver"
+echo "Active GPU $active_gpu"
 sleep 5s
 
 clear

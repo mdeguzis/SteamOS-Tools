@@ -200,15 +200,9 @@ echo ""
 # easy gamepad toggles for an FPS overlay
 
 # Accept game ID argument. If found, turn APPID=True
-if [ $# -eq 0 ]
-  then
-    echo ""
-    echo "No arguments supplied (volgperf disabled)"
-    sleep 2s
-else
-   APPID=True
+if [[ "$APPID_ENABLE" == "true"]; then
    echo ""
-   echo "Arugment detected, attempting to start game ID $1"
+   echo "Arugment detected, attempting to start game ID $APPID"
    sleep 2s
    # Volgperf integration is disabled for now
    # echo -ne 'showfps on\n' |  echo -ne 'game start $APPID \n' | sudo -u steam /home/desktop/voglperf/bin/voglperfrun64

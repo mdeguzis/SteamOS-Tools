@@ -34,6 +34,15 @@ elif [[ "$1" == "-appid" ]]; then
 	APPID=$(echo $2)
 fi
 
+# GPU testing ONLY!
+clear
+echo "Enabled options:"
+echo "$APPID_ENABLE"
+echo "$APPID"
+echo "$kernelver"
+echo "$active_gpu"
+sleep 5s
+
 clear
 ####################################################################
 # Check for packages
@@ -181,12 +190,6 @@ echo ""
 		echo "Found package 'ssh' [Ok.]"
 		sleep 0.5s
 	fi
-	
-	# GPU testing ONLY!
-	clear
-	echo "Enabled options"
-	echo $APPID_ENABLE $APPID $kernelver $active_gpu
-	sleep 5s
 	
 ####################################################################
 # voglperf

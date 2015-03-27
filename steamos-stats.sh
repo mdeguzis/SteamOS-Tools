@@ -136,7 +136,7 @@ echo ""
 	fi
 
 ####################################################################
-# voglperf testing
+# voglperf
 ####################################################################
 # Currently assumes hard location path of /home/desktop/voglperf
 # Full AppID game list: http://steamdb.info/linux/
@@ -152,7 +152,8 @@ else
    APPID=True
    echo "Arugment detected, attempting to start game ID $1"
    sleep 2s
-   #echo -ne 'showfps on\n' |  echo -ne 'game start $APPID \n' | sudo -u steam /home/desktop/voglperf/bin/voglperfrun64
+   # Volgperf integration is disabled for now
+   # echo -ne 'showfps on\n' |  echo -ne 'game start $APPID \n' | sudo -u steam /home/desktop/voglperf/bin/voglperfrun64
 fi
 
 clear

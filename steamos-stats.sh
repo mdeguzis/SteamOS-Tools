@@ -29,8 +29,14 @@ if [[ "$1" == "-gpu" ]]; then
     	active_gpu="nvidia"
     elif [[ "$2" == "amd" ]]; then
     	active_gpu="amd"
+    	echo "Chipset currently not supported"
+	echo "GPU Stats may not work"
+	pause 2s
     elif [[ "$2" == "intel" ]]; then
     	active_gpu="intel"
+	echo "Chipset currently not supported"
+	echo "GPU Stats may not work"
+	pause 2s
     fi
 fi
 

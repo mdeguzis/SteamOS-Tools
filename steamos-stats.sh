@@ -19,6 +19,7 @@ APPID="0"
 kernelver=$(uname -r)
 # set default for now
 active_gpu="nvidia"
+supported_gpu="yes"
 
 # From user input (until auto detection is figured out), set
 # the gpu on the first argument
@@ -27,16 +28,13 @@ active_gpu="nvidia"
 if [[ "$1" == "-gpu" ]]; then
     if [[ "$2" == "nvidia" ]]; then
     	active_gpu="nvidia"
+    	supported_gpu="yes"
     elif [[ "$2" == "amd" ]]; then
     	active_gpu="amd"
-    	echo "Chipset currently not supported"
-	echo "GPU Stats may not work"
-	pause 2s
+	supported_gpu="no"
     elif [[ "$2" == "intel" ]]; then
     	active_gpu="intel"
-	echo "Chipset currently not supported"
-	echo "GPU Stats may not work"
-	pause 2s
+    	supported_gpu="no"
     fi
 fi
 
@@ -200,6 +198,11 @@ echo ""
 	if [[ -n $(type -P git) ]]; then
 		echo "Found package 'ssh' [Ok.]"
 		sleep 0.5s
+	fi
+	
+	if [[ "$supported_gpu" == "no" ]]; then
+		echo "Supported GPU: $supported_gpu"
+		sleep 1s
 	fi
 	
 ####################################################################

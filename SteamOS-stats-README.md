@@ -36,7 +36,7 @@ Volgperf stats implementation is underway (FPS via this script, for one). When c
 ./steamos-stats.sh <APPID>
 ```
 
-...Where `<APPID>` is the game's ID number from https://steamdb.info/linux/
+...Where `<APPID>` is the game's ID number from [SteamDB](https://steamdb.info/linux/). Please be aware, it seems 32 bit games have [issues](https://github.com/ValveSoftware/voglperf/issues/7#issuecomment-44964590) with Voglperf.
 
 ### Please note
 

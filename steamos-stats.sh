@@ -40,13 +40,13 @@ if [[ "$3" == "-appid" ]]; then
 fi
 
 # GPU testing ONLY!
-clear
-echo "Enabled options:"
-echo "APP ID used: $APPID_ENABLE"
-echo "APP ID: $APPID"
-echo "Kernel Ver: $kernelver"
-echo "Active GPU $active_gpu"
-sleep 5s
+#clear
+#echo "Enabled options:"
+#echo "APP ID used: $APPID_ENABLE"
+#echo "APP ID: $APPID"
+#echo "Kernel Ver: $kernelver"
+#echo "Active GPU $active_gpu"
+#sleep 5s
 
 clear
 ####################################################################

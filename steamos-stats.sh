@@ -181,6 +181,7 @@ if [ $# -eq 0 ]
     sleep 2s
 else
    APPID=True
+   echo ""
    echo "Arugment detected, attempting to start game ID $1"
    sleep 2s
    # Volgperf integration is disabled for now

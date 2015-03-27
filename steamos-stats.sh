@@ -14,8 +14,29 @@
 # ------------------------------------------------------------------------
 
 # Set initial VAR values
-APPID="False"
+APPID_ENABLE="False"
+APPID="0"
 kernelver=$(uname -r)
+# set default for now
+active_gpu="nvidia"
+
+# From user input (until auto detection is figured out), set
+# the gpu on the first argument
+
+# valid values: nvidia, intel, amd
+if [[ "$1" == "-gpu" ]]; then
+    if [[ "$2" == "nvidia" ]]; then
+    	active_gpu="nvidia"
+    elif [[ "$2" == "amd" ]]; then
+    	active_gpu="amd"
+    elif [[ "$2" == "intel" ]]; then
+elif [[ "$1" == "-appid" ]]; then
+	APPID=$(echo $2)
+fi
+
+# pause for testing
+sleep 5s
+echo $1 $2 $3
 
 clear
 ####################################################################
@@ -207,11 +228,21 @@ do
 	#also see: xxd, iconv
 	CPU_LOAD=$(iostat | cut -f 2 | grep -A 1 "avg-cpu")
 	MEM_LOAD=$(free -m | grep -E '(total|Mem|Swap)' |  cut -c 1-7,13-18,23-29,34-40,43-51,53-62,65-73)
+	
+	# Determine which GPU chipset we are dealing with
+	# Currently, Nvidia is only supported
 
-	GPU=$(nvidia-smi -a | grep -E 'Name' | cut -c 39-100)
-	GPU_DRIVER=$(nvidia-smi -a | grep -E 'Driver Version' | cut -c 39-100)
-	GPU_TEMP=$(nvidia-smi -a | grep -E 'Current Temp' | cut -c 39-40 | sed "s|$|$CEL|g")
-	GPU_FAN=$(nvidia-smi -a | grep -E 'Fan Speed' | cut -c 39-45 | sed "s| %|%|g")
+	
+	if [[ "$active_gpu" == "nvidia" ]]; then
+		# Nvidia detected
+		GPU=$(nvidia-smi -a | grep -E 'Name' | cut -c 39-100)
+		GPU_DRIVER=$(nvidia-smi -a | grep -E 'Driver Version' | cut -c 39-100)
+		GPU_TEMP=$(nvidia-smi -a | grep -E 'Current Temp' | cut -c 39-40 | sed "s|$|$CEL|g")
+		GPU_FAN=$(nvidia-smi -a | grep -E 'Fan Speed' | cut -c 39-45 | sed "s| %|%|g")
+	Else
+		#nothing to see here for now
+		echo "" > /dev/null
+	fi
 
 	clear
 	echo "###########################################################"

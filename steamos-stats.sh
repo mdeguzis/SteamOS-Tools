@@ -130,8 +130,17 @@ echo ""
 			sleep 3s
 			exit 1
 		fi
-	else
-		echo "Found packages 'lm-sensors/nvidia-smi/sar/free/ssh'."
+	elif 	[[ -z $(type -P sensors) ]] then
+		echo "Sensors Package [Ok]"
+		sleep 1s
+	elif  [[ -z $(type -P nvidia-smi) ]] then
+		echo "nvidia-smi Package [Ok]"
+		sleep 1s
+	elif [[ -z $(type -P sar) ]] then
+		echo "sar Package [Ok]" then
+		sleep 1s
+	elf [[ -z $(type -P free) ]]; then
+		echo "Found package'lm-sensors/nvidia-smi/sar/free/ssh'."
 		sleep 1s
 	fi
 

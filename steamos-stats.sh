@@ -211,7 +211,7 @@ echo ""
 # easy gamepad toggles for an FPS overlay
 
 # Accept game ID argument. If found, turn APPID=True
-if [[ "$APPID_ENABLE" == "true"]; then
+if [[ "$APPID_ENABLE" == "true"]]; then
    echo ""
    echo "Arugment detected, attempting to start game ID $APPID"
    sleep 2s

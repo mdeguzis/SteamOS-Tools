@@ -1,5 +1,8 @@
 # steamos-stats.sh
 
+### About
+This script monitors various statistics of your SteamOS installation over SSH. The utility script will detect and auto-install any missing binaries or software. For the time being, only Nvidia cards are supported (due to me not owning an AMD card). Inviduals are welcome to submit working AMD commands for the GPU, or request me add them for testing.
+
 ### What currently works
 * Auto installation of required tools
   * ssh

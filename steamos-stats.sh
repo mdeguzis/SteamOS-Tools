@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/scripts
 # Scipt Name:	steamos-stats.sh
-# Script Ver:	0.4.3
+# Script Ver:	0.5.5
 # Description:	Monitors various stats easily over an SSH connetion to
 #		gauge performance and temperature loads on steamos.
 # Usage:	./steamos-stats.sh

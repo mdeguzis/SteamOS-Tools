@@ -226,9 +226,10 @@ do
 	echo "###########################################################"
 	echo "GPU Stats"
 	echo "###########################################################"
-	echo "GPU Name: $GPU"
-	echo "GPU Temp: $GPU_TEMP"
-	echo "GPU Fan Speed: $GPU_FAN"
+	echo "GPU name: $GPU"
+	echo "GPU driver Version: $GPU_DRIVER"
+	echo "GPU temp: $GPU_TEMP"
+	echo "GPU fan speed: $GPU_FAN"
 	
 	########################################
 	# FPS Stats (vogelperf)

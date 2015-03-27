@@ -1,3 +1,5 @@
+# steamos-stats.sh
+
 ### What currently works
 * Auto installation of required tools
   * ssh
@@ -35,3 +37,6 @@ Where in, <APPID> is the game's ID number from https://steamdb.info/linux/
 
 Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository
  here
+ 
+### For more information on Voglperf
+Please see: https://github.com/ValveSoftware/voglperf

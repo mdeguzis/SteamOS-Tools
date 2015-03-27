@@ -52,7 +52,12 @@ make voglperf32
 ```
 
 #####Be Warned:
-Copying libGL.so to /usr/lib/i386-linux-gnu will cause dota2 and other source games to segfault. Running rm /usr/lib/i386-linux-gnu/libGL.* will solve the problem. For this reason alone, vogelperf will not be enabled in `steamos-stats` until this is resolved or a fix can be found.
+Copying libGL.so to /usr/lib/i386-linux-gnu will cause dota2 and other source games to segfault. For this reason alone, vogelperf will not be enabled in `steamos-stats` until this is resolved or a fix can be found. 
+
+To undo this, unlink the file:
+```
+rm /usr/lib/i386-linux-gnu/libGL.*
+```
 
 ### Please note
 

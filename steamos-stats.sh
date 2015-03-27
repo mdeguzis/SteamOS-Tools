@@ -183,6 +183,8 @@ echo ""
 	fi
 	
 	# GPU testing ONLY!
+	clear
+	echo "Enabled options"
 	echo $1 $2 $3
 	sleep 5s
 	

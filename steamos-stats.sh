@@ -239,7 +239,8 @@ do
   		# Do not show text
   		echo "" > /dev/null
 	else
-  		echo "FPS Stats: "
+		# Placeholder for now
+  		echo "Game FPS: 00.00"
 	fi
 
 	########################################

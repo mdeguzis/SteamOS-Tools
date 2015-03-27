@@ -155,7 +155,7 @@ echo ""
 	fi
 	
 	if [[ -n $(type -P git) ]]; then
-		echo "Found package 'free' [Ok]."
+		echo "Found package 'git' [Ok]."
 		sleep 0.5s
 	fi
 	

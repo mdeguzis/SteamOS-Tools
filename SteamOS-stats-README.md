@@ -29,7 +29,7 @@ cd SteamOS
 
 ### Volglperf
 
-Volgperf stats implementation is underway (FPS via this script, for one). When completed, the optional argument to launch your game with FPS stags from Voglperf will be:
+Volgperf stats implementation is underway (FPS via this script, for one). When completed, the optional argument to launch your game with FPS stats from `steamos-stats` will be:
 ```
 ./steamos-stats.sh <APPID>
 ```

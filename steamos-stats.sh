@@ -172,37 +172,22 @@ echo ""
 	# output quick checks for intalled packages
 	if [[ -n $(type -P sensors) ]]; then
 		echo "Sensors Package [Ok]"
-		sleep 0.5s
-	fi
-	
-	if [[ -n $(type -P nvidia-smi) ]]; then
-		echo "nvidia-smi Package [Ok]"
-		sleep 0.5s
-	fi
-	
-	if [[ -n $(type -P sar) ]]; then
-		echo "sar Package [Ok]"
-		sleep 0.5s
+		#sleep 0.5s
 	fi
 	
 	if [[ -n $(type -P free) ]]; then
 		echo "Found package 'free' [Ok]."
-		sleep 0.5s
-	fi
-	
-	if [[ -n $(type -P git) ]]; then
-		echo "Found package 'git' [Ok]."
-		sleep 0.5s
+		#sleep 0.5s
 	fi
 	
 	if [[ -n $(type -P git) ]]; then
 		echo "Found package 'ssh' [Ok.]"
-		sleep 0.5s
+		#sleep 0.5s
 	fi
 	
 	if [[ "$supported_gpu" == "no" ]]; then
 		echo "Supported GPU: $supported_gpu"
-		sleep 1s
+		sleep 2s
 	fi
 	
 ####################################################################
@@ -214,7 +199,7 @@ echo ""
 # easy gamepad toggles for an FPS overlay
 
 # Accept game ID argument. If found, turn APPID=True
-if [[ "$APPID_ENABLE" == "true"]]; then
+if [[ "$APPID_ENABLE" == "true" ]]; then
    echo ""
    echo "Arugment detected, attempting to start game ID $APPID"
    sleep 2s

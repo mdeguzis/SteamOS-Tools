@@ -107,6 +107,7 @@ echo ""
 	if [[ -z $(type -P sensors) \
 	       || -z $(type -P nvidia-smi) \
 	       || -z $(type -P sar) \
+	       || -z $(type -P git) \
 	       || -z $(type -P free) ]]; then
 
 		echo "1 or more core packages not found"
@@ -135,24 +136,34 @@ echo ""
 	# output quick checks for intalled packages
 	if [[ -n $(type -P sensors) ]]; then
 		echo "Sensors Package [Ok]"
-		sleep 1s
+		sleep 0m0.5s
 	fi
 	
 	if [[ -n $(type -P nvidia-smi) ]]; then
 		echo "nvidia-smi Package [Ok]"
-		sleep 1s
+		sleep 0m0.5s
 	fi
 	
 	if [[ -n $(type -P sar) ]]; then
 		echo "sar Package [Ok]" then
-		sleep 1s
+		sleep 0m0.5s
 	fi
 	
 	if [[ -n $(type -P free) ]]; then
-		echo "Found package'lm-sensors/nvidia-smi/sar/free/ssh'."
-		sleep 1s
+		echo "Found package 'free' [Ok]."
+		sleep 0m0.5s
 	fi
-
+	
+	if [[ -n $(type -P git) ]]; then
+		echo "Found package 'free' [Ok]."
+		sleep 0m0.5s
+	fi
+	
+	if [[ -n $(type -P git) ]]; then
+		echo "Found package 'ssh' [Ok.]"
+		sleep 0m0.5s
+	fi
+	
 ####################################################################
 # voglperf
 ####################################################################

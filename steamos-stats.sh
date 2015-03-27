@@ -228,6 +228,18 @@ do
 	echo "GPU Name: $GPU"
 	echo "GPU Temp: $GPU_TEMP"
 	echo "GPU Fan Speed: $GPU_FAN"
+	
+	########################################
+	# FPS Stats (vogelperf)
+	########################################
+	
+	#echo $APPID 
+	if [[ "$APPID" == "False" ]] ; then
+  		# Do not show text
+  		echo "" > /dev/null
+	else
+  		echo "FPS Stats: "
+	fi
 
 	########################################
 	# CPU Stats
@@ -254,18 +266,6 @@ do
 	echo "Memory Stats"
 	echo "###########################################################"
 	echo "$MEM_LOAD"
-	
-	########################################
-	# FPS Stats (vogelperf)
-	########################################
-	
-	#echo $APPID 
-	if [[ "$APPID" == "False" ]] ; then
-  		# Do not show text
-  		echo "" > /dev/null
-	else
-  		echo "FPS Stats: "
-	fi
 
 	# let stat's idel for a bit
 	sleep 2s

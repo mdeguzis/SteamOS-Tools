@@ -30,6 +30,8 @@ if [[ "$1" == "-gpu" ]]; then
     elif [[ "$2" == "amd" ]]; then
     	active_gpu="amd"
     elif [[ "$2" == "intel" ]]; then
+    	active_gpu="intel"
+    fi
 elif [[ "$1" == "-appid" ]]; then
 	APPID=$(echo $2)
 fi

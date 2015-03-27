@@ -21,9 +21,20 @@ clear
 # Check for packages
 ####################################################################
 
+echo ""
+echo "#####################################################"
+echo "Package pre-req checks"
+echo "#####################################################"
+
+	#####################################################"
+	# VaporOS bindings
+	#####################################################"
 	# FPS + more binds from VaporOS 2
 	# For bindings, see: /etc/actkbd-steamos-controller.conf
 	if [[ ! -d "/usr/share/doc/vaporos-binds-xbox360" ]]; then
+		echo "VaporOS Xbox 360 bindings not found"
+		echo "Attempting to install this now."
+		sleep 1s
 		cd ~/Downloads
 		wget https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb
 		sudo dpkg -i vaporos-binds-xbox360_1.0_all.deb
@@ -41,10 +52,15 @@ clear
 		sleep 1s
 	fi 
 	
+	#####################################################"
 	# Voglperf 
+	#####################################################"
 	# Since Voglperf compiles into a bin/ folder, not /usr/bin, we have to
 	# assume the git repo was cloned into /home/desktop for now.
 	if [[ ! -f "/home/desktop/voglperf/bin/voglperfrun64" ]]; then
+		echo "Voglperf not found"
+		echo "Attempting to install this now"
+		sleep 1s
 		# Fetch binaries
 		sudo apt-get install steamos-dev 
 		# we need to remove apt pinning preferences temporarily only due to the fact
@@ -84,21 +100,22 @@ clear
 		sleep 1s
 	fi 
 
-	# Temperature detection
+	#####################################################"
+	# Other core utilties from official repos 
+	#####################################################"
 
-	if [[ -z $(type -P sensors) || -z $(type -P nvidia-smi) || -z $(type -P sar) || -z $(type -P free) ]]; then
-		echo ""
-		echo "#####################################################"
-		echo "Pre-req checks"
-		echo "#####################################################"
-		echo "Did not find 1 or more of the packages: lm-sensors, or" 
-		echo "nvidia-smi, sar, free, git, or ssh"
-		echo "Attempting to install these now.(Must have Debian Repos added)"
-		echo ""
-		sleep 3s
-	
+	if [[ -z $(type -P sensors) \
+	       || -z $(type -P nvidia-smi) \
+	       || -z $(type -P sar) \
+	       || -z $(type -P free) ]]; then
+
+		echo "1 or more core packages not found"
+		sleep 1s
+		echo "Attempting to install these now (Must have Debian Repos added)."
+		sleep 1s
 		# Update system first
 		sudo apt-get update
+		
 		# fetch needed pkgs
 		sudo apt-get -t wheezy install lm-sensors sysstat git -y
 		sudo apt-get install nvidia-smi openssh-server -y
@@ -130,7 +147,7 @@ clear
 if [ $# -eq 0 ]
   then
     echo "No arguments supplied (volgperf disabled)"
-    sleep 2s
+    sleep 1s
 else
    APPID=True
    echo "Arugment detected, attempting to start game ID $1"

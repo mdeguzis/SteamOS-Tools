@@ -15,6 +15,7 @@
 
 # Set initial VAR values
 APPID="False"
+kernel=$(uname -r)
 
 clear
 ####################################################################
@@ -213,7 +214,7 @@ do
 
 	clear
 	echo "###########################################################"
-	echo "Monitoring CPU and GPU statistics"
+	echo "Monitoring CPU and GPU statistics | Kernel: $kernelver "
 	echo "###########################################################"
 	echo "Press [CTRL+C] to stop.."
 	########################################

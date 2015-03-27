@@ -23,14 +23,17 @@ Install and run the utility using the script file provided here:
 ```
 ./steamos.stats.sh -gpu [chipset]
 ```
-Substitute [driver] with the chipset you are currently using. The current choices are `intel`, `amd`, and `nvidia`
 
 Alternatively, and ideally, clone the repo for easy updates
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS
 cd SteamOS
-./steamos-stats.sh
+./steamos-stats.sh -gpu [chipset]
 ```
+Substitute [driver] with the chipset you are currently using. The current choices are `intel`, `amd`, and `nvidia`
+
+### Additional arguments
+
 steamos-stats also accepts the following additional arugments (voglperf testing is underway)
 ```
 ./steamos.stats.sh -gpu [chipset] -gameid [gameid]

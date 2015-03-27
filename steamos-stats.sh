@@ -175,8 +175,9 @@ echo ""
 # Accept game ID argument. If found, turn APPID=True
 if [ $# -eq 0 ]
   then
+    echo ""
     echo "No arguments supplied (volgperf disabled)"
-    sleep 1s
+    sleep 2s
 else
    APPID=True
    echo "Arugment detected, attempting to start game ID $1"

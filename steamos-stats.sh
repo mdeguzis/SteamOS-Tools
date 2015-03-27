@@ -130,15 +130,22 @@ echo ""
 			sleep 3s
 			exit 1
 		fi
+	# output quick checks for intalled packages
 	if [[ -n $(type -P sensors) ]]; then
 		echo "Sensors Package [Ok]"
 		sleep 1s
+	fi
+	
 	if [[ -n $(type -P nvidia-smi) ]]; then
 		echo "nvidia-smi Package [Ok]"
 		sleep 1s
+	fi
+	
 	if [[ -n $(type -P sar) ]]; then
 		echo "sar Package [Ok]" then
 		sleep 1s
+	fi
+	
 	if [[ -n $(type -P free) ]]; then
 		echo "Found package'lm-sensors/nvidia-smi/sar/free/ssh'."
 		sleep 1s

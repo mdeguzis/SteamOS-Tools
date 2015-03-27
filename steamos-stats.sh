@@ -32,7 +32,10 @@ if [[ "$1" == "-gpu" ]]; then
     elif [[ "$2" == "intel" ]]; then
     	active_gpu="intel"
     fi
-elif [[ "$3" == "-appid" ]]; then
+fi
+
+if [[ "$3" == "-appid" ]]; then
+	echo "appid detected"
 	APPID=$(echo $4)
 fi
 

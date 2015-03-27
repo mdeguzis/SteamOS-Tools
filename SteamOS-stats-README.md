@@ -36,7 +36,23 @@ Volgperf stats implementation is underway (FPS via this script, for one). When c
 ./steamos-stats.sh <APPID>
 ```
 
-...Where `<APPID>` is the game's ID number from [SteamDB](https://steamdb.info/linux/). Please be aware, it seems 32 bit games have [issues](https://github.com/ValveSoftware/voglperf/issues/7#issuecomment-44964590) with Voglperf.
+...Where `<APPID>` is the game's ID number from [SteamDB](https://steamdb.info/linux/). Please be aware, it seems 32 bit games have [issues](https://github.com/ValveSoftware/voglperf/issues/7#issuecomment-44964590) with Voglperf. 
+
+Users have reported that linking LibGL, then modifying the cmake file to build the 32 bit version of voglperf (in addition to the default build), worked for them.
+
+```
+sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
+```
+
+Then build voglperf 32-bit:
+
+```
+cd voglperf
+make voglperf32
+```
+
+#####Be Warned:
+Copying libGL.so to /usr/lib/i386-linux-gnu will cause dota2 and other source games to segfault. Running rm /usr/lib/i386-linux-gnu/libGL.* will solve the problem. For this reason alone, vogelperf will not be enabled in `steamos-stats` until this is resolved or a fix can be found.
 
 ### Please note
 

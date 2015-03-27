@@ -34,7 +34,7 @@ Volgperf stats implementation is underway (FPS via this script, for one). When c
 ./steamos-stats.sh <APPID>
 ```
 
-Where in, <APPID> is the game's ID number from https://steamdb.info/linux/
+...Where <APPID> is the game's ID number from https://steamdb.info/linux/
 
 ### Please note
 

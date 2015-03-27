@@ -145,7 +145,7 @@ echo ""
 	fi
 	
 	if [[ -n $(type -P sar) ]]; then
-		echo "sar Package [Ok]" then
+		echo "sar Package [Ok]"
 		sleep 0.5s
 	fi
 	

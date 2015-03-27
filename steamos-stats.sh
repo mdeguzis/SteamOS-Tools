@@ -34,10 +34,6 @@ elif [[ "$1" == "-appid" ]]; then
 	APPID=$(echo $2)
 fi
 
-# pause for testing
-sleep 5s
-echo $1 $2 $3
-
 clear
 ####################################################################
 # Check for packages
@@ -185,6 +181,10 @@ echo ""
 		echo "Found package 'ssh' [Ok.]"
 		sleep 0.5s
 	fi
+	
+	# GPU testing ONLY!
+	echo $1 $2 $3
+	sleep 5s
 	
 ####################################################################
 # voglperf

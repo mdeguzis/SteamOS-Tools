@@ -214,7 +214,7 @@ do
 
 	clear
 	echo "###########################################################"
-	echo "Monitoring CPU and GPU statistics | Kernel: $kernelver "
+	echo "Monitoring CPU and GPU statistics  |  Kernel: $kernelver "
 	echo "###########################################################"
 	echo "Press [CTRL+C] to stop.."
 	########################################

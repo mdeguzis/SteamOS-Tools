@@ -49,7 +49,7 @@ echo ""
 		fi
 	else
 		echo "Found package 'vaporos-binds-xbox360'."
-		sleep 1s
+		sleep 0.5s
 	fi 
 	
 	#####################################################"
@@ -97,7 +97,7 @@ echo ""
 		fi
 	else
 		echo "Found package 'voglperf'."
-		sleep 1s
+		sleep 0.5s
 	fi 
 
 	#####################################################"

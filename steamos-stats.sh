@@ -185,7 +185,7 @@ echo ""
 	# GPU testing ONLY!
 	clear
 	echo "Enabled options"
-	echo $1 $2 $3
+	echo $APPID_ENABLE $APPID $kernelver $active_gpu
 	sleep 5s
 	
 ####################################################################

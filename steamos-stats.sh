@@ -136,32 +136,32 @@ echo ""
 	# output quick checks for intalled packages
 	if [[ -n $(type -P sensors) ]]; then
 		echo "Sensors Package [Ok]"
-		sleep 0m0.5s
+		sleep 0.5s
 	fi
 	
 	if [[ -n $(type -P nvidia-smi) ]]; then
 		echo "nvidia-smi Package [Ok]"
-		sleep 0m0.5s
+		sleep 0.5s
 	fi
 	
 	if [[ -n $(type -P sar) ]]; then
 		echo "sar Package [Ok]" then
-		sleep 0m0.5s
+		sleep 0.5s
 	fi
 	
 	if [[ -n $(type -P free) ]]; then
 		echo "Found package 'free' [Ok]."
-		sleep 0m0.5s
+		sleep 0.5s
 	fi
 	
 	if [[ -n $(type -P git) ]]; then
 		echo "Found package 'free' [Ok]."
-		sleep 0m0.5s
+		sleep 0.5s
 	fi
 	
 	if [[ -n $(type -P git) ]]; then
 		echo "Found package 'ssh' [Ok.]"
-		sleep 0m0.5s
+		sleep 0.5s
 	fi
 	
 ####################################################################

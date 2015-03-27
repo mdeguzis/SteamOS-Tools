@@ -39,14 +39,7 @@ Substitute [gameid] with the numerical gameid for the game you wish to launch wi
 
 ### Volglperf
 
-Volgperf stats implementation is underway (FPS via this script, for one). When completed, the optional argument to launch your game with FPS stats from `steamos-stats` will be:
-```
-./steamos-stats.sh <APPID>
-```
-
-...Where `<APPID>` is the game's ID number from [SteamDB](https://steamdb.info/linux/). Please be aware, it seems 32 bit games have [issues](https://github.com/ValveSoftware/voglperf/issues/7#issuecomment-44964590) with Voglperf. 
-
-Users have reported that linking LibGL, then modifying the cmake file to build the 32 bit version of voglperf (in addition to the default build), worked for them.
+Volgperf stats implementation is underway (FPS via this script, for one). Please be aware, it seems 32 bit games have [issues](https://github.com/ValveSoftware/voglperf/issues/7#issuecomment-44964590) with Voglperf. Users have reported that linking LibGL, then modifying the cmake file to build the 32 bit version of voglperf (in addition to the default build), worked for them.
 
 ```
 sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so

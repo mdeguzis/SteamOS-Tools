@@ -130,6 +130,8 @@ echo ""
 			sleep 3s
 			exit 1
 		fi
+	fi
+	
 	# output quick checks for intalled packages
 	if [[ -n $(type -P sensors) ]]; then
 		echo "Sensors Package [Ok]"

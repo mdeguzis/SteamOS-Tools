@@ -51,7 +51,7 @@ if [[ "$install" == "yes" ]]; then
 	echo "" >> "/etc/apt/preferences"
 	echo "Package: *" >> "/etc/apt/preferences"
 	echo "Pin: release l=Debian" >> "/etc/apt/preferences"
-	echo "Pin-Priority:-10" >> "/etc/apt/preferences"
+	echo "Pin-Priority:-110" >> "/etc/apt/preferences"
 
 	# Check for Wheezy list in repos.d
 	# If it does not exist, create it

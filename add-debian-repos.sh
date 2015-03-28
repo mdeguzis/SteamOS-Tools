@@ -34,6 +34,7 @@ fi
 if [[ "$install" == "yes" ]]; then
 	clear
 	echo "Adding debian repositroies..."
+	echo ""
 	sleep 1s
 	
 	# Check for exitance of /etc/apt/preferences

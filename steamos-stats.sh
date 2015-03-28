@@ -172,23 +172,21 @@ echo ""
 	# output quick checks for intalled packages
 	if [[ -n $(type -P sensors) ]]; then
 		echo "Sensors Package [Ok]"
-		#sleep 0.5s
+		sleep 0.5s
 	fi
 	
 	if [[ -n $(type -P free) ]]; then
 		echo "Found package 'free' [Ok]."
-		#sleep 0.5s
+		sleep 0.5s
 	fi
 	
 	if [[ -n $(type -P git) ]]; then
 		echo "Found package 'ssh' [Ok.]"
-		#sleep 0.5s
+		sleep 0.5s
 	fi
-	
-	if [[ "$supported_gpu" == "no" ]]; then
-		echo "Supported GPU: $supported_gpu"
-		sleep 2s
-	fi
+
+	# notify user if GPU is supported by utility
+	echo "Supported GPU: $supported_gpu"
 	
 ####################################################################
 # voglperf

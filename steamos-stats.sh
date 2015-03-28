@@ -24,13 +24,13 @@ supported_gpu="yes"
 # From user input (until auto detection is figured out), set
 # the gpu on the first argument
 
-# valid values: nvidia, intel, amd
+# valid chipset values: nvidia, intel, fglrx
 if [[ "$1" == "-gpu" ]]; then
     if [[ "$2" == "nvidia" ]]; then
     	active_gpu="nvidia"
     	supported_gpu="yes"
-    elif [[ "$2" == "amd" ]]; then
-    	active_gpu="amd"
+    elif [[ "$2" == "fglrx" ]]; then
+    	active_gpu="fglrx"
 	supported_gpu="no"
     elif [[ "$2" == "intel" ]]; then
     	active_gpu="intel"
@@ -95,7 +95,7 @@ echo ""
 	# assume the git repo was cloned into /home/desktop for now.
 	if [[ ! -f "/home/desktop/voglperf/bin/voglperfrun64" ]]; then
 		echo "Voglperf not found"
-		echo "Attempting to install this now"
+		echo "Attempting to install this now..."
 		sleep 1s
 		# Fetch binaries
 		sudo apt-get install steamos-dev 
@@ -160,7 +160,7 @@ echo ""
 		sudo sensors-detect --auto
 
 		if [ $? == '0' ]; then
-			echo "Successfully installed pre-requisite packages"
+			echo "Successfully installed pre-requisite packages."
 			sleep 3s
 		else
 			echo "Could not install pre-requisite packages. Exiting..."
@@ -233,6 +233,13 @@ do
 		GPU_DRIVER=$(nvidia-smi -a | grep -E 'Driver Version' | cut -c 39-100)
 		GPU_TEMP=$(nvidia-smi -a | grep -E 'Current Temp' | cut -c 39-40 | sed "s|$|$CEL|g")
 		GPU_FAN=$(nvidia-smi -a | grep -E 'Fan Speed' | cut -c 39-45 | sed "s| %|%|g")
+		
+	elif [[ "$active_gpu" == "fglrx" ]]; then
+		GPU=$("temporarily disabled")
+		GPU_DRIVER=$("temporarily disabled")
+		GPU_TEMP=$("temporarily disabled")
+		GPU_FAN=$("temporarily disabled")
+		
 	else
 		#nothing to see here for now
 		echo "" > /dev/null

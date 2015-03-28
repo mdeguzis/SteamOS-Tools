@@ -243,6 +243,7 @@ do
 	echo "Monitoring CPU and GPU statistics  |  Kernel: $kernelver "
 	echo "###########################################################"
 	echo "Press [CTRL+C] to stop.."
+	echo ""
 	########################################
 	# GPU Stats
 	########################################

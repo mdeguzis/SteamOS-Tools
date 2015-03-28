@@ -238,7 +238,13 @@ do
 		GPU="          [temporarily disabled]"
 		GPU_DRIVER="[temporarily disabled]"
 		GPU_TEMP="          [temporarily disabled]"
-		GPU_FAN="      [temporarily disabled]"
+		GPU_FAN="     [temporarily disabled]"
+		
+	elif [[ "$active_gpu" == "intel" ]]; then
+		GPU="          [temporarily disabled]"
+		GPU_DRIVER="[temporarily disabled]"
+		GPU_TEMP="          [temporarily disabled]"
+		GPU_FAN="     [temporarily disabled]"
 		
 	else
 		#nothing to see here for now

@@ -32,7 +32,10 @@ fi
 # Install/Uninstall process
 
 if [[ "$install" == "yes" ]]; then
-
+	clear
+	echo "Adding debian repositroies..."
+	sleep 1s
+	
 	# Check for exitance of /etc/apt/preferences
 	if [[ -d "/etc/apt/preferences" ]]; then
 		# backup preferences file
@@ -92,7 +95,8 @@ if [[ "$install" == "yes" ]]; then
 
 elif [[ "$install" == "no" ]]; then
 	clear
-	echo "removing debian repositroies..."
+	echo "Removing debian repositroies..."
+	sleep 1s
 	sudo rm -f "/etc/apt/preferecnes"
 	sudo rm -f "/etc/apt/sources.list.d/wheezy.list"
 	echo ""

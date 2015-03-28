@@ -293,10 +293,10 @@ do
 	echo "-----------------------------------------------------------"
 	echo "Memory Stats"
 	echo "-----------------------------------------------------------"
-	#echo "$MEM_LOAD"
+	echo "$MEM_LOAD"
 
 	# let stat's idel for a bit
-	sleep 2s
+	sleep 1s
 
 done
 pkill voglperfrun64

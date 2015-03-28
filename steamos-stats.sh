@@ -242,6 +242,7 @@ do
 	fi
 
 	clear
+	echo ""
 	echo "###########################################################"
 	echo "Monitoring CPU and GPU statistics  |  Kernel: $kernelver "
 	echo "###########################################################"

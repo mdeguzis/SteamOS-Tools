@@ -4,10 +4,10 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/scripts
 # Scipt Name:	steamos-stats.sh
-# Script Ver:	0.6.2
+# Script Ver:	0.6.3
 # Description:	Monitors various stats easily over an SSH connetion to
 #		gauge performance and temperature loads on steamos.
-# Usage:	./steamos-stats.sh
+# Usage:	./steamos-stats.sh -gpu [CHIPSET] -appid [APPID]
 # Warning:	You MUST have the Debian repos added properly for 
 #		Installation of the pre-requisite packages.
 # TODO:		Add AMD GPU support
@@ -228,15 +228,13 @@ do
 	
 	# Determine which GPU chipset we are dealing with
 	# Currently, Nvidia is only supported
-
-	
 	if [[ "$active_gpu" == "nvidia" ]]; then
 		# Nvidia detected
 		GPU=$(nvidia-smi -a | grep -E 'Name' | cut -c 39-100)
 		GPU_DRIVER=$(nvidia-smi -a | grep -E 'Driver Version' | cut -c 39-100)
 		GPU_TEMP=$(nvidia-smi -a | grep -E 'Current Temp' | cut -c 39-40 | sed "s|$|$CEL|g")
 		GPU_FAN=$(nvidia-smi -a | grep -E 'Fan Speed' | cut -c 39-45 | sed "s| %|%|g")
-	Else
+	else
 		#nothing to see here for now
 		echo "" > /dev/null
 	fi

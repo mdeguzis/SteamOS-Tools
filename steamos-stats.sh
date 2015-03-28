@@ -25,7 +25,7 @@ supported_gpu="yes"
 # the gpu on the first argument
 
 # valid chipset values: nvidia, intel, fglrx
-if [[ "$1" == "-gpu" ]]; then
+if [[ "$1" == "-driver" ]]; then
     if [[ "$2" == "nvidia" ]]; then
     	active_gpu="nvidia"
     	supported_gpu="yes"
@@ -235,10 +235,10 @@ do
 		GPU_FAN=$(nvidia-smi -a | grep -E 'Fan Speed' | cut -c 39-45 | sed "s| %|%|g")
 		
 	elif [[ "$active_gpu" == "fglrx" ]]; then
-		GPU=$("temporarily disabled")
-		GPU_DRIVER=$("temporarily disabled")
-		GPU_TEMP=$("temporarily disabled")
-		GPU_FAN=$("temporarily disabled")
+		GPU="temporarily disabled"
+		GPU_DRIVER="temporarily disabled"
+		GPU_TEMP="temporarily disabled"
+		GPU_FAN="temporarily disabled"
 		
 	else
 		#nothing to see here for now

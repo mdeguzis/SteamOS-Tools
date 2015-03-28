@@ -187,6 +187,7 @@ echo ""
 
 	# notify user if GPU is supported by utility
 	echo "Supported GPU: $supported_gpu"
+	sleep 1s
 	
 ####################################################################
 # voglperf

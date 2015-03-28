@@ -26,7 +26,7 @@ Install and run the utility using the script file provided here:
 
 Alternatively, and ideally, clone the repo for easy updates
 ```
-git clone https://github.com/ProfessorKaos64/SteamOS
+git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS
 ./steamos-stats.sh -driver [gpu-driver]
 ```

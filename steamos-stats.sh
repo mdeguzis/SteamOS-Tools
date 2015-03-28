@@ -261,7 +261,7 @@ do
 	########################################
 	
 	#echo $APPID 
-	if [[ "$APPID" == "False" ]] ; then
+	if [[ "$APPID_ENABLE" == "False" ]] ; then
   		# Do not show text
   		echo "" > /dev/null
 	else

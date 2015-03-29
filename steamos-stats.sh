@@ -21,6 +21,9 @@ kernelver=$(uname -r)
 active_gpu="nvidia"
 supported_gpu="yes"
 
+echo $client_ver
+sleep 10
+
 # From user input (until auto detection is figured out), set
 # the gpu on the first argument
 
@@ -86,10 +89,10 @@ echo ""
 	else
 		echo "Found package 'vaporos-binds-xbox360'."
 		sleep 0.5s
-	fi 
-	
+	fi
+
 	#####################################################"
-	# Voglperf 
+	# Voglperf
 	#####################################################"
 	# Since Voglperf compiles into a bin/ folder, not /usr/bin, we have to
 	# assume the git repo was cloned into /home/desktop for now.
@@ -111,18 +114,18 @@ echo ""
 		cd ~
 		git clone https://github.com/ValveSoftware/voglperf
 		cd voglperf/
-		make 
-		
+		make
+
 		# Restore apt preferences if the backup file exists
 		if [[ -d "/etc/apt/preferences.bak" ]]; then
 			# restore preferences file
 			sudo mv "/etc/apt/preferences.bak" "/etc/apt/preferences"
-		fi 
-		
+		fi
+
 		# Update
 		sudo apt-get update
 		cd
-		
+
 		if [ $? == '0' ]; then
 			echo "Successfully installed 'voglperf'"
 			sleep 3s
@@ -134,7 +137,7 @@ echo ""
 	else
 		echo "Found package 'voglperf'."
 		sleep 0.5s
-	fi 
+	fi
 
 	#####################################################"
 	# Other core utilties from official repos 
@@ -152,7 +155,7 @@ echo ""
 		sleep 1s
 		# Update system first
 		sudo apt-get update
-		
+
 		# fetch needed pkgs
 		sudo apt-get -t wheezy install lm-sensors sysstat git -y
 		sudo apt-get install nvidia-smi openssh-server -y
@@ -168,18 +171,18 @@ echo ""
 			exit 1
 		fi
 	fi
-	
+
 	# output quick checks for intalled packages
 	if [[ -n $(type -P sensors) ]]; then
 		echo "Sensors Package [Ok]"
 		sleep 0.5s
 	fi
-	
+
 	if [[ -n $(type -P free) ]]; then
 		echo "Found package 'free' [Ok]."
 		sleep 0.5s
 	fi
-	
+
 	if [[ -n $(type -P git) ]]; then
 		echo "Found package 'ssh' [Ok.]"
 		sleep 0.5s
@@ -188,7 +191,7 @@ echo ""
 	# notify user if GPU is supported by utility
 	echo "Supported GPU: $supported_gpu"
 	sleep 1s
-	
+
 ####################################################################
 # voglperf
 ####################################################################
@@ -224,7 +227,7 @@ do
 	#also see: xxd, iconv
 	CPU_LOAD=$(iostat | cut -f 2 | grep -A 1 "avg-cpu")
 	MEM_LOAD=$(free -m | grep -E '(total|Mem|Swap)' |  cut -c 1-7,13-18,23-29,34-40,43-51,53-62,65-73)
-	
+
 	# Determine which GPU chipset we are dealing with
 	# Currently, Nvidia is only supported
 	if [[ "$active_gpu" == "nvidia" ]]; then
@@ -233,19 +236,19 @@ do
 		GPU_DRIVER=$(nvidia-smi -a | grep -E 'Driver Version' | cut -c 39-100)
 		GPU_TEMP=$(nvidia-smi -a | grep -E 'Current Temp' | cut -c 39-40 | sed "s|$|$CEL|g")
 		GPU_FAN=$(nvidia-smi -a | grep -E 'Fan Speed' | cut -c 39-45 | sed "s| %|%|g")
-		
+
 	elif [[ "$active_gpu" == "fglrx" ]]; then
 		GPU="          [temporarily disabled]"
 		GPU_DRIVER="[temporarily disabled]"
 		GPU_TEMP="          [temporarily disabled]"
 		GPU_FAN="     [temporarily disabled]"
-		
+
 	elif [[ "$active_gpu" == "intel" ]]; then
 		GPU="          [temporarily disabled]"
 		GPU_DRIVER="[temporarily disabled]"
 		GPU_TEMP="          [temporarily disabled]"
 		GPU_FAN="     [temporarily disabled]"
-		
+
 	else
 		#nothing to see here for now
 		echo "" > /dev/null
@@ -267,12 +270,12 @@ do
 	echo "GPU driver Version: $GPU_DRIVER"
 	echo "GPU temp: $GPU_TEMP"
 	echo "GPU fan speed: $GPU_FAN"
-	
+
 	########################################
 	# FPS Stats (vogelperf)
 	########################################
-	
-	#echo $APPID 
+
+	#echo $APPID
 	if [[ "$APPID_ENABLE" == "False" ]] ; then
   		# Do not show text
   		echo "" > /dev/null
@@ -296,7 +299,7 @@ do
 	echo ""
 	echo "CPU Utilization:"
 	echo "$CPU_LOAD"
-	
+
 	########################################
 	# MEMORY Stats
 	########################################

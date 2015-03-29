@@ -12,13 +12,19 @@
 # Set default user option
 install="yes"
 
+reponame="wheezy"
+sourcelist="/etc/apt/sources.list.d/${reponame}.list"
+prefer="/etc/apt/preferences.d/${reponame}"
+steamosprefer="/etc/apt/preferences.d/steamos"
+
+
 # Warn user script must be run as root
 if [ "$(id -u)" -ne 0 ]; then
 	clear
 	printf "\nScript must be run as root! Try:\n\n"
-	printf "'sudo ./add-debian-repos.sh install'\n\n"
+	printf "'sudo $0 install'\n\n"
 	printf "OR\n"
-	printf "\n'sudo ./add-debian-repos.sh uninstall'\n\n"
+	printf "\n'sudo $0 uninstall'\n\n"
 	exit 1
 fi
 
@@ -33,43 +39,46 @@ fi
 
 if [[ "$install" == "yes" ]]; then
 	clear
-	echo "Adding debian repositroies..."
-	echo ""
+	echo -e "Adding debian repositories...\n"
 	sleep 1s
 	
 	# Check for exitance of /etc/apt/preferences
-	if [[ -d "/etc/apt/preferences" ]]; then
+	if [[ -f ${prefer} ]]; then
 		# backup preferences file
-		mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
+		echo "Backup up ${prefer} to ${prefer}.bak"
+		mv ${prefer} ${prefer}.bak
 	fi
 
 	# Create and add required text to preferences file
-	touch "/etc/apt/preferences"
+	cat << EOF >> ${prefer}
+Package: *
+Pin: release l=Debian
+Pin-Priority: 110
+EOF
 
-	echo "Package: *" > "/etc/apt/preferences"
-	echo "Pin: release l=SteamOS" >> "/etc/apt/preferences"
-	echo "Pin-Priority: 900" >> "/etc/apt/preferences"
-	echo "" >> "/etc/apt/preferences"
-	echo "Package: *" >> "/etc/apt/preferences"
-	echo "Pin: release l=Debian" >> "/etc/apt/preferences"
-	echo "Pin-Priority:-110" >> "/etc/apt/preferences"
+	cat << EOF >> ${steamosprefer}
+Package: *
+Pin: release l=SteamOS
+Pin-Priority: 900
+EOF
 
 	# Check for Wheezy list in repos.d
 	# If it does not exist, create it
-	if [[ -f "/etc/apt/sources.list.d/wheezy.list" ]]; then
+	if [[ -f ${sourcelist} ]]; then
         	# backup sources list file
-        	mv "/etc/apt/sources.list.d/wheezy.list" "/etc/apt/sources.list.d/wheezy.list.bak"
+        	echo "Backup up ${sourcelist} to ${sourcelist}.bak"
+        	mv ${sourcelist} ${sourcelist}.bak
 	fi
 
 	# Create and add required text to wheezy.list
-	touch "/etc/apt/sources.list.d/wheezy.list"
-
-	echo "## internal SteamOS repo" > "/etc/apt/sources.list.d/wheezy.list"
-	echo "deb http://repo.steampowered.com/steamos alchemist main contrib non-free" >> "/etc/apt/sources.list.d/wheezy.list"
-	echo "deb-src http://repo.steampowered.com/steamos alchemist main contrib non-free"  >>  "/etc/apt/sources.list.d/wheezy.list"
-
+	cat << EOF >> ${sourcelist}
+## Debian repo
+deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
+deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
+EOF
 	# Update system
-	sudo apt-get update
+	echo "Updating index of packages..."
+	apt-get update > /dev/null
 
 	# Remind user how to install
 	clear
@@ -78,28 +87,22 @@ if [[ "$install" == "yes" ]]; then
 	echo "How to use"
 	echo "###########################################################"
 	echo ""
-	echo "To install software, first check that it does not exist in"
-	echo "the Alchemist / Alchemist Beta repositories by trying:"
+	echo "You can now not only install package from the SteamOS repository, but also from the Debian repository with:"
 	echo ""
 	echo "'sudo apt-get install <package_name>'"
 	echo ""
-	echo "If the package does not exist, install it from the Wheezy repos"
-	echo "using the following command:"
-	echo ""
-	echo "'sudo apt-get -t wheezy <package_name>'"
-	echo ""
 	echo "Warning: If the apt package manager seems to want to remove a"
 	echo "lot of packages you have already installed, be very careful about"
-	echo "proceeding. Backup your root partition with the SteamOS boot"
-	echo "up root capture option first!!! You've been warned!"
+	echo "proceeding.
 	echo ""
 
 elif [[ "$install" == "no" ]]; then
 	clear
-	echo "Removing debian repositroies..."
-	sleep 1s
-	sudo rm -f "/etc/apt/preferecnes"
-	sudo rm -f "/etc/apt/sources.list.d/wheezy.list"
-	echo ""
-	apt-get update
+	echo "Removing debian repositories..."
+	rm ${sourcelist}
+	rm ${prefer}
+	rm ${steamosprefer}
+	echo "Updating index of packages..."
+	apt-get update > /dev/null
+	echo "Done!"
 fi

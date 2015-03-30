@@ -116,7 +116,6 @@ main()
                         # show listing from software.temp
                         clear
                         cat $software_list | less
-			rm -f $software_list
 			exit
 		fi
 
@@ -132,7 +131,6 @@ main()
                         # show listing from software.temp
                         clear
 			cat $software_list | less
-			rm -f $software_list
 			exit
                 fi
 

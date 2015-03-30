@@ -40,7 +40,7 @@ Extra software
 Based on feeback and personal preference.
 
 For a complete list, type:
-'./install-debian-software --list | less'
+'./install-debian-software [basic|full] list'
 
 Press enter to continue...
 

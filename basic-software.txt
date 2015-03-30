@@ -1,2 +1,4 @@
 baobab
 gparted
+openssh-server
+git

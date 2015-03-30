@@ -67,38 +67,21 @@ install_software()
 		apt_mode="install"
         fi
 
+        # set software type
+        if [[ "$type" == "basic" ]]; then
+                # add basic software to temp list
+                software_list="basic-software.txt"
+        elif [[ "$type" == "full" ]]; then
+                # add full softare to temp list
+                software_list="basic-software.txt"
+        fi
+
 	# Alchemist repos
 	# None here for now
 
 	# Wheezy-only software
-	sudo apt-get -t wheezy $apt_mode `cat software.temp`
+	sudo apt-get -t wheezy $apt_mode `cat $software_list`
 
-	# remove temp file
-	rm -f software.temp
-}
-
-get_software()
-{
-
-	# remove any exiting file
-	rm -f software.temp
-
-	# create temp file
-	touch software.temp
-
-	# Create listing based on $type
-        if [[ "$type" == "basic" ]]; then
-                # add basic software to temp list
-		cat > software.temp <<- EOF
-		gparted
-		baobab
-		EOF
-        elif [[ "$type" == "full" ]]; then
-                # add full softare to temp list
-		cat > software.temp <<- EOF
-		libreoffice
-		EOF
-        fi
 }
 
 show_warning()

@@ -2,3 +2,4 @@ wine
 transmission
 shotwell
 cpufrequtils
+libav

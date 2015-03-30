@@ -1,3 +1,5 @@
 libreoffice
 wine
 transmission
+vlc
+shotwell

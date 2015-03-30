@@ -30,12 +30,14 @@ cat << EOF
 You have two options with this script:
 
 Basic
-------------------------------------------------------------
-standard debian desktop utilities: archive roller (TODO)
+---------------------------------------------------------------
+Standard Debian desktop utilities.
+Based on: http://distrowatch.com/table.php?distribution=debian
 
 Full
-------------------------------------------------------------
-Extra software, such as libreoffice (TODO)
+---------------------------------------------------------------
+Extra software
+Based on feeback and personal preference.
 
 For a complete list, type:
 './install-debian-software --list | less'

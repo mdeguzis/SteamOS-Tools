@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# -----------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
@@ -10,11 +10,11 @@
 #		intention of SteamOS, for some users, this will provide
 #		some sort of additional value
 #
-# Usage:	./steamos-stats.sh -type [basic|full]
+# Usage:	./steamos-stats.sh -type [basic|full] [install|uninstall|list]
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
 #
-# ------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 
 # Set vars
 type="$1"

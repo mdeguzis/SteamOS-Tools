@@ -66,7 +66,7 @@ get_software_type()
                 software_list="basic-software.txt"
         elif [[ "$type" == "full" ]]; then
                 # add full softare to temp list
-                software_list="basic-software.txt"
+                software_list="full-software.txt"
         fi
 	
 }

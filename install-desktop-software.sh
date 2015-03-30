@@ -40,7 +40,7 @@ Extra software
 Based on feeback and personal preference.
 
 For a complete list, type:
-'./install-debian-software [basic|full] list'
+'./install-debian-software [basic|extra] list'
 
 Press enter to continue...
 
@@ -66,9 +66,9 @@ get_software_type()
         if [[ "$type" == "basic" ]]; then
                 # add basic software to temp list
                 software_list="basic-software.txt"
-        elif [[ "$type" == "full" ]]; then
+        elif [[ "$type" == "extra" ]]; then
                 # add full softare to temp list
-                software_list="full-software.txt"
+                software_list="extra-software.txt"
         fi
 	
 }
@@ -139,7 +139,7 @@ main()
 		show_warning
 		install_software
 
-	elif [[ "$type" == "full" ]]; then
+	elif [[ "$type" == "extra" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then
                         uninstall="yes"

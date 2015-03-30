@@ -84,9 +84,24 @@ install_software()
 	# Alchemist repos
 	# None here for now
 
-	# Wheezy-only software
-	sudo apt-get -t wheezy $apt_mode `cat $software_list`
-
+	####################################################################
+	# Belows is UNTESTED!!!!!!!!, trying to split repo preferences
+	# Need to test non '-t wheezy' results with current apt prefs
+	####################################################################
+	
+	# Install from Alchemist first, Wheezy as backup
+	for i in `cat software.list`; do
+		sudo apt-get install $apt_mode $i
+	done 
+	
+	# Packages that fail to install, use Wheezy repositories
+	if [ $? == '0' ]; then
+		echo "Successfully installed software from Alchemist repo." 
+	else
+		echo "Could not install all packages from Alchemist repo, trying Wheezy"
+		sudo apt-get -t wheezy $apt_mode `cat $software_list`
+	fi
+	####################################################################
 }
 
 show_warning()

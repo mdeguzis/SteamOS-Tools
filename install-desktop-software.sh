@@ -57,6 +57,20 @@ if [[ "$1" == "--help" ]]; then
 	exit 0
 fi
 
+get_software_type()
+{
+	
+	# set software type
+        if [[ "$type" == "basic" ]]; then
+                # add basic software to temp list
+                software_list="basic-software.txt"
+        elif [[ "$type" == "full" ]]; then
+                # add full softare to temp list
+                software_list="basic-software.txt"
+        fi
+	
+}
+
 install_software()
 {
 
@@ -65,15 +79,6 @@ install_software()
                 apt_mode="remove"
 	else
 		apt_mode="install"
-        fi
-
-        # set software type
-        if [[ "$type" == "basic" ]]; then
-                # add basic software to temp list
-                software_list="basic-software.txt"
-        elif [[ "$type" == "full" ]]; then
-                # add full softare to temp list
-                software_list="basic-software.txt"
         fi
 
 	# Alchemist repos
@@ -100,7 +105,7 @@ main()
 {
 
         # generate software listing based on type
-        get_software
+        get_software_type
 
 	if [[ "$type" == "basic" ]]; then
 
@@ -110,8 +115,8 @@ main()
                 elif [[ "$options" == "list" ]]; then
                         # show listing from software.temp
                         clear
-                        cat software.temp | less
-			rm -f software.temp
+                        cat $software_list | less
+			rm -f $software_list
 			exit
 		fi
 
@@ -126,8 +131,8 @@ main()
                 elif [[ "$options" == "list" ]]; then
                         # show listing from software.temp
                         clear
-			cat software.temp | less
-			rm -f software.temp
+			cat $software_list | less
+			rm -f $software_list
 			exit
                 fi
 

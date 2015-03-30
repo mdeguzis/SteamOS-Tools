@@ -1,3 +1,5 @@
+file-roller
+gedit
 baobab
 gparted
 openssh-server

@@ -18,9 +18,9 @@ cd SteamOS-Tools
 sudo ./install-debian-software.sh [basic|full] [install|uninstall|list]
 ```
 
-**install:** installs software based on type desired
-**uninstall:** uninstalls software based on type installed already
-**list:** lists softare pacakges in each install groupd
+**install:** installs software based on type desired  
+**uninstall:** uninstalls software based on type installed already  
+**list:** lists softare pacakges in each install group    
 
 ### Please note
 

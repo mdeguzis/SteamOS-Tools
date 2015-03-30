@@ -2,11 +2,10 @@
 Tools and scripts for SteamOS.
 
 ## Contents
+* cfgs/ - various configuration files, including package lists for Debian software installations
 * docs/ - readme files for each script
 * README.md - This file
 * add-debian-repos.sh - adds debian repositories for installing Debian Wheey software.
-* basic-software.txt - package list for "basic" desktop software
-* extra-software.txt - package list for "full" desktop software
 * install-desktop-software.sh - script to install bulk Debian desktop software packages
 * steamos-stats.sh - displays useful stats while gaming over SSH from another device
 

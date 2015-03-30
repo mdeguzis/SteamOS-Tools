@@ -65,10 +65,10 @@ get_software_type()
 	# set software type
         if [[ "$type" == "basic" ]]; then
                 # add basic software to temp list
-                software_list="basic-software.txt"
+                software_list="./cfgs/basic-software.txt"
         elif [[ "$type" == "extra" ]]; then
                 # add full softare to temp list
-                software_list="extra-software.txt"
+                software_list="./cfgs/extra-software.txt"
         fi
 	
 }

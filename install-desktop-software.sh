@@ -31,7 +31,7 @@ You have two options with this script:
 
 Basic
 ---------------------------------------------------------------
-Standard Debian desktop utilities.
+Standard Debian desktop application loadout.
 Based on: http://distrowatch.com/table.php?distribution=debian
 
 Full

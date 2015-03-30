@@ -10,6 +10,6 @@ Tools and scripts for SteamOS.
 * install-desktop-software.sh - script to install bulk Debian desktop software packages
 * steamos-stats.sh - displays useful stats while gaming over SSH from another device
 
-## Pull requests suggestions
+## Pull requests / suggestions
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page
 or any corrections (with justification) as a Pull Request.

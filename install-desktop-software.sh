@@ -57,6 +57,20 @@ if [[ "$1" == "--help" ]]; then
 	exit 0
 fi
 
+get_software_type()
+{
+	
+	# set software type
+        if [[ "$type" == "basic" ]]; then
+                # add basic software to temp list
+                software_list="basic-software.txt"
+        elif [[ "$type" == "full" ]]; then
+                # add full softare to temp list
+                software_list="full-software.txt"
+        fi
+	
+}
+
 install_software()
 {
 
@@ -71,34 +85,8 @@ install_software()
 	# None here for now
 
 	# Wheezy-only software
-	sudo apt-get -t wheezy $apt_mode `cat software.temp`
+	sudo apt-get -t wheezy $apt_mode `cat $software_list`
 
-	# remove temp file
-	rm -f software.temp
-}
-
-get_software()
-{
-
-	# remove any exiting file
-	rm -f software.temp
-
-	# create temp file
-	touch software.temp
-
-	# Create listing based on $type
-        if [[ "$type" == "basic" ]]; then
-                # add basic software to temp list
-		cat > software.temp <<- EOF
-		gparted
-		baobab
-		EOF
-        elif [[ "$type" == "full" ]]; then
-                # add full softare to temp list
-		cat > software.temp <<- EOF
-		libreoffice
-		EOF
-        fi
 }
 
 show_warning()
@@ -117,7 +105,7 @@ main()
 {
 
         # generate software listing based on type
-        get_software
+        get_software_type
 
 	if [[ "$type" == "basic" ]]; then
 
@@ -127,8 +115,7 @@ main()
                 elif [[ "$options" == "list" ]]; then
                         # show listing from software.temp
                         clear
-                        cat software.temp | less
-			rm -f software.temp
+                        cat $software_list | less
 			exit
 		fi
 
@@ -143,8 +130,7 @@ main()
                 elif [[ "$options" == "list" ]]; then
                         # show listing from software.temp
                         clear
-			cat software.temp | less
-			rm -f software.temp
+			cat $software_list | less
 			exit
                 fi
 

@@ -85,7 +85,7 @@ install_software()
 	# None here for now
 
 	####################################################################
-	# Belows is UNTESTED!!!!!!!!, trying to split repo preferences
+	# Below is UNTESTED!!!!!!!!, trying to split repo preferences
 	# Need to test non '-t wheezy' results with current apt prefs
 	####################################################################
 	

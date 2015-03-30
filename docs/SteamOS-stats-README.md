@@ -30,7 +30,7 @@ git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS
 ./steamos-stats.sh -driver [gpu-driver]
 ```
-Substitute [gpu-driver] with the chipset you are currently using. The current choices are `intel`, `fglrx`, and `nvidia`. Please note that nvidia is currently only supported (testing for others underway).
+Substitute [gpu-driver] with the chipset you are currently using. The current choices are `intel`, `fglrx`, and `nvidia`. Please note that `nvidia` is currently only supported (testing for others underway). If you do not specify a graphics driver, the script assumes you are using an Nvidia graphics card.
 
 ### Additional arguments
 

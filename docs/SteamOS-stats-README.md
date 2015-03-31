@@ -27,7 +27,7 @@ Install and run the utility using the script file provided here:
 Alternatively, and ideally, clone the repo for easy updates
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
-cd SteamOS
+cd SteamOS-Tools
 ./steamos-stats.sh -driver [gpu-driver]
 ```
 Substitute [gpu-driver] with the chipset you are currently using. The current choices are `intel`, `fglrx`, and `nvidia`. Please note that `nvidia` is currently only supported (testing for others underway). If you do not specify a graphics driver, the script assumes you are using an Nvidia graphics card.

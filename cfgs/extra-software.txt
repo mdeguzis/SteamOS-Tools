@@ -3,3 +3,5 @@ transmission
 shotwell
 cpufrequtils
 libav
+kdiff3
+emacs

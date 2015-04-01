@@ -21,6 +21,7 @@ kernelver=$(uname -r)
 active_gpu="nvidia"
 supported_gpu="yes"
 
+echo $client_ver
 sleep 10
 
 # From user input (until auto detection is figured out), set
@@ -59,9 +60,10 @@ clear
 # Check for packages
 ####################################################################
 
-printf "#####################################################\n"
-printf "Package pre-req checks\n"
-printf "#####################################################\n\n"
+echo "#####################################################"
+echo "Package pre-req checks"
+echo "#####################################################"
+echo ""
 
 	#####################################################"
 	# VaporOS bindings
@@ -69,23 +71,23 @@ printf "#####################################################\n\n"
 	# FPS + more binds from VaporOS 2
 	# For bindings, see: /etc/actkbd-steamos-controller.conf
 	if [[ ! -d "/usr/share/doc/vaporos-binds-xbox360" ]]; then
-		printf "VaporOS Xbox 360 bindings not found\n"
-		printf "Attempting to install this now.\n"
+		echo "VaporOS Xbox 360 bindings not found"
+		echo "Attempting to install this now."
 		sleep 1s
 		cd ~/Downloads
 		wget https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb
 		sudo dpkg -i vaporos-binds-xbox360_1.0_all.deb
 		cd
 		if [ $? == '0' ]; then
-			printf "Successfully installed 'vaporos-binds-xbox360'\n"
+			echo "Successfully installed 'vaporos-binds-xbox360'"
 			sleep 3s
 		else
-			printf "Could not install 'vaporos-binds-xbox360'. Exiting...\n"
+			echo "Could not install 'vaporos-binds-xbox360'. Exiting..."
 			sleep 3s
 			exit 1
 		fi
 	else
-		printf "Found package 'vaporos-binds-xbox360'.\n"
+		echo "Found package 'vaporos-binds-xbox360'."
 		sleep 0.5s
 	fi
 
@@ -95,8 +97,8 @@ printf "#####################################################\n\n"
 	# Since Voglperf compiles into a bin/ folder, not /usr/bin, we have to
 	# assume the git repo was cloned into /home/desktop for now.
 	if [[ ! -f "/home/desktop/voglperf/bin/voglperfrun64" ]]; then
-		printf "Voglperf not found\n"
-		printf "Attempting to install this now...\n"
+		echo "Voglperf not found"
+		echo "Attempting to install this now..."
 		sleep 1s
 		# Fetch binaries
 		sudo apt-get install steamos-dev 
@@ -125,15 +127,15 @@ printf "#####################################################\n\n"
 		cd
 
 		if [ $? == '0' ]; then
-			printf "Successfully installed 'voglperf'\n"
+			echo "Successfully installed 'voglperf'"
 			sleep 3s
 		else
-			printf "Could not install 'voglperf'. Exiting...\n"
+			echo "Could not install 'voglperf'. Exiting..."
 			sleep 3s
 			exit 1
 		fi
 	else
-		printf "Found package 'voglperf'.\n"
+		echo "Found package 'voglperf'."
 		sleep 0.5s
 	fi
 
@@ -147,9 +149,9 @@ printf "#####################################################\n\n"
 	       || -z $(type -P git) \
 	       || -z $(type -P free) ]]; then
 
-		printf "1 or more core packages not found\n\n"
+		echo "1 or more core packages not found"
 		sleep 1s
-		printf "Attempting to install these now (Must have Debian Repos added).\n"
+		echo "Attempting to install these now (Must have Debian Repos added)."
 		sleep 1s
 		# Update system first
 		sudo apt-get update
@@ -161,10 +163,10 @@ printf "#####################################################\n\n"
 		yes | sudo sensors-detect
 
 		if [ $? == '0' ]; then
-			printf "Successfully installed pre-requisite packages.\n"
+			echo "Successfully installed pre-requisite packages."
 			sleep 3s
 		else
-			printf "Could not install pre-requisite packages. Exiting...\n"
+			echo "Could not install pre-requisite packages. Exiting..."
 			sleep 3s
 			exit 1
 		fi
@@ -172,22 +174,22 @@ printf "#####################################################\n\n"
 
 	# output quick checks for intalled packages
 	if [[ -n $(type -P sensors) ]]; then
-		printf "Sensors Package [Ok]"
+		echo "Sensors Package [Ok]"
 		sleep 0.5s
 	fi
 
 	if [[ -n $(type -P free) ]]; then
-		printf "Found package 'free' [Ok]."
+		echo "Found package 'free' [Ok]."
 		sleep 0.5s
 	fi
 
 	if [[ -n $(type -P git) ]]; then
-		printf "Found package 'ssh' [Ok.]"
+		echo "Found package 'ssh' [Ok.]"
 		sleep 0.5s
 	fi
 
 	# notify user if GPU is supported by utility
-	printf "Supported GPU: $supported_gpu"
+	echo "Supported GPU: $supported_gpu"
 	sleep 1s
 
 ####################################################################
@@ -200,7 +202,8 @@ printf "#####################################################\n\n"
 
 # Accept game ID argument. If found, turn APPID=True
 if [[ "$APPID_ENABLE" == "true" ]]; then
-   printf "\nArugment detected, attempting to start game ID $APPID \n"
+   echo ""
+   echo "Arugment detected, attempting to start game ID $APPID"
    sleep 2s
    # Volgperf integration is disabled for now
    # echo -ne 'showfps on\n' |  echo -ne 'game start $APPID \n' | sudo -u steam /home/desktop/voglperf/bin/voglperfrun64
@@ -248,24 +251,25 @@ do
 
 	else
 		#nothing to see here for now
-		printf "" > /dev/null
+		echo "" > /dev/null
 	fi
 
 	clear
-	printf "###########################################################\n"
-	printf "Monitoring CPU and GPU statistics  |  Kernel: $kernelver \n"
-	printf "###########################################################\n"
-	printf "Press [CTRL+C] to stop..\n\n"
-]	########################################
+	echo "###########################################################"
+	echo "Monitoring CPU and GPU statistics  |  Kernel: $kernelver "
+	echo "###########################################################"
+	echo "Press [CTRL+C] to stop.."
+	echo ""
+	########################################
 	# GPU Stats
 	########################################
-	printf "-----------------------------------------------------------\n"
-	printf "GPU Stats\n"
-	printf "-----------------------------------------------------------\n"
-	printf "GPU name: $GPU \n"
-	printf "GPU driver Version: $GPU_DRIVER \n"
-	printf "GPU temp: $GPU_TEMP \n"
-	printf "GPU fan speed: $GPU_FAN \n"
+	echo "-----------------------------------------------------------"
+	echo "GPU Stats"
+	echo "-----------------------------------------------------------"
+	echo "GPU name: $GPU"
+	echo "GPU driver Version: $GPU_DRIVER"
+	echo "GPU temp: $GPU_TEMP"
+	echo "GPU fan speed: $GPU_FAN"
 
 	########################################
 	# FPS Stats (vogelperf)
@@ -274,10 +278,10 @@ do
 	#echo $APPID
 	if [[ "$APPID_ENABLE" == "False" ]] ; then
   		# Do not show text
-  		printf "" > /dev/null
+  		echo "" > /dev/null
 	else
 		# Placeholder for now
-  		printf "Game FPS: 00.00 \n"
+  		echo "Game FPS: 00.00"
 	fi
 
 	########################################
@@ -285,23 +289,25 @@ do
 	########################################
 	# With Cores
 	#echo ""
-	printf "-----------------------------------------------------------\n"
-	printf "CPU Stats\n"
-	printf "-----------------------------------------------------------\n"
-	printf "CPU Name: $CPU \n\n"
-	printf "CPU Temp: \n"
-	printf "$CPU_TEMPS \n\n"
-	printf "CPU Utilization: \n"
-	printf "$CPU_LOAD \n"
+	echo "-----------------------------------------------------------"
+	echo "CPU Stats"
+	echo "-----------------------------------------------------------"
+	echo "CPU Name: $CPU"
+	echo ""
+	echo "CPU Temp:"
+	echo "$CPU_TEMPS"
+	echo ""
+	echo "CPU Utilization:"
+	echo "$CPU_LOAD"
 
 	########################################
 	# MEMORY Stats
 	########################################
 	#echo ""
-	printf "-----------------------------------------------------------\n"
-	printf "Memory Stats\n"
-	printf "-----------------------------------------------------------\n"
-	printf "$MEM_LOAD \n"
+	echo "-----------------------------------------------------------"
+	echo "Memory Stats"
+	echo "-----------------------------------------------------------"
+	echo "$MEM_LOAD"
 
 	# let stat's idel for a bit
 	sleep 1s

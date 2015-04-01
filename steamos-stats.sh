@@ -160,7 +160,7 @@ echo ""
 		sudo apt-get -t wheezy install lm-sensors sysstat git -y
 		sudo apt-get install nvidia-smi openssh-server -y
 		# detect sensors automatically
-		sudo sensors-detect --auto
+		yes | sudo sensors-detect
 
 		if [ $? == '0' ]; then
 			echo "Successfully installed pre-requisite packages."

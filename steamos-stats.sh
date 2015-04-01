@@ -69,7 +69,7 @@ printf "#####################################################\n\n"
 	# FPS + more binds from VaporOS 2
 	# For bindings, see: /etc/actkbd-steamos-controller.conf
 	if [[ ! -d "/usr/share/doc/vaporos-binds-xbox360" ]]; then
-		printf "VaporOS Xbox 360 bindings not found"
+		printf "VaporOS Xbox 360 bindings not found\n"
 		printf "Attempting to install this now.\n"
 		sleep 1s
 		cd ~/Downloads
@@ -77,15 +77,15 @@ printf "#####################################################\n\n"
 		sudo dpkg -i vaporos-binds-xbox360_1.0_all.deb
 		cd
 		if [ $? == '0' ]; then
-			printf "Successfully installed 'vaporos-binds-xbox360'"
+			printf "Successfully installed 'vaporos-binds-xbox360'\n"
 			sleep 3s
 		else
-			printf "Could not install 'vaporos-binds-xbox360'. Exiting..."
+			printf "Could not install 'vaporos-binds-xbox360'. Exiting...\n"
 			sleep 3s
 			exit 1
 		fi
 	else
-		printf "Found package 'vaporos-binds-xbox360'."
+		printf "Found package 'vaporos-binds-xbox360'.\n"
 		sleep 0.5s
 	fi
 
@@ -95,8 +95,8 @@ printf "#####################################################\n\n"
 	# Since Voglperf compiles into a bin/ folder, not /usr/bin, we have to
 	# assume the git repo was cloned into /home/desktop for now.
 	if [[ ! -f "/home/desktop/voglperf/bin/voglperfrun64" ]]; then
-		printf "Voglperf not found"
-		printf "Attempting to install this now..."
+		printf "Voglperf not found\n"
+		printf "Attempting to install this now...\n"
 		sleep 1s
 		# Fetch binaries
 		sudo apt-get install steamos-dev 
@@ -125,15 +125,15 @@ printf "#####################################################\n\n"
 		cd
 
 		if [ $? == '0' ]; then
-			printf "Successfully installed 'voglperf'"
+			printf "Successfully installed 'voglperf'\n"
 			sleep 3s
 		else
-			printf "Could not install 'voglperf'. Exiting..."
+			printf "Could not install 'voglperf'. Exiting...\n"
 			sleep 3s
 			exit 1
 		fi
 	else
-		printf "Found package 'voglperf'."
+		printf "Found package 'voglperf'.\n"
 		sleep 0.5s
 	fi
 
@@ -149,7 +149,7 @@ printf "#####################################################\n\n"
 
 		printf "1 or more core packages not found\n\n"
 		sleep 1s
-		printf "Attempting to install these now (Must have Debian Repos added)."
+		printf "Attempting to install these now (Must have Debian Repos added).\n"
 		sleep 1s
 		# Update system first
 		sudo apt-get update
@@ -161,10 +161,10 @@ printf "#####################################################\n\n"
 		yes | sudo sensors-detect
 
 		if [ $? == '0' ]; then
-			printf "Successfully installed pre-requisite packages."
+			printf "Successfully installed pre-requisite packages.\n"
 			sleep 3s
 		else
-			printf "Could not install pre-requisite packages. Exiting..."
+			printf "Could not install pre-requisite packages. Exiting...\n"
 			sleep 3s
 			exit 1
 		fi
@@ -200,7 +200,7 @@ printf "#####################################################\n\n"
 
 # Accept game ID argument. If found, turn APPID=True
 if [[ "$APPID_ENABLE" == "true" ]]; then
-   printf "\nArugment detected, attempting to start game ID $APPID"
+   printf "\nArugment detected, attempting to start game ID $APPID \n"
    sleep 2s
    # Volgperf integration is disabled for now
    # echo -ne 'showfps on\n' |  echo -ne 'game start $APPID \n' | sudo -u steam /home/desktop/voglperf/bin/voglperfrun64
@@ -262,10 +262,10 @@ do
 	printf "-----------------------------------------------------------\n"
 	printf "GPU Stats\n"
 	printf "-----------------------------------------------------------\n"
-	printf "GPU name: $GPU"
-	printf "GPU driver Version: $GPU_DRIVER"
-	printf "GPU temp: $GPU_TEMP"
-	printf "GPU fan speed: $GPU_FAN"
+	printf "GPU name: $GPU \n"
+	printf "GPU driver Version: $GPU_DRIVER \n"
+	printf "GPU temp: $GPU_TEMP \n"
+	printf "GPU fan speed: $GPU_FAN \n"
 
 	########################################
 	# FPS Stats (vogelperf)
@@ -277,7 +277,7 @@ do
   		printf "" > /dev/null
 	else
 		# Placeholder for now
-  		printf "Game FPS: 00.00"
+  		printf "Game FPS: 00.00 \n"
 	fi
 
 	########################################
@@ -285,25 +285,23 @@ do
 	########################################
 	# With Cores
 	#echo ""
-	printf "-----------------------------------------------------------"
-	printf "CPU Stats"
-	printf "-----------------------------------------------------------"
-	printf "CPU Name: $CPU"
-	printf ""
-	printf "CPU Temp:"
-	printf "$CPU_TEMPS"
-	printf ""
-	printf "CPU Utilization:"
-	printf "$CPU_LOAD"
+	printf "-----------------------------------------------------------\n"
+	printf "CPU Stats\n"
+	printf "-----------------------------------------------------------\n"
+	printf "CPU Name: $CPU \n\n"
+	printf "CPU Temp: \n"
+	printf "$CPU_TEMPS \n\n"
+	printf "CPU Utilization: \n"
+	printf "$CPU_LOAD \n"
 
 	########################################
 	# MEMORY Stats
 	########################################
 	#echo ""
-	printf "-----------------------------------------------------------"
-	printf "Memory Stats"
-	printf "-----------------------------------------------------------"
-	printf "$MEM_LOAD"
+	printf "-----------------------------------------------------------\n"
+	printf "Memory Stats\n"
+	printf "-----------------------------------------------------------\n"
+	printf "$MEM_LOAD \n"
 
 	# let stat's idel for a bit
 	sleep 1s

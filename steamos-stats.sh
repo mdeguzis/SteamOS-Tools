@@ -21,7 +21,6 @@ kernelver=$(uname -r)
 active_gpu="nvidia"
 supported_gpu="yes"
 
-printf $client_ver
 sleep 10
 
 # From user input (until auto detection is figured out), set

@@ -315,9 +315,9 @@ do
 	echo "###########################################################"
 	echo "Monitoring CPU and GPU statistics  |  Kernel: $kernelver "
 	echo "###########################################################"
-	echo "Steam Client verion: $steamver"
-	echo "Steam API verion: $steamver"
-	echo "Press [CTRL+C] to stop.."
+	echo "Steam Client verion: $steam_ver"
+	echo "Steam API verion: $steam_api"
+	echo -e "\nPress [CTRL+C] to stop.."
 	########################################
 	# GPU Stats
 	########################################

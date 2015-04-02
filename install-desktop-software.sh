@@ -34,12 +34,15 @@ Basic
 Standard Debian desktop application loadout.
 Based on: http://distrowatch.com/table.php?distribution=debian
 
-Full
+Extra
 ---------------------------------------------------------------
 Extra software
 Based on feeback and personal preference.
 
 For a complete list, type:
+'./install-debian-software list [basic|extra]'
+
+Install with:
 './install-debian-software [install|uninstall|list] [basic|extra]'
 
 Press enter to continue...

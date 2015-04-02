@@ -314,10 +314,10 @@ do
 	fi
 
 	clear
-	echo -e "\n###########################################################"
+	echo "###########################################################"
 	echo "Monitoring CPU and GPU statistics  |  Kernel: $kernelver "
 	echo "###########################################################"
-	echo "Steam Client verion: $steam_ver"
+	echo -e "\nSteam Client verion: $steam_ver"
 	echo "Steam API verion: $steam_api"
 	echo -e "\nPress [CTRL+C] to stop.."
 	########################################

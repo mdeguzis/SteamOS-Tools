@@ -4,21 +4,21 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.2.3
+# Script Ver:	0.2.5
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
 #		some sort of additional value
 #
-# Usage:	./steamos-stats.sh -type [basic|full] [install|uninstall|list]
+# Usage:	./steamos-stats.sh [install|uninstall|list] [basic|extra]
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
 #
 # -------------------------------------------------------------------------------
 
 # Set vars
-type="$1"
-options="$2"
+options="$1"
+type="$2"
 apt_mode="install"
 uninstall="no"
 
@@ -40,7 +40,7 @@ Extra software
 Based on feeback and personal preference.
 
 For a complete list, type:
-'./install-debian-software [basic|extra] list'
+'./install-debian-software [install|uninstall|list] [basic|extra]'
 
 Press enter to continue...
 

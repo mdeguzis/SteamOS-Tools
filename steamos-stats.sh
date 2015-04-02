@@ -7,7 +7,7 @@
 # Script Ver:	0.6.5
 # Description:	Monitors various stats easily over an SSH connetion to
 #		gauge performance and temperature loads on steamos.
-# Usage:	./steamos-stats.sh -gpu [CHIPSET] -appid [APPID]
+# Usage:	./steamos-stats.sh -gpu [gfx driver] -appid [APPID]
 # Warning:	You MUST have the Debian repos added properly for 
 #		Installation of the pre-requisite packages.
 # TODO:		Add AMD GPU support
@@ -18,25 +18,27 @@ APPID_ENABLE="False"
 APPID="0"
 kernelver=$(uname -r)
 # set default for now
-active_gpu="nvidia"
+active_driver="nvidia"
 supported_gpu="yes"
 
 echo $client_ver
 sleep 10
 
+funct_pre_req_checks()
+{
 # From user input (until auto detection is figured out), set
 # the gpu on the first argument
 
 # valid chipset values: nvidia, intel, fglrx
 if [[ "$1" == "-driver" ]]; then
     if [[ "$2" == "nvidia" ]]; then
-    	active_gpu="nvidia"
+    	active_driver="nvidia"
     	supported_gpu="yes"
     elif [[ "$2" == "fglrx" ]]; then
-    	active_gpu="fglrx"
+    	active_driver="fglrx"
 	supported_gpu="no"
     elif [[ "$2" == "intel" ]]; then
-    	active_gpu="intel"
+    	active_driver="intel"
     	supported_gpu="no"
     fi
 fi
@@ -261,8 +263,10 @@ if [[ "$APPID_ENABLE" == "true" ]]; then
    # Volgperf integration is disabled for now
    # echo -ne 'showfps on\n' |  echo -ne 'game start $APPID \n' | sudo -u steam /home/desktop/voglperf/bin/voglperfrun64
 fi
+}
 
-
+funct_main_loop()
+{
 ####################################################################
 # Start Loop
 ####################################################################
@@ -289,20 +293,20 @@ do
 
 	# Determine which GPU chipset we are dealing with
 	# Currently, Nvidia is only supported
-	if [[ "$active_gpu" == "nvidia" ]]; then
+	if [[ "$active_driver" == "nvidia" ]]; then
 		# Nvidia detected
 		GPU=$(nvidia-smi -a | grep -E 'Name' | cut -c 39-100)
 		GPU_DRIVER=$(nvidia-smi -a | grep -E 'Driver Version' | cut -c 39-100)
 		GPU_TEMP=$(nvidia-smi -a | grep -E 'Current Temp' | cut -c 39-40 | sed "s|$|$CEL|g")
 		GPU_FAN=$(nvidia-smi -a | grep -E 'Fan Speed' | cut -c 39-45 | sed "s| %|%|g")
 
-	elif [[ "$active_gpu" == "fglrx" ]]; then
+	elif [[ "$active_driver" == "fglrx" ]]; then
 		GPU="          [temporarily disabled]"
 		GPU_DRIVER="[temporarily disabled]"
 		GPU_TEMP="          [temporarily disabled]"
 		GPU_FAN="     [temporarily disabled]"
 
-	elif [[ "$active_gpu" == "intel" ]]; then
+	elif [[ "$active_driver" == "intel" ]]; then
 		GPU="          [temporarily disabled]"
 		GPU_DRIVER="[temporarily disabled]"
 		GPU_TEMP="          [temporarily disabled]"
@@ -373,4 +377,11 @@ do
 	sleep 1s
 
 done
+}
+
+# Start 
+funct_pre_req_checks
+funct_main_loop
+
+# kill any voglperf server
 pkill voglperfrun64

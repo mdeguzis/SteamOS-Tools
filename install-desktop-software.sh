@@ -27,6 +27,7 @@ show_help()
 
 clear
 cat << EOF
+Warning: usage of this script is at your own risk!
 You have two options with this script:
 
 Basic
@@ -112,6 +113,7 @@ install_software()
 show_warning()
 {
         clear
+        printf "\nWarning: usage of this script is at your own risk!\n\n"
         printf "\nIn order to run this script, you MUST have had enabled the Debian\n"
         printf "repositories! If you wish to exit, please press CTRL+C now..."
         printf "\n\n type './install-debian-software --help' for assistance.\n"

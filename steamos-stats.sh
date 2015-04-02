@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/scripts
 # Scipt Name:	steamos-stats.sh
-# Script Ver:	0.6.5
+# Script Ver:	0.6.7
 # Description:	Monitors various stats easily over an SSH connetion to
 #		gauge performance and temperature loads on steamos.
 # Usage:	./steamos-stats.sh -gpu [gfx driver] -appid [APPID]
@@ -13,6 +13,8 @@
 # TODO:		Add AMD GPU support
 # ------------------------------------------------------------------------
 
+funct_set_main_vars()
+{
 # Set initial VAR values
 APPID_ENABLE="False"
 APPID="0"
@@ -20,9 +22,7 @@ kernelver=$(uname -r)
 # set default for now
 active_driver="nvidia"
 supported_gpu="yes"
-
-echo $client_ver
-sleep 10
+}
 
 funct_pre_req_checks()
 {
@@ -379,7 +379,8 @@ do
 done
 }
 
-# Start 
+# Main functions
+funct_set_main_vars
 funct_pre_req_checks
 funct_main_loop
 

@@ -76,14 +76,14 @@ echo ""
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' lib32gcc1 | grep "install ok installed")
 	echo "Checking for lib32gcc1: $PKG_OK"
 	if [ "" == "$PKG_OK" ]; then
-	  echo "No lib32gcc1 found. Setting up lib32gcc1."
-	  sleep 4s
+	  echo -e "No lib32gcc1 found. Setting up lib32gcc1.\n"
+	  sleep 1s
 	  sudo apt-get install lib32gcc1
 	fi
 
 	# check for SteamCMD's existance in /home/desktop
 	if [[ ! -f "/home/desktop/steamcmd/steamcmd.sh" ]]; then
-		echo -e "steamcmd not found"
+		echo -e "\nsteamcmd not found\n"
 		echo -e "Attempting to install this now.\n"
 		sleep 1s
 		# if directory exists, remove it so we have a clean slate

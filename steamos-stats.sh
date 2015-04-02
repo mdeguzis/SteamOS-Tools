@@ -323,7 +323,7 @@ funct_main_loop()
 		echo "###########################################################"
 		echo -e "\nSteam Client verion: $steam_ver"
 		echo "Steam API verion: $steam_api"
-		echo -e "\nPress [CTRL+C] to stop..."
+		echo -e "Press [CTRL+C] to stop..."
 		########################################
 		# GPU Stats
 		########################################

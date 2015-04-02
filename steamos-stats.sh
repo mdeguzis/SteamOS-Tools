@@ -284,8 +284,8 @@ do
 	# Steam-specific
 	# There is a bug in the current steamcmd version that outputs a 
 	# Danish "o" in "version"
-	steam_ver=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "package")
-	steam_api=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "API")
+	steam_ver=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "package" | cut -c 25-35)
+	steam_api=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep -E "^Steam API\:")
 
 	# Determine which GPU chipset we are dealing with
 	# Currently, Nvidia is only supported

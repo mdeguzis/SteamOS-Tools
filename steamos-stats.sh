@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/scripts
 # Scipt Name:	steamos-stats.sh
-# Script Ver:	0.6.3
+# Script Ver:	0.6.5
 # Description:	Monitors various stats easily over an SSH connetion to
 #		gauge performance and temperature loads on steamos.
 # Usage:	./steamos-stats.sh -gpu [CHIPSET] -appid [APPID]
@@ -81,7 +81,7 @@ echo ""
 		sudo apt-get install lib32gcc1
 	else
 		echo "Checking for lib32gcc1: [Ok]"
-		sleep 0.5s
+		sleep 0.2s
 	fi
 
 	# check for SteamCMD's existance in /home/desktop
@@ -110,7 +110,7 @@ echo ""
 		fi
 	else
 		echo "Found package 'steamcmd' [Ok]"
-		sleep 0.5s
+		sleep 0.2s
 	fi
 
 	#####################################################"
@@ -136,7 +136,7 @@ echo ""
 		fi
 	else
 		echo "Found package 'vaporos-binds-xbox360' [Ok]"
-		sleep 0.5s
+		sleep 0.2s
 	fi
 
 	#####################################################"
@@ -184,7 +184,7 @@ echo ""
 		fi
 	else
 		echo "Found package 'voglperf' [Ok]"
-		sleep 0.5s
+		sleep 0.2s
 	fi
 
 	#####################################################"
@@ -223,18 +223,18 @@ echo ""
 	# output quick checks for intalled packages added by a group
 	# package like 'sysstat'
 	if [[ -n $(type -P sensors) ]]; then
-		echo "Sensors Package [Ok]"
-		sleep 0.5s
+		echo "Found package 'lm-sensors' [Ok]"
+		sleep 0.2s
 	fi
 
 	if [[ -n $(type -P free) ]]; then
 		echo "Found package 'free' [Ok]"
-		sleep 0.5s
+		sleep 0.2s
 	fi
 
 	if [[ -n $(type -P git) ]]; then
 		echo "Found package 'ssh' [Ok]"
-		sleep 0.5s
+		sleep 0.2s
 	fi
 
 	# notify user if GPU is supported by utility
@@ -242,6 +242,7 @@ echo ""
 	sleep 1s
 
 	# TESTING ONLY - pause for pkg check testing
+	echo -e "\nPausing for dramatic effect ^_^ "
 	sleep 10s
 
 ####################################################################

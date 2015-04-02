@@ -285,7 +285,7 @@ do
 	# There is a bug in the current steamcmd version that outputs a 
 	# Danish "o" in "version"
 	steam_ver=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "package" | cut -c 25-35)
-	steam_api=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep -E "^Steam API\:")
+	steam_api=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep -E "^Steam API\:" | cut -c 12-15)
 
 	# Determine which GPU chipset we are dealing with
 	# Currently, Nvidia is only supported
@@ -314,7 +314,7 @@ do
 	fi
 
 	clear
-	echo "###########################################################"
+	echo -e "\n###########################################################"
 	echo "Monitoring CPU and GPU statistics  |  Kernel: $kernelver "
 	echo "###########################################################"
 	echo "Steam Client verion: $steam_ver"

@@ -87,7 +87,7 @@ echo ""
 			exit 1
 		fi
 	else
-		echo "Found package 'vaporos-binds-xbox360'."
+		echo "Found package 'vaporos-binds-xbox360' [Ok]"
 		sleep 0.5s
 	fi
 
@@ -135,7 +135,7 @@ echo ""
 			exit 1
 		fi
 	else
-		echo "Found package 'voglperf'."
+		echo "Found package 'voglperf' [Ok]"
 		sleep 0.5s
 	fi
 
@@ -184,7 +184,7 @@ echo ""
 	fi
 
 	if [[ -n $(type -P git) ]]; then
-		echo "Found package 'ssh' [Ok.]"
+		echo "Found package 'ssh' [Ok]"
 		sleep 0.5s
 	fi
 

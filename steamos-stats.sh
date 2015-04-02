@@ -138,9 +138,6 @@ echo ""
 		echo "Found package 'vaporos-binds-xbox360' [Ok]"
 		sleep 0.5s
 	fi
-	
-	
-	sleep 10s
 
 	#####################################################"
 	# Voglperf
@@ -243,6 +240,9 @@ echo ""
 	# notify user if GPU is supported by utility
 	echo "Supported GPU: $supported_gpu"
 	sleep 1s
+
+	# TESTING ONLY - pause for pkg check testing
+	sleep 10s
 
 ####################################################################
 # voglperf

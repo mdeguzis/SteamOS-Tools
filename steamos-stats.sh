@@ -319,12 +319,11 @@ funct_main_loop()
 	
 		clear
 		echo "###########################################################"
-		echo "Monitoring system statistics...  |  CTRL+C to quit"
+		echo "Monitoring system statistics...  |      CTRL+C to quit     "
 		echo "###########################################################"
 		echo "Kernel version: $kernel_ver"
 		echo "Steam Client verion: $steam_ver"
 		echo "Steam API verion: $steam_api"
-		echo -e "Press [CTRL+C] to stop..."
 		########################################
 		# GPU Stats
 		########################################

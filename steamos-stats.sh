@@ -74,11 +74,14 @@ echo ""
 
 	# steamcmd dependencies
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' lib32gcc1 | grep "install ok installed")
-	echo "Checking for lib32gcc1: $PKG_OK"
+	
 	if [ "" == "$PKG_OK" ]; then
-	  echo -e "No lib32gcc1 found. Setting up lib32gcc1.\n"
-	  sleep 1s
-	  sudo apt-get install lib32gcc1
+		echo -e "No lib32gcc1 found. Setting up lib32gcc1.\n"
+		sleep 1s
+		sudo apt-get install lib32gcc1
+	else
+		echo "Checking for lib32gcc1: [Ok]"
+		sleep 0.5s
 	fi
 
 	# check for SteamCMD's existance in /home/desktop
@@ -135,6 +138,9 @@ echo ""
 		echo "Found package 'vaporos-binds-xbox360' [Ok]"
 		sleep 0.5s
 	fi
+	
+	
+	sleep 10s
 
 	#####################################################"
 	# Voglperf

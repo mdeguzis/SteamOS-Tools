@@ -282,8 +282,10 @@ do
 	MEM_LOAD=$(free -m | grep -E '(total|Mem|Swap)' |  cut -c 1-7,13-18,23-29,34-40,43-51,53-62,65-73)
 	
 	# Steam-specific
-	steam_ver=$(./steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "package")
-	steam_api=$(./steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "API")
+	# There is a bug in the current steamcmd version that outputs a 
+	# Danish "o" in "version"
+	steam_ver=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "package")
+	steam_api=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "API")
 
 	# Determine which GPU chipset we are dealing with
 	# Currently, Nvidia is only supported

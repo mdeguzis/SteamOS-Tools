@@ -98,9 +98,9 @@ install_software()
 	
 	# Packages that fail to install, use Wheezy repositories
 	if [ $? == '0' ]; then
-		echo "Successfully installed software from Alchemist repo." 
+		echo -e "\nSuccessfully installed software from Alchemist repo.\n" 
 	else
-		echo "Could not install all packages from Alchemist repo, trying Wheezy"
+		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy\n"
 		sudo apt-get -t wheezy $apt_mode `cat $software_list`
 	fi
 	####################################################################

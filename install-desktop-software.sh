@@ -61,8 +61,6 @@ fi
 
 get_software_type()
 {
-	echo "software type test"
-	sleep 3s
 	
 	# set software type
         if [[ "$type" == "basic" ]]; then
@@ -77,8 +75,6 @@ get_software_type()
 
 install_software()
 {
-	echo "software install test"
-	sleep 3s
 
 	# Set mode and proceed based on main() choice
         if [[ "$options" == "uninstall" ]]; then

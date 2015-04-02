@@ -8,14 +8,14 @@ to SteamOS.
 
 You can run the utility using the follwing options:
 ```
-sudo ./install-debian-software.sh [basic|full] [install|uninstall|list]
+sudo ./install-debian-software.sh [install|uninstall|list] [basic|extra]
 ```
 
 Alternatively, and ideally, clone the repo for easy updates
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS-Tools
-sudo ./install-debian-software.sh [basic|full] [install|uninstall|list]
+sudo ./install-debian-software.sh [install|uninstall|list] [basic|extra]
 ```
 
 **install:** installs software based on type desired  

@@ -167,7 +167,7 @@ funct_pre_req_checks()
 			make
 	
 			# Restore apt preferences if the backup file exists
-			if [[ -d "/etc/apt/preferences.bak" ]]; then
+			if [[ -f "/etc/apt/preferences.bak" ]]; then
 				# restore preferences file
 				sudo mv "/etc/apt/preferences.bak" "/etc/apt/preferences"
 			fi

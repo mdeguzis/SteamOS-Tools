@@ -242,8 +242,8 @@ echo ""
 	sleep 1s
 
 	# TESTING ONLY - pause for pkg check testing
-	echo -e "\nPausing for dramatic effect ^_^ "
-	sleep 10s
+	# echo -e "\nPausing for dramatic effect ^_^ "
+	# sleep 10s
 
 ####################################################################
 # voglperf

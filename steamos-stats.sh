@@ -18,7 +18,7 @@ funct_set_main_vars()
 	# Set initial VAR values
 	APPID_ENABLE="False"
 	APPID="0"
-	kernelver=$(uname -r)
+	kernel_ver=$(uname -r)
 	# set default for now
 	active_driver="nvidia"
 	supported_gpu="yes"
@@ -319,9 +319,10 @@ funct_main_loop()
 	
 		clear
 		echo "###########################################################"
-		echo "Monitoring system statistics...  |  Kernel: $kernelver "
+		echo "Monitoring system statistics...  |  CTRL+C to quit"
 		echo "###########################################################"
-		echo -e "\nSteam Client verion: $steam_ver"
+		echo "Kernel version: $kernel_ver"
+		echo "Steam Client verion: $steam_ver"
 		echo "Steam API verion: $steam_api"
 		echo -e "Press [CTRL+C] to stop..."
 		########################################

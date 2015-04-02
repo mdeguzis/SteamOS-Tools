@@ -66,6 +66,51 @@ echo "#####################################################"
 echo ""
 
 	#####################################################"
+	# SteamCMD
+	#####################################################"
+	# See: https://developer.valvesoftware.com/wiki/SteamCMD
+	# steamcmd is not installed to any particular directory, but we
+	# will have to assume the user started in the /home/desktop DIR
+
+	# steamcmd dependencies
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' lib32gcc1 | grep "install ok installed")
+	echo "Checking for lib32gcc1: $PKG_OK"
+	if [ "" == "$PKG_OK" ]; then
+	  echo "No lib32gcc1 found. Setting up lib32gcc1."
+	  sleep 4s
+	  sudo apt-get install lib32gcc1
+	fi
+
+	# check for SteamCMD's existance in /home/desktop
+	if [[ ! -f "/home/desktop/steamcmd/steamcmd.sh" ]]; then
+		echo -e "steamcmd not found"
+		echo -e "Attempting to install this now.\n"
+		sleep 1s
+		# if directory exists, remove it so we have a clean slate
+		if [[ ! -d "/home/desktop/steamcmd" ]]; then
+			rm -rf "/home/desktop/steamcmd"
+			mkdir ~/steamcmd
+		fi
+	
+		# Download and unpack steamcmd directory
+		cd ~/steamcmd
+		wget "http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
+		tar -xvzf steamcmd_linux.tar.gz
+
+		if [ $? == '0' ]; then
+			echo "Successfully installed 'steamcmd'"
+			sleep 3s
+		else
+			echo "Could not install 'steamcmd'. Exiting..."
+			sleep 2s
+			exit 1
+		fi
+	else
+		echo "Found package 'steamcmd' [Ok]"
+		sleep 0.5s
+	fi
+
+	#####################################################"
 	# VaporOS bindings
 	#####################################################"
 	# FPS + more binds from VaporOS 2
@@ -87,7 +132,7 @@ echo ""
 			exit 1
 		fi
 	else
-		echo "Found package 'vaporos-binds-xbox360'."
+		echo "Found package 'vaporos-binds-xbox360' [Ok]"
 		sleep 0.5s
 	fi
 
@@ -135,7 +180,7 @@ echo ""
 			exit 1
 		fi
 	else
-		echo "Found package 'voglperf'."
+		echo "Found package 'voglperf' [Ok]"
 		sleep 0.5s
 	fi
 
@@ -151,7 +196,7 @@ echo ""
 
 		echo "1 or more core packages not found"
 		sleep 1s
-		echo "Attempting to install these now (Must have Debian Repos added)."
+		echo -e "Attempting to install these now (Must have Debian Repos added)\n"
 		sleep 1s
 		# Update system first
 		sudo apt-get update
@@ -172,19 +217,20 @@ echo ""
 		fi
 	fi
 
-	# output quick checks for intalled packages
+	# output quick checks for intalled packages added by a group
+	# package like 'sysstat'
 	if [[ -n $(type -P sensors) ]]; then
 		echo "Sensors Package [Ok]"
 		sleep 0.5s
 	fi
 
 	if [[ -n $(type -P free) ]]; then
-		echo "Found package 'free' [Ok]."
+		echo "Found package 'free' [Ok]"
 		sleep 0.5s
 	fi
 
 	if [[ -n $(type -P git) ]]; then
-		echo "Found package 'ssh' [Ok.]"
+		echo "Found package 'ssh' [Ok]"
 		sleep 0.5s
 	fi
 

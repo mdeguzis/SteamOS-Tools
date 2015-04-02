@@ -280,6 +280,10 @@ do
 	#also see: xxd, iconv
 	CPU_LOAD=$(iostat | cut -f 2 | grep -A 1 "avg-cpu")
 	MEM_LOAD=$(free -m | grep -E '(total|Mem|Swap)' |  cut -c 1-7,13-18,23-29,34-40,43-51,53-62,65-73)
+	
+	# Steam-specific
+	steam_ver=$(./steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "package")
+	steam_api=$(./steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "API")
 
 	# Determine which GPU chipset we are dealing with
 	# Currently, Nvidia is only supported
@@ -311,8 +315,9 @@ do
 	echo "###########################################################"
 	echo "Monitoring CPU and GPU statistics  |  Kernel: $kernelver "
 	echo "###########################################################"
+	echo "Steam Client verion: $steamver"
+	echo "Steam API verion: $steamver"
 	echo "Press [CTRL+C] to stop.."
-	echo ""
 	########################################
 	# GPU Stats
 	########################################

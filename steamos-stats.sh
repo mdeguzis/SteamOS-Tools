@@ -373,7 +373,7 @@ funct_main_loop()
 		echo "-----------------------------------------------------------"
 		echo "$MEM_LOAD"
 	
-		# let stat's idel for a bit
+		# let stat's idle for a bit
 		sleep 1s
 	
 	done

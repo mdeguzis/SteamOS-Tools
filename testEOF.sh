@@ -1,6 +1,7 @@
 #! /bin/bash
 
-{	
+main()
+{
   prefer=/tmp/file
 			cat <<- EOF >> ${prefer}
 			Package: *

@@ -6,7 +6,7 @@
 # Scipt Name:	add-debian-repos.sh
 # Script Ver:	0.1.3
 # Description:	This script automatically enables debian repositories
-# Usage:	./add-debian-repos [install|uninstall]
+# Usage:	./add-debian-repos [install|uninstall|--help]
 # ------------------------------------------------------------------------
 
 funct_set_vars()

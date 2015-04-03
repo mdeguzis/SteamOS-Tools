@@ -127,13 +127,13 @@ main()
 }
 
 # Show help if requested
-if [[ "$1" == "--help" ]]; then
-        show_help
-	exit 0
-fi
+#if [[ "$1" == "--help" ]]; then
+#        show_help
+#	exit 0
+#fi
 
 # Start Script
-funct_set_vars
-funct_show_warning
-funct_option_check
+#funct_set_vars
+#funct_show_warning
+#funct_option_check
 main

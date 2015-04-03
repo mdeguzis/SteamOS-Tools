@@ -114,7 +114,7 @@ main()
 		echo -e "'sudo apt-get install <package_name>'\n"
 		echo "Warning: If the apt package manager seems to want to remove a"
 		echo "lot of packages you have already installed, be very careful about"
-		echo -e "proceeding.\n""
+		echo -e "proceeding.\n"
 	
 	elif [[ "$install" == "no" ]]; then
 		clear

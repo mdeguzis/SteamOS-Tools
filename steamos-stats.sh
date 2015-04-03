@@ -322,7 +322,7 @@ funct_main_loop()
 		echo "Monitoring system statistics...  |      CTRL+C to quit    #"
 		echo "###########################################################"
 		echo "Kernel version: $kernel_ver"
-		echo "Steam Client verion: $steam_ver"
+		echo "Steam Client version: $steam_ver"
 		echo "Steam API verion: $steam_api"
 		########################################
 		# GPU Stats

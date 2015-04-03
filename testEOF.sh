@@ -2,12 +2,12 @@
 
 main()
 {
-  prefer=/tmp/file
-			cat <<- EOF >> ${prefer}
-			Package: *
-			Pin: release l=Debian
-			Pin-Priority: 110
-			EOF
+ # prefer=/tmp/file
+#			cat <<- EOF >> ${prefer}
+#			Package: *
+#			Pin: release l=Debian
+#			Pin-Priority: 110
+#			EOF
 			
 # test based on my code
 

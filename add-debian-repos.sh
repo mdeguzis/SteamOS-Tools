@@ -71,13 +71,13 @@ main()
 		fi
 	
 		# Create and add required text to preferences file
-		cat <<- 'EOF' | cat >> ${prefer}
+		cat >> ${prefer} <<- EOF
 		Package: *
 		Pin: release l=Debian
 		Pin-Priority: 110
 		EOF
 		
-		cat <<- 'EOF' | cat >> ${steamosprefer}
+		cat >> ${steamosprefer} <<- EOF
 		Package: *
 		Pin: release l=SteamOS
 		Pin-Priority: 900
@@ -94,7 +94,7 @@ main()
 	
 		# Create and add required text to wheezy.list
 
-		cat <<- 'EOF' | cat >> ${sourcelist}
+		cat >> ${sourcelist} <<- EOF
 		# Debian repo
 		deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
 		deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free

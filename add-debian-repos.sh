@@ -71,13 +71,6 @@ main()
 			mv ${prefer} ${prefer}.bak
 		fi
 	
-		install="yes"
-		reponame="wheezy"
-		sourcelist="/etc/apt/sources.list.d/${reponame}.list"
-		#prefer="/etc/apt/preferences.d/${reponame}"
-		prefer=/tmp/file
-		steamosprefer="/etc/apt/preferences.d/steamos"
-	
 		# Create and add required text to preferences file
 		cat <<-EOF >> ${prefer}
 		Package: *

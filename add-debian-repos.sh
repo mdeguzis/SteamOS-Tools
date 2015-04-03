@@ -69,20 +69,21 @@ main()
 			mv ${prefer} ${prefer}.bak
 		fi
 	
-	# Create and add required text to preferences file
-	cat <<- EOF
-	Package: *
-	Pin: release l=Debian
-	Pin-Priority: 110
-	EOF
+		# Create and add required text to preferences file
+		cat >> ${prefer} <<- EOF 
+		Package: *
+		Pin: release l=Debian
+		Pin-Priority: 110
+		EOF
 		
-	cat <<- EOF
-	Package: *
-	Pin: release l=SteamOS
-	Pin-Priority: 900
-	EOF
+		cat  >> ${steamosprefer} <<- EOF
+		Package: *
+		Pin: release l=SteamOS
+		Pin-Priority: 900
+		EOF
 	
 		# Check for Wheezy list in repos.d
+		
 		# If it does not exist, create it
 		if [[ -f ${sourcelist} ]]; then
 	        	# backup sources list file
@@ -91,12 +92,12 @@ main()
 		fi
 	
 		# Create and add required text to wheezy.list
-		
-	cat <<- EOF
-	## Debian repo
-	deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
-	deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
-	EOF
+		cat >> ${sourcelist} <<- EOF
+		## Debian repo
+		deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
+		deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
+		EOF
+
 		
 		# Update system
 		echo "Updating index of packages..."

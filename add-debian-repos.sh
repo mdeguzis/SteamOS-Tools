@@ -11,15 +11,16 @@
 # Usage:	sudo ./add-debian-repos [install|uninstall|--help]
 # ------------------------------------------------------------------------
 
-
-# Set default user option
-install="yes"
-reponame="wheezy"
-sourcelist="/etc/apt/sources.list.d/${reponame}.list"
-#prefer="/etc/apt/preferences.d/${reponame}"
-prefer=/tmp/file
-steamosprefer="/etc/apt/preferences.d/steamos"
-
+funct_set_vars()
+{
+	# Set default user option
+	install="yes"
+	reponame="wheezy"
+	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
+	#prefer="/etc/apt/preferences.d/${reponame}"
+	prefer=/tmp/file
+	steamosprefer="/etc/apt/preferences.d/steamos"
+}
 
 show_help()
 {

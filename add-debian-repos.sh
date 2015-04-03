@@ -20,6 +20,7 @@ funct_set_vars()
 	prefer="/etc/apt/preferences.d/${reponame}"
 	steamosprefer="/etc/apt/preferences.d/steamos"
 }
+
 show_help()
 {
 	clear

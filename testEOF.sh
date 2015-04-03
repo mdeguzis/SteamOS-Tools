@@ -14,6 +14,7 @@ main()
 	# Install/Uninstall process
 	
 		# Create and add required text to preferences file
+		prefer=/tmp/file
 		cat <<-EOF >> ${prefer}
 		Package: *
 		Pin: release l=Debian

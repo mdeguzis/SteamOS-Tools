@@ -64,7 +64,7 @@ main()
 		echo -e "Adding debian repositories...\n"
 		sleep 1s
 		
-		# Check for exitance of /etc/apt/preferences
+		# Check for existance of /etc/apt/preferences
 		if [[ -f ${prefer} ]]; then
 			# backup preferences file
 			echo "Backup up ${prefer} to ${prefer}.bak"

@@ -74,13 +74,13 @@ main()
 		Package: *
 		Pin: release l=Debian
 		Pin-Priority: 110
-		EOF
+EOF
 		
 		cat <<-EOF > ${steamosprefer}
 		Package: *
 		Pin: release l=SteamOS
 		Pin-Priority: 900
-		EOF
+EOF
 	
 		# Check for Wheezy list in repos.d
 		# If it does not exist, create it
@@ -95,7 +95,7 @@ main()
 		## Debian repo
 		deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
 		deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
-		EOF
+EOF
 		
 		# Update system
 		echo "Updating index of packages..."

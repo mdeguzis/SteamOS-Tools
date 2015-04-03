@@ -120,7 +120,7 @@ main()
 		rm ${prefer}
 		rm ${steamosprefer}
 		echo "Updating index of packages..."
-		apt-get update > /dev/null
+		apt-get update
 		echo "Done!"
 	fi
 }

@@ -145,7 +145,7 @@ install_software()
 	####################################################################
 	
 	# Install from Alchemist first, Wheezy as backup
-	for i in `cat software.list`; do
+	for i in `cat $software_list`; do
 		sudo apt-get install $apt_mode $i
 	done 
 	

@@ -184,7 +184,7 @@ main()
         		uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from software.temp
+                        # show listing from cfgs/basic-software.txt
                         clear
                         cat $software_list | less
 			exit
@@ -199,9 +199,33 @@ main()
                         uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from software.temp
+                        # show listing from cfgs/extra-software.txt
                         clear
 			cat $software_list | less
+			exit
+                fi
+                
+        elif [[ "$type" == "emulation" ]]; then
+
+		if [[ "$options" == "uninstall" ]]; then
+                        uninstall="yes"
+
+                elif [[ "$options" == "list" ]]; then
+                        # show listing from cfgs/emulation.txt
+                        clear
+			cat $software_list | less
+			exit
+                fi
+                
+        elif [[ "$type" == "$type" ]]; then
+
+		if [[ "$options" == "uninstall" ]]; then
+                        uninstall="yes"
+
+                elif [[ "$options" == "list" ]]; then
+                        # no list to show
+                        clear
+			echo -e "No listing for $type \n"
 			exit
                 fi
 

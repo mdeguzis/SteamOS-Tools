@@ -144,10 +144,12 @@ install_software()
 	# Need to test non '-t wheezy' results with current apt prefs
 	####################################################################
 	
+	# Inform user of preliminary action
+	echo -e "\n\nAttempting package installations from Alchemist\n"
+	sleep 1s
+	
 	# Install from Alchemist first, Wheezy as backup
 	for i in `cat $software_list`; do
-		echo -e "\n\nAttempting package installations from Alchemist\n"
-		sleep 1s
 		sudo apt-get $apt_mode $i 2> /dev/null
 	done 
 	

@@ -106,6 +106,28 @@ get_software_type()
 	
 }
 
+add_repos()
+{
+
+	# set software type
+        if [[ "$type" == "basic" ]]; then
+                # non-required for now
+                echo "" > /dev/null
+        elif [[ "$type" == "extra" ]]; then
+                # non-required for now
+                echo "" > /dev/null
+        elif [[ "$type" == "emulation" ]]; then
+                # retroarch
+                sudo add-apt-repository -y ppa:libretro/stable 
+                # update package listings
+                sudo apt-get update
+        elif [[ "$type" == "$type" ]]; then
+                # non-required for now
+                echo "" > /dev/null
+        fi
+	
+}
+
 install_software()
 {
 
@@ -192,6 +214,7 @@ main()
 
 #handle prerequisite software
 funct_pre_req_checks
+add_repos
 
 # Start main function
 main

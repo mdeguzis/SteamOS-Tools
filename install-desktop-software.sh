@@ -135,6 +135,10 @@ install_software()
 	else
 		apt_mode="install"
         fi
+        
+        # Update keys and system first
+        sudo apt-key update
+        sudo apt-get update
 
 	# Alchemist repos
 	# None here for now

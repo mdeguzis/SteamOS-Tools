@@ -8,11 +8,11 @@
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
-#		some sort of additional value
+#		some sort of additional value.
 #
 # Usage:	./install-desktop-software.sh [option] [type]
 # Options:	[install|uninstall|list] 
-# Types:	[basic|extra|<pkg_name>]
+# Types:	[basic|extra|emulation|<pkg_name>]
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
 #
@@ -69,6 +69,23 @@ if [[ "$1" == "--help" ]]; then
 	exit 0
 fi
 
+funct_pre_req_checks()
+{
+	
+	# Adding repositories
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' python-software-properties | grep "install ok installed")
+	
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "python-software-properties not found. Setting up python-software-properties.\n"
+		sleep 1s
+		sudo apt-get install -t wheezy python-software-properties
+	else
+		echo "Checking for python-software-properties: [Ok]"
+		sleep 0.2s
+	fi
+	
+}
+
 get_software_type()
 {
 	
@@ -79,6 +96,9 @@ get_software_type()
         elif [[ "$type" == "extra" ]]; then
                 # add full softare to temp list
                 software_list="cfgs/extra-software.txt"
+        elif [[ "$type" == "emulation" ]]; then
+                # add emulation softare to temp list
+                software_list="cfgs/emulation.txt"
         elif [[ "$type" == "$type" ]]; then
                 # install based on $2 string response
                 software_list=$(echo $type)
@@ -169,6 +189,9 @@ main()
 		install_software
 	fi
 }
+
+#handle prerequisite software
+funct_pre_req_checks
 
 # Start main function
 main

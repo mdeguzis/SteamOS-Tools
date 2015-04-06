@@ -205,6 +205,9 @@ main()
 			exit
                 fi
                 
+                show_warning
+		install_software
+                
         elif [[ "$type" == "emulation" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then
@@ -216,6 +219,9 @@ main()
 			cat $software_list | less
 			exit
                 fi
+                
+                show_warning
+		install_software
                 
         elif [[ "$type" == "$type" ]]; then
 

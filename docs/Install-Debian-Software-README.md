@@ -13,14 +13,21 @@ sudo ./install-debian-software.sh [option] [type]
 **Options:** [install|uninstall|list]  
 **Type:** [basic|extra|emulation|<pkg_name>]
 
-**install:** installs software based on type desired  
-**uninstall:** uninstalls software based on type installed already  
-**list:** lists softare pacakges in each install group  
+**install:**   
+installs software based on type desired  
+**uninstall:**   
+uninstalls software based on type installed already  
+**list:**   
+lists softare pacakges in each install group  
 
-**basic:** installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
-**extra:** installs extra softare based on feedback and personal preference  
-**emulation:** retroarch and associated emulators. **Takes a long time (manual compile)**  
-**<pkg_name:** install package specifified from Alchemist/Wheezy  
+**basic:**  
+installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
+**extra:**  
+installs extra softare based on feedback and personal preference  
+**emulation:**  
+retroarch and associated emulators. 
+**<pkg_name:**  
+install package specifified from Alchemist/Wheezy  
 
 Alternatively, and ideally, clone the repo for easy updates
 ```
@@ -28,6 +35,9 @@ git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS-Tools
 sudo ./install-debian-software.sh [install|uninstall|list] [basic|extra]
 ```
+
+## Emulation Warning
+Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation.
 
 ### Please note
 

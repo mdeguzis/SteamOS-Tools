@@ -118,9 +118,7 @@ add_repos()
                 echo "" > /dev/null
         elif [[ "$type" == "emulation" ]]; then
                 # retroarch
-                sudo add-apt-repository -y ppa:libretro/stable 
-                # update package listings
-                sudo apt-get update
+                echo "" > /dev/null
         elif [[ "$type" == "$type" ]]; then
                 # non-required for now
                 echo "" > /dev/null

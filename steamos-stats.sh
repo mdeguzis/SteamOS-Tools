@@ -28,10 +28,10 @@ funct_set_main_vars()
 funct_pre_req_checks()
 {
 	# From user input (until auto detection is figured out), set
-	# the gpu on the first argument. 
+	# the gpu driver on the first argument. 
 	# "Unsupported" may just mean the driver has not been tested yet
 	
-	# valid chipset values: nvidia, intel, fglrx, nouveau, radeon
+	# valid driver values: nvidia, intel, fglrx, nouveau, radeon
 	if [[ "$1" == "-driver" ]]; then
 		if [[ "$2" == "nvidia" ]]; then
 		    	active_driver="nvidia"

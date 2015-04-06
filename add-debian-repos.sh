@@ -106,12 +106,15 @@ main()
 		apt-get update
 	
 		# Remind user how to install
+		clear
 		echo -e "\n###########################################################"
 		echo "How to use"
 		echo "###########################################################"
 		echo -e "\nYou can now not only install package from the SteamOS repository," 
-		echo -e "but also from the Debian repository with:\n"
+		echo -e "but also from the Debian repository with:\n\n"
 		echo -e "'sudo apt-get install <package_name>'\n"
+		echo -e "or\n"
+		echo -e "'sudo apt-get -t wheezy install <package_name>'\n\n"
 		echo "Warning: If the apt package manager seems to want to remove a"
 		echo "lot of packages you have already installed, be very careful about"
 		echo -e "proceeding.\n"

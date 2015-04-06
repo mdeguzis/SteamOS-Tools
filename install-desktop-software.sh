@@ -128,6 +128,9 @@ add_repos()
 
 install_software()
 {
+	# For a list of Debian software pacakges, please see:
+	# https://packages.debian.org/search?keywords=wheezy
+
 	clear
 	# Set mode and proceed based on main() choice
         if [[ "$options" == "uninstall" ]]; then

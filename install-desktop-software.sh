@@ -146,7 +146,7 @@ install_software()
 	
 	# Install from Alchemist first, Wheezy as backup
 	for i in `cat $software_list`; do
-		sudo apt-get install $apt_mode $i
+		sudo apt-get $apt_mode $i @> /dev/null
 	done 
 	
 	# Packages that fail to install, use Wheezy repositories

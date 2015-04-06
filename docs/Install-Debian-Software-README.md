@@ -33,7 +33,7 @@ Alternatively, and ideally, clone the repo for easy updates
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS-Tools
-sudo ./install-debian-software.sh [install|uninstall|list] [basic|extra]
+sudo ./install-debian-software.sh [option] [type]
 ```
 
 ## Emulation Warning

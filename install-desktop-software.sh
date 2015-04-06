@@ -146,6 +146,8 @@ install_software()
 	
 	# Install from Alchemist first, Wheezy as backup
 	for i in `cat $software_list`; do
+		echo -e "\n\nAttempting package installations from Alchemist\n"
+		sleep 1s
 		sudo apt-get $apt_mode $i 2> /dev/null
 	done 
 	
@@ -154,6 +156,7 @@ install_software()
 		echo -e "\nSuccessfully installed software from Alchemist repo.\n" 
 	else
 		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy\n"
+		sleep 2s
 		sudo apt-get -t wheezy $apt_mode `cat $software_list`
 	fi
 	####################################################################

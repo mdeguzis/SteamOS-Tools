@@ -19,7 +19,8 @@ funct_set_main_vars()
 	APPID_ENABLE="False"
 	APPID="0"
 	kernel_ver=$(uname -r)
-	# set default for now
+	# set default for now 
+	# Valve's installer will use proprietary drivers, if available
 	active_driver="nvidia"
 	supported_gpu="yes"
 }
@@ -27,20 +28,27 @@ funct_set_main_vars()
 funct_pre_req_checks()
 {
 	# From user input (until auto detection is figured out), set
-	# the gpu on the first argument
+	# the gpu driver on the first argument. 
+	# "Unsupported" may just mean the driver has not been tested yet
 	
-	# valid chipset values: nvidia, intel, fglrx
+	# valid driver values: nvidia, intel, fglrx, nouveau, radeon
 	if [[ "$1" == "-driver" ]]; then
-	    if [[ "$2" == "nvidia" ]]; then
-	    	active_driver="nvidia"
-	    	supported_gpu="yes"
-	    elif [[ "$2" == "fglrx" ]]; then
-	    	active_driver="fglrx"
-		supported_gpu="no"
-	    elif [[ "$2" == "intel" ]]; then
-	    	active_driver="intel"
-	    	supported_gpu="no"
-	    fi
+		if [[ "$2" == "nvidia" ]]; then
+		    	active_driver="nvidia"
+		    	supported_gpu="yes"
+		elif [[ "$2" == "nouveau" ]]; then
+		    	active_driver="nouveau"
+			supported_gpu="no"	
+		elif [[ "$2" == "fglrx" ]]; then
+		    	active_driver="fglrx"
+			supported_gpu="no"
+		elif [[ "$2" == "radeon" ]]; then
+		    	active_driver="radeon"
+			supported_gpu="no"
+		elif [[ "$2" == "intel" ]]; then
+			active_driver="intel"
+			supported_gpu="no"
+		fi
 	fi
 	
 	if [[ "$3" == "-appid" ]]; then
@@ -146,6 +154,7 @@ funct_pre_req_checks()
 		#####################################################"
 		# Since Voglperf compiles into a bin/ folder, not /usr/bin, we have to
 		# assume the git repo was cloned into /home/desktop for now.
+		
 		if [[ ! -f "/home/desktop/voglperf/bin/voglperfrun64" ]]; then
 			echo "Voglperf not found"
 			echo "Attempting to install this now..."
@@ -222,19 +231,23 @@ funct_pre_req_checks()
 			fi
 		fi
 	
-		# output quick checks for intalled packages added by a group
-		# package like 'sysstat'
+		# output quick checks for intalled packages explicitly needed by
+		# this script, and are added by a group package like 'sysstat'
+		
 		if [[ -n $(type -P sensors) ]]; then
+			# Group package: sysstat
 			echo "Found package 'lm-sensors' [Ok]"
 			sleep 0.2s
 		fi
 	
 		if [[ -n $(type -P free) ]]; then
+			# Group package: sysstat
 			echo "Found package 'free' [Ok]"
 			sleep 0.2s
 		fi
 	
 		if [[ -n $(type -P git) ]]; then
+			# Group package: sysstat
 			echo "Found package 'ssh' [Ok]"
 			sleep 0.2s
 		fi
@@ -293,12 +306,19 @@ funct_main_loop()
 	
 		# Determine which GPU chipset we are dealing with
 		# Currently, Nvidia is only supported
+		# Other values: intel, fglrx, nouveau, radeon
 		if [[ "$active_driver" == "nvidia" ]]; then
 			# Nvidia detected
 			GPU=$(nvidia-smi -a | grep -E 'Name' | cut -c 39-100)
 			GPU_DRIVER=$(nvidia-smi -a | grep -E 'Driver Version' | cut -c 39-100)
 			GPU_TEMP=$(nvidia-smi -a | grep -E 'Current Temp' | cut -c 39-40 | sed "s|$|$CEL|g")
 			GPU_FAN=$(nvidia-smi -a | grep -E 'Fan Speed' | cut -c 39-45 | sed "s| %|%|g")
+			
+		elif [[ "$active_driver" == "nouveau" ]]; then
+			GPU="          [temporarily disabled]"
+			GPU_DRIVER="[temporarily disabled]"
+			GPU_TEMP="          [temporarily disabled]"
+			GPU_FAN="     [temporarily disabled]"
 	
 		elif [[ "$active_driver" == "fglrx" ]]; then
 			GPU="          [temporarily disabled]"
@@ -306,6 +326,18 @@ funct_main_loop()
 			GPU_TEMP="          [temporarily disabled]"
 			GPU_FAN="     [temporarily disabled]"
 	
+		elif [[ "$active_driver" == "intel" ]]; then
+			GPU="          [temporarily disabled]"
+			GPU_DRIVER="[temporarily disabled]"
+			GPU_TEMP="          [temporarily disabled]"
+			GPU_FAN="     [temporarily disabled]"
+			
+		elif [[ "$active_driver" == "radeon" ]]; then
+			GPU="          [temporarily disabled]"
+			GPU_DRIVER="[temporarily disabled]"
+			GPU_TEMP="          [temporarily disabled]"
+			GPU_FAN="     [temporarily disabled]"
+			
 		elif [[ "$active_driver" == "intel" ]]; then
 			GPU="          [temporarily disabled]"
 			GPU_DRIVER="[temporarily disabled]"

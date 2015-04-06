@@ -10,7 +10,9 @@
 #		intention of SteamOS, for some users, this will provide
 #		some sort of additional value
 #
-# Usage:	./steamos-stats.sh [install|uninstall|list] [basic|extra]
+# Usage:	./install-desktop-software.sh [option] [type]
+# Options:	[install|uninstall|list] 
+# Types:	[basic|extra|<pkg_name>]
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
 #
@@ -24,35 +26,39 @@ uninstall="no"
 
 show_help()
 {
-
-clear
-cat << EOF
-Warning: usage of this script is at your own risk!
-You have two options with this script:
-
-Basic
----------------------------------------------------------------
-Standard Debian desktop application loadout.
-Based on: http://distrowatch.com/table.php?distribution=debian
-
-Extra
----------------------------------------------------------------
-Extra software
-Based on feeback and personal preference.
-
-For a complete list, type:
-'./install-debian-software list [basic|extra]'
-
-Install with:
-'./install-debian-software [install|uninstall|list] [basic|extra]'
-
-Press enter to continue...
-
-EOF
-
-read -n 1
-printf "Continuing...\n"
-clear
+	
+	clear
+	cat <<-EOF
+	Warning: usage of this script is at your own risk!
+	You have two options with this script:
+	
+	Basic
+	---------------------------------------------------------------
+	Standard Debian desktop application loadout.
+	Based on: http://distrowatch.com/table.php?distribution=debian
+	
+	Extra
+	---------------------------------------------------------------
+	Extra software
+	Based on feeback and personal preference.
+	
+	<pkg_name> 
+	---------------------------------------------------------------
+	Any package you wish to specify yourself. Alchemist repos will be
+	used first, followed by Debian Wheezy.
+	
+	For a complete list, type:
+	'./install-debian-software list [basic|extra]'
+	
+	Install with:
+	'./install-debian-software [install|uninstall|list] [basic|extra|<pkg_name>]'
+	
+	Press enter to continue...
+	EOF
+	
+	read -n 1
+	printf "Continuing...\n"
+	clear
 
 }
 
@@ -73,6 +79,9 @@ get_software_type()
         elif [[ "$type" == "extra" ]]; then
                 # add full softare to temp list
                 software_list="cfgs/extra-software.txt"
+        elif [[ "$type" == "$type" ]]; then
+                # install based on $2 string response
+                software_list=$(echo $type)
         fi
 	
 }

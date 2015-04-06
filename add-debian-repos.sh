@@ -17,7 +17,8 @@ funct_set_vars()
 	install="yes"
 	reponame="wheezy"
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
-	prefer="/etc/apt/preferences.d/${reponame}"
+	#prefer="/etc/apt/preferences.d/${reponame}"
+	prefer=/tmp/file
 	steamosprefer="/etc/apt/preferences.d/steamos"
 }
 
@@ -63,7 +64,7 @@ main()
 		echo -e "Adding debian repositories...\n"
 		sleep 1s
 		
-		# Check for exitance of /etc/apt/preferences
+		# Check for existance of /etc/apt/preferences
 		if [[ -f ${prefer} ]]; then
 			# backup preferences file
 			echo "Backup up ${prefer} to ${prefer}.bak"
@@ -71,18 +72,18 @@ main()
 		fi
 	
 		# Create and add required text to preferences file
-		cat <<- EOF >> ${prefer}
+		cat <<-EOF >> ${prefer}
 		Package: *
 		Pin: release l=Debian
 		Pin-Priority: 110
 		EOF
-		
-		cat <<- EOF >> ${steamosprefer}
+	
+		cat <<-EOF >> ${steamosprefer}
 		Package: *
 		Pin: release l=SteamOS
 		Pin-Priority: 900
 		EOF
-	
+
 		# Check for Wheezy list in repos.d
 		
 		# If it does not exist, create it
@@ -94,13 +95,12 @@ main()
 	
 		# Create and add required text to wheezy.list
 
-		cat <<- EOF >> ${sourcelist}
+		cat <<-EOF >> ${sourcelist}
 		# Debian repo
 		deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
 		deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
 		EOF
 
-		
 		# Update system
 		echo "Updating index of packages..."
 		apt-get update
@@ -114,7 +114,7 @@ main()
 		echo -e "'sudo apt-get install <package_name>'\n"
 		echo "Warning: If the apt package manager seems to want to remove a"
 		echo "lot of packages you have already installed, be very careful about"
-		echo -e "proceeding.\n""
+		echo -e "proceeding.\n"
 	
 	elif [[ "$install" == "no" ]]; then
 		clear

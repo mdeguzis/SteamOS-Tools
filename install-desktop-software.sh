@@ -149,8 +149,8 @@ install_software()
 	####################################################################
 	
 	# Inform user of preliminary action
-	echo -e "\n\nAttempting package installations from Alchemist\n"
-	sleep 1s
+	echo -e "\n\nAttempting package installations from Alchemist...\n"
+	sleep 2s
 	
 	# Install from Alchemist first, Wheezy as backup
 	for i in `cat $software_list`; do
@@ -159,9 +159,9 @@ install_software()
 	
 	# Packages that fail to install, use Wheezy repositories
 	if [ $? == '0' ]; then
-		echo -e "\nSuccessfully installed software from Alchemist repo.\n" 
+		echo -e "\nSuccessfully installed software from Alchemist repo!\n" 
 	else
-		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy\n"
+		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
 		sleep 2s
 		sudo apt-get -t wheezy $apt_mode `cat $software_list`
 	fi

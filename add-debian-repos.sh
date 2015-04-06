@@ -78,7 +78,7 @@ deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
 EOF
 	# Update system
 	echo "Updating index of packages..."
-	apt-get update > /dev/null
+	apt-get update
 
 	# Remind user how to install
 	clear
@@ -93,7 +93,7 @@ EOF
 	echo ""
 	echo "Warning: If the apt package manager seems to want to remove a"
 	echo "lot of packages you have already installed, be very careful about"
-	echo "proceeding.
+	echo "proceeding."
 	echo ""
 
 elif [[ "$install" == "no" ]]; then
@@ -103,6 +103,6 @@ elif [[ "$install" == "no" ]]; then
 	rm ${prefer}
 	rm ${steamosprefer}
 	echo "Updating index of packages..."
-	apt-get update > /dev/null
+	apt-get update
 	echo "Done!"
 fi

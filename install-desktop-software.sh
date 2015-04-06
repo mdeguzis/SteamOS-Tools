@@ -130,7 +130,7 @@ add_repos()
 
 install_software()
 {
-
+	clear
 	# Set mode and proceed based on main() choice
         if [[ "$options" == "uninstall" ]]; then
                 apt_mode="remove"

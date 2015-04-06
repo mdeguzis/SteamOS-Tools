@@ -154,6 +154,7 @@ funct_pre_req_checks()
 		#####################################################"
 		# Since Voglperf compiles into a bin/ folder, not /usr/bin, we have to
 		# assume the git repo was cloned into /home/desktop for now.
+		
 		if [[ ! -f "/home/desktop/voglperf/bin/voglperfrun64" ]]; then
 			echo "Voglperf not found"
 			echo "Attempting to install this now..."
@@ -230,19 +231,23 @@ funct_pre_req_checks()
 			fi
 		fi
 	
-		# output quick checks for intalled packages added by a group
-		# package like 'sysstat'
+		# output quick checks for intalled packages explicitly needed by
+		# this script, and are added by a group package like 'sysstat'
+		
 		if [[ -n $(type -P sensors) ]]; then
+			# Group package: sysstat
 			echo "Found package 'lm-sensors' [Ok]"
 			sleep 0.2s
 		fi
 	
 		if [[ -n $(type -P free) ]]; then
+			# Group package: sysstat
 			echo "Found package 'free' [Ok]"
 			sleep 0.2s
 		fi
 	
 		if [[ -n $(type -P git) ]]; then
+			# Group package: sysstat
 			echo "Found package 'ssh' [Ok]"
 			sleep 0.2s
 		fi

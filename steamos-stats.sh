@@ -19,7 +19,8 @@ funct_set_main_vars()
 	APPID_ENABLE="False"
 	APPID="0"
 	kernel_ver=$(uname -r)
-	# set default for now
+	# set default for now 
+	# Valve's installer will use proprietary drivers, if available
 	active_driver="nvidia"
 	supported_gpu="yes"
 }
@@ -27,20 +28,27 @@ funct_set_main_vars()
 funct_pre_req_checks()
 {
 	# From user input (until auto detection is figured out), set
-	# the gpu on the first argument
+	# the gpu on the first argument. 
+	# "Unsupported" may just mean the driver has not been tested yet
 	
-	# valid chipset values: nvidia, intel, fglrx
+	# valid chipset values: nvidia, intel, fglrx, nouveau, radeon
 	if [[ "$1" == "-driver" ]]; then
-	    if [[ "$2" == "nvidia" ]]; then
-	    	active_driver="nvidia"
-	    	supported_gpu="yes"
-	    elif [[ "$2" == "fglrx" ]]; then
-	    	active_driver="fglrx"
-		supported_gpu="no"
-	    elif [[ "$2" == "intel" ]]; then
-	    	active_driver="intel"
-	    	supported_gpu="no"
-	    fi
+		if [[ "$2" == "nvidia" ]]; then
+		    	active_driver="nvidia"
+		    	supported_gpu="yes"
+		elif [[ "$2" == "nouveau" ]]; then
+		    	active_driver="nouveau"
+			supported_gpu="no"	
+		elif [[ "$2" == "fglrx" ]]; then
+		    	active_driver="fglrx"
+			supported_gpu="no"
+		elif [[ "$2" == "radeon" ]]; then
+		    	active_driver="radeon"
+			supported_gpu="no"
+		elif [[ "$2" == "intel" ]]; then
+			active_driver="intel"
+			supported_gpu="no"
+		fi
 	fi
 	
 	if [[ "$3" == "-appid" ]]; then

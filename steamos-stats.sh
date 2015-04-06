@@ -301,12 +301,19 @@ funct_main_loop()
 	
 		# Determine which GPU chipset we are dealing with
 		# Currently, Nvidia is only supported
+		# Other values: intel, fglrx, nouveau, radeon
 		if [[ "$active_driver" == "nvidia" ]]; then
 			# Nvidia detected
 			GPU=$(nvidia-smi -a | grep -E 'Name' | cut -c 39-100)
 			GPU_DRIVER=$(nvidia-smi -a | grep -E 'Driver Version' | cut -c 39-100)
 			GPU_TEMP=$(nvidia-smi -a | grep -E 'Current Temp' | cut -c 39-40 | sed "s|$|$CEL|g")
 			GPU_FAN=$(nvidia-smi -a | grep -E 'Fan Speed' | cut -c 39-45 | sed "s| %|%|g")
+			
+		elif [[ "$active_driver" == "nouveau" ]]; then
+			GPU="          [temporarily disabled]"
+			GPU_DRIVER="[temporarily disabled]"
+			GPU_TEMP="          [temporarily disabled]"
+			GPU_FAN="     [temporarily disabled]"
 	
 		elif [[ "$active_driver" == "fglrx" ]]; then
 			GPU="          [temporarily disabled]"
@@ -314,6 +321,18 @@ funct_main_loop()
 			GPU_TEMP="          [temporarily disabled]"
 			GPU_FAN="     [temporarily disabled]"
 	
+		elif [[ "$active_driver" == "intel" ]]; then
+			GPU="          [temporarily disabled]"
+			GPU_DRIVER="[temporarily disabled]"
+			GPU_TEMP="          [temporarily disabled]"
+			GPU_FAN="     [temporarily disabled]"
+			
+		elif [[ "$active_driver" == "radeon" ]]; then
+			GPU="          [temporarily disabled]"
+			GPU_DRIVER="[temporarily disabled]"
+			GPU_TEMP="          [temporarily disabled]"
+			GPU_FAN="     [temporarily disabled]"
+			
 		elif [[ "$active_driver" == "intel" ]]; then
 			GPU="          [temporarily disabled]"
 			GPU_DRIVER="[temporarily disabled]"

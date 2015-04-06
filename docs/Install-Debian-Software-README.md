@@ -1,10 +1,10 @@
 # steamos-stats.sh
 
-### About
+## About
 This script aids in installing basic or full sets of Debian software
 to SteamOS.
  
-### Usage
+## Usage
 
 You can run the utility using the follwing options:
 ```
@@ -17,10 +17,10 @@ sudo ./install-debian-software.sh [option] [type]
 **uninstall:** uninstalls software based on type installed already  
 **list:** lists softare pacakges in each install group  
 
-**basic:** installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian)) 
-**extra:** installs extra softare based on feedback and personal preference
-**emulation:** retroarch and associated emulators. **Takes a long time (manual compile)**
-**<pkg_name:** install package specifified from Alchemist/Wheezy
+**basic:** installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
+**extra:** installs extra softare based on feedback and personal preference  
+**emulation:** retroarch and associated emulators. **Takes a long time (manual compile)**  
+**<pkg_name:** install package specifified from Alchemist/Wheezy  
 
 Alternatively, and ideally, clone the repo for easy updates
 ```

@@ -137,6 +137,8 @@ install_software()
         fi
         
         # Update keys and system first
+        echo -e "\nUpdating system, please wait...\n"
+	sleep 0.5s
         sudo apt-key update
         sudo apt-get update
 

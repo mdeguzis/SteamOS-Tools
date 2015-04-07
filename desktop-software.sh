@@ -10,7 +10,7 @@
 #		intention of SteamOS, for some users, this will provide
 #		some sort of additional value.
 #
-# Usage:	./install-desktop-software.sh [option] [type]
+# Usage:	./desktop-software.sh [option] [type]
 # Options:	[install|uninstall|list] 
 # Types:	[basic|extra|emulation|<pkg_name>]
 # Warning:	You MUST have the Debian repos added properly for
@@ -31,7 +31,7 @@ funct_inport_modules
 {
 	
 	# pull in modules for script
-	source "$extra/scriptmodules/emu-from-source.sh"
+	source "scriptmodules/emu-from-source.sh"
 	
 }
 

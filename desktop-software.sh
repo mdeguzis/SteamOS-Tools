@@ -247,9 +247,6 @@ get_software_type()
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
                 software_list=$(echo $type)
-                echo "trap caught"
-                echo $software_list
-                exit
         fi
         
 }

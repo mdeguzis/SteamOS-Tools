@@ -23,7 +23,16 @@
 #################################
 
 options="$1"
-type="$2"
+
+# loop argument 2 until no more is specfied
+while [ "$2" != "" ]; do
+    # Shift all the parameters down by one
+    type="$2"
+    echo "$type" >> "cfgs/custom-pkg.txt"
+    shift
+done
+
+
 apt_mode="install"
 uninstall="no"
 
@@ -246,15 +255,7 @@ get_software_type()
                 software_list="cfgs/emulation.txt"
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
-                # Loop until all parameters are used up
- 
-		while [ "$2" != "" ]; do
-		    # Shift all the parameters down by one
-		    echo "$type" >> "cfgs/custom-pkg.txt"
-		    shift
-		done
-		# set package list
-		 software_list="cfgs/custom-pkg.txt"
+		software_list="cfgs/custom-pkg.txt"
         fi
         
 }

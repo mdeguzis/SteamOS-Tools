@@ -251,7 +251,9 @@ get_software_type()
                 # install based on $2 string response
                 software_list=$(echo $type)
         fi
-	
+	# testing
+	cat $software_list
+	exit
 }
 
 add_repos()

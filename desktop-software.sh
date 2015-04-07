@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.3.5
+# Script Ver:	0.3.7
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -246,8 +246,15 @@ get_software_type()
                 software_list="cfgs/emulation.txt"
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
-                echo "$type" > "cfgs/custom-pkg.txt"
-                software_list="cfgs/custom-pkg.txt"
+                # Loop until all parameters are used up
+ 
+		while [ "$2" != "" ]; do
+		    # Shift all the parameters down by one
+		    echo "$type" >> "cfgs/custom-pkg.txt"
+		    shift
+		done
+		# set package list
+		 software_list="cfgs/custom-pkg.txt"
         fi
         
 }

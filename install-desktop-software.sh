@@ -191,11 +191,11 @@ install_software()
 	####################################################################
 	
 	# If software type was for emulation, continue building
-	# emulators from source
+	# emulators from source (DISABLE FOR NOW)
 	
         if [[ "$type" == "emulation" ]]; then
                 # call external build script
-                efs_main
+                #efs_main
 	fi
 	
 }

@@ -59,10 +59,10 @@ show_help()
 	used first, followed by Debian Wheezy.
 	
 	For a complete list, type:
-	'./install-debian-software list [basic|extra]'
+	'./debian-software list [basic|extra]'
 	
 	Install with:
-	'./install-debian-software [install|uninstall|list] [basic|extra|<pkg_name>]'
+	'./debian-software [install|uninstall|list] [basic|extra|<pkg_name>]'
 	
 	Press enter to continue...
 	EOF
@@ -207,7 +207,7 @@ show_warning()
         printf "\nWarning: usage of this script is at your own risk!\n\n"
         printf "\nIn order to run this script, you MUST have had enabled the Debian\n"
         printf "repositories! If you wish to exit, please press CTRL+C now..."
-        printf "\n\n type './install-debian-software --help' for assistance.\n"
+        printf "\n\n type './debian-software --help' for assistance.\n"
 
         read -n 1
         printf "Continuing...\n"

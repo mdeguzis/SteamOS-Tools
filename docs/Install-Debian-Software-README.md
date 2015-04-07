@@ -37,7 +37,7 @@ sudo ./install-debian-software.sh [option] [type]
 ```
 
 ## Emulation Warning
-Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation.
+Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, compiling Retorarch, and it's emulators, is time-intensive.
 
 ### Please note
 

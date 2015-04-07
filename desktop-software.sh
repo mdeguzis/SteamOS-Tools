@@ -26,9 +26,11 @@ options="$1"
 
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do
-    # Shift all the parameters down by one
+    # set type var to arugment, append to custom list
+    # for mutliple package specifications by user
     type="$2"
     echo "$type" >> "cfgs/custom-pkg.txt"
+    # Shift all the parameters down by one
     shift
 done
 

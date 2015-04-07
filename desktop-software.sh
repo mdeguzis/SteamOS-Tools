@@ -360,7 +360,7 @@ main()
 	echo "#####################################################"
 	echo "Loading script modules"
 	echo "#####################################################"
-	import "scriptmodules/emu-from-source.sh"
+	import "$scriptdir/scriptmodules/emu-from-source.sh"
 
         # generate software listing based on type
         get_software_type

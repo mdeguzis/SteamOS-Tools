@@ -244,16 +244,14 @@ get_software_type()
         elif [[ "$type" == "emulation" ]]; then
                 # add emulation softare to temp list
                 software_list="cfgs/emulation.txt"
-        else
-                # install based on $2 string response
+        elif [[ "$type" == "$type" ]]; then
+                # install based on $type string response
                 software_list=$(echo $type)
+                echo "trap caught"
+                echo $software_list
+                exit
         fi
-	# testing
-	echo $type
-	echo ${type}
-	echo "Pkg test name: $software_list"
-	echo "dollar 2: $2"
-	exit
+        
 }
 
 add_repos()

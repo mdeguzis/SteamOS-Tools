@@ -5,7 +5,10 @@ to SteamOS.
 ## Usage
 
 You can run the utility using the follwing options:
+
 ```
+git clone https://github.com/ProfessorKaos64/SteamOS-Tools
+cd SteamOS-Tools
 sudo ./install-debian-software.sh [option] [type]
 ```
 **Options:** [install|uninstall|list]  
@@ -25,14 +28,7 @@ installs extra softare based on feedback and personal preference
 **emulation:**  
 retroarch and associated emulators. 
 **<pkg_name:**  
-install package specifified from Alchemist/Wheezy  
-
-Alternatively, and ideally, clone the repo for easy updates
-```
-git clone https://github.com/ProfessorKaos64/SteamOS-Tools
-cd SteamOS-Tools
-sudo ./install-debian-software.sh [option] [type]
-```
+installs package specifified from Alchemist/Wheezy  
 
 ## Emulation type Warning
 Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, compiling Retorarch, and it's emulators, is time-intensive. This component of the script is very much *still in progress!* 

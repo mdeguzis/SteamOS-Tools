@@ -431,6 +431,7 @@ main()
 # handle prerequisite software
 funct_vars
 echo "type is: $type"
+exit
 funct_source_modules
 funct_pre_req_checks
 add_repos

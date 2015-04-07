@@ -4,15 +4,15 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.2.5
+# Script Ver:	0.3.5
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
-#		some sort of additional value
+#		some sort of additional value.
 #
 # Usage:	./install-desktop-software.sh [option] [type]
 # Options:	[install|uninstall|list] 
-# Types:	[basic|extra|<pkg_name>]
+# Types:	[basic|extra|emulation|<pkg_name>]
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
 #
@@ -69,6 +69,23 @@ if [[ "$1" == "--help" ]]; then
 	exit 0
 fi
 
+funct_pre_req_checks()
+{
+	
+	# Adding repositories
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' python-software-properties | grep "install ok installed")
+	
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "python-software-properties not found. Setting up python-software-properties.\n"
+		sleep 1s
+		sudo apt-get install -t wheezy python-software-properties
+	else
+		echo "Checking for python-software-properties: [Ok]"
+		sleep 0.2s
+	fi
+	
+}
+
 get_software_type()
 {
 	
@@ -79,6 +96,9 @@ get_software_type()
         elif [[ "$type" == "extra" ]]; then
                 # add full softare to temp list
                 software_list="cfgs/extra-software.txt"
+        elif [[ "$type" == "emulation" ]]; then
+                # add emulation softare to temp list
+                software_list="cfgs/emulation.txt"
         elif [[ "$type" == "$type" ]]; then
                 # install based on $2 string response
                 software_list=$(echo $type)
@@ -86,15 +106,44 @@ get_software_type()
 	
 }
 
-install_software()
+add_repos()
 {
 
+	# set software type
+        if [[ "$type" == "basic" ]]; then
+                # non-required for now
+                echo "" > /dev/null
+        elif [[ "$type" == "extra" ]]; then
+                # non-required for now
+                echo "" > /dev/null
+        elif [[ "$type" == "emulation" ]]; then
+                # retroarch
+                echo "" > /dev/null
+        elif [[ "$type" == "$type" ]]; then
+                # non-required for now
+                echo "" > /dev/null
+        fi
+	
+}
+
+install_software()
+{
+	# For a list of Debian software pacakges, please see:
+	# https://packages.debian.org/search?keywords=wheezy
+
+	clear
 	# Set mode and proceed based on main() choice
         if [[ "$options" == "uninstall" ]]; then
                 apt_mode="remove"
 	else
 		apt_mode="install"
         fi
+        
+        # Update keys and system first
+        echo -e "\nUpdating system, please wait...\n"
+	sleep 1s
+        sudo apt-key update
+        sudo apt-get update
 
 	# Alchemist repos
 	# None here for now
@@ -104,17 +153,30 @@ install_software()
 	# Need to test non '-t wheezy' results with current apt prefs
 	####################################################################
 	
+	# Inform user of preliminary action
+	echo -e "\n\nAttempting package installations from Alchemist...\n"
+	sleep 2s
+	
 	# Install from Alchemist first, Wheezy as backup
-	for i in `cat software.list`; do
-		sudo apt-get install $apt_mode $i
+	for i in `cat $software_list`; do
+		sudo apt-get $apt_mode $i 2> /dev/null
 	done 
 	
 	# Packages that fail to install, use Wheezy repositories
 	if [ $? == '0' ]; then
-		echo -e "\nSuccessfully installed software from Alchemist repo.\n" 
+		echo -e "\nSuccessfully installed software from Alchemist repo!\n" 
 	else
-		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy\n"
+		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
+		sleep 2s
 		sudo apt-get -t wheezy $apt_mode `cat $software_list`
+		
+		if [ $? == '0' ]; then
+		echo -e "\nCould not install all packages. Please check errors displayed"
+		echo -e "\nor run 'sudo ./install-debian-software [option] [type] &> log.txt\n"
+		sleep 3s
+		# halt script
+		exit
+		fi
 	fi
 	####################################################################
 }
@@ -144,7 +206,7 @@ main()
         		uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from software.temp
+                        # show listing from cfgs/basic-software.txt
                         clear
                         cat $software_list | less
 			exit
@@ -159,9 +221,39 @@ main()
                         uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from software.temp
+                        # show listing from cfgs/extra-software.txt
                         clear
 			cat $software_list | less
+			exit
+                fi
+                
+                show_warning
+		install_software
+                
+        elif [[ "$type" == "emulation" ]]; then
+
+		if [[ "$options" == "uninstall" ]]; then
+                        uninstall="yes"
+
+                elif [[ "$options" == "list" ]]; then
+                        # show listing from cfgs/emulation.txt
+                        clear
+			cat $software_list | less
+			exit
+                fi
+                
+                show_warning
+		install_software
+                
+        elif [[ "$type" == "$type" ]]; then
+
+		if [[ "$options" == "uninstall" ]]; then
+                        uninstall="yes"
+
+                elif [[ "$options" == "list" ]]; then
+                        # no list to show
+                        clear
+			echo -e "No listing for $type \n"
 			exit
                 fi
 
@@ -169,6 +261,10 @@ main()
 		install_software
 	fi
 }
+
+#handle prerequisite software
+funct_pre_req_checks
+add_repos
 
 # Start main function
 main

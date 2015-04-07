@@ -1,0 +1,17 @@
+make
+automake
+gcc
+g++c
+kernel-package
+libegl1-mesa-dev
+libv4l-dev
+libxkbcommon-dev
+libgbm-dev
+Cg
+libCg
+zlib-dev
+freetype-dev
+libxml2-dev
+ffmpeg-dev
+SDL2-dev
+SDL-dev

@@ -181,11 +181,11 @@ install_software()
 		sudo apt-get $cache_tmp -t wheezy $apt_mode `cat $software_list`
 		
 		if [ $? == '0' ]; then
-		echo -e "\nCould not install all packages. Please check errors displayed"
-		echo -e "\nor run 'sudo ./install-debian-software [option] [type] &> log.txt\n"
-		sleep 3s
-		# halt script
-		exit
+			echo -e "\nCould not install all packages. Please check errors displayed"
+			echo -e "\nor run 'sudo ./install-debian-software [option] [type] &> log.txt\n"
+			sleep 3s
+			# halt script
+			exit
 		fi
 	fi
 	####################################################################
@@ -196,6 +196,7 @@ install_software()
         if [[ "$type" == "emulation" ]]; then
                 # call external build script
                 #efs_main
+                echo "" > /dev/null
 	fi
 	
 }

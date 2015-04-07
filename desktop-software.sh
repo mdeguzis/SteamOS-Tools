@@ -247,7 +247,7 @@ get_software_type()
         elif [[ "$type" == "emulation" ]]; then
                 # add emulation softare to temp list
                 software_list="cfgs/emulation.txt"
-        elif [[ "$type" == "$type" ]]; then
+        else
                 # install based on $2 string response
                 software_list=$(echo $type)
         fi

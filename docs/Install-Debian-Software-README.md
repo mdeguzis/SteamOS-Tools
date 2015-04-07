@@ -9,7 +9,7 @@ You can run the utility using the follwing options:
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS-Tools
-sudo ./install-debian-software.sh [option] [type]
+sudo ./debian-software.sh [option] [type]
 ```
 **Options:** [install|uninstall|list]  
 **Type:** [basic|extra|emulation|<pkg_name>]

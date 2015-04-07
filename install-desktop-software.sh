@@ -182,6 +182,7 @@ install_software()
 
 show_warning()
 {
+
         clear
         printf "\nWarning: usage of this script is at your own risk!\n\n"
         printf "\nIn order to run this script, you MUST have had enabled the Debian\n"

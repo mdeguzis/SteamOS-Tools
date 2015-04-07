@@ -1,6 +1,5 @@
 ## About
-This script aids in installing basic or full sets of Debian software
-to SteamOS.
+This script aids in installing basic, full, or custom sets of Debian software to SteamOS.
  
 ## Usage
 

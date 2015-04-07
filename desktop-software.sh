@@ -252,7 +252,7 @@ get_software_type()
                 software_list=$(echo $type)
         fi
 	# testing
-	cat $software_list
+	echo $software_list
 	exit
 }
 

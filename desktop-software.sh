@@ -246,7 +246,8 @@ get_software_type()
                 software_list="cfgs/emulation.txt"
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
-                software_list=$(echo $type)
+                echo "$type" > "cfgs/custom-pkg.txt"
+                software_list="cfgs/custom-pkg.txt"
         fi
         
 }
@@ -322,7 +323,9 @@ install_software()
 			exit
 		fi
 	fi
-	####################################################################
+	
+	# Remove custom package list
+	rm -f cfgs/custom-pkg.txt
 	
 	# If software type was for emulation, continue building
 	# emulators from source (DISABLE FOR NOW)

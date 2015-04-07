@@ -252,7 +252,7 @@ get_software_type()
                 software_list=$(echo $type)
         fi
 	# testing
-	echo $software_list
+	echo "Pkg test name: $software_list or $2"
 	exit
 }
 

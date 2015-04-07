@@ -28,50 +28,13 @@ funct_vars()
 }
 
 
-funct_setDesktopEnvironment()
-{
+######################################
+# Start Helper Functions
+######################################
 
-  arg_upper_case=$1
-  arg_lower_case=`echo $1|tr '[:upper:]' '[:lower:]'`
-  XDG_DIR="XDG_"$arg_upper_case"_DIR"
-  xdg_dir="xdg_"$arg_lower_case"_dir"
+#set -o nounset
 
-  setDir=`cat $home/.config/user-dirs.dirs | grep $XDG_DIR| sed s/$XDG_DIR/$xdg_dir/|sed s/HOME/home/`
-  target=`echo $setDir| cut -f 2 -d "="| sed s,'$home',$home,`
-
-  checkValid=`echo $setDir|grep $xdg_dir=\"|grep home/`
- 
-  if [ -n "$checkValid" ]; then
-    eval "$setDir"
-
-  else
-
-    echo "local desktop setting" $XDG_DIR "not found"
- 
-  fi
-}
-
-script_invoke_path="$0"
-script_name=$(basename "$0")
-getScriptAbsoluteDir "$script_invoke_path"
-script_absolute_dir=$RESULT
-
-if [ "$script_invoke_path" == "/usr/bin/retrorig-es-setup" ]; then
-
-	#install method via system folder
-	
-	scriptdir=/usr/share/RetroRig-ES
-	
-else
-
-	#install method from local git clone
-	
-	scriptdir=`dirname "$script_absolute_dir"`
-	
-fi
-
-function getScriptAbsoluteDir() 
-{
+function getScriptAbsoluteDir() {
     # @description used to get the script path
     # @param $1 the script $0 parameter
     local script_invoke_path="$1"
@@ -86,8 +49,7 @@ function getScriptAbsoluteDir()
     fi
 }
 
-funct_import_modules() 
-{
+function import() {
     
     # @description importer routine to get external functionality.
     # @description the first location searched is the script directory.
@@ -144,6 +106,70 @@ funct_import_modules()
     fi
     echo "$script_name : Unable to find module $module"
     exit 1
+}
+
+
+function loadConfig()
+{
+    # @description Routine for loading configuration files that contain key-value pairs in the format KEY="VALUE"
+    # param $1 Path to the configuration file relate to this file.
+    local configfile=$1
+    if test -e "$script_absolute_dir/$configfile"
+    then
+        . "$script_absolute_dir/$configfile"
+        echo "Loaded configuration file $script_absolute_dir/$configfile"
+        return
+    else
+	echo "Unable to find configuration file $script_absolute_dir/$configfile"
+        exit 1
+    fi
+}
+
+function setDesktopEnvironment()
+{
+
+  arg_upper_case=$1
+  arg_lower_case=`echo $1|tr '[:upper:]' '[:lower:]'`
+  XDG_DIR="XDG_"$arg_upper_case"_DIR"
+  xdg_dir="xdg_"$arg_lower_case"_dir"
+
+  setDir=`cat $home/.config/user-dirs.dirs | grep $XDG_DIR| sed s/$XDG_DIR/$xdg_dir/|sed s/HOME/home/`
+  target=`echo $setDir| cut -f 2 -d "="| sed s,'$home',$home,`
+
+  checkValid=`echo $setDir|grep $xdg_dir=\"|grep home/`
+ 
+  if [ -n "$checkValid" ]; then
+    eval "$setDir"
+
+  else
+
+    echo "local desktop setting" $XDG_DIR "not found"
+ 
+  fi
+}
+
+funct_source_modules()
+{
+	
+script_invoke_path="$0"
+script_name=$(basename "$0")
+getScriptAbsoluteDir "$script_invoke_path"
+script_absolute_dir=$RESULT
+
+if [ "$script_invoke_path" == "/usr/bin/retrorig-es-setup" ]; then
+
+	#install method via system folder
+	
+	scriptdir=/usr/share/RetroRig-ES
+	
+else
+
+	#install method from local git clone
+	
+	scriptdir=`dirname "$script_absolute_dir"`
+	
+fi
+
 }
 
 show_help()
@@ -402,8 +428,7 @@ main()
 }
 
 # handle prerequisite software
-funct_setDesktopEnvironment
-funct_import_modules
+funct_source_modules
 funct_vars
 funct_pre_req_checks
 add_repos

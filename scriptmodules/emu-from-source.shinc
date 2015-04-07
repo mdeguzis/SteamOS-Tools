@@ -43,6 +43,3 @@ efs_main()
   #git clone https://github.com/libretro/libretro-super
   
 }
-
-# start main
-efs_main

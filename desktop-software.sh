@@ -18,12 +18,14 @@
 #
 # -------------------------------------------------------------------------------
 
+#################################
+# Set launch vars
+#################################
 
-	# Set vars
-	options="$1"
-	type="$2"
-	apt_mode="install"
-	uninstall="no"
+options="$1"
+type="$2"
+apt_mode="install"
+uninstall="no"
 
 
 function getScriptAbsoluteDir() 
@@ -428,17 +430,6 @@ main()
 }
 
 # handle prerequisite software
-funct_vars
-
-clear
-echo $options
-echo $type
-echo $apt_mode 
-echo $uninstall
-
-exit
-
-
 funct_source_modules
 funct_pre_req_checks
 add_repos

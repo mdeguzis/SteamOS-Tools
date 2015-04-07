@@ -27,7 +27,7 @@ funct_vars()
 	uninstall="no"
 }
 
-funct_inport_modules
+funct_import_modules()
 {
 	
 	# pull in modules for script

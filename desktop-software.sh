@@ -432,8 +432,11 @@ main()
 funct_vars
 
 clear
-echo "Type is: "
+echo $options
 echo $type
+echo $apt_mode 
+echo $uninstall
+
 exit
 
 

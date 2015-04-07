@@ -18,14 +18,13 @@
 #
 # -------------------------------------------------------------------------------
 
-funct_vars()
-{
+
 	# Set vars
 	options="$1"
 	type="$2"
 	apt_mode="install"
 	uninstall="no"
-}
+
 
 function getScriptAbsoluteDir() 
 {

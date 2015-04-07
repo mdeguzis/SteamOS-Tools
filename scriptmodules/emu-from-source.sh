@@ -10,4 +10,13 @@
 # Usage:	      N/A, called from another script
 # -------------------------------------------------------------------------------
 
+efs_main()
+{
+  
+  echo "" > /dev/null
+  
+}
 
+
+# start main
+efs_main

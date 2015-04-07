@@ -145,13 +145,12 @@ install_software()
         sudo apt-key update
         sudo apt-get update
 
-	# Alchemist repos
-	# None here for now
-
-	####################################################################
-	# Below is UNTESTED!!!!!!!!, trying to split repo preferences
-	# Need to test non '-t wheezy' results with current apt prefs
-	####################################################################
+	# create alternate cache dir in /home/desktop due to the 
+	# limited size of the default /var/cache/apt/archives size
+	
+	mkdir -p "/home/desktop/cache_temp"
+	# create cache command
+	cache_tmp=$(echo "-o dir::cache::archives="/home/desktop/cache_temp"")
 	
 	# Inform user of preliminary action
 	echo -e "\n\nAttempting package installations from Alchemist...\n"
@@ -159,7 +158,7 @@ install_software()
 	
 	# Install from Alchemist first, Wheezy as backup
 	for i in `cat $software_list`; do
-		sudo apt-get $apt_mode $i 2> /dev/null
+		sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
 	done 
 	
 	# Packages that fail to install, use Wheezy repositories
@@ -168,7 +167,7 @@ install_software()
 	else
 		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
 		sleep 2s
-		sudo apt-get -t wheezy $apt_mode `cat $software_list`
+		sudo apt-get $cache_tmp -t wheezy $apt_mode `cat $software_list`
 		
 		if [ $? == '0' ]; then
 		echo -e "\nCould not install all packages. Please check errors displayed"

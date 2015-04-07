@@ -18,11 +18,22 @@
 #
 # -------------------------------------------------------------------------------
 
-# Set vars
-options="$1"
-type="$2"
-apt_mode="install"
-uninstall="no"
+funct_vars()
+{
+	# Set vars
+	options="$1"
+	type="$2"
+	apt_mode="install"
+	uninstall="no"
+}
+
+funct_inport_modules
+{
+	
+	# pull in modules for script
+	source "$extra/scriptmodules/emu-from-source.sh"
+	
+}
 
 show_help()
 {
@@ -178,6 +189,15 @@ install_software()
 		fi
 	fi
 	####################################################################
+	
+	# If software type was for emulation, continue building
+	# emulators from source
+	
+        if [[ "$type" == "emulation" ]]; then
+                # call external build script
+                efs_main
+	fi
+	
 }
 
 show_warning()
@@ -263,6 +283,8 @@ main()
 }
 
 #handle prerequisite software
+funct_import_modules
+funct_vars
 funct_pre_req_checks
 add_repos
 

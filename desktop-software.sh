@@ -361,9 +361,6 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emu-from-source"
-	
-	# EXIT FOR NOW, JUST TESTING MODULES!
-	exit
 
         # generate software listing based on type
         get_software_type

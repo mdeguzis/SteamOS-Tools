@@ -1,5 +1,3 @@
-# steamos-stats.sh
-
 ## About
 This script aids in installing basic or full sets of Debian software
 to SteamOS.

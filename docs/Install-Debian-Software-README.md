@@ -34,8 +34,8 @@ cd SteamOS-Tools
 sudo ./install-debian-software.sh [option] [type]
 ```
 
-## Emulation Warning
-Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, compiling Retorarch, and it's emulators, is time-intensive.
+## Emulation type Warning
+Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, compiling Retorarch, and it's emulators, is time-intensive. This component of the script is very much *still in progress!*
 
 ### Please note
 

@@ -169,6 +169,14 @@ install_software()
 		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
 		sleep 2s
 		sudo apt-get -t wheezy $apt_mode `cat $software_list`
+		
+		if [ $? == '0' ]; then
+		echo -e "\nCould not install all packages. Please check errors displayed"
+		echo -e "\nor run 'sudo ./install-debian-software [option] [type] &> log.txt\n"
+		sleep 3s
+		# halt script
+		exit
+		fi
 	fi
 	####################################################################
 }

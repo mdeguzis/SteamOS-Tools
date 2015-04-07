@@ -27,6 +27,49 @@ funct_vars()
 	uninstall="no"
 }
 
+
+funct_setDesktopEnvironment()
+{
+
+  arg_upper_case=$1
+  arg_lower_case=`echo $1|tr '[:upper:]' '[:lower:]'`
+  XDG_DIR="XDG_"$arg_upper_case"_DIR"
+  xdg_dir="xdg_"$arg_lower_case"_dir"
+
+  setDir=`cat $home/.config/user-dirs.dirs | grep $XDG_DIR| sed s/$XDG_DIR/$xdg_dir/|sed s/HOME/home/`
+  target=`echo $setDir| cut -f 2 -d "="| sed s,'$home',$home,`
+
+  checkValid=`echo $setDir|grep $xdg_dir=\"|grep home/`
+ 
+  if [ -n "$checkValid" ]; then
+    eval "$setDir"
+
+  else
+
+    echo "local desktop setting" $XDG_DIR "not found"
+ 
+  fi
+}
+
+script_invoke_path="$0"
+script_name=$(basename "$0")
+getScriptAbsoluteDir "$script_invoke_path"
+script_absolute_dir=$RESULT
+
+if [ "$script_invoke_path" == "/usr/bin/retrorig-es-setup" ]; then
+
+	#install method via system folder
+	
+	scriptdir=/usr/share/RetroRig-ES
+	
+else
+
+	#install method from local git clone
+	
+	scriptdir=`dirname "$script_absolute_dir"`
+	
+fi
+
 funct_import_modules() 
 {
     
@@ -342,7 +385,8 @@ main()
 	fi
 }
 
-#handle prerequisite software
+# handle prerequisite software
+funct_setDesktopEnvironment
 funct_import_modules
 funct_vars
 funct_pre_req_checks

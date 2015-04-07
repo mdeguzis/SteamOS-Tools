@@ -27,14 +27,9 @@ funct_vars()
 	uninstall="no"
 }
 
-
-######################################
-# Start Helper Functions
-######################################
-
-#set -o nounset
-
-function getScriptAbsoluteDir() {
+function getScriptAbsoluteDir() 
+{
+	
     # @description used to get the script path
     # @param $1 the script $0 parameter
     local script_invoke_path="$1"
@@ -49,7 +44,8 @@ function getScriptAbsoluteDir() {
     fi
 }
 
-function import() {
+function import() 
+{
     
     # @description importer routine to get external functionality.
     # @description the first location searched is the script directory.
@@ -434,6 +430,7 @@ main()
 
 # handle prerequisite software
 funct_vars
+echo "type is: $type"
 funct_source_modules
 funct_pre_req_checks
 add_repos

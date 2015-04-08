@@ -331,12 +331,12 @@ install_software()
 	for i in `cat $software_list`; do
 		# skip any pkgs marked broken (testing branch only)
 		# Install all others
-		if [[ $i =~ *"broken"* ]]; then
-			echo -e "skipping broken package: $i ...\n"
+		if [[ $i =~ "broken" ]]; then
+			echo -e "skipping broken package: $i ..."
 			sleep 0.5s
 		else
 			#sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
-			echo -e "Broken pkg NOT skipped: $i \n"
+			echo -e "Broken pkg NOT skipped: $i"
 		fi
 	done 
 	

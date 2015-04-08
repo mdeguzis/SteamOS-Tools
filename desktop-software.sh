@@ -379,8 +379,12 @@ install_software()
 	
         if [[ "$type" == "emulation" ]]; then
                 # call external build script
-                #efs_main
+                # DISABLE FOR NOW
+                # install_emus
                 echo "" > /dev/null
+        elif [[ "$type" == "emulation-src" ]]; then
+                # call external build script
+                efs_main
 	fi
 	
 }

@@ -355,14 +355,6 @@ install_software()
 			
 		else
 			clear
-			echo -e "\nTrying to resolve any dependency issues...\n"
-			sudo apt-get $cache_tmp -t wheezy-backports $apt_mode -f
-		fi
-		
-		if [ $? == '0' ]; then
-			echo -e "\nSuccessfully resolved outstanding depdencies! / Nothing to Install\n" 	
-		else
-			clear
 			echo -e "\nCould not install all packages. Please check errors displayed"
 			echo -e "\nor run 'sudo ./install-debian-software [option] [type] &> log.txt\n"
 			sleep 3s

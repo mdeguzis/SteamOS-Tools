@@ -10,6 +10,13 @@
 #		intention of SteamOS, for some users, this will provide
 #		some sort of additional value.
 #
+# Loop description:
+#		Checks all packages one by one if they are installed first.
+#		if any given pkg is not, it then checks for a prefix !broke! 
+#		in any dynamically called list (basic,extra,emulation, and so on)
+#		Pkg names marked !broke! are skipped and the rest are 
+#		attempted to be installed
+#
 # Usage:	./desktop-software.sh [option] [type]
 # Options:	[install|uninstall|list] 
 # Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]

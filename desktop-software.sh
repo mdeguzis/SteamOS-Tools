@@ -364,7 +364,7 @@ install_software()
 				# try Alchemist first
 				echo -e "\nPackage $i not found. Attempting installation...\n"
 				sleep 1s
-				echo -e "\n\Attempting package installations from Alchemist...\n"
+				echo -e "\nAttempting package installations from Alchemist...\n"
 				sleep 1s
 				sudo apt-get $cache_tmp $apt_mode $i
 			 
@@ -411,7 +411,8 @@ install_software()
 				# package was found
 				# check if we resumed pkg checks if loop was restarted
 				
-				if [ "$firstcheck" == "yes"  ]; then
+				if [[ "$firstcheck" == "yes"  ]]; then
+					
 					echo -e "$i package status: [OK]"
 					sleep 0.5s
 				else

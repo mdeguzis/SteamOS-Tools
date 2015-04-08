@@ -4,7 +4,7 @@
 # Author:     	  Michael DeGuzis
 # Git:		        https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	    emu-from-source.sh
-# Script Ver:	    0.1.1
+# Script Ver:	    0.2.1
 # Description:	  script to install emulation softare as a 
 #                 part of install-debian-software.sh
 # Usage:	        N/A, called from another script
@@ -69,11 +69,12 @@ efs_main()
   
   ## Disable Broken Cores Temporarily
 	sed -i -e '/build_libretro_emux/d' libretro-build.sh
+	
   ##############################################
   # Builds
   ##############################################
   
-  # ./libretro-build.sh 
+  ./libretro-build.sh snes9x
   
   ##############################################
   # Installs

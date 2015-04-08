@@ -24,11 +24,11 @@ lists softare pacakges in each install group
 installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
 **extra:**  
 installs extra softare based on feedback and personal preference  
-**emulation: (broken)**      
+**emulation: (in-progress, debs need built)**      
 retroarch and associated emulators.      
 **emulation-src:**          
-emulation packages, built from source (e.g. ppa:libretro/stable).      
-**emulation-src-deps:**          
+Compiles emulator packages (read: retroarch/libretro) from source. Installs prerequisite packages for compiling emulation packages from source.      
+**emulation-src-deps: (broken)**          
 packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
 
 **`<pkg_name>:`**      

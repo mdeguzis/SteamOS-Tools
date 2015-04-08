@@ -1,8 +1,8 @@
 broken testtest
-brokenXmake
-brokenXgit-core
-brokenXcurl
-brokenXg++
+brokenX make
+brokenX git-core
+brokenX curl
+brokenX g++
 brokenX pkg-config
 broken libglu1-mesa-dev
 broken freeglut3-dev

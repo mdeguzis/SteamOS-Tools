@@ -69,14 +69,17 @@ efs_main()
   fi
   
   ## Disable Broken Cores Temporarily
-	sed -i -e '/build_libretro_emux/d' libretro-build.sh
+  # sed -i -e '/build_libretro_emux/d' libretro-build.sh
 	
   ##############################################
   # Builds
   ##############################################
   
-  ./libretro-build.sh retroarch
+  # build cores
   ./libretro-build.sh snes9x
+  
+  # build Retroarch
+  ./retroarch-build.sh 
   
   ##############################################
   # Installs

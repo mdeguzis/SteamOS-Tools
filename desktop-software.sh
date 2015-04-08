@@ -331,7 +331,7 @@ install_software()
 	for i in `cat $software_list`; do
 		# skip any pkgs marked broken (testing branch only)
 		# Install all others
-		if [ $i =~ "broken" ]; then
+		if [[ $i =~ "broken" ]]; then
 			echo -e "\nskipping broken package $i ...\n"
 			sleep 1s
 			# temp exit to test

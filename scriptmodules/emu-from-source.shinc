@@ -51,7 +51,7 @@ efs_main()
   git clone https://github.com/libretro/libretro-super
   cd libretro-super/
   # fetch information
-  ./libretro-fetch.sh 
+  ./libretro-fetch.sh snes9x
   
   if [ $? == '0' ]; then
     echo -e "\nFetch operation successful...\n"

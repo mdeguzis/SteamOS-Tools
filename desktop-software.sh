@@ -376,6 +376,9 @@ install_software()
                 echo "" > /dev/null
         elif [[ "$type" == "emulation-src" ]]; then
                 # call external build script
+                clear
+                echo -e "Proceeding to install emulator pkgs from source..."
+                sleep 2s
                 efs_main
 	fi
 	

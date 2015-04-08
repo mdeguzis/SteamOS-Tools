@@ -330,6 +330,7 @@ install_software()
 	if [ $? == '0' ]; then
 		echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n" 
 	else
+		clear
 		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
 		sleep 2s
 		sudo apt-get $cache_tmp -t wheezy $apt_mode `cat $software_list`
@@ -337,6 +338,7 @@ install_software()
 		if [ $? == '0' ]; then
 			echo -e "\nSuccessfully installed software from Wheezy! / Nothing to Install\n" 
 		else
+			clear
 			echo -e "\nCould not install all packages from Wheezy, trying Wheezy-backports...\n"
 			sleep 2s
 			sudo apt-get $cache_tmp -t wheezy-backports $apt_mode `cat $software_list`

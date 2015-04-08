@@ -369,10 +369,6 @@ install_software()
 	
 		# Packages that fail to install, use Wheezy repositories
 		if [ $? == '0' ]; then
-		
-			# TESTING ONLY!!!!
-			exit
-			
 			echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n" 
 		else
 			clear

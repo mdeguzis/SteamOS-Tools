@@ -349,6 +349,7 @@ install_software()
 	for i in `cat $software_list`; do
 	
 		if [[ "$i" =~ "!broken!" ]]; then
+			skipflag="yes"
 			echo -e "skipping broken package: $i ..."
 			sleep 1s
 		else
@@ -392,6 +393,12 @@ install_software()
 					clear
 					echo -e "\nCould not install all packages from Wheezy repo, trying Wheezy-backports\n"
 					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
+					
+					# clear the screen from the last install if it was. (looking into this)
+					# a broken pkg
+					if [[ "$skipflag" == "yes"  ]]; then
+						clear
+					fi
 				fi
 				
 				###########################################################
@@ -425,9 +432,11 @@ install_software()
 			
 			# end PKG OK test loop if/fi
 			fi
-			
+
 		# end broken PKG test loop if/fi
 		fi
+		# reset skip flag
+		skipflag="no"
 		
 	# end PKG OK test loop itself
 	done

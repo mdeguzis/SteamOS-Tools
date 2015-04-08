@@ -42,7 +42,7 @@ efs_main()
   # clone and fetch super build (evaluating currently)
   mkdir -p /home/desktop/retroarch-src
   git clone https://github.com/libretro/libretro-super
-  cd-super libretro 
+  cd libretro-super/
   sh libretro-fetch.sh 
   sh libretro-build.sh 
   sh libretro-install.sh /home/desktop/retroarch-src

@@ -355,6 +355,8 @@ install_software()
 	
 			# check for packages already installed first
 			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+			# setup firstcheck var for first run through
+			firstcheck="yes"
 		
 			if [ "" == "$PKG_OK" ]; then
 			
@@ -362,7 +364,7 @@ install_software()
 				# try Alchemist first
 				echo -e "\nPackage $i not found. Attempting installation...\n"
 				sleep 1s
-				echo -e "\n\nAttempting package installations from Alchemist...\n"
+				echo -e "\n\Attempting package installations from Alchemist...\n"
 				sleep 1s
 				sudo apt-get $cache_tmp $apt_mode $i
 			 
@@ -401,13 +403,25 @@ install_software()
 					echo -e "\nCould not install all packages from Wheezy, trying Wheezy-backports...\n"
 					sleep 2s
 				fi
-				
+	
 			else
 				# package was found
-				echo -e "$i package status: [OK]"
+				# check if we resumed pkg checks if loop was restarted
+				
+				if [ "$firstcheck" == "yes"  ]; then
+					echo -e "$i package status: [OK]"
+				else
+					clear
+					echo -e "Restarting package checks...\n"
+					sleep 3s
+					echo -e "$i package status: [OK]"
+				fi
 			
 			# end PKG OK test loop if/fi
 			fi
+			
+			# set firstcheck to "no" so "resume" below does not occur
+			firstcheck="no"
 			
 		# end broken PKG test loop if/fi
 		fi

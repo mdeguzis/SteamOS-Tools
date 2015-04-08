@@ -204,10 +204,13 @@ show_help()
 	used first, followed by Debian Wheezy.
 	
 	For a complete list, type:
-	'./debian-software list [basic|extra]'
+	'./debian-software list [type]'
+	types: [basic|extra|emulation|emulation-src]
 	
 	Install with:
-	'./debian-software [install|uninstall|list] [basic|extra|<pkg_name>]'
+	'./debian-software [option] [type]'
+	Options: [install|uninstall|list] 
+	Types: [basic|extra|<pkg_name>]'
 	
 	Press enter to continue...
 	EOF
@@ -332,11 +335,22 @@ install_software()
 		sudo apt-get $cache_tmp -t wheezy $apt_mode `cat $software_list`
 		
 		if [ $? == '0' ]; then
-			echo -e "\nCould not install all packages. Please check errors displayed"
-			echo -e "\nor run 'sudo ./install-debian-software [option] [type] &> log.txt\n"
-			sleep 3s
-			# halt script
-			exit
+			echo -e "\nSuccessfully installed software from Wheezy! / Nothing to Install\n" 
+		else
+			echo -e "\nCould not install all packages from Wheezy, trying Wheezy-backports...\n"
+			sleep 2s
+			sudo apt-get $cache_tmp -t wheezy-backports $apt_mode `cat $software_list`
+		fi
+		
+		if [ $? == '0' ]; then
+			echo -e "\nSuccessfully installed software from Wheezy! / Nothing to Install\n" 
+			
+		else
+				echo -e "\nCould not install all packages. Please check errors displayed"
+				echo -e "\nor run 'sudo ./install-debian-software [option] [type] &> log.txt\n"
+				sleep 3s
+				# halt script
+				exit
 		fi
 	fi
 	

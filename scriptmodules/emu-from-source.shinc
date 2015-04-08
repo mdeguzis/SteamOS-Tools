@@ -43,9 +43,19 @@ efs_main()
   mkdir -p /home/desktop/retroarch-src
   git clone https://github.com/libretro/libretro-super
   cd libretro-super/
+  # fetch information
   sh libretro-fetch.sh 
-  sh libretro-build.sh 
-  sh libretro-install.sh /home/desktop/retroarch-src
-  cd ..
+  
+  if [ $? == '0' ]; then
+    echo -e "\nFetch operation successful...\n"
+    sleep 1s
+  else
+    echo -e "\nFetch operation unsuccessful, aborting..."
+    exit
+  fi
+  
+ # sh libretro-build.sh 
+ # sh libretro-install.sh /home/desktop/retroarch-src
+ #cd ..
   
 }

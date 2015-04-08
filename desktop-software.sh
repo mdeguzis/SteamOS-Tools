@@ -302,6 +302,11 @@ install_software()
 	# https://packages.debian.org/search?keywords=wheezy
 
 	clear
+	
+	###########################################################
+	# Pre-checks and setup
+	###########################################################
+	
 	# Set mode and proceed based on main() choice
         if [[ "$options" == "uninstall" ]]; then
                 apt_mode="remove"
@@ -327,56 +332,125 @@ install_software()
 	echo -e "\n\nAttempting package installations from Alchemist...\n"
 	sleep 2s
 	
-	# Install from Alchemist first, Wheezy as backup
+	###########################################################
+	# Installation routine (alchmist/main)
+	###########################################################
+	
+	# Install from Alchemist first, Wheezy as backup, wheezy-backports 
+	# as a last ditch effort
+	
 	for i in `cat $software_list`; do
+	
+		###########################################################
+		# START PKG integrity check (alchemist run)
+		###########################################################
+		# Check if pkg exists, output OK if so and skip install
+		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+		
 		# skip any pkgs marked !broken! (testing branch only)
 		# Install all others
 		if [[ "$i" =~ "!broken!" ]]; then
 			echo -e "skipping broken package: $i ..."
 			sleep 0.5s
 		else
-			sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
-			# testing only
-			#echo -e "Broken pkg NOT skipped: $i"
+			if [ "" == "$PKG_OK" ]; then
+				echo -e "$i not found. Installing...\n"
+				sleep 1s
+				sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
+			else
+				echo "Package $i status: [Ok]"
+			fi
 		fi
-	done 
+	 
+	###########################################################
+	# Installation routine (wheezy - 2nd stage)
+	###########################################################
 	
-	# Packages that fail to install, use Wheezy repositories
-	if [ $? == '0' ]; then
-		echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n" 
-	else
-		clear
-		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
-		sleep 2s
-		sudo apt-get $cache_tmp -t wheezy $apt_mode `cat $software_list`
-		
+		# Packages that fail to install, use Wheezy repositories
 		if [ $? == '0' ]; then
-			echo -e "\nSuccessfully installed software from Wheezy! / Nothing to Install\n" 
+			echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n" 
 		else
+			clear
+			echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
+			
+			###########################################################
+			# PKG integrity check (wheezy run)
+			###########################################################
+			# Check if pkg exists, output OK if so and skip install
+			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+			
+			# skip any pkgs marked !broken! (testing branch only)
+			# Install all others
+			if [[ "$i" =~ "!broken!" ]]; then
+				echo -e "skipping broken package: $i ..."
+				sleep 0.5s
+			else
+				if [ "" == "$PKG_OK" ]; then
+					echo -e "$i not found. Installing...\n"
+					sudo apt-get $cache_tmp -t wheezy $apt_mode `cat $software_list`
+				else
+					echo "Package $i status: [Ok]"
+				fi
+			fi
+		fi
+		
+	###########################################################
+	# Installation routine (wheezy-backports - 2nd stage)
+	###########################################################
+	
+		# Packages that fail to install, use Wheezy-backports repository
+		if [ $? == '0' ]; then
+			echo -e "\nSuccessfully installed software from Wheezy repo! / Nothing to Install\n" 
+		else
+			clear
+			echo -e "\nCould not install all packages from Wheezy repo, trying Wheezy-backports...\n"
+			
+			###########################################################
+			# PKG integrity check (wheezy run)
+			###########################################################
+			# Check if pkg exists, output OK if so and skip install
+			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+			
+			# skip any pkgs marked !broken! (testing branch only)
+			# Install all others
+			if [[ "$i" =~ "!broken!" ]]; then
+				echo -e "skipping broken package: $i ..."
+				sleep 0.5s
+			else
+				if [ "" == "$PKG_OK" ]; then
+					echo -e "$i not found. Installing...\n"
+					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode `cat $software_list`
+				else
+					echo "Package $i status: [Ok]"
+				fi
+			fi
+		fi
+		
+		###########################################################
+		# Fail out if any pkg installs fail
+		###########################################################
+		if [ $? == '0' ]; then
 			clear
 			echo -e "\nCould not install all packages from Wheezy, trying Wheezy-backports...\n"
 			sleep 2s
-			sudo apt-get $cache_tmp -t wheezy-backports $apt_mode `cat $software_list`
 		fi
-		
-		if [ $? == '0' ]; then
-			echo -e "\nSuccessfully installed software from Wheezy-backports! / Nothing to Install\n" 
-			
-		else
-			clear
-			echo -e "\nCould not install all packages. Please check errors displayed"
-			echo -e "\nor run 'sudo ./install-debian-software [option] [type] &> log.txt\n"
-			sleep 3s
-			# halt script
-			exit
-		fi
-	fi
+
+	# end loop
+	done
+	
+	###########################################################
+	# Cleanup
+	###########################################################
 	
 	# Remove custom package list
 	rm -f cfgs/custom-pkg.txt
 	
 	# If software type was for emulation, continue building
 	# emulators from source (DISABLE FOR NOW)
+	
+	###########################################################
+	# Kick off emulation install scripts (if specified)
+	###########################################################
 	
         if [[ "$type" == "emulation" ]]; then
                 # call external build script

@@ -57,6 +57,7 @@ efs_main()
   # until / unless all cores work fine, fetch operations
   # will be manually specified for now
   # See: https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91
+  ./libretro-fetch.sh retroarch
   ./libretro-fetch.sh snes9x
   
   if [ $? == '0' ]; then
@@ -74,6 +75,7 @@ efs_main()
   # Builds
   ##############################################
   
+  ./libretro-build.sh retroarch
   ./libretro-build.sh snes9x
   
   ##############################################

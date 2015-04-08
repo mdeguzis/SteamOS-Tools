@@ -16,9 +16,11 @@ funct_set_vars()
 	# Set default user option
 	install="yes"
 	reponame="wheezy"
+	backports_reponame="wheezy-backports"
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
-	#prefer="/etc/apt/preferences.d/${reponame}"
-	prefer=/tmp/file
+	backports_sourcelist="/etc/apt/sources.list.d/${reponame}.list"
+	prefer="/etc/apt/preferences.d/${reponame}"
+	backports_prefer="/etc/apt/preferences.d/${backports_reponame}"
 	steamosprefer="/etc/apt/preferences.d/steamos"
 }
 
@@ -70,12 +72,24 @@ main()
 			echo "Backup up ${prefer} to ${prefer}.bak"
 			mv ${prefer} ${prefer}.bak
 		fi
+		
+		if [[ -f ${backports_prefer} ]]; then
+			# backup preferences file
+			echo "Backup up ${backports_prefer} to ${backports_prefer}.bak"
+			mv ${backports_prefer} ${backports_prefer}.bak
+		fi
 	
 		# Create and add required text to preferences file
 		cat <<-EOF >> ${prefer}
 		Package: *
 		Pin: release l=Debian
 		Pin-Priority: 110
+		EOF
+		
+		cat <<-EOF >> ${prefer-backports}
+		Package: *
+		Pin: release a=wheezy-backports
+		Pin-Priority: 100
 		EOF
 	
 		cat <<-EOF >> ${steamosprefer}
@@ -84,21 +98,31 @@ main()
 		Pin-Priority: 900
 		EOF
 
-		# Check for Wheezy list in repos.d
-		
+		# Check for Wheezy lists in repos.d
 		# If it does not exist, create it
+		
 		if [[ -f ${sourcelist} ]]; then
 	        	# backup sources list file
 	        	echo "Backup up ${sourcelist} to ${sourcelist}.bak"
 	        	mv ${sourcelist} ${sourcelist}.bak
 		fi
+		
+		if [[ -f ${backports_sourcelist} ]]; then
+	        	# backup sources list file
+	        	echo "Backup up ${backports_sourcelist} to ${backports_sourcelist}.bak"
+	        	mv ${backports_sourcelist} ${backports_sourcelist}.bak
+		fi
+	
 	
 		# Create and add required text to wheezy.list
 
 		cat <<-EOF >> ${sourcelist}
-		# Debian repo
+		# Debian-Wheezy repo
 		deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
 		deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
+		
+		# Debian-Wheezy-Backports
+		deb http://http.debian.net/debian wheezy-backports main
 		EOF
 
 		# Update system
@@ -114,7 +138,7 @@ main()
 		echo -e "but also from the Debian repository with:\n\n"
 		echo -e "'sudo apt-get install <package_name>'\n"
 		echo -e "or\n"
-		echo -e "'sudo apt-get -t wheezy install <package_name>'\n\n"
+		echo -e "'sudo apt-get -t [wheezy|wheezy-backports] install <package_name>'\n\n"
 		echo "Warning: If the apt package manager seems to want to remove a"
 		echo "lot of packages you have already installed, be very careful about"
 		echo -e "proceeding.\n"

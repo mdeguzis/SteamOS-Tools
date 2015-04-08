@@ -360,7 +360,6 @@ install_software()
 			else
 				echo "Package $i status: [Ok]"
 				sleep 1s
-				exit
 			fi
 		fi
 	 

@@ -318,6 +318,7 @@ install_software()
 	cache_tmp=$(echo "-o dir::cache::archives="/home/desktop/cache_temp"")
 	
 	# Inform user of preliminary action
+	clear
 	echo -e "\n\nAttempting package installations from Alchemist...\n"
 	sleep 2s
 	

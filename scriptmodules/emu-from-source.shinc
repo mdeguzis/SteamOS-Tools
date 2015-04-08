@@ -50,7 +50,13 @@ efs_main()
   cd /home/desktop/retroarch-src-git
   git clone https://github.com/libretro/libretro-super
   cd libretro-super/
+  
+  ##############################################
   # fetch information
+  ##############################################
+  # until / unless all cores work fine, fetch operations
+  # will be manually specified for now
+  # See: https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91
   ./libretro-fetch.sh snes9x
   
   if [ $? == '0' ]; then
@@ -63,12 +69,22 @@ efs_main()
   
   ## Disable Broken Cores Temporarily
 	sed -i -e '/build_libretro_emux/d' libretro-build.sh
+  ##############################################
+  # Builds
+  ##############################################
   
   # ./libretro-build.sh 
+  
+  ##############################################
+  # Installs
+  ##############################################
+  
   # /.libretro-install.sh /home/desktop/retroarch-src
   #cd ..
   
+  ##############################################
   # Cleanup
+  ##############################################
   #rm -rf "/home/desktop/retroarch-src-git"
   #rm -rf "/home/desktop/retroarch-src"
 

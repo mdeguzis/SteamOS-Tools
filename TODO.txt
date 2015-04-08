@@ -1,0 +1,6 @@
+# TODO Main
+- built retroarch from PPA source
+
+# Meta issues
+- still unsatisfied deps for retroarch source rebuild:
+- `sdl2-dev liblibgbm-dev libegl1-mesa-dev libopenvg1-mesa-dev`

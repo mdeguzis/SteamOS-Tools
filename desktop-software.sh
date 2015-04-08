@@ -413,11 +413,13 @@ install_software()
 				
 				if [ "$firstcheck" == "yes"  ]; then
 					echo -e "$i package status: [OK]"
+					sleep 0.5s
 				else
 					clear
 					echo -e "Restarting package checks...\n"
 					sleep 3s
 					echo -e "$i package status: [OK]"
+					sleep 0.5s
 				fi
 			
 			# end PKG OK test loop if/fi

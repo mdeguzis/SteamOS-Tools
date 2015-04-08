@@ -41,11 +41,13 @@ efs_main()
   
   # if directory exist remove it
   if [[ -d "/home/desktop/retroarch-src" ]]; then
-    rm -f "/home/desktop/retroarch-src"
+    rm -rf "/home/desktop/retroarch-src"
   fi
   
   # clone and fetch super build (evaluating currently)
   mkdir -p /home/desktop/retroarch-src
+  mkdir -p /home/desktop/retroarch-src-git
+  cd /home/desktop/retroarch-src-git
   git clone https://github.com/libretro/libretro-super
   cd libretro-super/
   # fetch information
@@ -62,5 +64,9 @@ efs_main()
  # sh libretro-build.sh 
  # sh libretro-install.sh /home/desktop/retroarch-src
  #cd ..
-  
+ 
+ # Cleanup
+rm -rf "/home/desktop/retroarch-src-git"
+rm -rf "/home/desktop/retroarch-src"
+
 }

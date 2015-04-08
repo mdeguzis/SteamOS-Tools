@@ -341,26 +341,23 @@ install_software()
 	
 	for i in `cat $software_list`; do
 	
+	# check for packages already installed first
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+
+	if [ "" == "$PKG_OK" ]; then
+	
 		###########################################################
 		# START PKG integrity check (alchemist run)
 		###########################################################
-		# Check if pkg exists, output OK if so and skip install
-		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-		
 		# skip any pkgs marked !broken! (testing branch only)
 		# Install all others
+		
 		if [[ "$i" =~ "!broken!" ]]; then
 			echo -e "skipping broken package: $i ..."
 			sleep 1s
 		else
-			if [ "" == "$PKG_OK" ]; then
-				echo -e "$i not found. Installing...\n"
-				sleep 1s
-				sudo apt-get $cache_tmp $apt_mode $i
-			else
-				echo "Package $i status: [Ok]"
-				sleep 1s
-			fi
+
+			sudo apt-get $cache_tmp $apt_mode $i
 		fi
 	 
 	###########################################################
@@ -375,23 +372,16 @@ install_software()
 			echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
 			
 			###########################################################
-			# PKG integrity check (wheezy run)
+			# START PKG integrity check (alchemist run)
 			###########################################################
-			# Check if pkg exists, output OK if so and skip install
-			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-			
 			# skip any pkgs marked !broken! (testing branch only)
 			# Install all others
+			
 			if [[ "$i" =~ "!broken!" ]]; then
 				echo -e "skipping broken package: $i ..."
-				sleep 0.5s
+				sleep 1s
 			else
-				if [ "" == "$PKG_OK" ]; then
-					echo -e "$i not found. Installing...\n"
-					sudo apt-get $cache_tmp -t wheezy $apt_mode `cat $software_list`
-				else
-					echo "Package $i status: [Ok]"
-				fi
+				sudo apt-get $cache_tmp -t wheezy $apt_mode $i
 			fi
 		fi
 		
@@ -407,36 +397,32 @@ install_software()
 			echo -e "\nCould not install all packages from Wheezy repo, trying Wheezy-backports...\n"
 			
 			###########################################################
-			# PKG integrity check (wheezy run)
+			# START PKG integrity check (alchemist run)
 			###########################################################
-			# Check if pkg exists, output OK if so and skip install
-			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-			
 			# skip any pkgs marked !broken! (testing branch only)
 			# Install all others
+			
 			if [[ "$i" =~ "!broken!" ]]; then
 				echo -e "skipping broken package: $i ..."
-				sleep 0.5s
+				sleep 1s
 			else
-				if [ "" == "$PKG_OK" ]; then
-					echo -e "$i not found. Installing...\n"
-					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode `cat $software_list`
-				else
-					echo "Package $i status: [Ok]"
-				fi
+				sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
 			fi
 		fi
 		
-		###########################################################
-		# Fail out if any pkg installs fail
-		###########################################################
+	###########################################################
+	# Fail out if any pkg installs fail
+	###########################################################
+
 		if [ $? == '0' ]; then
 			clear
 			echo -e "\nCould not install all packages from Wheezy, trying Wheezy-backports...\n"
 			sleep 2s
 		fi
 
-	# end loop
+	# end PKG OK test loop if/fi
+	fi
+	# end PKG OK test loop itself
 	done
 	
 	###########################################################

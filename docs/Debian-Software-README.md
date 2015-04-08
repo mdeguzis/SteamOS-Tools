@@ -24,9 +24,9 @@ lists softare pacakges in each install group
 installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
 **extra:**  
 installs extra softare based on feedback and personal preference  
-**emulation: (currently broken)**    
+**emulation: **    
 retroarch and associated emulators.  
-**emulation-src: (in-progress)**      
+**emulation-src: (currently broken deps)**      
 packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
 **`<pkg_name>:`**    
 installs package(s) specifified from Alchemist/Wheezy. You can speciy any number of space-delimited packages such as "pkg1 pkg2 pkg3".  

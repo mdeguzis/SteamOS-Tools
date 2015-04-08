@@ -432,7 +432,7 @@ main()
 	                uninstall="yes"
 	
 	        elif [[ "$options" == "list" ]]; then
-	                # show listing from cfgs/emulator-src.txt
+	                # show listing from cfgs/emulation-src.txt
 	                clear
 			cat $software_list | less
 			exit

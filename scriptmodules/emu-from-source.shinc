@@ -39,6 +39,11 @@ efs_main()
   # build
   # efs_build_ra
   
+  # if directory exist remove it
+  if [[ -d "/home/desktop/retroarch-src" ]]; then
+    rm -f "/home/desktop/retroarch-src"
+  fi
+  
   # clone and fetch super build (evaluating currently)
   mkdir -p /home/desktop/retroarch-src
   git clone https://github.com/libretro/libretro-super

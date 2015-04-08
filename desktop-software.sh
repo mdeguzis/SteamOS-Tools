@@ -335,7 +335,8 @@ install_software()
 			echo -e "\nskipping broken package: $i ...\n"
 			sleep 0.5s
 		else
-			sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
+			#sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
+			echo -e "\n Broken pkg NOT skipped: $i \n"
 		fi
 	done 
 	

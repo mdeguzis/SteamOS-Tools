@@ -425,6 +425,8 @@ install_software()
 		# end PKG OK test loop if/fi
 		fi
 		
+		exit
+		
 	# end PKG OK test loop itself
 	done
 	

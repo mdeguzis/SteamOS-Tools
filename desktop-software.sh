@@ -346,6 +346,7 @@ install_software()
 			echo -e "\nSuccessfully installed software from Wheezy! / Nothing to Install\n" 
 			
 		else
+				clear
 				echo -e "\nCould not install all packages. Please check errors displayed"
 				echo -e "\nor run 'sudo ./install-debian-software [option] [type] &> log.txt\n"
 				sleep 3s

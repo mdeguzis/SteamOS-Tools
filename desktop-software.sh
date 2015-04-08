@@ -351,15 +351,15 @@ install_software()
 		# Install all others
 		if [[ "$i" =~ "!broken!" ]]; then
 			echo -e "skipping broken package: $i ..."
-			sleep 3s
+			sleep 1s
 		else
 			if [ "" == "$PKG_OK" ]; then
 				echo -e "$i not found. Installing...\n"
-				sleep 3s
+				sleep 1s
 				sudo apt-get $cache_tmp $apt_mode $i
 			else
 				echo "Package $i status: [Ok]"
-				sleep 3s
+				sleep 1s
 				exit
 			fi
 		fi
@@ -370,6 +370,10 @@ install_software()
 	
 		# Packages that fail to install, use Wheezy repositories
 		if [ $? == '0' ]; then
+		
+			# TESTING ONLY!!!!
+			exit
+			
 			echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n" 
 		else
 			clear

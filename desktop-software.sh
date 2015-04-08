@@ -451,7 +451,13 @@ main()
 		install_software
                 
         elif [[ "$type" == "emulation" ]]; then
-
+        
+		# disabled for now until some pkg deps
+		# can be resolved
+		clear
+		echo -e "Disabled until further notice\n"
+		exit
+		
 		if [[ "$options" == "uninstall" ]]; then
                         uninstall="yes"
 
@@ -466,6 +472,12 @@ main()
 		install_software
 
         elif [[ "$type" == "emulation-src" ]]; then
+        
+        	# disabled for now until some pkg deps
+		# can be resolved
+		clear
+		echo -e "Disabled until further notice\n"
+		exit
 
 		if [[ "$options" == "uninstall" ]]; then
 	                uninstall="yes"

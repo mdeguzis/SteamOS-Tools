@@ -351,14 +351,16 @@ install_software()
 		# Install all others
 		if [[ "$i" =~ "!broken!" ]]; then
 			echo -e "skipping broken package: $i ..."
-			sleep 0.5s
+			sleep 3s
 		else
 			if [ "" == "$PKG_OK" ]; then
 				echo -e "$i not found. Installing...\n"
-				sleep 1s
-				sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
+				sleep 3s
+				sudo apt-get $cache_tmp $apt_mode $i
 			else
 				echo "Package $i status: [Ok]"
+				sleep 3s
+				exit
 			fi
 		fi
 	 

@@ -11,3 +11,4 @@ baobab
 !broken!libsdl-mixer1.2-dev
 !broken!libsdl-ttf2.0-dev
 g++
+curl

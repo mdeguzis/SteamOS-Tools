@@ -337,7 +337,7 @@ install_software()
 			# temp exit to test
 			exit
 		else
-			#sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
+			sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
 		fi
 	done 
 	

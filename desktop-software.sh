@@ -12,7 +12,7 @@
 #
 # Usage:	./desktop-software.sh [option] [type]
 # Options:	[install|uninstall|list] 
-# Types:	[basic|extra|emulation|emulation-src|<pkg_name>]
+# Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
 #
@@ -205,13 +205,12 @@ show_help()
 	
 	For a complete list, type:
 	'./debian-software list [type]'
-	types: [basic|extra|emulation|emulation-src]
+	Options: [install|uninstall|list] 
+	Types: [basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
 	
 	Install with:
 	'./debian-software [option] [type]'
-	Options: [install|uninstall|list] 
-	Types: [basic|extra|<pkg_name>]'
-	
+
 	Press enter to continue...
 	EOF
 	
@@ -261,6 +260,9 @@ get_software_type()
         elif [[ "$type" == "emulation-src" ]]; then
                 # add emulation softare to temp list
                 software_list="cfgs/emulation-src.txt"
+        elif [[ "$type" == "emulation-src-deps" ]]; then
+                # add emulation softare to temp list
+                software_list="cfgs/emulation-src-deps.txt"
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="cfgs/custom-pkg.txt"
@@ -283,6 +285,9 @@ add_repos()
                 echo "" > /dev/null
         elif [[ "$type" == "emulation-src" ]]; then
                 # retroarch-src
+                echo "" > /dev/null
+        elif [[ "$type" == "emulation-src-deps" ]]; then
+                # retroarch-src-deps
                 echo "" > /dev/null
         elif [[ "$type" == "$type" ]]; then
                 # non-required for now
@@ -466,7 +471,22 @@ main()
         
         	show_warning
 		install_software
-                
+		
+        elif [[ "$type" == "emulation-src-deps" ]]; then
+
+		if [[ "$options" == "uninstall" ]]; then
+	                uninstall="yes"
+	
+	        elif [[ "$options" == "list" ]]; then
+	                # show listing from cfgs/emulation-src-deps.txt
+	                clear
+			cat $software_list | less
+			exit
+	        fi
+        
+        	show_warning
+		install_software
+		
         elif [[ "$type" == "$type" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then

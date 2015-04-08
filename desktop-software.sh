@@ -334,17 +334,17 @@ install_software()
 	# create cache command
 	cache_tmp=$(echo "-o dir::cache::archives="/home/desktop/cache_temp"")
 	
-	# Inform user of preliminary action
 	clear
-	echo -e "\n\nAttempting package installations from Alchemist...\n"
-	sleep 2s
-	
 	###########################################################
 	# Installation routine (alchmist/main)
 	###########################################################
 	
 	# Install from Alchemist first, Wheezy as backup, wheezy-backports 
 	# as a last ditch effort
+	
+	# let user know checks in progress
+	echo -e "\n\nValidating packages already installed...\n"
+	sleep 1s
 	
 	for i in `cat $software_list`; do
 	
@@ -358,7 +358,11 @@ install_software()
 		
 			if [ "" == "$PKG_OK" ]; then
 			
+				clear
 				# try Alchemist first
+				echo -e "\nPackage i$ not found. Attempting installation...\n"
+				echo -e "\n\nAttempting package installations from Alchemist...\n"
+				sleep 2s
 				sudo apt-get $cache_tmp $apt_mode $i
 			 
 				###########################################################

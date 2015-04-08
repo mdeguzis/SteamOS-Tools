@@ -332,10 +332,8 @@ install_software()
 		# skip any pkgs marked broken (testing branch only)
 		# Install all others
 		if [[ $i =~ "broken" ]]; then
-			echo -e "\nskipping broken package ""$i"" ...\n"
-			sleep 1s
-			# temp exit to test
-			exit
+			echo -e "\nskipping broken package: $i ...\n"
+			sleep 0.5s
 		else
 			sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
 		fi

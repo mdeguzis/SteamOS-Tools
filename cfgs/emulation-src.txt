@@ -1,9 +1,9 @@
 broken testtest
-make
-git-core
-curl
-g++
-pkg-config
+brokenXmake
+brokenXgit-core
+brokenXcurl
+brokenXg++
+brokenX pkg-config
 broken libglu1-mesa-dev
 broken freeglut3-dev
 broken mesa-common-dev

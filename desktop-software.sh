@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.3.9
+# Script Ver:	0.5.9
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -360,9 +360,10 @@ install_software()
 			
 				clear
 				# try Alchemist first
-				echo -e "\nPackage i$ not found. Attempting installation...\n"
+				echo -e "\nPackage $i not found. Attempting installation...\n"
+				sleep 1s
 				echo -e "\n\nAttempting package installations from Alchemist...\n"
-				sleep 2s
+				sleep 1s
 				sudo apt-get $cache_tmp $apt_mode $i
 			 
 				###########################################################

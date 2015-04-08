@@ -350,13 +350,14 @@ install_software()
 			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 		
 			if [ "" == "$PKG_OK" ]; then
-					sudo apt-get $cache_tmp $apt_mode $i
-			fi
-			 
-			###########################################################
-			# Installation routine (wheezy - 2nd stage)
-			###########################################################
 			
+				# try Alchemist first
+				sudo apt-get $cache_tmp $apt_mode $i
+			 
+				###########################################################
+				# Installation routine (wheezy - 2nd stage)
+				###########################################################
+				
 				# Packages that fail to install, use Wheezy repositories
 				if [ $? == '0' ]; then
 					echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n" 
@@ -365,11 +366,11 @@ install_software()
 					echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
 					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
 				fi
+					
+				###########################################################
+				# Installation routine (wheezy-backports - 2nd stage)
+				###########################################################
 				
-			###########################################################
-			# Installation routine (wheezy-backports - 2nd stage)
-			###########################################################
-			
 				# Packages that fail to install, use Wheezy-backports repository
 				if [ $? == '0' ]; then
 					echo -e "\nSuccessfully installed software from Wheezy repo! / Nothing to Install\n" 
@@ -379,19 +380,20 @@ install_software()
 					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
 				fi
 				
-			###########################################################
-			# Fail out if any pkg installs fail
-			###########################################################
-		
+				###########################################################
+				# Fail out if any pkg installs fail
+				###########################################################
+			
 				if [ $? == '0' ]; then
 					clear
 					echo -e "\nCould not install all packages from Wheezy, trying Wheezy-backports...\n"
 					sleep 2s
 				fi
+				
 			else
 				# package was found
 				echo -e "$i package status: [OK]"
-				
+			
 			# end PKG OK test loop if/fi
 			fi
 			

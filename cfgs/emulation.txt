@@ -3,6 +3,7 @@ git-core
 curl
 g++
 pkg-config
+baobab
 !broken!libglu1-mesa-dev
 !broken!freeglut3-dev
 !broken!mesa-common-dev

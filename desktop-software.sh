@@ -329,7 +329,7 @@ install_software()
 	
 	# Install from Alchemist first, Wheezy as backup
 	for i in `cat $software_list`; do
-		# skip any pkgs marked broken (testing branch only)
+		# skip any pkgs marked !broken! (testing branch only)
 		# Install all others
 		if [[ "$i" =~ "!broken!" ]]; then
 			echo -e "skipping broken package: $i ..."

@@ -403,6 +403,9 @@ install_software()
 					echo -e "\nCould not install all packages from Wheezy, trying Wheezy-backports...\n"
 					sleep 2s
 				fi
+				
+				# set firstcheck to "no" so "resume" below does not occur
+				firstcheck="no"
 	
 			else
 				# package was found
@@ -419,9 +422,6 @@ install_software()
 			
 			# end PKG OK test loop if/fi
 			fi
-			
-			# set firstcheck to "no" so "resume" below does not occur
-			firstcheck="no"
 			
 		# end broken PKG test loop if/fi
 		fi

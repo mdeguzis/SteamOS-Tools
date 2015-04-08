@@ -12,7 +12,7 @@
 #
 # Usage:	./desktop-software.sh [option] [type]
 # Options:	[install|uninstall|list] 
-# Types:	[basic|extra|emulation|<pkg_name>]
+# Types:	[basic|extra|emulation|emulation-src|<pkg_name>]
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
 #
@@ -255,6 +255,9 @@ get_software_type()
         elif [[ "$type" == "emulation" ]]; then
                 # add emulation softare to temp list
                 software_list="cfgs/emulation.txt"
+        elif [[ "$type" == "emulation-src" ]]; then
+                # add emulation softare to temp list
+                software_list="cfgs/emulation-src.txt"
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="cfgs/custom-pkg.txt"
@@ -274,6 +277,9 @@ add_repos()
                 echo "" > /dev/null
         elif [[ "$type" == "emulation" ]]; then
                 # retroarch
+                echo "" > /dev/null
+        elif [[ "$type" == "emulation-src" ]]; then
+                # retroarch-src
                 echo "" > /dev/null
         elif [[ "$type" == "$type" ]]; then
                 # non-required for now
@@ -417,7 +423,22 @@ main()
 			exit
                 fi
                 
-                show_warning
+	        show_warning
+		install_software
+
+        elif [[ "$type" == "emulation-src" ]]; then
+
+		if [[ "$options" == "uninstall" ]]; then
+	                uninstall="yes"
+	
+	        elif [[ "$options" == "list" ]]; then
+	                # show listing from cfgs/emulation-src.txt
+	                clear
+			cat $software_list | less
+			exit
+	        fi
+        
+        	show_warning
 		install_software
                 
         elif [[ "$type" == "$type" ]]; then

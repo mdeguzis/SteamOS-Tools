@@ -1,7 +1,7 @@
 make
 automake
 gcc
-g++c
+g++
 kernel-package
 libegl1-mesa-dev
 libv4l-dev

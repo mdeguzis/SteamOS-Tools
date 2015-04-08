@@ -401,9 +401,11 @@ install_software()
 		fi
 		
 	# end PKG OK test loop itself
-	sleep 3s
-	
 	done
+	
+	if [ $? == '0' ]; then
+		echo -e "\nAll packages (I hope!) installed successfully!\n"
+	fi
 	
 	###########################################################
 	# Cleanup

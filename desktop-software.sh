@@ -339,6 +339,7 @@ install_software()
 		else
 			#sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
 			# temp exit to test
+			echo "broken NOT detected!"
 			exit
 		fi
 	done 

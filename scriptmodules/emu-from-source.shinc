@@ -51,7 +51,7 @@ efs_main()
   git clone https://github.com/libretro/libretro-super
   cd libretro-super/
   # fetch information
-  sh libretro-fetch.sh 
+  ./libretro-fetch.sh 
   
   if [ $? == '0' ]; then
     echo -e "\nFetch operation successful...\n"
@@ -61,12 +61,15 @@ efs_main()
     exit
   fi
   
- # sh libretro-build.sh 
- # sh libretro-install.sh /home/desktop/retroarch-src
- #cd ..
- 
- # Cleanup
-#rm -rf "/home/desktop/retroarch-src-git"
-#rm -rf "/home/desktop/retroarch-src"
+  ## Disable Broken Cores Temporarily
+	sed -i -e '/build_libretro_emux/d' libretro-build.sh
+  
+  # ./libretro-build.sh 
+  # /.libretro-install.sh /home/desktop/retroarch-src
+  #cd ..
+  
+  # Cleanup
+  #rm -rf "/home/desktop/retroarch-src-git"
+  #rm -rf "/home/desktop/retroarch-src"
 
 }

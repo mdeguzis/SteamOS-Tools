@@ -35,10 +35,16 @@ options="$1"
 while [ "$2" != "" ]; do
     # set type var to arugment, append to custom list
     # for mutliple package specifications by user
+    
+    if [[ -f "cfgs/custom-pkg.txt ]]; then
+    	rm -f cfgs/custom-pkg.txt
+    fi
+    
     type="$2"
     echo "$type" >> "cfgs/custom-pkg.txt"
     # Shift all the parameters down by one
     shift
+    
 done
 
 

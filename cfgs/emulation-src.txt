@@ -3,9 +3,9 @@ git-core
 curl
 g++
 pkg-config
-libglu1-mesa-dev
-freeglut3-dev
-mesa-common-dev
+!broke!libglu1-mesa-dev
+!broke!freeglut3-dev
+!broke!mesa-common-dev
 libsdl1.2-dev
 libsdl-image1.2-dev
 libsdl-mixer1.2-dev

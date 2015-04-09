@@ -421,7 +421,7 @@ install_software()
 				if [[ "$firstcheck" == "yes"  ]]; then
 					
 					echo -e "$i package status: [OK]"
-					sleep 0.5s
+					sleep 0.2s
 				else
 					clear
 					echo -e "Restarting package checks...\n"

@@ -380,7 +380,8 @@ install_software()
 				###########################################################
 				
 				# Packages that fail to install, use Wheezy repositories
-				if [ $? == '0' ]; then
+				# The conf string is a part of a dry run result
+				if [ $? == '0' ] || [ $? -n "conf ]; then
 					echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n" 
 				else
 					clear

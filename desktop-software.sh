@@ -741,13 +741,15 @@ main()
 				if [ "" == "$PKG_OK" ]; then
 					# dpkg outputs it's own line that can't be supressed
 					echo -e "Packge $i [Not Found]" > /dev/null
+					return
 				else
 					echo -e "Packge $i [OK]"
+					return
 					sleep 0.2s
 				fi
 
 			done
-			#exit
+			exit
 		fi
 		show_warning
 		install_software

@@ -578,9 +578,11 @@ main()
 			for i in `cat $software_list`; do
 				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 				if [ "" == "$PKG_OK" ]; then
-					echo -e "Packge $i [Not Found]"
+					# dpkg outputs it's own line that can't be supressed
+					echo -e "Packge $i [Not Found]" > /dev/null
 				else
 					echo -e "Packge $i [OK]"
+					sleep 0.5s
 				fi
 			done
 			exit

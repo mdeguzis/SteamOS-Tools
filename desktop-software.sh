@@ -475,7 +475,8 @@ install_software()
 					clear
 					echo -e "\nCould not install or remove ALL packages from Wheezy. Plese check \n"
 					echo -e "available outut, or run run with ' &> log.txt' appended... \n"
-					sleep 2s
+					sleep 1s
+					exit
 				fi
 				
 				# set firstcheck to "no" so "resume" below does not occur

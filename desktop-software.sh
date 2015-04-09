@@ -469,12 +469,7 @@ install_software()
                 clear
                 echo -e "\nProceeding to install emulator pkgs from source..."
                 sleep 2s
-               
-                # disabled for now until some pkg deps
-		# can be resolved
-		echo -e "Disabled until further notice\n"
-		exit
-                #efs_main
+                efs_main
 	fi
 	
 }

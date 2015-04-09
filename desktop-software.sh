@@ -30,10 +30,11 @@
 #################################
 options="$1"
 	
+# remove old custom file
+sudo rm -f "cfgs/custom-pkg.txt"
+
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do
-	# remove old custom file
-	sudo rm -f "cfgs/custom-pkg.txt"
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type="$2"

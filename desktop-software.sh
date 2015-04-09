@@ -734,16 +734,17 @@ main()
                 
                 elif [[ "$options" == "check" ]]; then
 			# loop over packages and check
-			
+			dpkg-query -W --showformat='${Status}\n' baobab | grep "install ok installed"
+			dpkg-query -W --showformat='${Status}\n' gparted | grep "install ok installed"
 			clear
 			for i in `cat $software_list`; do
 				echo $i
 				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 				if [ "" == "$PKG_OK" ]; then
 					# dpkg outputs it's own line that can't be supressed
-					echo -e "Packge $i [Not Found]"
+					echo -e "Package $i [Not Found]"
 				else
-					echo -e "Packge $i [OK]"
+					echo -e "Package $i [OK]"
 					sleep 0.2s
 				fi
 

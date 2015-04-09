@@ -386,7 +386,7 @@ install_software()
 				sudo apt-get $cache_tmp $apt_mode $i
 				
 				# return to loop if user hit "n" to removal instead of pushing onward
-				if [[ $?" == 1 ]]; then
+				if [[ $? == 1 ]]; then
 					#test only
 					clear
 					echo "n caught, exiting"

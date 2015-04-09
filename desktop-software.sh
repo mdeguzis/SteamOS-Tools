@@ -379,7 +379,7 @@ install_software()
 					echo -e "Attempting package installations from Alchemist...\n"
 					sleep 1s
 				else
-					echo -e "\nRemoval requested for package: $i \n"
+					echo -e "\nRemoval requested (from Alchemist) for package: $i \n"
 					sleep 1s
 				fi
 				
@@ -409,7 +409,7 @@ install_software()
 						echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
 						sleep 1s
 					else
-						echo -e "\nRemoval requested for package: $i \n"
+						echo -e "\nRemoval requested (from Wheezy) for package: $i \n"
 						sleep 1s
 					fi
 					
@@ -439,7 +439,7 @@ install_software()
 						echo -e "\nCould not install all packages from Wheezy repo, trying Wheezy-backports\n"
 						sleep 2s
 					else
-						echo -e "\nRemoval rquested for package: $i \n"
+						echo -e "\nRemoval requested (from Wheezy-backports) for package: $i \n"
 						sleep 1s
 					fi
 					

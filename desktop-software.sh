@@ -49,9 +49,9 @@ done
 # of cfgs/custom-pkg.txt exceeds 1 
 LINECOUNT=$(wc -l "cfgs/custom-pkg.txt")
 echo $LINECOUNT
-if [[ $LINECOUNT -gt 1 ]]; then
-   echo "Custom PKG set detected!"
-fi
+#if [[ $LINECOUNT -gt 1 ]]; then
+#   echo "Custom PKG set detected!"
+#fi
 
 #testing only here
 exit

@@ -48,15 +48,11 @@ done
 # set custom flag for use later on if line count
 # of cfgs/custom-pkg.txt exceeds 1 
 LINECOUNT=$(wc -l "cfgs/custom-pkg.txt" | cut -f1 -d' ')
-echo $LINECOUNT
+
 if [[ $LINECOUNT -gt 1 ]]; then
    echo "Custom PKG set detected!"
    custom_pkg_set="yes"
-   echo $custom_pkg_set
 fi
-
-#testing only here
-exit
 
 apt_mode="install"
 uninstall="no"
@@ -738,17 +734,30 @@ main()
                 
                 elif [[ "$options" == "check" ]]; then
                         # check all packages on request
-                        clear
-			for i in `cat $software_list`; do
-				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+                        if [[ "$custom_pkg_set" == "yes" ]]; then
+                        	clear
+				for i in `cat $software_list`; do
+					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+					if [ "" == "$PKG_OK" ]; then
+						# dpkg outputs it's own line that can't be supressed
+						echo -e "Packge $i [Not Found]" > /dev/null
+					else
+						echo -e "Packge $i [OK]"
+						sleep 0.2s
+					fi
+				done
+				fi
+			else
+				#check just the one package
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $type | grep "install ok installed")
 				if [ "" == "$PKG_OK" ]; then
 					# dpkg outputs it's own line that can't be supressed
-					echo -e "Packge $i [Not Found]" > /dev/null
+					echo -e "Packge $type [Not Found]" > /dev/null
 				else
-					echo -e "Packge $i [OK]"
+					echo -e "Packge $type [OK]"
 					sleep 0.2s
 				fi
-			done
+			fi
 			exit
 		fi
 

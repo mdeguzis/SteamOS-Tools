@@ -520,9 +520,9 @@ main()
                         # check all packages on request
                         clear
 			for i in `cat $software_list`; do
-				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				c
 				if [ "" == "$PKG_OK" ]; then
-					echo -e "Packge $i [Not Found]
+					echo -e "Packge $i [Not Found]"
 				else
 					echo -e "Packge $i [OK]
 				fi

@@ -57,9 +57,6 @@ fi
 apt_mode="install"
 uninstall="no"
 
-dpkg-query -W --showformat='${Status}\n' baobab | grep "install ok installed"
-dpkg-query -W --showformat='${Status}\n' gparted | grep "install ok installed"
-exit
 function getScriptAbsoluteDir() 
 {
 	
@@ -739,7 +736,7 @@ main()
 			
 			clear
 			for i in `cat $software_list`; do
-				echo $i
+				
 				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 				if [ "" == "$PKG_OK" ]; then
 					# dpkg outputs it's own line that can't be supressed

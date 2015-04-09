@@ -324,7 +324,7 @@ install_software()
                 apt_mode="remove"
                 
 	elif [[ "$options" == "test" ]]; then
-		apt_mode="--dry-run"
+		apt_mode="--dry-run install"
         fi
         
         # Update keys and system first

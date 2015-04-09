@@ -80,6 +80,11 @@ efs_main()
   
   # build Retroarch
   ./retroarch-build.sh 
+  if [ $? != '0' ]; then
+  	echo -e "built retroarch to ~/retroarch-src-git/libretro-super/retroarch/"
+  else
+  	echo -e "build errors \n"
+  fi
   
   ##############################################
   # Installs

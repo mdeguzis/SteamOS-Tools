@@ -383,6 +383,8 @@ install_software()
 				# The conf string is a part of a dry run result
 				if [ $? == '0' ] || [ $? -n "conf" ]; then
 					echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n" 
+					sleep 2s
+					# head back to for loop
 					continue
 				else
 					clear
@@ -395,8 +397,11 @@ install_software()
 				###########################################################
 				
 				# Packages that fail to install, use Wheezy-backports repository
-				if [ $? == '0' ]; then
+				if [ $? == '0' ] || [ $? -n "conf" ]; then
 					echo -e "\nSuccessfully installed software from Wheezy repo! / Nothing to Install\n" 
+					sleep 2s
+					# head back to for loop
+					continue
 				else
 					clear
 					echo -e "\nCould not install all packages from Wheezy repo, trying Wheezy-backports\n"
@@ -410,12 +415,13 @@ install_software()
 				fi
 				
 				###########################################################
-				# Fail out if any pkg installs fail
+				# Fail out if any pkg installs fail (-z = zero length)
 				###########################################################
 			
-				if [ $? == '0' ]; then
+				if [ $? == '0' ] || [ $? -z "conf" ]; then
 					clear
-					echo -e "\nCould not install all packages from Wheezy, trying Wheezy-backports...\n"
+					echo -e "\nCould not install ALL packages from Wheezy. Plese check \n"
+					echo -e "available outut, or run run with ' &> log.txt' appended... \n"
 					sleep 2s
 				fi
 				

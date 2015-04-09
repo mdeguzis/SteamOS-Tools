@@ -736,15 +736,15 @@ main()
 			# loop over packages and check
 			
 			for i in `cat $software_list`; do
-				echo $i
-			#	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-			#	if [ "" == "$PKG_OK" ]; then
-			#		# dpkg outputs it's own line that can't be supressed
-			#		echo -e "Packge $i [Not Found]" > /dev/null
-			#	else
-			#		echo -e "Packge $i [OK]"
-			#		sleep 0.2s
-			#	fi
+				
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					# dpkg outputs it's own line that can't be supressed
+					echo -e "Packge $i [Not Found]" > /dev/null
+				else
+					echo -e "Packge $i [OK]"
+					sleep 0.2s
+				fi
 
 			done
 			exit

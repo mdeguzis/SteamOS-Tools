@@ -524,7 +524,7 @@ main()
 				if [ "" == "$PKG_OK" ]; then
 					echo -e "Packge $i [Not Found]"
 				else
-					echo -e "Packge $i [OK]
+					echo -e "Packge $i [OK]"
 				fi
 			done
 			exit

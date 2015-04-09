@@ -526,7 +526,7 @@ main()
 					echo -e "Packge $i [Not Found]" > /dev/null
 				else
 					echo -e "Packge $i [OK]"
-					sleep 0.5s
+					sleep 0.2s
 				fi
 			done
 			exit
@@ -556,7 +556,7 @@ main()
 					echo -e "Packge $i [Not Found]" > /dev/null
 				else
 					echo -e "Packge $i [OK]"
-					sleep 0.5s
+					sleep 0.2s
 				fi
 			done
 			exit
@@ -586,7 +586,7 @@ main()
 					echo -e "Packge $i [Not Found]" > /dev/null
 				else
 					echo -e "Packge $i [OK]"
-					sleep 0.5s
+					sleep 0.2s
 				fi
 			done
 			exit
@@ -616,7 +616,7 @@ main()
 					echo -e "Packge $i [Not Found]" > /dev/null
 				else
 					echo -e "Packge $i [OK]"
-					sleep 0.5s
+					sleep 0.2s
 				fi
 			done
 			exit
@@ -646,7 +646,7 @@ main()
 					echo -e "Packge $i [Not Found]" > /dev/null
 				else
 					echo -e "Packge $i [OK]"
-					sleep 0.5s
+					sleep 0.2s
 				fi
 			done
 			exit
@@ -676,7 +676,7 @@ main()
 					echo -e "Packge $i [Not Found]" > /dev/null
 				else
 					echo -e "Packge $i [OK]"
-					sleep 0.5s
+					sleep 0.2s
 				fi
 			done
 			exit

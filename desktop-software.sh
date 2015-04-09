@@ -327,11 +327,14 @@ install_software()
 		apt_mode="--dry-run install"
         fi
         
-        # Update keys and system first
+        # Update keys and system first, skip if removing software
         echo -e "\nUpdating system, please wait...\n"
 	sleep 1s
-        sudo apt-key update
-        sudo apt-get update
+	
+	if [[ "$options" != "uninstall" ]]; then
+	        sudo apt-key update
+	        sudo apt-get update
+	fi
 
 	# create alternate cache dir in /home/desktop due to the 
 	# limited size of the default /var/cache/apt/archives size

@@ -763,8 +763,8 @@ main()
 		#	exit
 		fi
 
-		show_warning
-		install_software
+		#show_warning
+		#install_software
 	fi
 }
 

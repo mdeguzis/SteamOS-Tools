@@ -396,10 +396,8 @@ install_software()
 				
 				# return to loop if user hit "n" to removal instead of pushing onward
 				if [ $? == 1 ] && [ "$apt_mode" == "remove" ]; then
-					#test only
-					clear
-					echo "n caught, exiting"
-					exit
+					# Return back to loop
+					return
 				fi
 			 
 				###########################################################

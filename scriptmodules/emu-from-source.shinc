@@ -115,7 +115,7 @@ efs_main()
 	# Cleanup
 	##############################################
 	# move dir for now until build flags are implemented
-	cp -rv "~/retroarch-src-git/libretro-super/retroarch/ "~/retroarch-src"
+	cp -rv "~/retroarch-src-git/libretro-super/retroarch/" "~/retroarch-src"
 	
 	# clean up dirs
 	rm -rf "/home/desktop/retroarch-src-git"

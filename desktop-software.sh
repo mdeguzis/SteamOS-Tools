@@ -746,7 +746,7 @@ main()
 						sleep 0.2s
 					fi
 				done
-				fi
+
 			else
 				#check just the one package
 				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $type | grep "install ok installed")

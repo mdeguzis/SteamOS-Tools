@@ -508,8 +508,10 @@ install_software()
 	# end PKG OK test loop itself
 	done
 	
-	if [ $? == '0' ]; then
-		echo -e "\nAll packages (I hope!) installed successfully!\n"
+	if [ $? == '0' ] || [ $? -z "conf" ]; then
+		echo -e "\nAll operations have been sucessful!\n"
+	else
+		echo -e "\nScript exited with errors..."
 	fi
 	
 	###########################################################

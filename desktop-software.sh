@@ -383,6 +383,7 @@ install_software()
 				# The conf string is a part of a dry run result
 				if [ $? == '0' ] || [ $? -n "conf ]; then
 					echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n" 
+					continue
 				else
 					clear
 					echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"

@@ -364,11 +364,13 @@ install_software()
 		else
 	
 			# check for packages already installed first
+			# Force if statement to run if unininstalled is specified for exiting software
 			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+			
 			# setup firstcheck var for first run through
 			firstcheck="yes"
 		
-			if [ "" == "$PKG_OK" ]; then
+			if [ "" == "$PKG_OK" ] || [ "$apt_mode" == "remove" ]; then
 			
 				clear
 				# try Alchemist first

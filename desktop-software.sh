@@ -328,10 +328,10 @@ install_software()
         fi
         
         # Update keys and system first, skip if removing software
-        echo -e "\nUpdating system, please wait...\n"
-	sleep 1s
-	
+        
 	if [[ "$options" != "uninstall" ]]; then
+	        echo -e "\nUpdating system, please wait...\n"
+		sleep 1s
 	        sudo apt-key update
 	        sudo apt-get update
 	fi

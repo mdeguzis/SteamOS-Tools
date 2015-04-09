@@ -722,6 +722,9 @@ main()
 		install_software
 		
         elif [[ "$type" == "$type" ]]; then
+        
+        echo $type
+        exit
 
 		if [[ "$options" == "uninstall" ]]; then
                         uninstall="yes"
@@ -733,38 +736,23 @@ main()
 			exit
                 
                 elif [[ "$options" == "check" ]]; then
-                        # check all packages on request
-                        if [[ "$custom_pkg_set" == "yes" ]]; then
-                        	clear
-				for i in `cat $software_list`; do
-					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-					if [ "" == "$PKG_OK" ]; then
-						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]" > /dev/null
-					else
-						echo -e "Packge $i [OK]"
-						sleep 0.2s
-					fi
-			fi
-				done
-				exit
+			# loop over packages and check
+			
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					# dpkg outputs it's own line that can't be supressed
+					echo -e "Packge $i [Not Found]" > /dev/null
+				else
+					echo -e "Packge $i [OK]"
+					sleep 0.2s
+				fi
 
-		#	else
-		#		#check just the one package
-		#		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $type | grep "install ok installed")
-		#		if [ "" == "$PKG_OK" ]; then
-		#			# dpkg outputs it's own line that can't be supressed
-		#			echo -e "Packge $type [Not Found]" > /dev/null
-		#		else
-		#			echo -e "Packge $type [OK]"
-		#			sleep 0.2s
-		#		fi
-		#	fi
-		#	exit
+			done
+			exit
 		fi
-
-		#show_warning
-		#install_software
+		show_warning
+		install_software
 	fi
 }
 

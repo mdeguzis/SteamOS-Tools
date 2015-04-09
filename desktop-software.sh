@@ -18,9 +18,10 @@
 #		attempted to be installed
 #
 # Usage:	./desktop-software.sh [option] [type]
-# Options:	[install|uninstall|list|check] 
-# Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
+# Options:	[install|uninstall|list|check]
 #		You may also specify [test] to do a dry run of the install
+# Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
+	
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
 #
@@ -43,6 +44,17 @@ while [ "$2" != "" ]; do
 	# Shift all the parameters down by one
 	shift
 done
+
+# set custom flag for use later on if line count
+# of cfgs/custom-pkg.txt exceeds 1 
+LINECOUNT=$(`wc -l cfgs/custom-pkg.txt`)
+echo $LINECOUNT
+if [[ $LINECOUNT -gt 1 ]]; then
+   echo "Custom PKG set detected!"
+fi
+
+#testing only here
+exit
 
 apt_mode="install"
 uninstall="no"
@@ -645,6 +657,7 @@ main()
 				fi
 			done
 			exit
+			
 		fi
                 
 	        show_warning

@@ -745,6 +745,7 @@ main()
 						echo -e "Packge $i [OK]"
 						sleep 0.2s
 					fi
+			fi
 				done
 				exit
 

@@ -60,13 +60,13 @@ efs_main()
 	./libretro-fetch.sh retroarch
 	./libretro-fetch.sh snes9x
 	./libretro-fetch.sh mednafen_gba
-	./libretro-fetch.sh mednafen_lynx
-	./libretro-fetch.sh mednafen_ngp
-	./libretro-fetch.sh mednafen_pce_fast
-	./libretro-fetch.sh mednafen_pcfx
-	./libretro-fetch.sh mednafen_psx
-	./libretro-fetch.sh mednafen_snes
-	./libretro-fetch.sh mednafen_supergrafx
+	#./libretro-fetch.sh mednafen_lynx
+	#./libretro-fetch.sh mednafen_ngp
+	#./libretro-fetch.sh mednafen_pce_fast
+	#./libretro-fetch.sh mednafen_pcfx
+	#./libretro-fetch.sh mednafen_psx
+	#./libretro-fetch.sh mednafen_snes
+	#./libretro-fetch.sh mednafen_supergrafx
 	
 	if [ $? == '0' ]; then
 	echo -e "\nFetch operation successful...\n"
@@ -87,14 +87,14 @@ efs_main()
 	./libretro-build.sh snes9x
 	./libretro-build.sh retroarch
 	./libretro-build.sh snes9x
-	./libretro-build.sh mednafen_gba
-	./libretro-build.sh mednafen_lynx
-	./libretro-build.sh mednafen_ngp
-	./libretro-build.sh mednafen_pce_fast
-	./libretro-build.sh mednafen_pcfx
-	./libretro-build.sh mednafen_psx
-	./libretro-build.sh mednafen_snes
-	./libretro-build.sh mednafen_supergrafx
+	#./libretro-build.sh mednafen_gba
+	#./libretro-build.sh mednafen_lynx
+	#./libretro-build.sh mednafen_ngp
+	#./libretro-build.sh mednafen_pce_fast
+	#./libretro-build.sh mednafen_pcfx
+	#./libretro-build.sh mednafen_psx
+	#./libretro-build.sh mednafen_snes
+	#./libretro-build.sh mednafen_supergrafx
 	
 	# build Retroarch
 	./retroarch-build.sh 
@@ -114,7 +114,11 @@ efs_main()
 	##############################################
 	# Cleanup
 	##############################################
-	#rm -rf "/home/desktop/retroarch-src-git"
-	#rm -rf "/home/desktop/retroarch-src"
+	# move dir for now until build flags are implemented
+	cp -rv "~/retroarch-src-git/libretro-super/retroarch/ "~/retroarch-src"
+	
+	# clean up dirs
+	rm -rf "/home/desktop/retroarch-src-git"
+	rm -rf "/home/desktop/retroarch-src"
 
 }

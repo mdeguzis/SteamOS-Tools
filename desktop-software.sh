@@ -369,7 +369,7 @@ install_software()
 		if [[ "$i" =~ "!broken!" ]]; then
 			skipflag="yes"
 			echo -e "skipping broken package: $i ..."
-			sleep 1s
+			sleep 0.3s
 		else
 	
 			# check for packages already installed first
@@ -591,7 +591,7 @@ main()
 				if [[ "$i" =~ "!broken!" ]]; then
 					skipflag="yes"
 					echo -e "skipping broken package: $i ..."
-					sleep 1s
+					sleep 0.3s
 				else
 					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 					if [ "" == "$PKG_OK" ]; then
@@ -628,7 +628,7 @@ main()
 				if [[ "$i" =~ "!broken!" ]]; then
 					skipflag="yes"
 					echo -e "skipping broken package: $i ..."
-					sleep 1s
+					sleep 0.3s
 				else
 					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 					if [ "" == "$PKG_OK" ]; then
@@ -665,7 +665,7 @@ main()
 				if [[ "$i" =~ "!broken!" ]]; then
 					skipflag="yes"
 					echo -e "skipping broken package: $i ..."
-					sleep 1s
+					sleep 0.3s
 				else
 					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 					if [ "" == "$PKG_OK" ]; then
@@ -703,7 +703,7 @@ main()
 				if [[ "$i" =~ "!broken!" ]]; then
 					skipflag="yes"
 					echo -e "skipping broken package: $i ..."
-					sleep 1s
+					sleep 0.3s
 				else
 					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 					if [ "" == "$PKG_OK" ]; then
@@ -740,7 +740,7 @@ main()
 				if [[ "$i" =~ "!broken!" ]]; then
 					skipflag="yes"
 					echo -e "skipping broken package: $i ..."
-					sleep 1s
+					sleep 0.3s
 				else
 					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 				
@@ -778,7 +778,7 @@ main()
 				if [[ "$i" =~ "!broken!" ]]; then
 					skipflag="yes"
 					echo -e "skipping broken package: $i ..."
-					sleep 1s
+					sleep 0.3s
 				else
 					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 					if [ "" == "$PKG_OK" ]; then

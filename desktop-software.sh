@@ -747,7 +747,7 @@ main()
 				fi
 
 			done
-			exit
+			#exit
 		fi
 		show_warning
 		install_software

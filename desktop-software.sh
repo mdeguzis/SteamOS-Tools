@@ -474,7 +474,9 @@ install_software()
 				if [ $? == '0' ] || [ $? -z "conf" ]; then
 					clear
 					echo -e "\nCould not install or remove ALL packages from Wheezy. Plese check \n"
-					echo -e "available outut, or run run with ' &> log.txt' appended... \n"
+					echo -e "available outut, or try one of the following:\n\n"
+					echo -e "'sudo ./desktop-software [option] [type] &> log.txt'\n"
+					echo -e "'sudo ./desktop-software check [type]'\n"
 					sleep 1s
 					exit
 				fi

@@ -20,6 +20,7 @@
 # Usage:	./desktop-software.sh [option] [type]
 # Options:	[install|uninstall|list|check] 
 # Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
+#		You may also specify [test] to do a dry run of the install
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
 #
@@ -316,10 +317,14 @@ install_software()
 	###########################################################
 	
 	# Set mode and proceed based on main() choice
-        if [[ "$options" == "uninstall" ]]; then
+        if [[ "$options" == "install" ]]; then
+                apt_mode="install"
+                
+	elif [[ "$options" == "uninstall" ]]; then
                 apt_mode="remove"
-	else
-		apt_mode="install"
+                
+	elif [[ "$options" == "test" ]]; then
+		apt_mode="--dry-run"
         fi
         
         # Update keys and system first

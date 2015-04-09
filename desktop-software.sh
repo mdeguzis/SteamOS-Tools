@@ -4,15 +4,24 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.3.7
+# Script Ver:	0.5.9
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
 #		some sort of additional value.
 #
+# Loop description:
+#		Checks all packages one by one if they are installed first.
+#		if any given pkg is not, it then checks for a prefix !broke! 
+#		in any dynamically called list (basic,extra,emulation, and so on)
+#		Pkg names marked !broke! are skipped and the rest are 
+#		attempted to be installed
+#
 # Usage:	./desktop-software.sh [option] [type]
-# Options:	[install|uninstall|list] 
-# Types:	[basic|extra|emulation|<pkg_name>]
+# Options:	[install|uninstall|list|check]
+#		You may also specify [test] to do a dry run of the install
+# Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
+	
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
 #
@@ -21,23 +30,32 @@
 #################################
 # Set launch vars
 #################################
-
 options="$1"
+	
+# remove old custom file
+sudo rm -f "cfgs/custom-pkg.txt"
 
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do
-    # set type var to arugment, append to custom list
-    # for mutliple package specifications by user
-    type="$2"
-    echo "$type" >> "cfgs/custom-pkg.txt"
-    # Shift all the parameters down by one
-    shift
+	# set type var to arugment, append to custom list
+	# for mutliple package specifications by user
+	type="$2"
+	echo "$type" >> "cfgs/custom-pkg.txt"
+	# Shift all the parameters down by one
+	shift
 done
 
+# set custom flag for use later on if line count
+# of cfgs/custom-pkg.txt exceeds 1 
+LINECOUNT=$(wc -l "cfgs/custom-pkg.txt" | cut -f1 -d' ')
+
+if [[ $LINECOUNT -gt 1 ]]; then
+   echo "Custom PKG set detected!"
+   custom_pkg_set="yes"
+fi
 
 apt_mode="install"
 uninstall="no"
-
 
 function getScriptAbsoluteDir() 
 {
@@ -204,11 +222,13 @@ show_help()
 	used first, followed by Debian Wheezy.
 	
 	For a complete list, type:
-	'./debian-software list [basic|extra]'
+	'./debian-software list [type]'
+	Options: [install|uninstall|list|check] 
+	Types: [basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
 	
 	Install with:
-	'./debian-software [install|uninstall|list] [basic|extra|<pkg_name>]'
-	
+	'./debian-software [option] [type]'
+
 	Press enter to continue...
 	EOF
 	
@@ -255,6 +275,12 @@ get_software_type()
         elif [[ "$type" == "emulation" ]]; then
                 # add emulation softare to temp list
                 software_list="cfgs/emulation.txt"
+        elif [[ "$type" == "emulation-src" ]]; then
+                # add emulation softare to temp list
+                software_list="cfgs/emulation-src.txt"
+        elif [[ "$type" == "emulation-src-deps" ]]; then
+                # add emulation softare to temp list
+                software_list="cfgs/emulation-src-deps.txt"
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="cfgs/custom-pkg.txt"
@@ -275,6 +301,12 @@ add_repos()
         elif [[ "$type" == "emulation" ]]; then
                 # retroarch
                 echo "" > /dev/null
+        elif [[ "$type" == "emulation-src" ]]; then
+                # retroarch-src
+                echo "" > /dev/null
+        elif [[ "$type" == "emulation-src-deps" ]]; then
+                # retroarch-src-deps
+                echo "" > /dev/null
         elif [[ "$type" == "$type" ]]; then
                 # non-required for now
                 echo "" > /dev/null
@@ -288,18 +320,30 @@ install_software()
 	# https://packages.debian.org/search?keywords=wheezy
 
 	clear
+	
+	###########################################################
+	# Pre-checks and setup
+	###########################################################
+	
 	# Set mode and proceed based on main() choice
-        if [[ "$options" == "uninstall" ]]; then
+        if [[ "$options" == "install" ]]; then
+                apt_mode="install"
+                
+	elif [[ "$options" == "uninstall" ]]; then
                 apt_mode="remove"
-	else
-		apt_mode="install"
+                
+	elif [[ "$options" == "test" ]]; then
+		apt_mode="--dry-run install"
         fi
         
-        # Update keys and system first
-        echo -e "\nUpdating system, please wait...\n"
-	sleep 1s
-        sudo apt-key update
-        sudo apt-get update
+        # Update keys and system first, skip if removing software
+        
+	if [[ "$options" != "uninstall" ]]; then
+	        echo -e "\nUpdating system, please wait...\n"
+		sleep 1s
+	        sudo apt-key update
+	        sudo apt-get update
+	fi
 
 	# create alternate cache dir in /home/desktop due to the 
 	# limited size of the default /var/cache/apt/archives size
@@ -308,31 +352,171 @@ install_software()
 	# create cache command
 	cache_tmp=$(echo "-o dir::cache::archives="/home/desktop/cache_temp"")
 	
-	# Inform user of preliminary action
-	echo -e "\n\nAttempting package installations from Alchemist...\n"
+	clear
+	###########################################################
+	# Installation routine (alchmist/main)
+	###########################################################
+	
+	# Install from Alchemist first, Wheezy as backup, wheezy-backports 
+	# as a last ditch effort
+	
+	# let user know checks in progress
+	echo -e "Validating packages already installed...\n"
 	sleep 2s
 	
-	# Install from Alchemist first, Wheezy as backup
 	for i in `cat $software_list`; do
-		sudo apt-get $cache_tmp $apt_mode $i 2> /dev/null
-	done 
 	
-	# Packages that fail to install, use Wheezy repositories
-	if [ $? == '0' ]; then
-		echo -e "\nSuccessfully installed software from Alchemist repo!\n" 
-	else
-		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
-		sleep 2s
-		sudo apt-get $cache_tmp -t wheezy $apt_mode `cat $software_list`
+		if [[ "$i" =~ "!broken!" ]]; then
+			skipflag="yes"
+			echo -e "skipping broken package: $i ..."
+			sleep 1s
+		else
+	
+			# check for packages already installed first
+			# Force if statement to run if unininstalled is specified for exiting software
+			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+			
+			# setup firstcheck var for first run through
+			firstcheck="yes"
 		
-		if [ $? == '0' ]; then
-			echo -e "\nCould not install all packages. Please check errors displayed"
-			echo -e "\nor run 'sudo ./install-debian-software [option] [type] &> log.txt\n"
-			sleep 3s
-			# halt script
-			exit
+			if [ "" == "$PKG_OK" ] || [ "$apt_mode" == "remove" ]; then
+			
+				clear
+				# try Alchemist first
+				if [ "$apt_mode" != "remove" ]; then
+					echo -e "Attempting package installations from Alchemist...\n"
+					sleep 1s
+				else
+					echo -e "Removal requested (from Alchemist) for package: $i \n"
+					sleep 1s
+				fi
+				
+				sudo apt-get $cache_tmp $apt_mode $i
+				
+				# REMOVED for now for further testing
+				# return to loop if user hit "n" to removal instead of pushing onward
+				#if [ $? == 1 ] && [ "$apt_mode" == "remove" ]; then
+				#	# Return back to loop
+				#	return
+				#fi
+			 
+				###########################################################
+				# Installation routine (wheezy - 2nd stage)
+				###########################################################
+				
+				# Packages that fail to install, use Wheezy repositories
+				# The conf string is a part of a dry run result
+				if [ $? == '0' ] || [ $? -n "conf" ]; then
+				
+					if [ "$apt_mode" != "remove" ]; then
+						echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n"
+						sleep 1s
+					else
+						echo -e "\nRemoval succeeded for package: $i \n"
+						sleep 1s
+					fi
+					
+					# head back to for loop
+					continue
+				else
+					clear
+					if [ "$apt_mode" != "remove" ]; then
+						echo -e "Could not install all packages from Alchemist repo, trying Wheezy...\n"
+						sleep 1s
+					else
+						echo -e "Removal requested (from Wheezy) for package: $i \n"
+						sleep 1s
+					fi
+					
+					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
+				fi
+					
+				###########################################################
+				# Installation routine (wheezy-backports - 2nd stage)
+				###########################################################
+				
+				# Packages that fail to install, use Wheezy-backports repository
+				if [ $? == '0' ] || [ $? -n "conf" ]; then
+				
+					if [ "$apt_mode" != "remove" ]; then
+						echo -e "\nSuccessfully installed software from Wheezy repo! / Nothing to Install\n" 
+						sleep 2s
+					else
+						echo -e "\nRemoval succeeded for package: $i \n"
+						sleep 1s
+					fi
+				
+					# head back to for loop
+					continue
+				else
+					clear
+					if [ "$apt_mode" != "remove" ]; then
+						echo -e "Could not install all packages from Wheezy repo, trying Wheezy-backports\n"
+						sleep 2s
+					else
+						echo -e "Removal requested (from Wheezy-backports) for package: $i \n"
+						sleep 1s
+					fi
+					
+					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
+					
+					# clear the screen from the last install if it was. (looking into this)
+					# a broken pkg
+					if [[ "$skipflag" == "yes"  ]]; then
+						clear
+					fi
+				fi
+				
+				###########################################################
+				# Fail out if any pkg installs fail (-z = zero length)
+				###########################################################
+			
+				if [ $? == '0' ] || [ $? -z "conf" ]; then
+					clear
+					echo -e "\nCould not install or remove ALL packages from Wheezy. Plese check \n"
+					echo -e "available outut, or run run with ' &> log.txt' appended... \n"
+					sleep 2s
+				fi
+				
+				# set firstcheck to "no" so "resume" below does not occur
+				firstcheck="no"
+	
+			else
+				# package was found
+				# check if we resumed pkg checks if loop was restarted
+				
+				if [[ "$firstcheck" == "yes"  ]]; then
+					
+					echo -e "$i package status: [OK]"
+					sleep 0.2s
+				else
+					clear
+					echo -e "Restarting package checks...\n"
+					sleep 3s
+					echo -e "$i package status: [OK]"
+					sleep 0.5s
+				fi
+			
+			# end PKG OK test loop if/fi
+			fi
+
+		# end broken PKG test loop if/fi
 		fi
+		# reset skip flag
+		skipflag="no"
+		
+	# end PKG OK test loop itself
+	done
+	
+	if [ $? == '0' ] || [ $? -z "conf" ]; then
+		echo -e "\nAll operations have been sucessful!\n"
+	else
+		echo -e "\nScript exited with errors..."
 	fi
+	
+	###########################################################
+	# Cleanup
+	###########################################################
 	
 	# Remove custom package list
 	rm -f cfgs/custom-pkg.txt
@@ -340,10 +524,21 @@ install_software()
 	# If software type was for emulation, continue building
 	# emulators from source (DISABLE FOR NOW)
 	
+	###########################################################
+	# Kick off emulation install scripts (if specified)
+	###########################################################
+	
         if [[ "$type" == "emulation" ]]; then
                 # call external build script
-                #efs_main
+                # DISABLE FOR NOW
+                # install_emus
                 echo "" > /dev/null
+        elif [[ "$type" == "emulation-src" ]]; then
+                # call external build script
+                clear
+                echo -e "\nProceeding to install emulator pkgs from source..."
+                sleep 2s
+                efs_main
 	fi
 	
 }
@@ -385,6 +580,20 @@ main()
                         clear
                         cat $software_list | less
 			exit
+		elif [[ "$options" == "check" ]]; then
+                        # check all packages on request
+                        clear
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					# dpkg outputs it's own line that can't be supressed
+					echo -e "Package $i [Not Found]" > /dev/null
+				else
+					echo -e "Packge $i [OK]"
+					sleep 0.2s
+				fi
+			done
+			exit
 		fi
 
 		show_warning
@@ -400,7 +609,22 @@ main()
                         clear
 			cat $software_list | less
 			exit
-                fi
+                
+                elif [[ "$options" == "check" ]]; then
+                        # check all packages on request
+                        clear
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					# dpkg outputs it's own line that can't be supressed
+					echo -e "Packge $i [Not Found]" > /dev/null
+				else
+					echo -e "Packge $i [OK]"
+					sleep 0.2s
+				fi
+			done
+			exit
+		fi
                 
                 show_warning
 		install_software
@@ -415,13 +639,89 @@ main()
                         clear
 			cat $software_list | less
 			exit
-                fi
                 
-                show_warning
+                elif [[ "$options" == "check" ]]; then
+                        # check all packages on request
+                        clear
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					# dpkg outputs it's own line that can't be supressed
+					echo -e "Packge $i [Not Found]" > /dev/null
+				else
+					echo -e "Packge $i [OK]"
+					sleep 0.2s
+				fi
+			done
+			exit
+			
+		fi
+                
+	        show_warning
 		install_software
-                
-        elif [[ "$type" == "$type" ]]; then
 
+        elif [[ "$type" == "emulation-src" ]]; then
+
+		if [[ "$options" == "uninstall" ]]; then
+	                uninstall="yes"
+	
+	        elif [[ "$options" == "list" ]]; then
+	                # show listing from cfgs/emulation-src.txt
+	                clear
+			cat $software_list | less
+			exit
+	        
+	        elif [[ "$options" == "check" ]]; then
+                        # check all packages on request
+                        clear
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					# dpkg outputs it's own line that can't be supressed
+					echo -e "Packge $i [Not Found]" > /dev/null
+				else
+					echo -e "Packge $i [OK]"
+					sleep 0.2s
+				fi
+			done
+			exit
+		fi
+        
+        	show_warning
+		install_software
+		
+        elif [[ "$type" == "emulation-src-deps" ]]; then
+
+		if [[ "$options" == "uninstall" ]]; then
+	                uninstall="yes"
+	
+	        elif [[ "$options" == "list" ]]; then
+	                # show listing from cfgs/emulation-src-deps.txt
+	                clear
+			cat $software_list | less
+			exit
+	        
+	        elif [[ "$options" == "check" ]]; then
+                        # check all packages on request
+                        clear
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					# dpkg outputs it's own line that can't be supressed
+					echo -e "Packge $i [Not Found]" > /dev/null
+				else
+					echo -e "Packge $i [OK]"
+					sleep 0.2s
+				fi
+			done
+			exit
+		fi
+        
+        	show_warning
+		install_software
+		
+        elif [[ "$type" == "$type" ]]; then
+        
 		if [[ "$options" == "uninstall" ]]; then
                         uninstall="yes"
 
@@ -430,8 +730,25 @@ main()
                         clear
 			echo -e "No listing for $type \n"
 			exit
-                fi
+                
+                elif [[ "$options" == "check" ]]; then
+			# loop over packages and check
+			
+			clear
+			for i in `cat $software_list`; do
+				
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					# dpkg outputs it's own line that can't be supressed
+					echo -e "Package $i [Not Found]"
+				else
+					echo -e "Package $i [OK]"
+					sleep 0.2s
+				fi
 
+			done
+			exit
+		fi
 		show_warning
 		install_software
 	fi

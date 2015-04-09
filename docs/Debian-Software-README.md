@@ -1,7 +1,12 @@
 ## About
-This script aids in installing basic or full sets of Debian software
-to SteamOS.
- 
+This script aids in installing basic, extra, emulation,or custom 
+sets of Debian software to SteamOS.
+
+The package install loop checks all packages one by one if they are installed first. 
+If any given pkg is not, it then checks for a prefix !broke! in any dynamically called list
+(basic,extra,emulation, and so on). Pkg names marked !broke! are skipped and the rest are  
+attempted to be installed.
+
 ## Usage
 
 You can run the utility using the follwing options:
@@ -25,9 +30,14 @@ lists softare pacakges in each install group
 installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
 **extra:**  
 installs extra softare based on feedback and personal preference  
-**emulation:**    
-retroarch and associated emulators.  
-**`<pkg_name>:`**    
+**emulation: (in-progress, debs need built)**      
+retroarch and associated emulators.      
+**emulation-src:**          
+Installs prerequisite packages for compiling emulation packages from source and then compiles emulators pacakages from source (will take some time to install).       
+**emulation-src-deps: (broken)**          
+packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
+
+**`<pkg_name>:`**      
 installs package(s) specifified from Alchemist/Wheezy. You can speciy any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
 
 ## Emulation type Warning

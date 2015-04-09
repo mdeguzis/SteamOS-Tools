@@ -28,25 +28,21 @@
 #################################
 # Set launch vars
 #################################
-rm -f "cfgs/custom-pkg.txt"
 options="$1"
 
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do
-    # set type var to arugment, append to custom list
-    # for mutliple package specifications by user
-    
-    if [[ -f "cfgs/custom-pkg.txt" ]]; then
-    	rm -f "cfgs/custom-pkg.txt"
-    fi
-    
-    type="$2"
-    echo "$type" >> "cfgs/custom-pkg.txt"
-    # Shift all the parameters down by one
-    shift
-    
+	# remove old custom file
+	rm -f "cfgs/custom-pkg.txt"
+	# set type var to arugment, append to custom list
+	# for mutliple package specifications by user
+	type="$2"
+	echo "$type" >> "cfgs/custom-pkg.txt"
+	# Shift all the parameters down by one
+	shift
 done
 
+exit
 
 apt_mode="install"
 uninstall="no"

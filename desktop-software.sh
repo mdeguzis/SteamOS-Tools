@@ -59,7 +59,7 @@ uninstall="no"
 
 dpkg-query -W --showformat='${Status}\n' baobab | grep "install ok installed"
 dpkg-query -W --showformat='${Status}\n' gparted | grep "install ok installed"
-
+exit
 function getScriptAbsoluteDir() 
 {
 	

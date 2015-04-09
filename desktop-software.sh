@@ -47,7 +47,7 @@ done
 
 # set custom flag for use later on if line count
 # of cfgs/custom-pkg.txt exceeds 1 
-LINECOUNT=$(wc -l cfgs/custom-pkg.txt)
+LINECOUNT=$(wc -l "cfgs/custom-pkg.txt")
 echo $LINECOUNT
 if [[ $LINECOUNT -gt 1 ]]; then
    echo "Custom PKG set detected!"

@@ -18,7 +18,7 @@
 #		attempted to be installed
 #
 # Usage:	./desktop-software.sh [option] [type]
-# Options:	[install|uninstall|list] 
+# Options:	[install|uninstall|list|check] 
 # Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
@@ -212,7 +212,7 @@ show_help()
 	
 	For a complete list, type:
 	'./debian-software list [type]'
-	Options: [install|uninstall|list] 
+	Options: [install|uninstall|list|check] 
 	Types: [basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
 	
 	Install with:
@@ -516,6 +516,18 @@ main()
                         clear
                         cat $software_list | less
 			exit
+		elif [[ "$options" == "check" ]]; then
+                        # check all packages on request
+                        clear
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					echo -e "Packge $i [Not Found]
+				else
+					echo -e "Packge $i [OK]
+				fi
+			done
+			exit
 		fi
 
 		show_warning
@@ -531,7 +543,20 @@ main()
                         clear
 			cat $software_list | less
 			exit
-                fi
+                
+                elif [[ "$options" == "check" ]]; then
+                        # check all packages on request
+                        clear
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					echo -e "Packge $i [Not Found]
+				else
+					echo -e "Packge $i [OK]
+				fi
+			done
+			exit
+		fi
                 
                 show_warning
 		install_software
@@ -546,7 +571,20 @@ main()
                         clear
 			cat $software_list | less
 			exit
-                fi
+                
+                elif [[ "$options" == "check" ]]; then
+                        # check all packages on request
+                        clear
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					echo -e "Packge $i [Not Found]
+				else
+					echo -e "Packge $i [OK]
+				fi
+			done
+			exit
+		fi
                 
 	        show_warning
 		install_software
@@ -561,7 +599,20 @@ main()
 	                clear
 			cat $software_list | less
 			exit
-	        fi
+	        
+	        elif [[ "$options" == "check" ]]; then
+                        # check all packages on request
+                        clear
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					echo -e "Packge $i [Not Found]
+				else
+					echo -e "Packge $i [OK]
+				fi
+			done
+			exit
+		fi
         
         	show_warning
 		install_software
@@ -576,7 +627,20 @@ main()
 	                clear
 			cat $software_list | less
 			exit
-	        fi
+	        
+	        elif [[ "$options" == "check" ]]; then
+                        # check all packages on request
+                        clear
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					echo -e "Packge $i [Not Found]
+				else
+					echo -e "Packge $i [OK]
+				fi
+			done
+			exit
+		fi
         
         	show_warning
 		install_software
@@ -591,7 +655,20 @@ main()
                         clear
 			echo -e "No listing for $type \n"
 			exit
-                fi
+                
+                elif [[ "$options" == "check" ]]; then
+                        # check all packages on request
+                        clear
+			for i in `cat $software_list`; do
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "" == "$PKG_OK" ]; then
+					echo -e "Packge $i [Not Found]
+				else
+					echo -e "Packge $i [OK]
+				fi
+			done
+			exit
+		fi
 
 		show_warning
 		install_software

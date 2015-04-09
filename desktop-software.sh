@@ -394,11 +394,12 @@ install_software()
 				
 				sudo apt-get $cache_tmp $apt_mode $i
 				
+				# REMOVED for now for further testing
 				# return to loop if user hit "n" to removal instead of pushing onward
-				if [ $? == 1 ] && [ "$apt_mode" == "remove" ]; then
-					# Return back to loop
-					return
-				fi
+				#if [ $? == 1 ] && [ "$apt_mode" == "remove" ]; then
+				#	# Return back to loop
+				#	return
+				#fi
 			 
 				###########################################################
 				# Installation routine (wheezy - 2nd stage)

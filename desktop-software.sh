@@ -28,7 +28,7 @@
 #################################
 # Set launch vars
 #################################
-
+rm -f "cfgs/custom-pkg.txt"
 options="$1"
 
 # loop argument 2 until no more is specfied

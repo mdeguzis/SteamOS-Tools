@@ -4,7 +4,7 @@ curl
 g++
 pkg-config
 libglu1-mesa-dev
-freeglut3-dev:i386
+freeglut3-dev
 mesa-common-dev
 libsdl1.2-dev
 libsdl-image1.2-dev

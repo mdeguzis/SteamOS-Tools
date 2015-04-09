@@ -384,7 +384,6 @@ install_software()
 				clear
 				# try Alchemist first
 				if [ "$apt_mode" != "remove" ]; then
-					echo -e "\nPackage $i not found or removal requested. Attempting installation...\n"
 					echo -e "Attempting package installations from Alchemist...\n"
 					sleep 1s
 				else

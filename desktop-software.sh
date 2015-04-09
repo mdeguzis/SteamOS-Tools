@@ -381,14 +381,14 @@ install_software()
 				
 				# Packages that fail to install, use Wheezy repositories
 				# The conf string is a part of a dry run result
-			#	if [ $? == '0' ] || [ $? -n "conf ]; then
-			#		echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n" 
-			#		continue
-			#	else
-			#		clear
-			#		echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
-			#		sudo apt-get $cache_tmp -t wheezy $apt_mode $i
-			#	fi
+				if [ $? == '0' ] || [ $? -n "conf" ]; then
+					echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n" 
+					continue
+				else
+					clear
+					echo -e "\nCould not install all packages from Alchemist repo, trying Wheezy...\n"
+					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
+				fi
 					
 				###########################################################
 				# Installation routine (wheezy-backports - 2nd stage)

@@ -57,6 +57,8 @@ fi
 apt_mode="install"
 uninstall="no"
 
+dpkg-query -W --showformat='${Status}\n' baobab | grep "install ok installed"
+dpkg-query -W --showformat='${Status}\n' gparted | grep "install ok installed"
 
 function getScriptAbsoluteDir() 
 {
@@ -734,8 +736,7 @@ main()
                 
                 elif [[ "$options" == "check" ]]; then
 			# loop over packages and check
-			dpkg-query -W --showformat='${Status}\n' baobab | grep "install ok installed"
-			dpkg-query -W --showformat='${Status}\n' gparted | grep "install ok installed"
+			
 			clear
 			for i in `cat $software_list`; do
 				echo $i

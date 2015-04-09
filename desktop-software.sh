@@ -33,9 +33,11 @@ options="$1"
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do
 	# remove old custom file
+	echo "removing old custom pkg file"
 	sudo rm -f "cfgs/custom-pkg.txt"
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
+	echo "adding custom pkgs"
 	type="$2"
 	echo "$type" >> "cfgs/custom-pkg.txt"
 	# Shift all the parameters down by one

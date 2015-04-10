@@ -67,7 +67,7 @@ funct_set_target()
 		
 		target="steamos"
 		release="alchemist"
-		target_URL="http://http.repo.steampowered.com/steamos"
+		target_URL="http://repo.steampowered.com/steamos"
 	    
 	  fi
 	  

@@ -131,7 +131,7 @@ funct_create_chroot()
 		apt-get install steamos-beta-repo -y
 		apt-get update
 		apt-get upgrade
-	elif [[ "$beta_flag" "no" ]]; then
+	elif [[ "$beta_flag" == "no" ]]; then
 		# do nothing
 		echo "" > /dev/null
 	fi

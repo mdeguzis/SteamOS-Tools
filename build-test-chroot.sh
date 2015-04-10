@@ -107,10 +107,20 @@ funct_create_chroot()
 	chroot "/home/desktop/${target}-chroot"
 	
 	# kick back if failure
-	if [ $? == '0' ]; then
+	if [ $? != '0' ]; then
 		echo -e "\nFailed to enter chroot. Please try again\n"
 		exit
 	fi
+	
+	# ensure we are in the chroot
+	if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
+		echo "We are chrooted!"
+	else
+		echo "Business as usual"
+	fi
+
+	exit
+	exit
 	
 	# create dpkg policy for daemons
 	chroot /srv/chroot/${target}

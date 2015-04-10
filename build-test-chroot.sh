@@ -104,11 +104,12 @@ funct_create_chroot()
 	/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
 	
 	# enter chroot to test
-	chroot /home/desktop/${target}-chroot
+	chroot "/home/desktop/${target}-chroot"
 	
 	# kick back if failure
 	if [ $? == '0' ]; then
-	echo -e "\nFailed to enter chroot. Please try again\n"
+		echo -e "\nFailed to enter chroot. Please try again\n"
+		exit
 	fi
 	
 	# create dpkg policy for daemons
@@ -136,9 +137,6 @@ funct_create_chroot()
 	# eliminate unecessary packages
 	apt-get -t wheezy install deborphan
 	deborphan -a
-	
-	# exit chroot
-	exit
 	
 }
 

@@ -92,8 +92,6 @@ funct_create_chroot()
 		rm -rf "/home/desktop/${target}-chroot"
 	fi
 	
-	exit
-	
 	# create DIR
 	mkdir -p "/home/desktop/${target}-chroot"
 	

@@ -121,7 +121,7 @@ fucnt_create_chroot()
 	deborphan -a
 	
 	# exit chroot
-	exit
+	echo -e "exit\n"
 	
 }
 

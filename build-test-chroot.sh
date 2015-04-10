@@ -127,6 +127,14 @@ funct_create_chroot()
 }
 
 # Routines
-funct_prereqs
-funct_set_target
-funct_create_chroot
+main()
+{
+
+	funct_prereqs
+	funct_set_target
+	funct_create_chroot
+	
+}
+
+# start main
+main

@@ -49,7 +49,7 @@ funct_prereqs()
 {
 	
 	# Install the required packages 
-	apt-get install binutils debootstrap debian-archive-keyring
+	apt-get install binutils debootstrap debian-archive-keyring dchroot
 	
 }
 
@@ -104,7 +104,7 @@ funct_create_chroot()
 	/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
 	
 	# enter chroot to test
-	chroot "/home/desktop/${target}-chroot"
+	/usr/sbin/chroot "/home/desktop/${target}-chroot"
 	
 	# kick back if failure
 	if [ $? != '0' ]; then
@@ -118,9 +118,6 @@ funct_create_chroot()
 	else
 		echo "Business as usual"
 	fi
-
-	exit
-	exit
 	
 	# create dpkg policy for daemons
 	chroot /srv/chroot/${target}
@@ -147,6 +144,11 @@ funct_create_chroot()
 	# eliminate unecessary packages
 	apt-get -t wheezy install deborphan
 	deborphan -a
+	
+	# exit chroot\
+	echo -e "Exiting chroot!\n"
+	sleep 2s
+	exit
 	
 }
 

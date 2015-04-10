@@ -4,15 +4,31 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.1.1
-# Description:	Builds a Debian Wheezy chroot for testing purposes
-#               Posibly will become an option to install a SteamOS chroot
+# Script Ver:	0.1.3
+# Description:	Builds a Debian Wheezy / SteamOS chroot for testing 
+#		purposes
 #               See: https://wiki.debian.org/chroot
+# Usage:	sudo ./build-test-chroot.sh -type [debian|steamos]
+#		sudo ./build-test-chroot.sh --help for help
 #
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
 #
 # -------------------------------------------------------------------------------
+
+show_help()
+{
+	
+	clear
+	cat <<-EOF
+	Warning: usage of this script is at your own risk!
+	
+	Usage
+	---------------------------------------------------------------
+	'sudo ./build-test-chroot.sh -type [debian|steamos]'
+	exit
+	
+}
 
 # Warn user script must be run as root
 if [ "$(id -u)" -ne 0 ]; then
@@ -37,15 +53,20 @@ funct_set_target()
 
 	if [[ "$1" == "-type" ]]; then
 	  if [[ "$2" == "wheezy" ]]; then
-	  	target="wheezy"
+	  
+	  	target="debian"
 	  	release="wheezy"
 	  	target_URL="http://http.debian.net/debian"
+	  	
 	  elif [[ "$2" == "steamos" ]]; then
 		target="steamos"
 		release="alchemist"
 		target_URL="http://http.repo.steampowered.com/steamos"
 	    
 	  fi
+	  
+	elif [[ "$1" == "--help" ]]; then
+		show_help
 	fi
 	
 }

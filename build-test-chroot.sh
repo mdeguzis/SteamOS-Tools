@@ -13,6 +13,10 @@
 #
 # -------------------------------------------------------------------------------
 
+# set arguments
+opt1=$1
+opt2=$2
+
 show_help()
 {
 	
@@ -48,21 +52,21 @@ funct_prereqs()
 funct_set_target()
 {
 
-	if [[ "$1" == "-type" ]]; then
-	  if [[ "$2" == "wheezy" ]]; then
+	if [[ "$opt1" == "-type" ]]; then
+	  if [[ "$opt2" == "wheezy" ]]; then
 	  
 	  	target="debian"
 	  	release="wheezy"
 	  	target_URL="http://http.debian.net/debian"
 	  	
-	  elif [[ "$2" == "steamos" ]]; then
+	  elif [[ "$opt2" == "steamos" ]]; then
 		target="steamos"
 		release="alchemist"
 		target_URL="http://http.repo.steampowered.com/steamos"
 	    
 	  fi
 	  
-	elif [[ "$1" == "--help" ]]; then
+	elif [[ "$opt1" == "--help" ]]; then
 		show_help
 	fi
 	

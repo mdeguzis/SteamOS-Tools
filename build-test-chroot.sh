@@ -27,6 +27,7 @@ show_help()
 	Usage
 	---------------------------------------------------------------
 	'sudo ./build-test-chroot.sh -type [debian|steamos]'
+	EOF
 	exit
 	
 }

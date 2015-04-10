@@ -112,11 +112,12 @@ funct_create_chroot()
 		exit
 	fi
 	
-	# ensure we are in the chroot
+	# 2nd pass to ensure we are in the chroot
 	if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
 		echo "We are chrooted!"
 	else
-		echo "Business as usual"
+		echo -e "\nchroot entry failed. Exiting...\n"
+		exit
 	fi
 	
 	# create dpkg policy for daemons

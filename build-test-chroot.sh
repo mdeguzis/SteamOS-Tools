@@ -146,8 +146,8 @@ funct_create_chroot()
 	apt-get -t wheezy install deborphan
 	deborphan -a
 	
-	# exit chroot\
-	echo -e "Exiting chroot!\n"
+	# exit chroot
+	echo -e "\nExiting chroot!\n"
 	sleep 2s
 	exit
 	

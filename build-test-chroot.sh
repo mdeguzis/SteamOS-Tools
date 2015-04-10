@@ -11,6 +11,9 @@
 # Usage:	sudo ./build-test-chroot.sh -type [debian|steamos]
 #		sudo ./build-test-chroot.sh --help for help
 #
+# Warning:	You MUST have the Debian repos added properly for
+#		Installation of the pre-requisite packages.
+#
 # -------------------------------------------------------------------------------
 
 # set arguments
@@ -119,7 +122,7 @@ funct_create_chroot()
 	mount --bind /dev/pts /home/desktop/${target}-chroot/dev/pts
 	
 	# eliminate unecessary packages
-	apt-get install deborphan
+	apt-get -t wheezy install deborphan
 	deborphan -a
 	
 	# exit chroot

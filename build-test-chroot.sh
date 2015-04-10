@@ -11,9 +11,6 @@
 # Usage:	sudo ./build-test-chroot.sh -type [debian|steamos]
 #		sudo ./build-test-chroot.sh --help for help
 #
-# Warning:	You MUST have the Debian repos added properly for
-#		Installation of the pre-requisite packages.
-#
 # -------------------------------------------------------------------------------
 
 show_help()

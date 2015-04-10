@@ -134,8 +134,8 @@ funct_create_chroot()
 	if [[ "$beta_flag" == "yes" ]]; then
 		# add beta repo and update
 		apt-get install steamos-beta-repo -y
-		apt-get update
-		apt-get upgrade
+		apt-get update -y
+		apt-get upgrade -y
 	elif [[ "$beta_flag" == "no" ]]; then
 		# do nothing
 		echo "" > /dev/null

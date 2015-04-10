@@ -72,7 +72,7 @@ funct_set_target()
 	  elif [[ "$opt2" == "steamos-beta" ]]; then
 		
 		target="steamos-beta"
-		release="alchemist beta"
+		release="alchemist\ beta"
 		target_URL="http://repo.steampowered.com/steamos"
 	    
 	  fi

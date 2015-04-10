@@ -181,22 +181,7 @@ script_invoke_path="$0"
 script_name=$(basename "$0")
 getScriptAbsoluteDir "$script_invoke_path"
 script_absolute_dir=$RESULT
-
-if [ "$script_invoke_path" == "/usr/bin/retrorig-es-setup" ]; then
-
-	#install method via system folder
-	
-	scriptdir=/usr/share/RetroRig-ES
-	
-else
-
-	#install method from local git clone
-	
-	scriptdir=`dirname "$script_absolute_dir"`
-	
-fi
-
-}
+scriptdir=`dirname "$script_absolute_dir"`
 
 show_help()
 {

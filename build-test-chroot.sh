@@ -107,19 +107,27 @@ funct_create_chroot()
 	/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
 	
 	# enter chroot to test
+	echo -e "\nYou will now be placed into the chroot."
+	echo -e "Be sure to type 'exit' to continue configuration presets"
+	echo -e "Hit CTRL+C after entering the chroot for a basic setup...\n"
+	
+	# Capture input
+	read -n 1 
+	printf "Continuing...\n" 
+	sleep 1s
+	
 	/usr/sbin/chroot "/home/desktop/${target}-chroot"
 	
-	
-	# pass to ensure we are in the chroot
-	if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
-		echo "We are chrooted!"
-		sleep 2s
-		exit
-	else
-		echo -e "\nchroot entry failed. Exiting...\n"
-		sleep 2s
-		exit
-	fi
+	# pass to ensure we are in the chroot 
+	#if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
+	#	echo "We are chrooted!"
+	#	sleep 2s
+	#	exit
+	#else
+	#	echo -e "\nchroot entry failed. Exiting...\n"
+	#	sleep 2s
+	#	exit
+	#fi
 	
 	# opt into beta in chroot if flag is thrown
 	if [[ "$beta_flag" == "yes" ]]; then

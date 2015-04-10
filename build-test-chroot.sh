@@ -64,6 +64,7 @@ funct_set_target()
 	  	target_URL="http://http.debian.net/debian"
 	  	
 	  elif [[ "$opt2" == "steamos" ]]; then
+		
 		target="steamos"
 		release="alchemist"
 		target_URL="http://http.repo.steampowered.com/steamos"
@@ -90,6 +91,8 @@ funct_create_chroot()
 		# remove DIR
 		rm -rf "/home/desktop/${target}-chroot"
 	fi
+	
+	exit
 	
 	# create DIR
 	mkdir -p "/home/desktop/${target}-chroot"

@@ -62,16 +62,18 @@ funct_set_target()
 	  	target="debian"
 	  	release="wheezy"
 	  	target_URL="http://http.debian.net/debian"
+	  	beta_flag="no"
 	  	
 	  elif [[ "$opt2" == "steamos" ]]; then
 		
 		target="steamos"
 		release="alchemist"
 		target_URL="http://repo.steampowered.com/steamos"
+		beta_flag="no"
 	    
 	  elif [[ "$opt2" == "steamos-beta" ]]; then
 		
-		target="steamos"
+		target="steamos-beta"
 		release="alchemist"
 		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="yes"
@@ -123,8 +125,16 @@ funct_create_chroot()
 		exit
 	fi
 	
-	# opt into beta in chroot
-	apt-get install steamos-beta-repo -y
+	# opt into beta in chroot if flag is thrown
+	if [[ "$beta_flag" "yes" ]]; then
+		# add beta repo and update
+		apt-get install steamos-beta-repo -y
+		apt-get update
+		apt-get upgrade
+	elif [[ "$beta_flag" "no" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	fi
 	
 	# create dpkg policy for daemons
 	chroot /home/desktop/${target}

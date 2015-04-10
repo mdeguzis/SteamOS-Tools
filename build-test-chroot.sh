@@ -96,10 +96,9 @@ funct_create_chroot()
 	if [[ -d "/home/desktop/${target}-chroot" ]]; then
 		# remove DIR
 		rm -rf "/home/desktop/${target}-chroot"
+	else
+		mkdir -p "/home/desktop/${target}-chroot"
 	fi
-	
-	# create DIR
-	mkdir -p "/home/desktop/${target}-chroot"
 	
 	# build the environment
 	/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
@@ -123,7 +122,13 @@ funct_create_chroot()
 	# Several packages depend upon ischroot for determining correct 
 	# behavior in a chroot and will operate incorrectly during upgrades if it is not fixed.
 	dpkg-divert --divert /usr/bin/ischroot.debianutils --rename /usr/bin/ischroot
-	ln -s /bin/true /usr/bin/ischroot
+	
+	if [[ -f "/usr/bin/ischroot" ]]; then
+		# remove link
+		/usr/bin/ischroot
+	else
+		ln -s /bin/true /usr/bin/ischroot
+	fi
 	
 	# "bind" /dev/pts
 	mount --bind /dev/pts /home/desktop/${target}-chroot/dev/pts

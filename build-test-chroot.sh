@@ -89,7 +89,7 @@ fucnt_create_chroot()
 	# create DIR
 	mkdir -p "/home/desktop/${target}-chroot"
 	
-	# buildin the environment
+	# build the environment
 	/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
 	
 	# enter chroot to test

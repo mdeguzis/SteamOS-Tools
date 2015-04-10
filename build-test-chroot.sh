@@ -52,9 +52,12 @@ funct_set_target()
 
 fucnt_create_chroot()
 {
-	
-	#import GPG key for SteamOS alchemist
-	gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --recv-keys 7DEEB7438ADDD96
+	if [[ "$target" == "steamos" ]]; then
+		if [[ "$release" == "alchemist" ]]; then
+		# import GPG key
+		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --recv-keys 7DEEB7438ADDD96
+		fi
+	fi
 	
 	# create our chroot folder
 	if [[ -d "/home/desktop/${target}-chroot" ]]; then

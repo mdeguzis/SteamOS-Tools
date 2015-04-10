@@ -109,16 +109,12 @@ funct_create_chroot()
 	# enter chroot to test
 	/usr/sbin/chroot "/home/desktop/${target}-chroot"
 	
-	# kick back if failure
-	if [ $? != '0' ]; then
-		echo -e "\nFailed to enter chroot. Please try again\n"
-		exit
-	fi
 	
-	# 2nd pass to ensure we are in the chroot
+	# pass to ensure we are in the chroot
 	if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
 		echo "We are chrooted!"
 		sleep 2s
+		exit
 	else
 		echo -e "\nchroot entry failed. Exiting...\n"
 		sleep 2s

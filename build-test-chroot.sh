@@ -114,7 +114,7 @@ funct_create_chroot()
 	
 	# Capture input
 	read -n 1 
-	printf "Continuing...\n" 
+	printf "Continuing..." 
 	sleep 1s
 	
 	/usr/sbin/chroot "/home/desktop/${target}-chroot"

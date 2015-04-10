@@ -126,7 +126,7 @@ funct_create_chroot()
 	fi
 	
 	# opt into beta in chroot if flag is thrown
-	if [[ "$beta_flag" "yes" ]]; then
+	if [[ "$beta_flag" == "yes" ]]; then
 		# add beta repo and update
 		apt-get install steamos-beta-repo -y
 		apt-get update

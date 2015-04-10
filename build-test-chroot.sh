@@ -71,9 +71,10 @@ funct_set_target()
 	    
 	  elif [[ "$opt2" == "steamos-beta" ]]; then
 		
-		target="steamos-beta"
-		release="alchemist\ beta"
+		target="steamos"
+		release="alchemist"
 		target_URL="http://repo.steampowered.com/steamos"
+		beta_flag="yes"
 	    
 	  fi
 	  
@@ -115,13 +116,18 @@ funct_create_chroot()
 	# 2nd pass to ensure we are in the chroot
 	if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
 		echo "We are chrooted!"
+		sleep 2s
 	else
 		echo -e "\nchroot entry failed. Exiting...\n"
+		sleep 2s
 		exit
 	fi
 	
+	# opt into beta in chroot
+	apt-get install steamos-beta-repo -y
+	
 	# create dpkg policy for daemons
-	chroot /srv/chroot/${target}
+	chroot /home/desktop/${target}
 	cat > ./usr/sbin/policy-rc.d <<-EOF
 	#!/bin/sh
 	exit 101

@@ -68,7 +68,7 @@ funct_set_target()
 	
 }
 
-fucnt_create_chroot()
+funct_create_chroot()
 {
 	if [[ "$target" == "steamos" ]]; then
 		if [[ "$release" == "alchemist" ]]; then
@@ -125,4 +125,4 @@ fucnt_create_chroot()
 # Routines
 funct_prereqs
 funct_set_target
-fucnt_create_chroot
+funct_create_chroot

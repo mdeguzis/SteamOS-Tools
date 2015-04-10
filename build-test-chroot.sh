@@ -109,7 +109,8 @@ funct_create_chroot()
 	# enter chroot to test
 	echo -e "\nYou will now be placed into the chroot."
 	echo -e "Be sure to type 'exit' to continue configuration presets"
-	echo -e "Hit CTRL+C after entering the chroot for a basic setup...\n"
+	echo -e "Hit CTRL+C after entering the chroot for a basic setup..."
+	echo -e "Press enter to continue...\n"
 	
 	# Capture input
 	read -n 1 

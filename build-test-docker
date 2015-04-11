@@ -18,3 +18,6 @@
 # -------------------------------------------------------------------------------
 
 # IN PROGRESS
+
+
+curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh

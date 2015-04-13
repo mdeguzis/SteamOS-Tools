@@ -9,10 +9,19 @@ policy="./usr/sbin/policy-rc.d"
 # set targets / defaults
 tmp_target="default"
 beta_opt_in="beta_tmp"
+stock_opt="no"
 
-echo -e "The intended target is: ${tmp_target}"
-echo -e "Running post install commands now...\n"
-sleep 1s
+# bail out if strock opt was changed to yes in ./build-test-chroot
+if [[ "$stock_opt" == "yes" ]]; then
+	# exit post install
+elif [[ "$stock_opt" == "no" ]]; then
+	echo -e "The intended target is: ${tmp_target}"
+	echo -e "Running post install commands now...\n"
+	sleep 1s
+else
+	echo -e "Failture to obtain stock status, exiting"
+	exit
+fi
 
 if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	

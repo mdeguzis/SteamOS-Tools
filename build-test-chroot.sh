@@ -130,7 +130,7 @@ instead...\n"
 	echo -e "enter the chroot."
 	
 	# Capture input
-	read stock_choice
+	read -n 5 stock_choice
 	
 	if [[ "$stock_choice" -eq 0 ]]; then
 		# Captured carriage return only, continue on as normal

@@ -7,7 +7,7 @@
 policy="./usr/sbin/policy-rc.d"
 
 # set targets / defaults
-tmp_target="default"
+tmp_target="target_tmp"
 beta_opt_in="beta_tmp"
 stock_opt="stock_tmp"
 

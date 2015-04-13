@@ -81,7 +81,8 @@ efs_main()
 	./retroarch-build.sh 
 	
 	# build cores
-	./libretro-build.sh snes9x
+	
+	#./libretro-build.sh snes9x
 	#./libretro-build.sh mednafen_gba
 	#./libretro-build.sh mednafen_lynx
 	#./libretro-build.sh mednafen_ngp
@@ -105,6 +106,6 @@ efs_main()
 	cp -rv "/home/desktop/retroarch-src-git/libretro-super/retroarch/*" "~/retroarch-src"
 	
 	# clean up dirs
-	rm -rf "/home/desktop/retroarch-src-git"
+	#rm -rf "/home/desktop/retroarch-src-git"
 
 }

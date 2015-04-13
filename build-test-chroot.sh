@@ -49,7 +49,7 @@ funct_prereqs()
 {
 	
 	# Install the required packages 
-	apt-get install binutils debootstrap debian-archive-keyring dchroot
+	apt-get install binutils debootstrap debian-archive-keyring
 	
 }
 

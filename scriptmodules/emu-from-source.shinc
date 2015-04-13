@@ -78,15 +78,6 @@ efs_main()
 	# build Retroarch
 	./retroarch-build.sh 
 	
-	# exit trap
-	if [ $? != '0' ]; then
-	  echo -e "built retroarch to ~/retroarch-src-git/libretro-super/retroarch/"
-	  echo -e "\nBuilt available cores\n"
-	else
-	  echo -e "\nBuild errors occured...halting all operations!\n"
-	  exit
-	fi
-	
 	# build cores
 	./libretro-build.sh snes9x
 	#./libretro-build.sh mednafen_gba

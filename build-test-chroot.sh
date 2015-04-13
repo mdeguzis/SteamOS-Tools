@@ -156,12 +156,34 @@ instead...\n"
 
 }
 
+test()
+{
+	
+		if [[ "$stock_choice" == "" ]]; then
+		# Captured carriage return / blank line only, continue on as normal
+		# Modify target based on opts
+		#sed -i "s|"stock_tmp"|"no"|g" "/home/desktop/test-chroot/tmp/chroot-post-install.sh"
+		printf "zero length detected..."
+		
+	elif [[ "$stock_choice" == "stock" ]]; then
+		# Modify target based on opts
+		echo "stock detected"
+		#sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/test-chroot/tmp/chroot-post-install.sh"
+		
+	elif [[ "$stock_choice" != "stock" ]]; then
+		# user entered something arbitrary, exit
+		echo -e "Something other than [blank]/[ENTER] or 'stock' was entered, exiting."
+		exit
+	fi
+}
+
 main()
 {
 	clear
-	funct_prereqs
-	funct_set_target
-	funct_create_chroot
+	test
+	#funct_prereqs
+	#funct_set_target
+	#funct_create_chroot
 	
 }
 

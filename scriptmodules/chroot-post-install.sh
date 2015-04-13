@@ -19,7 +19,7 @@ if [[ "$stock_opt" == "yes" ]]; then
 	
 elif [[ "$stock_opt" == "no" ]]; then
 	echo -e "The intended target is: ${tmp_target}"
-	echo -e "Running post install commands now...\n"
+	echo -e "Running post install commands now..."
 	sleep 2s
 else
 	echo -e "Failture to obtain stock status, exiting"
@@ -36,7 +36,6 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	echo "Checking for chroot..."
 	
 	if [[ "$ischroot" != "2" ]]; then
-		echo "Checking for chroot..."
 		echo "We are chrooted!"
 		sleep 2s
 	else

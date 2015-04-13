@@ -3,6 +3,9 @@
 # made to kick off the config with in the chroot.
 # http://www.cyberciti.biz/faq/unix-linux-chroot-command-examples-usage-syntax/
 
+# set vars
+policy="./usr/sbin/policy-rc.d"
+
 # set target
 tmp_target="default"
 
@@ -35,7 +38,7 @@ if [[ "$tmp_target" == "steamos" ]]; then
   fi
   
   # create dpkg policy for daemons
-  cat <<-EOF > ./usr/sbin/policy-rc.d 
+  cat <<-EOF > ${steamosprefer}
   !/bin/sh
   exit 101
   EOF

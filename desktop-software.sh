@@ -463,8 +463,9 @@ install_software()
 			
 				if [ $? == '0' ] || [ $? -z "conf" ]; then
 					clear
-					echo -e "\nCould not install or remove ALL packages from Wheezy. Plese check \
-					available outut, or run run with ' &> log.txt' appended... \n"
+					echo -e "\nCould not install or remove ALL packages from Wheezy. 
+					echo -e "Plaese check available outut, or run run with:"
+					echo -e "' &> log.txt' appended... \n"
 					echo -e "Failure occured on package: $i"
 					pkg_fail="yes"
 					sleep 2s

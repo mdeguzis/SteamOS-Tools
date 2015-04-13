@@ -110,7 +110,7 @@ funct_create_chroot()
 	/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
 	
 	# copy over post install script for execution
-	#cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
+	# cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
 	cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
 	
 	# mark executable
@@ -137,7 +137,7 @@ funct_create_chroot()
 main()
 {
 	clear
-	#funct_prereqs
+	funct_prereqs
 	funct_set_target
 	funct_create_chroot
 	

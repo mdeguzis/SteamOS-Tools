@@ -102,7 +102,7 @@ funct_create_chroot()
 	
 	echo $target
 	echo ${target}
-	sed -i 's|"default"|"$target"|g' /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
+	sed -i 's|"default"|$target|g' "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
 	grep "tmp_target=" /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
 	exit
 

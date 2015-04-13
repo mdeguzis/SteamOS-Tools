@@ -108,15 +108,15 @@ funct_create_chroot()
 	
 	# enter chroot to test
 	echo -e "\nYou will now be placed into the chroot."
-	echo -e "Be sure to type 'exit' to continue configuration presets"
-	echo -e "Hit CTRL+C after entering the chroot for a basic setup..."
-	echo -e "Press enter to continue...\n"
+	echo -e "Be sure to type 'exit' to quit."
 	
 	# Capture input
 	read -n 1 
 	printf "Continuing..." 
 	sleep 1s
 	
+	# run script inside chroot with:
+	# chroot /chroot_dir /bin/bash -c "su - -c ./script.sh"
 	/usr/sbin/chroot "/home/desktop/${target}-chroot"
 	
 	# The rest below is commented out. Likely a helper script can 

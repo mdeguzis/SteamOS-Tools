@@ -353,6 +353,9 @@ install_software()
 	
 	for i in `cat $software_list`; do
 	
+		# set fail default
+		pkg_fail="no"
+	
 		if [[ "$i" =~ "!broken!" ]]; then
 			skipflag="yes"
 			echo -e "skipping broken package: $i ..."
@@ -460,9 +463,10 @@ install_software()
 			
 				if [ $? == '0' ] || [ $? -z "conf" ]; then
 					clear
-					echo -e "\nCould not install or remove ALL packages from Wheezy. Plese check \n"
-					echo -e "available outut, or run run with ' &> log.txt' appended... \n"
+					echo -e "\nCould not install or remove ALL packages from Wheezy. Plese check \
+					available outut, or run run with ' &> log.txt' appended... \n"
 					echo -e "Failure occured on package: $i"
+					pkg_fail="yes"
 					sleep 2s
 				fi
 				
@@ -496,10 +500,10 @@ install_software()
 	# end PKG OK test loop itself
 	done
 	
-	if [ $? == '0' ] || [ $? -z "conf" ]; then
+	if [ $? == '0' ] || [ $? -z "conf" ] || [ "$pkg_fail" == "no" ]; then
 		echo -e "\nAll operations have been sucessful!\n"
 	else
-		echo -e "\nScript exited with errors..."
+		echo -e "Script exited with errors..."
 	fi
 	
 	###########################################################

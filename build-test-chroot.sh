@@ -118,7 +118,7 @@ funct_create_chroot()
 	chmod +x /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
 
 	# Modify target based on opts
-	sed -i "s|"default"|${target}|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
+	sed -i "s|"target_tmp"|${target}|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
 	
 	# Change opt-in based on opts
 	sed -i "s|"beta_tmp"|${beta_flag}|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"

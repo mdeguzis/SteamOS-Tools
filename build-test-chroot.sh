@@ -131,48 +131,19 @@ instead...\n"
 	
 	# Capture input
 	read -n 5 stock_choice
-	echo "test is: $stock_choice"
 	
 	if [[ "$stock_choice" -eq 0 ]]; then
-		# Captured carriage return only, continue on as normal
+		# Captured carriage return / blank line only, continue on as normal
 		printf "Continuing..."
 		
 	elif [[ "$stock_choice" == "stock" ]]; then
 		# Modify target based on opts
 		sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
-	else
-		# error setting opt
-		echo -e "Failure to set stock opt in/out. Exiting...\n"
-		exit
-	fi
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
 	/usr/sbin/chroot "/home/desktop/${target}-chroot" /bin/bash -c "su - -c /tmp/chroot-post-install.sh"
 
-}
-
-test()
-{
-	
-	# Capture input
-	read -n 5 stock_choice
-	echo "test is:"
-	echo $stock_choice
-	
-	if [[ "$stock_choice" -eq 0 ]]; then
-		# Captured carriage return only, continue on as normal
-		printf "Continuing..."
-		
-	elif [[ "$stock_choice" == "stock" ]]; then
-		# Modify target based on opts
-		sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
-	else
-		# error setting opt
-		echo -e "Failure to set stock opt in/out. Exiting...\n"
-		exit
-	fi
-	
 }
 
 # Routines

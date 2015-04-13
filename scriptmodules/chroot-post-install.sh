@@ -14,66 +14,70 @@ echo -e "Running post install commands now...\n"
 sleep 1s
 
 if [[ "$tmp_target" == "steamos" ]]; then
-  
-  # pass to ensure we are in the chroot 
-  # temp test for chroot (output should be something other than 2)
-  ischroot=$(ls -di /)
-  
-  if [[ "$ischroot" != "2" ]]; then
-  	echo "We are chrooted!"
-  	sleep 2s
-  	exit
-  else
-  	echo -e "\nchroot entry failed. Exiting...\n"
-  	sleep 2s
-  	exit
-  fi
-  
-  # opt into beta in chroot if flag is thrown
-  if [[ "$beta_flag" == "yes" ]]; then
+	
+	# pass to ensure we are in the chroot 
+	# temp test for chroot (output should be something other than 2)
+	ischroot=$(ls -di /)
+	
+	if [[ "$ischroot" != "2" ]]; then
+	  echo "We are chrooted!"
+	  sleep 2s
+	  exit
+	else
+	  echo -e "\nchroot entry failed. Exiting...\n"
+	  sleep 2s
+	  exit
+	fi
+	
+	# opt into beta in chroot if flag is thrown
+	if [[ "$beta_flag" == "yes" ]]; then
 	# add beta repo and update
-  	apt-get install steamos-beta-repo -y
-  	apt-get update -y
-  	apt-get upgrade -y
-  elif [[ "$beta_flag" == "no" ]]; then
-  	# do nothing
-  	echo "" > /dev/null
-  fi
-  
-  # create dpkg policy for daemons
+		echo -e "\nOpt into beta? [YES]\n"
+		exit
+		apt-get install steamos-beta-repo -y
+		apt-get update -y
+		apt-get upgrade -y
+		  
+	elif [[ "$beta_flag" == "no" ]]; then
+		# do nothing
+		echo "\nOpt into beta? [NO]\n"
+		exit
+	fi
+	
+	# create dpkg policy for daemons
 	cat <<-EOF > ${steamosprefer}
 	!/bin/sh
 	exit 101
 	EOF
-  
-  # mark policy executable
-  chmod a+x ./usr/sbin/policy-rc.d
-  
-  # Several packages depend upon ischroot for determining correct 
-  # behavior in a chroot and will operate incorrectly during upgrades if it is not fixed.
-  dpkg-divert --divert /usr/bin/ischroot.debianutils --rename /usr/bin/ischroot
-  
-  if [[ -f "/usr/bin/ischroot" ]]; then
-  	# remove link
-  	/usr/bin/ischroot
-  else
-  	ln -s /bin/true /usr/bin/ischroot
-  fi
-  
-  # "bind" /dev/pts
-  mount --bind /dev/pts /home/desktop/${target}-chroot/dev/pts
-  
-  # eliminate unecessary packages
-  apt-get -t wheezy install deborphan
-  deborphan -a
-  
-  # exit chroot
-  echo -e "\nExiting chroot!\n"
-  exit
-  
-  sleep 2s
-
-elif [[ "$tmp_target" == "wheezy" ]]; then
-  # do nothing for now
-  echo "" > /dev/null
+	
+	# mark policy executable
+	chmod a+x ./usr/sbin/policy-rc.d
+	
+	# Several packages depend upon ischroot for determining correct 
+	# behavior in a chroot and will operate incorrectly during upgrades if it is not fixed.
+	dpkg-divert --divert /usr/bin/ischroot.debianutils --rename /usr/bin/ischroot
+	
+	if [[ -f "/usr/bin/ischroot" ]]; then
+	  # remove link
+	  /usr/bin/ischroot
+	else
+	  ln -s /bin/true /usr/bin/ischroot
+	fi
+	
+	# "bind" /dev/pts
+	mount --bind /dev/pts /home/desktop/${target}-chroot/dev/pts
+	
+	# eliminate unecessary packages
+	apt-get -t wheezy install deborphan
+	deborphan -a
+	
+	# exit chroot
+	echo -e "\nExiting chroot!\n"
+	exit
+	
+	sleep 2s
+	
+	elif [[ "$tmp_target" == "wheezy" ]]; then
+	# do nothing for now
+	echo "" > /dev/null
 fi

@@ -128,7 +128,7 @@ funct_create_chroot()
 leave out any post operations and remain with a 'stock' chroot, type 'stock' and [ENTER] \
 instead...\n"
 	echo -e "You may use '/usr/sbin/chroot /home/desktop/${target}-chroot' to manually"
-	echo -e "enter the chroot."
+	echo -e "enter the chroot.\n"
 	
 	# Capture input
 	read stock_choice
@@ -183,10 +183,10 @@ test()
 main()
 {
 	clear
-	test
-	#funct_prereqs
-	#funct_set_target
-	#funct_create_chroot
+	#test
+	funct_prereqs
+	funct_set_target
+	funct_create_chroot
 	
 }
 

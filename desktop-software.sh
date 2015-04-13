@@ -501,7 +501,7 @@ install_software()
 	# end PKG OK test loop itself
 	done
 	
-	if [ $? == '0' ] || [ $? -z "conf" ] || [ "$pkg_fail" == "no" ]; then
+	if [ $? == '0' ] || [ $? -z "conf" ] -a [ "$pkg_fail" == "no" ]; then
 		echo -e "\nAll operations have been sucessful!\n"
 	else
 		echo -e "Script exited with errors..."

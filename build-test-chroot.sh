@@ -136,7 +136,7 @@ funct_create_chroot()
 	# REPLACE SED HERE AFTER TESTING
 	# change default target in script for post processing
 	# this will fire off commands specific to our chroot we are building
-	sed - i's|"default"|$target|' /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
+	sed - i 's|"default"|$target|' /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
 	
 	echo $target
 	grep "tmp_target" /home/desktop/${target}-chroot/tmp/chroot-post-install.sh

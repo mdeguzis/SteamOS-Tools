@@ -156,7 +156,7 @@ test()
 	
 	# Capture input
 	read -n 5 stock_choice
-	echo "test is"
+	echo "test is:"
 	echo $stock_choice
 	
 	if [[ "$stock_choice" -eq 0 ]]; then

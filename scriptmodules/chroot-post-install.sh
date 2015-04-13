@@ -41,6 +41,10 @@ if [[ "$tmp_target" == "steamos" ]]; then
 		# do nothing
 		echo "\nOpt into beta? [NO]\n"
 		exit
+	else
+		# failure to detect var
+		echo "\nFailed to detect beta opt in! Exiting..."
+		exit
 	fi
 	
 	# create dpkg policy for daemons

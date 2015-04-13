@@ -126,7 +126,7 @@ funct_create_chroot()
 	echo -e "\nYou will now be placed into the chroot. Press ENTER to continue"
 	echo -e "\nIf you wish to not run any post operations and remain with a"
 	echo -e "'Stock' chroot, type "stock" and enter instead..\n"
-	echo -e 'You may use "/usr/sbin/chroot "/home/desktop/${target}-chroot' to manually"
+	echo -e 'You may use '/usr/sbin/chroot "/home/desktop/${target}-chroot' to manually"
 	echo -e "enter the chroot.\n"
 	
 	# Capture input

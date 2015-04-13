@@ -141,6 +141,7 @@ instead...\n"
 	elif [[ "$stock_choice" == "stock" ]]; then
 		# Modify target based on opts
 		sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
+	fi
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"

@@ -123,9 +123,10 @@ funct_create_chroot()
 	sed -i "s|"beta_tmp"|${beta_flag}|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
 	
 	# enter chroot to test
-	echo -e "You will now be placed into the chroot. Press [ENTER] to continue."
-	echo -e "If you wish to not run any post operations and remain with a"
-	echo -e "'Stock' chroot, type 'stock' and [ENTER] instead...\N"
+	echo -e "\nYou will now be placed into the chroot. Press [ENTER]"
+	echo -e "to continue. If you wish to not run any post operations"
+	echo -e "and remain with a 'Stock' chroot, type 'stock' and 
+	echo -e" [ENTER] instead...\n"
 	echo -e "You may use '/usr/sbin/chroot /home/desktop/${target}-chroot' to manually"
 	echo -e "enter the chroot."
 	

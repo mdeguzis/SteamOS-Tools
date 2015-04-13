@@ -21,18 +21,19 @@ if [[ "$tmp_target" == "steamos" ]]; then
 	ischroot=$(ls -di /)
 	
 	if [[ "$ischroot" != "2" ]]; then
-	  echo "We are chrooted!"
-	  sleep 2s
+		echo "We are chrooted!"
+		sleep 2s
 	else
-	  echo -e "\nchroot entry failed. Exiting...\n"
-	  sleep 2s
-	  exit
+	echo -e "\nchroot entry failed. Exiting...\n"
+		sleep 2s
+		exit
 	fi
 	
 	# opt into beta in chroot if flag is thrown
+	
 	if [[ "$beta_opt_in" == "yes" ]]; then
 	# add beta repo and update
-		echo -e "\nOpt into beta? [YES]\n"
+		echo -e "Opt into beta? [YES]\n"
 		exit
 		apt-get install steamos-beta-repo -y
 		apt-get update -y
@@ -62,10 +63,10 @@ if [[ "$tmp_target" == "steamos" ]]; then
 	dpkg-divert --divert /usr/bin/ischroot.debianutils --rename /usr/bin/ischroot
 	
 	if [[ -f "/usr/bin/ischroot" ]]; then
-	  # remove link
-	  /usr/bin/ischroot
+		# remove link
+		/usr/bin/ischroot
 	else
-	  ln -s /bin/true /usr/bin/ischroot
+		ln -s /bin/true /usr/bin/ischroot
 	fi
 	
 	# "bind" /dev/pts
@@ -82,6 +83,6 @@ if [[ "$tmp_target" == "steamos" ]]; then
 	sleep 2s
 	
 	elif [[ "$tmp_target" == "wheezy" ]]; then
-	# do nothing for now
-	echo "" > /dev/null
+		# do nothing for now
+		echo "" > /dev/null
 fi

@@ -113,7 +113,7 @@ funct_create_chroot()
 	cp -v scriptmodules/test.sh /home/desktop/${target}-chroot/tmp/
 	
 	# rename script for identification inside chroot
-	mv /home/desktop/${target}-chroot/tmp/test.sh /home/desktop/${target}-chroot/tmp/test-${target}.sh
+	mv -v /home/desktop/${target}-chroot/tmp/test.sh /home/desktop/${target}-chroot/tmp/test-${target}.sh
 	
 	# enter chroot to test
 	echo -e "\nYou will now be placed into the chroot."
@@ -126,7 +126,7 @@ funct_create_chroot()
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
-	/usr/sbin/chroot "/home/desktop/${target}-chroot" /bin/bash -c "su - -c /tmp/test-${target}.sh"
+	sudo /usr/sbin/chroot "/home/desktop/${target}-chroot" /bin/bash -c "su - -c /tmp/test-${target}.sh"
 
 	
 }

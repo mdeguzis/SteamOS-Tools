@@ -16,14 +16,10 @@ sleep 1s
 if [[ "$tmp_target" == "steamos" ]]; then
   
   # pass to ensure we are in the chroot 
-  # direct stderr to /dev/null if the file does not exist
-  chroot=$(stat -c %d:%i /)
-  non_chroot=$(stat -c %d:%i /proc/1/root/. 2> /dev/null)
-  
   # temp test for chroot (output should be something other than 2)
-  ls -di /
+  ischroot=$(ls -di /)
   
-  if [[ "$chroot" != "$non_chroot" ]]; then
+  if [[ "$ischroot" != "2" ]]; then
   	echo "We are chrooted!"
   	sleep 2s
   	exit

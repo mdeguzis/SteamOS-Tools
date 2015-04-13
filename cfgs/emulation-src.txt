@@ -1,4 +1,5 @@
 build-essential
+devscripts
 make
 git-core
 curl

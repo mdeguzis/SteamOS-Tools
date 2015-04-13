@@ -98,10 +98,13 @@ efs_main()
 	
 	# build Retroarch
 	./retroarch-build.sh 
+	
+	# exit trap
 	if [ $? != '0' ]; then
 	  echo -e "built retroarch to ~/retroarch-src-git/libretro-super/retroarch/"
 	else
-	  echo -e "build errors \n"
+	  echo -e "build errors occured... \n"
+	  exit
 	fi
 	
 	##############################################

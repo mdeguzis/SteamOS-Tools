@@ -146,11 +146,9 @@ instead...\n"
 
 }
 
-# Routines
 main()
 {
 	clear
-	#test
 	funct_prereqs
 	funct_set_target
 	funct_create_chroot

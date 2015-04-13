@@ -160,7 +160,7 @@ test()
 		# Capture input
 	read -n 5 stock_choice
 	
-	if [[ "$stock_choice" -eq 0 ]]; then
+	if [[ "$stock_choice" == "" ]]; then
 		# Captured carriage return / blank line only, continue on as normal
 		# Modify target based on opts
 		#sed -i "s|"stock_tmp"|"no"|g" "/home/desktop/test-chroot/tmp/chroot-post-install.sh"

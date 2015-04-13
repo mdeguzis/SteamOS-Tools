@@ -83,6 +83,9 @@ funct_set_target()
 	elif [[ "$opt1" == "--help" ]]; then
 		show_help
 	fi
+
+	# export vars for script modules to use
+	EXPORT $target
 	
 }
 

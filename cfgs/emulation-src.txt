@@ -1,3 +1,16 @@
+libsdl2-dev
+libxml2-dev
+libavcodec-dev
+libavformat-dev
+libavutil-dev
+libswscale-dev
+libv4l-dev
+libopenal-dev
+libgbm-dev
+!broken!libegl1-mesa-dev
+!broken!libopenvg1-mesa-dev
+python3-dev
+nvidia-cg-dev
 build-essential
 devscripts
 make

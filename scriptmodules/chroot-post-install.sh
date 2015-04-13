@@ -53,7 +53,8 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 		echo -e "Opt into beta? [YES]\n"
 	
 		# import GPG key
-		#gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --recv-keys 7DEEB7438ABDDD96
+		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --recv-keys 7DEEB7438ABDDD96
+		exit
 		
 		# update and upgrade
 		apt-key update

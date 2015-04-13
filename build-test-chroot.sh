@@ -131,6 +131,7 @@ instead...\n"
 	
 	# Capture input
 	read -n 5 stock_choice
+	echo "test is: $stock_choice"
 	
 	if [[ "$stock_choice" -eq 0 ]]; then
 		# Captured carriage return only, continue on as normal
@@ -178,10 +179,10 @@ test()
 main()
 {
 	clear
-	test
-	#funct_prereqs
-	#funct_set_target
-	#funct_create_chroot
+	#test
+	funct_prereqs
+	funct_set_target
+	funct_create_chroot
 	
 }
 

@@ -38,10 +38,10 @@ if [[ "$tmp_target" == "steamos" ]]; then
   fi
   
   # create dpkg policy for daemons
-  cat <<-EOF > ${steamosprefer}
-  !/bin/sh
-  exit 101
-  EOF
+	cat <<-EOF > ${steamosprefer}
+	!/bin/sh
+	exit 101
+	EOF
   
   # mark policy executable
   chmod a+x ./usr/sbin/policy-rc.d

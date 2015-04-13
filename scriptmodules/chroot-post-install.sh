@@ -22,7 +22,6 @@ if [[ "$tmp_target" == "steamos" ]]; then
 	if [[ "$ischroot" != "2" ]]; then
 	  echo "We are chrooted!"
 	  sleep 2s
-	  exit
 	else
 	  echo -e "\nchroot entry failed. Exiting...\n"
 	  sleep 2s

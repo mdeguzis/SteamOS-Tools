@@ -132,8 +132,8 @@ funct_create_chroot()
 	# Capture input
 	read stock_choice
 	
-	if [[ "$stock_choice" == "" ]]; then
-		# continue on as normal
+	if [[ "$stock_choice" == "\n" ]]; then
+		# Captured carriage return only, continue on as normal
 		printf "Continuing..."
 		
 	elif [[ "$stock_choice" == "stock" ]]; then

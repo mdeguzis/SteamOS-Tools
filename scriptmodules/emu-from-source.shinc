@@ -102,8 +102,9 @@ efs_main()
 	# exit trap
 	if [ $? != '0' ]; then
 	  echo -e "built retroarch to ~/retroarch-src-git/libretro-super/retroarch/"
+	  echo -e "\nBuilt available cores\n"
 	else
-	  echo -e "build errors occured... \n"
+	  echo -e "\nBuild errors occured...halting all operations!\n"
 	  exit
 	fi
 	

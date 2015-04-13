@@ -6,8 +6,9 @@
 # set target
 tmp_target="default"
 
-echo -e "The intended target is: $tmp_target"
-echo $tmp_target
+echo -e "The intended target is: ${tmp_target}"
+echo -e "Running post install commands now...\n"
+sleep 1s
 
 if [[ "$tmp_target" == "steamos" ]]; then
   

@@ -177,11 +177,13 @@ function setDesktopEnvironment()
 funct_source_modules()
 {
 	
-script_invoke_path="$0"
-script_name=$(basename "$0")
-getScriptAbsoluteDir "$script_invoke_path"
-script_absolute_dir=$RESULT
-scriptdir=`dirname "$script_absolute_dir"`
+	script_invoke_path="$0"
+	script_name=$(basename "$0")
+	getScriptAbsoluteDir "$script_invoke_path"
+	script_absolute_dir=$RESULT
+	scriptdir=`dirname "$script_absolute_dir"`
+
+}
 
 show_help()
 {

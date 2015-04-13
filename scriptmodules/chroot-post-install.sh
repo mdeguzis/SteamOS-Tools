@@ -6,8 +6,9 @@
 # set vars
 policy="./usr/sbin/policy-rc.d"
 
-# set target
+# set targets / defaults
 tmp_target="default"
+beta_tmp="no"
 
 echo -e "The intended target is: ${tmp_target}"
 echo -e "Running post install commands now...\n"
@@ -29,7 +30,7 @@ if [[ "$tmp_target" == "steamos" ]]; then
 	fi
 	
 	# opt into beta in chroot if flag is thrown
-	if [[ "$beta_flag" == "yes" ]]; then
+	if [[ "$beta_tmp" == "yes" ]]; then
 	# add beta repo and update
 		echo -e "\nOpt into beta? [YES]\n"
 		exit
@@ -37,7 +38,7 @@ if [[ "$tmp_target" == "steamos" ]]; then
 		apt-get update -y
 		apt-get upgrade -y
 		  
-	elif [[ "$beta_flag" == "no" ]]; then
+	elif [[ "$beta_tmp" == "no" ]]; then
 		# do nothing
 		echo "\nOpt into beta? [NO]\n"
 		exit

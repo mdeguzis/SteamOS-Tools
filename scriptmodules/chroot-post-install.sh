@@ -9,7 +9,7 @@ policy="./usr/sbin/policy-rc.d"
 # set targets / defaults
 tmp_target="default"
 beta_opt_in="beta_tmp"
-stock_opt="no"
+stock_opt="stock_tmp"
 
 # bail out if strock opt was changed to yes in ./build-test-chroot
 if [[ "$stock_opt" == "yes" ]]; then

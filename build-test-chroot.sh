@@ -103,6 +103,9 @@ funct_create_chroot()
 		mkdir -p "/home/desktop/${target}-chroot"
 	fi
 	
+	echo $opt1
+	echo $opt2
+	
 	# build the environment
 	/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
 	

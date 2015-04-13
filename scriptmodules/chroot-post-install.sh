@@ -6,7 +6,7 @@
 	# set target
 	tmp_target="default"
 	
-	echo "The intended target is: $tmp_target"
+	echo -e "The intended target is: ${tmp_target}"
 	
 	# pass to ensure we are in the chroot 
 	#if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
@@ -18,10 +18,6 @@
 	#	sleep 2s
 	#	exit
 	#fi
-	
-	# STOP FOR NOW
-	EXIT
-	
 	
 	# opt into beta in chroot if flag is thrown
 	#if [[ "$beta_flag" == "yes" ]]; then

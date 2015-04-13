@@ -115,6 +115,9 @@ funct_create_chroot()
 	# rename script for identification inside chroot
 	mv -v /home/desktop/${target}-chroot/tmp/test.sh /home/desktop/${target}-chroot/tmp/test-${target}.sh
 	
+	# mark executable
+	chmod +x /home/desktop/${target}-chroot/tmp/test-${target}.sh
+	
 	# enter chroot to test
 	echo -e "\nYou will now be placed into the chroot."
 	echo -e "Be sure to type 'exit' to quit."
@@ -126,7 +129,7 @@ funct_create_chroot()
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
-	sudo /usr/sbin/chroot "/home/desktop/${target}-chroot" /bin/bash -c "su - -c /tmp/test-${target}.sh"
+	/usr/sbin/chroot "/home/desktop/${target}-chroot" /bin/bash -c "su - -c /tmp/test-${target}.sh"
 
 	
 }

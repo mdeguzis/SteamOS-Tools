@@ -160,7 +160,7 @@ main()
 {
 	clear
 	#funct_prereqs
-	#funct_set_target
+	funct_set_target
 	funct_create_chroot
 	
 }

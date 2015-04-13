@@ -110,13 +110,17 @@ funct_create_chroot()
 	
 	# copy over post install script for execution
 	#cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
-	cp -v scriptmodules/test.sh /home/desktop/${target}-chroot/tmp/
-	
-	# rename script for identification inside chroot
-	mv -v /home/desktop/${target}-chroot/tmp/test.sh /home/desktop/${target}-chroot/tmp/test-${target}.sh
+	cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
 	
 	# mark executable
-	chmod +x /home/desktop/${target}-chroot/tmp/test-${target}.sh
+	chmod +x /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
+	
+	# change default target in script for post processing
+	# this will fire off commands specific to our chroot we are building
+	sed -i 's|tmp_target|${target}|g' /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
+	
+	# EXIT FOR NOW to test the above
+	echo "exiting for testing!"
 	
 	# enter chroot to test
 	echo -e "\nYou will now be placed into the chroot."

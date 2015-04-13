@@ -14,7 +14,7 @@ echo -e "The intended target is: ${tmp_target}"
 echo -e "Running post install commands now...\n"
 sleep 1s
 
-if [[ "$tmp_target" == "steamos" ]]; then
+if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta"]]; then
 	
 	# pass to ensure we are in the chroot 
 	# temp test for chroot (output should be something other than 2)

@@ -53,6 +53,7 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 		echo -e "Opt into beta? [YES]\n"
 	
 		# import GPG key
+		cd /home/desktop
 		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --recv-keys 7DEEB7438ABDDD96
 		exit
 		

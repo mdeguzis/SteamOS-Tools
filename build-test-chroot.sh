@@ -116,7 +116,11 @@ funct_create_chroot()
 	# mark executable
 	chmod +x /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
 
+	# Modify target based on opts
 	sed -i "s|"default"|${target}|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
+	
+	# Change opt-in based on opts
+	sed -i "s|"beta_tmp"|${betaflag}|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
 	
 	# enter chroot to test
 	echo -e "\nYou will now be placed into the chroot."

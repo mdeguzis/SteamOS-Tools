@@ -34,7 +34,6 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	if [[ "$beta_opt_in" == "yes" ]]; then
 	# add beta repo and update
 		echo -e "Opt into beta? [YES]\n"
-		exit
 		apt-get install steamos-beta-repo -y
 		apt-get update -y
 		apt-get upgrade -y
@@ -42,7 +41,6 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	elif [[ "$beta_opt_in" == "no" ]]; then
 		# do nothing
 		echo -e "\nOpt into beta? [NO]\n"
-		exit
 	else
 		# failure to detect var
 		echo -e "\nFailed to detect beta opt in! Exiting..."
@@ -50,7 +48,7 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	fi
 	
 	# create dpkg policy for daemons
-	cat <<-EOF > ${steamosprefer}
+	cat <<-EOF > ${policy}
 	!/bin/sh
 	exit 101
 	EOF

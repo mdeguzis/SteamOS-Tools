@@ -408,8 +408,8 @@ install_software()
 				else
 					clear
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "Could not install all packages from Alchemist repo, trying Wheezy...\n"
-						sleep 1s
+						echo -e "Could not install package $i from Alchemist repo, trying Wheezy...\n"
+						sleep 2s
 					else
 						echo -e "Removal requested (from Wheezy) for package: $i \n"
 						sleep 1s
@@ -438,7 +438,7 @@ install_software()
 				else
 					clear
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "Could not install all packages from Wheezy repo, trying Wheezy-backports\n"
+						echo -e "Could not install all package $i from Wheezy repo, trying Wheezy-backports\n"
 						sleep 2s
 					else
 						echo -e "Removal requested (from Wheezy-backports) for package: $i \n"

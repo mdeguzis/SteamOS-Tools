@@ -14,6 +14,10 @@
 	#	exit
 	#fi
 	
+	# STOP FOR NOW
+	EXIT
+	
+	
 	# opt into beta in chroot if flag is thrown
 	#if [[ "$beta_flag" == "yes" ]]; then
 	#	# add beta repo and update

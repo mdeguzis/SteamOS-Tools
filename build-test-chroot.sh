@@ -89,6 +89,20 @@ funct_set_target()
 funct_create_chroot()
 {
 
+	# copy over post install script for execution
+	#cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
+	cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
+	
+	# mark executable
+	chmod +x /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
+	
+	# REPLACE SED HERE AFTER TESTING
+	# change default target in script for post processing
+	# this will fire off commands specific to our chroot we are building
+	sed -ir 's|"default"|"$target"|g' /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
+	grep "tmp_target=" /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
+	exit
+
 	if [[ "$target" == "steamos" ]]; then
 		if [[ "$release" == "alchemist" ]]; then
 		# import GPG key
@@ -145,24 +159,9 @@ funct_create_chroot()
 main()
 {
 	clear
-	
-	# copy over post install script for execution
-	#cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
-	cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
-	
-	# mark executable
-	chmod +x /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
-	
-	# REPLACE SED HERE AFTER TESTING
-	# change default target in script for post processing
-	# this will fire off commands specific to our chroot we are building
-	sed -ir 's|"default"|"$target"|g' /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
-	grep "tmp_target=" /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
-	exit
-	
 	#funct_prereqs
 	#funct_set_target
-	#funct_create_chroot
+	funct_create_chroot
 	
 }
 

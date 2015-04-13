@@ -146,7 +146,7 @@ instead...\n"
 		
 	elif [[ "$stock_choice" != "stock" ]]; then
 		# user entered something arbitrary, exit
-		echo -e "Something other than [blank]/[ENTER] or 'stock' was entered, exiting."
+		echo -e "\nSomething other than [blank]/[ENTER] or 'stock' was entered, exiting.\n"
 		exit
 	fi
 	

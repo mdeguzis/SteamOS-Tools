@@ -124,7 +124,9 @@ funct_create_chroot()
 	
 	# enter chroot to test
 	echo -e "\nYou will now be placed into the chroot."
-	echo -e "Be sure to type 'exit' to quit."
+	echo -e "\nIf you wish to not run any post operations and remain with a\n"
+	echo -e "'Stock' chroot, press CTRL+C now...\n"
+	echo -e "Be sure to type 'exit' to quit.\n"
 	
 	# Capture input
 	read -n 1 

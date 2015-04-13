@@ -20,7 +20,7 @@ if [[ "$stock_opt" == "yes" ]]; then
 elif [[ "$stock_opt" == "no" ]]; then
 	echo -e "The intended target is: ${tmp_target}"
 	echo -e "Running post install commands now...\n"
-	sleep 1s
+	sleep 2s
 else
 	echo -e "Failture to obtain stock status, exiting"
 	exit
@@ -33,7 +33,10 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	# temp test for chroot (output should be something other than 2)
 	ischroot=$(ls -di /)
 	
+	echo "Checking for chroot..."
+	
 	if [[ "$ischroot" != "2" ]]; then
+		echo "Checking for chroot..."
 		echo "We are chrooted!"
 		sleep 2s
 	else
@@ -48,8 +51,8 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	# add beta repo and update
 		echo -e "Opt into beta? [YES]\n"
 		apt-key update
-		apt-get install steamos-beta-repo -y
 		apt-get update -y
+		apt-get install steamos-beta-repo -y
 		apt-get upgrade -y
 		  
 	elif [[ "$beta_opt_in" == "no" ]]; then

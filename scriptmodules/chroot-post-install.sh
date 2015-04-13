@@ -80,7 +80,8 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	
 	sleep 2s
 	
-	elif [[ "$tmp_target" == "wheezy" ]]; then
-		# do nothing for now
-		echo "" > /dev/null
+elif [[ "$tmp_target" == "wheezy" ]]; then
+
+	# do nothing for now
+	echo "" > /dev/null
 fi

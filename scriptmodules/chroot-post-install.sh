@@ -35,11 +35,12 @@ if [[ "$tmp_target" == "steamos" ]]; then
   fi
   
   # create dpkg policy for daemons
-  chroot /home/desktop/${target}
   cat > ./usr/sbin/policy-rc.d <<-EOF
   !/bin/sh
   exit 101
   EOF
+  
+  # mark policy executable
   chmod a+x ./usr/sbin/policy-rc.d
   
   # Several packages depend upon ischroot for determining correct 

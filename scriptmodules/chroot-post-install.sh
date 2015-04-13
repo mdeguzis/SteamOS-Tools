@@ -8,7 +8,7 @@ policy="./usr/sbin/policy-rc.d"
 
 # set targets / defaults
 tmp_target="default"
-beta_opt_in="no"
+beta_opt_in="beta_tmp"
 
 echo -e "The intended target is: ${tmp_target}"
 echo -e "Running post install commands now...\n"

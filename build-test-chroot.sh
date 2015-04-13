@@ -103,13 +103,14 @@ funct_create_chroot()
 		mkdir -p "/home/desktop/${target}-chroot"
 	fi
 	
-	echo $opt1
-	echo $opt2
-	
 	# build the environment
 	echo -e "\nBuilding chroot environment...\n"
 	sleep 1s
 	/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
+	
+	# copy over post install script for execution
+	#cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
+	cp -v scriptmodules/test.sh /home/desktop/${target}-chroot/tmp/
 	
 	# enter chroot to test
 	echo -e "\nYou will now be placed into the chroot."
@@ -121,8 +122,8 @@ funct_create_chroot()
 	sleep 1s
 	
 	# run script inside chroot with:
-	# chroot /chroot_dir /bin/bash -c "su - -c ./chroo-post-install.sh"
-	/usr/sbin/chroot "/home/desktop/${target}-chroot"
+	# chroot /chroot_dir /bin/bash -c "su - -c ./test.sh"
+	/usr/sbin/chroot "/home/desktop/${target}-chroot" /bin/bash -c "su - -c ./test.sh"
 
 	
 }

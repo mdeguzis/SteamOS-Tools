@@ -3,6 +3,11 @@
 	# made to kick off the config with in the chroot.
 	# http://www.cyberciti.biz/faq/unix-linux-chroot-command-examples-usage-syntax/
 	
+	# set target
+	tmp_target="default"
+	
+	echo "The intended target is: ${tmp_target}"
+	
 	# pass to ensure we are in the chroot 
 	#if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
 	#	echo "We are chrooted!"

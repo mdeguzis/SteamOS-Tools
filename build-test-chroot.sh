@@ -119,9 +119,6 @@ funct_create_chroot()
 	# this will fire off commands specific to our chroot we are building
 	sed -i 's|tmp_target|${target}|g' /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
 	
-	# EXIT FOR NOW to test the above
-	echo "exiting for testing!"
-	
 	# enter chroot to test
 	echo -e "\nYou will now be placed into the chroot."
 	echo -e "Be sure to type 'exit' to quit."
@@ -133,7 +130,7 @@ funct_create_chroot()
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
-	/usr/sbin/chroot "/home/desktop/${target}-chroot" /bin/bash -c "su - -c /tmp/test-${target}.sh"
+	/usr/sbin/chroot "/home/desktop/${target}-chroot" /bin/bash -c "su - -c /tmp/chroot-post-install.sh"
 
 	
 }

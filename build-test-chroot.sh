@@ -107,6 +107,8 @@ funct_create_chroot()
 	echo $opt2
 	
 	# build the environment
+	echo -e "\nBuilding chroot environment...\n"
+	sleep 1s
 	/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
 	
 	# enter chroot to test

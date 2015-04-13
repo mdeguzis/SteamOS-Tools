@@ -14,6 +14,9 @@ stock_opt="stock_tmp"
 # bail out if strock opt was changed to yes in ./build-test-chroot
 if [[ "$stock_opt" == "yes" ]]; then
 	# exit post install
+	echo -e "User requested no post-install configuration. Exiting...\n"
+	exit
+	
 elif [[ "$stock_opt" == "no" ]]; then
 	echo -e "The intended target is: ${tmp_target}"
 	echo -e "Running post install commands now...\n"
@@ -21,6 +24,7 @@ elif [[ "$stock_opt" == "no" ]]; then
 else
 	echo -e "Failture to obtain stock status, exiting"
 	exit
+	
 fi
 
 if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then

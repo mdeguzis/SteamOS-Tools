@@ -44,11 +44,18 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 		exit
 	fi
 	
+	
 	# opt into beta in chroot if flag is thrown
 	
 	if [[ "$beta_opt_in" == "yes" ]]; then
 	# add beta repo and update
+		
 		echo -e "Opt into beta? [YES]\n"
+	
+		# import GPG key
+		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --recv-keys 7DEEB7438ABDDD96
+		
+		# update and upgrade
 		apt-key update
 		apt-get update -y
 		apt-get install steamos-beta-repo -y

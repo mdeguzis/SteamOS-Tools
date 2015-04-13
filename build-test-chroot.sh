@@ -131,17 +131,18 @@ instead...\n"
 	echo -e "enter the chroot."
 	
 	# Capture input
-	read -n 5 stock_choice
+	read stock_choice
 	
-	if [[ "$stock_choice" -eq 0 ]]; then
+	if [[ "$stock_choice" == "" ]]; then
 		# Captured carriage return / blank line only, continue on as normal
 		# Modify target based on opts
-		sed -i "s|"stock_tmp"|"no"|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
-		printf "Continuing..."
+		#sed -i "s|"stock_tmp"|"no"|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
+		printf "zero length detected..."
 		
 	elif [[ "$stock_choice" == "stock" ]]; then
 		# Modify target based on opts
-		sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
+		echo "stock detected"
+		#sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
 		
 	elif [[ "$stock_choice" != "stock" ]]; then
 		# user entered something arbitrary, exit
@@ -155,37 +156,12 @@ instead...\n"
 
 }
 
-test()
-{
-		# Capture input
-	read -n 5 stock_choice
-	
-	if [[ "$stock_choice" == "" ]]; then
-		# Captured carriage return / blank line only, continue on as normal
-		# Modify target based on opts
-		#sed -i "s|"stock_tmp"|"no"|g" "/home/desktop/test-chroot/tmp/chroot-post-install.sh"
-		printf "zero length detected..."
-		
-	elif [[ "$stock_choice" == "stock" ]]; then
-		# Modify target based on opts
-		echo "stock detected"
-		#sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/test-chroot/tmp/chroot-post-install.sh"
-		
-	elif [[ "$stock_choice" != "stock" ]]; then
-		# user entered something arbitrary, exit
-		echo -e "Something other than [blank]/[ENTER] or 'stock' was entered, exiting."
-		exit
-	fi
-	
-}
-
 main()
 {
 	clear
-	test
-	#funct_prereqs
-	#funct_set_target
-	#funct_create_chroot
+	funct_prereqs
+	funct_set_target
+	funct_create_chroot
 	
 }
 

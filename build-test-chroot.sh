@@ -128,7 +128,6 @@ funct_create_chroot()
 	echo -e "'Stock' chroot, type 'stock' and [ENTER] instead...\N"
 	echo -e "You may use '/usr/sbin/chroot /home/desktop/${target}-chroot' to manually"
 	echo -e "enter the chroot."
-	EOF
 	
 	# Capture input
 	read stock_choice

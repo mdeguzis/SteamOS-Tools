@@ -16,9 +16,10 @@
 #
 # -------------------------------------------------------------------------------
 
-# set arguments
+# set arguments / defaults
 opt1=$1
 opt2=$2
+stock_choice=""
 
 show_help()
 {

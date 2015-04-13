@@ -535,7 +535,7 @@ show_warning()
 
         clear
         printf "\nWarning: usage of this script is at your own risk!\n\n"
-        printf "\nIn order to run this script, you MUST have had enabled the Debian\n"
+        printf "\nIn order to run this script, you MUST have had enabled the Debian \
         printf "repositories! If you wish to exit, please press CTRL+C now..."
         printf "\n\n type './debian-software --help' for assistance.\n"
 

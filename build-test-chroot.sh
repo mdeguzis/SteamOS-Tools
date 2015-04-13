@@ -141,6 +141,11 @@ instead...\n"
 	elif [[ "$stock_choice" == "stock" ]]; then
 		# Modify target based on opts
 		sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
+		
+	elif [[ "$stock_choice" != "stock" ]]; then
+		# user entered something arbitrary, exit
+		echo -e "Something other than [blank]/[ENTER] or 'stock' was entered, exiting."
+		exit
 	fi
 	
 	# run script inside chroot with:

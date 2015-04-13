@@ -47,7 +47,7 @@ efs_main()
 	# clone and fetch super build (evaluating currently)
 	mkdir -p /home/desktop/retroarch-src
 	mkdir -p /home/desktop/retroarch-src-git
-	cd /home/desktop/retroarch-src-git
+	cd /home/desktop/retroarch-src-git/
 	git clone https://github.com/libretro/libretro-super
 	cd libretro-super/
 	
@@ -59,7 +59,7 @@ efs_main()
 	# See: https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91
 	./libretro-fetch.sh retroarch
 	./libretro-fetch.sh snes9x
-	./libretro-fetch.sh mednafen_gba
+	#./libretro-fetch.sh mednafen_gba
 	#./libretro-fetch.sh mednafen_lynx
 	#./libretro-fetch.sh mednafen_ngp
 	#./libretro-fetch.sh mednafen_pce_fast
@@ -68,33 +68,12 @@ efs_main()
 	#./libretro-fetch.sh mednafen_snes
 	#./libretro-fetch.sh mednafen_supergrafx
 	
-	if [ $? == '0' ]; then
-	echo -e "\nFetch operation successful...\n"
-	sleep 1s
-	else
-	echo -e "\nFetch operation unsuccessful, aborting..."
-	exit
-	fi
-	
 	## Disable Broken Cores Temporarily
 	# sed -i -e '/build_libretro_emux/d' libretro-build.sh
 	
 	##############################################
 	# Builds
 	##############################################
-	
-	# build cores
-	./libretro-build.sh snes9x
-	./libretro-build.sh retroarch
-	./libretro-build.sh snes9x
-	#./libretro-build.sh mednafen_gba
-	#./libretro-build.sh mednafen_lynx
-	#./libretro-build.sh mednafen_ngp
-	#./libretro-build.sh mednafen_pce_fast
-	#./libretro-build.sh mednafen_pcfx
-	#./libretro-build.sh mednafen_psx
-	#./libretro-build.sh mednafen_snes
-	#./libretro-build.sh mednafen_supergrafx
 	
 	# build Retroarch
 	./retroarch-build.sh 
@@ -108,6 +87,17 @@ efs_main()
 	  exit
 	fi
 	
+	# build cores
+	./libretro-build.sh snes9x
+	#./libretro-build.sh mednafen_gba
+	#./libretro-build.sh mednafen_lynx
+	#./libretro-build.sh mednafen_ngp
+	#./libretro-build.sh mednafen_pce_fast
+	#./libretro-build.sh mednafen_pcfx
+	#./libretro-build.sh mednafen_psx
+	#./libretro-build.sh mednafen_snes
+	#./libretro-build.sh mednafen_supergrafx
+	
 	##############################################
 	# Installs
 	##############################################
@@ -119,10 +109,9 @@ efs_main()
 	# Cleanup
 	##############################################
 	# move dir for now until build flags are implemented
-	cp -rv "~/retroarch-src-git/libretro-super/retroarch/" "~/retroarch-src"
+	cp -rv "~/retroarch-src-git/libretro-super/retroarch/*" "~/retroarch-src"
 	
 	# clean up dirs
-	rm -rf "/home/desktop/retroarch-src-git"
-	rm -rf "/home/desktop/retroarch-src"
+	#rm -rf "/home/desktop/retroarch-src-git"
 
 }

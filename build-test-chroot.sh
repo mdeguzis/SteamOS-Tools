@@ -132,7 +132,7 @@ instead...\n"
 	# Capture input
 	read stock_choice
 	
-	if [[ "$stock_choice" == $'\n' ]]; then
+	if [[ "$stock_choice" -eq 0 ]]; then
 		# Captured carriage return only, continue on as normal
 		printf "Continuing..."
 		

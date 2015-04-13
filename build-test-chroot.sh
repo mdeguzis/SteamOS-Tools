@@ -84,9 +84,6 @@ funct_set_target()
 		show_help
 	fi
 
-	# export vars for script modules to use
-	EXPORT $target
-	
 }
 
 funct_create_chroot()

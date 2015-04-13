@@ -186,7 +186,7 @@ funct_create_chroot()
 # Routines
 main()
 {
-
+	clear
 	funct_prereqs
 	funct_set_target
 	funct_create_chroot

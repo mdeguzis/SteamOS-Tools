@@ -356,7 +356,8 @@ install_software()
 		if [[ "$i" =~ "!broken!" ]]; then
 			skipflag="yes"
 			echo -e "skipping broken package: $i ..."
-			sleep 1s
+			sleep 2s
+			return
 		else
 	
 			# check for packages already installed first

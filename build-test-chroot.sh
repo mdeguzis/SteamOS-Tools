@@ -125,14 +125,14 @@ funct_create_chroot()
 	# enter chroot to test
 	echo -e "\nYou will now be placed into the chroot. Press [ENTER]. If you wish to \
 leave out any post operations and remain with a 'stock' chroot, type 'stock' and [ENTER] \
-instead..."
+instead...\n"
 	echo -e "You may use '/usr/sbin/chroot /home/desktop/${target}-chroot' to manually"
 	echo -e "enter the chroot."
 	
 	# Capture input
 	read stock_choice
 	
-	if [[ "$stock_choice" == "\n" ]]; then
+	if [[ "$stock_choice" == $'\n' ]]; then
 		# Captured carriage return only, continue on as normal
 		printf "Continuing..."
 		

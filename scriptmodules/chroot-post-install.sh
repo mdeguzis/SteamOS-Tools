@@ -47,6 +47,7 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	if [[ "$beta_opt_in" == "yes" ]]; then
 	# add beta repo and update
 		echo -e "Opt into beta? [YES]\n"
+		apt-key update
 		apt-get install steamos-beta-repo -y
 		apt-get update -y
 		apt-get upgrade -y

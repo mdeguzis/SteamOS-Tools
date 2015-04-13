@@ -1,7 +1,25 @@
 #!/bin/bash
 
-# made to kick off the config with in the chroot.
-# http://www.cyberciti.biz/faq/unix-linux-chroot-command-examples-usage-syntax/
+# -------------------------------------------------------------------------------
+# Author: 	Michael DeGuzis
+# Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	chroot-post-install.sh
+# Script Ver:	0.1.1
+# Description:	made to kick off the config with in the chroot.
+#               See: https://wiki.debian.org/chroot
+# Usage:	N/A
+#
+# Warning:	This post-isntall scripts needs A LOT* OF WORK!!!!
+# 		The end goal is to replicate the setup of SteamOS as
+# 		closely as possible.
+#
+#		TODO: checkout Steam's post install script from the installer
+# -------------------------------------------------------------------------------
+
+# 
+# This post-isntall scripts needs A LOT OF WORK!!!!
+# The end goal is to replicate the setup of SteamOS as
+# closely as possible
 
 # set vars
 policy="./usr/sbin/policy-rc.d"
@@ -44,6 +62,30 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 		exit
 	fi
 	
+	# User configurations
+	useradd -s /bin/bash -m -d /home/desktop -c "Steam Desktop" -g desktop desktop
+	useradd -s /bin/bash -m -d /home/steam -c "Steam Desktop" -g steam steam
+	
+	# add additional groups
+	usermod -a -G cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,pulse-access desktop
+	usermod -a -G audio,dip,video,plugdev,netdev,bluetooth,pulse-access steam
+	
+	# setup sudo file
+	# TODO
+	
+	# setup steam user
+	su - steam
+	passwd
+	echo -e "steam\nsteam\nsteam\n"
+	
+	# setup desktop user
+	su - desktop
+	passwd
+	echo -e "dekstop\ndesktop\ndesktop\n"
+	
+	###########################################
+	# TO DO MORE HERE. NEEDS CONFIG FILES
+	###########################################
 	
 	# opt into beta in chroot if flag is thrown
 	

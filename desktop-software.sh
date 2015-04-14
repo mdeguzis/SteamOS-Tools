@@ -45,6 +45,9 @@ while [ "$2" != "" ]; do
 	shift
 done
 
+echo $type
+exit
+
 # set custom flag for use later on if line count
 # of cfgs/custom-pkg.txt exceeds 1 
 LINECOUNT=$(wc -l "cfgs/custom-pkg.txt" | cut -f1 -d' ')
@@ -256,7 +259,6 @@ get_software_type()
 	# Software packs
 	####################################################	
 	
-	# set software type
         if [[ "$type" == "basic" ]]; then
                 # add basic software to temp list
                 software_list="cfgs/basic-software.txt"
@@ -568,7 +570,7 @@ main()
 	import "$scriptdir/scriptmodules/emu-from-source"
 	import "$scriptdir/scriptmodules/install-plex"
 
-        # generate software listing based on type
+        # generate software listing based on type or skip to auto script
         get_software_type
 
 	if [[ "$type" == "basic" ]]; then

@@ -27,8 +27,6 @@
 #
 # -------------------------------------------------------------------------------
 
-funct_set_vars()
-{
 #################################
 # Set launch vars
 #################################
@@ -38,14 +36,14 @@ options="$1"
 build_opts="$3"
 
 # remove old custom file
-#sudo rm -f "$scriptdir/cfgs/custom-pkg.txt"
+sudo rm -f "custom-pkg.txt"
 
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type="$2"
-	echo "$type" >> "$scriptdir/cfgs/custom-pkg.txt"
+	echo "$type" >> "custom-pkg.txt"
 	# Shift all the parameters down by one
 	shift
 done
@@ -53,13 +51,12 @@ done
 echo "Type is ${type}"
 echo "dollar 2 is $2"
 echo "custom-pkg.txt contents:"
-cat "$scriptdir/cfgs/custom-pkg.txt"
+cat "custom-pkg.txt"
 exit
-}
 
 # set custom flag for use later on if line count
-# of $scriptdir/cfgs/custom-pkg.txt exceeds 1 
-LINECOUNT=$(wc -l "$scriptdir/cfgs/custom-pkg.txt" | cut -f1 -d' ')
+# of testing custom pkg test errorscustom-pkg.txt exceeds 1 
+LINECOUNT=$(wc -l "custom-pkg.txt" | cut -f1 -d' ')
 
 if [[ $LINECOUNT -gt 1 ]]; then
    echo "Custom PKG set detected!"
@@ -294,7 +291,7 @@ get_software_type()
                 exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
-		software_list="$scriptdir/cfgs/custom-pkg.txt"
+		software_list="custom-pkg.txt"
         fi
        
 }
@@ -535,7 +532,7 @@ install_software()
 	###########################################################
 	
 	# Remove custom package list
-	rm -f $scriptdir/cfgs/custom-pkg.txt
+	rm -f custom-pkg.txt
 	
 	# If software type was for emulation, continue building
 	# emulators from source (DISABLE FOR NOW)

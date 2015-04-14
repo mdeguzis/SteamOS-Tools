@@ -274,8 +274,6 @@ get_software_type()
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/emulation-src-deps.txt"
-
-        echo "Stage 1 software check: $software_list"
         
 	####################################################
 	# popular software / custom specification
@@ -289,10 +287,7 @@ get_software_type()
                 # install based on $type string response
 		software_list="$scriptdir/cfgs/custom-pkg.txt"
         fi
-        
-        echo "Stage 2 software check: $software_list"
-        exit
-        
+       
 }
 
 add_repos()

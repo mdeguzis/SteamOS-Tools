@@ -840,5 +840,6 @@ strings log_temp.txt > log.txt
 # work with, final cleanup
 sed -i 's|\[J||g' log.txt
 
-# remove old custom file
-sudo rm -f "custom-pkg.txt"
+# remove file not needed anymore
+rm -f "custom-pkg.txt"
+rm -f "log_temp.txt"

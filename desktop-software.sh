@@ -31,6 +31,8 @@
 # Set launch vars
 #################################
 options="$1"
+
+# used only for source package building in `emu-from-source`
 build_opts="$3"
 
 # remove old custom file
@@ -57,15 +59,6 @@ fi
 
 apt_mode="install"
 uninstall="no"
-
-#testing
-echo $1 $2 $3
-echo $options 
-echo $type
-echo $apt_mode
-echo $uninstall
-
-exit
 
 function getScriptAbsoluteDir() 
 {

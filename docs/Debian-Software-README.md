@@ -20,6 +20,7 @@ sudo ./debian-software.sh [option] [type]
 **Type:** [basic|extra|emulation|<pkg_name>]
 
 #### Options
+***
 
 **install:**   
 installs software based on type desired  
@@ -31,6 +32,7 @@ lists softare pacakges in each install group
 Run quick check on package(s)
 
 #### Types
+***
 
 **basic:**  
 installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
@@ -47,6 +49,7 @@ packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) D
 installs package(s) specifified from Alchemist/Wheezy. You can speciy any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
 
 #### Extra packages available for type parameter
+***
 
 **plex:**  
 Kicks off an automated script to install plexhometheatre

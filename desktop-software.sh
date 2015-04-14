@@ -344,6 +344,8 @@ install_software()
         # or if we are just checking packages
         
 	if [[ "$options" != "uninstall" && "$options" != "check" ]]; then
+		echo $options
+		exit
 	        echo -e "\nUpdating system, please wait...\n"
 		sleep 1s
 	        sudo apt-key update

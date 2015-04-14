@@ -1,4 +1,4 @@
-testing custom pkg test errors#!/bin/bash
+#!/bin/bash
 
 # -------------------------------------------------------------------------------
 # Author: 	Michael DeGuzis

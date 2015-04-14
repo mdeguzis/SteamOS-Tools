@@ -821,7 +821,6 @@ main()
 #####################################################
  
 funct_source_modules
-funct_set_vars
 funct_pre_req_checks
 add_repos
 
@@ -835,7 +834,7 @@ main | cat > log_temp.txt
 #####################################################
 
 # convert log file to Unix compatible ASCII
-#strings log_temp.txt > log.txt
+# strings log_temp.txt > log.txt
 
 # strings does catch all characters that I could 
 # work with, final cleanup

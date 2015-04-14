@@ -65,6 +65,8 @@ echo $type
 echo $apt_mode
 echo $uninstall
 
+exit
+
 function getScriptAbsoluteDir() 
 {
 	
@@ -352,8 +354,6 @@ install_software()
         # or if we are just checking packages
         
 	if [[ "$options" != "uninstall" && "$options" != "check" ]]; then
-		echo "Options are: ${options}"
-		exit
 	        echo -e "\nUpdating system, please wait...\n"
 		sleep 1s
 	        sudo apt-key update

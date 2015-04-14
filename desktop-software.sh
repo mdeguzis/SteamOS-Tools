@@ -346,7 +346,7 @@ install_software()
         echo "Options are: ${options}"
         
 	if [[ "$options" != "uninstall" && "$options" != "check" ]]; then
-		echo "Options are: ${options}
+		echo "Options are: ${options}"
 		exit
 	        echo -e "\nUpdating system, please wait...\n"
 		sleep 1s

@@ -56,7 +56,9 @@ installs package(s) specifified from Alchemist/Wheezy. You can speciy any number
 **plex:**  
 Kicks off an automated script to install plexhometheatre
 
+***
 ## Emulation type Warning
+***
 Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, compiling Retorarch, and it's emulators, is time-intensive. This component of the script is very much *still in progress!* 
 
 I will do my best to reduce overhead on this installation piece as much as possible.

@@ -27,6 +27,8 @@
 #
 # -------------------------------------------------------------------------------
 
+funct_set_vars()
+{
 #################################
 # Set launch vars
 #################################
@@ -53,6 +55,7 @@ echo "dollar 2 is $2"
 echo "custom-pkg.txt contents:"
 cat "$scriptdir/cfgs/custom-pkg.txt"
 exit
+}
 
 # set custom flag for use later on if line count
 # of $scriptdir/cfgs/custom-pkg.txt exceeds 1 
@@ -823,6 +826,7 @@ main()
 
 # handle prerequisite software
 funct_source_modules
+fucnt_set_vars
 funct_pre_req_checks
 add_repos
 

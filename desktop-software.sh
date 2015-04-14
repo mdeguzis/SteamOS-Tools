@@ -701,6 +701,8 @@ main()
 	        elif [[ "$options" == "list" ]]; then
 	                # show listing from cfgs/emulation-src.txt
 	                clear
+	                echo $type
+	                echo $options
 			cat $software_list | less
 			exit
 	        

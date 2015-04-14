@@ -502,13 +502,13 @@ install_software()
 				if [[ "$firstcheck" == "yes"  ]]; then
 					
 					echo -e "$i package status: [OK]"
-					sleep 0.2s
+					sleep 0.3s
 				else
 					clear
 					echo -e "Restarting package checks...\n"
 					sleep 3s
 					echo -e "$i package status: [OK]"
-					sleep 0.5s
+					sleep 0.3s
 				fi
 			
 			# end PKG OK test loop if/fi
@@ -640,10 +640,11 @@ main()
 					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 					if [ "" == "$PKG_OK" ]; then
 						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]" > /dev/null
+						echo -e "Packge $i [Not Found]"
+						sleep 0.3s
 					else
 						echo -e "Packge $i [OK]"
-						sleep 0.2s
+						sleep 0.3s
 					fi
 				fi
 			done
@@ -677,10 +678,11 @@ main()
 					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 					if [ "" == "$PKG_OK" ]; then
 						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]" > /dev/null
+						echo -e "Packge $i [Not Found]"
+						sleep 0.3s
 					else
 						echo -e "Packge $i [OK]"
-						sleep 0.2s
+						sleep 0.3s
 					fi
 				fi
 			done
@@ -715,10 +717,11 @@ main()
 					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 					if [ "" == "$PKG_OK" ]; then
 						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]" > /dev/null
+						echo -e "Packge $i [Not Found]"
+						sleep 0.3s
 					else
 						echo -e "Packge $i [OK]"
-						sleep 0.2s
+						sleep 0.3s
 					fi
 				fi
 			done
@@ -753,10 +756,11 @@ main()
 				
 					if [ "" == "$PKG_OK" ]; then
 						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]" > /dev/null
+						echo -e "Packge $i [Not Found]"
+						sleep 0.3s
 					else
 						echo -e "Packge $i [OK]"
-						sleep 0.2s
+						sleep 0.3s
 					fi
 				fi
 			done
@@ -791,9 +795,10 @@ main()
 					if [ "" == "$PKG_OK" ]; then
 						# dpkg outputs it's own line that can't be supressed
 						echo -e "Package $i [Not Found]"
+						sleep 0.3s
 					else
 						echo -e "Package $i [OK]"
-						sleep 0.2s
+						sleep 0.3s
 						
 					fi
 				fi

@@ -48,6 +48,12 @@ while [ "$2" != "" ]; do
 	shift
 done
 
+echo "Type is ${type}"
+echo "dollar 2 is $2"
+echo "custom-pkg.txt contents:"
+cat "$scriptdir/cfgs/custom-pkg.txt"
+exit
+
 # set custom flag for use later on if line count
 # of $scriptdir/cfgs/custom-pkg.txt exceeds 1 
 LINECOUNT=$(wc -l "$scriptdir/cfgs/custom-pkg.txt" | cut -f1 -d' ')

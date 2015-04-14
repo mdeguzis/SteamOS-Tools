@@ -274,15 +274,14 @@ get_software_type()
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/emulation-src-deps.txt"
-	fi
-        
+
         echo $software_list
         
 	####################################################
 	# popular software / custom specification
 	####################################################
 	
-	if [[ "$type" == "plex" ]]; then
+	elif [[ "$type" == "plex" ]]; then
                 # install plex from helper script
                 install_plex
                 exit

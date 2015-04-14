@@ -826,9 +826,9 @@ main()
 
 # handle prerequisite software
 funct_source_modules
-fucnt_set_vars
-funct_pre_req_checks
-add_repos
+funct_set_vars
+#funct_pre_req_checks
+#add_repos
 
 # Start main function
-main
+#main

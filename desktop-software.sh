@@ -782,10 +782,11 @@ main()
 			exit
                 
                 elif [[ "$options" == "check" ]]; then
+                	
+                	clear
 			# loop over packages and check
 			echo -e "Validating packages already installed...\n"
-			
-			clear
+	
 			for i in `cat $software_list`; do
 				if [[ "$i" =~ "!broken!" ]]; then
 					skipflag="yes"

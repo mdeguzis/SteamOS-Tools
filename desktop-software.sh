@@ -209,7 +209,7 @@ show_help()
 	used first, followed by Debian Wheezy.
 	
 	For a complete list, type:
-	'./debian-software list [type]'
+	'sudo ./desktop-software list [type]'
 	Options: [install|uninstall|list|check] 
 	Types: [basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
 	Extra types: [plex]
@@ -550,7 +550,7 @@ show_warning()
         printf "\nWarning: usage of this script is at your own risk!\n\n"
         printf "\nIn order to run this script, you MUST have had enabled the Debian \
 repositories! If you wish to exit, please press CTRL+C now..."
-        printf "\n\n type './debian-software --help' for assistance.\n"
+        printf "\n\n type 'sudo ./desktop-software --help' for assistance.\n"
 
         read -n 1
         printf "Continuing...\n"

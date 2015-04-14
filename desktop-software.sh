@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.6.1
+# Script Ver:	0.6.3
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -35,8 +35,9 @@ options="$1"
 # used only for source package building in `emu-from-source`
 build_opts="$3"
 
-# remove old custom file
+# remove old custom files
 sudo rm -f "custom-pkg.txt"
+sudo rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do
@@ -218,7 +219,7 @@ show_help()
 	Extra types: [plex]
 	
 	Install with:
-	'./debian-software [option] [type]'
+	'sudo ./desktop-software [option] [type]'
 
 	Press enter to continue...
 	EOF
@@ -827,7 +828,7 @@ add_repos
 #####################################################
 # MAIN
 #####################################################
-main
+main | tee log.txt
 
 #####################################################
 # cleanup

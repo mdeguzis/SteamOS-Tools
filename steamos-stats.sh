@@ -13,6 +13,9 @@
 # TODO:		Add AMD GPU support
 # ------------------------------------------------------------------------
 
+# remove old custom files
+rm -f "log.txt"
+
 funct_set_main_vars()
 {
 	# Set initial VAR values
@@ -411,10 +414,35 @@ funct_main_loop()
 	done
 }
 
-# Main functions
-funct_set_main_vars
-funct_pre_req_checks
-funct_main_loop
+#####################################################
+# handle prerequisite software
+#####################################################
+
+main ()
+{
+	funct_set_main_vars
+	funct_pre_req_checks
+	funct_main_loop
+}
+
+#####################################################
+# MAIN
+#####################################################
+main | tee log_temp.txt
+
+#####################################################
+# cleanup
+#####################################################
+
+# convert log file to Unix compatible ASCII
+strings log_temp.txt > log.txt
+
+# strings does catch all characters that I could 
+# work with, final cleanup
+sed -i 's|\[J||g' log.txt
+
+# remove file not needed anymore
+rm -f "log_temp.txt"
 
 # kill any voglperf server
 pkill voglperfrun64

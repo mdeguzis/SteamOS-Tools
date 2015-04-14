@@ -828,10 +828,10 @@ add_repos
 #####################################################
 # MAIN
 #####################################################
-main | tee log_temp.txt
+main | tee log.txt
 
 # convert log file to Unix compatible ASCII
-sed -e 's|^||g' |  `s|[||g' | `s|[J||g` log_temp.txt > log.txt
+cat log.txt | tr -dc '[:alnum:]\n\r' | tr '[:upper:]' '[:lower:]'
 
 #####################################################
 # cleanup

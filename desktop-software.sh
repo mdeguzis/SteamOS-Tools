@@ -339,14 +339,14 @@ install_software()
         # Update keys and system first, skip if removing software
         # or if we are just checking packages
         
-	if [[ "$options" != "uninstall" ]]; then
+        if [[ "$options" == "check" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	elif [[ "$options" != "uninstall" ]]; then
 	        echo -e "\nUpdating system, please wait...\n"
 		sleep 1s
 	        sudo apt-key update
 	        sudo apt-get update
-	elif [[ "$options" == "check" ]]; then
-		# do nothing
-		echo "" > /dev/null
 	fi
 
 	# create alternate cache dir in /home/desktop due to the 

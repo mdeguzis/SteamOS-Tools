@@ -280,9 +280,9 @@ get_software_type()
 	# popular software
 	####################################################
 	
-	if [[ "$type" == "basic" ]]; then
+	if [[ "$type" == "plex" ]]; then
                 # install plex from helper script
-                isntall_plex
+                install_plex
         fi
         
 }

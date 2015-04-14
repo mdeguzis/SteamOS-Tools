@@ -37,7 +37,8 @@ build_opts="$3"
 
 # remove old custom file
 sudo rm -f "custom-pkg.txt"
-
+ls | grep custom
+exit
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
@@ -48,8 +49,7 @@ while [ "$2" != "" ]; do
 	shift
 done
 
-echo "Type is ${type}"
-echo "dollar 2 is $2"
+# Testing
 echo "custom-pkg.txt contents:"
 cat "custom-pkg.txt"
 exit

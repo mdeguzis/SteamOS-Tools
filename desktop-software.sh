@@ -441,7 +441,7 @@ install_software()
 				else
 					clear
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "Could not install all package $i from Wheezy repo, trying Wheezy-backports\n"
+						echo -e "Could not install package $i from Wheezy repo, trying Wheezy-backports\n"
 						sleep 2s
 					else
 						echo -e "Removal requested (from Wheezy-backports) for package: $i \n"
@@ -500,12 +500,6 @@ install_software()
 		
 	# end PKG OK test loop itself
 	done
-	
-	if [ $? == '0' ] || [ $? -z "conf" ] -a [ "$pkg_fail" == "no" ]; then
-		echo -e "\nAll operations have been sucessful!\n"
-	else
-		echo -e "Script exited with errors..."
-	fi
 	
 	###########################################################
 	# Cleanup

@@ -11,6 +11,7 @@ libgbm-dev
 !broken!libopenvg1-mesa-dev
 python3-dev
 nvidia-cg-dev
+!broken!nvidia-cg-toolkit
 build-essential
 devscripts
 make

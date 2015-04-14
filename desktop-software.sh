@@ -251,6 +251,9 @@ funct_pre_req_checks()
 
 get_software_type()
 {
+	####################################################
+	# Software packs
+	####################################################	
 	
 	# set software type
         if [[ "$type" == "basic" ]]; then
@@ -271,6 +274,15 @@ get_software_type()
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="cfgs/custom-pkg.txt"
+        fi
+        
+	####################################################
+	# popular software
+	####################################################
+	
+	if [[ "$type" == "basic" ]]; then
+                # install plex from helper script
+                isntall_plex
         fi
         
 }
@@ -553,6 +565,7 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emu-from-source"
+	import "$scriptdir/scriptmodules/install-plex"
 
         # generate software listing based on type
         get_software_type

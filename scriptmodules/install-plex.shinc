@@ -10,6 +10,10 @@
 # Usage:        Called from another script. N/A
 # -------------------------------------------------------------------------------
 
+clear
+echo -e "Installing Plex from automated script...\n"
+sleep 2s
+
 # update and pre-reqs
 
 sudo curl http://shell.ninthgate.se/packages/shell-ninthgate-se-keyring.key | sudo apt-key add -

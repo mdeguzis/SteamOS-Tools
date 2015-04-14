@@ -1,4 +1,4 @@
-#!/bin/bash
+testing custom pkg test errors#!/bin/bash
 
 # -------------------------------------------------------------------------------
 # Author: 	Michael DeGuzis
@@ -47,11 +47,6 @@ while [ "$2" != "" ]; do
 	# Shift all the parameters down by one
 	shift
 done
-
-# Testing
-echo "custom-pkg.txt contents:"
-cat "custom-pkg.txt"
-exit
 
 # set custom flag for use later on if line count
 # of testing custom pkg test errorscustom-pkg.txt exceeds 1 

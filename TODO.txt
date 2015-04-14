@@ -1,7 +1,7 @@
 # TODO Main
-- built retroarch from PPA source
-- Add wheezy backports to available "retry" scenarios for installs
+- built retroarch from PPA source to deb file (in progress)
+- implement "until key X pressed" escape for steamos-stats.sh rather than CTRL+C hard exit.
 
 # Meta issues
-- still unsatisfied deps for retroarch source rebuild:
+- still unsatisfied deps for retroarch source rebuild
 - `sdl2-dev liblibgbm-dev libegl1-mesa-dev libopenvg1-mesa-dev`

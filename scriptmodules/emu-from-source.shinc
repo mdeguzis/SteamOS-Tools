@@ -117,6 +117,9 @@ efs_main()
 		apt-get source --build -d retroarch
 		# try build ignoring mesa deps missing
 		cd retroarch-1.0.0.3+r84~ubuntu14.04.1 && dpkg-buildpackage -b -uc' 
+		cd ..
+		# rename pkg
+		mv "retroarch_1.0.0.3+r84~ubuntu14.04.1_amd64.deb" "retroarch_1.0.0.3_SteamOS_amd64.deb"
 		
 		# for notation only: install command so far:
 		$ dpkg -i --ignore-depends=nvidia-cg-toolkit retroarch_1.0.0.3+r84~ubuntu14.04.1_amd64.deb

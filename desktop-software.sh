@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.5.9
+# Script Ver:	0.6.1
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -36,7 +36,7 @@ options="$1"
 build_opts="$3"
 
 # remove old custom file
-sudo rm -f "$scriptdir/cfgs/custom-pkg.txt"
+#sudo rm -f "$scriptdir/cfgs/custom-pkg.txt"
 
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do

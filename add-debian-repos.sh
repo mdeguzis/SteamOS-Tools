@@ -160,9 +160,27 @@ if [[ "$1" == "--help" ]]; then
         show_help
 	exit 0
 fi
+#####################################################
+# handle prerequisite software
+#####################################################
 
-# Start Script
 funct_set_vars
 funct_show_warning
 funct_option_check
-main
+
+#####################################################
+# MAIN
+#####################################################
+main | tee log_temp.txt
+
+#####################################################
+# cleanup
+#####################################################
+
+# convert log file to Unix compatible ASCII
+strings log_temp.txt > log.txt
+
+# strings does catch all characters that I could 
+# work with, final cleanup
+sed -i 's|\[J||g' log.txt
+

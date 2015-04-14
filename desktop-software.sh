@@ -466,7 +466,7 @@ install_software()
 					echo -e "\nCould not install or remove ALL packages from Wheezy."
 					echo -e "Plaese check available outut, or run run with:"
 					echo -e "' &> log.txt' appended... \n"
-					echo -e "Failure occured on package: ${i}\n"
+					echo -e "Failure occurred on package: ${i}\n"
 					pkg_fail="yes"
 					sleep 2s
 				fi

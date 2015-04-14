@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# -------------------------------------------------------------------------------
+# Author: 	    Michael DeGuzis
+# Git:		      https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	  build-test-chroot.sh
+# Script Ver:	  0.1.3
+# Description:	Builds a Debian Wheezy / SteamOS docker container for testing 
+#		            purposes
+#               See: https://wiki.debian.org/chroot
+#
+# Usage:	      sudo ./build-test-docker.sh -type [debian|steamos]
+#		            sudo ./build-test-docker.sh --help for help
+#
+# Warning:	    You MUST have the Debian repos added properly for
+#		            Installation of the pre-requisite packages.
+#
+# -------------------------------------------------------------------------------
+
+# IN PROGRESS
+
+
+curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh

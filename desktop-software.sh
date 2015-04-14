@@ -177,24 +177,11 @@ function setDesktopEnvironment()
 funct_source_modules()
 {
 	
-script_invoke_path="$0"
-script_name=$(basename "$0")
-getScriptAbsoluteDir "$script_invoke_path"
-script_absolute_dir=$RESULT
-
-if [ "$script_invoke_path" == "/usr/bin/retrorig-es-setup" ]; then
-
-	#install method via system folder
-	
-	scriptdir=/usr/share/RetroRig-ES
-	
-else
-
-	#install method from local git clone
-	
+	script_invoke_path="$0"
+	script_name=$(basename "$0")
+	getScriptAbsoluteDir "$script_invoke_path"
+	script_absolute_dir=$RESULT
 	scriptdir=`dirname "$script_absolute_dir"`
-	
-fi
 
 }
 
@@ -366,6 +353,9 @@ install_software()
 	
 	for i in `cat $software_list`; do
 	
+		# set fail default
+		pkg_fail="no"
+	
 		if [[ "$i" =~ "!broken!" ]]; then
 			skipflag="yes"
 			echo -e "skipping broken package: $i ..."
@@ -409,7 +399,7 @@ install_software()
 				if [ $? == '0' ] || [ $? -n "conf" ]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install\n"
+						echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install"
 						sleep 1s
 					else
 						echo -e "\nRemoval succeeded for package: $i \n"
@@ -421,8 +411,8 @@ install_software()
 				else
 					clear
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "Could not install all packages from Alchemist repo, trying Wheezy...\n"
-						sleep 1s
+						echo -e "Could not install package $i from Alchemist repo, trying Wheezy...\n"
+						sleep 2s
 					else
 						echo -e "Removal requested (from Wheezy) for package: $i \n"
 						sleep 1s
@@ -439,7 +429,7 @@ install_software()
 				if [ $? == '0' ] || [ $? -n "conf" ]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\nSuccessfully installed software from Wheezy repo! / Nothing to Install\n" 
+						echo -e "\nSuccessfully installed software from Wheezy repo! / Nothing to Install" 
 						sleep 2s
 					else
 						echo -e "\nRemoval succeeded for package: $i \n"
@@ -451,7 +441,7 @@ install_software()
 				else
 					clear
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "Could not install all packages from Wheezy repo, trying Wheezy-backports\n"
+						echo -e "Could not install package $i from Wheezy repo, trying Wheezy-backports\n"
 						sleep 2s
 					else
 						echo -e "Removal requested (from Wheezy-backports) for package: $i \n"
@@ -473,11 +463,11 @@ install_software()
 			
 				if [ $? == '0' ] || [ $? -z "conf" ]; then
 					clear
-					echo -e "\nCould not install or remove ALL packages from Wheezy. Plese check \n"
-					echo -e "available outut, or try one of the following:\n"
-					echo -e "'sudo ./desktop-software [option] [type] &> log.txt'"
-					echo -e "'sudo ./desktop-software check [type]'\n"
-					sleep 1s
+					echo -e "\nCould not install or remove ALL packages from Wheezy."
+					echo -e "Plaese check available outut, or run run with:"
+					echo -e "' &> log.txt' appended... \n"
+					echo -e "Failure occurred on package: ${i}\n"
+					pkg_fail="yes"
 					exit
 				fi
 				
@@ -510,12 +500,6 @@ install_software()
 		
 	# end PKG OK test loop itself
 	done
-	
-	if [ $? == '0' ] || [ $? -z "conf" ]; then
-		echo -e "\nAll operations have been sucessful!\n"
-	else
-		echo -e "\nScript exited with errors..."
-	fi
 	
 	###########################################################
 	# Cleanup
@@ -551,8 +535,8 @@ show_warning()
 
         clear
         printf "\nWarning: usage of this script is at your own risk!\n\n"
-        printf "\nIn order to run this script, you MUST have had enabled the Debian\n"
-        printf "repositories! If you wish to exit, please press CTRL+C now..."
+        printf "\nIn order to run this script, you MUST have had enabled the Debian \
+repositories! If you wish to exit, please press CTRL+C now..."
         printf "\n\n type './debian-software --help' for assistance.\n"
 
         read -n 1

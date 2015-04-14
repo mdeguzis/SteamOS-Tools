@@ -275,6 +275,9 @@ get_software_type()
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/emulation-src-deps.txt"
 	fi
+	
+	echo $software_list
+	exit
         
 	####################################################
 	# popular software / custom specification

@@ -36,8 +36,8 @@ options="$1"
 build_opts="$3"
 
 # remove old custom files
-sudo rm -f "custom-pkg.txt"
-sudo rm -f "log.txt"
+rm -f "custom-pkg.txt"
+rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do

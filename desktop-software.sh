@@ -343,8 +343,10 @@ install_software()
         # Update keys and system first, skip if removing software
         # or if we are just checking packages
         
+        echo "Options are: ${options}
+        
 	if [[ "$options" != "uninstall" && "$options" != "check" ]]; then
-		echo $options
+		echo "Options are: ${options}
 		exit
 	        echo -e "\nUpdating system, please wait...\n"
 		sleep 1s

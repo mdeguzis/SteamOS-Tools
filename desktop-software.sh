@@ -831,7 +831,7 @@ add_repos
 main | tee log.txt
 
 # convert log file to Unix compatible ASCII
-cat log.txt | tr -dc '[:alnum:]\n\r' | tr '[:upper:]' '[:lower:]' > log2.txt
+cat < log.txt | tr -dc '[:alnum:]\n\r' | tr '[:upper:]' '[:lower:]' > log2.txt
 
 #####################################################
 # cleanup

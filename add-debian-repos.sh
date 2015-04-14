@@ -11,6 +11,10 @@
 # Usage:	sudo ./add-debian-repos [install|uninstall|--help]
 # ------------------------------------------------------------------------
 
+# remove old custom files
+rm -f "log.txt"
+
+
 funct_set_vars()
 {
 	# Set default user option
@@ -184,3 +188,5 @@ strings log_temp.txt > log.txt
 # work with, final cleanup
 sed -i 's|\[J||g' log.txt
 
+# remove file not needed anymore
+rm -f "log_temp.txt"

@@ -246,7 +246,7 @@ funct_pre_req_checks()
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "python-software-properties not found. Setting up python-software-properties.\n"
 		sleep 1s
-		sudo apt-get install -t wheezy python-software-properties
+		sudo apt-get install -t wheezy python-software-properties dos2unix
 	else
 		echo "Checking for python-software-properties: [Ok]"
 		sleep 0.2s
@@ -485,8 +485,7 @@ install_software()
 				if [ $? == '0' ] || [ $? -z "conf" ]; then
 					clear
 					echo -e "\nCould not install or remove ALL packages from Wheezy."
-					echo -e "Plaese check available outut, or run run with:"
-					echo -e "' &> log.txt' appended... \n"
+					echo -e "Please check log.txt in the directory you ran this from.\n"
 					echo -e "Failure occurred on package: ${i}\n"
 					pkg_fail="yes"
 					exit
@@ -559,6 +558,7 @@ show_warning()
         printf "\nIn order to run this script, you MUST have had enabled the Debian \
 repositories! If you wish to exit, please press CTRL+C now..."
         printf "\n\n type 'sudo ./desktop-software --help' for assistance.\n"
+        printf "See log.txt in this direcotry after any attempt for details.\n"
 
         read -n 1
         printf "Continuing...\n"
@@ -829,6 +829,9 @@ add_repos
 # MAIN
 #####################################################
 main | tee log.txt
+
+# convert log file to Unix compatible ASCII
+dos2unix log.txt -c iso b.txt
 
 #####################################################
 # cleanup

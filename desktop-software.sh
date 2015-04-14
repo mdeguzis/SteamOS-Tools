@@ -45,9 +45,6 @@ while [ "$2" != "" ]; do
 	shift
 done
 
-echo $type
-exit
-
 # set custom flag for use later on if line count
 # of cfgs/custom-pkg.txt exceeds 1 
 LINECOUNT=$(wc -l "cfgs/custom-pkg.txt" | cut -f1 -d' ')
@@ -804,6 +801,4 @@ funct_pre_req_checks
 add_repos
 
 # Start main function
-echo $type
-exit
 main

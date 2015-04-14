@@ -47,9 +47,9 @@ Run quick check on package(s)
 installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
 **extra:**  
 installs extra softare based on feedback and personal preference  
-**emulation: (in-progress, debs need built)**      
+**emulation: [in-progress, debs need built]**        
 retroarch and associated emulators.      
-**emulation-src:**          
+**emulation-src: [in-progress]**            
 Installs prerequisite packages for compiling emulation packages from source and then compiles emulators pacakages from source (will take some time to install).       
 **emulation-src-deps: (broken)**          
 packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  

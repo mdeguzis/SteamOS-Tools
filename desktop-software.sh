@@ -828,10 +828,11 @@ add_repos
 #####################################################
 # MAIN
 #####################################################
-main | tee log.txt
+main | tee log_temp.txt
 
 # convert log file to Unix compatible ASCII
-dos2unix log.txt -c iso b.txt
+# `cat` will strip out a lot of this
+cat log_temp.txt > log.txt
 
 #####################################################
 # cleanup

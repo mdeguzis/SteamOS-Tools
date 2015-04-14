@@ -36,21 +36,21 @@ options="$1"
 build_opts="$3"
 
 # remove old custom file
-sudo rm -f "cfgs/custom-pkg.txt"
+sudo rm -f "$scriptdir/cfgs/custom-pkg.txt"
 
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type="$2"
-	echo "$type" >> "cfgs/custom-pkg.txt"
+	echo "$type" >> "$scriptdir/cfgs/custom-pkg.txt"
 	# Shift all the parameters down by one
 	shift
 done
 
 # set custom flag for use later on if line count
-# of cfgs/custom-pkg.txt exceeds 1 
-LINECOUNT=$(wc -l "cfgs/custom-pkg.txt" | cut -f1 -d' ')
+# of $scriptdir/cfgs/custom-pkg.txt exceeds 1 
+LINECOUNT=$(wc -l "$scriptdir/cfgs/custom-pkg.txt" | cut -f1 -d' ')
 
 if [[ $LINECOUNT -gt 1 ]]; then
    echo "Custom PKG set detected!"
@@ -261,34 +261,33 @@ get_software_type()
 	
         if [[ "$type" == "basic" ]]; then
                 # add basic software to temp list
-                software_list="cfgs/basic-software.txt"
+                software_list="$scriptdir/cfgs/basic-software.txt"
         elif [[ "$type" == "extra" ]]; then
                 # add full softare to temp list
-                software_list="cfgs/extra-software.txt"
+                software_list="$scriptdir/cfgs/extra-software.txt"
         elif [[ "$type" == "emulation" ]]; then
                 # add emulation softare to temp list
-                software_list="cfgs/emulation.txt"
+                software_list="$scriptdir/cfgs/emulation.txt"
         elif [[ "$type" == "emulation-src" ]]; then
                 # add emulation softare to temp list
-                software_list="cfgs/emulation-src.txt"
+                software_list="$scriptdir/cfgs/emulation-src.txt"
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
-                software_list="cfgs/emulation-src-deps.txt"
-	fi
+                software_list="$scriptdir/cfgs/emulation-src-deps.txt"
         
 	####################################################
 	# popular software / custom specification
 	####################################################
 	
-	if [[ "$type" == "plex" ]]; then
+	elif [[ "$type" == "plex" ]]; then
                 # install plex from helper script
                 install_plex
                 exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
-		software_list="cfgs/custom-pkg.txt"
+		software_list="$scriptdir/cfgs/custom-pkg.txt"
         fi
-        
+       
 }
 
 add_repos()
@@ -527,7 +526,7 @@ install_software()
 	###########################################################
 	
 	# Remove custom package list
-	rm -f cfgs/custom-pkg.txt
+	rm -f $scriptdir/cfgs/custom-pkg.txt
 	
 	# If software type was for emulation, continue building
 	# emulators from source (DISABLE FOR NOW)
@@ -585,7 +584,7 @@ main()
         		uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from cfgs/basic-software.txt
+                        # show listing from $scriptdir/cfgs/basic-software.txt
                         clear
                         cat $software_list | less
 			exit
@@ -622,7 +621,7 @@ main()
                         uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from cfgs/extra-software.txt
+                        # show listing from $scriptdir/cfgs/extra-software.txt
                         clear
 			cat $software_list | less
 			exit
@@ -660,7 +659,7 @@ main()
                         uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from cfgs/emulation.txt
+                        # show listing from $scriptdir/cfgs/emulation.txt
                         clear
 			cat $software_list | less
 			exit
@@ -699,8 +698,10 @@ main()
 	                uninstall="yes"
 	
 	        elif [[ "$options" == "list" ]]; then
-	                # show listing from cfgs/emulation-src.txt
+	                # show listing from $scriptdir/cfgs/emulation-src.txt
 	                clear
+	                echo $type
+	                echo $options
 			cat $software_list | less
 			exit
 	        
@@ -737,7 +738,7 @@ main()
 	                uninstall="yes"
 	
 	        elif [[ "$options" == "list" ]]; then
-	                # show listing from cfgs/emulation-src-deps.txt
+	                # show listing from $scriptdir/cfgs/emulation-src-deps.txt
 	                clear
 			cat $software_list | less
 			exit

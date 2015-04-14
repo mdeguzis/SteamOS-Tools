@@ -804,4 +804,6 @@ funct_pre_req_checks
 add_repos
 
 # Start main function
+echo $type
+exit
 main

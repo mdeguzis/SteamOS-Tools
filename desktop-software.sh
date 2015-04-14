@@ -828,14 +828,18 @@ add_repos
 #####################################################
 # MAIN
 #####################################################
-main | tee log.txt
-
-# convert log file to Unix compatible ASCII
-cat < log.txt | tr -dc '[:alnum:]\n\r' | tr '[:upper:]' '[:lower:]' > log2.txt
+main | tee log_temp.txt
 
 #####################################################
 # cleanup
 #####################################################
+
+# convert log file to Unix compatible ASCII
+strings log_temp.txt > log.txt
+
+# strings does catch all characters that I could 
+# work with, final cleanup
+sed -i 's|\[J||g' log.txt
 
 # remove old custom file
 sudo rm -f "custom-pkg.txt"

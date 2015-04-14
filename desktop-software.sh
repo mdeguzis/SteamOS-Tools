@@ -334,15 +334,16 @@ install_software()
                 
 	elif [[ "$options" == "test" ]]; then
 		apt_mode="--dry-run install"
+		
+	elif [[ "$options" == "check" ]]; then
+		# do nothing
+		echo "" > /dev/null
         fi
         
         # Update keys and system first, skip if removing software
         # or if we are just checking packages
         
-        if [[ "$options" == "check" ]]; then
-		# do nothing
-		echo "" > /dev/null
-	elif [[ "$options" != "uninstall" ]]; then
+	if [[ "$options" != "uninstall" && "$options" != "check"]]; then
 	        echo -e "\nUpdating system, please wait...\n"
 		sleep 1s
 	        sudo apt-key update

@@ -37,8 +37,7 @@ build_opts="$3"
 
 # remove old custom file
 sudo rm -f "custom-pkg.txt"
-ls | grep custom
-exit
+
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
@@ -821,11 +820,23 @@ main()
 	fi
 }
 
+#####################################################
 # handle prerequisite software
+#####################################################
+ 
 funct_source_modules
 funct_set_vars
-#funct_pre_req_checks
-#add_repos
+funct_pre_req_checks
+add_repos
 
-# Start main function
-#main
+#####################################################
+# MAIN
+#####################################################
+main
+
+#####################################################
+# cleanup
+#####################################################
+
+# remove old custom file
+sudo rm -f "custom-pkg.txt"

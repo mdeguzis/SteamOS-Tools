@@ -116,7 +116,7 @@ efs_main()
 		# download package only
 		apt-get source --build -d retroarch
 		# try build ignoring mesa deps missing
-		cd retroarch-1.0.0.3+r84~ubuntu14.04.1 && dpkg-buildpackage -b -uc' 
+		cd retroarch-1.0.0.3+r84~ubuntu14.04.1 && dpkg-buildpackage -b -uc
 		cd ..
 		# rename pkg
 		mv "retroarch_1.0.0.3+r84~ubuntu14.04.1_amd64.deb" "retroarch_1.0.0.3_SteamOS_amd64.deb"

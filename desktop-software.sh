@@ -603,9 +603,10 @@ main()
 					if [ "" == "$PKG_OK" ]; then
 						# dpkg outputs it's own line that can't be supressed
 						echo -e "Package $i [Not Found]" > /dev/null
+						sleep 0.3s
 					else
 						echo -e "Packge $i [OK]"
-						sleep 0.2s
+						sleep 0.3s
 					fi
 				fi
 			done

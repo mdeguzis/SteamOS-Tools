@@ -32,7 +32,7 @@ install_plex()
   
   # resolve outstanding deps
   
-  wget -O /tmp "http://www.libregeek.org/SteamOS-Extra/Plex/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
+  wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/Plex/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
   cd /tmp
   sudo dpkg -i ttf-ubuntu-font-family*.deb
   

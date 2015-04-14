@@ -343,7 +343,7 @@ install_software()
         # Update keys and system first, skip if removing software
         # or if we are just checking packages
         
-        echo "Options are: ${options}
+        echo "Options are: ${options}"
         
 	if [[ "$options" != "uninstall" && "$options" != "check" ]]; then
 		echo "Options are: ${options}

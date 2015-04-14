@@ -246,7 +246,7 @@ funct_pre_req_checks()
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "python-software-properties not found. Setting up python-software-properties.\n"
 		sleep 1s
-		sudo apt-get install -t wheezy python-software-properties dos2unix
+		sudo apt-get install -t wheezy python-software-properties
 	else
 		echo "Checking for python-software-properties: [Ok]"
 		sleep 0.2s
@@ -831,8 +831,7 @@ add_repos
 main | tee log_temp.txt
 
 # convert log file to Unix compatible ASCII
-# `cat` will strip out a lot of this
-cat log_temp.txt > log.txt
+sed -e 's/[;,()'\'']/ /g;s/  */ /g' log_temp.txt > log.txt
 
 #####################################################
 # cleanup

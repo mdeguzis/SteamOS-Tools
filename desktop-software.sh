@@ -831,7 +831,7 @@ add_repos
 main | tee log_temp.txt
 
 # convert log file to Unix compatible ASCII
-sed -e 's/[;,()'\'']/ /g;s/  */ /g' log_temp.txt > log.txt
+sed -e 's|^||g' |  `s|[||g' | `s|[J||g` log_temp.txt > log.txt
 
 #####################################################
 # cleanup

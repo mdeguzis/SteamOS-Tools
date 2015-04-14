@@ -1,6 +1,7 @@
 # TODO Main
 - built retroarch from PPA source to deb file (in progress)
 - implement "until key X pressed" escape for steamos-stats.sh rather than CTRL+C hard exit.
+- Fix broken dependencies for bulk package lists (if possible)
 
 # Meta issues
 - still unsatisfied deps for retroarch source rebuild

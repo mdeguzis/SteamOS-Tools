@@ -212,6 +212,7 @@ show_help()
 	'./debian-software list [type]'
 	Options: [install|uninstall|list|check] 
 	Types: [basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
+	Extra types: [plex]
 	
 	Install with:
 	'./debian-software [option] [type]'
@@ -271,18 +272,18 @@ get_software_type()
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="cfgs/emulation-src-deps.txt"
-        elif [[ "$type" == "$type" ]]; then
-                # install based on $type string response
-		software_list="cfgs/custom-pkg.txt"
-        fi
+	fi
         
 	####################################################
-	# popular software
+	# popular software / custom specification
 	####################################################
 	
 	if [[ "$type" == "plex" ]]; then
                 # install plex from helper script
                 install_plex
+        elif [[ "$type" == "$type" ]]; then
+                # install based on $type string response
+		software_list="cfgs/custom-pkg.txt"
         fi
         
 }

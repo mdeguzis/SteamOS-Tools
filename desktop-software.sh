@@ -783,6 +783,7 @@ main()
                 
                 elif [[ "$options" == "check" ]]; then
 			# loop over packages and check
+			echo -e "Validating packages already installed...\n"
 			
 			clear
 			for i in `cat $software_list`; do
@@ -791,7 +792,6 @@ main()
 					echo -e "skipping broken package: $i ..."
 					sleep 0.3s
 				else
-					echo -e "Validating packages already installed...\n"
 					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 					
 					if [ "" == "$PKG_OK" ]; then

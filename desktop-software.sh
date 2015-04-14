@@ -275,7 +275,7 @@ get_software_type()
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/emulation-src-deps.txt"
 
-        echo $software_list
+        echo "Stage 1 software check: $software_list"
         
 	####################################################
 	# popular software / custom specification
@@ -290,7 +290,7 @@ get_software_type()
 		software_list="$scriptdir/cfgs/custom-pkg.txt"
         fi
         
-        echo $software_list
+        echo "Stage 2 software check: $software_list"
         exit
         
 }

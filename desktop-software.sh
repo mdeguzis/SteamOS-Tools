@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.5.9
+# Script Ver:	0.7.1
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -35,22 +35,23 @@ options="$1"
 # used only for source package building in `emu-from-source`
 build_opts="$3"
 
-# remove old custom file
-sudo rm -f "$scriptdir/cfgs/custom-pkg.txt"
+# remove old custom files
+rm -f "custom-pkg.txt"
+rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
 while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type="$2"
-	echo "$type" >> "$scriptdir/cfgs/custom-pkg.txt"
+	echo "$type" >> "custom-pkg.txt"
 	# Shift all the parameters down by one
 	shift
 done
 
 # set custom flag for use later on if line count
-# of $scriptdir/cfgs/custom-pkg.txt exceeds 1 
-LINECOUNT=$(wc -l "$scriptdir/cfgs/custom-pkg.txt" | cut -f1 -d' ')
+# of testing custom pkg test errorscustom-pkg.txt exceeds 1 
+LINECOUNT=$(wc -l "custom-pkg.txt" | cut -f1 -d' ')
 
 if [[ $LINECOUNT -gt 1 ]]; then
    echo "Custom PKG set detected!"
@@ -218,7 +219,7 @@ show_help()
 	Extra types: [plex]
 	
 	Install with:
-	'./debian-software [option] [type]'
+	'sudo ./desktop-software [option] [type]'
 
 	Press enter to continue...
 	EOF
@@ -285,7 +286,7 @@ get_software_type()
                 exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
-		software_list="$scriptdir/cfgs/custom-pkg.txt"
+		software_list="custom-pkg.txt"
         fi
        
 }
@@ -484,8 +485,7 @@ install_software()
 				if [ $? == '0' ] || [ $? -z "conf" ]; then
 					clear
 					echo -e "\nCould not install or remove ALL packages from Wheezy."
-					echo -e "Plaese check available outut, or run run with:"
-					echo -e "' &> log.txt' appended... \n"
+					echo -e "Please check log.txt in the directory you ran this from.\n"
 					echo -e "Failure occurred on package: ${i}\n"
 					pkg_fail="yes"
 					exit
@@ -526,7 +526,7 @@ install_software()
 	###########################################################
 	
 	# Remove custom package list
-	rm -f $scriptdir/cfgs/custom-pkg.txt
+	rm -f custom-pkg.txt
 	
 	# If software type was for emulation, continue building
 	# emulators from source (DISABLE FOR NOW)
@@ -558,6 +558,7 @@ show_warning()
         printf "\nIn order to run this script, you MUST have had enabled the Debian \
 repositories! If you wish to exit, please press CTRL+C now..."
         printf "\n\n type 'sudo ./desktop-software --help' for assistance.\n"
+        printf "See log.txt in this direcotry after any attempt for details.\n"
 
         read -n 1
         printf "Continuing...\n"
@@ -815,10 +816,30 @@ main()
 	fi
 }
 
+#####################################################
 # handle prerequisite software
+#####################################################
+ 
 funct_source_modules
 funct_pre_req_checks
 add_repos
 
-# Start main function
-main
+#####################################################
+# MAIN
+#####################################################
+main | tee log_temp.txt
+
+#####################################################
+# cleanup
+#####################################################
+
+# convert log file to Unix compatible ASCII
+strings log_temp.txt > log.txt
+
+# strings does catch all characters that I could 
+# work with, final cleanup
+sed -i 's|\[J||g' log.txt
+
+# remove file not needed anymore
+rm -f "custom-pkg.txt"
+rm -f "log_temp.txt"

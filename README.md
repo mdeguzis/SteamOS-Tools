@@ -17,3 +17,6 @@ Tools and scripts for SteamOS.
 ## Pull requests / suggestions
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page
 or any corrections (with justification) as a Pull Request.
+
+## Troubleshooting
+Most scripts in the main folder of the repository log to `log.txt` after completion. Please check this file before submitting any issues or pull requests.

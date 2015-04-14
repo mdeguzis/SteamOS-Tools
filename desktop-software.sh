@@ -209,9 +209,10 @@ show_help()
 	used first, followed by Debian Wheezy.
 	
 	For a complete list, type:
-	'./debian-software list [type]'
+	'sudo ./desktop-software list [type]'
 	Options: [install|uninstall|list|check] 
 	Types: [basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
+	Extra types: [plex]
 	
 	Install with:
 	'./debian-software [option] [type]'
@@ -251,8 +252,10 @@ funct_pre_req_checks()
 
 get_software_type()
 {
+	####################################################
+	# Software packs
+	####################################################	
 	
-	# set software type
         if [[ "$type" == "basic" ]]; then
                 # add basic software to temp list
                 software_list="cfgs/basic-software.txt"
@@ -268,6 +271,16 @@ get_software_type()
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="cfgs/emulation-src-deps.txt"
+	fi
+        
+	####################################################
+	# popular software / custom specification
+	####################################################
+	
+	if [[ "$type" == "plex" ]]; then
+                # install plex from helper script
+                install_plex
+                exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="cfgs/custom-pkg.txt"
@@ -321,11 +334,18 @@ install_software()
                 
 	elif [[ "$options" == "test" ]]; then
 		apt_mode="--dry-run install"
+		
+	elif [[ "$options" == "check" ]]; then
+		# do nothing
+		echo "" > /dev/null
         fi
         
         # Update keys and system first, skip if removing software
+        # or if we are just checking packages
         
-	if [[ "$options" != "uninstall" ]]; then
+	if [[ "$options" != "uninstall" && "$options" != "check" ]]; then
+		#echo "Options are: ${options}"
+		#exit
 	        echo -e "\nUpdating system, please wait...\n"
 		sleep 1s
 	        sudo apt-key update
@@ -359,7 +379,7 @@ install_software()
 		if [[ "$i" =~ "!broken!" ]]; then
 			skipflag="yes"
 			echo -e "skipping broken package: $i ..."
-			sleep 1s
+			sleep 0.3s
 		else
 	
 			# check for packages already installed first
@@ -374,7 +394,7 @@ install_software()
 				clear
 				# try Alchemist first
 				if [ "$apt_mode" != "remove" ]; then
-					echo -e "Attempting package installations from Alchemist...\n"
+					echo -e "Attempting automatic package installation / Alchemist repo...\n"
 					sleep 1s
 				else
 					echo -e "Removal requested (from Alchemist) for package: $i \n"
@@ -468,7 +488,7 @@ install_software()
 					echo -e "' &> log.txt' appended... \n"
 					echo -e "Failure occurred on package: ${i}\n"
 					pkg_fail="yes"
-					sleep 2s
+					exit
 				fi
 				
 				# set firstcheck to "no" so "resume" below does not occur
@@ -537,7 +557,7 @@ show_warning()
         printf "\nWarning: usage of this script is at your own risk!\n\n"
         printf "\nIn order to run this script, you MUST have had enabled the Debian \
 repositories! If you wish to exit, please press CTRL+C now..."
-        printf "\n\n type './debian-software --help' for assistance.\n"
+        printf "\n\n type 'sudo ./desktop-software --help' for assistance.\n"
 
         read -n 1
         printf "Continuing...\n"
@@ -553,8 +573,9 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emu-from-source"
+	import "$scriptdir/scriptmodules/install-plex"
 
-        # generate software listing based on type
+        # generate software listing based on type or skip to auto script
         get_software_type
 
 	if [[ "$type" == "basic" ]]; then
@@ -571,13 +592,20 @@ main()
                         # check all packages on request
                         clear
 			for i in `cat $software_list`; do
-				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				if [ "" == "$PKG_OK" ]; then
-					# dpkg outputs it's own line that can't be supressed
-					echo -e "Package $i [Not Found]" > /dev/null
+			
+				if [[ "$i" =~ "!broken!" ]]; then
+					skipflag="yes"
+					echo -e "skipping broken package: $i ..."
+					sleep 0.3s
 				else
-					echo -e "Packge $i [OK]"
-					sleep 0.2s
+					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+					if [ "" == "$PKG_OK" ]; then
+						# dpkg outputs it's own line that can't be supressed
+						echo -e "Package $i [Not Found]" > /dev/null
+					else
+						echo -e "Packge $i [OK]"
+						sleep 0.2s
+					fi
 				fi
 			done
 			exit
@@ -601,13 +629,20 @@ main()
                         # check all packages on request
                         clear
 			for i in `cat $software_list`; do
-				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				if [ "" == "$PKG_OK" ]; then
-					# dpkg outputs it's own line that can't be supressed
-					echo -e "Packge $i [Not Found]" > /dev/null
+			
+				if [[ "$i" =~ "!broken!" ]]; then
+					skipflag="yes"
+					echo -e "skipping broken package: $i ..."
+					sleep 0.3s
 				else
-					echo -e "Packge $i [OK]"
-					sleep 0.2s
+					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+					if [ "" == "$PKG_OK" ]; then
+						# dpkg outputs it's own line that can't be supressed
+						echo -e "Packge $i [Not Found]" > /dev/null
+					else
+						echo -e "Packge $i [OK]"
+						sleep 0.2s
+					fi
 				fi
 			done
 			exit
@@ -631,13 +666,20 @@ main()
                         # check all packages on request
                         clear
 			for i in `cat $software_list`; do
-				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				if [ "" == "$PKG_OK" ]; then
-					# dpkg outputs it's own line that can't be supressed
-					echo -e "Packge $i [Not Found]" > /dev/null
+			
+				if [[ "$i" =~ "!broken!" ]]; then
+					skipflag="yes"
+					echo -e "skipping broken package: $i ..."
+					sleep 0.3s
 				else
-					echo -e "Packge $i [OK]"
-					sleep 0.2s
+					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+					if [ "" == "$PKG_OK" ]; then
+						# dpkg outputs it's own line that can't be supressed
+						echo -e "Packge $i [Not Found]" > /dev/null
+					else
+						echo -e "Packge $i [OK]"
+						sleep 0.2s
+					fi
 				fi
 			done
 			exit
@@ -662,13 +704,20 @@ main()
                         # check all packages on request
                         clear
 			for i in `cat $software_list`; do
-				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				if [ "" == "$PKG_OK" ]; then
-					# dpkg outputs it's own line that can't be supressed
-					echo -e "Packge $i [Not Found]" > /dev/null
+			
+				if [[ "$i" =~ "!broken!" ]]; then
+					skipflag="yes"
+					echo -e "skipping broken package: $i ..."
+					sleep 0.3s
 				else
-					echo -e "Packge $i [OK]"
-					sleep 0.2s
+					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+					if [ "" == "$PKG_OK" ]; then
+						# dpkg outputs it's own line that can't be supressed
+						echo -e "Packge $i [Not Found]" > /dev/null
+					else
+						echo -e "Packge $i [OK]"
+						sleep 0.2s
+					fi
 				fi
 			done
 			exit
@@ -692,13 +741,21 @@ main()
                         # check all packages on request
                         clear
 			for i in `cat $software_list`; do
-				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				if [ "" == "$PKG_OK" ]; then
-					# dpkg outputs it's own line that can't be supressed
-					echo -e "Packge $i [Not Found]" > /dev/null
+			
+				if [[ "$i" =~ "!broken!" ]]; then
+					skipflag="yes"
+					echo -e "skipping broken package: $i ..."
+					sleep 0.3s
 				else
-					echo -e "Packge $i [OK]"
-					sleep 0.2s
+					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				
+					if [ "" == "$PKG_OK" ]; then
+						# dpkg outputs it's own line that can't be supressed
+						echo -e "Packge $i [Not Found]" > /dev/null
+					else
+						echo -e "Packge $i [OK]"
+						sleep 0.2s
+					fi
 				fi
 			done
 			exit
@@ -723,14 +780,20 @@ main()
 			
 			clear
 			for i in `cat $software_list`; do
-				
-				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				if [ "" == "$PKG_OK" ]; then
-					# dpkg outputs it's own line that can't be supressed
-					echo -e "Package $i [Not Found]"
+				if [[ "$i" =~ "!broken!" ]]; then
+					skipflag="yes"
+					echo -e "skipping broken package: $i ..."
+					sleep 0.3s
 				else
-					echo -e "Package $i [OK]"
-					sleep 0.2s
+					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+					if [ "" == "$PKG_OK" ]; then
+						# dpkg outputs it's own line that can't be supressed
+						echo -e "Package $i [Not Found]"
+					else
+						echo -e "Package $i [OK]"
+						sleep 0.2s
+						
+					fi
 				fi
 
 			done

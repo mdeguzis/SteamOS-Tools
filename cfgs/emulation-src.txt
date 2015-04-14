@@ -19,10 +19,10 @@ git-core
 curl
 g++
 pkg-config
-libglu1-mesa-dev
+!broken!libglu1-mesa-dev
 !broken!freeglut3-dev
 !broken!mesa-common-dev
-libsdl1.2-dev
-libsdl-image1.2-dev
-libsdl-mixer1.2-dev
-libsdl-ttf2.0-dev
+!broken!libsdl1.2-dev
+!broken!libsdl-image1.2-dev
+!broken!libsdl-mixer1.2-dev
+!broken!libsdl-ttf2.0-dev

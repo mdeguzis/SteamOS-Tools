@@ -387,7 +387,7 @@ install_software()
 				clear
 				# try Alchemist first
 				if [ "$apt_mode" != "remove" ]; then
-					echo -e "Attempting package installations from Alchemist...\n"
+					echo -e "Attempting automatic package installation / Alchemist repo...\n"
 					sleep 1s
 				else
 					echo -e "Removal requested (from Alchemist) for package: $i \n"

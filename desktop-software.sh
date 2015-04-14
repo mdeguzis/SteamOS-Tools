@@ -31,7 +31,8 @@
 # Set launch vars
 #################################
 options="$1"
-	
+build_opts="$3"
+
 # remove old custom file
 sudo rm -f "cfgs/custom-pkg.txt"
 
@@ -56,6 +57,13 @@ fi
 
 apt_mode="install"
 uninstall="no"
+
+#testing
+echo $1 $2 $3
+echo $options 
+echo $type
+echo $apt_mode
+echo $uninstall
 
 function getScriptAbsoluteDir() 
 {

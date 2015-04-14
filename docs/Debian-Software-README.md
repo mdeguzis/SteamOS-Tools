@@ -1,4 +1,5 @@
 ## About
+***
 This script aids in installing basic, extra, emulation,or custom 
 sets of Debian software to SteamOS.
 
@@ -19,9 +20,9 @@ sudo ./debian-software.sh [option] [type]
 **Options:** [install|uninstall|list]  
 **Type:** [basic|extra|emulation|<pkg_name>]
 
+***
 #### Options
 ***
-
 **install:**   
 installs software based on type desired  
 **uninstall:**   
@@ -31,9 +32,9 @@ lists softare pacakges in each install group
 **check:**     
 Run quick check on package(s)
 
+***
 #### Types
 ***
-
 **basic:**  
 installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
 **extra:**  
@@ -48,6 +49,7 @@ packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) D
 **`<pkg_name>:`**      
 installs package(s) specifified from Alchemist/Wheezy. You can speciy any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
 
+***
 #### Extra packages available for type parameter
 ***
 
@@ -60,6 +62,7 @@ Installing retroarch and the emulators takes a very long time!. Please be aware 
 I will do my best to reduce overhead on this installation piece as much as possible.
 
 ### Please note
+***
 
 Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository
  here

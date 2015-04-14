@@ -50,7 +50,7 @@ installs extra softare based on feedback and personal preference
 **emulation: [in-progress, debs need built]**        
 retroarch and associated emulators.      
 **emulation-src: [in-progress]**            
-Installs prerequisite packages for compiling emulation packages from source and then compiles emulators pacakages from source (will take some time to install).       
+Installs prerequisite packages for compiling emulation packages from source and then compiles emulators packages from source (will take some time to install).       
 **emulation-src-deps:**          
 packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
 

@@ -280,6 +280,7 @@ get_software_type()
 	if [[ "$type" == "plex" ]]; then
                 # install plex from helper script
                 install_plex
+                exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="cfgs/custom-pkg.txt"

@@ -343,7 +343,7 @@ install_software()
         # Update keys and system first, skip if removing software
         # or if we are just checking packages
         
-	if [[ "$options" != "uninstall" ]] && [[ "$options" != "check"]]; then
+	if [[ "$options" != "uninstall" ]] && [[ "$options" != "check" ]]; then
 	        echo -e "\nUpdating system, please wait...\n"
 		sleep 1s
 	        sudo apt-key update

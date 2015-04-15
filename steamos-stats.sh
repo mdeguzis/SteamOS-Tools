@@ -115,7 +115,7 @@ funct_pre_req_checks()
 	
 			if [ $? == '0' ]; then
 				echo "Successfully installed 'steamcmd'"
-				sleep 3s
+				sleep 2s
 			else
 				echo "Could not install 'steamcmd'. Exiting..."
 				sleep 2s
@@ -127,13 +127,13 @@ funct_pre_req_checks()
 		fi
 	
 		#####################################################"
-		# VaporOS bindings
+		# VaporOS bindings (controller shortcuts)
 		#####################################################"
 		# FPS + more binds from VaporOS 2
 		# For bindings, see: /etc/actkbd-steamos-controller.conf
-		if [[ ! -d "/usr/share/doc/vaporos-binds-xbox360" ]]; then
-			echo "VaporOS Xbox 360 bindings not found"
-			echo "Attempting to install this now."
+		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
+		if [ "" == "$PKG_OK" ]; then
+			echo -e "vaporos-binds-xbox360 not found. Setting up vaporos-binds-xbox360 now...\n"
 			sleep 1s
 			cd ~/Downloads
 			wget https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb
@@ -141,14 +141,14 @@ funct_pre_req_checks()
 			cd
 			if [ $? == '0' ]; then
 				echo "Successfully installed 'vaporos-binds-xbox360'"
-				sleep 3s
+				sleep 2s
 			else
 				echo "Could not install 'vaporos-binds-xbox360'. Exiting..."
-				sleep 3s
+				sleep 2s
 				exit 1
 			fi
 		else
-			echo "Found package 'vaporos-binds-xbox360' [Ok]"
+			echo "Checking for 'vaporos-binds-xbox360 [OK]'."
 			sleep 0.2s
 		fi
 	
@@ -190,10 +190,10 @@ funct_pre_req_checks()
 	
 			if [ $? == '0' ]; then
 				echo "Successfully installed 'voglperf'"
-				sleep 3s
+				sleep 2s
 			else
 				echo "Could not install 'voglperf'. Exiting..."
-				sleep 3s
+				sleep 2s
 				exit 1
 			fi
 		else
@@ -212,9 +212,8 @@ funct_pre_req_checks()
 		       || -z $(type -P free) ]]; then
 	
 			echo "1 or more core packages not found"
-			sleep 1s
 			echo -e "Attempting to install these now (Must have Debian Repos added)\n"
-			sleep 1s
+			sleep 2s
 			# Update system first
 			sudo apt-get update
 	
@@ -222,14 +221,14 @@ funct_pre_req_checks()
 			sudo apt-get -t wheezy install lm-sensors sysstat git -y
 			sudo apt-get install nvidia-smi openssh-server -y
 			# detect sensors automatically
-		yes | sudo sensors-detect
+			yes | sudo sensors-detect
 	
 			if [ $? == '0' ]; then
 				echo "Successfully installed pre-requisite packages."
-				sleep 3s
+				sleep 2s
 			else
 				echo "Could not install pre-requisite packages. Exiting..."
-				sleep 3s
+				sleep 2s
 				exit 1
 			fi
 		fi

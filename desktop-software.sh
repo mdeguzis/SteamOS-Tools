@@ -51,7 +51,7 @@ done
 
 # set custom flag for use later on if line count
 # of testing custom pkg test errorscustom-pkg.txt exceeds 1
-if [ -f "custom-pkg.txt ]; then
+if [ -f "custom-pkg.txt" ]; then
 	LINECOUNT=$(wc -l "custom-pkg.txt" | cut -f1 -d' ')
 else
 	# do nothing

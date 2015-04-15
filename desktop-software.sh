@@ -348,7 +348,7 @@ install_software()
 	
 		apt_mode="--dry-run install"
 		# cut down on output for now unless requested otherwise
-		filter_mode="\| grep -E 'Inst\|Conf'" 
+		filter_mode="| grep -E 'Inst|Conf'" 
 
 	elif [[ "$options" == "check" ]]; then
 	
@@ -416,7 +416,7 @@ install_software()
 					sleep 1s
 				fi
 				
-				sudo apt-get $cache_tmp $apt_mode {$i}{$filter_mode}
+				sudo apt-get $cache_tmp $apt_mode {$i} $filter_mode
 				# testing above command
 				exit
 				
@@ -455,7 +455,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy $apt_mode {$i} {$filter_mode}
+					sudo apt-get $cache_tmp -t wheezy $apt_mode {$i} $filter_mode
 				fi
 					
 				###########################################################

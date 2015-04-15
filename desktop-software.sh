@@ -423,7 +423,7 @@ install_software()
 				
 				# Packages that fail to install, use Wheezy repositories
 				# The conf string is a part of a dry run result
-				if [ $? == '0' ] || [ $? -n "conf" ]; then
+				if [[ $? == '0' ]]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
 						echo -e "\n==> Successfully installed software from Alchemist repo! / Nothing to Install\n"
@@ -454,7 +454,7 @@ install_software()
 				###########################################################
 				
 				# Packages that fail to install, use Wheezy-backports repository
-				if [ $? == '0' ] || [ $? -n "conf" ]; then
+				if [[] $? == '0' ]]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
 						echo -e "\n==> Successfully installed software from Wheezy repo! / Nothing to Install\n" 
@@ -489,7 +489,7 @@ install_software()
 				# Fail out if any pkg installs fail (-z = zero length)
 				###########################################################
 			
-				if [ $? == '0' ] || [ $? -z "conf" ]; then
+				if [[ $? == '0' ]]; then
 					
 					# attempt to resolve missing
 					sudo apt-get $cache_tmp $apt_mode -f

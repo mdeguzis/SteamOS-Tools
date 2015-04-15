@@ -8,7 +8,7 @@ apache2
 gimp
 libreoffice
 abiword
-freetype
+libfreetype6
 inkscape
 vim
 samba

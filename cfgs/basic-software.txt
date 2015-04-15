@@ -18,7 +18,7 @@ icedove
 vlc
 !broken!firefox
 gimp
-gnucash
+!broken!gnucash
 gnumeric
 k3b
 chromium

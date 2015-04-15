@@ -9,10 +9,6 @@
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
 #		some sort of additional value.
-#
-# Loop description:
-#		Checks all packages one by one if they are installed first.
-#		if any given pkg is not, it then checks for a prefix !broke! 
 #		in any dynamically called list (basic,extra,emulation, and so on)
 #		Pkg names marked !broke! are skipped and the rest are 
 #		attempted to be installed
@@ -199,7 +195,9 @@ show_help()
 	
 	clear
 	cat <<-EOF
+	######################################################
 	Warning: usage of this script is at your own risk!
+	######################################################
 	You have two options with this script:
 	
 	Basic
@@ -230,7 +228,7 @@ show_help()
 	EOF
 	
 	read -n 1
-	printf "Continuing...\n"
+	printf "\nContinuing...\n"
 	clear
 
 }
@@ -327,32 +325,37 @@ install_software()
 	# For a list of Debian software pacakges, please see:
 	# https://packages.debian.org/search?keywords=wheezy
 
-	clear
-	
 	###########################################################
 	# Pre-checks and setup
 	###########################################################
 	
 	# Set mode and proceed based on main() choice
         if [[ "$options" == "install" ]]; then
+                
                 apt_mode="install"
                 
 	elif [[ "$options" == "uninstall" ]]; then
+               
                 apt_mode="remove"
+                # only tee output
                 
 	elif [[ "$options" == "test" ]]; then
+		
 		apt_mode="--dry-run install"
+		# grap Inst and Conf lines only
 		
 	elif [[ "$options" == "check" ]]; then
+	
 		# do nothing
 		echo "" > /dev/null
+
         fi
         
         # Update keys and system first, skip if removing software
         # or if we are just checking packages
         
 	if [[ "$options" != "uninstall" && "$options" != "check" ]]; then
-	        echo -e "Updating system, please wait...\n"
+	        echo -e "\n==> Updating system, please wait...\n"
 		sleep 1s
 	        sudo apt-key update
 	        sudo apt-get update
@@ -365,7 +368,6 @@ install_software()
 	# create cache command
 	cache_tmp=$(echo "-o dir::cache::archives="/home/desktop/cache_temp"")
 	
-	clear
 	###########################################################
 	# Installation routine (alchmist/main)
 	###########################################################
@@ -374,7 +376,7 @@ install_software()
 	# as a last ditch effort
 	
 	# let user know checks in progress
-	echo -e "Validating packages already installed...\n"
+	echo -e "\n==> Validating packages already installed...\n"
 	sleep 2s
 	
 	for i in `cat $software_list`; do
@@ -397,13 +399,12 @@ install_software()
 		
 			if [ "" == "$PKG_OK" ] || [ "$apt_mode" == "remove" ]; then
 			
-				clear
 				# try Alchemist first
 				if [ "$apt_mode" != "remove" ]; then
-					echo -e "Attempting automatic package installation / Alchemist repo...\n"
+					echo -e "==> Attempting automatic package installation / Alchemist repo...\n"
 					sleep 1s
 				else
-					echo -e "Removal requested (from Alchemist) for package: $i \n"
+					echo -e "==> Removal requested (from Alchemist) for package: $i \n"
 					sleep 1s
 				fi
 				
@@ -425,26 +426,27 @@ install_software()
 				if [ $? == '0' ] || [ $? -n "conf" ]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install"
+						echo -e "\n==> Successfully installed software from Alchemist repo! / Nothing to Install\n"
 						sleep 1s
 					else
-						echo -e "\nRemoval succeeded for package: $i \n"
+						echo -e "\n==> Removal succeeded for package: $i \n"
 						sleep 1s
 					fi
 					
 					# head back to for loop
 					continue
 				else
-					clear
+					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "Could not install package $i from Alchemist repo, trying Wheezy...\n"
+						echo -e "==> Could not install package $i from Alchemist repo, trying Wheezy...\n"
 						sleep 2s
 					else
-						echo -e "Removal requested (from Wheezy) for package: $i \n"
+						echo -e "==> Removal requested (from Wheezy) for package: $i \n"
 						sleep 1s
 					fi
 					
 					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
+					exit
 				fi
 					
 				###########################################################
@@ -455,22 +457,22 @@ install_software()
 				if [ $? == '0' ] || [ $? -n "conf" ]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\nSuccessfully installed software from Wheezy repo! / Nothing to Install" 
+						echo -e "\n==> Successfully installed software from Wheezy repo! / Nothing to Install\n" 
 						sleep 2s
 					else
-						echo -e "\nRemoval succeeded for package: $i \n"
+						echo -e "\n==> Removal succeeded for package: $i \n"
 						sleep 1s
 					fi
 				
 					# head back to for loop
 					continue
 				else
-					clear
+					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "Could not install package $i from Wheezy repo, trying Wheezy-backports\n"
+						echo -e "==> Could not install package $i from Wheezy repo, trying Wheezy-backports\n"
 						sleep 2s
 					else
-						echo -e "Removal requested (from Wheezy-backports) for package: $i \n"
+						echo -e "==> Removal requested (from Wheezy-backports) for package: $i \n"
 						sleep 1s
 					fi
 					
@@ -488,8 +490,8 @@ install_software()
 				###########################################################
 			
 				if [ $? == '0' ] || [ $? -z "conf" ]; then
-					clear
-					echo -e "\nCould not install or remove ALL packages from Wheezy."
+					
+					echo -e "\n==> Could not install or remove ALL packages from Wheezy.\n"
 					echo -e "Please check log.txt in the directory you ran this from.\n"
 					echo -e "Failure occurred on package: ${i}\n"
 					pkg_fail="yes"
@@ -502,13 +504,13 @@ install_software()
 			else
 				# package was found
 				# check if we resumed pkg checks if loop was restarted
-				
+				echo -e "\n==> Re-validating packages already installed..."
 				if [[ "$firstcheck" == "yes"  ]]; then
 					
 					echo -e "$i package status: [OK]"
 					sleep 0.3s
 				else
-					clear
+					
 					echo -e "Restarting package checks...\n"
 					sleep 3s
 					echo -e "$i package status: [OK]"
@@ -548,7 +550,7 @@ install_software()
         elif [[ "$type" == "emulation-src" ]]; then
                 # call external build script
                 clear
-                echo -e "\nProceeding to install emulator pkgs from source..."
+                echo -e "\n==> Proceeding to install emulator pkgs from source..."
                 sleep 2s
                 efs_main
 	fi
@@ -559,14 +561,16 @@ show_warning()
 {
 
         clear
-        printf "\nWarning: usage of this script is at your own risk!\n\n"
+        printf "######################################################\n"
+        printf "Warning: usage of this script is at your own risk!\n"
+        printf "######################################################\n\n"
         printf "\nIn order to run this script, you MUST have had enabled the Debian \
 repositories! If you wish to exit, please press CTRL+C now..."
-        printf "\n\n type 'sudo ./desktop-software --help' for assistance.\n"
+        printf "\n\ntype './desktop-software --help' for assistance.\n"
         printf "See log.txt in this direcotry after any attempt for details.\n"
 
         read -n 1
-        printf "Continuing...\n"
+        printf "\nContinuing...\n"
         sleep 1s
 }
 
@@ -595,8 +599,11 @@ main()
                         cat $software_list | less
 			exit
 		elif [[ "$options" == "check" ]]; then
-                        # check all packages on request
+                        
                         clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
 			for i in `cat $software_list`; do
 			
 				if [[ "$i" =~ "!broken!" ]]; then
@@ -633,8 +640,11 @@ main()
 			exit
                 
                 elif [[ "$options" == "check" ]]; then
-                        # check all packages on request
+                        
                         clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
 			for i in `cat $software_list`; do
 			
 				if [[ "$i" =~ "!broken!" ]]; then
@@ -671,8 +681,11 @@ main()
 			exit
                 
                 elif [[ "$options" == "check" ]]; then
-                        # check all packages on request
+                        
                         clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
 			for i in `cat $software_list`; do
 			
 				if [[ "$i" =~ "!broken!" ]]; then
@@ -712,8 +725,11 @@ main()
 			exit
 	        
 	        elif [[ "$options" == "check" ]]; then
-                        # check all packages on request
-                        clear
+	        	
+	        	clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
 			for i in `cat $software_list`; do
 			
 				if [[ "$i" =~ "!broken!" ]]; then
@@ -750,8 +766,11 @@ main()
 			exit
 	        
 	        elif [[ "$options" == "check" ]]; then
-                        # check all packages on request
+
                         clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
 			for i in `cat $software_list`; do
 			
 				if [[ "$i" =~ "!broken!" ]]; then
@@ -792,7 +811,7 @@ main()
                 	
                 	clear
 			# loop over packages and check
-			echo -e "Validating packages already installed...\n"
+			echo -e "==> Validating packages already installed...\n"
 	
 			for i in `cat $software_list`; do
 				if [[ "$i" =~ "!broken!" ]]; then

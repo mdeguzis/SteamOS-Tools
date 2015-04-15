@@ -9,10 +9,6 @@
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
 #		some sort of additional value.
-#
-# Loop description:
-#		Checks all packages one by one if they are installed first.
-#		if any given pkg is not, it then checks for a prefix !broke! 
 #		in any dynamically called list (basic,extra,emulation, and so on)
 #		Pkg names marked !broke! are skipped and the rest are 
 #		attempted to be installed
@@ -230,7 +226,7 @@ show_help()
 	EOF
 	
 	read -n 1
-	printf "Continuing...\n"
+	printf "\nContinuing...\n"
 	clear
 
 }
@@ -378,7 +374,7 @@ install_software()
 	# as a last ditch effort
 	
 	# let user know checks in progress
-	echo -e "==> Validating packages already installed...\n"
+	echo -e "\n==> Validating packages already installed...\n"
 	sleep 2s
 	
 	for i in `cat $software_list`; do
@@ -506,7 +502,7 @@ install_software()
 			else
 				# package was found
 				# check if we resumed pkg checks if loop was restarted
-				echo -e "==> Re-validating packages already installed..."
+				echo -e "\n==> Re-validating packages already installed..."
 				if [[ "$firstcheck" == "yes"  ]]; then
 					
 					echo -e "$i package status: [OK]"

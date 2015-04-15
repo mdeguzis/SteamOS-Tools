@@ -285,8 +285,22 @@ funct_main_loop()
 	####################################################################
 	# Start Loop
 	####################################################################
-	while :
-	do
+	
+	# TESTING EXIT LOOP WITH ANY KEY
+	if [ -t 0 ]; then 
+		stty -echo -icanon -icrnl time 0 min 0; 
+	fi
+		
+	count=0
+	keypress=''
+
+	#while :
+	#do
+	while [ "x$keypress" = "x" ]; do
+		
+		let count+=1
+	  	echo -ne $count'\r'
+		keypress="`cat -v`"
 	
 		########################################
 		# Set VARS
@@ -411,6 +425,12 @@ funct_main_loop()
 		sleep 1s
 	
 	done
+	
+	if [ -t 0 ]; then stty sane; fi
+
+	echo "You pressed '$keypress' after $count loop iterations"
+	echo "Thanks for using this script."
+	exit 0
 }
 
 #####################################################

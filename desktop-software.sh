@@ -287,6 +287,14 @@ get_software_type()
                 # install plex from helper script
                 install_plex
                 exit
+        elif [[ "$type" == "firefox" ]]; then
+                # install plex from helper script
+                install_firefox
+                exit
+        elif [[ "$type" == "xbox-bindings" ]]; then
+                # install plex from helper script
+                install_x360_bindings
+                exit       
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"
@@ -587,6 +595,7 @@ main()
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emu-from-source"
 	import "$scriptdir/scriptmodules/install-plex"
+	import "$scriptdir/scriptmodules/extra-pkgs"
 
         # generate software listing based on type or skip to auto script
         get_software_type

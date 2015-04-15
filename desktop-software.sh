@@ -50,8 +50,13 @@ while [ "$2" != "" ]; do
 done
 
 # set custom flag for use later on if line count
-# of testing custom pkg test errorscustom-pkg.txt exceeds 1 
-LINECOUNT=$(wc -l "custom-pkg.txt" | cut -f1 -d' ')
+# of testing custom pkg test errorscustom-pkg.txt exceeds 1
+if [ -f "custom-pkg.txt ]; then
+	LINECOUNT=$(wc -l "custom-pkg.txt" | cut -f1 -d' ')
+else
+	# do nothing
+	echo "" > /dev/null 
+fi
 
 if [[ $LINECOUNT -gt 1 ]]; then
    echo "Custom PKG set detected!"

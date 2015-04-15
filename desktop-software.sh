@@ -841,6 +841,10 @@ main()
 		show_warning
 		install_software
 	fi
+	
+	
+	# cleanup package leftovers
+	sudo apt-get autoremove
 }
 
 #####################################################

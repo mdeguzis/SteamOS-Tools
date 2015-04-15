@@ -299,7 +299,7 @@ funct_main_loop()
 
 	while [ "x$keypress" = "x" ]; do
 		
-		let count+=0.2
+		let count+=1
 		# testing only
 	  	# echo -ne $count'\r'
 		keypress="`cat -v`"
@@ -424,7 +424,7 @@ funct_main_loop()
 		echo "$MEM_LOAD"
 	
 		# let stat's idle for a bit
-		sleep 1s
+		#sleep 1s
 	
 	done
 	

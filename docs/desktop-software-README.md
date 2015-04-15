@@ -58,7 +58,7 @@ packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) D
 installs package(s) specifified from Alchemist/Wheezy. You can speciy any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
 
 ***
-#### Extra packages available for type parameter
+#### Extra Types available
 ***
 - [Plex]: Kicks off an automated script to install plexhometheatre
 - [firefox]: sourced from Linux Mint LMDE 2

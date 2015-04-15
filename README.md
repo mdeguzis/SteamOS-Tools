@@ -19,4 +19,4 @@ Please submit any issues / suggestions to the issues tracker on the right hand s
 or any corrections (with justification) as a Pull Request.
 
 ## Troubleshooting
-Most scripts in the main folder of the repository log to `log.txt` after completion. Please check this file before submitting any issues or pull requests.
+Most scripts in the main folder of the repository write stdout and stderr to `log.txt` in the current directory after completion. Please check this file before submitting any issues or pull requests.

@@ -60,9 +60,9 @@ installs package(s) specifified from Alchemist/Wheezy. You can speciy any number
 ***
 #### Extra packages available for type parameter
 ***
-
-**plex:**  
-Kicks off an automated script to install plexhometheatre
+- [Plex]: Kicks off an automated script to install plexhometheatre
+- [firefox]: sourced from Linux Mint LMDE 2
+- [Xbox-Bindings]: the amazing set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
 
 ***
 ## Emulation type Warning

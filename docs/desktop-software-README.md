@@ -1,7 +1,7 @@
 ## About
 ***
 This script aids in installing basic, extra, emulation,or custom 
-sets of Debian software to SteamOS.
+sets of Debian software to SteamOS. 
 
 The package install loop checks all packages one by one if they are installed first. 
 If any given pkg is not, it then checks for a prefix !broke! in any dynamically called list
@@ -74,5 +74,4 @@ I will do my best to reduce overhead on this installation piece as much as possi
 ### Please note
 ***
 
-Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository
- here
+Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository here. `sudo` access is required for package installations. All code is available for review.

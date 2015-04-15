@@ -401,10 +401,10 @@ install_software()
 			
 				# try Alchemist first
 				if [ "$apt_mode" != "remove" ]; then
-					echo -e "==> Attempting automatic package installation / Alchemist repo...\n"
+					echo -e "\n==> Attempting automatic package installation / Alchemist repo...\n"
 					sleep 1s
 				else
-					echo -e "==> Removal requested (from Alchemist) for package: $i \n"
+					echo -e "\n==> Removal requested (from Alchemist) for package: $i \n"
 					sleep 1s
 				fi
 				
@@ -438,10 +438,10 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "==> Could not install package $i from Alchemist repo, trying Wheezy...\n"
+						echo -e "\n==> Could not install package $i from Alchemist repo, trying Wheezy...\n"
 						sleep 2s
 					else
-						echo -e "==> Removal requested (from Wheezy) for package: $i \n"
+						echo -e "\n==> Removal requested (from Wheezy) for package: $i \n"
 						sleep 1s
 					fi
 					
@@ -469,10 +469,10 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "==> Could not install package $i from Wheezy repo, trying Wheezy-backports\n"
+						echo -e "\n==> Could not install package $i from Wheezy repo, trying Wheezy-backports\n"
 						sleep 2s
 					else
-						echo -e "==> Removal requested (from Wheezy-backports) for package: $i \n"
+						echo -e "\n==> Removal requested (from Wheezy-backports) for package: $i \n"
 						sleep 1s
 					fi
 					

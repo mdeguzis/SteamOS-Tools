@@ -368,7 +368,7 @@ funct_main_loop()
 	
 		clear
 		echo "###########################################################"
-		echo "Monitoring system statistics...  |      CTRL+C to quit    #"
+		echo "Monitoring system statistics... |  Press any key to quit  #"
 		echo "###########################################################"
 		echo "Kernel version: $kernel_ver"
 		echo "Steam Client version: $steam_ver"
@@ -451,11 +451,21 @@ main ()
 # MAIN
 #####################################################
 
-main | tee log.txt
+main | tee log_temp.txt
 
 #####################################################
 # cleanup
 #####################################################
+
+# convert log file to Unix compatible ASCII
+strings log_temp.txt > log.txt
+
+# strings does catch all characters that I could 
+# work with, final cleanup
+sed -i 's|\[J||g' log.txt
+
+# remove file not needed anymore
+sudo rm -f "log_temp.txt"
 
 # kill any voglperf server
 pkill voglperfrun64

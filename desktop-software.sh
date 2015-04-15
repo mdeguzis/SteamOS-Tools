@@ -4,23 +4,23 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.7.1
+# Script Ver:	0.7.3
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
-#		some sort of additional value.
-#		in any dynamically called list (basic,extra,emulation, and so on)
-#		Pkg names marked !broke! are skipped and the rest are 
-#		attempted to be installed
+#		some sort of additional value.in any dynamically called 
+#		list (basic,extra,emulation, and so on).Pkg names marked
+#		!broke! are skipped and the rest are attempted to be installed
 #
 # Usage:	./desktop-software.sh [option] [type]
 # Options:	[install|uninstall|list|check]
 #		You may also specify [test] to do a dry run of the install
 # Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
-	
+#
+# Extra Types:	[plex]
+#
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
-#
 # -------------------------------------------------------------------------------
 
 #################################
@@ -195,9 +195,9 @@ show_help()
 	
 	clear
 	cat <<-EOF
-	######################################################
+	#####################################################
 	Warning: usage of this script is at your own risk!
-	######################################################
+	#####################################################
 	You have two options with this script:
 	
 	Basic
@@ -376,7 +376,7 @@ install_software()
 	# as a last ditch effort
 	
 	# let user know checks in progress
-	echo -e "\n==> Validating packages already installed...\n"
+	echo -e "\n==> Validating packages...\n"
 	sleep 2s
 	
 	for i in `cat $software_list`; do
@@ -401,10 +401,10 @@ install_software()
 			
 				# try Alchemist first
 				if [ "$apt_mode" != "remove" ]; then
-					echo -e "==> Attempting automatic package installation / Alchemist repo...\n"
+					echo -e "\n==> Attempting automatic package installation / Alchemist repo...\n"
 					sleep 1s
 				else
-					echo -e "==> Removal requested (from Alchemist) for package: $i \n"
+					echo -e "\n==> Removal requested (from Alchemist) for package: $i \n"
 					sleep 1s
 				fi
 				
@@ -438,10 +438,10 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "==> Could not install package $i from Alchemist repo, trying Wheezy...\n"
+						echo -e "\n==> Could not install package $i from Alchemist repo, trying Wheezy...\n"
 						sleep 2s
 					else
-						echo -e "==> Removal requested (from Wheezy) for package: $i \n"
+						echo -e "\n==> Removal requested (from Wheezy) for package: $i \n"
 						sleep 1s
 					fi
 					
@@ -469,10 +469,10 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "==> Could not install package $i from Wheezy repo, trying Wheezy-backports\n"
+						echo -e "\n==> Could not install package $i from Wheezy repo, trying Wheezy-backports\n"
 						sleep 2s
 					else
-						echo -e "==> Removal requested (from Wheezy-backports) for package: $i \n"
+						echo -e "\n==> Removal requested (from Wheezy-backports) for package: $i \n"
 						sleep 1s
 					fi
 					
@@ -491,6 +491,9 @@ install_software()
 			
 				if [ $? == '0' ] || [ $? -z "conf" ]; then
 					
+					# attempt to resolve missing
+					sudo apt-get $cache_tmp $apt_mode -f
+					
 					echo -e "\n==> Could not install or remove ALL packages from Wheezy.\n"
 					echo -e "Please check log.txt in the directory you ran this from.\n"
 					echo -e "Failure occurred on package: ${i}\n"
@@ -504,14 +507,14 @@ install_software()
 			else
 				# package was found
 				# check if we resumed pkg checks if loop was restarted
-				echo -e "\n==> Re-validating packages already installed..."
+				
 				if [[ "$firstcheck" == "yes"  ]]; then
 					
 					echo -e "$i package status: [OK]"
 					sleep 0.3s
 				else
 					
-					echo -e "Restarting package checks...\n"
+					echo -e "\n==> Restarting package checks...\n"
 					sleep 3s
 					echo -e "$i package status: [OK]"
 					sleep 0.3s
@@ -561,9 +564,9 @@ show_warning()
 {
 
         clear
-        printf "######################################################\n"
+        printf "#####################################################\n"
         printf "Warning: usage of this script is at your own risk!\n"
-        printf "######################################################\n\n"
+        printf "#####################################################\n\n"
         printf "\nIn order to run this script, you MUST have had enabled the Debian \
 repositories! If you wish to exit, please press CTRL+C now..."
         printf "\n\ntype './desktop-software --help' for assistance.\n"
@@ -790,7 +793,7 @@ main()
 					fi
 				fi
 			done
-			exit
+			
 		fi
         
         	show_warning

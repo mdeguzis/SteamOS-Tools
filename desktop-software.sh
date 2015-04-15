@@ -790,7 +790,7 @@ main()
 					fi
 				fi
 			done
-			exit
+			
 		fi
         
         	show_warning

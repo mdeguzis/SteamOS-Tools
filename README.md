@@ -7,7 +7,7 @@ Tools and scripts for SteamOS.
 * extra/ - various extra scripts
 * scriptmodules/ - plugable bash modules / routines for any of the below scripts
 * README.md - This file
-* add-debian-repos.sh - adds debian repositories for installing Debian Wheey software.
+* add-debian-repos.sh - adds debian repositories for installing Debian Wheezy software.
 * build-test-chroot - build a Debian or SteamOS jail for testing [in progress]
 * buld-test-docker - build a Debian or SteamOS package for testing [in-progress]
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages

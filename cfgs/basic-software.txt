@@ -14,7 +14,7 @@ vim
 !broken!samba
 libxine2
 perl
-thunderbird
+icedove
 vlc
 firefox
 gimp

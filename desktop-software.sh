@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # -------------------------------------------------------------------------------
 # Author: 	Michael DeGuzis
@@ -449,6 +449,7 @@ install_software()
 					fi
 					
 					sudo apt-get $cache_tmp -t wheezy $apt_mode ${i} ${filter}
+					exit
 				fi
 					
 				###########################################################

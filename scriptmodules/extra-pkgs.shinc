@@ -10,7 +10,7 @@
 # Usage:	      	n/a , module
 # ------------------------------------------------------------------------
 
-funct_install_x360_bindings()
+install_x360_bindings()
 {
 
 	#####################################################
@@ -41,7 +41,7 @@ funct_install_x360_bindings()
 		sleep 0.5s
 	fi
 
-funct_install_firefox()
+install_firefox()
 {
 	#####################################################
 	# Firefox (imported 20150415)

@@ -334,18 +334,27 @@ install_software()
 	###########################################################
 	
 	# Set mode and proceed based on main() choice
+	
         if [[ "$options" == "install" ]]; then
                 apt_mode="install"
+                filter_mode=""
                 
 	elif [[ "$options" == "uninstall" ]]; then
+	
                 apt_mode="remove"
+                filter_mode=""
                 
 	elif [[ "$options" == "test" ]]; then
+	
 		apt_mode="--dry-run install"
+		# cut down on output for now unless requested otherwise
+		filter_mode="| -E 'inst|conf' 
 		
 	elif [[ "$options" == "check" ]]; then
+	
 		# do nothing
 		echo "" > /dev/null
+		filter_mode=""
         fi
         
         # Update keys and system first, skip if removing software
@@ -407,7 +416,7 @@ install_software()
 					sleep 1s
 				fi
 				
-				sudo apt-get $cache_tmp $apt_mode $i
+				sudo apt-get $cache_tmp $apt_mode $i $filter_mode
 				
 				# REMOVED for now for further testing
 				# return to loop if user hit "n" to removal instead of pushing onward
@@ -444,7 +453,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
+					sudo apt-get $cache_tmp -t wheezy $apt_mode $i $filter_mode
 				fi
 					
 				###########################################################
@@ -474,7 +483,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
+					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i $filter_mode
 					
 					# clear the screen from the last install if it was. (looking into this)
 					# a broken pkg

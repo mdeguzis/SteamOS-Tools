@@ -20,7 +20,7 @@ You can run the utility using the follwing options:
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS-Tools
-sudo ./desktop-software.sh [option] [type]
+./desktop-software.sh [option] [type]
 ```
 **Options:** [install|uninstall|list|test|check]    
 **Type:** [basic|extra|emulation|<pkg_name>]  

@@ -26,7 +26,6 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 * buld-test-docker - build a Debian or SteamOS package for testing [in-progress]
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages. Please see the readme file in docs/ for the full listing of options.
 * steamos-stats.sh - displays useful stats while gaming over SSH from another device
-* vaporos-pkgs.sh - installs a few useful packages from various sources. Please see 
 
 ## Pull requests / suggestions
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page

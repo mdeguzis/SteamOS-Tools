@@ -20,7 +20,7 @@ vlc
 gimp
 !broken!gnucash
 gnumeric
-k3b
+brasero
 chromium
 kdelibs
 openjdk

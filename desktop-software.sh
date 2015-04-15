@@ -195,7 +195,9 @@ show_help()
 	
 	clear
 	cat <<-EOF
+	###########################################################
 	Warning: usage of this script is at your own risk!
+	###########################################################
 	You have two options with this script:
 	
 	Basic
@@ -559,7 +561,9 @@ show_warning()
 {
 
         clear
-        printf "Warning: usage of this script is at your own risk!\n\n"
+        printf "###########################################################"
+        printf "Warning: usage of this script is at your own risk!"
+        printf "###########################################################\n\n"
         printf "\nIn order to run this script, you MUST have had enabled the Debian \
 repositories! If you wish to exit, please press CTRL+C now..."
         printf "\n\ntype './desktop-software --help' for assistance.\n"

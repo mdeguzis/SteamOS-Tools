@@ -24,7 +24,7 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 * add-debian-repos.sh - adds debian repositories for installing Debian Wheezy software.
 * build-test-chroot - build a Debian or SteamOS jail for testing [in progress]
 * buld-test-docker - build a Debian or SteamOS package for testing [in-progress]
-* desktop-software.sh - script to install custom and bulk Debian desktop software packages
+* desktop-software.sh - script to install custom and bulk Debian desktop software packages. Please see the readme file in docs/ for the full listing of options.
 * steamos-stats.sh - displays useful stats while gaming over SSH from another device
 * vaporos-pkgs.sh - installs a few useful packages from various sources. Please see 
 

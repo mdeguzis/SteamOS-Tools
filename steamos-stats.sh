@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/scripts
 # Scipt Name:	steamos-stats.sh
-# Script Ver:	0.7.2
+# Script Ver:	0.7.3
 # Description:	Monitors various stats easily over an SSH connetion to
 #		gauge performance and temperature loads on steamos.
 # Usage:	./steamos-stats.sh -gpu [gfx driver] -appid [APPID]
@@ -424,7 +424,9 @@ funct_main_loop()
 		echo "$MEM_LOAD"
 	
 		# let stat's idle for a bit
-		#sleep 1s
+		# Removed for now, may not need this
+		# will evailuate if user feeback is given in response to fresh rate
+		# sleep 1s
 	
 	done
 	

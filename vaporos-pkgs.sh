@@ -14,15 +14,15 @@ rm -f "log_temp.txt"
 
 main()
 {
-	
+
 	#####################################################"
 	# VaporOS bindings (controller shortcuts)
 	#####################################################"
 	# FPS + more binds from VaporOS 2
 	# For bindings, see: /etc/actkbd-steamos-controller.conf
-	if [[ ! -d "/usr/share/doc/vaporos-binds-xbox360" ]]; then
-	  echo "VaporOS Xbox 360 bindings not found"
-		echo "Attempting to install this now."
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "vaporos-binds-xbox360 not found. Setting up vaporos-binds-xbox360 now...\n"
 		sleep 1s
 		cd ~/Downloads
 		wget https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb
@@ -37,7 +37,7 @@ main()
 			exit 1
 		fi
 	else
-		echo "Found package 'vaporos-binds-xbox360'."
+		echo "Checking for 'vaporos-binds-xbox360 [OK]'."
 		sleep 0.5s
 	fi
 

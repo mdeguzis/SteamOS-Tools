@@ -4,7 +4,7 @@ baobab
 gparted
 openssh-server
 git
-httpd
+apache2
 gimp
 libreoffice
 abiword

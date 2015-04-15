@@ -348,9 +348,7 @@ install_software()
 	
 		apt_mode="--dry-run install"
 		# cut down on output for now unless requested otherwise
-		filter_mode="| -E 'inst|conf'" 
-		echo ${filter_mode}
-		exit
+		filter_mode="| grep -E 'inst|conf'" 
 		
 	elif [[ "$options" == "check" ]]; then
 	
@@ -418,7 +416,7 @@ install_software()
 					sleep 1s
 				fi
 				
-				sudo apt-get $cache_tmp $apt_mode $i $filter_mode
+				sudo apt-get $cache_tmp $apt_mode {$i}{$filter_mode}
 				
 				# REMOVED for now for further testing
 				# return to loop if user hit "n" to removal instead of pushing onward
@@ -455,7 +453,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy $apt_mode $i $filter_mode
+					sudo apt-get $cache_tmp -t wheezy $apt_mode {$i}{$filter_mode}
 				fi
 					
 				###########################################################
@@ -485,7 +483,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i $filter_mode
+					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode {$i}{$filter_mode}
 					
 					# clear the screen from the last install if it was. (looking into this)
 					# a broken pkg

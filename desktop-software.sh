@@ -348,7 +348,10 @@ install_software()
 	
 		apt_mode="--dry-run install"
 		# cut down on output for now unless requested otherwise
-		filter_mode="| grep -E 'inst|conf'" 
+		filter_mode="| grep -E 'Inst|Conf'" 
+		echo $filter_mode
+		echo ${filter_mode}
+		exit
 		
 	elif [[ "$options" == "check" ]]; then
 	
@@ -416,7 +419,7 @@ install_software()
 					sleep 1s
 				fi
 				
-				sudo apt-get $cache_tmp $apt_mode {$i}{$filter_mode}
+				sudo apt-get $cache_tmp $apt_mode {$i} {$filter_mode}
 				
 				# REMOVED for now for further testing
 				# return to loop if user hit "n" to removal instead of pushing onward
@@ -453,7 +456,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy $apt_mode {$i}{$filter_mode}
+					sudo apt-get $cache_tmp -t wheezy $apt_mode {$i} {$filter_mode}
 				fi
 					
 				###########################################################

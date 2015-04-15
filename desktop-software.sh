@@ -359,7 +359,7 @@ install_software()
         # or if we are just checking packages
         
 	if [[ "$options" != "uninstall" && "$options" != "check" ]]; then
-	        echo -e "Updating system, please wait...\n"
+	        echo -e "==> Updating system, please wait...\n"
 		sleep 1s
 	        sudo apt-key update
 	        sudo apt-get update
@@ -381,7 +381,7 @@ install_software()
 	# as a last ditch effort
 	
 	# let user know checks in progress
-	echo -e "Validating packages already installed...\n"
+	echo -e "==> Validating packages already installed...\n"
 	sleep 2s
 	
 	for i in `cat $software_list`; do

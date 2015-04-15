@@ -12,7 +12,7 @@ libfreetype6
 inkscape
 vim
 samba
-xine-lib
+libxine2
 perl
 php
 Python

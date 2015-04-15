@@ -348,8 +348,8 @@ install_software()
 	
 		apt_mode="--dry-run install"
 		# cut down on output for now unless requested otherwise
-		# filter_mode="| grep -E 'Inst|Conf'" 
-		filter_mode="| xargs grep -iE 'Inst|Conf'"
+		filter_mode="| grep Inst"
+		# filter_mode="| xargs grep -iE 'Inst|Conf'"
 
 	elif [[ "$options" == "check" ]]; then
 	

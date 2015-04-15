@@ -344,7 +344,7 @@ install_software()
                 
 	elif [[ "$options" == "test" ]]; then
 		apt_mode="--dry-run install"
-		filter="| grep -E 'Inst|Conf' "
+		filter="| grep Conf"
 		
 	elif [[ "$options" == "check" ]]; then
 		# do nothing

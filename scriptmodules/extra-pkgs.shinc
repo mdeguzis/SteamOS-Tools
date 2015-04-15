@@ -3,17 +3,14 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/scripts
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.1.3
-# Description:		Installs useful pacakges otherwise not found in
-#			The Debian Wheezy repositories directly.
+# Script Ver:	  	0.2.3
+# Description:		Module for isntalling useful pacakges otherwise not 
+#			found in The Debian Wheezy repositories directly.
 #	
-# Usage:	      	./vaporos-pkgs.sh
+# Usage:	      	n/a , module
 # ------------------------------------------------------------------------
 
-# remove fold files
-sudo rm -f "log_temp.txt"
-
-main()
+funct_install_x360_bindings()
 {
 
 	#####################################################
@@ -43,7 +40,9 @@ main()
 		echo "Checking for 'vaporos-binds-xbox360 [OK]'."
 		sleep 0.5s
 	fi
-	
+
+funct_install_firefox()
+{
 	#####################################################
 	# Firefox (imported 20150415)
 	#####################################################
@@ -73,22 +72,3 @@ main()
 	fi
 
 }
-
-#####################################################
-# MAIN
-#####################################################
-main | tee log_temp.txt
-
-#####################################################
-# cleanup
-#####################################################
-
-# convert log file to Unix compatible ASCII
-strings log_temp.txt > log.txt
-
-# strings does catch all characters that I could 
-# work with, final cleanup
-sed -i 's|\[J||g' log.txt
-
-# remove file not needed anymore
-sudo rm -f "log_temp.txt"

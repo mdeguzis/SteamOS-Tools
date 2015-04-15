@@ -12,15 +12,17 @@
 
 install_x360_bindings()
 {
-
+	
+	echo ""
 	#####################################################
 	# VaporOS bindings (controller shortcuts)
 	#####################################################
 	# FPS + more binds from VaporOS 2
 	# For bindings, see: /etc/actkbd-steamos-controller.conf
+	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
 	if [ "" == "$PKG_OK" ]; then
-		echo -e "vaporos-binds-xbox360 not found. Setting up vaporos-binds-xbox360 now...\n"
+		echo -e "vaporos-binds-xbox360 not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb"
 		sudo dpkg -i "/tmp/vaporos-binds-xbox360_1.0_all.deb"
@@ -52,7 +54,7 @@ install_firefox()
 	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' firefox | grep "install ok installed")
 	if [ "" == "$PKG_OK" ]; then
-		echo -e "\nFirefox not found. Setting up firefox now...\n"
+		echo -e "\nFirefox not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/browsers/firefox_37.0~linuxmint1+betsy_amd64.deb"
 		sudo dpkg -i "/tmp/firefox_37.0~linuxmint1+betsy_amd64.deb"

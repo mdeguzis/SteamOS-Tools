@@ -335,25 +335,24 @@ install_software()
 	
 	# Set mode and proceed based on main() choice
         if [[ "$options" == "install" ]]; then
+                
                 apt_mode="install"
-                # only tee output
-                filter="tee"
                 
 	elif [[ "$options" == "uninstall" ]]; then
+               
                 apt_mode="remove"
                 # only tee output
-                filter="tee"
                 
 	elif [[ "$options" == "test" ]]; then
+		
 		apt_mode="--dry-run install"
 		# grap Inst and Conf lines only
-		filter="grep -E 'Inst|Conf'"
 		
 	elif [[ "$options" == "check" ]]; then
+	
 		# do nothing
 		echo "" > /dev/null
-		# only tee output
-		filter="tee"
+
         fi
         
         # Update keys and system first, skip if removing software
@@ -405,17 +404,16 @@ install_software()
 		
 			if [ "" == "$PKG_OK" ] || [ "$apt_mode" == "remove" ]; then
 			
-				clear
 				# try Alchemist first
 				if [ "$apt_mode" != "remove" ]; then
-					echo -e "Attempting automatic package installation / Alchemist repo...\n"
+					echo -e "==> Attempting automatic package installation / Alchemist repo...\n"
 					sleep 1s
 				else
-					echo -e "Removal requested (from Alchemist) for package: $i \n"
+					echo -e "==> Removal requested (from Alchemist) for package: $i \n"
 					sleep 1s
 				fi
 				
-				sudo apt-get $cache_tmp $apt_mode ${i} | ${filter}
+				sudo apt-get $cache_tmp $apt_mode $i
 				
 				# REMOVED for now for further testing
 				# return to loop if user hit "n" to removal instead of pushing onward
@@ -433,26 +431,26 @@ install_software()
 				if [ $? == '0' ] || [ $? -n "conf" ]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\nSuccessfully installed software from Alchemist repo! / Nothing to Install"
+						echo -e "\n==> Successfully installed software from Alchemist repo! / Nothing to Install"
 						sleep 1s
 					else
-						echo -e "\nRemoval succeeded for package: $i \n"
+						echo -e "\n==> Removal succeeded for package: $i \n"
 						sleep 1s
 					fi
 					
 					# head back to for loop
 					continue
 				else
-					clear
+					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "Could not install package $i from Alchemist repo, trying Wheezy...\n"
+						echo -e "==> Could not install package $i from Alchemist repo, trying Wheezy...\n"
 						sleep 2s
 					else
-						echo -e "Removal requested (from Wheezy) for package: $i \n"
+						echo -e "==> Removal requested (from Wheezy) for package: $i \n"
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy $apt_mode ${i} | ${filter}
+					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
 					exit
 				fi
 					
@@ -464,26 +462,26 @@ install_software()
 				if [ $? == '0' ] || [ $? -n "conf" ]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\nSuccessfully installed software from Wheezy repo! / Nothing to Install" 
+						echo -e "\n==> Successfully installed software from Wheezy repo! / Nothing to Install" 
 						sleep 2s
 					else
-						echo -e "\nRemoval succeeded for package: $i \n"
+						echo -e "\n==> Removal succeeded for package: $i \n"
 						sleep 1s
 					fi
 				
 					# head back to for loop
 					continue
 				else
-					clear
+					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "Could not install package $i from Wheezy repo, trying Wheezy-backports\n"
+						echo -e "==> Could not install package $i from Wheezy repo, trying Wheezy-backports\n"
 						sleep 2s
 					else
-						echo -e "Removal requested (from Wheezy-backports) for package: $i \n"
+						echo -e "==> Removal requested (from Wheezy-backports) for package: $i \n"
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode ${i} | ${filter}
+					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
 					
 					# clear the screen from the last install if it was. (looking into this)
 					# a broken pkg
@@ -497,8 +495,8 @@ install_software()
 				###########################################################
 			
 				if [ $? == '0' ] || [ $? -z "conf" ]; then
-					clear
-					echo -e "\nCould not install or remove ALL packages from Wheezy."
+					
+					echo -e "\n==> Could not install or remove ALL packages from Wheezy.\n"
 					echo -e "Please check log.txt in the directory you ran this from.\n"
 					echo -e "Failure occurred on package: ${i}\n"
 					pkg_fail="yes"
@@ -511,13 +509,13 @@ install_software()
 			else
 				# package was found
 				# check if we resumed pkg checks if loop was restarted
-				
+				echo -e "==> Re-validating packages already installed..."
 				if [[ "$firstcheck" == "yes"  ]]; then
 					
 					echo -e "$i package status: [OK]"
 					sleep 0.3s
 				else
-					clear
+					
 					echo -e "Restarting package checks...\n"
 					sleep 3s
 					echo -e "$i package status: [OK]"
@@ -557,7 +555,7 @@ install_software()
         elif [[ "$type" == "emulation-src" ]]; then
                 # call external build script
                 clear
-                echo -e "\nProceeding to install emulator pkgs from source..."
+                echo -e "\n==> Proceeding to install emulator pkgs from source..."
                 sleep 2s
                 efs_main
 	fi
@@ -571,7 +569,7 @@ show_warning()
         printf "\nWarning: usage of this script is at your own risk!\n\n"
         printf "\nIn order to run this script, you MUST have had enabled the Debian \
 repositories! If you wish to exit, please press CTRL+C now..."
-        printf "\n\n type 'sudo ./desktop-software --help' for assistance.\n"
+        printf "\n\ntype './desktop-software --help' for assistance.\n"
         printf "See log.txt in this direcotry after any attempt for details.\n"
 
         read -n 1
@@ -604,8 +602,11 @@ main()
                         cat $software_list | less
 			exit
 		elif [[ "$options" == "check" ]]; then
-                        # check all packages on request
+                        
                         clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
 			for i in `cat $software_list`; do
 			
 				if [[ "$i" =~ "!broken!" ]]; then
@@ -642,8 +643,11 @@ main()
 			exit
                 
                 elif [[ "$options" == "check" ]]; then
-                        # check all packages on request
+                        
                         clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
 			for i in `cat $software_list`; do
 			
 				if [[ "$i" =~ "!broken!" ]]; then
@@ -680,8 +684,11 @@ main()
 			exit
                 
                 elif [[ "$options" == "check" ]]; then
-                        # check all packages on request
+                        
                         clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
 			for i in `cat $software_list`; do
 			
 				if [[ "$i" =~ "!broken!" ]]; then
@@ -721,8 +728,11 @@ main()
 			exit
 	        
 	        elif [[ "$options" == "check" ]]; then
-                        # check all packages on request
-                        clear
+	        	
+	        	clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
 			for i in `cat $software_list`; do
 			
 				if [[ "$i" =~ "!broken!" ]]; then
@@ -759,8 +769,11 @@ main()
 			exit
 	        
 	        elif [[ "$options" == "check" ]]; then
-                        # check all packages on request
+
                         clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
 			for i in `cat $software_list`; do
 			
 				if [[ "$i" =~ "!broken!" ]]; then
@@ -801,7 +814,7 @@ main()
                 	
                 	clear
 			# loop over packages and check
-			echo -e "Validating packages already installed...\n"
+			echo -e "==> Validating packages already installed...\n"
 	
 			for i in `cat $software_list`; do
 				if [[ "$i" =~ "!broken!" ]]; then

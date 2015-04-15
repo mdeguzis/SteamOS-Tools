@@ -22,4 +22,4 @@ gimp
 gnumeric
 brasero
 chromium
-openjdk-7-jre-lib
+openjdk-7-jre

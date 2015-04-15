@@ -485,7 +485,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode {$i}{$filter_mode}
+					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode {$i} $filter_mode
 					
 					# clear the screen from the last install if it was. (looking into this)
 					# a broken pkg

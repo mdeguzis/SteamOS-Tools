@@ -418,8 +418,6 @@ install_software()
 				fi
 				
 				sudo apt-get $cache_tmp $apt_mode {$i} $filter_mode
-				# testing above command
-				exit
 				
 				# REMOVED for now for further testing
 				# return to loop if user hit "n" to removal instead of pushing onward
@@ -457,6 +455,7 @@ install_software()
 					fi
 					
 					sudo apt-get $cache_tmp -t wheezy $apt_mode {$i} $filter_mode
+					exit
 				fi
 					
 				###########################################################

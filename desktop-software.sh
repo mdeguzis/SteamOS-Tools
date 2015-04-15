@@ -625,6 +625,7 @@ main()
 					fi
 				fi
 			done
+			echo ""
 			exit
 		fi
 
@@ -666,6 +667,7 @@ main()
 					fi
 				fi
 			done
+			echo ""
 			exit
 		fi
                 
@@ -707,6 +709,7 @@ main()
 					fi
 				fi
 			done
+			echo ""
 			exit
 			
 		fi
@@ -751,6 +754,7 @@ main()
 					fi
 				fi
 			done
+			echo ""
 			exit
 		fi
         
@@ -793,6 +797,8 @@ main()
 					fi
 				fi
 			done
+			echo ""
+			exit
 			
 		fi
         
@@ -836,6 +842,7 @@ main()
 				fi
 
 			done
+			echo ""
 			exit
 		fi
 		show_warning

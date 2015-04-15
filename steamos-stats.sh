@@ -286,7 +286,9 @@ funct_main_loop()
 	# Start Loop
 	####################################################################
 	
-	# TESTING EXIT LOOP WITH ANY KEY
+	# Loop until a key is pressed [IN TESTING]
+	# Credit to http://stackoverflow.com/users/111461/sam-hocevar
+	# See: http://stackoverflow.com/a/5297780
 	if [ -t 0 ]; then 
 		stty -echo -icanon -icrnl time 0 min 0; 
 	fi
@@ -294,12 +296,11 @@ funct_main_loop()
 	count=0
 	keypress=''
 
-	#while :
-	#do
 	while [ "x$keypress" = "x" ]; do
 		
 		let count+=1
-	  	echo -ne $count'\r'
+		# testing only
+	  	# echo -ne $count'\r'
 		keypress="`cat -v`"
 	
 		########################################
@@ -426,10 +427,12 @@ funct_main_loop()
 	
 	done
 	
-	if [ -t 0 ]; then stty sane; fi
-
-	echo "You pressed '$keypress' after $count loop iterations"
-	echo "Thanks for using this script."
+	if [ -t 0 ]; then 
+		stty sane; 
+	fi
+	
+	# exit on keypress notification
+	echo "You pressed '$keypress' to end the script"
 	exit 0
 }
 

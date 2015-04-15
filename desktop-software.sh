@@ -17,7 +17,7 @@
 #		You may also specify [test] to do a dry run of the install
 # Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
 #
-# Extra Types:	[plex]
+# Extra Types:	see "extra-pkgs.md" in the docs/ folder of the root repository
 #
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.

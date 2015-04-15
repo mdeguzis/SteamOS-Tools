@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/scripts
 # Scipt Name:	steamos-stats.sh
-# Script Ver:	0.6.7
+# Script Ver:	0.7.3
 # Description:	Monitors various stats easily over an SSH connetion to
 #		gauge performance and temperature loads on steamos.
 # Usage:	./steamos-stats.sh -gpu [gfx driver] -appid [APPID]
@@ -15,6 +15,7 @@
 
 # remove old custom files
 rm -f "log.txt"
+rm -f "log_tmp.txt"
 
 funct_set_main_vars()
 {
@@ -115,7 +116,7 @@ funct_pre_req_checks()
 	
 			if [ $? == '0' ]; then
 				echo "Successfully installed 'steamcmd'"
-				sleep 3s
+				sleep 2s
 			else
 				echo "Could not install 'steamcmd'. Exiting..."
 				sleep 2s
@@ -127,13 +128,13 @@ funct_pre_req_checks()
 		fi
 	
 		#####################################################"
-		# VaporOS bindings
+		# VaporOS bindings (controller shortcuts)
 		#####################################################"
 		# FPS + more binds from VaporOS 2
 		# For bindings, see: /etc/actkbd-steamos-controller.conf
-		if [[ ! -d "/usr/share/doc/vaporos-binds-xbox360" ]]; then
-			echo "VaporOS Xbox 360 bindings not found"
-			echo "Attempting to install this now."
+		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
+		if [ "" == "$PKG_OK" ]; then
+			echo -e "vaporos-binds-xbox360 not found. Setting up vaporos-binds-xbox360 now...\n"
 			sleep 1s
 			cd ~/Downloads
 			wget https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb
@@ -141,14 +142,14 @@ funct_pre_req_checks()
 			cd
 			if [ $? == '0' ]; then
 				echo "Successfully installed 'vaporos-binds-xbox360'"
-				sleep 3s
+				sleep 2s
 			else
 				echo "Could not install 'vaporos-binds-xbox360'. Exiting..."
-				sleep 3s
+				sleep 2s
 				exit 1
 			fi
 		else
-			echo "Found package 'vaporos-binds-xbox360' [Ok]"
+			echo "Checking for 'vaporos-binds-xbox360 [OK]'."
 			sleep 0.2s
 		fi
 	
@@ -190,10 +191,10 @@ funct_pre_req_checks()
 	
 			if [ $? == '0' ]; then
 				echo "Successfully installed 'voglperf'"
-				sleep 3s
+				sleep 2s
 			else
 				echo "Could not install 'voglperf'. Exiting..."
-				sleep 3s
+				sleep 2s
 				exit 1
 			fi
 		else
@@ -212,9 +213,8 @@ funct_pre_req_checks()
 		       || -z $(type -P free) ]]; then
 	
 			echo "1 or more core packages not found"
-			sleep 1s
 			echo -e "Attempting to install these now (Must have Debian Repos added)\n"
-			sleep 1s
+			sleep 2s
 			# Update system first
 			sudo apt-get update
 	
@@ -222,14 +222,14 @@ funct_pre_req_checks()
 			sudo apt-get -t wheezy install lm-sensors sysstat git -y
 			sudo apt-get install nvidia-smi openssh-server -y
 			# detect sensors automatically
-		yes | sudo sensors-detect
+			yes | sudo sensors-detect
 	
 			if [ $? == '0' ]; then
 				echo "Successfully installed pre-requisite packages."
-				sleep 3s
+				sleep 2s
 			else
 				echo "Could not install pre-requisite packages. Exiting..."
-				sleep 3s
+				sleep 2s
 				exit 1
 			fi
 		fi
@@ -286,8 +286,23 @@ funct_main_loop()
 	####################################################################
 	# Start Loop
 	####################################################################
-	while :
-	do
+	
+	# Loop until a key is pressed [IN TESTING]
+	# Credit to http://stackoverflow.com/users/111461/sam-hocevar
+	# See: http://stackoverflow.com/a/5297780
+	if [ -t 0 ]; then 
+		stty -echo -icanon -icrnl time 0 min 0; 
+	fi
+		
+	count=0
+	keypress=''
+
+	while [ "x$keypress" = "x" ]; do
+		
+		let count+=1
+		# testing only
+	  	# echo -ne $count'\r'
+		keypress="`cat -v`"
 	
 		########################################
 		# Set VARS
@@ -354,7 +369,7 @@ funct_main_loop()
 	
 		clear
 		echo "###########################################################"
-		echo "Monitoring system statistics...  |      CTRL+C to quit    #"
+		echo "Monitoring system statistics... |  Press any key to quit  #"
 		echo "###########################################################"
 		echo "Kernel version: $kernel_ver"
 		echo "Steam Client version: $steam_ver"
@@ -409,9 +424,19 @@ funct_main_loop()
 		echo "$MEM_LOAD"
 	
 		# let stat's idle for a bit
-		sleep 1s
+		# Removed for now, may not need this
+		# will evailuate if user feeback is given in response to fresh rate
+		# sleep 1s
 	
 	done
+	
+	if [ -t 0 ]; then 
+		stty sane; 
+	fi
+	
+	# exit on keypress notification
+	echo "You pressed '$keypress' to end the script"
+	exit 0
 }
 
 #####################################################
@@ -429,11 +454,21 @@ main ()
 # MAIN
 #####################################################
 
-main | tee log.txt
+main | tee log_temp.txt
 
 #####################################################
 # cleanup
 #####################################################
+
+# convert log file to Unix compatible ASCII
+strings log_temp.txt > log.txt
+
+# strings does catch all characters that I could 
+# work with, final cleanup
+sed -i 's|\[J||g' log.txt
+
+# remove file not needed anymore
+rm -f "log_temp.txt"
 
 # kill any voglperf server
 pkill voglperfrun64

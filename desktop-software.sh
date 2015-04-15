@@ -407,7 +407,7 @@ install_software()
 					sleep 1s
 				fi
 				
-				sudo apt-get $cache_tmp $apt_mode $i
+				sudo apt-get $cache_tmp $apt_mode $i | grep -E 'Inst|conf'
 				
 				# REMOVED for now for further testing
 				# return to loop if user hit "n" to removal instead of pushing onward
@@ -444,7 +444,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
+					sudo apt-get $cache_tmp -t wheezy $apt_mode $i | grep -E 'Inst|conf'
 				fi
 					
 				###########################################################
@@ -474,7 +474,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
+					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i | grep -E 'Inst|conf'
 					
 					# clear the screen from the last install if it was. (looking into this)
 					# a broken pkg

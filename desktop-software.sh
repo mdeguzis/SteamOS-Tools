@@ -561,8 +561,8 @@ show_warning()
 {
 
         clear
-        printf "######################################################"
-        printf "Warning: usage of this script is at your own risk!"
+        printf "######################################################\n"
+        printf "Warning: usage of this script is at your own risk!\n"
         printf "######################################################\n\n"
         printf "\nIn order to run this script, you MUST have had enabled the Debian \
 repositories! If you wish to exit, please press CTRL+C now..."

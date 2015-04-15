@@ -213,7 +213,7 @@ show_help()
 	used first, followed by Debian Wheezy.
 	
 	For a complete list, type:
-	'sudo ./desktop-software list [type]'
+	'./desktop-software list [type]'
 	Options: [install|uninstall|list|check] 
 	Types: [basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
 	Extra types: [plex]

@@ -465,7 +465,7 @@ strings log_temp.txt > log.txt
 sed -i 's|\[J||g' log.txt
 
 # remove file not needed anymore
-sudo rm -f "log_temp.txt"
+rm -f "log_temp.txt"
 
 # kill any voglperf server
 pkill voglperfrun64

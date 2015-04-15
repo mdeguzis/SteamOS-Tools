@@ -299,7 +299,7 @@ funct_main_loop()
 
 	while [ "x$keypress" = "x" ]; do
 		
-		let count+=1
+		let count+=0.2
 		# testing only
 	  	# echo -ne $count'\r'
 		keypress="`cat -v`"

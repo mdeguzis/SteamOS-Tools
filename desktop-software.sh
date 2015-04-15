@@ -348,7 +348,7 @@ install_software()
 	
 		apt_mode="--dry-run install"
 		# cut down on output for now unless requested otherwise
-		filter_mode="| -E 'inst|conf' 
+		filter_mode="| -E 'inst|conf'" 
 		
 	elif [[ "$options" == "check" ]]; then
 	

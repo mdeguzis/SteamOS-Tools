@@ -1,6 +1,20 @@
 ## SteamOS-Tools
 Tools and scripts for SteamOS.
 
+## Usage
+
+To clone this repository to your local computer, you will need the `git` software package. After this is installed, clone SteamOS-Tools with:
+
+```
+git clone https://github.com/ProfessorKaos64/SteamOS-Tools
+```
+
+Please refer to the readme files in the docs/ folder in this reppository. Normal script execution, sans arguments, goes a little bit like:
+
+```
+./script-name.sh
+```
+
 ## Contents
 * cfgs/ - various configuration files, including package lists for Debian software installations
 * docs/ - readme files for each script

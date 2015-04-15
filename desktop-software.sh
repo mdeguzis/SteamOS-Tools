@@ -454,7 +454,7 @@ install_software()
 				###########################################################
 				
 				# Packages that fail to install, use Wheezy-backports repository
-				if [[] $? == '0' ]]; then
+				if [[ $? == '0' ]]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
 						echo -e "\n==> Successfully installed software from Wheezy repo! / Nothing to Install\n" 

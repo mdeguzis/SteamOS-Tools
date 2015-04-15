@@ -8,19 +8,19 @@
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
-#		some sort of additional value.
-#		in any dynamically called list (basic,extra,emulation, and so on)
-#		Pkg names marked !broke! are skipped and the rest are 
-#		attempted to be installed
+#		some sort of additional value.in any dynamically called 
+#		list (basic,extra,emulation, and so on).Pkg names marked
+#		!broke! are skipped and the rest are attempted to be installed
 #
 # Usage:	./desktop-software.sh [option] [type]
 # Options:	[install|uninstall|list|check]
 #		You may also specify [test] to do a dry run of the install
 # Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
-	
+#
+# Extra Types:	[plex]
+#
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
-#
 # -------------------------------------------------------------------------------
 
 #################################

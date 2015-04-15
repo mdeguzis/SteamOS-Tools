@@ -40,6 +40,7 @@ install_x360_bindings()
 		echo "Checking for 'vaporos-binds-xbox360 [OK]'."
 		sleep 0.5s
 	fi
+}
 
 install_firefox()
 {

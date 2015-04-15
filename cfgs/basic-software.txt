@@ -16,7 +16,7 @@ libxine2
 perl
 icedove
 vlc
-firefox
+!broken!firefox
 gimp
 gnucash
 gnumeric

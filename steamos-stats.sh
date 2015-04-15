@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/scripts
 # Scipt Name:	steamos-stats.sh
-# Script Ver:	0.6.7
+# Script Ver:	0.7.2
 # Description:	Monitors various stats easily over an SSH connetion to
 #		gauge performance and temperature loads on steamos.
 # Usage:	./steamos-stats.sh -gpu [gfx driver] -appid [APPID]
@@ -15,6 +15,7 @@
 
 # remove old custom files
 rm -f "log.txt"
+rm -f "log_tmp.txt"
 
 funct_set_main_vars()
 {

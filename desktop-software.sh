@@ -507,7 +507,7 @@ install_software()
 			else
 				# package was found
 				# check if we resumed pkg checks if loop was restarted
-				echo -e "==> Validating packages already installed..."
+				
 				if [[ "$firstcheck" == "yes"  ]]; then
 					
 					echo -e "$i package status: [OK]"

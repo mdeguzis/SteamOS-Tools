@@ -566,7 +566,7 @@ repositories! If you wish to exit, please press CTRL+C now..."
         printf "See log.txt in this direcotry after any attempt for details.\n"
 
         read -n 1
-        printf "Continuing...\n"
+        printf "\nContinuing...\n"
         sleep 1s
 }
 

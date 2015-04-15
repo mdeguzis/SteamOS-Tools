@@ -401,7 +401,7 @@ install_software()
 			
 				# try Alchemist first
 				if [ "$apt_mode" != "remove" ]; then
-					echo -e "\n==> Attempting automatic package installation / Alchemist repo...\n"
+					echo -e "\n==> Attempting $i automatic package installation / Alchemist repo...\n"
 					sleep 1s
 				else
 					echo -e "\n==> Removal requested (from Alchemist) for package: $i \n"
@@ -446,7 +446,7 @@ install_software()
 					fi
 					
 					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
-					exit
+					
 				fi
 					
 				###########################################################

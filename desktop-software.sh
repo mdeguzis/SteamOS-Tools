@@ -376,7 +376,7 @@ install_software()
 	# as a last ditch effort
 	
 	# let user know checks in progress
-	echo -e "\n==> Validating packages already installed...\n"
+	echo -e "\n==> Validating packages...\n"
 	sleep 2s
 	
 	for i in `cat $software_list`; do

@@ -491,6 +491,9 @@ install_software()
 			
 				if [ $? == '0' ] || [ $? -z "conf" ]; then
 					
+					# attempt to resolve missing
+					sudo apt-get $cache_tmp $apt_mode -f
+					
 					echo -e "\n==> Could not install or remove ALL packages from Wheezy.\n"
 					echo -e "Please check log.txt in the directory you ran this from.\n"
 					echo -e "Failure occurred on package: ${i}\n"

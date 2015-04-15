@@ -327,8 +327,6 @@ install_software()
 	# For a list of Debian software pacakges, please see:
 	# https://packages.debian.org/search?keywords=wheezy
 
-	clear
-	
 	###########################################################
 	# Pre-checks and setup
 	###########################################################
@@ -372,7 +370,6 @@ install_software()
 	# create cache command
 	cache_tmp=$(echo "-o dir::cache::archives="/home/desktop/cache_temp"")
 	
-	clear
 	###########################################################
 	# Installation routine (alchmist/main)
 	###########################################################
@@ -431,7 +428,7 @@ install_software()
 				if [ $? == '0' ] || [ $? -n "conf" ]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Successfully installed software from Alchemist repo! / Nothing to Install"
+						echo -e "\n==> Successfully installed software from Alchemist repo! / Nothing to Install\n"
 						sleep 1s
 					else
 						echo -e "\n==> Removal succeeded for package: $i \n"
@@ -462,7 +459,7 @@ install_software()
 				if [ $? == '0' ] || [ $? -n "conf" ]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Successfully installed software from Wheezy repo! / Nothing to Install" 
+						echo -e "\n==> Successfully installed software from Wheezy repo! / Nothing to Install\n" 
 						sleep 2s
 					else
 						echo -e "\n==> Removal succeeded for package: $i \n"

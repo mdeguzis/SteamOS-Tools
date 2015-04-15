@@ -455,11 +455,11 @@ install_software()
 					fi
 					
 					sudo apt-get $cache_tmp -t wheezy $apt_mode {$i} $filter_mode
-					exit
+
 				fi
 					
 				###########################################################
-				# Installation routine (wheezy-backports - 2nd stage)
+				# Installation routine (wheezy-backports - 3rd stage)
 				###########################################################
 				
 				# Packages that fail to install, use Wheezy-backports repository

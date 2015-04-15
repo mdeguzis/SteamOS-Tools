@@ -22,8 +22,4 @@ gimp
 gnumeric
 brasero
 chromium
-kdelibs
-openjdk
-mysql
-mariadb
-postgresql
+openjdk-7-jre-lib

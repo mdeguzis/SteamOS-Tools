@@ -411,7 +411,7 @@ install_software()
 					sleep 1s
 				fi
 				
-				sudo apt-get $cache_tmp $apt_mode $i $filter
+				sudo apt-get $cache_tmp $apt_mode ${i} ${filter}
 				
 				# REMOVED for now for further testing
 				# return to loop if user hit "n" to removal instead of pushing onward
@@ -448,7 +448,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy $apt_mode $i $filter
+					sudo apt-get $cache_tmp -t wheezy $apt_mode ${i} ${filter}
 				fi
 					
 				###########################################################
@@ -478,7 +478,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i $filter
+					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode ${i} ${filter}
 					
 					# clear the screen from the last install if it was. (looking into this)
 					# a broken pkg

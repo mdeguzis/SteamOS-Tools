@@ -14,8 +14,6 @@ vim
 !broken!samba
 libxine2
 perl
-php
-Python
 thunderbird
 vlc
 firefox

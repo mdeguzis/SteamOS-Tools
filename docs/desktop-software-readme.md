@@ -26,29 +26,29 @@ cd SteamOS-Tools
 ***
 #### Options
 ***
-`install:`   
+`install`     
 installs software based on type desired  
-`uninstall:`   
+`uninstall`     
 uninstalls software based on type installed already  
-`list:`   
+`list`     
 lists softare pacakges in each install group  
-`test:`     
+`test`       
 perform a dry-run installation of package(s)   
-`check:`     
+`check`         
 Run quick check on package(s)  
 
 ***
 #### Types
 ***
-`basic`  
+`basic`    
 installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
-`extra`
+`extra`  
 installs extra softare based on feedback and personal preference  
 `emulation` [in-progress, debs need built]         
 retroarch and associated emulators.        
-`emulation-src` [in-progress]                
-Installs prerequisite packages for compiling emulation packages from source and then compiles emulators packages from source (will take some time to install).         
-`emulation-src-deps`          
+`emulation-src`  
+[in-progress] Installs prerequisite packages for compiling emulation packages from source and then compiles emulators packages from source (will take some time to install).           
+`emulation-src-deps`            
 packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
 
 `<pkg_name>`   

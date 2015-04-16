@@ -20,11 +20,8 @@ You can run the utility using the follwing options:
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS-Tools
-./desktop-software.sh [option] [type]
+./desktop-software.sh [option] [type] [extended args]
 ```
-**Options:** [install|uninstall|list|test|check]    
-**Type:** [basic|extra|emulation|<pkg_name>]  
-**Type (extra):** [plex]   
 
 ***
 #### Options
@@ -63,6 +60,13 @@ installs package(s) specifified from Alchemist/Wheezy. You can speciy any number
 - **plex**: Kicks off an automated script to install plexhometheatre
 - **firefox**: sourced from Linux Mint LMDE 2
 - **xbox-bindings**: the amazing set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
+
+
+***
+#### Extended args
+***
+
+- **--autoconfirm**: auto accept "yes" to all package installations, removals, or otherwise. (not recommended)
 
 ***
 ## Emulation type Warning

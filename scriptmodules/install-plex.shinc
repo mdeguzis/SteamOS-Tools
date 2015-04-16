@@ -42,4 +42,7 @@ install_plex()
   # install plex
   sudo apt-get -t wheezy install plexhometheater -y
   
+  # cleanup any old packages
+  sudo apt-get autoremove
+  
 }

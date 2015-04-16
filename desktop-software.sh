@@ -24,7 +24,7 @@
 # Set launch vars
 #################################
 options="$1"
-
+type="$2"
 # extended optopms
 ext_opts="$3"
 

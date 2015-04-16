@@ -46,7 +46,7 @@ done
 
 # remove special last arguments from custom-pkg.txt
 if [[ "$lastarg" == "--autoconfirm" ]]; then
-	sed -i '|--autoconfirm|d' custom-pkg.txt
+	sed -i '/--autoconfirm/d' custom-pkg.txt
 fi
 
 # set custom flag for use later on if line count

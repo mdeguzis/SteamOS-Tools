@@ -27,8 +27,6 @@ options="$1"
 
 # used only for source package building in `emu-from-source`
 ext_opts="$3"
-# grab the last arguement and store for later
-lastarg=$(echo "${BASH_ARGV[0]}")
 
 # remove old custom files
 rm -f "custom-pkg.txt"
@@ -242,7 +240,7 @@ funct_pre_req_checks()
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "\npython-software-properties not found. Setting up python-software-properties.\n"
 		sleep 1s
-		if [[ "$lastarg" == "--autoconfirm" ]]; then
+		if [[ "$ext_ops" == "--autoconfirm" ]]; then
 			sudo apt-get -t wheezy install python-software-properties -y
 		else
 			sudo apt-get -t wheezy install python-software-properties

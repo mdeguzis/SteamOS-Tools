@@ -26,47 +26,47 @@ cd SteamOS-Tools
 ***
 #### Options
 ***
-**install:**   
+`install:`   
 installs software based on type desired  
-**uninstall:**   
+`uninstall:`   
 uninstalls software based on type installed already  
-**list:**   
+`list:`   
 lists softare pacakges in each install group  
-**test:**     
+`test:`     
 perform a dry-run installation of <pkg>  
-**check:**     
+`check:`     
 Run quick check on package(s)
 
 ***
 #### Types
 ***
-**basic:**  
+`basic:`  
 installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
-**extra:**  
+`extra:`  
 installs extra softare based on feedback and personal preference  
-**emulation: [in-progress, debs need built]**        
+`emulation`: [in-progress, debs need built]         
 retroarch and associated emulators.      
-**emulation-src: [in-progress]**            
+`emulation-src: [in-progress]`            
 Installs prerequisite packages for compiling emulation packages from source and then compiles emulators packages from source (will take some time to install).       
-**emulation-src-deps:**          
+`emulation-src-deps:`          
 packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
 
-**`<pkg_name>:`**      
+`<pkg_name>`   
 installs package(s) specifified from Alchemist/Wheezy. You can speciy any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
 
 ***
 #### Extra Types available
 ***
-- **plex**: Kicks off an automated script to install plexhometheatre
-- **firefox**: sourced from Linux Mint LMDE 2
-- **xbox-bindings**: the amazing set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
+- `plex`: Kicks off an automated script to install plexhometheatre
+- `firefox`: sourced from Linux Mint LMDE 2
+- `xbox-bindings`: the amazing set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
 
 
 ***
 #### Extended args
 ***
 
-- **--autoconfirm**: auto accept "yes" to all package installations, removals, or otherwise. (not recommended)
+- `--autoconfirm`: auto accept "yes" to all package installations, removals, or otherwise. (not recommended)
 
 ***
 ## Emulation type Warning

@@ -195,7 +195,7 @@ show_help()
 	clear
 	
 	echo -e "#####################################################"
-	echo -e "#Warning: usage of this script is at your own risk!"
+	echo -e "Warning: usage of this script is at your own risk!"
 	echo -e "######################################################\n"
 	
 	echo -e "Usage:		./desktop-software.sh [option] [type]"

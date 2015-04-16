@@ -26,7 +26,7 @@
 options="$1"
 
 # used only for source package building in `emu-from-source`
-build_opts="$3"
+ext_opts="$3"
 # grab the last arguement and store for later
 lastarg=$(echo "${BASH_ARGV[0]}")
 
@@ -43,11 +43,6 @@ while [[ "$2" != "" ]]; do
 	# Shift all the parameters down by one
 	shift
 done
-
-# remove special last arguments from custom-pkg.txt
-if [[ "$lastarg" == "--autoconfirm" ]]; then
-	sed -i '/--autoconfirm/d' custom-pkg.txt
-fi
 
 # set custom flag for use later on if line count
 # of testing custom pkg test errorscustom-pkg.txt exceeds 1
@@ -340,7 +335,7 @@ install_software()
 	###########################################################
 
 	# set last argument for use later
-        if [[ "$lastarg" == "--autoconfirm" ]]; then
+        if [[ "$ext_opts" == "--autoconfirm" ]]; then
         	apt_mode="install -y"
         fi
 	

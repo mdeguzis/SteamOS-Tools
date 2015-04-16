@@ -12,9 +12,12 @@
 #		list (basic,extra,emulation, and so on).Pkg names marked
 #		!broke! are skipped and the rest are attempted to be installed
 #
-# Usage:	./desktop-software.sh [option] [type] [extended options]
+# Usage:	./desktop-software.sh [option] [type]
+# Options:	[install|uninstall|list|check]
+#		You may also specify [test] to do a dry run of the install
+# Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
 #
-# For all info:	./desktop-software --help
+# Extra Types:	[plex]
 #
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
@@ -24,22 +27,16 @@
 # Set launch vars
 #################################
 options="$1"
-type="$2"
-# extended optopms
-ext_opts="$3"
 
-# grab last argument
-lastarg=$(echo "${BASH_ARGV[0]}")
+# used only for source package building in `emu-from-source`
+build_opts="$3"
 
 # remove old custom files
 rm -f "custom-pkg.txt"
 rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
-while [[ "$2" != "" ]] && \
-	# handle special args
-	[[ "$lastarg" != "--autoconfirm"  ]]; do
-	
+while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type="$2"
@@ -197,32 +194,38 @@ show_help()
 {
 	
 	clear
+	cat <<-EOF
+	#####################################################
+	Warning: usage of this script is at your own risk!
+	#####################################################
+	You have two options with this script:
 	
-	echo -e "#####################################################"
-	echo -e "Warning: usage of this script is at your own risk!"
-	echo -e "######################################################\n"
+	Basic
+	---------------------------------------------------------------
+	Standard Debian desktop application loadout.
+	Based on: http://distrowatch.com/table.php?distribution=debian
 	
-	echo -e "Usage:		./desktop-software.sh [option] [type]"
+	Extra
+	---------------------------------------------------------------
+	Extra software
+	Based on feeback and personal preference.
 	
-	echo -e "Options:	[install|uninstall|list|check]"
-	echo -e "Note:		You may also specify [test] to do a dry"
-	echo -e "		run of the install\n"
-			
-	echo -e "Types:		[basic|extra|emulation|emulation-src]"
-	echo -e "Types Cont.	[emulation-src-deps|<pkg_name>]\n"
+	<pkg_name> 
+	---------------------------------------------------------------
+	Any package you wish to specify yourself. Alchemist repos will be
+	used first, followed by Debian Wheezy.
 	
-	echo -e "Extra Types:	see 'extra-pkgs.md' in the docs/ folder"
-	echo -e	"               of the root repository\n"
+	For a complete list, type:
+	'./desktop-software list [type]'
+	Options: [install|uninstall|list|check] 
+	Types: [basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
+	Extra types: [plex]
 	
-	echo -e "<pkg_name>"
-	echo -e "------------------------------------------------------"
-	echo -e "Any package you wish to specify yourself. Alchemist"
-	echo -e "repos will be used first, followed by Debian Wheezy.\n"
-	
-	echo -e "For a complete list, type:"
-	echo -e "'./desktop-software list [type]'"
+	Install with:
+	'sudo ./desktop-software [option] [type]'
 
-	echo -e "Press enter to continue.."
+	Press enter to continue...
+	EOF
 	
 	read -n 1
 	printf "\nContinuing...\n"
@@ -244,13 +247,9 @@ funct_pre_req_checks()
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' python-software-properties | grep "install ok installed")
 	
 	if [ "" == "$PKG_OK" ]; then
-		echo -e "\npython-software-properties not found. Setting up python-software-properties.\n"
+		echo -e "python-software-properties not found. Setting up python-software-properties.\n"
 		sleep 1s
-		if [[ "$ext_ops" == "--autoconfirm" ]]; then
-			sudo apt-get -t wheezy install python-software-properties -y
-		else
-			sudo apt-get -t wheezy install python-software-properties
-		fi
+		sudo apt-get install -t wheezy python-software-properties
 	else
 		echo "Checking for python-software-properties: [Ok]"
 		sleep 0.2s
@@ -288,14 +287,6 @@ get_software_type()
                 # install plex from helper script
                 install_plex
                 exit
-        elif [[ "$type" == "firefox" ]]; then
-                # install plex from helper script
-                install_firefox
-                exit
-        elif [[ "$type" == "xbox-bindings" ]]; then
-                # install plex from helper script
-                install_x360_bindings
-                exit       
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"
@@ -337,25 +328,24 @@ install_software()
 	###########################################################
 	# Pre-checks and setup
 	###########################################################
-
-	# set last argument for use later
-        if [[ "$ext_opts" == "--autoconfirm" ]]; then
-        	ext_mode="-y"
-        fi
 	
 	# Set mode and proceed based on main() choice
         if [[ "$options" == "install" ]]; then
+                
                 apt_mode="install"
                 
 	elif [[ "$options" == "uninstall" ]]; then
+               
                 apt_mode="remove"
                 # only tee output
                 
 	elif [[ "$options" == "test" ]]; then
+		
 		apt_mode="--dry-run install"
 		# grap Inst and Conf lines only
 		
 	elif [[ "$options" == "check" ]]; then
+	
 		# do nothing
 		echo "" > /dev/null
 
@@ -418,7 +408,7 @@ install_software()
 					sleep 1s
 				fi
 				
-				sudo apt-get $cache_tmp $apt_mode $i $ext_mode
+				sudo apt-get $cache_tmp $apt_mode $i
 				
 				# REMOVED for now for further testing
 				# return to loop if user hit "n" to removal instead of pushing onward
@@ -455,7 +445,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy $apt_mode $i $ext_mode
+					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
 					
 				fi
 					
@@ -486,7 +476,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i $ext_mode
+					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
 					
 					# clear the screen from the last install if it was. (looking into this)
 					# a broken pkg
@@ -502,7 +492,7 @@ install_software()
 				if [[ $? == '0' ]]; then
 					
 					# attempt to resolve missing
-					sudo apt-get $cache_tmp $apt_mode -f $ext_mode
+					sudo apt-get $cache_tmp $apt_mode -f
 					
 					echo -e "\n==> Could not install or remove ALL packages from Wheezy.\n"
 					echo -e "Please check log.txt in the directory you ran this from.\n"
@@ -597,7 +587,6 @@ main()
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emu-from-source"
 	import "$scriptdir/scriptmodules/install-plex"
-	import "$scriptdir/scriptmodules/extra-pkgs"
 
         # generate software listing based on type or skip to auto script
         get_software_type
@@ -862,7 +851,7 @@ main()
 	
 	
 	# cleanup package leftovers
-	echo -e "\n==> Cleaning up unused packages\n"
+	echo -e "\n==> Cleaning up unused packages"
 	sudo apt-get autoremove
 }
 

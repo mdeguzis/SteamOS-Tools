@@ -33,7 +33,7 @@ uninstalls software based on type installed already
 `list:`   
 lists softare pacakges in each install group  
 `test:`     
-perform a dry-run installation of <pkg>  
+perform a dry-run installation of package(s) 
 `check:`     
 Run quick check on package(s)
 

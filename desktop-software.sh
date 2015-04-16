@@ -337,7 +337,7 @@ install_software()
 
 	# set last argument for use later
         if [[ "$ext_opts" == "--autoconfirm" ]]; then
-        	apt_mode="install -y"
+        	ext_mode="-y"
         fi
 	
 	# Set mode and proceed based on main() choice
@@ -415,7 +415,7 @@ install_software()
 					sleep 1s
 				fi
 				
-				sudo apt-get $cache_tmp $apt_mode $i
+				sudo apt-get $cache_tmp $apt_mode $i $ext_mode
 				
 				# REMOVED for now for further testing
 				# return to loop if user hit "n" to removal instead of pushing onward
@@ -452,7 +452,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
+					sudo apt-get $cache_tmp -t wheezy $apt_mode $i $ext_mode
 					
 				fi
 					
@@ -483,7 +483,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
+					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i $ext_mode
 					
 					# clear the screen from the last install if it was. (looking into this)
 					# a broken pkg
@@ -499,7 +499,7 @@ install_software()
 				if [[ $? == '0' ]]; then
 					
 					# attempt to resolve missing
-					sudo apt-get $cache_tmp $apt_mode -f
+					sudo apt-get $cache_tmp $apt_mode -f $ext_mode
 					
 					echo -e "\n==> Could not install or remove ALL packages from Wheezy.\n"
 					echo -e "Please check log.txt in the directory you ran this from.\n"

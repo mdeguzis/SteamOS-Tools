@@ -27,6 +27,11 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages. Please see the readme file in docs/ for the full listing of options.
 * steamos-stats.sh - displays useful stats while gaming over SSH from another device
 
+## Wiki
+- In time I hope to maintain a colletion of useful articles or links to Steamcommunity Guides that still work, currate them and other such things*.
+
+* TODO (hey I have other cool stuff, ya know, to do).
+
 ## Pull requests / suggestions
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page
 or any corrections (with justification) as a Pull Request.

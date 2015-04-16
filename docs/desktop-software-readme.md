@@ -51,7 +51,7 @@ retroarch and associated emulators.
 `emulation-src-deps`            
 packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).   
 `<pkg_name>`     
-installs package(s) specifified from Alchemist/Wheezy. You can speciy any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
+installs package(s) specifified from Alchemist/Wheezy. You can specify any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
 
 ***
 #### Extra Types available

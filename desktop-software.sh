@@ -193,31 +193,31 @@ show_help()
 {
 	
 	clear
-	cat <<-EOF
-	#####################################################
-	Warning: usage of this script is at your own risk!
-	#####################################################
 	
-	Usage:		./desktop-software.sh [option] [type]
+	echo -e "#####################################################"
+	echo -e "#Warning: usage of this script is at your own risk!"
+	echo -e "######################################################\n"
 	
-	Options:	[install|uninstall|list|check]
-			You may also specify [test] to do a dry run of the install
+	echo -e "Usage:		./desktop-software.sh [option] [type]"
+	
+	echo -e "Options:	[install|uninstall|list|check]"
+	echo -e "Note:		You may also specify [test] to do a dry run of the install\n"
 			
-	Types:		[basic|extra|emulation|emulation-src]
-			[emulation-src-deps|<pkg_name>]
+	echo -e "Types:		[basic|extra|emulation|emulation-src]"
+	echo -e "Types Cont.	[emulation-src-deps|<pkg_name>]\n"
 	
-	Extra Types:	see "extra-pkgs.md" in the docs/ folder of the root repository
+	echo -e "Extra Types:	see 'extra-pkgs.md' in the docs/ folder"
+	echo -e	"               of the root repository\n"
 	
-	<pkg_name> 
-	---------------------------------------------------------------
-	Any package you wish to specify yourself. Alchemist repos will be
-	used first, followed by Debian Wheezy.
+	echo -e "<pkg_name>"
+	echo -e "---------------------------------------------------------------"
+	echo -e "Any package you wish to specify yourself. Alchemist repos will be"
+	echo -e "used first, followed by Debian Wheezy.\n"
 	
-	For a complete list, type:
-	'./desktop-software list [type]'
+	echo -e "For a complete list, type:"
+	echo -e "'./desktop-software list [type]'"
 
-	Press enter to continue...
-	EOF
+	echo -e "Press enter to continue.."
 	
 	read -n 1
 	printf "\nContinuing...\n"

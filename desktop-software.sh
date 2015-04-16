@@ -247,7 +247,11 @@ funct_pre_req_checks()
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "python-software-properties not found. Setting up python-software-properties.\n"
 		sleep 1s
-		sudo apt-get $cache_tmp -t wheezy $apt_mode python-software-properties
+		if [[ "$lastarg" == "--autconfirm" ]]; then
+			sudo apt-get -t wheezy python-software-properties -y
+		else
+			sudo apt-get -t wheezy python-software-properties
+		fi
 	else
 		echo "Checking for python-software-properties: [Ok]"
 		sleep 0.2s

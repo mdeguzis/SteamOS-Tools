@@ -12,12 +12,9 @@
 #		list (basic,extra,emulation, and so on).Pkg names marked
 #		!broke! are skipped and the rest are attempted to be installed
 #
-# Usage:	./desktop-software.sh [option] [type]
-# Options:	[install|uninstall|list|check]
-#		You may also specify [test] to do a dry run of the install
-# Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
+# Usage:	./desktop-software.sh [option] [type] [extended options]
 #
-# Extra Types:	see "extra-pkgs.md" in the docs/ folder of the root repository
+# For all info:	./desktop-software --help
 #
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
@@ -30,6 +27,8 @@ options="$1"
 
 # used only for source package building in `emu-from-source`
 build_opts="$3"
+# grab the last arguement and store for later
+lastarg=$(echo "${BASH_ARGV[0]}")
 
 # remove old custom files
 rm -f "custom-pkg.txt"
@@ -198,17 +197,16 @@ show_help()
 	#####################################################
 	Warning: usage of this script is at your own risk!
 	#####################################################
-	You have two options with this script:
 	
-	Basic
-	---------------------------------------------------------------
-	Standard Debian desktop application loadout.
-	Based on: http://distrowatch.com/table.php?distribution=debian
+	Usage:		./desktop-software.sh [option] [type]
 	
-	Extra
-	---------------------------------------------------------------
-	Extra software
-	Based on feeback and personal preference.
+	Options:	[install|uninstall|list|check]
+			You may also specify [test] to do a dry run of the install
+			
+	Types:		[basic|extra|emulation|emulation-src]
+			[emulation-src-deps|<pkg_name>]
+	
+	Extra Types:	see "extra-pkgs.md" in the docs/ folder of the root repository
 	
 	<pkg_name> 
 	---------------------------------------------------------------
@@ -217,12 +215,6 @@ show_help()
 	
 	For a complete list, type:
 	'./desktop-software list [type]'
-	Options: [install|uninstall|list|check] 
-	Types: [basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
-	Extra types: [plex]
-	
-	Install with:
-	'sudo ./desktop-software [option] [type]'
 
 	Press enter to continue...
 	EOF
@@ -336,24 +328,25 @@ install_software()
 	###########################################################
 	# Pre-checks and setup
 	###########################################################
+
+	# set last argument for use later
+        if [[ "$lastarg" == "--autoconfirm" ]]; then
+        	apt_mode="install -y"
+        fi
 	
 	# Set mode and proceed based on main() choice
         if [[ "$options" == "install" ]]; then
-                
                 apt_mode="install"
                 
 	elif [[ "$options" == "uninstall" ]]; then
-               
                 apt_mode="remove"
                 # only tee output
                 
 	elif [[ "$options" == "test" ]]; then
-		
 		apt_mode="--dry-run install"
 		# grap Inst and Conf lines only
 		
 	elif [[ "$options" == "check" ]]; then
-	
 		# do nothing
 		echo "" > /dev/null
 
@@ -860,7 +853,7 @@ main()
 	
 	
 	# cleanup package leftovers
-	echo -e "\n==> Cleaning up unused packages"
+	echo -e "\n==> Cleaning up unused packages\n"
 	sudo apt-get autoremove
 }
 

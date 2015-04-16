@@ -435,7 +435,7 @@ funct_main_loop()
 	fi
 	
 	# exit on keypress notification
-	echo "You pressed '$keypress' to end the script"
+	echo -e "\nYou pressed '$keypress' to end the script\n"
 	exit 0
 }
 

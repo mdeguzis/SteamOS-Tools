@@ -201,7 +201,8 @@ show_help()
 	echo -e "Usage:		./desktop-software.sh [option] [type]"
 	
 	echo -e "Options:	[install|uninstall|list|check]"
-	echo -e "Note:		You may also specify [test] to do a dry run of the install\n"
+	echo -e "Note:		You may also specify [test] to do a dry"
+	echo -e "		run of the install\n"
 			
 	echo -e "Types:		[basic|extra|emulation|emulation-src]"
 	echo -e "Types Cont.	[emulation-src-deps|<pkg_name>]\n"
@@ -210,9 +211,9 @@ show_help()
 	echo -e	"               of the root repository\n"
 	
 	echo -e "<pkg_name>"
-	echo -e "---------------------------------------------------------------"
-	echo -e "Any package you wish to specify yourself. Alchemist repos will be"
-	echo -e "used first, followed by Debian Wheezy.\n"
+	echo -e "------------------------------------------------------"
+	echo -e "Any package you wish to specify yourself. Alchemist"
+	echo -e "repos will be used first, followed by Debian Wheezy.\n"
 	
 	echo -e "For a complete list, type:"
 	echo -e "'./desktop-software list [type]'"

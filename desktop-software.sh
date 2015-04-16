@@ -25,15 +25,18 @@
 #################################
 options="$1"
 
-# used only for source package building in `emu-from-source`
+# extended optopms
 ext_opts="$3"
+
+# grab last argument
+lastarg=$(echo "${BASH_ARGV[0]}")
 
 # remove old custom files
 rm -f "custom-pkg.txt"
 rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
-while [[ "$2" != "" ]]; do
+while [[ "$2" != "" ]] && [[ "$lastarg" != "--autoconfirm"  ]]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type="$2"

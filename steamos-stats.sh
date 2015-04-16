@@ -1,17 +1,17 @@
 #!/bin/bash
 
-# -----------------------------------------------------------------------
-# Author: 	Michael DeGuzis
-# Git:		https://github.com/ProfessorKaos64/scripts
-# Scipt Name:	steamos-stats.sh
-# Script Ver:	0.7.3
-# Description:	Monitors various stats easily over an SSH connetion to
-#		gauge performance and temperature loads on steamos.
-# Usage:	./steamos-stats.sh -gpu [gfx driver] -appid [APPID]
-# Warning:	You MUST have the Debian repos added properly for 
-#		Installation of the pre-requisite packages.
-# TODO:		Add AMD GPU support
-# ------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# Author: 		Michael DeGuzis
+# Git:			https://github.com/ProfessorKaos64/scripts
+# Scipt Name:		steamos-stats.sh
+# Script Ver:		0.7.3
+# Description:		Monitors various stats easily over an SSH connetion
+#			to gauge performance and temperature loads on steamos.
+# Usage:		./steamos-stats.sh -gpu [gfx driver] -appid [APPID]
+# Warning:		You MUST have the Debian repos added properly for 
+#			Installation of the pre-requisite packages.
+# TODO:			Add AMD GPU support
+# -----------------------------------------------------------------------------
 
 # remove old custom files
 rm -f "log.txt"

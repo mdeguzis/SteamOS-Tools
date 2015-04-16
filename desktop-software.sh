@@ -35,7 +35,7 @@ rm -f "custom-pkg.txt"
 rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
-while [[ "$2" != "" ]] || [[ "$lastarg" == "--autoconfirm" ]]; do
+while [[ "$2" != "" ]]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type="$2"
@@ -43,6 +43,11 @@ while [[ "$2" != "" ]] || [[ "$lastarg" == "--autoconfirm" ]]; do
 	# Shift all the parameters down by one
 	shift
 done
+
+# remove special last arguments from custom-pkg.txt
+if [[ "$lastarg" == "--autoconfirm" ]]; then
+	sed -i '|--autoconfirm|d' custom-pkg.txt
+fi
 
 # set custom flag for use later on if line count
 # of testing custom pkg test errorscustom-pkg.txt exceeds 1

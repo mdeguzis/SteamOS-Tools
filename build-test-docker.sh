@@ -27,15 +27,6 @@ scriptdir=$(pwd)
 opt1="$1"
 opt2="$2"
 
-funct_set_vars()
-{
-	reponame="docker"
-	prefer="/etc/apt/preferences.d/${reponame}.list"
-	export reponame
-	export prefer
-
-}
-
 show_help()
 {
 	
@@ -82,9 +73,9 @@ main()
 	# Create and add required text to preferences file
 	echo -e "\n==> Set /apt/preferences.d"
 	
-	sudo bash -c 'cat` <<-EOF >> $prefer
+	sudo bash -c 'cat <<-EOF >> "/etc/apt/prefences.d/docker.list"
 	deb http://get.docker.io/ubuntu docker main
-	EOF
+	EOF`
 	
 	cat "/etc/apt/preferences.d/${reponame}.list"
 	exit
@@ -127,9 +118,6 @@ main()
 	fi
   
 }
-
-# setup
-funct_set_vars
 
 # start main
 main

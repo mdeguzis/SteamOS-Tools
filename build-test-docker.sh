@@ -24,6 +24,12 @@
 opt1="$1"
 opt2="$2"
 
+funct_set_vars()
+{
+	reponame="docker"
+	prefer="/etc/apt/preferences.d/${reponame}.list"
+}
+
 show_help()
 {
 	
@@ -58,10 +64,24 @@ main()
 	echo -e "\n==> import verification keys\n"
 	sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
 	
-	echo -e "\n==> Obtaining Docker\n"
-	mkdir -p "/home/desktop/docker-testing"
-	cd "/home/desktop/docker-testing/"
-	curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh
+	# While this set of routines "works", it makes removal trickier later
+	# echo -e "\n==> Obtaining Docker\n"
+	# mkdir -p "/home/desktop/docker-testing"
+	# cd "/home/desktop/docker-testing/"
+	# curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh
+	
+	# Install via apt list
+	
+	# Create and add required text to preferences file
+	cat <<-EOF >> ${prefer}
+	deb http://get.docker.io/ubuntu docker main
+	EOF
+	
+	# update
+	sudo apt-get update
+	
+	# install
+	sudo apt-get install lxc-docker
 
 	echo -e "\n==> Post install commands\n"
 	# add user to dockter group

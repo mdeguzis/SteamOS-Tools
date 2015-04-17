@@ -16,7 +16,7 @@
 # Options:	[install|uninstall|list|check]
 #		You may also specify [test] to do a dry run of the install
 # Types:	[basic|extra|emulation|emulation-src|emulation-src-deps]
-#		[<pkg_name>|UPnP_DLNA]
+#		[<pkg_name>|upnp-dlna]
 #
 # Extra Types:	[plex]
 #
@@ -213,7 +213,7 @@ show_help()
 	
 	Options: 	[install|uninstall|list|check] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
-	Types Cont.	[<pkg_name>|UPnP_DLNA]
+	Types Cont.	[<pkg_name>|upnp-dlna]
 	Extra types: 	[plex]
 	
 	Install with:
@@ -273,10 +273,10 @@ get_software_type()
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/emulation-src-deps.txt"
-        elif [[ "$type" == "UPnP_DLNA" ]]; then
+        elif [[ "$type" == "upnp-dlna" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/UPnP_DLNA.txt "      
+                software_list="$scriptdir/cfgs/upnp-dlna.txt "      
         
 	####################################################
 	# popular software / custom specification
@@ -805,13 +805,13 @@ main()
         	show_warning
 		install_software
 		
-	elif [[ "$type" == "UPnP_DLNA" ]]; then
+	elif [[ "$type" == "upnp-dlna" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then
 	                uninstall="yes"
 	
 	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/UPnP_DLNA.txt
+	                # show listing from $scriptdir/cfgs/upnp-dlna.txt
 	                clear
 			cat $software_list | less
 			exit
@@ -850,7 +850,7 @@ main()
 		install_software
 		
 		# kick off helper script
-		install_mobile_UPnP_DLNA
+		install_mobile_upnp_dlna
 		
         elif [[ "$type" == "$type" ]]; then
         

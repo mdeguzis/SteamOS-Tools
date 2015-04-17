@@ -21,7 +21,7 @@
 # Possibly will be based of this Raspbian Pi method:
 # http://blog.scphillips.com/2013/01/using-a-raspberry-pi-with-android-phones-for-media-streaming/
 
-install_mobile_UPnP_DLNA()
+install_mobile_upnp_dlna()
 {
   
   clear

@@ -1,4 +1,5 @@
 git
+gconf2
 automake
 libglib2.0-dev
 gstreamer0.10-alsa

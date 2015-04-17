@@ -69,12 +69,18 @@ main()
 	#############################################################################
 
 	# Install via apt list
-	
+
 	# Create and add required text to preferences file
 	echo -e "\n==> Set /etc/sources.list.d/docker.list"
 	
-	sudo touch "/etc/sources.list.d/docker.list"
-	echo 'echo "deb http://get.docker.io/ubuntu docker main" >> "/etc/sources.list.d/docker.list"' | sudo -s
+	# remove list file if it exists, create if not
+	if [[ -f "/etc/apt/sources.list.d/docker.list" ]]; then
+		sudo rm -f "/etc/apt/sources.list.d/docker.list"
+	else
+		sudo touch "/etc/apt/sources.list.d/docker.list"
+	fi
+
+	echo 'echo "deb http://get.docker.io/ubuntu docker main" >> "/etc/apt/sources.list.d/docker.list"' | sudo -s
 	
 	echo -e "\n==> Updating system, please wait...\n"
 	sleep 2s

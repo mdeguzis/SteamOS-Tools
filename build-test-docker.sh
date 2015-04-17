@@ -86,7 +86,7 @@ main()
 	sudo apt-get install lxc-docker
 
 	echo -e "\n==> Post install commands\n"
-	# add user to dockter group
+	# add user to docker group
 	sudo usermod -aG docker desktop
 	
 	# start the docker daemon if it hasn't been already

@@ -83,6 +83,7 @@ main()
 	deb http://get.docker.io/ubuntu docker main
 	EOF'
 	
+	cat "/etc/apt/preferences.d/${reponame}.list"
 	exit
 	
 	echo -e "\n==> Updating system, please wait...\n"

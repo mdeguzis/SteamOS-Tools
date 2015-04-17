@@ -78,7 +78,7 @@ main()
   # confirm docker is installed
   install_check=$(which docker)
   
-  if [[ "$install_check" == "/usr/bin/docker"]]; then
+  if [[ "$install_check" == "/usr/bin/docker" ]]; then
     echo -e "\n Docker successfully installed!\n"
     sleep 2s
   else

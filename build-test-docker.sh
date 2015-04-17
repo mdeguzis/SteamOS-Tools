@@ -20,6 +20,9 @@
 
 # TODO: arguments specification, help file, install, removal, test options.
 
+# set dir we are
+scriptdir=$(pwd)
+
 # set args
 opt1="$1"
 opt2="$2"
@@ -82,6 +85,11 @@ main()
 	sudo bash -s 'cat <<-EOF >> $prefer
 	deb http://get.docker.io/ubuntu docker main
 	EOF'
+	
+	# return control back to user from list addition
+	# and return to directory
+	su - desktop
+	cd $scriptdir
 	
 	cat "/etc/apt/preferences.d/${reponame}.list"
 	exit

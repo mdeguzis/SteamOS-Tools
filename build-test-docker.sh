@@ -74,7 +74,7 @@ main()
 	# Install via apt list
 	
 	# Create and add required text to preferences file
-	cat <<-EOF >> ${prefer}
+	sudo -s cat <<-EOF >> ${prefer}
 	deb http://get.docker.io/ubuntu docker main
 	EOF
 	

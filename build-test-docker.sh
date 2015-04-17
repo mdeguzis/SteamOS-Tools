@@ -73,6 +73,7 @@ main()
 	# Create and add required text to preferences file
 	echo -e "\n==> Set /apt/preferences.d"
 	
+	sudo touch "/etc/apt/prefences.d/docker.list"
 	sudo bash -c `cat "deb http://get.docker.io/ubuntu docker main" > "/etc/apt/prefences.d/docker.list"`
 	
 	cat "/etc/apt/preferences.d/${reponame}.list"

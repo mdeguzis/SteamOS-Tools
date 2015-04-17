@@ -82,14 +82,9 @@ main()
 	# Create and add required text to preferences file
 	echo -e "\n==> Set /apt/preferences.d"
 	
-	sudo bash -s 'cat <<-EOF >> $prefer
+	sudo bash -c 'cat` <<-EOF >> $prefer
 	deb http://get.docker.io/ubuntu docker main
-	EOF'
-	
-	# return control back to user from list addition
-	# and return to directory
-	su - desktop
-	cd $scriptdir
+	EOF
 	
 	cat "/etc/apt/preferences.d/${reponame}.list"
 	exit

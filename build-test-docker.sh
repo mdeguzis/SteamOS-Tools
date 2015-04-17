@@ -26,8 +26,8 @@ opt2="$2"
 
 funct_set_vars()
 {
-	reponame="docker"
-	prefer="/etc/apt/preferences.d/${reponame}.list"
+	reponame=$(echo "docker")
+	prefer=$(echo "/etc/apt/preferences.d/${reponame}.list")
 
 }
 

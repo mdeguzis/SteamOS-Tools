@@ -24,74 +24,74 @@
 install_mobile_upnp_dlna()
 {
   
-  clear
-  echo -e "\n ==> Installing mobile streaming capability over UPnP and DLNA...\n"
-  sleep 2s
-  
-  # add GPG keys
-  
-  # update and pre-reqs
-  sudo apt-get update -y
-  
-  # NOTE: binary packages handled by desktop-software.sh
-  #       See: cfgs/UPnP_DLNA.txt for a complete listing
+	clear
+	echo -e "\n ==> Installing mobile streaming capability over UPnP and DLNA...\n"
+	sleep 2s
+	
+	# add GPG keys
+	
+	# update and pre-reqs
+	sudo apt-get update -y
+	
+	# NOTE: binary packages handled by desktop-software.sh
+	#       See: cfgs/UPnP_DLNA.txt for a complete listing
 	
 	###########################################
-  # gmrender-ressurect using git
+	# gmrender-ressurect using git
 	###########################################
   
-  if [[ "$pwd" != "/home/destkop" ]]; then
-    cd /home/desktop
-  fi
+	if [[ "$pwd" != "/home/destkop" ]]; then
+		cd /home/desktop
+	fi
+	
+	if [[ -d "/home/destkop/gmrender-resurrect" ]]; then
+		rm -rf "/home/desktop/gmrender-resurrect"
+	else
+		mkdir -p "/home/desktop/gmrender-resurrect"
+	fi
+	
+	# clone repo
+	git clone https://github.com/hzeller/gmrender-resurrect
+	cd "/home/desktop/gmrender-resurrect"
   
-  if [[ -d "/home/destkop/gmrender-resurrect" ]]; then
-    rm -rf "/home/desktop/gmrender-resurrect"
-  else
-    mkdir -p "/home/desktop/gmrender-resurrect"
-  fi
+	# build and install gmrender 
+	./autogen.sh
+	./configure LIBS=-lm
+	make
+	sudo make install
   
-  # clone repo
-  git clone https://github.com/hzeller/gmrender-resurrect
-  cd "/home/desktop/gmrender-resurrect"
-  
-  # build and install gmrender 
-  ./autogen.sh
-  ./configure LIBS=-lm
-  make
-  sudo make install
-  
-  # resolve outstanding deps
-  
-  # cleanup
+	# resolve outstanding deps
+	
+	# cleanup
 
-  ###########################################
-  # configuration
-  ###########################################
-  
-  echo -e "\n ==> Configuring...\n"
-  sleep 2s
-  
-  # make GStreamer use PulseAudio rather than directly using ALSA n
-  gconftool-2 -t string --set /system/gstreamer/0.10/default/audiosink pulsesink
-  gconftool-2 -t string --set /system/gstreamer/0.10/default/audiosrc pulsesrc
-  
-  # add gmediarender service
-  sudo cp -v "$scriptdir/cfgs/gmediarender.service" "/etc/init.d/gmediarenderer"
-  
-  # modify service file
-  sudo chmod 755 /etc/init.d/gmediarenderer
-  sudo update-rc.d gmediarenderer defaults
-  
-  ###########################################
-  # cleanup
-  ###########################################
-  
-  echo -e "\n ==> Package cleanup...\n"
-  
-  # cleanup any old packages
-  sudo apt-get autoremove
-  
-  # let user know they must reboot to complete install
-  echo -e "\nWARNING! - You MUST reboot to complete this installation. Please issue 'sudo reboot' when possible\n"
+	###########################################
+	# configuration
+	###########################################
+
+	echo -e "\n ==> Configuring...\n"
+	sleep 2s
+	
+	# make GStreamer use PulseAudio rather than directly using ALSA n
+	gconftool-2 -t string --set /system/gstreamer/0.10/default/audiosink pulsesink
+	gconftool-2 -t string --set /system/gstreamer/0.10/default/audiosrc pulsesrc
+	
+	# add gmediarender service
+	sudo cp -v "$scriptdir/cfgs/gmediarender.service" "/etc/init.d/gmediarenderer"
+	
+	# modify service file
+	sudo chmod 755 /etc/init.d/gmediarenderer
+	sudo update-rc.d gmediarenderer defaults
+	
+	###########################################
+	# cleanup
+	###########################################
+	
+	echo -e "\n ==> Package cleanup...\n"
+	
+	# cleanup any old packages
+	sudo apt-get autoremove
+	
+	# let user know they must reboot to complete install
+	echo -e "\nWARNING! - You MUST reboot to complete this installation. Please issue 'sudo reboot' when possible\n"
   
 }

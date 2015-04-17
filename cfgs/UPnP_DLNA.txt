@@ -1,0 +1,13 @@
+git
+automake
+libglib2.0-dev
+gstreamer0.10-alsa
+gstreamer0.10-tools
+libgstreamer0.10-dev
+libupnp-dev libxml2-dev
+gstreamer0.10-ffmpeg
+gstreamer0.10-plugins-base
+gstreamer0.10-plugins-good
+gstreamer0.10-fluendo-mp3
+gstreamer0.10-pulseaudio
+pulseaudio

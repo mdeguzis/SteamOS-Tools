@@ -76,7 +76,7 @@ main()
 	sudo touch "/etc/apt/preferences.d/docker.list"
 	sudo bash -c 'cat "deb http://get.docker.io/ubuntu docker main" > "/etc/apt/preferences.d/docker.list"'
 	
-	cat "/etc/apt/preferences.d/docker.list"
+	less "/etc/apt/preferences.d/docker.list"
 	exit
 	
 	echo -e "\n==> Updating system, please wait...\n"

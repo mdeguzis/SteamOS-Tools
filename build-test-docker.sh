@@ -33,7 +33,7 @@ funct_set_vars()
 show_help()
 {
 	
-	cat <<-EOF
+	sudo bash -c 'cat <<-EOF
 	#####################################################
 	Quick usage notes:
 	#####################################################
@@ -51,7 +51,7 @@ show_help()
 	
 	Enjoy!
 	
-	EOF
+	EOF'
 	
 	echo ""
 }

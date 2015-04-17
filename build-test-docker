@@ -5,19 +5,89 @@
 # Git:		      https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  build-test-chroot.sh
 # Script Ver:	  0.1.3
-# Description:	Builds a Debian Wheezy / SteamOS docker container for testing 
-#		            purposes
-#               See: https://wiki.debian.org/chroot
+# Description:	Builds a test Docker contain, image, or Dockerfile
+#               See: http://bit.ly/1GPw9lb (Digital Ocean Wiki)
 #
-# Usage:	      sudo ./build-test-docker.sh -type [debian|steamos]
-#		            sudo ./build-test-docker.sh --help for help
+# Usage:	      ./build-test-docker.sh [options] [application] 
+#		            ./build-test-docker.sh --help for help
+#
+# Docker usage: sudo docker [option] [command] [arguments]
 #
 # Warning:	    You MUST have the Debian repos added properly for
 #		            Installation of the pre-requisite packages.
 #
 # -------------------------------------------------------------------------------
 
-# IN PROGRESS
+# TODO: arguments specification, help file, install, removal, test options.
 
+# set args
+opt1="$1"
+opt2="$2"
 
-curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh
+show_help()
+{
+  
+  clear
+
+	cat <<-EOF
+	#####################################################
+	Quick usage notes:
+	#####################################################
+  
+  Docker is now installed. 
+  To ask docker for a list of all available commands:
+
+  `sudo docker`
+  
+  For a quick demo of how it works, take a look here:
+  https://www.docker.com/tryit/
+
+  The user guide can be found here:
+  https://docs.docker.com/userguide/
+  
+  Enjoy!
+  
+	EOF
+	
+	echo ""
+}
+
+main()
+{
+  
+  # import verification keys
+  sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
+  
+  # Obtaining Docker
+  mkdir -p /home/desktop/dockter-testing
+  cd docker-testing/
+  curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh
+  
+  # add user to dockter group
+  sudo usermod -aG docker desktop
+  
+  # start the docker daemon if it hasn't been already
+  if [[ -f /var/run/docker.pid ]]; then
+    # start daemon
+    sudo docker -d &
+  fi
+  
+  # show quick help
+  show_help
+  
+  # confirm docker is installed
+  install_check=$(which docker)
+  
+  if [[ "$install_check" == "/usr/bin/docker"]]; then
+    echo -e "\n Docker successfully installed!\n"
+    sleep 2s
+  else
+    echo -e "\n Docker failed to install!\n"
+    exit
+    sleep 2s
+  fi
+  
+}
+
+# start main
+main

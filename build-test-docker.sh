@@ -45,7 +45,7 @@ show_help()
 	Docker is now installed. 
 	To ask docker for a list of all available commands:
 	
-	"sudo docker"
+	sudo docker
 	
 	For a quick demo of how it works, take a look here:
 	https://www.docker.com/tryit/
@@ -78,7 +78,7 @@ main()
 	# Install via apt list
 	
 	# Create and add required text to preferences file
-	"echo -e "\n==> Set /apt/preferences.d"
+	echo -e "\n==> Set /apt/preferences.d"
 	
 	sudo bash -c 'cat <<-EOF >> ${prefer}
 	deb http://get.docker.io/ubuntu docker main

@@ -49,7 +49,9 @@ retroarch and associated emulators.
 `emulation-src`  
 [in-progress] Installs prerequisite packages for compiling emulation packages from source and then compiles emulators packages from source (will take some time to install).           
 `emulation-src-deps`            
-packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).   
+packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
+`upnp-dlna`            
+packages required UPnP / DLNA streaming from a mobile device [Experimental / in-progres]    
 `<pkg_name>`     
 installs package(s) specifified from Alchemist/Wheezy. You can specify any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
 

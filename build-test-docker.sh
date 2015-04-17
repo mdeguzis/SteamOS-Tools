@@ -117,5 +117,8 @@ main()
   
 }
 
+# setup
+funct_set_vars
+
 # start main
 main

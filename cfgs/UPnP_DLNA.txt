@@ -12,3 +12,4 @@ gstreamer0.10-plugins-good
 gstreamer0.10-fluendo-mp3
 gstreamer0.10-pulseaudio
 pulseaudio
+minidlna

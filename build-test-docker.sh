@@ -47,6 +47,7 @@ show_help()
 	https://docs.docker.com/userguide/
 	
 	Enjoy!
+	#####################################################
 	EOF
 
 }

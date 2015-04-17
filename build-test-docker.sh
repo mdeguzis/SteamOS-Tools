@@ -27,7 +27,7 @@ opt2="$2"
 show_help()
 {
 	
-	clear
+	echo -e "\n\n"
 	
 	cat <<-EOF
 	#####################################################
@@ -37,7 +37,7 @@ show_help()
 	Docker is now installed. 
 	To ask docker for a list of all available commands:
 	
-	`sudo docker`
+	"sudo docker"
 	
 	For a quick demo of how it works, take a look here:
 	https://www.docker.com/tryit/
@@ -58,7 +58,7 @@ main()
 	echo -e "\n==> import verification keys\n"
 	sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
 	
-	echo -e "\n==>Obtaining Docker\n"
+	echo -e "\n==> Obtaining Docker\n"
 	mkdir -p /home/desktop/dockter-testing
 	cd docker-testing/
 	curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh
@@ -69,7 +69,10 @@ main()
 	
 	# start the docker daemon if it hasn't been already
 	if [[ -f /var/run/docker.pid ]]; then
-		# start daemon
+		# don't start daemon
+		echo "" > /dev/null
+	else
+		# start docker daemon
 		sudo docker -d &
 	fi
 	

@@ -33,8 +33,6 @@ funct_set_vars()
 show_help()
 {
 	
-	echo -e "\n"
-	
 	cat <<-EOF
 	#####################################################
 	Quick usage notes:
@@ -109,10 +107,10 @@ main()
 	install_check=$(which docker)
 	
 	if [[ "$install_check" == "/usr/bin/docker" ]]; then
-		echo -e "\n Docker successfully installed!\n"
+		echo -e "Docker successfully installed!\n"
 		sleep 2s
 	else
-		echo -e "\n Docker failed to install!\n"
+		echo -e "Docker failed to install!\n"
 		exit
 		sleep 2s
 	fi

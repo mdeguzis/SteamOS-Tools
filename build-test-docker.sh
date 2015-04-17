@@ -74,7 +74,7 @@ main()
 	echo -e "\n==> Set /apt/preferences.d"
 	
 	sudo touch "/etc/apt/preferences.d/docker.list"
-	sudo bash -c 'cat "deb http://get.docker.io/ubuntu docker main" > "/etc/apt/preferences.d/docker.list"'
+	sudo bash -c cat '"deb http://get.docker.io/ubuntu docker main" > "/etc/apt/preferences.d/docker.list"'
 	
 	less "/etc/apt/preferences.d/docker.list"
 	exit

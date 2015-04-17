@@ -586,7 +586,7 @@ main()
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emu-from-source"
 	import "$scriptdir/scriptmodules/install-plex"
-	import "$scriptdir/scriptmodules/mobile-UPnP-DLNA"
+	import "$scriptdir/scriptmodules/mobile-upnp-dlna"
 
         # generate software listing based on type or skip to auto script
         get_software_type

@@ -33,7 +33,7 @@ funct_set_vars()
 show_help()
 {
 	
-	sudo bash -c 'cat <<-EOF
+	cat <<-EOF
 	#####################################################
 	Quick usage notes:
 	#####################################################
@@ -51,7 +51,7 @@ show_help()
 	
 	Enjoy!
 	
-	EOF'
+	EOF
 	
 	echo ""
 }
@@ -74,9 +74,11 @@ main()
 	# Install via apt list
 	
 	# Create and add required text to preferences file
-	sudo -s cat <<-EOF >> ${prefer}
+	sudo bash -c 'cat <<-EOF >> ${prefer}
 	deb http://get.docker.io/ubuntu docker main
-	EOF
+	EOF'
+	
+	exit
 	
 	echo -e "\n==> Updating system, please wait...\n"
 	sleep 2s

@@ -33,7 +33,7 @@ funct_set_vars()
 show_help()
 {
 	
-	echo -e "\n\n"
+	echo -e "\n"
 	
 	cat <<-EOF
 	#####################################################
@@ -64,12 +64,15 @@ main()
 	echo -e "\n==> import verification keys\n"
 	sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
 	
+	#############################################################################
 	# While this set of routines "works", it makes removal trickier later
+	#############################################################################
 	# echo -e "\n==> Obtaining Docker\n"
 	# mkdir -p "/home/desktop/docker-testing"
 	# cd "/home/desktop/docker-testing/"
 	# curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh
-	
+	#############################################################################
+
 	# Install via apt list
 	
 	# Create and add required text to preferences file
@@ -77,7 +80,8 @@ main()
 	deb http://get.docker.io/ubuntu docker main
 	EOF
 	
-	# update
+	echo -e "\n==> Updating system, please wait...\n"
+	sleep 2s
 	sudo apt-get update
 	
 	# install

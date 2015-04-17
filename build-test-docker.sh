@@ -61,9 +61,6 @@ main()
 	#############################################################################
 	# While this set of routines "works", it makes removal trickier later
 	#############################################################################
-	# echo -e "\n==> Obtaining Docker\n"
-	# mkdir -p "/home/desktop/docker-testing"
-	# cd "/home/desktop/docker-testing/"
 	# curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh
 	#############################################################################
 

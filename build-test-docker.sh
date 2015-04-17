@@ -28,10 +28,7 @@ funct_set_vars()
 {
 	reponame="docker"
 	prefer="/etc/apt/preferences.d/${reponame}.list"
-	
-	echo ${reponame}
-	echo ${prefer}
-	exit
+
 }
 
 show_help()

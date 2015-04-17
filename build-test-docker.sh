@@ -59,8 +59,8 @@ main()
 	sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
 	
 	echo -e "\n==> Obtaining Docker\n"
-	mkdir -p /home/desktop/docker-testing
-	cd docker-testing/
+	mkdir -p "/home/desktop/docker-testing"
+	cd "/home/desktop/docker-testing/?
 	curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh
 
 	echo -e "\n==> Post install commands\n"

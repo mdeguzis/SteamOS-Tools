@@ -15,8 +15,8 @@
 # Usage:	./desktop-software.sh [option] [type]
 # Options:	[install|uninstall|list|check]
 #		You may also specify [test] to do a dry run of the install
-# Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
-#		[UPnP_DLNA]
+# Types:	[basic|extra|emulation|emulation-src|emulation-src-deps]
+#		[<pkg_name>|UPnP_DLNA]
 #
 # Extra Types:	[plex]
 #

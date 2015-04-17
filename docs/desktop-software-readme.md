@@ -58,11 +58,11 @@ installs package(s) specifified from Alchemist/Wheezy. You can specify any numbe
 ***
 #### Extra Types available
 ***
-`plex`    
-Kicks off an automated script to install plexhometheatre
-`firefox`    
-sourced from Linux Mint LMDE 2
-`xbox-bindings`    
+`plex`      
+Kicks off an automated script to install plexhometheatre  
+`firefox`      
+sourced from Linux Mint LMDE 2  
+`xbox-bindings`      
 the amazing set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
 
 ***

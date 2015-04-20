@@ -44,13 +44,12 @@ main()
 		# call pairing function to set current bluetooth MAC to Player 1
 		n="1"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 1 Controller complete" 5 43 
+		dialog --msgbox "Pairing of Player 1 controller complete" 5 43 
 		
 		# call pairing function to set current bluetooth MAC to Player 2
 		n="2"
 		ps3_pair_blu
-		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 1 Controller complete" 5 43 
+		dialog --msgbox "Pairing of Player 2 controller complete" 5 43 
 		;;
 	
 		3)
@@ -58,26 +57,39 @@ main()
 		# call pairing function to set current bluetooth MAC to Player 1
 		n="1"
 		ps3_pair_blu
-		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 1 Controller complete" 5 43 
+		dialog --msgbox "Pairing of Player 1 controller complete" 5 43 
 	
 		# call pairing function to set current bluetooth MAC to Player 2
 		n="2"
 		ps3_pair_blu
-		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 1 Controller complete" 5 43 
+		dialog --msgbox "Pairing of Player 2 controller complete" 5 43 
 	
 		# call pairing function to set current bluetooth MAC to Player 3
 		n="3"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 1 Controller complete" 5 43 
+		dialog --msgbox "Pairing of Player 3 controller complete" 5 43 
 		;;
 	
 		4)
 		# call pairing function to set current bluetooth MAC to Player 1
 		n="1"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 1 Controller complete" 5 43 
+		dialog --msgbox "Pairing of Player 1 controller complete" 5 43 
+		
+		# call pairing function to set current bluetooth MAC to Player 1
+		n="2"
+		ps3_pair_blu
+		dialog --msgbox "Pairing of Player 2 controller complete" 5 43 
+		
+		# call pairing function to set current bluetooth MAC to Player 1
+		n="3"
+		ps3_pair_blu
+		dialog --msgbox "Pairing of Player 3 controller complete" 5 43 
+		
+		# call pairing function to set current bluetooth MAC to Player 1
+		n="1"
+		ps3_pair_blu
+		dialog --msgbox "Pairing of Player 4 controller complete" 5 43 
 	
 		esac
 		

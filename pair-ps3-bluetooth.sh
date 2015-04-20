@@ -3,7 +3,17 @@
 install_prereqs()
 {
 	
+	# Adding repositories
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' dialog | grep "install ok installed")
 	
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "dialog not found. Installing now...\n"
+		sleep 1s
+		sudo apt-get install -t wheezy dialog
+	else
+		echo "Checking for dialog: [Ok]"
+		sleep 0.2s
+	fi
 	
 }
 

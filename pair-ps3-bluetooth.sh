@@ -1,5 +1,8 @@
 #!/bin/bash
 
+main()
+{
+  
 # Download qtsixad or sixpair:
 # This is a rebuilt deb package from the ppa:falk-t-j/qtsixa PPA
 wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/<PS3 PKG LINK HERE>"
@@ -19,3 +22,8 @@ echo -e "\nDisconnect the PS3 Controller from USB and press the PS button now"
 echo -e "The controller should connect and light up player 1 at a minimum."
 echo -e "\nUsing the left stick and pressing the left and right stick navigate to the Settings Screen 
 and edit the layout of the controller."
+
+}
+
+# start main
+main

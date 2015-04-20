@@ -1,5 +1,12 @@
 #!/bin/bash
 
+install_prereqs()
+{
+	
+	
+	
+}
+
 main()
 {
   
@@ -127,6 +134,11 @@ ps3_pair_blu()
 	and edit the layout of the controller."
 
 }
+
+##################################################### 
+# Install prereqs 
+##################################################### 
+install_prereqs
 
 ##################################################### 
 # MAIN 

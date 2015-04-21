@@ -16,13 +16,21 @@
 
 install_prereqs()
 {
+
+	echo -e "\n==> Downloading sixpair...\n"
+	sleep 1s
+	# These are Debian rebuilt packages from the ppa:falk-t-j/qtsixa PPA
+	wget -P /tmp "http://www.pabr.org/sixlinux/sixpair.c"
 	
+	echo -e "==> Building and installing sixpair...\n"
+	gcc -o sixpair /tmp/sixpair.c -lusb
+	exit
 	# Fetch what has to be fetches from Wheezy
-	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
-	checkinstall libusb-dev joystick pyqt4-dev-tools dialog
+#	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
+#	checkinstall libusb-dev joystick pyqt4-dev-tools dialog
 	
 	# Fetch what has to be fetches from Alchemist
-	sudo apt-get install libbluetooth-dev
+#	sudo apt-get install libbluetooth-dev
 	
 }
 
@@ -30,17 +38,17 @@ main()
 {
   
   	clear
-	echo -e "==> Downloading sixad...\n"
+	echo -e "\n==> Downloading sixad...\n"
 	sleep 1s
 	# These are Debian rebuilt packages from the ppa:falk-t-j/qtsixa PPA
 	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/utilities/sixpair.5.1+git20140130-SteamOS_amd64.deb"
 	
 	# Install
-	echo -e "==> Installing sixad...\n"
+	echo -e "\n==> Installing sixad...\n"
 	sleep 1s
 	sudo dpkg -i "/tmp/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
 	
-	echo -e "==> Downloading sixpair...\n"
+	echo -e "\n==> Downloading sixpair...\n"
 	sleep 1s
 	# These are Debian rebuilt packages from the ppa:falk-t-j/qtsixa PPA
 	wget -P /tmp "http://www.pabr.org/sixlinux/sixpair.c"

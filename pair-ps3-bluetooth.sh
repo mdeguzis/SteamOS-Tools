@@ -4,7 +4,7 @@ install_prereqs()
 {
 	
 	clear
-	# Adding repositories
+	# Dialog required for prompts
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' dialog | grep "install ok installed")
 	
 	if [ "" == "$PKG_OK" ]; then

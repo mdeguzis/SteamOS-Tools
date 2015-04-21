@@ -138,7 +138,7 @@ ps3_pair_blu()
 	# Inform player 1 controller user to disconnect USB cord
 	dialog --msgbox "Please disconnect the USB cable and press the PS Button now. The appropriate \
 	LED for player $n should be lit. If it is not, please hold in the PS button to turn it off, then \
-	back on.\n\nThere is no need to reboot to fully enable the controller(s)" 12 60
+	back on.\n\nThere is no need to reboot to fully enable the controller\(s\)" 12 60
 	
 	echo -e "\nUsing the left stick and pressing the left and right stick navigate to the Settings Screen 
 	and edit the layout of the controller."

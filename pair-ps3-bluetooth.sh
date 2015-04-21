@@ -190,7 +190,8 @@ ps3_pair_blu()
 	echo -e "######################################################\n"
 
 	echo -e "Using the left stick and pressing the left and right stick navigate to the Settings Screen \
-and edit the layout of the controller.\n"
+and edit the layout of the controller. By default, the left joystick should work and left-stick click will be\
+assigned to OK/Confirm\n"
 
 }
 

@@ -128,7 +128,7 @@ ps3_pair_blu()
 	3)Bluetooth dongle\n\nAdditional controllers can be added in the settings menu"  12 40
 	
 	# Grab player 1 controller MAC Address of wired device
-	echo -e "\nSetting up Playstation 3 Sixaxis (bluetooth) [Player $n]"\n"
+	echo -e "\nSetting up Playstation 3 Sixaxis (bluetooth) [Player $n]\n"
 	sleep 2s
 	
 	# Pair controller with logging

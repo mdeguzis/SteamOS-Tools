@@ -1,15 +1,28 @@
 #!/bin/bash
 # See: https://github.com/rdepena/node-dualshock-controller/wiki/Pairing-The-Dual-shock-3-controller-in-Linux-(Ubuntu-Debian)
 
+# -------------------------------------------------------------------------------
+# Author: 	Michael DeGuzis
+# Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	pair-ps3-bluetooth.sh
+# Script Ver:	0.2.3
+# Description:	Pairs PS3 Bluetooth controller on SteamOS
+# Usage:	./pair-ps3-bluetooth.sh
+#
+# Warning:	You MUST have the Debian repos added properly for
+#		Installation of the pre-requisite packages.
+# -------------------------------------------------------------------------------
+
+
 install_prereqs()
 {
 	
 	# Try Pre-req batch
-	#sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
-	#checkinstall libusb-dev joystick pyqt4-dev-tools
+	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
+	checkinstall libusb-dev joystick pyqt4-dev-tools
 	
 	# Fetch what can be used from alchemist
-	sudo apt-get install libbluetooth-dev
+	# sudo apt-get install libbluetooth-dev
 	
 	exit
 	clear

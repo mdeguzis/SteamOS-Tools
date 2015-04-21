@@ -46,7 +46,7 @@ main()
 	echo -e "\n==> Downloading sixad...\n"
 	sleep 1s
 	# These are Debian rebuilt packages from the ppa:falk-t-j/qtsixa PPA
-	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/utilities/sixpair.5.1+git20140130-SteamOS_amd64.deb"
+	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/utilities/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
 	
 	# Install
 	echo -e "==> Installing sixad...\n"

@@ -3,6 +3,7 @@
 install_prereqs()
 {
 	
+	clear
 	# Adding repositories
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' dialog | grep "install ok installed")
 	

@@ -17,20 +17,12 @@
 install_prereqs()
 {
 
-	echo -e "\n==> Downloading sixpair...\n"
-	sleep 1s
-	# These are Debian rebuilt packages from the ppa:falk-t-j/qtsixa PPA
-	wget -P /tmp "http://www.pabr.org/sixlinux/sixpair.c"
-	
-	echo -e "==> Building and installing sixpair...\n"
-	gcc -o sixpair /tmp/sixpair.c -lusb
-	exit
 	# Fetch what has to be fetches from Wheezy
-#	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
-#	checkinstall libusb-dev joystick pyqt4-dev-tools dialog
+	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
+	checkinstall libusb-dev joystick pyqt4-dev-tools dialog
 	
 	# Fetch what has to be fetches from Alchemist
-#	sudo apt-get install libbluetooth-dev
+	sudo apt-get install libbluetooth-dev
 	
 }
 
@@ -54,7 +46,7 @@ main()
 	wget -P /tmp "http://www.pabr.org/sixlinux/sixpair.c"
 	
 	echo -e "==> Building and installing sixpair...\n"
-	gcc -o sixpair /tmp/sixpair.c -lusb
+	gcc -o "/tmp/sixpair" "/tmp/sixpair.c" -lusb
 	
 	# move sixpair binary to /usr/bin to execuate in any location in $PATH
 	sudo mv "/tmp/sixpair" "/usr/bin"

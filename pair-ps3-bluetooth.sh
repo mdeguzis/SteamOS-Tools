@@ -17,50 +17,12 @@
 install_prereqs()
 {
 	
-	# Try Pre-req batch
-	sudo apt-get install bluez-utils bluez-compat bluez-hcidump \
-	checkinstall libusb-dev joystick pyqt4-dev-tools
+	# Fetch what has to be fetches from Wheezy
+	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
+	checkinstall libusb-dev joystick pyqt4-dev-tools dialog
 	
-	# Fetch what can be used from alchemist
-	# sudo apt-get install libbluetooth-dev
-	
-	exit
-	clear
-	# Dialog required for prompts
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' dialog | grep "install ok installed")
-	
-	if [ "" == "$PKG_OK" ]; then
-		echo -e "dialog not found. Installing now...\n"
-		sleep 1s
-		sudo apt-get install -t wheezy dialog
-	else
-		echo "Checking for dialog: [Ok]"
-		sleep 0.2s
-	fi
-	
-	# libusb-dev required for pairing
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' libusb-dev | grep "install ok installed")
-	
-	if [ "" == "$PKG_OK" ]; then
-		echo -e "libusb-dev not found. Installing now...\n"
-		sleep 1s
-		sudo apt-get install libusb-dev
-	else
-		echo "Checking for libusb-dev: [Ok]"
-		sleep 0.2s
-	fi
-	
-	# libusb-0.1-4 required for pairing
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' libusb-0.1-4 | grep "install ok installed")
-	
-	if [ "" == "$PKG_OK" ]; then
-		echo -e "libusb-0.1-4 not found. Installing now...\n"
-		sleep 1s
-		sudo apt-get install libusb-0.1-4
-	else
-		echo "Checking for libusb-0.1-4: [Ok]"
-		sleep 0.2s
-	fi	
+	# Fetch what has to be fetches from Alchemist
+	sudo apt-get install libbluetooth-dev
 	
 }
 

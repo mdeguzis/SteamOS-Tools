@@ -16,24 +16,56 @@ install_prereqs()
 		sleep 0.2s
 	fi
 	
+	# libusb-dev required for pairing
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' libusb-dev | grep "install ok installed")
+	
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "libusb-dev not found. Installing now...\n"
+		sleep 1s
+		sudo apt-get install libusb-dev
+	else
+		echo "Checking for libusb-dev: [Ok]"
+		sleep 0.2s
+	fi
+	
+	# libusb-0.1-4 required for pairing
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' libusb-0.1-4 | grep "install ok installed")
+	
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "libusb-0.1-4 not found. Installing now...\n"
+		sleep 1s
+		sudo apt-get install libusb-0.1-4
+	else
+		echo "Checking for libusb-0.1-4: [Ok]"
+		sleep 0.2s
+	fi	
+	
 }
 
 main()
 {
   
-	# Download qtsixad and sixad
+  	clear
+	echo -e "==> Downloading qtsixad and sixad...\n"
+	sleep 1s
 	# These are Debian rebuilt packages from the ppa:falk-t-j/qtsixa PPA
 	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/utilities/qtsixa_1.5.1+git20140130-SteamOS_amd64.deb"
 	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/utilities/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
 	
-	# Install and start sixad daemon.
+	# Install
+	echo -e "==> Installing qtsixad and sixad...\n"
+	sleep 1s
 	sudo dpkg -i "/tmp/qtsixa_1.5.1+git20140130-SteamOS_amd64.deb"
 	sudo dpkg -i "/tmp/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
 	
+	#configure and start sixad daemon.
+	echo -e "==> Configuring qtsixad and sixad...\n"
+	sleep 2s
 	sudo update-rc.d sixad defaults
 	sudo /etc/init.d/sixad enable
 	sudo /etc/init.d/sixad start
   
+  	echo -e "==> Configuring controller(s)...\n"
 	cmd=(dialog --backtitle "LibreGeek.org RetroRig Installer" \
 		    --menu "Please select the number of PS3 controllers" 16 47 16)
 	options=(1 "1"
@@ -160,7 +192,10 @@ main | tee log_temp.txt
 # cleanup 
 ##################################################### 
 
- 922
+# cleanup deb packages
+rm -f "/tmp/qtsixa_1.5.1+git20140130-SteamOS_amd64.deb"
+rm -f "/tmp/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
+	
 # convert log file to Unix compatible ASCII 
 strings log_temp.txt > log.txt 
 

@@ -44,23 +44,26 @@ Run quick check on package(s)
 installs basic Debian software (based on [Distrowatch](http://distrowatch.com/table.php?distribution=debian))  
 `extra`  
 installs extra softare based on feedback and personal preference  
-`emulation` [in-progress, debs need built]         
-retroarch and associated emulators.        
+`emulation`          
+retroarch and associated emulators. [in-progress, debs need built]         
 `emulation-src`  
-[in-progress] Installs prerequisite packages for compiling emulation packages from source and then compiles emulators packages from source (will take some time to install).           
+Installs prerequisite packages for compiling emulation packages from source and then compiles emulators packages from source (will take some time to install). [in-progress]           
 `emulation-src-deps`            
-packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).   
+Packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
+`upnp-dlna`            
+packages required UPnP / DLNA streaming from a mobile device [experimental / in-progres]    
 `<pkg_name>`     
 installs package(s) specifified from Alchemist/Wheezy. You can specify any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
-
+`games`       
+Installs a some open source games that you can then add to Steam via the "add non-Steam game" option.  
 ***
 #### Extra Types available
 ***
-`plex`    
-Kicks off an automated script to install plexhometheatre
-`firefox`    
-sourced from Linux Mint LMDE 2
-`xbox-bindings`    
+`plex`      
+Kicks off an automated script to install plexhometheatre  
+`firefox`      
+sourced from Linux Mint LMDE 2  
+`xbox-bindings`      
 the amazing set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
 
 ***

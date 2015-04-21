@@ -15,7 +15,8 @@
 # Usage:	./desktop-software.sh [option] [type]
 # Options:	[install|uninstall|list|check]
 #		You may also specify [test] to do a dry run of the install
-# Types:	[basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
+# Types:	[basic|extra|emulation|emulation-src|emulation-src-deps]
+#		[<pkg_name>|upnp-dlna|games]
 #
 # Extra Types:	[plex]
 #
@@ -198,28 +199,22 @@ show_help()
 	#####################################################
 	Warning: usage of this script is at your own risk!
 	#####################################################
-	You have two options with this script:
 	
-	Basic
-	---------------------------------------------------------------
-	Standard Debian desktop application loadout.
-	Based on: http://distrowatch.com/table.php?distribution=debian
-	
-	Extra
-	---------------------------------------------------------------
-	Extra software
-	Based on feeback and personal preference.
-	
-	<pkg_name> 
+	Please see the desktop-software-readme.md file in the 
+	docs/ directory for full details.
+
 	---------------------------------------------------------------
 	Any package you wish to specify yourself. Alchemist repos will be
 	used first, followed by Debian Wheezy.
 	
 	For a complete list, type:
 	'./desktop-software list [type]'
-	Options: [install|uninstall|list|check] 
-	Types: [basic|extra|emulation|emulation-src|emulation-src-deps|<pkg_name>]
-	Extra types: [plex]
+	
+	
+	Options: 	[install|uninstall|list|check] 
+	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
+	Types Cont.	[<pkg_name>|upnp-dlna]
+	Extra types: 	[plex]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -278,6 +273,14 @@ get_software_type()
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/emulation-src-deps.txt"
+        elif [[ "$type" == "upnp-dlna" ]]; then
+                # add emulation softare to temp list
+                # remember to kick off script at the end of dep installs
+                software_list="$scriptdir/cfgs/upnp-dlna.txt "
+        elif [[ "$type" == "games" ]]; then
+                # add emulation softare to temp list
+                # remember to kick off script at the end of dep installs
+                software_list="$scriptdir/cfgs/opensource-games.txt "    
         
 	####################################################
 	# popular software / custom specification
@@ -314,6 +317,12 @@ add_repos()
                 # retroarch-src-deps
                 echo "" > /dev/null
         elif [[ "$type" == "$type" ]]; then
+                # non-required for now
+                echo "" > /dev/null
+        elif [[ "$type" == "upnp-dlna" ]]; then
+                # non-required for now
+                echo "" > /dev/null
+        elif [[ "$type" == "games" ]]; then
                 # non-required for now
                 echo "" > /dev/null
         fi
@@ -587,6 +596,7 @@ main()
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emu-from-source"
 	import "$scriptdir/scriptmodules/install-plex"
+	import "$scriptdir/scriptmodules/mobile-upnp-dlna"
 
         # generate software listing based on type or skip to auto script
         get_software_type
@@ -804,6 +814,53 @@ main()
         
         	show_warning
 		install_software
+		
+	elif [[ "$type" == "upnp-dlna" ]]; then
+
+		if [[ "$options" == "uninstall" ]]; then
+	                uninstall="yes"
+	
+	        elif [[ "$options" == "list" ]]; then
+	                # show listing from $scriptdir/cfgs/upnp-dlna.txt
+	                clear
+			cat $software_list | less
+			exit
+	        
+	        elif [[ "$options" == "check" ]]; then
+
+                        clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
+			for i in `cat $software_list`; do
+			
+				if [[ "$i" =~ "!broken!" ]]; then
+					skipflag="yes"
+					echo -e "skipping broken package: $i ..."
+					sleep 0.3s
+				else
+					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				
+					if [ "" == "$PKG_OK" ]; then
+						# dpkg outputs it's own line that can't be supressed
+						echo -e "Packge $i [Not Found]"
+						sleep 0.3s
+					else
+						echo -e "Packge $i [OK]"
+						sleep 0.3s
+					fi
+				fi
+			done
+			echo ""
+			exit
+			
+		fi
+        
+        	show_warning
+		install_software
+		
+		# kick off helper script
+		install_mobile_upnp_dlna
 		
         elif [[ "$type" == "$type" ]]; then
         

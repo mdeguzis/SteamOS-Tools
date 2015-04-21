@@ -46,17 +46,26 @@ main()
 {
   
   	clear
-	echo -e "==> Downloading qtsixad and sixad...\n"
+	echo -e "==> Downloading sixad...\n"
 	sleep 1s
 	# These are Debian rebuilt packages from the ppa:falk-t-j/qtsixa PPA
-	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/utilities/qtsixa_1.5.1+git20140130-SteamOS_amd64.deb"
-	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/utilities/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
+	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/utilities/sixpair.5.1+git20140130-SteamOS_amd64.deb"
 	
 	# Install
-	echo -e "==> Installing qtsixad and sixad...\n"
+	echo -e "==> Installing sixad...\n"
 	sleep 1s
-	sudo dpkg -i "/tmp/qtsixa_1.5.1+git20140130-SteamOS_amd64.deb"
 	sudo dpkg -i "/tmp/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
+	
+	echo -e "==> Downloading sixpair...\n"
+	sleep 1s
+	# These are Debian rebuilt packages from the ppa:falk-t-j/qtsixa PPA
+	wget -P /tmp "http://www.pabr.org/sixlinux/sixpair.c"
+	
+	echo -e "==> Building and installing sixpair...\n"
+	gcc -o sixpair /tmp/sixpair.c -lusb
+	
+	# move sixpair binary to /usr/bin to execuate in any location in $PATH
+	sudo mv "/tmp/sixpair" "/usr/bin"
 	
 	#configure and start sixad daemon.
 	echo -e "==> Configuring qtsixad and sixad...\n"
@@ -195,7 +204,8 @@ main | tee log_temp.txt
 # cleanup deb packages
 rm -f "/tmp/qtsixa_1.5.1+git20140130-SteamOS_amd64.deb"
 rm -f "/tmp/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
-	
+rm -f "/tmp/sixpair.c"
+
 # convert log file to Unix compatible ASCII 
 strings log_temp.txt > log.txt 
 

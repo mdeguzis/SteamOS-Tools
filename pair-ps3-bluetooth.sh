@@ -5,7 +5,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	pair-ps3-bluetooth.sh
-# Script Ver:	0.2.5
+# Script Ver:	0.2.7
 # Description:	Pairs PS3 Bluetooth controller on SteamOS
 # Usage:	./pair-ps3-bluetooth.sh
 #
@@ -190,7 +190,7 @@ ps3_pair_blu()
 	echo -e "######################################################\n"
 
 	echo -e "Using the left stick and pressing the left and right stick navigate to the Settings Screen \
-and edit the layout of the controller."
+and edit the layout of the controller.\n"
 
 }
 

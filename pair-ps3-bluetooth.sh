@@ -6,7 +6,9 @@ install_prereqs()
 	
 	# Try Pre-req batch
 	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
-	checkinstall libusb-dev libbluetooth-dev joystick pyqt4-dev-tools
+	checkinstall libusb-dev joystick pyqt4-dev-tools
+	
+	#libbluetooth-dev
 	
 	exit
 	clear

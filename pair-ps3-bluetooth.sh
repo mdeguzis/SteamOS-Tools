@@ -18,7 +18,7 @@ install_prereqs()
 {
 	
 	# Try Pre-req batch
-	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
+	sudo apt-get install bluez-utils bluez-compat bluez-hcidump \
 	checkinstall libusb-dev joystick pyqt4-dev-tools
 	
 	# Fetch what can be used from alchemist

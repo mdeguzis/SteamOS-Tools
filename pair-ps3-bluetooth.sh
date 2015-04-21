@@ -169,13 +169,13 @@ ps3_pair_blu()
 	dialog --msgbox "Please plug in these items now:\n\n1)The USB cable\n2)PS3 controller $n\n\
 3)Bluetooth dongle\n\nAdditional controllers can be added in the settings menu"  12 40
 	
+	clear
 	# Grab player 1 controller MAC Address of wired device
 	echo -e "\nSetting up Playstation 3 Sixaxis (bluetooth) [Player $n]\n"
 	sleep 2s
 	
 	# Pair controller with logging 
 	# if hardcoded path is needed, sixpair should be in /usr/bin now
-	clear
 	sudo sixpair
 	sleep 2s
 	
@@ -189,7 +189,7 @@ ps3_pair_blu()
 	echo -e "Notice for Steam users:"
 	echo -e "######################################################\n"
 
-	echo -e "\nUsing the left stick and pressing the left and right stick navigate to the Settings Screen 
+	echo -e "Using the left stick and pressing the left and right stick navigate to the Settings Screen \
 and edit the layout of the controller."
 
 }

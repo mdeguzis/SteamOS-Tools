@@ -1,4 +1,5 @@
 #!/bin/bash
+# See: https://github.com/rdepena/node-dualshock-controller/wiki/Pairing-The-Dual-shock-3-controller-in-Linux-(Ubuntu-Debian)
 
 install_prereqs()
 {
@@ -173,7 +174,8 @@ ps3_pair_blu()
 	echo -e "\nSetting up Playstation 3 Sixaxis (bluetooth) [Player $n]\n"
 	sleep 2s
 	
-	# Pair controller with logging
+	# Pair controller with logging 
+	# if hardcoded path is needed, sixpair should be in /usr/bin now
 	sudo sixpair
 	sleep 2s
 	

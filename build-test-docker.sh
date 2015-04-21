@@ -35,7 +35,6 @@ show_help()
 	Quick usage notes:
 	#####################################################
 	
-	Docker is now installed. 
 	To ask docker for a list of all available commands:
 	
 	sudo docker

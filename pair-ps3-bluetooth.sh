@@ -4,6 +4,9 @@
 install_prereqs()
 {
 	
+	Try Pre-req batch
+	sudo apt-get install bluez-utils bluez-compat bluez-hcidump checkinstall libusb-dev libbluetooth-dev joystick pyqt4-dev-tools
+	
 	clear
 	# Dialog required for prompts
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' dialog | grep "install ok installed")

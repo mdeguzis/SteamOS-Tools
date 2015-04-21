@@ -5,7 +5,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	pair-ps3-bluetooth.sh
-# Script Ver:	0.2.3
+# Script Ver:	0.2.5
 # Description:	Pairs PS3 Bluetooth controller on SteamOS
 # Usage:	./pair-ps3-bluetooth.sh
 #
@@ -17,12 +17,24 @@
 install_prereqs()
 {
 
-	# Fetch what has to be fetches from Wheezy
+	# Fetch what has to be installed from Wheezy
 	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
 	checkinstall libusb-dev joystick pyqt4-dev-tools dialog
 	
-	# Fetch what has to be fetches from Alchemist
+	# Fetch what has to be installed from Alchemist (conflicting version)
 	sudo apt-get install libbluetooth-dev
+	
+}
+
+clean_install()
+{
+	
+	# remove previous sixad init service if present
+	if [[ -f "sudo /etc/init.d/sixad" ]]; then
+		sudo /etc/init.d/sixad stop
+		sudo /etc/init.d/sixad disable
+		sudo rm -f "sudo /etc/init.d/sixad"
+	fi
 	
 }
 
@@ -36,7 +48,7 @@ main()
 	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/utilities/sixpair.5.1+git20140130-SteamOS_amd64.deb"
 	
 	# Install
-	echo -e "\n==> Installing sixad...\n"
+	echo -e "==> Installing sixad...\n"
 	sleep 1s
 	sudo dpkg -i "/tmp/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
 	
@@ -50,7 +62,7 @@ main()
 	
 	# move sixpair binary to /usr/bin to execuate in any location in $PATH
 	sudo mv "/tmp/sixpair" "/usr/bin"
-	
+		
 	#configure and start sixad daemon.
 	echo -e "==> Configuring qtsixad and sixad...\n"
 	sleep 2s
@@ -145,6 +157,9 @@ main()
 	# start the service at boot time
 	sixad --boot-yes
 	
+	# Alternatively:
+	# sudo update-rc.d sixad defaults
+	
 }
 	
 ps3_pair_blu()
@@ -175,6 +190,7 @@ ps3_pair_blu()
 ##################################################### 
 # Install prereqs 
 ##################################################### 
+clean_install
 install_prereqs
 
 ##################################################### 
@@ -186,8 +202,7 @@ main | tee log_temp.txt
 # cleanup 
 ##################################################### 
 
-# cleanup deb packages
-rm -f "/tmp/qtsixa_1.5.1+git20140130-SteamOS_amd64.deb"
+# cleanup deb packages and leftovers
 rm -f "/tmp/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
 rm -f "/tmp/sixpair.c"
 

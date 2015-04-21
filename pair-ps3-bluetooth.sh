@@ -72,7 +72,7 @@ main()
 	sudo /etc/init.d/sixad start
   
   	echo -e "==> Configuring controller(s)...\n"
-	cmd=(dialog --backtitle "LibreGeek.org RetroRig Installer" \
+	cmd=(dialog --backtitle "LibreGeek.org" \
 		    --menu "Please select the number of PS3 controllers" 16 47 16)
 	options=(1 "1"
 	 	 2 "2"
@@ -166,7 +166,7 @@ main()
 ps3_pair_blu()
 {
 	
-	dialog --msgbox "Please plug in these items now:\n\n1)The USB cable\n2)PS3 controller $n \n \
+	dialog --msgbox "Please plug in these items now:\n\n1)The USB cable\n2)PS3 controller $n\n\
 	3)Bluetooth dongle\n\nAdditional controllers can be added in the settings menu"  12 40
 	
 	# Grab player 1 controller MAC Address of wired device

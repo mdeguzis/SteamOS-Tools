@@ -167,7 +167,7 @@ ps3_pair_blu()
 {
 	
 	dialog --msgbox "Please plug in these items now:\n\n1)The USB cable\n2)PS3 controller $n\n\
-	3)Bluetooth dongle\n\nAdditional controllers can be added in the settings menu"  12 40
+3)Bluetooth dongle\n\nAdditional controllers can be added in the settings menu"  12 40
 	
 	# Grab player 1 controller MAC Address of wired device
 	echo -e "\nSetting up Playstation 3 Sixaxis (bluetooth) [Player $n]\n"

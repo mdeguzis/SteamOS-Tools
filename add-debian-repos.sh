@@ -70,13 +70,21 @@ main()
 		echo -e "Adding debian repositories...\n"
 		sleep 1s
 		
-		# Check for existance of /etc/apt/preferences
+		# Check for existance of /etc/apt/preferences file (deprecated, see below)
+		if [[ -f "/etc/apt/preferences" ]]; then
+			# backup preferences file
+			echo "Backup up /etc/apt/preferences to /etc/apt/preferences.bak"
+			mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
+		fi
+		
+		# Check for existance of /etc/apt/preferences.d/{reponame} file
 		if [[ -f ${prefer} ]]; then
 			# backup preferences file
 			echo "Backup up ${prefer} to ${prefer}.bak"
 			mv ${prefer} ${prefer}.bak
 		fi
 		
+		# Check for existance of /etc/apt/preferences.d/{backports_prefer} file
 		if [[ -f ${backports_prefer} ]]; then
 			# backup preferences file
 			echo "Backup up ${backports_prefer} to ${backports_prefer}.bak"

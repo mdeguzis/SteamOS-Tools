@@ -223,7 +223,7 @@ show_help()
 	EOF
 	
 	read -n 1
-	printf "\nContinuing...\n"
+	echo -e "\nContinuing...\n"
 	clear
 
 }
@@ -584,7 +584,7 @@ show_warning()
         echo -e "details.\n"
 
         read -n 1
-        echo -e  "\nContinuing...\n"
+        echo -e  "Continuing...\n"
         sleep 1s
 }
 

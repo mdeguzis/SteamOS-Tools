@@ -11,7 +11,8 @@
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
 #
-# Last tested:		20150422, runtime: 25 minutes, Pass: ALL, Fail: 0
+# Last tested:		20150422, runtime: 50 minutes, Pass: ALL, Fail: 0
+#			Intel Core i5 / 8 GB RAM / 15 Mb/s WLAN
 # -------------------------------------------------------------------------------
 
 efs_main()

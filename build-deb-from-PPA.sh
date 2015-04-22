@@ -31,15 +31,17 @@ check_for_sudo()
 
 main()
 {
+	build_dir="/home/desktop/build-deb-temp"
+	
 	clear
 	# remove previous dirs if they exist
-	if [[ -d "~/build-deb-temp" ]]; then
-		rm -rf "~/build-deb-temp"
+	if [[ -d "$build_dir" ]]; then
+		rm -rf "$build_dir"
 	fi
 	
 	# create build dir and enter it
-	mkdir -p "~/build-deb-temp"
-	cd "/home/desktop/build-deb-temp"
+	mkdir -p "$build_dir"
+	cd "$build_dir"
 	
 	# Ask user for repos / vars
 	echo -e "Please enter or paste the repo src URL now:"
@@ -84,7 +86,8 @@ main()
 	echo -e "If package was built without errors you will see if below."
 	echo -e "If you do not, please check build dependcy errors listed above."
 	echo -e "You could also try manually building outside of this script with"
-	echo -e "'sudo apt-get --nodeps source --build ${target}"
+	echo -e "the following command in $build_dir (at your own risk!)"
+	echo -e "'cd <app_folder_name> && dpkg-buildpackage -b -d -uc'"
 	echo -e "###################################################################\n"
 	
 	ls "/home/desktop/build-deb-temp" | grep ${target}*.deb

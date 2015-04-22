@@ -21,7 +21,7 @@ sudo ./add-debian-repos.sh [install|uninstall]
 
 ### Please note
 
-Per: [https://github.com/ValveSoftware/SteamOS/wiki/Installing-Applications-From-The-Wheezy-Repo-In-SteamOS](Github/Valve)
+Per: [Valve on Github](https://github.com/ValveSoftware/SteamOS/wiki/Installing-Applications-From-The-Wheezy-Repo-In-SteamOS)
 
 [quote]
 Unfortunately the add/remove packages GUI pre-installed won't let you see any of the packages from the Debian repo. It would work if we set the pin priority to 110, but -10 safer.

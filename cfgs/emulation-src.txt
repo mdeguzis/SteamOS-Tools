@@ -6,8 +6,7 @@ libavutil-dev
 libswscale-dev
 libv4l-dev
 libopenal-dev
-libgbm1
-libgbm-dev
+!broken!libgbm-dev
 !broken!libegl1-mesa-dev
 !broken!libopenvg1-mesa-dev
 python3-dev

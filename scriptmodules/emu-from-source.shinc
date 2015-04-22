@@ -10,8 +10,6 @@
 #
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
-#
-# Note:			$build_opts can be specified to alter script
 # -------------------------------------------------------------------------------
 
 efs_main()
@@ -73,14 +71,6 @@ press CTRL+C now."
 	
 	# build Retroarch
 	./retroarch-build.sh 
-	
-	# If argument is specified, build just that core, if not proceed to the rest
-	if [[ "$build_opts" == "$build_opts" ]]; then
-		echo -e "Single core fetch and build requested...\n"
-		sleep 2s
-		./libretro-fetch.sh $build_opts
-		./libretro-build.sh $build_opts
-	else
 	
 	# Remove untested, broken, standalone games, or extra cores
 	# Uncomment the below sed lines to build ALL cores

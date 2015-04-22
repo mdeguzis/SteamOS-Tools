@@ -81,6 +81,9 @@ main()
 	sleep 2s
 	apt-get source --build ${target}
 	
+	# assign value to build folder for exit warning below
+	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
+	
 	# back out of build temp
 	cd
 	
@@ -90,7 +93,7 @@ main()
 	echo -e "If you do not, please check build dependcy errors listed above."
 	echo -e "You could also try manually building outside of this script with"
 	echo -e "the following command in $build_dir (at your own risk!)"
-	echo -e "'cd <app_folder_name> && dpkg-buildpackage -b -d -uc'"
+	echo -e "'cd $build_folder && dpkg-buildpackage -b -d -uc'"
 	echo -e "###################################################################\n"
 	
 	ls "/home/desktop/build-deb-temp" | grep ${target}*.deb

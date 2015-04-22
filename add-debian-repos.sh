@@ -85,14 +85,14 @@ main()
 		# Check for existance of /etc/apt/preferences.d/{reponame} file
 		if [[ -f ${prefer} ]]; then
 			# backup preferences file
-			echo -e "Backup up ${prefer} to ${prefer}.bak\n"
+			echo -e "Backing up ${prefer} to ${prefer}.bak\n"
 			mv ${prefer} ${prefer}.bak
 		fi
 		
 		# Check for existance of /etc/apt/preferences.d/{backports_prefer} file
 		if [[ -f ${backports_prefer} ]]; then
 			# backup preferences file
-			echo -e "Backup up ${backports_prefer} to ${backports_prefer}.bak\n"
+			echo -e "Backing up ${backports_prefer} to ${backports_prefer}.bak\n"
 			mv ${backports_prefer} ${backports_prefer}.bak
 		fi
 	

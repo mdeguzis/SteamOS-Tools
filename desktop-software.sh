@@ -435,7 +435,7 @@ install_software()
 				if [[ $? == '0' ]]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Successfully installed software from Alchemist repo! / Nothing to Install\n"
+						echo -e "\n==> Successfully installed $i from Alchemist repo! / Nothing to Install\n"
 						sleep 1s
 					else
 						echo -e "\n==> Removal succeeded for package: $i \n"
@@ -466,7 +466,7 @@ install_software()
 				if [[ $? == '0' ]]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Successfully installed software from Wheezy repo! / Nothing to Install\n" 
+						echo -e "\n==> Successfully installed $i from Wheezy repo! / Nothing to Install\n" 
 						sleep 2s
 					else
 						echo -e "\n==> Removal succeeded for package: $i \n"

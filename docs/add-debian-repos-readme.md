@@ -1,4 +1,4 @@
-# steamos-stats.sh
+# add-debian-repos-readme.md
 
 ### About
 This script automatically adds or removes the Debian repositories from SteamOS.

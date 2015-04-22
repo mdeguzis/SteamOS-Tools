@@ -78,8 +78,9 @@ press CTRL+C now."
 	sed -i -e 's|register_core "stonesoup"|#register_core "stonesoup"|g' "$git_dir/rules.d/core-rules.sh"
 
 	############################
-	# disabled fetches (games):
+	# disabled fetches (extra):
 	############################
+	# These mostly include cores that fail to build later on
 	
 	sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
 	
@@ -109,7 +110,7 @@ press CTRL+C now."
 	# These mostly include cores that fail to build
 	
 	sed -i -e '/build_libretro_core bsnes/d' libretro-build.sh 
-	sed -i -e '/build_libretro_core bsnes_cplusplus98/d' libretro-build.sh d
+	sed -i -e '/build_libretro_core bsnes_cplusplus98/d' libretro-build.sh
 	sed -i -e '/build_libretro_core bsnes_mercury/d' libretro-build.sh  
 
 	############################

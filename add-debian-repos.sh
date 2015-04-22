@@ -30,7 +30,7 @@ funct_set_vars()
 	reponame="wheezy"
 	backports_reponame="wheezy-backports"
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
-	backports_sourcelist="/etc/apt/sources.list.d/${reponame}.list"
+	backports_sourcelist="/etc/apt/sources.list.d/${backports_reponame}.list"
 	prefer="/etc/apt/preferences.d/${reponame}"
 	backports_prefer="/etc/apt/preferences.d/${backports_reponame}"
 	steamosprefer="/etc/apt/preferences.d/steamos"

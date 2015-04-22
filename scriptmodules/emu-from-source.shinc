@@ -101,9 +101,6 @@ press CTRL+C now."
 	sed -i -e '/build_libretro_core nxengine/d' libretro-build.sh
 	sed -i -e '/build_libretro_core 2048/d' libretro-build.sh
 	
-	#end $build_opts if test
-	fi
-	
 	##############################################
 	# Cleanup
 	##############################################

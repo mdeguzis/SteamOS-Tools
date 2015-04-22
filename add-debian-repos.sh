@@ -60,6 +60,9 @@ funct_show_warning()
 
 main()
 {
+	echo $install
+	exit
+	
 	# Install/Uninstall process
 	if [[ "$install" == "yes" ]]; then
 		clear

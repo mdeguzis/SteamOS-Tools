@@ -84,43 +84,23 @@ press CTRL+C now. Press Enter to continue"
 	# until / unless all cores work fine, fetch operations
 	# will be manually specified for now
 	# See: https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91
-	./libretro-fetch.sh retroarch
-	./libretro-fetch.sh snes9x
-	./libretro-fetch.sh mednafen_gba
-	./libretro-fetch.sh mednafen_lynx
-	./libretro-fetch.sh mednafen_ngp
-	./libretro-fetch.sh mednafen_pce_fast
-	./libretro-fetch.sh mednafen_pcfx
-	./libretro-fetch.sh mednafen_psx
-	./libretro-fetch.sh mednafen_snes
-	./libretro-fetch.sh mednafen_supergrafx
-	./libretro-fetch.sh 4do
-	./libretro-fetch.sh mame
 	
-	## Disable Broken Cores Temporarily
-	# sed -i -e '/build_libretro_emux/d' libretro-build.sh
+	./libretro-fetch.sh 
 	
 	##############################################
 	# Builds
 	##############################################
+	
+	# Disable Broken cores, or cores we do not want to build Temporarily
+	sed -i -e '/build_libretro_emux/d' libretro-build.sh
 	
 	# build Retroarch
 	./retroarch-build.sh 
 	
 	# build cores
 	
-	./libretro-build.sh snes9x
-	./libretro-build.sh mednafen_gba
-	./libretro-build.sh mednafen_lynx
-	./libretro-build.sh mednafen_ngp
-	./libretro-build.sh mednafen_pce_fast
-	./libretro-build.sh mednafen_pcfx
-	./libretro-build.sh mednafen_psx
-	./libretro-build.sh mednafen_snes
-	./libretro-build.sh mednafen_supergrafx
-	./libretro-build.sh 4do
-	./libretro-build.sh mame
-
+	./libretro-build.sh
+	
 	##############################################
 	# Debian pkg builds
 	##############################################

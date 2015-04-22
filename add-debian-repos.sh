@@ -21,10 +21,6 @@ elif [[ "$1" == "uninstall" ]]; then
     	install="no"
 fi
 
-echo $1
-
-exit
-
 funct_set_vars()
 {
 	# Set default user option

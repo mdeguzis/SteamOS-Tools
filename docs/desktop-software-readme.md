@@ -45,9 +45,9 @@ installs basic Debian software (based on [Distrowatch](http://distrowatch.com/ta
 `extra`  
 installs extra softare based on feedback and personal preference  
 `emulation`          
-retroarch and associated emulators. [in-progress, debs need built]         
+retroarch and associated emulators. **[in-progress, debs need built]**           
 `emulation-src`  
-Installs prerequisite packages for compiling emulation packages from source and then compiles emulators packages from source (will take some time to install). [in-progress]           
+Installs prerequisite packages for compiling emulation packages from source and then compiles emulators packages from source (will take some time to install). **[in-progress]**             
 `emulation-src-deps`            
 Packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
 `upnp-dlna`            

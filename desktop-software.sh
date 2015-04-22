@@ -573,16 +573,17 @@ show_warning()
 {
 
         clear
-        printf "#####################################################\n"
-        printf "Warning: usage of this script is at your own risk!\n"
-        printf "#####################################################\n\n"
-        printf "\nIn order to run this script, you MUST have had enabled the Debian \
-repositories! If you wish to exit, please press CTRL+C now..."
-        printf "\n\ntype './desktop-software --help' for assistance.\n"
-        printf "See log.txt in this direcotry after any attempt for details.\n"
+        echo "#####################################################"
+        echo "Warning: usage of this script is at your own risk!"
+        echo "#####################################################"
+        echo -e "\nIn order to run this script, you MUST have had enabled"
+        echo -e "the Debian repositories! If you wish to exit, please "
+        echo -e "press CTRL+C now..."
+        echo -e "\ntype './desktop-software --help' for assistance.\n"
+        echo -e  "See log.txt in this direcotry after any attempt for details.\n"
 
         read -n 1
-        printf "\nContinuing...\n"
+        echo -e  "\nContinuing...\n"
         sleep 1s
 }
 

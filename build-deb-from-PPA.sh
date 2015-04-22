@@ -64,6 +64,7 @@ main()
 	echo ${repo_src} > "/etc/apt/sources.list.d/${target}.list"
 	
 	echo -e "\n==>Adding GPG key:\n"
+	sleep 2s
 	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ${gpg_pub_key}
 	
 	echo -e "\n==>Updating system package listings...\n"
@@ -72,6 +73,7 @@ main()
 	
 	#Attempt to build target
 	echo -e "\n==>Attemption to build ${target}:\n"
+	sleep 2s
 	apt-get source --build ${target}
 	
 	# back out of build temp

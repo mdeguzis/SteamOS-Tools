@@ -21,6 +21,9 @@ elif [[ "$1" == "uninstall" ]]; then
     	install="no"
 fi
 
+echo $install
+exit
+
 funct_set_vars()
 {
 	# Set default user option
@@ -176,7 +179,6 @@ fi
 
 funct_set_vars
 funct_show_warning
-funct_option_check
 
 #####################################################
 # MAIN

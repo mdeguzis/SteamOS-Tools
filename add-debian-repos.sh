@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	add-debian-repos.sh
-# Script Ver:	0.1.3
+# Script Ver:	0.1.5
 # Description:	This script automatically enables debian repositories
 #		The script must be run as root to add the source list
 #		lines to system directory locations.
@@ -87,13 +87,13 @@ main()
 		cat <<-EOF >> ${prefer}
 		Package: *
 		Pin: release l=Debian
-		Pin-Priority: 110
+		Pin-Priority:-10
 		EOF
 		
 		cat <<-EOF >> ${prefer-backports}
 		Package: *
 		Pin: release a=wheezy-backports
-		Pin-Priority: 100
+		Pin-Priority:-5
 		EOF
 	
 		cat <<-EOF >> ${steamosprefer}
@@ -143,9 +143,8 @@ main()
 		echo -e "'sudo apt-get install <package_name>'\n"
 		echo -e "or\n"
 		echo -e "'sudo apt-get -t [wheezy|wheezy-backports] install <package_name>'\n\n"
-		echo "Warning: If the apt package manager seems to want to remove a"
-		echo "lot of packages you have already installed, be very careful about"
-		echo -e "proceeding.\n"
+		echo "Warning: If the apt package manager seems to want to remove a \
+lot of packages you have already installed, be very careful about proceeding.\n"
 	
 	elif [[ "$install" == "no" ]]; then
 		clear

@@ -91,23 +91,23 @@ main()
 		fi
 	
 		# Create and add required text to preferences file
-		cat <<-EOF >> ${prefer}
-		Package: *
-		Pin: release l=Debian
-		Pin-Priority:-10
-		EOF
+	#	cat <<-EOF >> ${prefer}
+	#	Package: *
+	#	Pin: release l=Debian
+	#	Pin-Priority:-10
+	#	EOF
 		
-		cat <<-EOF >> ${prefer-backports}
-		Package: *
-		Pin: release a=wheezy-backports
-		Pin-Priority:-5
-		EOF
+	#	cat <<-EOF >> ${prefer-backports}
+	#	Package: *
+	#	Pin: release a=wheezy-backports
+	#	Pin-Priority:-5
+	#	EOF
 	
-		cat <<-EOF >> ${steamosprefer}
-		Package: *
-		Pin: release l=SteamOS
-		Pin-Priority: 900
-		EOF
+	#	cat <<-EOF >> ${steamosprefer}
+	#	Package: *
+	#	Pin: release l=SteamOS
+	#	Pin-Priority: 900
+	#	EOF
 
 		# Check for Wheezy lists in repos.d
 		# If it does not exist, create it

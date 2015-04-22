@@ -94,5 +94,6 @@ main()
 }
 
 # start main
+install_prereqs
 check_for_sudo
 main

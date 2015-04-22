@@ -14,6 +14,12 @@
 # remove old custom files
 rm -f "log.txt"
 
+# check for and set install status
+if [[ "$1" == "install" ]]; then
+	install="yes"
+elif [[ "$1" == "uninstall" ]]; then
+    	install="no"
+fi
 
 funct_set_vars()
 {
@@ -49,16 +55,6 @@ funct_show_warning()
 		printf "OR\n"
 		printf "\n'sudo $0 uninstall'\n\n"
 		exit 1
-	fi
-}
-
-funct_option_check()
-{
-	# check for and set install status
-	if [[ "$1" == "install" ]]; then
-		install="yes"
-	elif [[ "$1" == "uninstall" ]]; then
-	    	install="no"
 	fi
 }
 

@@ -21,6 +21,10 @@ elif [[ "$1" == "uninstall" ]]; then
     	install="no"
 fi
 
+echo $1
+
+exit
+
 funct_set_vars()
 {
 	# Set default user option
@@ -153,11 +157,13 @@ lot of packages you have already installed, be very careful about proceeding.\n"
 	elif [[ "$install" == "no" ]]; then
 		clear
 		echo "Removing debian repositories..."
+		sleep 2s
 		rm -f ${sourcelist}
 		rm -f ${prefer}
 		rm -f ${steamosprefer}
 		rm -f ${backports_sourcelist}
 		echo "Updating index of packages..."
+		sleep 2s
 		apt-get update
 		echo "Done!"
 	fi

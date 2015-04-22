@@ -77,7 +77,6 @@ press CTRL+C now."
 	sed -i -e 's|register_core "nxengine"|#register_core "nxengine"|g' "$git_dir/rules.d/core-rules.sh"
 	sed -i -e 's|register_core "2048"|#register_core "2048"|g' "$git_dir/rules.d/core-rules.sh"
 	sed -i -e 's|register_core "stonesoup"|#register_core "stonesoup"|g' "$git_dir/rules.d/core-rules.sh"
-	sed -i -e 's|register_core "bsnes"|#register_core "bsnes"|g' "$git_dir/rules.d/core-rules.sh"
 	
 	##########################
 	# proceed to fetch:

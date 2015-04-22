@@ -72,21 +72,21 @@ main()
 		# Check for existance of /etc/apt/preferences file (deprecated, see below)
 		if [[ -f "/etc/apt/preferences" ]]; then
 			# backup preferences file
-			echo "Backup up /etc/apt/preferences to /etc/apt/preferences.bak"
+			echo "\nBacking up /etc/apt/preferences to /etc/apt/preferences.bak\n"
 			mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
 		fi
 		
 		# Check for existance of /etc/apt/preferences.d/{reponame} file
 		if [[ -f ${prefer} ]]; then
 			# backup preferences file
-			echo "Backup up ${prefer} to ${prefer}.bak"
+			echo "Backup up ${prefer} to ${prefer}.bak\n"
 			mv ${prefer} ${prefer}.bak
 		fi
 		
 		# Check for existance of /etc/apt/preferences.d/{backports_prefer} file
 		if [[ -f ${backports_prefer} ]]; then
 			# backup preferences file
-			echo "Backup up ${backports_prefer} to ${backports_prefer}.bak"
+			echo "Backup up ${backports_prefer} to ${backports_prefer}.bak\n"
 			mv ${backports_prefer} ${backports_prefer}.bak
 		fi
 	

@@ -138,6 +138,7 @@ main()
 
 		# Update system
 		echo -e "Updating index of packages...\n"
+		sleep 2s
 		apt-get update
 	
 		# Remind user how to install

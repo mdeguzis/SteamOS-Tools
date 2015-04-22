@@ -38,7 +38,7 @@ funct_set_vars()
 	
 	prefer="/etc/apt/preferences.d/${reponame}"
 	backports_prefer="/etc/apt/preferences.d/${backports_reponame}"
-	steamosprefer="/etc/apt/preferences.d/steamos"
+	steamos_prefer="/etc/apt/preferences.d/steamos"
 }
 
 show_help()
@@ -97,19 +97,19 @@ main()
 		fi
 	
 		# Create and add required text to preferences file
-		cat <<-EOF >> /etc/apt/preferences
+		cat <<-EOF >> ${prefer}
 		Package: *
 		Pin: release l=Debian
-		Pin-Priority:-10
+		Pin-Priority:110
 		EOF
 		
-		cat <<-EOF >> /etc/apt/preferences
+		cat <<-EOF >> ${backports_prefer}
 		Package: *
 		Pin: release a=wheezy-backports
-		Pin-Priority:-10
+		Pin-Priority:150
 		EOF
 	
-		cat <<-EOF >> /etc/apt/preferences
+		cat <<-EOF >> ${steamos_prefer}
 		Package: *
 		Pin: release l=SteamOS
 		Pin-Priority: 900

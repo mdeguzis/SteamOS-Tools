@@ -24,9 +24,11 @@ sudo ./add-debian-repos.sh [install|uninstall]
 Per: [Valve on Github](https://github.com/ValveSoftware/SteamOS/wiki/Installing-Applications-From-The-Wheezy-Repo-In-SteamOS)
 
 ```
-Unfortunately the add/remove packages GUI pre-installed won't let you see any of the packages from the Debian repo. It would work if we set the pin priority to 110, but -10 safer.
+Unfortunately the add/remove packages GUI pre-installed won't let you see any of the packages 
+from the Debian repo. It would work if we set the pin priority to 110, but -10 safer.
 
-N.B. Valve issued updates in January 2014 which means there is no need to use apt-pinning for wheezy repo. 
+N.B. Valve issued updates in January 2014 which means there is no need 
+to use apt-pinning for wheezy repo. 
 ```
 
 Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository here

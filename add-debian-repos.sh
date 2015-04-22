@@ -114,13 +114,13 @@ main()
 		
 		if [[ -f ${sourcelist} ]]; then
 	        	# backup sources list file
-	        	echo "Backup up ${sourcelist} to ${sourcelist}.bak"
+	        	echo -e "Backup up ${sourcelist} to ${sourcelist}.bak\n"
 	        	mv ${sourcelist} ${sourcelist}.bak
 		fi
 		
 		if [[ -f ${backports_sourcelist} ]]; then
 	        	# backup sources list file
-	        	echo "Backup up ${backports_sourcelist} to ${backports_sourcelist}.bak"
+	        	echo -e "Backup up ${backports_sourcelist} to ${backports_sourcelist}.bak\n"
 	        	mv ${backports_sourcelist} ${backports_sourcelist}.bak
 		fi
 	
@@ -137,7 +137,7 @@ main()
 		EOF
 
 		# Update system
-		echo "Updating index of packages..."
+		echo -e "Updating index of packages...\n"
 		apt-get update
 	
 		# Remind user how to install

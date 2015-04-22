@@ -22,8 +22,8 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 * scriptmodules/ - plugable bash modules / routines for any of the below scripts
 * README.md - This file
 * add-debian-repos.sh - adds debian repositories for installing Debian Wheezy software.
-* build-test-chroot.sh - build a Debian or SteamOS jail for testing [in progress]
-* buld-test-docker.sh - build a Debian or SteamOS package for testing [in-progress]
+* build-test-chroot.sh - build a Debian or SteamOS jail for testing **[in progress]**
+* buld-test-docker.sh - build a Debian or SteamOS package for testing.
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages. Please see the readme file in docs/ for the full listing of options.
 * steamos-stats.sh - displays useful stats while gaming over SSH from another device
 * pair-ps3-bluetooth.sh - pairs your blueooth controllers to a supported receiver

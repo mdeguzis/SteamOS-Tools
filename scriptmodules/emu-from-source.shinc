@@ -44,6 +44,11 @@ efs_main()
 	# build
 	# efs_build_ra
 	
+	# remove old symlink if it exists
+	if [[ -f "/usr/bin/retroarch" ]]; then
+		sudo rm -f "/usr/bin/retrorach"
+	fi
+	
 	# if directory retroarch-src exists, remove it
 	if [[ -d "$install_dir" ]]; then
 		rm -rf "$install_dir"
@@ -144,8 +149,8 @@ efs_main()
 	##############################################
 	# Cleanup
 	##############################################
-	# move dir for now until build flags are implemented
-	cp -rv "$git_dir/retroarch/*" "$install_dir"
+	# symlink 'retrarch' for now until build flags are implemented
+	cp -rv "$git_dir/retroarch" "/usr/bin"
 	
 	# clean up dirs
 	#rm -rf "/home/desktop/retroarch-src-git"

@@ -580,7 +580,8 @@ show_warning()
         echo -e "the Debian repositories! If you wish to exit, please "
         echo -e "press CTRL+C now..."
         echo -e "\ntype './desktop-software --help' for assistance.\n"
-        echo -e  "See log.txt in this direcotry after any attempt for details.\n"
+        echo -e  "See log.txt in this direcotry after any attempt for "
+        echo -e "details.\n"
 
         read -n 1
         echo -e  "\nContinuing...\n"

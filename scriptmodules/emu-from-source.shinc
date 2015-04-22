@@ -11,7 +11,7 @@
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
 #
-# Last tested:		20150422, Length: 25 minutes, Pass: ALL, Fail: 0
+# Last tested:		20150422, runtime: 25 minutes, Pass: ALL, Fail: 0
 # -------------------------------------------------------------------------------
 
 efs_main()
@@ -22,7 +22,7 @@ efs_main()
 	#################################################
 	
 	# Warn user this will take some time
-	echo -e "\nBuilding Retroarch and it's associated cores will take some time. Please wait or \
+	echo -e "\nBuilding Retroarch and its associated cores will take some time. Please wait or \
 press CTRL+C now."
 	echo -e "\nPress Enter to continue\n"
 	
@@ -30,12 +30,14 @@ press CTRL+C now."
 	printf "\nContinuing...\n" 
 	clear 
 
+	# set vars
 	install_dir="/home/desktop/retroarch-src"
 	git_dir="/home/desktop/retroarch-src/libretro-super"
+	git_url="https://github.com/libretro/libretro-super"
 	
 	# remove old symlink if it exists
-	if [[ -f "/usr/bin/retroarch" ]]; then
-		sudo rm -f "/usr/bin/retrorach"
+	if [[ -f "/usr/bin/retroarch/retroarch" ]]; then
+		sudo rm -f "/usr/bin/retroarch/retrorach"
 	fi
 	
 	# if directory retroarch-src exists, remove it
@@ -49,20 +51,18 @@ press CTRL+C now."
 	fi
 	
 	# clone and fetch super build (evaluating currently)
-	mkdir -p /home/desktop/retroarch-src
-	cd /home/desktop/retroarch-src/
-	git clone https://github.com/libretro/libretro-super
-	cd libretro-super/
-	
-	echo -e "\n==> Fetching sources...please wait"
-	sleep 2s
+	mkdir -p $install_dir
+	cd $install_dir
+	git clone $git_url
+	cd $git_dir
 	
 	#################################################
 	# fetch information
 	#################################################
-	# until / unless all cores work fine, fetch operations
-	# will be manually specified for now
 	# See: https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91
+	
+	echo -e "\n==> Fetching sources...please wait\n"
+	sleep 2s
 	
 	############################
 	# disabled fetches (games):
@@ -109,26 +109,32 @@ press CTRL+C now."
 	############################
 	# These mostly include cores that fail to build
 	
-	sed -i -e '/build_libretro_core bsnes/d' libretro-build.sh 
-	sed -i -e '/build_libretro_core bsnes_cplusplus98/d' libretro-build.sh
-	sed -i -e '/build_libretro_core bsnes_mercury/d' libretro-build.sh  
+	sed -i -e '/build_libretro_core bsnes/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/build_libretro_core bsnes_cplusplus98/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/build_libretro_core bsnes_mercury/d' "$git_dir/libretro-build.sh" 
 
 	############################
 	# disabled extra:
 	############################
 
-	sed -i -e '/build_libretro_core ffmpeg/d' libretro-build.sh
-	sed -i -e '/build_libretro_test/d' libretro-build.sh
+	sed -i -e '/build_libretro_core ffmpeg/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/build_libretro_test/d' "$git_dir/libretro-build.sh"
 	
 	############################
 	# disabled games:
 	############################
 
-	sed -i -e '/build_libretro_core tyrquake/d' libretro-build.sh
-	sed -i -e '/build_libretro_core prboom/d' libretro-build.sh
-	sed -i -e '/build_libretro_core dinothawr/d' libretro-build.sh
-	sed -i -e '/build_libretro_core nxengine/d' libretro-build.sh
-	sed -i -e '/build_libretro_core 2048/d' libretro-build.sh
+	sed -i -e '/build_libretro_core tyrquake/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/build_libretro_core prboom/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/build_libretro_core dinothawr/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/build_libretro_core nxengine/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/build_libretro_core 2048/d' "$git_dir/libretro-build.sh"
+	
+	############################
+	# proceed to global build:
+	############################
+	
+	./libretro-build.sh 
 	
 	#################################################
 	# Post install configuration
@@ -146,6 +152,5 @@ press CTRL+C now."
 	#################################################
 	
 	# clean up dirs
-	#rm -rf "/home/desktop/retroarch-src-git"
 
 }

@@ -8,6 +8,9 @@
 # Description:	This script automatically enables debian repositories
 #		The script must be run as root to add the source list
 #		lines to system directory locations.
+#
+#		See: https://wiki.debian.org/AptPreferences#Pinning
+#
 # Usage:	sudo ./add-debian-repos [install|uninstall|--help]
 # ------------------------------------------------------------------------
 
@@ -29,8 +32,10 @@ funct_set_vars()
 	# Set default user options
 	reponame="wheezy"
 	backports_reponame="wheezy-backports"
+	
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
 	backports_sourcelist="/etc/apt/sources.list.d/${backports_reponame}.list"
+	
 	prefer="/etc/apt/preferences.d/${reponame}"
 	backports_prefer="/etc/apt/preferences.d/${backports_reponame}"
 	steamosprefer="/etc/apt/preferences.d/steamos"
@@ -92,19 +97,19 @@ main()
 		fi
 	
 		# Create and add required text to preferences file
-		cat <<-EOF >> ${prefer}
+		cat <<-EOF >> /etc/apt/preferences
 		Package: *
 		Pin: release l=Debian
 		Pin-Priority:-10
 		EOF
 		
-		cat <<-EOF >> ${prefer-backports}
+		cat <<-EOF >> /etc/apt/preferences
 		Package: *
 		Pin: release a=wheezy-backports
-		Pin-Priority:-5
+		Pin-Priority:-10
 		EOF
 	
-		cat <<-EOF >> ${steamosprefer}
+		cat <<-EOF >> /etc/apt/preferences
 		Package: *
 		Pin: release l=SteamOS
 		Pin-Priority: 900

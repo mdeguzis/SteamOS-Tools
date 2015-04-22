@@ -65,6 +65,11 @@ press CTRL+C now."
 	# will be manually specified for now
 	# See: https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91
 	
+	# TEST ONLY!!!
+	# remove all registered cores too see what fetch does
+	sed -i -e '/register_core/d' "$git_dir/rules.d/core-rules.sh" 
+	exit
+	
 	./libretro-fetch.sh 
 	
 	##############################################
@@ -76,11 +81,6 @@ press CTRL+C now."
 	
 	# Remove untested, broken, standalone games, or extra cores
 	# Uncomment the below sed lines to build ALL cores
-	
-	# TEST ONLY!!!
-	# remove all registered cores too see what fetch does
-	sed -i -e '/register_core/d' "$git_dir/rules.d/core-rules.sh" 
-	exit
 	
 	##########################
 	# disabled cores:

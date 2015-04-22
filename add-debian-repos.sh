@@ -157,9 +157,10 @@ lot of packages you have already installed, be very careful about proceeding.\n"
 	elif [[ "$install" == "no" ]]; then
 		clear
 		echo "Removing debian repositories..."
-		rm ${sourcelist}
-		rm ${prefer}
-		rm ${steamosprefer}
+		rm -f ${sourcelist}
+		rm -f ${prefer}
+		rm -f ${steamosprefer}
+		rm -f ${backports_sourcelist}
 		echo "Updating index of packages..."
 		apt-get update
 		echo "Done!"

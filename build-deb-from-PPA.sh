@@ -39,7 +39,7 @@ main()
 	
 	# create build dir and enter it
 	mkdir -p "~/build-deb-temp"
-	cd "~/build-deb-temp"
+	cd "/home/desktop/build-deb-temp"
 	
 	# Ask user for repos / vars
 	echo -e "Please enter or paste the repo src URL now:"
@@ -80,10 +80,14 @@ main()
 	cd
 	
 	# inform user of packages
-	echo -e "\n If package was built without errors you will see if below."
-	echo -e "If you do not, please check build dependcy errors listed above.\n"
+	echo -e "\n###################################################################"
+	echo -e "If package was built without errors you will see if below."
+	echo -e "If you do not, please check build dependcy errors listed above."
+	echo -e "You could also try manually building outside of this script with"
+	echo -e "'sudo apt-get --nodeps source --build ${target}"
+	echo -e "###################################################################\n"
 	
-	ls "~/build-deb-temp" | grep ${target}*.deb
+	ls "/home/desktop/build-deb-temp" | grep ${target}*.deb
 }
 
 # start main

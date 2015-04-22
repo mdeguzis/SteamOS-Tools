@@ -1,17 +1,3 @@
-libsdl1.2-dev
-libxml2-dev
-libavcodec-dev
-libavformat-dev
-libavutil-dev
-libswscale-dev
-libv4l-dev
-libopenal-dev
-!broken!libgbm-dev
-!broken!libegl1-mesa-dev
-!broken!libopenvg1-mesa-dev
-python3-dev
-nvidia-cg-dev
-!broken!nvidia-cg-toolkit
 build-essential
 devscripts
 make
@@ -22,6 +8,7 @@ pkg-config
 libglu1-mesa-dev
 freeglut3-dev
 mesa-common-dev
+libsdl1.2-dev
 libsdl-image1.2-dev
 libsdl-mixer1.2-dev
 libsdl-ttf2.0-dev

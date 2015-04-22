@@ -573,15 +573,15 @@ show_warning()
 {
 
         clear
-        echo "#####################################################"
+        echo "##########################################################"
         echo "Warning: usage of this script is at your own risk!"
-        echo "#####################################################"
+        echo "##########################################################"
         echo -e "\nIn order to run this script, you MUST have had enabled"
         echo -e "the Debian repositories! If you wish to exit, please "
         echo -e "press CTRL+C now..."
         echo -e "\ntype './desktop-software --help' for assistance.\n"
-        echo -e  "See log.txt in this direcotry after any attempt for "
-        echo -e "If you need to add the Debian repos, please use the.\n"
+        echo -e "See log.txt in this direcotry after any attempt for details"
+        echo -e "If you need to add the Debian repos, please use the"
         echo -e "desktop-software.sh script in the main repository folder..\n"
 
         read -n 1

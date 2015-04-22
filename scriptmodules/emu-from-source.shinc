@@ -10,13 +10,15 @@
 #
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
+#
+# Last tested:		20150422, Length: 25 minutes, Pass: ALL, Fail: 0
 # -------------------------------------------------------------------------------
 
 efs_main()
 {
 	
 	# Warn user this will take some time
-	echo -e "Building Retroarch and it's associated cores will take some time. Please wait or \
+	echo -e "\nBuilding Retroarch and it's associated cores will take some time. Please wait or \
 press CTRL+C now."
 	echo -e "\nPress Enter to continue\n"
 	
@@ -74,6 +76,11 @@ press CTRL+C now."
 	
 	# Remove untested, broken, standalone games, or extra cores
 	# Uncomment the below sed lines to build ALL cores
+	
+	# TEST ONLY!!!
+	# remove all registered cores too see what fetch does
+	sed -i -e '/register_core/d' "$git_dir/rules.d/core-rules.sh" 
+	exit
 	
 	##########################
 	# disabled cores:

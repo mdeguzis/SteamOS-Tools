@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	add-debian-repos.sh
-# Script Ver:	0.1.3
+# Script Ver:	0.1.5
 # Description:	This script automatically enables debian repositories
 #		The script must be run as root to add the source list
 #		lines to system directory locations.
@@ -14,11 +14,19 @@
 # remove old custom files
 rm -f "log.txt"
 
+# set default action if no args are specified
+install="yes"
+
+# check for and set install status
+if [[ "$1" == "install" ]]; then
+	install="yes"
+elif [[ "$1" == "uninstall" ]]; then
+    	install="no"
+fi
 
 funct_set_vars()
 {
-	# Set default user option
-	install="yes"
+	# Set default user options
 	reponame="wheezy"
 	backports_reponame="wheezy-backports"
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
@@ -52,31 +60,30 @@ funct_show_warning()
 	fi
 }
 
-funct_option_check()
-{
-	# check for and set install status
-	if [[ "$1" == "install" ]]; then
-		install="yes"
-	elif [[ "$1" == "uninstall" ]]; then
-	    	install="no"
-	fi
-}
-
 main()
 {
+	
 	# Install/Uninstall process
 	if [[ "$install" == "yes" ]]; then
 		clear
 		echo -e "Adding debian repositories...\n"
 		sleep 1s
 		
-		# Check for existance of /etc/apt/preferences
+		# Check for existance of /etc/apt/preferences file (deprecated, see below)
+		if [[ -f "/etc/apt/preferences" ]]; then
+			# backup preferences file
+			echo "Backup up /etc/apt/preferences to /etc/apt/preferences.bak"
+			mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
+		fi
+		
+		# Check for existance of /etc/apt/preferences.d/{reponame} file
 		if [[ -f ${prefer} ]]; then
 			# backup preferences file
 			echo "Backup up ${prefer} to ${prefer}.bak"
 			mv ${prefer} ${prefer}.bak
 		fi
 		
+		# Check for existance of /etc/apt/preferences.d/{backports_prefer} file
 		if [[ -f ${backports_prefer} ]]; then
 			# backup preferences file
 			echo "Backup up ${backports_prefer} to ${backports_prefer}.bak"
@@ -87,13 +94,13 @@ main()
 		cat <<-EOF >> ${prefer}
 		Package: *
 		Pin: release l=Debian
-		Pin-Priority: 110
+		Pin-Priority:-10
 		EOF
 		
 		cat <<-EOF >> ${prefer-backports}
 		Package: *
 		Pin: release a=wheezy-backports
-		Pin-Priority: 100
+		Pin-Priority:-5
 		EOF
 	
 		cat <<-EOF >> ${steamosprefer}
@@ -142,18 +149,20 @@ main()
 		echo -e "but also from the Debian repository with:\n\n"
 		echo -e "'sudo apt-get install <package_name>'\n"
 		echo -e "or\n"
-		echo -e "'sudo apt-get -t [wheezy|wheezy-backports] install <package_name>'\n\n"
-		echo "Warning: If the apt package manager seems to want to remove a"
-		echo "lot of packages you have already installed, be very careful about"
-		echo -e "proceeding.\n"
+		echo -e "'sudo apt-get -t [wheezy|wheezy-backports] install <package_name>'\n"
+		echo -e "Warning: If the apt package manager seems to want to remove a \
+lot of packages you have already installed, be very careful about proceeding.\n"
 	
 	elif [[ "$install" == "no" ]]; then
 		clear
 		echo "Removing debian repositories..."
-		rm ${sourcelist}
-		rm ${prefer}
-		rm ${steamosprefer}
+		sleep 2s
+		rm -f ${sourcelist}
+		rm -f ${prefer}
+		rm -f ${steamosprefer}
+		rm -f ${backports_sourcelist}
 		echo "Updating index of packages..."
+		sleep 2s
 		apt-get update
 		echo "Done!"
 	fi
@@ -170,7 +179,6 @@ fi
 
 funct_set_vars
 funct_show_warning
-funct_option_check
 
 #####################################################
 # MAIN

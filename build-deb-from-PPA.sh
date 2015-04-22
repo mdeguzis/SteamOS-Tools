@@ -95,7 +95,7 @@ main()
 	echo -e "the following commands (at your own risk!)\n"
 	echo -e "cd $build_dir"
 	echo -e "cd $build_folder"
-	echo -e "dpkg-buildpackage -b -d -uc"
+	echo -e "sudo dpkg-buildpackage -b -d -uc"
 	echo -e "###################################################################\n"
 	
 	ls "/home/desktop/build-deb-temp" | grep ${target}*.deb

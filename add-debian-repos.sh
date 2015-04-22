@@ -62,8 +62,9 @@ funct_show_warning()
 
 main()
 {
-	
+	#####################################################
 	# Install/Uninstall process
+	#####################################################
 	if [[ "$install" == "yes" ]]; then
 		clear
 		echo -e "Adding debian repositories...\n"
@@ -108,8 +109,10 @@ main()
 	#	Pin: release l=SteamOS
 	#	Pin-Priority: 900
 	#	EOF
-
+		
+		#####################################################
 		# Check for Wheezy lists in repos.d
+		#####################################################
 		# If it does not exist, create it
 		
 		if [[ -f ${sourcelist} ]]; then
@@ -124,15 +127,19 @@ main()
 	        	mv ${backports_sourcelist} ${backports_sourcelist}.bak
 		fi
 	
-	
+		#####################################################
 		# Create and add required text to wheezy.list
+		#####################################################
 
+		# Debian Wheezy
 		cat <<-EOF >> ${sourcelist}
 		# Debian-Wheezy repo
 		deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
 		deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
+		EOF
 		
-		# Debian-Wheezy-Backports
+		# Debian Wheezy-Backports
+		cat <<-EOF >> ${backports_sourcelist}
 		deb http://http.debian.net/debian wheezy-backports main
 		EOF
 
@@ -141,7 +148,9 @@ main()
 		sleep 2s
 		apt-get update
 	
+		#####################################################
 		# Remind user how to install
+		#####################################################
 		clear
 		echo -e "\n###########################################################"
 		echo "How to use"

@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.2.1
+# Script Ver:	  	0.4.1
 # Description:		script to install emulation softare as a 
 #                 	part of install-debian-software.sh
 #
@@ -69,10 +69,21 @@ press CTRL+C now."
 	# disabled fetches:
 	##########################
 	
-	sed -i -e 's|register_core "bsnes"|#register_core "bsnes"|g' "$git_dir/rules.d/core-rules.sh" 
-	less "$git_dir/rules.d/core-rules.sh"
-	exit 
+	sed -i -e 's|register_core "bsnes"|#register_core "bsnes"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "tyrquake"|#register_core "tyrquake"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "prboom"|#register_core "prboom"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "dinothawr"|#register_core "dinothawr"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "nxengine"|#register_core "nxengine"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "2048"|#register_core "2048"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "stonesoup"|#register_core "stonesoup"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "bsnes"|#register_core "bsnes"|g' "$git_dir/rules.d/core-rules.sh"
 	
+	##########################
+	# proceed to fetch:
+	##########################
+	
+	# fetch cores
 	./libretro-fetch.sh 
 	
 	##############################################

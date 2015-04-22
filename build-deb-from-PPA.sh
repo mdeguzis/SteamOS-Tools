@@ -18,6 +18,17 @@ install_prereqs()
 
 }
 
+check_for_sudo()
+{
+	# Warn user script must be run as root
+	if [ "$(id -u)" -ne 0 ]; then
+		clear
+		printf "\nScript must be run as root! Try:\n\n"
+		printf "'sudo $0'\n\n"
+		exit 1
+	fi
+}
+
 main()
 {
 	
@@ -70,3 +81,5 @@ main()
 }
 
 # start main
+check_for_sudo
+main

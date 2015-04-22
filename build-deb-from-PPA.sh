@@ -13,6 +13,9 @@
 
 install_prereqs()
 {
+	clear
+	echo -e "\n==>Installing pre-requisites for building...\n"
+	sleep 1s
 	# install needed packages
 	apt-get install devscripts build-essential
 

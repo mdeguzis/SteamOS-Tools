@@ -61,7 +61,7 @@ main()
 	fi
 	
 	# add source to sources.list.d/
-	cat ${repo_source} > /etc/apt/sources.list.d/${target}.list 
+	echo ${repo_src} > "/etc/apt/sources.list.d/${target}.list"
 	
 	echo -e "\n==>Adding GPG key:\n"
 	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ${gpg_pub_key}

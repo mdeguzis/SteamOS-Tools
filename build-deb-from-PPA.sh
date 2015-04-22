@@ -92,8 +92,10 @@ main()
 	echo -e "If package was built without errors you will see if below."
 	echo -e "If you do not, please check build dependcy errors listed above."
 	echo -e "You could also try manually building outside of this script with"
-	echo -e "the following command in $build_dir (at your own risk!)"
-	echo -e "'cd $build_folder && dpkg-buildpackage -b -d -uc'"
+	echo -e "the following commands in $build_dir"
+	echo -e "Please use this at your own risk!\n"
+	echo -e "cd $build_folder"
+	echo -e "dpkg-buildpackage -b -d -uc"
 	echo -e "###################################################################\n"
 	
 	ls "/home/desktop/build-deb-temp" | grep ${target}*.deb

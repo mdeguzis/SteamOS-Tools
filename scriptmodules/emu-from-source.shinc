@@ -65,10 +65,13 @@ press CTRL+C now."
 	# will be manually specified for now
 	# See: https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91
 	
-	# TEST ONLY!!!
-	# remove all registered cores too see what fetch does
-	sed -i -e '/register_core/d' "$git_dir/rules.d/core-rules.sh" 
-	exit
+	##########################
+	# disabled fetches:
+	##########################
+	
+	sed -i -e 's|register_core "bsnes"|#register_core "bsnes"|g' "$git_dir/rules.d/core-rules.sh" 
+	less "$git_dir/rules.d/core-rules.sh"
+	exit 
 	
 	./libretro-fetch.sh 
 	

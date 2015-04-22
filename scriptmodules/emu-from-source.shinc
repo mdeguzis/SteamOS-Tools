@@ -33,6 +33,19 @@ efs_build_cores()
 efs_main()
 {
 	
+	# TESTING ONLY check build_opts
+	echo $build_opts
+	exit
+	
+	# Warn user this will take some time
+	echo -e "Building Retroarch and it's associated cores will take some time. Please wait or \
+press CTRL+C now. Press Enter to continue"
+	
+	read -n 1 
+	printf "\nContinuing...\n" 
+	clear 
+
+	
 	install_dir="/home/desktop/retroarch-src"
 	git_dir="/home/desktop/retroarch-src/libretro-super"
   
@@ -73,14 +86,16 @@ efs_main()
 	# See: https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91
 	./libretro-fetch.sh retroarch
 	./libretro-fetch.sh snes9x
-	#./libretro-fetch.sh mednafen_gba
-	#./libretro-fetch.sh mednafen_lynx
-	#./libretro-fetch.sh mednafen_ngp
-	#./libretro-fetch.sh mednafen_pce_fast
-	#./libretro-fetch.sh mednafen_pcfx
-	#./libretro-fetch.sh mednafen_psx
-	#./libretro-fetch.sh mednafen_snes
-	#./libretro-fetch.sh mednafen_supergrafx
+	./libretro-fetch.sh mednafen_gba
+	./libretro-fetch.sh mednafen_lynx
+	./libretro-fetch.sh mednafen_ngp
+	./libretro-fetch.sh mednafen_pce_fast
+	./libretro-fetch.sh mednafen_pcfx
+	./libretro-fetch.sh mednafen_psx
+	./libretro-fetch.sh mednafen_snes
+	./libretro-fetch.sh mednafen_supergrafx
+	./libretro-fetch.sh 4do
+	./libretro-fetch.sh mame
 	
 	## Disable Broken Cores Temporarily
 	# sed -i -e '/build_libretro_emux/d' libretro-build.sh
@@ -94,20 +109,21 @@ efs_main()
 	
 	# build cores
 	
-	#./libretro-build.sh snes9x
-	#./libretro-build.sh mednafen_gba
-	#./libretro-build.sh mednafen_lynx
-	#./libretro-build.sh mednafen_ngp
-	#./libretro-build.sh mednafen_pce_fast
-	#./libretro-build.sh mednafen_pcfx
-	#./libretro-build.sh mednafen_psx
-	#./libretro-build.sh mednafen_snes
-	#./libretro-build.sh mednafen_supergrafx
+	./libretro-build.sh snes9x
+	./libretro-build.sh mednafen_gba
+	./libretro-build.sh mednafen_lynx
+	./libretro-build.sh mednafen_ngp
+	./libretro-build.sh mednafen_pce_fast
+	./libretro-build.sh mednafen_pcfx
+	./libretro-build.sh mednafen_psx
+	./libretro-build.sh mednafen_snes
+	./libretro-build.sh mednafen_supergrafx
+	./libretro-build.sh 4do
+	./libretro-build.sh mame
 
 	##############################################
 	# Debian pkg builds
 	##############################################
-	
 	
 	if [[ "$build_opts" == "--build-debs" ]]; then
 	
@@ -150,7 +166,7 @@ efs_main()
 	# Cleanup
 	##############################################
 	# symlink 'retrarch' for now until build flags are implemented
-	cp -rv "$git_dir/retroarch" "/usr/bin"
+	sudo ln -s "$git_dir/retroarch/retroarch" "/usr/bin/retroarch"
 	
 	# clean up dirs
 	#rm -rf "/home/desktop/retroarch-src-git"

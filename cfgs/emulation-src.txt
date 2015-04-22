@@ -1,4 +1,4 @@
-!broken!libsdl2-dev
+libsdl.2-dev
 libxml2-dev
 libavcodec-dev
 libavformat-dev
@@ -19,7 +19,7 @@ git-core
 curl
 g++
 pkg-config
-!broken!libglu1-mesa-dev
+libglu1-mesa-dev
 !broken!freeglut3-dev
 !broken!mesa-common-dev
 !broken!libsdl1.2-dev

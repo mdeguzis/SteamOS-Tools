@@ -4,143 +4,154 @@
 # Author:     		Michael DeGuzis
 # Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.2.1
+# Script Ver:	  	0.4.1
 # Description:		script to install emulation softare as a 
 #                 	part of install-debian-software.sh
 #
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
+#
+# Last tested:		20150422, runtime: 50 minutes, Pass: ALL, Fail: 0
+#			Intel Core i5 / 8 GB RAM / 15 Mb/s WLAN
 # -------------------------------------------------------------------------------
-
-options="$1"
-
-
-efs_build_ra()
-{
-  
-  mkdir -p ~/retroarch/cores
-  cd retroarch
-  make DESTDIR=~/retroarch install
-  cd ..
-  ./libretro-install.sh ~/retroarch/cores
-  
-}
-
-efs_build_cores()
-{
-  
-  echo "" > /dev/null
-  
-}
 
 efs_main()
 {
-  
-	# clone and fetch libretro
-	#git clone git://github.com/libretro/libretro-super.git
-	#cd libretro-super
-	#./libretro-fetch.sh
 	
-	# build
-	# efs_build_ra
+	#################################################
+	# Initial setup
+	#################################################
 	
-	# if directory exist remove it
-	if [[ -d "/home/desktop/retroarch-src" ]]; then
-	rm -rf "/home/desktop/retroarch-src"
+	# Warn user this will take some time
+	echo -e "\nBuilding Retroarch and its associated cores will take some time. Please wait or \
+press CTRL+C now."
+	echo -e "\nPress Enter to continue\n"
+	
+	read -n 1 
+	printf "\nContinuing...\n" 
+	clear 
+
+	# set vars
+	install_dir="/home/desktop/retroarch-src"
+	git_dir="/home/desktop/retroarch-src/libretro-super"
+	git_url="https://github.com/libretro/libretro-super"
+	
+	# remove old symlink if it exists
+	if [[ -f "/usr/bin/retroarch/retroarch" ]]; then
+		sudo rm -f "/usr/bin/retroarch/retrorach"
+	fi
+	
+	# if directory retroarch-src exists, remove it
+	if [[ -d "$install_dir" ]]; then
+		rm -rf "$install_dir"
+	fi
+	
+	# if git folder libretro-super exists, remove it
+	if [[ -d "$git_dir" ]]; then
+		rm -rf "$git_dir"
 	fi
 	
 	# clone and fetch super build (evaluating currently)
-	mkdir -p /home/desktop/retroarch-src
-	mkdir -p /home/desktop/retroarch-src-git
-	cd /home/desktop/retroarch-src-git/
-	git clone https://github.com/libretro/libretro-super
-	cd libretro-super/
+	mkdir -p $install_dir
+	cd $install_dir
+	git clone $git_url
+	cd $git_dir
 	
-	##############################################
+	#################################################
 	# fetch information
-	##############################################
-	# until / unless all cores work fine, fetch operations
-	# will be manually specified for now
+	#################################################
 	# See: https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91
-	./libretro-fetch.sh retroarch
-	./libretro-fetch.sh snes9x
-	#./libretro-fetch.sh mednafen_gba
-	#./libretro-fetch.sh mednafen_lynx
-	#./libretro-fetch.sh mednafen_ngp
-	#./libretro-fetch.sh mednafen_pce_fast
-	#./libretro-fetch.sh mednafen_pcfx
-	#./libretro-fetch.sh mednafen_psx
-	#./libretro-fetch.sh mednafen_snes
-	#./libretro-fetch.sh mednafen_supergrafx
 	
-	## Disable Broken Cores Temporarily
-	# sed -i -e '/build_libretro_emux/d' libretro-build.sh
+	echo -e "\n==> Fetching sources...please wait\n"
+	sleep 2s
 	
-	##############################################
-	# Builds
-	##############################################
+	############################
+	# disabled fetches (games):
+	############################
+	
+	sed -i -e 's|register_core "bsnes"|#register_core "bsnes"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "tyrquake"|#register_core "tyrquake"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "prboom"|#register_core "prboom"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "dinothawr"|#register_core "dinothawr"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "nxengine"|#register_core "nxengine"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "2048"|#register_core "2048"|g' "$git_dir/rules.d/core-rules.sh"
+	sed -i -e 's|register_core "stonesoup"|#register_core "stonesoup"|g' "$git_dir/rules.d/core-rules.sh"
+
+	############################
+	# disabled fetches (extra):
+	############################
+	# These mostly include cores that fail to build later on
+	
+	sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
+	
+	############################
+	# proceed to global fetch:
+	############################
+	
+	# fetch cores
+	./libretro-fetch.sh 
+	
+	#################################################
+	# Build player and cores
+	#################################################
+	
+	echo -e "\n==> Building sources...please wait"
+	sleep 2s
 	
 	# build Retroarch
 	./retroarch-build.sh 
 	
-	# build cores
+	# Remove untested, broken, standalone games, or extra cores
+	# Uncomment the below sed lines to build ALL cores
 	
-	#./libretro-build.sh snes9x
-	#./libretro-build.sh mednafen_gba
-	#./libretro-build.sh mednafen_lynx
-	#./libretro-build.sh mednafen_ngp
-	#./libretro-build.sh mednafen_pce_fast
-	#./libretro-build.sh mednafen_pcfx
-	#./libretro-build.sh mednafen_psx
-	#./libretro-build.sh mednafen_snes
-	#./libretro-build.sh mednafen_supergrafx
+	############################
+	# disabled cores:
+	############################
+	# These mostly include cores that fail to build
+	
+	sed -i -e '/libretro_build_core bsnes/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core bsnes_cplusplus98/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core bsnes_mercury/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core bnes/d' "$git_dir/libretro-build.sh" 
 
-	##############################################
-	# Debian pkg builds
-	##############################################
-	
-	
-	if [[ "$1" == "--build-debs" ]]; then
-	
-		##############################################
-		# build retroarch
-		##############################################
-		# Current unsatisfied deps: libegl1-mesa-dev libopenvg1-mesa-dev
-		# Unsatisifed deps with SteamOS pkgs avail: 
-		
-		# add libretro src PPA and key
-		sudo -u root `echo "deb-src http://ppa.launchpad.net/libretro/stable/ubuntu trusty main" > "/etc/apt/sources.list.d/libretro.list"` 
-		sudo apt-get update
-		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ECA3745F 
-		
-		# download package only
-		apt-get source --build -d retroarch
-		# try build ignoring mesa deps missing
-		cd retroarch-1.0.0.3+r84~ubuntu14.04.1 && dpkg-buildpackage -b -uc' 
-		cd ..
-		# rename pkg
-		mv "retroarch_1.0.0.3+r84~ubuntu14.04.1_amd64.deb" "retroarch_1.0.0.3_SteamOS_amd64.deb"
-		
-		# for notation only: install command so far:
-		$ dpkg -i --ignore-depends=nvidia-cg-toolkit retroarch_1.0.0.3+r84~ubuntu14.04.1_amd64.deb
+	############################
+	# disabled extra:
+	############################
 
-		
-	fi
+	sed -i -e '/libretro_build_core ffmpeg/d' "$git_dir/libretro-build.sh"
 	
-	##############################################
-	# Installs
-	##############################################
+	############################
+	# disabled games:
+	############################
+
+	sed -i -e '/libretro_build_core tyrquake/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core prboom/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core dinothawr/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core nxengine/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core 2048/d' "$git_dir/libretro-build.sh"
 	
-	# /.libretro-install.sh /home/desktop/retroarch-src
-	#cd ..
+	############################
+	# proceed to global build:
+	############################
 	
-	##############################################
+	./libretro-build.sh 
+	
+	#################################################
+	# Post install configuration
+	#################################################
+	# Any configurations for Retroarch or libretro will go here
+	
+	echo -e "\n==> Running post-build instructions...please wait\n"
+	sleep 2s
+	
+	# symlink 'retrarch' for now until build flags are implemented
+	sudo ln -s "$git_dir/retroarch/retroarch" "/usr/bin/retroarch"
+	
+	#################################################
 	# Cleanup
-	##############################################
-	# move dir for now until build flags are implemented
-	cp -rv "/home/desktop/retroarch-src-git/libretro-super/retroarch/*" "~/retroarch-src"
+	#################################################
 	
 	# clean up dirs
-	#rm -rf "/home/desktop/retroarch-src-git"
 
 }

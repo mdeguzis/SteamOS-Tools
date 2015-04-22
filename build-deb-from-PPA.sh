@@ -42,13 +42,13 @@ main()
 	cd "~/build-deb-temp"
 	
 	# Ask user for repos / vars
-	echo "Please enter or paste the repo src URL now:"
+	echo -e "Please enter or paste the repo src URL now:"
 	read repo_src
 	
-	echo "\nPlease enter or paste the GPG key for this repo now:"
+	echo -e "\nPlease enter or paste the GPG key for this repo now:"
 	read gpg_pub_key
 	
-	echo "\nPlease enter or paste the desired package name now:"
+	echo -e "\nPlease enter or paste the desired package name now:"
 	read target
 	
 	# prechecks

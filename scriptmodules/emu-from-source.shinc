@@ -17,11 +17,6 @@
 efs_main()
 {
 	
-	
-	# TESTING ONLY check build_opts
-	echo $build_opts
-	exit
-	
 	# Warn user this will take some time
 	echo -e "Building Retroarch and it's associated cores will take some time. Please wait or \
 press CTRL+C now."

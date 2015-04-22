@@ -151,7 +151,7 @@ main()
 		echo -e "'sudo apt-get install <package_name>'\n"
 		echo -e "or\n"
 		echo -e "'sudo apt-get -t [wheezy|wheezy-backports] install <package_name>'\n"
-		echo "Warning: If the apt package manager seems to want to remove a \
+		echo -e "Warning: If the apt package manager seems to want to remove a \
 lot of packages you have already installed, be very careful about proceeding.\n"
 	
 	elif [[ "$install" == "no" ]]; then

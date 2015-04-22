@@ -15,6 +15,8 @@
 #			Intel Core i5 / 8 GB RAM / 15 Mb/s WLAN
 # -------------------------------------------------------------------------------
 
+time_start=(`date +"%T"`)
+
 efs_main()
 {
 	
@@ -113,7 +115,9 @@ press CTRL+C now."
 	sed -i -e '/libretro_build_core bsnes/d' "$git_dir/libretro-build.sh"
 	sed -i -e '/libretro_build_core bsnes_cplusplus98/d' "$git_dir/libretro-build.sh"
 	sed -i -e '/libretro_build_core bsnes_mercury/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/libretro_build_core bnes/d' "$git_dir/libretro-build.sh" 
+	sed -i -e '/libretro_build_core bnes/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core mame078/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/build_libretro_test/d' "$git_dir/libretro-build.sh"
 
 	############################
 	# disabled extra:
@@ -153,5 +157,12 @@ press CTRL+C now."
 	#################################################
 	
 	# clean up dirs
+	
+	# note time ended
+	time_end=(`date +"%T"`)
+	
+	# output finish
+	echo -e "\nTime started: ${time_start}"
+	echo -e "\nTime started" ${time_end}\n"
 
 }

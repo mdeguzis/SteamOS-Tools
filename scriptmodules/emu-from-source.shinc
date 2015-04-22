@@ -120,7 +120,6 @@ press CTRL+C now."
 	############################
 
 	sed -i -e '/libretro_build_core ffmpeg/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/libretro_build_core/d' "$git_dir/libretro-build.sh"
 	
 	############################
 	# disabled games:

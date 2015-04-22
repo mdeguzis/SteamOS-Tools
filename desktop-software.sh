@@ -581,7 +581,8 @@ show_warning()
         echo -e "press CTRL+C now..."
         echo -e "\ntype './desktop-software --help' for assistance.\n"
         echo -e  "See log.txt in this direcotry after any attempt for "
-        echo -e "details.\n"
+        echo -e "If you need to add the Debian repos, please use the.\n"
+        echo -e "desktop-software.sh script in the main repository folder..\n"
 
         read -n 1
         echo -e  "Continuing...\n"

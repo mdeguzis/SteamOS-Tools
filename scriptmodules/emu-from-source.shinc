@@ -110,26 +110,27 @@ press CTRL+C now."
 	############################
 	# These mostly include cores that fail to build
 	
-	sed -i -e '/build_libretro_core bsnes/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/build_libretro_core bsnes_cplusplus98/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/build_libretro_core bsnes_mercury/d' "$git_dir/libretro-build.sh" 
+	sed -i -e '/libretro_build_core bsnes/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core bsnes_cplusplus98/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core bsnes_mercury/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core bnes/d' "$git_dir/libretro-build.sh" 
 
 	############################
 	# disabled extra:
 	############################
 
-	sed -i -e '/build_libretro_core ffmpeg/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/build_libretro_test/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core ffmpeg/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core/d' "$git_dir/libretro-build.sh"
 	
 	############################
 	# disabled games:
 	############################
 
-	sed -i -e '/build_libretro_core tyrquake/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/build_libretro_core prboom/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/build_libretro_core dinothawr/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/build_libretro_core nxengine/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/build_libretro_core 2048/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core tyrquake/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core prboom/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core dinothawr/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core nxengine/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core 2048/d' "$git_dir/libretro-build.sh"
 	
 	############################
 	# proceed to global build:

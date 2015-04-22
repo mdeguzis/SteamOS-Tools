@@ -45,10 +45,10 @@ main()
 	echo "Please enter or paste the repo src URL now:"
 	read repo_src
 	
-	echo "Please enter or paste the GPG key for this repo now:"
+	echo "\nPlease enter or paste the GPG key for this repo now:"
 	read gpg_pub_key
 	
-	echo "Please enter or paste the desired package name now:"
+	echo "\nPlease enter or paste the desired package name now:"
 	read target
 	
 	# prechecks

@@ -14,6 +14,9 @@
 # remove old custom files
 rm -f "log.txt"
 
+# set default action if no args are specified
+install="yes"
+
 # check for and set install status
 if [[ "$1" == "install" ]]; then
 	install="yes"
@@ -23,8 +26,7 @@ fi
 
 funct_set_vars()
 {
-	# Set default user option
-	install="yes"
+	# Set default user options
 	reponame="wheezy"
 	backports_reponame="wheezy-backports"
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"

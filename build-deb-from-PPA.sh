@@ -31,7 +31,7 @@ check_for_sudo()
 
 main()
 {
-	
+	clear
 	# remove previous dirs if they exist
 	if [[ -d "~/build-deb-temp" ]]; then
 		rm -rf "~/build-deb-temp"

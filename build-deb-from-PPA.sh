@@ -66,6 +66,10 @@ main()
 	echo -e "\n==>Adding GPG key:\n"
 	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ${gpg_pub_key}
 	
+	echo -e "\n==>Updating system package listings...\n"
+	sleep 2s
+	apt-get update
+	
 	#Attempt to build target
 	echo -e "\n==>Attemption to build ${target}:\n"
 	apt-get source --build ${target}

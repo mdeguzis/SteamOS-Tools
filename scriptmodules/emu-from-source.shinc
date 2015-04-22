@@ -163,6 +163,6 @@ press CTRL+C now."
 	
 	# output finish
 	echo -e "\nTime started: ${time_start}"
-	echo -e "\nTime started" ${time_end}\n"
+	echo -e "\nTime started: ${time_end}\n"
 
 }

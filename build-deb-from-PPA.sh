@@ -89,7 +89,7 @@ main()
 	
 	# inform user of packages
 	echo -e "\n###################################################################"
-	echo -e "If package was built without errors you will see if below."
+	echo -e "If package was built without errors you will see it below."
 	echo -e "If you do not, please check build dependcy errors listed above."
 	echo -e "You could also try manually building outside of this script with"
 	echo -e "the following commands (at your own risk!)\n"

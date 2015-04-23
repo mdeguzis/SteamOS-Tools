@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.4.4
+# Script Ver:	  	0.4.5
 # Description:		script to install emulation softare as a 
 #                 	part of install-debian-software.sh
 #
@@ -178,22 +178,30 @@ press CTRL+C now."
 	
 	# symlink 'retrarch' for now until build flags are implemented
 	sudo ln -s "$binary_loc" "$symlink_target"
-	
-	# Dump Retroarch config files into appropriate DIR
-	# Configre core paths
+
 	# Configure default ROM dir (on user input?)
-	# actively swap out lines after copying skel config file
+	# TODO
 	
 	# set vars
-	old_libretro_loc=$(echo "# libretro_path = "/path/to/libretro.so"")
-	new_libretro_loc=$(echo "libretro_path = "/path/to/libretro.so"")
+	#old_libretro_loc=$(echo "# libretro_path = "/path/to/libretro.so"")
+	#new_libretro_loc=$(echo "libretro_path = "/path/to/libretro.so"")
 	old_core_loc=$(echo "# libretro_directory =")
 	new_core_loc=$(echo "libretro_directory = "/home/desktop/retroarch-src/libretro-super"")
-	retroarch_cfg_loc=(echo "/path/to/retroarch.cfg")
+	# the retroarch config file needs to be placed in the steam users dir so that
+	# the running retroarch application can access it freely while steamcompmgr is running
+	retroarch_cfg_loc_steam=(echo "/home/steam/.config/retroarch/retroarch.cfg")
+	retroarch_cfg_loc_desktop=(echo "/home/steam/.config/retroarch/retroarch.cfg")
 	
-	#cp "$scriptdir/cfgs/retroarch-skel.cfg" "/home/desktop/.retroarch/retroarch.cfg"
+	# actively swap out lines after copying skel config file
+	# copy to both desktop and steam users in case it is launched in either session
+	# sudo likely needed to copy to /home/steam from desktop user login
+	cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_desktop"
+	sudo cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_steam"
+	
+	# Configre retroarch paths
 	#sed -i 's|$old_libretro_loc|$new_libretro_loc|g' "$retroarch_cfg_loc"
-	#sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc"
+	sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_desktop"
+	sudo sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_steam"
 	
 	# Preconfigure controllers for Retroarch?
 	# <<TODO>>

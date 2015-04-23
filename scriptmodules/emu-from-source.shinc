@@ -171,51 +171,11 @@ press CTRL+C now."
 	#################################################
 	# Post install configuration
 	#################################################
-	# Any configurations for Retroarch or libretro will go here
 	
-	echo -e "\n==> Running post-build instructions...please wait\n"
-	sleep 2s
-	
-	# symlink 'retrarch' for now until build flags are implemented
-	sudo ln -s "$binary_loc" "$symlink_target"
+	# handled after this script exits in
+	# SteamOS-Tools/desktop-software.sh 
+	# See: retroarch_cfg
 
-	# Configure default ROM dir (on user input?)
-	# TODO
-	
-	# set vars
-	#old_libretro_loc=$(echo "# libretro_path = "/path/to/libretro.so"")
-	#new_libretro_loc=$(echo "libretro_path = "/path/to/libretro.so"")
-	old_core_loc=$(echo "# libretro_directory =")
-	new_core_loc=$(echo "libretro_directory = "/home/desktop/retroarch-src/libretro-super"")
-	# the retroarch config file needs to be placed in the steam users dir so that
-	# the running retroarch application can access it freely while steamcompmgr is running
-	retroarch_cfg_loc_steam=(echo "/home/steam/.config/retroarch/retroarch.cfg")
-	retroarch_cfg_loc_desktop=(echo "/home/steam/.config/retroarch/retroarch.cfg")
-	
-	# actively swap out lines after copying skel config file
-	# copy to both desktop and steam users in case it is launched in either session
-	# sudo likely needed to copy to /home/steam from desktop user login
-	cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_desktop"
-	sudo cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_steam"
-	
-	# Configre retroarch paths
-	#sed -i 's|$old_libretro_loc|$new_libretro_loc|g' "$retroarch_cfg_loc"
-	sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_desktop"
-	sudo sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_steam"
-	
-	# PAUSE FOR TESTING #
-	echo "pausing for testing!"
-	sleep 50s
-	
-	# Preconfigure controllers for Retroarch?
-	# <<TODO>>
-	# Possibly source in separate module
-	
-	# Automatically add Retroarch program into Steam?
-	# May not be possible
-	# If not, generate notice to user to add as "non-Steam game"
-	# <<TODO>>
-	
 	#################################################
 	# Cleanup
 	#################################################

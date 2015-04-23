@@ -48,14 +48,13 @@ press CTRL+C now."
 	if [[ -d "$git_dir" ]]; then
 		
 		# attempt to pull the latest source first
-		output=$(git pull --stat $git_url)
-		echo $output
-		sleep 10s
 		cd $git_dir
-		git pull
+		# eval git status
+		output=$(git pull $git_url)
 
 		# if pull fails, remove, create, clone
-		if [[ $? == '0' ]]; then
+		if [[ "$output" != "Already up-to-date" ]]; then
+			cd
 			rm -rf "$git_dir"
 			mkdir -p "$install_dir"
 			cd "$install_dir"

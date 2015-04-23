@@ -44,11 +44,6 @@ press CTRL+C now."
 		sudo rm -f "/usr/bin/retrorach"
 	fi
 	
-	# if directory retroarch-src exists, remove it
-	if [[ -d "$install_dir" ]]; then
-		rm -rf "$install_dir"
-	fi
-	
 	# if git folder libretro-super exists, evaluate it
 	if [[ -d "$git_dir" ]]; then
 		

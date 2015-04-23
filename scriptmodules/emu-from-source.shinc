@@ -4,16 +4,16 @@
 # Author:     		Michael DeGuzis
 # Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.4.3
+# Script Ver:	  	0.4.4
 # Description:		script to install emulation softare as a 
 #                 	part of install-debian-software.sh
 #
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
 #
-# Last tested:		20150423, runtime: 27.1 minutes, Pass: 53, Fail: 1
-#			Intel Core i5 4570k / 16 GB RAM / 15 Mb/s LAN
-#			Cores failed: testgl, test
+# Last tested:		20150423, runtime: 26.35 minutes, Pass: 49, Fail: 0
+#			Intel Core-i5 2500k @ 2.30GHz / 16 GB RAM / 15 Mb/s LAN
+#			Cores failed: none
 #			Already fetched: [Yes]
 # -------------------------------------------------------------------------------
 
@@ -178,6 +178,31 @@ press CTRL+C now."
 	
 	# symlink 'retrarch' for now until build flags are implemented
 	sudo ln -s "$binary_loc" "$symlink_target"
+	
+	# Dump Retroarch config files into appropriate DIR
+	# Configre core paths
+	# Configure default ROM dir (on user input?)
+	# actively swap out lines after copying skel config file
+	
+	# set vars
+	old_libretro_loc=$(echo "# libretro_path = "/path/to/libretro.so"")
+	new_libretro_loc=$(echo "libretro_path = "/path/to/libretro.so"")
+	old_core_loc=$(echo "# libretro_directory =")
+	new_core_loc=$(echo "libretro_directory = "/home/desktop/retroarch-src/libretro-super"")
+	retroarch_cfg_loc=(echo "/path/to/retroarch.cfg")
+	
+	#cp "$scriptdir/cfgs/retroarch-skel.cfg" "/home/desktop/.retroarch/retroarch.cfg"
+	#sed -i 's|$old_libretro_loc|$new_libretro_loc|g' "$retroarch_cfg_loc"
+	#sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc"
+	
+	# Preconfigure controllers for Retroarch?
+	# <<TODO>>
+	# Possibly source in separate module
+	
+	# Automatically add Retroarch program into Steam?
+	# May not be possible
+	# If not, generate notice to user to add as "non-Steam game"
+	# <<TODO>>
 	
 	#################################################
 	# Cleanup

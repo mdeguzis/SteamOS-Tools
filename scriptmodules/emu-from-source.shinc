@@ -18,22 +18,6 @@
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
-safeRunCommand() 
-{
-	typeset cmnd="$*"
-	typeset ret_code
-	
-	echo cmnd=$cmnd
-	eval $cmnd
-	ret_code=$?
-	if [ $ret_code != 0 ]; then
-		printf "Error : [%d] when executing command: '$cmnd'" $ret_code
-		exit $ret_code
-	fi
-}
-
-
-
 efs_main()
 {
 	
@@ -64,11 +48,12 @@ press CTRL+C now."
 	if [[ -d "$git_dir" ]]; then
 		
 		# attempt to pull the latest source first
+		output=$(git pull --stat $git_url)
+		echo $output
+		sleep 10s
 		cd $git_dir
-		
-		command="git pull"
-		safeRunCommand "$command"
-		
+		git pull
+
 		# if pull fails, remove, create, clone
 		if [[ $? == '0' ]]; then
 			rm -rf "$git_dir"

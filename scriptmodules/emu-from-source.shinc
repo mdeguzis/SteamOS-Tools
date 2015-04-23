@@ -47,6 +47,8 @@ press CTRL+C now."
 	# if git folder libretro-super exists, evaluate it
 	if [[ -d "$git_dir" ]]; then
 		
+		echo "folder exists!"
+		sleep 5s
 		# attempt to pull the latest source first
 		cd $git_dir
 		# eval git status
@@ -54,6 +56,8 @@ press CTRL+C now."
 
 		# if pull fails, remove, create, clone
 		if [[ "$output" != "Already up-to-date" ]]; then
+			echo "Git directory pull failed. Removing and cloning..."
+			sleep 2ss
 			cd
 			rm -rf "$git_dir"
 			mkdir -p "$install_dir"
@@ -62,6 +66,8 @@ press CTRL+C now."
 			git clone "$git_url"
 		fi
 	else
+		echo "Git directory does not exist. cloning now..."
+		sleep 10s
 		# create and clone
 		mkdir -p "$install_dir"
 		cd "$install_dir"

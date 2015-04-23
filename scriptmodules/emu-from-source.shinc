@@ -48,7 +48,7 @@ press CTRL+C now."
 	if [[ -d "$git_dir" ]]; then
 		
 		echo "folder exists!"
-		sleep 5s
+		sleep 2s
 		# attempt to pull the latest source first
 		cd $git_dir
 		# eval git status
@@ -67,7 +67,7 @@ press CTRL+C now."
 		fi
 	else
 		echo "Git directory does not exist. cloning now..."
-		sleep 10s
+		sleep 2s
 		# create and clone
 		mkdir -p "$install_dir"
 		cd "$install_dir"

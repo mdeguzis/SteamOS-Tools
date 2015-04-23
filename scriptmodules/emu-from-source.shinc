@@ -37,11 +37,17 @@ press CTRL+C now."
 	clear 
 
 	# set vars
-	install_dir="/home/desktop/retroarch-src"
-	git_dir="/home/desktop/retroarch-src/libretro-super"
-	git_url="https://github.com/libretro/libretro-super"
-	symlink_target="/usr/bin/retroarch"
-	binary_loc="$git_dir/retroarch/retroarch"
+	export install_dir="/home/desktop/retroarch-src"
+	export git_dir="/home/desktop/retroarch-src/libretro-super"
+	export git_url="https://github.com/libretro/libretro-super"
+	export symlink_target="/usr/bin/retroarch"
+	export binary_loc="$git_dir/retroarch/retroarch"
+	
+	#export install_dir
+	#export git_dir
+	#export git_url
+	#export symlink_target
+	#export binary_loc
 	
 	# remove old symlink if it exists
 	if [[ -f "$symlink_target" ]]; then
@@ -174,7 +180,7 @@ press CTRL+C now."
 	
 	# handled after this script exits in
 	# SteamOS-Tools/desktop-software.sh 
-	# See: retroarch_cfg
+	# See: rpc_configure_retroarch
 
 	#################################################
 	# Cleanup

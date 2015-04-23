@@ -10,7 +10,7 @@
 # Usage:	      	n/a , module
 # ------------------------------------------------------------------------
 
-install_x360_bindings()
+ep_install_x360_bindings()
 {
 	
 	echo ""
@@ -45,7 +45,7 @@ install_x360_bindings()
 	fi
 }
 
-install_firefox()
+ep_install_firefox()
 {
 	#####################################################
 	# Firefox (imported 20150415)

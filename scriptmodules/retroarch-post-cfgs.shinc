@@ -12,11 +12,26 @@
 rpc_configure_retroarch()
 {
 	# set vars (same as scriptmodules/emu-from-source.shinc)
-	install_dir="/home/desktop/retroarch-src"
-	git_dir="/home/desktop/retroarch-src/libretro-super"
-	git_url="https://github.com/libretro/libretro-super"
-	symlink_target="/usr/bin/retroarch"
-	binary_loc="$git_dir/retroarch/retroarch"
+	
+	#install_dir="/home/desktop/retroarch-src"
+	#git_dir="/home/desktop/retroarch-src/libretro-super"
+	#git_url="https://github.com/libretro/libretro-super"
+	#symlink_target="/usr/bin/retroarch"
+	#binary_loc="$git_dir/retroarch/retroarch"
+	
+	# output above vars so that we know they exported previously
+	# in emus-from-source.shinc
+	echo "install_dir is $install_dir"
+	echo "git_dir is $git_dir"
+	echo "git_url is $git_url"
+	echo "symlink_target is $symlink_target"
+	echo "binary_loc is $binary_loc"
+	
+	# PAUSE FOR TESTING #
+	echo "##########################"
+	echo "pausing for testing!"
+	echo "##########################"
+	sleep 50s
 
 	# Any configurations for Retroarch or libretro will go here
 	
@@ -59,12 +74,6 @@ rpc_configure_retroarch()
 	#sed -i 's|$old_libretro_loc|$new_libretro_loc|g' "$retroarch_cfg_loc"
 	sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
-	
-	# PAUSE FOR TESTING #
-	echo "##########################"
-	echo "pausing for testing!"
-	echo "##########################"
-	sleep 50s
 	
 	# Preconfigure controllers for Retroarch?
 	# <<TODO>>

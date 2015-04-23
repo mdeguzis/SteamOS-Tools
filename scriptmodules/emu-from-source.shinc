@@ -59,7 +59,12 @@ press CTRL+C now."
 			# clone and fetch super build (evaluating currently)
 			git clone "$git_url"
 		fi
-		
+	else
+		# create and clone
+		mkdir -p "$install_dir"
+		cd "$install_dir"
+		# clone and fetch super build (evaluating currently)
+		git clone "$git_url"
 	fi
 	
 	# enter git dir if we are not already

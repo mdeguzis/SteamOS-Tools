@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.4.2
+# Script Ver:	  	0.4.3
 # Description:		script to install emulation softare as a 
 #                 	part of install-debian-software.sh
 #
@@ -124,7 +124,7 @@ press CTRL+C now."
 	sleep 2s
 	
 	# build Retroarch
-	#./retroarch-build.sh 
+	./retroarch-build.sh 
 	
 	# Remove untested, broken, standalone games, or extra cores
 	# Uncomment the below sed lines to build ALL cores
@@ -161,7 +161,7 @@ press CTRL+C now."
 	# proceed to global build:
 	############################
 	
-	#./libretro-build.sh 
+	./libretro-build.sh 
 	
 	#################################################
 	# Post install configuration
@@ -187,7 +187,7 @@ press CTRL+C now."
 	
 	# output finish
 	echo -e "\nTime started: ${time_stamp_start}"
-	echo -e "Time started: ${time_stamp_end}\n"
-	echo -e "Total Runtime (minutes): $runtime"
+	echo -e "Time started: ${time_stamp_end}"
+	echo -e "Total Runtime (minutes): $runtime\n"
 
 }

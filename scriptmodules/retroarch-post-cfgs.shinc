@@ -31,7 +31,7 @@ rpc_configure_retroarch()
 	echo "##########################"
 	echo "pausing for testing!"
 	echo "##########################"
-	sleep 50s
+	exit
 
 	# Any configurations for Retroarch or libretro will go here
 	

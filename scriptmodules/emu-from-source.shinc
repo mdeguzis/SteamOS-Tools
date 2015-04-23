@@ -58,10 +58,9 @@ press CTRL+C now."
 
 		# evaluate git pull. Remove, create, and clone if it fails
 		if [[ "$output" != "Already up-to-date" ]]; then
-			echo ""$output""
-			sleep 20s
 			echo -e "\nGit directory pull failed. Removing and cloning...\n"
-			sleep 1s
+			echo $output
+			sleep 20s
 			cd
 			rm -rf "$git_dir"
 			mkdir -p "$install_dir"

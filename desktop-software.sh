@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.7.3
+# Script Ver:	0.7.5
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -18,7 +18,7 @@
 # Types:	[basic|extra|emulation|emulation-src|emulation-src-deps]
 #		[<pkg_name>|upnp-dlna|games]
 #
-# Extra Types:	[plex]
+# Extra Types:	[plex|firefox|x360 bindings]
 #
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
@@ -148,7 +148,6 @@ function loadConfig()
     local configfile=$1
     if test -e "$script_absolute_dir/$configfile"
     then
-        . "$script_absolute_dir/$configfile"
         echo "Loaded configuration file $script_absolute_dir/$configfile"
         return
     else
@@ -214,7 +213,7 @@ show_help()
 	Options: 	[install|uninstall|list|check] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna]
-	Extra types: 	[plex]
+	Extra types: 	[plex|firefox|x360 bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -288,7 +287,15 @@ get_software_type()
 	
 	elif [[ "$type" == "plex" ]]; then
                 # install plex from helper script
-                install_plex
+                ep_install_plex
+                exit
+        elif [[ "$type" == "firefox" ]]; then
+                # install plex from helper script
+                ep_install_firefox
+                exit
+        elif [[ "$type" == "x360 bindings" ]]; then
+                # install plex from helper script
+                ep_install_x360_bindings
                 exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
@@ -565,6 +572,7 @@ install_software()
                 echo -e "\n==> Proceeding to install emulator pkgs from source..."
                 sleep 2s
                 efs_main
+                rpc_configure_retroarch
 	fi
 	
 }
@@ -598,6 +606,8 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emu-from-source"
+	import "$scriptdir/scriptmodules/retroarch_post_cfgs"
+	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/install-plex"
 	import "$scriptdir/scriptmodules/mobile-upnp-dlna"
 

@@ -203,6 +203,10 @@ press CTRL+C now."
 	sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_desktop"
 	sudo sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_steam"
 	
+	# PAUSE FOR TESTING #
+	echo "pausing for testing!"
+	sleep 50s
+	
 	# Preconfigure controllers for Retroarch?
 	# <<TODO>>
 	# Possibly source in separate module

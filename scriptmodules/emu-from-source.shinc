@@ -50,6 +50,8 @@ press CTRL+C now."
 		# attempt to pull the latest source first
 		cd $git_dir
 		git pull
+		echo $?
+		exit
 		
 		# if pull fails, remove, create, clone
 		if [[ $? == '0' ]]; then

@@ -11,8 +11,14 @@
 
 retroarch_cfg()
 {
+	# set vars (same as scriptmodules/emu-from-source.shinc)
+	install_dir="/home/desktop/retroarch-src"
+	git_dir="/home/desktop/retroarch-src/libretro-super"
+	git_url="https://github.com/libretro/libretro-super"
+	symlink_target="/usr/bin/retroarch"
+	binary_loc="$git_dir/retroarch/retroarch"
 
-# Any configurations for Retroarch or libretro will go here
+	# Any configurations for Retroarch or libretro will go here
 	
 	echo -e "\n==> Running post-build instructions...please wait\n"
 	sleep 2s

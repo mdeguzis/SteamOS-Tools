@@ -44,7 +44,9 @@ press CTRL+C now."
 		sudo rm -f "/usr/bin/retrorach"
 	fi
 	
-	# if git folder libretro-super exists, evaluate it
+	# If git folder libretro-super exists, evaluate it
+	# Avoiding a large download again is much desired.
+	# If the DIR is already there, the fetch info should be intact
 	if [[ -d "$git_dir" ]]; then
 		
 		echo "Git folder already exists! Attempting git pull..."

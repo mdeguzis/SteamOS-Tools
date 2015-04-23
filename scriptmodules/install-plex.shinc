@@ -10,7 +10,7 @@
 # Usage:        Called from another script. N/A
 # -------------------------------------------------------------------------------
 
-install_plex()
+ip_install_plex()
 {
   
   clear

@@ -122,6 +122,9 @@ press CTRL+C now."
 	echo -e "\n==> Building sources...please wait"
 	sleep 2s
 	
+	echo -e "\n\nexiting for test!\n\n"
+	exit
+	
 	# build Retroarch
 	./retroarch-build.sh 
 	

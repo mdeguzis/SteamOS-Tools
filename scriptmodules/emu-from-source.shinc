@@ -18,12 +18,21 @@
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
-exit_trap()
+safeRunCommand() 
 {
-
-	echo "exit caught, dying"
+	typeset cmnd="$*"
+	typeset ret_code
 	
+	echo cmnd=$cmnd
+	eval $cmnd
+	ret_code=$?
+	if [ $ret_code != 0 ]; then
+		printf "Error : [%d] when executing command: '$cmnd'" $ret_code
+		exit $ret_code
+	fi
 }
+
+
 
 efs_main()
 {
@@ -56,9 +65,9 @@ press CTRL+C now."
 		
 		# attempt to pull the latest source first
 		cd $git_dir
-		git pull
-		echo $?
-		exit_trap
+		
+		command="git pull"
+		safeRunCommand "$command"
 		
 		# if pull fails, remove, create, clone
 		if [[ $? == '0' ]]; then

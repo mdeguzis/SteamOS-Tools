@@ -196,7 +196,8 @@ press CTRL+C now."
 	echo $new_libretro_loc
 	echo $old_core_loc
 	echo $new_core_loc
-	exit
+	echo "pausing for testing!"
+	sleep 30s
 	
 	#cp "$scriptdir/cfgs/retroarch-skel.cfg" "/home/desktop/.retroarch/retroarch.cfg"
 	#sed -i 's|$old_libretro_loc|$new_libretro_loc|g' "$retroarch_cfg_loc"

@@ -128,7 +128,7 @@ press CTRL+C now."
 	sleep 2s
 	
 	# build Retroarch
-	./retroarch-build.sh 
+	#./retroarch-build.sh 
 	
 	# Remove untested, broken, standalone games, or extra cores
 	# Uncomment the below sed lines to build ALL cores
@@ -166,7 +166,7 @@ press CTRL+C now."
 	# proceed to global build:
 	############################
 	
-	./libretro-build.sh 
+	#./libretro-build.sh 
 	
 	#################################################
 	# Post install configuration
@@ -190,6 +190,13 @@ press CTRL+C now."
 	old_core_loc=$(echo "# libretro_directory =")
 	new_core_loc=$(echo "libretro_directory = "/home/desktop/retroarch-src/libretro-super"")
 	retroarch_cfg_loc=(echo "/path/to/retroarch.cfg")
+	
+	#echo for test only, exit
+	echo $old_libretro_loc
+	echo $new_libretro_loc
+	echo $old_core_loc
+	echo $new_core_loc
+	exit
 	
 	#cp "$scriptdir/cfgs/retroarch-skel.cfg" "/home/desktop/.retroarch/retroarch.cfg"
 	#sed -i 's|$old_libretro_loc|$new_libretro_loc|g' "$retroarch_cfg_loc"

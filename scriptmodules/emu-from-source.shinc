@@ -18,6 +18,13 @@
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
+exit_trap()
+{
+
+	echo "exit caught, dying"
+	
+}
+
 efs_main()
 {
 	
@@ -51,7 +58,7 @@ press CTRL+C now."
 		cd $git_dir
 		git pull
 		echo $?
-		exit
+		exit_trap
 		
 		# if pull fails, remove, create, clone
 		if [[ $? == '0' ]]; then

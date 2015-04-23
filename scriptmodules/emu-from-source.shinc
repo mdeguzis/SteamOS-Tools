@@ -191,14 +191,6 @@ press CTRL+C now."
 	new_core_loc=$(echo "libretro_directory = "/home/desktop/retroarch-src/libretro-super"")
 	retroarch_cfg_loc=(echo "/path/to/retroarch.cfg")
 	
-	#echo for test only, exit
-	echo "'$old_libretro_loc'"
-	echo "'$new_libretro_loc'"
-	echo "'$old_core_loc'"
-	echo "'$new_core_loc'"
-	echo "pausing for testing!"
-	sleep 30s
-	
 	#cp "$scriptdir/cfgs/retroarch-skel.cfg" "/home/desktop/.retroarch/retroarch.cfg"
 	#sed -i 's|$old_libretro_loc|$new_libretro_loc|g' "$retroarch_cfg_loc"
 	#sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc"

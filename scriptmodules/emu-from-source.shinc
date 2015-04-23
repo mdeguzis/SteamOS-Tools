@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.4.1
+# Script Ver:	  	0.4.2
 # Description:		script to install emulation softare as a 
 #                 	part of install-debian-software.sh
 #
@@ -49,15 +49,25 @@ press CTRL+C now."
 		rm -rf "$install_dir"
 	fi
 	
-	# if git folder libretro-super exists, remove it
+	# if git folder libretro-super exists, evaluate it
 	if [[ -d "$git_dir" ]]; then
-		rm -rf "$git_dir"
+		
+		# attempt to pull the latest source first
+		cd $git_dir
+		git pull
+		
+		# if pull fails, remove, create, clone
+		if [[ $? == '0' ]]; then
+			rm -rf "$git_dir"
+			mkdir -p "$install_dir"
+			cd "$install_dir"
+			# clone and fetch super build (evaluating currently)
+			git clone "$git_url"
+		fi
+		
 	fi
 	
-	# clone and fetch super build (evaluating currently)
-	mkdir -p $install_dir
-	cd $install_dir
-	git clone $git_url
+	# enter git dir if we are not already
 	cd $git_dir
 	
 	#################################################

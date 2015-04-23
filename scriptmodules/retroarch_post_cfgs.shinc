@@ -61,7 +61,9 @@ rpc_configure_retroarch()
 	sudo sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
 	# PAUSE FOR TESTING #
+	echo "##########################"
 	echo "pausing for testing!"
+	echo "##########################"
 	sleep 50s
 	
 	# Preconfigure controllers for Retroarch?

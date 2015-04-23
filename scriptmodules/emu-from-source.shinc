@@ -128,7 +128,7 @@ press CTRL+C now."
 	sleep 2s
 	
 	# build Retroarch
-	#./retroarch-build.sh 
+	./retroarch-build.sh 
 	
 	# Remove untested, broken, standalone games, or extra cores
 	# Uncomment the below sed lines to build ALL cores
@@ -166,7 +166,7 @@ press CTRL+C now."
 	# proceed to global build:
 	############################
 	
-	#./libretro-build.sh 
+	./libretro-build.sh 
 	
 	#################################################
 	# Post install configuration

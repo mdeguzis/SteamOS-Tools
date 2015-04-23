@@ -9,7 +9,7 @@
 #
 # -------------------------------------------------------------------------------
 
-retroarch_cfg()
+rpc_configure_retroarch()
 {
 	# set vars (same as scriptmodules/emu-from-source.shinc)
 	install_dir="/home/desktop/retroarch-src"

@@ -192,10 +192,10 @@ press CTRL+C now."
 	retroarch_cfg_loc=(echo "/path/to/retroarch.cfg")
 	
 	#echo for test only, exit
-	echo $old_libretro_loc
-	echo $new_libretro_loc
-	echo $old_core_loc
-	echo $new_core_loc
+	echo "\'$old_libretro_loc\'"
+	echo "\'$new_libretro_loc\'"
+	echo "\'$old_core_loc\'"
+	echo "\'$new_core_loc\'"
 	echo "pausing for testing!"
 	sleep 30s
 	

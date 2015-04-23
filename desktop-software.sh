@@ -606,9 +606,8 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emu-from-source"
-	import "$scriptdir/scriptmodules/retroarch_post_cfgs"
+	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
-	import "$scriptdir/scriptmodules/install-plex"
 	import "$scriptdir/scriptmodules/mobile-upnp-dlna"
 
         # generate software listing based on type or skip to auto script

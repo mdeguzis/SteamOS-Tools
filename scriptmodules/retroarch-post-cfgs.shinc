@@ -53,13 +53,14 @@ rpc_configure_retroarch()
 	#new_libretro_loc=$(echo "libretro_path = "/path/to/libretro.so"")
 	old_core_loc=$(echo "# libretro_directory =")
 	new_core_loc=$(echo "libretro_directory = "/home/desktop/retroarch-src/libretro-super"")
+	
 	# the retroarch config file needs to be placed in the steam users dir so that
 	# the running retroarch application can access it freely while steamcompmgr is running
 	retroarch_cfg_loc_steam=(echo "/home/steam/.config/retroarch")
 	retroarch_cfg_loc_desktop=(echo "/home/steam/.config/retroarch")
 	
 	#################################################
-	# Directories and configs
+	# Directories 
 	#################################################
 	
 	# create retroarch dirs if they don't exist already
@@ -71,6 +72,13 @@ rpc_configure_retroarch()
 		mkdir -p "$retroarch_cfg_loc_desktop"
 		sudo mkdir -p "$retroarch_cfg_loc_steam"
 	fi
+	
+	#################################################
+	# Application parameters 
+	#################################################
+	
+	echo -e "\n==> Configuring Retorarch parameters..."
+	sleep 2s
 	
 	# actively swap out lines after copying skel config file
 	# copy to both desktop and steam users in case it is launched in either session

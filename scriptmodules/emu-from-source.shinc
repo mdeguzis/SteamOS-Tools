@@ -11,11 +11,12 @@
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
 #
-# Last tested:		20150422, runtime: 50 minutes, Pass: ALL, Fail: 0
+# Last tested:		20150422, runtime: 94 minutes, Pass: 50, Fail: 3
 #			Intel Core i5 / 8 GB RAM / 15 Mb/s WLAN
 # -------------------------------------------------------------------------------
 
-time_start=(`date +"%T"`)
+time_start=$(date +%s)
+time_stamp_start=(`date +"%T"`)
 
 efs_main()
 {
@@ -39,8 +40,8 @@ press CTRL+C now."
 	git_url="https://github.com/libretro/libretro-super"
 	
 	# remove old symlink if it exists
-	if [[ -f "/usr/bin/retroarch/retroarch" ]]; then
-		sudo rm -f "/usr/bin/retroarch/retrorach"
+	if [[ -f "/usr/bin/retroarch" ]]; then
+		sudo rm -f "/usr/bin/retrorach"
 	fi
 	
 	# if directory retroarch-src exists, remove it
@@ -159,10 +160,13 @@ press CTRL+C now."
 	# clean up dirs
 	
 	# note time ended
-	time_end=(`date +"%T"`)
+	time_end=$(date +%s)
+	time_stamp_end=(`date +"%T"`)
+    	runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
 	
 	# output finish
-	echo -e "\nTime started: ${time_start}"
-	echo -e "\nTime started: ${time_end}\n"
+	echo -e "\nTime started: ${time_stamp_start}"
+	echo -e "Time started: ${time_stamp_end}\n"
+	echo -e "Total Runtime (minutes): $runtime"
 
 }

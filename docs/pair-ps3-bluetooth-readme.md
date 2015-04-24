@@ -7,9 +7,9 @@ and subsequently attempts to pair them.
 ### Prerequisites
 You will need to properly have added the Debian sources to your system, and properly pinned them for priority
 underneath the SteamOS Alchemist repository. You can use the `add-debian-repos.sh` script in the main
-SteamOS-Tools repository to add this automatically. Also, you will need a support bluetooth receiver, a generic listing
+SteamOS-Tools repository to add this automatically. You will need a support bluetooth receiver, a generic listing
 of which can be found [here](http://elinux.org/RPi_USB_Bluetooth_adapters). You will also need a USB A-Male to Mini-B 
-cablefor your PS3 controller to pair it to the bluetooth receiver ([example](http://amzn.com/B00NH11N5A)).
+cable for your PS3 controller to pair it to the bluetooth receiver ([example](http://amzn.com/B00NH11N5A)).
  
 ### Usage
 

@@ -16,7 +16,7 @@
 # Options:	[install|uninstall|list|check]
 #		You may also specify [test] to do a dry run of the install
 # Types:	[basic|extra|emulation|emulation-src|emulation-src-deps]
-#		[<pkg_name>|upnp-dlna|games]
+#		[<pkg_name>|upnp-dlna|gaming]
 #
 # Extra Types:	[plex|firefox|x360 bindings]
 #
@@ -212,7 +212,7 @@ show_help()
 	
 	Options: 	[install|uninstall|list|check] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
-	Types Cont.	[<pkg_name>|upnp-dlna]
+	Types Cont.	[<pkg_name>|upnp-dlna|gaming]
 	Extra types: 	[plex|firefox|x360 bindings]
 	
 	Install with:
@@ -276,10 +276,10 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/upnp-dlna.txt "
-        elif [[ "$type" == "games" ]]; then
+        elif [[ "$type" == "gaming" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/opensource-games.txt "    
+                software_list="$scriptdir/cfgs/gaming.txt "    
         
 	####################################################
 	# popular software / custom specification

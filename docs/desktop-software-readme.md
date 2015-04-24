@@ -61,8 +61,8 @@ packages required UPnP / DLNA streaming from a mobile device (experimental / in-
 `<pkg_name>`     
 installs package(s) specifified from Alchemist/Wheezy. You can specify any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
 
-`opensource-games`         
-Installs a some open source games that you can then add to Steam via the "add non-Steam game" option.
+`games-pkg`           
+Installs a some Linux games that you can then add to Steam via the "add non-Steam game" option.
 
 `gaming`         
 Installs some gaming related packages, such as PlayOnLinux and WINE.   

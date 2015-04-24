@@ -31,4 +31,4 @@ N.B. Valve issued updates in January 2014 which means there is no need
 to use apt-pinning for wheezy repo. 
 ```
 
-Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository here
+Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository.

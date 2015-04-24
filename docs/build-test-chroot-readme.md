@@ -1,20 +1,22 @@
-# vaporos-pkgs.sh
+# build-test-chroot-readme.md
 
 ### About
-This script installs useful pacakges from VaporOS 2
+Builds a Debian Wheezy / SteamOS chroot for testing. 
+
+This script is very much **in progress**! 
  
 ### Usage
 
 Install and run the utility using the script file provided here:
 ```
-./vaporos-pkgs.sh
+./build-test-chroot.sh
 ```
 
 Alternatively, and ideally, clone the repo for easy updates
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS-Tools
-./vaporos-pkgs.sh
+./build-test-chroot.sh
 ```
 
 ### Please note

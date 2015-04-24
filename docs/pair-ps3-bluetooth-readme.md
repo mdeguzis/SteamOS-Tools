@@ -15,7 +15,7 @@ cablefor your PS3 controller to pair it to the bluetooth receiver ([example](htt
 
 Install and run the script using the following command:
 ```
-./pair-ps3-bluetoot.sh
+./pair-ps3-bluetooth.sh
 ```
 
 Alternatively, and ideally, clone the repo for easy updates
@@ -30,5 +30,4 @@ dialog prompts to complete the process. Up to 4 controllers can be paired to the
 
 ### Please note
 
-Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository
- here
+Submit all questions, comments, and pull requests to the issues and pull requests area.

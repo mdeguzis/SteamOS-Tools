@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # -------------------------------------------------------------------------------
-# Author:     	Michael DeGuzis
+# Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  0.1.1
-# Description:	Performs post install cfgs of Retroarch
+# Script Ver:	  	0.1.3
+# Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ rpc_configure_retroarch()
 	# configurations for Retroarch or libretro 
 	#################################################
 	
-	echo -e "\n==> Linking Retroarch to /usr/bin \n"
+	echo -e "\n==> Linking Retroarch to /usr/bin/retroarch"
 	sleep 2s
 	
 	#################################################

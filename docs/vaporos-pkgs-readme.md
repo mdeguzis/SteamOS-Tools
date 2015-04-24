@@ -19,5 +19,4 @@ cd SteamOS-Tools
 
 ### Please note
 
-Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository
- here
+Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository.

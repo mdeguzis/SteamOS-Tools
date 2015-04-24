@@ -113,7 +113,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	############################
 	
 	# fetch cores
-	./libretro-fetch.sh 
+	#./libretro-fetch.sh 
 	
 	#################################################
 	# Build player and cores
@@ -161,7 +161,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	# proceed to global build:
 	############################
 	
-	./libretro-build.sh 
+	#./libretro-build.sh 
 	
 	#################################################
 	# Post install configuration

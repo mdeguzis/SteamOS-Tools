@@ -64,8 +64,8 @@ installs package(s) specifified from Alchemist/Wheezy. You can specify any numbe
 `games-pkg`           
 Installs a some Linux games that you can then add to Steam via the "add non-Steam game" option.
 
-`gaming`         
-Installs some gaming related packages, such as PlayOnLinux and WINE.   
+`gaming-ttols`         
+Installs some gaming tools, such as jstest, WINE, and more.
 ***
 ### Extra Types available
 ***

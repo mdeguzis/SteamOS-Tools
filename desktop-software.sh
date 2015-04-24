@@ -18,7 +18,7 @@
 # Types:	[basic|extra|emulation|emulation-src|emulation-src-deps]
 #		[<pkg_name>|upnp-dlna|gaming|games-pkg]
 #
-# Extra Types:	[plex|firefox|x360 bindings]
+# Extra Types:	[plex|firefox|x360-bindings]
 #
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
@@ -213,7 +213,7 @@ show_help()
 	Options: 	[install|uninstall|list|check] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming|games-pkg]
-	Extra types: 	[plex|firefox|x360 bindings]
+	Extra types: 	[plex|firefox|x360-bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -297,7 +297,7 @@ get_software_type()
                 # install plex from helper script
                 ep_install_firefox
                 exit
-        elif [[ "$type" == "x360 bindings" ]]; then
+        elif [[ "$type" == "x360-bindings" ]]; then
                 # install plex from helper script
                 ep_install_x360_bindings
                 exit

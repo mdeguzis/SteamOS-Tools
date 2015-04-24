@@ -65,8 +65,7 @@ rm /usr/lib/i386-linux-gnu/libGL.*
 
 ### Please note
 
-Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository
- here
+Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository.
  
 ### For more information on Voglperf
 Please see: https://github.com/ValveSoftware/voglperf

@@ -922,6 +922,7 @@ main()
 	# cleanup package leftovers
 	echo -e "\n==> Cleaning up unused packages\n"
 	sudo apt-get autoremove
+	echo ""
 }
 
 #####################################################

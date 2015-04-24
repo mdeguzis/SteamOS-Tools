@@ -22,7 +22,7 @@ Alternatively, and ideally, clone the repo for easy updates
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS-Tools
-./pair-ps3-bluetoot.sh
+./pair-ps3-bluetooth.sh
 ```
 
 After prerequisites packages are installed, pairing will begin. Please follow the onscreen 

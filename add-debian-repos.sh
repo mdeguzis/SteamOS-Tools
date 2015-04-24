@@ -85,14 +85,14 @@ main()
 		# Check for existance of /etc/apt/preferences.d/{reponame} file
 		if [[ -f ${prefer} ]]; then
 			# backup preferences file
-			echo -e "Backup up ${prefer} to ${prefer}.bak\n"
+			echo -e "Backing up ${prefer} to ${prefer}.bak\n"
 			mv ${prefer} ${prefer}.bak
 		fi
 		
 		# Check for existance of /etc/apt/preferences.d/{backports_prefer} file
 		if [[ -f ${backports_prefer} ]]; then
 			# backup preferences file
-			echo -e "Backup up ${backports_prefer} to ${backports_prefer}.bak\n"
+			echo -e "Backing up ${backports_prefer} to ${backports_prefer}.bak\n"
 			mv ${backports_prefer} ${backports_prefer}.bak
 		fi
 	
@@ -159,14 +159,13 @@ main()
 		clear
 		echo -e "\n###########################################################"
 		echo "How to use"
-		echo "###########################################################"
+		echo -e "###########################################################"
 		echo -e "\nYou can now not only install package from the SteamOS repository," 
-		echo -e "but also from the Debian repository with:\n\n"
-		echo -e "'sudo apt-get install <package_name>'\n"
-		echo -e "or\n"
+		echo -e "but also from the Debian repository with either:\n\n"
+		echo -e "'sudo apt-get install <package_name>'"
 		echo -e "'sudo apt-get -t [wheezy|wheezy-backports] install <package_name>'\n"
-		echo -e "Warning: If the apt package manager seems to want to remove a \
-lot of packages you have already installed, be very careful about proceeding.\n"
+		echo -e "Warning: If the apt package manager seems to want to remove a lot"
+		echo -e "of packages you have already installed, be very careful about proceeding.\n"
 	
 	elif [[ "$install" == "no" ]]; then
 		clear

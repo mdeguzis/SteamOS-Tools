@@ -21,3 +21,4 @@ libopenvg1-mesa-dev
 python3-dev
 zlib1g-dev
 nvidia-cg-dev
+bc

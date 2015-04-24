@@ -9,7 +9,7 @@ If any given pkg is not, it then checks for a prefix !broken! in any dynamically
 
 *The installations are attemped in the following order:*
 
-1. Automatic based on /apt/preferences priority / Alchemist
+1. Automatic based on /apt/preferences.d/{repo} priority / Alchemist
 2. Wheezy repository
 3. Wheezy-backports repository
 
@@ -47,7 +47,7 @@ installs extra softare based on feedback and personal preference
 `emulation`          
 retroarch and associated emulators. **[in-progress, debs need built]**           
 `emulation-src`  
-Installs prerequisite packages for compiling emulation packages from source and then compiles emulators packages from source (will take some time to install). **[in-progress]**             
+Installs prerequisite packages for compiling emulation packages from source and then compiles and builds libretro packages from source (will take some time to install). See the [script header](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/master/scriptmodules/emu-from-source.shinc) for the latest test stats on build time.  **[in-progress]**               
 `emulation-src-deps`            
 Packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
 `upnp-dlna`            

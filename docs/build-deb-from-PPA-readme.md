@@ -32,5 +32,4 @@ If you received a large list of dependencies, run this through the `desktop-soft
 
 ### Please note
 
-Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository
- here
+Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository.

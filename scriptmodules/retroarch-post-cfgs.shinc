@@ -23,7 +23,6 @@ rpc_configure_retroarch()
 	#################################################
 	
 	echo -e "\n==> Linking Retroarch to /usr/bin/retroarch"
-	sleep 1s
 	
 	#################################################
 	# Linking
@@ -44,7 +43,6 @@ rpc_configure_retroarch()
 	#################################################
 	
 	echo -e "\n==> Configuring paths..."
-	sleep 1s
 	
 	#old_libretro_loc=$(echo "# libretro_path = "/path/to/libretro.so"")
 	#new_libretro_loc=$(echo "libretro_path = "/path/to/libretro.so"")
@@ -97,7 +95,6 @@ rpc_configure_retroarch()
 	#################################################
 	
 	echo -e "\n==> Configuring Retorarch parameters..."
-	sleep 1s
 	
 	# actively swap out lines after copying skel config file
 	# copy to both desktop and steam users in case it is launched in either session

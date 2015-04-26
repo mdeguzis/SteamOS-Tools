@@ -167,24 +167,26 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	# Begin build eval
 	if [[ "$dircheck" == "" ]]; then
 		
-		echo -e "\nIt seems Retorarch and it's associated cores are already built"
+		echo -e "\n==INFO=="
+		echo -e "It seems Retorarch and it's associated cores are already built"
 		echo -e "Would you like to build again, or continue without building? [y/n]\n"
 		
 		# gather user input
 		read user_input
 		
 		if [[ "$user_input" == "n" ]]; then
-			echo -e "\nSkipping builds..."
+			echo -e "\n==> Skipping builds...\n"
 			sleep 2s
 		elif [[ "$user_input" == "y" ]]; then
-			echo -e "\nRebuilding Retroarch and cores..."
+			echo -e "\n==> Rebuilding Retroarch and cores...\n"
 			sleep 2s
 			# build Retroarch
 			./retroarch-build.sh
 			# build cores
 			./libretro-build.sh 
 		else
-			echo -e "\nInvalid input, exiting..."
+			echo -e "\n==ERROR=="
+			echo -e "Invalid input, exiting...\n"
 			sleep 2s
 			exit
 		fi

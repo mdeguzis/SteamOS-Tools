@@ -110,6 +110,11 @@ rpc_configure_retroarch()
 	# create desktop application link 
 	sudo cp "$scriptdir/cfgs/retroarch.dekstop" "/usr/share/applications"
 	
+	# add small launcher script
+	# this will acively swap out the current user (desktop or steam) so that the
+	# appropriate retroarch.cfg file will be user
+	sudo cp "$scriptdir/cfgs/retroarch-launch.sh" "/usrbin"
+	
 	#################################################
 	# Preconfigure controllers for Retroarch?
 	#################################################

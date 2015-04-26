@@ -1,0 +1,1233 @@
+[H[2J#####################################################
+Package pre-req checks
+#####################################################
+
+Checking for lib32gcc1: [Ok]
+Found package 'steamcmd' [Ok]
+Checking for 'vaporos-binds-xbox360 [OK]'.
+Found package 'voglperf' [Ok]
+Found package 'lm-sensors' [Ok]
+Found package 'free' [Ok]
+Found package 'ssh' [Ok]
+Supported GPU: yes
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +32.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +24.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5672    184        0       222     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +34.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +26.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5672    184        0       222     4361
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5672    184        0       223     4361
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +34.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +27.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5672    184        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +34.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +26.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5673    183        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +34.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5673    183        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +35.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +26.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5673    183        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +32.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5673    183        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +32.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5673    183        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5673    183        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +32.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5673    183        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +32.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    183        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +24.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5673    183        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5673    183        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +34.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +27.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +34.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +26.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +32.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +24.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +34.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +27.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +35.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +26.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +34.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +27.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +34.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +27.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +35.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +26.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5675    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +35.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +26.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5674    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +26.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5675    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +34.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +27.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5675    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5675    181        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5675    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5675    182        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +34.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +27.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5675    181        0       223     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +25.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5675    181        0       224     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +26.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5675    181        0       224     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +27.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5675    181        0       224     4362
+Swap:    9764      0   9764
+[H[2J###########################################################
+Monitoring system statistics... |  Press any key to quit  #
+###########################################################
+Kernel version: 3.10-5-amd64
+Steam Client version: 1428529675
+Steam API verion: v017
+-----------------------------------------------------------
+GPU Stats
+-----------------------------------------------------------
+GPU name: GeForce GT 640
+GPU driver Version: 343.22
+GPU temp: 26°C
+GPU fan speed: 30%
+-----------------------------------------------------------
+CPU Stats
+-----------------------------------------------------------
+CPU Name: Intel(R) Core(TM)2 Quad CPU    Q8400  @ 2.66GHz
+
+CPU Temp:
+Core 0:       +33.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 1:       +27.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 2:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+Core 3:       +31.0Â°C  (high = +74.0Â°C, crit = +100.0Â°C)
+
+CPU Utilization:
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           3.05    0.01    0.55    0.24    0.00   96.15
+-----------------------------------------------------------
+Memory Stats
+-----------------------------------------------------------
+        total   used   free   shared   buffers   cached
+Mem:     5857   5675    181        0       224     4362
+Swap:    9764      0   9764

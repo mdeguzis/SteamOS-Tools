@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # -------------------------------------------------------------------------------
 # Author:     		Michael DeGuzis
@@ -24,6 +24,7 @@ rpc_configure_retroarch()
 	#################################################
 	
 	echo -e "\n==> Linking Retroarch to /usr/bin/retroarch"
+	sleep 1s
 	
 	#################################################
 	# Linking
@@ -44,6 +45,7 @@ rpc_configure_retroarch()
 	#################################################
 	
 	echo -e "\n==> Configuring paths..."
+	sleep 1s
 	
 	#old_libretro_loc=$(echo "# libretro_path = "/path/to/libretro.so"")
 	#new_libretro_loc=$(echo "libretro_path = "/path/to/libretro.so"")
@@ -96,19 +98,13 @@ rpc_configure_retroarch()
 	#################################################
 	
 	echo -e "\n==> Configuring Retorarch parameters..."
+	sleep 1s
 	
 	# actively swap out lines after copying skel config file
 	# copy to both desktop and steam users in case it is launched in either session
 	# sudo likely needed to copy to /home/steam from desktop user login
 	cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
-	
-	echo $retroarch_cfg_loc_desktop
-	echo $retroarch_cfg_loc_steam
-	ls $retroarch_cfg_loc_desktop
-	ls $retroarch_cfg_loc_steam
-	
-	exit
 	
 	# Configre retroarch paths
 	sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"

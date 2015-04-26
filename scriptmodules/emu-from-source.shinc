@@ -165,6 +165,11 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	core_check=$(ls "/usr/lib/libretro")
 	retroarch_check=$(ls "$git_dir/retroarch/retroarch")
 	
+	echo $core_check
+	echo $retrorch_check
+	
+	exit
+	
 	############################
 	# Begin retroarch build eval
 	############################

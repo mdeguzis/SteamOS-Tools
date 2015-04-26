@@ -162,29 +162,30 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	# /usr/bin/libretro. These will be present if this module was
 	# already ran before
 	
-	dir_check=$(ls /usr/lib/libretro)
+	core_check=$(ls "/usr/lib/libretro")
+	retroarch_check=$(ls "$git_dir/retroarch/retroarch")
 	
-	# Begin build eval
-	if [[ "$dircheck" == "" ]]; then
+	############################
+	# Begin retroarch build eval
+	############################
+	
+	if [[ "$retroarch_check" == "" ]]; then
 		
 		echo -e "\n==INFO=="
-		echo -e "It seems Retorarch and it's associated cores are already built"
-		echo -e "Would you like to build again [y], or continue without building [n]? "
-		echo -e "Please enter [y/n]\n"
+		echo -e "It seems Retorarch is already built"
+		echo -e "Would you like to rebuild [y], or [n]?\n"
 		
 		# gather user input
 		read -ep "Choice: " user_input
 		
 		if [[ "$user_input" == "n" ]]; then
-			echo -e "\n==> Skipping builds...\n"
+			echo -e "\n==> Skipping build...\n"
 			sleep 2s
 		elif [[ "$user_input" == "y" ]]; then
-			echo -e "\n==> Rebuilding Retroarch and cores...\n"
+			echo -e "\n==> Rebuilding Retroarch...\n"
 			sleep 2s
 			# build Retroarch
 			./retroarch-build.sh
-			# build cores
-			./libretro-build.sh 
 		else
 			echo -e "\n==ERROR=="
 			echo -e "Invalid input, exiting...\n"
@@ -192,14 +193,48 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 			exit
 		fi
 	else	
-		echo -e "\nRetroarch and it's associated cores don't appear to be in /usr/lib/libretro"
+		echo -e "\nRetroarch does not appear to be built."
 		echo -e "Building now..."
 		# build Retroarch
 		./retroarch-build.sh
-		# build cores
-		./libretro-build.sh  
 
-	# end build eval
+	# end retroarch build eval
+	fi
+
+	############################
+	# Begin core build eval
+	###########################
+	
+	if [[ "$core_check" == "" ]]; then
+		
+		echo -e "\n==INFO=="
+		echo -e "It seems the libretro cores are already built to /usr/lib/libretro"
+		echo -e "Would you like to rebuild [y], or [n]?\n"
+		
+		# gather user input
+		read -ep "Choice: " user_input
+		
+		if [[ "$user_input" == "n" ]]; then
+			echo -e "\n==> Skipping build...\n"
+			sleep 2s
+		elif [[ "$user_input" == "y" ]]; then
+			echo -e "\n==> Rebuilding Libretro cores...\n"
+			sleep 2s
+			# build cores
+			./libretro-build.sh
+		else
+			echo -e "\n==ERROR=="
+			echo -e "Invalid input, exiting...\n"
+			sleep 2s
+			exit
+		fi
+	else	
+		echo -e "\nLibretro cores do not appear to be built."
+		echo -e "Building now..."
+		# build cores
+		./libretro-build.sh
+
+	# end retroarch build eval
 	fi
 	
 	#################################################

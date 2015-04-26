@@ -119,6 +119,13 @@ rpc_configure_retroarch()
 	sudo mkdir -p /usr/lib/libretro
 	find "/home/desktop/retroarch-src/libretro-super/" -name *.so | xargs sudo cp -t "/usr/lib/libretro"
 	
+	# MAJOR TODO LEFT:
+	
+	# Retroarch, built in this fashion, desont' seem to like me specifying the retroarch.cfg directory,
+	# complaing "Retroarch is built for dynamic libretro, but libretro path is not set"
+	# Sucessfully played Super Mario All Stars, but need to find out how to pre-setup retroarch.cfg
+	# and be able to launch it.
+	
 	#################################################
 	# Preconfigure controllers for Retroarch?
 	#################################################

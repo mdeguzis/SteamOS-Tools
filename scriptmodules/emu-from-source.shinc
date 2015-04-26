@@ -165,11 +165,6 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	core_check=$(ls "/usr/lib/libretro")
 	retroarch_check=$(ls "$git_dir/retroarch/retroarch")
 	
-	echo $git_dir
-	echo $retrorch_check
-	
-	exit
-	
 	############################
 	# Begin retroarch build eval
 	############################
@@ -181,12 +176,12 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		echo -e "Would you like to rebuild [y], or [n]?\n"
 		
 		# gather user input
-		read -ep "Choice: " user_input
+		read -ep "Choice: " user_input_retro
 		
-		if [[ "$user_input" == "n" ]]; then
+		if [[ "$user_input_retro" == "n" ]]; then
 			echo -e "\n==> Skipping Retroarch build...\n"
 			sleep 2s
-		elif [[ "$user_input" == "y" ]]; then
+		elif [[ "$user_input_retro" == "y" ]]; then
 			echo -e "\n==> Rebuilding Retroarch...\n"
 			sleep 2s
 			# build Retroarch
@@ -217,12 +212,12 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		echo -e "Would you like to rebuild [y], or [n]?\n"
 		
 		# gather user input
-		read -ep "Choice: " user_input
+		read -ep "Choice: " user_input_core
 		
-		if [[ "$user_input" == "n" ]]; then
+		if [[ "$user_input_core" == "n" ]]; then
 			echo -e "\n==> Skipping core builds...\n"
 			sleep 2s
-		elif [[ "$user_input" == "y" ]]; then
+		elif [[ "$user_input_core" == "y" ]]; then
 			echo -e "\n==> Rebuilding Libretro cores...\n"
 			sleep 2s
 			# build cores

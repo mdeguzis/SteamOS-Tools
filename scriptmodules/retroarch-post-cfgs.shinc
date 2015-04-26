@@ -9,9 +9,6 @@
 #
 # -------------------------------------------------------------------------------
 
-# set defailt scriptdir if dekstop-software failed to set it
-$scriptdir="/home/desktop/SteamOS-Tools"
-
 rpc_configure_retroarch()
 {
 	# Vars exported emu-from-source.shinc

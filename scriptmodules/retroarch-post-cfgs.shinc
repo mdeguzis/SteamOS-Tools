@@ -52,7 +52,7 @@ rpc_configure_retroarch()
 	#old_libretro_loc=$(echo "# libretro_path = "/path/to/libretro.so"")
 	#new_libretro_loc=$(echo "libretro_path = "/path/to/libretro.so"")
 	old_core_loc=$(echo "# libretro_directory =")
-	new_core_loc=$(echo "libretro_directory = "/home/desktop/retroarch-src/libretro-super"")
+	new_core_loc=$(echo "libretro_directory = "/usr/lib/libretro"")
 	
 	# resolution
 	old_res_x="# video_fullscreen_x = 0"
@@ -67,6 +67,10 @@ rpc_configure_retroarch()
 	retroarch_cfg_loc_steam="/home/steam/.config/retroarch"
 	retroarch_cfg_loc_desktop="/home/steam/.config/retroarch"
 	
+	# other directories
+	old_roms_dir=$(echo "# rgui_browser_directory =")
+	new_roms_dir=$(echo "# rgui_browser_directory ="/home/steam/ROMs"")
+	
 	#################################################
 	# Directories 
 	#################################################
@@ -79,6 +83,15 @@ rpc_configure_retroarch()
 		# create directory(s)
 		mkdir -p "$retroarch_cfg_loc_desktop"
 		sudo mkdir -p "$retroarch_cfg_loc_steam"
+	fi
+	
+	# create ROMs dirs if it don't exist already
+	if [[ -d "$roms_dir" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	else
+		# create directory(s)
+		sudo mkdir -p "$roms_dir"
 	fi
 	
 	#################################################
@@ -104,6 +117,10 @@ rpc_configure_retroarch()
 	sudo sed -i 's|$old_res_x|$new_res_x|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
 	sudo sed -i 's|$old_res_y|$new_res_y|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
+	# Set a default ROMs DIR
+	sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
+	sudo sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
+	
 	sudo sed -i 's|$fullscreen_old|$fullscreen_new|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo sed -i 's|$fullscreen_old|$fullscreen_new|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	
@@ -119,12 +136,6 @@ rpc_configure_retroarch()
 	sudo mkdir -p /usr/lib/libretro
 	find "/home/desktop/retroarch-src/libretro-super/" -name *.so | xargs sudo cp -t "/usr/lib/libretro"
 	
-	# MAJOR TODO LEFT:
-	
-	# Retroarch, built in this fashion, desont' seem to like me specifying the retroarch.cfg directory,
-	# complaing "Retroarch is built for dynamic libretro, but libretro path is not set"
-	# Sucessfully played Super Mario All Stars, but need to find out how to pre-setup retroarch.cfg
-	# and be able to launch it.
 	
 	#################################################
 	# Preconfigure controllers for Retroarch?

@@ -65,10 +65,10 @@ rpc_configure_retroarch()
 	# the retroarch config file needs to be placed in the steam users dir so that
 	# the running retroarch application can access it freely while steamcompmgr is running
 	retroarch_cfg_loc_steam="/home/steam/.config/retroarch"
-	retroarch_cfg_loc_desktop="/home/steam/.config/retroarch"
+	retroarch_cfg_loc_desktop="/home/desktop/.config/retroarch"
 	
 	# other directories
-	roms_dir = "/home/steam/ROMs"
+	roms_dir="/home/steam/ROMs"
 	old_roms_dir=$(echo "# rgui_browser_directory =")
 	new_roms_dir=$(echo "# rgui_browser_directory ="/home/steam/ROMs"")
 	

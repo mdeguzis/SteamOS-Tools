@@ -126,7 +126,7 @@ rpc_configure_retroarch()
 	sudo sed -i 's|$fullscreen_old|$fullscreen_new|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	
 	# create desktop application link 
-	sudo cp "$scriptdir/cfgs/retroarch.dekstop" "/usr/share/applications"
+	sudo cp "$scriptdir/cfgs/retroarch.desktop" "/usr/share/applications"
 	
 	# add small launcher script
 	# this will acively swap out the current user (desktop or steam) so that the

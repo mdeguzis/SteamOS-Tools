@@ -42,6 +42,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	export git_url="https://github.com/libretro/libretro-super"
 	export symlink_target="/usr/bin/retroarch"
 	export binary_loc="$git_dir/retroarch/retroarch"
+	export core_loc="/usr/lib/libretro"
 	
 	# If git folder libretro-super exists, evaluate it
 	# Avoiding a large download again is much desired.
@@ -172,7 +173,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	if [[ "$retroarch_check" != "" ]]; then
 		
 		echo -e "\n==INFO=="
-		echo -e "It seems Retorarch is already built"
+		echo -e "It seems Retorarch is already built in $git_dir/retroarch"
 		echo -e "Would you like to rebuild [y], or [n]?\n"
 		
 		# gather user input

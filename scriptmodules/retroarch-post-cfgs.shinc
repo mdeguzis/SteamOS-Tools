@@ -68,6 +68,7 @@ rpc_configure_retroarch()
 	retroarch_cfg_loc_desktop="/home/steam/.config/retroarch"
 	
 	# other directories
+	roms_dir = "/home/steam/ROMs"
 	old_roms_dir=$(echo "# rgui_browser_directory =")
 	new_roms_dir=$(echo "# rgui_browser_directory ="/home/steam/ROMs"")
 	
@@ -134,7 +135,7 @@ rpc_configure_retroarch()
 	
 	# create /usr/lib/libretro DIR , copy cores
 	sudo mkdir -p /usr/lib/libretro
-	find "/home/desktop/retroarch-src/libretro-super/" -name *.so | xargs sudo cp -t "/usr/lib/libretro"
+	find "/home/desktop/retroarch-src/libretro-super/" -name *.so | xargs sudo cp -t "/usr/lib/libretro" 2> /dev/null
 	
 	
 	#################################################

@@ -4,10 +4,13 @@
 # Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  	0.1.3
+# Script Ver:	  	0.2.3
 # Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
+
+# set defailt scriptdir if dekstop-software failed to set it
+$scriptdir="/home/desktop/SteamOS-Tools"
 
 rpc_configure_retroarch()
 {
@@ -54,6 +57,12 @@ rpc_configure_retroarch()
 	old_core_loc=$(echo "# libretro_directory =")
 	new_core_loc=$(echo "libretro_directory = "/home/desktop/retroarch-src/libretro-super"")
 	
+	# resolution
+	old_res_x="# video_fullscreen_x = 0"
+	new_res_x="video_fullscreen_x = 0"
+	old_res_y="# video_fullscreen_y = 0"
+	new_res_y="video_fullscreen_y = 0"
+	
 	# the retroarch config file needs to be placed in the steam users dir so that
 	# the running retroarch application can access it freely while steamcompmgr is running
 	retroarch_cfg_loc_steam=(echo "/home/steam/.config/retroarch")
@@ -91,11 +100,11 @@ rpc_configure_retroarch()
 	sudo sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
 	# Allow client to be fullscreen
-	sudo sed -i 's|# video_fullscreen_x = 0|video_fullscreen_x = 0|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	sudo sed -i 's|# video_fullscreen_y = 0|video_fullscreen_y = 0|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
+	sudo sed -i 's|$old_res_x|$new_res_x|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
+	sudo sed -i 's|$old_res_y|$new_res_y|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	
-	sudo sed -i 's|# video_fullscreen_x = 0|video_fullscreen_x = 0|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
-	sudo sed -i 's|# video_fullscreen_y = 0|video_fullscreen_y = 0|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
+	sudo sed -i 's|$old_res_x|$new_res_x|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
+	sudo sed -i 's|$old_res_y|$new_res_y|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
 	#################################################
 	# Preconfigure controllers for Retroarch?

@@ -179,7 +179,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		read -ep "Choice: " user_input
 		
 		if [[ "$user_input" == "n" ]]; then
-			echo -e "\n==> Skipping build...\n"
+			echo -e "\n==> Skipping Retroarch build...\n"
 			sleep 2s
 		elif [[ "$user_input" == "y" ]]; then
 			echo -e "\n==> Rebuilding Retroarch...\n"
@@ -215,7 +215,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		read -ep "Choice: " user_input
 		
 		if [[ "$user_input" == "n" ]]; then
-			echo -e "\n==> Skipping build...\n"
+			echo -e "\n==> Skipping core builds...\n"
 			sleep 2s
 		elif [[ "$user_input" == "y" ]]; then
 			echo -e "\n==> Rebuilding Libretro cores...\n"

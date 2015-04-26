@@ -59,6 +59,8 @@ rpc_configure_retroarch()
 	new_res_x="video_fullscreen_x = 0"
 	old_res_y="# video_fullscreen_y = 0"
 	new_res_y="video_fullscreen_y = 0"
+	fullscreen_old="# video_fullscreen = false"
+	fullscreen_new="video fullscreen = true"
 	
 	# the retroarch config file needs to be placed in the steam users dir so that
 	# the running retroarch application can access it freely while steamcompmgr is running
@@ -99,9 +101,11 @@ rpc_configure_retroarch()
 	# Allow client to be fullscreen
 	sudo sed -i 's|$old_res_x|$new_res_x|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo sed -i 's|$old_res_y|$new_res_y|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	
 	sudo sed -i 's|$old_res_x|$new_res_x|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
 	sudo sed -i 's|$old_res_y|$new_res_y|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
+	
+	sudo sed -i 's|$fullscreen_old|$fullscreen_new|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
+	sudo sed -i 's|$fullscreen_old|$fullscreen_new|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	
 	#################################################
 	# Preconfigure controllers for Retroarch?

@@ -163,13 +163,13 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	# already ran before
 	
 	core_check=$(ls "/usr/lib/libretro")
-	retroarch_check=$(ls "$git_dir/retroarch/retroarch")
+	retroarch_check=$(ls "$git_dir/retroarch")
 	
 	############################
 	# Begin retroarch build eval
 	############################
 	
-	if [[ "$retroarch_check" == "" ]]; then
+	if [[ "$retroarch_check" != "" ]]; then
 		
 		echo -e "\n==INFO=="
 		echo -e "It seems Retorarch is already built"
@@ -194,7 +194,8 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		fi
 	else	
 		echo -e "\nRetroarch does not appear to be built."
-		echo -e "Building now..."
+		echo -e "Building now...\n"
+		sleep 2s
 		# build Retroarch
 		./retroarch-build.sh
 
@@ -205,7 +206,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	# Begin core build eval
 	###########################
 	
-	if [[ "$core_check" == "" ]]; then
+	if [[ "$core_check" != "" ]]; then
 		
 		echo -e "\n==INFO=="
 		echo -e "It seems the libretro cores are already built to /usr/lib/libretro"
@@ -231,6 +232,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	else	
 		echo -e "\nLibretro cores do not appear to be built."
 		echo -e "Building now..."
+		sleep 2s
 		# build cores
 		./libretro-build.sh
 

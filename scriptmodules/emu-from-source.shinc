@@ -167,11 +167,11 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	# Begin build eval
 	if [[ "$dircheck" == "" ]]; then
 		
-		echo -e "It seems Retorarch and it's associated cores are already built"
-		echo -e "Would you like to build again, or continue without building [y/n]"
+		echo -e "\nIt seems Retorarch and it's associated cores are already built"
+		echo -e "Would you like to build again, or continue without building? [y/n]\n"
 		
 		# gather user input
-		read -r -p user_input
+		read user_input
 		
 		if [[ "$user_input" == "n" ]]; then
 			echo -e "\nSkipping builds..."

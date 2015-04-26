@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.4.5
+# Script Ver:	  	0.4.7
 # Description:		script to install emulation softare as a 
 #                 	part of install-debian-software.sh
 #
@@ -122,9 +122,6 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	echo -e "\n==> Building sources...please wait"
 	sleep 2s
 	
-	# build Retroarch
-	./retroarch-build.sh 
-	
 	# Remove untested, broken, standalone games, or extra cores
 	# Uncomment the below sed lines to build ALL cores
 	
@@ -161,7 +158,45 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	# proceed to global build:
 	############################
 	
-	./libretro-build.sh 
+	# perform directory check for *.so (libretro cores) in
+	# /usr/bin/libretro. These will be present if this module was
+	# already ran before
+	
+	dir_check=$(ls /usr/lib/libretro)
+	
+	# Begin build eval
+	if [[ "$dircheck" == "" ]]; then
+		
+		echo -e "It seems Retorarch and it's associated cores are already built"
+		echo -e "Would you like to build again, or continue without building [y/n]"
+		
+		# gather user input
+		read -r -p user_input
+		
+		if [[ "$user_input" == "n" ]]
+			echo -e "\nSkipping builds..."
+			sleep 2s
+		elif [[ "$user_input" == "y" ]]
+			echo -e "\nRebuilding Retroarch and cores..."
+			sleep 2s
+			# build Retroarch
+			./retroarch-build.sh
+			# build cores
+			./libretro-build.sh 
+		else
+			echo -e "\nInvalid input, exiting..."
+			sleep 2s
+			exit
+		fi
+	else	
+		echo -e "\nRetroarch and it's associated cores don't appear to be in /usr/lib/libretro"
+		echo -e "Building now..."
+		# build Retroarch
+		./retroarch-build.sh
+		# build cores
+		./libretro-build.sh  
+	fi
+	
 	
 	#################################################
 	# Post install configuration

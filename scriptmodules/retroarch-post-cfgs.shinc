@@ -103,6 +103,13 @@ rpc_configure_retroarch()
 	cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
+	echo $retroarch_cfg_loc_desktop
+	echo $retroarch_cfg_loc_steam
+	ls $retroarch_cfg_loc_desktop
+	ls $retroarch_cfg_loc_steam
+	
+	exit
+	
 	# Configre retroarch paths
 	sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo sed -i 's|$old_core_loc|$new_core_loc|g' "$retroarch_cfg_loc_steam/retroarch.cfg"
@@ -126,12 +133,11 @@ rpc_configure_retroarch()
 	# add small launcher script
 	# this will acively swap out the current user (desktop or steam) so that the
 	# appropriate retroarch.cfg file will be user
-	sudo cp "$scriptdir/cfgs/retroarch-launch.sh" "/usrbin"
+	sudo cp "$scriptdir/cfgs/retroarch-launch.sh" "/usr/bin"
 	
 	# create /usr/lib/libretro DIR , copy cores
-	sudo mkdir -p /usr/lib/libretro
+	sudo mkdir -p $core_loc
 	find "/home/desktop/retroarch-src/libretro-super/" -name *.so | xargs sudo cp -t "/usr/lib/libretro" 2> /dev/null
-	
 	
 	#################################################
 	# Preconfigure controllers for Retroarch?

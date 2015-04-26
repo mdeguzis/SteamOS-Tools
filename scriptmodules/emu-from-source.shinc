@@ -173,10 +173,10 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		# gather user input
 		read -r -p user_input
 		
-		if [[ "$user_input" == "n" ]]
+		if [[ "$user_input" == "n" ]]; then
 			echo -e "\nSkipping builds..."
 			sleep 2s
-		elif [[ "$user_input" == "y" ]]
+		elif [[ "$user_input" == "y" ]]; then
 			echo -e "\nRebuilding Retroarch and cores..."
 			sleep 2s
 			# build Retroarch
@@ -195,8 +195,9 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		./retroarch-build.sh
 		# build cores
 		./libretro-build.sh  
+
+	# end build eval
 	fi
-	
 	
 	#################################################
 	# Post install configuration

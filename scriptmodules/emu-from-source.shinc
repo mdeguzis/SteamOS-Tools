@@ -169,7 +169,8 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		
 		echo -e "\n==INFO=="
 		echo -e "It seems Retorarch and it's associated cores are already built"
-		echo -e "Would you like to build again [y], or continue without building [n]? [y/n]\n"
+		echo -e "Would you like to build again [y], or continue without building [n]? "
+		echo -e "Please enter [y/n]\n"
 		
 		# gather user input
 		read -ep "Choice: " user_input

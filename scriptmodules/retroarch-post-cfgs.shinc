@@ -62,8 +62,8 @@ rpc_configure_retroarch()
 	
 	# the retroarch config file needs to be placed in the steam users dir so that
 	# the running retroarch application can access it freely while steamcompmgr is running
-	retroarch_cfg_loc_steam=(echo "/home/steam/.config/retroarch")
-	retroarch_cfg_loc_desktop=(echo "/home/steam/.config/retroarch")
+	retroarch_cfg_loc_steam="/home/steam/.config/retroarch"
+	retroarch_cfg_loc_desktop="/home/steam/.config/retroarch"
 	
 	#################################################
 	# Directories 

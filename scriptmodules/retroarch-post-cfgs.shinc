@@ -37,6 +37,11 @@ rpc_configure_retroarch()
 		sudo ln -s "$binary_loc" "$symlink_target"
 	fi
 	
+	
+	echo $symlink_target
+	echo $binary_loc
+	exit 
+	
 	#################################################
 	# Configure default ROM dir (on user input?)
 	#################################################

@@ -28,7 +28,7 @@ rpc_configure_retroarch()
 	# Linking
 	#################################################
 	
-	# remove old symlink if it exists
+	# remove old symlink
 	sudo rm -f "$symlink_target"
 	# symlink 'retrarch' for now until build flags are implemented
 	sudo ln -s "$binary_loc" "$symlink_target"

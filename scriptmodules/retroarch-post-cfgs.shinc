@@ -17,6 +17,7 @@ rpc_configure_retroarch()
 	#echo "git_url is $git_url"
 	#echo "symlink_target is $symlink_target"
 	#echo "binary_loc is $binary_loc"
+	#echo "core location is $core_loc"
 
 	#################################################
 	# configurations for Retroarch or libretro 

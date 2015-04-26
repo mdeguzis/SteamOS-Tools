@@ -210,7 +210,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	if [[ "$core_check" != "" ]]; then
 		
 		echo -e "\n==INFO=="
-		echo -e "It seems the libretro cores are already built to /usr/lib/libretro"
+		echo -e "It seems the libretro cores are already built to $core_loc"
 		echo -e "Would you like to rebuild [y], or [n]?\n"
 		
 		# gather user input

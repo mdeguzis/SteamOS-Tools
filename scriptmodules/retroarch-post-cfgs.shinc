@@ -66,7 +66,7 @@ rpc_configure_retroarch()
 	retroarch_cfg_loc_desktop="/home/desktop/.config/retroarch"
 	
 	# core info
-	core_info_new="/usr/lib/libretro/info"
+	core_info_loc="/usr/lib/libretro/info"
 	core_info_old="# libretro_info_path ="
 	core_info_new="libretro_info_path = /usr/lib/libretro/info"
 	
@@ -104,7 +104,7 @@ rpc_configure_retroarch()
 		echo "" > /dev/null
 	else
 		# create directory(s)
-		sudo mkdir -p "$core_info_dir"
+		sudo mkdir -p "$core_info_loc"
 	fi
 	
 	#################################################

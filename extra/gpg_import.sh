@@ -7,8 +7,8 @@
 # Description:		script to add and export a gpg key
 # -------------------------------------------------------------------------------
 arg="$1"
-keyserver=""
+keyserver="hkp://subkeys.pgp.net"
 
 #--no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg
-gpg --keyserver hkp://subkeys.pgp.net --recv-keys $1
+gpg --keyserver  $keyserver --recv-keys $1
 gpg -a --export $1 | sudo apt-key add -

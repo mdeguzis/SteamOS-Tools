@@ -9,5 +9,6 @@
 arg="$1"
 keyserver=""
 
-gpg --keyserver https://pgp.mit.edu/ --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --recv-keys $1
+#--no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg
+gpg --keyserver hkp://subkeys.pgp.net --recv-keys $1
 gpg -a --export $1 | sudo apt-key add -

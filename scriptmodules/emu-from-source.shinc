@@ -163,7 +163,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	# /usr/bin/libretro. These will be present if this module was
 	# already ran before
 	
-	core_check=$(ls "/usr/lib/libretro")
+	core_check=$(ls "/usr/lib/libretro" 2> /dev/null)
 	retroarch_check=$(ls "$git_dir/retroarch")
 	
 	############################

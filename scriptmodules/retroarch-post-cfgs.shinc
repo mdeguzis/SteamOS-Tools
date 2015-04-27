@@ -73,7 +73,7 @@ rpc_configure_retroarch()
 	# other directories
 	roms_dir="/home/steam/ROMs"
 	old_roms_dir="# rgui_browser_directory ="
-	new_roms_dir=="rgui_browser_directory = /home/steam/ROMs"
+	new_roms_dir="rgui_browser_directory = /home/steam/ROMs"
 	
 	#################################################
 	# Directories 

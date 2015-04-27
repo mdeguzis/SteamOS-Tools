@@ -154,12 +154,20 @@ rpc_configure_retroarch()
 	
 	# copy core info from source build DIR
 	find "/home/desktop/retroarch-src/libretro-super/dist/info" -name *.info | xargs sudo cp -t "/usr/lib/libretro/info" 2> /dev/null
+
+	#################################################
+	# Extra
+	#################################################
+	
+	# add icon/thumbnail
+	sudo cp "$scriptdir/extra/retro-arch-logo.png" "/home/steam/Pictures"
 	
 	#################################################
 	# Preconfigure controllers for Retroarch?
 	#################################################
 	# <<TODO>>
 	# Possibly source in separate module
+	# Maybe something like `controller_type=$(sudo lsusb -v | grep Logitech | grep Bus)`
 	
 	#################################################
 	# Automatically add Retroarch program into Steam?
@@ -169,6 +177,12 @@ rpc_configure_retroarch()
 	# If not, generate notice to user to add as "non-Steam game"
 	# <<TODO>>
 
+	echo -e "\n==> Completing post-install actions..."
+
+	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src' as a"
+	echo -e "non-Steam game in Big Picture Mode.\n"
+	sleep 1s
+	
 	#################################################
 	# Cleanup
 	#################################################

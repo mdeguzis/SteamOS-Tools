@@ -85,11 +85,11 @@ Installs the nice set of controller bindings from [Sharkwouter](https://github.c
 ***
 ### Warning regarding the emulation-src type
 ***
-Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, building Retorarch, and the libretro cores, is time-intensive. 
+Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, building Retorarch, and the libretro cores, is time-intensive. The MAME and MESS cores take up most of this time.
 
 Statistics:    
-**Test Build:** - (pre-fetched, build) 57 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD  
-**Test Build:** - (fetch, build) 00 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD
+**Test Build:** - (pre-fetched, build) 57 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD, 15 Mb/s WLAN  
+**Test Build:** - (fetch, build) 59.03 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD, 15 Mb/s LAN
 
 ### Please note
 ***

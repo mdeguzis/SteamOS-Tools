@@ -1,14 +1,3 @@
-**Table of Contents**
-
-- [About](### ABout)
-- [Usage](#Usage)
-- [Options](#)
-- [Types](#)
-- [Extra Types available](#)
-- [Warning regarding the emulation-src type](#)
-- [Post build instructions for Retroarch](#)
-- [Please note](#)
-
 ### About
 ***
 This script aids in installing basic, extra, emulation,or custom 

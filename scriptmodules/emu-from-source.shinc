@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.4.7
+# Script Ver:	  	0.4.8
 # Description:		script to install emulation softare as a 
 #                 	part of install-debian-software.sh
 #
@@ -59,7 +59,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		# evaluate git pull. Remove, create, and clone if it fails
 		if [[ "$output" != "Already up-to-date." ]]; then
 			echo -e "\nGit directory pull failed. Removing and cloning...\n"
-			sleep 1s
+			sleep 2s
 			cd
 			rm -rf "$git_dir"
 			mkdir -p "$install_dir"
@@ -69,7 +69,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		fi
 	else
 		echo -e "\nGit directory does not exist. cloning now...\n"
-		sleep 1s
+		sleep 2s
 		# create and clone
 		mkdir -p "$install_dir"
 		cd "$install_dir"
@@ -181,16 +181,16 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		
 		if [[ "$user_input_retro" == "n" ]]; then
 			echo -e "\n==> Skipping Retroarch build...\n"
-			sleep 1s
+			sleep 2s
 		elif [[ "$user_input_retro" == "y" ]]; then
 			echo -e "\n==> Rebuilding Retroarch...\n"
-			sleep 1s
+			sleep 2s
 			# build Retroarch
 			./retroarch-build.sh
 		else
 			echo -e "\n==ERROR=="
 			echo -e "Invalid input, exiting...\n"
-			sleep 1s
+			sleep 2s
 			exit
 		fi
 	else	
@@ -218,16 +218,16 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		
 		if [[ "$user_input_core" == "n" ]]; then
 			echo -e "\n==> Skipping core builds...\n"
-			sleep 1s
+			sleep 2s
 		elif [[ "$user_input_core" == "y" ]]; then
 			echo -e "\n==> Rebuilding Libretro cores...\n"
-			sleep 1s
+			sleep 2s
 			# build cores
 			./libretro-build.sh
 		else
 			echo -e "\n==ERROR=="
 			echo -e "Invalid input, exiting...\n"
-			sleep 1s
+			sleep 2s
 			exit
 		fi
 	else	

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Retroarch-Src
+GenericName=Retroarch
+Comment=Retroarch-Src launcher
+Exec=retroarch-launch.sh
+Icon=
+Terminal=false
+Type=Application
+Categories=Games;
+Actions=Fullscreen;Standalone;

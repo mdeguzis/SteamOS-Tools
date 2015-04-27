@@ -179,8 +179,8 @@ rpc_configure_retroarch()
 
 	echo -e "\n==> Completing post-install actions..."
 
-	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src' as a"
-	echo -e "non-Steam game in Big Picture Mode.\n"
+	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src' as a \
+non-Steam game in Big Picture Mode.\n"
 	sleep 1s
 	
 	#################################################

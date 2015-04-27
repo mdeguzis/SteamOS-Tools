@@ -1,7 +1,7 @@
 **Table of Contents**
 
-- [About](#)
-- [Usage](#)
+- [About](### ABout)
+- [Usage](### Usage)
 - [Options](#)
 - [Types](#)
 - [Extra Types available](#)

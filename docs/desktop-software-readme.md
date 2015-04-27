@@ -50,10 +50,10 @@ installs extra softare based on feedback and personal preference
 retroarch and associated emulators. (in-progress, debs need built)  
 
 `emulation-src`  
-Installs prerequisite packages for compiling emulation packages from source and then compiles and builds libretro packages from source (will take some time to install). See the [script header](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/master/scriptmodules/emu-from-source.shinc) for the latest test stats on build time.  (in-progress)     
+Installs prerequisite packages for compiling emulation packages from source and then compiles and builds libretro packages from source (will take some time to install). See the [script header](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/master/scriptmodules/emu-from-source.shinc) for the latest test stats on build time.  (basic routines are done, some work left)     
 
 `emulation-src-deps`            
-Packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
+Packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable). (in-progress)  
 
 `upnp-dlna`            
 packages required UPnP / DLNA streaming from a mobile device (experimental / in-progres)   
@@ -77,11 +77,12 @@ sourced from Linux Mint LMDE 2
 the amazing set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
 
 ***
-## Emulation type Warning
+## emulation-src type Warning
 ***
-Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, compiling Retorarch, and it's emulators, is time-intensive. This component of the script is very much *still in progress!* 
+Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, compiling Retorarch, and it's emulators, is time-intensive. 
 
-I will do my best to reduce overhead on this installation piece as much as possible.
+Statistics:    
+**Test Build:** - (pre-fetched) 57 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD
 
 ## Please note
 ***

@@ -83,7 +83,7 @@ sourced from Linux Mint LMDE 2
 Installs the nice set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
 
 ***
-## emulation-src type Warning
+## Warning regarding the emulation-src type
 ***
 Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, compiling Retorarch, and it's emulators, is time-intensive. 
 

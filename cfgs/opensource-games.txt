@@ -1,3 +1,0 @@
-supertuxkart
-openarena
-gnome-games

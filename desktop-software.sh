@@ -16,9 +16,9 @@
 # Options:	[install|uninstall|list|check]
 #		You may also specify [test] to do a dry run of the install
 # Types:	[basic|extra|emulation|emulation-src|emulation-src-deps]
-#		[<pkg_name>|upnp-dlna|games]
+#		[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
 #
-# Extra Types:	[plex|firefox|x360 bindings]
+# Extra Types:	[plex|firefox|x360-bindings]
 #
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
@@ -212,8 +212,8 @@ show_help()
 	
 	Options: 	[install|uninstall|list|check] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
-	Types Cont.	[<pkg_name>|upnp-dlna]
-	Extra types: 	[plex|firefox|x360 bindings]
+	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
+	Extra types: 	[plex|firefox|x360-bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -276,10 +276,14 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/upnp-dlna.txt "
-        elif [[ "$type" == "games" ]]; then
+        elif [[ "$type" == "gaming-tools" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/opensource-games.txt "    
+                software_list="$scriptdir/cfgs/gaming-tools.txt "
+        elif [[ "$type" == "games-pkg" ]]; then
+                # add emulation softare to temp list
+                # remember to kick off script at the end of dep installs
+                software_list="$scriptdir/cfgs/games-pkg.txt"
         
 	####################################################
 	# popular software / custom specification
@@ -293,7 +297,7 @@ get_software_type()
                 # install plex from helper script
                 ep_install_firefox
                 exit
-        elif [[ "$type" == "x360 bindings" ]]; then
+        elif [[ "$type" == "x360-bindings" ]]; then
                 # install plex from helper script
                 ep_install_x360_bindings
                 exit

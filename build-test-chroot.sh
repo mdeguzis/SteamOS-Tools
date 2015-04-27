@@ -97,6 +97,7 @@ funct_create_chroot()
 		if [[ "$release" == "alchemist" ]]; then
 		# import GPG key
 		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --recv-keys 7DEEB7438ABDDD96
+		gpg -a --export 7DEEB7438ABDDD96 | sudo apt-key add -
 		fi
 	fi
 	

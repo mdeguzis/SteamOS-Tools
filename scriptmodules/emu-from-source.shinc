@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.4.5
+# Script Ver:	  	0.4.7
 # Description:		script to install emulation softare as a 
 #                 	part of install-debian-software.sh
 #
@@ -42,6 +42,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	export git_url="https://github.com/libretro/libretro-super"
 	export symlink_target="/usr/bin/retroarch"
 	export binary_loc="$git_dir/retroarch/retroarch"
+	export core_loc="/usr/lib/libretro"
 	
 	# If git folder libretro-super exists, evaluate it
 	# Avoiding a large download again is much desired.
@@ -122,9 +123,6 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	echo -e "\n==> Building sources...please wait"
 	sleep 2s
 	
-	# build Retroarch
-	./retroarch-build.sh 
-	
 	# Remove untested, broken, standalone games, or extra cores
 	# Uncomment the below sed lines to build ALL cores
 	
@@ -161,7 +159,86 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	# proceed to global build:
 	############################
 	
-	./libretro-build.sh 
+	# perform directory check for *.so (libretro cores) in
+	# /usr/bin/libretro. These will be present if this module was
+	# already ran before
+	
+	core_check=$(ls "/usr/lib/libretro")
+	retroarch_check=$(ls "$git_dir/retroarch")
+	
+	############################
+	# Begin retroarch build eval
+	############################
+	
+	if [[ "$retroarch_check" != "" ]]; then
+		
+		echo -e "\n==INFO=="
+		echo -e "It seems Retorarch is already built in $git_dir/retroarch"
+		echo -e "Would you like to rebuild [y], or [n]?\n"
+		
+		# gather user input
+		read -ep "Choice: " user_input_retro
+		
+		if [[ "$user_input_retro" == "n" ]]; then
+			echo -e "\n==> Skipping Retroarch build...\n"
+			sleep 1s
+		elif [[ "$user_input_retro" == "y" ]]; then
+			echo -e "\n==> Rebuilding Retroarch...\n"
+			sleep 1s
+			# build Retroarch
+			./retroarch-build.sh
+		else
+			echo -e "\n==ERROR=="
+			echo -e "Invalid input, exiting...\n"
+			sleep 1s
+			exit
+		fi
+	else	
+		echo -e "\nRetroarch does not appear to be built."
+		echo -e "Building now...\n"
+		sleep 2s
+		# build Retroarch
+		./retroarch-build.sh
+
+	# end retroarch build eval
+	fi
+
+	############################
+	# Begin core build eval
+	###########################
+	
+	if [[ "$core_check" != "" ]]; then
+		
+		echo -e "\n==INFO=="
+		echo -e "It seems the libretro cores are already built to $core_loc"
+		echo -e "Would you like to rebuild [y], or [n]?\n"
+		
+		# gather user input
+		read -ep "Choice: " user_input_core
+		
+		if [[ "$user_input_core" == "n" ]]; then
+			echo -e "\n==> Skipping core builds...\n"
+			sleep 1s
+		elif [[ "$user_input_core" == "y" ]]; then
+			echo -e "\n==> Rebuilding Libretro cores...\n"
+			sleep 1s
+			# build cores
+			./libretro-build.sh
+		else
+			echo -e "\n==ERROR=="
+			echo -e "Invalid input, exiting...\n"
+			sleep 1s
+			exit
+		fi
+	else	
+		echo -e "\nLibretro cores do not appear to be built."
+		echo -e "Building now..."
+		sleep 2s
+		# build cores
+		./libretro-build.sh
+
+	# end retroarch build eval
+	fi
 	
 	#################################################
 	# Post install configuration

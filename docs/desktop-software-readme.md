@@ -1,13 +1,13 @@
 **Table of Contents**
 
-	- [About](#)
+- [About](#)
 - [Usage](#)
-	- [Options](#)
-	- [Types](#)
-	- [Extra Types available](#)
-	- [Warning regarding the emulation-src type](#)
-	- [Post build instructions for Retroarch](#)
-	- [Please note](#)
+- [Options](#)
+- [Types](#)
+- [Extra Types available](#)
+- [Warning regarding the emulation-src type](#)
+- [Post build instructions for Retroarch](#)
+- [Please note](#)
 
 ### About
 ***

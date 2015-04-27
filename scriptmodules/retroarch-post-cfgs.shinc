@@ -71,7 +71,7 @@ rpc_configure_retroarch()
 	core_info_new="libretro_info_path = /usr/lib/libretro/info"
 	
 	# saves
-	save_loc_desktop="/home/steam/retroarch-saves"
+	save_loc_desktop="/home/desktop/retroarch-saves"
 	save_loc_steam="/home/steam/retroarch-saves"
 	old_save_loc="# savestate_directory ="
 	new_save_loc_desktop="savestate_directory = /home/desktop/retroarch-saves"

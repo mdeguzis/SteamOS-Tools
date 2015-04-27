@@ -88,7 +88,8 @@ Installs the nice set of controller bindings from [Sharkwouter](https://github.c
 Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, building Retorarch, and the libretro cores, is time-intensive. 
 
 Statistics:    
-**Test Build:** - (pre-fetched) 57 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD
+**Test Build:** - (pre-fetched, build) 57 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD  
+**Test Build:** - (fetch, build) 00 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD
 
 ## Please note
 ***

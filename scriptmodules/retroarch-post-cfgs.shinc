@@ -70,6 +70,13 @@ rpc_configure_retroarch()
 	core_info_old="# libretro_info_path ="
 	core_info_new="libretro_info_path = /usr/lib/libretro/info"
 	
+	# saves
+	save_loc_desktop="/home/steam/retroarch-saves"
+	save_loc_steam="/home/steam/retroarch-saves"
+	old_save_loc="# savestate_directory ="
+	new_save_loc_desktop="savestate_directory = /home/desktop/retroarch-saves"
+	new_save_loc_steam="savestate_directory = /home/steam/retroarch-saves"
+	
 	# other directories
 	roms_dir="/home/steam/ROMs"
 	old_roms_dir="# rgui_browser_directory ="
@@ -109,6 +116,24 @@ rpc_configure_retroarch()
 		sudo mkdir -p "$core_info_loc"
 	fi
 	
+	# save dir desktop
+	if [[ -d "$save_loc_desktop" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	else
+		# create directory(s)
+		mkdir -p "$save_loc_desktop"
+	fi
+	
+	# save dir steam
+	if [[ -d "$save_loc_steam" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	else
+		# create directory(s)
+		sudo mkdir -p "$save_loc_steam"
+	fi
+	
 	#################################################
 	# Application parameters 
 	#################################################
@@ -143,6 +168,10 @@ rpc_configure_retroarch()
 	sudo sed -i "s|$fullscreen_old|$fullscreen_new|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo sed -i "s|$fullscreen_old|$fullscreen_new|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	
+	# game saves
+	sed -i "s|$old_save_loc|$new_save_loc_desktop|g" "$save_loc_desktop"
+	sudo sed -i "s|$old_save_loc|$new_save_loc_steam|g" "$save_loc_steam"
+	
 	# create desktop application link 
 	sudo cp "$scriptdir/cfgs/retroarch.desktop" "/usr/share/applications"
 	
@@ -166,6 +195,12 @@ rpc_configure_retroarch()
 	sudo chown steam:steam "$retroarch_cfg_loc_steam/retroarch.cfg"
 	sudo chmod 755 "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo chmod 755 "$retroarch_cfg_loc_steam/retroarch.cfg"
+	
+	# Fix saves permissions
+	sudo chown desktop:desktop "$save_loc_desktop"
+	sudo chown steam:steam "$save_loc_desktop"
+	sudo chmod 755 "$save_loc_desktop"
+	sudo chmod 755 "$save_loc_desktop"
 	
 	# Fix retroarch banner
 	sudo chown desktop:desktop "$banner_dir_desktop/retro-arch-logo.png"

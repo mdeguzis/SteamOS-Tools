@@ -1,3 +1,19 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [steamos-stats.sh](#steamos-statssh)
+    - [About](#about)
+    - [What currently works](#what-currently-works)
+    - [Usage](#usage)
+    - [Additional arguments](#additional-arguments)
+    - [Volglperf](#volglperf)
+        - [Be Warned:](#be-warned)
+    - [Please note](#please-note)
+    - [For more information on Voglperf](#for-more-information-on-voglperf)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # steamos-stats.sh
 
 ### About

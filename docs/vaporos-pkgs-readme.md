@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [vaporos-pkgs.sh](#vaporos-pkgssh)
+    - [About](#about)
+    - [Usage](#usage)
+    - [Please note](#please-note)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # vaporos-pkgs.sh
 
 ### About

@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  	0.2.3
+# Script Ver:	  	0.2.5
 # Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
@@ -70,10 +70,19 @@ rpc_configure_retroarch()
 	core_info_old="# libretro_info_path ="
 	core_info_new="libretro_info_path = /usr/lib/libretro/info"
 	
+	# saves
+	save_loc_desktop="/home/desktop/retroarch-saves"
+	save_loc_steam="/home/steam/retroarch-saves"
+	old_save_loc="# savestate_directory ="
+	new_save_loc_desktop="savestate_directory = /home/desktop/retroarch-saves"
+	new_save_loc_steam="savestate_directory = /home/steam/retroarch-saves"
+	
 	# other directories
 	roms_dir="/home/steam/ROMs"
 	old_roms_dir="# rgui_browser_directory ="
 	new_roms_dir="rgui_browser_directory = /home/steam/ROMs"
+	banner_dir_desktop="/home/desktop/Pictures"
+	banner_dir_steam="/home/steam/Pictures"
 	
 	#################################################
 	# Directories 
@@ -105,6 +114,24 @@ rpc_configure_retroarch()
 	else
 		# create directory(s)
 		sudo mkdir -p "$core_info_loc"
+	fi
+	
+	# save dir desktop
+	if [[ -d "$save_loc_desktop" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	else
+		# create directory(s)
+		mkdir -p "$save_loc_desktop"
+	fi
+	
+	# save dir steam
+	if [[ -d "$save_loc_steam" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	else
+		# create directory(s)
+		sudo mkdir -p "$save_loc_steam"
 	fi
 	
 	#################################################
@@ -141,6 +168,10 @@ rpc_configure_retroarch()
 	sudo sed -i "s|$fullscreen_old|$fullscreen_new|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo sed -i "s|$fullscreen_old|$fullscreen_new|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	
+	# game saves
+	sed -i "s|$old_save_loc|$new_save_loc_desktop|g" "$save_loc_desktop"
+	sudo sed -i "s|$old_save_loc|$new_save_loc_steam|g" "$save_loc_steam"
+	
 	# create desktop application link 
 	sudo cp "$scriptdir/cfgs/retroarch.desktop" "/usr/share/applications"
 	
@@ -154,6 +185,26 @@ rpc_configure_retroarch()
 	
 	# copy core info from source build DIR
 	find "/home/desktop/retroarch-src/libretro-super/dist/info" -name *.info | xargs sudo cp -t "/usr/lib/libretro/info" 2> /dev/null
+
+	#################################################
+	# Permissions
+	#################################################
+
+	# Fix retroarch.cfg permissions
+	sudo chown desktop:desktop "$retroarch_cfg_loc_desktop/retroarch.cfg"
+	sudo chown steam:steam "$retroarch_cfg_loc_steam/retroarch.cfg"
+	sudo chmod 755 "$retroarch_cfg_loc_desktop/retroarch.cfg"
+	sudo chmod 755 "$retroarch_cfg_loc_steam/retroarch.cfg"
+	
+	# Fix saves permissions
+	sudo chown desktop:desktop "$save_loc_desktop"
+	sudo chown steam:steam "$save_loc_desktop"
+	sudo chmod 755 "$save_loc_desktop"
+	sudo chmod 755 "$save_loc_desktop"
+	
+	# Fix retroarch banner
+	sudo chown desktop:desktop "$banner_dir_desktop/retro-arch-logo.png"
+	sudo chown steam:steam "$banner_dir_steam/retro-arch-logo.png"
 
 	#################################################
 	# Extra
@@ -179,8 +230,8 @@ rpc_configure_retroarch()
 
 	echo -e "\n==> Completing post-install actions..."
 
-	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src' as a"
-	echo -e "non-Steam game in Big Picture Mode.\n"
+	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src' as a \
+non-Steam game in Big Picture Mode.\n"
 	sleep 1s
 	
 	#################################################

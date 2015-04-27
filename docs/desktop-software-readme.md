@@ -1,4 +1,19 @@
-## About
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+  - [About](#about)
+- [Usage](#usage)
+  - [Options](#options)
+  - [Types](#types)
+  - [Extra Types available](#extra-types-available)
+  - [Warning regarding the emulation-src type](#warning-regarding-the-emulation-src-type)
+  - [Post build instructions for Retroarch](#post-build-instructions-for-retroarch)
+  - [Please note](#please-note)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+### About
 ***
 This script aids in installing basic, extra, emulation,or custom 
 sets of Debian software to SteamOS. 
@@ -27,13 +42,17 @@ cd SteamOS-Tools
 ### Options
 ***
 `install`     
-installs software based on type desired  
+installs software based on type desired 
+
 `uninstall`     
 uninstalls software based on type installed already  
+
 `list`     
 lists softare pacakges in each install group  
+
 `test`       
-perform a dry-run installation of package(s)   
+perform a dry-run installation of package(s) 
+
 `check`         
 Run quick check on package(s)  
 
@@ -50,10 +69,10 @@ installs extra softare based on feedback and personal preference
 retroarch and associated emulators. (in-progress, debs need built)  
 
 `emulation-src`  
-Installs prerequisite packages for compiling emulation packages from source and then compiles and builds libretro packages from source (will take some time to install). See the [script header](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/master/scriptmodules/emu-from-source.shinc) for the latest test stats on build time.  (in-progress)     
+Installs prerequisite packages for compiling emulation packages from source and then compiles and builds libretro packages from source (will take some time to install). See the [script header](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/master/scriptmodules/emu-from-source.shinc) for the latest test stats on build time.  (basic routines are done, some work left)     
 
 `emulation-src-deps`            
-Packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable).  
+Packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable). (in-progress)  
 
 `upnp-dlna`            
 packages required UPnP / DLNA streaming from a mobile device (experimental / in-progres)   
@@ -64,26 +83,39 @@ installs package(s) specifified from Alchemist/Wheezy. You can specify any numbe
 `games-pkg`           
 Installs a some Linux games that you can then add to Steam via the "add non-Steam game" option.
 
-`gaming-ttols`         
+`gaming-tools`         
 Installs some gaming tools, such as jstest, WINE, and more.
 ***
 ### Extra Types available
 ***
 `plex`      
 Kicks off an automated script to install plexhometheatre  
+
 `firefox`      
 sourced from Linux Mint LMDE 2  
+
 `xbox-bindings`      
-the amazing set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
+Installs the nice set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
 
 ***
-## Emulation type Warning
+### Warning regarding the emulation-src type
 ***
-Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, compiling Retorarch, and it's emulators, is time-intensive. This component of the script is very much *still in progress!* 
+Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, building Retorarch, and the libretro cores, is time-intensive. The MAME and MESS cores take up most of this time.
 
-I will do my best to reduce overhead on this installation piece as much as possible.
+***
+### Post build instructions for Retroarch
+***
+After running the emulation-src type, currently you must still perform the following as of 20150427:
 
-## Please note
+1. Add "Retroarch-Src" as a "non-Steam" game using the "+" icon on the Libary section of SteamOS
+2. Configure your joypad via Retroarch > Settings > Input Settings (use bind all to configure all buttons at once)
+3. Transfer any ROMs you had on your system, into appropriate folder structures under `/home/steam/ROMs`
+
+Statistics:    
+**Test Build:** - (pre-fetched, build) 57 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD, 15 Mb/s WLAN  
+**Test Build:** - (fetch, build) 59.03 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD, 15 Mb/s LAN
+
+### Please note
 ***
 
 Submit all questions, comments, and pull requests to the issues and pull requests area of this git repository here. `sudo` access is required for package installations. All code is available for review.

@@ -1,3 +1,16 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [build-deb-from-PPA-readme](#build-deb-from-ppa-readme)
+    - [About](#about)
+    - [Usage](#usage)
+    - [Arguments](#arguments)
+    - [Troubleshooting](#troubleshooting)
+    - [Please note](#please-note)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # build-deb-from-PPA-readme
 
 ### About

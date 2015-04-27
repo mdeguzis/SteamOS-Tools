@@ -49,8 +49,8 @@ rpc_configure_retroarch()
 	
 	#old_libretro_loc=$(echo "# libretro_path = "/path/to/libretro.so"")
 	#new_libretro_loc=$(echo "libretro_path = "/path/to/libretro.so"")
-	old_core_loc=$(echo "# libretro_directory =")
-	new_core_loc=$(echo "libretro_directory = "/usr/lib/libretro"")
+	old_core_loc="# libretro_directory ="
+	new_core_loc="libretro_directory = /usr/lib/libretro"
 	
 	# resolution
 	old_res_x="# video_fullscreen_x = 0"
@@ -65,10 +65,15 @@ rpc_configure_retroarch()
 	retroarch_cfg_loc_steam="/home/steam/.config/retroarch"
 	retroarch_cfg_loc_desktop="/home/desktop/.config/retroarch"
 	
+	# core info
+	core_info_new="/usr/lib/libretro/info"
+	core_info_old="# libretro_info_path ="
+	core_info_new="libretro_info_path = /usr/lib/libretro/info"
+	
 	# other directories
 	roms_dir="/home/steam/ROMs"
-	old_roms_dir=$(echo "# rgui_browser_directory =")
-	new_roms_dir=$(echo "rgui_browser_directory = "/home/steam/ROMs"")
+	old_roms_dir="# rgui_browser_directory ="
+	new_roms_dir=="rgui_browser_directory = /home/steam/ROMs"
 	
 	#################################################
 	# Directories 
@@ -93,6 +98,15 @@ rpc_configure_retroarch()
 		sudo mkdir -p "$roms_dir"
 	fi
 	
+	# create Core/Core info dirs if it don't exist already
+	if [[ -d "$core_info_dir" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	else
+		# create directory(s)
+		sudo mkdir -p "$core_info_dir"
+	fi
+	
 	#################################################
 	# Application parameters 
 	#################################################
@@ -106,9 +120,13 @@ rpc_configure_retroarch()
 	cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
-	# Configre retroarch paths
+	# Configre retroarch core path
 	sed -i "s|$old_core_loc|$new_core_loc|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo sed -i "s|$old_core_loc|$new_core_loc|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	
+	# Configre retroarch info core path
+	sed -i "s|$core_info_old|$core_info_new|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+	sudo sed -i "s|$core_info_old|$core_info_new|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
 	# Allow client to be fullscreen
 	sudo sed -i "s|$old_res_x|$new_res_x|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
@@ -131,9 +149,11 @@ rpc_configure_retroarch()
 	# appropriate retroarch.cfg file will be user
 	sudo cp "$scriptdir/cfgs/retroarch-launch.sh" "/usr/bin"
 	
-	# create /usr/lib/libretro DIR , copy cores
-	sudo mkdir -p $core_loc
+	# copy cores from source build DIR
 	find "/home/desktop/retroarch-src/libretro-super/" -name *.so | xargs sudo cp -t "/usr/lib/libretro" 2> /dev/null
+	
+	# copy core info from source build DIR
+	find "/home/desktop/retroarch-src/libretro-super/dist/info" -name *.info | xargs sudo cp -t "/usr/lib/libretro/info" 2> /dev/null
 	
 	#################################################
 	# Preconfigure controllers for Retroarch?

@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  	0.2.3
+# Script Ver:	  	0.2.5
 # Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
@@ -74,6 +74,8 @@ rpc_configure_retroarch()
 	roms_dir="/home/steam/ROMs"
 	old_roms_dir="# rgui_browser_directory ="
 	new_roms_dir="rgui_browser_directory = /home/steam/ROMs"
+	banner_dir_desktop="/home/desktop/Pictures"
+	banner_dir_steam="/home/steam/Pictures"
 	
 	#################################################
 	# Directories 
@@ -159,11 +161,15 @@ rpc_configure_retroarch()
 	# Permissions
 	#################################################
 
-	# Fix retroarch permissions
+	# Fix retroarch.cfg permissions
 	sudo chown desktop:desktop "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo chown steam:steam "$retroarch_cfg_loc_steam/retroarch.cfg"
 	sudo chmod 755 "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo chmod 755 "$retroarch_cfg_loc_steam/retroarch.cfg"
+	
+	# Fix retroarch banner
+	sudo chown desktop:desktop "$banner_dir_desktop/retro-arch-logo.png"
+	sudo chown steam:steam "$banner_dir_steam/retro-arch-logo.png"
 
 	#################################################
 	# Extra

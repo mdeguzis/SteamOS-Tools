@@ -75,10 +75,12 @@ Installs some gaming tools, such as jstest, WINE, and more.
 ***
 `plex`      
 Kicks off an automated script to install plexhometheatre  
+
 `firefox`      
 sourced from Linux Mint LMDE 2  
+
 `xbox-bindings`      
-the amazing set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
+Installs the nice set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
 
 ***
 ## emulation-src type Warning

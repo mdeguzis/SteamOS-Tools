@@ -154,6 +154,13 @@ rpc_configure_retroarch()
 	
 	# copy core info from source build DIR
 	find "/home/desktop/retroarch-src/libretro-super/dist/info" -name *.info | xargs sudo cp -t "/usr/lib/libretro/info" 2> /dev/null
+
+	#################################################
+	# Extra
+	#################################################
+	
+	# add icon/thumbnail
+	sudo cp "$scriptdir/extra/retro-arch-logo.png" "/home/steam/Pictures"
 	
 	#################################################
 	# Preconfigure controllers for Retroarch?

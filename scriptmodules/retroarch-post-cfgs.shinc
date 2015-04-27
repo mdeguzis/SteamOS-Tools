@@ -160,6 +160,7 @@ rpc_configure_retroarch()
 	#################################################
 	# <<TODO>>
 	# Possibly source in separate module
+	# Maybe something like `controller_type=$(sudo lsusb -v | grep Logitech | grep Bus)`
 	
 	#################################################
 	# Automatically add Retroarch program into Steam?
@@ -169,6 +170,12 @@ rpc_configure_retroarch()
 	# If not, generate notice to user to add as "non-Steam game"
 	# <<TODO>>
 
+	echo -e "\n==> Completing post-install actions..."
+
+	echo -e "\n Post install routine is now complete. Please add 'Retroarch-Src` as a"
+	echo -e "non-Steam game in Big Picture Mode.\n"
+	sleep 1s
+	
 	#################################################
 	# Cleanup
 	#################################################

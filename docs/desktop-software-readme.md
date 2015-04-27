@@ -1,4 +1,4 @@
-## About
+### About
 ***
 This script aids in installing basic, extra, emulation,or custom 
 sets of Debian software to SteamOS. 

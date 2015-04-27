@@ -263,9 +263,12 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	echo -e "\nTime started: ${time_stamp_start}"
 	echo -e "Time started: ${time_stamp_end}"
 	echo -e "Total Runtime (minutes): $runtime\n"
-	# pause for a moment to allow user to see above stats
-	sleep 3s
-	
-	echo -e "\nProceeding to Retroarch/Libretro post-install configuration...\n"
 
+	echo -e "\nProceeding to Retroarch/Libretro post-install configuration in...\n"
+	# pause for a moment to allow user to see above stats
+	echo -n "5 " && sleep 1s
+	echo -n "4 " && sleep 1s
+	echo -n "3 " && sleep 1s
+	echo -n "2 " && sleep 1s
+	echo -n "1" && sleep 1s
 }

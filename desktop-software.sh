@@ -273,7 +273,12 @@ function gpg_import()
 	# Key Desc: Debian Archive Automatic Signing Key
 	# Key ID: 2B90D010
 	# Full Key ID: 7638D0442B90D010
-	$scriptdir/extra/gpg_import.sh 7638D0442B90D010
+	gpg_key_check=$(gpg --list-keys 2B90D010)
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "Debian Archive Automatic Signing Key [OK]"
+	else
+		$scriptdir/extra/gpg_import.sh 7638D0442B90D010
+	fi
 	
 	# TESTING only, exit for now to make sure key imports on clean install
 	exit 

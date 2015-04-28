@@ -595,9 +595,9 @@ show_warning()
         sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
         
         if [[ "$sources_check" == "" ]]; then
-        	echo -e "Those sources do not appear to be added."
+        	echo -e -n "Those sources do not appear to be added."
         else
-        	echo -e "On initial check, those sources appear to be added."
+        	echo -e -n "On initial check, those sources appear to be added."
         fi
         	
         echo -e "If you wish to exit, please press CTRL+C now..."

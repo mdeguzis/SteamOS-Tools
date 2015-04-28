@@ -56,6 +56,10 @@ rpc_configure_retroarch()
 	retroarch_cfg_loc_steam="/home/steam/.config/retroarch"
 	retroarch_cfg_loc_desktop="/home/desktop/.config/retroarch"
 	
+	# saves
+	save_loc_desktop="/home/desktop/retroarch-saves"
+	save_loc_steam="/home/steam/retroarch-saves"
+	
 	# other directories
 	roms_dir="/home/steam/ROMs"
 	banner_dir_desktop="/home/desktop/Pictures"

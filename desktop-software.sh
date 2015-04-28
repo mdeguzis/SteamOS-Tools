@@ -630,10 +630,10 @@ show_warning()
         if [[ "$sources_check" == "" ]]; then
         	echo -e " Those sources do not appear to be added at first glance."
         else
-        	echo -e " On initial check, those sources appear to be added."
+        	echo -e " On initial check, those sources \nappear to be added."
         fi
         	
-        echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise, press [ENTER] to continue."
+        echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\n press [ENTER] to continue."
         echo -e "\ntype './desktop-software --help' (without quotes) for assistance.\n"
         echo -e "See log.txt in this direcotry after any attempt for details"
         echo -e "If you need to add the Debian repos, please use the"

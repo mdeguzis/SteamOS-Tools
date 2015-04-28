@@ -241,7 +241,7 @@ funct_pre_req_checks()
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' python-software-properties | grep "install ok installed")
 	
 	if [ "" == "$PKG_OK" ]; then
-		echo -e "python-software-properties not found. Setting up python-software-properties.\n"
+		echo -e "\npython-software-properties not found. Setting up python-software-properties.\n"
 		sleep 1s
 		sudo apt-get install -t wheezy python-software-properties
 	else
@@ -251,7 +251,7 @@ funct_pre_req_checks()
 	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' debian-keyring | grep "install ok installed")
 	if [ "" == "$PKG_OK" ]; then
-		echo -e "debian-keyring not found. Setting up debian-keyring.\n"
+		echo -e "\ndebian-keyring not found. Setting up debian-keyring.\n"
 		sleep 1s
 		sudo apt-get install -t wheezy python-software-properties
 	else

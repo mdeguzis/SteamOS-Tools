@@ -634,7 +634,7 @@ show_warning()
         fi
         	
         echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\n press [ENTER] to continue."
-        echo -e "\ntype './desktop-software --help' (without quotes) for assistance.\n"
+        echo -e "\ntype './desktop-software --help' (without quotes) for help.\n"
         echo -e "See log.txt in this direcotry after any attempt for details"
         echo -e "If you need to add the Debian repos, please use the"
         echo -e "desktop-software.sh script in the main repository folder..\n"

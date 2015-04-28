@@ -56,10 +56,6 @@ rpc_configure_retroarch()
 	retroarch_cfg_loc_steam="/home/steam/.config/retroarch"
 	retroarch_cfg_loc_desktop="/home/desktop/.config/retroarch"
 	
-	# saves
-	save_loc_desktop="/home/desktop/retroarch-saves"
-	save_loc_steam="/home/steam/retroarch-saves"
-	
 	# other directories
 	roms_dir="/home/steam/ROMs"
 	banner_dir_desktop="/home/desktop/Pictures"
@@ -142,8 +138,8 @@ rpc_configure_retroarch()
 	        echo "$gp_choice was chosen, exiting"
 	        exit
 	        # copy modified retroarch.cfg to user DIRs without gamepad config
-		cp "$scriptdir/retroarch/cfgs/retroarch-xbox360.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-		sudo cp "$scriptdir/retroarch/cfgs/retroarch-xbox360.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+		cp "$scriptdir/retroarch/cfgs/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		sudo cp "$scriptdir/retroarch/cfgs/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	        ;;
 	         
 	        2)

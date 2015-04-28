@@ -268,7 +268,7 @@ function gpg_import()
 	# helper script accepts $1 as the key
 	echo -e "\n==> Importing Debian GPG keys"
 	
-	# Key Desc: Debian Archive AUtomatic Signing Key
+	# Key Desc: Debian Archive Automatic Signing Key
 	# Key ID: 2B90D010
 	# Full Key ID: 7638D0442B90D010
 	$scriptdir/extra/gpg_import.sh 7638D0442B90D010

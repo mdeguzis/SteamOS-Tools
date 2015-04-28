@@ -176,6 +176,9 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		echo -e "It seems Retorarch is already built in $git_dir/retroarch"
 		echo -e "Would you like to rebuild [y], or [n]?\n"
 		
+		# the prompt sometimes likes to jump above sleep
+		sleep 0.5s
+		
 		# gather user input
 		read -ep "Choice: " user_input_retro
 		
@@ -212,6 +215,9 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		echo -e "\n==INFO=="
 		echo -e "It seems the libretro cores are already built to $core_loc"
 		echo -e "Would you like to rebuild [y], or [n]?\n"
+		
+		# the prompt sometimes likes to jump above sleep
+		sleep 0.5s
 		
 		# gather user input
 		read -ep "Choice: " user_input_core

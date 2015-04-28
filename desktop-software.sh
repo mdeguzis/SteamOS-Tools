@@ -280,9 +280,7 @@ function gpg_import()
 		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now...\n"
 		$scriptdir/extra/gpg_import.sh 7638D0442B90D010
 	fi
-	
-	# TESTING only, exit for now to make sure key imports on clean install
-	exit 
+
 }
 
 get_software_type()

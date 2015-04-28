@@ -145,10 +145,10 @@ rpc_configure_retroarch()
 	echo "(1) Xbox 360 gamepad"
 	echo "(2) Sony PS3 (wired) gamepad"
 	echo "(3) Sony PS3 (bluetooth) gamepad"
-	echo -e "(4) None\n"
+	echo "(4) None"
+	echo ""
 	
 	read -ep "Choice: " gp_choice
-	
 	
 	case "$gp_choice" in
 	        1)

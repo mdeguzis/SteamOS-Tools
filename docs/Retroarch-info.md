@@ -10,7 +10,10 @@ Please take note of the following general modifications
 
 * Save state: Left-thumbstick click (L3)
 * Load state: Right-thumbstick click (R3)
-* Exit Game: Back Button / Select
+* Show Retroarch menue: back/select
+* Exit Game: Enter menu, choose "Quit Retroarch"
+ 
+Please note: The center button of either the Sony or Microsoft controllers is not ideal for opening the Retroarch menu or quitting Retroarch. Steam Big Picture Mode / SteamOS uses this button by default to bring up the Steam overlay.
 
 ### Input (Xbox 360 Controllers)
 The Xbox controllers are mapped as per the onscreen input directions in Retroarch > Settings > Input Settings.

@@ -102,18 +102,15 @@ Installs the nice set of controller bindings from [Sharkwouter](https://github.c
 ***
 Installing retroarch and the emulators takes a very long time!. Please be aware of this before attempting the installation. Installing prerequisite packages, building Retorarch, and the libretro cores, is time-intensive. The MAME and MESS cores take up most of this time.
 
-***
-### Post build instructions for Retroarch
-***
-After running the emulation-src type, currently you must still perform the following as of 20150427:
-
-1. Add "Retroarch-Src" as a "non-Steam" game using the "+" icon on the Libary section of SteamOS
-2. Configure your joypad via Retroarch > Settings > Input Settings (use bind all to configure all buttons at once)
-3. Transfer any ROMs you had on your system, into appropriate folder structures under `/home/steam/ROMs`
-
 Statistics:    
 **Test Build:** - (pre-fetched, build) 57 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD, 15 Mb/s WLAN  
 **Test Build:** - (fetch, build) 59.03 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD, 15 Mb/s LAN
+
+***
+### Post build instructions for Retroarch
+***
+
+Please see [Retroarch-info.md](https://github.com/ProfessorKaos64/SteamOS-Tools/edit/testing/docs/retroarch-info.md) for this information.
 
 ### Please note
 ***

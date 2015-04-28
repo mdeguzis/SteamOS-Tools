@@ -177,8 +177,8 @@ rpc_configure_retroarch()
 	        
 	        4)
 	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
-		cp "$scriptdir/retroarch/cfgs/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-		sudo cp "$scriptdir/retroarch/cfgs/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+		cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		sudo cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 		;;
 	         
 	        *)

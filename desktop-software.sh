@@ -616,16 +616,15 @@ install_software()
 
 show_warning()
 {
-
+	# do a small check for existing wheezy/wheezy-backports lists
+        sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
+        
         clear
         echo "##########################################################"
         echo "Warning: usage of this script is at your own risk!"
         echo "##########################################################"
         echo -e "\nIn order to run this script, you MUST have had enabled"
         echo -e -n "the Debian repositories!"
-        
-        # do a small check for existing wheezy/wheezy-backports lists
-        sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
         
         if [[ "$sources_check" == "" ]]; then
         	echo -e " Those sources do not appear to be added at first glance."

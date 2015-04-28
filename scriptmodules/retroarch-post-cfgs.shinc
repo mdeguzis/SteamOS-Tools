@@ -53,7 +53,7 @@ rpc_configure_retroarch()
 	
 	# cores
 	core_loc="/usr/lib/libretro"
-	core_loc_dir="/usr/lib/libretro/info"
+	core_info_dir="/usr/lib/libretro/info"
 	
 	# the retroarch config file needs to be placed in the steam users dir so that
 	# the running retroarch application can access it freely while steamcompmgr is running
@@ -86,7 +86,7 @@ rpc_configure_retroarch()
 		echo "" > /dev/null
 	else
 		# create directory(s)
-		mkdir -p "$roms_dir"
+		mkdir -p "$roms_dir_desktop"
 	fi
 	
 	# create ROMs dirs if it don't exist already

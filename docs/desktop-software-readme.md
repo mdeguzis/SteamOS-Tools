@@ -104,7 +104,7 @@ Installing retroarch and the emulators takes a very long time!. Please be aware 
 
 Statistics:    
 **Test Build:** - (pre-fetched, build) 57 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD, 15 Mb/s WLAN  
-**Test Build:** - (fetch, build) 59.03 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD, 15 Mb/s LAN
+**Test Build:** - (fetch, build) 86.36 minutes. Intel Core 2 Quad Q9560, 8 GB DDR2, 7200 RPM HDD, 15 Mb/s LAN
 
 ***
 ### Post build instructions for Retroarch

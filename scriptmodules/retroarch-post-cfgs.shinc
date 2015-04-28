@@ -142,10 +142,11 @@ rpc_configure_retroarch()
 	
 	# prompt user if they would like to load a controller config
 	echo -e "\nPlease choose a gamepad profile: \n"
-	echo "(1) Xbox 360 gamepad"
-	echo "(2) Sony PS3 (wired) gamepad"
-	echo "(3) Sony PS3 (bluetooth) gamepad"
-	echo "(4) None"
+	echo "(1) Xbox 360 gamepad (wired"
+	echo "(2) Xbox 360 gamepad (Wireless)"
+	echo "(3) Sony PS3 (wired) gamepad"
+	echo "(4) Sony PS3 (bluetooth) gamepad"
+	echo "(5) None"
 	echo ""
 	
 	# the prompt sometimes likes to jump above sleep
@@ -159,21 +160,28 @@ rpc_configure_retroarch()
 		cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 		sudo cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	        ;;
-	         
+	        
 	        2)
+	        echo "coming soon, using default template without gamepad inputs for now..."
+	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
+		cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		sudo cp "$scriptdir/retroarch/cfgs/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	        ;;
+	         
+	        3)
 	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
 		cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wireless.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 		sudo cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wireless.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	        ;;
 	         
-	        3)
+	        4)
 	        echo "coming soon, using default template without gamepad inputs for now..."
 	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
 		cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 		sudo cp "$scriptdir/retroarch/cfgs/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	        ;;
 	        
-	        4)
+	        5)
 	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
 		cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 		sudo cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # -------------------------------------------------------------------------------
 # Author:     		Michael DeGuzis
@@ -51,13 +51,18 @@ rpc_configure_retroarch()
 	steam_home="/home/steam"
 	desktop_home="/home/desktop"
 	
+	# cores
+	core_loc="/usr/lib/libretro"
+	core_loc_info="/usr/lib/libretro/info"
+	
 	# the retroarch config file needs to be placed in the steam users dir so that
 	# the running retroarch application can access it freely while steamcompmgr is running
 	retroarch_cfg_loc_steam="/home/steam/.config/retroarch"
 	retroarch_cfg_loc_desktop="/home/desktop/.config/retroarch"
 	
 	# other directories
-	roms_dir="/home/steam/ROMs"
+	roms_dir_desktop="/home/desktop/ROMs"
+	roms_dir_steam="/home/steam/ROMs"
 	banner_dir_desktop="/home/desktop/Pictures"
 	banner_dir_steam="/home/steam/Pictures"
 	
@@ -76,12 +81,21 @@ rpc_configure_retroarch()
 	fi
 	
 	# create ROMs dirs if it don't exist already
-	if [[ -d "$roms_dir" ]]; then
+	if [[ -d "$roms_dir_desktop" ]]; then
 		# do nothing
 		echo "" > /dev/null
 	else
 		# create directory(s)
-		sudo mkdir -p "$roms_dir"
+		mkdir -p "$roms_dir"
+	fi
+	
+	# create ROMs dirs if it don't exist already
+	if [[ -d "$roms_dir_steam" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	else
+		# create directory(s)
+		sudo mkdir -p "$roms_dir_steam"
 	fi
 	
 	# create Core/Core info dirs if it don't exist already

@@ -148,6 +148,9 @@ rpc_configure_retroarch()
 	echo "(4) None"
 	echo ""
 	
+	# the prompt sometimes likes to jump above sleep
+	sleep 0.5s
+	
 	read -ep "Choice: " gp_choice
 	
 	case "$gp_choice" in

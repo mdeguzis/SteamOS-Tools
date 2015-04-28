@@ -55,6 +55,10 @@ rpc_configure_retroarch()
 	core_loc="/usr/lib/libretro"
 	core_info_dir="/usr/lib/libretro/info"
 	
+	# save DIRs
+	save_loc_desktop="/home/desktop/retroarch-saves"
+	save_loc_steam="/home/steam/retroarch-saves"
+	
 	# the retroarch config file needs to be placed in the steam users dir so that
 	# the running retroarch application can access it freely while steamcompmgr is running
 	retroarch_cfg_loc_steam="/home/steam/.config/retroarch"

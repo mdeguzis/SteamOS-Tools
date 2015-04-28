@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.7.5
+# Script Ver:	0.7.7
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -249,6 +249,32 @@ funct_pre_req_checks()
 		sleep 0.2s
 	fi
 	
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' debian-keyring | grep "install ok installed")
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "debian-keyring not found. Setting up debian-keyring.\n"
+		sleep 1s
+		sudo apt-get install -t wheezy python-software-properties
+	else
+		echo "Checking for debian-keyring: [Ok]"
+		sleep 0.2s
+	fi
+	
+}
+
+function gpg_import()
+{
+	# When installing from Wheezy and Wheezy backports,
+	# some keys do not load in automatically, import now
+	# helper script accepts $1 as the key
+	echo -e "\n==> Importing Debian GPG keys"
+	
+	# Key Desc: Debian Archive AUtomatic Signing Key
+	# Key ID: 2B90D010
+	# Full Key ID: 7638D0442B90D010
+	$scriptdir/extra/gpg_import.sh 7638D0442B90D010
+	
+	# TESTING only, exit for now to make sure key imports on clean install
+	exit 
 }
 
 get_software_type()
@@ -946,6 +972,10 @@ main()
 funct_source_modules
 funct_pre_req_checks
 add_repos
+
+# test with debian-keyring prereq now added FIRST.
+# add gpg fucnt below if no go
+#gpg_import
 
 #####################################################
 # MAIN

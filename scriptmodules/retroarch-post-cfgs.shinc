@@ -152,11 +152,8 @@ rpc_configure_retroarch()
 	
 	case "$gp_choice" in
 	        1)
-	        # test only
-	        echo "$gp_choice was chosen, exiting"
-	        exit
 	        # copy modified retroarch.cfg to user DIRs without gamepad config
-		cp "$scriptdir/retroarch/cfgs/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 		sudo cp "$scriptdir/retroarch/cfgs/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	        ;;
 	         

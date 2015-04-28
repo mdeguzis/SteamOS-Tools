@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 # -------------------------------------------------------------------------------
 # Author:     		Michael DeGuzis
@@ -53,7 +53,7 @@ rpc_configure_retroarch()
 	
 	# cores
 	core_loc="/usr/lib/libretro"
-	core_loc_info="/usr/lib/libretro/info"
+	core_loc_dir="/usr/lib/libretro/info"
 	
 	# the retroarch config file needs to be placed in the steam users dir so that
 	# the running retroarch application can access it freely while steamcompmgr is running
@@ -104,7 +104,7 @@ rpc_configure_retroarch()
 		echo "" > /dev/null
 	else
 		# create directory(s)
-		sudo mkdir -p "$core_info_loc"
+		sudo mkdir -p "$core_info_dir"
 	fi
 	
 	# save dir desktop

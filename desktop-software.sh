@@ -599,6 +599,9 @@ show_warning()
         else
         	echo -e " On initial check, those sources appear to be added."
         fi
+        
+        echo "$sources_check"
+        exit
         	
         echo -e "\nIf you wish to exit, please press CTRL+C now..."
         echo -e "\ntype './desktop-software --help' (without quotes) for assistance.\n"

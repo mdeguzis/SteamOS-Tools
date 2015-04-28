@@ -11,10 +11,10 @@
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
 #
-# Last tested:		20150423, runtime: 26.35 minutes, Pass: 49, Fail: 0
-#			Intel Core-i5 2500k @ 2.30GHz / 16 GB RAM / 15 Mb/s LAN
-#			Cores failed: none
-#			Already fetched: [Yes]
+# Last tested:		20150428, runtime: 86.35 minutes, Pass: 47, Fail: 2
+#			Host: SteamOS-Test
+#			Cores failed: mupen64plus, gw
+#			Already fetched: [no]
 # -------------------------------------------------------------------------------
 
 time_start=$(date +%s)

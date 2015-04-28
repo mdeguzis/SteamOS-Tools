@@ -154,7 +154,7 @@ rpc_configure_retroarch()
 	        1)
 	        # copy modified retroarch.cfg to user DIRs without gamepad config
 		cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-		sudo cp "$scriptdir/retroarch/cfgs/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+		sudo cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	        ;;
 	         
 	        2)
@@ -186,10 +186,14 @@ rpc_configure_retroarch()
 	# create desktop application link 
 	sudo cp "$scriptdir/retroarch/cfgs/retroarch.desktop" "/usr/share/applications"
 	
+	# copy banner image
+	cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_desktop"
+	sudo cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_steam"
+	
 	# add small launcher script
 	# this will acively swap out the current user (desktop or steam) so that the
 	# appropriate retroarch.cfg file will be user
-	sudo cp "$scriptdir/retroarch/cfgs/retroarch-launch.sh" "/usr/bin"
+	sudo cp "$scriptdir/cfgs/retroarch/retroarch-launch.sh" "/usr/bin"
 	
 	# copy cores from source build DIR
 	find "/home/desktop/retroarch-src/libretro-super/" -name *.so | xargs sudo cp -t "/usr/lib/libretro" 2> /dev/null

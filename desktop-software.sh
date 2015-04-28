@@ -589,15 +589,15 @@ show_warning()
         echo "Warning: usage of this script is at your own risk!"
         echo "##########################################################"
         echo -e "\nIn order to run this script, you MUST have had enabled"
-        echo -e "the Debian repositories!"
+        echo -e -n "the Debian repositories!"
         
         # do a small check for existing wheezy/wheezy-backports lists
         sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
         
         if [[ "$sources_check" == "" ]]; then
-        	echo -e -n "Those sources do not appear to be added."
+        	echo -e "Those sources do not appear to be added."
         else
-        	echo -e -n "On initial check, those sources appear to be added."
+        	echo -e "On initial check, those sources appear to be added."
         fi
         	
         echo -e "If you wish to exit, please press CTRL+C now..."

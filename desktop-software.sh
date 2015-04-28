@@ -589,7 +589,7 @@ show_warning()
         echo "Warning: usage of this script is at your own risk!"
         echo "##########################################################"
         echo -e "\nIn order to run this script, you MUST have had enabled"
-        echo -e "the Debian repositories! If you wish to exit, please "
+        echo -e "the Debian repositories!"
         
         # do a small check for existing wheezy/wheezy-backports lists
         sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
@@ -600,7 +600,7 @@ show_warning()
         	echo -e "On initial check, those sources appear to be added."
         fi
         	
-        echo -e "press CTRL+C now..."
+        echo -e "If you wish to exit, please press CTRL+C now..."
         echo -e "\ntype './desktop-software --help' for assistance.\n"
         echo -e "See log.txt in this direcotry after any attempt for details"
         echo -e "If you need to add the Debian repos, please use the"

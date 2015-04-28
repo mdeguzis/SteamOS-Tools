@@ -237,7 +237,7 @@ fi
 funct_pre_req_checks()
 {
 	
-	echo -e "\n==> Checking for prerequisite software..."
+	echo -e "\n==> Checking for prerequisite software...\n"
 	
 	# Adding repositories
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' python-software-properties | grep "install ok installed")

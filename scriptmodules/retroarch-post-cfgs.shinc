@@ -169,15 +169,15 @@ rpc_configure_retroarch()
 	         
 	        3)
 	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
-		cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-		sudo cp "$scriptdir/retroarch/cfgs/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+		cp "$scriptdir/cfgs/retroarch/retroarch-ps3-wired.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		sudo cp "$scriptdir/cfgs/retroarch/retroarch-ps3-wired.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	        ;;
 	         
 	        4)
 	        echo "coming soon, using default template without gamepad inputs for now..."
 	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
 		cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-		sudo cp "$scriptdir/retroarch/cfgs/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+		sudo cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	        ;;
 	        
 	        5)
@@ -190,7 +190,7 @@ rpc_configure_retroarch()
 		echo "Invalid Input, continuing without gamepad config choice."
 	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
 		cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-		sudo cp "$scriptdir/retroarch/cfgs/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+		sudo cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 		;;
 	esac
 	

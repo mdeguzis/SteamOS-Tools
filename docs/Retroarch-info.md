@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [General](#general)
+- [Input (General)](#input-general)
+- [Input (Xbox 360 Controllers)](#input-xbox-360-controllers)
+- [Input (Sony PS3 Controllers)](#input-sony-ps3-controllers)
+- [Tested / known working cores](#tested--known-working-cores)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### General
 ***
 After running the emulation-src type, currently you must still perform the following as of 20150427:

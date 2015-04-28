@@ -594,7 +594,7 @@ show_warning()
         # do a small check for existing wheezy/wheezy-backports lists
         sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
         
-        if [[ "$sources_check" == "" ]]
+        if [[ "$sources_check" == "" ]]; then
         	echo -e "Those sources do not appear to be added."
         else
         	echo -e "On initial check, those sources appear to be added."

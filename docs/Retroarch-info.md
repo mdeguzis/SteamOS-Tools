@@ -1,6 +1,3 @@
-### retroarch-info.md
-
-
 ### General
 After running the emulation-src type, currently you must still perform the following as of 20150427:
 

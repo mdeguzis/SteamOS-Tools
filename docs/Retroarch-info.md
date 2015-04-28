@@ -19,3 +19,6 @@ Please note: The center button of either the Sony or Microsoft controllers is no
 The Xbox controllers are mapped as per the onscreen input directions in Retroarch > Settings > Input Settings.
 
 ### Input (Sony PS3 Controllers)
+
+### Tested / known working cores
+You can find a list of cores tested with games already [here](https://github.com/ProfessorKaos64/SteamOS-Tools/edit/testing/docs/Retroarch-Testing-Checklist.md)

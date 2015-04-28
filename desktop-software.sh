@@ -237,6 +237,8 @@ fi
 funct_pre_req_checks()
 {
 	
+	echo -e "\n==> Checking for prerequisite software..."
+	
 	# Adding repositories
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' python-software-properties | grep "install ok installed")
 	
@@ -253,7 +255,7 @@ funct_pre_req_checks()
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "\ndebian-keyring not found. Setting up debian-keyring.\n"
 		sleep 1s
-		sudo apt-get install -t wheezy python-software-properties
+		sudo apt-get install debian-keyring
 	else
 		echo "Checking for debian-keyring: [Ok]"
 		sleep 0.2s

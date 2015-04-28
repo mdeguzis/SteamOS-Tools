@@ -974,10 +974,7 @@ main()
 funct_source_modules
 funct_pre_req_checks
 add_repos
-
-# test with debian-keyring prereq now added FIRST.
-# add gpg fucnt below if no go
-#gpg_import
+gpg_import
 
 #####################################################
 # MAIN

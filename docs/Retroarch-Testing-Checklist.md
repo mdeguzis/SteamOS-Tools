@@ -10,6 +10,6 @@ Works: [OK]
 File: "Kirbys Dream Land 3.smc"  
 Works: [OK]  
 
-**PSP (Playstation Portable)*  
+**PSP (Playstation Portable)**  
 File: "Ridge Racer.iso"  
 Works: [OK]  

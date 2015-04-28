@@ -617,6 +617,7 @@ install_software()
 show_warning()
 {
 	# do a small check for existing wheezy/wheezy-backports lists
+	echo ""
         sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
         
         clear

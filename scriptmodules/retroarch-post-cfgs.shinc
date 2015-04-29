@@ -176,10 +176,13 @@ rpc_configure_retroarch()
 	        4)
 	        # kick off pairing process first if user wants to
 	        echo -e "\nDo you wish to pair  your PS3 Controller now? [y/n]: \n"
+	        # the prompt sometimes likes to jump above sleep
+		sleep 0.5s
+	        
 	        read -ep "Choice: " bt_choice
 	        
 	        if [[ "$bt_choice" == "y" ]]; then
-	                $scriptdir/pait-ps3-bluetooth.sh
+	                $scriptdir/pair-ps3-bluetooth.sh
 	        else
 	        	echo -e "\nSkipping PS3 Bluetooth setup..."
 	        	sleep 1s
@@ -261,9 +264,10 @@ rpc_configure_retroarch()
 
 	echo -e "\n==> Completing post-install actions..."
 
-	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src' as a \
-non-Steam game in Big Picture Mode.\n"
-	echo -e "Please see $scriptdir/docs/desktop-software-readme.md for more information\n"
+	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src'"
+	echo -e "as a non-Steam game in Big Picture Mode.\n"
+	echo -e "Please see $scriptdir/docs/desktop-software-readme.md for"
+	echo -e "more information\n"
 	sleep 1s
 	
 	#################################################

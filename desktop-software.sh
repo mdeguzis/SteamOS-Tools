@@ -633,7 +633,7 @@ show_warning()
         	echo -e " On initial check, those sources \nappear to be added."
         fi
         	
-        echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\n press [ENTER] to continue."
+        echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
         echo -e "\ntype './desktop-software --help' (without quotes) for help.\n"
         echo -e "See log.txt in this direcotry after any attempt for details"
         echo -e "If you need to add the Debian repos, please use the"

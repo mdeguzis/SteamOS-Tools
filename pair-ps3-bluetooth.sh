@@ -17,7 +17,7 @@
 install_prereqs()
 {
 
-	echo -e "\n==> Installing prerequisite software\n
+	echo -e "\n==> Installing prerequisite software\n"
 
 	# Fetch what has to be installed from Alchemist (conflicting version)
 	sudo apt-get install libbluetooth-dev libusb-dev

@@ -100,33 +100,51 @@ ep_install_plex()
 	prefer_plex="/etc/apt/preferences.d/${backports_reponame}"
 	prefer_deb_multi="/etc/apt/preferences.d/${backports_reponame}"
 	
-	# Check for existance of /etc/apt/preferences.d/{reponame} file
-	if [[ -f ${prefer_plex} ]]; then
+	# Check for existance of /etc/apt/preferences.d/{reponame_plex} file
+	if [[ -f ${reponame_plex} ]]; then
 		# backup preferences file
-		echo -e "==> Backing up ${prefer} to ${prefer}.bak\n"
-		mv ${prefer} ${prefer}.bak
+		echo -e "==> Backing up ${reponame_plex} to ${reponame_plex}.bak\n"
+		mv ${reponame_plex} ${reponame_plex}.bak
 		sleep 1s
 	fi
 	
-	# Check for existance of /etc/apt/preferences.d/{backports_prefer} file
+	# Check for existance of /etc/apt/preferences.d/{reponame_deb_multi} file
+	if [[ -f ${reponame_deb_multi} ]]; then
+		# backup preferences file
+		echo -e "==> Backing up ${reponame_deb_multi} to ${reponame_deb_multi}.bak\n"
+		mv ${reponame_deb_multi} ${reponame_deb_multi}.bak
+		sleep 1s
+	fi
+	
+	# Check for existance of /etc/apt/preferences.d/{prefer_deb_multi} file
 	if [[ -f ${prefer_deb_multi} ]]; then
 		# backup preferences file
-		echo -e "==> Backing up ${backports_prefer} to ${backports_prefer}.bak\n"
-		mv ${backports_prefer} ${backports_prefer}.bak
+		echo -e "==> Backing up ${prefer_deb_multi} to ${prefer_deb_multi}.bak\n"
+		mv ${prefer_deb_multi} ${prefer_deb_multi}.bak
 		sleep 1s
 	fi
 	
+	# Check for existance of /etc/apt/preferences.d/{prefer_plex} file
+	if [[ -f ${prefer_plex} ]]; then
+		# backup preferences file
+		echo -e "==> Backing up ${prefer_plex} to ${prefer_plex}.bak\n"
+		mv ${prefer_plex} ${prefer_plex}.bak
+		sleep 1s
+	fi
+	
+	# check for existance of plex source list
 	if [[ -f ${sourcelist_plex} ]]; then
 		# backup sources list file
-		echo -e "==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
-		mv ${sourcelist} ${sourcelist}.bak
+		echo -e "==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak\n"
+		mv ${sourcelist_plex} ${sourcelist_plex}.bak
 		sleep 1s
 	fi
 	
+	# check for existance of deb_multi source list
 	if [[ -f ${sourcelist_deb_multi} ]]; then
 		# backup sources list file
-		echo -e "==> Backing up ${backports_sourcelist} to ${backports_sourcelist}.bak\n"
-		mv ${backports_sourcelist} ${backports_sourcelist}.bak
+		echo -e "==> Backing up ${sourcelist_deb_multi} to ${sourcelist_deb_multi}.bak\n"
+		mv ${sourcelist_deb_multi} ${sourcelist_deb_multi}.bak
 		sleep 1s
 	fi
 
@@ -137,6 +155,19 @@ ep_install_plex()
 	
 	echo -e "\n==> Adding GPG key(s)"
 	sleep 1s
+	
+	# Key Desc: Debian Multimedia
+	# Key ID: 65558117
+	# Full Key ID: 5C808C2B65558117
+	gpg_key_check=$(gpg --list-keys 65558117)
+	
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "\nDebian Multimedia Key [OK]\n"
+		sleep 1s
+	else
+		echo -e "\nDebian Multimedia Key [FAIL]. Adding now...\n"
+		$scriptdir/extra/gpg_import.sh 5C808C2B65558117
+	fi
 	
 	# Key Desc: Debian Multimedia
 	# Key ID: 65558117
@@ -173,7 +204,7 @@ ep_install_plex()
 	# resolve outstanding deps
 	###############################
 	
-	echo -e "\==> Resolving missing Debian packages"
+	echo -e "\n==> Resolving missing Debian packages"
 	sleep 1s
 	
 	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/Plex/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
@@ -184,7 +215,7 @@ ep_install_plex()
 	# cleanup
 	###############################
 	
-	echo -e "\==> Cleanup"
+	echo -e "\n==> Cleanup"
 	sleep 1s
 	rm -rf /tmp/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb
 	
@@ -192,7 +223,7 @@ ep_install_plex()
 	# Install actions
 	###############################
 
-	echo -e "\==> Installing Plex Home Theater"
+	echo -e "\n==> Installing Plex Home Theater"
 	sleep 1s
 	# install Plex Home Theater
 	sudo apt-get -t wheezy install plexhometheater -y

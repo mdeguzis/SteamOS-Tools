@@ -196,7 +196,7 @@ ps3_pair_blu()
 	sleep 2s
 	
 	# Inform player 1 controller user to disconnect USB cord
-	echo -e "##############################################################"
+	echo -e "\n##############################################################"
 	echo -e "Connection Notice"
 	echo -e "##############################################################"
 	echo -e "\nPlease disconnect the USB cable and press the PS Button now. "

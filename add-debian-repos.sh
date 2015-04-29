@@ -78,22 +78,25 @@ main()
 		# Check for existance of /etc/apt/preferences file (deprecated, see below)
 		if [[ -f "/etc/apt/preferences" ]]; then
 			# backup preferences file
-			echo -e "\n==> Backing up /etc/apt/preferences to /etc/apt/preferences.bak\n"
+			echo -e "==> Backing up /etc/apt/preferences to /etc/apt/preferences.bak\n"
 			mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
+			sleep 1s
 		fi
 		
 		# Check for existance of /etc/apt/preferences.d/{reponame} file
 		if [[ -f ${prefer} ]]; then
 			# backup preferences file
-			echo -e "\n==> Backing up ${prefer} to ${prefer}.bak\n"
+			echo -e "==> Backing up ${prefer} to ${prefer}.bak\n"
 			mv ${prefer} ${prefer}.bak
+			sleep 1s
 		fi
 		
 		# Check for existance of /etc/apt/preferences.d/{backports_prefer} file
 		if [[ -f ${backports_prefer} ]]; then
 			# backup preferences file
-			echo -e "\n==> Backing up ${backports_prefer} to ${backports_prefer}.bak\n"
+			echo -e "==> Backing up ${backports_prefer} to ${backports_prefer}.bak\n"
 			mv ${backports_prefer} ${backports_prefer}.bak
+			sleep 1s
 		fi
 	
 		# Create and add required text to preferences file
@@ -124,12 +127,14 @@ main()
 	        	# backup sources list file
 	        	echo -e "\n==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
 	        	mv ${sourcelist} ${sourcelist}.bak
+	        	sleep 1s
 		fi
 		
 		if [[ -f ${backports_sourcelist} ]]; then
 	        	# backup sources list file
 	        	echo -e "\n==> Backing up ${backports_sourcelist} to ${backports_sourcelist}.bak\n"
 	        	mv ${backports_sourcelist} ${backports_sourcelist}.bak
+	        	sleep 1s
 		fi
 	
 		#####################################################

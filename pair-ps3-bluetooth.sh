@@ -86,11 +86,11 @@ main()
 	case $cont_num_choice in
 	
 		1)
-		
 		# call pairing function to set current bluetooth MAC to Player 1
 		n="1"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 1 Controller complete" 5 43 
+		echo -e "Pairing of Player $n controller complete\n"
+		sleep 2s 
 		;;
 	
 		2)
@@ -98,12 +98,14 @@ main()
 		# call pairing function to set current bluetooth MAC to Player 1
 		n="1"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 1 controller complete" 5 43 
+		echo -e "Pairing of Player $n controller complete\n"
+		sleep 2s 
 		
 		# call pairing function to set current bluetooth MAC to Player 2
 		n="2"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 2 controller complete" 5 43 
+		echo -e "Pairing of Player $n controller complete\n"
+		sleep 2s 
 		;;
 	
 		3)
@@ -111,39 +113,46 @@ main()
 		# call pairing function to set current bluetooth MAC to Player 1
 		n="1"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 1 controller complete" 5 43 
+		echo -e "Pairing of Player $n controller complete\n"
+		sleep 2s 
 	
 		# call pairing function to set current bluetooth MAC to Player 2
 		n="2"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 2 controller complete" 5 43 
+		echo -e "Pairing of Player $n controller complete\n"
+		sleep 2s
 	
 		# call pairing function to set current bluetooth MAC to Player 3
 		n="3"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 3 controller complete" 5 43 
+		echo -e "Pairing of Player $n controller complete\n"
+		sleep 2s
 		;;
 	
 		4)
 		# call pairing function to set current bluetooth MAC to Player 1
 		n="1"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 1 controller complete" 5 43 
+		echo -e "Pairing of Player $n controller complete\n"
+		sleep 2s
 		
 		# call pairing function to set current bluetooth MAC to Player 1
 		n="2"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 2 controller complete" 5 43 
+		echo -e "Pairing of Player $n controller complete\n"
+		sleep 2s
 		
 		# call pairing function to set current bluetooth MAC to Player 1
 		n="3"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 3 controller complete" 5 43 
+		echo -e "Pairing of Player $n controller complete\n"
+		sleep 2s
 		
 		# call pairing function to set current bluetooth MAC to Player 1
 		n="1"
 		ps3_pair_blu
-		dialog --msgbox "Pairing of Player 4 controller complete" 5 43 
+		echo -e "Pairing of Player $n controller complete\n"
+		sleep 2s
 	
 	esac
 		
@@ -164,11 +173,11 @@ main()
 ps3_pair_blu()
 {
 	echo -e "#########################################"
-	echo -e "\nPlease plug in these items now:\n"
+	echo -e "Please plug in these items now:"
 	echo -e "#########################################"
-	echo -e "\(1\) The USB cable"
-	echo -e "\(2\) PS3 controller $n"
-	echo -e "\(3\) Bluetooth dongle\n"
+	echo -e "(1) The USB cable"
+	echo -e "(2) PS3 controller $n"
+	echo -e "(3) Bluetooth dongle\n"
 	echo -e "Additional controllers can be added in the settings menu"
 	echo -e "\nPress [ENTER] to continue."
 	
@@ -177,7 +186,7 @@ ps3_pair_blu()
 	
 	clear
 	# Grab player 1 controller MAC Address of wired device
-	echo -e "\n==> Setting up Playstation 3 Sixaxis \(bluetooth\) [Player $n]\n"
+	echo -e "\n==> Setting up Playstation 3 Sixaxis (bluetooth) [Player $n]\n"
 	sleep 2s
 	
 	# Pair controller with logging 
@@ -188,7 +197,7 @@ ps3_pair_blu()
 	# Inform player 1 controller user to disconnect USB cord
 	echo -e "\nPlease disconnect the USB cable and press the PS Button now. The appropriate \
 	LED for player $n should be lit. If it is not, please hold in the PS button to turn it off, then \
-	back on.\n\nThere is no need to reboot to fully enable the controller\(s\)"
+	back on.\n\nThere is no need to reboot to fully enable the controller(s)"
 	
 	clear
 	echo -e "######################################################"

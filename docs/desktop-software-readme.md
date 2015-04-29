@@ -25,8 +25,8 @@ If any given pkg is not, it then checks for a prefix !broken! in any dynamically
 *The installations are attemped in the following order:*
 
 1. Automatic based on /apt/preferences.d/{repo} priority / Alchemist
-2. Wheezy repository
-3. Wheezy-backports repository
+2. Jessie repository
+3. Jessie-backports repository
 
 ## Usage
 
@@ -78,7 +78,7 @@ Packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) D
 packages required UPnP / DLNA streaming from a mobile device (experimental / in-progres)   
 
 `<pkg_name>`     
-installs package(s) specifified from Alchemist/Wheezy. You can specify any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
+installs package(s) specifified from Alchemist/Jessie. You can specify any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
 
 `games-pkg`           
 Installs a some Linux games that you can then add to Steam via the "add non-Steam game" option.

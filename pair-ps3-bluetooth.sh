@@ -31,12 +31,10 @@ install_prereqs()
 
 clean_install()
 {
-	echo -e "\n==> Cleaning previous sixad service\n"
-	# remove previous sixad init service if present
+	echo -e "\n==> Stopping sixad service\n"
+	# stop  sixad init service if present
 	if [[ -f "/etc/init.d/sixad" ]]; then
-		sudo /etc/init.d/sixad stop
-		sudo update-rc.d -f sixad remove
-		sudo rm -f /etc/init.d/sixad
+		sudo service sixad stop
 	fi
 	
 }

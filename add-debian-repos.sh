@@ -72,27 +72,27 @@ main()
 	#####################################################
 	if [[ "$install" == "yes" ]]; then
 		clear
-		echo -e "Adding debian repositories...\n"
+		echo -e "==> Adding debian repositories...\n"
 		sleep 1s
 		
 		# Check for existance of /etc/apt/preferences file (deprecated, see below)
 		if [[ -f "/etc/apt/preferences" ]]; then
 			# backup preferences file
-			echo -e "\nBacking up /etc/apt/preferences to /etc/apt/preferences.bak\n"
+			echo -e "\n==> Backing up /etc/apt/preferences to /etc/apt/preferences.bak\n"
 			mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
 		fi
 		
 		# Check for existance of /etc/apt/preferences.d/{reponame} file
 		if [[ -f ${prefer} ]]; then
 			# backup preferences file
-			echo -e "Backing up ${prefer} to ${prefer}.bak\n"
+			echo -e "\n==> Backing up ${prefer} to ${prefer}.bak\n"
 			mv ${prefer} ${prefer}.bak
 		fi
 		
 		# Check for existance of /etc/apt/preferences.d/{backports_prefer} file
 		if [[ -f ${backports_prefer} ]]; then
 			# backup preferences file
-			echo -e "Backing up ${backports_prefer} to ${backports_prefer}.bak\n"
+			echo -e "\n==> Backing up ${backports_prefer} to ${backports_prefer}.bak\n"
 			mv ${backports_prefer} ${backports_prefer}.bak
 		fi
 	
@@ -149,7 +149,7 @@ main()
 		EOF
 
 		# Update system
-		echo -e "Updating index of packages...\n"
+		echo -e "\n==> Updating index of packages...\n"
 		sleep 2s
 		apt-get update
 	
@@ -169,7 +169,7 @@ main()
 	
 	elif [[ "$install" == "no" ]]; then
 		clear
-		echo -e "Removing debian repositories...\n"
+		echo -e "\n==> Removing debian repositories...\n"
 		sleep 2s
 		rm -f ${sourcelist}
 		rm -f ${prefer}

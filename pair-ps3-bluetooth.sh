@@ -164,7 +164,7 @@ main()
 ps3_pair_blu()
 {
 	echo -e "#########################################"
-	echo -e "\nPlease plug in these items now:\n
+	echo -e "\nPlease plug in these items now:\n"
 	echo -e "#########################################"
 	echo -e "\(1\) The USB cable"
 	echo -e "\(2\) PS3 controller $n"

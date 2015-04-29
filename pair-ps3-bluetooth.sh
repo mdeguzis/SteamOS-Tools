@@ -74,7 +74,10 @@ main()
 	sudo /etc/init.d/sixad start
   
   	echo -e "\c==> Configuring controller(s)...\n"
+  	
+  	echo -e "\n##############################################"
 	echo -e "Please select the number of PS3 controllers\n"
+	echo -e "\n##############################################"
 	echo "(1)"
 	echo "(2)"
 	echo "(3)"

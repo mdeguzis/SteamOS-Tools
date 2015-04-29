@@ -30,8 +30,8 @@ fi
 funct_set_vars()
 {
 	# Set default user options
-	reponame="wheezy"
-	backports_reponame="wheezy-backports"
+	reponame="jessie"
+	backports_reponame="jessie-backports"
 	
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
 	backports_sourcelist="/etc/apt/sources.list.d/${backports_reponame}.list"
@@ -70,6 +70,7 @@ main()
 	#####################################################
 	# Install/Uninstall process
 	#####################################################
+	
 	if [[ "$install" == "yes" ]]; then
 		clear
 		echo -e "==> Adding debian repositories...\n"
@@ -108,7 +109,7 @@ main()
 		
 		cat <<-EOF >> ${backports_prefer}
 		Package: *
-		Pin: release a=wheezy-backports
+		Pin: release a=jessie-backports
 		Pin-Priority:150
 		EOF
 	
@@ -119,8 +120,9 @@ main()
 		EOF
 		
 		#####################################################
-		# Check for Wheezy lists in repos.d
+		# Check for Jessie lists in repos.d
 		#####################################################
+		
 		# If it does not exist, create it
 		
 		if [[ -f ${sourcelist} ]]; then
@@ -141,16 +143,16 @@ main()
 		# Create and add required text to wheezy.list
 		#####################################################
 
-		# Debian Wheezy
+		# Debian Jessie
 		cat <<-EOF >> ${sourcelist}
 		# Debian-Wheezy repo
-		deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
-		deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
+		deb ftp://mirror.nl.leaseweb.net/debian/ jessie main contrib non-free
+		deb-src ftp://mirror.nl.leaseweb.net/debian/ jessie main contrib non-free
 		EOF
 		
-		# Debian Wheezy-Backports
+		# Debian jessie-backports
 		cat <<-EOF >> ${backports_sourcelist}
-		deb http://http.debian.net/debian wheezy-backports main
+		deb http://http.debian.net/debian jessie-backports main
 		EOF
 
 		# Update system
@@ -168,7 +170,7 @@ main()
 		echo -e "\nYou can now not only install package from the SteamOS repository," 
 		echo -e "but also from the Debian repository with either:\n\n"
 		echo -e "'sudo apt-get install <package_name>'"
-		echo -e "'sudo apt-get -t [wheezy|wheezy-backports] install <package_name>'\n"
+		echo -e "'sudo apt-get -t [jessie|jessie-backports] install <package_name>'\n"
 		echo -e "Warning: If the apt package manager seems to want to remove a lot"
 		echo -e "of packages you have already installed, be very careful about proceeding.\n"
 	

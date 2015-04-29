@@ -163,12 +163,12 @@ main()
 	
 ps3_pair_blu()
 {
-	echo -e '#########################################'
+	echo -e "#########################################"
 	echo -e "\nPlease plug in these items now:\n
-	echo -e '#########################################'
-	echo -e "\(1\) The USB cable"
-	echo -e "\(2\) PS3 controller $n"
-	echo -e "\(3\) Bluetooth dongle\n"
+	echo -e "#########################################"
+	echo -e "(1) The USB cable"
+	echo -e "(2) PS3 controller $n"
+	echo -e "(3) Bluetooth dongle\n"
 	echo -e "Additional controllers can be added in the settings menu"
 	echo -e "\nPress [ENTER] to continue."
 	
@@ -177,7 +177,7 @@ ps3_pair_blu()
 	
 	clear
 	# Grab player 1 controller MAC Address of wired device
-	echo -e "\n==> Setting up Playstation 3 Sixaxis \(bluetooth\) [Player $n]\n"
+	echo -e "\n==> Setting up Playstation 3 Sixaxis (bluetooth) [Player $n]\n"
 	sleep 2s
 	
 	# Pair controller with logging 
@@ -188,7 +188,7 @@ ps3_pair_blu()
 	# Inform player 1 controller user to disconnect USB cord
 	echo -e "\nPlease disconnect the USB cable and press the PS Button now. The appropriate \
 	LED for player $n should be lit. If it is not, please hold in the PS button to turn it off, then \
-	back on.\n\nThere is no need to reboot to fully enable the controller\(s\)"
+	back on.\n\nThere is no need to reboot to fully enable the controller(s)"
 	
 	clear
 	echo -e "######################################################"

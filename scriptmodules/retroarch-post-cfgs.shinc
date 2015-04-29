@@ -176,6 +176,9 @@ rpc_configure_retroarch()
 	        4)
 	        # kick off pairing process first if user wants to
 	        echo -e "\nDo you wish to pair  your PS3 Controller now? [y/n]: \n"
+	        # the prompt sometimes likes to jump above sleep
+		sleep 0.5s
+	        
 	        read -ep "Choice: " bt_choice
 	        
 	        if [[ "$bt_choice" == "y" ]]; then

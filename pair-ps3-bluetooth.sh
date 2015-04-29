@@ -75,7 +75,7 @@ main()
   	
   	echo -e "\n##############################################"
 	echo -e "Please select the number of PS3 controllers"
-	echo -e "##############################################"
+	echo -e "##############################################\n"
 	echo "(1)"
 	echo "(2)"
 	echo "(3)"
@@ -176,7 +176,7 @@ ps3_pair_blu()
 {
 	echo -e "\n#########################################"
 	echo -e "Please plug in these items now:"
-	echo -e "#########################################"
+	echo -e "#########################################\n"
 	echo -e "(1) The USB cable"
 	echo -e "(2) PS3 controller $n"
 	echo -e "(3) Bluetooth dongle\n"

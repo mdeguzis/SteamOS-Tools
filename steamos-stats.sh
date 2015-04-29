@@ -4,7 +4,7 @@
 # Author: 		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/scripts
 # Scipt Name:		steamos-stats.sh
-# Script Ver:		0.7.3
+# Script Ver:		0.7.5
 # Description:		Monitors various stats easily over an SSH connetion
 #			to gauge performance and temperature loads on steamos.
 # Usage:		./steamos-stats.sh -gpu [gfx driver] -appid [APPID]
@@ -219,7 +219,7 @@ funct_pre_req_checks()
 			sudo apt-get update
 	
 			# fetch needed pkgs
-			sudo apt-get -t wheezy install lm-sensors sysstat git -y
+			sudo apt-get -t jessie install lm-sensors sysstat git -y
 			sudo apt-get install nvidia-smi openssh-server -y
 			# detect sensors automatically
 			yes | sudo sensors-detect

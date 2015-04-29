@@ -11,10 +11,10 @@
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
 #
-# Last tested:		20150423, runtime: 26.35 minutes, Pass: 49, Fail: 0
-#			Intel Core-i5 2500k @ 2.30GHz / 16 GB RAM / 15 Mb/s LAN
-#			Cores failed: none
-#			Already fetched: [Yes]
+# Last tested:		20150428, runtime: 86.35 minutes, Pass: 47, Fail: 2
+#			Host: SteamOS-Test
+#			Cores failed: mupen64plus, gw
+#			Already fetched: [no]
 # -------------------------------------------------------------------------------
 
 time_start=$(date +%s)
@@ -176,6 +176,9 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		echo -e "It seems Retorarch is already built in $git_dir/retroarch"
 		echo -e "Would you like to rebuild [y], or [n]?\n"
 		
+		# the prompt sometimes likes to jump above sleep
+		sleep 0.5s
+		
 		# gather user input
 		read -ep "Choice: " user_input_retro
 		
@@ -212,6 +215,9 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 		echo -e "\n==INFO=="
 		echo -e "It seems the libretro cores are already built to $core_loc"
 		echo -e "Would you like to rebuild [y], or [n]?\n"
+		
+		# the prompt sometimes likes to jump above sleep
+		sleep 0.5s
 		
 		# gather user input
 		read -ep "Choice: " user_input_core

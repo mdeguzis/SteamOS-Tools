@@ -25,8 +25,7 @@ ep_install_x360_bindings()
 		echo -e "vaporos-binds-xbox360 not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb"
-		# ignore warning about format, package is fine and tested
-		sudo dpkg -i "/tmp/vaporos-binds-xbox360_1.0_all.deb" 2> /dev/null
+		sudo dpkg -i "/tmp/vaporos-binds-xbox360_1.0_all.deb"
 		#cleanup
 		rm -f "/tmp/vaporos-binds-xbox360_1.0_all.deb"
 		

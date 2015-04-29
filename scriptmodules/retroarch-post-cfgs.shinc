@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  	0.2.5
+# Script Ver:	  	0.2.7
 # Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
@@ -47,40 +47,26 @@ rpc_configure_retroarch()
 	echo -e "\n==> Configuring paths..."
 	sleep 1s
 	
-	#old_libretro_loc=$(echo "# libretro_path = "/path/to/libretro.so"")
-	#new_libretro_loc=$(echo "libretro_path = "/path/to/libretro.so"")
-	old_core_loc="# libretro_directory ="
-	new_core_loc="libretro_directory = /usr/lib/libretro"
+	# home paths
+	steam_home="/home/steam"
+	desktop_home="/home/desktop"
 	
-	# resolution
-	old_res_x="# video_fullscreen_x = 0"
-	new_res_x="video_fullscreen_x = 0"
-	old_res_y="# video_fullscreen_y = 0"
-	new_res_y="video_fullscreen_y = 0"
-	fullscreen_old="# video_fullscreen = false"
-	fullscreen_new="video fullscreen = true"
+	# cores
+	core_loc="/usr/lib/libretro"
+	core_info_dir="/usr/lib/libretro/info"
+	
+	# save DIRs
+	save_loc_desktop="/home/desktop/retroarch-saves"
+	save_loc_steam="/home/steam/retroarch-saves"
 	
 	# the retroarch config file needs to be placed in the steam users dir so that
 	# the running retroarch application can access it freely while steamcompmgr is running
 	retroarch_cfg_loc_steam="/home/steam/.config/retroarch"
 	retroarch_cfg_loc_desktop="/home/desktop/.config/retroarch"
 	
-	# core info
-	core_info_loc="/usr/lib/libretro/info"
-	core_info_old="# libretro_info_path ="
-	core_info_new="libretro_info_path = /usr/lib/libretro/info"
-	
-	# saves
-	save_loc_desktop="/home/desktop/retroarch-saves"
-	save_loc_steam="/home/steam/retroarch-saves"
-	old_save_loc="# savestate_directory ="
-	new_save_loc_desktop="savestate_directory = /home/desktop/retroarch-saves"
-	new_save_loc_steam="savestate_directory = /home/steam/retroarch-saves"
-	
 	# other directories
-	roms_dir="/home/steam/ROMs"
-	old_roms_dir="# rgui_browser_directory ="
-	new_roms_dir="rgui_browser_directory = /home/steam/ROMs"
+	roms_dir_desktop="/home/desktop/ROMs"
+	roms_dir_steam="/home/steam/ROMs"
 	banner_dir_desktop="/home/desktop/Pictures"
 	banner_dir_steam="/home/steam/Pictures"
 	
@@ -99,12 +85,21 @@ rpc_configure_retroarch()
 	fi
 	
 	# create ROMs dirs if it don't exist already
-	if [[ -d "$roms_dir" ]]; then
+	if [[ -d "$roms_dir_desktop" ]]; then
 		# do nothing
 		echo "" > /dev/null
 	else
 		# create directory(s)
-		sudo mkdir -p "$roms_dir"
+		mkdir -p "$roms_dir_desktop"
+	fi
+	
+	# create ROMs dirs if it don't exist already
+	if [[ -d "$roms_dir_steam" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	else
+		# create directory(s)
+		sudo mkdir -p "$roms_dir_steam"
 	fi
 	
 	# create Core/Core info dirs if it don't exist already
@@ -113,7 +108,7 @@ rpc_configure_retroarch()
 		echo "" > /dev/null
 	else
 		# create directory(s)
-		sudo mkdir -p "$core_info_loc"
+		sudo mkdir -p "$core_info_dir"
 	fi
 	
 	# save dir desktop
@@ -141,44 +136,92 @@ rpc_configure_retroarch()
 	echo -e "\n==> Configuring Retorarch parameters..."
 	sleep 1s
 	
-	# actively swap out lines after copying skel config file
-	# copy to both desktop and steam users in case it is launched in either session
-	# sudo likely needed to copy to /home/steam from desktop user login
-	cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	sudo cp "$scriptdir/cfgs/retroarch-skel.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	# copy skel file for use if need be later
+	cp "$scriptdir/cfgs/retroarch/retroarch-skel.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+	sudo cp "$scriptdir/cfgs/retroarch/retroarch-skel.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
-	# Configre retroarch core path
-	sed -i "s|$old_core_loc|$new_core_loc|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	sudo sed -i "s|$old_core_loc|$new_core_loc|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	# prompt user if they would like to load a controller config
+	echo -e "\nPlease choose a gamepad profile: \n"
+	echo "(1) Xbox 360 gamepad (wired"
+	echo "(2) Xbox 360 gamepad (Wireless)"
+	echo "(3) Sony PS3 (wired) gamepad"
+	echo "(4) Sony PS3 (bluetooth) gamepad"
+	echo "(5) None"
+	echo ""
 	
-	# Configre retroarch info core path
-	sed -i "s|$core_info_old|$core_info_new|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	sudo sed -i "s|$core_info_old|$core_info_new|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	# the prompt sometimes likes to jump above sleep
+	sleep 0.5s
 	
-	# Allow client to be fullscreen
-	sudo sed -i "s|$old_res_x|$new_res_x|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	sudo sed -i "s|$old_res_y|$new_res_y|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	sudo sed -i "s|$old_res_x|$new_res_x|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
-	sudo sed -i "s|$old_res_y|$new_res_y|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	read -ep "Choice: " gp_choice
 	
-	# Set a default ROMs DIR
-	sed -i "s|$old_roms_dir|$new_roms_dir|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	sudo sed -i "s|$old_roms_dir|$new_roms_dir|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	case "$gp_choice" in
+	        1)
+	        # copy modified retroarch.cfg to user DIRs without gamepad config
+		cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		sudo cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	        ;;
+	        
+	        2)
+	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
+		cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wireless.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		sudo cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wireless.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	        ;;
+	         
+	        3)
+	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
+		cp "$scriptdir/cfgs/retroarch/retroarch-ps3-wired.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		sudo cp "$scriptdir/cfgs/retroarch/retroarch-ps3-wired.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	        ;;
+	         
+	        4)
+	        # kick off pairing process first if user wants to
+	        echo -e "\nDo you wish to pair  your PS3 Controller now? [y/n]: \n"
+	        # the prompt sometimes likes to jump above sleep
+		sleep 0.5s
+	        
+	        read -ep "Choice: " bt_choice
+	        
+	        if [[ "$bt_choice" == "y" ]]; then
+	                $scriptdir/pair-ps3-bluetooth.sh
+	        else
+	        	echo -e "\nSkipping PS3 Bluetooth setup..."
+	        	sleep 1s
+	        fi
+	        
+	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
+		cp "$scriptdir/cfgs/retroarch/retroarch-ps3-bluetooth.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		sudo cp "$scriptdir/cfgs/retroarch/retroarch-ps3-bluetooth.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	        ;;
+	        
+	        5)
+	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
+		cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		sudo cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+		;;
+	         
+	        *)
+		echo "Invalid Input, continuing without gamepad config choice."
+	        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
+		cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		sudo cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
+		;;
+	esac
 	
-	sudo sed -i "s|$fullscreen_old|$fullscreen_new|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	sudo sed -i "s|$fullscreen_old|$fullscreen_new|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	
-	# game saves
-	sed -i "s|$old_save_loc|$new_save_loc_desktop|g" "$save_loc_desktop"
-	sudo sed -i "s|$old_save_loc|$new_save_loc_steam|g" "$save_loc_steam"
+	# swap home_temp out for each user DIR path
+	sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+	sudo sed -i "s|home_temp|$steam_home|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
 	# create desktop application link 
-	sudo cp "$scriptdir/cfgs/retroarch.desktop" "/usr/share/applications"
+	sudo cp "$scriptdir/cfgs/retroarch/retroarch.desktop" "/usr/share/applications"
+	
+	# copy banner image
+	cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_desktop"
+	sudo cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_steam"
 	
 	# add small launcher script
 	# this will acively swap out the current user (desktop or steam) so that the
 	# appropriate retroarch.cfg file will be user
-	sudo cp "$scriptdir/cfgs/retroarch-launch.sh" "/usr/bin"
+	sudo cp "$scriptdir/cfgs/retroarch/retroarch-launch.sh" "/usr/bin"
 	
 	# copy cores from source build DIR
 	find "/home/desktop/retroarch-src/libretro-super/" -name *.so | xargs sudo cp -t "/usr/lib/libretro" 2> /dev/null
@@ -197,10 +240,8 @@ rpc_configure_retroarch()
 	sudo chmod 755 "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
 	# Fix saves permissions
-	sudo chown desktop:desktop "$save_loc_desktop"
-	sudo chown steam:steam "$save_loc_desktop"
-	sudo chmod 755 "$save_loc_desktop"
-	sudo chmod 755 "$save_loc_desktop"
+	sudo chown steam:steam "$save_loc_steam"
+	sudo chmod 755 "$save_loc_steam"
 	
 	# Fix retroarch banner
 	sudo chown desktop:desktop "$banner_dir_desktop/retro-arch-logo.png"
@@ -211,14 +252,7 @@ rpc_configure_retroarch()
 	#################################################
 	
 	# add icon/thumbnail
-	sudo cp "$scriptdir/extra/retro-arch-logo.png" "/home/steam/Pictures"
-	
-	#################################################
-	# Preconfigure controllers for Retroarch?
-	#################################################
-	# <<TODO>>
-	# Possibly source in separate module
-	# Maybe something like `controller_type=$(sudo lsusb -v | grep Logitech | grep Bus)`
+	sudo cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "/home/steam/Pictures"
 	
 	#################################################
 	# Automatically add Retroarch program into Steam?
@@ -230,8 +264,10 @@ rpc_configure_retroarch()
 
 	echo -e "\n==> Completing post-install actions..."
 
-	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src' as a \
-non-Steam game in Big Picture Mode.\n"
+	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src'"
+	echo -e "as a non-Steam game in Big Picture Mode.\n"
+	echo -e "Please see $scriptdir/docs/desktop-software-readme.md for"
+	echo -e "more information\n"
 	sleep 1s
 	
 	#################################################

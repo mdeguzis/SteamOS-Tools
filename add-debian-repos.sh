@@ -140,12 +140,12 @@ main()
 		fi
 	
 		#####################################################
-		# Create and add required text to wheezy.list
+		# Create and add required text to jessie.list
 		#####################################################
 
 		# Debian Jessie
 		cat <<-EOF >> ${sourcelist}
-		# Debian-Wheezy repo
+		# Debian-jessie repo
 		deb ftp://mirror.nl.leaseweb.net/debian/ jessie main contrib non-free
 		deb-src ftp://mirror.nl.leaseweb.net/debian/ jessie main contrib non-free
 		EOF

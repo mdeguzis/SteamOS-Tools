@@ -5,7 +5,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	pair-ps3-bluetooth.sh
-# Script Ver:	0.2.8
+# Script Ver:	0.3.1
 # Description:	Pairs PS3 Bluetooth controller on SteamOS
 # Usage:	./pair-ps3-bluetooth.sh
 #
@@ -22,8 +22,8 @@ install_prereqs()
 	# Fetch what has to be installed from Alchemist (conflicting version)
 	sudo apt-get install libbluetooth-dev libusb-dev
 
-	# Fetch what has to be installed from Wheezy
-	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
+	# Fetch what has to be installed from jessie
+	sudo apt-get -t jessie install bluez-utils bluez-compat bluez-hcidump \
 	checkinstall joystick pyqt4-dev-tools
 	
 	

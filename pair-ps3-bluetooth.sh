@@ -65,7 +65,7 @@ main()
 	sudo mv "/tmp/sixpair" "/usr/bin"
 		
 	#configure and start sixad daemon.
-	echo -e "==> Configuring qtsixad and sixad...\n"
+	echo -e "==> Configuring sixad...\n"
 	sleep 2s
 	sudo update-rc.d sixad defaults
 	sudo /etc/init.d/sixad enable
@@ -214,6 +214,7 @@ assigned to OK/Confirm\n"
 # Install prereqs 
 ##################################################### 
 clean_install
+exit
 install_prereqs
 
 ##################################################### 
@@ -221,7 +222,7 @@ install_prereqs
 ##################################################### 
 main | tee log_temp.txt 
 
-##################################################### 
+#################################################### 
 # cleanup 
 ##################################################### 
 

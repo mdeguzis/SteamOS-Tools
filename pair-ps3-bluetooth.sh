@@ -22,7 +22,7 @@ install_prereqs()
 
 	# Fetch what has to be installed from Wheezy
 	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
-	checkinstall joystick pyqt4-dev-tools dialog
+	checkinstall joystick pyqt4-dev-tools
 	
 	
 }
@@ -72,20 +72,18 @@ main()
 	sudo /etc/init.d/sixad start
   
   	echo -e "==> Configuring controller(s)...\n"
-	cmd=(dialog --backtitle "LibreGeek.org" \
-		    --menu "Please select the number of PS3 controllers" 16 47 16)
-	options=(1 "1"
-	 	 2 "2"
-	 	 3 "3"
-	 	 4 "4")
-
-	#make menu choice
-	selection=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-	#functions
+	echo -e "\nPlease select the number of PS3 controllers"
 	
-	for choice in $selection
-	do
-		case $choice in
+	echo "(1)"
+	echo "(2)"
+	echo "(3)"
+	echo "(4)"
+
+	# the prompt sometimes likes to jump above sleep
+	sleep 0.5s
+	read -ep "Choice: " cont_num_choice
+
+	case $cont_num_choice in
 	
 		1)
 		
@@ -147,9 +145,9 @@ main()
 		ps3_pair_blu
 		dialog --msgbox "Pairing of Player 4 controller complete" 5 43 
 	
-		esac
+	esac
 		
-	done
+	
 	
 	###########################################################
 	# End controller pairing process
@@ -166,12 +164,16 @@ main()
 ps3_pair_blu()
 {
 	
-	dialog --msgbox "Please plug in these items now:\n\n1)The USB cable\n2)PS3 controller $n\n\
-3)Bluetooth dongle\n\nAdditional controllers can be added in the settings menu"  12 40
+	echo -e "\nPlease plug in these items now:\n\n1)The USB cable\n2)PS3 controller $n\n\
+3)Bluetooth dongle\n\nAdditional controllers can be added in the settings menu"
+	echo -e "\nPress [ENTER] to continue."
+	
+	read -n 1
+        echo -e  "\nContinuing...\n"
 	
 	clear
 	# Grab player 1 controller MAC Address of wired device
-	echo -e "\nSetting up Playstation 3 Sixaxis (bluetooth) [Player $n]\n"
+	echo -e "\n==> Setting up Playstation 3 Sixaxis (bluetooth) [Player $n]\n"
 	sleep 2s
 	
 	# Pair controller with logging 
@@ -180,9 +182,9 @@ ps3_pair_blu()
 	sleep 2s
 	
 	# Inform player 1 controller user to disconnect USB cord
-	dialog --msgbox "Please disconnect the USB cable and press the PS Button now. The appropriate \
+	echo -e "\nPlease disconnect the USB cable and press the PS Button now. The appropriate \
 	LED for player $n should be lit. If it is not, please hold in the PS button to turn it off, then \
-	back on.\n\nThere is no need to reboot to fully enable the controller(s)" 12 60
+	back on.\n\nThere is no need to reboot to fully enable the controller(s)"
 	
 	clear
 	echo -e "######################################################"

@@ -153,6 +153,7 @@ main()
 		ps3_pair_blu
 		echo -e "Pairing of Player $n controller complete\n"
 		sleep 2s
+		;;
 	
 	###########################################################
 	# End controller pairing process

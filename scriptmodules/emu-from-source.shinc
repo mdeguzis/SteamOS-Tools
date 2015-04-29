@@ -11,10 +11,7 @@
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
 #
-# Last tested:		20150428, runtime: 86.35 minutes, Pass: 47, Fail: 2
-#			Host: SteamOS-Test
-#			Cores failed: mupen64plus, gw
-#			Already fetched: [no]
+#Last tested:		Please see SteamOS-Tools/docs/Retroarch-info.md 
 # -------------------------------------------------------------------------------
 
 time_start=$(date +%s)

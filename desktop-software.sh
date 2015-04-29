@@ -977,9 +977,9 @@ main()
 #####################################################
  
 funct_source_modules
+gpg_import
 funct_pre_req_checks
 add_repos
-gpg_import
 
 #####################################################
 # MAIN

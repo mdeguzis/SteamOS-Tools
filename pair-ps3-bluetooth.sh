@@ -74,8 +74,8 @@ main()
   	echo -e "\c==> Configuring controller(s)...\n"
   	
   	echo -e "\n##############################################"
-	echo -e "Please select the number of PS3 controllers\n"
-	echo -e "\n##############################################"
+	echo -e "Please select the number of PS3 controllers"
+	echo -e "##############################################"
 	echo "(1)"
 	echo "(2)"
 	echo "(3)"

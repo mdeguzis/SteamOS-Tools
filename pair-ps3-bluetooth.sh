@@ -213,7 +213,6 @@ assigned to OK/Confirm\n"
 # Install prereqs 
 ##################################################### 
 clean_install
-exit
 install_prereqs
 
 ##################################################### 

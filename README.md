@@ -4,11 +4,19 @@ Tools and scripts for SteamOS.
 ## Usage
 
 To clone this repository to your local computer, you will need the `git` software package. After this is installed, clone SteamOS-Tools with:
-
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS-Tools/
 ```
+
+To update your local copy of files:
+```
+cd SteamOS-Tools/
+git fetch
+git merge
+```
+
+There is also a testing branch for this repository, but I advise against using it.
 
 Please refer to the readme files in the docs/ folder in this reppository. Normal script execution, sans arguments, goes a little bit like:
 

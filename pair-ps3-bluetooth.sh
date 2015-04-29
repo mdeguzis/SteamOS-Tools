@@ -200,6 +200,11 @@ ps3_pair_blu()
 	LED for player $n should be lit. If it is not, please hold in the PS button to turn it off, then \
 	back on.\n\nThere is no need to reboot to fully enable the controller(s)"
 	
+	echo -e "\nPress [ENTER] to continue."
+	
+	read -n 1
+        echo -e  "\nContinuing...\n"
+	
 	clear
 	echo -e "######################################################"
 	echo -e "Notice for Steam users:"

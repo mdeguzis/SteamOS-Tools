@@ -211,9 +211,11 @@ ps3_pair_blu()
 	echo -e "Notice for Steam users:"
 	echo -e "######################################################\n"
 
-	echo -e "Using the left stick and pressing the left and right stick navigate to the Settings Screen \
-and edit the layout of the controller. By default, the left joystick should work and left-stick click will be\
-assigned to OK/Confirm\n"
+	echo -e "Using the left stick and pressing the left and right "
+	echo -e "stick navigate to the Settings Screen and edit the "
+	echo -e "layout of the controller. By default, the left joystick"
+	echo -e "should work and left-stick click will be assigned to"
+	echo -e "OK/Confirm\n"
 
 }
 

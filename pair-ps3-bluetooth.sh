@@ -231,6 +231,9 @@ main | tee log_temp.txt
 rm -f "/tmp/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
 rm -f "/tmp/sixpair.c"
 
+# apt cleanup
+sudo apt-get autoremove
+
 # convert log file to Unix compatible ASCII 
 strings log_temp.txt > log.txt 
 

@@ -177,7 +177,7 @@ ps3_pair_blu()
 	
 	clear
 	# Grab player 1 controller MAC Address of wired device
-	echo -e "\n==> Setting up Playstation 3 Sixaxis (bluetooth) [Player $n]\n"
+	echo -e "\n==> Setting up Playstation 3 Sixaxis \(bluetooth\) [Player $n]\n"
 	sleep 2s
 	
 	# Pair controller with logging 
@@ -188,7 +188,7 @@ ps3_pair_blu()
 	# Inform player 1 controller user to disconnect USB cord
 	echo -e "\nPlease disconnect the USB cable and press the PS Button now. The appropriate \
 	LED for player $n should be lit. If it is not, please hold in the PS button to turn it off, then \
-	back on.\n\nThere is no need to reboot to fully enable the controller(s)"
+	back on.\n\nThere is no need to reboot to fully enable the controller\(s\)"
 	
 	clear
 	echo -e "######################################################"

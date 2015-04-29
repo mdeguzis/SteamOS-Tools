@@ -86,7 +86,7 @@ ep_install_plex()
 	# add GPG keys
 	###############################
 	
-	echo -e "\==> Adding GPG key(s)"
+	echo -e "\n==> Adding GPG key(s)"
 	sleep 1s
 	sudo gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --recv-keys 5C808C2B65558117
 	

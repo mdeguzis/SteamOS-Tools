@@ -24,7 +24,6 @@ Below you can find related information pertaining to building Retroarch/Libretro
 
 #####Testing machine specifications
 ===
-
 **SteamOS-Test**  
 * CPU: Intel Core 2 Quad Q9550
 * RAM: 6 GB DDR2

@@ -26,7 +26,7 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 * buld-test-docker.sh - build a Debian or SteamOS package for testing.
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages. Please see the readme file in docs/ for the full listing of options.
 * steamos-stats.sh - displays useful stats while gaming over SSH from another device.
-* pair-ps3-bluetooth.sh - pairs your PS# blueooth controllers to a supported receiver.
+* pair-ps3-bluetooth.sh - pairs your PS3 blueooth controllers to a supported receiver.
 
 ## Wiki
 - In time I hope to maintain a colletion of useful articles or links to Steamcommunity Guides that still work, currate them and other such things*.

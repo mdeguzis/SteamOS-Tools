@@ -13,7 +13,6 @@
 #		Installation of the pre-requisite packages.
 # -------------------------------------------------------------------------------
 
-
 install_prereqs()
 {
 
@@ -197,6 +196,9 @@ ps3_pair_blu()
 	sleep 2s
 	
 	# Inform player 1 controller user to disconnect USB cord
+	echo -e "##############################################################"
+	echo -e "Connection Notice"
+	echo -e "##############################################################"
 	echo -e "\nPlease disconnect the USB cable and press the PS Button now. "
 	echo -e "The appropriate LED for player $n should be lit. If it is not,"
 	echo -e "please hold in the PS button to turn it off, then back on."

@@ -18,6 +18,7 @@ install_prereqs()
 {
 
 	echo -e "\n==> Installing prerequisite software\n"
+	sleep 1s
 
 	# Fetch what has to be installed from Alchemist (conflicting version)
 	sudo apt-get install libbluetooth-dev libusb-dev
@@ -36,7 +37,7 @@ clean_install()
 	if [[ -f "/etc/init.d/sixad" ]]; then
 		sudo service sixad stop
 	fi
-	
+	sleep 1s
 }
 
 main()

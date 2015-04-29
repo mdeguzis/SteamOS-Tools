@@ -182,7 +182,7 @@ rpc_configure_retroarch()
 	        read -ep "Choice: " bt_choice
 	        
 	        if [[ "$bt_choice" == "y" ]]; then
-	                $scriptdir/pait-ps3-bluetooth.sh
+	                $scriptdir/pair-ps3-bluetooth.sh
 	        else
 	        	echo -e "\nSkipping PS3 Bluetooth setup..."
 	        	sleep 1s

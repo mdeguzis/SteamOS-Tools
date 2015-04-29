@@ -32,7 +32,7 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 ## Wiki
 - In time I hope to maintain a colletion of useful articles or links to Steamcommunity Guides that still work, currate them and other such things*.
 
-* TODO (hey I have other cool stuff, ya know, to do).
+\* TODO (hey I have other cool stuff, ya know, to do).
 
 ## Pull requests / suggestions
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page

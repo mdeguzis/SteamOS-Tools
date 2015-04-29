@@ -154,10 +154,6 @@ main()
 		echo -e "Pairing of Player $n controller complete\n"
 		sleep 2s
 	
-	esac
-		
-	
-	
 	###########################################################
 	# End controller pairing process
 	###########################################################

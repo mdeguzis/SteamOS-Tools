@@ -3,9 +3,9 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/scripts
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.3.5
+# Script Ver:	  	0.3.7
 # Description:		Module for isntalling useful pacakges otherwise not 
-#			found in The Debian Wheezy repositories directly.
+#			found in The Debian jessie repositories directly.
 #	
 # Usage:	      	n/a , module
 # -----------------------------------------------------------------------
@@ -191,8 +191,8 @@ ep_install_plex()
 	
 	# Plex
 	sudo curl http://shell.ninthgate.se/packages/shell-ninthgate-se-keyring.key | sudo apt-key add -
-	echo "deb http://www.deb-multimedia.org wheezy main non-free" | sudo tee -a /etc/apt/sources.list.d/deb-multimedia.list
-	echo "deb http://shell.ninthgate.se/packages/debian wheezy main" | sudo tee -a /etc/apt/sources.list.d/plex.list
+	echo "deb http://www.deb-multimedia.org jessie main non-free" | sudo tee -a /etc/apt/sources.list.d/deb-multimedia.list
+	echo "deb http://shell.ninthgate.se/packages/debian jessie main" | sudo tee -a /etc/apt/sources.list.d/plex.list
 	sudo apt-get update
 	
 	# deb-multimedia-keyring
@@ -226,7 +226,7 @@ ep_install_plex()
 	echo -e "\n==> Installing Plex Home Theater"
 	sleep 1s
 	# install Plex Home Theater
-	sudo apt-get -t wheezy install plexhometheater -y
+	sudo apt-get -t jessie install plexhometheater -y
 	
 	# cleanup any old packages
 	sudo apt-get autoremove

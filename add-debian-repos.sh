@@ -122,13 +122,13 @@ main()
 		
 		if [[ -f ${sourcelist} ]]; then
 	        	# backup sources list file
-	        	echo -e "Backup up ${sourcelist} to ${sourcelist}.bak\n"
+	        	echo -e "\n==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
 	        	mv ${sourcelist} ${sourcelist}.bak
 		fi
 		
 		if [[ -f ${backports_sourcelist} ]]; then
 	        	# backup sources list file
-	        	echo -e "Backup up ${backports_sourcelist} to ${backports_sourcelist}.bak\n"
+	        	echo -e "\n==> Backing up ${backports_sourcelist} to ${backports_sourcelist}.bak\n"
 	        	mv ${backports_sourcelist} ${backports_sourcelist}.bak
 		fi
 	

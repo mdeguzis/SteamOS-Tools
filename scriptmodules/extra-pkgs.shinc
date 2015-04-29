@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/scripts
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.2.3
+# Script Ver:	  	0.3.5
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian Wheezy repositories directly.
 #	
@@ -78,9 +78,60 @@ ep_install_firefox()
 
 ep_install_plex()
 {
+
   
 	echo -e "\n==> Installing Plex Home Theater from automated script...\n"
 	sleep 2s
+	
+	###############################
+	# sources
+	###############################
+	
+	echo -e "\n==> Configuring sources"
+	sleep 1s
+	
+	# Check for existance of /etc/apt/preferences file (deprecated, see below)
+	if [[ -f "/etc/apt/preferences" ]]; then
+		# backup preferences file
+		echo -e "==> Backing up /etc/apt/preferences to /etc/apt/preferences.bak\n"
+		mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
+		sleep 1s
+	fi
+	
+	# Check for existance of /etc/apt/preferences.d/{reponame} file
+	if [[ -f ${prefer} ]]; then
+		# backup preferences file
+		echo -e "==> Backing up ${prefer} to ${prefer}.bak\n"
+		mv ${prefer} ${prefer}.bak
+		sleep 1s
+	fi
+	
+	# Check for existance of /etc/apt/preferences.d/{backports_prefer} file
+	if [[ -f ${backports_prefer} ]]; then
+		# backup preferences file
+		echo -e "==> Backing up ${backports_prefer} to ${backports_prefer}.bak\n"
+		mv ${backports_prefer} ${backports_prefer}.bak
+		sleep 1s
+	fi
+
+	# Create and add required text to preferences file
+	cat <<-EOF >> ${prefer}
+	Package: *
+	Pin: release l=Debian
+	Pin-Priority:110
+	EOF
+	
+	cat <<-EOF >> ${backports_prefer}
+	Package: *
+	Pin: release a=wheezy-backports
+	Pin-Priority:150
+	EOF
+
+	cat <<-EOF >> ${steamos_prefer}
+	Package: *
+	Pin: release l=SteamOS
+	Pin-Priority: 900
+	EOF
 	
 	###############################
 	# add GPG keys
@@ -107,7 +158,7 @@ ep_install_plex()
 	# update and pre-reqs
 	###############################
 	
-	echo -e "\==> Installing prerequisite software)"
+	echo -e "\n==> Installing prerequisite software"
 	sleep 1s
 	
 	# Plex

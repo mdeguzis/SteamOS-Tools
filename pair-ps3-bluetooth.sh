@@ -72,12 +72,12 @@ main()
 	sudo /etc/init.d/sixad start
   
   	echo -e "==> Configuring controller(s)...\n"
-	echo -e "\nPlease select the number of PS3 controllers"
-	
+	echo -e "Please select the number of PS3 controllers\n"
 	echo "(1)"
 	echo "(2)"
 	echo "(3)"
 	echo "(4)"
+	echo ""
 
 	# the prompt sometimes likes to jump above sleep
 	sleep 0.5s

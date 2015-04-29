@@ -199,7 +199,7 @@ ps3_pair_blu()
 	echo -e "\nPlease disconnect the USB cable and press the PS Button now. "
 	echo -e "The appropriate LED for player $n should be lit. If it is not,"
 	echo -e "please hold in the PS button to turn it off, then back on."
-	echo -e ""\nThere is no need to reboot to fully enable the controller(s)"
+	echo -e "\nThere is no need to reboot to fully enable the controller(s)"
 	
 	echo -e "\nPress [ENTER] to continue."
 	

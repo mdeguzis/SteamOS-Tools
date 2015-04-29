@@ -34,7 +34,7 @@ clean_install()
 	if [[ -f "sudo /etc/init.d/sixad" ]]; then
 		sudo /etc/init.d/sixad stop
 		sudo /etc/init.d/sixad disable
-		sudo rm -f "sudo /etc/init.d/sixad"
+		sudo rm -f /etc/init.d/sixad
 	fi
 	
 }

@@ -90,16 +90,18 @@ ep_install_plex()
 	echo -e "\n==> Configuring sources"
 	sleep 1s
 	
-	# Check for existance of /etc/apt/preferences file (deprecated, see below)
-	if [[ -f "/etc/apt/preferences" ]]; then
-		# backup preferences file
-		echo -e "==> Backing up /etc/apt/preferences to /etc/apt/preferences.bak\n"
-		mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
-		sleep 1s
-	fi
+	# source lists
+	reponame_plex="plex"
+	reponame_deb_multi="deb-multimedia"
+	
+	sourcelist_plex="/etc/apt/sources.list.d/${reponame}.list"
+	sourcelist_deb_multi="/etc/apt/sources.list.d/${backports_reponame}.list"
+	
+	prefer_plex="/etc/apt/preferences.d/${backports_reponame}"
+	prefer_deb_multi="/etc/apt/preferences.d/${backports_reponame}"
 	
 	# Check for existance of /etc/apt/preferences.d/{reponame} file
-	if [[ -f ${prefer} ]]; then
+	if [[ -f ${prefer_plex} ]]; then
 		# backup preferences file
 		echo -e "==> Backing up ${prefer} to ${prefer}.bak\n"
 		mv ${prefer} ${prefer}.bak
@@ -107,36 +109,31 @@ ep_install_plex()
 	fi
 	
 	# Check for existance of /etc/apt/preferences.d/{backports_prefer} file
-	if [[ -f ${backports_prefer} ]]; then
+	if [[ -f ${prefer_deb_multi} ]]; then
 		# backup preferences file
 		echo -e "==> Backing up ${backports_prefer} to ${backports_prefer}.bak\n"
 		mv ${backports_prefer} ${backports_prefer}.bak
 		sleep 1s
 	fi
-
-	# Create and add required text to preferences file
-	cat <<-EOF >> ${prefer}
-	Package: *
-	Pin: release l=Debian
-	Pin-Priority:110
-	EOF
 	
-	cat <<-EOF >> ${backports_prefer}
-	Package: *
-	Pin: release a=wheezy-backports
-	Pin-Priority:150
-	EOF
+	if [[ -f ${sourcelist_plex} ]]; then
+		# backup sources list file
+		echo -e "==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
+		mv ${sourcelist} ${sourcelist}.bak
+		sleep 1s
+	fi
+	
+	if [[ -f ${sourcelist_deb_multi} ]]; then
+		# backup sources list file
+		echo -e "==> Backing up ${backports_sourcelist} to ${backports_sourcelist}.bak\n"
+		mv ${backports_sourcelist} ${backports_sourcelist}.bak
+		sleep 1s
+	fi
 
-	cat <<-EOF >> ${steamos_prefer}
-	Package: *
-	Pin: release l=SteamOS
-	Pin-Priority: 900
-	EOF
 	
 	###############################
 	# add GPG keys
 	###############################
-	
 	
 	echo -e "\n==> Adding GPG key(s)"
 	sleep 1s

@@ -177,7 +177,7 @@ ps3_pair_blu()
 	
 	clear
 	# Grab player 1 controller MAC Address of wired device
-	echo -e "\n==> Setting up Playstation 3 Sixaxis (bluetooth) [Player $n]\n"
+	echo -e "\n==> Setting up Playstation 3 Sixaxis \(bluetooth\) [Player $n]\n"
 	sleep 2s
 	
 	# Pair controller with logging 

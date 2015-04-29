@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.7.5
+# Script Ver:	0.7.7
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -237,11 +237,13 @@ fi
 funct_pre_req_checks()
 {
 	
+	echo -e "\n==> Checking for prerequisite software...\n"
+	
 	# Adding repositories
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' python-software-properties | grep "install ok installed")
 	
 	if [ "" == "$PKG_OK" ]; then
-		echo -e "python-software-properties not found. Setting up python-software-properties.\n"
+		echo -e "\npython-software-properties not found. Setting up python-software-properties.\n"
 		sleep 1s
 		sudo apt-get install -t wheezy python-software-properties
 	else
@@ -249,6 +251,37 @@ funct_pre_req_checks()
 		sleep 0.2s
 	fi
 	
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' debian-keyring | grep "install ok installed")
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "\ndebian-keyring not found. Setting up debian-keyring.\n"
+		sleep 1s
+		sudo apt-get install debian-keyring
+	else
+		echo "Checking for debian-keyring: [Ok]"
+		sleep 0.2s
+	fi
+	
+}
+
+function gpg_import()
+{
+	# When installing from Wheezy and Wheezy backports,
+	# some keys do not load in automatically, import now
+	# helper script accepts $1 as the key
+	echo -e "\n==> Importing Debian GPG keys"
+	
+	# Key Desc: Debian Archive Automatic Signing Key
+	# Key ID: 2B90D010
+	# Full Key ID: 7638D0442B90D010
+	gpg_key_check=$(gpg --list-keys 2B90D010)
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "\nDebian Archive Automatic Signing Key [OK]\n"
+		sleep 1s
+	else
+		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now...\n"
+		$scriptdir/extra/gpg_import.sh 7638D0442B90D010
+	fi
+
 }
 
 get_software_type()
@@ -583,15 +616,25 @@ install_software()
 
 show_warning()
 {
-
+	# do a small check for existing wheezy/wheezy-backports lists
+	echo ""
+        sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
+        
         clear
         echo "##########################################################"
         echo "Warning: usage of this script is at your own risk!"
         echo "##########################################################"
         echo -e "\nIn order to run this script, you MUST have had enabled"
-        echo -e "the Debian repositories! If you wish to exit, please "
-        echo -e "press CTRL+C now..."
-        echo -e "\ntype './desktop-software --help' for assistance.\n"
+        echo -e -n "the Debian repositories!"
+        
+        if [[ "$sources_check" == "" ]]; then
+        	echo -e " Those sources do not appear to be added at first glance."
+        else
+        	echo -e " On initial check, those sources \nappear to be added."
+        fi
+        	
+        echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
+        echo -e "\ntype './desktop-software --help' (without quotes) for help.\n"
         echo -e "See log.txt in this direcotry after any attempt for details"
         echo -e "If you need to add the Debian repos, please use the"
         echo -e "desktop-software.sh script in the main repository folder..\n"
@@ -936,6 +979,7 @@ main()
 funct_source_modules
 funct_pre_req_checks
 add_repos
+gpg_import
 
 #####################################################
 # MAIN

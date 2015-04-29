@@ -166,9 +166,9 @@ ps3_pair_blu()
 	echo -e '#########################################'
 	echo -e "\nPlease plug in these items now:\n
 	echo -e '#########################################'
-	echo -e "(1) The USB cable"
-	echo -e "(2) PS3 controller $n"
-	echo -e "(3) Bluetooth dongle\n"
+	echo -e "\(1\) The USB cable"
+	echo -e "\(2\) PS3 controller $n"
+	echo -e "\(3\) Bluetooth dongle\n"
 	echo -e "Additional controllers can be added in the settings menu"
 	echo -e "\nPress [ENTER] to continue."
 	

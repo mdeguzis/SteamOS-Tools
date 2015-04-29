@@ -5,7 +5,7 @@
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
 # Script Ver:	0.1.3
-# Description:	Builds a Debian Wheezy / SteamOS chroot for testing 
+# Description:	Builds a Debian Jessie / SteamOS chroot for testing 
 #		purposes
 #               See: https://wiki.debian.org/chroot
 # Usage:	sudo ./build-test-chroot.sh -type [debian|steamos]
@@ -61,10 +61,10 @@ funct_set_target()
 {
 
 	if [[ "$opt1" == "-type" ]]; then
-	  if [[ "$opt2" == "wheezy" ]]; then
+	  if [[ "$opt2" == "jessie" ]]; then
 	  
 	  	target="debian"
-	  	release="wheezy"
+	  	release="jessie"
 	  	target_URL="http://http.debian.net/debian"
 	  	beta_flag="no"
 	  	

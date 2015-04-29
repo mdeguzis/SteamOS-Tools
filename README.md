@@ -7,6 +7,7 @@ To clone this repository to your local computer, you will need the `git` softwar
 
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
+cd SteamOS-Tools/
 ```
 
 Please refer to the readme files in the docs/ folder in this reppository. Normal script execution, sans arguments, goes a little bit like:

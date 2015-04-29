@@ -11,20 +11,11 @@
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
 #
-#!/bin/bash
-
-# -------------------------------------------------------------------------------
-# Author:     		Michael DeGuzis
-# Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.4.8
-# Description:		script to install emulation softare as a 
-#                 	part of install-debian-software.sh
-#
-#			See: https://wiki.debian.org/CreatePackageFromPPA
-# Usage:	  	N/A, called from another script
-#
+<<<<<<< HEAD
 # Last tested:		Please see SteamOS-Tools/docs/Retroarch-info.md
+=======
+#Last tested:		Please see SteamOS-Tools/docs/Retroarch-info.md 
+>>>>>>> refs/remotes/origin/testing
 # -------------------------------------------------------------------------------
 
 time_start=$(date +%s)

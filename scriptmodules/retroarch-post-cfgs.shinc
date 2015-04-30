@@ -11,6 +11,9 @@
 
 rpc_configure_retroarch()
 {
+	
+if [[ "$apt_mode" == "install" ]]; then
+
 	# Vars exported emu-from-source.shinc
 	#echo "install_dir is $install_dir"
 	#echo "git_dir is $git_dir"
@@ -273,4 +276,51 @@ rpc_configure_retroarch()
 	#################################################
 	# Cleanup
 	#################################################
+	
+elif [[ "$apt_mode" == "remove" ]]; then
+
+	elif [[ "$apt_mode" == "remove" ]]; then
+	
+	############################################################################
+	#Remove directories, build files, etc if uninstall is specified by user
+	############################################################################
+	
+	echo -e "\n==> Removing related files for retroach post-install configs"
+	sleep 2s
+	
+	# confirm with user
+	echo -e "\nDo you wish to remove configuration files related to Retroarch? [y/n]"
+
+	# the prompt sometimes likes to jump above sleep 
+	sleep 0.5s 
+
+	# evaluate
+	read -ep "Choice: " remove_confirm_config
+
+	if [[ "$remove_confirm_config" == "n" ]]; then
+		echo -e "\nKeeping configurtion files for Retroarch by user request."
+	elif [[ "$remove_confirm_config" == "y" ]]; then
+		# remove related files
+		sudo rm -f "$retroarch_cfg_loc_steam" "$retroarch_cfg_loc_desktop"
+	fi
+	
+	############################################################################
+	#Remove ROM save files, etc if uninstall is specified by user
+	############################################################################
+	
+	# confirm with user
+	echo -e "\nDo youyou wish to remove your ROM save files related to Retroarch? [y/n]"
+
+	# the prompt sometimes likes to jump above sleep 
+	sleep 0.5s 
+
+	# evaluate
+	read -ep "Choice: " remove_confirm_saves
+
+	if [[ "$remove_confirm_saves" == "n" ]]; then
+		echo -e "\nKeeping ROM save files for Retroarch by user request."
+	elif [[ "$remove_confirm_saves" == "y" ]]; then
+		# remove related files
+		sudo rm -f "$save_loc_desktop" "$save_loc_steam"
+	fi
 }

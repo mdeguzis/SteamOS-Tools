@@ -109,19 +109,32 @@ main()
 		fi
 	
 		# Create and add required text to preferences file
+		# Verified policy with apt-cache policy
 		cat <<-EOF > ${prefer}
 		Package: *
-		Pin: release l=Debian
+		Pin: origin ""
+		Pin-Priority:110
+		
+		Package: *
+		Pin: release o=Debian 
 		Pin-Priority:110
 		EOF
 		
 		cat <<-EOF > ${backports_prefer}
 		Package: *
-		Pin: release a=wheezy-backports
-		Pin-Priority:150
+		Pin: origin ""
+		Pin-Priority:100
+		
+		Package: *
+		Pin: release o=Debian 
+		Pin-Priority:110
 		EOF
 	
 		cat <<-EOF > ${steamos_prefer}
+		Package: *
+		Pin: release l=Steam
+		Pin-Priority: 900
+		
 		Package: *
 		Pin: release l=SteamOS
 		Pin-Priority: 900

@@ -20,7 +20,7 @@ time_stamp_start=(`date +"%T"`)
 efs_main()
 {
 
-if [[ "$apt_mode="install" ]]; then
+if [[ "$apt_mode" == "install" ]]; then
 	
 	#################################################
 	# Initial setup
@@ -295,5 +295,6 @@ elif [[ "$apt_mode" == "remove" ]]; then
 	echo -n "2 " && sleep 1s
 	echo -n "1" && sleep 1s
 	echo ""
+fi
 
 }

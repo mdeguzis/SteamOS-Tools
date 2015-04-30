@@ -25,8 +25,13 @@ If any given pkg is not, it then checks for a prefix !broken! in any dynamically
 *The installations are attemped in the following order:*
 
 1. Automatic based on /apt/preferences.d/{repo} priority / Alchemist
-2. Jessie repository
-3. Jessie-backports repository
+2. Wheezy repository
+3. Wheezy-backports repository
+
+#####Notes regarding apt-pinning / apt-preferences 
+Apt-pinning is implemented in the `add-debian-repos.sh` script to give Steam and SteamOS release types highest priority. Beneath this, Debian and Debian-Backports are given a much lower priority. For details on current pin levels, please reference [these](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/master/add-debian-repos.sh#L111) lines of code. If the line number is off, the section is titled "# Create and add required text to preferences file". 
+
+Apt-pin preferences are subject to change. Ideally, the testing branch will be tested properly before hand, and package policy checked with `apt-cache policy` as well. Please submit any suggestions or corrections anyone feels should be made as a pull request.
 
 ## Usage
 
@@ -78,7 +83,7 @@ Packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) D
 packages required UPnP / DLNA streaming from a mobile device (experimental / in-progres)   
 
 `<pkg_name>`     
-installs package(s) specifified from Alchemist/Jessie. You can specify any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
+installs package(s) specifified from Alchemist/Wheezy. You can specify any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
 
 `games-pkg`           
 Installs a some Linux games that you can then add to Steam via the "add non-Steam game" option.

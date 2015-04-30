@@ -202,7 +202,7 @@ main()
 		rm -f ${backports_sourcelist}
 		rm -f ${prefer}
 		rm -f ${steamosprefer}
-		echo -e "Updating index of packages...\n"
+		echo -e "==> Updating index of packages...\n"
 		sleep 2s
 		apt-get update
 		echo "Done!"

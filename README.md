@@ -1,6 +1,10 @@
 ## SteamOS-Tools
 Tools and scripts for SteamOS.
 
+## Warning
+
+Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/master/disclaimer.md).
+
 ## Usage
 
 To clone this repository to your local computer, you will need the `git` software package. After this is installed, clone SteamOS-Tools with:

@@ -21,6 +21,12 @@ Apt-pinning is implemented in the `add-debian-repos.sh` script to give Steam and
 
 Apt-pin preferences are subject to change. Ideally, the testing branch will be tested properly before hand, and package policy checked with `apt-cache policy` as well. Please submit any suggestions or corrections anyone feels should be made as a pull request.
 
+#### Installing and Uninstalling software
+
+Please pay careful attention while installing software lists, packages, or using any scripts that require software installation. I do my best to ensure no software list or singular package is going to remove or overwrite a Valve SteamOS/Steam package, but please be advised. If a software routine, or software install requires to remove* software, please read the output throughly before proceeding. 
+
+Removing software packages cam be tricky, so while there is a "uninstall" option to several scripts, please excercise caution, or remove packages one by one to ensure they will not remove critical SteamOS packages. I listing of default SteamOS packages can be found on [Distrowatch](http://distrowatch.com/table.php?distribution=steamos)
+
 ####Conclusion
 
 I will not be responsible for damage done to your SteamOS installation. Please heed these warnings very well.

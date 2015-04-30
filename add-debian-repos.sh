@@ -73,7 +73,7 @@ main()
 	
 	if [[ "$install" == "yes" ]]; then
 		clear
-		echo -e "==> Adding debian repositories...\n"
+		echo -e "==> Adding Debian ${reponame} and ${backports_reponame} repositories\n"
 		sleep 1s
 		
 		# Check for existance of /etc/apt/preferences file (deprecated, see below)

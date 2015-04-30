@@ -24,4 +24,3 @@ Apt-pin preferences are subject to change. Ideally, the testing branch will be t
 ####Conclusion
 
 I will not be responsible for damage done to your SteamOS installation. Please heed these warnings very well.
-Enter file contents here

@@ -11,33 +11,7 @@
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
 #
-#!/bin/bash
-
-# -------------------------------------------------------------------------------
-# Author:     		Michael DeGuzis
-# Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.4.8
-# Description:		script to install emulation softare as a 
-#                 	part of install-debian-software.sh
-#
-#			See: https://wiki.debian.org/CreatePackageFromPPA
-# Usage:	  	N/A, called from another script
-#
-#!/bin/bash
-
-# -------------------------------------------------------------------------------
-# Author:     		Michael DeGuzis
-# Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.4.8
-# Description:		script to install emulation softare as a 
-#                 	part of install-debian-software.sh
-#
-#			See: https://wiki.debian.org/CreatePackageFromPPA
-# Usage:	  	N/A, called from another script
-#
-# Last tested:		Please see SteamOS-Tools/docs/Retroarch-info.md
+#Last tested:		Please see SteamOS-Tools/docs/Retroarch-info.md 
 # -------------------------------------------------------------------------------
 
 time_start=$(date +%s)
@@ -45,6 +19,8 @@ time_stamp_start=(`date +"%T"`)
 
 efs_main()
 {
+
+if [[ "$apt_mode="install" ]]; then
 	
 	#################################################
 	# Initial setup
@@ -301,4 +277,23 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	echo -n "2 " && sleep 1s
 	echo -n "1" && sleep 1s
 	echo ""
+	
+elif [[ "$apt_mode" == "remove" ]]; then
+	
+	#Remove directories, build files, etc if uninstall is specified by user
+	echo -e "\n==> Removing related files for emulation-src routine"
+	sleep 2s
+	
+	# remove directories
+	sudo rm -rf "$install_dir" "$git_dir" "$symlink_target" "$core_loc"
+
+	echo -e "\nProceeding to Retroarch/Libretro post-install configuration in...\n"
+	# pause for a moment to allow user to see above stats
+	echo -n "5 " && sleep 1s
+	echo -n "4 " && sleep 1s
+	echo -n "3 " && sleep 1s
+	echo -n "2 " && sleep 1s
+	echo -n "1" && sleep 1s
+	echo ""
+
 }

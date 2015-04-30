@@ -109,6 +109,7 @@ main()
 		fi
 	
 		# Create and add required text to preferences file
+		# Verified policy with apt-cache policy
 		cat <<-EOF > ${prefer}
 		Package: *
 		Pin: origin ""

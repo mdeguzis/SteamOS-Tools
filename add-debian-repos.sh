@@ -179,9 +179,9 @@ main()
 		echo -e "\n==> Removing debian repositories...\n"
 		sleep 2s
 		rm -f ${sourcelist}
+		rm -f ${backports_sourcelist}
 		rm -f ${prefer}
 		rm -f ${steamosprefer}
-		rm -f ${backports_sourcelist}
 		echo -e "Updating index of packages...\n"
 		sleep 2s
 		apt-get update

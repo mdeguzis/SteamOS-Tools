@@ -39,7 +39,7 @@ if [[ "$gpg_key_check" != "" ]]; then
   sleep 1s
 else
   echo -e "\nGPG key "$key" [FAIL]. Adding now...\n"
-  "$gpg_cmd" $key
+  $gpg_cmd $key
 fi
 
 #Import 

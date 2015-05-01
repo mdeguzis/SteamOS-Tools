@@ -19,15 +19,12 @@ key_short=$(echo $key | cut -c 8-16)
 gpg_key_check=$(gpg --list-keys "$key_short")
 
 # allow script to run in current DIR if not called previously
-
 if [[ "$scriptdir" != "" ]]; then
   # set to scriptdir
   gpg_cmd="$scriptdir/extra/gpg_import.sh $key"
 elif [[ "$pwd" != "$0" ]]; then
   # if called from a dir tree, such as 'extra/gpg_import.sh', act accordingly.
   gpg_cmd="$0"
-  echo "gpg command is: $gpg_cmd"
-  exit
 else
   # run from current dir
   scriptdir=$(pwd)
@@ -42,6 +39,6 @@ else
   "$gpg_cmd"
 fi
 
-#--no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg
+#Import 
 gpg --keyserver  $keyserver --recv-keys $key
 gpg -a --export $key | sudo apt-key add -

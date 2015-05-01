@@ -20,7 +20,7 @@ gpg_key_check=$(gpg --list-keys "$key_short")
 
 # allow script to run in current DIR if not called previously
 
-if [[ "$scriptdir" != ]]; then
+if [[ "$scriptdir" != "" ]]; then
   # set to scriptdir
   gpg_cmd="$scriptdir/extra/gpg_import.sh $key"
 else

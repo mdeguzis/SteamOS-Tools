@@ -19,10 +19,10 @@ key_short=$(echo $key | cut -c 8-16)
 gpg_key_check=$(gpg --list-keys "$key_short")
 
 if [[ "$gpg_key_check" != "" ]]; then
-  echo -e "\n${key_name} [OK]\n"
+  echo -e "\nGPG key "$key" [OK]\n"
   sleep 1s
 else
-  echo -e "\n${key_name} [FAIL]. Adding now...\n"
+  echo -e "\nGPG key "$key" [FAIL]. Adding now...\n"
   $scriptdir/extra/gpg_import.sh $key
 fi
 

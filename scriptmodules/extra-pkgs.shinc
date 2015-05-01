@@ -1,14 +1,14 @@
 
 # -----------------------------------------------------------------------
 # Author: 		Michael DeGuzis
-# Git:		      	https://github.com/ProfessorKaos64/scripts
+# Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.2.3
+# Script Ver:	  	0.5.8
 # Description:		Module for isntalling useful pacakges otherwise not 
-#			found in The Debian Wheezy repositories directly.
+#			found in The Debian wheezy repositories directly.
 #	
 # Usage:	      	n/a , module
-# ------------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
 ep_install_x360_bindings()
 {
@@ -78,35 +78,308 @@ ep_install_firefox()
 
 ep_install_plex()
 {
-  
-	clear
-	echo -e "Installing Plex from automated script...\n"
+
+	echo -e "\n==> Installing Plex Home Theater from automated script...\n"
 	sleep 2s
 	
+	###############################
+	#  vars
+	###############################
+	
+	echo -e "\n==> Configuring sources"
+	sleep 1s
+	
+	# source lists
+	reponame_plex="plex"
+	reponame_deb_multi="deb-multimedia"
+	
+	sourcelist_plex_tmp="${reponame_plex}.list"
+	sourcelist_deb_multi_tmp="${reponame_deb_multi}.list"
+	sourcelist_plex="/etc/apt/sources.list.d/${reponame_plex}.list"
+	sourcelist_deb_multi="/etc/apt/sources.list.d/${reponame_deb_multi}.list"
+	
+	prefer_plex_tmp="${reponame_plex}"
+	prefer_deb_multi_tmp="${reponame_deb_multi}"
+	prefer_plex="/etc/apt/preferences.d/${reponame_plex}"
+	prefer_deb_multi="/etc/apt/preferences.d/${reponame_deb_multi}"
+	
+	###############################
+	# backup
+	###############################
+
+	
+	# Check for existance of /etc/apt/preferences.d/{prefer_plex} file
+	if [[ -f ${prefer_plex} ]]; then
+		# backup preferences file
+		echo -e "\n==> Backing up ${prefer_plex} to ${prefer_plex}.bak"
+		sudo mv ${prefer_plex} ${prefer_plex}.bak
+		sleep 1s
+	fi
+	
+	# Check for existance of /etc/apt/preferences.d/{prefer_deb_multi} file
+	if [[ -f ${prefer_deb_multi} ]]; then
+		# backup preferences file
+		echo -e "\n==> Backing up ${prefer_deb_multi} to ${prefer_deb_multi}.bak"
+		sudo mv ${prefer_deb_multi} ${prefer_deb_multi}.bak
+		sleep 1s
+	fi
+	
+	# check for existance of plex source list
+	if [[ -f ${sourcelist_plex} ]]; then
+		# backup sources list file
+		echo -e "\n==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak"
+		sudo mv ${sourcelist_plex} ${sourcelist_plex}.bak
+		sleep 1s
+	fi
+	
+	# check for existance of deb_multi source list
+	if [[ -f ${sourcelist_deb_multi} ]]; then
+		# backup sources list file
+		echo -e "\n==> Backing up ${sourcelist_deb_multi} to ${sourcelist_deb_multi}.bak"
+		sudo mv ${sourcelist_deb_multi} ${sourcelist_deb_multi}.bak
+		sleep 1s
+	fi
+
+	###############################
 	# add GPG keys
-	"$scriptdir/extra/gpg_import.sh" 5C808C2B65558117
+	###############################
 	
+	echo -e "\n==> Adding GPG key(s)"
+	sleep 1s
+	
+	# Key Desc: Debian Multimedia
+	# Key ID: 65558117
+	# Full Key ID: 5C808C2B65558117
+	gpg_key_check=$(gpg --list-keys 65558117)
+	
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "\nDebian Multimedia Key [OK]\n"
+		sleep 1s
+	else
+		echo -e "\nDebian Multimedia Key [FAIL]. Adding now...\n"
+		"$scriptdir/extra/gpg_import.sh" 5C808C2B65558117
+	fi
+	
+	###############################
 	# update and pre-reqs
+	###############################
 	
+	echo -e "\n==> Installing prerequisite software"
+	sleep 1s
+	
+	# Plex
 	sudo curl http://shell.ninthgate.se/packages/shell-ninthgate-se-keyring.key | sudo apt-key add -
-	echo "deb http://www.deb-multimedia.org wheezy main non-free" | sudo tee -a /etc/apt/sources.list.d/deb-multimedia.list
-	echo "deb http://shell.ninthgate.se/packages/debian wheezy main" | sudo tee -a /etc/apt/sources.list.d/plex.list
-	sudo apt-get update -y
-	sudo apt-get install deb-multimedia-keyring -y
-	sudo apt-key update
-	sudo apt-get update -y
+	sudo apt-get update
 	
+	# deb-multimedia-keyring
+	sudo apt-get install deb-multimedia-keyring -y
+
+	###############################	
+	# Add prefs
+	###############################
+	
+	echo -e "\n==> Adding /etc/apt configurations"
+	sleep 1s
+	
+	# Create and add required text to preferences file
+	# Verified policy with apt-cache policy
+	# sudo temp file list, then move because of perms
+	
+	cat <<-EOF > ${prefer_plex_tmp}
+	Package: *
+	Pin: origin ""
+	Pin-Priority:110
+	EOF
+
+	cat <<-EOF > ${prefer_deb_multi_tmp}
+	Package: *
+	Pin: origin ""
+	Pin-Priority:110
+	EOF
+	
+	# move tmp lists in 2 easy actions
+	sudo mv ${prefer_plex_tmp} ${prefer_plex}
+	sudo mv ${prefer_deb_multi_tmp} ${prefer_deb_multi}
+	
+	###############################	
+	# Add sources
+	###############################
+	
+	# Deb multimedia
+	# add to tmp file, then move
+	
+	cat <<-EOF > ${sourcelist_plex_tmp}
+	# Plex team repo
+	deb http://shell.ninthgate.se/packages/debian wheezy main
+	EOF
+
+	cat <<-EOF > ${sourcelist_deb_multi_tmp}
+	# Deb multimedia repo
+	deb http://www.deb-multimedia.org wheezy main non-free
+	EOF
+
+	# move lists
+	sudo mv -v ${sourcelist_plex_tmp} ${sourcelist_plex}
+	sudo mv -v ${sourcelist_deb_multi_tmp} ${sourcelist_deb_multi}
+
+	###############################	
+	# update system and sources
+	###############################
+
+	sudo apt-key update
+	sudo apt-get update
+
+	###############################	
 	# resolve outstanding deps
+	###############################
+	
+	echo -e "\n==> Resolving missing Debian packages"
+	sleep 1s
 	
 	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/Plex/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
 	cd /tmp
 	sudo dpkg -i ttf-ubuntu-font-family*.deb
 	
+	###############################
 	# cleanup
+	###############################
+	
+	echo -e "\n==> Cleanup"
+	sleep 1s
 	rm -rf /tmp/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb
 	
-	# install plex
+	###############################
+	# Install actions
+	###############################
+
+	echo -e "\n==> Installing Plex Home Theater"
+	sleep 1s
+	# install Plex Home Theater
 	sudo apt-get -t wheezy install plexhometheater -y
+	
+	# cleanup any old packages
+	sudo apt-get autoremove
+  
+}
+
+ep_install_kodi()
+{
+	# Source: http://forum.kodi.tv/showthread.php?tid=197422
+  
+	echo -e "\n==> Installing Kodi from automated script...\n"
+	sleep 2s
+	
+	###############################
+	# sources
+	###############################
+	
+	echo -e "\n==> Configuring sources"
+	sleep 1s
+	
+	# vars
+	reponame_kodi="kodi"
+	
+	sourcelist_kodi_tmp="${reponame_kodi}.list"
+	sourcelist_kodi="/etc/apt/sources.list.d/${reponame_kodi}.list"
+	
+	prefer_kodi_tmp="${reponame_kodi}"
+	prefer_kodi="/etc/apt/preferences.d/${reponame_kodi}"
+	
+	# Check for existance of /etc/apt/preferences.d/{reponame_kodi} file
+	if [[ -f ${reponame_kodi} ]]; then
+		# backup preferences file
+		echo -e "\n==> Backing up ${reponame_kodi} to ${reponame_kodi}.bak"
+		sudo mv ${reponame_kodi} ${reponame_kodi}.bak
+		sleep 1s
+	fi
+	
+	# check for existance of plex source list
+	if [[ -f ${sourcelist_kodi} ]]; then
+		# backup sources list file
+		echo -e "\n==> Backing up ${sourcelist_kodi} to ${sourcelist_kodi}.bak"
+		sudo mv ${sourcelist_kodi} ${sourcelist_kodi}.bak
+		sleep 1s
+	fi
+
+	###############################
+	# add GPG keys
+	###############################
+	
+	# may not be needed
+	
+	###############################
+	# update and pre-reqs
+	###############################
+	
+	# add gpg key
+	wget -O - http://mirrors.xbmc.org/apt/steamos/steam@xbmc.org.gpg.key | sudo apt-key add -
+	
+	###############################	
+	# Add prefs
+	###############################
+	
+	echo -e "\n==> Adding /etc/apt configurations\n"
+	sleep 1s
+	
+	# Create and add required text to preferences file
+	# Verified policy with apt-cache policy
+	# write to tmp, then move
+	
+	cat <<-EOF > ${prefer_kodi_tmp}
+	Package: *
+	Pin: origin mirrors.xbmc.org
+	Pin-Priority: 500
+	 
+	Package: libtag1c2a libtag1-vanilla
+	Pin: origin mirrors.xbmc.org
+	Pin-Priority: 901
+	EOF
+	
+	# move pref file
+	sudo mv ${prefer_kodi_tmp} ${prefer_kodi}
+	
+	###############################	
+	# Add sources
+	###############################
+	
+	# Kodi source cfg
+	# write to tmp, move after
+	
+	cat <<-EOF > ${sourcelist_kodi_tmp}
+	# Kodi team repo
+	deb http://mirrors.xbmc.org/apt/steamos alchemist main
+	EOF
+	
+	# move source list
+	sudo mv ${sourcelist_kodi_tmp} ${sourcelist_kodi}
+
+	###############################	
+	# update source lists
+	###############################
+	
+	sudo apt-get update
+
+	###############################	
+	# resolve outstanding deps
+	###############################
+	
+	# n/a for now
+	
+	###############################
+	# cleanup
+	###############################
+	
+	# n/a for now
+	
+	###############################
+	# Install actions
+	###############################
+
+	echo -e "\n==> Installing Kodi"
+	sleep 1s
+
+	# install Kodi
+ 	sudo apt-get install kodi
 	
 	# cleanup any old packages
 	sudo apt-get autoremove

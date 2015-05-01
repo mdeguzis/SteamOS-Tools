@@ -173,8 +173,6 @@ ep_install_plex()
 	
 	# deb-multimedia-keyring
 	sudo apt-get install deb-multimedia-keyring -y
-	sudo apt-key update
-	sudo apt-get update
 
 	###############################	
 	# Add prefs
@@ -223,6 +221,13 @@ ep_install_plex()
 	# move lists
 	sudo mv -v ${sourcelist_plex_tmp} ${sourcelist_plex}
 	sudo mv -v ${sourcelist_deb_multi_tmp} ${sourcelist_deb_multi}
+
+	###############################	
+	# update system and sources
+	###############################
+
+	sudo apt-key update
+	sudo apt-get update
 
 	###############################	
 	# resolve outstanding deps
@@ -346,6 +351,12 @@ ep_install_kodi()
 	
 	# move source list
 	sudo mv ${sourcelist_kodi_tmp} ${sourcelist_kodi}
+
+	###############################	
+	# update source lists
+	###############################
+	
+	sudo apt-get update
 
 	###############################	
 	# resolve outstanding deps

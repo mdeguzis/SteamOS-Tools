@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.7.9
+# Script Ver:	0.8.1
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -334,6 +334,10 @@ get_software_type()
                 # install plex from helper script
                 ep_install_x360_bindings
                 exit
+        elif [[ "$type" == "kodi" ]]; then
+                # install plex from helper script
+                ep_install_kodi
+                exit        
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"

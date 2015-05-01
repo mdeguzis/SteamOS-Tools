@@ -191,11 +191,13 @@ ep_install_plex()
 	Package: *
 	Pin: origin ""
 	Pin-Priority:110
+	EOF
 
 	cat <<-EOF > ${prefer_deb_multi_tmp}
 	Package: *
 	Pin: origin ""
 	Pin-Priority:110
+	EOF
 	
 	# move tmp lists in 2 easy actions
 	sudo mv ${prefer_plex_tmp} ${prefer_plex}
@@ -207,9 +209,6 @@ ep_install_plex()
 	
 	# Deb multimedia
 	# add to tmp file, then move
-	
-	echo ${sourcelist_plex_tmp}
-	echo $sourcelist_plex_tmp
 	
 	cat <<-EOF > ${sourcelist_plex_tmp}
 	# Plex team repo

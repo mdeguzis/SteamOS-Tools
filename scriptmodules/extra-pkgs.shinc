@@ -1,9 +1,9 @@
 
 # -----------------------------------------------------------------------
 # Author: 		Michael DeGuzis
-# Git:		      	https://github.com/ProfessorKaos64/scripts
+# Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.3.7
+# Script Ver:	  	0.5.7
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	

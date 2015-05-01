@@ -6,7 +6,7 @@
 - [About](#about)
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
- - [Please note](#please-note)
+- [Please note](#please-note)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

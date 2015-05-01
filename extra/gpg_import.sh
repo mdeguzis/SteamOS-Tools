@@ -31,9 +31,7 @@ fi
 # check key first to avoid importing twice
 gpg_key_check=$(gpg --list-keys "$key_short")
 
-echo "gpg cmd is: $gpg_cmd"
-exit
-
+# evaluate
 if [[ "$gpg_key_check" != "" ]]; then
   echo -e "\nGPG key "$key" [OK]\n"
   sleep 1s

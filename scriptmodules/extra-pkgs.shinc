@@ -389,16 +389,22 @@ ep_install_kodi()
 ep_install_nodejs()
 {
 
+	echo -e "\n==> Installing nodejs from automated script..."
+	sleep 2s
+
 	###############################
 	# prereqs
 	###############################
  
-	sudo apt-get update
+	echo -e "\n==> Installing prerequisite packages\n"
 	sudo apt-get install git-core curl build-essential openssl libssl-dev
  
  	###############################
 	#Install Node.js & NPM
 	###############################
+	
+	echo -e "\n==> Cloning github repository and building, plese wait..."
+	sleep 1s
 	
  	# clone
 	git clone https://github.com/joyent/node

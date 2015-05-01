@@ -1,16 +1,16 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Table of Contents**
 
-  - [About](#about)
-      - [Notes regarding apt-pinning / apt-preferences](#notes-regarding-apt-pinning--apt-preferences)
+- [About](#about)
+- [Notes regarding apt-pinning / apt-preferences](#notes-regarding-apt-pinning--apt-preferences)
 - [Usage](#usage)
-  - [Options](#options)
-  - [Types](#types)
-  - [Extra Types available](#extra-types-available)
-  - [Warning regarding the emulation-src type](#warning-regarding-the-emulation-src-type)
-  - [Post build instructions for Retroarch](#post-build-instructions-for-retroarch)
-  - [Please note](#please-note)
+- [Options](#options)
+- [Types](#types)
+- [Extra Types available](#extra-types-available)
+- [Warning regarding the emulation-src type](#warning-regarding-the-emulation-src-type)
+- [Post build instructions for Retroarch](#post-build-instructions-for-retroarch)
+- [Please note](#please-note)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

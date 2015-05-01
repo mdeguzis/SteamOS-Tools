@@ -164,7 +164,7 @@ ep_install_plex()
 	# update and pre-reqs
 	###############################
 	
-	echo -e "\n==> Installing prerequisite software"
+	echo -e "==> Installing prerequisite software\n"
 	sleep 1s
 	
 	# Plex
@@ -266,7 +266,7 @@ ep_install_kodi()
 {
 	# Source: http://forum.kodi.tv/showthread.php?tid=197422
   
-	echo -e "\n==> Installing Kodi from automated script...\n"
+	echo -e "\n==> Installing Kodi from automated script..."
 	sleep 2s
 	
 	###############################

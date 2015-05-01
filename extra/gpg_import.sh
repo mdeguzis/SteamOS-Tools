@@ -23,7 +23,9 @@ gpg_key_check=$(gpg --list-keys "$key_short")
 if [[ "$scriptdir" != "" ]]; then
   # set to scriptdir
   gpg_cmd="$scriptdir/extra/gpg_import.sh $key"
-elif [[ "$pwd" != "" ]]; then
+elif [[ "$pwd" != "$0" ]]; then
+  echo $0
+  exit
   # if called from a dir tree, such as 'extra/gpg_import.sh', act accordingly.
   $scriptdir=$(history | tail -n 1)
 else

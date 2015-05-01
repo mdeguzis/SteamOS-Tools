@@ -279,13 +279,13 @@ ep_install_kodi()
 	# vars
 	reponame_kodi="kodi"
 	
-	sourcelist_kodi_tmp="${reponame}.list"
-	sourcelist_kodi="/etc/apt/sources.list.d/${reponame}.list"
+	sourcelist_kodi_tmp="${reponame_kodi}.list"
+	sourcelist_kodi="/etc/apt/sources.list.d/${reponame_kodi}.list"
 	
-	prefer_kodi_tmp="${reponame}"
-	prefer_kodi="/etc/apt/preferences.d/${reponame}"
+	prefer_kodi_tmp="${reponame_kodi}"
+	prefer_kodi="/etc/apt/preferences.d/${reponame_kodi}"
 	
-	# Check for existance of /etc/apt/preferences.d/{reponame} file
+	# Check for existance of /etc/apt/preferences.d/{reponame_kodi} file
 	if [[ -f ${reponame_kodi} ]]; then
 		# backup preferences file
 		echo -e "\n==> Backing up ${reponame_kodi} to ${reponame_kodi}.bak"

@@ -280,8 +280,9 @@ ep_install_kodi()
 	reponame_kodi="kodi"
 	
 	sourcelist_kodi_tmp="${reponame}.list"
-	prefer_kodi_tmp="${reponame}"
 	sourcelist_kodi="/etc/apt/sources.list.d/${reponame}.list"
+	
+	prefer_kodi_tmp="${reponame}"
 	prefer_kodi="/etc/apt/preferences.d/${reponame}"
 	
 	# Check for existance of /etc/apt/preferences.d/{reponame} file
@@ -328,7 +329,6 @@ ep_install_kodi()
 	Package: *
 	Pin: origin mirrors.xbmc.org
 	Pin-Priority: 500
-	EOF
 	 
 	Package: libtag1c2a libtag1-vanilla
 	Pin: origin mirrors.xbmc.org

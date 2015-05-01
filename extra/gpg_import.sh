@@ -32,6 +32,7 @@ else
 fi
 
 echo "gpg cmd is: $gpg_cmd"
+exit
 
 if [[ "$gpg_key_check" != "" ]]; then
   echo -e "\nGPG key "$key" [OK]\n"

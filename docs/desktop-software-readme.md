@@ -102,9 +102,6 @@ sourced from Linux Mint LMDE 2.
 `plex`      
 Kicks off an automated script to install plexhometheatre.  
 
-`nodejs`      
-Kicks off an automated script to install Node JS and NPM.  
-
 `xbox-bindings`      
 Installs the nice set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
 

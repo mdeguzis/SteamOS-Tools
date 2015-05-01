@@ -430,7 +430,8 @@ ep_install_chrome()
 	###############################
 	
 	# download
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	wget -O google-chrome-stable_current_amd64.deb \
+	"https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 	
 	# install
 	sudo dpkg -i --ignore-depends=libappindicator1 google-chrome*.deb

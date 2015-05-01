@@ -26,7 +26,7 @@ if [[ "$scriptdir" != "" ]]; then
 elif [[ "$pwd" != "$0" ]]; then
   # if called from a dir tree, such as 'extra/gpg_import.sh', act accordingly.
   gpg_cmd="$0"
-  echo $gpg_cmd
+  echo "gpg command is: $gpg_cmd"
   exit
 else
   # run from current dir

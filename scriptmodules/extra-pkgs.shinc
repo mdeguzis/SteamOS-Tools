@@ -389,6 +389,9 @@ ep_install_kodi()
 ep_install_nodejs()
 {
 
+	# Source git: https://github.com/joyent/node
+	# Binaries: https://nodejs.org/download/
+
 	echo -e "\n==> Installing nodejs from automated script..."
 	sleep 2s
 	
@@ -455,7 +458,7 @@ ep_install_nodejs()
 	if [[ "$nodejs_check" != "" ]]; then
 		
 		echo -e "\n==INFO=="
-		echo -e "It seems NodeJS is already built in $git_dir/node"
+		echo -e "It seems NodeJS is already built in $git_dir"
 		echo -e "Would you like to rebuild [y], or [n]?\n"
 		
 		# the prompt sometimes likes to jump above sleep
@@ -472,6 +475,7 @@ ep_install_nodejs()
 			sleep 2s
 			# configure, make, and install
 			./configure
+			make test
 			make
 			#sudo make install
 		else
@@ -486,6 +490,7 @@ ep_install_nodejs()
 		sleep 2s
 		# configure, make, and install
 		./configure
+		make test
 		make
 		#sudo make install
 

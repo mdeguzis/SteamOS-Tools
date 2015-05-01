@@ -12,9 +12,6 @@ key="$1"
 keyserver="hkp://subkeys.pgp.net"
 key_short=$(echo $key | cut -c 8-16)
 
-echo "key is $key_short"
-exit
-
 # name of key in check below is passed from previous script
 # echo $gpg_key_name
 

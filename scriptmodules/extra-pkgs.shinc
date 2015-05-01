@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.5.7
+# Script Ver:	  	0.5.8
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	
@@ -318,7 +318,7 @@ ep_install_kodi()
 	# Add prefs
 	###############################
 	
-	echo -e "\n==> Adding /etc/apt configurations"
+	echo -e "\n==> Adding /etc/apt configurations\n"
 	sleep 1s
 	
 	# Create and add required text to preferences file

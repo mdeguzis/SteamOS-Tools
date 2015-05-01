@@ -403,13 +403,14 @@ ep_install_nodejs()
 	#Install Node.js & NPM
 	###############################
 	
-	echo -e "\n==> Cloning github repository and building, plese wait..."
+	echo -e "\n==> Cloning github repository"
 	sleep 1s
 	
  	# clone
 	git clone https://github.com/joyent/node
 	cd node
  
+ 	echo -e "\n==> Building nodejs and npm. This will take some time, please wait..."
  	# configure, make, and install
 	./configure
 	make

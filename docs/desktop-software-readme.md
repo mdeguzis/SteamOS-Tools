@@ -97,7 +97,10 @@ Installs some gaming tools, such as jstest, WINE, and more.
 Kicks off an automated script to install Kodi, as provided by the [SteamOS Kodi repository](http://forum.kodi.tv/showthread.php?tid=197422)  
 
 `firefox`      
-sourced from Linux Mint LMDE 2.    
+Sourced from Linux Mint LMDE 2.    
+
+`chrome`      
+Installs Google-Chrome-Stable from Google's download severs.
 
 `plex`      
 Kicks off an automated script to install plexhometheatre.  

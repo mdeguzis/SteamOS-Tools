@@ -208,6 +208,9 @@ ep_install_plex()
 	# Deb multimedia
 	# add to tmp file, then move
 	
+	echo ${sourcelist_plex_tmp}
+	echo $sourcelist_plex_tmp
+	
 	cat <<-EOF > ${sourcelist_plex_tmp}
 	# Plex team repo
 	deb http://shell.ninthgate.se/packages/debian wheezy main

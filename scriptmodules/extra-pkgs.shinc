@@ -224,13 +224,13 @@ ep_install_plex()
 	# add to tmp file, then move
 	
 	cat <<-EOF > ${sourcelist_plex_tmp}
-	# Deb multimedia repo
-	deb http://www.deb-multimedia.org wheezy main non-free
+	# Plex team repo
+	deb http://shell.ninthgate.se/packages/debian wheezy main
 	EOF
 
 	cat <<-EOF > ${sourcelist_deb_multi_tmp}
 	# Deb multimedia repo
-	deb http://shell.ninthgate.se/packages/debian wheezy main
+	deb http://www.deb-multimedia.org wheezy main non-free
 	EOF
 	
 	# move lists

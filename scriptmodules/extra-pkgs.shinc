@@ -436,14 +436,17 @@ ep_install_nodejs()
 		fi
 	else
 		echo -e "\nGit directory does not exist. cloning now...\n"
+		cd
 		sleep 2s
-		# create and clone
-		# clone and fetch super build (evaluating currently)
+		# clone
 		git clone "$git_url"
 	fi
 	
 	# enter git dir if we are not already
 	cd $git_dir
+
+	# exit for testing
+	exit
 
 	############################
 	# Begin nodejs build eval

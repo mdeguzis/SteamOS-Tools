@@ -24,11 +24,11 @@ if [[ "$scriptdir" != "" ]]; then
   gpg_cmd="$scriptdir/extra/gpg_import.sh $key"
 elif [[ "$pwd" != "$0" ]]; then
   # if called from a dir tree, such as 'extra/gpg_import.sh', act accordingly.
-  gpg_cmd="$0"
+  gpg_cmd="$0 $key"
 else
   # run from current dir
   scriptdir=$(pwd)
-  gpg_cmd="$scriptdir/gpg_import.sh"
+  gpg_cmd="$scriptdir/gpg_import.sh $key"
 fi
 
 if [[ "$gpg_key_check" != "" ]]; then

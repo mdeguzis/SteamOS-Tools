@@ -455,7 +455,7 @@ ep_install_chrome()
 	###############################
 	
 	# let user know about panel/tray support
-	echo -e "\nUnfortunatley, at the moment, failure of the installation package 'libappindicator1'\
+	echo -e "\n==Notice==\nUnfortunatley, at the moment, failure of the installation package 'libappindicator1'\
 means that panel/systray support will not be available at this time. This is being worked on.\n"
 
 }

@@ -103,6 +103,10 @@ ep_install_plex()
 	prefer_plex="/etc/apt/preferences.d/${reponame_plex}"
 	prefer_deb_multi="/etc/apt/preferences.d/${reponame_deb_multi}"
 	
+	echo $sourcelist_plex_tmp
+	echo $sourcelist_plex
+	exit
+	
 	###############################
 	# backup
 	###############################
@@ -142,7 +146,7 @@ ep_install_plex()
 	# check for existance of plex source list
 	if [[ -f ${sourcelist_plex} ]]; then
 		# backup sources list file
-		echo -e \n"==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak\n"
+		echo -e "\n==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak\n"
 		sudo mv ${sourcelist_plex} ${sourcelist_plex}.bak
 		sleep 1s
 	fi
@@ -172,7 +176,7 @@ ep_install_plex()
 		sleep 1s
 	else
 		echo -e "\nDebian Multimedia Key [FAIL]. Adding now...\n"
-		$scriptdir/extra/gpg_import.sh 5C808C2B65558117
+		"$scriptdir/extra/gpg_import.sh" 5C808C2B65558117
 	fi
 	
 	###############################

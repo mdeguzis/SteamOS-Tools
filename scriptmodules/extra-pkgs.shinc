@@ -110,7 +110,7 @@ ep_install_plex()
 	# Check for existance of /etc/apt/preferences.d/{reponame_plex} file
 	if [[ -f ${reponame_plex} ]]; then
 		# backup preferences file
-		echo -e "==> Backing up ${reponame_plex} to ${reponame_plex}.bak\n"
+		echo -e "\n==> Backing up ${reponame_plex} to ${reponame_plex}.bak\n"
 		sudo mv ${reponame_plex} ${reponame_plex}.bak
 		sleep 1s
 	fi
@@ -118,7 +118,7 @@ ep_install_plex()
 	# Check for existance of /etc/apt/preferences.d/{reponame_deb_multi} file
 	if [[ -f ${reponame_deb_multi} ]]; then
 		# backup preferences file
-		echo -e "==> Backing up ${reponame_deb_multi} to ${reponame_deb_multi}.bak\n"
+		echo -e "\n==> Backing up ${reponame_deb_multi} to ${reponame_deb_multi}.bak\n"
 		sudo mv ${reponame_deb_multi} ${reponame_deb_multi}.bak
 		sleep 1s
 	fi
@@ -126,7 +126,7 @@ ep_install_plex()
 	# Check for existance of /etc/apt/preferences.d/{prefer_deb_multi} file
 	if [[ -f ${prefer_deb_multi} ]]; then
 		# backup preferences file
-		echo -e "==> Backing up ${prefer_deb_multi} to ${prefer_deb_multi}.bak\n"
+		echo -e "\n==> Backing up ${prefer_deb_multi} to ${prefer_deb_multi}.bak\n"
 		sudo mv ${prefer_deb_multi} ${prefer_deb_multi}.bak
 		sleep 1s
 	fi
@@ -134,7 +134,7 @@ ep_install_plex()
 	# Check for existance of /etc/apt/preferences.d/{prefer_plex} file
 	if [[ -f ${prefer_plex} ]]; then
 		# backup preferences file
-		echo -e "==> Backing up ${prefer_plex} to ${prefer_plex}.bak\n"
+		echo -e "\n==> Backing up ${prefer_plex} to ${prefer_plex}.bak\n"
 		sudo mv ${prefer_plex} ${prefer_plex}.bak
 		sleep 1s
 	fi
@@ -142,7 +142,7 @@ ep_install_plex()
 	# check for existance of plex source list
 	if [[ -f ${sourcelist_plex} ]]; then
 		# backup sources list file
-		echo -e "==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak\n"
+		echo -e \n"==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak\n"
 		sudo mv ${sourcelist_plex} ${sourcelist_plex}.bak
 		sleep 1s
 	fi
@@ -150,7 +150,7 @@ ep_install_plex()
 	# check for existance of deb_multi source list
 	if [[ -f ${sourcelist_deb_multi} ]]; then
 		# backup sources list file
-		echo -e "==> Backing up ${sourcelist_deb_multi} to ${sourcelist_deb_multi}.bak\n"
+		echo -e "\n==> Backing up ${sourcelist_deb_multi} to ${sourcelist_deb_multi}.bak\n"
 		sudo mv ${sourcelist_deb_multi} ${sourcelist_deb_multi}.bak
 		sleep 1s
 	fi
@@ -286,22 +286,25 @@ ep_install_kodi()
 	
 	# vars
 	reponame_kodi="kodi"
+	
+	sourcelist_kodi_tmp="${reponame}.list"
+	prefer_kodi_tmp="${reponame}"
 	sourcelist_kodi="/etc/apt/sources.list.d/${reponame}.list"
 	prefer_kodi="/etc/apt/preferences.d/${reponame}"
 	
 	# Check for existance of /etc/apt/preferences.d/{reponame} file
 	if [[ -f ${reponame_kodi} ]]; then
 		# backup preferences file
-		echo -e "==> Backing up ${reponame_kodi} to ${reponame_kodi}.bak\n"
-		mv ${reponame_kodi} ${reponame_kodi}.bak
+		echo -e "\n==> Backing up ${reponame_kodi} to ${reponame_kodi}.bak\n"
+		sudo mv ${reponame_kodi} ${reponame_kodi}.bak
 		sleep 1s
 	fi
 	
 	# check for existance of plex source list
 	if [[ -f ${sourcelist_kod} ]]; then
 		# backup sources list file
-		echo -e "==> Backing up ${sourcelist_kodi} to ${sourcelist_kodi}.bak\n"
-		mv ${sourcelist_kodi} ${sourcelist_kodi}.bak
+		echo -e "\n==> Backing up ${sourcelist_kodi} to ${sourcelist_kodi}.bak\n"
+		sudo mv ${sourcelist_kodi} ${sourcelist_kodi}.bak
 		sleep 1s
 	fi
 
@@ -327,8 +330,9 @@ ep_install_kodi()
 	
 	# Create and add required text to preferences file
 	# Verified policy with apt-cache policy
+	# write to tmp, then move
 	
-	cat <<-EOF > ${prefer_kodi}
+	cat <<-EOF > ${prefer_kodi_tmp}
 	Package: *
 	Pin: origin mirrors.xbmc.org
 	Pin-Priority: 500
@@ -338,16 +342,23 @@ ep_install_kodi()
 	Pin-Priority: 901
 	EOF
 	
+	# move pref file
+	sudo mv ${prefer_kodi_tmp} ${prefer_kodi}
+	
 	###############################	
 	# Add sources
 	###############################
 	
-	# Kodi
+	# Kodi source cfg
+	# write to tmp, move after
 	
-	cat <<-EOF > ${sourcelist_kodi}
+	cat <<-EOF > ${sourcelist_kodi_tmp}
 	# Kodi team repo
 	deb http://mirrors.xbmc.org/apt/steamos alchemist main
 	EOF
+	
+	# move source list
+	sudo mv ${sourcelist_kodi_tmp} ${sourcelist_kodi}
 
 	###############################	
 	# resolve outstanding deps

@@ -385,3 +385,40 @@ ep_install_kodi()
 	sudo apt-get autoremove
   
 }
+
+ep_install_npm()
+{
+
+	###############################
+	# prereqs
+	###############################
+ 
+	sudo apt-get update
+	sudo apt-get install git-core curl build-essential openssl libssl-dev
+ 
+ 	###############################
+	#Install Node.js & NPM
+	###############################
+	
+ 	# clone
+	git clone https://github.com/joyent/node
+	cd node
+ 
+ 	# configure, make, and install
+	./configure
+	make
+	sudo make install
+	
+	# check that everything installed
+	node_check=$(which node)
+	
+	if [[ "$node_check" == "/usr/bin/node" ]]; then
+		echo -e "\nNode.Js installed!\n"
+	else
+		echo -e "Installation failure!"
+	fi
+ 
+	# NPM is packaged with Node.js source so this is now installed too
+	# curl http://npmjs.org/install.sh | sudo sh
+
+}

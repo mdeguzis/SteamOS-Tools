@@ -21,22 +21,24 @@ gpg_key_check=$(gpg --list-keys "$key_short")
 # allow script to run in current DIR if not called previously
 if [[ "$scriptdir" != "" ]]; then
   # set to scriptdir
-  gpg_cmd="$scriptdir/extra/gpg_import.sh"
+  gpg_cmd="$scriptdir/extra/gpg_import.sh $key"
 elif [[ "$pwd" != "$0" ]]; then
   # if called from a dir tree, such as 'extra/gpg_import.sh', act accordingly.
-  gpg_cmd="$0"
+  gpg_cmd="$0 $key"
 else
   # run from current dir
   scriptdir=$(pwd)
-  gpg_cmd="$scriptdir/gpg_import.sh"
+  gpg_cmd="$scriptdir/gpg_import.sh $key" 
 fi
+
+echo "gpg cmd is: $gpg_cmd"
 
 if [[ "$gpg_key_check" != "" ]]; then
   echo -e "\nGPG key "$key" [OK]\n"
   sleep 1s
 else
   echo -e "\nGPG key "$key" [FAIL]. Adding now...\n"
-  $gpg_cmd $key
+  $gpg_cmd
 fi
 
 #Import 

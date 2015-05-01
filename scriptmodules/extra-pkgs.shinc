@@ -111,7 +111,7 @@ ep_install_plex()
 	# Check for existance of /etc/apt/preferences.d/{prefer_plex} file
 	if [[ -f ${prefer_plex} ]]; then
 		# backup preferences file
-		echo -e "\n==> Backing up ${prefer_plex} to ${prefer_plex}.bak\n"
+		echo -e "\n==> Backing up ${prefer_plex} to ${prefer_plex}.bak"
 		sudo mv ${prefer_plex} ${prefer_plex}.bak
 		sleep 1s
 	fi
@@ -119,7 +119,7 @@ ep_install_plex()
 	# Check for existance of /etc/apt/preferences.d/{prefer_deb_multi} file
 	if [[ -f ${prefer_deb_multi} ]]; then
 		# backup preferences file
-		echo -e "\n==> Backing up ${prefer_deb_multi} to ${prefer_deb_multi}.bak\n"
+		echo -e "\n==> Backing up ${prefer_deb_multi} to ${prefer_deb_multi}.bak"
 		sudo mv ${prefer_deb_multi} ${prefer_deb_multi}.bak
 		sleep 1s
 	fi
@@ -127,7 +127,7 @@ ep_install_plex()
 	# check for existance of plex source list
 	if [[ -f ${sourcelist_plex} ]]; then
 		# backup sources list file
-		echo -e "\n==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak\n"
+		echo -e "\n==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak"
 		sudo mv ${sourcelist_plex} ${sourcelist_plex}.bak
 		sleep 1s
 	fi
@@ -135,7 +135,7 @@ ep_install_plex()
 	# check for existance of deb_multi source list
 	if [[ -f ${sourcelist_deb_multi} ]]; then
 		# backup sources list file
-		echo -e "\n==> Backing up ${sourcelist_deb_multi} to ${sourcelist_deb_multi}.bak\n"
+		echo -e "\n==> Backing up ${sourcelist_deb_multi} to ${sourcelist_deb_multi}.bak"
 		sudo mv ${sourcelist_deb_multi} ${sourcelist_deb_multi}.bak
 		sleep 1s
 	fi
@@ -287,7 +287,7 @@ ep_install_kodi()
 	# Check for existance of /etc/apt/preferences.d/{reponame} file
 	if [[ -f ${reponame_kodi} ]]; then
 		# backup preferences file
-		echo -e "\n==> Backing up ${reponame_kodi} to ${reponame_kodi}.bak\n"
+		echo -e "\n==> Backing up ${reponame_kodi} to ${reponame_kodi}.bak"
 		sudo mv ${reponame_kodi} ${reponame_kodi}.bak
 		sleep 1s
 	fi
@@ -295,7 +295,7 @@ ep_install_kodi()
 	# check for existance of plex source list
 	if [[ -f ${sourcelist_kod} ]]; then
 		# backup sources list file
-		echo -e "\n==> Backing up ${sourcelist_kodi} to ${sourcelist_kodi}.bak\n"
+		echo -e "\n==> Backing up ${sourcelist_kodi} to ${sourcelist_kodi}.bak"
 		sudo mv ${sourcelist_kodi} ${sourcelist_kodi}.bak
 		sleep 1s
 	fi

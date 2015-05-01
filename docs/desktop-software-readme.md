@@ -96,6 +96,9 @@ Installs some gaming tools, such as jstest, WINE, and more.
 `plex`      
 Kicks off an automated script to install plexhometheatre  
 
+`kodi`      
+Kicks off an automated script to install Kodi, as provided by the [SteamOS Kodi repository](http://forum.kodi.tv/showthread.php?tid=197422)  
+
 `firefox`      
 sourced from Linux Mint LMDE 2  
 

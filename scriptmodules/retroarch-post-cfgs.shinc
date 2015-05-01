@@ -227,11 +227,11 @@ if [[ "$apt_mode" == "install" ]]; then
 	sudo cp "$scriptdir/cfgs/retroarch/retroarch-launch.sh" "/usr/bin"
 	
 	# copy cores from source build DIR
-	find "/home/desktop/retroarch-src/libretro-super/" -name "./*.so" | xargs sudo cp -t "/usr/lib/libretro" 2> /dev/null
+	find "/home/desktop/retroarch-src/libretro-super/" -name *.so | xargs sudo cp -t "/usr/lib/libretro" 2> /dev/null
 	
 	# copy core info from source build DIR
-	find "/home/desktop/retroarch-src/libretro-super/dist/info" -name "./*.info" | xargs sudo cp -t "/usr/lib/libretro/info" 2> /dev/null
-
+	find "/home/desktop/retroarch-src/libretro-super/dist/info" -name *.info | xargs sudo cp -t "/usr/lib/libretro/info" 2> /dev/null
+	
 	#################################################
 	# Permissions
 	#################################################

@@ -404,9 +404,9 @@ ep_install_chrome()
 	
 	# create and enter build dir
 	if [[ -d "$install_dir" ]]; then
-		echo -e "\nChrome DIR found
+		echo -e "\nChrome DIR found"
 	else
-		echo -e "\nChrome DIR not found, creating.
+		echo -e "\nChrome DIR not found, creating..."
 		mkdir -p "$install_dir"
 	fi
 	

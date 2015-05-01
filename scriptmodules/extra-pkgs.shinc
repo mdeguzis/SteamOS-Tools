@@ -385,3 +385,49 @@ ep_install_kodi()
 	sudo apt-get autoremove
   
 }
+
+ep_install_chrome()
+{
+
+	# This script will also be used to shoehorn in Netflix as a launch
+	# item in SteamOS/Steam Big Picture Mode.
+	# Source: 
+  
+	echo -e "\n==> Installing Chrome from automated script..."
+	sleep 2s
+	
+	###############################	
+	# set vars
+	###############################
+
+	install_dir="$HOME/Downloads/Chrome"
+	
+	# create and enter build dir
+	if [[ -d "$install_dir" ]]; then
+		echo -e "\nChrome DIR found
+	else
+		echo -e "\nChrome DIR not found, creating.
+		mkdir -p "$install_dir"
+	fi
+	
+	cd "$install_dir"
+	
+	###############################	
+	# install
+	###############################
+	
+	# download
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	
+	# install
+	sudo dpkg -i google-chrome*.deb
+
+	# back out of installdir
+	cd $scriptdir
+
+	###############################	
+	# Post conf for Netflix
+	###############################
+
+	# TODO
+}

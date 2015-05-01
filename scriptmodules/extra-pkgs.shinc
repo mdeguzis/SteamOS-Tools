@@ -445,15 +445,12 @@ ep_install_nodejs()
 	# enter git dir if we are not already
 	cd $git_dir
 
-	# exit for testing
-	exit
-
 	############################
 	# Begin nodejs build eval
 	############################
 	
 	# eval clause
-	nodejs_check=$(ls "$git_dir/retroarch")
+	nodejs_check=$(ls "$git_dir")
 	
 	if [[ "$nodejs_check" != "" ]]; then
 		
@@ -476,7 +473,7 @@ ep_install_nodejs()
 			# configure, make, and install
 			./configure
 			make
-			sudo make install
+			#sudo make install
 		else
 			echo -e "\n==ERROR=="
 			echo -e "Invalid input, exiting...\n"
@@ -490,7 +487,7 @@ ep_install_nodejs()
 		# configure, make, and install
 		./configure
 		make
-		sudo make install
+		#sudo make install
 
 	# end nodejs build eval
 	fi

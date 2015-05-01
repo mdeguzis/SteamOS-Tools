@@ -293,7 +293,7 @@ ep_install_kodi()
 	fi
 	
 	# check for existance of plex source list
-	if [[ -f ${sourcelist_kod} ]]; then
+	if [[ -f ${sourcelist_kodi} ]]; then
 		# backup sources list file
 		echo -e "\n==> Backing up ${sourcelist_kodi} to ${sourcelist_kodi}.bak"
 		sudo mv ${sourcelist_kodi} ${sourcelist_kodi}.bak
@@ -328,6 +328,7 @@ ep_install_kodi()
 	Package: *
 	Pin: origin mirrors.xbmc.org
 	Pin-Priority: 500
+	EOF
 	 
 	Package: libtag1c2a libtag1-vanilla
 	Pin: origin mirrors.xbmc.org
@@ -378,7 +379,6 @@ ep_install_kodi()
 	sleep 1s
 
 	# install Kodi
-	sudo apt-get update
  	sudo apt-get install kodi
 	
 	# cleanup any old packages

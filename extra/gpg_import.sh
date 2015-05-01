@@ -31,13 +31,15 @@ else
   gpg_cmd="$scriptdir/gpg_import.sh"
 fi
 
+echo "$gpg_cmd"
+exit
+
 if [[ "$gpg_key_check" != "" ]]; then
   echo -e "\nGPG key "$key" [OK]\n"
   sleep 1s
 else
   echo -e "\nGPG key "$key" [FAIL]. Adding now...\n"
   "$gpg_cmd" $key
-  exit
 fi
 
 #Import 

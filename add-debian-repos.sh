@@ -4,14 +4,14 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	add-debian-repos.sh
-# Script Ver:	0.1.7
+# Script Ver:	0.1.9
 # Description:	This script automatically enables debian repositories
 #		The script must be run as root to add the source list
 #		lines to system directory locations.
 #
 #		See: https://wiki.debian.org/AptPreferences#Pinning
 #
-# Usage:	sudo ./add-debian-repos [install|uninstall|--help]
+# Usage:	./add-debian-repos [install|uninstall|--help]
 # ------------------------------------------------------------------------
 
 # remove old custom files
@@ -33,9 +33,16 @@ funct_set_vars()
 	reponame="wheezy"
 	backports_reponame="wheezy-backports"
 	
+	# tmp vars
+	sourcelist_tmp="${reponame}.list"
+	backports_sourcelist_tmp="${backports_reponame}.list"
+	prefer_tmp="${reponame}"
+	backports_prefer_tmp="${backports_reponame}"
+	steamos_prefer_tmp="steamos"
+	
+	# target vars
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
 	backports_sourcelist="/etc/apt/sources.list.d/${backports_reponame}.list"
-	
 	prefer="/etc/apt/preferences.d/${reponame}"
 	backports_prefer="/etc/apt/preferences.d/${backports_reponame}"
 	steamos_prefer="/etc/apt/preferences.d/steamos"
@@ -80,7 +87,7 @@ main()
 		if [[ -f "/etc/apt/preferences" ]]; then
 			# backup preferences file
 			echo -e "==> Backing up /etc/apt/preferences to /etc/apt/preferences.bak\n"
-			mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
+			sudo mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
 			sleep 1s
 		fi
 		
@@ -88,7 +95,7 @@ main()
 		if [[ -f ${steamos_prefer} ]]; then
 			# backup preferences file
 			echo -e "==> Backing up ${steamos_prefer} to ${steamos_prefer}.bak\n"
-			mv ${steamos_prefer} ${steamos_prefer}.bak
+			sudo mv ${steamos_prefer} ${steamos_prefer}.bak
 			sleep 1s
 		fi
 		
@@ -96,7 +103,7 @@ main()
 		if [[ -f ${prefer} ]]; then
 			# backup preferences file
 			echo -e "==> Backing up ${prefer} to ${prefer}.bak\n"
-			mv ${prefer} ${prefer}.bak
+			sudo mv ${prefer} ${prefer}.bak
 			sleep 1s
 		fi
 		
@@ -104,13 +111,13 @@ main()
 		if [[ -f ${backports_prefer} ]]; then
 			# backup preferences file
 			echo -e "==> Backing up ${backports_prefer} to ${backports_prefer}.bak\n"
-			mv ${backports_prefer} ${backports_prefer}.bak
+			sudo mv ${backports_prefer} ${backports_prefer}.bak
 			sleep 1s
 		fi
 	
 		# Create and add required text to preferences file
 		# Verified policy with apt-cache policy
-		cat <<-EOF > ${prefer}
+		cat <<-EOF > ${prefer_tmp}
 		Package: *
 		Pin: origin ""
 		Pin-Priority:110
@@ -120,7 +127,7 @@ main()
 		Pin-Priority:110
 		EOF
 		
-		cat <<-EOF > ${backports_prefer}
+		cat <<-EOF > ${backports_prefer_tmp}
 		Package: *
 		Pin: origin ""
 		Pin-Priority:100
@@ -130,7 +137,7 @@ main()
 		Pin-Priority:110
 		EOF
 	
-		cat <<-EOF > ${steamos_prefer}
+		cat <<-EOF > ${steamos_prefer_tmp}
 		Package: *
 		Pin: release l=Steam
 		Pin-Priority: 900
@@ -139,6 +146,11 @@ main()
 		Pin: release l=SteamOS
 		Pin-Priority: 900
 		EOF
+		
+		# move tmp var files into target locations
+		sudo mv  ${prefer_tmp}  ${prefer}
+		sudo mv  ${backports_prefer_tmp}  ${backports_prefer}
+		sudo mv  ${steamos_prefer_tmp}  ${steamos_prefer}
 		
 		#####################################################
 		# Check for lists in repos.d
@@ -149,14 +161,14 @@ main()
 		if [[ -f ${sourcelist} ]]; then
 	        	# backup sources list file
 	        	echo -e "==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
-	        	mv ${sourcelist} ${sourcelist}.bak
+	        	sudo mv ${sourcelist} ${sourcelist}.bak
 	        	sleep 1s
 		fi
 		
 		if [[ -f ${backports_sourcelist} ]]; then
 	        	# backup sources list file
 	        	echo -e "==> Backing up ${backports_sourcelist} to ${backports_sourcelist}.bak\n"
-	        	mv ${backports_sourcelist} ${backports_sourcelist}.bak
+	        	sudo mv ${backports_sourcelist} ${backports_sourcelist}.bak
 	        	sleep 1s
 		fi
 	
@@ -165,21 +177,25 @@ main()
 		#####################################################
 
 		# Debian wheezy
-		cat <<-EOF > ${sourcelist}
+		cat <<-EOF > ${sourcelist_tmp}
 		# Debian-wheezy repo
 		deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
 		deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
 		EOF
 		
 		# Debian wheezy-backports
-		cat <<-EOF > ${backports_sourcelist}
+		cat <<-EOF > ${backports_sourcelist_tmp}
 		deb http://http.debian.net/debian wheezy-backports main
 		EOF
+
+		# move tmp var files into target locations
+		sudo mv  ${sourcelist_tmp} ${sourcelist}
+		sudo mv  ${backports_sourcelist_tmp} ${backports_sourcelist}
 
 		# Update system
 		echo -e "==> Updating index of packages...\n"
 		sleep 2s
-		apt-get update
+		sudo apt-get update
 	
 		#####################################################
 		# Remind user how to install
@@ -199,13 +215,13 @@ main()
 		clear
 		echo -e "\n==> Removing debian repositories...\n"
 		sleep 2s
-		rm -f ${sourcelist}
-		rm -f ${backports_sourcelist}
-		rm -f ${prefer}
-		rm -f ${steamosprefer}
+		sudo rm -f ${sourcelist}
+		sudo rm -f ${backports_sourcelist}
+		sudo rm -f ${prefer}
+		sudo rm -f ${steamosprefer}
 		echo -e "Updating index of packages...\n"
 		sleep 2s
-		apt-get update
+		sudo apt-get update
 		echo "Done!"
 	fi
 }

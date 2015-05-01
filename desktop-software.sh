@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.9.1
+# Script Ver:	0.9.2
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -13,12 +13,7 @@
 #		!broke! are skipped and the rest are attempted to be installed
 #
 # Usage:	./desktop-software.sh [option] [type]
-# Options:	[install|uninstall|list|check]
-#		You may also specify [test] to do a dry run of the install
-# Types:	[basic|extra|emulation|emulation-src|emulation-src-deps]
-#		[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-#
-# Extra Types:	[plex|firefox|x360-bindings]
+# Help:		./desktop-software.sh --help
 #
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
@@ -213,7 +208,7 @@ show_help()
 	Options: 	[install|uninstall|list|check] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[plex|firefox|x360-bindings]
+	Extra types: 	[plex|kodi|firefox|x360-bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'

@@ -61,6 +61,7 @@ show_help()
 
 funct_show_warning()
 {
+	# not called for now
 	# Warn user script must be run as root
 	if [ "$(id -u)" -ne 0 ]; then
 		clear
@@ -236,11 +237,11 @@ fi
 #####################################################
 
 funct_set_vars
-funct_show_warning
 
 #####################################################
 # MAIN
 #####################################################
+
 main | tee log_temp.txt
 
 #####################################################

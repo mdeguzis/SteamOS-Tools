@@ -438,10 +438,10 @@ ep_install_chrome()
 
 	# back out of installdir
 	if [[ -d "$scriptdir" ]]; then
-		# attempt to use default DIR
-		cd "/home/desktop/SteamOS-Tools"
-	else
 		cd $scriptdir
+	else
+		# attempt to use default DIR
+		cd "/home/desktop/SteamOS-Tools/"
 	fi
 
 	###############################	

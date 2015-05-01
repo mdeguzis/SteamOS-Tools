@@ -1,11 +1,11 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Table of Contents**
 
 - [build-test-docker-readme.md](#build-test-docker-readmemd)
-    - [About](#about)
-    - [Usage](#usage)
-    - [Please note](#please-note)
+- [About](#about)
+- [Usage](#usage)
+- [Please note](#please-note)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

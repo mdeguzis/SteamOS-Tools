@@ -93,11 +93,11 @@ ep_install_plex()
 	reponame_plex="plex"
 	reponame_deb_multi="deb-multimedia"
 	
-	sourcelist_plex="/etc/apt/sources.list.d/${reponame}.list"
-	sourcelist_deb_multi="/etc/apt/sources.list.d/${backports_reponame}.list"
+	sourcelist_plex="/etc/apt/sources.list.d/${reponame_plex}.list"
+	sourcelist_deb_multi="/etc/apt/sources.list.d/${reponame_deb_multi}.list"
 	
-	prefer_plex="/etc/apt/preferences.d/${backports_reponame}"
-	prefer_deb_multi="/etc/apt/preferences.d/${backports_reponame}"
+	prefer_plex="/etc/apt/preferences.d/${reponame_plex}"
+	prefer_deb_multi="/etc/apt/preferences.d/${reponame_deb_multi}"
 	
 	###############################
 	# backup

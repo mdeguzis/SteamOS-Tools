@@ -93,9 +93,13 @@ ep_install_plex()
 	reponame_plex="plex"
 	reponame_deb_multi="deb-multimedia"
 	
+	sourcelist_plex_tmp="${reponame_plex}.list"
+	sourcelist_deb_multi_tmp="${reponame_deb_multi}.list"
 	sourcelist_plex="/etc/apt/sources.list.d/${reponame_plex}.list"
 	sourcelist_deb_multi="/etc/apt/sources.list.d/${reponame_deb_multi}.list"
 	
+	prefer_plex_tmp="${reponame_plex}"
+	prefer_deb_multi_tmp="${reponame_deb_multi}"
 	prefer_plex="/etc/apt/preferences.d/${reponame_plex}"
 	prefer_deb_multi="/etc/apt/preferences.d/${reponame_deb_multi}"
 	
@@ -107,7 +111,7 @@ ep_install_plex()
 	if [[ -f ${reponame_plex} ]]; then
 		# backup preferences file
 		echo -e "==> Backing up ${reponame_plex} to ${reponame_plex}.bak\n"
-		mv ${reponame_plex} ${reponame_plex}.bak
+		sudo mv ${reponame_plex} ${reponame_plex}.bak
 		sleep 1s
 	fi
 	
@@ -115,7 +119,7 @@ ep_install_plex()
 	if [[ -f ${reponame_deb_multi} ]]; then
 		# backup preferences file
 		echo -e "==> Backing up ${reponame_deb_multi} to ${reponame_deb_multi}.bak\n"
-		mv ${reponame_deb_multi} ${reponame_deb_multi}.bak
+		sudo mv ${reponame_deb_multi} ${reponame_deb_multi}.bak
 		sleep 1s
 	fi
 	
@@ -123,7 +127,7 @@ ep_install_plex()
 	if [[ -f ${prefer_deb_multi} ]]; then
 		# backup preferences file
 		echo -e "==> Backing up ${prefer_deb_multi} to ${prefer_deb_multi}.bak\n"
-		mv ${prefer_deb_multi} ${prefer_deb_multi}.bak
+		sudo mv ${prefer_deb_multi} ${prefer_deb_multi}.bak
 		sleep 1s
 	fi
 	
@@ -131,7 +135,7 @@ ep_install_plex()
 	if [[ -f ${prefer_plex} ]]; then
 		# backup preferences file
 		echo -e "==> Backing up ${prefer_plex} to ${prefer_plex}.bak\n"
-		mv ${prefer_plex} ${prefer_plex}.bak
+		sudo mv ${prefer_plex} ${prefer_plex}.bak
 		sleep 1s
 	fi
 	
@@ -139,7 +143,7 @@ ep_install_plex()
 	if [[ -f ${sourcelist_plex} ]]; then
 		# backup sources list file
 		echo -e "==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak\n"
-		mv ${sourcelist_plex} ${sourcelist_plex}.bak
+		sudo mv ${sourcelist_plex} ${sourcelist_plex}.bak
 		sleep 1s
 	fi
 	
@@ -147,7 +151,7 @@ ep_install_plex()
 	if [[ -f ${sourcelist_deb_multi} ]]; then
 		# backup sources list file
 		echo -e "==> Backing up ${sourcelist_deb_multi} to ${sourcelist_deb_multi}.bak\n"
-		mv ${sourcelist_deb_multi} ${sourcelist_deb_multi}.bak
+		sudo mv ${sourcelist_deb_multi} ${sourcelist_deb_multi}.bak
 		sleep 1s
 	fi
 
@@ -196,32 +200,42 @@ ep_install_plex()
 	
 	# Create and add required text to preferences file
 	# Verified policy with apt-cache policy
+	# sudo temp file list, then move because of perms
 	
-	cat <<-EOF > ${prefer_plex}
+	cat <<-EOF > ${prefer_plex_tmp}
 	Package: *
 	Pin: origin ""
 	Pin-Priority:110
 
-	cat <<-EOF > ${prefer_deb_multi}
+	cat <<-EOF > ${prefer_deb_multi_tmp}
 	Package: *
 	Pin: origin ""
 	Pin-Priority:110
+	
+	# move tmp lists in 2 easy actions
+	sudo mv ${prefer_plex_tmp} ${prefer_plex}
+	sudo mv ${prefer_deb_multi_tmp} ${prefer_deb_multi}
 	
 	###############################	
 	# Add sources
 	###############################
 	
 	# Deb multimedia
+	# add to tmp file, then move
 	
-	cat <<-EOF > ${sourcelist_plex}
+	cat <<-EOF > ${sourcelist_plex_tmp}
 	# Deb multimedia repo
 	deb http://www.deb-multimedia.org wheezy main non-free
 	EOF
 
-	cat <<-EOF > ${sourcelist_deb_multi}
+	cat <<-EOF > ${sourcelist_deb_multi_tmp}
 	# Deb multimedia repo
 	deb http://shell.ninthgate.se/packages/debian wheezy main
 	EOF
+	
+	# move lists
+	sudo mv ${sourcelist_plex_tmp} ${sourcelist_plex}
+	sudo mv ${sourcelist_deb_multi_tmp} ${sourcelist_deb_multi}
 
 	###############################	
 	# resolve outstanding deps

@@ -103,27 +103,16 @@ ep_install_plex()
 	prefer_plex="/etc/apt/preferences.d/${reponame_plex}"
 	prefer_deb_multi="/etc/apt/preferences.d/${reponame_deb_multi}"
 	
-	echo $sourcelist_plex_tmp
-	echo $sourcelist_plex
-	exit
-	
 	###############################
 	# backup
 	###############################
+
 	
-	# Check for existance of /etc/apt/preferences.d/{reponame_plex} file
-	if [[ -f ${reponame_plex} ]]; then
+	# Check for existance of /etc/apt/preferences.d/{prefer_plex} file
+	if [[ -f ${prefer_plex} ]]; then
 		# backup preferences file
-		echo -e "\n==> Backing up ${reponame_plex} to ${reponame_plex}.bak\n"
-		sudo mv ${reponame_plex} ${reponame_plex}.bak
-		sleep 1s
-	fi
-	
-	# Check for existance of /etc/apt/preferences.d/{reponame_deb_multi} file
-	if [[ -f ${reponame_deb_multi} ]]; then
-		# backup preferences file
-		echo -e "\n==> Backing up ${reponame_deb_multi} to ${reponame_deb_multi}.bak\n"
-		sudo mv ${reponame_deb_multi} ${reponame_deb_multi}.bak
+		echo -e "\n==> Backing up ${prefer_plex} to ${prefer_plex}.bak\n"
+		sudo mv ${prefer_plex} ${prefer_plex}.bak
 		sleep 1s
 	fi
 	
@@ -132,14 +121,6 @@ ep_install_plex()
 		# backup preferences file
 		echo -e "\n==> Backing up ${prefer_deb_multi} to ${prefer_deb_multi}.bak\n"
 		sudo mv ${prefer_deb_multi} ${prefer_deb_multi}.bak
-		sleep 1s
-	fi
-	
-	# Check for existance of /etc/apt/preferences.d/{prefer_plex} file
-	if [[ -f ${prefer_plex} ]]; then
-		# backup preferences file
-		echo -e "\n==> Backing up ${prefer_plex} to ${prefer_plex}.bak\n"
-		sudo mv ${prefer_plex} ${prefer_plex}.bak
 		sleep 1s
 	fi
 	
@@ -237,13 +218,13 @@ ep_install_plex()
 	deb http://www.deb-multimedia.org wheezy main non-free
 	EOF
 	
+	# exit for testing
+	clear && ls | grep *.list
+	exit
+	
 	# move lists
 	sudo mv -v ${sourcelist_plex_tmp} ${sourcelist_plex}
 	sudo mv -v ${sourcelist_deb_multi_tmp} ${sourcelist_deb_multi}
-	
-	# exit for testing
-	
-	exit
 
 	###############################	
 	# resolve outstanding deps

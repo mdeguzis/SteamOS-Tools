@@ -3,11 +3,28 @@
 # Author:     		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	emu-from-source.sh
-# Script Ver:	  	0.1.2
+# Script Ver:	  	0.2.5
 # Description:		script to add and export a gpg key
 # -------------------------------------------------------------------------------
+
+# set vars
 key="$1"
 keyserver="hkp://subkeys.pgp.net"
+key_short=$(echo $key | cut -c 8-16)
+
+# name of key in check below is passed from previous script
+# echo $gpg_key_name
+
+# check key first to avoid importing twice
+gpg_key_check=$(gpg --list-keys "$key_short")
+
+if [[ "$gpg_key_check" != "" ]]; then
+  echo -e "\n${key_name} [OK]\n"
+  sleep 1s
+else
+  echo -e "\n${key_name} [FAIL]. Adding now...\n"
+  $scriptdir/extra/gpg_import.sh $key
+fi
 
 #--no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg
 gpg --keyserver  $keyserver --recv-keys $key

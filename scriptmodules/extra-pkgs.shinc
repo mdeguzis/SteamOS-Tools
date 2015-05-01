@@ -234,8 +234,12 @@ ep_install_plex()
 	EOF
 	
 	# move lists
-	sudo mv ${sourcelist_plex_tmp} ${sourcelist_plex}
-	sudo mv ${sourcelist_deb_multi_tmp} ${sourcelist_deb_multi}
+	sudo mv -v ${sourcelist_plex_tmp} ${sourcelist_plex}
+	sudo mv -v ${sourcelist_deb_multi_tmp} ${sourcelist_deb_multi}
+	
+	# exit for testing
+	
+	exit
 
 	###############################	
 	# resolve outstanding deps

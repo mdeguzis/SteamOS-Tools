@@ -386,7 +386,7 @@ ep_install_kodi()
   
 }
 
-ep_install_npm()
+ep_install_nodejs()
 {
 
 	###############################

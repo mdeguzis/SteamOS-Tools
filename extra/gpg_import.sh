@@ -15,9 +15,6 @@ key_short=$(echo $key | cut -c 8-16)
 # name of key in check below is passed from previous script
 # echo $gpg_key_name
 
-# check key first to avoid importing twice
-gpg_key_check=$(gpg --list-keys "$key_short")
-
 # allow script to run in current DIR if not called previously
 if [[ "$scriptdir" != "" ]]; then
   # set to scriptdir
@@ -30,6 +27,9 @@ else
   scriptdir=$(pwd)
   gpg_cmd="$scriptdir/gpg_import.sh $key" 
 fi
+
+# check key first to avoid importing twice
+gpg_key_check=$(gpg --list-keys "$key_short")
 
 echo "gpg cmd is: $gpg_cmd"
 exit

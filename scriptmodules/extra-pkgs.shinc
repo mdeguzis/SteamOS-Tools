@@ -404,13 +404,26 @@ ep_install_chrome()
 	
 	# create and enter build dir
 	if [[ -d "$install_dir" ]]; then
-		echo -e "\nChrome DIR found"
+		echo -e "\n==INFO==\nChrome DIR found"
 	else
-		echo -e "\nChrome DIR not found, creating..."
+		echo -e "\n==INFO==\nChrome DIR not found, creating..."
+		sleep 1s
 		mkdir -p "$install_dir"
 	fi
 	
 	cd "$install_dir"
+	
+	###############################
+	# update and pre-reqs
+	###############################
+	
+	# libappindicator1 required but not needed explictly
+	# This really only allows applications to export a menu into the panel
+	# Based on KSNI it also works in KDE and will fallback to generic Systray 
+	# support if none of those are available. 
+	
+	# sudo apt-get -t wheezy libappindicator will fail, dep hell
+	# attempt later will be tried at source building, TODO
 	
 	###############################	
 	# install
@@ -420,7 +433,7 @@ ep_install_chrome()
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 	
 	# install
-	sudo dpkg -i google-chrome*.deb
+	sudo dpkg -i --ignore-depends=libappindicator1 google-chrome*.deb
 
 	# back out of installdir
 	cd $scriptdir

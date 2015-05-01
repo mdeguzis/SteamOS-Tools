@@ -28,7 +28,7 @@ elif [[ "$pwd" != "$0" ]]; then
 else
   # run from current dir
   scriptdir=$(pwd)
-  gpg_cmd="$scriptdir/gpg_import.sh $key"
+  gpg_cmd="$scriptdir/gpg_import.sh"
 fi
 
 if [[ "$gpg_key_check" != "" ]]; then
@@ -37,6 +37,7 @@ if [[ "$gpg_key_check" != "" ]]; then
 else
   echo -e "\nGPG key "$key" [FAIL]. Adding now...\n"
   "$gpg_cmd" $key
+  exit
 fi
 
 #Import 

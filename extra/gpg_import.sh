@@ -25,7 +25,7 @@ if [[ "$scriptdir" != "" ]]; then
   gpg_cmd="$scriptdir/extra/gpg_import.sh $key"
 else
   # run from current dir
-  gpg_cmd="gpg_import.sh"
+  gpg_cmd="$pwd/gpg_import.sh"
 fi
 
 if [[ "$gpg_key_check" != "" ]]; then

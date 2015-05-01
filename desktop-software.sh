@@ -208,7 +208,7 @@ show_help()
 	Options: 	[install|uninstall|list|check] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[plex|kodi|firefox|x360-bindings|nodejs]
+	Extra types: 	[plex|kodi|firefox|x360-bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -333,10 +333,6 @@ get_software_type()
                 # install plex from helper script
                 ep_install_kodi
                 exit
-        elif [[ "$type" == "nodejs" ]]; then
-                # install plex from helper script
-                ep_install_nodejs
-                exit 
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"

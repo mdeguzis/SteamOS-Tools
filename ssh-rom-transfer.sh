@@ -86,10 +86,10 @@ else
 	read host
 	# user chose to keep var value from last
 	if [[ "$host" == "" ]]; then
-		user="$host_tmp"
+		host="$host_tmp"
 	else
 		# keep user choice
-		user="$host"
+		host="$host"
 	fi
 fi
 

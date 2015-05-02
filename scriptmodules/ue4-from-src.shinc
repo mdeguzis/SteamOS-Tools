@@ -178,5 +178,7 @@ reason you want to unpack them again.\nPress [ENTER] to continue or CTRL+C to ab
     
     # remove directories
     sudo rm -rf "$install_dir" "$git_dir" "$symlink_target"
+    
+  fi
 
 }

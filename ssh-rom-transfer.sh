@@ -115,13 +115,7 @@ fi
 echo -e "\nShowing remote listing first...press q to quit listing\n"
 sleep 2s
 
-ssh ${user}@${host} ls -l ${remote_dir} | less
-
-echo $user
-echo $host
-echo $remote_dir
-echo "pausing"
-sleep 50s
+ssh ${user}@${host} ls ${remote_dir}
 
 echo -e "\nEnter target ROM DIR to copy [ENTER to last: $target_dir]:"
 echo -e "(use quotes on any single DIR name with spaces)"

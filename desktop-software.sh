@@ -664,6 +664,7 @@ main()
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/mobile-upnp-dlna"
+	import "$scriptdir/scriptmodules/ue4-from-src"
 
         # generate software listing based on type or skip to auto script
         get_software_type
@@ -975,7 +976,7 @@ main()
 		install_software
 		
 		# kick off helper script
-		ep_install_ue4
+		m_install_ue4
 		
         elif [[ "$type" == "$type" ]]; then
         

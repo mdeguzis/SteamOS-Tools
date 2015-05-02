@@ -342,7 +342,7 @@ get_software_type()
                 #software_list="$scriptdir/cfgs/ue4.txt"
                 # skip to ue4 module for now, setup.sh within that build
                 # script will attempt to get our source deps.
-                m_install_ue4_src(
+                m_install_ue4_src
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"

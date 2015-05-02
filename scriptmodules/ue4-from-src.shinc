@@ -19,6 +19,14 @@ time_stamp_start=(`date +"%T"`)
 m_install_ue4_src()
 {
   
+
+  if [[ "$apt_mode" == "install" ]]; then
+  
+  #################################################
+  # Initial setup
+  #################################################
+  
+  
   # notify user they MUST have a UE4 account to build
   echo -e "\nMake sure you linked your GitHub account to your profile on \
 as all Epic repositories are private. The script may ask you to install \
@@ -29,22 +37,7 @@ updated for the particular release tag. If any new archives have been downloaded
 (which is the case the first time you do this), the script will unpack them over 
 your repository (it will ask you to confirm that action as it is potentially \
 destructive). You can force this by supplying -updatedeps flag if for some \
-reason you want to unpack them again."
-
-#test msg
-exit
-  
-
-  if [[ "$apt_mode" == "install" ]]; then
-  
-  #################################################
-  # Initial setup
-  #################################################
-  
-  # Warn user this will take some time
-  echo -e "\nBuilding UE4 and its associated software will take some time. Please wait or \
-  press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM configuration."
-  echo -e "\nPress Enter to continue\n"
+reason you want to unpack them again.\nPress [ENTER] to continue or CTRL+C to abort.\n"
   
   read -n 1 
   printf "\nContinuing...\n" 
@@ -187,4 +180,3 @@ exit
     sudo rm -rf "$install_dir" "$git_dir" "$symlink_target"
 
 }
-

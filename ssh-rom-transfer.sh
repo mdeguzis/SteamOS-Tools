@@ -6,8 +6,36 @@
 # Script Ver: 	0.1.1
 # Description:	This script dumps ROMs over SSH
 #
-# Usage:	      ./ssh-rom-transfer.sh
+# Usage:	./ssh-rom-transfer.sh
+#		./ssh-rom-transfer.sh --help
+#		source ./ssh-rom-transfer.sh
 # ------------------------------------------------------------------------
+
+arg="$1"
+
+show_help()
+{
+	clear
+	cat <<-EOF
+	Usage:	
+	./ssh-rom-transfer.sh
+	./ssh-rom-transfer.sh --help
+	source ./ssh-rom-transfer.sh
+	
+	The third option, preeceded by 'source' will 
+	execute the script in the context of the calling 
+	shell and preserve vars for the next run.
+	EOF
+}
+
+if [[ "$arg" == "--help" ]]
+	#show help
+	show_help
+	exit
+fi
+
+ssh_transfer_roms()
+{
 
 # prereqs
 
@@ -119,8 +147,9 @@ echo ""
 $CMD
 echo ""
 
-# export vars for next run until system reboot
-export user
-export host
-export remote_dir
-export target_dir
+}
+
+# Start script
+ssh_transfer_roms
+
+

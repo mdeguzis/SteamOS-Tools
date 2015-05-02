@@ -17,11 +17,11 @@
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
 	if [ "" == "$PKG_OK" ]; then
-		echo -e "\n$PKG not found. Setting up $PKG.\n"
+		echo -e "$PKG not found. Setting up $PKG.\n"
 		sleep 1s
 		sudo apt-get install $PKG
 	else
-		echo -e "\nChecking for $PKG [Ok]\n"
+		echo -e "Checking for $PKG [Ok]\n"
 		sleep 0.2s
 	fi
 

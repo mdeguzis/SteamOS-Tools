@@ -337,6 +337,11 @@ get_software_type()
                 # install plex from helper script
                 ep_install_kodi
                 exit
+        elif [[ "$type" == "ue4" ]]; then
+                # install plex from helper script
+                echo -e "\nScript development in progress, exiting...\n"
+                software_list="$scriptdir/cfgs/ue4.txt "
+                exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"
@@ -923,6 +928,54 @@ main()
 		
 		# kick off helper script
 		install_mobile_upnp_dlna
+		
+	elif [[ "$type" == "ue4" ]]; then
+	
+
+		if [[ "$options" == "uninstall" ]]; then
+	                uninstall="yes"
+	
+	        elif [[ "$options" == "list" ]]; then
+	                # show listing from $scriptdir/cfgs/ue4.txt
+	                clear
+			cat $software_list | less
+			exit
+	        
+	        elif [[ "$options" == "check" ]]; then
+
+                        clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
+			for i in `cat $software_list`; do
+			
+				if [[ "$i" =~ "!broken!" ]]; then
+					skipflag="yes"
+					echo -e "skipping broken package: $i ..."
+					sleep 0.3s
+				else
+					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				
+					if [ "" == "$PKG_OK" ]; then
+						# dpkg outputs it's own line that can't be supressed
+						echo -e "Packge $i [Not Found]"
+						sleep 0.3s
+					else
+						echo -e "Packge $i [OK]"
+						sleep 0.3s
+					fi
+				fi
+			done
+			echo ""
+			exit
+			
+		fi
+        
+        	show_warning
+		install_software
+		
+		# kick off helper script
+		ep_install_ue4
 		
         elif [[ "$type" == "$type" ]]; then
         

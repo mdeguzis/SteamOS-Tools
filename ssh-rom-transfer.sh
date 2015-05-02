@@ -55,4 +55,4 @@ sleep 1s
 CMD=$(echo "sudo scp -r $user@$host:'${full_path}' /home/steam/ROMs/temp")
 
 # execute
-"$CMD"
+$CMD

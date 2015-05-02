@@ -1,1 +1,174 @@
+#!/bin/bash
+
+# -------------------------------------------------------------------------------
+# Author:     		Michael DeGuzis
+# Git:		  	    https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:		  emu-from-source.sh
+# Script Ver:	  	0.4.8
+# Description:		script to install ue4 from source.
+#
+#	See:            hhttps://wiki.unrealengine.com/Building_On_Linux
+# Usage:	      	N/A, called from another script
+#
+#Last tested:		  Please see SteamOS-Tools/docs/desktop-software-readme.md 
+# -------------------------------------------------------------------------------
+
+time_start=$(date +%s)
+time_stamp_start=(`date +"%T"`)
+
+m_install_ue4_src()
+{
+
+  if [[ "$apt_mode" == "install" ]]; then
+  
+  #################################################
+  # Initial setup
+  #################################################
+  
+  # Warn user this will take some time
+  echo -e "\nBuilding UE4 and its associated software will take some time. Please wait or \
+  press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM configuration."
+  echo -e "\nPress Enter to continue\n"
+  
+  read -n 1 
+  printf "\nContinuing...\n" 
+  clear 
+  
+  # set vars
+  export install_dir="/home/desktop/ue4-src"
+  export git_dir="/home/desktop/ue4-src/UnrealEngine"
+  export git_url="https://github.com/3dluvr/UnrealEngine"
+  #export symlink_target="/usr/bin/ue4"
+  #export binary_loc="$git_dir/ue4"
+
+  # If git folder UnrealEngine exists, evaluate it
+  # Avoiding a large download again is much desired.
+  # If the DIR is already there, the fetch info should be intact
+  if [[ -d "$git_dir" ]]; then
+  	
+  	echo -e "\nGit folder already exists! Attempting git pull...\n"
+  	sleep 1s
+  	# attempt to pull the latest source first
+  	cd $git_dir
+  	# eval git status
+  	output=$(git pull $git_url)
+  
+  	# evaluate git pull. Remove, create, and clone if it fails
+  	if [[ "$output" != "Already up-to-date." ]]; then
+  		echo -e "\nGit directory pull failed. Removing and cloning...\n"
+  		sleep 2s
+  		cd
+  		rm -rf "$git_dir"
+  		mkdir -p "$install_dir"
+  		cd "$install_dir"
+  		# clone and fetch super build (evaluating currently)
+  		git clone "$git_url"
+  	fi
+  else
+  	echo -e "\nGit directory does not exist. cloning now...\n"
+  	sleep 2s
+  	# create and clone
+  	mkdir -p "$install_dir"
+  	cd "$install_dir"
+  	# clone and fetch super build (evaluating currently)
+  	git clone "$git_url"
+  fi
+  
+  # enter git dir if we are not already
+  cd $git_dir
+  
+  
+  #################################################
+  # Build UE4
+  #################################################
+  
+  echo -e "\n==> Building sources...please wait"
+  sleep 2s
+  
+  ############################
+  # proceed to global build:
+  ############################
+  
+  # perform directory check for *.so (libretro cores) in
+  # /usr/bin/libretro. These will be present if this module was
+  # already ran before
+  
+  ue4_check=$(ls "$git_dir")
+  
+  ############################
+  # Begin retroarch build eval
+  ############################
+  
+  if [[ "$retroarch_check" != "" ]]; then
+  	
+  	echo -e "\n==INFO=="
+  	echo -e "It seems UE4 is already built in $git_dir"
+  	echo -e "Would you like to rebuild [y], or [n]?\n"
+  	
+  	# the prompt sometimes likes to jump above sleep
+  	sleep 0.5s
+  	
+  	# gather user input
+  	read -ep "Choice: " user_input_ue4
+  	
+  	if [[ "$user_input_ue4" == "n" ]]; then
+  		echo -e "\n==> Skipping UE4 build...\n"
+  		sleep 2s
+  	elif [[ "$user_input_ue4" == "y" ]]; then
+  		echo -e "\n==> Rebuilding UE4...\n"
+  		sleep 2s
+  		# build UE4
+  		./Setup.sh
+      ./GenerateProjectFiles.sh
+  	else
+  		echo -e "\n==ERROR=="
+  		echo -e "Invalid input, exiting...\n"
+  		sleep 2s
+  		exit
+  	fi
+  else	
+  	echo -e "\nUE4 does not appear to be built."
+  	echo -e "Building now...\n"
+  	sleep 2s
+  	# build UE4
+  	./Setup.sh
+    ./GenerateProjectFiles.sh
+  
+  # end retroarch build eval
+  fi
+  
+  
+  #################################################
+  # Post install configuration
+  #################################################
+  
+  # TODO
+  
+  #################################################
+  # Cleanup
+  #################################################
+  
+  # clean up dirs
+  
+  # note time ended
+  time_end=$(date +%s)
+  time_stamp_end=(`date +"%T"`)
+  runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
+  
+  # output finish
+  echo -e "\nTime started: ${time_stamp_start}"
+  echo -e "Time started: ${time_stamp_end}"
+  echo -e "Total Runtime (minutes): $runtime\n"
+  
+  
+  elif [[ "$apt_mode" == "remove" ]]; then
+  
+    #Remove directories, build files, etc if uninstall is specified by user
+    echo -e "\n==> Removing related files for UE4-src routine"
+    sleep 2s
+    
+    # remove directories
+    sudo rm -rf "$install_dir" "$git_dir" "$symlink_target"
+
+}
 

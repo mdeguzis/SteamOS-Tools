@@ -976,7 +976,7 @@ main()
 		install_software
 		
 		# kick off helper script
-		m_install_ue4
+		m_install_ue4_src
 		
         elif [[ "$type" == "$type" ]]; then
         

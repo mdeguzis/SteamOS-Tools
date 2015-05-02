@@ -28,4 +28,7 @@ echo -e "\nEnter target ROM DIR to copy (use quotes on any single DIR name with 
 read target_dir
 
 # copy ROMs
-sudo scp -r ${user}@${host}:'${remote_dir}/${targer_dir}' "/home/steam/ROMs"
+#sudo scp -r ${user}@${host}:'${remote_dir}/${targer_dir}' "/home/steam/ROMs"
+
+#TESTING
+echo "${user}@${host}:'${remote_dir}/${targer_dir}' /home/steam/ROMs

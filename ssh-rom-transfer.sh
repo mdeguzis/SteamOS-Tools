@@ -115,7 +115,9 @@ sleep 1s
 CMD=$(echo "sudo scp -r $user@$host:'${full_path}' /home/steam/ROMs")
 
 # execute
+echo ""
 $CMD
+echo ""
 
 # export vars for next run until system reboot
 export user

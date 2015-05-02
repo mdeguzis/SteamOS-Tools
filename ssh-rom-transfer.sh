@@ -17,7 +17,9 @@ show_help()
 {
 	clear
 	cat <<-EOF
+	####################################################
 	Usage:	
+	####################################################
 	./ssh-rom-transfer.sh
 	./ssh-rom-transfer.sh --help
 	source ./ssh-rom-transfer.sh

@@ -57,7 +57,7 @@ ssh_transfer_roms()
 	fi
 
 
-echo -e "\nEnter Remote User: [ENTER to use last: $user]"
+echo -e "\n==> Enter Remote User: [ENTER to use last: $user]"
 
 # set tmp var for last run, if exists
 user_tmp="$user"
@@ -76,7 +76,7 @@ else
 fi
 
 
-echo -e "\nEnter remote hostname: [ENTER to use last: $host]"
+echo -e "\n==> Enter remote hostname: [ENTER to use last: $host]"
 # set tmp var for last run, if exists
 host_tmp="$host"
 if [[ "$host" == "" ]]; then
@@ -93,7 +93,7 @@ else
 	fi
 fi
 
-echo -e "\nEnter remote DIR: [ENTER to use last: $remote_dir]:"
+echo -e "\n==> Enter remote DIR: [ENTER to use last: $remote_dir]:"
 echo -e "(use quotes on any single DIR name with spaces)"
 # set tmp var for last run, if exists
 remote_dir_tmp="$remote_dir"
@@ -112,7 +112,7 @@ else
 fi
 
 # Show remote list first
-echo -e "\nShowing remote listing first...press q to quit listing\n"
+echo -e "\n==> Showing remote listing first...press q to quit listing\n"
 sleep 2s
 
 ssh ${user}@${host} ls ${remote_dir} | less
@@ -139,7 +139,7 @@ fi
 full_path=$(echo "$remote_dir/$target_dir")
 
 # copy ROMs
-echo -e "\nExecuting CMD: sudo scp -r $user@$host:'$full_path' /home/steam/ROMs"
+echo -e "\n==> Executing CMD: sudo scp -r $user@$host:'$full_path' /home/steam/ROMs"
 sleep 1s
 
 # set cmd

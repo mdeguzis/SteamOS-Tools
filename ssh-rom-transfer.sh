@@ -137,6 +137,8 @@ fi
 
 # set globbed path
 target_dir=$(echo "$target_dir")
+echo $target_dir
+exit
 
 
 # copy ROMs

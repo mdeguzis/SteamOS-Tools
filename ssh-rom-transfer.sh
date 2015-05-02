@@ -136,7 +136,7 @@ else
 fi
 
 # set globbed path
-target_dir=$(echo "\"$target_dir\"")
+target_dir=$(echo "\"$target_dir"\")
 
 # copy ROMs
 echo -e "\n==> Executing CMD: sudo scp -r $user@$host:'$remote_dir/$target_dir\' /home/steam/ROMs"

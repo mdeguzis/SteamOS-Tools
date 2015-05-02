@@ -10,7 +10,8 @@
 # ------------------------------------------------------------------------
 
 # prereqs
-	
+
+	clear
 	# Adding repositories
 	PKG="openssh-server"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
@@ -20,7 +21,7 @@
 		sleep 1s
 		sudo apt-get install $PKG
 	else
-		echo "Checking for $PKG [Ok]"
+		echo "\nChecking for $PKG [Ok]\n"
 		sleep 0.2s
 	fi
 

@@ -52,7 +52,7 @@ echo -e "\nExecuting CMD: sudo scp -r $user@$host:'$full_path' /home/steam/ROMs/
 sleep 1s
 
 # set cmd
-CMD=$(echo "sudo scp -r $user@$host:'${full_path}' /home/steam/ROMs/temp")
+CMD=$(echo "sudo scp -r $user@$host:'${full_path}' /home/steam/ROMs")
 
 # execute
 $CMD

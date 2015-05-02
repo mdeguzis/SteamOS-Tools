@@ -136,7 +136,11 @@ else
 fi
 
 # set globbed path
-#target_dir=$(echo "\"$target_dir"\")
+# We need to keep the backslash
+# example in bash ... t="Neo\ Geo" && s=$(echo $t) && echo $s
+target_dir=$(echo $target)
+
+sleep 30s
 
 # copy ROMs
 echo -e "\n==> Executing CMD: sudo scp -r $user@$host:'$remote_dir/$target_dir' /home/steam/ROMs"

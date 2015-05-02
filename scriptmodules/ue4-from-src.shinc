@@ -103,9 +103,18 @@ or CTRL+C to abort.\n"
   	git clone "$git_url"
   fi
   
-  # enter git dir if we are not already
-  cd $git_dir
+  # add DIR check since if you are not setup on UE4's website
+  # the clone will fail.
   
+  if [[ -d "$gitdir" ]]; then
+     # enter git dir if we are not already
+    cd $git_dir
+  else
+    # let user know git clone failed
+    echo -e "\nGit Clone failed. Plese check your username/account setup on https://www.unrealengine.com\n"
+    exit
+  fi
+ 
   
   #################################################
   # Build UE4

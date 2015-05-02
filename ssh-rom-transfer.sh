@@ -24,5 +24,8 @@ sleep 2s
 
 ssh ${user}@${host} ls -l ${remote_dir} | less
 
+echo -e "\nEnter target ROM DIR to copy (use quotes on any single DIR name with spaces):"
+read target_dir
+
 # copy ROMs
-sudo scp -r ${user}@${host}:'${remote_dir}' "/home/steam/ROMs"
+sudo scp -r ${user}@${host}:'${remote_dir}/${targer_dir}' "/home/steam/ROMs"

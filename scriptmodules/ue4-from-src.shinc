@@ -47,7 +47,7 @@ m_install_ue4_src()
   
   
   # notify user they MUST have a UE4 account to build
-  echo -e "\nMake sure you linked your GitHub account to your profile on\
+  echo -e "\nMake sure you linked your GitHub account to your profile on \
 https://unrealengine.com, as all Epic repositories are private. The script \
 may ask you to install additional packages (on certain distributions), then \
 it will download the archives with binary dependencies (by default, to \

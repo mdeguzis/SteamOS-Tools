@@ -75,7 +75,7 @@ or CTRL+C to abort.\n"
   # If the DIR is already there, the fetch info should be intact
   if [[ -d "$git_dir" ]]; then
   	
-  	echo -e "\nGit folder already exists! Attempting git pull...\n"
+  	echo -e "\n==Info==\nGit folder already exists! Attempting git pull...\n"
   	sleep 1s
   	# attempt to pull the latest source first
   	cd $git_dir
@@ -84,7 +84,7 @@ or CTRL+C to abort.\n"
   
   	# evaluate git pull. Remove, create, and clone if it fails
   	if [[ "$output" != "Already up-to-date." ]]; then
-  		echo -e "\nGit directory pull failed. Removing and cloning...\n"
+  		echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
   		sleep 2s
   		cd
   		rm -rf "$git_dir"
@@ -94,7 +94,7 @@ or CTRL+C to abort.\n"
   		git clone "$git_url"
   	fi
   else
-  	echo -e "\nGit directory does not exist. cloning now...\n"
+  	echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
   	sleep 2s
   	# create and clone
   	mkdir -p "$install_dir"
@@ -111,7 +111,7 @@ or CTRL+C to abort.\n"
     cd $git_dir
   else
     # let user know git clone failed
-    echo -e "\nGit Clone failed. Plese check your username/account setup on https://www.unrealengine.com\n"
+    echo -e "\n==Info==\nGit Clone failed. Plese check your username/account setup on https://www.unrealengine.com\n"
     exit
   fi
  

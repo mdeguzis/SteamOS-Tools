@@ -26,14 +26,59 @@
 	fi
 
 
-echo -e "\nEnter Remote User:"
-read user
+echo -e "\nEnter Remote User: [ENTER to use last: $user]"
 
-echo -e "\nEnter remote hostname:"
-read host
+# set tmp var for last run, if exists
+user_tmp="$user"
+if [[ "$user" == "" ]]; then
+	# var blank this run, get input
+	read user
+else
+	read user
+	# user chose to keep var value from last
+	if [[ "$user" == "" ]]; then
+		user="$user_tmp"
+	else
+		# keep user choice
+		user="$user"
+	fi
+fi
 
-echo -e "\nEnter remote DIR (use quotes on any single DIR name with spaces):"
-read remote_dir
+
+echo -e "\nEnter remote hostname: [ENTER to use last: $host]"
+# set tmp var for last run, if exists
+host_tmp="$host"
+if [[ "$host" == "" ]]; then
+	# var blank this run, get input
+	read host
+else
+	read host
+	# user chose to keep var value from last
+	if [[ "$host" == "" ]]; then
+		user="$host_tmp"
+	else
+		# keep user choice
+		user="$host"
+	fi
+fi
+
+echo -e "\nEnter remote DIR: [ENTER to use last: $remote_dir]"
+echo -e "(use quotes on any single DIR name with spaces):\n"
+# set tmp var for last run, if exists
+remote_dir_tmp="$remote_dir"
+if [[ "$remote_dir" == "" ]]; then
+	# var blank this run, get input
+	read remote_dir
+else
+	read remote_dir
+	# user chose to keep var value from last
+	if [[ "$remote_dir" == "" ]]; then
+		remote_dir="$remote_dir_tmp"
+	else
+		# keep user choice
+		remote_dir="$remote_dir"
+	fi
+fi
 
 # Show remote list first
 echo -e "\nShowing remote listing first...press q to quit listing\n"
@@ -41,8 +86,23 @@ sleep 2s
 
 ssh ${user}@${host} ls -l ${remote_dir} | less
 
-echo -e "\nEnter target ROM DIR to copy (use quotes on any single DIR name with spaces):"
-read target_dir
+echo -e "\nEnter target ROM DIR to copy [ENTER to last: $target_dir]"
+echo -e "(use quotes on any single DIR name with spaces)"
+# set tmp var for last run, if exists
+target_dir_tmp="$target_dir"
+if [[ "$target_dir" == "" ]]; then
+	# var blank this run, get input
+	read target_dir
+else
+	read target_dir
+	# user chose to keep var value from last
+	if [[ "$target_dir" == "" ]]; then
+		remote_dir="$target_dir_tmp"
+	else
+		# keep user choice
+		target_dir="$target_dir"
+	fi
+fi
 
 # set globbed path
 full_path=$(echo "$remote_dir/$target_dir")
@@ -56,3 +116,9 @@ CMD=$(echo "sudo scp -r $user@$host:'${full_path}' /home/steam/ROMs")
 
 # execute
 $CMD
+
+# export vars for next run until system reboot
+export user
+export host
+export remote_dir
+export target_dir

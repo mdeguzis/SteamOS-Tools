@@ -28,7 +28,7 @@ show_help()
 	EOF
 }
 
-if [[ "$arg" == "--help" ]]l then
+if [[ "$arg" == "--help" ]]; then
 	#show help
 	show_help
 	exit

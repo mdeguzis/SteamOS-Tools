@@ -62,8 +62,8 @@ else
 	fi
 fi
 
-echo -e "\nEnter remote DIR: [ENTER to use last: $remote_dir]"
-echo -e "(use quotes on any single DIR name with spaces):\n"
+echo -e "\nEnter remote DIR: [ENTER to use last: $remote_dir]:"
+echo -e "(use quotes on any single DIR name with spaces)"
 # set tmp var for last run, if exists
 remote_dir_tmp="$remote_dir"
 if [[ "$remote_dir" == "" ]]; then
@@ -86,7 +86,7 @@ sleep 2s
 
 ssh ${user}@${host} ls -l ${remote_dir} | less
 
-echo -e "\nEnter target ROM DIR to copy [ENTER to last: $target_dir]"
+echo -e "\nEnter target ROM DIR to copy [ENTER to last: $target_dir]:"
 echo -e "(use quotes on any single DIR name with spaces)"
 # set tmp var for last run, if exists
 target_dir_tmp="$target_dir"

@@ -102,20 +102,7 @@ or CTRL+C to abort.\n"
   	# clone and fetch super build (evaluating currently)
   	git clone "$git_url"
   fi
-  
-  # add DIR check since if you are not setup on UE4's website
-  # the clone will fail.
-  
-  if [[ -d "$gitdir" ]]; then
-     # enter git dir if we are not already
-    cd $git_dir
-  else
-    # let user know git clone failed
-    echo -e "\n==Info==\nGit Clone failed. Plese check your username/account setup on https://www.unrealengine.com\n"
-    exit
-  fi
  
-  
   #################################################
   # Build UE4
   #################################################
@@ -137,7 +124,7 @@ or CTRL+C to abort.\n"
   # Begin retroarch build eval
   ############################
   
-  if [[ "$retroarch_check" != "" ]]; then
+  if [[ "$ue4_check" != "" ]]; then
   	
   	echo -e "\n==INFO=="
   	echo -e "It seems UE4 is already built in $git_dir"

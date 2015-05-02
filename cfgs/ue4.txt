@@ -1,0 +1,13 @@
+build-essential
+mono-gmcs
+mono-xbuild
+mono-dmcs
+libmono-corlib4.0-cil
+libmono-system-data-datasetextensions4.0-cil
+libmono-system-web-extensions4.0-cil
+libmono-system-management4.0-cil
+libmono-system-xml-linq4.0-cil
+cmake
+dos2unix
+clang-3.5
+xdg-user-dirs

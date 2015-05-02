@@ -21,7 +21,7 @@
 		sleep 1s
 		sudo apt-get install $PKG
 	else
-		echo "\nChecking for $PKG [Ok]\n"
+		echo -e "\nChecking for $PKG [Ok]\n"
 		sleep 0.2s
 	fi
 

@@ -31,4 +31,4 @@ read target_dir
 #sudo scp -r ${user}@${host}:'${remote_dir}/${targer_dir}' "/home/steam/ROMs"
 
 #TESTING
-echo "${user}@${host}:'${remote_dir}/${targer_dir}' /home/steam/ROMs
+echo "${user}@${host}:'${remote_dir}/${targer_dir}' /home/steam/ROMs"

@@ -208,7 +208,7 @@ show_help()
 	Options: 	[install|uninstall|list|check] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[plex|kodi|firefox|chrome|x360-bindings]
+	Extra types: 	[plex|kodi|firefox|chrome|x360-bindings|ue4]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -338,10 +338,8 @@ get_software_type()
                 ep_install_kodi
                 exit
         elif [[ "$type" == "ue4" ]]; then
-                # install plex from helper script
-                echo -e "\nScript development in progress, exiting...\n"
+                # install ue4 from helper script
                 software_list="$scriptdir/cfgs/ue4.txt "
-                exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"

@@ -27,6 +27,7 @@ show_help()
 	The third option, preeceded by 'source' will 
 	execute the script in the context of the calling 
 	shell and preserve vars for the next run.
+	
 	EOF
 }
 

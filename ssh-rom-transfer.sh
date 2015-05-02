@@ -47,4 +47,4 @@ read target_dir
 # copy ROMs
 echo -e "\nExecuting CMD: sudo scp -r $user@$host:'$remote_dir/$target_dir' /home/steam/ROMs/temp"
 sleep 1s
-sudo scp -r $user\@$host:'$remote_dir/$target_dir' /home/steam/ROMs/temp
+sudo scp -r $user@$host:'$remote_dir/$target_dir' /home/steam/ROMs/temp

@@ -59,8 +59,12 @@ if [[ "$apt_mode" == "install" ]]; then
 	core_info_dir="/usr/lib/libretro/info"
 	
 	# save DIRs
-	save_loc_desktop="/home/desktop/retroarch-saves"
-	save_loc_steam="/home/steam/retroarch-saves"
+	save_loc_desktop="/home/desktop/retroarch/saves"
+	save_loc_steam="/home/steam/retroarch/saves"
+	
+	# game history
+	hist_loc_desktop="/home/desktop/retroarch/history"
+	hist_loc_steam="/home/steam/retroarch/history"
 	
 	# the retroarch config file needs to be placed in the steam users dir so that
 	# the running retroarch application can access it freely while steamcompmgr is running
@@ -130,6 +134,24 @@ if [[ "$apt_mode" == "install" ]]; then
 	else
 		# create directory(s)
 		sudo mkdir -p "$save_loc_steam"
+	fi
+	
+	# history dir desktop
+	if [[ -d "$hist_loc_desktop" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	else
+		# create directory(s)
+		mkdir -p "$hist_loc_desktop"
+	fi
+	
+	# history dir steam
+	if [[ -d "$hist_loc_steam" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	else
+		# create directory(s)
+		sudo mkdir -p "$hist_loc_steam"
 	fi
 	
 	#################################################

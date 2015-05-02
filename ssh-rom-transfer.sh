@@ -140,8 +140,6 @@ fi
 # example in bash ... t="Neo\ Geo" && s=$(echo $t) && echo $s
 target_dir=$(echo $target)
 
-sleep 30s
-
 # copy ROMs
 echo -e "\n==> Executing CMD: sudo scp -r $user@$host:'$remote_dir/$target_dir' /home/steam/ROMs"
 sleep 1s

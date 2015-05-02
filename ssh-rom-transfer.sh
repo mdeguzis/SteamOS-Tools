@@ -139,7 +139,7 @@ fi
 full_path=$(echo "$remote_dir/$target_dir")
 
 # copy ROMs
-echo -e "\nExecuting CMD: sudo scp -r $user@$host:'$full_path' /home/steam/ROMs/temp"
+echo -e "\nExecuting CMD: sudo scp -r $user@$host:'$full_path' /home/steam/ROMs"
 sleep 1s
 
 # set cmd

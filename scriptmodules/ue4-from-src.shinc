@@ -66,7 +66,7 @@ or CTRL+C to abort.\n"
   # set vars
   export install_dir="/home/desktop/ue4-src"
   export git_dir="/home/desktop/ue4-src/UnrealEngine"
-  export git_url="https://github.com/3dluvr/UnrealEngine"
+  export git_url="https://github.com/3dluvr/UnrealEngine.git"
   #export symlink_target="/usr/bin/ue4"
   #export binary_loc="$git_dir/ue4"
 

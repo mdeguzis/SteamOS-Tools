@@ -158,7 +158,7 @@ main()
 	echo -e "sudo dpkg-buildpackage -b -d -uc"
 	echo -e "###################################################################\n"
 	
-	ls "/home/desktop/build-deb-temp" | grep ${target}*.deb
+	ls "/home/desktop/build-deb-temp"
 }
 
 # start main

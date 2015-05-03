@@ -7,9 +7,35 @@
 # Script Ver:	0.1.1
 # Description:	Attempts to build a deb package from a PPA
 #
-# Usage:	sudo ./build-deb-from-PPA.sh [target_package]
-#
+# Usage:	sudo ./build-deb-from-PPA.sh
+#		source ./build-deb-from-PPA.sh
 # -------------------------------------------------------------------------------
+
+arg="$1"
+
+show_help()
+{
+	clear
+	cat <<-EOF
+	####################################################
+	Usage:	
+	####################################################
+	./build-deb-from-PPA.sh
+	./build-deb-from-PPA.sh --help
+	source ./build-deb-from-PPA.sh
+	
+	The third option, preeceded by 'source' will 
+	execute the script in the context of the calling 
+	shell and preserve vars for the next run.
+	
+	EOF
+}
+
+if [[ "$arg" == "--help" ]]; then
+	#show help
+	show_help
+	exit
+fi
 
 install_prereqs()
 {
@@ -19,17 +45,6 @@ install_prereqs()
 	# install needed packages
 	apt-get install devscripts build-essential
 
-}
-
-check_for_sudo()
-{
-	# Warn user script must be run as root
-	if [ "$(id -u)" -ne 0 ]; then
-		clear
-		printf "\nScript must be run as root! Try:\n\n"
-		printf "'sudo $0'\n\n"
-		exit 1
-	fi
 }
 
 main()
@@ -48,13 +63,54 @@ main()
 	
 	# Ask user for repos / vars
 	echo -e "Please enter or paste the repo src URL now:"
-	read repo_src
+	
+	# set tmp var for last run, if exists
+	repo_src_tmp="$repo_src"
+	if [[ "$repo_src" == "" ]]; then
+		# var blank this run, get input
+		read repo_src
+	else
+		read epo_src
+		# user chose to keep var value from last
+		if [[ "$repo_src" == "" ]]; then
+			user="$repo_src_tmp"
+		else
+			# keep user choice
+			repo_src="$repo_src"
+		fi
+	fi
 	
 	echo -e "\nPlease enter or paste the GPG key for this repo now:"
-	read gpg_pub_key
+	gpg_pub_key_tmp="$gpg_pub_key"
+	if [[ "$gpg_pub_key" == "" ]]; then
+		# var blank this run, get input
+		read gpg_pub_key
+	else
+		read gpg_pub_key
+		# user chose to keep var value from last
+		if [[ "$gpg_pub_key" == "" ]]; then
+			gpg_pub_key="$gpg_pub_key_tmp"
+		else
+			# keep user choice
+			gpg_pub_keyst="$gpg_pub_key"
+		fi
+	fi
 	
 	echo -e "\nPlease enter or paste the desired package name now:"
-	read target
+	target_tmp="$target"
+	if [[ "$target" == "" ]]; then
+		# var blank this run, get input
+		read target
+	else
+		read target
+		# user chose to keep var value from last
+		if [[ "$target" == "" ]]; then
+			target="$target_tmp"
+		else
+			# keep user choice
+			target="$target"
+		fi
+	fi
 	
 	# prechecks
 	echo -e "\n==>Attempting to add source list\n"
@@ -62,24 +118,25 @@ main()
 	
 	# check for existance of target, backup if it exists
 	if [[ -f /etc/apt/sources.list.d/${target}.list ]]; then
-		mv "/etc/apt/sources.list.d/${target}.list" "/etc/apt/sources.list.d/${target}.list.bak"
+		sudo mv "/etc/apt/sources.list.d/${target}.list" "/etc/apt/sources.list.d/${target}.list.bak"
 	fi
 	
 	# add source to sources.list.d/
-	echo ${repo_src} > "/etc/apt/sources.list.d/${target}.list"
+	echo ${repo_src} > "${target}.list.tmp"
+	sudo mv "${target}.list.tmp" "/etc/apt/sources.list.d/${target}.list"
 	
 	echo -e "\n==>Adding GPG key:\n"
 	sleep 2s
-	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ${gpg_pub_key}
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ${gpg_pub_key}
 	
 	echo -e "\n==>Updating system package listings...\n"
 	sleep 2s
-	apt-get update
+	sudo apt-get update
 	
 	#Attempt to build target
 	echo -e "\n==>Attemption to build ${target}:\n"
 	sleep 2s
-	apt-get source --build ${target}
+	sudo apt-get source --build ${target}
 	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
@@ -102,6 +159,4 @@ main()
 }
 
 # start main
-install_prereqs
-check_for_sudo
 main

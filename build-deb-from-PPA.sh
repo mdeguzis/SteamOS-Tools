@@ -4,7 +4,7 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.1.1
+# Script Ver:	0.1.3
 # Description:	Attempts to build a deb package from a PPA
 #
 # Usage:	sudo ./build-deb-from-PPA.sh
@@ -69,9 +69,9 @@ main()
 	repo_src_tmp="$repo_src"
 	if [[ "$repo_src" == "" ]]; then
 		# var blank this run, get input
-		read repo_src
+		read -ep "\nChoice: " repo_src
 	else
-		read epo_src
+		read -ep "\nChoice: " repo_src
 		# user chose to keep var value from last
 		if [[ "$repo_src" == "" ]]; then
 			user="$repo_src_tmp"
@@ -86,9 +86,9 @@ main()
 	gpg_pub_key_tmp="$gpg_pub_key"
 	if [[ "$gpg_pub_key" == "" ]]; then
 		# var blank this run, get input
-		read gpg_pub_key
+		read -ep "\nChoice: " gpg_pub_key
 	else
-		read gpg_pub_key
+		read -ep "\nChoice: " gpg_pub_key
 		# user chose to keep var value from last
 		if [[ "$gpg_pub_key" == "" ]]; then
 			gpg_pub_key="$gpg_pub_key_tmp"
@@ -103,9 +103,9 @@ main()
 	target_tmp="$target"
 	if [[ "$target" == "" ]]; then
 		# var blank this run, get input
-		read target
+		read -ep "\nChoice: " target
 	else
-		read target
+		read -ep "\nChoice: " target
 		# user chose to keep var value from last
 		if [[ "$target" == "" ]]; then
 			target="$target_tmp"

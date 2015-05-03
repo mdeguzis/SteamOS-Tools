@@ -2,7 +2,7 @@ dosbox
 stella
 mednafen
 fceu
-nestopia
+zsnes
 mupen64plus
 gnuboy
 visualboyadvance

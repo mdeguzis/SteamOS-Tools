@@ -105,7 +105,7 @@ main()
 		# var blank this run, get input
 		read -ep "Package Name: " target
 	else
-		read -ep "\Package Name: " target
+		read -ep "Package Name: " target
 		# user chose to keep var value from last
 		if [[ "$target" == "" ]]; then
 			target="$target_tmp"

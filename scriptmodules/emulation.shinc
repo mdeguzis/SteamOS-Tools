@@ -8,7 +8,7 @@
 # Description:		script to install emulation packages not found in the
 #                 Debian repositories (e.g. PPSSPP)
 #
-#	See:
+#	See:            https://wiki.debian.org/HowToPackageForDebian
 # Usage:	      	N/A, called from another script
 #
 # -------------------------------------------------------------------------------
@@ -16,6 +16,32 @@
 m_install_retroarch
 {
 
-  echo "Nothing to see here for now"
+  #####################################################
+	# Retroarch (imported 20150503)
+	#####################################################
+	
+	PKG="retroarch"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "\n$PKG not found. Installing now...\n"
+		sleep 2s
+		wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/"
+		sudo dpkg -i "/tmp/"
+		# cleanup
+		rm -f "/tmp/"
+		
+		if [ $? == '0' ]; then
+			echo "Successfully installed $PKG"
+			sleep 2s
+		else
+			echo "Could not install $PKG. Exiting..."
+			sleep 3s
+			exit 1
+		fi
+	else
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
+	fi
 
 }

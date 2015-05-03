@@ -11,7 +11,8 @@
 #		source ./build-deb-from-PPA.sh
 # -------------------------------------------------------------------------------
 
-arg="$1"
+arg0="$0"
+arg1="$1"
 
 show_help()
 {
@@ -63,7 +64,10 @@ main()
 	
 	# Ask user for repos / vars
 	echo -e "==> Please enter or paste the deb-src URL now:"
-	echo -e "[Press ENTER to use last: $repo_src]\n"
+	
+	if [[ "$arg0" == "source" ]]; then
+		echo -e "[Press ENTER to use last: $repo_src]\n"
+	fi
 	
 	# set tmp var for last run, if exists
 	repo_src_tmp="$repo_src"

@@ -1,6 +1,5 @@
 dosbox
 stella
-virtualjaguar
 mednafen
 fceux
 higan

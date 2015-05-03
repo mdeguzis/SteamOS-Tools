@@ -1,7 +1,7 @@
 dosbox
 stella
 mednafen
-fceux
+fceu
 higan
 nestopia
 mupen64plus

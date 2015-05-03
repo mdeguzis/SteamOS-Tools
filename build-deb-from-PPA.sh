@@ -14,8 +14,10 @@
 arg0="$0"
 arg1="$1"
 
-echo $arg0
-echo $arg1
+echo "$?"
+echo "$0"
+echo "$1"
+echo "$2"
 
 sleep 50s
 

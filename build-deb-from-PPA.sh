@@ -62,16 +62,16 @@ main()
 	cd "$build_dir"
 	
 	# Ask user for repos / vars
-	echo -e "Please enter or paste the repo src URL now:"
-	echo -e "[Press ENTER to use last: $repo_src]"
+	echo -e "Please enter or paste the deb-src URL now:"
+	echo -e "[Press ENTER to use last: $repo_src]\n"
 	
 	# set tmp var for last run, if exists
 	repo_src_tmp="$repo_src"
 	if [[ "$repo_src" == "" ]]; then
 		# var blank this run, get input
-		read -ep "\nChoice: " repo_src
+		read -ep "deb-src URL: " repo_src
 	else
-		read -ep "\nChoice: " repo_src
+		read -ep "deb-src URL: " repo_src
 		# user chose to keep var value from last
 		if [[ "$repo_src" == "" ]]; then
 			user="$repo_src_tmp"
@@ -82,13 +82,13 @@ main()
 	fi
 	
 	echo -e "\nPlease enter or paste the GPG key for this repo now:"
-	echo -e "[Press ENTER to use last: $gpg_pub_key]"
+	echo -e "[Press ENTER to use last: $gpg_pub_key]\n"
 	gpg_pub_key_tmp="$gpg_pub_key"
 	if [[ "$gpg_pub_key" == "" ]]; then
 		# var blank this run, get input
-		read -ep "\nChoice: " gpg_pub_key
+		read -ep "GPG Public Key: " gpg_pub_key
 	else
-		read -ep "\nChoice: " gpg_pub_key
+		read -ep "\GPG Public Key: " gpg_pub_key
 		# user chose to keep var value from last
 		if [[ "$gpg_pub_key" == "" ]]; then
 			gpg_pub_key="$gpg_pub_key_tmp"
@@ -99,13 +99,13 @@ main()
 	fi
 	
 	echo -e "\nPlease enter or paste the desired package name now:"
-	echo -e "[Press ENTER to use last: $target]"
+	echo -e "[Press ENTER to use last: $target]\n"
 	target_tmp="$target"
 	if [[ "$target" == "" ]]; then
 		# var blank this run, get input
-		read -ep "\nChoice: " target
+		read -ep "Package Name: " target
 	else
-		read -ep "\nChoice: " target
+		read -ep "\Package Name: " target
 		# user chose to keep var value from last
 		if [[ "$target" == "" ]]; then
 			target="$target_tmp"

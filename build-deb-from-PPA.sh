@@ -14,6 +14,11 @@
 arg0="$0"
 arg1="$1"
 
+echo $arg0
+echo $arg1
+
+sleep 50s
+
 show_help()
 {
 	clear

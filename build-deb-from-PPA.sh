@@ -74,7 +74,7 @@ main()
 		read -ep "deb-src URL: " repo_src
 		# user chose to keep var value from last
 		if [[ "$repo_src" == "" ]]; then
-			user="$repo_src_tmp"
+			repo_src="$repo_src_tmp"
 		else
 			# keep user choice
 			repo_src="$repo_src"

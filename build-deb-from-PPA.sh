@@ -43,7 +43,7 @@ install_prereqs()
 	echo -e "\n==>Installing pre-requisites for building...\n"
 	sleep 1s
 	# install needed packages
-	apt-get install devscripts build-essential
+	sudo apt-get install devscripts build-essential
 
 }
 
@@ -54,7 +54,7 @@ main()
 	clear
 	# remove previous dirs if they exist
 	if [[ -d "$build_dir" ]]; then
-		rm -rf "$build_dir"
+		sudo rm -rf "$build_dir"
 	fi
 	
 	# create build dir and enter it

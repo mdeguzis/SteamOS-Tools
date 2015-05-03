@@ -62,7 +62,7 @@ main()
 	cd "$build_dir"
 	
 	# Ask user for repos / vars
-	echo -e "Please enter or paste the deb-src URL now:"
+	echo -e "==> Please enter or paste the deb-src URL now:"
 	echo -e "[Press ENTER to use last: $repo_src]\n"
 	
 	# set tmp var for last run, if exists
@@ -81,7 +81,7 @@ main()
 		fi
 	fi
 	
-	echo -e "\nPlease enter or paste the GPG key for this repo now:"
+	echo -e "\n==> Please enter or paste the GPG key for this repo now:"
 	echo -e "[Press ENTER to use last: $gpg_pub_key]\n"
 	gpg_pub_key_tmp="$gpg_pub_key"
 	if [[ "$gpg_pub_key" == "" ]]; then
@@ -98,7 +98,7 @@ main()
 		fi
 	fi
 	
-	echo -e "\nPlease enter or paste the desired package name now:"
+	echo -e "\n==> Please enter or paste the desired package name now:"
 	echo -e "[Press ENTER to use last: $target]\n"
 	target_tmp="$target"
 	if [[ "$target" == "" ]]; then
@@ -116,7 +116,7 @@ main()
 	fi
 	
 	# prechecks
-	echo -e "\n==>Attempting to add source list\n"
+	echo -e "\n==> Attempting to add source list\n"
 	sleep 2s
 	
 	# check for existance of target, backup if it exists
@@ -128,16 +128,16 @@ main()
 	echo ${repo_src} > "${target}.list.tmp"
 	sudo mv "${target}.list.tmp" "/etc/apt/sources.list.d/${target}.list"
 	
-	echo -e "\n==>Adding GPG key:\n"
+	echo -e "\n==> Adding GPG key:\n"
 	sleep 2s
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ${gpg_pub_key}
 	
-	echo -e "\n==>Updating system package listings...\n"
+	echo -e "\n==> Updating system package listings...\n"
 	sleep 2s
 	sudo apt-get update
 	
 	#Attempt to build target
-	echo -e "\n==>Attemption to build ${target}:\n"
+	echo -e "\n==> Attempting to build ${target}:\n"
 	sleep 2s
 	sudo apt-get source --build ${target}
 	

@@ -72,7 +72,7 @@ Installs basic Debian software (based on [Distrowatch](http://distrowatch.com/ta
 Installs extra softare based on feedback and personal preference  
 
 `emulation`          
-Retroarch and associated emulators. (in-progress, debs need built)  
+Standalone emulation packages from the Debian repositories. In due time, this will include rebuilt packages for such emulators like PPSSPP, PCSX2, and more.  
 
 `emulation-src`  
 Installs prerequisite packages for compiling emulation packages from source and then compiles and builds libretro packages from source (will take some time to install). See the [script header](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/master/scriptmodules/emu-from-source.shinc) for the latest test stats on build time.  (basic routines are done, some work left)     

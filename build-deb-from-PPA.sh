@@ -144,8 +144,12 @@ main()
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
 	
-	# back out of build temp
-	cd
+	# back out of build temp to script dir if called from git clone
+	if [[ "$scriptdir" != "" ]]; then
+		cd $scriptdir
+	else
+		cd $HOME
+	fi
 	
 	# inform user of packages
 	echo -e "\n###################################################################"

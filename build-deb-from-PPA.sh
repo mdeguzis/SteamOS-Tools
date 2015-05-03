@@ -63,7 +63,7 @@ main()
 	
 	# Ask user for repos / vars
 	echo -e "Please enter or paste the repo src URL now:"
-	echo -e "ENTER to use last: $repo_src"
+	echo -e "[Press ENTER to use last: $repo_src]"
 	
 	# set tmp var for last run, if exists
 	repo_src_tmp="$repo_src"
@@ -82,7 +82,7 @@ main()
 	fi
 	
 	echo -e "\nPlease enter or paste the GPG key for this repo now:"
-	echo -e "ENTER to use last: $gpg_pub_key"
+	echo -e "[Press ENTER to use last: $gpg_pub_key]"
 	gpg_pub_key_tmp="$gpg_pub_key"
 	if [[ "$gpg_pub_key" == "" ]]; then
 		# var blank this run, get input
@@ -99,7 +99,7 @@ main()
 	fi
 	
 	echo -e "\nPlease enter or paste the desired package name now:"
-	echo -e "ENTER to use last: $target"
+	echo -e "[Press ENTER to use last: $target]"
 	target_tmp="$target"
 	if [[ "$target" == "" ]]; then
 		# var blank this run, get input

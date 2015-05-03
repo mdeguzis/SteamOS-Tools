@@ -88,7 +88,7 @@ main()
 		# var blank this run, get input
 		read -ep "GPG Public Key: " gpg_pub_key
 	else
-		read -ep "\GPG Public Key: " gpg_pub_key
+		read -ep "GPG Public Key: " gpg_pub_key
 		# user chose to keep var value from last
 		if [[ "$gpg_pub_key" == "" ]]; then
 			gpg_pub_key="$gpg_pub_key_tmp"

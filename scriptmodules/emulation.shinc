@@ -51,12 +51,15 @@ m_install_emu_station()
 
 }
 
-m_install_emu_station()
+m_install_higan()
 {
 
 	#####################################################
-	# Emulation Station
+	# Higan
 	#####################################################
+	
+	# See: higan_v094-source.tar.xz
+	# Source code: Needs saved to libregeek
 	
 	# VARs
 	PKG="higan"

@@ -136,12 +136,6 @@ When finished, please enter the word 'done' without quotes or abort to exit the 
 	
 	while [[ "$src_cmd" != "done" ]];
 	do
-		if [[ "$src_cmd" == "abort" ]]; then
-			# exit script and return to dir
-			cd "$scriptdir"
-			exit
-		fi
-	
 		# capture command
 		read -ep "CMD: " src_cmd
 		

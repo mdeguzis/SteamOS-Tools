@@ -74,18 +74,18 @@ main()
 	echo -e "    [Press ENTER to use last: $git_src]\n"
 	
 	# set tmp var for last run, if exists
-	git_src_tmp="$git_src"
+	git_src_tmp="$git_url"
 	if [[ "$git_src" == "" ]]; then
 		# var blank this run, get input
-		read -ep "Git source URL: " git_src
+		read -ep "Git source URL: " git_url
 	else
-		read -ep "Git source URL: " git_src
+		read -ep "Git source URL: " git_url
 		# user chose to keep var value from last
-		if [[ "$git_src" == "" ]]; then
-			git_src="$git_src_tmp"
+		if [[ "$git_url" == "" ]]; then
+			git_url="$git_url_tmp"
 		else
 			# keep user choice
-			git_src="$git_src"
+			git_url="$git_url"
 		fi
 	fi
 	

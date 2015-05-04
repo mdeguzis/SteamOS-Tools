@@ -795,6 +795,8 @@ main()
                 
 	        show_warning
 		install_software
+		# kick off extra modules for buld debs
+		m_emulation_install_main
 
         elif [[ "$type" == "emulation-src" ]]; then
 

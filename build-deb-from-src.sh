@@ -100,7 +100,6 @@ main()
 		# eval git status
 		output=$(git pull 2> /dev/null)
 		
-	
 		# evaluate git pull. Remove, create, and clone if it fails
 		if [[ "$output" != "Already up-to-date." ]]; then
 
@@ -111,15 +110,15 @@ main()
 			cd "$git_dir"
 			# clone to current DIR
 			git clone "$git_url" .
+		fi
 			
-		else
+	else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
 			sleep 2s
 			# create and clone to current dir
 			git clone "$git_url" .
 			
-		fi
 	fi
 	
  

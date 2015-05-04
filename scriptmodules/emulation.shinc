@@ -32,10 +32,10 @@ m_install_retroarch()
 		rm -f "/tmp/"
 		
 		if [ $? == '0' ]; then
-			echo "\n==INFO==\nSuccessfully installed $PKG"
+			echo -e "\n==INFO==\nSuccessfully installed $PKG"
 			sleep 2s
 		else
-			echo "\n==INFO==\nCould not install $PKG. Exiting..."
+			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."
 			sleep 3s
 			exit 1
 		fi
@@ -59,16 +59,16 @@ m_install_antimicro()
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
-		wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/antimicro_2.5_SteamOS_amd64.deb"
+		wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/emulation/antimicro_2.5_SteamOS_amd64.deb"
 		sudo dpkg -i "/tmp/antimicro_2.5_SteamOS_amd64.deb"
 		# cleanup
 		rm -f "/tmp/antimicro_2.5_SteamOS_amd64.deb"
 		
 		if [ $? == '0' ]; then
-			echo "\n==INFO==\nSuccessfully installed $PKG"
+			echo -e "\n==INFO==\nSuccessfully installed $PKG"
 			sleep 2s
 		else
-			echo "\n==INFO==\nCould not install $PKG. Exiting..."
+			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."
 			sleep 3s
 			exit 1
 		fi

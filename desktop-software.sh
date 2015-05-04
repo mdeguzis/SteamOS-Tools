@@ -797,6 +797,8 @@ main()
 	        show_warning
 		install_software
 		# kick off extra modules for buld debs
+		echo -e "\n==> Proceeding to supplemental emulation package routine\n"
+		sleep 2s
 		m_emulation_install_main
 
         elif [[ "$type" == "emulation-src" ]]; then

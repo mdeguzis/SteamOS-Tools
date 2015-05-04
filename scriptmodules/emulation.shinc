@@ -48,7 +48,7 @@ m_install_retroarch()
 		fi
 	elif [ "$apt_mode" == "remove" ]; then
 		# user requested removal
-		echo -e "\n==> Removal requested for $PKG"
+		echo -e "\n==> Removal requested for $PKG\n"
 		sleep 2s
 		sudo apt-get remove $PKG
 		
@@ -95,7 +95,7 @@ m_install_antimicro()
 	
 	elif [ "$apt_mode" == "remove" ]; then
 		# user requested removal
-		echo -e "\n==> Removal requested for $PKG"
+		echo -e "\n==> Removal requested for $PKG\n"
 		sleep 2s
 		sudo apt-get remove $PKG
 		
@@ -144,7 +144,7 @@ m_install_emu_station()
 		
 	elif [ "$apt_mode" == "remove" ]; then
 		# user requested removal
-		echo -e "\n==> Removal requested for $PKG"
+		echo -e "\n==> Removal requested for $PKG\n"
 		sleep 2s
 		sudo apt-get remove $PKG
 	else

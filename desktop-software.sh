@@ -662,6 +662,7 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emu-from-source"
+	import "$scriptdir/scriptmodules/emulation"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/mobile-upnp-dlna"

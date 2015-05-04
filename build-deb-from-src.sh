@@ -5,10 +5,10 @@
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
 # Script Ver:	0.1.3
-# Description:	Attempts to build a deb package from a PPA
+# Description:	Attempts to build a deb package from a git src
 #
-# Usage:	sudo ./build-deb-from-PPA.sh
-#		source ./build-deb-from-PPA.sh
+# Usage:	sudo ./build-deb-from-src.sh
+#		source ./build-deb-from-src.sh
 # -------------------------------------------------------------------------------
 
 arg1="$1"
@@ -21,9 +21,9 @@ show_help()
 	####################################################
 	Usage:	
 	####################################################
-	./build-deb-from-PPA.sh
-	./build-deb-from-PPA.sh --help
-	source ./build-deb-from-PPA.sh
+	./build-deb-from-src.sh
+	./build-deb-from-src.sh --help
+	source ./build-deb-from-src.sh
 	
 	The third option, preeceded by 'source' will 
 	execute the script in the context of the calling 
@@ -63,85 +63,27 @@ main()
 	cd "$build_dir"
 	
 	# Ask user for repos / vars
-	echo -e "==> Please enter or paste the deb-src URL now:"
-	echo -e "    [Press ENTER to use last: $repo_src]\n"
+	echo -e "==> Please enter or paste the git URL now:"
+	echo -e "    [Press ENTER to use last: $git_src]\n"
 	
 	# set tmp var for last run, if exists
 	repo_src_tmp="$repo_src"
-	if [[ "$repo_src" == "" ]]; then
+	if [[ "$git_src" == "" ]]; then
 		# var blank this run, get input
-		read -ep "deb-src URL: " repo_src
+		read -ep "Git source URL: " git_src
 	else
-		read -ep "deb-src URL: " repo_src
+		read -ep "Git source URL: " git_src
 		# user chose to keep var value from last
-		if [[ "$repo_src" == "" ]]; then
-			repo_src="$repo_src_tmp"
+		if [[ "$git_src" == "" ]]; then
+			git_src="$git_src_tmp"
 		else
 			# keep user choice
-			repo_src="$repo_src"
+			git_src="$git_src"
 		fi
 	fi
 	
-	echo -e "\n==> Please enter or paste the GPG key for this repo now:"
-	echo -e "    [Press ENTER to use last: $gpg_pub_key]\n"
-	gpg_pub_key_tmp="$gpg_pub_key"
-	if [[ "$gpg_pub_key" == "" ]]; then
-		# var blank this run, get input
-		read -ep "GPG Public Key: " gpg_pub_key
-	else
-		read -ep "GPG Public Key: " gpg_pub_key
-		# user chose to keep var value from last
-		if [[ "$gpg_pub_key" == "" ]]; then
-			gpg_pub_key="$gpg_pub_key_tmp"
-		else
-			# keep user choice
-			gpg_pub_keyst="$gpg_pub_key"
-		fi
-	fi
-	
-	echo -e "\n==> Please enter or paste the desired package name now:"
-	echo -e "    [Press ENTER to use last: $target]\n"
-	target_tmp="$target"
-	if [[ "$target" == "" ]]; then
-		# var blank this run, get input
-		read -ep "Package Name: " target
-	else
-		read -ep "Package Name: " target
-		# user chose to keep var value from last
-		if [[ "$target" == "" ]]; then
-			target="$target_tmp"
-		else
-			# keep user choice
-			target="$target"
-		fi
-	fi
-	
-	# prechecks
-	echo -e "\n==> Attempting to add source list\n"
-	sleep 2s
-	
-	# check for existance of target, backup if it exists
-	if [[ -f /etc/apt/sources.list.d/${target}.list ]]; then
-		sudo mv "/etc/apt/sources.list.d/${target}.list" 
-"/etc/apt/sources.list.d/${target}.list.bak"
-	fi
-	
-	# add source to sources.list.d/
-	echo ${repo_src} > "${target}.list.tmp"
-	sudo mv "${target}.list.tmp" "/etc/apt/sources.list.d/${target}.list"
-	
-	echo -e "\n==> Adding GPG key:\n"
-	sleep 2s
-	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ${gpg_pub_key}
-	
-	echo -e "\n==> Updating system package listings...\n"
-	sleep 2s
-	sudo apt-get update
-	
-	#Attempt to build target
-	echo -e "\n==> Attempting to build ${target}:\n"
-	sleep 2s
-	sudo apt-get source --build ${target}
+
+
 	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)

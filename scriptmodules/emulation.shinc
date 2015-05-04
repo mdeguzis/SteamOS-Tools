@@ -53,16 +53,55 @@ m_install_antimicro()
 	# Antimicro
 	#####################################################
 	
+	# VARs
 	PKG="antimicro"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="antimicro_2.5_SteamOS_amd64.deb"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
-		wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/emulation/antimicro_2.5_SteamOS_amd64.deb"
-		sudo dpkg -i "/tmp/antimicro_2.5_SteamOS_amd64.deb"
+		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+		sudo dpkg -i "$PKG_FILENAME"
 		# cleanup
-		rm -f "/tmp/antimicro_2.5_SteamOS_amd64.deb"
+		rm -f "/tmp/$PKG_FILENAME"
+		
+		if [ $? == '0' ]; then
+			echo -e "\n==INFO==\nSuccessfully installed $PKG"
+			sleep 2s
+		else
+			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."
+			sleep 3s
+			exit 1
+		fi
+	else
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
+	fi
+
+}
+
+m_install_emu_station()
+{
+
+	#####################################################
+	# Emulation Station
+	#####################################################
+	
+	# VARs
+	PKG="emulationstation"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="emulationstation_2.0.1+SteamOS_amd64.deb"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
+		sleep 2s
+		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+		sudo dpkg -i "$PKG_FILENAME"
+		# cleanup
+		rm -f "/tmp/$PKG_FILENAME"
 		
 		if [ $? == '0' ]; then
 			echo -e "\n==INFO==\nSuccessfully installed $PKG"

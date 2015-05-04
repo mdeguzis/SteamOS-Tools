@@ -124,8 +124,9 @@ m_emulation_install_main()
 	# kick off emulation installs here or comment them out 
 	# to disable them temporarily.
 	
-	#m_install_retroarch
-	m_install_antimicro
+	# m_install_retroarch
+	# m_install_antimicro
+	m_install_emu_station
 }
 
 # Start main function

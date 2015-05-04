@@ -790,6 +790,9 @@ main()
 				fi
 			done
 			echo ""
+			
+			# We also want to loop through the module, checks will output fine 
+			m_emulation_install_main
 			exit
 			
 		fi

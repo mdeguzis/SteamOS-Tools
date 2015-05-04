@@ -97,9 +97,9 @@ main()
 		echo -e "\n==Info==\nGit folder already exists! Attempting git pull...\n"
 		sleep 1s
 		# attempt to pull the latest source first
-		cd $git_dir
+		cd "$git_dir"
 		# eval git status
-		output=$(git pull $git_url)
+		output=$(git pull "$git_url")
 		
 	
 		# evaluate git pull. Remove, create, and clone if it fails
@@ -119,7 +119,7 @@ main()
 			sleep 2s
 			# create and clone to current dir
 			git clone "$git_url" .
-			cd $git_dir
+			cd "$git_dir"
 			
 		fi
 	fi
@@ -183,9 +183,9 @@ main()
 	
 	# back out of build temp to script dir if called from git clone
 	if [[ "$scriptdir" != "" ]]; then
-		cd $scriptdir
+		cd ""$scriptdir"
 	else
-		cd $HOME
+		cd "$HOME"
 	fi
 	
 	# inform user of packages

@@ -4,33 +4,16 @@
 # Author:     		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name: 		emulation.shinc
-# Script Ver:	  	0.5.1
+# Script Ver:	  	0.5.3
 # Description:		script to install emulation packages not found in the
 #                 	Debian repositories (e.g. PPSSPP). gdebi is now in use
 #			in order to autoresolve deps from .deb pkgs.
 #
-#See:            	https://wiki.debian.org/HowToPackageForDebian
-# Usage:	      	N/A, called from another script
+# See:            	http://www.lgdb.org/emulators
+# See also:		
+# Usage:		N/A, called from another script
 #
 # -------------------------------------------------------------------------------
-
-m_install_retroarch()
-{
-
-	#####################################################
-	# Retroarch - in progress - disable for now
-	#####################################################
-	
-	# VARs
-	PKG="retroarch"
-	PKG_FILENAME=""
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-	
-	# proceed to eval routine
-	# m_pkg_routine_eval
-
-}
 
 m_install_antimicro()
 {
@@ -65,6 +48,42 @@ m_install_emu_station()
 	
 	# proceed to eval routine
 	m_pkg_routine_eval
+
+}
+
+m_install_emu_station()
+{
+
+	#####################################################
+	# Emulation Station
+	#####################################################
+	
+	# VARs
+	PKG="higan"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="NEEDS-PACKAGED"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	# proceed to eval routine
+	m_pkg_routine_eval
+
+}
+
+m_install_retroarch()
+{
+
+	#####################################################
+	# Retroarch - in progress - disable for now
+	#####################################################
+	
+	# VARs
+	PKG="retroarch"
+	PKG_FILENAME=""
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	# proceed to eval routine
+	# m_pkg_routine_eval
 
 }
 

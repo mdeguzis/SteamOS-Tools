@@ -135,7 +135,7 @@ m_install_emu_station()
 		# take into account if user requested removal
 		if [[ "$apt_mode" = "remove" ]]; then 
 			echo -e "==> Removal requested for $PKG"
-			sleep 2s
+			sleep 200s
 			sudo apt-get remove $PKG
 		else
 			echo "Checking for $PKG [OK]"

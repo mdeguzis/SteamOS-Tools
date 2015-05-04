@@ -125,54 +125,58 @@ main()
 	fi
 	
  
-  #################################################
-  # Build PKG
-  #################################################
+	#################################################
+	# Build PKG
+	#################################################
+	
+	# Output readme via less to review build notes first
+	echo -e "\n==> Opening any available README.md to review build notes..."
+	sleep 2s
+	less README.md
+	
+	# Ask user to enter build commands until "done" is received
+	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
+	echo -e "When finished, please enter the word 'done' without quotes\n"
+	sleep 2s
+	
+	while [ "$src_cmd" != "done" ]
+	do
+		# capture command
+		read src_cmd
+		
+		# Execute src cmd
+		$src_cmd
+	done
   
-   # Output readme via less to review build notes first
-  echo -e "\n==> Opening any available README.md to review build notes..."
-  sleep 2s
-  less README.md
+	############################
+	# proceed to DEB BUILD
+	############################
+	
+	# Perform debuild instructions here
   
-  # Ask user to enter build commands until "done" is received
-  echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
-  echo -e "When finished, please enter the word 'done' without quotes\n"
-  sleep 2s
-  
-  echo -e "\n==> Building sources...please wait"
-  sleep 2s
-  
-  # BUILD CODE HERE
-  
-  ############################
-  # proceed to DEB BUILD
-  ############################
-  
-  # Perform debuild instructions here
-  
-  
-  #################################################
-  # Post install configuration
-  #################################################
-  
-  # TODO
-  
-  #################################################
-  # Cleanup
-  #################################################
-  
-  # clean up dirs
-  
-  # note time ended
-  time_end=$(date +%s)
-  time_stamp_end=(`date +"%T"`)
-  runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
-  
-  # output finish
-  echo -e "\nTime started: ${time_stamp_start}"
-  echo -e "Time started: ${time_stamp_end}"
-  echo -e "Total Runtime (minutes): $runtime\n"
-  
+	
+	#################################################
+	# Post install configuration
+	#################################################
+	
+	# TODO
+	
+	#################################################
+	# Cleanup
+	#################################################
+	
+	# clean up dirs
+	
+	# note time ended
+	time_end=$(date +%s)
+	time_stamp_end=(`date +"%T"`)
+	runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
+	
+	# output finish
+	echo -e "\nTime started: ${time_stamp_start}"
+	echo -e "Time started: ${time_stamp_end}"
+	echo -e "Total Runtime (minutes): $runtime\n"
+
 	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)

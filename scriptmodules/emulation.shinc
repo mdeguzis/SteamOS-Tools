@@ -27,36 +27,8 @@ m_install_retroarch()
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
-	# start PKG routine
-	if [[ "$PKG_OK" == "" && "$apt_mode" != "remove" ]]; then
-	
-		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
-		sleep 2s
-		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
-		sudo gdebi "/tmp/$PKG_FILENAME"
-		# cleanup
-		rm -f "/tmp/$PKG_FILENAME"
-		
-		if [ $? == '0' ]; then
-			echo -e "\n==INFO==\nSuccessfully installed $PKG"
-			sleep 2s
-		else
-			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."
-			sleep 3s
-			exit 1
-		fi
-	elif [ "$apt_mode" == "remove" ]; then
-		# user requested removal
-		echo -e "\n==> Removal requested for $PKG\n"
-		sleep 2s
-		sudo apt-get remove $PKG
-		
-	else
-		echo "Checking for $PKG [OK]"
-		sleep 0.5s
-	
-	#end PKG routine	
-	fi
+	# proceed to eval routine
+	m_pkg_routine_eval
 
 }
 
@@ -73,37 +45,8 @@ m_install_antimicro()
 	PKG_FILENAME="antimicro_2.5_SteamOS_amd64.deb"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
-	# start PKG routine
-	if [[ "$PKG_OK" == "" && "$apt_mode" != "remove" ]]; then
-	
-		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
-		sleep 2s
-		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
-		sudo gdebi "/tmp/$PKG_FILENAME"
-		# cleanup
-		rm -f "/tmp/$PKG_FILENAME"
-		
-		if [ $? == '0' ]; then
-			echo -e "\n==INFO==\nSuccessfully installed $PKG"
-			sleep 2s
-		else
-			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."
-			sleep 3s
-			exit 1
-		fi
-	
-	elif [ "$apt_mode" == "remove" ]; then
-		# user requested removal
-		echo -e "\n==> Removal requested for $PKG\n"
-		sleep 2s
-		sudo apt-get remove $PKG
-		
-	else
-		echo "Checking for $PKG [OK]"
-		sleep 0.5s
-	
-	#end PKG routine	
-	fi
+	# proceed to eval routine
+	m_pkg_routine_eval
 
 }
 
@@ -120,36 +63,8 @@ m_install_emu_station()
 	PKG_FILENAME="emulationstation_2.0.1+SteamOS_amd64.deb"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
-	# start PKG routine
-	if [[ "$PKG_OK" == "" && "$apt_mode" != "remove" ]]; then
-	
-		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
-		sleep 2s
-		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
-		sudo gdebi "/tmp/$PKG_FILENAME"
-		# cleanup
-		rm -f "/tmp/$PKG_FILENAME"
-		
-		if [ $? == '0' ]; then
-			echo -e "\n==INFO==\nSuccessfully installed $PKG"
-			sleep 2s
-		else
-			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."
-			sleep 3s
-			exit 1
-		fi
-		
-	elif [ "$apt_mode" == "remove" ]; then
-		# user requested removal
-		echo -e "\n==> Removal requested for $PKG\n"
-		sleep 2s
-		sudo apt-get remove $PKG
-	else
-		echo "Checking for $PKG [OK]"
-		sleep 0.5s
-	
-	# end PKG routine
-	fi
+	# proceed to eval routine
+	m_pkg_routine_eval
 
 }
 
@@ -161,12 +76,43 @@ m_install_ppsspp()
 	#####################################################
 	
 	# VARs
-	
 	PKG="ppsspp"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
 	PKG_FILENAME="ppsspp-qt_1.0.1_SteamOS_amd64.deb"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+
+	# proceed to eval routine
+	m_pkg_routine_eval
+
+}
+
+m_install_emu_station()
+{
+
+	#####################################################
+	# Emulation Station
+	#####################################################
 	
+	# VARs
+	PKG="snes9x-gtk"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="snes9x-gtk_1.53.903.81_SteamOS_amd64.deb"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	# proceed to eval routine
+	m_pkg_routine_eval
+}
+
+m_pkg_routine_eval()
+{
+
+	#####################################################
+	# Info:
+	#####################################################
+	# This routine uses VARs set in each emulator 
+	# sub-function to process the emulator package through
+	# routine evals.
+		
 	# start PKG routine
 	if [[ "$PKG_OK" == "" && "$apt_mode" != "remove" ]]; then
 	
@@ -196,8 +142,8 @@ m_install_ppsspp()
 		sleep 0.5s
 	
 	# end PKG routine
-	fi
-
+	fi	
+	
 }
 
 m_emulation_install_main()
@@ -209,5 +155,5 @@ m_emulation_install_main()
 	# m_install_retroarch
 	# m_install_antimicro
 	# m_install_emu_station
-	m_install_ppsspp
+	# m_install_ppsspp
 }

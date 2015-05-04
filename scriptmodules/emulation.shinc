@@ -161,7 +161,7 @@ m_pkg_routine_eval()
 	else
 		# All else: check pkg status
 		echo "Checking for $PKG [OK]"
-		sleep 0.5s
+		sleep 0.3s
 	
 	# end PKG routine
 	fi	

@@ -1,0 +1,186 @@
+#!/bin/bash
+
+# -------------------------------------------------------------------------------
+# Author:     		Michael DeGuzis
+# Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name: 		emulation.shinc
+# Script Ver:	  	0.5.1
+# Description:		script to install emulation packages not found in the
+#                 	Debian repositories (e.g. PPSSPP). gdebi is now in use
+#			in order to autoresolve deps from .deb pkgs.
+#
+#See:            	https://wiki.debian.org/HowToPackageForDebian
+# Usage:	      	N/A, called from another script
+#
+# -------------------------------------------------------------------------------
+
+m_install_retroarch()
+{
+
+	#####################################################
+	# Retroarch - in progress - disable for now
+	#####################################################
+	
+	# VARs
+	PKG="retroarch"
+	PKG_FILENAME=""
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	# proceed to eval routine
+	# m_pkg_routine_eval
+
+}
+
+m_install_antimicro()
+{
+
+	#####################################################
+	# Antimicro
+	#####################################################
+	
+	# VARs
+	PKG="antimicro"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="antimicro_2.5_SteamOS_amd64.deb"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	# proceed to eval routine
+	m_pkg_routine_eval
+
+}
+
+m_install_emu_station()
+{
+
+	#####################################################
+	# Emulation Station
+	#####################################################
+	
+	# VARs
+	PKG="emulationstation"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="emulationstation_2.0.1+SteamOS_amd64.deb"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	# proceed to eval routine
+	m_pkg_routine_eval
+
+}
+
+m_install_ppsspp()
+{
+
+	#####################################################
+	# PPSSPP
+	#####################################################
+	
+	# VARs
+	PKG="ppsspp-qt"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="ppsspp-qt_1.0.1_SteamOS_amd64.deb"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+
+	# proceed to eval routine
+	m_pkg_routine_eval
+
+}
+
+m_install_snes9x_gtk()
+{
+
+	#####################################################
+	# SNES9X-GTK
+	#####################################################
+	
+	# VARs
+	PKG="snes9x-gtk"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="snes9x-gtk_1.53.903.81_SteamOS_amd64.deb"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	# proceed to eval routine
+	m_pkg_routine_eval
+}
+
+m_install_vbam()
+{
+
+	#####################################################
+	# VBA-M (SDL)
+	#####################################################
+	
+	# VARs for PKG2
+	PKG="vbam-sdl"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="vbam-sdl_1.8.0.1231-SteamOS_amd64.deb "
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+
+	# proceed to eval routine for PKG 2
+	m_pkg_routine_eval
+	 
+}
+
+m_pkg_routine_eval()
+{
+
+	#####################################################
+	# Info:
+	#####################################################
+	# This routine uses VARs set in each emulator 
+	# sub-function to process the emulator package through
+	# routine evals.
+		
+	# start PKG routine
+	if [[ "$PKG_OK" == "" && \
+	      "$apt_mode" != "remove" && \
+	      "$options" != "check" ]]; then
+	
+		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
+		sleep 2s
+		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+		sudo gdebi "/tmp/$PKG_FILENAME"
+		# cleanup
+		rm -f "/tmp/$PKG_FILENAME"
+		
+		if [ $? == '0' ]; then
+			echo -e "\n==INFO==\nSuccessfully installed $PKG"
+			sleep 2s
+		else
+			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."
+			sleep 3s
+			exit 1
+		fi
+		
+	elif [ "$apt_mode" == "remove" ]; then
+		# user requested removal
+		echo -e "\n==> Removal requested for $PKG\n"
+		sleep 2s
+		sudo apt-get remove $PKG
+
+	else
+		# All else: check pkg status
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
+	
+	# end PKG routine
+	fi	
+	
+}
+
+m_emulation_install_main()
+{
+	
+	# kick off emulation installs here or comment them out 
+	# to disable them temporarily.
+	
+	# m_install_retroarch
+	m_install_antimicro
+	m_install_emu_station
+	m_install_ppsspp
+	m_install_snes9x_gtk
+	m_install_vbam
+	
+	echo ""
+	
+}

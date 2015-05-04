@@ -208,7 +208,7 @@ show_help()
 	Options: 	[install|uninstall|list|check] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[plex|kodi|firefox|chrome|x360-bindings]
+	Extra types: 	[plex|kodi|firefox|chrome|x360-bindings|ue4]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -338,10 +338,11 @@ get_software_type()
                 ep_install_kodi
                 exit
         elif [[ "$type" == "ue4" ]]; then
-                # install plex from helper script
-                echo -e "\nScript development in progress, exiting...\n"
-                software_list="$scriptdir/cfgs/ue4.txt "
-                exit
+                # install ue4 from helper script
+                #software_list="$scriptdir/cfgs/ue4.txt"
+                # skip to ue4 module for now, setup.sh within that build
+                # script will attempt to get our source deps.
+                m_install_ue4_src
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"
@@ -661,6 +662,7 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emu-from-source"
+	import "$scriptdir/scriptmodules/emulation"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/mobile-upnp-dlna"
@@ -787,13 +789,19 @@ main()
 					fi
 				fi
 			done
-			echo ""
+			
+			# We also want to loop through the module, checks will output fine 
+			m_emulation_install_main
 			exit
 			
 		fi
                 
 	        show_warning
 		install_software
+		# kick off extra modules for buld debs
+		echo -e "\n==> Proceeding to supplemental emulation package routine\n"
+		sleep 2s
+		m_emulation_install_main
 
         elif [[ "$type" == "emulation-src" ]]; then
 

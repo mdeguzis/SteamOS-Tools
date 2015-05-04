@@ -139,10 +139,10 @@ main()
 	echo -e "When finished, please enter the word 'done' without quotes\n"
 	sleep 2s
 	
-	while [ -n "$src_cmd" ];
+	while [[ "$src_cmd" != "done" ]];
 	do
 		# capture command
-		read src_cmd
+		read -ep "CMD: " src_cmd
 		
 		# Execute src cmd
 		$src_cmd
@@ -152,8 +152,11 @@ main()
 	# proceed to DEB BUILD
 	############################
 	
-	# Perform debuild instructions here
-  
+	echo -e "\n==> Building Debian package from source"
+	
+	# build deb package
+	sleep 2s
+	dpkg-buildpackage -rfakeroot -uc -b
 	
 	#################################################
 	# Post install configuration

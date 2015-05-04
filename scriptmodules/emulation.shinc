@@ -110,6 +110,41 @@ m_install_vbam()
 	# Emulation Station
 	#####################################################
 	
+	############################
+	# PKG 1 of 2: vbam-gtk
+	############################
+	
+	# VARs for PKG1
+	PKG="vbam"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="vbam-gtk_1.8.0.1231-SteamOS_amd64.deb"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	# proceed to eval routine for PKG 1
+	m_pkg_routine_eval
+	
+	############################
+	# PKG 2 of 2: vbam-sdl
+	############################
+	
+	# VARs for PKG2
+	PKG="vbam"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="vbam-sdl_1.8.0.1231-SteamOS_amd64.deb "
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+
+	# proceed to eval routine for PKG 2
+	m_pkg_routine_eval
+	 
+}
+
+m_install_vbam()
+{
+
+	#####################################################
+	# Emulation Station
+	#####################################################
+	
 	# VARs
 	PKG="vbam"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"

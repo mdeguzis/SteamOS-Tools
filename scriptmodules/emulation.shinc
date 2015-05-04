@@ -134,7 +134,7 @@ m_pkg_routine_eval()
 	# start PKG routine
 	if [[ "$PKG_OK" == "" && \
 	      "$apt_mode" != "remove" && \
-	      "$apt_mode" != "check" ]]; then
+	      "$options" != "check" ]]; then
 	
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s

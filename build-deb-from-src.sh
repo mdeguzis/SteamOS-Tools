@@ -15,6 +15,8 @@ arg1="$1"
 scriptdir=$(pwd)
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
+# reset source command for while loop
+src_cmd=""
 
 show_help()
 {
@@ -134,9 +136,6 @@ main()
 	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
 	echo -e "When finished, please enter the word 'done' without quotes\n"
 	sleep 2s
-	
-	read -ep "CMD: " src_cmd
-	sleep 50s
 	
 	while [[ "$src_cmd" != "done" ]];
 	do

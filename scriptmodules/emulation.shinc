@@ -115,7 +115,9 @@ m_install_emu_station()
 	PKG_FILENAME="emulationstation_2.0.1+SteamOS_amd64.deb"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
-	if [ "$PKG_OK" == "" ]; then
+	
+	# start PKG routine
+	if [ "$PKG_OK" == "" && "$apt_mode" != "remove" ]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
@@ -131,16 +133,17 @@ m_install_emu_station()
 			sleep 3s
 			exit 1
 		fi
+		
+	elif [ "$apt_mode" != "remove" ]; then
+		# user requested removal
+		echo -e "==> Removal requested for $PKG"
+		sleep 200s
+		sudo apt-get remove $PKG
 	else
-		# take into account if user requested removal
-		if [[ "$apt_mode" = "remove" ]]; then 
-			echo -e "==> Removal requested for $PKG"
-			sleep 200s
-			sudo apt-get remove $PKG
-		else
-			echo "Checking for $PKG [OK]"
-			sleep 0.5s
-		fi
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
+	
+	# end PKG routine
 	fi
 
 }

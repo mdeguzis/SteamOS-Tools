@@ -74,7 +74,7 @@ main()
 	echo -e "[ENTER to use last: $git_src]\n"
 	
 	# set tmp var for last run, if exists
-	git_src_tmp="$git_url"
+	git_url_tmp="$git_url"
 	if [[ "$git_src" == "" ]]; then
 		# var blank this run, get input
 		read -ep "Git source URL: " git_url
@@ -99,7 +99,7 @@ main()
 		# attempt to pull the latest source first
 		cd "$git_dir"
 		# eval git status
-		output=$(git pull "$git_url")
+		output=$(git pull)
 		
 	
 		# evaluate git pull. Remove, create, and clone if it fails

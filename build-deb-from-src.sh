@@ -203,7 +203,9 @@ When finished, please enter the word 'done' without quotes or abort to exit the 
 	echo -e "sudo dpkg-buildpackage -b -d -uc"
 	echo -e "###################################################################\n"
 	
-	ls "/home/desktop/build-deb-temp"
+	echo -e "Showing contents of: $build_dir:"
+	ls "$build_dir"
+	cat "$git_dir"
 }
 
 # start main

@@ -134,7 +134,7 @@ m_install_emu_station()
 			exit 1
 		fi
 		
-	elif [ "$apt_mode" != "remove" ]; then
+	elif [ "$apt_mode" == "remove" ]; then
 		# user requested removal
 		echo -e "==> Removal requested for $PKG"
 		sleep 200s

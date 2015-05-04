@@ -113,6 +113,9 @@ main()
 				echo -e "\nGit clone/pull failed. Please review the above.\n"
 			fi
 			
+			echo "$?"
+			sleep 50s
+			
 		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"

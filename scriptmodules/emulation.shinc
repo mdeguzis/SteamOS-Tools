@@ -76,7 +76,7 @@ m_install_ppsspp()
 	#####################################################
 	
 	# VARs
-	PKG="ppsspp"
+	PKG="ppsspp-qt"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
 	PKG_FILENAME="ppsspp-qt_1.0.1_SteamOS_amd64.deb"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
@@ -155,7 +155,12 @@ m_pkg_routine_eval()
 		echo -e "\n==> Removal requested for $PKG\n"
 		sleep 2s
 		sudo apt-get remove $PKG
+	elif [ "$apt_mode" == "check" ]; then
+		# just output pkg check only
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
 	else
+		# All else: check pkg status
 		echo "Checking for $PKG [OK]"
 		sleep 0.5s
 	

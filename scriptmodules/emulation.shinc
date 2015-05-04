@@ -117,7 +117,7 @@ m_install_emu_station()
 	
 	
 	# start PKG routine
-	if [ "$PKG_OK" == "" && "$apt_mode" != "remove" ]; then
+	if [[ "$PKG_OK" == "" && "$apt_mode" != "remove" ]]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"

@@ -88,3 +88,6 @@ m_emulation_install_main()
 	#m_install_retroarch
 	m_install_antimicro
 }
+
+# Start main function
+m_emulation_install_main

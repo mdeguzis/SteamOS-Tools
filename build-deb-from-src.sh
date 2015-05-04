@@ -61,10 +61,6 @@ main()
 		sudo rm -rf "$build_dir"
 	fi
 	
-	if [[ -d "$git_dir" ]]; then
-		sudo rm -rf "$git_dir"
-	fi
-	
 	# create build dir and git dir, enter it
 	mkdir -p "$git_dir"
 	cd "$build_dir"
@@ -107,7 +103,6 @@ main()
 
 			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
 			sleep 2s
-			cd
 			rm -rf "$git_dir"
 			mkdir -p "$git_dir"
 			# clone to current DIR

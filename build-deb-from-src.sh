@@ -105,7 +105,7 @@ main()
 			sleep 2s
 			rm -rf "$git_dir"
 			mkdir -p "$git_dir"
-			echo "current dir: $pwd"
+			echo "current dir: $PWD"
 			sleep 3s
 			# clone to current DIR
 			echo "current dir: $git_url"

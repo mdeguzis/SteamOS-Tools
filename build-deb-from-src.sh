@@ -48,7 +48,7 @@ install_prereqs()
 	echo -e "\n==>Installing pre-requisites for building...\n"
 	sleep 1s
 	# install needed packages
-	sudo apt-get install devscripts build-essential
+	sudo apt-get install devscripts build-essential checkinstall
 
 }
 
@@ -154,7 +154,10 @@ main()
 	
 	# build deb package
 	sleep 2s
-	dpkg-buildpackage -us -uc
+	dpkg-buildpackage -us -uc -nc
+	
+	# We could also use checkinstall
+	sudo checkinstall
 
 	#################################################
 	# Post install configuration

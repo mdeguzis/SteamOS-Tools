@@ -105,15 +105,16 @@ main()
 			sleep 2s
 			rm -rf "$git_dir"
 			mkdir -p "$git_dir"
+			cd "$git_dir"
 			# clone to current DIR
-			git clone $git_url .
+			git clone "$git_url" .
 			
 		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
+			cd "$git_dir"
 			sleep 2s
 			# create and clone to current dir
-			git clone $git_url .
 			
 		fi
 	fi
@@ -129,8 +130,8 @@ main()
 	less README.md
 	
 	# Ask user to enter build commands until "done" is received
-	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
-	echo -e "When finished, please enter the word 'done' without quotes or abort to exit the script.\n"
+	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one.
+When finished, please enter the word 'done' without quotes or abort to exit the script.\n"
 	sleep 2s
 	
 	while [[ "$src_cmd" != "done" ]];

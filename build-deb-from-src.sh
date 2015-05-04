@@ -131,11 +131,17 @@ main()
 	
 	# Ask user to enter build commands until "done" is received
 	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
-	echo -e "When finished, please enter the word 'done' without quotes\n"
+	echo -e "When finished, please enter the word 'done' without quotes or abort to exit the script.\n"
 	sleep 2s
 	
 	while [[ "$src_cmd" != "done" ]];
 	do
+		if [[ "$src_md" == "abort" ]]; then
+			# exit script and return to dir
+			cd "$scriptdir"
+			exit
+		fi
+	
 		# capture command
 		read -ep "CMD: " src_cmd
 		

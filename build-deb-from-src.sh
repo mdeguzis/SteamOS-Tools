@@ -153,8 +153,8 @@ main()
 	
 	# build deb package
 	sleep 2s
-	dpkg-buildpackage -rfakeroot -uc -b
-	
+	dpkg-buildpackage -us -uc
+
 	#################################################
 	# Post install configuration
 	#################################################
@@ -192,14 +192,14 @@ main()
 	echo -e "\n###################################################################"
 	echo -e "If package was built without errors you will see it below."
 	echo -e "If you do not, please check build dependcy errors listed above."
-	echo -e "You could also try manually building outside of this script with"
-	echo -e "the following commands (at your own risk!)\n"
 	echo -e "cd $build_dir"
 	echo -e "cd $build_folder"
-	echo -e "sudo dpkg-buildpackage -b -d -uc"
 	echo -e "###################################################################\n"
 	
-	ls "/home/desktop/build-deb-temp"
+	echo -e "Showing contents of: $build_dir:"
+	ls "$build_dir"
+	cat "$git_dir"
+
 }
 
 # start main

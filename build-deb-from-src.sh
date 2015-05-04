@@ -70,7 +70,7 @@ main()
 	
 	# Ask user for repos / vars
 	echo -e "==> Please enter or paste the git URL now:"
-	echo -e "[ENTER to use last: $git_url]\n"
+	echo -e "[ENTER to use last: $git_url]\n\n"
 	
 	# set tmp var for last run, if exists
 	git_url_tmp="$git_url"

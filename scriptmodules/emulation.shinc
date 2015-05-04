@@ -111,7 +111,7 @@ m_install_vbam()
 	#####################################################
 	
 	# VARs for PKG2
-	PKG="vbam"
+	PKG="vbam-sdl"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
 	PKG_FILENAME="vbam-sdl_1.8.0.1231-SteamOS_amd64.deb "
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")

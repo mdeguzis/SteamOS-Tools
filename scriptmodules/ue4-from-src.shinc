@@ -19,8 +19,8 @@ time_stamp_start=(`date +"%T"`)
 m_install_ue4_src()
 {
   
-
-  if [[ "$apt_mode" == "install" ]]; then
+# start apt mode if check
+if [[ "$apt_mode" == "install" ]]; then
   
   #################################################
   # Prerequisites
@@ -73,6 +73,8 @@ or CTRL+C to abort.\n"
   # If git folder UnrealEngine exists, evaluate it
   # Avoiding a large download again is much desired.
   # If the DIR is already there, the fetch info should be intact
+  
+  # start git check if
   if [[ -d "$git_dir" ]]; then
   	
   	echo -e "\n==Info==\nGit folder already exists! Attempting git pull...\n"
@@ -83,6 +85,7 @@ or CTRL+C to abort.\n"
   	output=$(git pull $git_url)
   
   	# evaluate git pull. Remove, create, and clone if it fails
+  	# start git pull check
   	if [[ "$output" != "Already up-to-date." ]]; then
   		echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
   		sleep 2s
@@ -100,6 +103,11 @@ or CTRL+C to abort.\n"
   	cd "$install_dir"
   	# clone and fetch super build (evaluating currently)
   	git clone "$git_url"
+  
+    # end  git pull check
+    fi
+  
+  # end git check if
   fi
  
   #################################################
@@ -123,6 +131,7 @@ or CTRL+C to abort.\n"
   # Begin UE4 build eval
   ############################
   
+  # start UE4 build eval
   if [[ "$ue4_check" != "" ]]; then
   	
   	echo -e "\n==INFO=="
@@ -161,7 +170,6 @@ or CTRL+C to abort.\n"
   # end UE4 build eval
   fi
   
-  
   #################################################
   # Post install configuration
   #################################################
@@ -193,7 +201,8 @@ or CTRL+C to abort.\n"
     
     # remove directories
     sudo rm -rf "$install_dir" "$git_dir" "$symlink_target"
-    
+  
+  # end apt mode if check  
   fi
 
 }

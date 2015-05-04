@@ -13,6 +13,8 @@
 
 arg1="$1"
 scriptdir=$(pwd)
+time_start=$(date +%s)
+time_stamp_start=(`date +"%T"`)
 
 show_help()
 {
@@ -51,6 +53,7 @@ install_prereqs()
 main()
 {
 	build_dir="/home/desktop/build-deb-temp"
+	git_dir="$build_dir/git-temp"
 	
 	clear
 	# remove previous dirs if they exist
@@ -58,8 +61,12 @@ main()
 		sudo rm -rf "$build_dir"
 	fi
 	
-	# create build dir and enter it
-	mkdir -p "$build_dir"
+	if [[ -d "$git_dir" ]]; then
+		sudo rm -rf "$git_dir"
+	fi
+	
+	# create build dir and git dir, enter it
+	mkdir -p "$git_dir"
 	cd "$build_dir"
 	
 	# Ask user for repos / vars
@@ -67,7 +74,7 @@ main()
 	echo -e "    [Press ENTER to use last: $git_src]\n"
 	
 	# set tmp var for last run, if exists
-	repo_src_tmp="$repo_src"
+	git_src_tmp="$git_src"
 	if [[ "$git_src" == "" ]]; then
 		# var blank this run, get input
 		read -ep "Git source URL: " git_src
@@ -82,8 +89,90 @@ main()
 		fi
 	fi
 	
+	# If git folder exists, evaluate it
+	# Avoiding a large download again is much desired.
+	# If the DIR is already there, the fetch info should be intact
+	if [[ -d "$git_dir" ]]; then
+	
+		echo -e "\n==Info==\nGit folder already exists! Attempting git pull...\n"
+		sleep 1s
+		# attempt to pull the latest source first
+		cd $git_dir
+		# eval git status
+		output=$(git pull $git_url)
+		
+	
+		# evaluate git pull. Remove, create, and clone if it fails
+		if [[ "$output" != "Already up-to-date." ]]; then
 
+			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
+			sleep 2s
+			cd
+			rm -rf "$git_dir"
+			mkdir -p "$git_dir"
+			# clone to current DIR
+			git clone "$git_url" .
 
+		else
+		
+			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
+			sleep 2s
+			# create and clone to current dir
+			git clone "$git_url" .
+			cd $git_dir
+			
+		fi
+	fi
+	
+ 
+  #################################################
+  # Build PKG
+  #################################################
+  
+   # Output readme via less to review build notes first
+  echo -e "\n==> Opening any available README.md to review build notes..."
+  sleep 2s
+  less README.md
+  
+  # Ask user to enter build commands until "done" is received
+  echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
+  echo -e "When finished, please enter the word 'done' without quotes\n"
+  sleep 2s
+  
+  echo -e "\n==> Building sources...please wait"
+  sleep 2s
+  
+  # BUILD CODE HERE
+  
+  ############################
+  # proceed to DEB BUILD
+  ############################
+  
+  # Perform debuild instructions here
+  
+  
+  #################################################
+  # Post install configuration
+  #################################################
+  
+  # TODO
+  
+  #################################################
+  # Cleanup
+  #################################################
+  
+  # clean up dirs
+  
+  # note time ended
+  time_end=$(date +%s)
+  time_stamp_end=(`date +"%T"`)
+  runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
+  
+  # output finish
+  echo -e "\nTime started: ${time_stamp_start}"
+  echo -e "Time started: ${time_stamp_end}"
+  echo -e "Total Runtime (minutes): $runtime\n"
+  
 	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)

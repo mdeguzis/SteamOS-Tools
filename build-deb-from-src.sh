@@ -134,7 +134,7 @@ main()
 	# Ask user to enter build commands until "done" is received
 	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
 	echo -e "When finished, please enter the word 'done' without quotes\n"
-	sleep 2s
+	sleep 0.5s
 	
 	while [[ "$src_cmd" != "done" ]];
 	do

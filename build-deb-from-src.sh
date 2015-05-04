@@ -70,7 +70,7 @@ main()
 	
 	# Ask user for repos / vars
 	echo -e "==> Please enter or paste the git URL now:"
-	echo -e "[ENTER to use last: $git_url]\n\n"
+	echo -e "[ENTER to use last: $git_url]\n"
 	
 	# set tmp var for last run, if exists
 	git_url_tmp="$git_url"
@@ -91,9 +91,10 @@ main()
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
 	# If the DIR is already there, the fetch info should be intact
+	
 	if [[ -d "$git_dir" ]]; then
 	
-		echo -e "==Info==\nGit folder already exists! Attempting git pull...\n"
+		echo -e "\n==Info==\nGit folder already exists! Attempting git pull...\n"
 		sleep 1s
 		# attempt to pull the latest source first
 		cd "$git_dir"

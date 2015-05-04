@@ -92,7 +92,7 @@ main()
 	# If the DIR is already there, the fetch info should be intact
 	if [[ -d "$git_dir" ]]; then
 	
-		echo -e "\n==Info==\nGit folder already exists! Attempting git pull...\n"
+		echo -e "==Info==\nGit folder already exists! Attempting git pull...\n"
 		sleep 1s
 		# attempt to pull the latest source first
 		cd "$git_dir"
@@ -117,7 +117,6 @@ main()
 			sleep 2s
 			# create and clone to current dir
 			git clone "$git_url" .
-			#cd "$git_dir"
 			
 		fi
 	fi

@@ -4,7 +4,7 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.1.5
+# Script Ver:	0.1.3
 # Description:	Attempts to build a deb package from a git src
 #
 # Usage:	sudo ./build-deb-from-src.sh
@@ -105,16 +105,16 @@ main()
 			sleep 2s
 			rm -rf "$git_dir"
 			mkdir -p "$git_dir"
-			cd "$git_dir"
 			# clone to current DIR
-			git clone "$git_url" .
+			git clone "$git_url"
 			
 		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
-			cd "$git_dir"
 			sleep 2s
 			# create and clone to current dir
+			git clone "$git_url"
+			#cd "$git_dir"
 			
 		fi
 	fi
@@ -130,8 +130,8 @@ main()
 	less README.md
 	
 	# Ask user to enter build commands until "done" is received
-	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one.
-When finished, please enter the word 'done' without quotes or abort to exit the script.\n"
+	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
+	echo -e "When finished, please enter the word 'done' without quotes\n"
 	sleep 2s
 	
 	while [[ "$src_cmd" != "done" ]];
@@ -197,10 +197,9 @@ When finished, please enter the word 'done' without quotes or abort to exit the 
 	echo -e "sudo dpkg-buildpackage -b -d -uc"
 	echo -e "###################################################################\n"
 	
-	echo -e "Showing contents of: $build_dir:"
-	ls "$build_dir"
-	cat "$git_dir"
+	ls "/home/desktop/build-deb-temp"
 }
 
 # start main
 main
+

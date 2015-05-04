@@ -166,8 +166,6 @@ m_pkg_routine_eval()
 	# end PKG routine
 	fi	
 	
-	echo ""
-	
 }
 
 m_emulation_install_main()
@@ -182,5 +180,7 @@ m_emulation_install_main()
 	m_install_ppsspp
 	m_install_snes9x_gtk
 	m_install_vbam
+	
+	echo ""
 	
 }

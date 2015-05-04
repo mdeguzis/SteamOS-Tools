@@ -171,9 +171,9 @@ m_emulation_install_main()
 	# to disable them temporarily.
 	
 	# m_install_retroarch
-	# m_install_antimicro
-	# m_install_emu_station
-	# m_install_ppsspp
-	# m_install_snes9x_gtk
+	m_install_antimicro
+	m_install_emu_station
+	m_install_ppsspp
+	m_install_snes9x_gtk
 	m_install_vbam
 }

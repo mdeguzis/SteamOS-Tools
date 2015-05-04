@@ -135,6 +135,9 @@ main()
 	echo -e "When finished, please enter the word 'done' without quotes\n"
 	sleep 2s
 	
+	read -ep "CMD: " src_cmd
+	sleep 50s
+	
 	while [[ "$src_cmd" != "done" ]];
 	do
 		# capture command

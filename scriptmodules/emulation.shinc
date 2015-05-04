@@ -28,7 +28,7 @@ m_install_retroarch()
 	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
-	if [ "" == "$PKG_OK" ]; then
+	if [ "$PKG_OK" == "" ]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
@@ -45,8 +45,15 @@ m_install_retroarch()
 			exit 1
 		fi
 	else
-		echo "Checking for $PKG [OK]"
-		sleep 0.5s
+		# take into account if user requested removal
+		if [[ "$apt_mode" = "remove" ]]; then 
+			echo -e "==> Removal requested for $PKG"
+			sleep 2s
+			sudo apt-get remove $PKG
+		else
+			echo "Checking for $PKG [OK]"
+			sleep 0.5s
+		fi
 	fi
 
 }
@@ -64,7 +71,7 @@ m_install_antimicro()
 	PKG_FILENAME="antimicro_2.5_SteamOS_amd64.deb"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
-	if [ "" == "$PKG_OK" ]; then
+	if [ "$PKG_OK" == "" ]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
@@ -81,8 +88,15 @@ m_install_antimicro()
 			exit 1
 		fi
 	else
-		echo "Checking for $PKG [OK]"
-		sleep 0.5s
+		# take into account if user requested removal
+		if [[ "$apt_mode" = "remove" ]]; then 
+			echo -e "==> Removal requested for $PKG"
+			sleep 2s
+			sudo apt-get remove $PKG
+		else
+			echo "Checking for $PKG [OK]"
+			sleep 0.5s
+		fi
 	fi
 
 }
@@ -95,12 +109,13 @@ m_install_emu_station()
 	#####################################################
 	
 	# VARs
+	
 	PKG="emulationstation"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
 	PKG_FILENAME="emulationstation_2.0.1+SteamOS_amd64.deb"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
-	if [ "" == "$PKG_OK" ]; then
+	if [ "$PKG_OK" == "" ]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
@@ -117,8 +132,15 @@ m_install_emu_station()
 			exit 1
 		fi
 	else
-		echo "Checking for $PKG [OK]"
-		sleep 0.5s
+		# take into account if user requested removal
+		if [[ "$apt_mode" = "remove" ]]; then 
+			echo -e "==> Removal requested for $PKG"
+			sleep 2s
+			sudo apt-get remove $PKG
+		else
+			echo "Checking for $PKG [OK]"
+			sleep 0.5s
+		fi
 	fi
 
 }

@@ -132,7 +132,9 @@ m_pkg_routine_eval()
 	# routine evals.
 		
 	# start PKG routine
-	if [[ "$PKG_OK" == "" && "$apt_mode" != "remove" ]]; then
+	if [[ "$PKG_OK" == "" && \
+	      "$apt_mode" != "remove" && \
+	      "$apt_mode" != "check" ]]; then
 	
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
@@ -155,10 +157,7 @@ m_pkg_routine_eval()
 		echo -e "\n==> Removal requested for $PKG\n"
 		sleep 2s
 		sudo apt-get remove $PKG
-	elif [ "$apt_mode" == "check" ]; then
-		# just output pkg check only
-		echo "Checking for $PKG [OK]"
-		sleep 0.5s
+
 	else
 		# All else: check pkg status
 		echo "Checking for $PKG [OK]"

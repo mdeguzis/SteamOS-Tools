@@ -15,6 +15,8 @@ arg1="$1"
 scriptdir=$(pwd)
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
+# reset source command for while loop
+src_cmd=""
 
 show_help()
 {
@@ -46,7 +48,7 @@ install_prereqs()
 	echo -e "\n==>Installing pre-requisites for building...\n"
 	sleep 1s
 	# install needed packages
-	sudo apt-get install devscripts build-essential
+	sudo apt-get install devscripts build-essential checkinstall
 
 }
 
@@ -56,13 +58,10 @@ main()
 	git_dir="$build_dir/git-temp"
 	
 	clear
-	# remove previous dirs if they exist
+	# remove contents* of previous dir, if they exist
+	# We want to keep git-temp/ for subsequent pulls
 	if [[ -d "$build_dir" ]]; then
-		sudo rm -rf "$build_dir"
-	fi
-	
-	if [[ -d "$git_dir" ]]; then
-		sudo rm -rf "$git_dir"
+		sudo rm -rf "$build_dir/*"
 	fi
 	
 	# create build dir and git dir, enter it
@@ -71,27 +70,28 @@ main()
 	
 	# Ask user for repos / vars
 	echo -e "==> Please enter or paste the git URL now:"
-	echo -e "    [Press ENTER to use last: $git_src]\n"
+	echo -e "[ENTER to use last: $git_url]\n"
 	
 	# set tmp var for last run, if exists
-	git_src_tmp="$git_src"
-	if [[ "$git_src" == "" ]]; then
+	git_url_tmp="$git_url"
+	if [[ "$git_url" == "" ]]; then
 		# var blank this run, get input
-		read -ep "Git source URL: " git_src
+		read -ep "Git source URL: " git_url
 	else
-		read -ep "Git source URL: " git_src
+		read -ep "Git source URL: " git_url
 		# user chose to keep var value from last
-		if [[ "$git_src" == "" ]]; then
-			git_src="$git_src_tmp"
+		if [[ "$git_url" == "" ]]; then
+			git_url="$git_url_tmp"
 		else
 			# keep user choice
-			git_src="$git_src"
+			git_url="$git_url"
 		fi
 	fi
 	
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
 	# If the DIR is already there, the fetch info should be intact
+	
 	if [[ -d "$git_dir" ]]; then
 	
 		echo -e "\n==Info==\nGit folder already exists! Attempting git pull...\n"
@@ -99,29 +99,27 @@ main()
 		# attempt to pull the latest source first
 		cd "$git_dir"
 		# eval git status
-		output=$(git pull "$git_url")
+		output=$(git pull 2> /dev/null)
 		
-	
 		# evaluate git pull. Remove, create, and clone if it fails
 		if [[ "$output" != "Already up-to-date." ]]; then
 
-			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
+			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
 			sleep 2s
-			cd
 			rm -rf "$git_dir"
 			mkdir -p "$git_dir"
+			cd "$git_dir"
 			# clone to current DIR
 			git clone "$git_url" .
-
-		else
+		fi
+			
+	else
 		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
+			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
 			# create and clone to current dir
 			git clone "$git_url" .
-			cd "$git_dir"
 			
-		fi
 	fi
 	
  
@@ -137,12 +135,12 @@ main()
 	# Ask user to enter build commands until "done" is received
 	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
 	echo -e "When finished, please enter the word 'done' without quotes\n"
-	sleep 2s
+	sleep 0.5s
 	
-	while [ -n "$src_cmd" ];
+	while [[ "$src_cmd" != "done" ]];
 	do
 		# capture command
-		read src_cmd
+		read -ep "Build CMD: " src_cmd
 		
 		# Execute src cmd
 		$src_cmd
@@ -152,9 +150,15 @@ main()
 	# proceed to DEB BUILD
 	############################
 	
-	# Perform debuild instructions here
-  
+	echo -e "\n==> Building Debian package from source"
 	
+	# build deb package
+	sleep 2s
+	dpkg-buildpackage -us -uc -nc
+	
+	# We could also use checkinstall
+	sudo checkinstall
+
 	#################################################
 	# Post install configuration
 	#################################################
@@ -183,23 +187,24 @@ main()
 	
 	# back out of build temp to script dir if called from git clone
 	if [[ "$scriptdir" != "" ]]; then
-		cd ""$scriptdir"
+		cd "$scriptdir"
 	else
 		cd "$HOME"
 	fi
 	
 	# inform user of packages
-	echo -e "\n###################################################################"
+	echo -e "\n############################################################"
 	echo -e "If package was built without errors you will see it below."
-	echo -e "If you do not, please check build dependcy errors listed above."
-	echo -e "You could also try manually building outside of this script with"
-	echo -e "the following commands (at your own risk!)\n"
+	echo -e "If you don't, please check build dependcy errors listed above."
 	echo -e "cd $build_dir"
 	echo -e "cd $build_folder"
-	echo -e "sudo dpkg-buildpackage -b -d -uc"
-	echo -e "###################################################################\n"
+	echo -e "############################################################\n"
 	
-	ls "/home/desktop/build-deb-temp"
+	echo -e "Showing contents of: $build_dir:"
+	ls "$build_dir" 
+	echo ""
+	ls "$git_dir"
+
 }
 
 # start main

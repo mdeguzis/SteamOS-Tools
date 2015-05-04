@@ -1,3 +1,4 @@
+gdebi-core
 dosbox
 stella
 mednafen

@@ -158,6 +158,3 @@ m_emulation_install_main()
 	# m_install_antimicro
 	m_install_emu_station
 }
-
-# Start main function
-m_emulation_install_main

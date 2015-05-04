@@ -97,7 +97,7 @@ main()
 		# attempt to pull the latest source first
 		cd "$git_dir"
 		# eval git status
-		output=$(git pull)
+		output=$(git pull 2> /dev/null)
 		
 	
 		# evaluate git pull. Remove, create, and clone if it fails
@@ -140,7 +140,7 @@ main()
 	while [[ "$src_cmd" != "done" ]];
 	do
 		# capture command
-		read -ep "CMD: " src_cmd
+		read -ep "Build CMD: " src_cmd
 		
 		# Execute src cmd
 		$src_cmd

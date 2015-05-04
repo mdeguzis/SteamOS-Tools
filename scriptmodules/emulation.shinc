@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name: 		emulation.shinc
-# Script Ver:	  	0.1.1
+# Script Ver:	  	0.5.1
 # Description:		script to install emulation packages not found in the
 #                 	Debian repositories (e.g. PPSSPP). gdebi is now in use
 #			in order to autoresolve deps from .deb pkgs.
@@ -103,6 +103,23 @@ m_install_snes9x_gtk()
 	m_pkg_routine_eval
 }
 
+m_install_vbam()
+{
+
+	#####################################################
+	# Emulation Station
+	#####################################################
+	
+	# VARs
+	PKG="vbam"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	PKG_FILENAME="vbam-gtk_1.8.0.1231-SteamOS_amd64.deb"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	# proceed to eval routine
+	m_pkg_routine_eval
+}
+
 m_pkg_routine_eval()
 {
 
@@ -156,5 +173,6 @@ m_emulation_install_main()
 	# m_install_antimicro
 	# m_install_emu_station
 	# m_install_ppsspp
-	m_install_snes9x_gtk
+	# m_install_snes9x_gtk
+	m_install_vbam
 }

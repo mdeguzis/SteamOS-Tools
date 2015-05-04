@@ -104,7 +104,7 @@ main()
 		# evaluate git pull. Remove, create, and clone if it fails
 		if [[ "$output" != "Already up-to-date." ]]; then
 
-			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
+			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
 			sleep 2s
 			rm -rf "$git_dir"
 			mkdir -p "$git_dir"
@@ -115,7 +115,7 @@ main()
 			
 	else
 		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
+			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
 			# create and clone to current dir
 			git clone "$git_url" .

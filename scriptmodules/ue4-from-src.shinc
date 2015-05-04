@@ -92,7 +92,6 @@ or CTRL+C to abort.\n"
   		cd "$install_dir"
   		# clone and fetch super build (evaluating currently)
   		git clone "$git_url"
-  	fi
   else
   	echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
   	sleep 2s

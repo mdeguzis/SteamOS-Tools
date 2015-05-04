@@ -108,14 +108,6 @@ main()
 			# clone to current DIR
 			git clone "$git_url"
 			
-			# account for exit status
-			if [[ $? = 0 ]]; then
-				echo -e "\nGit clone/pull failed. Please review the above.\n"
-			fi
-			
-			echo "$?"
-			sleep 50s
-			
 		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
@@ -123,10 +115,6 @@ main()
 			# create and clone to current dir
 			git clone "$git_url"
 			#cd "$git_dir"
-			
-			if [[ $? = 0 ]]; then
-				echo -e "\nGit clone/pull failed. Please review the above.\n"
-			fi
 			
 		fi
 	fi

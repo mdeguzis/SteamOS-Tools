@@ -193,16 +193,17 @@ main()
 	fi
 	
 	# inform user of packages
-	echo -e "\n###################################################################"
+	echo -e "\n############################################################"
 	echo -e "If package was built without errors you will see it below."
-	echo -e "If you do not, please check build dependcy errors listed above."
+	echo -e "If you don't, please check build dependcy errors listed above."
 	echo -e "cd $build_dir"
 	echo -e "cd $build_folder"
-	echo -e "###################################################################\n"
+	echo -e "############################################################\n"
 	
 	echo -e "Showing contents of: $build_dir:"
-	ls "$build_dir"
-	cat "$git_dir"
+	ls "$build_dir" 
+	echo ""
+	ls "$git_dir"
 
 }
 

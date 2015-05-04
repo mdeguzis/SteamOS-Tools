@@ -71,11 +71,11 @@ main()
 	
 	# Ask user for repos / vars
 	echo -e "==> Please enter or paste the git URL now:"
-	echo -e "[ENTER to use last: $git_src]\n"
+	echo -e "[ENTER to use last: $git_url]\n"
 	
 	# set tmp var for last run, if exists
 	git_url_tmp="$git_url"
-	if [[ "$git_src" == "" ]]; then
+	if [[ "$git_url" == "" ]]; then
 		# var blank this run, get input
 		read -ep "Git source URL: " git_url
 	else

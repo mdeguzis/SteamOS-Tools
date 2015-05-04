@@ -16,7 +16,7 @@
 m_install_retroarch
 {
 
-  #####################################################
+	#####################################################
 	# Retroarch (imported 20150503)
 	#####################################################
 	
@@ -44,4 +44,47 @@ m_install_retroarch
 		sleep 0.5s
 	fi
 
+}
+
+m_install_antimicro
+{
+
+	#####################################################
+	# Antimicro
+	#####################################################
+	
+	PKG="antimicro"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "\n$PKG not found. Installing now...\n"
+		sleep 2s
+		wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/antimicro_2.5_SteamOS_amd64.deb"
+		sudo dpkg -i "/tmp/antimicro_2.5_SteamOS_amd64.deb"
+		# cleanup
+		rm -f "/tmp/antimicro_2.5_SteamOS_amd64.deb"
+		
+		if [ $? == '0' ]; then
+			echo "Successfully installed $PKG"
+			sleep 2s
+		else
+			echo "Could not install $PKG. Exiting..."
+			sleep 3s
+			exit 1
+		fi
+	else
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
+	fi
+
+}
+
+emulation_install_main()
+{
+	
+	# kick off emulation installs here or comment them out 
+	# to disable them temporarily.
+	
+	#m_install_retroarch
+	m_install_antimicro
 }

@@ -79,7 +79,7 @@ m_install_antimicro
 
 }
 
-emulation_install_main()
+m_emulation_install_main()
 {
 	
 	# kick off emulation installs here or comment them out 

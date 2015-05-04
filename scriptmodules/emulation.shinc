@@ -20,16 +20,20 @@ m_install_retroarch()
 	# Retroarch (imported 20150503)
 	#####################################################
 	
+	# VARs
 	PKG="retroarch"
+	PKG_FILENAME=""
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
-		wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/"
-		sudo dpkg -i "/tmp/"
+		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+		sudo dpkg -i "/tmp/$PKG_FILENAME"
 		# cleanup
-		rm -f "/tmp/"
+		rm -f "/tmp/$PKG_FILENAME"
 		
 		if [ $? == '0' ]; then
 			echo -e "\n==INFO==\nSuccessfully installed $PKG"
@@ -63,7 +67,7 @@ m_install_antimicro()
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
-		sudo dpkg -i "$PKG_FILENAME"
+		sudo dpkg -i "/tmp/$PKG_FILENAME"
 		# cleanup
 		rm -f "/tmp/$PKG_FILENAME"
 		
@@ -99,7 +103,7 @@ m_install_emu_station()
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
-		sudo dpkg -i "$PKG_FILENAME"
+		sudo dpkg -i "/tmp/$PKG_FILENAME"
 		# cleanup
 		rm -f "/tmp/$PKG_FILENAME"
 		

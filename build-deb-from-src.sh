@@ -136,7 +136,7 @@ When finished, please enter the word 'done' without quotes or abort to exit the 
 	
 	while [[ "$src_cmd" != "done" ]];
 	do
-		if [[ "$src_md" == "abort" ]]; then
+		if [[ "$src_cmd" == "abort" ]]; then
 			# exit script and return to dir
 			cd "$scriptdir"
 			exit
@@ -210,4 +210,3 @@ When finished, please enter the word 'done' without quotes or abort to exit the 
 
 # start main
 main
-

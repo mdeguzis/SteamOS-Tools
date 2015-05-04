@@ -6,9 +6,10 @@
 # Scipt Name: 		emulation.shinc
 # Script Ver:	  	0.1.1
 # Description:		script to install emulation packages not found in the
-#                 Debian repositories (e.g. PPSSPP)
+#                 	Debian repositories (e.g. PPSSPP). gdebi is now in use
+#			in order to autoresolve deps from .deb pkgs.
 #
-#	See:            https://wiki.debian.org/HowToPackageForDebian
+#See:            	https://wiki.debian.org/HowToPackageForDebian
 # Usage:	      	N/A, called from another script
 #
 # -------------------------------------------------------------------------------
@@ -31,7 +32,7 @@ m_install_retroarch()
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
-		sudo dpkg -i "/tmp/$PKG_FILENAME"
+		sudo gdebi "/tmp/$PKG_FILENAME"
 		# cleanup
 		rm -f "/tmp/$PKG_FILENAME"
 		
@@ -67,7 +68,7 @@ m_install_antimicro()
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
-		sudo dpkg -i "/tmp/$PKG_FILENAME"
+		sudo gdebi "/tmp/$PKG_FILENAME"
 		# cleanup
 		rm -f "/tmp/$PKG_FILENAME"
 		
@@ -103,7 +104,7 @@ m_install_emu_station()
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
-		sudo dpkg -i "/tmp/$PKG_FILENAME"
+		sudo gdebi "/tmp/$PKG_FILENAME"
 		# cleanup
 		rm -f "/tmp/$PKG_FILENAME"
 		

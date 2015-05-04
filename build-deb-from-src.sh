@@ -105,20 +105,15 @@ main()
 			sleep 2s
 			rm -rf "$git_dir"
 			mkdir -p "$git_dir"
-			echo "current dir: $PWD"
-			sleep 3s
 			# clone to current DIR
-			echo "current dir: $git_url"
-			sleep 30s
-			git clone "$git_url"
+			git clone $git_url .
 			
 		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
 			sleep 2s
 			# create and clone to current dir
-			git clone "$git_url"
-			#cd "$git_dir"
+			git clone $git_url .
 			
 		fi
 	fi

@@ -120,7 +120,7 @@ or CTRL+C to abort.\n"
   ue4_check=$(ls "$git_dir")
   
   ############################
-  # Begin retroarch build eval
+  # Begin UE4 build eval
   ############################
   
   if [[ "$ue4_check" != "" ]]; then
@@ -158,7 +158,7 @@ or CTRL+C to abort.\n"
   	./Setup.sh
     ./GenerateProjectFiles.sh
   
-  # end retroarch build eval
+  # end UE4 build eval
   fi
   
   

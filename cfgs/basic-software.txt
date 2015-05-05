@@ -11,13 +11,13 @@ abiword
 libfreetype6
 inkscape
 vim
-!broken!samba
+samba
 libxine2
 perl
 icedove
 vlc
 gimp
-!broken!gnucash
+gnucash
 gnumeric
 brasero
 chromium

@@ -21,6 +21,7 @@ m_install_antimicro()
 	#####################################################
 	# Antimicro
 	#####################################################
+	# Built from: source
 	
 	# VARs
 	PKG="antimicro"
@@ -39,6 +40,7 @@ m_install_emu_station()
 	#####################################################
 	# Emulation Station
 	#####################################################
+	# Built from: ppa:emulationstation/ppa
 	
 	# VARs
 	PKG="emulationstation"
@@ -57,14 +59,12 @@ m_install_higan()
 	#####################################################
 	# Higan
 	#####################################################
-	
-	# See: higan_v094-source.tar.xz
-	# Source code: Needs saved to libregeek
+	# Built from: ppa:hunter-kaller/ppa
 	
 	# VARs
 	PKG="higan"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
-	PKG_FILENAME="NEEDS-PACKAGED"
+	PKG_FILENAME="higan_094-SteamOS-amd64.deb"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
 	# proceed to eval routine
@@ -78,6 +78,7 @@ m_install_retroarch()
 	#####################################################
 	# Retroarch - in progress - disable for now
 	#####################################################
+	# Built from: TBD
 	
 	# VARs
 	PKG="retroarch"
@@ -96,6 +97,7 @@ m_install_ppsspp()
 	#####################################################
 	# PPSSPP
 	#####################################################
+	# Built from: ppa:ppsspp/stable 
 	
 	# VARs
 	PKG="ppsspp-qt"
@@ -114,6 +116,7 @@ m_install_snes9x_gtk()
 	#####################################################
 	# SNES9X-GTK
 	#####################################################
+	# Built from: ppa:bearoso/ppa
 	
 	# VARs
 	PKG="snes9x-gtk"
@@ -131,7 +134,8 @@ m_install_vbam()
 	#####################################################
 	# VBA-M (SDL)
 	#####################################################
-	
+	# Built from: ppa:sergio-br2/vbam-trunk
+	  
 	# VARs for PKG2
 	PKG="vbam-sdl"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"

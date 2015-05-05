@@ -5,5 +5,4 @@ cpufrequtils
 ffmpeg
 libav-tools
 libavcodec53
-kdiff3
 emacs

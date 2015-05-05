@@ -4,7 +4,7 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.1.3
+# Script Ver:	0.1.5
 # Description:	Attempts to build a deb package from a git src
 #
 # Usage:	sudo ./build-deb-from-src.sh

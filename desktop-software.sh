@@ -239,7 +239,7 @@ funct_pre_req_checks()
 	#################################
 	# set vars
 	PKG="python-software-properties"
-	source_type="-t wheezy"
+	source_type=""
 	
 	# proceed to install eval
 	main_install_eval_pkg
@@ -249,7 +249,7 @@ funct_pre_req_checks()
 	#################################
 	# set vars
 	PKG="debian-keyring"
-	source_type="-t wheezy"
+	source_type=""
 	
 	# proceed to install eval
 	main_install_eval_pkg

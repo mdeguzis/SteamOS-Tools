@@ -157,7 +157,7 @@ main()
 	dpkg-buildpackage -us -uc -nc
 	
 	# We could also use checkinstall
-	sudo checkinstall
+	# sudo checkinstall
 
 	#################################################
 	# Post install configuration

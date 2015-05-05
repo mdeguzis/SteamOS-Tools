@@ -266,7 +266,7 @@ main_install_eval_pkg()
 	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	if [ "" == "$PKG_OK" ]; then
-		echo -e "\n$PKG not found. Installing now...\n"
+		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		sudo apt-get ${source_type}install $PKG
 		

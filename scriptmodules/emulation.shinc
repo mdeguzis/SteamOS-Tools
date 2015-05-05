@@ -10,7 +10,7 @@
 #			in order to autoresolve deps from .deb pkgs.
 #
 # See:            	http://www.lgdb.org/emulators
-# See also:		
+# See also:		http://www.linuxlinks.com/article/20081012160727880/VideoConsoles.html
 # Usage:		N/A, called from another script
 #
 # -------------------------------------------------------------------------------

@@ -53,6 +53,26 @@ m_install_emu_station()
 
 }
 
+m_install_gngeo()
+{
+
+	#####################################################
+	# Emulation Station
+	#####################################################
+	# Built from: code.google.com/p/gngeo 
+	
+	# VARs
+	PKG="gngeo"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
+	# PKG below needs copied to remote share!
+	PKG_FILENAME="gngeo_0.7.1+SteamOS-1_amd64.deb"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	
+	# proceed to eval routine
+	m_pkg_routine_eval
+
+}
+
 m_install_higan()
 {
 
@@ -207,7 +227,7 @@ m_emulation_install_main()
 	m_install_snes9x_gtk
 	m_install_vbam
 	m_install_higan
-	
+	# m_install_gngeo
 	echo ""
 	
 }

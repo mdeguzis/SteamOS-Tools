@@ -206,6 +206,7 @@ m_emulation_install_main()
 	m_install_ppsspp
 	m_install_snes9x_gtk
 	m_install_vbam
+	m_install_higan 
 	
 	echo ""
 	

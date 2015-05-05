@@ -128,6 +128,8 @@ main()
 			sleep 2s
 			# create and clone to current dir
 			git clone "$git_url" .
+		
+		fi
 			
 	fi
 	

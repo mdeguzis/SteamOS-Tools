@@ -17,7 +17,7 @@ perl
 icedove
 vlc
 gimp
-!broken!gnucash
+gnucash
 gnumeric
 brasero
 chromium

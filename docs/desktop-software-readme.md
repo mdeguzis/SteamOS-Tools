@@ -72,7 +72,7 @@ Installs basic Debian software (based on [Distrowatch](http://distrowatch.com/ta
 Installs extra softare based on feedback and personal preference  
 
 `emulation`          
-Standalone emulation packages from the Debian repositories. In due time, this will include rebuilt packages for such emulators like PPSSPP, PCSX2, and more.  
+Standalone emulation packages from the Debian repositories. This also includes rebuilt packages for such emulators like PPSSPP, Higan, and more.  
 
 `emulation-src`  
 Installs prerequisite packages for compiling emulation packages from source and then compiles and builds libretro packages from source (will take some time to install). See the [script header](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/master/scriptmodules/emu-from-source.shinc) for the latest test stats on build time.  (basic routines are done, some work left)     
@@ -91,6 +91,7 @@ Installs a some Linux games that you can then add to Steam via the "add non-Stea
 
 `gaming-tools`         
 Installs some gaming tools, such as jstest, WINE, and more.
+
 ***
 ### Extra Types available
 ***
@@ -108,6 +109,9 @@ Kicks off an automated script to install plexhometheatre.
 
 `xbox-bindings`      
 Installs the nice set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant
+
+`ue4`  
+Installs the Unreal 4 engine and server for Linux (in-progress)
 
 ***
 ### Warning regarding the emulation-src type

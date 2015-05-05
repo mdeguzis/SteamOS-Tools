@@ -58,12 +58,6 @@ main()
 	git_dir="$build_dir/git-temp"
 	
 	clear
-	# remove contents* of previous dir, if they exist
-	# We want to keep git-temp/ for subsequent pulls
-	#	if [[ -d "$git_dir" ]]; then
-	#	sudo rm -rf "$git_dir"
-	#fi
-	
 	# create build dir and git dir, enter it
 	mkdir -p "$git_dir"
 	cd "$git_dir"
@@ -125,6 +119,7 @@ main()
 			rm -rf "$git_dir"
 			cd "$build_dir"
 			mkdir -p "$git_dir"
+			cd "$git_dir"
 			git clone "$git_url" .
 	else
 		

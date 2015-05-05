@@ -100,6 +100,8 @@ main()
 		
 		if [[ "$git_choice" == "p" ]]; then
 			# attempt to pull the latest source first
+			echo -e "\n==> Attempting git pull..."
+			sleep 2s
 			cd "$git_dir"
 			# eval git status
 			output=$(git pull 2> /dev/null)
@@ -117,6 +119,8 @@ main()
 			fi
 			
 		elif [[ "$git_choice" == "r" ]]; then
+			echo -e "\n==> Removing and cloning repository again..."
+			sleep 2s
 			# remove, clone, enter
 			rm -rf "$git_dir"
 			cd "$build_dir"

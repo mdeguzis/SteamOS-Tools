@@ -20,28 +20,16 @@ ep_install_x360_bindings()
 	# FPS + more binds from VaporOS 2
 	# For bindings, see: /etc/actkbd-steamos-controller.conf
 	
-	# PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
-	if [[ ! -d "/usr/share/doc/vaporos-binds-xbox360" ]]; then
-		echo -e "vaporos-binds-xbox360 not found. Installing now...\n"
-		sleep 2s
-		wget -P /tmp "https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb"
-		sudo dpkg -i "/tmp/vaporos-binds-xbox360_1.0_all.deb"
-		#cleanup
-		rm -f "/tmp/vaporos-binds-xbox360_1.0_all.deb"
-		
-		cd
-		if [ $? == '0' ]; then
-			echo "Successfully installed 'vaporos-binds-xbox360'"
-			sleep 2s
-		else
-			echo "Could not install 'vaporos-binds-xbox360'. Exiting..."
-			sleep 3s
-			exit 1
-		fi
-	else
-		echo "Checking for 'vaporos-binds-xbox360 [OK]'."
-		sleep 0.5s
-	fi
+	# set vars
+	PKG="vaporos-binds-xbox360"
+	PKG_FILENAME="vaporos-binds-xbox360_1.0_all.deb"
+	BASE_URL="https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360"
+	BIN_LOC="/usr/bin/gdrive"
+	PKG_DIR="/usr/share/doc/vaporos-binds-xbox360"
+	
+	# proceed to install eval
+	ep_install_eval_binary
+	
 }
 
 ep_install_firefox()
@@ -52,27 +40,15 @@ ep_install_firefox()
 	# Imported from the Linux Mint LMDE 2 repository
 	# Deb binary source: deb http://packages.linuxmint.com debian import
 	
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' firefox | grep "install ok installed")
-	if [ "" == "$PKG_OK" ]; then
-		echo -e "\nFirefox not found. Installing now...\n"
-		sleep 2s
-		wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/browsers/firefox_37.0~linuxmint1+betsy_amd64.deb"
-		sudo dpkg -i "/tmp/firefox_37.0~linuxmint1+betsy_amd64.deb"
-		# cleanup
-		rm -f "/tmp/firefox_37.0~linuxmint1+betsy_amd64.deb"
-		
-		if [ $? == '0' ]; then
-			echo "Successfully installed 'Firefox'"
-			sleep 2s
-		else
-			echo "Could not install 'Firefox'. Exiting..."
-			sleep 3s
-			exit 1
-		fi
-	else
-		echo "Checking for 'Firefox [OK]'."
-		sleep 0.5s
-	fi
+	# set vars
+	PKG="firefox"
+	PKG_FILENAME="firefox_37.0~linuxmint1+betsy_amd64.deb"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/browsers"
+	BIN_LOC="/usr/bin/gdrive"
+	PKG_DIR="/usr/share/doc/vaporos-binds-xbox360"
+	
+	# proceed to install eval
+	ep_install_eval_pkg
 
 }
 
@@ -246,7 +222,7 @@ ep_install_plex()
 	
 	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/Plex/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
 	cd /tmp
-	sudo dpkg -i ttf-ubuntu-font-family*.deb
+	sudo gdebi ttf-ubuntu-font-family*.deb
 	
 	###############################
 	# cleanup
@@ -448,11 +424,11 @@ ep_install_chrome()
 	"https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 	
 	# install
-	sudo dpkg -i --ignore-depends=libappindicator1 google-chrome*.deb
+	sudo gdebi google-chrome*.deb
 
 	# back out of installdir
 	if [[ -d "$scriptdir" ]]; then
-		cd $scriptdir
+		cd "$scriptdir"
 	else
 		# attempt to use default DIR
 		cd "/home/desktop/SteamOS-Tools/"
@@ -471,5 +447,94 @@ ep_install_chrome()
 	# let user know about panel/tray support
 	echo -e "\n==Notice==\nUnfortunatley, at the moment, failure of the installation package 'libappindicator1'\
 means that panel/systray support will not be available at this time. This is being worked on.\n"
+
+}
+
+ep_install_gdrive()
+{
+
+	echo ""
+	#####################################################
+	# Gdrive (cli) 
+	#####################################################
+	# Name: Gdrive
+	# Desc: command line tool for google drive.
+	# Source: https://github.com/prasmussen/gdrive
+
+	# set vars
+	PKG=gdrive
+	PKG_FILENAME="TODO"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra"
+	BIN_LOC="/usr/bin/gdrive"
+	
+	# proceed to install eval
+	# This may change to just using a binary
+	
+	# ep_install_eval_pkg
+	ep_install_eval_binary
+}
+
+ep_install_eval_pkg()
+{
+
+	#####################################################
+	# Binary package eval routine using dpkg or gdebi
+	#####################################################
+	
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "\n$PKG not found. Installing now...\n"
+		sleep 2s
+		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+		sudo gdebi "/tmp/$PKG_FILENAME"
+		# cleanup
+		rm -f "/tmp/$PKG_FILENAME"
+		
+		if [ $? == '0' ]; then
+			echo "Successfully installed $PKG"
+			sleep 2s
+		else
+			echo "Could not install $PKG. Exiting..."
+			sleep 3s
+			exit 1
+		fi
+	else
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
+	fi
+
+}
+
+ep_install_eval_binary()
+{
+
+	echo ""
+	#####################################################
+	# Binary package eval routine
+	#####################################################
+	# This is mainly for binary file dumps only.
+	# For example, gdrive has binaries that require no depdencies.
+	# This is subject to change in the future.
+	
+	if [[ ! -f "$BIN_LOC" || -d "$PKG_DIR" ]]; then
+		echo -e "\n$PKG not found. Installing now...\n"
+		sleep 2s
+		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+		sudo gdebi "/tmp/$PKG_FILENAME"
+		# cleanup
+		rm -f "/tmp/$PKG_FILENAME"
+		
+		if [ $? == '0' ]; then
+			echo "Successfully installed $PKG"
+			sleep 2s
+		else
+			echo "Could not install $PKG. Exiting..."
+			sleep 3s
+			exit 1
+		fi
+	else
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
+	fi
 
 }

@@ -48,7 +48,7 @@ install_prereqs()
 	echo -e "\n==>Installing pre-requisites for building...\n"
 	sleep 1s
 	# install needed packages
-	sudo apt-get install devscripts build-essential checkinstall
+	sudo apt-get install git devscripts build-essential checkinstall
 
 }
 
@@ -137,13 +137,13 @@ main()
 	
 	# Ask user to enter build commands until "done" is received
 	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
-	echo -e "When finished, please enter the word 'done' without quotes\n"
+	echo -e "When finished, please enter the word 'done' without quotes\n\n"
 	sleep 0.5s
 	
 	while [[ "$src_cmd" != "done" ]];
 	do
 		# capture command
-		read -ep "Build CMD: " src_cmd
+		read -ep "Build CMD >> " src_cmd
 		
 		# Execute src cmd
 		$src_cmd

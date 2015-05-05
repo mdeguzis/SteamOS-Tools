@@ -216,6 +216,8 @@ m_pkg_routine_eval()
 
 m_emulation_install_main()
 {
+	# Called from: desktop-software.sh
+	# $type "emulation"
 	
 	# kick off emulation installs here or comment them out 
 	# to disable them temporarily.

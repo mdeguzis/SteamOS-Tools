@@ -95,7 +95,7 @@ main()
 	if [[ -d "$git_dir" ]]; then
 	
 		echo -e "\n==Info==\nGit folder already exists! Attempting git pull...\n"
-		sleep 1s
+		sleep 2s
 		# attempt to pull the latest source first
 		cd "$git_dir"
 		# eval git status
@@ -138,7 +138,7 @@ main()
 	# Ask user to enter build commands until "done" is received
 	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
 	echo -e "When finished, please enter the word 'done' without quotes\n\n"
-	sleep 0.5s
+	sleep 1s
 	
 	while [[ "$src_cmd" != "done" ]];
 	do

@@ -11,7 +11,7 @@ abiword
 libfreetype6
 inkscape
 vim
-!broken!samba
+samba
 libxine2
 perl
 icedove

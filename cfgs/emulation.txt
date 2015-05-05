@@ -12,3 +12,5 @@ yabause
 pcsxr
 desmume
 scummvm
+mame
+mess

@@ -157,10 +157,11 @@ main()
 	
 	# build deb package
 	sleep 2s
-	dpkg-buildpackage -us -uc -nc
 	
-	# We could also use checkinstall
-	# sudo checkinstall
+	sudo checkinstall
+	
+	# Alternate method
+	# dpkg-buildpackage -us -uc -nc
 
 	#################################################
 	# Post install configuration

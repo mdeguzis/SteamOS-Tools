@@ -709,7 +709,6 @@ main()
 			exit
 		fi
 
-		show_warning
 		install_software
 
 	elif [[ "$type" == "extra" ]]; then
@@ -751,7 +750,6 @@ main()
 			exit
 		fi
                 
-                show_warning
 		install_software
                 
         elif [[ "$type" == "emulation" ]]; then
@@ -796,7 +794,6 @@ main()
 			
 		fi
                 
-	        show_warning
 		install_software
 		# kick off extra modules for buld debs
 		echo -e "\n==> Proceeding to supplemental emulation package routine\n"
@@ -844,7 +841,6 @@ main()
 			exit
 		fi
         
-        	show_warning
 		install_software
 		
         elif [[ "$type" == "emulation-src-deps" ]]; then
@@ -888,7 +884,6 @@ main()
 			
 		fi
         
-        	show_warning
 		install_software
 		
 	elif [[ "$type" == "upnp-dlna" ]]; then
@@ -932,7 +927,6 @@ main()
 			
 		fi
         
-        	show_warning
 		install_software
 		
 		# kick off helper script
@@ -980,7 +974,6 @@ main()
 			
 		fi
         
-        	show_warning
 		install_software
 		
 		# kick off helper script
@@ -1026,7 +1019,6 @@ main()
 			echo ""
 			exit
 		fi
-		show_warning
 		install_software
 	fi
 	
@@ -1041,6 +1033,7 @@ main()
 # handle prerequisite software
 #####################################################
  
+show_warning
 funct_source_modules
 gpg_import
 funct_pre_req_checks

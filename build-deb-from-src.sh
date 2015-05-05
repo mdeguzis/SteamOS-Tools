@@ -60,8 +60,8 @@ main()
 	clear
 	# remove contents* of previous dir, if they exist
 	# We want to keep git-temp/ for subsequent pulls
-	if [[ -d "$build_dir" ]]; then
-		sudo rm -rf "$build_dir/*"
+	if [[ -d "$git_dir" ]]; then
+		sudo rm -rf "$git_dir"
 	fi
 	
 	# create build dir and git dir, enter it

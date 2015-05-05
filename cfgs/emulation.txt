@@ -11,3 +11,6 @@ dgen
 yabause
 pcsxr
 desmume
+scummvm
+mame
+mess

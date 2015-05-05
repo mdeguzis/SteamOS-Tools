@@ -164,12 +164,8 @@ main()
 	echo -e "When finished, please enter the word 'done' without quotes"
 	sleep 2s
 	
-	# if checkinstall fails, run again
-	while [[ $? == '0' ]];
-	do
-		# build deb package
-		sudo checkinstall
-	done
+	# build deb package
+	sudo checkinstall
 
 	# Alternate method
 	# dpkg-buildpackage -us -uc -nc

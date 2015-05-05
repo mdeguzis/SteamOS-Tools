@@ -145,8 +145,14 @@ main()
 		# capture command
 		read -ep "Build CMD >> " src_cmd
 		
-		# Execute src cmd
-		$src_cmd
+		# ignore executing src_cmd if "done"
+		if [[ "$src_cmd" == "done" ]]; then
+			# do nothing
+			echo "" > /dev/null
+		else
+			# Execute src cmd
+			$src_cmd
+		fi
 	done
   
 	############################
@@ -154,12 +160,17 @@ main()
 	############################
 	
 	echo -e "\n==> Building Debian package from source"
-	
-	# build deb package
+	echo -e "When finished, please enter the word 'done' without quotes"
 	sleep 2s
 	
-	sudo checkinstall
-	
+	# loop until user enters done
+	while [[ "$build_cmd" != "done" ]];
+	do
+		# build deb package
+		
+		sudo checkinstall
+	done
+
 	# Alternate method
 	# dpkg-buildpackage -us -uc -nc
 

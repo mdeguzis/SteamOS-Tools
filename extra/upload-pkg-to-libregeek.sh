@@ -20,6 +20,7 @@ funct_set_type()
     # copy pkg to emulation on libregeek
     sourcedir="/home/desktop/build-deb-temp/git-temp"
     user="thelinu2"
+    host="libregeek.org"
     destdir="/home2/thelinu2/public_html/SteamOS-Extra/emulation"
   fi
 
@@ -29,7 +30,7 @@ funct_transfer()
 {
 
   # transfer file
-  scp $sourcedir $user@$destdir
+  scp $sourcedir $user@$host:$destdir
 }
 
 # main start

@@ -94,25 +94,34 @@ main()
 	
 	if [[ -d "$git_dir" ]]; then
 	
-		echo -e "\n==Info==\nGit folder already exists! Attempting git pull...\n"
-		sleep 2s
-		# attempt to pull the latest source first
-		cd "$git_dir"
-		# eval git status
-		output=$(git pull 2> /dev/null)
+		echo -e "\n==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
+		sleep 1s
+		read -ep "Choice: " git_choice
 		
-		# evaluate git pull. Remove, create, and clone if it fails
-		if [[ "$output" != "Already up-to-date." ]]; then
-
-			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
-			sleep 2s
-			rm -rf "$git_dir"
-			mkdir -p "$git_dir"
+		if [[ "$git_choice" == "p" ]]; then
+			# attempt to pull the latest source first
 			cd "$git_dir"
-			# clone to current DIR
-			git clone "$git_url" .
-		fi
+			# eval git status
+			output=$(git pull 2> /dev/null)
+		
+			# evaluate git pull. Remove, create, and clone if it fails
+			if [[ "$output" != "Already up-to-date." ]]; then
+	
+				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+				sleep 2s
+				rm -rf "$git_dir"
+				mkdir -p "$git_dir"
+				cd "$git_dir"
+				# clone to current DIR
+				git clone "$git_url" .
+			fi
 			
+		elif [[ "$git_choice" == "r" ]]; then
+			# remove, clone, enter
+			rm -rf "$git_dir"
+			cd "$build_dir"
+			mkdir -p "$git_dir"
+			git clone "$git_url" .
 	else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."

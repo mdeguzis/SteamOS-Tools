@@ -131,7 +131,7 @@ main()
 	echo -e "\n==> Opening any available README.md to review build notes..."
 	sleep 2s
 	
-	readme_file=$(find . -iname "readme.md")
+	readme_file=$(find . -name "readme.md" -o "readme" -o "README" -o "README.md")
 	
 	less "$readme_file"
 	

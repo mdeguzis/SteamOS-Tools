@@ -268,7 +268,7 @@ main_install_eval_pkg()
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "\n$PKG not found. Installing now...\n"
 		sleep 2s
-		sudo apt-get $source_type install $PKG
+		sudo apt-get ${source_type}install $PKG
 		
 		if [ $? == '0' ]; then
 			echo "Successfully installed $PKG"

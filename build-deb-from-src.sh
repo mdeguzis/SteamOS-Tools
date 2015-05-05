@@ -130,7 +130,10 @@ main()
 	# Output readme via less to review build notes first
 	echo -e "\n==> Opening any available README.md to review build notes..."
 	sleep 2s
-	less README.md
+	
+	readme_file=$(grep -i "readme.md" .)
+	
+	less "$readme_file"
 	
 	# Ask user to enter build commands until "done" is received
 	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."

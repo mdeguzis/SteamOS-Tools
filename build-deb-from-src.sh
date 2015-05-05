@@ -152,6 +152,7 @@ main()
 		else
 			# Execute src cmd
 			$src_cmd
+			echo ""
 		fi
 	done
   
@@ -163,11 +164,10 @@ main()
 	echo -e "When finished, please enter the word 'done' without quotes"
 	sleep 2s
 	
-	# loop until user enters done
-	while [[ "$build_cmd" != "done" ]];
+	# if checkinstall fails, run again
+	while [[ $? == '0' ]];
 	do
 		# build deb package
-		
 		sudo checkinstall
 	done
 

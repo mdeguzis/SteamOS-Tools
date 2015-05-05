@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.9.2
+# Script Ver:	0.9.8
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -234,28 +234,55 @@ funct_pre_req_checks()
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
 	
-	# Adding repositories
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' python-software-properties | grep "install ok installed")
+	#################################
+	# python-software-properties
+	#################################
+	# set vars
+	PKG="python-software-properties"
+	source_type="-t wheezy"
 	
+	# proceed to install eval
+	main_install_eval_pkg
+	
+	#################################
+	# debian-keyring
+	#################################
+	# set vars
+	PKG="debian-keyring"
+	source_type="-t wheezy"
+	
+	# proceed to install eval
+	main_install_eval_pkg
+	
+}
+
+
+main_install_eval_pkg()
+{
+
+	#####################################################
+	# Package eval routine
+	#####################################################
+	
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	if [ "" == "$PKG_OK" ]; then
-		echo -e "\npython-software-properties not found. Setting up python-software-properties.\n"
-		sleep 1s
-		sudo apt-get install -t wheezy python-software-properties
+		echo -e "\n$PKG not found. Installing now...\n"
+		sleep 2s
+		sudo apt-get $source_type install $PKG
+		
+		if [ $? == '0' ]; then
+			echo "Successfully installed $PKG"
+			sleep 2s
+		else
+			echo "Could not install $PKG. Exiting..."
+			sleep 3s
+			exit 1
+		fi
 	else
-		echo "Checking for python-software-properties: [Ok]"
-		sleep 0.2s
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
 	fi
-	
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' debian-keyring | grep "install ok installed")
-	if [ "" == "$PKG_OK" ]; then
-		echo -e "\ndebian-keyring not found. Setting up debian-keyring.\n"
-		sleep 1s
-		sudo apt-get install debian-keyring
-	else
-		echo "Checking for debian-keyring: [Ok]"
-		sleep 0.2s
-	fi
-	
+
 }
 
 function gpg_import()

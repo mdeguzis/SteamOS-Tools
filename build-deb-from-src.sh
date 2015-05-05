@@ -60,13 +60,13 @@ main()
 	clear
 	# remove contents* of previous dir, if they exist
 	# We want to keep git-temp/ for subsequent pulls
-	if [[ -d "$git_dir" ]]; then
-		sudo rm -rf "$git_dir"
-	fi
+	#	if [[ -d "$git_dir" ]]; then
+	#	sudo rm -rf "$git_dir"
+	#fi
 	
 	# create build dir and git dir, enter it
 	mkdir -p "$git_dir"
-	cd "$build_dir"
+	cd "$git_dir"
 	
 	# Ask user for repos / vars
 	echo -e "==> Please enter or paste the git URL now:"

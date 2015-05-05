@@ -33,6 +33,6 @@ funct_transfer()
 }
 
 # main start
-fucnt_set type
+fucnt_set_type
 funct_transfer
 

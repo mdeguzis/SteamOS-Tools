@@ -418,7 +418,7 @@ ep_install_chrome()
 	# attempt later will be tried at source building, TODO
 	
 	wget -p /tmp "http://www.libregeek.org/SteamOS-Extra/browsers/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
-	sudo gdedi /tmp/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb
+	sudo gdebi /tmp/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb
 	
 	###############################	
 	# install

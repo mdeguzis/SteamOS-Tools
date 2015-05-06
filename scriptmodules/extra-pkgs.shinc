@@ -505,9 +505,7 @@ ep_install_netflix()
 	#####################################################
 	# PKG NAME
 	#####################################################
-	# Name: netflix-destop
-	# Desc: command line tool for google drive.
-	# Source: https://github.com/prasmussen/gdrive
+	# Name: netflix-desktop
 
 	# set vars
 	PKG="netflix-desktop"

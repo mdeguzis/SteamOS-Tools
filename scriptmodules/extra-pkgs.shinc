@@ -422,22 +422,14 @@ ep_install_chrome()
 	# Need to find / compile 2.37 from somewhere. Maybe grab the jessie source and try (risky).
 	# For now, attemp will be made at altering depends ver just down to our level
 	
-	# download, extract, modify, replack deb
 	cd /tmp
 	wget -O libappindicator1_12.10.1+SteamOS_amd64.deb "http://www.libregeek.org/SteamOS-Extra/browsers/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
+	sudo gdebi "libappindicator1_12.10.1+SteamOS_amd64.deb"
 	
-	if [[ -d "/tmp/extract/DEBIAN" ]]; then
-		rm -rf "/tmp/extract/DEBIAN"
-	else 
-		mkdir -p "/tmp/extrat/DEBIAN"
+	if [[ $? == 0 ]];then
+		echo "ERROR!"
+		sleep 50s
 	fi
-	
-	#dpkg-deb -x libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb extract/
-	#dpkg-deb -e libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb extract/DEBIAN sed -i "s| | |g" FILE
-	#mkdir build
- 	#dpkg-deb -b extract/ build/
-
-	#sudo gdebi "/tmp/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
 	
 	###############################	
 	# install

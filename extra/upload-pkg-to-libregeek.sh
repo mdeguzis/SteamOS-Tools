@@ -40,6 +40,7 @@ funct_transfer()
 # main start
 ##############################################
 
+clear
 echo -e "\n==> Displaying contents of $sourcedir:\n"
 sleep 2s
 

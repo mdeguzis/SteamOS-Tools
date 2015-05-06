@@ -425,7 +425,7 @@ ep_install_chrome()
 	# libglib2.0.0 is only ver. 2.33, when asking for >=2.37.3
 	# trying ignore depends fr now
 	
-	dpkg -i --ignore-depends=libglib2.0-0 /tmp/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb
+	sudo dpkg -i --ignore-depends=libglib2.0-0 /tmp/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb
 	
 	###############################	
 	# install

@@ -36,17 +36,21 @@ funct_transfer()
   scp $sourcedir/$PKG $user@$host:$destdir
 }
 
+##############################################
 # main start
+##############################################
 
 echo -e "\n==> Displaying contents of $sourcedir:\n"
 sleep 2s
 
 ls "$sourcedir"
 cd $sourcedir
+echo ""
 
 # get pkg from user
-read -ep "Package to upload: " PKG
+read -ep "Package to upload >> " PKG
 
-fucnt_set_type
+# evaluate and process
+funct_set_type
 funct_transfer
 

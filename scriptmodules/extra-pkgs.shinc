@@ -539,7 +539,8 @@ ep_install_eval_pkg()
 		if [[ "$multi" == "y" ]]; then
 			# get all debs
 			cd /tmp
-			wget -r --no-parent "$BASE_URL"
+			# See: http://stackoverflow.com/a/5335576
+			wget -r -nH --cut-dirs=2 --no-parent --reject="index.html*" "$BASE_URL"
 		elif [[ "$multi" == "n" ]]; then
 			# download target deb
 			wget -P /tmp "$BASE_URL/$PKG_FILENAME"

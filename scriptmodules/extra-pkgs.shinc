@@ -508,8 +508,8 @@ ep_install_netflix()
 	# Name: netflix-desktop
 
 	# set vars
-	PKG="netflix-desktop_0.8.9-1~ubuntu14.04.1_all.deb"
-	PKG_FILENAME="netflix-desktop"
+	PKG="netflix-desktop"
+	PKG_FILENAME="netflix-desktop_0.8.9-1~ubuntu14.04.1_all.deb"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
 	BIN_LOC=""
 	

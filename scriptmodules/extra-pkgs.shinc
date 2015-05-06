@@ -507,6 +507,8 @@ ep_install_netflix()
 	#####################################################
 	# Name: netflix-desktop
 	# Warning: libwayland-client0 ignored when building netflix-compholio!
+	# Source build maybe possible: https://launchpad.net/~gnome3-team/+archive/ubuntu/gnome3-staging
+	# Backup plan: compile pipelight, add as post-install configuration to firefox funct. above.
 	
 	# set vars
 	PKG="netflix-desktop"

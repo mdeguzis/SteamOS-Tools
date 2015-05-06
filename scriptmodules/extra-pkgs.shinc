@@ -515,13 +515,15 @@ ep_install_netflix()
 ep_install_eval_pkg()
 {
 
+	echo -e "\n==> Installing $PKG via external script"
+
 	#####################################################
 	# Binary package eval routine using dpkg or gdebi
 	#####################################################
 	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	if [ "" == "$PKG_OK" ]; then
-		echo -e "\n$PKG not found. Installing now...\n"
+		echo -e "\n==INFO==\n\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
 		sudo gdebi "/tmp/$PKG_FILENAME"
@@ -529,10 +531,10 @@ ep_install_eval_pkg()
 		rm -f "/tmp/$PKG_FILENAME"
 		
 		if [ $? == '0' ]; then
-			echo "Successfully installed $PKG"
+			echo -e "\n==INFO==\nSuccessfully installed $PKG"
 			sleep 2s
 		else
-			echo "Could not install $PKG. Exiting..."
+			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."
 			sleep 3s
 			exit 1
 		fi
@@ -546,6 +548,8 @@ ep_install_eval_pkg()
 ep_install_eval_binary()
 {
 
+	echo -e "\n==> Installing $PKG via external script"
+
 	echo ""
 	#####################################################
 	# Binary package eval routine
@@ -555,7 +559,7 @@ ep_install_eval_binary()
 	# This is subject to change in the future.
 	
 	if [[ ! -f "$BIN_LOC" || -d "$PKG_DIR" ]]; then
-		echo -e "\n$PKG not found. Installing now...\n"
+		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
 		sudo gdebi "/tmp/$PKG_FILENAME"
@@ -563,10 +567,10 @@ ep_install_eval_binary()
 		rm -f "/tmp/$PKG_FILENAME"
 		
 		if [ $? == '0' ]; then
-			echo "Successfully installed $PKG"
+			echo -e "\n==INFO==\nSuccessfully installed $PKG"
 			sleep 2s
 		else
-			echo "Could not install $PKG. Exiting..."
+			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."
 			sleep 3s
 			exit 1
 		fi

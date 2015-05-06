@@ -47,6 +47,9 @@ ep_install_firefox()
 	BIN_LOC="/usr/bin/gdrive"
 	PKG_DIR="/usr/share/doc/vaporos-binds-xbox360"
 	
+	# set multiflag
+	multi="n"
+	
 	# proceed to install eval
 	ep_install_eval_pkg
 
@@ -479,6 +482,9 @@ ep_install_gdrive()
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra"
 	BIN_LOC="/usr/bin/gdrive"
 	
+	# set multiflag
+	multi="n"
+	
 	# proceed to install eval
 	# This may change to just using a binary
 	
@@ -507,6 +513,9 @@ ep_install_netflix()
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
 	BIN_LOC=""
 	
+	# set multiflag
+	multi="y"
+	
 	# proceed to pkg eval
 	ep_install_eval_pkg
 
@@ -525,8 +534,19 @@ ep_install_eval_pkg()
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "\n==INFO==\n\n$PKG not found. Installing now...\n"
 		sleep 2s
-		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+		
+		# check for multiple debs for install
+		if [[ "$multi" == "y" ]]; then
+			# get all debs
+			wget -r -np -nH -P /tmp "$BASE_URL"
+		elif [[ "$multi" == "n" ]];
+			# download target deb
+			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+		fi
+		
+		# process install(s)
 		sudo gdebi "/tmp/$PKG_FILENAME"
+		
 		# cleanup
 		rm -f "/tmp/$PKG_FILENAME"
 		

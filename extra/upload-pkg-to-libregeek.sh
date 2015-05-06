@@ -33,7 +33,6 @@ funct_set_type()
     host="libregeek.org"
     # this destdir will move to a multimedia dir soon
     destdir="/home2/thelinu2/public_html/SteamOS-Extra/emulation-src"
-  fi
   
   elif [[ "$TYPE" == "browser" ]]; then
     # copy pkg to emulation on libregeek
@@ -51,7 +50,6 @@ funct_set_type()
     host="libregeek.org"
     # this destdir will move to a multimedia dir soon
     destdir="/home2/thelinu2/public_html/SteamOS-Extra/utlities"
-  fi
 
   elif [[ "$TYPE" == "misc" ]]; then
     # copy pkg to emulation on libregeek

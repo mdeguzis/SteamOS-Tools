@@ -208,7 +208,7 @@ show_help()
 	Options: 	[install|uninstall|list|check] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[plex|kodi|firefox|chrome|x360-bindings|ue4]
+	Extra types: 	[chrome|firefox|kodi|netflix|plex|x360-bindings|ue4]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -354,25 +354,30 @@ get_software_type()
 	# popular software / custom specification
 	####################################################
 	
-	elif [[ "$type" == "plex" ]]; then
+	
+	elif [[ "$type" == "chrome" ]]; then
                 # install plex from helper script
-                ep_install_plex
+                ep_install_chrome
                 exit
         elif [[ "$type" == "firefox" ]]; then
                 # install plex from helper script
                 ep_install_firefox
                 exit
-        elif [[ "$type" == "chrome" ]]; then
+        elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script
-                ep_install_chrome
+                ep_install_kodi
+                exit
+	elif [[ "$type" == "plex" ]]; then
+                # install plex from helper script
+                ep_install_netflix
+                exit
+	elif [[ "$type" == "plex" ]]; then
+                # install plex from helper script
+                ep_install_plex
                 exit
         elif [[ "$type" == "x360-bindings" ]]; then
                 # install plex from helper script
                 ep_install_x360_bindings
-                exit
-        elif [[ "$type" == "kodi" ]]; then
-                # install plex from helper script
-                ep_install_kodi
                 exit
         elif [[ "$type" == "ue4" ]]; then
                 # install ue4 from helper script

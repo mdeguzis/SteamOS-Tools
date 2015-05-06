@@ -539,7 +539,7 @@ ep_install_eval_pkg()
 		if [[ "$multi" == "y" ]]; then
 			# get all debs
 			wget -r -np -nH -P /tmp "$BASE_URL"
-		elif [[ "$multi" == "n" ]];
+		elif [[ "$multi" == "n" ]]; then
 			# download target deb
 			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
 		fi

@@ -509,20 +509,24 @@ ep_install_netflix()
 
 	# set vars
 	PKG="netflix-desktop"
-	PKG_FILENAME="*.deb"
-	# netflix-desktop_0.8.9-1~ubuntu14.04.1_all.deb
+	PKG_FILENAME="/tmp/netflix-pkg-tmp.txt"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
 	BIN_LOC=""
+	software_list="/tmp/netflix-pkg-tmp.txt"
 	
 	# set order in which packages must be installed (must be done in order!)
-	# TODO - in progress
-	cat <<-EOF > /tmp/netflix-pkg-tmp
-	1
-	2
-	3
+	# Several sub-packages of netflix desktop must be installed properly beforehand.
+	# TODO - in progress !!!
+	
+	cat <<-EOF > "/tmp/netflix-pkg-tmp.txt"
+	# NEEDS PACKAGED: wine-staging
+	# NEEDS PACKAGED: wine-compholio
+	wine-browser-installer_0.8.9-1~ubuntu14.04.1_all.deb
+	wine-silverlight5.1-installer_0.8.9-1~ubuntu14.04.1_all.deb
+	netflix-desktop_0.8.9-1~ubuntu14.04.1_all.deb
 	EOF
 	
-	# set multiflag
+	# set multiflag so multiple debs are processed
 	multi="y"
 	
 	# proceed to pkg eval
@@ -550,21 +554,19 @@ ep_install_eval_pkg()
 		# check for multiple debs for install
 		if [[ "$multi" == "y" ]]; then
 		
-			# get all debs
 			cd /tmp
-		
 			# Download files recursively form base URL folder, skip index.html
 			# See: http://stackoverflow.com/a/5335576
 			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
 			
-			# process install in loop
+			# process install in loop for each package in our software list
 			for x in `cat $software_list`; do
 				sudo dpkg -i $x
 			done
 			
 		elif [[ "$multi" == "n" ]]; then
 		
-			# download target deb
+			# download target singluar deb
 			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
 			# process install
 			sudo gdebi "/tmp/$PKG_FILENAME"

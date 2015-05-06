@@ -514,11 +514,22 @@ ep_install_netflix()
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
 	BIN_LOC=""
 	
+	# set order in which packages must be installed (must be done in order!)
+	# TODO - in progress
+	cat <<-EOF > /tmp/netflix-pkg-tmp
+	1
+	2
+	3
+	EOF
+	
 	# set multiflag
 	multi="y"
 	
 	# proceed to pkg eval
 	ep_install_eval_pkg
+	
+	# remove temp pkg list
+	rm -f /tmp/netflix-pkg-tmp
 
 }
 
@@ -541,10 +552,15 @@ ep_install_eval_pkg()
 		
 			# get all debs
 			cd /tmp
+		
+			# Download files recursively form base URL folder, skip index.html
 			# See: http://stackoverflow.com/a/5335576
-			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html*" "$BASE_URL"
-			# process install
-			sudo dpkg -i *.deb
+			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
+			
+			# process install in loop
+			for x in `cat $software_list`; do
+				sudo dpkg -i $x
+			done
 			
 		elif [[ "$multi" == "n" ]]; then
 		

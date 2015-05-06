@@ -25,14 +25,49 @@ funct_set_type()
     user="thelinu2"
     host="libregeek.org"
     destdir="/home2/thelinu2/public_html/SteamOS-Extra/emulation"
-  
-elif [[ "$TYPE" == "multimedia" ]]; then
+    
+  elif [[ "$TYPE" == "emulation-src" ]]; then
     # copy pkg to emulation on libregeek
     sourcedir="/home/desktop/build-deb-temp/"
     user="thelinu2"
     host="libregeek.org"
     # this destdir will move to a multimedia dir soon
-    destdir="/home2/thelinu2/public_html/SteamOS-Extra/useful-pkgs"
+    destdir="/home2/thelinu2/public_html/SteamOS-Extra/emulation-src"
+  fi
+  
+  elif [[ "$TYPE" == "browser" ]]; then
+    # copy pkg to emulation on libregeek
+    sourcedir="/home/desktop/build-deb-temp/"
+    user="thelinu2"
+    host="libregeek.org"
+    # this destdir will move to a multimedia dir soon
+    destdir="/home2/thelinu2/public_html/SteamOS-Extra/browsers"
+  fi
+  
+  elif [[ "$TYPE" == "utlities" ]]; then
+    # copy pkg to emulation on libregeek
+    sourcedir="/home/desktop/build-deb-temp/"
+    user="thelinu2"
+    host="libregeek.org"
+    # this destdir will move to a multimedia dir soon
+    destdir="/home2/thelinu2/public_html/SteamOS-Extra/utlities"
+  fi
+
+  elif [[ "$TYPE" == "misc" ]]; then
+    # copy pkg to emulation on libregeek
+    sourcedir="/home/desktop/build-deb-temp/"
+    user="thelinu2"
+    host="libregeek.org"
+    # this destdir will move to a multimedia dir soon
+    destdir="/home2/thelinu2/public_html/SteamOS-Extra/misc"
+
+  elif [[ "$TYPE" == "multimedia" ]]; then
+    # copy pkg to emulation on libregeek
+    sourcedir="/home/desktop/build-deb-temp/"
+    user="thelinu2"
+    host="libregeek.org"
+    # this destdir will move to a multimedia dir soon
+    destdir="/home2/thelinu2/public_html/SteamOS-Extra/multimedia"
   fi
 
 }

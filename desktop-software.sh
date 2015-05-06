@@ -254,6 +254,16 @@ funct_pre_req_checks()
 	# proceed to install eval
 	main_install_eval_pkg
 	
+	#################################
+	# gdebi
+	#################################
+	# set vars
+	PKG="gdebi"
+	source_type=""
+	
+	# proceed to install eval
+	main_install_eval_pkg
+	
 }
 
 

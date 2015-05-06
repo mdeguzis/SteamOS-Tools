@@ -506,7 +506,7 @@ ep_install_netflix()
 	# PKG NAME
 	#####################################################
 	# Name: netflix-desktop
-	# Warning: @liwayland-client0 ignored when building netflix-compholio!
+	# Warning: libwayland-client0 ignored when building netflix-compholio!
 	
 	# set vars
 	PKG="netflix-desktop"

@@ -13,6 +13,9 @@
 TYPE="$1"
 script_dir="$PWD"
 
+#Set defaults if user doesn't enter a TYPE
+sourcedir="/home/desktop/build-deb-temp/"
+
 funct_set_type()
 {
 
@@ -35,7 +38,7 @@ funct_transfer()
 
 # main start
 
-echo -e "\n==> Displaying contents of $build_dir "
+echo -e "\n==> Displaying contents of $sourcedir:\n"
 sleep 2s
 
 ls "$sourcedir"

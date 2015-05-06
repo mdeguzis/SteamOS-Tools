@@ -25,6 +25,14 @@ funct_set_type()
     user="thelinu2"
     host="libregeek.org"
     destdir="/home2/thelinu2/public_html/SteamOS-Extra/emulation"
+  
+elif [[ "$TYPE" == "multimedia" ]]; then
+    # copy pkg to emulation on libregeek
+    sourcedir="/home/desktop/build-deb-temp/"
+    user="thelinu2"
+    host="libregeek.org"
+    # this destdir will move to a multimedia dir soon
+    destdir="/home2/thelinu2/public_html/SteamOS-Extra/useful-pkgs"
   fi
 
 }

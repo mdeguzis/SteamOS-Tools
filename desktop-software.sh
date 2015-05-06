@@ -396,9 +396,13 @@ get_software_type()
        #deps from building from PPAs' or src
        sed 's/[(]//g' "custom-pkg.txt"
        sed 's/[)]//g' "custom-pkg.txt"
-       sed 's/[=]//g' "custom-pkg.txt"
+       sed 's/[(>=]//g' "custom-pkg.txt"
        sed 's/[>]//g' "custom-pkg.txt"
        sed 's/[|]//g' "custom-pkg.txt"
+       sed 's/^[0-9].[0-9].[0-9]//g' "custom-pkg.txt"
+       
+       # exit for testing, check custom-pkg.txt
+       exit
 }
 
 add_repos()

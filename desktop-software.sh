@@ -389,20 +389,6 @@ get_software_type()
                 # install based on $type string response
 		software_list="custom-pkg.txt"
         fi
-       
-       # cleanup
-       # get rid of symbols in custom-pkg.txt.
-       # this is useful when bulk-pasting missing 
-       #deps from building from PPAs' or src
-       sed 's/[(]//g' "custom-pkg.txt"
-       sed 's/[)]//g' "custom-pkg.txt"
-       sed 's/[(>=]//g' "custom-pkg.txt"
-       sed 's/[>]//g' "custom-pkg.txt"
-       sed 's/[|]//g' "custom-pkg.txt"
-       sed 's/^[0-9].[0-9].[0-9]//g' "custom-pkg.txt"
-       
-       # exit for testing, check custom-pkg.txt
-       exit
 }
 
 add_repos()

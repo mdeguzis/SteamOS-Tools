@@ -544,7 +544,7 @@ ep_install_eval_pkg()
 			# See: http://stackoverflow.com/a/5335576
 			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html*" "$BASE_URL"
 			# process install
-			sudo gdebi /tmp/$PKG_FILENAME
+			sudo dpkg -i *.deb
 			
 		elif [[ "$multi" == "n" ]]; then
 		

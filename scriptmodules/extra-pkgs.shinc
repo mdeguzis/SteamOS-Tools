@@ -537,18 +537,22 @@ ep_install_eval_pkg()
 		
 		# check for multiple debs for install
 		if [[ "$multi" == "y" ]]; then
+		
 			# get all debs
 			cd /tmp
 			# See: http://stackoverflow.com/a/5335576
 			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html*" "$BASE_URL"
+			# process install
+			sudo gdebi /tmp/*.deb
+			
 		elif [[ "$multi" == "n" ]]; then
+		
 			# download target deb
 			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+			# process install
+			sudo gdebi "/tmp/$PKG_FILENAME"
 		fi
-		
-		# process install(s)
-		sudo gdebi "/tmp/$PKG_FILENAME"
-		
+
 		# cleanup
 		rm -f "/tmp/$PKG_FILENAME"
 		

@@ -11,14 +11,14 @@
 # -------------------------------------------------------------------------------
 
 TYPE="$1"
-PKG="$2"
+script_dir="$PWD"
 
 funct_set_type()
 {
 
   if [[ "$TYPE" == "emulation" ]]; then
     # copy pkg to emulation on libregeek
-    sourcedir="/home/desktop/build-deb-temp/git-temp"
+    sourcedir="/home/desktop/build-deb-temp/"
     user="thelinu2"
     host="libregeek.org"
     destdir="/home2/thelinu2/public_html/SteamOS-Extra/emulation"
@@ -30,10 +30,20 @@ funct_transfer()
 {
 
   # transfer file
-  scp $sourcedir $user@$host:$destdir
+  scp $sourcedir/$PKG $user@$host:$destdir
 }
 
 # main start
+
+echo -e "\n==> Displaying contents of $build_dir "
+sleep 2s
+
+ls "$sourcedir"
+cd $sourcedir
+
+# get pkg from user
+read -ep "Package to upload: " PKG
+
 fucnt_set_type
 funct_transfer
 

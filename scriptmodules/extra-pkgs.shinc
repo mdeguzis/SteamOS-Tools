@@ -423,9 +423,9 @@ ep_install_chrome()
 	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/browsers/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
 	
 	# libglib2.0.0 is only ver. 2.33, when asking for >=2.37.3
-	# trying ignore depends fr now
+	# Need to find / compile 2.37 from somewhere. Maybe grab the jessie source and try (risky).
 	
-	sudo dpkg -i --ignore-depends=libglib2.0-0 /tmp/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb
+	sudo gdebi "/tmp/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
 	
 	###############################	
 	# install

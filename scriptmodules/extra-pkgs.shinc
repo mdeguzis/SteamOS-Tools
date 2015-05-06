@@ -427,10 +427,11 @@ ep_install_chrome()
 	wget -O libappindicator1_12.10.1+SteamOS_amd64.deb "http://www.libregeek.org/SteamOS-Extra/browsers/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
 	
 	if [[ -d "/tmp/extract/DEBIAN" ]]; then
-		rm -rf "extract/DEBIAN"
+		rm -rf "/tmp/extract/DEBIAN"
 	else 
-		mkdir -p "/tmp/extrat/DEBIAN
+		mkdir -p "/tmp/extrat/DEBIAN"
 	fi
+	
 	#dpkg-deb -x libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb extract/
 	#dpkg-deb -e libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb extract/DEBIAN sed -i "s| | |g" FILE
 	#mkdir build

@@ -398,6 +398,7 @@ get_software_type()
        sed 's/[)]//g' "custom-pkg.txt"
        sed 's/[=]//g' "custom-pkg.txt"
        sed 's/[>]//g' "custom-pkg.txt"
+       sed 's/[|]//g' "custom-pkg.txt"
 }
 
 add_repos()

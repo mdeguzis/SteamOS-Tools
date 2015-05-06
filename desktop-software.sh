@@ -208,7 +208,7 @@ show_help()
 	Options: 	[install|uninstall|list|check] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[chrome|firefox|kodi|netflix|plex|x360-bindings|ue4]
+	Extra types: 	[firefox|kodi|netflix|plex|x360-bindings|ue4]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -355,10 +355,10 @@ get_software_type()
 	####################################################
 	
 	
-	elif [[ "$type" == "chrome" ]]; then
-                # install plex from helper script
-                ep_install_chrome
-                exit
+	#elif [[ "$type" == "chrome" ]]; then
+        #        # install plex from helper script
+        #        ep_install_chrome
+        #        exit
         elif [[ "$type" == "firefox" ]]; then
                 # install plex from helper script
                 ep_install_firefox

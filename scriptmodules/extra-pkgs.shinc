@@ -510,8 +510,8 @@ ep_install_netflix()
 	# Source: https://github.com/prasmussen/gdrive
 
 	# set vars
-	PKG="*.deb"
-	PKG_FILENAME="*.deb"
+	PKG="netflix-desktop"
+	PKG_FILENAME="netflix-desktop"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
 	BIN_LOC=""
 	

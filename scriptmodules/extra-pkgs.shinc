@@ -373,6 +373,10 @@ ep_install_kodi()
 ep_install_chrome()
 {
 
+	# testing only 
+	wget -P /tmp -O libappindicator1_12.10.1+SteamOS_amd64.deb "http://www.libregeek.org/SteamOS-Extra/browsers/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
+	sleep 50s
+
 	# This script will also be used to shoehorn in Netflix as a launch
 	# item in SteamOS/Steam Big Picture Mode.
 	# Source: 
@@ -423,13 +427,11 @@ ep_install_chrome()
 	# For now, attemp will be made at altering depends ver just down to our level
 	
 	# download, extract, modify, replack deb
-	wget -P /tmp -O libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb "http://www.libregeek.org/SteamOS-Extra/browsers/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
+	wget -P /tmp -O libappindicator1_12.10.1+SteamOS_amd64.deb "http://www.libregeek.org/SteamOS-Extra/browsers/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
 	cd /tmp
-	rm -rf extract/DEBIAN
-	mkdir -p extract/DEBIAN
-	# pause/stop so that we can check out the extract contents first.
-	sleep 50s
-	dpkg-deb -x libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb extract/
+	#rm -rf extract/DEBIAN
+	#mkdir -p extract/DEBIAN
+	#dpkg-deb -x libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb extract/
 	#dpkg-deb -e libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb extract/DEBIAN sed -i "s| | |g" FILE
 	#mkdir build
  	#dpkg-deb -b extract/ build/

@@ -41,7 +41,6 @@ funct_set_type()
     host="libregeek.org"
     # this destdir will move to a multimedia dir soon
     destdir="/home2/thelinu2/public_html/SteamOS-Extra/browsers"
-  fi
   
   elif [[ "$TYPE" == "utlities" ]]; then
     # copy pkg to emulation on libregeek

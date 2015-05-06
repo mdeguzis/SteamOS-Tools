@@ -390,6 +390,14 @@ get_software_type()
 		software_list="custom-pkg.txt"
         fi
        
+       # cleanup
+       # get rid of symbols in custom-pkg.txt.
+       # this is useful when bulk-pasting missing 
+       #deps from building from PPAs' or src
+       sed 's/[(]//g' "custom-pkg.txt"
+       sed 's/[)]//g' "custom-pkg.txt"
+       sed 's/[=]//g' "custom-pkg.txt"
+       sed 's/[>]//g' "custom-pkg.txt"
 }
 
 add_repos()

@@ -545,7 +545,8 @@ ep_install_eval_pkg()
 		fi
 		
 		# process install(s)
-		sudo gdebi "/tmp/$PKG_FILENAME"
+		# sudo gdebi "/tmp/$PKG_FILENAME"
+		sudo dpkg -i *.deb
 		
 		# cleanup
 		rm -f "/tmp/$PKG_FILENAME"

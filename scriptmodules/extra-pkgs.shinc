@@ -414,29 +414,27 @@ ep_install_chrome()
 	
 	echo -e "\n==> Installing libappindicator\n"
 	sleep 2s
+	
 	# Prereq for libappindicator1 
 	sudo apt-get install libglib2.0-0
-	
-	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/browsers/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
 
-	# libglib2.0.0 is only ver. 2.33, when asking for >=2.37.3
+	# libglib2.0.0 is only ver. 2.33, when libappindicator is asking for >=2.37.3
 	# Need to find / compile 2.37 from somewhere. Maybe grab the jessie source and try (risky).
 	# For now, attemp will be made at altering depends ver just down to our level
 	
-	# extract, modify, replack deb
-	
+	# download, extract, modify, replack deb
+	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/browsers/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
+	cd /tmp
 	mkdir -p extract/DEBIAN
-	dpkg-deb -x package.deb extract/
-	#dpkg-deb -e package.deb extract/DEBIAN sed -i "s| | |g" FILE
+	dpkg-deb -x libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb extract/
+	#dpkg-deb -e libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb extract/DEBIAN sed -i "s| | |g" FILE
 	#mkdir build
 	
 	# pause/stop so that we can check out the extract contents first.
 	sleep 50s
- 
-dpkg-deb -b extract/ build/
+ 	#dpkg-deb -b extract/ build/
 
-	
-	sudo gdebi "/tmp/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
+	#sudo gdebi "/tmp/libappindicator1_12.10.1+15.04.20141110-0ubuntu1_amd64.deb"
 	
 	###############################	
 	# install

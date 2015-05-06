@@ -538,7 +538,8 @@ ep_install_eval_pkg()
 		# check for multiple debs for install
 		if [[ "$multi" == "y" ]]; then
 			# get all debs
-			wget -r -np -nH -P /tmp "$BASE_URL"
+			cd /tmp
+			wget -r -np -nH "$BASE_URL"
 		elif [[ "$multi" == "n" ]]; then
 			# download target deb
 			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
@@ -549,6 +550,9 @@ ep_install_eval_pkg()
 		
 		# cleanup
 		rm -f "/tmp/$PKG_FILENAME"
+		
+		# cleanup leftover debs
+		rm -f /tmp/*.deb
 		
 		if [ $? == '0' ]; then
 			echo -e "\n==INFO==\nSuccessfully installed $PKG"
@@ -561,6 +565,13 @@ ep_install_eval_pkg()
 	else
 		echo "Checking for $PKG [OK]"
 		sleep 0.5s
+	fi
+
+	# back out of any temp dir to script dir
+	if [[ "$scriptdir" != "" ]]; then
+		cd "$scriptdir"
+	else
+		cd "$HOME"
 	fi
 
 }

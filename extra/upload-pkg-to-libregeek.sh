@@ -89,7 +89,7 @@ main()
   
 # ^-?[0-9]+$ ]];
 # only loop if package choice is not done, and does not start with an no ($destdir)
-while [[ "choice" != "done" ]];
+while [[ "$PKG" != "done" ]];
 do
 	clear
 	echo -e "############################################################"
@@ -111,17 +111,17 @@ do
 	echo ""
 	
 	# capture command
-	read -ep "Package to upload >> " choice
+	read -ep "Package to upload >> " PKG
 	
-	# ignore executing src_cmd if "done"
-	if [[ "$choice" == "done" ]]; then
-		# do nothing
-		echo "" > /dev/null
-	fi
-
 	# set dir and transfer
 	funct_set_dir
 	funct_transfer
+
+	# ignore executing src_cmd if "done"
+	if [[ "$PKG" == "done" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	fi
 
 done
 
@@ -130,5 +130,6 @@ done
 ##############################################
 # main start
 ##############################################
+funct_set_vars
 main
 

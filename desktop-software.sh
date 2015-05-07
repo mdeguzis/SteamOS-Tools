@@ -32,9 +32,10 @@ rm -f "custom-pkg.txt"
 rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
-while [ "$type" != "" ]; do
+while [[ "$type" != "" && "$extra_opts" != "test" ]]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
+	type="$2"
 	echo "$type" >> "custom-pkg.txt"
 	# Shift all the parameters down by one
 	shift

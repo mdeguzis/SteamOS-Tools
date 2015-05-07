@@ -28,52 +28,52 @@ funct_set_vars()
 funct_set_dir()
 {
   
-  # set path for upload
-echo -e "\nPlease select which SteamOS-Extra folder you would like the package uploaded: \n"
-echo -e "(1) SteamOS-Extra/emulation"
-echo -e "(2) SteamOS-Extra/emulation-src"
-echo -e "(3) SteamOS-Extra/browser"
-echo -e "(4) SteamOS-Extra/utilities"
-echo -e "(5) SteamOS-Extra/misc"
-echo -e "(6) SteamOS-Extra/Multimedia"
-echo -e "(7) Default Public HTML\n"
-
-# the prompt sometimes likes to jump above sleep
-sleep 0.5s
-
-read -ep "Choice: " dir_choice
-
-case "$dir_choice" in
-        
-      1)
-      destdir="/home2/thelinu2/public_html/SteamOS-Extra/emulation"
-      ;;
-      
-      2)
-      destdir="/home2/thelinu2/public_html/SteamOS-Extra/emulation-src"
-      ;;
-      
-      3)
-      destdir="/home2/thelinu2/public_html/SteamOS-Extra/browsers"
-      ;;
-      
-      4)
-      destdir="/home2/thelinu2/public_html/SteamOS-Extra/utlities"
-      ;;
-      
-      5)
-      destdir="/home2/thelinu2/public_html/SteamOS-Extra/misc"
-      ;;
-      
-      6)
-      destdir="/home2/thelinu2/public_html/SteamOS-Extra/multimedia"
-      ;;
-      
-      7)
-      destdir="/home2/thelinu2/public_html/"
-      ;;
-      
-esac
+	# set path for upload
+	echo -e "\nPlease select which SteamOS-Extra folder you would like the package uploaded: \n"
+	echo -e "(1) SteamOS-Extra/emulation"
+	echo -e "(2) SteamOS-Extra/emulation-src"
+	echo -e "(3) SteamOS-Extra/browser"
+	echo -e "(4) SteamOS-Extra/utilities"
+	echo -e "(5) SteamOS-Extra/misc"
+	echo -e "(6) SteamOS-Extra/Multimedia"
+	echo -e "(7) Default Public HTML\n"
+	
+	# the prompt sometimes likes to jump above sleep
+	sleep 0.5s
+	
+	read -ep "Choice: " dir_choice
+	
+	case "$dir_choice" in
+	        
+	      1)
+	      destdir="/home2/thelinu2/public_html/SteamOS-Extra/emulation"
+	      ;;
+	      
+	      2)
+	      destdir="/home2/thelinu2/public_html/SteamOS-Extra/emulation-src"
+	      ;;
+	      
+	      3)
+	      destdir="/home2/thelinu2/public_html/SteamOS-Extra/browsers"
+	      ;;
+	      
+	      4)
+	      destdir="/home2/thelinu2/public_html/SteamOS-Extra/utlities"
+	      ;;
+	      
+	      5)
+	      destdir="/home2/thelinu2/public_html/SteamOS-Extra/misc"
+	      ;;
+	      
+	      6)
+	      destdir="/home2/thelinu2/public_html/SteamOS-Extra/multimedia"
+	      ;;
+	      
+	      7)
+	      destdir="/home2/thelinu2/public_html/"
+	      ;;
+	      
+	esac
 
 }
 
@@ -87,9 +87,9 @@ funct_transfer()
 main()
 {
   
-
-
-while [[ "$PKG" != "done" || "$dir_choice" != "" ]];
+# ^-?[0-9]+$ ]];
+# only loop if package choice is not done, and does not start with an no ($destdir)
+while [[ "$PKG" != "done" && "$destdir" != "" ]];
 do
 	clear
 	echo -e "############################################################"
@@ -121,6 +121,10 @@ do
 
 	# set dir and transfer
 	funct_set_dir
+	
+	# set destdir selection to null for loop
+	dest_dir=""
+	
 	funct_transfer
 
 done

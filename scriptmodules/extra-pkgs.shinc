@@ -442,7 +442,7 @@ ep_install_chrome()
 	libkrb5support0:i386 liblcms2-2:i386 libldap-2.4-2:i386 libnspr4:i386 libnss3:i386 \
 	libpango1.0-0:i386 libpcre3:i386 libpixman-1-0:i386 librtmp0:i386 libsasl2-2:i386 \
 	libsasl2-modules:i386 libsqlite3-0:i386 libssh2-1:i386 libthai0:i386 libxcb-render0:i386 \
-	libxcb-shm0:i386 libxft2:i386 libxss1:i386 libxtst6:i386
+	libxcb-shm0:i386 libxft2:i386 libxss1:i386 libxtst6:i386"
 	
 	#######################
 	# libappindiactor

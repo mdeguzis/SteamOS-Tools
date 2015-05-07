@@ -519,8 +519,8 @@ ep_install_chrome()
 	# Cleanup
 	###############################
 	
-	# let user know about panel/tray support
-	echo -e "\n==Notice==\nUnfortunatley, at the moment, failure of the installation package 'libappindicator1'\
+	# let user know about panel/tray support (may go away soon)
+	#echo -e "\n==Notice==\nUnfortunatley, at the moment, failure of the installation package 'libappindicator1'\
 means that panel/systray support will not be available at this time. This is being worked on.\n"
 
 }

@@ -32,7 +32,7 @@ show_help()
 	EOF
 }
 
-if [[ "$arg" == "--help" ]]; then
+if [[ "$arg1" == "--help" ]]; then
 	#show help
 	show_help
 	exit
@@ -147,9 +147,9 @@ main()
 	
 	# back out of build temp to script dir if called from git clone
 	if [[ "$scriptdir" != "" ]]; then
-		cd $scriptdir
+		cd "$scriptdir"
 	else
-		cd $HOME
+		cd "$HOME"
 	fi
 	
 	# inform user of packages
@@ -164,6 +164,19 @@ main()
 	echo -e "###################################################################\n"
 	
 	ls "/home/desktop/build-deb-temp"
+	
+	echo -e "==> Would you like to trim out the tar.gz and dsc files for uploading?"
+	sleep 0.5s
+	# capture command
+	read -ep "Choice: " >> trim_choice
+	
+	if [[ "$trim_choice" == "y" ]]; then
+		# cut files
+		rm -f ./*.tar.gz
+		rm -f ./*.dsc
+	elif [[ "$trim_choice" == "n" ]]; then
+		echo -e "trim not requested"
+	fi
 }
 
 # start main

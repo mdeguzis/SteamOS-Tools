@@ -751,6 +751,7 @@ ep_test_deb()
 		
 		# set pkg
 		sleep 0.5s
+		echo ""
 		read -ep "Enter Pkg to test >> " PKG
 		
 		# isntall 

@@ -368,7 +368,7 @@ get_software_type()
                 ep_install_kodi
                 exit
 	elif [[ "$type" == "netflix" ]]; then
-                # install plex from helper script
+                # install netflix from helper script
                 ep_install_netflix
                 exit
 	elif [[ "$type" == "plex" ]]; then

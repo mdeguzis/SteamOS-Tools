@@ -712,6 +712,10 @@ ep_test_deb()
 		echo "2" && sleep 1s
 		echo -e "1\n" && sleep 1s
 		exit
+	else
+		# output small reminder
+		echo -e "\n==INFO==\nNotice: tmpfs (/tmp) usage is at: $df_chk\n"
+		sleep 2s
 	fi
 	
 	###############################	

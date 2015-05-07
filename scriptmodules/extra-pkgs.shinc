@@ -684,7 +684,7 @@ ep_install_eval_binary()
 ep_test_deb()
 {
 	clear
-	echo -e "==>\nUser requested testing of package routine!\n"
+	echo -e "==>User requested testing of package routine!\n"
 	sleep 3s
 	
 	###############################	

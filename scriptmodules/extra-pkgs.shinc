@@ -519,8 +519,8 @@ ep_install_netflix()
 	
 	# set order in which packages must be installed (must be done in order!)
 	# Several sub-packages of netflix desktop must be installed properly beforehand.
-	# TODO - in progress !!!
-	
+
+
 	cat <<-EOF > "/tmp/netflix-pkg-tmp.txt"
 	# NEEDS PACKAGED: wine-staging
 	# NEEDS PACKAGED: wine-compholio
@@ -528,6 +528,13 @@ ep_install_netflix()
 	wine-silverlight5.1-installer_0.8.9-1~ubuntu14.04.1_all.deb
 	netflix-desktop_0.8.9-1~ubuntu14.04.1_all.deb
 	EOF
+	
+	# clean/remove existing packages so that the install does not fail
+	echo "\n==INFO==\nPurging previously installed packages for a clean install...\n" 
+	
+	for x in `cat $software_list`; do
+		sudo dpkg --purge $x
+	done
 	
 	# set multiflag so multiple debs are processed
 	multi="y"

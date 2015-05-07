@@ -684,6 +684,9 @@ ep_install_eval_binary()
 ep_test_deb()
 {
 
+	echo -e "\n==INFO==User requested testing of package routine\n"
+	sleep 2s
+
 	if [[ "$pkg_type" == "deb" ]]; then
 		
 		# TESTING ONLY - download all netflix-dekstop files from libregeek

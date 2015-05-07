@@ -38,7 +38,7 @@ rm -f "custom-pkg.txt"
 rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
-while [[ "$type" != "" && "$extra_opts" != "-test" ]]; do
+while [[ "$type" != "" ||d "$extra_opts" != "-test" ]]; do
 
 echo "while loop type: $type"
 echo "while loop extra opts: $extra_opts"

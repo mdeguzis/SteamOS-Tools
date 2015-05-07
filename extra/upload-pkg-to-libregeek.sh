@@ -116,6 +116,7 @@ do
 	# ignore executing src_cmd if "done"
 	if [[ "$PKG" == "done" ]]; then
 		# user decided to not upload anything
+		echo -e "\nExiting!\n"
 		exit
 	fi
 	

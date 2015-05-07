@@ -743,7 +743,7 @@ ep_test_deb()
 		
 		echo -e "\n==> Listing downloaded pkgs\n"
 		sleep 2s
-		ls
+		ls | less
 		
 		# set pkg
 		echo -e "\n"

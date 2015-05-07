@@ -179,7 +179,7 @@ main()
 	
 	ls "/home/desktop/build-deb-temp"
 	
-	echo -e "==> Would you like to trim out the tar.gz and dsc files for uploading?"
+	echo -e "\n==> Would you like to trim out the tar.gz and dsc files for uploading?"
 	sleep 0.5s
 	# capture command
 	read -ep "Choice: " >> trim_choice

@@ -774,18 +774,13 @@ ep_test_deb()
 		sed -i "s|.list||g" temp.txt
 		dpkg_remove_tmp=$(cat temp.txt)
 
-		echo "dpkg remove tmp #1 is: $dpkg_remove_tmp"
-		echo "temp.txt contents: "
-		cat temp.txt
-		echo "dpkg remove tmp #2 is $dpkg_remove_tmp"
-
-		sleep 50s
-
 		echo -e "\n==> Purging test package $PKG\n"
+		sleep 2s
 		sudo dpkg --purge "$dpkg_remove_tmp"
 
 		# review
 		echo -e "\n==> End of test cycle. Exiting. Please review $log"
+		sleep 2s
 		
 	else
 		# Not yet implemented

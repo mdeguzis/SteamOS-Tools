@@ -50,7 +50,7 @@ else
 	echo "" > /dev/null 
 fi
 
-if [[ $LINECOUNT -gt 1 ]]; then
+if [[ $LINECOUNT -gt 2 ]]; then
    echo "Custom PKG set detected!"
    custom_pkg_set="yes"
 fi

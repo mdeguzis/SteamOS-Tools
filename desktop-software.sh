@@ -25,7 +25,7 @@
 options="$1"
 
 # used only for source package building in `emu-from-source`
-build_opts="$3"
+extra_opts="$3"
 
 # remove old custom files
 rm -f "custom-pkg.txt"

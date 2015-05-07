@@ -21,6 +21,7 @@ ep_install_x360_bindings()
 	# For bindings, see: /etc/actkbd-steamos-controller.conf
 	
 	# set vars
+	pkg_type="deb"
 	PKG="vaporos-binds-xbox360"
 	PKG_FILENAME="vaporos-binds-xbox360_1.0_all.deb"
 	BASE_URL="https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360"
@@ -41,6 +42,7 @@ ep_install_firefox()
 	# Deb binary source: deb http://packages.linuxmint.com debian import
 	
 	# set vars
+	pkg_type="deb"
 	PKG="firefox"
 	PKG_FILENAME="firefox_37.0~linuxmint1+betsy_amd64.deb"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/browsers"
@@ -64,6 +66,8 @@ ep_install_plex()
 	###############################
 	#  vars
 	###############################
+	
+	pkg_type=""
 	
 	echo -e "\n==> Configuring sources"
 	sleep 1s
@@ -257,6 +261,11 @@ ep_install_kodi()
 	sleep 2s
 	
 	###############################
+	# Set vars
+	###############################
+	pkg_type=""
+	
+	###############################
 	# sources
 	###############################
 	
@@ -375,7 +384,6 @@ ep_install_kodi()
 
 ep_install_chrome()
 {
-  
 	echo -e "\n==> Installing Chrome from automated script..."
 	sleep 2s
 	
@@ -383,6 +391,7 @@ ep_install_chrome()
 	# set vars
 	###############################
 
+	pkg_type=""
 	install_dir="$HOME/Downloads/Chrome"
 	
 	# create and enter build dir
@@ -470,6 +479,13 @@ means that panel/systray support will not be available at this time. This is bei
 ep_install_gdrive()
 {
 
+	if [[ "$extra_opts" == "test" ]]; then
+		# go to test function
+		BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
+		ep_test_deb | tee "/tmp/log.txt"
+		exit
+	fi
+
 	echo ""
 	#####################################################
 	# Gdrive (cli) 
@@ -479,6 +495,7 @@ ep_install_gdrive()
 	# Source: https://github.com/prasmussen/gdrive
 
 	# set vars
+	pkg_type="deb"
 	PKG=gdrive
 	PKG_FILENAME="TODO"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra"
@@ -497,7 +514,7 @@ ep_install_gdrive()
 ep_install_netflix()
 {
 
-	if [[ "$build_opts" == "test" ]]; then
+	if [[ "$extra_opts" == "test" ]]; then
 		# go to test function
 		BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
 		ep_test_deb | tee "/tmp/log.txt"
@@ -518,6 +535,7 @@ ep_install_netflix()
 	# Backup plan: compile pipelight, add as post-install configuration to firefox funct. above.
 	
 	# set vars
+	pkg_type="deb"
 	PKG="netflix-desktop"
 	PKG_FILENAME="/tmp/netflix-pkg-tmp.txt"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
@@ -655,46 +673,53 @@ ep_install_eval_binary()
 ep_test_deb()
 {
 
-	# TESTING ONLY - download all netflix-dekstop files from libregeek
-	# After download, install $pkg, and remove it.
+	if [[ "$pkg_type" == "deb" ]]; then
+		
+		# TESTING ONLY - download all netflix-dekstop files from libregeek
+		# After download, install $pkg, and remove it.
+		
+		clear
+		# remove previous log
+		rm -rf log.txt
+		
+		if [[ -d "/tmp/pkg-test" ]]; then
+			rm -rf "/tmp/pkg-test"
+		else
+			mkdir -p "/tmp/pkg-test"
+		fi
+		
+		# enter test dir and download files
+		cd /tmp/pkg-test
+		wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
+		
+		echo -e "Listing downloaded pkgs\n"
+		sleep 2s
+		ls "/tmp/pkg-test"
+		
+		# set pkg
+		read -ep "Enter Pkg to test: " PKG
+		
+		# isntall 
+		echo -e "\n==> Attempting install of deb pkg $PKG\n"
+		sleep 2s
+		sudo dpkg -i "$PKG"
+		
+		# review
+		echo -e "\n==INFO\n Please review the above information and press [ENTER] done.\n"
+		read -n 1 
+		echo -e "Continuing to removal...\n" 
+		sleep 1s
 	
-	clear
-	# remove previous log
-	rm -rf log.txt
-	
-	if [[ -d "/tmp/pkg-test" ]]; then
-		rm -rf "/tmp/pkg-test"
+		# remove pkg
+		echo -e "\n==> Purging test package $PKG\n"
+		sudo dpkg --purge "$PKG"
+		
+		echo -e "\nEnd of test cycle. Exiting. Please review /tmp/log.txt"
 	else
-		mkdir -p "/tmp/pkg-test"
+		echo -e "\nTesting function for this package not yet implemented\n"
+		sleep 2s
+		exit
 	fi
-	
-	# enter test dir and download files
-	cd /tmp/pkg-test
-	wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
-	
-	echo -e "Listing downloaded pkgs\n"
-	sleep 2s
-	ls "/tmp/pkg-test"
-	
-	# set pkg
-	read -ep "Enter Pkg to test: " PKG
-	
-	# isntall 
-	echo -e "\n==> Attempting install of deb pkg $PKG\n"
-	sleep 2s
-	sudo dpkg -i "$PKG"
-	
-	# review
-	echo -e "\n==INFO\n Please review the above information and press [ENTER] done.\n"
-	read -n 1 
-	echo -e "Continuing to removal...\n" 
-	sleep 1s
-
-	# remove pkg
-	echo -e "\n==> Purging test package $PKG\n"
-	sudo dpkg --purge "$PKG"
-	
-	echo -e "\nEnd of test cycle. Exiting. Please review /tmp/log.txt"
 }
 
 

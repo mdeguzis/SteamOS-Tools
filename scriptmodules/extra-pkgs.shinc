@@ -774,11 +774,9 @@ ep_test_deb()
 
 		echo -e "\n==> Purging test package $PKG\n"
 		sudo dpkg --purge "$dpkg_remove_tmp"
-		
-		echo "$dpkg_remove_tmp"
 
 		# review
-		echo -e "\nEnd of test cycle. Exiting. Please review $log"
+		echo -e "\n==> End of test cycle. Exiting. Please review $log"
 		
 	else
 		# Not yet implemented

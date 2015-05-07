@@ -56,11 +56,9 @@ if [[ $LINECOUNT -gt 1 ]]; then
 fi
 
 # TESTING ONLY
-echo "options: $options"
-echo "Dollar 2: $2"
-echo "type is $type"
+echo -e "options: $options\n"
+echo "Software requested: $type"
 echo "Extra opts: $extra_opts"
-echo "Dollar 4: $4"
 sleep 50s
 
 apt_mode="install"

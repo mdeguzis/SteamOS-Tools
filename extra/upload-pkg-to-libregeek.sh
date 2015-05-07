@@ -30,14 +30,13 @@ funct_set_dir()
   
   # set path for upload
 	echo -e "\nPlease select which SteamOS-Extra folder you would like the package uploaded:" \n"
-	echo "(1) SteamOS-Extra/emulation"
-	echo "(2) SteamOS-Extra/emulation-src"
-	echo "(3) SteamOS-Extra/browser"
-	echo "(4) SteamOS-Extra/utilities"
-	echo "(5) SteamOS-Extra/misc"
-	echo "(6) SteamOS-Extra/Multimedia"
-	echo "(6) Default Public HTML"
-	echo ""
+	echo -e "(1) SteamOS-Extra/emulation"
+	echo -e "(2) SteamOS-Extra/emulation-src"
+	echo -e "(3) SteamOS-Extra/browser"
+	echo -e "(4) SteamOS-Extra/utilities"
+	echo -e "(5) SteamOS-Extra/misc"
+	echo -e "(6) SteamOS-Extra/Multimedia"
+	echo -e "(6) Default Public HTML\n"
 	
 	# the prompt sometimes likes to jump above sleep
 	sleep 0.5s

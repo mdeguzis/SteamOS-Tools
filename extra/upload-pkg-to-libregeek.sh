@@ -95,8 +95,8 @@ main()
   cd $sourcedir
   echo ""
   
-  echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
-  echo -e "When finished, please enter the word 'done' without quotes\n\n"
+  echo -e "\nPlease the package you wish to upload."
+  echo -e "When finished, please enter the word 'done' without quotes\n"
   sleep 1s
 	
 	while [[ "$PKG" != "done" ]];

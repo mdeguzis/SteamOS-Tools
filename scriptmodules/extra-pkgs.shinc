@@ -746,8 +746,8 @@ ep_test_deb()
 		ls
 		
 		# set pkg
-		echo ""
-		read -ep "Enter Pkg to test: " PKG
+		echo -e "\n\n"
+		read -ep "Enter Pkg to test >> " PKG
 		
 		# isntall 
 		echo -e "\n==> Attempting install of deb pkg $PKG\n"

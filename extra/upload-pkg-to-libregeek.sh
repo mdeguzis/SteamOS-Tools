@@ -16,7 +16,7 @@ script_dir="$PWD"
 #Set defaults if user doesn't enter a TYPE
 sourcedir="/home/desktop/build-deb-temp/"
 
-funct_set_vars()
+funct_set_global_vars()
 {
   
   sourcedir="/home/desktop/build-deb-temp/"
@@ -119,8 +119,8 @@ do
 
 	# ignore executing src_cmd if "done"
 	if [[ "$PKG" == "done" ]]; then
-		# do nothing
-		echo "" > /dev/null
+		# user decided to not upload anything
+		exit
 	fi
 
 done
@@ -130,6 +130,6 @@ done
 ##############################################
 # main start
 ##############################################
-funct_set_vars
+funct_set_global_vars
 main
 

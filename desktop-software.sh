@@ -366,10 +366,10 @@ get_software_type()
 	####################################################
 	
 	
-	#elif [[ "$type" == "chrome" ]]; then
-        #        # install plex from helper script
-        #        ep_install_chrome
-        #        exit
+	elif [[ "$type" == "chrome" ]]; then
+                # install plex from helper script
+                ep_install_chrome
+                exit
         elif [[ "$type" == "firefox" ]]; then
                 # install plex from helper script
                 ep_install_firefox

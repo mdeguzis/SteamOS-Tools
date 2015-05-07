@@ -28,20 +28,9 @@ type="$2"
 # used only for source package building in `emu-from-source`
 extra_opts="$3"
 
-clear
-echo "opts1: $options"
-echo "type1: $type"
-echo "extra-ops1: $extra_opts"
-
 # remove old custom files
 rm -f "custom-pkg.txt"
 rm -f "log.txt"
-
-# loop argument 2 until no more is specfied
-# while [[ "$type" != "" && "$extra_opts" != "-test" ]]; do
-
-echo "while loop type: $type"
-echo "while loop extra opts: $extra_opts"
 
 # loop argument 2 until no more is specfied
 while [ "$typed" != "" ]; do

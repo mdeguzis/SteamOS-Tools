@@ -741,11 +741,6 @@ ep_test_deb()
 			mkdir -p "$test_loc"
 		fi
 		
-		echo $PWD
-		echo $test_loc
-		cd $test_loc
-		sleep 50s
-		
 		# enter test dir and download files
 		cd "$test_loc"
 		wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"

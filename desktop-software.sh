@@ -59,6 +59,8 @@ fi
 echo -e "\noptions: $options"
 echo "Software requested: $type"
 echo "Extra opts: $extra_opts"
+echo -e "Availble custom pkg list: \n"
+cat custom-pkg.txt
 sleep 50s
 
 apt_mode="install"

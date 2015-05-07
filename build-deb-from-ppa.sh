@@ -185,12 +185,31 @@ main()
 	read -ep "Choice: " >> trim_choice
 	
 	if [[ "$trim_choice" == "y" ]]; then
+		
 		# cut files
 		rm -f ./*.tar.gz
 		rm -f ./*.dsc
+		rm -f ./*.changes
+		
 	elif [[ "$trim_choice" == "n" ]]; then
-		echo -e "trim not requested"
+	
+		echo -e "File trim not requested"
 	fi
+
+	echo -e "\n==> Would you like to upload any packages that were built?"
+	sleep 0.5s
+	# capture command
+	read -ep "Choice: " >> upload_choice
+	
+	if [[ "$trim_choice" == "y" ]]; then
+	
+		# cut files
+		"$scriptdir/extra/upload-pkg-to-libregeek.sh"
+		
+	elif [[ "$trim_choice" == "n" ]]; then
+		echo -e "Upload not requested"
+	fi
+	
 }
 
 # start main

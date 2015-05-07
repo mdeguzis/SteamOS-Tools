@@ -765,7 +765,7 @@ ep_test_deb()
 		# remove pkg and pkg_test_results.txt log
 		# This var is based on the last cached pkg installed
 		
-		dpkg_remove_tmp=$(ls -tl "/var/lib/dpkg/info | head -2 | cut -d' ' -f 14 | grep .list)
+		dpkg_remove_tmp=$(ls -tl "/var/lib/dpkg/info" | head -2 | cut -d' ' -f 14 | grep .list)
 		echo "$dpkg_remove_tm" > temp.txt
 	
 		#remove .list suffix

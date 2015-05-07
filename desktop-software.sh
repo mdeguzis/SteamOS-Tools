@@ -56,7 +56,7 @@ if [[ $LINECOUNT -gt 1 ]]; then
 fi
 
 # TESTING ONLY
-echo -e "options: $options\n"
+echo -e "\noptions: $options"
 echo "Software requested: $type"
 echo "Extra opts: $extra_opts"
 sleep 50s

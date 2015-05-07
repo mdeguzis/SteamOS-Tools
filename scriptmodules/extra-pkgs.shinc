@@ -442,9 +442,12 @@ ep_install_chrome()
 	# set vars
 	pkg_type="deb"
 	PKG="libappindicator1"
-	PKG_FILENAME="libappindicator1_12.10.1+SteamOS_amd64.deb"
+	PKG_FILENAME="libappindicator1_12.10.1_SteamOS_amd64.deb"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/browsers"
 	BIN_LOC=""
+	
+	# set multiflag
+	multi="n"
 	
 	# test if user requests it
 	if [[ "$extra_opts" == "-test" ]]; then
@@ -452,9 +455,6 @@ ep_install_chrome()
 		ep_test_deb
 		exit
 	fi
-	
-	# set multiflag
-	multi="n"
 	
 	echo -e "\n==> Installing libappindicator\n"
 	sleep 2s
@@ -764,9 +764,20 @@ ep_test_deb()
 			mkdir -p "$test_loc"
 		fi
 		
-		# enter test dir and download files
 		cd "$test_loc"
-		wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
+		# check for multiple debs for install
+		if [[ "$multi" == "y" ]]; then
+		
+			# Download files recursively form base URL folder, skip index.html
+			# See: http://stackoverflow.com/a/5335576
+			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
+			
+		elif [[ "$multi" == "n" ]]; then
+		
+			# download target singluar deb
+			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+
+		fi
 		
 		echo -e "\n==> Listing downloaded pkgs in $test_loc\n"
 		sleep 2s

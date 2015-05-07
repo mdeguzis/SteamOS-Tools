@@ -750,7 +750,7 @@ ep_test_deb()
 		ls "$test_loc" | less
 		
 		# set pkg
-		echo -e "\n\n"
+		echo -e "\n"
 		sleep 0.5s
 		read -ep "Enter Pkg to test >> " PKG
 		

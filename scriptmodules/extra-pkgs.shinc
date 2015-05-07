@@ -716,9 +716,9 @@ ep_test_deb()
 		cd "$test_loc"
 		wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
 		
-		echo -e "Listing downloaded pkgs\n"
+		echo -e "\n==> Listing downloaded pkgs\n"
 		sleep 2s
-		ls "$test_loc"
+		ls
 		
 		# set pkg
 		read -ep "Enter Pkg to test: " PKG

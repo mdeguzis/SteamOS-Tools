@@ -31,7 +31,7 @@ ep_install_x360_bindings()
 	# test if user requests it
 	if [[ "$extra_opts" == "-test" ]]; then
 		# go to test function
-		ep_test_deb | tee "/tmp/log.txt"
+		ep_test_deb
 		exit
 	fi
 	

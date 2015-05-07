@@ -7,6 +7,11 @@
 # Script Ver:	0.1.3
 # Description:	Attempts to build a deb package from a PPA
 #
+# See:		If you are building from Ubuntu main, check the website
+#		http://www.debianadmin.com/adding-ubuntu-repositories.html
+#
+# See also:	Generate a source list: http://repogen.simplylinux.ch/
+#
 # Usage:	sudo ./build-deb-from-PPA.sh
 #		source ./build-deb-from-PPA.sh
 # -------------------------------------------------------------------------------
@@ -28,6 +33,12 @@ show_help()
 	The third option, preeceded by 'source' will 
 	execute the script in the context of the calling 
 	shell and preserve vars for the next run.
+	
+	IF you the message:
+	WARNING: The following packages cannot be authenticated!...
+	Look above in the output for apt-get update. You will see a
+	line for 'NO_PUBKEY 3B4FE6ACC0B21F32'. Import this key string
+	by issuing 'gpg_import.sh <key>' from the extra DIR of this repo.
 	
 	EOF
 }
@@ -65,6 +76,9 @@ main()
 	# Ask user for repos / vars
 	echo -e "==> Please enter or paste the deb-src URL now:"
 	echo -e "    [Press ENTER to use last: $repo_src]\n"
+	
+	# Of course main Ubuntu packages are not "PPA's" so example deb-srce lines are:
+	# deb-src http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
 	
 	# set tmp var for last run, if exists
 	repo_src_tmp="$repo_src"

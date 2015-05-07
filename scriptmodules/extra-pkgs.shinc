@@ -497,6 +497,13 @@ ep_install_gdrive()
 ep_install_netflix()
 {
 
+	if [[ "$build_opts" == "test" ]]; then
+		# go to test function
+		BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
+		ep_test_deb | tee "/tmp/log.txt"
+		exit
+	fi
+
 	#######################################
 	# EXPERIMENTAL !!!!
 	#######################################
@@ -645,3 +652,49 @@ ep_install_eval_binary()
 	fi
 
 }
+ep_test_deb()
+{
+
+	# TESTING ONLY - download all netflix-dekstop files from libregeek
+	# After download, install $pkg, and remove it.
+	
+	clear
+	# remove previous log
+	rm -rf log.txt
+	
+	if [[ -d "/tmp/pkg-test" ]]; then
+		rm -rf "/tmp/pkg-test"
+	else
+		mkdir -p "/tmp/pkg-test"
+	fi
+	
+	# enter test dir and download files
+	cd /tmp/pkg-test
+	wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
+	
+	echo -e "Listing downloaded pkgs\n"
+	sleep 2s
+	ls "/tmp/pkg-test"
+	
+	# set pkg
+	read -ep "Enter Pkg to test: " PKG
+	
+	# isntall 
+	echo -e "\n==> Attempting install of deb pkg $PKG\n"
+	sleep 2s
+	sudo dpkg -i "$PKG"
+	
+	# review
+	echo -e "\n==INFO\n Please review the above information and press [ENTER] done.\n"
+	read -n 1 
+	echo -e "Continuing to removal...\n" 
+	sleep 1s
+
+	# remove pkg
+	echo -e "\n==> Purging test package $PKG\n"
+	sudo dpkg --purge "$PKG"
+	
+	echo -e "\nEnd of test cycle. Exiting. Please review /tmp/log.txt"
+}
+
+

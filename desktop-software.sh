@@ -23,7 +23,7 @@
 # Set launch vars
 #################################
 options="$1"
-
+type= "$2"
 # used only for source package building in `emu-from-source`
 extra_opts="$3"
 
@@ -32,7 +32,7 @@ rm -f "custom-pkg.txt"
 rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
-while [ "$2" != "" ]; do
+while [ "$type" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type="$2"

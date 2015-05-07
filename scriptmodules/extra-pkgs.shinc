@@ -746,7 +746,7 @@ ep_test_deb()
 		ls
 		
 		# set pkg
-		echo -e "\n\n"
+		echo -e "\n"
 		read -ep "Enter Pkg to test >> " PKG
 		
 		# isntall 

@@ -771,8 +771,15 @@ ep_test_deb()
 		echo "$dpkg_remove_tmp" > temp.txt
 		
 		#remove .list suffix 
-		list_removal_temp=$(sed -i "s|.list||g" temp.txt)
+		sed -i "s|.list||g" temp.txt
 		dpkg_remove_tmp=$(cat temp.txt)
+
+		echo "dpkg remove tmp #1 is: $dpkg_remove_tmp"
+		echo "temp.txt contents: "
+		cat temp.txt
+		echo "dpkg remove tmp #2 is $dpkg_remove_tmp"
+
+		sleep 50s
 
 		echo -e "\n==> Purging test package $PKG\n"
 		sudo dpkg --purge "$dpkg_remove_tmp"

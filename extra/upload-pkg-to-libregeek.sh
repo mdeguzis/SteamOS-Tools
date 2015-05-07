@@ -89,7 +89,7 @@ main()
   
 
 
-while [[ "$PKG" != "done" || "$dir_choice" == "" ]];
+while [[ "$PKG" != "done" || "$dir_choice" != "" ]];
 do
 	clear
 	echo -e "############################################################"

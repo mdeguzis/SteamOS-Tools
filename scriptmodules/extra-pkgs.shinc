@@ -692,7 +692,7 @@ ep_test_deb()
 	###############################
 	
 	test_loc="/tmp/pkg-test"
-	log="/tmp/log.txt"
+	log="log.txt"
 	
 	###############################	
 	# Commence test
@@ -704,11 +704,6 @@ ep_test_deb()
 		# After download, install $pkg, and remove it.
 		
 		clear
-		
-		# remove previous log
-		if [[ -f "$log" ]]; then
-			rm -rf "$log"
-		fi
 		
 		# test for dir and create/remove
 		if [[ -d "$test_loc" ]]; then
@@ -743,7 +738,7 @@ ep_test_deb()
 		echo -e "\n==> Purging test package $PKG\n"
 		sudo dpkg --purge "$PKG"
 		
-		echo -e "\nEnd of test cycle. Exiting. Please review /tmp/log.txt"
+		echo -e "\nEnd of test cycle. Exiting. Please review $log"
 	else
 		echo -e "\nTesting function for this package not yet implemented\n"
 		sleep 2s

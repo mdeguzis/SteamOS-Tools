@@ -451,7 +451,7 @@ ep_install_chrome()
 	
 	if [[ $? == 0 ]];then
 		echo "ERROR!"
-		sleep 50s
+		sleep 3ss
 	fi
 	
 	###############################	
@@ -741,7 +741,7 @@ ep_test_deb()
 		cd "$test_loc"
 		echo $PWD
 		echo $test_loc
-		sleep 50s
+		#sleep 50s
 		wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
 		
 		echo -e "\n==> Listing downloaded pkgs\n"

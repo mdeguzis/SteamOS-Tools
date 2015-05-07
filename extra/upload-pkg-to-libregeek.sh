@@ -114,17 +114,13 @@ do
 	read -ep "Package to upload >> " choice
 	
 	# ignore executing src_cmd if "done"
-	if [[ "$PKG" == "done" ]]; then
+	if [[ "$choice" == "done" ]]; then
 		# do nothing
 		echo "" > /dev/null
 	fi
 
 	# set dir and transfer
 	funct_set_dir
-	
-	# set destdir selection to null for loop
-	dest_dir=""
-	
 	funct_transfer
 
 done

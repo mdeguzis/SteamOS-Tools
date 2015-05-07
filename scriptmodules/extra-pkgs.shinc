@@ -809,7 +809,7 @@ ep_test_deb()
 		sudo dpkg --purge "$dpkg_remove_tmp"
 
 		# review
-		echo -e "\n==> End of test cycle. Exiting. Please review $log"
+		echo -e "\n==> End of test cycle. Exiting. Please review $log\n"
 		sleep 2s
 		
 	else

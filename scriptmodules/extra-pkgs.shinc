@@ -558,7 +558,8 @@ ep_install_netflix()
 
 
 	cat <<-EOF > "/tmp/netflix-pkg-tmp.txt"
-	## wine-staging-pkg
+	## wine-staging-i386_1.7.42_SteamOS_amd64.deb  ## NEEDS BUILT FROM PPA
+	wine-staging_1.7.42_SteamOS_amd64.deb
 	## wine-compholio-pkg
 	## ttf-mscorefonts-pkg
 	## python-pyattr-pkg

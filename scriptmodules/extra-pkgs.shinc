@@ -712,9 +712,6 @@ ep_test_deb()
 			mkdir -p "$test_loc"
 		fi
 		
-		# TESTING
-		sleep 50s
-		
 		# enter test dir and download files
 		cd "$test_loc"
 		wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"

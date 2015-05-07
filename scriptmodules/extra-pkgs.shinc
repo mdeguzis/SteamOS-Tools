@@ -695,9 +695,30 @@ ep_test_deb()
 	log="log.txt"
 	
 	###############################	
+	# Pre-checks
+	###############################
+	
+	# check that the tmpfs (/tmp) filesystem is not full.
+	# if it is, instruct user they need to reboot
+	
+	df_chk=$(df -h /tmp | grep "[0-9]%" | cut 34-37)
+	
+	if [[ "$df_chk" == "100%" ]]; then
+		echo -e "\n==WARNING!==\nThe tempfs temp file system in /tmp is full!"
+		echo -e "Please issue 'sudo reboot' to clear this when possible! Exiting in..."
+		echo -e "\n5" && sleep 1s
+		echo "4" && sleep 1s
+		echo "3" && sleep 1s
+		echo "2" && sleep 1s
+		echo -e "1\n" && sleep 1s
+		exit
+	fi
+	
+	###############################	
 	# Commence test
 	###############################
 
+	# start testing if eval
 	if [[ "$pkg_type" == "deb" ]]; then
 		
 		# TESTING ONLY - download all netflix-dekstop files from libregeek
@@ -721,6 +742,7 @@ ep_test_deb()
 		ls
 		
 		# set pkg
+		echo ""
 		read -ep "Enter Pkg to test: " PKG
 		
 		# isntall 
@@ -739,10 +761,14 @@ ep_test_deb()
 		sudo dpkg --purge "$PKG"
 		
 		echo -e "\nEnd of test cycle. Exiting. Please review $log"
+		
 	else
+		# Not yet implemented
 		echo -e "\nTesting function for this package not yet implemented\n"
 		sleep 2s
 		exit
+		
+	# end testing if eval
 	fi
 }
 

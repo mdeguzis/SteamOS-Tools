@@ -739,6 +739,9 @@ ep_test_deb()
 		
 		# enter test dir and download files
 		cd "$test_loc"
+		echo $PWD
+		echo $test_loc
+		sleep 50s
 		wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
 		
 		echo -e "\n==> Listing downloaded pkgs\n"

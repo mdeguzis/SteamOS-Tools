@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name: 		upload-pkg-to-libregeek.sh
-# Script Ver:	  	0.1.1
+# Script Ver:	  	0.2.1
 # Description:		upload completed deb packages to libregeek.org
 #
 # Usage:          ./upload-pkg-to-libregeek.sh
@@ -70,7 +70,7 @@ case "$dir_choice" in
       ;;
       
       7)
-      destdir="/home2/thelinu2/public_html/
+      destdir="/home2/thelinu2/public_html/"
       ;;
       
 esac

@@ -732,13 +732,16 @@ ep_test_deb()
 		
 		# test for dir and create/remove
 		if [[ -d "$test_loc" ]]; then
+			echo "removing $test_loc"
 			rm -rf "$test_loc"
 		else
+			echo "$test_loc not found. Creating"
 			mkdir -p "$test_loc"
 		fi
 		
 		echo $PWD
 		echo $test_loc
+		cd $test_loc
 		sleep 50s
 		
 		# enter test dir and download files

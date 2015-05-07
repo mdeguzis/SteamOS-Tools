@@ -558,11 +558,13 @@ ep_install_netflix()
 
 
 	cat <<-EOF > "/tmp/netflix-pkg-tmp.txt"
-	# NEEDS PACKAGED: wine-staging
-	# NEEDS PACKAGED: wine-compholio
-	wine-browser-installer_0.8.9-1~ubuntu14.04.1_all.deb
-	wine-silverlight5.1-installer_0.8.9-1~ubuntu14.04.1_all.deb
-	netflix-desktop_0.8.9-1~ubuntu14.04.1_all.deb
+	## wine-staging-pkg
+	## wine-compholio-pkg
+	## ttf-mscorefonts-pkg
+	## python-pyattr-pkg
+	wine-browser-installer_0.8.9-1_SteamOS_all.deb
+	wine-silverlight5.1-installer_0.8.9-1_SteamOS_all.deb
+	netflix-desktop_0.8.9-1_SteamOS_all.deb
 	EOF
 	
 	# clean/remove existing packages so that the install does not fail
@@ -759,7 +761,7 @@ ep_test_deb()
 		sleep 2s
 		sudo dpkg -i "$PKG" | tee pkg_test_results.txt
 		
-		echo -e "Continuing to removal...\n" 
+		echo -e "\n==> Continuing to removal...\n" 
 		sleep 1s
 	
 		# remove pkg and pkg_test_results.txt log
@@ -771,6 +773,10 @@ ep_test_deb()
 		#remove .list suffix 
 		list_removal_temp=$(sed -i "s|.list||g" "$test_loc/temp.txt")
 		dpkg_remove_tmp=$(cat $test_loc/temp.txt)
+
+		# TESTING
+		echo "$dpkg_remove_tmp"
+		sleep 50s
 
 		echo -e "\n==> Purging test package $PKG\n"
 		sudo dpkg --purge "$dpkg_remove_tmp"

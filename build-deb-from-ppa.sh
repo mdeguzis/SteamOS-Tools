@@ -205,9 +205,10 @@ main()
 	
 		# cut files
 		"$scriptdir/extra/upload-pkg-to-libregeek.sh"
+		echo -e "\n"
 		
 	elif [[ "$trim_choice" == "n" ]]; then
-		echo -e "Upload not requested"
+		echo -e "Upload not requested\n"
 	fi
 	
 }

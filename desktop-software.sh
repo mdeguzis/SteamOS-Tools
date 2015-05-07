@@ -40,6 +40,9 @@ rm -f "log.txt"
 # loop argument 2 until no more is specfied
 while [[ "$type" != "" && "$extra_opts" != "-test" ]]; do
 
+echo "while loop type: $type"
+echo "while loop extra opts: $extra_opts"
+
 # loop argument 2 until no more is specfied
 #while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list

@@ -28,6 +28,13 @@ ep_install_x360_bindings()
 	BIN_LOC="/usr/bin/gdrive"
 	PKG_DIR="/usr/share/doc/vaporos-binds-xbox360"
 	
+	# test if user requests it
+	if [[ "$extra_opts" == "-test" ]]; then
+		# go to test function
+		ep_test_deb | tee "/tmp/log.txt"
+		exit
+	fi
+	
 	# proceed to install eval
 	ep_install_eval_binary
 	
@@ -51,6 +58,13 @@ ep_install_firefox()
 	
 	# set multiflag
 	multi="n"
+	
+	# test if user requests it
+	if [[ "$extra_opts" == "-test" ]]; then
+		# go to test function
+		ep_test_deb | tee "/tmp/log.txt"
+		exit
+	fi
 	
 	# proceed to install eval
 	ep_install_eval_pkg
@@ -479,13 +493,6 @@ means that panel/systray support will not be available at this time. This is bei
 ep_install_gdrive()
 {
 
-	if [[ "$extra_opts" == "test" ]]; then
-		# go to test function
-		BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
-		ep_test_deb | tee "/tmp/log.txt"
-		exit
-	fi
-
 	echo ""
 	#####################################################
 	# Gdrive (cli) 
@@ -504,8 +511,12 @@ ep_install_gdrive()
 	# set multiflag
 	multi="n"
 	
-	# proceed to install eval
-	# This may change to just using a binary
+	# test if user requests it
+	if [[ "$extra_opts" == "-test" ]]; then
+		# go to test function
+		ep_test_deb | tee "/tmp/log.txt"
+		exit
+	fi
 	
 	# ep_install_eval_pkg
 	ep_install_eval_binary
@@ -513,13 +524,6 @@ ep_install_gdrive()
 
 ep_install_netflix()
 {
-
-	if [[ "$extra_opts" == "test" ]]; then
-		# go to test function
-		BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
-		ep_test_deb | tee "/tmp/log.txt"
-		exit
-	fi
 
 	#######################################
 	# EXPERIMENTAL !!!!
@@ -541,6 +545,13 @@ ep_install_netflix()
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
 	BIN_LOC=""
 	software_list="/tmp/netflix-pkg-tmp.txt"
+	
+	# test if user requests it
+	if [[ "$extra_opts" == "-test" ]]; then
+		# go to test function
+		ep_test_deb | tee "/tmp/log.txt"
+		exit
+	fi
 	
 	# set order in which packages must be installed (must be done in order!)
 	# Several sub-packages of netflix desktop must be installed properly beforehand.

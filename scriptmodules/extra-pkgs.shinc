@@ -775,7 +775,7 @@ ep_test_deb()
 		elif [[ "$multi" == "n" ]]; then
 		
 			# download target singluar deb
-			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+			wget "$BASE_URL/$PKG_FILENAME"
 
 		fi
 		

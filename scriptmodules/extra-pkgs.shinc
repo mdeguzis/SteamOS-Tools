@@ -758,11 +758,6 @@ ep_test_deb()
 		sleep 2s
 		sudo dpkg -i "$PKG" | tee pkg_test_results.txt
 		
-		# review
-		echo -e "\n==INFO\n Please review the log information"
-		sleep 2s
-		less pkg_test_results.txt
-
 		echo -e "Continuing to removal...\n" 
 		sleep 1s
 	
@@ -771,6 +766,7 @@ ep_test_deb()
 		sudo dpkg --purge "$PKG"
 		rm -f pkg_test_results.txt
 		
+		# review
 		echo -e "\nEnd of test cycle. Exiting. Please review $log"
 		
 	else

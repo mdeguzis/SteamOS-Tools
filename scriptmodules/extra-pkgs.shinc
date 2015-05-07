@@ -751,8 +751,6 @@ ep_test_deb()
 		# TESTING ONLY - download all netflix-dekstop files from libregeek
 		# After download, install $pkg, and remove it.
 		
-		clear
-		
 		# test for dir and create/remove
 		if [[ -d "$test_loc" ]]; then
 			# remove

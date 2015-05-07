@@ -113,15 +113,15 @@ do
 	# capture command
 	read -ep "Package to upload >> " PKG
 	
-	# set dir and transfer
-	funct_set_dir
-	funct_transfer
-
 	# ignore executing src_cmd if "done"
 	if [[ "$PKG" == "done" ]]; then
 		# user decided to not upload anything
 		exit
 	fi
+	
+	# set dir and transfer
+	funct_set_dir
+	funct_transfer
 
 done
 

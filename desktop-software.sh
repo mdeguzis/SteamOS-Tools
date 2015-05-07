@@ -55,6 +55,13 @@ if [[ $LINECOUNT -gt 1 ]]; then
    custom_pkg_set="yes"
 fi
 
+# TESTING ONLY
+echo "$1"
+echo "$2"
+echo "$3"
+echo "$4"
+sleep 50s
+
 apt_mode="install"
 uninstall="no"
 
@@ -231,13 +238,6 @@ fi
 
 funct_pre_req_checks()
 {
-	
-	echo "$1"
-	echo "$2"
-	echo "$3"
-	echo "$4"
-	
-	sleep 50s
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
 	

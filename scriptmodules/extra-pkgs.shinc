@@ -701,7 +701,7 @@ ep_test_deb()
 	# check that the tmpfs (/tmp) filesystem is not full.
 	# if it is, instruct user they need to reboot
 	
-	df_chk=$(df -h /tmp | grep "[0-9]%" | cut 34-37)
+	df_chk=$(df -h /tmp | grep "[0-9]%" | cut -c 34-37)
 	
 	if [[ "$df_chk" == "100%" ]]; then
 		echo -e "\n==WARNING!==\nThe tempfs temp file system in /tmp is full!"

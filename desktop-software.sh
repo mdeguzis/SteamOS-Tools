@@ -23,7 +23,7 @@
 # Set launch vars
 #################################
 options="$1"
-type= "$2"
+type="$2"
 # used only for source package building in `emu-from-source`
 extra_opts="$3"
 

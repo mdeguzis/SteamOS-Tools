@@ -547,7 +547,7 @@ ep_install_netflix()
 	software_list="/tmp/netflix-pkg-tmp.txt"
 	
 	# test if user requests it based on type, dash test
-	if [[ "$type" == "${type}-test" ]]; then
+	if [[ "$extra_opts" == "test" ]]; then
 		# go to test function
 		ep_test_deb | tee "/tmp/log.txt"
 		exit

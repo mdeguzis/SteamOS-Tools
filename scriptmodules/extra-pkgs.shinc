@@ -732,10 +732,12 @@ ep_test_deb()
 		
 		# test for dir and create/remove
 		if [[ -d "$test_loc" ]]; then
-			echo "removing $test_loc"
+			# remove
 			rm -rf "$test_loc"
+			# recreate
+			mkdir -p "$test_loc"
 		else
-			echo "$test_loc not found. Creating"
+			# create
 			mkdir -p "$test_loc"
 		fi
 		

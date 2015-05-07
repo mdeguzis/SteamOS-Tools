@@ -56,10 +56,10 @@ if [[ $LINECOUNT -gt 1 ]]; then
 fi
 
 # TESTING ONLY
-echo "$1"
-echo "$2"
-echo "$3"
-echo "$4"
+echo "Options: $1"
+echo "Dollar 2: $2"
+echo "Extra options: $3"
+echo "Dollar 4: $4"
 sleep 50s
 
 apt_mode="install"

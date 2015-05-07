@@ -766,22 +766,11 @@ ep_test_deb()
 		# This var is based on the last cached pkg installed
 		
 		dpkg_remove_tmp=$(ls -tl "/var/lib/dpkg/info" | head -2 | cut -d' ' -f 14 | grep .list)
-		echo "1st temp is: $dpkg_remove_tmp"
 		echo "$dpkg_remove_tmp" > temp.txt
-	
-		#remove .list suffix
-		echo "contents of txt file:"
-		cat temp.txt
-		dpkg_remove=$(sed -i "s|.list||g" temp.txt)
-		
-		#testing
-		echo "final var is: $dpkg_remove"
-		sleep 50s
 		
 		echo -e "\n==> Purging test package $PKG\n"
-		sudo dpkg --purge "$PKG"
-		rm -f pkg_test_results.txt
-		
+		sudo dpkg --purge "$dpkg_remove_tmp"
+
 		# review
 		echo -e "\nEnd of test cycle. Exiting. Please review $log"
 		

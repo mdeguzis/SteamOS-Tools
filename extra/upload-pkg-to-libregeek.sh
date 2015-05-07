@@ -87,34 +87,35 @@ funct_transfer()
 main()
 {
   
-  clear
-  echo -e "\n==> Displaying contents of $sourcedir:\n"
-  sleep 2s
-  
-  ls "$sourcedir"
-  cd $sourcedir
-  echo ""
-  
-  echo -e "\nPlease the package you wish to upload."
-  echo -e "When finished, please enter the word 'done' without quotes\n"
-  sleep 1s
+
+
+while [[ "$PKG" != "done" ]];
+do
+	clear
+	echo -e "\nPlease the package you wish to upload."
+	echo -e "When finished, please enter the word 'done' without quotes\n"
+	sleep 1s
+	echo -e "\n==> Displaying contents of $sourcedir:\n"
+	sleep 2s
 	
-	while [[ "$PKG" != "done" ]];
-	do
-		# capture command
-		read -ep "Package to upload >> " PKG
-		
-		# ignore executing src_cmd if "done"
-		if [[ "$PKG" == "done" ]]; then
-			# do nothing
-			echo "" > /dev/null
-    fi
-    
-    # set dir and transfer
-    funct_set_dir
-    funct_transfer
-    
-	done
+	ls "$sourcedir"
+	cd $sourcedir
+	echo ""
+	
+	# capture command
+	read -ep "Package to upload >> " PKG
+	
+	# ignore executing src_cmd if "done"
+	if [[ "$PKG" == "done" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	fi
+
+	# set dir and transfer
+	funct_set_dir
+	funct_transfer
+
+done
 
 }
 

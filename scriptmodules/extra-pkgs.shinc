@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.6.8
+# Script Ver:	  	0.7.9
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	
@@ -711,6 +711,9 @@ ep_test_deb()
 		else
 			mkdir -p "$test_loc"
 		fi
+		
+		# TESTING
+		sleep 50s
 		
 		# enter test dir and download files
 		cd "$test_loc"

@@ -35,7 +35,6 @@ rm -f "log.txt"
 while [ "$type" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
-	type="$2"
 	echo "$type" >> "custom-pkg.txt"
 	# Shift all the parameters down by one
 	shift
@@ -50,7 +49,7 @@ else
 	echo "" > /dev/null 
 fi
 
-if [[ $LINECOUNT -gt 2 ]]; then
+if [[ $LINECOUNT -gt 1 ]]; then
    echo "Custom PKG set detected!"
    custom_pkg_set="yes"
 fi

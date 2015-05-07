@@ -13,6 +13,7 @@
 #		!broke! are skipped and the rest are attempted to be installed
 #
 # Usage:	./desktop-software.sh [option] [type]
+# optional:	Append "-test" to a package type called from ext. script
 # Help:		./desktop-software.sh --help
 #
 # Warning:	You MUST have the Debian repos added properly for
@@ -32,7 +33,7 @@ rm -f "custom-pkg.txt"
 rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
-while [[ "$type" != "" && "$extra_opts" != "test" ]]; do
+while [[ "$type" != "" && "$extra_opts" != "-test" ]]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type="$2"
@@ -55,7 +56,7 @@ if [[ $LINECOUNT -gt 1 ]]; then
    custom_pkg_set="yes"
 fi
 
-# TESTING ONLY
+# Test arguments here:
 echo -e "\noptions: $options"
 echo "Software requested: $type"
 echo "Extra opts: $extra_opts"

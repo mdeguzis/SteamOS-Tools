@@ -684,8 +684,19 @@ ep_install_eval_binary()
 ep_test_deb()
 {
 	clear
-	echo -e "==INFO==\nUser requested testing of package routine\n"
-	sleep 2s
+	echo -e "==INFO==\nUser requested testing of package routine...\n"
+	sleep 3s
+	
+	###############################	
+	# set vars
+	###############################
+	
+	test_loc="/tmp/pkg-test"
+	log="/tmp/log.txt"
+	
+	###############################	
+	# Commence test
+	###############################
 
 	if [[ "$pkg_type" == "deb" ]]; then
 		
@@ -693,22 +704,26 @@ ep_test_deb()
 		# After download, install $pkg, and remove it.
 		
 		clear
-		# remove previous log
-		rm -rf log.txt
 		
-		if [[ -d "/tmp/pkg-test" ]]; then
-			rm -rf "/tmp/pkg-test"
+		# remove previous log
+		if [[ -f "$log" ]]; then
+			rm -rf "$log"
+		fi
+		
+		# test for dir and create/remove
+		if [[ -d "$test_loc" ]]; then
+			rm -rf "$test_loc"
 		else
-			mkdir -p "/tmp/pkg-test"
+			mkdir -p "$test_loc"
 		fi
 		
 		# enter test dir and download files
-		cd /tmp/pkg-test
+		cd "$test_loc"
 		wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
 		
 		echo -e "Listing downloaded pkgs\n"
 		sleep 2s
-		ls "/tmp/pkg-test"
+		ls "$test_loc"
 		
 		# set pkg
 		read -ep "Enter Pkg to test: " PKG

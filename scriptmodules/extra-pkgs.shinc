@@ -684,8 +684,8 @@ ep_install_eval_binary()
 ep_test_deb()
 {
 	clear
-	echo -e "==> User requested testing of package routine!\n"
-	sleep 3s
+	echo -e "==> User requested testing of package routine!"
+	sleep 1s
 	
 	###############################	
 	# set vars
@@ -715,7 +715,7 @@ ep_test_deb()
 	else
 		# output small reminder
 		echo -e "\n==INFO==\nNotice: tmpfs (/tmp) usage is at: $df_chk\n"
-		sleep 2s
+		sleep 3s
 	fi
 	
 	###############################	

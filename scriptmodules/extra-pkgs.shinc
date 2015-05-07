@@ -745,7 +745,7 @@ ep_test_deb()
 		cd "$test_loc"
 		wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
 		
-		echo -e "\n==> Listing downloaded pkgs\n"
+		echo -e "\n==> Listing downloaded pkgs in $test_loc\n"
 		sleep 2s
 		ls "$test_loc" | less
 		

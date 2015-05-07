@@ -56,9 +56,9 @@ if [[ $LINECOUNT -gt 1 ]]; then
 fi
 
 # TESTING ONLY
-echo "Options: $1"
+echo "options: $options"
 echo "Dollar 2: $2"
-echo "Extra options: $3"
+echo "Extra opts: $extra_opts"
 echo "Dollar 4: $4"
 sleep 50s
 

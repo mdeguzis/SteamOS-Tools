@@ -36,7 +36,7 @@ echo -e "(3) SteamOS-Extra/browser"
 echo -e "(4) SteamOS-Extra/utilities"
 echo -e "(5) SteamOS-Extra/misc"
 echo -e "(6) SteamOS-Extra/Multimedia"
-echo -e "(6) Default Public HTML\n"
+echo -e "(7) Default Public HTML\n"
 
 # the prompt sometimes likes to jump above sleep
 sleep 0.5s
@@ -89,7 +89,7 @@ main()
   
 
 
-while [[ "$PKG" != "done" ]];
+while [[ "$PKG" != "done" || "$dir_choice" == "" ]];
 do
 	clear
 	echo -e "############################################################"
@@ -103,7 +103,7 @@ do
 	echo -e "\nContinuing...\n"
 	clear
 
-	echo -e "\n==> Displaying contents of $sourcedir:\n"
+	echo -e "==> Displaying contents of $sourcedir:\n"
 	sleep 2s
 	
 	ls "$sourcedir"

@@ -28,6 +28,10 @@ type="$2"
 # used only for source package building in `emu-from-source`
 extra_opts="$3"
 
+echo "opts1: $options"
+echo "type1: $type"
+echo "extra-ops1: $extra_opts"
+
 # remove old custom files
 rm -f "custom-pkg.txt"
 rm -f "log.txt"

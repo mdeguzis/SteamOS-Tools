@@ -92,9 +92,17 @@ main()
 while [[ "$PKG" != "done" ]];
 do
 	clear
-	echo -e "\nPlease the package you wish to upload."
+	echo -e "################################################################"
+	echo -e "Package uploader utility"
+	echo -e "################################################################"
+	echo -e "Please the package you wish to upload."
 	echo -e "When finished, please enter the word 'done' without quotes\n"
-	sleep 1s
+	echo -e "Press [ENTER] to continue, or CTRL+C to exit now."
+
+	read -n 1
+	echo -e "\nContinuing...\n"
+	clear
+
 	echo -e "\n==> Displaying contents of $sourcedir:\n"
 	sleep 2s
 	

@@ -7,7 +7,7 @@
 # Script Ver:	  	0.2.1
 # Description:		upload completed deb packages to libregeek.org
 #
-# Usage:          ./upload-pkg-to-libregeek.sh
+# Usage:        	./upload-pkg-to-libregeek.sh
 # -------------------------------------------------------------------------------
 
 TYPE="$1"
@@ -41,9 +41,9 @@ funct_set_dir()
 	# the prompt sometimes likes to jump above sleep
 	sleep 0.5s
 	
-	read -ep "Choice: " dir_choice
+	read -ep "Choice: " choice
 	
-	case "$dir_choice" in
+	case "$choice" in
 	        
 	      1)
 	      destdir="/home2/thelinu2/public_html/SteamOS-Extra/emulation"
@@ -89,7 +89,7 @@ main()
   
 # ^-?[0-9]+$ ]];
 # only loop if package choice is not done, and does not start with an no ($destdir)
-while [[ "$PKG" != "done" && "$destdir" != "" ]];
+while [[ "choice" != "done" ]];
 do
 	clear
 	echo -e "############################################################"
@@ -111,7 +111,7 @@ do
 	echo ""
 	
 	# capture command
-	read -ep "Package to upload >> " PKG
+	read -ep "Package to upload >> " choice
 	
 	# ignore executing src_cmd if "done"
 	if [[ "$PKG" == "done" ]]; then

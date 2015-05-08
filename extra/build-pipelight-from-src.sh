@@ -58,14 +58,16 @@ install_prereqs()
 	libc6-dev libx11-dev make g++ sed
 
 	# optional packages (suggested)
-	sudo apt-get install bash wget zenity kdialog cabextract gnupg
+	# Leaving out optional kdebase-bin that provides kdialog for 
+	# now (huge lot of unecessary KDE pkgs)
+	sudo apt-get install bash wget zenity cabextract gnupg
 	
 	# microsoft core fonts (required for Silverlight)
 	# needs package dumped here form libregeek
 	
 	if [[ "$?" == "100" ]]; then
 		# exit status caught
-		echo -e "\n==ERROR==\nFailure on package installation. Exiting...\n"
+		echo -e "\n==ERROR==\nFailure on package installations. Exiting...\n"
 		sleep 3s
 	fi
 

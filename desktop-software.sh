@@ -29,13 +29,13 @@ type="$2"
 extra_opts="$3"
 
 #############################################
-# Test arguments here:
+# Test arguments (1st pass) here:
 #############################################
-echo -e "\noptions 1: $options"
-echo "Software requested 1: $type"
-echo "Extra opts 1: $extra_opts"
-echo -e "Availble custom pkg list 1: \n"
-cat custom-pkg.txt
+#echo -e "\noptions 1: $options"
+#echo "Software requested 1: $type"
+#echo "Extra opts 1: $extra_opts"
+#echo -e "Availble custom pkg list 1: \n"
+#cat custom-pkg.txt
 
 # remove old custom files
 rm -f "custom-pkg.txt"
@@ -66,14 +66,14 @@ if [[ $LINECOUNT -gt 1 ]]; then
 fi
 
 #############################################
-# Test arguments here:
+# Test arguments (2nd pass) here:
 #############################################
-echo -e "\noptions 2: $options"
-echo "Software requested 2: $type"
-echo "Extra opts 2: $extra_opts"
-echo -e "Availble custom pkg list 2: \n"
-cat custom-pkg.txt
-sleep 50s
+#echo -e "\noptions 2: $options"
+#echo "Software requested 2: $type"
+#echo "Extra opts 2: $extra_opts"
+#echo -e "Availble custom pkg list 2: \n"
+#cat custom-pkg.txt
+#sleep 50s
 
 apt_mode="install"
 uninstall="no"

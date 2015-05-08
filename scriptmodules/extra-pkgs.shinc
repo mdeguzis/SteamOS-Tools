@@ -553,15 +553,6 @@ ep_install_gdrive()
 ep_install_netflix()
 {
 
-	echo "opts received: "
-	echo -e "\noptions 2: $options"
-	echo "Software requested 2: $type"
-	echo "Extra opts 2: $extra_opts"
-	echo -e "Availble custom pkg list 2: \n"
-	cat custom-pkg.txt
-	sleep 50s
-
-
 	#######################################
 	# EXPERIMENTAL !!!!
 	#######################################
@@ -837,6 +828,19 @@ ep_test_deb()
 		
 	# end testing if eval
 	fi
+}
+
+ep_test_opts()
+{
+	# simple echo of passed opts for testing only
+	echo "opts received: "
+	echo -e "options : $options"
+	echo "Software type : $type"
+	echo "Extra opts : $extra_opts"
+	echo -e "Availble custom pkg list 2: \n"
+	cat custom-pkg.txt
+	sleep 50s
+	exit
 }
 
 

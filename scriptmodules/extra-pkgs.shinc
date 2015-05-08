@@ -481,9 +481,9 @@ ep_install_chrome()
 
 	# libglib2.0.0 is only ver. 2.33, when libappindicator is asking for >=2.37.3
 	# Need to find / compile 2.37 from somewhere. Maybe grab the jessie source and try (risky).
-	# For now, attemp will be made at altering depends ver just down to our level
+	# For now, attempt will be made at altering depends ver just down to our level
 	
-	if [[ $? == 0 ]];then
+	if [[ $? == 0 ]]; then
 		echo "ERROR!"
 		sleep 3s
 	fi

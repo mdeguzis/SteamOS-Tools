@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.9.9.1
+# Script Ver:	0.9.9.3
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -77,12 +77,12 @@ fi
 #############################################
 # Test arguments (2nd pass) here:
 #############################################
-echo -e "\noptions 2: $options"
-echo "Software type 2: $type"
-echo "Extra opts 2: $extra_opts"
-echo -e "Availble custom pkg list 2: \n"
-cat custom-pkg.txt
-sleep 10s
+#echo -e "\noptions 2: $options"
+#echo "Software type 2: $type"
+#echo "Extra opts 2: $extra_opts"
+#echo -e "Availble custom pkg list 2: \n"
+#cat custom-pkg.txt
+#sleep 10s
 
 apt_mode="install"
 uninstall="no"

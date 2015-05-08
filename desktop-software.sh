@@ -26,12 +26,9 @@
 options="$1"
 type="$2"
 # used only for source package building in `emu-from-source`
-extra_opts="$3"
-
-# TESTING
-lastarg=$(echo "${@: -1}")
-echo $lastarg
-sleep 50s
+# The command being echo'd will contain the last arg used
+# See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
+extra_opts=$(echo "${@: -1}")
 
 #############################################
 # Test arguments (1st pass) here:

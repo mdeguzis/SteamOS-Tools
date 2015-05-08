@@ -1,13 +1,13 @@
 # -------------------------------------------------------------------------------
 # Author:       	Michael DeGuzis
 # Git:		        https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	    build-pipelight-from-src.sh
-# Script Ver:	    0.1.1
+# Scipt Name:	    	build-pipelight-from-src.sh
+# Script Ver:		0.1.3
 # Description:  	Attempts to build pipelight from src
 #
-# Usage:          ./build-pipelight-from-src.sh
+# Usage:        	./build-pipelight-from-src.sh
 #
-# Warning:	      You MUST have the Debian repos added properly for
+# Warning:	      	You MUST have the Debian repos added properly for
 #	      	        Installation of the pre-requisite packages.
 # -------------------------------------------------------------------------------
 
@@ -133,15 +133,17 @@ if [[ "$arg1" == "build" ]]; then
 	wget -O pluginloader.tar.gz "http://repos.fds-team.de/pluginloader/v0.2.8.1/pluginloader.tar.gz"
 
 	# Configure, make, install
+	echo -e "\n==Configuring==\n"
 	./configure --wine-path="/usr/bin/wine"
-	sleep 7s
-	make
-	sleep 7s
-	sudo make install
-	sleep 7s
-	
+
 	# PAUSE FOR TESTING
 	sleep 50s
+
+	echo -e "\n==Making==\n"
+	make
+	echo -e "\n==Installing==\n"
+	sudo make install
+	sleep 3s
 	
 	############################
 	# proceed to DEB BUILD
@@ -211,6 +213,7 @@ elif [[ "$arg1" == "remove" ]]; then
 	sudo pipelight-plugin --disable-all
 	sudo pipelight-plugin --remove-mozilla-plugins
 	sudo make uninstall
+fi
 
 }
 

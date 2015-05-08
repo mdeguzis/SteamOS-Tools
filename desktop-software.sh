@@ -51,6 +51,9 @@ while [ "$2" != "" ]; do
 	shift
 done
 
+# Strip symbols from large pkg pastes from build-depends
+sed "s|(>= [0-9].[0-9].[0-9]||g" custom-pkg.txt
+
 # set custom flag for use later on if line count
 # of testing custom pkg test errorscustom-pkg.txt exceeds 1
 if [ -f "custom-pkg.txt" ]; then
@@ -68,12 +71,12 @@ fi
 #############################################
 # Test arguments (2nd pass) here:
 #############################################
-#echo -e "\noptions 2: $options"
-#echo "Software requested 2: $type"
-#echo "Extra opts 2: $extra_opts"
-#echo -e "Availble custom pkg list 2: \n"
-#cat custom-pkg.txt
-#sleep 50s
+echo -e "\noptions 2: $options"
+echo "Software requested 2: $type"
+echo "Extra opts 2: $extra_opts"
+echo -e "Availble custom pkg list 2: \n"
+cat custom-pkg.txt
+sleep 50s
 
 apt_mode="install"
 uninstall="no"
@@ -232,6 +235,10 @@ show_help()
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
+	
+	Large pacakge lists:
+	If you are pasting a build-depends post with symbols, please enclose the
+	package list in quotes and it will be filterd appropriately.
 
 	Press enter to continue...
 	EOF

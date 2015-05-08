@@ -25,8 +25,8 @@
 #################################
 options="$1"
 type="$2"
-# used only for source package building in `emu-from-source`
-# The command being echo'd will contain the last arg used
+# Specify a final arg for any extra options to build in later
+# The command being echo'd will contain the last arg used.
 # See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
 extra_opts=$(echo "${@: -1}")
 
@@ -234,7 +234,7 @@ show_help()
 	'./desktop-software list [type]'
 	
 	
-	Options: 	[install|uninstall|list|check] 
+	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
 	Extra types: 	[firefox|kodi|plex|x360-bindings]

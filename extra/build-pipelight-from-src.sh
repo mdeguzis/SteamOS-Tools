@@ -45,6 +45,7 @@ arg_check()
 		#show help
 		clear
 		show_help
+	fi
 }
 
 install_prereqs()

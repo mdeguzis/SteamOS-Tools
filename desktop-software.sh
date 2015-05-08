@@ -29,7 +29,7 @@ type="$2"
 extra_opts="$3"
 
 # TESTING
-lastarg="$@"
+lastarg=$(echo "${@: -1}")
 echo $lastarg
 sleep 50s
 

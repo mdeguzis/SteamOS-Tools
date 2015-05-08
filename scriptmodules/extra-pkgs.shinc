@@ -483,11 +483,6 @@ ep_install_chrome()
 	# Need to find / compile 2.37 from somewhere. Maybe grab the jessie source and try (risky).
 	# For now, attempt will be made at altering depends ver just down to our level
 	
-	if [[ $? == 0 ]]; then
-		echo "ERROR!"
-		sleep 3s
-	fi
-	
 	###############################	
 	# install google-chrome-stable
 	###############################

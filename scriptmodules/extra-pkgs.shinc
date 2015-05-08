@@ -29,7 +29,7 @@ ep_install_x360_bindings()
 	PKG_DIR="/usr/share/doc/vaporos-binds-xbox360"
 	
 	# test if user requests it
-	if [[ "$extra_opts" == "-test" ]]; then
+	if [[ "$options" == "test" ]]; then
 		# go to test function
 		ep_test_deb
 		exit
@@ -60,7 +60,7 @@ ep_install_firefox()
 	multi="n"
 	
 	# test if user requests it
-	if [[ "$extra_opts" == "-test" ]]; then
+	if [[ "$options" == "test" ]]; then
 		# go to test function
 		ep_test_deb
 		exit
@@ -466,7 +466,7 @@ ep_install_chrome()
 	multi="n"
 	
 	# test if user requests it
-	if [[ "$extra_opts" == "-test" ]]; then
+	if [[ "$options" == "test" ]]; then
 		# go to test function
 		ep_test_deb
 		exit
@@ -540,7 +540,7 @@ ep_install_gdrive()
 	multi="n"
 	
 	# test if user requests it
-	if [[ "$extra_opts" == "-test" ]]; then
+	if [[ "$options" == "test" ]]; then
 		# go to test function
 		ep_test_deb
 		exit

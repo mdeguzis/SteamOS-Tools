@@ -41,7 +41,7 @@ arg_check()
 {
 	
 	# quick pass to make sure arg was specified
-	if [[ "$arg" == "" ]]; then
+	if [[ "$arg1" == "" ]]; then
 		#show help
 		clear
 		show_help

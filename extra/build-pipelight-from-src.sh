@@ -68,6 +68,10 @@ install_prereqs()
 ex_build_pipelight_src()
 {
 	
+echo $1
+echo $arg1
+sleep 5s
+
 if [[ "$arg1" == "build" ]]; then
 	
 	echo -e "\n==> Building Pipelight from source\n"

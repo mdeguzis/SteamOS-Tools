@@ -28,6 +28,11 @@ type="$2"
 # used only for source package building in `emu-from-source`
 extra_opts="$3"
 
+# TESTING
+lastarg="$@"
+echo $lastarg
+sleep 50s
+
 #############################################
 # Test arguments (1st pass) here:
 #############################################

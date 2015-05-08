@@ -463,7 +463,7 @@ ep_install_chrome()
 	BIN_LOC=""
 	
 	# set multiflag
-	multi="n"
+	multi="y"
 	
 	# test if user requests it
 	if [[ "$extra_opts" == "-test" ]]; then

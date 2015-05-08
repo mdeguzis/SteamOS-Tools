@@ -485,7 +485,7 @@ ep_install_chrome()
 	
 	if [[ $? == 0 ]];then
 		echo "ERROR!"
-		sleep 3ss
+		sleep 3s
 	fi
 	
 	###############################	

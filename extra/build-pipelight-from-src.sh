@@ -62,6 +62,11 @@ install_prereqs()
 	
 	# microsoft core fonts (required for Silverlight)
 	# needs package dumped here form libregeek
+	
+	if [[ "$?" == "130" ]]; then
+		# exit status caught
+		echo -e ""\n==ERROR==\nFailure on package installation\n"
+	fi
 
 }
 

@@ -25,9 +25,9 @@ show_help()
 	####################################################
 	Usage:	
 	####################################################
-	./build-pipelight-from-src.sh
+	./build-pipelight-from-src.sh [build|remove]
 	./build-pipelight-from-src.sh --help
-	source ./build-pipelight-from-src.sh
+	source ./build-pipelight-from-src.sh [build|remove]
 	
 	The third option, preeceded by 'source' will 
 	execute the script in the context of the calling 
@@ -47,13 +47,24 @@ install_prereqs()
 	clear
 	echo -e "\n==>Installing pre-requisites for building...\n"
 	sleep 1s
-	# install needed packages
-	sudo apt-get install git devscripts build-essential checkinstall
+
+	# install needed packages (required)
+	sudo apt-get install git devscripts build-essential checkinstall \
+	libc6-dev libx11-dev make g++ sed
+
+	# optional packages (suggested)
+	sudo apt-get install bash wget zenity kdialog cabextract gnupg
+	
+	# microsoft core fonts (required for Silverlight)
+	# needs package dumped here form libregeek
 
 }
 
 main()
 {
+	
+if [[ "$arg1" == "build" ]]; then
+	
 	build_dir="/home/desktop/build-pipelight-temp"
 	git_dir="$build_dir/git-temp"
 	git_url="https://bitbucket.org/mmueller2012/pipelight.git"
@@ -69,7 +80,7 @@ main()
 	
 	if [[ -d "$git_dir" ]]; then
 	
-		echo -e "\n==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
+		echo -e "==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
 		sleep 1s
 		read -ep "Choice: " git_choice
 		
@@ -118,17 +129,20 @@ main()
 	# Build source
 	#################################################
 	
-	# Output readme via less to review build notes first
-	echo -e "\n==> Opening any available README.md to review build notes..."
-	sleep 2s
-	
-	readme_file=$(find . -maxdepth 1 -type f \( -name "readme" -o -name "README" -o -name "README.md" -o -name "readme.md" \))
-	
-	less "$readme_file"
-	
-	# pause for testing
-	sleep 50s
+	# obtain pre-compiled Windows binaries to avoid mingw dependency
+	wget -O pluginloader.tar.gz "http://repos.fds-team.de/pluginloader/v0.2.8.1/pluginloader.tar.gz"
 
+	# Configure, make, install
+	./configure --wine-path="/usr/bin/wine"
+	sleep 7s
+	make
+	sleep 7s
+	sudo make install
+	sleep 7s
+	
+	# PAUSE FOR TESTING
+	sleep 50s
+	
 	############################
 	# proceed to DEB BUILD
 	############################
@@ -148,6 +162,8 @@ main()
 	#################################################
 	
 	# TODO
+	# This part may be handled in the firefox extra pkgs function
+	# sudo pipelight-plugin --create-mozilla-plugins # Post-installation step
 	
 	#################################################
 	# Cleanup
@@ -188,6 +204,13 @@ main()
 	ls "$build_dir" 
 	echo ""
 	ls "$git_dir"
+	
+elif [[ "$arg1" == "remove" ]]; then
+	
+	# deconstruct compiled package
+	sudo pipelight-plugin --disable-all
+	sudo pipelight-plugin --remove-mozilla-plugins
+	sudo make uninstall
 
 }
 

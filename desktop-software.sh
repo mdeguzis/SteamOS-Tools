@@ -46,8 +46,8 @@ rm -f "log.txt"
 while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
-	type="$2"
-	echo "$type" >> "custom-pkg.txt"
+	type_tmp="$2"
+	echo "$type_tmp" >> "custom-pkg.txt"
 	# Shift all the parameters down by one
 	shift
 done

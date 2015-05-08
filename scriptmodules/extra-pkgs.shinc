@@ -398,6 +398,8 @@ ep_install_kodi()
 
 ep_install_chrome()
 {
+	# See: https://github.com/ValveSoftware/SteamOS/wiki/Installing-Google-Chrome-for-Netflix
+
 	echo -e "\n==> Installing Chrome from automated script..."
 	sleep 2s
 	

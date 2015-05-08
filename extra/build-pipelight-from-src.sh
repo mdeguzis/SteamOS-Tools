@@ -65,17 +65,13 @@ install_prereqs()
 	
 	if [[ "$?" == "130" ]]; then
 		# exit status caught
-		echo -e ""\n==ERROR==\nFailure on package installation\n"
+		echo -e "\n==ERROR==\nFailure on package installation\n"
 	fi
 
 }
 
 ex_build_pipelight_src()
 {
-	
-echo $1
-echo $arg1
-sleep 5s
 
 if [[ "$arg1" == "build" ]]; then
 	

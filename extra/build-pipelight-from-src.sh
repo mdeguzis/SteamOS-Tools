@@ -27,11 +27,6 @@ show_help()
 	####################################################
 	./build-pipelight-from-src.sh [build|remove]
 	./build-pipelight-from-src.sh --help
-	source ./build-pipelight-from-src.sh [build|remove]
-	
-	The third option, preeceded by 'source' will 
-	execute the script in the context of the calling 
-	shell and preserve vars for the next run.
 	
 	EOF
 }
@@ -60,10 +55,12 @@ install_prereqs()
 
 }
 
-main()
+ex_build_pipelight_src()
 {
 	
 if [[ "$arg1" == "build" ]]; then
+	
+	echo -e "\n==> Building Pipelight from source\n"
 	
 	build_dir="/home/desktop/build-pipelight-temp"
 	git_dir="$build_dir/git-temp"
@@ -213,10 +210,14 @@ elif [[ "$arg1" == "remove" ]]; then
 	sudo pipelight-plugin --disable-all
 	sudo pipelight-plugin --remove-mozilla-plugins
 	sudo make uninstall
+	
+else
+	# Show help file
+	show_help
 fi
 
 }
 
 # start main
-main
-
+install_prereqs
+ex_build_pipelight_src

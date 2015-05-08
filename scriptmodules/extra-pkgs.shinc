@@ -607,7 +607,7 @@ ep_install_netflix()
 ep_install_eval_pkg()
 {
 
-	echo -e "\n==> Installing $PKG Debian via external script"
+	echo -e "\n==> Installing $PKG Debian via external script\n"
 
 	#####################################################
 	# Binary package eval routine using dpkg or gdebi

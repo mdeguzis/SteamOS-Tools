@@ -54,7 +54,7 @@ done
 # Strip symbols from large pkg pastes from build-depends
 sed -i "s|(>= [0-9].[0-9].[0-9])||g" custom-pkg.txt
 sed -i "s|(<< [0-9].[0-9].[0-9])||g" custom-pkg.txt
-sed -i "s|[|]]||g" custom-pkg.txt
+sed -i "s|[| ]]||g" custom-pkg.txt
 
 # set custom flag for use later on if line count
 # of testing custom pkg test errorscustom-pkg.txt exceeds 1

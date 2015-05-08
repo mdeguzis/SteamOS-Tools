@@ -146,10 +146,15 @@ if [[ "$arg1" == "build" ]]; then
 	
 	# obtain pre-compiled Windows binaries to avoid mingw dependency
 	wget -O pluginloader.tar.gz "http://repos.fds-team.de/pluginloader/v0.2.8.1/pluginloader.tar.gz"
+	tar -xzvf pluginloader.tar.gz
+	mkdir -p "/home/desktop/pipelight-src/windows-cxx"
+	cp -rv "$git_dir/src/windows/*" "/home/desktop/pipelight-src/windows-cxx"
+	pipelight_win_loc="/home/desktop/pipelight-src/windows-cxx"
+	ming_32_plugin="$pipelight_win_loc/pluginloader/pluginloader64.exe"
 
 	# Configure, make, install
 	echo -e "\n==Configuring==\n"
-	./configure --wine-path="/usr/bin/wine"
+	./configure --wine-path="/usr/bin/wine" --win32-cxx="$ming_32_plugin" --win32-static
 
 	# PAUSE FOR TESTING
 	sleep 50s

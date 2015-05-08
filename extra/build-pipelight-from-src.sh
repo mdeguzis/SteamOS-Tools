@@ -42,8 +42,6 @@ arg_check()
 	# quick pass to make sure arg was specified
 	if [[ "$arg1" == "" ]]; then
 		#show help
-		echo "trap hit"
-		sleep 5s
 		clear
 		show_help
 	fi

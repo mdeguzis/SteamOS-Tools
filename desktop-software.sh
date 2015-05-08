@@ -31,11 +31,11 @@ extra_opts="$3"
 #############################################
 # Test arguments (1st pass) here:
 #############################################
-#echo -e "\noptions 1: $options"
-#echo "Software requested 1: $type"
-#echo "Extra opts 1: $extra_opts"
-#echo -e "Availble custom pkg list 1: \n"
-#cat custom-pkg.txt
+echo -e "\noptions 1: $options"
+echo "Software requested 1: $type"
+echo "Extra opts 1: $extra_opts"
+echo -e "Availble custom pkg list 1: \n"
+cat custom-pkg.txt
 
 # remove old custom files
 rm -f "custom-pkg.txt"

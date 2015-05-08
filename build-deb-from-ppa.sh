@@ -213,5 +213,8 @@ main()
 	
 }
 
+#prereqs
+install_prereqs
+
 # start main
 main

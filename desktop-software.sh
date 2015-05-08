@@ -28,6 +28,9 @@ type="$2"
 # used only for source package building in `emu-from-source`
 extra_opts="$3"
 
+#############################################
+# Test arguments here:
+#############################################
 echo -e "\noptions 1: $options"
 echo "Software requested 1: $type"
 echo "Extra opts 1: $extra_opts"
@@ -39,7 +42,7 @@ rm -f "custom-pkg.txt"
 rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
-while [ "$type" != "" ]; do
+while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type="$2"

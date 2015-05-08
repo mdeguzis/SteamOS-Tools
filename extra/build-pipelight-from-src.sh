@@ -39,13 +39,16 @@ fi
 
 arg_check()
 {
-	
+	echo "test"
+	echo "arg1 is: $arg1"
 	# quick pass to make sure arg was specified
 	if [[ "$arg1" == "" ]]; then
 		#show help
 		clear
 		show_help
 	fi
+	
+	sleep 50s
 }
 
 install_prereqs()

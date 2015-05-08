@@ -431,8 +431,8 @@ ep_install_chrome()
 	
 	# install pre-reqs using the main desktop-software script
 	
-	sudo apt-get install indicator-application:i386 \
-	libappindicator1:i386 libappindicator3-1:i386 libatk1.0-0:i386 libavahi-client3:i386\
+	"sudo apt-get install indicator-application:i386 \
+	libappindicator1:i386 libappindicator3-1:i386 libatk1.0-0:i386 libavahi-client3:i386 \
 	libavahi-common-data:i386 libavahi-common3:i386 libcairo-gobject2:i386 \
 	libcairo2:i386 libcap2:i386 libcolord1:i386 libcups2:i386 libcurl3:i386 libdatrie1:i386 \
 	libdb5.1:i386 libdbus-glib-1-2:i386 libdbusmenu-glib4:i386 libdbusmenu-gtk3-4:i386 \
@@ -442,7 +442,7 @@ ep_install_chrome()
 	libkrb5support0:i386 liblcms2-2:i386 libldap-2.4-2:i386 libnspr4:i386 libnss3:i386 \
 	libpango1.0-0:i386 libpcre3:i386 libpixman-1-0:i386 librtmp0:i386 libsasl2-2:i386 \
 	libsasl2-modules:i386 libsqlite3-0:i386 libssh2-1:i386 libthai0:i386 libxcb-render0:i386 \
-	libxcb-shm0:i386 libxft2:i386 libxss1:i386 libxtst6:i386
+	libxcb-shm0:i386 libxft2:i386 libxss1:i386 libxtst6:i386"
 	
 	#######################
 	# libappindiactor
@@ -518,10 +518,6 @@ ep_install_chrome()
 	###############################	
 	# Cleanup
 	###############################
-	
-	# let user know about panel/tray support (may go away soon)
-	#echo -e "\n==Notice==\nUnfortunatley, at the moment, failure of the installation package 'libappindicator1'\
-means that panel/systray support will not be available at this time. This is being worked on.\n"
 
 }
 

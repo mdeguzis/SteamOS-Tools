@@ -82,14 +82,14 @@ in order to use Netflix?"
 	sleep 0.3s
 	read -ep "Choice: " pl_choice
 	
-	if [[ "$pl_choice" == "y" ]; then
+	if [[ "$pl_choice" == "y" ]]; then
 	
 		# kick off build script
 		echo -e "\nProceeding to pipelight source build script"
 		sleep 2s
 		"$scriptdir/extra/build-pipelight-from-src.sh build"
 		
-	elif [[ "$pl_choice" == "n" ]; then
+	elif [[ "$pl_choice" == "n" ]]; then
 	
 		# do not kick off script
 		echo -e "\nPipelight integration declined"

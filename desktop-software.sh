@@ -78,7 +78,7 @@ echo "Software requested 2: $type"
 echo "Extra opts 2: $extra_opts"
 echo -e "Availble custom pkg list 2: \n"
 cat custom-pkg.txt
-sleep 50s
+#sleep 50s
 
 apt_mode="install"
 uninstall="no"

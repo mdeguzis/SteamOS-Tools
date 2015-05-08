@@ -228,5 +228,5 @@ fi
 
 # start main
 arg_check
-install_prereqs
-ex_build_pipelight_src
+#install_prereqs
+#ex_build_pipelight_src

@@ -36,6 +36,7 @@ echo "Software requested 1: $type"
 echo "Extra opts 1: $extra_opts"
 echo -e "Availble custom pkg list 1: \n"
 cat custom-pkg.txt
+sleep 50s
 
 # remove old custom files
 rm -f "custom-pkg.txt"

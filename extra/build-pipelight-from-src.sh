@@ -37,6 +37,17 @@ if [[ "$arg" == "--help" ]]; then
 	exit
 fi
 
+arg_check()
+{
+	
+	# quick pass to make sure arg was specified
+	if [[ "$arg" == "" ]]; then
+		#show help
+		clear
+		show_help
+	fi
+}
+
 install_prereqs()
 {
 	clear
@@ -210,14 +221,12 @@ elif [[ "$arg1" == "remove" ]]; then
 	sudo pipelight-plugin --disable-all
 	sudo pipelight-plugin --remove-mozilla-plugins
 	sudo make uninstall
-	
-else
-	# Show help file
-	show_help
+
 fi
 
 }
 
 # start main
+arg_check
 install_prereqs
 ex_build_pipelight_src

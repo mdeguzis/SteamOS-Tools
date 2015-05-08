@@ -28,6 +28,12 @@ type="$2"
 # used only for source package building in `emu-from-source`
 extra_opts="$3"
 
+echo -e "\noptions 1: $options"
+echo "Software requested 1: $type"
+echo "Extra opts 1: $extra_opts"
+echo -e "Availble custom pkg list 1: \n"
+cat custom-pkg.txt
+
 # remove old custom files
 rm -f "custom-pkg.txt"
 rm -f "log.txt"
@@ -59,10 +65,10 @@ fi
 #############################################
 # Test arguments here:
 #############################################
-echo -e "\noptions: $options"
-echo "Software requested: $type"
-echo "Extra opts: $extra_opts"
-echo -e "Availble custom pkg list: \n"
+echo -e "\noptions 2: $options"
+echo "Software requested 2: $type"
+echo "Extra opts 2: $extra_opts"
+echo -e "Availble custom pkg list 2: \n"
 cat custom-pkg.txt
 sleep 50s
 

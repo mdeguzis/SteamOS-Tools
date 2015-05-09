@@ -41,7 +41,7 @@ ssh_transfer_roms()
 {
 	
 	# vars
-	ROMS_DIR="/home/steam/ROMs"
+	ROM_DIR="/home/steam/ROMs"
 
 	# prereqs
 	clear

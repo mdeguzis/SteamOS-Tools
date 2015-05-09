@@ -166,8 +166,8 @@ if [[ "$apt_mode" == "install" ]]; then
 	sudo cp "$scriptdir/cfgs/retroarch/retroarch-skel.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
 	# prompt user if they would like to load a controller config
-	echo -e "\nPlease choose a gamepad profile: \n"
-	echo "(1) Xbox 360 gamepad (wired"
+	echo -e "\nPlease choose a gamepad profile (4 player preset): \n"
+	echo "(1) Xbox 360 gamepad (wired)"
 	echo "(2) Xbox 360 gamepad (Wireless)"
 	echo "(3) Sony PS3 (wired) gamepad"
 	echo "(4) Sony PS3 (bluetooth) gamepad"

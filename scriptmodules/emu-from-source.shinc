@@ -48,7 +48,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	# If the DIR is already there, the fetch info should be intact
 	if [[ -d "$git_dir" ]]; then
 		
-		echo -e "\nGit folder already exists! Attempting git pull...\n"
+		echo -e "\n==INFO==\nGit folder already exists! Attempting git pull...\n"
 		sleep 1s
 		# attempt to pull the latest source first
 		cd $git_dir
@@ -57,7 +57,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 
 		# evaluate git pull. Remove, create, and clone if it fails
 		if [[ "$output" != "Already up-to-date." ]]; then
-			echo -e "\nGit directory pull failed. Removing and cloning...\n"
+			echo -e "\n==ERROR==\nGit directory pull failed. Removing and cloning...\n"
 			sleep 2s
 			cd
 			rm -rf "$git_dir"
@@ -67,7 +67,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 			git clone "$git_url"
 		fi
 	else
-		echo -e "\nGit directory does not exist. cloning now...\n"
+		echo -e "\n==INFO==\nGit directory does not exist. cloning now...\n"
 		sleep 2s
 		# create and clone
 		mkdir -p "$install_dir"

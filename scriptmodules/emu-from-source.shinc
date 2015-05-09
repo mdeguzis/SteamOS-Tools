@@ -88,10 +88,15 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	sleep 2s
 	
 	############################
-	# disabled fetches (games):
+	# disabled fetches (cores):
 	############################
 	
 	sed -i -e 's|register_core "bsnes"|#register_core "bsnes"|g' "$git_dir/rules.d/core-rules.sh"
+	
+	############################
+	# disabled fetches (games):
+	############################
+	
 	sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
 	sed -i -e 's|register_core "tyrquake"|#register_core "tyrquake"|g' "$git_dir/rules.d/core-rules.sh"
 	sed -i -e 's|register_core "prboom"|#register_core "prboom"|g' "$git_dir/rules.d/core-rules.sh"
@@ -104,7 +109,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	############################
 	# disabled fetches (extra):
 	############################
-	# These mostly include cores that fail to build later on
+	# These mostly include extras that fail to build
 	
 	sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
 	
@@ -196,7 +201,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 			exit
 		fi
 	else	
-		echo -e "\nRetroarch does not appear to be built."
+		echo -e "\n==INFO==\nRetroarch does not appear to be built."
 		echo -e "Building now...\n"
 		sleep 2s
 		# build Retroarch
@@ -236,7 +241,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 			exit
 		fi
 	else	
-		echo -e "\nLibretro cores do not appear to be built."
+		echo -e "\n==INFO==\nLibretro cores do not appear to be built."
 		echo -e "Building now..."
 		sleep 2s
 		# build cores

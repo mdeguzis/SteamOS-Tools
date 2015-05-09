@@ -142,11 +142,11 @@ ssh_transfer_roms()
 	# target_dir=$(echo $target_dir)
 	
 	# copy ROMs
-	echo -e "\n==> Executing CMD: sudo scp -r $user@$host:'$remote_dir/$target_dir/' $ROM_DIR"
+	echo -e "\n==> Executing CMD: sudo scp -r $user@$host:'$remote_dir/$target_dir' $ROM_DIR"
 	sleep 1s
 	
 	# set cmd
-	CMD=$(echo "sudo scp -r $user@$host:'$remote_dir/$target_dir/' $ROM_DIR")
+	CMD=$(echo "sudo scp -r $user@$host:'$remote_dir/$target_dir' $ROM_DIR")
 	
 	# execute
 	echo ""

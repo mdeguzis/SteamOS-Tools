@@ -1,14 +1,14 @@
 #!/bin/bash
 # -----------------------------------------------------------------------
-# Author: 	    Michael DeGuzis
-# Git:		      https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name: 	ssh-rom-transfer.sh
-# Script Ver: 	0.1.1
-# Description:	This script dumps ROMs over SSH
+# Author: 	    	Michael DeGuzis
+# Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name: 		ssh-rom-transfer.sh
+# Script Ver: 		0.1.1
+# Description:		This script dumps ROMs or files over SSH
 #
-# Usage:	./ssh-rom-transfer.sh
-#		./ssh-rom-transfer.sh --help
-#		source ./ssh-rom-transfer.sh
+# Usage:		./ssh-rom-transfer.sh
+#			./ssh-rom-transfer.sh --help
+#			source ./ssh-rom-transfer.sh
 # ------------------------------------------------------------------------
 
 arg="$1"
@@ -40,8 +40,6 @@ fi
 ssh_transfer_roms()
 {
 	
-	# vars
-	ROM_DIR="/home/steam/ROMs"
 
 	# prereqs
 	clear
@@ -58,8 +56,27 @@ ssh_transfer_roms()
 		sleep 0.2s
 	fi
 
+	echo -e "\n==> Enter local user for ROMS/Files (deskop/steam):"
+	echo -e "[ENTER to use last: $loc_user]"
+	
+	# set tmp var for last run, if exists
+	loc_user="$loc_user"
+	if [[ "$loc_user" == "" ]]; then
+		# var blank this run, get input
+		read loc_user
+	else
+		read loc_user
+		# user chose to keep var value from last
+		if [[ "$loc_user" == "" ]]; then
+			loc_user="$loc_user_tmp"
+		else
+			# keep user choice
+			loc_user="$loc_user"
+		fi
+	fi
 
-	echo -e "\n==> Enter Remote User: [ENTER to use last: $user]"
+	echo -e "\n==> Enter Remote User: "
+	echo -e "[ENTER to use last: $user]"
 	
 	# set tmp var for last run, if exists
 	user_tmp="$user"
@@ -77,7 +94,8 @@ ssh_transfer_roms()
 		fi
 	fi
 
-	echo -e "\n==> Enter remote hostname: [ENTER to use last: $host]"
+	echo -e "\n==> Enter remote hostname: "
+	echo -e "[ENTER to use last: $host]"
 	# set tmp var for last run, if exists
 	host_tmp="$host"
 	if [[ "$host" == "" ]]; then
@@ -94,7 +112,8 @@ ssh_transfer_roms()
 		fi
 	fi
 
-	echo -e "\n==> Enter remote DIR: [ENTER to use last: $remote_dir]:"
+	echo -e "\n==> Enter remote DIR: "
+	echo -e "[ENTER to use last: $remote_dir]:"
 	echo -e "(use quotes on any single DIR name with spaces)"
 	# set tmp var for last run, if exists
 	remote_dir_tmp="$remote_dir"
@@ -118,7 +137,8 @@ ssh_transfer_roms()
 	
 	ssh ${user}@${host} ls ${remote_dir} | less
 	
-	echo -e "\nEnter target ROM DIR to copy [ENTER to last: $target_dir]:"
+	echo -e "\nEnter target ROM DIR to copy "
+	echo -e "[ENTER to last: $target_dir]:"
 	echo -e "(use quotes on any single DIR name with spaces)"
 	# set tmp var for last run, if exists
 	target_dir_tmp="$target_dir"
@@ -141,6 +161,13 @@ ssh_transfer_roms()
 	# example in bash ... t="Neo\ Geo" && s=$(echo $t) && echo $s
 	# target_dir=$(echo $target_dir)
 	
+	# Set ROM DIR based on local user
+	if [[ "$loc_user" == "desktop" ]]; then
+		ROM_DIR="/home/desktop/ROMs"
+	elif [[ "$loc_user" == "steam" ]]; then
+		ROM_DIR="/home/steam/ROMs"
+	fi
+	
 	# copy ROMs
 	echo -e "\n==> Executing CMD: sudo scp -r $user@$host:'$remote_dir/$target_dir' $ROM_DIR"
 	sleep 1s
@@ -152,7 +179,17 @@ ssh_transfer_roms()
 	echo ""
 	$CMD
 	echo ""
- 
+	
+	# cleanup
+	echo -e "\n==> Cleaning up directory permissions\n"
+	if [[ "$loc_user" == "desktop" ]]; then
+		sudo chown -R desktop:desktop "$ROM_DIR"
+		sudo chmod -R 755 "$ROM_DIR"
+	elif [[ "$loc_user" == "steam" ]]; then
+		sudo chown -R steam:steam "$ROM_DIR"
+		sudo chmod -R 755 "$ROM_DIR"
+	fi
+	
 }
 
 # Start script

@@ -27,8 +27,9 @@ if [[ "$apt_mode" == "install" ]]; then
 	#################################################
 	
 	# Warn user this will take some time
-	echo -e "\nBuilding Retroarch and its associated cores will take some time. Please wait or \
-press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM configuration."
+	echo -e "\nBuilding Retroarch and its associated cores will take some time."
+	echo -e "Please wait or press CTRL+C now. This is largely dependant on your"
+	echo -e "CPU, HDD Speed, and RAM configuration."
 	echo -e "\nPress Enter to continue\n"
 	
 	read -n 1 

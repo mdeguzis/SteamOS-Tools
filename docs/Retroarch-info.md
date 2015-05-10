@@ -3,6 +3,7 @@
 **Table of Contents**
 
 - [General](#general)
+- [BIOS](#bios)
 - [Input (General)](#input-general)
 - [Input (Xbox 360 Controllers)](#input-xbox-360-controllers)
 - [Input (Sony PS3 Controllers)](#input-sony-ps3-controllers)
@@ -17,6 +18,20 @@ After running the emulation-src type, currently you must still perform the follo
 1. Add "Retroarch-Src" as a "non-Steam" game using the "+" icon on the Libary section of SteamOS
 2. Configure your joypad via Retroarch > Settings > Input Settings (use bind all to configure all buttons at once)
 3. Transfer any ROMs you had on your system, into appropriate folder structures under `/home/steam/ROMs`
+
+***
+### General
+***
+
+#####PSX/PS1 BIOS Files
+
+Mednafen is very picky about which BIOS to use. The ones that you might need are:
+
+* scph5500.bin
+* scph5501.bin
+* scph5502.bin
+
+Copy this file to the `$HOME/ROMs` directory of the user you are working with. Most commonly this is `/home/steam/ROMs`. If you can't find one of these, just rename the respective scph100x.bin BIOS (such as scph1001.bin) to scph550x.bin (such as scph5501.bin) and it will take it. 
 
 ***
 ### Input (General)

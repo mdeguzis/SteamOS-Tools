@@ -308,20 +308,20 @@ if [[ "$apt_mode" == "install" ]]; then
 	#####################################
 	
 	# home paths, which includes the ROMs DIR
-	sudo chown -r steam:steam "$steam_home"
-	sudo chown -r desktop:desktop "$desktop_home"
+	sudo chown steam:steam "$steam_home"
+	sudo chown desktop:desktop "$desktop_home"
 	
 	# save DIRs
-	sudo chown -r desktop:desktop "$save_loc_desktop"
-	sudo chown -r steam:steam "$save_loc_steam"
+	sudo chown desktop:desktop "$save_loc_desktop"
+	sudo chown steam:steam "$save_loc_steam"
 	
 	# Retroarch
-	sudo chown -r desktop:desktop "$retroarch_base_desktop"
-	sudo chown -r steam:steam "$retroarch_base_steam"
+	sudo chown desktop:desktop "$retroarch_base_desktop"
+	sudo chown steam:steam "$retroarch_base_steam"
 	
 	# configs
-	sudo chown -r desktop:desktop "$retroarch_cfg_loc_steam"
-	sudo chown -r steam:steam "$retroarch_cfg_loc_steam"
+	sudo chown desktop:desktop "$retroarch_cfg_loc_steam"
+	sudo chown steam:steam "$retroarch_cfg_loc_steam"
 	
 	#####################################
 	# ensure folders have correct perms

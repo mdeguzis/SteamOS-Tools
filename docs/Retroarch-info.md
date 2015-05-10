@@ -25,7 +25,7 @@ After running the emulation-src type, currently you must still perform the follo
 ***
 Since the "system" directory of Retroarch is pre-configured to `/home/<user>/ROMs`, you'll want to also dump your BOIS files in this location as well.
 
-#####PSX/PS1 BIOS Files
+####PSX/PS1 BIOS Files
 
 Mednafen is very picky about which BIOS to use. The ones that you might need are:
 

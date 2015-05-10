@@ -4,6 +4,7 @@
 
 - [General](#general)
 - [BIOS](#bios)
+- [Disc Images](#discimages)
 - [Input (General)](#input-general)
 - [Input (Xbox 360 Controllers)](#input-xbox-360-controllers)
 - [Input (Sony PS3 Controllers)](#input-sony-ps3-controllers)
@@ -32,6 +33,12 @@ Mednafen is very picky about which BIOS to use. The ones that you might need are
 * scph5502.bin
 
 Copy this file to the `$HOME/ROMs` directory of the user you are working with. Most commonly this is `/home/steam/ROMs`. If you can't find one of these, just rename the respective scph100x.bin BIOS (such as scph1001.bin) to scph550x.bin (such as scph5501.bin) and it will take it. 
+
+***
+### Disc Images
+***
+
+Mednafen requires you to load games through CUE sheets. Ensure that the CUE sheet is properly set up in order for the game to run. See the Cue sheet (.cue) for more.
 
 ***
 ### Input (General)

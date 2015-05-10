@@ -139,8 +139,6 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	sed -i -e '/libretro_build_core bsnes_cplusplus98/d' "$git_dir/libretro-build.sh"
 	sed -i -e '/libretro_build_core bsnes_mercury/d' "$git_dir/libretro-build.sh"
 	sed -i -e '/libretro_build_core bnes/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/libretro_build_core mame078/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/libretro_build_core emux/d' "$git_dir/libretro-build.sh"
 	sed -i -e '/build_libretro_test/d' "$git_dir/libretro-build.sh"
 
 	############################

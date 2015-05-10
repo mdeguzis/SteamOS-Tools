@@ -58,6 +58,10 @@ if [[ "$apt_mode" == "install" ]]; then
 	core_loc="/usr/lib/libretro"
 	core_info_dir="/usr/lib/libretro/info"
 	
+	# base Retorach home dir
+	retroarch_base_desktop="/home/desktop/retroarch"
+	retroarch_base_steam="/home/steam/retroarch"
+	
 	# save DIRs
 	save_loc_desktop="/home/desktop/retroarch/saves"
 	save_loc_steam="/home/steam/retroarch/saves"
@@ -299,11 +303,40 @@ if [[ "$apt_mode" == "install" ]]; then
 	# Cleanup
 	#################################################
 	
-elif [[ "$apt_mode" == "remove" ]]; then
+	#####################################
+	# ensure folders have correct owners
+	#####################################
+	
+	# home paths, which includes the ROMs DIR
+	sudo chown -r steam:steam "$steam_home"
+	sudo chown -r desktop:desktop "$desktop_home"
+	
+	# save DIRs
+	sudo chown -r desktop:desktop "$save_loc_desktop"
+	sudo chown -r steam:steam "$save_loc_steam"
+	
+	# Retroarch
+	sudo chown -r desktop:desktop "$retroarch_base_desktop"
+	sudo chown -r steam:steam "$retroarch_base_steam"
+	
+	# configs
+	sudo chown -r desktop:desktop "$retroarch_cfg_loc_steam"
+	sudo chown -r steam:steam "$retroarch_cfg_loc_steam"
+	
+	#####################################
+	# ensure folders have correct perms
+	#####################################
+	
+	sudo chmod -R 755 "$retroarch_base_desktop"
+	sudo chmod -R 755 "$retroarch_base_steam"
+	sudo chmod -R 755 "$retroarch_cfg_loc_desktop"
+	sudo chmod -R 755 "$retroarch_cfg_loc_steam"
 	
 	############################################################################
 	#Remove directories, build files, etc if uninstall is specified by user
 	############################################################################
+
+elif [[ "$apt_mode" == "remove" ]]; then
 	
 	echo -e "\n==> Removing related files for retroach post-install configs"
 	sleep 2s

@@ -104,8 +104,7 @@ press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM conf
 	sed -i -e 's|register_core "nxengine"|#register_core "nxengine"|g' "$git_dir/rules.d/core-rules.sh"
 	sed -i -e 's|register_core "2048"|#register_core "2048"|g' "$git_dir/rules.d/core-rules.sh"
 	sed -i -e 's|register_core "stonesoup"|#register_core "stonesoup"|g' "$git_dir/rules.d/core-rules.sh"
-	sed -i -e 's|register_core "emux"|#register_core "emux"|g' "$git_dir/rules.d/core-rules.sh"
-	
+
 	############################
 	# disabled fetches (extra):
 	############################

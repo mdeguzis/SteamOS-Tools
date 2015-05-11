@@ -192,7 +192,7 @@ main()
 		sudo mv  ${backports_sourcelist_tmp} ${backports_sourcelist}
 
 		# Update system
-		echo -e "==> Updating index of packages...\n"
+		echo -e "\n==> Updating index of packages...\n"
 		sleep 2s
 		sudo apt-get update
 	

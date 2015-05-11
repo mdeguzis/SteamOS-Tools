@@ -1,13 +1,26 @@
 **3DO (4DO)**  
 File: "Wolfenstein 3D (u).iso"  
 BIOS: panafz10.bin
-Works: [OK] 
+Works: [OK]  
 Save states [OK]  
 Load states [OK]  
 
 **Atari 2600 (Stella)**  
 File: "Pitfall.bin"  
 Works: [OK]  
+Save states [OK]  
+Load states [OK]  
+
+**Atari Lynx (Handy)**  
+File: "Chips Challenge.lynx"  
+Works: [No]  
+Save states [--]  
+Load states [--]  
+
+**Atari Lynx (Mednafen)**  
+File: "Chips Challenge.lynx"  
+BIOS: lynxboot.img  
+Works: [YES]  
 Save states [OK]  
 Load states [OK]  
 

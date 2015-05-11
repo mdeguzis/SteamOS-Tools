@@ -44,23 +44,37 @@ Mednafen requires you to load games through CUE sheets. Ensure that the CUE shee
 ***
 ### Input (General)
 ***
-Please take note of the following general modifications
+Please take note of the following general modifications:
 
 * Save state: Left-thumbstick click (L3)
 * Load state: Right-thumbstick click (R3)
 * Show Retroarch menue: back/select
 * Exit Game: Enter menu, choose "Quit Retroarch"
  
-Please note: The center button of either the Sony or Microsoft controllers is not ideal for opening the Retroarch menu or quitting Retroarch. Steam Big Picture Mode / SteamOS uses this button by default to bring up the Steam overlay.
+Please note: The center button of either the Sony or Microsoft controllers is not ideal for opening the Retroarch menu or quitting Retroarch. Steam Big Picture Mode / SteamOS uses this button by default to bring up the Steam overlay. Save states are not supported on all consoles/cores.
+
+***
+### Input (General)
+***
+Each controller preset, if chosen during the Retroarch post-install sequence, is preset for 4 players maxiumum. If you wish to configure more, please use the input settings section of Retroarch.
 
 ***
 ### Input (Xbox 360 Controllers)
 ***
-The Xbox controllers are mapped as per the onscreen input directions in Retroarch > Settings > Input Settings.
+The Xbox controllers are mapped exactly has Retroarch has requested each button to be. See the below diagram.
+
+![alt text](http://www.libregeek.org/wp-content/uploads/2014/04/xbox-controller-mapping-1024x768.jpg "Xbox 360 Controller")
 
 ***
 ### Input (Sony PS3 Controllers)
 ***
+
+The Sony Dualshock 3 controller is setup in the same fashion as the above Xbox 360 controller. The main things to keep in mind are
+
+* X is "A"
+* Circle is "B"
+* Square is "X"
+* Triange is "Y"
 
 ***
 ### Tested / known working cores

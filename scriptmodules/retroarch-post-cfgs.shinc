@@ -42,7 +42,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	# Set paths and VARs
 	#################################################
 	
-	echo -e "\n==> Configuring paths..."
+	echo -e "\n==> Configuring paths"
 	sleep 1s
 	
 	# home paths
@@ -232,23 +232,6 @@ if [[ "$apt_mode" == "install" ]]; then
 	find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_desktop" 2> /dev/null
 	find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_steam" 2> /dev/null
 	
-	#################################################
-	# Permissions
-	#################################################
-
-	# Fix retroarch.cfg permissions
-	sudo chown desktop:desktop "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	sudo chown steam:steam "$retroarch_cfg_loc_steam/retroarch.cfg"
-	sudo chmod 755 "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	sudo chmod 755 "$retroarch_cfg_loc_steam/retroarch.cfg"
-	
-	# Fix saves permissions
-	sudo chown steam:steam "$save_loc_steam"
-	sudo chmod 755 "$save_loc_steam"
-	
-	# Fix retroarch banner
-	sudo chown desktop:desktop "$banner_dir_desktop/retro-arch-logo.png"
-	sudo chown steam:steam "$banner_dir_steam/retro-arch-logo.png"
 
 	#################################################
 	# Extra
@@ -276,6 +259,9 @@ if [[ "$apt_mode" == "install" ]]; then
 	#################################################
 	# Cleanup
 	#################################################
+	
+	echo -e "\n==> Correcting owners and permissions"
+
 	
 	#####################################
 	# ensure folders have correct owners

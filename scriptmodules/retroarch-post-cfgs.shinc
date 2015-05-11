@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  	0.2.7
+# Script Ver:	  	0.3.7
 # Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
@@ -39,12 +39,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	sudo ln -s "$binary_loc" "$symlink_target"
 	
 	#################################################
-	# Configure default ROM dir (on user input?)
-	#################################################
-	# TODO
-	
-	#################################################
-	# set vars
+	# Set paths and VARs
 	#################################################
 	
 	echo -e "\n==> Configuring paths..."
@@ -66,6 +61,14 @@ if [[ "$apt_mode" == "install" ]]; then
 	save_loc_desktop="/home/desktop/retroarch/saves"
 	save_loc_steam="/home/steam/retroarch/saves"
 	
+	# filters
+	retroarch_filters_desktop="/home/desktop/retroarch/filters"
+	retroarch_filters_steam="/home/steam/retroarch/filters"
+	
+	# shaders
+	retroarch_shaders_desktop="/home/desktop/retroarch/shaders"
+	retroarch_shaders_steam="/home/steam/retroarch/shaders"
+	
 	# game history
 	hist_loc_desktop="/home/desktop/retroarch/history"
 	hist_loc_steam="/home/steam/retroarch/history"
@@ -86,77 +89,45 @@ if [[ "$apt_mode" == "install" ]]; then
 	#################################################
 	
 	# create retroarch dirs if they don't exist already
-	if [[ -d "$retroarch_cfg_loc_steam" ]]; then
-		# do nothing
-		echo "" > /dev/null
-	else
-		# create directory(s)
-		mkdir -p "$retroarch_cfg_loc_desktop"
-		sudo mkdir -p "$retroarch_cfg_loc_steam"
-	fi
+	echo "==> Creating folders for ROMs, Artwork, Saves, and dotfiles"
+	# We pass -p below,so all folders below are created for a given path
+
+	pathlist=()
 	
-	# create ROMs dirs if it don't exist already
-	if [[ -d "$roms_dir_desktop" ]]; then
-		# do nothing
-		echo "" > /dev/null
-	else
-		# create directory(s)
-		mkdir -p "$roms_dir_desktop"
-	fi
+	# base directories
+	pathlist+=("$retroarch_base_desktop")
+	pathlist+=("$steam_home")
+	pathlist+=("$desktop_home")
+	pathlist+=("$core_loc")
+	pathlist+=("$core_info_dir")
+	pathlist+=("$retroarch_base_desktop")
+	pathlist+=("$retroarch_base_steam")
+	pathlist+=("$save_loc_desktop")
+	pathlist+=("$save_loc_steam")
+	pathlist+=("$retroarch_filters_desktop")
+	pathlist+=("$retroarch_filters_steam")
+	pathlist+=("$retroarch_shaders_desktop")
+	pathlist+=("$retroarch_shaders_steam")
+	pathlist+=("$hist_loc_desktop")
+	pathlist+=("$hist_loc_steam")
+	pathlist+=("$retroarch_cfg_loc_steam")
+	pathlist+=("$retroarch_cfg_loc_desktop")
 	
-	# create ROMs dirs if it don't exist already
-	if [[ -d "$roms_dir_steam" ]]; then
-		# do nothing
-		echo "" > /dev/null
-	else
-		# create directory(s)
-		sudo mkdir -p "$roms_dir_steam"
-	fi
+	# other directories	
+	pathlist+=("$roms_dir_desktop")
+	pathlist+=("$roms_dir_steam")
+	pathlist+=("$banner_dir_desktop")
+	pathlist+=("$banner_dir_steam")
 	
-	# create Core/Core info dirs if it don't exist already
-	if [[ -d "$core_info_dir" ]]; then
-		# do nothing
-		echo "" > /dev/null
-	else
-		# create directory(s)
-		sudo mkdir -p "$core_info_dir"
-	fi
-	
-	# save dir desktop
-	if [[ -d "$save_loc_desktop" ]]; then
-		# do nothing
-		echo "" > /dev/null
-	else
-		# create directory(s)
-		mkdir -p "$save_loc_desktop"
-	fi
-	
-	# save dir steam
-	if [[ -d "$save_loc_steam" ]]; then
-		# do nothing
-		echo "" > /dev/null
-	else
-		# create directory(s)
-		sudo mkdir -p "$save_loc_steam"
-	fi
-	
-	# history dir desktop
-	if [[ -d "$hist_loc_desktop" ]]; then
-		# do nothing
-		echo "" > /dev/null
-	else
-		# create directory(s)
-		mkdir -p "$hist_loc_desktop"
-	fi
-	
-	# history dir steam
-	if [[ -d "$hist_loc_steam" ]]; then
-		# do nothing
-		echo "" > /dev/null
-	else
-		# create directory(s)
-		sudo mkdir -p "$hist_loc_steam"
-	fi
+	# quotes needed on entry to preven globbing on directory creation!
+	# Permissions will be corrected later on below.
+	# Expanding arrays involves [@] and {}
+	for entry in "${pathlist[@]}"
+	do
+		if [[ ! -d "$entry" ]]; then
+			sudo mkdir -p "$entry" 
+		fi
+	done
 	
 	#################################################
 	# Application parameters 
@@ -258,6 +229,10 @@ if [[ "$apt_mode" == "install" ]]; then
 	# copy core info from source build DIR
 	find "/home/desktop/retroarch-src/libretro-super/dist/info" -name *.info | xargs sudo cp -t "/usr/lib/libretro/info" 2> /dev/null
 	
+	# copy filter info from source build DIR
+	find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_desktop" 2> /dev/null
+	find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_steam" 2> /dev/null
+	
 	#################################################
 	# Permissions
 	#################################################
@@ -307,30 +282,25 @@ if [[ "$apt_mode" == "install" ]]; then
 	# ensure folders have correct owners
 	#####################################
 	
-	# home paths, which includes the ROMs DIR
-	sudo chown steam:steam "$steam_home"
-	sudo chown desktop:desktop "$desktop_home"
-	
-	# save DIRs
-	sudo chown desktop:desktop "$save_loc_desktop"
-	sudo chown steam:steam "$save_loc_steam"
-	
-	# Retroarch
-	sudo chown desktop:desktop "$retroarch_base_desktop"
-	sudo chown steam:steam "$retroarch_base_steam"
-	
-	# configs
-	sudo chown desktop:desktop "$retroarch_cfg_loc_steam"
-	sudo chown steam:steam "$retroarch_cfg_loc_steam"
+	# home paths, which includes the ROMs DIR, saves, configs
+	sudo chown -R steam:steam "$steam_home"
+	sudo chown -R desktop:desktop "$desktop_home"
 	
 	#####################################
-	# ensure folders have correct perms
+	# Correct Permissions 
 	#####################################
 	
+	# correct recursively to touch all our directories
 	sudo chmod -R 755 "$retroarch_base_desktop"
 	sudo chmod -R 755 "$retroarch_base_steam"
 	sudo chmod -R 755 "$retroarch_cfg_loc_desktop"
 	sudo chmod -R 755 "$retroarch_cfg_loc_steam"
+	
+	# other non specific DIRs
+	sudo chmod -R 755 "$banner_dir_desktop"
+	sudo chmod -R 755 "$banner_dir_steam"
+	sudo chmod -R 755 "$roms_dir_desktop"
+	sudo chmod -R 755 "$roms_dir_steam"
 	
 	############################################################################
 	#Remove directories, build files, etc if uninstall is specified by user

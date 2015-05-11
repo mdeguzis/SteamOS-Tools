@@ -89,7 +89,6 @@ if [[ "$apt_mode" == "install" ]]; then
 	#################################################
 	
 	# create retroarch dirs if they don't exist already
-	echo "==> Creating folders for ROMs, Artwork, Saves, and dotfiles"
 	# We pass -p below,so all folders below are created for a given path
 
 	pathlist=()

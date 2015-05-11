@@ -241,27 +241,10 @@ if [[ "$apt_mode" == "install" ]]; then
 	sudo cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "/home/steam/Pictures"
 	
 	#################################################
-	# Automatically add Retroarch program into Steam?
-	#################################################
-	
-	# May not be possible
-	# If not, generate notice to user to add as "non-Steam game"
-	# <<TODO>>
-
-	echo -e "\n==> Completing post-install actions..."
-
-	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src'"
-	echo -e "as a non-Steam game in Big Picture Mode.\n"
-	echo -e "Please see $scriptdir/docs/desktop-software-readme.md for"
-	echo -e "more information\n"
-	sleep 1s
-	
-	#################################################
 	# Cleanup
 	#################################################
 	
 	echo -e "\n==> Correcting owners and permissions"
-
 	
 	#####################################
 	# ensure folders have correct owners
@@ -286,6 +269,22 @@ if [[ "$apt_mode" == "install" ]]; then
 	sudo chmod -R 755 "$banner_dir_steam"
 	sudo chmod -R 755 "$roms_dir_desktop"
 	sudo chmod -R 755 "$roms_dir_steam"
+	
+	#################################################
+	# Automatically add Retroarch program into Steam?
+	#################################################
+	
+	# May not be possible
+	# If not, generate notice to user to add as "non-Steam game"
+	# <<TODO>>
+
+	echo -e "\n==> Completing post-install actions..."
+
+	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src'"
+	echo -e "as a non-Steam game in Big Picture Mode.\n"
+	echo -e "Please see $scriptdir/docs/desktop-software-readme.md for"
+	echo -e "more information\n"
+	sleep 1s
 	
 	############################################################################
 	#Remove directories, build files, etc if uninstall is specified by user

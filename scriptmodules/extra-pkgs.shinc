@@ -69,38 +69,12 @@ ep_install_firefox()
 	# proceed to install eval
 	ep_install_eval_pkg
 	
-	#####################################
-	# Pipelight integration
-	#####################################
-	
-	# ask user if they wish to install and 
-	# attempt to use pipelight
-	
-	echo -e "\nDo you wish to attempt to isntall and integrate Pipelight \
-into Firfox Iceweasel in order to use Netflix?"
-
-	sleep 0.3s
-	read -ep "Choice: " pl_choice
-	
-	if [[ "$pl_choice" == "y" ]]; then
-	
-		# kick off build script
-		echo -e "\nProceeding to pipelight isntall"
-		sleep 2s
-		ep_install_pipelight
-		
-	elif [[ "$pl_choice" == "n" ]]; then
-	
-		# do not kick off script
-		echo -e "\nPipelight integration declined"
-	fi
-		
 }
 
 ep_install_plex()
 {
 
-	eromeo -e "\n==> Installing Plex Home Theater from automated script...\n"
+	echo -e "\n==> Installing Plex Home Theater from automated script...\n"
 	sleep 2s
 	
 	###############################
@@ -638,6 +612,10 @@ ep_install_netflix()
 
 ep_install_pipelight()
 {
+
+	#######################################
+	# EXPERIMENTAL !!!! DOES NOT WORK!
+	#######################################
 
 	echo -e "\n==> Installing Pipelight from automated script..."
 	sleep 2s

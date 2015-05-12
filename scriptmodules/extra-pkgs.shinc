@@ -692,7 +692,7 @@ ep_install_pipelight()
 	# Add prefs
 	###############################
 	
-	echo -e "\n==> Adding /etc/apt configurations"
+	echo -e "\n==> Adding /etc/apt configurations\n"
 	sleep 1s
 	
 	# Create and add required text to preferences file
@@ -715,6 +715,9 @@ ep_install_pipelight()
 	# Pipelight repo
 	deb http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/SteamOS/ ./
 	EOF
+	
+	# TESTING
+	sleep 50s
 	
 	# move source list
 	sudo mv ${sourcelist_pipelight_tmp} ${sourcelist_pipelight}
@@ -751,6 +754,12 @@ ep_install_pipelight()
 	# normal desktop browsers like the preinstalled Iceweasel browser.
 	
 	sudo pipelight-plugin --enable silverlight
+
+	#######################################
+	# clean release keys
+	#######################################
+
+	rm -f *.Release.key*
 
 }
 

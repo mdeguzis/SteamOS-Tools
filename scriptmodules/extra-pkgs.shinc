@@ -737,7 +737,14 @@ ep_install_pipelight()
 	# Install
 	#######################################
 
+	echo -e "\n==> Updating pacakge lists\n"
+	sleep 2s
+	
 	sudo apt-get update
+	
+	echo -e "\n==> Installing pipelight\n"
+	sleep 2s
+	
 	sudo apt-get -o Dpkg::Options::="--force-overwrite" install pipelight-multi
 	sudo pipelight-plugin --update
 

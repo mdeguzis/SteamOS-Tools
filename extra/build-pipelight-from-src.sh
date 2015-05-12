@@ -75,166 +75,191 @@ install_prereqs()
 
 ex_build_pipelight_src()
 {
+	
+	# Based off of: 
+	# http://www.slackware.com/~alien/slackbuilds/pipelight/build/pipelight.SlackBuild
 
-if [[ "$arg1" == "build" ]]; then
-	
-	echo -e "\n==> Building Pipelight from source\n"
-	
-	build_dir="/home/desktop/build-pipelight-temp"
-	git_dir="$build_dir/git-temp"
-	git_url="https://bitbucket.org/mmueller2012/pipelight.git"
-	
-	clear
-	# create build dir and git dir, enter it
-	mkdir -p "$git_dir"
-	cd "$git_dir"
-	
-	# If git folder exists, evaluate it
-	# Avoiding a large download again is much desired.
-	# If the DIR is already there, the fetch info should be intact
-	
-	if [[ -d "$git_dir" ]]; then
-	
-		echo -e "==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
-		sleep 1s
-		read -ep "Choice: " git_choice
+	if [[ "$arg1" == "build" ]]; then
 		
-		if [[ "$git_choice" == "p" ]]; then
-			# attempt to pull the latest source first
-			echo -e "\n==> Attempting git pull..."
-			sleep 2s
-			cd "$git_dir"
-			# eval git status
-			output=$(git pull 2> /dev/null)
+		echo -e "\n==> Building Pipelight from source\n"
 		
-			# evaluate git pull. Remove, create, and clone if it fails
-			if [[ "$output" != "Already up-to-date." ]]; then
-	
-				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+		build_dir="/home/desktop/build-pipelight-temp"
+		git_dir="$build_dir/git-temp"
+		git_url="https://bitbucket.org/mmueller2012/pipelight.git"
+		
+		clear
+		# create build dir and git dir, enter it
+		mkdir -p "$git_dir"
+		cd "$git_dir"
+		
+		# If git folder exists, evaluate it
+		# Avoiding a large download again is much desired.
+		# If the DIR is already there, the fetch info should be intact
+		
+		if [[ -d "$git_dir" ]]; then
+		
+			echo -e "==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
+			sleep 1s
+			read -ep "Choice: " git_choice
+			
+			if [[ "$git_choice" == "p" ]]; then
+				# attempt to pull the latest source first
+				echo -e "\n==> Attempting git pull..."
 				sleep 2s
+				cd "$git_dir"
+				# eval git status
+				output=$(git pull 2> /dev/null)
+			
+				# evaluate git pull. Remove, create, and clone if it fails
+				if [[ "$output" != "Already up-to-date." ]]; then
+		
+					echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+					sleep 2s
+					rm -rf "$git_dir"
+					mkdir -p "$git_dir"
+					cd "$git_dir"
+					# clone to current DIR
+					git clone "$git_url" .
+				fi
+				
+			elif [[ "$git_choice" == "r" ]]; then
+				echo -e "\n==> Removing and cloning repository again..."
+				sleep 2s
+				# remove, clone, enter
 				rm -rf "$git_dir"
+				cd "$build_dir"
 				mkdir -p "$git_dir"
 				cd "$git_dir"
-				# clone to current DIR
 				git clone "$git_url" .
+		else
+			
+				echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+				sleep 2s
+				# create and clone to current dir
+				git clone "$git_url" .
+			
 			fi
-			
-		elif [[ "$git_choice" == "r" ]]; then
-			echo -e "\n==> Removing and cloning repository again..."
-			sleep 2s
-			# remove, clone, enter
-			rm -rf "$git_dir"
-			cd "$build_dir"
-			mkdir -p "$git_dir"
-			cd "$git_dir"
-			git clone "$git_url" .
-	else
-		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
-			sleep 2s
-			# create and clone to current dir
-			git clone "$git_url" .
-		
+				
 		fi
-			
+		
+		#################################################
+		# VARs
+		#################################################
+	 
+	 	# Where did we install wine-pipelight?
+		WPREFIX="/usr/libexec/wine-pipelight"
+		pipelight_win_loc="/home/desktop/pipelight-src/windows-cxx"
+		WINE_LOC="/usr/bin/wine"
+		OPTS="--win32-prebuilt --win64-prebuilt --with-win64 --wine64-path=$WPREFIX/bin/wine64"
+		LIBDIRSUFFIX="64"
+	 
+	 	#################################################
+		# CX Flags
+		#################################################
+
+	 
+		#################################################
+		# Build source
+		#################################################
+		
+		# obtain pre-compiled Windows binaries to avoid mingw dependency
+		wget -O pluginloader.tar.gz "http://repos.fds-team.de/pluginloader/v0.2.8.1/pluginloader.tar.gz"
+		tar -xzvf pluginloader.tar.gz
+		mkdir -p "/home/desktop/pipelight-src/windows-cxx"
+		cp -rv "$git_dir/src/windows/*" "/home/desktop/pipelight-src/windows-cxx"
+	
+		# Configure, make, install
+		echo -e "\n==Configuring==\n"
+		
+		./configure \
+		--prefix=/usr \
+		--libdir=/usr/lib${LIBDIRSUFFIX} \
+		--mandir=/usr/man \
+		--moz-plugin-path=/usr/lib${LIBDIRSUFFIX}/mozilla/plugins \
+		--wine-path=$WPREFIX/bin/wine \
+		--gcc-runtime-dlls="" \
+		--show-installation-dialogs \
+		${OPTS} \
+	
+		# PAUSE FOR TESTING !!!
+		sleep 50s
+	
+		echo -e "\n==Making==\n"
+		make
+		echo -e "\n==Installing==\n"
+		sudo make install
+		sleep 3s
+		
+		############################
+		# proceed to DEB BUILD
+		############################
+		
+		echo -e "\n==> Building Debian package from source"
+		echo -e "When finished, please enter the word 'done' without quotes"
+		sleep 2s
+		
+		# build deb package
+		sudo checkinstall
+	
+		# Alternate method
+		# dpkg-buildpackage -us -uc -nc
+	
+		#################################################
+		# Post install configuration
+		#################################################
+		
+		# TODO
+		# This part may be handled in the firefox extra pkgs function
+		# sudo pipelight-plugin --create-mozilla-plugins # Post-installation step
+		
+		#################################################
+		# Cleanup
+		#################################################
+		
+		# clean up dirs
+		
+		# note time ended
+		time_end=$(date +%s)
+		time_stamp_end=(`date +"%T"`)
+		runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
+		
+		# output finish
+		echo -e "\nTime started: ${time_stamp_start}"
+		echo -e "Time started: ${time_stamp_end}"
+		echo -e "Total Runtime (minutes): $runtime\n"
+	
+		
+		# assign value to build folder for exit warning below
+		build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
+		
+		# back out of build temp to script dir if called from git clone
+		if [[ "$scriptdir" != "" ]]; then
+			cd "$scriptdir"
+		else
+			cd "$HOME"
+		fi
+		
+		# inform user of packages
+		echo -e "\n############################################################"
+		echo -e "If package was built without errors you will see it below."
+		echo -e "If you don't, please check build dependcy errors listed above."
+		echo -e "cd $build_dir"
+		echo -e "cd $build_folder"
+		echo -e "############################################################\n"
+		
+		echo -e "Showing contents of: $build_dir:"
+		ls "$build_dir" 
+		echo ""
+		ls "$git_dir"
+		
+	elif [[ "$arg1" == "remove" ]]; then
+		
+		# deconstruct compiled package
+		sudo pipelight-plugin --disable-all
+		sudo pipelight-plugin --remove-mozilla-plugins
+		sudo make uninstall
+	
 	fi
-	
- 
-	#################################################
-	# Build source
-	#################################################
-	
-	# obtain pre-compiled Windows binaries to avoid mingw dependency
-	wget -O pluginloader.tar.gz "http://repos.fds-team.de/pluginloader/v0.2.8.1/pluginloader.tar.gz"
-	tar -xzvf pluginloader.tar.gz
-	mkdir -p "/home/desktop/pipelight-src/windows-cxx"
-	cp -rv "$git_dir/src/windows/*" "/home/desktop/pipelight-src/windows-cxx"
-	pipelight_win_loc="/home/desktop/pipelight-src/windows-cxx"
-	ming_32_plugin="$pipelight_win_loc/pluginloader/pluginloader64.exe"
-
-	# Configure, make, install
-	echo -e "\n==Configuring==\n"
-	./configure --wine-path="/usr/bin/wine" --win32-cxx="$ming_32_plugin" --win32-static
-
-	# PAUSE FOR TESTING
-	sleep 50s
-
-	echo -e "\n==Making==\n"
-	make
-	echo -e "\n==Installing==\n"
-	sudo make install
-	sleep 3s
-	
-	############################
-	# proceed to DEB BUILD
-	############################
-	
-	echo -e "\n==> Building Debian package from source"
-	echo -e "When finished, please enter the word 'done' without quotes"
-	sleep 2s
-	
-	# build deb package
-	sudo checkinstall
-
-	# Alternate method
-	# dpkg-buildpackage -us -uc -nc
-
-	#################################################
-	# Post install configuration
-	#################################################
-	
-	# TODO
-	# This part may be handled in the firefox extra pkgs function
-	# sudo pipelight-plugin --create-mozilla-plugins # Post-installation step
-	
-	#################################################
-	# Cleanup
-	#################################################
-	
-	# clean up dirs
-	
-	# note time ended
-	time_end=$(date +%s)
-	time_stamp_end=(`date +"%T"`)
-	runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
-	
-	# output finish
-	echo -e "\nTime started: ${time_stamp_start}"
-	echo -e "Time started: ${time_stamp_end}"
-	echo -e "Total Runtime (minutes): $runtime\n"
-
-	
-	# assign value to build folder for exit warning below
-	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
-	
-	# back out of build temp to script dir if called from git clone
-	if [[ "$scriptdir" != "" ]]; then
-		cd "$scriptdir"
-	else
-		cd "$HOME"
-	fi
-	
-	# inform user of packages
-	echo -e "\n############################################################"
-	echo -e "If package was built without errors you will see it below."
-	echo -e "If you don't, please check build dependcy errors listed above."
-	echo -e "cd $build_dir"
-	echo -e "cd $build_folder"
-	echo -e "############################################################\n"
-	
-	echo -e "Showing contents of: $build_dir:"
-	ls "$build_dir" 
-	echo ""
-	ls "$git_dir"
-	
-elif [[ "$arg1" == "remove" ]]; then
-	
-	# deconstruct compiled package
-	sudo pipelight-plugin --disable-all
-	sudo pipelight-plugin --remove-mozilla-plugins
-	sudo make uninstall
-
-fi
 
 }
 

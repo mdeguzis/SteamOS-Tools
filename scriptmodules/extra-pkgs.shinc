@@ -703,6 +703,7 @@ ep_install_pipelight()
 	Package: *
 	Pin: origin ""
 	Pin-Priority:110
+	EOF
 	
 	# move tmp list
 	sudo mv ${prefer_pipelight_tmp} ${prefer_pipelight}
@@ -711,16 +712,16 @@ ep_install_pipelight()
 	# Add source
 	#######################################
 
-	#cat <<-EOF > ${sourcelist_pipelight_tmp}
+	cat <<-EOF > ${sourcelist_pipelight_tmp}
 	# Pipelight repo
-	#deb http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/SteamOS/ ./
-	#EOF
+	deb http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/SteamOS/ ./
+	EOF
 	
-	# Using single line echo here. Likely this source addition has errors
+	# May use single line echo here. Likely this source addition has errors
 	# with using an EOF list with the trailing "./"
 	
-	echo "deb http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/SteamOS/ ./" \
-	${sourcelist_pipelight_tmp}
+	#echo "deb http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/SteamOS/ ./" \
+	#${sourcelist_pipelight_tmp}
 	
 	# move source list
 	sudo mv ${sourcelist_pipelight_tmp} ${sourcelist_pipelight}

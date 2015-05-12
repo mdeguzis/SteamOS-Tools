@@ -695,18 +695,20 @@ ep_install_pipelight()
 	echo -e "\n==> Adding /etc/apt configurations\n"
 	sleep 1s
 	
+	# disable prefs for now....
+	
 	# Create and add required text to preferences file
 	# Verified policy with apt-cache policy
 	# sudo temp file list, then move because of perms
 	
-	cat <<-EOF > ${prefer_pipelight_tmp}
-	Package: *
-	Pin: origin ""
-	Pin-Priority:110
-	EOF
+	#cat <<-EOF > ${prefer_pipelight_tmp}
+	#Package: *
+	#Pin: origin ""
+	#Pin-Priority:110
+	#EOF
 	
 	# move tmp list
-	sudo mv ${prefer_pipelight_tmp} ${prefer_pipelight}
+	#sudo mv ${prefer_pipelight_tmp} ${prefer_pipelight}
 
 	#######################################
 	# Add source

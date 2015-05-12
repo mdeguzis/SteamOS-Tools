@@ -69,9 +69,9 @@ ep_install_firefox()
 	# proceed to install eval
 	ep_install_eval_pkg
 	
-	#################################
-	# Pipelight integration
-	#################################
+	#####################################
+	# Pipelight integration (in-progres)
+	#####################################
 	
 	# ask user if they wish to compile and 
 	# attempt to use pipelight
@@ -568,7 +568,7 @@ ep_install_netflix()
 {
 
 	#######################################
-	# EXPERIMENTAL !!!!
+	# EXPERIMENTAL !!!! DOES NOT WORK!
 	#######################################
 
 	echo ""

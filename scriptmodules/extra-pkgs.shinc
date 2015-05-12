@@ -751,7 +751,8 @@ ep_install_pipelight()
 	
 	# This method still seems to require wine-staging. 
 	# Need to discuss yet on IRC with the pipelight team.
-	# Wine staging deb does not seem to exist in the repo:
+	# Wine staging deb does not seem to exist in the repo below
+	# It also still appears as a depedency in the 'Packages' list
 	# http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/Debian_7.0/
 	
 	sudo apt-get -o Dpkg::Options::="--force-overwrite" install pipelight-multi

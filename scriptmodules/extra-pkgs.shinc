@@ -775,7 +775,7 @@ ep_install_eval_pkg()
 	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed" 2> /dev/null)
 	if [ "" == "$PKG_OK" ]; then
-		echo -e "\n==INFO==\n\n$PKG not found. Installing now...\n"
+		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		
 		# check for multiple debs for install

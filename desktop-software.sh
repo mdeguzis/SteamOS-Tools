@@ -265,7 +265,7 @@ fi
 funct_pre_req_checks()
 {
 	
-	echo -e "\n==> Checking for prerequisite software..."
+	echo -e "\n==> Checking for prerequisite software...\n"
 	
 	#################################
 	# python-software-properties

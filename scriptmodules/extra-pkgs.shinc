@@ -803,7 +803,7 @@ ep_install_eval_pkg()
 		rm -f "/tmp/$PKG_FILENAME"
 		
 		# cleanup leftover debs
-		rm -f /tmp/*.deb
+		rm -f /tmp/*.deb*
 		
 		if [ $? == '0' ]; then
 			echo -e "\n==INFO==\nSuccessfully installed $PKG"

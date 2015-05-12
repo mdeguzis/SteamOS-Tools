@@ -841,7 +841,7 @@ ep_install_eval_binary()
 	# This is subject to change in the future.
 	
 	if [[ ! -f "$BIN_LOC" || -d "$PKG_DIR" ]]; then
-		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
+		echo -e "\n==INFO==\n$PKG not found. Installing now..."
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
 		sudo gdebi "/tmp/$PKG_FILENAME"
@@ -849,7 +849,7 @@ ep_install_eval_binary()
 		rm -f "/tmp/$PKG_FILENAME"
 		
 		if [ $? == '0' ]; then
-			echo -e "\n==INFO==\nSuccessfully installed $PKG"
+			echo -e "\n==INFO==\nSuccessfully installed $PKG\n"
 			sleep 2s
 		else
 			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."

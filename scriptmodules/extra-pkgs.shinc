@@ -70,14 +70,14 @@ ep_install_firefox()
 	ep_install_eval_pkg
 	
 	#####################################
-	# Pipelight integration (in-progres)
+	# Pipelight integration
 	#####################################
 	
-	# ask user if they wish to compile and 
+	# ask user if they wish to install and 
 	# attempt to use pipelight
 	
-	echo -e "\nDo you wish to attempt to compile and integrate Pipelight into Firfox \
-in order to use Netflix?"
+	echo -e "\nDo you wish to attempt to isntall and integrate Pipelight \
+into Firfox Iceweasel in order to use Netflix?"
 
 	sleep 0.3s
 	read -ep "Choice: " pl_choice
@@ -85,9 +85,9 @@ in order to use Netflix?"
 	if [[ "$pl_choice" == "y" ]]; then
 	
 		# kick off build script
-		echo -e "\nProceeding to pipelight source build script"
+		echo -e "\nProceeding to pipelight isntall"
 		sleep 2s
-		"$scriptdir/extra/build-pipelight-from-src.sh build"
+		ep_install_pipelight
 		
 	elif [[ "$pl_choice" == "n" ]]; then
 	
@@ -95,7 +95,6 @@ in order to use Netflix?"
 		echo -e "\nPipelight integration declined"
 	fi
 		
-
 }
 
 ep_install_plex()
@@ -628,6 +627,121 @@ ep_install_netflix()
 	
 	# remove temp pkg list
 	rm -f /tmp/netflix-pkg-tmp
+
+}
+
+ep_install_pipelight()
+{
+
+	# See: http://pipelight.net/cms/install/installation-steamos.html
+
+	#######################################
+	# Vars
+	#######################################
+	
+	# source lists
+	reponame_pipelight="pipelight"
+	sourcelist_pipelight_tmp="${reponame_pipelight}.list"
+	sourcelist_pipelight="/etc/apt/sources.list.d/${reponame_pipelight}.list"
+	
+	prefer_pipelight_tmp="${reponame_pipelight}"
+	prefer_pipelight="/etc/apt/preferences.d/${reponame_pipelight}"
+	
+	#######################################
+	# file/dir checks, backups
+	#######################################
+	
+	# check for existance of pipelight source list
+	if [[ -f ${sourcelist_pipelight} ]]; then
+		# backup sources list file
+		echo -e "\n==> Backing up ${sourcelist_pipelight} to ${sourcelist_pipelight}.bak"
+		sudo mv ${sourcelist_pipelight} ${sourcelist_pipelight}.bak
+		sleep 1s
+	fi
+	
+	# Check for existance of /etc/apt/preferences.d/{prefer_pipelight} file
+	if [[ -f ${prefer_pipelight} ]]; then
+		# backup preferences file
+		echo -e "\n==> Backing up ${prefer_pipelight} to ${prefer_pipelight}.bak"
+		sudo mv ${prefer_pipelight} ${prefer_pipelight}.bak
+		sleep 1s
+	fi
+
+	
+	#######################################
+	# add GPG keys
+	#######################################
+
+	echo -e "\n==> Adding GPG key(s)"
+	sleep 1s
+	
+	# GPG Key
+	wget http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/SteamOS/Release.key
+	sudo apt-key add Release.key
+
+	###############################	
+	# Add prefs
+	###############################
+	
+	echo -e "\n==> Adding /etc/apt configurations"
+	sleep 1s
+	
+	# Create and add required text to preferences file
+	# Verified policy with apt-cache policy
+	# sudo temp file list, then move because of perms
+	
+	cat <<-EOF > ${prefer_pipelight_tmp}
+	Package: *
+	Pin: origin ""
+	Pin-Priority:110
+	
+	# move tmp list
+	sudo mv ${prefer_pipelight_tmp} ${prefer_pipelight}
+
+	#######################################
+	# Add source
+	#######################################
+
+	cat <<-EOF > ${sourcelist_pipelight_tmp}
+	# Pipelight repo
+	deb http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/SteamOS/ ./
+	EOF
+	
+	# move source list
+	sudo mv ${sourcelist_pipelight_tmp} ${sourcelist_pipelight}
+
+	#######################################
+	# Pre-reqs
+	#######################################
+	
+	# 32 bit arch (if not already added)
+	sudo dpkg --add-architecture i386
+	
+	#######################################
+	# Install
+	#######################################
+
+	sudo apt-get update
+	sudo apt-get -o Dpkg::Options::="--force-overwrite" install pipelight-multi
+	sudo pipelight-plugin --update
+
+	# Info
+	# The Dpkg::Options::="--force-overwrite" option is required since the libssl 
+	# package inside the SteamOS repository is not completely Multiarch ready and 
+	# the 32 bit version tries to overwrite the changelog of the 64 bit version. 
+	# Since both versions of the changelog contain the same content and are only 
+	# provided for informational purposes, they can be safely overwritten.
+	
+	
+	#######################################
+	# Post-Install configs
+	#######################################
+	
+	# The Steam internal browser only supports a subset of the NPAPI and Pipelight 
+	# is not yet compatible with this. You can therefore only use Pipelight with 
+	# normal desktop browsers like the preinstalled Iceweasel browser.
+	
+	sudo pipelight-plugin --enable silverlight
 
 }
 

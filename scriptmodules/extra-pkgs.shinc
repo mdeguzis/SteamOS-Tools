@@ -56,10 +56,10 @@ ep_install_firefox()
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "\nFirefox not found. Installing now...\n"
 		sleep 2s
-		wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/browsers/firefox_37.0~linuxmint1+betsy_amd64.deb"
-		sudo dpkg -i "/tmp/firefox_37.0~linuxmint1+betsy_amd64.deb"
+		wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/browsers/firefox_37.0.2_SteamOS_amd64.deb"
+		sudo dpkg -i "/tmp/firefox_37.0.2_SteamOS_amd64.deb"
 		# cleanup
-		rm -f "/tmp/firefox_37.0~linuxmint1+betsy_amd64.deb"
+		rm -f "/tmp/firefox_37.0.2_SteamOS_amd64.deb"
 		
 		if [ $? == '0' ]; then
 			echo "Successfully installed 'Firefox'"

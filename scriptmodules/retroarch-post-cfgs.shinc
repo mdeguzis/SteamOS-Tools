@@ -207,7 +207,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	        read -ep "Choice: " bt_choice
 	        
 	        if [[ "$bt_choice" == "y" ]]; then
-	                "$scriptdir/pair-ps3-bluetooth.sh"
+	                "$scriptdir/utilities/pair-ps3-bluetooth.sh"
 	        else
 	        	echo -e "\nSkipping PS3 Bluetooth setup..."
 	        	sleep 1s

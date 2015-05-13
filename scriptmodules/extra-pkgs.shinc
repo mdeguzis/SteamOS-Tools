@@ -431,8 +431,11 @@ ep_install_chrome()
 	# update and pre-reqs
 	###############################
 	
-	# install pre-reqs using the main desktop-software script
-	# REMOVED per Valve wiki (none to specify).
+	# install pre-reqs
+	
+	sudo apt-get install indicator-application libappindicator1 \
+	libappindicator3-1 libdbusmenu-glib4 libdbusmenu-gtk3-4 \
+	libdbusmenu-gtk4 libindicator3-7 libindicator7 libglib2.0-0
 	
 	#######################
 	# libappindiactor
@@ -459,12 +462,6 @@ ep_install_chrome()
 		ep_test_deb
 		exit
 	fi
-	
-	echo -e "\n==> Installing libappindicator\n"
-	sleep 2s
-	
-	# Prereq for libappindicator1 
-	sudo apt-get install libglib2.0-0
 	
 	# proceed to pkg eval for libappindicator1
 	ep_install_eval_pkg

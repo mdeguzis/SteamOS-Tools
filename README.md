@@ -33,6 +33,10 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 * docs/ - readme files for each script.
 * extra/ - various extra scripts
 * scriptmodules/ - plugable bash modules / routines for any of the below scripts.
+* utilities/ - various scripts to handle small parts of the SteamOS-Tools repository (plugable objects)
+  * pair-ps3-bluetooth.sh - pairs your PS3 blueooth controllers to a supported receiver.
+  * ssh-rom-transfer.sh - transfer ROMs over SSH to a remote computer.
+  * gpg_import.sh - import GPG keys (used internally).
 * README.md - This file.
 * add-debian-repos.sh - adds debian repositories for installing Debian Wheezy software.
 * build-deb-from-ppa.sh - attempts to build a Debian package from a PPA repository.
@@ -41,8 +45,6 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 * buld-test-docker.sh - build a Debian or SteamOS package for testing.
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages. Please see the readme file in docs/ for the full listing of options.
 * disclaimer.md - safety warnings for this repository.
-* pair-ps3-bluetooth.sh - pairs your PS3 blueooth controllers to a supported receiver.
-* ssh-rom-transfer.sh - transfer ROMs over SSH to a remote computer.
 * steamos-stats.sh - displays useful stats while gaming over SSH from another device.
 
 ## Wiki

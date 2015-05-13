@@ -51,7 +51,7 @@ ep_install_firefox()
 	# set vars
 	pkg_type="deb"
 	PKG="firefox"
-	PKG_FILENAME="firefox_37.0~linuxmint1+betsy_amd64.deb"
+	PKG_FILENAME="firefox_37.0.2~linuxmint1+betsy_amd64.deb"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/browsers"
 	BIN_LOC="/usr/bin/gdrive"
 	PKG_DIR="/usr/share/doc/vaporos-binds-xbox360"

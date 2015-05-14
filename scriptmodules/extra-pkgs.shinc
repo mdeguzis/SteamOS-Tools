@@ -16,6 +16,9 @@ ep_pkg_cleanup()
 	# cleanup package remenants and other files
 	#####################################################
 	
+	echo -e "\n==> Cleaning up pacakges, files, and other garbage\n"
+	sleep 2s
+	
 	# Attempt to fix any missing packages 
 	# This is until all deps are acconted for
 	sudo apt-get install -f
@@ -30,6 +33,7 @@ ep_pkg_cleanup()
 	
 	# GPG key files
 	rm -f ./*.Release.key*
+	rm -f /tmp/*.Release.key*
 }
 
 ep_install_x360_bindings()

@@ -42,7 +42,7 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 * build-deb-from-ppa.sh - attempts to build a Debian package from a PPA repository.
 * build-deb-from-src.sh - attempts to build a Debian package from a git source tree.
 * build-test-chroot.sh - build a Debian or SteamOS jail for testing **[in progress]**
-* buld-test-docker.sh - build a Debian or SteamOS package for testing.
+* buld-test-docker.sh - create a docker container for testing.
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages. Please see the readme file in docs/ for the full listing of options.
 * disclaimer.md - safety warnings for this repository.
 * steamos-stats.sh - displays useful stats while gaming over SSH from another device.

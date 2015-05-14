@@ -42,6 +42,7 @@ ep_install_x360_bindings()
 	echo ""
 	#####################################################
 	# VaporOS bindings (controller shortcuts)
+	# !! Some issues, needs looked at, repacked maybe !!
 	#####################################################
 	# FPS + more binds from VaporOS 2
 	# For bindings, see: /etc/actkbd-steamos-controller.conf

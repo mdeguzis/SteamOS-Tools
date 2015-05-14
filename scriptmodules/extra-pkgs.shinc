@@ -24,12 +24,12 @@ ep_pkg_cleanup()
 	sudo apt-get autoremove
 
 	# remove leftover files
-	rm -rf *.deb*
+	rm -rf ./*.deb* 
 	rm -rf /tmp/*.deb*
-	rm -f $temp_file
+	rm -f "$temp_file"
 	
 	# GPG key files
-	rm -f *.Release.key*
+	rm -f ./*.Release.key*
 }
 
 ep_install_x360_bindings()
@@ -514,7 +514,6 @@ ep_install_chrome()
 	
 	# install
 	sudo dpkg -i google-chrome-stable_current_amd64.deb
-	rm -rf *.deb
 
 	# back out of installdir
 	if [[ -d "$scriptdir" ]]; then
@@ -630,7 +629,7 @@ ep_install_netflix()
 	EOF
 	
 	# clean/remove existing packages so that the install does not fail
-	echo "\n==INFO==\nPurging previously installed packages for a clean install...\n" 
+	echo -e "\n==INFO==\nPurging previously installed packages for a clean install...\n" 
 	
 	for x in `cat $software_list`; do
 		sudo dpkg --purge $x
@@ -822,7 +821,7 @@ ep_install_eval_pkg()
 			
 			# process install in loop for each package in our software list
 			for x in `cat $software_list`; do
-				sudo dpkg -i $x
+				sudo dpkg -i "$x"
 			done
 			
 		elif [[ "$multi" == "n" ]]; then

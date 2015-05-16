@@ -364,4 +364,11 @@ elif [[ "$apt_mode" == "remove" ]]; then
 	fi
 	
 fi
+<<<<<<< HEAD
+		sudo rm -f "$save_loc_desktop" "$save_loc_steam"
+	fi
+	
+fi
+=======
+>>>>>>> testing
 }

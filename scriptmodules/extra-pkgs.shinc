@@ -353,6 +353,10 @@ ep_install_kodi()
 	# update and pre-reqs
 	###############################
 	
+	# evolution-data-server-common is provided by Valve, but 
+	# the Kodi installation expects, it, but this will break the install process
+	# we will ignore this later
+	
 	# add gpg key
 	wget -O - http://mirrors.xbmc.org/apt/steamos/steam@xbmc.org.gpg.key | sudo apt-key add -
 	
@@ -420,8 +424,10 @@ ep_install_kodi()
 	echo -e "\n==> Installing Kodi"
 	sleep 1s
 
-	# install Kodi
- 	sudo apt-get install kodi
+	# install Kodi download only, we need to ignore 'evolution-data-server-common'
+	# Valve alredy provides this. We will download kodi and then install ignoring this.
+ 	sudo apt-get install -d kodi
+ 	sudo dpkg -i --ignore-depends=evolution-data-server-common /var/cache/apt/archives/kodi*.deb
 	
 	# cleanup
 	ep_pkg_cleanup

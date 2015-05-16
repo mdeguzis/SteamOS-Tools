@@ -55,6 +55,9 @@ main()
 {
 	clear
 	echo -e "\n==> import verification keys\n"
+	
+	# The below needs replaced with gpg_import tool line under $scriptdir/utilities
+	# once key is known from gpg --list-keys 
 	sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
 	
 	#############################################################################

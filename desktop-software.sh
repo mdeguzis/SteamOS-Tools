@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.9.2
+# Script Ver:	0.9.9.3
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -13,6 +13,7 @@
 #		!broke! are skipped and the rest are attempted to be installed
 #
 # Usage:	./desktop-software.sh [option] [type]
+# optional:	Append "-test" to a package type called from ext. script
 # Help:		./desktop-software.sh --help
 #
 # Warning:	You MUST have the Debian repos added properly for
@@ -23,9 +24,21 @@
 # Set launch vars
 #################################
 options="$1"
+type="$2"
+# Specify a final arg for any extra options to build in later
+# The command being echo'd will contain the last arg used.
+# See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
+extra_opts=$(echo "${@: -1}")
 
-# used only for source package building in `emu-from-source`
-build_opts="$3"
+#############################################
+# Test arguments (1st pass) here:
+#############################################
+#echo -e "\nOptions 1: $options"
+#echo "Software type 1: $type"
+#echo "Extra opts 1: $extra_opts"
+#echo -e "Availble custom pkg list 1: \n"
+#cat custom-pkg.txt
+#sleep 50s
 
 # remove old custom files
 rm -f "custom-pkg.txt"
@@ -35,11 +48,17 @@ rm -f "log.txt"
 while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
-	type="$2"
-	echo "$type" >> "custom-pkg.txt"
+	type_tmp="$2"
+	echo "$type_tmp" >> "custom-pkg.txt"
 	# Shift all the parameters down by one
 	shift
 done
+
+# Strip symbols from large pkg pastes from build-depends
+sed -i "s|(>= [0-9].[0-9].[0-9])||g" custom-pkg.txt
+sed -i "s|(<< [0-9].[0-9].[0-9])||g" custom-pkg.txt
+sed -i "s|[ |]| |g" custom-pkg.txt
+sed -i "s|  | |g" custom-pkg.txt
 
 # set custom flag for use later on if line count
 # of testing custom pkg test errorscustom-pkg.txt exceeds 1
@@ -54,6 +73,16 @@ if [[ $LINECOUNT -gt 1 ]]; then
    echo "Custom PKG set detected!"
    custom_pkg_set="yes"
 fi
+
+#############################################
+# Test arguments (2nd pass) here:
+#############################################
+#echo -e "\noptions 2: $options"
+#echo "Software type 2: $type"
+#echo "Extra opts 2: $extra_opts"
+#echo -e "Availble custom pkg list 2: \n"
+#cat custom-pkg.txt
+#sleep 10s
 
 apt_mode="install"
 uninstall="no"
@@ -205,13 +234,17 @@ show_help()
 	'./desktop-software list [type]'
 	
 	
-	Options: 	[install|uninstall|list|check] 
+	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[plex|kodi|firefox|chrome|x360-bindings|ue4]
+	Extra types: 	[firefox|kodi|plex|x360-bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
+	
+	Large pacakge lists:
+	If you are pasting a build-depends post with symbols, please enclose the
+	package list in quotes and it will be filterd appropriately.
 
 	Press enter to continue...
 	EOF
@@ -234,19 +267,58 @@ funct_pre_req_checks()
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
 	
-	if [ -f "/etc/apt/sources.d/wheezy.list "]; then
+	#################################
+	# debian-keyring
+	#################################
+	# set vars
+	PKG="debian-keyring"
+	source_type=""
+	# proceed to install eval only if wheezy repo is present
+	if [ -f "/etc/sources.list.d/wheezy.list" ]; then
+		main_install_eval_pkg
 	
-		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' debian-keyring | grep "install ok installed")
-		if [ "" == "$PKG_OK" ]; then
-			echo -e "\ndebian-keyring not found. Setting up debian-keyring.\n"
-			sleep 1s
-			sudo apt-get install debian-keyring
-		else
-			echo "Checking for debian-keyring: [Ok]"
-			sleep 0.2s
-		fi
+	#################################
+	# gdebi
+	#################################
+	# set vars
+	PKG="gdebi"
+	source_type=""
+	
+	# proceed to install eval only if wheezy repo is present
+	if [ -f "/etc/sources.list.d/wheezy.list" ]; then
+		main_install_eval_pkg
 	fi
 	
+}
+
+
+main_install_eval_pkg()
+{
+
+	#####################################################
+	# Package eval routine
+	#####################################################
+	
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+		if [ "" == "$PKG_OK" ]; then
+		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
+		sleep 2s
+		sudo apt-get ${source_type}install $PKG
+		
+		if [ $? == '0' ]; then
+			echo "Successfully installed $PKG"
+			sleep 2s
+		else
+			echo "Could not install $PKG. Exiting..."
+			sleep 3s
+			exit 1
+		fi
+	else
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
+		fi
+	fi
+
 }
 
 function gpg_import()
@@ -265,7 +337,7 @@ function gpg_import()
 		sleep 1s
 	else
 		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now...\n"
-		$scriptdir/extra/gpg_import.sh 7638D0442B90D010
+		$scriptdir/utilities/gpg_import.sh 7638D0442B90D010
 	fi
 
 }
@@ -308,25 +380,30 @@ get_software_type()
 	# popular software / custom specification
 	####################################################
 	
-	elif [[ "$type" == "plex" ]]; then
+	
+	elif [[ "$type" == "chrome" ]]; then
                 # install plex from helper script
-                ep_install_plex
+                ep_install_chrome
                 exit
         elif [[ "$type" == "firefox" ]]; then
                 # install plex from helper script
                 ep_install_firefox
                 exit
-        elif [[ "$type" == "chrome" ]]; then
+        elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script
-                ep_install_chrome
+                ep_install_kodi
+                exit
+	elif [[ "$type" == "netflix" ]]; then
+                # install netflix from helper script
+                ep_install_netflix
+                exit
+	elif [[ "$type" == "plex" ]]; then
+                # install plex from helper script
+                ep_install_plex
                 exit
         elif [[ "$type" == "x360-bindings" ]]; then
                 # install plex from helper script
                 ep_install_x360_bindings
-                exit
-        elif [[ "$type" == "kodi" ]]; then
-                # install plex from helper script
-                ep_install_kodi
                 exit
         elif [[ "$type" == "ue4" ]]; then
                 # install ue4 from helper script
@@ -338,7 +415,6 @@ get_software_type()
                 # install based on $type string response
 		software_list="custom-pkg.txt"
         fi
-       
 }
 
 add_repos()

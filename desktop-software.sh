@@ -234,7 +234,7 @@ funct_pre_req_checks()
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
 	
-	if [[ -f "/etc/apt/sources.d/wheezy.list "]]; then
+	if [ -f "/etc/apt/sources.d/wheezy.list "]; then
 	
 		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' debian-keyring | grep "install ok installed")
 		if [ "" == "$PKG_OK" ]; then

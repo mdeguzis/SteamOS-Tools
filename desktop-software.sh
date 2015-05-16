@@ -234,15 +234,17 @@ funct_pre_req_checks()
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
 	
+	if [[ -f "/etc/apt/sources.d/wheezy.list "]]; then
 	
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' debian-keyring | grep "install ok installed")
-	if [ "" == "$PKG_OK" ]; then
-		echo -e "\ndebian-keyring not found. Setting up debian-keyring.\n"
-		sleep 1s
-		sudo apt-get install debian-keyring
-	else
-		echo "Checking for debian-keyring: [Ok]"
-		sleep 0.2s
+		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' debian-keyring | grep "install ok installed")
+		if [ "" == "$PKG_OK" ]; then
+			echo -e "\ndebian-keyring not found. Setting up debian-keyring.\n"
+			sleep 1s
+			sudo apt-get install debian-keyring
+		else
+			echo "Checking for debian-keyring: [Ok]"
+			sleep 0.2s
+		fi
 	fi
 	
 }

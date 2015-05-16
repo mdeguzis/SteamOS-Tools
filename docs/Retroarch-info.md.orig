@@ -60,6 +60,7 @@ Runtime:
 Pass:   
 Cores failed:  
 Already fetched:    
+<<<<<<< HEAD
 
 ***
 ### General
@@ -81,6 +82,8 @@ Copy this file to the `$HOME/ROMs` directory of the user you are working with. M
 ***
 
 Mednafen requires you to load games through CUE sheets. Ensure that the CUE sheet is properly set up in order for the game to run. See the Cue sheet (.cue) for more.
+=======
+>>>>>>> testing
 
 ***
 ### Input (General)

@@ -11,7 +11,23 @@
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
 #
-#Last tested:		Please see SteamOS-Tools/docs/Retroarch-info.md 
+<<<<<<< HEAD
+#!/bin/bash
+
+# -------------------------------------------------------------------------------
+# Author:     		Michael DeGuzis
+# Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:		emu-from-source.sh
+# Script Ver:	  	0.4.8
+# Description:		script to install emulation softare as a 
+#                 	part of install-debian-software.sh
+#
+#			See: https://wiki.debian.org/CreatePackageFromPPA
+# Usage:	  	N/A, called from another script
+#
+=======
+>>>>>>> master
+# Last tested:		Please see SteamOS-Tools/docs/Retroarch-info.md
 # -------------------------------------------------------------------------------
 
 time_start=$(date +%s)
@@ -19,17 +35,14 @@ time_stamp_start=(`date +"%T"`)
 
 efs_main()
 {
-
-if [[ "$apt_mode" == "install" ]]; then
 	
 	#################################################
 	# Initial setup
 	#################################################
 	
 	# Warn user this will take some time
-	echo -e "\nBuilding Retroarch and its associated cores will take some time."
-	echo -e "Please wait or press CTRL+C now. This is largely dependant on your"
-	echo -e "CPU, HDD Speed, and RAM configuration."
+	echo -e "\nBuilding Retroarch and its associated cores will take some time. Please wait or \
+press CTRL+C now. This is largely dependant on yoru CPU, HDD Speed, and RAM configuration."
 	echo -e "\nPress Enter to continue\n"
 	
 	read -n 1 
@@ -49,7 +62,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	# If the DIR is already there, the fetch info should be intact
 	if [[ -d "$git_dir" ]]; then
 		
-		echo -e "\n==INFO==\nGit folder already exists! Attempting git pull...\n"
+		echo -e "\nGit folder already exists! Attempting git pull...\n"
 		sleep 1s
 		# attempt to pull the latest source first
 		cd $git_dir
@@ -58,7 +71,7 @@ if [[ "$apt_mode" == "install" ]]; then
 
 		# evaluate git pull. Remove, create, and clone if it fails
 		if [[ "$output" != "Already up-to-date." ]]; then
-			echo -e "\n==ERROR==\nGit directory pull failed. Removing and cloning...\n"
+			echo -e "\nGit directory pull failed. Removing and cloning...\n"
 			sleep 2s
 			cd
 			rm -rf "$git_dir"
@@ -68,7 +81,7 @@ if [[ "$apt_mode" == "install" ]]; then
 			git clone "$git_url"
 		fi
 	else
-		echo -e "\n==INFO==\nGit directory does not exist. cloning now...\n"
+		echo -e "\nGit directory does not exist. cloning now...\n"
 		sleep 2s
 		# create and clone
 		mkdir -p "$install_dir"
@@ -89,15 +102,10 @@ if [[ "$apt_mode" == "install" ]]; then
 	sleep 2s
 	
 	############################
-	# disabled fetches (cores):
-	############################
-	
-	sed -i -e 's|register_core "bsnes"|#register_core "bsnes"|g' "$git_dir/rules.d/core-rules.sh"
-	
-	############################
 	# disabled fetches (games):
 	############################
 	
+	sed -i -e 's|register_core "bsnes"|#register_core "bsnes"|g' "$git_dir/rules.d/core-rules.sh"
 	sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
 	sed -i -e 's|register_core "tyrquake"|#register_core "tyrquake"|g' "$git_dir/rules.d/core-rules.sh"
 	sed -i -e 's|register_core "prboom"|#register_core "prboom"|g' "$git_dir/rules.d/core-rules.sh"
@@ -105,11 +113,12 @@ if [[ "$apt_mode" == "install" ]]; then
 	sed -i -e 's|register_core "nxengine"|#register_core "nxengine"|g' "$git_dir/rules.d/core-rules.sh"
 	sed -i -e 's|register_core "2048"|#register_core "2048"|g' "$git_dir/rules.d/core-rules.sh"
 	sed -i -e 's|register_core "stonesoup"|#register_core "stonesoup"|g' "$git_dir/rules.d/core-rules.sh"
-
+	sed -i -e 's|register_core "emux"|#register_core "emux"|g' "$git_dir/rules.d/core-rules.sh"
+	
 	############################
 	# disabled fetches (extra):
 	############################
-	# These mostly include extras that fail to build
+	# These mostly include cores that fail to build later on
 	
 	sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
 	
@@ -139,6 +148,8 @@ if [[ "$apt_mode" == "install" ]]; then
 	sed -i -e '/libretro_build_core bsnes_cplusplus98/d' "$git_dir/libretro-build.sh"
 	sed -i -e '/libretro_build_core bsnes_mercury/d' "$git_dir/libretro-build.sh"
 	sed -i -e '/libretro_build_core bnes/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core mame078/d' "$git_dir/libretro-build.sh"
+	sed -i -e '/libretro_build_core emux/d' "$git_dir/libretro-build.sh"
 	sed -i -e '/build_libretro_test/d' "$git_dir/libretro-build.sh"
 
 	############################
@@ -199,7 +210,7 @@ if [[ "$apt_mode" == "install" ]]; then
 			exit
 		fi
 	else	
-		echo -e "\n==INFO==\nRetroarch does not appear to be built."
+		echo -e "\nRetroarch does not appear to be built."
 		echo -e "Building now...\n"
 		sleep 2s
 		# build Retroarch
@@ -239,7 +250,7 @@ if [[ "$apt_mode" == "install" ]]; then
 			exit
 		fi
 	else	
-		echo -e "\n==INFO==\nLibretro cores do not appear to be built."
+		echo -e "\nLibretro cores do not appear to be built."
 		echo -e "Building now..."
 		sleep 2s
 		# build cores
@@ -280,24 +291,4 @@ if [[ "$apt_mode" == "install" ]]; then
 	echo -n "2 " && sleep 1s
 	echo -n "1" && sleep 1s
 	echo ""
-	
-elif [[ "$apt_mode" == "remove" ]]; then
-	
-	#Remove directories, build files, etc if uninstall is specified by user
-	echo -e "\n==> Removing related files for emulation-src routine"
-	sleep 2s
-	
-	# remove directories
-	sudo rm -rf "$install_dir" "$git_dir" "$symlink_target" "$core_loc"
-
-	echo -e "\nProceeding to Retroarch/Libretro post-install configuration in...\n"
-	# pause for a moment to allow user to see above stats
-	echo -n "5 " && sleep 1s
-	echo -n "4 " && sleep 1s
-	echo -n "3 " && sleep 1s
-	echo -n "2 " && sleep 1s
-	echo -n "1" && sleep 1s
-	echo ""
-fi
-
 }

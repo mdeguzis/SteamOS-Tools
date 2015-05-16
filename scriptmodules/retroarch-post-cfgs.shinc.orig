@@ -181,7 +181,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	        read -ep "Choice: " bt_choice
 	        
 	        if [[ "$bt_choice" == "y" ]]; then
-	                "$scriptdir/utilities/pair-ps3-bluetooth.sh"
+	                "$scriptdir/pair-ps3-bluetooth.sh"
 	        else
 	        	echo -e "\nSkipping PS3 Bluetooth setup..."
 	        	sleep 1s
@@ -228,10 +228,30 @@ if [[ "$apt_mode" == "install" ]]; then
 	# copy core info from source build DIR
 	find "/home/desktop/retroarch-src/libretro-super/dist/info" -name *.info | xargs sudo cp -t "/usr/lib/libretro/info" 2> /dev/null
 	
+<<<<<<< HEAD
 	# copy filter info from source build DIR
 	find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_desktop" 2> /dev/null
 	find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_steam" 2> /dev/null
 	
+=======
+	#################################################
+	# Permissions
+	#################################################
+
+	# Fix retroarch.cfg permissions
+	sudo chown desktop:desktop "$retroarch_cfg_loc_desktop/retroarch.cfg"
+	sudo chown steam:steam "$retroarch_cfg_loc_steam/retroarch.cfg"
+	sudo chmod 755 "$retroarch_cfg_loc_desktop/retroarch.cfg"
+	sudo chmod 755 "$retroarch_cfg_loc_steam/retroarch.cfg"
+	
+	# Fix saves permissions
+	sudo chown steam:steam "$save_loc_steam"
+	sudo chmod 755 "$save_loc_steam"
+	
+	# Fix retroarch banner
+	sudo chown desktop:desktop "$banner_dir_desktop/retro-arch-logo.png"
+	sudo chown steam:steam "$banner_dir_steam/retro-arch-logo.png"
+>>>>>>> testing
 
 	#################################################
 	# Extra
@@ -286,11 +306,23 @@ if [[ "$apt_mode" == "install" ]]; then
 	echo -e "more information\n"
 	sleep 1s
 	
+<<<<<<< HEAD
 	############################################################################
 	#Remove directories, build files, etc if uninstall is specified by user
 	############################################################################
 
 elif [[ "$apt_mode" == "remove" ]]; then
+=======
+	#################################################
+	# Cleanup
+	#################################################
+	
+elif [[ "$apt_mode" == "remove" ]]; then
+	
+	############################################################################
+	#Remove directories, build files, etc if uninstall is specified by user
+	############################################################################
+>>>>>>> testing
 	
 	echo -e "\n==> Removing related files for retroach post-install configs"
 	sleep 2s
@@ -332,8 +364,11 @@ elif [[ "$apt_mode" == "remove" ]]; then
 	fi
 	
 fi
+<<<<<<< HEAD
 		sudo rm -f "$save_loc_desktop" "$save_loc_steam"
 	fi
 	
 fi
+=======
+>>>>>>> testing
 }

@@ -234,17 +234,6 @@ funct_pre_req_checks()
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
 	
-	# Adding repositories
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' python-software-properties | grep "install ok installed")
-	
-	if [ "" == "$PKG_OK" ]; then
-		echo -e "\npython-software-properties not found. Setting up python-software-properties.\n"
-		sleep 1s
-		sudo apt-get install -t wheezy python-software-properties
-	else
-		echo "Checking for python-software-properties: [Ok]"
-		sleep 0.2s
-	fi
 	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' debian-keyring | grep "install ok installed")
 	if [ "" == "$PKG_OK" ]; then

@@ -228,8 +228,13 @@ m_emulation_install_main()
 	m_install_ppsspp
 	m_install_snes9x_gtk
 	m_install_vbam
+<<<<<<< HEAD
 	m_install_higan
 	# m_install_gngeo
+=======
+	m_install_higan 
+	
+>>>>>>> master
 	echo ""
 	
 }

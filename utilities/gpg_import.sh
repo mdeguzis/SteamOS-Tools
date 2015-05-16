@@ -13,3 +13,4 @@ keyserver="hkp://subkeys.pgp.net"
 # import gpg key
 gpg --keyserver  $keyserver --recv-keys $key
 gpg -a --export $key | sudo apt-key add -
+sudo apt-key update

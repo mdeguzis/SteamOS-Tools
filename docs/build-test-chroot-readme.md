@@ -12,7 +12,7 @@
 # build-test-chroot-readme.md
 
 ### About
-Builds a Debian Wheezy / SteamOS chroot for testing. 
+Builds a Debian Jessie / SteamOS chroot for testing. 
 
 This script is very much **in progress**! 
  

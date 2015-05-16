@@ -267,15 +267,18 @@ funct_pre_req_checks()
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
 	
+<<<<<<< HEAD
 	#################################
 	# debian-keyring
 	#################################
 	# set vars
 	PKG="debian-keyring"
 	source_type=""
+	
 	# proceed to install eval only if wheezy repo is present
 	if [ -f "/etc/sources.list.d/wheezy.list" ]; then
 		main_install_eval_pkg
+	fi
 	
 	#################################
 	# gdebi
@@ -300,7 +303,7 @@ main_install_eval_pkg()
 	#####################################################
 	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-		if [ "" == "$PKG_OK" ]; then
+	if [ "" == "$PKG_OK" ]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		sudo apt-get ${source_type}install $PKG
@@ -316,7 +319,19 @@ main_install_eval_pkg()
 	else
 		echo "Checking for $PKG [OK]"
 		sleep 0.5s
+=======
+	if [ -f "/etc/apt/sources.d/wheezy.list "]; then
+	
+		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' debian-keyring | grep "install ok installed")
+		if [ "" == "$PKG_OK" ]; then
+			echo -e "\ndebian-keyring not found. Setting up debian-keyring.\n"
+			sleep 1s
+			sudo apt-get install debian-keyring
+		else
+			echo "Checking for debian-keyring: [Ok]"
+			sleep 0.2s
 		fi
+>>>>>>> master
 	fi
 
 }

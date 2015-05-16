@@ -13,6 +13,11 @@
 
 ### About
 This script automatically adds or removes the Debian repositories from SteamOS.
+<<<<<<< HEAD
+=======
+The script MUST be run with sudo/root access, due to the locations of the apt
+preferences file and the sources list for Jessie as well. 
+>>>>>>> testing
  
 ### Usage
 

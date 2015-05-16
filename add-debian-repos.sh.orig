@@ -4,7 +4,11 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	add-debian-repos.sh
+<<<<<<< HEAD
 # Script Ver:	0.2.0
+=======
+# Script Ver:	0.1.7
+>>>>>>> testing
 # Description:	This script automatically enables debian repositories
 #
 #		See: https://wiki.debian.org/AptPreferences#Pinning
@@ -98,6 +102,17 @@ main()
 			sleep 1s
 		fi
 		
+<<<<<<< HEAD
+=======
+		# Check for existance of /etc/apt/preferences.d/{steamos_prefe} file
+		if [[ -f ${steamos_prefer} ]]; then
+			# backup preferences file
+			echo -e "==> Backing up ${steamos_prefer} to ${steamos_prefer}.bak\n"
+			mv ${steamos_prefer} ${steamos_prefer}.bak
+			sleep 1s
+		fi
+		
+>>>>>>> testing
 		# Check for existance of /etc/apt/preferences.d/{prefer} file
 		if [[ -f ${prefer} ]]; then
 			# backup preferences file
@@ -116,27 +131,49 @@ main()
 	
 		# Create and add required text to preferences file
 		# Verified policy with apt-cache policy
+<<<<<<< HEAD
 		cat <<-EOF > ${prefer_tmp}
 		Package: *
 		Pin: origin ""
 		Pin-Priority:110
 		
 		Package: *
+=======
+		cat <<-EOF > ${prefer}
+		Package: *
+		Pin: origin ""
+		Pin-Priority:110
+		
+		Package: *
+>>>>>>> testing
 		Pin: release o=Debian 
 		Pin-Priority:110
 		EOF
 		
+<<<<<<< HEAD
 		cat <<-EOF > ${backports_prefer_tmp}
 		Package: *
 		Pin: origin ""
 		Pin-Priority:100
 		
 		Package: *
+=======
+		cat <<-EOF > ${backports_prefer}
+		Package: *
+		Pin: origin ""
+		Pin-Priority:100
+		
+		Package: *
+>>>>>>> testing
 		Pin: release o=Debian 
 		Pin-Priority:110
 		EOF
 	
+<<<<<<< HEAD
 		cat <<-EOF > ${steamos_prefer_tmp}
+=======
+		cat <<-EOF > ${steamos_prefer}
+>>>>>>> testing
 		Package: *
 		Pin: release l=Steam
 		Pin-Priority: 900
@@ -176,14 +213,22 @@ main()
 		#####################################################
 
 		# Debian wheezy
+<<<<<<< HEAD
 		cat <<-EOF > ${sourcelist_tmp}
+=======
+		cat <<-EOF > ${sourcelist}
+>>>>>>> testing
 		# Debian-wheezy repo
 		deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
 		deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
 		EOF
 		
 		# Debian wheezy-backports
+<<<<<<< HEAD
 		cat <<-EOF > ${backports_sourcelist_tmp}
+=======
+		cat <<-EOF > ${backports_sourcelist}
+>>>>>>> testing
 		deb http://http.debian.net/debian wheezy-backports main
 		EOF
 
@@ -214,10 +259,18 @@ main()
 		clear
 		echo -e "\n==> Removing debian repositories...\n"
 		sleep 2s
+<<<<<<< HEAD
 		sudo rm -f ${sourcelist}
 		sudo rm -f ${backports_sourcelist}
 		sudo rm -f ${prefer}
 		sudo rm -f ${steamosprefer}
+=======
+		rm -f ${sourcelist}
+		rm -f ${backports_sourcelist}
+		rm -f ${prefer}
+		rm -f ${steamosprefer}
+		echo -e "==> Updating index of packages...\n"
+>>>>>>> testing
 		sleep 2s
 		sudo apt-get update
 		echo "Done!"

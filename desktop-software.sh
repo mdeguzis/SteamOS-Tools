@@ -268,16 +268,6 @@ funct_pre_req_checks()
 	echo -e "\n==> Checking for prerequisite software...\n"
 	
 	#################################
-	# python-software-properties
-	#################################
-	# set vars
-	PKG="python-software-properties"
-	source_type=""
-	
-	# proceed to install eval
-	main_install_eval_pkg
-	
-	#################################
 	# debian-keyring
 	#################################
 	# set vars

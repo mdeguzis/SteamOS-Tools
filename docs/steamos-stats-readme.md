@@ -61,6 +61,8 @@ Substitute [gameid] with the numerical gameid for the game you wish to launch wi
 
 Volgperf stats implementation is underway (FPS via this script, for one). Please be aware, it seems 32 bit games have [issues](https://github.com/ValveSoftware/voglperf/issues/7#issuecomment-44964590) with Voglperf. Users have reported that linking LibGL, then modifying the cmake file to build the 32 bit version of voglperf (in addition to the default build), worked for them. For the time being, you can still toggle an FPS overlay with `steamcompmgr`, using an Xbox 360 gamepad (LB+RB+Guide), thanks to the auto-installed VaporOS 2 controller bindings.
 
+Voglperf development on the public GitHub repository has been dormant for quite some time, with outstanding PRs, issues, and other such things. Please be aware of this roadbloack when requesting Voglperf be used, as I don't have control over how quickly upstream changes are implemented.
+
 ```
 sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
 ```

@@ -4,8 +4,13 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.1.3
+# Script Ver:	0.2.5
 # Description:	Attempts to build a deb package from a PPA
+#
+# See:		If you are building from Ubuntu main, check the website
+#		http://www.debianadmin.com/adding-ubuntu-repositories.html
+#
+# See also:	Generate a source list: http://repogen.simplylinux.ch/
 #
 # Usage:	sudo ./build-deb-from-PPA.sh
 #		source ./build-deb-from-PPA.sh
@@ -29,10 +34,16 @@ show_help()
 	execute the script in the context of the calling 
 	shell and preserve vars for the next run.
 	
+	IF you the message:
+	WARNING: The following packages cannot be authenticated!...
+	Look above in the output for apt-get update. You will see a
+	line for 'NO_PUBKEY 3B4FE6ACC0B21F32'. Import this key string
+	by issuing 'gpg_import.sh <key>' from the extra DIR of this repo.
+	
 	EOF
 }
 
-if [[ "$arg" == "--help" ]]; then
+if [[ "$arg1" == "--help" ]]; then
 	#show help
 	show_help
 	exit
@@ -44,7 +55,7 @@ install_prereqs()
 	echo -e "\n==>Installing pre-requisites for building...\n"
 	sleep 1s
 	# install needed packages
-	sudo apt-get install devscripts build-essential
+	sudo apt-get install dpkg-dev devscripts build-essential
 
 }
 
@@ -65,6 +76,9 @@ main()
 	# Ask user for repos / vars
 	echo -e "==> Please enter or paste the deb-src URL now:"
 	echo -e "    [Press ENTER to use last: $repo_src]\n"
+	
+	# Of course main Ubuntu packages are not "PPA's" so example deb-srce lines are:
+	# deb-src http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
 	
 	# set tmp var for last run, if exists
 	repo_src_tmp="$repo_src"
@@ -147,9 +161,9 @@ main()
 	
 	# back out of build temp to script dir if called from git clone
 	if [[ "$scriptdir" != "" ]]; then
-		cd $scriptdir
+		cd "$scriptdir"
 	else
-		cd $HOME
+		cd "$HOME"
 	fi
 	
 	# inform user of packages
@@ -164,7 +178,43 @@ main()
 	echo -e "###################################################################\n"
 	
 	ls "/home/desktop/build-deb-temp"
+	
+	echo -e "\n==> Would you like to trim out the tar.gz and dsc files for uploading?"
+	sleep 0.5s
+	# capture command
+	read -ep "Choice: " >> trim_choice
+	
+	if [[ "$trim_choice" == "y" ]]; then
+		
+		# cut files
+		rm -f ./*.tar.gz
+		rm -f ./*.dsc
+		rm -f ./*.changes
+		
+	elif [[ "$trim_choice" == "n" ]]; then
+	
+		echo -e "File trim not requested"
+	fi
+
+	echo -e "\n==> Would you like to upload any packages that were built?"
+	sleep 0.5s
+	# capture command
+	read -ep "Choice: " >> upload_choice
+	
+	if [[ "$trim_choice" == "y" ]]; then
+	
+		# cut files
+		"$scriptdir/extra/upload-pkg-to-libregeek.sh"
+		echo -e "\n"
+		
+	elif [[ "$trim_choice" == "n" ]]; then
+		echo -e "Upload not requested\n"
+	fi
+	
 }
+
+#prereqs
+install_prereqs
 
 # start main
 main

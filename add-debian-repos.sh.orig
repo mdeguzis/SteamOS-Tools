@@ -264,7 +264,6 @@ main()
 		sudo rm -f ${backports_sourcelist}
 		sudo rm -f ${prefer}
 		sudo rm -f ${steamosprefer}
-		echo -e "Updating index of packages...\n"
 =======
 		rm -f ${sourcelist}
 		rm -f ${backports_sourcelist}

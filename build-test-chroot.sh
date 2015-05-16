@@ -90,14 +90,35 @@ funct_set_target()
 
 }
 
+function gpg_import()
+{
+	# When installing from wheezy and wheezy backports,
+	# some keys do not load in automatically, import now
+	# helper script accepts $1 as the key
+	
+	echo -e "\n==> Importing Debian GPG keys"
+	
+	# Key Desc: Debian Archive Automatic Signing Key
+	# Key ID: 8ABDDD96
+	# Full Key ID: 7DEEB7438ABDDD96
+	gpg_key_check=$(gpg --list-keys 8ABDDD96)
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "\nDebian Archive Automatic Signing Key [OK]\n"
+		sleep 1s
+	else
+		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now...\n"
+		$scriptdir/utilities/gpg_import.sh 7DEEB7438ABDDD96
+	fi
+
+}
+
 funct_create_chroot()
 {
 
 	if [[ "$target" == "steamos" ]]; then
 		if [[ "$release" == "alchemist" ]]; then
 		# import GPG key
-		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --recv-keys 7DEEB7438ABDDD96
-		gpg -a --export 7DEEB7438ABDDD96 | sudo apt-key add -
+		gpg_import
 		fi
 	fi
 	

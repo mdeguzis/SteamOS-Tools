@@ -276,6 +276,7 @@ funct_pre_req_checks()
 	# proceed to install eval only if wheezy repo is present
 	if [ -f "/etc/sources.list.d/wheezy.list" ]; then
 		main_install_eval_pkg
+	fi
 	
 	#################################
 	# gdebi

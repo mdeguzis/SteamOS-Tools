@@ -4,7 +4,11 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
+<<<<<<< HEAD
 # Script Ver:	0.9.2
+=======
+# Script Ver:	0.9.1
+>>>>>>> testing
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -199,7 +203,11 @@ show_help()
 
 	---------------------------------------------------------------
 	Any package you wish to specify yourself. Alchemist repos will be
+<<<<<<< HEAD
 	used first, followed by Debian wheezy.
+=======
+	used first, followed by Debian Jessie.
+>>>>>>> testing
 	
 	For a complete list, type:
 	'./desktop-software list [type]'
@@ -234,7 +242,21 @@ funct_pre_req_checks()
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
 	
+<<<<<<< HEAD
 	if [ -f "/etc/apt/sources.d/wheezy.list "]; then
+=======
+	# Adding repositories
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' python-software-properties | grep "install ok installed")
+	
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "\npython-software-properties not found. Setting up python-software-properties.\n"
+		sleep 1s
+		sudo apt-get install -t jessie python-software-properties
+	else
+		echo "Checking for python-software-properties: [Ok]"
+		sleep 0.2s
+	fi
+>>>>>>> testing
 	
 		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' debian-keyring | grep "install ok installed")
 		if [ "" == "$PKG_OK" ]; then
@@ -251,7 +273,11 @@ funct_pre_req_checks()
 
 function gpg_import()
 {
+<<<<<<< HEAD
 	# When installing from wheezy and wheezy backports,
+=======
+	# When installing from Jessie and Jessie backports,
+>>>>>>> testing
 	# some keys do not load in automatically, import now
 	# helper script accepts $1 as the key
 	echo -e "\n==> Importing Debian GPG keys"
@@ -327,6 +353,7 @@ get_software_type()
         elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script
                 ep_install_kodi
+<<<<<<< HEAD
                 exit
         elif [[ "$type" == "ue4" ]]; then
                 # install ue4 from helper script
@@ -334,6 +361,9 @@ get_software_type()
                 # skip to ue4 module for now, setup.sh within that build
                 # script will attempt to get our source deps.
                 m_install_ue4_src
+=======
+                exit        
+>>>>>>> testing
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"
@@ -425,7 +455,11 @@ install_software()
 	# Installation routine (alchmist/main)
 	###########################################################
 	
+<<<<<<< HEAD
 	# Install from Alchemist first, wheezy as backup, wheezy-backports 
+=======
+	# Install from Alchemist first, Jessie as backup, Jessie-backports 
+>>>>>>> testing
 	# as a last ditch effort
 	
 	# let user know checks in progress
@@ -474,7 +508,11 @@ install_software()
 				# Installation routine (Jessie - 2nd stage)
 				###########################################################
 				
+<<<<<<< HEAD
 				# Packages that fail to install, use wheezy repositories
+=======
+				# Packages that fail to install, use Jessie repositories
+>>>>>>> testing
 				# The conf string is a part of a dry run result
 				if [[ $? == '0' ]]; then
 				
@@ -491,10 +529,17 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
+<<<<<<< HEAD
 						echo -e "\n==> Could not install package $i from Alchemist repo, trying wheezy...\n"
 						sleep 2s
 					else
 						echo -e "\n==> Removal requested (from wheezy) for package: $i \n"
+=======
+						echo -e "\n==> Could not install package $i from Alchemist repo, trying Jessie...\n"
+						sleep 2s
+					else
+						echo -e "\n==> Removal requested (from Jessie) for package: $i \n"
+>>>>>>> testing
 						sleep 1s
 					fi
 					
@@ -506,11 +551,19 @@ install_software()
 				# Installation routine (jessie-backports - 2nd stage)
 				###########################################################
 				
+<<<<<<< HEAD
 				# Packages that fail to install, use wheezy-backports repository
 				if [[ $? == '0' ]]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
 						echo -e "\n==> Successfully installed $i from wheezy repo! / Nothing to Install\n" 
+=======
+				# Packages that fail to install, use jessie-backports repository
+				if [[ $? == '0' ]]; then
+				
+					if [ "$apt_mode" != "remove" ]; then
+						echo -e "\n==> Successfully installed $i from Jessie repo! / Nothing to Install\n" 
+>>>>>>> testing
 						sleep 2s
 					else
 						echo -e "\n==> Removal succeeded for package: $i \n"
@@ -522,10 +575,17 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
+<<<<<<< HEAD
 						echo -e "\n==> Could not install package $i from wheezy repo, trying wheezy-backports\n"
 						sleep 2s
 					else
 						echo -e "\n==> Removal requested (from wheezy-backports) for package: $i \n"
+=======
+						echo -e "\n==> Could not install package $i from Jessie repo, trying Jessie-backports\n"
+						sleep 2s
+					else
+						echo -e "\n==> Removal requested (from Jessie-backports) for package: $i \n"
+>>>>>>> testing
 						sleep 1s
 					fi
 					
@@ -547,7 +607,11 @@ install_software()
 					# attempt to resolve missing
 					sudo apt-get $cache_tmp $apt_mode -f
 					
+<<<<<<< HEAD
 					echo -e "\n==> Could not install or remove ALL packages from wheezy.\n"
+=======
+					echo -e "\n==> Could not install or remove ALL packages from Jessie.\n"
+>>>>>>> testing
 					echo -e "Please check log.txt in the directory you ran this from.\n"
 					echo -e "Failure occurred on package: ${i}\n"
 					pkg_fail="yes"

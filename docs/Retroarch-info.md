@@ -11,7 +11,7 @@
 - [Tested / known working cores](#tested--known-working-cores)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
+***
 ### General
 ***
 After running the emulation-src type, currently you must still perform the following as of 20150427:
@@ -19,6 +19,47 @@ After running the emulation-src type, currently you must still perform the follo
 1. Add "Retroarch-Src" as a "non-Steam" game using the "+" icon on the Libary section of SteamOS
 2. Configure your joypad via Retroarch > Settings > Input Settings (use bind all to configure all buttons at once)
 3. Transfer any ROMs you had on your system, into appropriate folder structures under `/home/steam/ROMs`
+***
+### Source build information
+***
+Below you can find related information pertaining to building Retroarch/Libretro from source. This will only include items outside the automatic build script invoked by `desktop-software.sh`.
+
+#####Testing machine specifications
+===
+**SteamOS-Test**  
+* CPU: Intel Core 2 Quad Q9550
+* RAM: 6 GB DDR2
+* HDD: Seagate 7400 RPM
+* GPU: Nvidia GT 640
+
+**SteamOS Primary**  
+* CPU: Intel Core i5 2500k
+* RAM: 8 GB DDR3
+* HDD: Seagate SSHD
+* GPU: Nvidia GTX 770 SC
+
+**SteamOS Secondary**  
+* CPU: Intel Core i5 2500k
+* RAM: 16 GB DDR3
+* HDD: Intel SSD
+* GPU: Nvidia GTX 550 Ti
+
+####Latest Testing Results
+===
+
+**Host: SteamOS-Test**  
+Date: 20150429  
+Runtime: 86.25 minutes  
+Pass: 48, Fail: 1  
+Cores failed: gw  
+Already fetched: [no]  
+
+**Host: SteamOS**  
+Date: 20150429    
+Runtime:   
+Pass:   
+Cores failed:  
+Already fetched:    
 
 ***
 ### General

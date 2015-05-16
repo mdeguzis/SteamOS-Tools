@@ -161,20 +161,19 @@ ep_install_plex()
 	fi
 	
 	###############################
-		echo -e "\nDebian Multimedia Key [FAIL]. Adding now...\n"
-		"$scriptdir/extra/gpg_import.sh" 5C808C2B65558117
-	fi
-	
-	###############################
 	# update and pre-reqs
 	###############################
+<<<<<<< HEAD
 	
 	echo -e "==> Installing prerequisite software\n"
 	sleep 1s
 	
-	# Plex
+=======
+	
+	echo -e "\n==> Installing prerequisite software"
 	sleep 1s
 	
+>>>>>>> testing
 	# Plex
 	sudo curl http://shell.ninthgate.se/packages/shell-ninthgate-se-keyring.key | sudo apt-key add -
 	sudo apt-get update
@@ -197,6 +196,7 @@ ep_install_plex()
 	Package: *
 	Pin: origin ""
 	Pin-Priority:110
+<<<<<<< HEAD
 	
 	Package: *
 	Pin: release n=wheezy
@@ -221,6 +221,24 @@ ep_install_plex()
 	# Add sources
 	###############################
 	
+=======
+	EOF
+
+	cat <<-EOF > ${prefer_deb_multi_tmp}
+	Package: *
+	Pin: origin ""
+	Pin-Priority:110
+	EOF
+	
+	# move tmp lists in 2 easy actions
+	sudo mv ${prefer_plex_tmp} ${prefer_plex}
+	sudo mv ${prefer_deb_multi_tmp} ${prefer_deb_multi}
+	
+	###############################	
+	# Add sources
+	###############################
+	
+>>>>>>> testing
 	# Deb multimedia
 	# add to tmp file, then move
 	
@@ -282,131 +300,11 @@ ep_install_kodi()
 {
 	# Source: http://forum.kodi.tv/showthread.php?tid=197422
   
-	echo -e "\n==> Installing Kodi from automated script...\n"
-	sleep 2s
-	
-	###############################
-	# sources
-	###############################
-	
-	echo -e "\n==> Configuring sources"
-	sleep 1s
-	
-	# vars
-	reponame_kodi="kodi"
-	
-	sourcelist_kodi_tmp="${reponame_kodi}.list"
-	sourcelist_kodi="/etc/apt/sources.list.d/${reponame_kodi}.list"
-	
-	prefer_kodi_tmp="${reponame_kodi}"
-	prefer_kodi="/etc/apt/preferences.d/${reponame_kodi}"
-	
-	# Check for existance of /etc/apt/preferences.d/{reponame_kodi} file
-	if [[ -f ${reponame_kodi} ]]; then
-		# backup preferences file
-		echo -e "\n==> Backing up ${reponame_kodi} to ${reponame_kodi}.bak"
-		sudo mv ${reponame_kodi} ${reponame_kodi}.bak
-		sleep 1s
-	fi
-	
-	# check for existance of plex source list
-	if [[ -f ${sourcelist_kodi} ]]; then
-		# backup sources list file
-		echo -e "\n==> Backing up ${sourcelist_kodi} to ${sourcelist_kodi}.bak"
-		sudo mv ${sourcelist_kodi} ${sourcelist_kodi}.bak
-		sleep 1s
-	fi
-
-	###############################
-	# add GPG keys
-	###############################
-	
-	# may not be needed
-	
-	###############################
-	# update and pre-reqs
-	###############################
-	
-	# add gpg key
-	wget -O - http://mirrors.xbmc.org/apt/steamos/steam@xbmc.org.gpg.key | sudo apt-key add -
-	
-	###############################	
-	# Add prefs
-	###############################
-	
-	echo -e "\n==> Adding /etc/apt configurations\n"
-	sleep 1s
-	
-	# Create and add required text to preferences file
-	# Verified policy with apt-cache policy
-	# write to tmp, then move
-	
-	cat <<-EOF > ${prefer_kodi_tmp}
-	Package: *
-	Pin: origin mirrors.xbmc.org
-	Pin-Priority: 500
-	 
-	Package: libtag1c2a libtag1-vanilla
-	Pin: origin mirrors.xbmc.org
-	Pin-Priority: 901
-	EOF
-	
-	# move pref file
-	sudo mv ${prefer_kodi_tmp} ${prefer_kodi}
-	
-	###############################	
-	# Add sources
-	###############################
-	
-	# Kodi source cfg
-	# write to tmp, move after
-	
-	cat <<-EOF > ${sourcelist_kodi_tmp}
-	# Kodi team repo
-	deb http://mirrors.xbmc.org/apt/steamos alchemist main
-	EOF
-	
-	# move source list
-	sudo mv ${sourcelist_kodi_tmp} ${sourcelist_kodi}
-
-	###############################	
-	# update source lists
-	###############################
-	
-	sudo apt-get update
-
-	###############################	
-	# resolve outstanding deps
-	###############################
-	
-	# n/a for now
-	
-	###############################
-	# cleanup
-	###############################
-	
-	# n/a for now
-	
-	###############################
-	# Install actions
-	###############################
-
-	echo -e "\n==> Installing Kodi"
-	sleep 1s
-
-	# install Kodi
- 	sudo apt-get install kodi
-	
-	# cleanup any old packages
-	sudo apt-get autoremove
-  
-}
-
-ep_install_kodi()
-{
-	# Source: http://forum.kodi.tv/showthread.php?tid=197422
-  
+<<<<<<< HEAD
 	echo -e "\n==> Installing Kodi from automated script..."
+=======
+	echo -e "\n==> Installing Kodi from automated script...\n"
+>>>>>>> testing
 	sleep 2s
 	
 	###############################
@@ -525,6 +423,7 @@ ep_install_kodi()
 	sudo apt-get autoremove
   
 }
+<<<<<<< HEAD
 
 ep_install_chrome()
 {
@@ -605,3 +504,5 @@ ep_install_chrome()
 means that panel/systray support will not be available at this time. This is being worked on.\n"
 
 }
+=======
+>>>>>>> testing

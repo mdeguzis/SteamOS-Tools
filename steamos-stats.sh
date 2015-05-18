@@ -219,7 +219,7 @@ funct_pre_req_checks()
 			sudo apt-get update
 	
 			# fetch needed pkgs
-			sudo apt-get -t jessie install lm-sensors sysstat git -y
+			sudo apt-get -t wheezy install lm-sensors sysstat git -y
 			sudo apt-get install nvidia-smi openssh-server -y
 			# detect sensors automatically
 			yes | sudo sensors-detect

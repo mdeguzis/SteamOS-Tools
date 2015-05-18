@@ -440,7 +440,7 @@ ep_install_kodi()
 	# Install actions
 	###############################
 
-	echo -e "\n==> Installing Kodi"
+	echo -e "\n==> Installing Kodi via apt-get\n"
 	sleep 1s
 
 	# install Kodi download only, we need to ignore 'evolution-data-server-common'

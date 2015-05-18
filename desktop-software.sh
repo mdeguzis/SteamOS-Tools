@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.9.9.3
+# Script Ver:	0.9.9.4
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -694,7 +694,7 @@ show_warning()
 {
 	# do a small check for existing jessie/jessie-backports lists
 	echo ""
-        sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")
+        sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
         
         clear
         echo "##########################################################"
@@ -704,7 +704,7 @@ show_warning()
         echo -e -n "the Debian repositories!"
         
         if [[ "$sources_check" == "" ]]; then
-        	echo -e " Those sources do not appear to be added at first glance."
+        	echo -e " Those sources do NOT appear to be added at first glance."
         else
         	echo -e " On initial check, those sources \nappear to be added."
         fi

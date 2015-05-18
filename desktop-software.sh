@@ -716,7 +716,7 @@ show_warning()
         echo -e "If you need to add the Debian repos, please use the"
         echo -e "desktop-software.sh script in the main repository folder..\n"
         
-        echo -e "\n[c]ontinue, [a]dd Debian sources, [e]xit"
+        echo -e "[c]ontinue, [a]dd Debian sources, [e]xit"
 
 	# get user choice
 	read -ep "Choice: " user_choice
@@ -733,12 +733,12 @@ show_warning()
 	        ;;
 	         
 	        e|e)
-		echo -e "\nExiting script..."
+		echo -e "\nExiting script...\n"
 	        ;;
 	        
 	         
 	        *)
-		echo -e "\nInvalid Input, Exiting script."
+		echo -e "\nInvalid Input, Exiting script.\n"
 		exit
 		;;
 	esac

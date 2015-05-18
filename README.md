@@ -42,7 +42,7 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
   * pair-ps3-bluetooth.sh - pairs your PS3 blueooth controllers to a supported receiver.
   * ssh-rom-transfer.sh - transfer ROMs over SSH to a remote computer.
 * README.md - This file.
-* add-debian-repos.sh - adds debian repositories for installing Debian jessie software.
+* add-debian-repos.sh - adds debian repositories for installing Debian wheezy software.
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages. Please see the readme file in docs/ for the full listing of options.
 * disclaimer.md - safety warnings for this repository.
 * steamos-stats.sh - displays useful stats while gaming over SSH from another device.
@@ -59,8 +59,8 @@ There are three main branches at the moment
 Default branch - "stable" work that gets PRs, fixes, priority over all other branches.  
 `testing`  
 Branch where new scripts are made, larger alterations to existing ones implemented, and more.  
-`testing-jessie`  
-Now that Jessie is stable, evaluation of current repository and packages is underway. **Not** recommended for use.  
+`testing-wheezy`  
+Now that wheezy is stable, evaluation of current repository and packages is underway. **Not** recommended for use.  
 
 ## Pull requests / suggestions
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page

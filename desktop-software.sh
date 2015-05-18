@@ -700,15 +700,16 @@ show_warning()
         echo "##########################################################"
         echo "Warning: usage of this script is at your own risk!"
         echo "##########################################################"
-        echo -e "\nIn order to run this script, you MUST have had enabled"
-        echo -e -n "the Debian repositories!"
+        echo -e "\nIn order to install most software, you MUST have had"
+        echo -e "enabled the Debian repositories! Otherwise, you may"
+        echo -e -n "break the stability of your system packages! "
         
         if [[ "$sources_check" == "" ]]; then
-        	echo -e " Those sources do NOT appear to be added at first glance."
+                echo -e " Those \nsources do *NOT* appear to be added at first glance."
         else
-        	echo -e " On initial check, those sources \nappear to be added."
+                echo -e " On \ninitial check, those sources \nappear to be added."
         fi
-        	
+                
         echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
         echo -e "\ntype './desktop-software --help' (without quotes) for help.\n"
         echo -e "See log.txt in this direcotry after any attempt for details"

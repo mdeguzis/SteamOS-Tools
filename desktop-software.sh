@@ -273,10 +273,8 @@ funct_pre_req_checks()
 	# set vars
 	PKG="debian-keyring"
 	source_type=""
-	# proceed to install eval only if wheezy repo is present
-	if [ -f "/etc/sources.list.d/wheezy.list" ]; then
-		main_install_eval_pkg
-	fi
+	
+	main_install_eval_pkg
 	
 	#################################
 	# gdebi
@@ -285,10 +283,7 @@ funct_pre_req_checks()
 	PKG="gdebi"
 	source_type=""
 	
-	# proceed to install eval only if wheezy repo is present
-	if [ -f "/etc/sources.list.d/wheezy.list" ]; then
-		main_install_eval_pkg
-	fi
+	main_install_eval_pkg
 	
 }
 

@@ -329,9 +329,6 @@ elif [[ "$apt_mode" == "remove" ]]; then
 	elif [[ "$remove_confirm_saves" == "y" ]]; then
 		# remove related files
 		sudo rm -f "$save_loc_desktop" "$save_loc_steam"
-	fi
-	
-fi
 		sudo rm -f "$save_loc_desktop" "$save_loc_steam"
 	fi
 	

@@ -22,8 +22,8 @@ install_prereqs()
 	# Fetch what has to be installed from Alchemist (conflicting version)
 	sudo apt-get install libbluetooth-dev libusb-dev
 
-	# Fetch what has to be installed from jessie
-	sudo apt-get -t jessie install bluez-utils bluez-compat bluez-hcidump \
+	# Fetch what has to be installed from wheezy
+	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
 	checkinstall joystick pyqt4-dev-tools
 	
 	

@@ -349,7 +349,7 @@ ep_install_kodi()
 	# Check for existance of /etc/apt/preferences.d/{reponame_kodi} file
 	if [[ -f ${reponame_kodi} ]]; then
 		# backup preferences file
-		echo -e "\n==> Backing up ${reponame_kodi} to ${reponame_kodi}.bak"
+		echo -e "\n==> Backing up ${reponame_kodi} to ${reponame_kodi}.bak\n"
 		sudo mv ${reponame_kodi} ${reponame_kodi}.bak
 		sleep 1s
 	fi
@@ -357,7 +357,7 @@ ep_install_kodi()
 	# check for existance of plex source list
 	if [[ -f ${sourcelist_kodi} ]]; then
 		# backup sources list file
-		echo -e "\n==> Backing up ${sourcelist_kodi} to ${sourcelist_kodi}.bak"
+		echo -e "\n==> Backing up ${sourcelist_kodi} to ${sourcelist_kodi}.bak\n"
 		sudo mv ${sourcelist_kodi} ${sourcelist_kodi}.bak
 		sleep 1s
 	fi

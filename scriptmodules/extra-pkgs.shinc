@@ -207,7 +207,7 @@ ep_install_plex()
 	sudo apt-get update
 	
 	# deb-multimedia-keyring
-	sudo apt-get install deb-multimedia-keyring -y
+	sudo apt-get install deb-multimedia-keyring
 
 	###############################	
 	# Add prefs

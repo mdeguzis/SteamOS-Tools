@@ -334,6 +334,18 @@ function gpg_import()
 		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now...\n"
 		$scriptdir/utilities/gpg_import.sh 7638D0442B90D010
 	fi
+	
+	# Key Desc: Debian Archive Automatic Signing Key
+	# Key ID: 65558117
+	# Full Key ID: 5C808C2B65558117
+	gpg_key_check=$(gpg --list-keys 65558117)
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "\nDebian Multimeda Signing Key [OK]\n"
+		sleep 1s
+	else
+		echo -e "\nDebian Multimeda Signing Key [FAIL]. Adding now...\n"
+		$scriptdir/utilities/gpg_import.sh 5C808C2B65558117
+	fi
 
 }
 

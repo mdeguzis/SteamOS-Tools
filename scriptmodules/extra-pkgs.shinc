@@ -694,7 +694,7 @@ ep_install_kodi()
 	# install Kodi download only, we need to ignore 'evolution-data-server-common'
 	# Valve alredy provides this. We will download kodi and then install ignoring this.
  	
- 	sudo apt-get install -d kodi
+ 	sudo apt-get -d install kodi
  	sudo dpkg -i --ignore-depends=evolution-data-server /var/cache/apt/archives/kodi*.deb
 	
 	# cleanup

@@ -715,10 +715,35 @@ show_warning()
         echo -e "See log.txt in this direcotry after any attempt for details"
         echo -e "If you need to add the Debian repos, please use the"
         echo -e "desktop-software.sh script in the main repository folder..\n"
+        
+        echo -e "\n[c]ontinue, [a]dd Debian sources, [e]xit"
 
-        read -n 1
-        echo -e  "Continuing...\n"
-        sleep 1s
+	# get user choice
+	read -ep "Choice: " user_choice
+
+	
+	case "$user_choice" in
+	        c|C)
+		echo -e "\nContinuing..."
+	        ;;
+	        
+	        a|A)
+		echo -e "\nProceeding to add-debian-repos.sh"
+		"$scriptdir/add-debian-repos.sh"
+	        ;;
+	         
+	        e|e)
+		echo -e "\nExiting script..."
+	        ;;
+	        
+	         
+	        *)
+		echo -e "\nInvalid Input, Exiting script."
+		exit
+		;;
+	esac
+
+        sleep 2s
 }
 
 main()
@@ -1100,9 +1125,9 @@ main()
 #####################################################
 # handle prerequisite software
 #####################################################
- 
-show_warning
+
 funct_source_modules
+show_warning
 gpg_import
 funct_pre_req_checks
 add_repos

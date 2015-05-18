@@ -106,7 +106,7 @@ ep_install_firefox()
 ep_install_plex()
 {
 
-	echo -e "\n==> Installing Plex Home Theater from automated script...\n"
+	echo -e "\n==> Installing Plex Home Theater from automated script..."
 	sleep 2s
 	
 	###############################

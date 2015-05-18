@@ -528,7 +528,7 @@ ep_install_chrome()
 	ep_install_eval_pkg
 
 	# libglib2.0.0 is only ver. 2.33, when libappindicator is asking for >=2.37.3
-	# Need to find / compile 2.37 from somewhere. Maybe grab the jessie source and try (risky).
+	# Need to find / compile 2.37 from somewhere. Maybe grab the wheezy source and try (risky).
 	# For now, attempt will be made at altering depends ver just down to our level
 	
 	###############################	

@@ -138,7 +138,7 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	mount --bind /dev/pts /home/desktop/${target}-chroot/dev/pts
 	
 	# eliminate unecessary packages
-	apt-get -t jessie install deborphan
+	apt-get -t wheezy install deborphan
 	deborphan -a
 	
 	# exit chroot
@@ -147,7 +147,7 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	
 	sleep 2s
 	
-elif [[ "$tmp_target" == "jessie" ]]; then
+elif [[ "$tmp_target" == "wheezy" ]]; then
 
 	# do nothing for now
 	echo "" > /dev/null

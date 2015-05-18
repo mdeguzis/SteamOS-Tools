@@ -447,7 +447,7 @@ add_repos()
 install_software()
 {
 	# For a list of Debian software pacakges, please see:
-	# https://packages.debian.org/search?keywords=jessie
+	# https://packages.debian.org/search?keywords=wheezy
 
 	###########################################################
 	# Pre-checks and setup
@@ -542,7 +542,7 @@ install_software()
 				#fi
 			 
 				###########################################################
-				# Installation routine (Jessie - 2nd stage)
+				# Installation routine (wheezy - 2nd stage)
 				###########################################################
 				
 				# Packages that fail to install, use wheezy repositories
@@ -569,12 +569,12 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t jessie $apt_mode $i
+					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
 					
 				fi
 					
 				###########################################################
-				# Installation routine (jessie-backports - 2nd stage)
+				# Installation routine (wheezy-backports - 2nd stage)
 				###########################################################
 				
 				# Packages that fail to install, use wheezy-backports repository
@@ -600,7 +600,7 @@ install_software()
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t jessie-backports $apt_mode $i
+					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
 					
 					# clear the screen from the last install if it was. (looking into this)
 					# a broken pkg
@@ -687,7 +687,7 @@ install_software()
 
 show_warning()
 {
-	# do a small check for existing jessie/jessie-backports lists
+	# do a small check for existing wheezy/wheezy-backports lists
 	echo ""
         sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
         

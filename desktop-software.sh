@@ -382,11 +382,6 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/games-pkg.txt"
-        elif [[ "$type" == "pcsx2-testing" ]]; then
-                # add emulation softare to temp list
-                # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/pcsx2-src-deps.txt"
-                m_install_pcsx2_src
             
 	####################################################
 	# popular software / custom specification

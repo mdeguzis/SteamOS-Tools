@@ -54,10 +54,6 @@ if [[ "$apt_mode" == "install" ]]; then
   export git_url="https://github.com/PCSX2/pcsx2"
   #export symlink_target="/usr/bin/pcsx2"
   #export binary_loc="$git_dir/pcsx2"
-  
-  echo $git_dir
-  echo $git_url
-  exit
 
   # If git folder exists, evaluate it.
   # Avoiding a large download again is much desired.

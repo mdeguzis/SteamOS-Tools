@@ -79,21 +79,19 @@ if [[ "$apt_mode" == "install" ]]; then
   		cd "$install_dir"
   		# clone and fetch super build (evaluating currently)
   		git clone "$git_url"
-  else
-  	echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
-  	sleep 2s
-  	# create and clone
-  	mkdir -p "$install_dir"
-  	cd "$install_dir"
-  	# clone and fetch
-  	git clone "$git_url"
-  
+	 else
+	  	echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
+	  	sleep 2s
+	  	# create and clone
+	  	mkdir -p "$install_dir"
+	  	cd "$install_dir"
+	  	# clone and fetch
+	  	git clone "$git_url"
+	fi
+	
     # end  git pull check
     fi
-  
-  # end git check if
-  fi
- 
+
   #################################################
   # Build pcsx2
   #################################################

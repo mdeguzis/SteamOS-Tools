@@ -765,7 +765,7 @@ main()
 	echo "#####################################################"
 	echo "Loading script modules"
 	echo "#####################################################"
-	import "$scriptdir/scriptmodules/emu-from-source"
+	import "$scriptdir/scriptmodules/retroarch-from-src"
 	import "$scriptdir/scriptmodules/emulation"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"

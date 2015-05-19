@@ -63,7 +63,7 @@ ep_install_x360_bindings()
 	fi
 	
 	# proceed to install eval
-	ep_install_eval_binary
+	ep_install_eval_pkg
 	
 	# cleanup
 	ep_pkg_cleanup
@@ -894,7 +894,7 @@ ep_install_eval_binary()
 	# This is subject to change in the future.
 	
 	if [[ ! -f "$BIN_LOC" || -d "$PKG_DIR" ]]; then
-		echo -e "\n==INFO==\n$PKG not found. Installing now..."
+		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
 		sudo gdebi "/tmp/$PKG_FILENAME"
@@ -913,9 +913,6 @@ ep_install_eval_binary()
 		echo "Checking for $PKG [OK]"
 		sleep 0.5s
 	fi
-
-	# cleanup
-	ep_pkg_cleanup
 
 }
 ep_test_deb()

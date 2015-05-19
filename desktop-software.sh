@@ -328,11 +328,23 @@ function gpg_import()
 	# Full Key ID: 7638D0442B90D010
 	gpg_key_check=$(gpg --list-keys 2B90D010)
 	if [[ "$gpg_key_check" != "" ]]; then
-		echo -e "\nDebian Archive Automatic Signing Key [OK]\n"
+		echo -e "\nDebian Archive Automatic Signing Key [OK]"
 		sleep 1s
 	else
-		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now...\n"
+		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now..."
 		$scriptdir/utilities/gpg_import.sh 7638D0442B90D010
+	fi
+	
+	# Key Desc: Debian Archive Automatic Signing Key
+	# Key ID: 65558117
+	# Full Key ID: 5C808C2B65558117
+	gpg_key_check=$(gpg --list-keys 65558117)
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "Debian Multimeda Signing Key [OK]\n"
+		sleep 1s
+	else
+		echo -e "Debian Multimeda Signing Key [FAIL]. Adding now...\n"
+		$scriptdir/utilities/gpg_import.sh 5C808C2B65558117
 	fi
 
 }
@@ -370,7 +382,7 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/games-pkg.txt"
-        
+            
 	####################################################
 	# popular software / custom specification
 	####################################################
@@ -679,7 +691,7 @@ install_software()
                 clear
                 echo -e "\n==> Proceeding to install emulator pkgs from source..."
                 sleep 2s
-                efs_main
+                retroarch_src_main
                 rpc_configure_retroarch
 	fi
 	
@@ -702,7 +714,7 @@ show_warning()
         if [[ "$sources_check" == "" ]]; then
                 echo -e " Those \nsources do *NOT* appear to be added at first glance."
         else
-                echo -e " On \ninitial check, those sources \nappear to be added."
+                echo -e " On \ninitial check, those sources appear to be added."
         fi
                 
         echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
@@ -749,7 +761,7 @@ main()
 	echo "#####################################################"
 	echo "Loading script modules"
 	echo "#####################################################"
-	import "$scriptdir/scriptmodules/emu-from-source"
+	import "$scriptdir/scriptmodules/retroarch-from-src"
 	import "$scriptdir/scriptmodules/emulation"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"

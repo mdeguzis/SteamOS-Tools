@@ -1,0 +1,210 @@
+#!/bin/bash
+
+# -------------------------------------------------------------------------------
+# Author:     		Michael DeGuzis
+# Git:		  	    https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:		  emulators-from-src.shinc
+# Script Ver:	  	0.1.1
+# Description:		script to build emulators from source
+#
+# Usage:	      	N/A, called from another script
+#
+# -------------------------------------------------------------------------------
+
+time_start=$(date +%s)
+time_stamp_start=(`date +"%T"`)
+
+show_warning()
+{
+  	clear 
+  	# Warn user this will take some time
+	echo -e "\nBuilding emulators from source will take some time."
+	echo -e "Please wait or press CTRL+C now. This is largely dependant on your"
+	echo -e "CPU, HDD Speed, and RAM configuration."
+	echo -e "\nPress Enter to continue\n"
+	
+  read -n 1 
+  printf "Continuing..." 
+  
+}
+
+m_install_pcsx2_src()
+{
+  
+# start apt mode if check
+if [[ "$apt_mode" == "install" ]]; then
+  
+  show_warning
+  
+  #################################################
+  # Prerequisites
+  #################################################
+  
+  # Handled by desktop-software.sh
+  # Software list: cfgs/pcsx2-src-deps.txt 
+  
+  #################################################
+  # Initial setup
+  #################################################
+  
+  # set vars
+  export install_dir="/home/desktop/pcsx2-src"
+  export git_dir="/home/desktop/pcsx2-src/git-temp"
+  export git_url="https://github.com/PCSX2/pcsx2"
+  #export symlink_target="/usr/bin/pcsx2"
+  #export binary_loc="$git_dir/pcsx2"
+
+  # If git folder exists, evaluate it.
+  # Avoiding a large download again is much desired.
+  # If the DIR is already there, the fetch info should be intact
+  
+  # start git check if
+  if [ -d "$git_dir" ]; then
+  	
+  	echo -e "\n==Info==\nGit folder already exists! Attempting git pull...\n"
+  	sleep 1s
+  	# attempt to pull the latest source first
+  	cd $git_dir
+  	# eval git status
+  	output=$(git pull $git_url)
+  
+  	# evaluate git pull. Remove, create, and clone if it fails
+  	# start git pull check
+  	if [[ "$output" != "Already up-to-date." ]]; then
+  		echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
+  		sleep 2s
+  		cd
+  		rm -rf "$git_dir"
+  		mkdir -p "$install_dir"
+  		cd "$install_dir"
+  		# clone and fetch super build (evaluating currently)
+  		git clone "$git_url"
+  else
+  	echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
+  	sleep 2s
+  	# create and clone
+  	mkdir -p "$install_dir"
+  	cd "$install_dir"
+  	# clone and fetch
+  	git clone "$git_url"
+  
+    # end  git pull check
+    fi
+  
+  # end git check if
+  fi
+ 
+  #################################################
+  # Build pcsx2
+  #################################################
+  
+  echo -e "\n==> Building sources...please wait"
+  sleep 2s
+  
+  ############################
+  # proceed to global build:
+  ############################
+  
+  # perform directory check for *.so (libretro cores) in
+  # /usr/bin/libretro. These will be present if this module was
+  # already ran before
+  
+  pcsx2_check=$(ls "$git_dir" 2> /dev/null)
+  
+  ############################
+  # Begin pcsx2 build eval
+  ############################
+  
+  # start pcsx2 build eval
+  if [[ "$pcsx2_check" != "" ]]; then
+  	
+  	echo -e "\n==INFO=="
+  	echo -e "It seems pcsx2 is already built in $git_dir"
+  	echo -e "Would you like to rebuild [y], or [n]?\n"
+  	
+  	# the prompt sometimes likes to jump above sleep
+  	sleep 0.5s
+  	
+  	# gather user input
+  	read -ep "Choice: " user_input_pcsx2
+  	
+  	if [[ "$user_input_pcsx2" == "n" ]]; then
+  		
+  		echo -e "\n==> Skipping pcsx2 build...\n"
+  		sleep 2s
+  		
+  	elif [[ "$user_input_pcsx2" == "y" ]]; then
+  		
+  		echo -e "\n==> Rebuilding pcsx2...\n"
+  		sleep 2s
+  		
+  		# build pcsx2
+  		cmake ../CMakeLists.txt \
+  		-DCMAKE_BUILD_TYPE=Release \
+  		-DCMAKE_BUILD_STRIP=FALSE
+  		make
+  		sudo make install
+      
+  	else
+  		
+  		echo -e "\n==ERROR=="
+  		echo -e "Invalid input, exiting...\n"
+  		sleep 2s
+  		exit
+    fi 	
+    
+  else	
+  	echo -e "\npcsx2 does not appear to be built."
+  	echo -e "Building now...\n"
+  	sleep 2s
+  	
+  	# build pcsx2
+  	cmake ../CMakeLists.txt \
+  	-DCMAKE_BUILD_TYPE=Release \
+  	-DCMAKE_BUILD_STRIP=FALSE
+  	make
+  	sudo make install
+  	
+  # end pcsx2 build eval
+  fi
+
+  ############################
+  # Build
+  ############################
+
+  #################################################
+  # Post install configuration
+  #################################################
+  
+  # TODO
+  
+  #################################################
+  # Cleanup
+  #################################################
+  
+  # clean up dirs
+  
+  # note time ended
+  time_end=$(date +%s)
+  time_stamp_end=(`date +"%T"`)
+  runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
+  
+  # output finish
+  echo -e "\nTime started: ${time_stamp_start}"
+  echo -e "Time started: ${time_stamp_end}"
+  echo -e "Total Runtime (minutes): $runtime\n"
+  
+  
+  elif [[ "$apt_mode" == "remove" ]]; then
+  
+    #Remove directories, build files, etc if uninstall is specified by user
+    echo -e "\n==> Removing related files for pcsx2-src routine"
+    sleep 2s
+    
+    # remove directories
+    sudo rm -rf "$install_dir" "$git_dir" "$symlink_target"
+  
+  # end apt mode if check  
+  fi
+
+}

@@ -28,6 +28,39 @@ show_warning()
   
 }
 
+source_compiler_flags()
+{
+	
+if [[ $ARCH == i686 ]]; then
+    cmake .. \
+      -DCMAKE_BUILD_TYPE='Release' \
+      -DCMAKE_INSTALL_PREFIX='/usr' \
+      -DCMAKE_LIBRARY_PATH='/usr/lib' \
+      -DPLUGIN_DIR='/usr/lib/pcsx2' \
+      -DGAMEINDEX_DIR='/usr/share/pcsx2' \
+      -DDISABLE_ADVANCE_SIMD='TRUE' \
+      -DEXTRA_PLUGINS='TRUE' \
+      -DREBUILD_SHADER='TRUE' \
+      -DGLSL_API='TRUE' \
+      -DPACKAGE_MODE='TRUE' \
+      -DXDG_STD='TRUE'
+  elif [[ $ARCH == "amd64" ]]; then
+    cmake .. \
+      -DCMAKE_BUILD_TYPE='Release' \
+      -DCMAKE_TOOLCHAIN_FILE='cmake/linux-compiler-i386-multilib.cmake' \
+      -DCMAKE_INSTALL_PREFIX='/usr' \
+      -DCMAKE_LIBRARY_PATH='/usr/lib32' \
+      -DPLUGIN_DIR='/usr/lib32/pcsx2' \
+      -DGAMEINDEX_DIR='/usr/share/pcsx2' \
+      -DDISABLE_ADVANCE_SIMD='TRUE' \
+      -DEXTRA_PLUGINS='TRUE' \
+      -DREBUILD_SHADER='TRUE' \
+      -DGLSL_API='TRUE' \
+      -DPACKAGE_MODE='TRUE' \
+      -DXDG_STD='TRUE'
+  fi
+}
+
 m_install_pcsx2_src()
 {
   
@@ -54,7 +87,13 @@ if [[ "$apt_mode" == "install" ]]; then
   git_url="https://github.com/PCSX2/pcsx2"
   #export symlink_target="/usr/bin/pcsx2"
   #export binary_loc="$git_dir/pcsx2"
-
+  
+  ######################
+  # set arch
+  ######################
+  
+  ARCH=$(dpkg --print-architecture)
+  
   # If git folder exists, evaluate it.
   # Avoiding a large download again is much desired.
   # If the DIR is already there, the fetch info should be intact
@@ -138,20 +177,18 @@ fi
   		sleep 2s
   		
   		# build $PKG
-  		rm -rf build_dir
-  		mkdir build_dir 
+  		if [[ -d build ]]; then
+			rm -rf build
+		fi
+
 		cd build_dir 
 		
 		# set compiler flags and run cmake
-	  	cmake .. \
-	  	-DCMAKE_TOOLCHAIN_FILE=cmake/linux-compiler-i386-multilib.cmake \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_BUILD_STRIP=FALSE \
+	  	source_compiler_flags
 
 		# make and install
   		make
   		sudo make install
-  		rm -rf build_dir 
       
   	else
   		
@@ -167,19 +204,18 @@ fi
   	sleep 2s
   	
   	# build $PKG
-  	mkdir build_dir 
+  	if [[ -d build ]]; then
+		rm -rf build
+	fi
+	
 	cd build_dir 
 	
 	# set compiler flags and run cmake
-  	cmake .. \
-  	-DCMAKE_TOOLCHAIN_FILE=cmake/linux-compiler-i386-multilib.cmake \
-	-DCMAKE_BUILD_TYPE=Release \
-	-DCMAKE_BUILD_STRIP=FALSE \
+  	source_compiler_flag
 
 	# make and install
   	make
   	sudo make install
-  	rm -rf build_dir 
   	
   # end $PKG build eval
   fi

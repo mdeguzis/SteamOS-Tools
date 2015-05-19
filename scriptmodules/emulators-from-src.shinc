@@ -159,7 +159,8 @@ fi
   	sleep 2s
   	
   	# build $PKG
-  	cmake ../CMakeLists.txt \
+  	cmake CMakeLists.txt \
+  	-DCMAKE_TOOLCHAIN_FILE=cmake/linux-compiler-i386-multilib.cmak
   	-DCMAKE_BUILD_TYPE=Release \
   	-DCMAKE_BUILD_STRIP=FALSE
   	make

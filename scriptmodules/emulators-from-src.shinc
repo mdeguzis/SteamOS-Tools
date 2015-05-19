@@ -14,11 +14,27 @@
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
+show_warning()
+{
+  
+  	# Warn user this will take some time
+	echo -e "\nBuilding Retroarch and its associated cores will take some time."
+	echo -e "Please wait or press CTRL+C now. This is largely dependant on your"
+	echo -e "CPU, HDD Speed, and RAM configuration."
+	echo -e "\nPress Enter to continue\n"
+	
+  read -n 1 
+  printf "\nContinuing...\n" 
+  
+}
+
 m_install_pcsx2_src()
 {
   
 # start apt mode if check
 if [[ "$apt_mode" == "install" ]]; then
+  
+  show_warning
   
   #################################################
   # Prerequisites
@@ -30,9 +46,7 @@ if [[ "$apt_mode" == "install" ]]; then
   #################################################
   # Initial setup
   #################################################
-  
-  read -n 1 
-  printf "\nContinuing...\n" 
+
   clear 
   
   # set vars

@@ -1,7 +1,7 @@
-gcc-4.5
-gcc-4.5-multilib
-g++-4.5
-g++-4.5-multilib 
+gcc-4.6
+gcc-4.6-multilib
+g++-4.6
+g++-4.6-multilib 
 cmake 
 libaio-dev:i386 
 libasound2-dev:i386 

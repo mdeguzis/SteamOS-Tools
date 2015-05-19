@@ -55,6 +55,9 @@ ep_install_x360_bindings()
 	BIN_LOC="/usr/bin/gdrive"
 	PKG_DIR="/usr/share/doc/vaporos-binds-xbox360"
 	
+	# set multiflag so multiple debs are processed
+	multi="n"
+	
 	# test if user requests it
 	if [[ "$options" == "test" ]]; then
 		# go to test function

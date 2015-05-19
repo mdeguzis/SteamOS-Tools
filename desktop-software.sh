@@ -387,6 +387,7 @@ get_software_type()
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/pcsx2-src-deps.txt"
                 m_install_pcsx2_src
+                exit
             
 	####################################################
 	# popular software / custom specification

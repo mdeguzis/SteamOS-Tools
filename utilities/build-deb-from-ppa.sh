@@ -55,7 +55,7 @@ install_prereqs()
 	echo -e "\n==>Installing pre-requisites for building...\n"
 	sleep 1s
 	# install needed packages
-	sudo apt-get install dpkg-dev devscripts build-essential
+	sudo apt-get install git devscripts build-essential checkinstall
 
 }
 

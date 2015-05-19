@@ -125,14 +125,14 @@ fi
   	sleep 0.5s
   	
   	# gather user input
-  	read -ep "Choice: " user_input_$PKG
+  	read -ep "Choice: " user_input_PKG
   	
-  	if [[ "$user_input_$PKG" == "n" ]]; then
+  	if [[ "$user_input_PKG" == "n" ]]; then
   		
   		echo -e "\n==> Skipping $PKG build...\n"
   		sleep 2s
   		
-  	elif [[ "$user_input_$PKG" == "y" ]]; then
+  	elif [[ "$user_input_PKG" == "y" ]]; then
   		
   		echo -e "\n==> Rebuilding $PKG...\n"
   		sleep 2s

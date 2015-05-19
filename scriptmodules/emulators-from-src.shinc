@@ -58,9 +58,6 @@ if [[ "$apt_mode" == "install" ]]; then
   # Avoiding a large download again is much desired.
   # If the DIR is already there, the fetch info should be intact
   
-  echo "$git_dir"
-  exit
-  
   # start git check if
   if [ -d "$git_dir" ]; then
   	
@@ -70,6 +67,9 @@ if [[ "$apt_mode" == "install" ]]; then
   	cd $git_dir
   	# eval git status
   	output=$(git pull $git_url)
+  
+  	echo "$output"
+  	exit
   
   	# evaluate git pull. Remove, create, and clone if it fails
   	# start git pull check
@@ -91,6 +91,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	  	# clone and fetch
 	  	git clone "$git_url"
 	fi
+	
 	
     # end  git pull check
     fi

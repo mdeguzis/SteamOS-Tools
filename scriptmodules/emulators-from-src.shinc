@@ -140,7 +140,7 @@ fi
   		sleep 2s
   		
   		# build pcsx2
-  		cmake ../CMakeLists.txt \
+  		cmake CMakeLists.txt \
   		-DCMAKE_BUILD_TYPE=Release \
   		-DCMAKE_BUILD_STRIP=FALSE
   		make

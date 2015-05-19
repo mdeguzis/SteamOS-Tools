@@ -695,7 +695,7 @@ install_software()
                 clear
                 echo -e "\n==> Proceeding to install emulator pkgs from source..."
                 sleep 2s
-                efs_main
+                retroarch_src_main
                 rpc_configure_retroarch
 	fi
 	

@@ -568,7 +568,7 @@ install_software()
 				if [[ $? == '0' ]]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Successfully installed $i from Alchemist repo! / Nothing to Install\n"
+						echo -e "\n==> Successfully installed $i from Alchemist repo! / Nothing to Install"
 						sleep 1s
 					else
 						echo -e "\n==> Removal succeeded for package: $i \n"
@@ -580,7 +580,7 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Could not install package $i from Alchemist repo, trying wheezy...\n"
+						echo -e "\n==> Could not install package $i from Alchemist repo, trying wheezy..."
 						sleep 2s
 					else
 						echo -e "\n==> Removal requested (from wheezy) for package: $i \n"
@@ -599,7 +599,7 @@ install_software()
 				if [[ $? == '0' ]]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Successfully installed $i from wheezy repo! / Nothing to Install\n" 
+						echo -e "\n==> Successfully installed $i from wheezy repo! / Nothing to Install" 
 						sleep 2s
 					else
 						echo -e "\n==> Removal succeeded for package: $i \n"
@@ -611,10 +611,10 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Could not install package $i from wheezy repo, trying wheezy-backports\n"
+						echo -e "\n==> Could not install package $i from wheezy repo, trying wheezy-backports"
 						sleep 2s
 					else
-						echo -e "\n==> Removal requested (from wheezy-backports) for package: $i \n"
+						echo -e "\n==> Removal requested (from wheezy-backports) for package: $i"
 						sleep 1s
 					fi
 					

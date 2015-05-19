@@ -140,10 +140,16 @@ fi
   		# build $PKG
   		mkdir build_dir 
 		cd build_dir 
+		
+		# set compiler flags
+		set(DCMAKE_TOOLCHAIN_FILE cmake/linux-compiler-i386-multilib.cmake)
+		set(DCMAKE_BUILD_TYPE Release)
+		set(DCMAKE_BUILD_STRIP FALSE)
+		
+		# run cmake
   		cmake ../CMakeLists.txt \
-  		-DCMAKE_TOOLCHAIN_FILE="cmake/linux-compiler-i386-multilib.cmake"
-  		-DCMAKE_BUILD_TYPE=Release \
-  		-DCMAKE_BUILD_STRIP=FALSE \
+
+		# make and install
   		make
   		sudo make install
   		rm -rf build_dir 
@@ -162,12 +168,21 @@ fi
   	sleep 2s
   	
   	# build $PKG
-  	cmake CMakeLists.txt \
-  	-DCMAKE_TOOLCHAIN_FILE=cmake/linux-compiler-i386-multilib.cmak
-  	-DCMAKE_BUILD_TYPE=Release \
-  	-DCMAKE_BUILD_STRIP=FALSE
+  	mkdir build_dir 
+	cd build_dir 
+	
+	# set compiler flags
+	set(DCMAKE_TOOLCHAIN_FILE cmake/linux-compiler-i386-multilib.cmake)
+	set(DCMAKE_BUILD_TYPE Release)
+	set(DCMAKE_BUILD_STRIP FALSE)
+	
+	# run cmake
+  	cmake ../CMakeLists.txt \
+
+	# make and install
   	make
   	sudo make install
+  	rm -rf build_dir 
   	
   # end $PKG build eval
   fi

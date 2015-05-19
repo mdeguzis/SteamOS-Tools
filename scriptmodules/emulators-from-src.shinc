@@ -24,7 +24,7 @@ show_warning()
 	echo -e "\nPress Enter to continue\n"
 	
   read -n 1 
-  printf "\nContinuing...\n" 
+  printf "Continuing..." 
   
 }
 
@@ -54,12 +54,12 @@ if [[ "$apt_mode" == "install" ]]; then
   #export symlink_target="/usr/bin/pcsx2"
   #export binary_loc="$git_dir/pcsx2"
 
-  # If git folder UnrealEngine exists, evaluate it
+  # If git folder exists, evaluate it.
   # Avoiding a large download again is much desired.
   # If the DIR is already there, the fetch info should be intact
   
   # start git check if
-  if [[ -d "$git_dir" ]]; then
+  if [ -d "$git_dir" ]; then
   	
   	echo -e "\n==Info==\nGit folder already exists! Attempting git pull...\n"
   	sleep 1s
@@ -85,7 +85,7 @@ if [[ "$apt_mode" == "install" ]]; then
   	# create and clone
   	mkdir -p "$install_dir"
   	cd "$install_dir"
-  	# clone and fetch super build (evaluating currently)
+  	# clone and fetch
   	git clone "$git_url"
   
     # end  git pull check

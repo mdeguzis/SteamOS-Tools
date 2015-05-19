@@ -109,7 +109,7 @@ if [[ "$apt_mode" == "install" ]]; then
   # /usr/bin/libretro. These will be present if this module was
   # already ran before
   
-  pcsx2_check=$(ls "$git_dir")
+  pcsx2_check=$(ls "$git_dir" 2> /dev/null)
   
   ############################
   # Begin pcsx2 build eval

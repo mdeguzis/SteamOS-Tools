@@ -27,7 +27,6 @@ if [[ "$apt_mode" == "install" ]]; then
   # Handled by desktop-software.sh
   # Software list: cfgs/pcsx2-src-deps.txt 
   
-  
   #################################################
   # Initial setup
   #################################################
@@ -38,8 +37,8 @@ if [[ "$apt_mode" == "install" ]]; then
   
   # set vars
   export install_dir="/home/desktop/pcsx2-src"
-  export git_dir="/home/desktop/pcsx2-src/UnrealEngine"
-  export git_url="https://github.com/3dluvr/UnrealEngine.git"
+  export git_dir="/home/desktop/pcsx2-src/git-temp"
+  export git_url="https://github.com/PCSX2/pcsx2"
   #export symlink_target="/usr/bin/pcsx2"
   #export binary_loc="$git_dir/pcsx2"
 
@@ -136,9 +135,10 @@ if [[ "$apt_mode" == "install" ]]; then
   	echo -e "\npcsx2 does not appear to be built."
   	echo -e "Building now...\n"
   	sleep 2s
-  	# build pcsx2
-  	./Setup.sh
-    ./GenerateProjectFiles.sh
+
+  ############################
+  # Build
+  ############################
   
   # end pcsx2 build eval
   fi

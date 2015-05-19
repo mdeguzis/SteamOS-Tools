@@ -186,7 +186,10 @@ fi
 		fi
 		
 		# set compiler flags and run cmake
-	  	source_compiler_flags
+	  	#source_compiler_flags
+	  	
+	  	# try simple build
+	  	./build.sh
 
 		# make and install
   		make
@@ -215,7 +218,10 @@ fi
 	fi
 
 	# set compiler flags and run cmake
-  	source_compiler_flag
+  	#source_compiler_flags
+  	
+  	# try simple build
+  	./build.sh
 
 	# make and install
   	make

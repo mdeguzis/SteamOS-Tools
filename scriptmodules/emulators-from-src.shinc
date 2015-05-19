@@ -138,12 +138,15 @@ fi
   		sleep 2s
   		
   		# build $PKG
-  		cmake CMakeLists.txt \
+  		mkdir build_dir 
+		cd build_dir 
+  		cmake ../CMakeLists.txt \
+  		-DCMAKE_TOOLCHAIN_FILE="cmake/linux-compiler-i386-multilib.cmake"
   		-DCMAKE_BUILD_TYPE=Release \
   		-DCMAKE_BUILD_STRIP=FALSE \
-  		-DCMAKE_TOOLCHAIN_FILE=cmake/linux-compiler-i386-multilib.cmake
   		make
   		sudo make install
+  		rm -rf build_dir 
       
   	else
   		

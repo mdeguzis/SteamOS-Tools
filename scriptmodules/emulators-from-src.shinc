@@ -105,11 +105,8 @@ fi
   ############################
   # proceed to global build:
   ############################
-  
-  # perform directory check for *.so (libretro cores) in
-  # /usr/bin/libretro. These will be present if this module was
-  # already ran before
-  
+
+  # git dir evail check
   pcsx2_check=$(ls "$git_dir" 2> /dev/null)
   
   ############################

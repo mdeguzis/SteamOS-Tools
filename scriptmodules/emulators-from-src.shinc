@@ -18,7 +18,7 @@ show_warning()
 {
   	clear 
   	# Warn user this will take some time
-	echo -e "\nBuilding emuators from source will take some time."
+	echo -e "\nBuilding emulators from source will take some time."
 	echo -e "Please wait or press CTRL+C now. This is largely dependant on your"
 	echo -e "CPU, HDD Speed, and RAM configuration."
 	echo -e "\nPress Enter to continue\n"

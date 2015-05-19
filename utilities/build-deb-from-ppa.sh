@@ -130,7 +130,7 @@ main()
 	fi
 	
 	# prechecks
-	echo -e "\n==> Attempting to add source list\n"
+	echo -e "\n==> Attempting to add source list"
 	sleep 2s
 	
 	# check for existance of target, backup if it exists

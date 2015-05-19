@@ -175,7 +175,7 @@ main()
 	sleep 2s
 	
 	# build deb package
-	# sudo checkinstall
+	sudo checkinstall
 
 	# Alternate method
 	# dpkg-buildpackage -us -uc -nc

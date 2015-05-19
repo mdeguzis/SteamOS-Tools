@@ -117,32 +117,49 @@ if [[ "$apt_mode" == "install" ]]; then
   	read -ep "Choice: " user_input_pcsx2
   	
   	if [[ "$user_input_pcsx2" == "n" ]]; then
+  		
   		echo -e "\n==> Skipping pcsx2 build...\n"
   		sleep 2s
+  		
   	elif [[ "$user_input_pcsx2" == "y" ]]; then
+  		
   		echo -e "\n==> Rebuilding pcsx2...\n"
   		sleep 2s
+  		
   		# build pcsx2
-  		./Setup.sh
-      ./GenerateProjectFiles.sh
+  		cmake ../CMakeLists.txt \
+  		-DCMAKE_BUILD_TYPE=Release \
+  		-DCMAKE_BUILD_STRIP=FALSE
+  		make
+  		sudo make install
+      
   	else
+  		
   		echo -e "\n==ERROR=="
   		echo -e "Invalid input, exiting...\n"
   		sleep 2s
   		exit
-  	fi
+    fi 	
+    
   else	
   	echo -e "\npcsx2 does not appear to be built."
   	echo -e "Building now...\n"
   	sleep 2s
+  	
+  	# build pcsx2
+  	cmake ../CMakeLists.txt \
+  	-DCMAKE_BUILD_TYPE=Release \
+  	-DCMAKE_BUILD_STRIP=FALSE
+  	make
+  	sudo make install
+  	
+  # end pcsx2 build eval
+  fi
 
   ############################
   # Build
   ############################
-  
-  # end pcsx2 build eval
-  fi
-  
+
   #################################################
   # Post install configuration
   #################################################

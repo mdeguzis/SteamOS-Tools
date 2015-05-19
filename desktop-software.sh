@@ -340,10 +340,10 @@ function gpg_import()
 	# Full Key ID: 5C808C2B65558117
 	gpg_key_check=$(gpg --list-keys 65558117)
 	if [[ "$gpg_key_check" != "" ]]; then
-		echo -e "Debian Multimeda Signing Key [OK]\n"
+		echo -e "Debian Multimeda Signing Key [OK]"
 		sleep 1s
 	else
-		echo -e "Debian Multimeda Signing Key [FAIL]. Adding now...\n"
+		echo -e "Debian Multimeda Signing Key [FAIL]. Adding now..."
 		$scriptdir/utilities/gpg_import.sh 5C808C2B65558117
 	fi
 

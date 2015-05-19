@@ -211,6 +211,23 @@ main()
 		echo -e "Upload not requested\n"
 	fi
 	
+	echo -e "\n==> Would you like to purge this source list addition?"
+	sleep 0.5s
+	# capture command
+	read -ep "Choice: " >> purge_choice
+	
+	if [[ "$purge_choice" == "y" ]]; then
+	
+		# remove list
+		sudo rm -f /etc/apt/sources.list.d/${target}.list
+		sudo apt-get update
+		
+	elif [[ "$purge_choice" == "n" ]]; then
+	
+		echo -e "Purge not requested\n"
+	fi
+
+	
 }
 
 #prereqs

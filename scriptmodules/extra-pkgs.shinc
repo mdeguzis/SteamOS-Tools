@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.8.5
+# Script Ver:	  	0.8.6
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	
@@ -22,9 +22,6 @@ ep_pkg_cleanup()
 	# Attempt to fix any missing packages 
 	# This is until all deps are acconted for
 	sudo apt-get install -f
-	
-	# cleanup unused packages
-	sudo apt-get autoremove
 
 	# remove leftover files
 	rm -rf ./*.deb* 
@@ -51,9 +48,12 @@ ep_install_x360_bindings()
 	pkg_type="deb"
 	PKG="vaporos-binds-xbox360"
 	PKG_FILENAME="vaporos-binds-xbox360_1.0_all.deb"
-	BASE_URL="https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360"
+	BASE_URL="https://github.com/sharkwouter/vaporos/raw/master/pool/main/v/vaporos-binds-xbox360/"
 	BIN_LOC="/usr/bin/gdrive"
 	PKG_DIR="/usr/share/doc/vaporos-binds-xbox360"
+	
+	# set multiflag so multiple debs are processed
+	multi="n"
 	
 	# test if user requests it
 	if [[ "$options" == "test" ]]; then
@@ -63,7 +63,7 @@ ep_install_x360_bindings()
 	fi
 	
 	# proceed to install eval
-	ep_install_eval_binary
+	ep_install_eval_pkg
 	
 	# cleanup
 	ep_pkg_cleanup
@@ -106,7 +106,7 @@ ep_install_firefox()
 ep_install_plex()
 {
 
-	echo -e "\n==> Installing Plex Home Theater from automated script...\n"
+	echo -e "\n==> Installing Plex Home Theater from automated script..."
 	sleep 2s
 	
 	###############################
@@ -190,19 +190,6 @@ ep_install_plex()
 	fi
 	
 	###############################
-	# Key ID: 65558117
-	# Full Key ID: 5C808C2B65558117
-	gpg_key_check=$(gpg --list-keys 65558117)
-	
-	if [[ "$gpg_key_check" != "" ]]; then
-		echo -e "\nDebian Multimedia Key [OK]\n"
-		sleep 1s
-	else
-		echo -e "\nDebian Multimedia Key [FAIL]. Adding now...\n"
-		"$scriptdir/extra/gpg_import.sh" 5C808C2B65558117
-	fi
-	
-	###############################
 	# update and pre-reqs
 	###############################
 	
@@ -220,7 +207,7 @@ ep_install_plex()
 	sudo apt-get update
 	
 	# deb-multimedia-keyring
-	sudo apt-get install deb-multimedia-keyring -y
+	sudo apt-get install deb-multimedia-keyring
 
 	###############################	
 	# Add prefs
@@ -907,7 +894,7 @@ ep_install_eval_binary()
 	# This is subject to change in the future.
 	
 	if [[ ! -f "$BIN_LOC" || -d "$PKG_DIR" ]]; then
-		echo -e "\n==INFO==\n$PKG not found. Installing now..."
+		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
 		sudo gdebi "/tmp/$PKG_FILENAME"
@@ -926,9 +913,6 @@ ep_install_eval_binary()
 		echo "Checking for $PKG [OK]"
 		sleep 0.5s
 	fi
-
-	# cleanup
-	ep_pkg_cleanup
 
 }
 ep_test_deb()

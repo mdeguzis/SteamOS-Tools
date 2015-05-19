@@ -48,8 +48,9 @@ if [[ "$apt_mode" == "install" ]]; then
   #################################################
   
   # set vars
-  export install_dir="/home/desktop/pcsx2-src"
-  export git_dir="/home/desktop/pcsx2-src/pcsx2"
+  PKG="pcsx2"
+  export install_dir="/home/desktop/$PKG-src"
+  export git_dir="/home/desktop/$PKG-src/$PKG"
   export git_url="https://github.com/PCSX2/pcsx2"
   #export symlink_target="/usr/bin/pcsx2"
   #export binary_loc="$git_dir/pcsx2"
@@ -96,7 +97,7 @@ if [[ "$apt_mode" == "install" ]]; then
 fi
 
   #################################################
-  # Build pcsx2
+  # Build $PKG
   #################################################
   
   echo -e "\n==> Building sources...please wait"
@@ -107,39 +108,40 @@ fi
   ############################
 
   # git dir evail check
-  pcsx2_check=$(ls "$git_dir" 2> /dev/null)
+  $PKG_check=$(ls "$git_dir" 2> /dev/null)
   
   ############################
-  # Begin pcsx2 build eval
+  # Begin $PKG build eval
   ############################
   
-  # start pcsx2 build eval
-  if [[ "$pcsx2_check" != "" ]]; then
+  # start $PKG build eval
+  if [[ "$PKG_check" != "" ]]; then
   	
   	echo -e "\n==INFO=="
-  	echo -e "It seems pcsx2 is already built in $git_dir"
+  	echo -e "It seems $PKG is already built in $git_dir"
   	echo -e "Would you like to rebuild [y], or [n]?\n"
   	
   	# the prompt sometimes likes to jump above sleep
   	sleep 0.5s
   	
   	# gather user input
-  	read -ep "Choice: " user_input_pcsx2
+  	read -ep "Choice: " user_input_$PKG
   	
-  	if [[ "$user_input_pcsx2" == "n" ]]; then
+  	if [[ "$user_input_$PKG" == "n" ]]; then
   		
-  		echo -e "\n==> Skipping pcsx2 build...\n"
+  		echo -e "\n==> Skipping $PKG build...\n"
   		sleep 2s
   		
-  	elif [[ "$user_input_pcsx2" == "y" ]]; then
+  	elif [[ "$user_input_$PKG" == "y" ]]; then
   		
-  		echo -e "\n==> Rebuilding pcsx2...\n"
+  		echo -e "\n==> Rebuilding $PKG...\n"
   		sleep 2s
   		
-  		# build pcsx2
+  		# build $PKG
   		cmake CMakeLists.txt \
   		-DCMAKE_BUILD_TYPE=Release \
-  		-DCMAKE_BUILD_STRIP=FALSE
+  		-DCMAKE_BUILD_STRIP=FALSE \
+  		-DCMAKE_TOOLCHAIN_FILE=cmake/linux-compiler-i386-multilib.cmake
   		make
   		sudo make install
       
@@ -152,18 +154,18 @@ fi
     fi 	
     
   else	
-  	echo -e "\npcsx2 does not appear to be built."
+  	echo -e "\n$PKG does not appear to be built."
   	echo -e "Building now...\n"
   	sleep 2s
   	
-  	# build pcsx2
+  	# build $PKG
   	cmake ../CMakeLists.txt \
   	-DCMAKE_BUILD_TYPE=Release \
   	-DCMAKE_BUILD_STRIP=FALSE
   	make
   	sudo make install
   	
-  # end pcsx2 build eval
+  # end $PKG build eval
   fi
 
   ############################
@@ -196,7 +198,7 @@ fi
 elif [[ "$apt_mode" == "remove" ]]; then
   
     #Remove directories, build files, etc if uninstall is specified by user
-    echo -e "\n==> Removing related files for pcsx2-src routine"
+    echo -e "\n==> Removing related files for $PKG-src routine"
     sleep 2s
     
     # remove directories

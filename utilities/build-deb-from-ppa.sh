@@ -148,6 +148,7 @@ main()
 	
 	echo -e "\n==> Updating system package listings...\n"
 	sleep 2s
+	sudo apt-key update
 	sudo apt-get update
 	
 	#Attempt to build target

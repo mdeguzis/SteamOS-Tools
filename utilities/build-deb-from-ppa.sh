@@ -73,7 +73,7 @@ main()
 	cd "$build_dir"
 	
 	# Ask user for repos / vars
-	echo -e "==> Please enter or paste the deb-src URL now:"
+	echo -e "\n==> Please enter or paste the deb-src URL now:"
 	echo -e "    [Press ENTER to use last: $repo_src]\n"
 	
 	# Of course main Ubuntu packages are not "PPA's" so example deb-srce lines are:

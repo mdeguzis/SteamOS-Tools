@@ -177,11 +177,11 @@ fi
   		sleep 2s
   		
   		# build $PKG
-  		if [[ -d build ]]; then
-			rm -rf build
+  		if [[ -d build_dir ]]; then
+			rm -rf build_dir
+		else
+			cd build_dir 
 		fi
-
-		cd build_dir 
 		
 		# set compiler flags and run cmake
 	  	source_compiler_flags
@@ -204,12 +204,12 @@ fi
   	sleep 2s
   	
   	# build $PKG
-  	if [[ -d build ]]; then
-		rm -rf build
+  	if [[ -d build_dir ]]; then
+		rm -rf build_dir
+	else
+		cd build_dir 
 	fi
-	
-	cd build_dir 
-	
+
 	# set compiler flags and run cmake
   	source_compiler_flag
 

@@ -58,6 +58,9 @@ if [[ "$apt_mode" == "install" ]]; then
   # Avoiding a large download again is much desired.
   # If the DIR is already there, the fetch info should be intact
   
+  echo "$git_dir"
+  exit
+  
   # start git check if
   if [ -d "$git_dir" ]; then
   	
@@ -193,7 +196,7 @@ if [[ "$apt_mode" == "install" ]]; then
   echo -e "Total Runtime (minutes): $runtime\n"
   
   
-  elif [[ "$apt_mode" == "remove" ]]; then
+elif [[ "$apt_mode" == "remove" ]]; then
   
     #Remove directories, build files, etc if uninstall is specified by user
     echo -e "\n==> Removing related files for pcsx2-src routine"
@@ -202,7 +205,7 @@ if [[ "$apt_mode" == "install" ]]; then
     # remove directories
     sudo rm -rf "$install_dir" "$git_dir" "$symlink_target"
   
-  # end apt mode if check  
-  fi
+# end apt mode if check  
+fi
 
 }

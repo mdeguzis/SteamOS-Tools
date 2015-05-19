@@ -16,7 +16,7 @@ time_stamp_start=(`date +"%T"`)
 
 show_warning()
 {
-  
+  	clear 
   	# Warn user this will take some time
 	echo -e "\nBuilding Retroarch and its associated cores will take some time."
 	echo -e "Please wait or press CTRL+C now. This is largely dependant on your"
@@ -46,8 +46,6 @@ if [[ "$apt_mode" == "install" ]]; then
   #################################################
   # Initial setup
   #################################################
-
-  clear 
   
   # set vars
   export install_dir="/home/desktop/pcsx2-src"

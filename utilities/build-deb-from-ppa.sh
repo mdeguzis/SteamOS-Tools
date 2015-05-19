@@ -63,7 +63,6 @@ main()
 {
 	build_dir="/home/desktop/build-deb-temp"
 	
-	clear
 	# remove previous dirs if they exist
 	if [[ -d "$build_dir" ]]; then
 		sudo rm -rf "$build_dir"

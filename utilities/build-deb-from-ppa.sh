@@ -51,13 +51,7 @@ fi
 
 install_prereqs()
 {
-	# TESTING
-	
-	gpg --keyring /usr/share/keyrings/ubuntu-archive-keyring.gpg --export \
-	| gpg --no-default-keyring --keyring trustedkeys.gpg --import
-	
-	# TESTING
-	
+
 	clear
 	echo -e "==> Installing pre-requisites for building...\n"
 	sleep 1s
@@ -69,6 +63,10 @@ install_prereqs()
 
 main()
 {
+	
+	# set scriptdir
+	scriptdir="$HOME/SteamOS-Tools"
+	
 	build_dir="/home/desktop/build-deb-temp"
 	
 	# remove previous dirs if they exist
@@ -153,7 +151,8 @@ main()
 	
 	echo -e "\n==> Adding GPG key:\n"
 	sleep 2s
-	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ${gpg_pub_key}
+	#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 
+	"$scriptdir/utilities.sh ${gpg_pub_key}"
 	
 	echo -e "\n==> Updating system package listings...\n"
 	sleep 2s

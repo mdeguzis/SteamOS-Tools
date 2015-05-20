@@ -4,7 +4,7 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.2.5
+# Script Ver:	0.2.7
 # Description:	Attempts to build a deb package from a PPA
 #
 # See:		If you are building from Ubuntu main, check the website
@@ -51,6 +51,13 @@ fi
 
 install_prereqs()
 {
+	# TESTING
+	
+	gpg --keyring /usr/share/keyrings/ubuntu-archive-keyring.gpg --export \
+	| gpg --no-default-keyring --keyring trustedkeys.gpg --import
+	
+	# TESTING
+	
 	clear
 	echo -e "==> Installing pre-requisites for building...\n"
 	sleep 1s

@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.9.9.5
+# Script Ver:	0.9.9.7
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -217,6 +217,21 @@ funct_source_modules()
 	script_absolute_dir=$RESULT
 	scriptdir=`dirname "$script_absolute_dir"`
 
+}
+
+funct_set_multiarch()
+{
+	
+	# add 32 bit support
+	multi_arch_status=$(dpkg --print-foreign-architectures)
+	
+	if [[ "$mult_arch_status" != "i386" ]]; then
+		
+		# add 32 bit support
+		sudo dpkg --add-architecture i386
+		
+	fi
+	
 }
 
 show_help()
@@ -1149,6 +1164,7 @@ main()
 funct_source_modules
 show_warning
 gpg_import
+funct_set_multiarch
 funct_pre_req_checks
 add_repos
 

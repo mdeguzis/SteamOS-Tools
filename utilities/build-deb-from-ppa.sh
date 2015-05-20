@@ -151,8 +151,8 @@ main()
 	
 	echo -e "\n==> Adding GPG key:\n"
 	sleep 2s
-	#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 
-	"$scriptdir/utilities.sh ${gpg_pub_key}"
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --no-default-keyring --keyring trustedkeys.gpg --recv-keys $gpg_pub_key
+	#"$scriptdir/utilities.sh ${gpg_pub_key}"
 	
 	echo -e "\n==> Updating system package listings...\n"
 	sleep 2s

@@ -62,8 +62,8 @@ install_prereqs()
 	echo -e "==> Installing pre-requisites for building...\n"
 	sleep 1s
 	# install needed packages
-	sudo apt-get install git devscripts build-essential checkinstall debian-keyring \
-	debian-archive-keyring debian-keyring debian-maintainers   
+	sudo apt-get install git devscripts build-essential checkinstall \
+	debian-keyring debian-archive-keyring
 
 }
 

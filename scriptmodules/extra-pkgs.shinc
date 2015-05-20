@@ -622,6 +622,21 @@ ep_install_netflix()
 	# set multiflag
 	multi="y"
 	
+	###############################
+	# update and pre-reqs
+	###############################
+	
+	# install pre-reqs
+	
+	echo -e "\n==> Installing prerequisite packages"
+	sleep 2s
+	
+	sudo apt-get mingw-w64
+	
+	###############################	
+	# install netflix-desktop
+	###############################
+	
 	# test if user requests it based on type, dash test
 	if [[ "$options" == "test" ]]; then
 		# go to test function

@@ -154,6 +154,9 @@ main()
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $gpg_pub_key
 	#"$scriptdir/utilities.sh ${gpg_pub_key}"
 	
+	echo "pausing"
+	sleep 50s
+	
 	echo -e "\n==> Updating system package listings...\n"
 	sleep 2s
 	sudo apt-key update

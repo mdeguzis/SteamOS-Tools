@@ -12,6 +12,7 @@
 #
 # See also:	Generate a source list: http://repogen.simplylinux.ch/
 #		Command 'rmadison' from devscripts to see arch's
+#		Command 'apt-cache madison <PKG>'
 #
 # Usage:	sudo ./build-deb-from-PPA.sh
 #		source ./build-deb-from-PPA.sh

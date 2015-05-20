@@ -188,7 +188,7 @@ main()
 	
 	ls "/home/desktop/build-deb-temp"
 	
-	echo -e "\n==> Would you like to trim out the tar.gz and dsc files for uploading?"
+	echo -e "\n==> Would you like to trim out the tar.gz and dsc files for uploading? [y/n]"
 	sleep 0.5s
 	# capture command
 	read -ep "Choice: " trim_choice
@@ -196,19 +196,19 @@ main()
 	if [[ "$trim_choice" == "y" ]]; then
 		
 		# cut files so we just have our deb pkg
-		rm -f ./*.tar.gz
-		rm -f ./*.dsc
-		rm -f ./*.changes
-		rm -f ./*-dbg
-		rm -f ./*-dev
-		rm -f ./*-compat
+		rm -f *.tar.gz
+		rm -f *.dsc
+		rm -f *.changes
+		rm -f *-dbg
+		rm -f *-dev
+		rm -f *-compat
 		
 	elif [[ "$trim_choice" == "n" ]]; then
 	
 		echo -e "File trim not requested"
 	fi
 
-	echo -e "\n==> Would you like to upload any packages that were built?"
+	echo -e "\n==> Would you like to upload any packages that were built? [y/n]"
 	sleep 0.5s
 	# capture command
 	read -ep "Choice: " upload_choice
@@ -223,7 +223,7 @@ main()
 		echo -e "Upload not requested\n"
 	fi
 	
-	echo -e "\n==> Would you like to purge this source list addition?"
+	echo -e "\n==> Would you like to purge this source list addition? [y/n]"
 	sleep 0.5s
 	# capture command
 	read -ep "Choice: " purge_choice

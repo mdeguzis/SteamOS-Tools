@@ -82,8 +82,9 @@ main()
 	echo -e "\n==> Please enter or paste the deb-src URL now:"
 	echo -e "    [Press ENTER to use last: $repo_src]\n"
 	
-	# Of course main Ubuntu packages are not "PPA's" so example deb-srce lines are:
+	# Of course, main Ubuntu packages are not "PPA's" so example deb-src lines are:
 	# deb-src http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
+	# GPG-key(s): 437D05B5, C0B21F32
 	
 	# set tmp var for last run, if exists
 	repo_src_tmp="$repo_src"

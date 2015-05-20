@@ -162,7 +162,7 @@ main()
 	#Attempt to build target
 	echo -e "\n==> Attempting to build ${target}:\n"
 	sleep 2s
-	sudo apt-get source --build ${target}
+	apt-get source --build ${target}
 	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)

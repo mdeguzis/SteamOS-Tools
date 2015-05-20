@@ -61,6 +61,7 @@ sed -i "s|(>= [0-9].[0-9][0-9])||g" custom-pkg.txt
 sed -i "s|(>= [0-9])||g" custom-pkg.txt
 sed -i "s|(>= [0-9].[0-9][0-9])||g" custom-pkg.txt
 sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" custom-pkg.txt
+sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" custom-pkg.txt
 sed -i "s|[ |]| |g" custom-pkg.txt
 sed -i "s|  | |g" custom-pkg.txt
 

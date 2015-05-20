@@ -141,7 +141,7 @@ main()
 	
 	# check for existance of target, backup if it exists
 	if [[ -f /etc/apt/sources.list.d/${target}.list ]]; then
-		echo -e "\nBacking up ${target}.list to ${target}.list.bak\n"
+		echo -e "\n==> Backing up ${target}.list to ${target}.list.bak"
 		sudo mv "/etc/apt/sources.list.d/${target}.list" "/etc/apt/sources.list.d/${target}.list.bak"
 	fi
 	

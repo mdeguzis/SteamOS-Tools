@@ -196,12 +196,12 @@ main()
 	if [[ "$trim_choice" == "y" ]]; then
 		
 		# cut files so we just have our deb pkg
-		rm -f *.tar.gz
-		rm -f *.dsc
-		rm -f *.changes
-		rm -f *-dbg
-		rm -f *-dev
-		rm -f *-compat
+		rm -f $build_dir/*.tar.gz
+		rm -f $build_dir/*.dsc
+		rm -f $build_dir/*.changes
+		rm -f $build_dir/*-dbg
+		rm -f $build_dir/*-dev
+		rm -f $build_dir/*-compat
 		
 	elif [[ "$trim_choice" == "n" ]]; then
 	

@@ -116,7 +116,7 @@ main()
 			gpg_pub_key="$gpg_pub_key_tmp"
 		else
 			# keep user choice
-			gpg_pub_keyst="$gpg_pub_key"
+			gpg_pub_key="$gpg_pub_key"
 		fi
 	fi
 	
@@ -143,6 +143,7 @@ main()
 	
 	# check for existance of target, backup if it exists
 	if [[ -f /etc/apt/sources.list.d/${target}.list ]]; then
+		echo -e "\nBacking up ${target}.list to ${target}.list.bak\n"
 		sudo mv "/etc/apt/sources.list.d/${target}.list" "/etc/apt/sources.list.d/${target}.list.bak"
 	fi
 	

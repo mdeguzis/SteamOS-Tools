@@ -4,13 +4,14 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.2.7
+# Script Ver:	0.2.9
 # Description:	Attempts to build a deb package from a PPA
 #
 # See:		If you are building from Ubuntu main, check the website
 #		http://www.debianadmin.com/adding-ubuntu-repositories.html
 #
 # See also:	Generate a source list: http://repogen.simplylinux.ch/
+#		Command 'rmadison' from devscripts to see arch's
 #
 # Usage:	sudo ./build-deb-from-PPA.sh
 #		source ./build-deb-from-PPA.sh
@@ -160,7 +161,7 @@ main()
 	sudo apt-key update
 	sudo apt-get update
 	
-	#Attempt to build target
+	# Attempt to build target
 	echo -e "\n==> Attempting to build ${target}:\n"
 	sleep 2s
 	apt-get source --build ${target}

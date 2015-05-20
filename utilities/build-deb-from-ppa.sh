@@ -190,7 +190,7 @@ main()
 	echo -e "\n==> Would you like to trim out the tar.gz and dsc files for uploading?"
 	sleep 0.5s
 	# capture command
-	read -ep "Choice: " >> trim_choice
+	read -ep "Choice: " trim_choice
 	
 	if [[ "$trim_choice" == "y" ]]; then
 		
@@ -207,22 +207,22 @@ main()
 	echo -e "\n==> Would you like to upload any packages that were built?"
 	sleep 0.5s
 	# capture command
-	read -ep "Choice: " >> upload_choice
+	read -ep "Choice: " upload_choice
 	
-	if [[ "$trim_choice" == "y" ]]; then
+	if [[ "$upload_choice" == "y" ]]; then
 	
 		# cut files
 		"$scriptdir/extra/upload-pkg-to-libregeek.sh"
 		echo -e "\n"
 		
-	elif [[ "$trim_choice" == "n" ]]; then
+	elif [[ "$upload_choice" == "n" ]]; then
 		echo -e "Upload not requested\n"
 	fi
 	
 	echo -e "\n==> Would you like to purge this source list addition?"
 	sleep 0.5s
 	# capture command
-	read -ep "Choice: " >> purge_choice
+	read -ep "Choice: " purge_choice
 	
 	if [[ "$purge_choice" == "y" ]]; then
 	

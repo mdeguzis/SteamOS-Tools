@@ -304,7 +304,7 @@ funct_pre_req_checks()
 {
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
-	sleep 1s
+	sleep 2s
 	
 	#################################
 	# debian-keyring

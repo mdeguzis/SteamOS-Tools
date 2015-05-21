@@ -250,9 +250,6 @@ funct_set_multiarch()
 		
 	fi
 	
-	# hold for testing
-	sleep 50s
-	
 }
 
 show_help()

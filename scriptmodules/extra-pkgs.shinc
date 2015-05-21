@@ -695,6 +695,10 @@ ep_install_netflix()
 	# Currently working on some kind of xboxdrv swap out
 	# to allow arrow keys
 	
+	# fix ownership if need be
+	
+	sudo chown -R steam:steam "/home/steam/Pictures"
+	
 	#####################################################
 	# PKG NAME
 	#####################################################

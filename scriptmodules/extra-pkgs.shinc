@@ -687,6 +687,10 @@ ep_install_netflix()
 	# copy over desktop shortcut
 	sudo cp "$scriptdir/cfgs/netflix/Netflix.desktop" "/usr/share/applications"
 	
+	# copy Default folder that has "keep chrome running in background when closed"
+	# so that we don't get "unexpected crash" banner popups
+	sudo cp -r "$scriptdir/cfgs/netflix/Default" " /home/steam/.config/google-chrome"
+	
 	# mark exec
 	sudo chmod +x "/usr/bin/Netflix-Launch.sh"
 	

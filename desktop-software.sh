@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.9.9.4
+# Script Ver:	0.9.9.7
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -57,6 +57,11 @@ done
 # Strip symbols from large pkg pastes from build-depends
 sed -i "s|(>= [0-9].[0-9].[0-9])||g" custom-pkg.txt
 sed -i "s|(<< [0-9].[0-9].[0-9])||g" custom-pkg.txt
+sed -i "s|(>= [0-9].[0-9][0-9])||g" custom-pkg.txt
+sed -i "s|(>= [0-9])||g" custom-pkg.txt
+sed -i "s|(>= [0-9].[0-9][0-9])||g" custom-pkg.txt
+sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" custom-pkg.txt
+sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" custom-pkg.txt
 sed -i "s|[ |]| |g" custom-pkg.txt
 sed -i "s|  | |g" custom-pkg.txt
 
@@ -214,6 +219,39 @@ funct_source_modules()
 
 }
 
+funct_set_multiarch()
+{
+	
+	echo -e "\n==> Checking for multi-arch support\n"
+	sleep 1s
+	
+	# add 32 bit support
+	multi_arch_status=$(dpkg --print-foreign-architectures)
+	
+	if [[ "$multi_arch_status" != "i386" ]]; then
+		
+		echo -e "Multi-arch support [FAIL]"
+		# add 32 bit support
+		sudo dpkg --add-architecture i386
+		
+		if [[ $? == '0' ]]; then
+				
+			echo -e "Multi-arch support [Addition FAILED!]"
+			sleep 1s
+		else
+			
+			echo -e "Multi-arch support [Now added]"
+			sleep 1s
+		fi
+	
+	else
+	
+		echo -e "Multi-arch support [OK]"	
+		
+	fi
+	
+}
+
 show_help()
 {
 	
@@ -266,6 +304,7 @@ funct_pre_req_checks()
 {
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
+	sleep 1s
 	
 	#################################
 	# debian-keyring
@@ -299,7 +338,7 @@ main_install_eval_pkg()
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
-		sudo apt-get ${source_type}install $PKG
+		sudo apt-get $cache_tmp ${source_type}install $PKG
 		
 		if [ $? == '0' ]; then
 			echo "Successfully installed $PKG"
@@ -322,6 +361,7 @@ function gpg_import()
 	# some keys do not load in automatically, import now
 	# helper script accepts $1 as the key
 	echo -e "\n==> Importing Debian GPG keys"
+	sleep 1s
 	
 	# Key Desc: Debian Archive Automatic Signing Key
 	# Key ID: 2B90D010
@@ -340,10 +380,10 @@ function gpg_import()
 	# Full Key ID: 5C808C2B65558117
 	gpg_key_check=$(gpg --list-keys 65558117)
 	if [[ "$gpg_key_check" != "" ]]; then
-		echo -e "Debian Multimeda Signing Key [OK]\n"
+		echo -e "Debian Multimeda Signing Key [OK]"
 		sleep 1s
 	else
-		echo -e "Debian Multimeda Signing Key [FAIL]. Adding now...\n"
+		echo -e "Debian Multimeda Signing Key [FAIL]. Adding now..."
 		$scriptdir/utilities/gpg_import.sh 5C808C2B65558117
 	fi
 
@@ -382,6 +422,12 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/games-pkg.txt"
+        elif [[ "$type" == "pcsx2-testing" ]]; then
+                # add emulation softare to temp list
+                # remember to kick off script at the end of dep installs
+                software_list="$scriptdir/cfgs/pcsx2-src-deps.txt"
+                m_install_pcsx2_src
+                exit
             
 	####################################################
 	# popular software / custom specification
@@ -562,7 +608,7 @@ install_software()
 				if [[ $? == '0' ]]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Successfully installed $i from Alchemist repo! / Nothing to Install\n"
+						echo -e "\n==> Successfully installed $i from Alchemist repo! / Nothing to Install"
 						sleep 1s
 					else
 						echo -e "\n==> Removal succeeded for package: $i \n"
@@ -574,7 +620,7 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Could not install package $i from Alchemist repo, trying wheezy...\n"
+						echo -e "\n==> Could not install package $i from Alchemist repo, trying wheezy..."
 						sleep 2s
 					else
 						echo -e "\n==> Removal requested (from wheezy) for package: $i \n"
@@ -593,7 +639,7 @@ install_software()
 				if [[ $? == '0' ]]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Successfully installed $i from wheezy repo! / Nothing to Install\n" 
+						echo -e "\n==> Successfully installed $i from wheezy repo! / Nothing to Install" 
 						sleep 2s
 					else
 						echo -e "\n==> Removal succeeded for package: $i \n"
@@ -605,10 +651,10 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Could not install package $i from wheezy repo, trying wheezy-backports\n"
+						echo -e "\n==> Could not install package $i from wheezy repo, trying wheezy-backports"
 						sleep 2s
 					else
-						echo -e "\n==> Removal requested (from wheezy-backports) for package: $i \n"
+						echo -e "\n==> Removal requested (from wheezy-backports) for package: $i"
 						sleep 1s
 					fi
 					
@@ -741,6 +787,7 @@ show_warning()
 	         
 	        e|e)
 		echo -e "\nExiting script...\n"
+		exit 1
 	        ;;
 	        
 	         
@@ -762,6 +809,7 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/retroarch-from-src"
+	import "$scriptdir/scriptmodules/emulators-from-src"
 	import "$scriptdir/scriptmodules/emulation"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
@@ -1136,6 +1184,7 @@ main()
 funct_source_modules
 show_warning
 gpg_import
+funct_set_multiarch
 funct_pre_req_checks
 add_repos
 

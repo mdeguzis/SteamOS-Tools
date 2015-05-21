@@ -21,11 +21,44 @@ show_warning()
 	echo -e "\nBuilding emulators from source will take some time."
 	echo -e "Please wait or press CTRL+C now. This is largely dependant on your"
 	echo -e "CPU, HDD Speed, and RAM configuration."
-	echo -e "\nPress Enter to continue\n"
+	echo -e "\nPress Enter to continue"
 	
   read -n 1 
-  printf "Continuing..." 
+  printf "Continuing...\n" 
   
+}
+
+source_compiler_flags()
+{
+	
+if [[ $ARCH == i686 ]]; then
+    cmake .. \
+      -DCMAKE_BUILD_TYPE='Release' \
+      -DCMAKE_INSTALL_PREFIX='/usr' \
+      -DCMAKE_LIBRARY_PATH='/usr/lib' \
+      -DPLUGIN_DIR='/usr/lib/pcsx2' \
+      -DGAMEINDEX_DIR='/usr/share/pcsx2' \
+      -DDISABLE_ADVANCE_SIMD='TRUE' \
+      -DEXTRA_PLUGINS='TRUE' \
+      -DREBUILD_SHADER='TRUE' \
+      -DGLSL_API='TRUE' \
+      -DPACKAGE_MODE='TRUE' \
+      -DXDG_STD='TRUE'
+  elif [[ $ARCH == "amd64" ]]; then
+    cmake .. \
+      -DCMAKE_BUILD_TYPE='Release' \
+      -DCMAKE_TOOLCHAIN_FILE='cmake/linux-compiler-i386-multilib.cmake' \
+      -DCMAKE_INSTALL_PREFIX='/usr' \
+      -DCMAKE_LIBRARY_PATH='/usr/lib32' \
+      -DPLUGIN_DIR='/usr/lib32/pcsx2' \
+      -DGAMEINDEX_DIR='/usr/share/pcsx2' \
+      -DDISABLE_ADVANCE_SIMD='TRUE' \
+      -DEXTRA_PLUGINS='TRUE' \
+      -DREBUILD_SHADER='TRUE' \
+      -DGLSL_API='TRUE' \
+      -DPACKAGE_MODE='TRUE' \
+      -DXDG_STD='TRUE'
+  fi
 }
 
 m_install_pcsx2_src()
@@ -48,12 +81,19 @@ if [[ "$apt_mode" == "install" ]]; then
   #################################################
   
   # set vars
-  export install_dir="/home/desktop/pcsx2-src"
-  export git_dir="/home/desktop/pcsx2-src/git-temp"
-  export git_url="https://github.com/PCSX2/pcsx2"
+  PKG="pcsx2"
+  install_dir="/home/desktop/${PKG}-src"
+  git_dir="/home/desktop/${PKG}-src/${PKG}"
+  git_url="https://github.com/PCSX2/pcsx2"
   #export symlink_target="/usr/bin/pcsx2"
   #export binary_loc="$git_dir/pcsx2"
-
+  
+  ######################
+  # set arch
+  ######################
+  
+  ARCH=$(dpkg --print-architecture)
+  
   # If git folder exists, evaluate it.
   # Avoiding a large download again is much desired.
   # If the DIR is already there, the fetch info should be intact
@@ -79,7 +119,10 @@ if [[ "$apt_mode" == "install" ]]; then
   		cd "$install_dir"
   		# clone and fetch super build (evaluating currently)
   		git clone "$git_url"
-  else
+  		cd "$git_dir"
+  	fi
+  	
+ else
   	echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
   	sleep 2s
   	# create and clone
@@ -87,15 +130,13 @@ if [[ "$apt_mode" == "install" ]]; then
   	cd "$install_dir"
   	# clone and fetch
   	git clone "$git_url"
-  
-    # end  git pull check
-    fi
-  
-  # end git check if
-  fi
- 
+  	cd "$git_dir"
+
+# end  git pull check
+fi
+
   #################################################
-  # Build pcsx2
+  # Build $PKG
   #################################################
   
   echo -e "\n==> Building sources...please wait"
@@ -104,44 +145,53 @@ if [[ "$apt_mode" == "install" ]]; then
   ############################
   # proceed to global build:
   ############################
-  
-  # perform directory check for *.so (libretro cores) in
-  # /usr/bin/libretro. These will be present if this module was
-  # already ran before
-  
-  pcsx2_check=$(ls "$git_dir" 2> /dev/null)
+
+  # git dir evail check
+  PKG_check=$(ls "$git_dir" 2> /dev/null)
   
   ############################
-  # Begin pcsx2 build eval
+  # Begin $PKG build eval
   ############################
   
-  # start pcsx2 build eval
-  if [[ "$pcsx2_check" != "" ]]; then
+  # start $PKG build eval
+  if [[ "$PKG_check" != "" ]]; then
   	
   	echo -e "\n==INFO=="
-  	echo -e "It seems pcsx2 is already built in $git_dir"
+  	echo -e "It seems $PKG is already built in $git_dir"
   	echo -e "Would you like to rebuild [y], or [n]?\n"
   	
   	# the prompt sometimes likes to jump above sleep
   	sleep 0.5s
   	
   	# gather user input
-  	read -ep "Choice: " user_input_pcsx2
+  	read -ep "Choice: " user_input_PKG
   	
-  	if [[ "$user_input_pcsx2" == "n" ]]; then
+  	if [[ "$user_input_PKG" == "n" ]]; then
   		
-  		echo -e "\n==> Skipping pcsx2 build...\n"
+  		echo -e "\n==> Skipping $PKG build...\n"
   		sleep 2s
   		
-  	elif [[ "$user_input_pcsx2" == "y" ]]; then
+  	elif [[ "$user_input_PKG" == "y" ]]; then
   		
-  		echo -e "\n==> Rebuilding pcsx2...\n"
+  		echo -e "\n==> Rebuilding $PKG...\n"
   		sleep 2s
   		
-  		# build pcsx2
-  		cmake ../CMakeLists.txt \
-  		-DCMAKE_BUILD_TYPE=Release \
-  		-DCMAKE_BUILD_STRIP=FALSE
+  		# build $PKG
+	  	if [[ -d build_dir ]]; then
+			rm -rf build_dir
+			mkdir build_dir
+		else
+			mkdir build_dir
+			cd build_dir 
+		fi
+		
+		# set compiler flags and run cmake
+	  	#source_compiler_flags
+	  	
+	  	# try simple build
+	  	./build.sh
+
+		# make and install
   		make
   		sudo make install
       
@@ -154,18 +204,30 @@ if [[ "$apt_mode" == "install" ]]; then
     fi 	
     
   else	
-  	echo -e "\npcsx2 does not appear to be built."
+  	echo -e "\n$PKG does not appear to be built."
   	echo -e "Building now...\n"
   	sleep 2s
   	
-  	# build pcsx2
-  	cmake ../CMakeLists.txt \
-  	-DCMAKE_BUILD_TYPE=Release \
-  	-DCMAKE_BUILD_STRIP=FALSE
+  	# build $PKG
+  	if [[ -d build_dir ]]; then
+		rm -rf build_dir
+		mkdir build_dir
+	else
+		mkdir build_dir
+		cd build_dir 
+	fi
+
+	# set compiler flags and run cmake
+  	#source_compiler_flags
+  	
+  	# try simple build
+  	./build.sh
+
+	# make and install
   	make
   	sudo make install
   	
-  # end pcsx2 build eval
+  # end $PKG build eval
   fi
 
   ############################
@@ -195,16 +257,16 @@ if [[ "$apt_mode" == "install" ]]; then
   echo -e "Total Runtime (minutes): $runtime\n"
   
   
-  elif [[ "$apt_mode" == "remove" ]]; then
+elif [[ "$apt_mode" == "remove" ]]; then
   
     #Remove directories, build files, etc if uninstall is specified by user
-    echo -e "\n==> Removing related files for pcsx2-src routine"
+    echo -e "\n==> Removing related files for $PKG-src routine"
     sleep 2s
     
     # remove directories
     sudo rm -rf "$install_dir" "$git_dir" "$symlink_target"
   
-  # end apt mode if check  
-  fi
+# end apt mode if check  
+fi
 
 }

@@ -684,6 +684,9 @@ ep_install_netflix()
 	# copy launcher to /usr/bin
 	sudo cp "$scriptdir/cfgs/netflix/Netflix-Launch.sh" "/usr/bin"
 	
+	# copy over desktop shortcut
+	sudo cp "$scriptdir/cfgs/netflix/Netflix.desktop" "/usr/share/applications"
+	
 	# mark exec
 	sudo chmod +x "/usr/bin/Netflix-Launch.sh"
 	

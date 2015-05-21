@@ -16,7 +16,7 @@ ep_pkg_cleanup()
 	# cleanup package remenants and other files
 	#####################################################
 	
-	echo -e "\n==> Cleaning up pacakges, files, and other garbage\n"
+	echo -e "\n==> Cleaning up packages, files, and other garbage\n"
 	sleep 2s
 	
 	# Attempt to fix any missing packages 
@@ -661,6 +661,9 @@ ep_install_netflix()
 	#######################################
 	# Software function pre-req
 	#######################################
+	
+	echo -e "\n==> Installing pre-requisite software"
+	sleep 2s
 
 	pkg_test=$(which google-chrome-stable)
 
@@ -675,6 +678,8 @@ ep_install_netflix()
 	# Configuration
 	#######################################
 
+	echo -e "\n==> Configuring"
+	sleep 2s
 	
 	# copy launcher to /usr/bin
 	sudo cp "$scriptdir/cfgs/netflix/Netflix-Launch.sh" "/usr/bin"

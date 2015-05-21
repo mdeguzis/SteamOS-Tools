@@ -585,12 +585,6 @@ ep_install_chrome()
 		# attempt to use default DIR
 		cd "/home/desktop/SteamOS-Tools/"
 	fi
-
-	###############################	
-	# Post conf for Netflix
-	###############################
-
-	# TODO
 	
 	###############################	
 	# Cleanup
@@ -680,9 +674,7 @@ ep_install_netflix()
 	#######################################
 	# Configuration
 	#######################################
-	
-	echo $scriptdir
-	sleep 50s
+
 	
 	# copy launcher to /usr/bin
 	sudo cp "$scriptdir/cfgs/netflix/Netflix-Launch.sh" "/usr/bin"

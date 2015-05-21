@@ -26,10 +26,10 @@ ep_check_repo_status()
 		
 		# start sources eval
 		if [[ "$sources_check" == "" ]]; then 
-			echo -e "\n==ERROR==\nRequired external repository not detected\m" 
+			echo -e "\n==ERROR==\nRequired external repository *NOT* detected!" 
 			
 			echo -e "\n==INFO==\nIf you wish to exit, please press CTRL+C now."
-		        echo -e "[c]ontinue, [a]dd Debian sources, [e]xit"
+		        echo -e "[c]ontinue, [a]dd Debian sources, [e]xit\n"
 		
 			# get user choice
 			read -ep "Choice: " user_choice

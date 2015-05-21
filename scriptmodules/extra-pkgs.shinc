@@ -654,86 +654,50 @@ ep_install_gdrive()
 ep_install_netflix()
 {
 
-	echo -e "\n==> Installing Netflix from automated script..."
+	echo -e "\n==> Installing Netflix (via Chrome) from automated script..."
 	sleep 2s
 
 	#######################################
-	# EXPERIMENTAL !!!! DOES NOT WORK!
+	# Pre-reqs
+	#######################################
+	
+	# required to display x window for Chrome
+	sudo apt-get install xserver-xephy
+
+	#######################################
+	# Software function pre-req
 	#######################################
 
-	echo ""
+	pkg_test=$(which google-chrome-stable)
+
+	if [[ "$pkg_test" == "" ]]; then
+	
+		# install chrome from script
+		ep_install_chrome
+		
+	fi
+	
+	#######################################
+	# Configuration
+	#######################################
+	
+	# copy launcher to /usr/bin
+	sudo cp "$scriptdir/cfgs/netflix/Netflix-Launch.sh" "/usr/bin"
+	
+	# mark exec
+	sudo chmod +x "/usr/bin/Netflix-Launch.sh"
+	
+	# copy banner
+	sudo cp "$scriptdir/cfgs/Netflix.png" "/home/steam/Pictures"
+
+	# NOTE:
+	# Mouse support with cursor is fine
+	# Currently working on some kind of xboxdrv swap out
+	# to allow arrow keys
+	
 	#####################################################
 	# PKG NAME
 	#####################################################
-	# Name: netflix-desktop
-	# Warning: libwayland-client0 ignored when building netflix-compholio!
-	# Source build maybe possible: https://launchpad.net/~gnome3-team/+archive/ubuntu/gnome3-staging
-	# Backup plan: compile pipelight, add as post-install configuration to firefox funct. above.
-	
-	###############################	
-	# set vars
-	###############################
-	
-	pkg_type="deb"
-	PKG="netflix-desktop"
-	PKG_FILENAME="/tmp/netflix-pkg-tmp.txt"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
-	BIN_LOC=""
-	software_list="/tmp/netflix-pkg-tmp.txt"
-	
-	# set multiflag
-	multi="y"
-	
-	###############################
-	# update and pre-reqs
-	###############################
-	
-	# install pre-reqs
-	
-	echo -e "\n==> Installing prerequisite packages"
-	sleep 2s
-	
-	sudo apt-get mingw-w64
-	
-	###############################	
-	# install netflix-desktop
-	###############################
-	
-	# test if user requests it based on type, dash test
-	if [[ "$options" == "test" ]]; then
-		# go to test function
-		ep_test_deb
-		exit
-	fi
-	
-	# set order in which packages must be installed (must be done in order!)
-	# Several sub-packages of netflix desktop must be installed properly beforehand.
-
-	temp_file="/tmp/netflix-pkg-tmp.txt"
-
-	cat <<-EOF > ${temp_file}
-	## wine-staging-i386_1.7.42_SteamOS_amd64.deb  ## NEEDS BUILT FROM PPA
-	wine-staging_1.7.42_SteamOS_amd64.deb
-	## wine-compholio-pkg
-	## ttf-mscorefonts-pkg
-	## python-pyattr-pkg
-	wine-browser-installer_0.8.9-1_SteamOS_all.deb
-	wine-silverlight5.1-installer_0.8.9-1_SteamOS_all.deb
-	netflix-desktop_0.8.9-1_SteamOS_all.deb
-	EOF
-	
-	# clean/remove existing packages so that the install does not fail
-	echo -e "\n==INFO==\nPurging previously installed packages for a clean install...\n" 
-	
-	for x in `cat $software_list`; do
-		sudo dpkg --purge $x
-	done
-	
-	# set multiflag so multiple debs are processed
-	multi="y"
-	
-	# proceed to pkg eval
-	ep_install_eval_pkg
 	
 	# cleanup
 	ep_pkg_cleanup

@@ -10,7 +10,7 @@
 # Usage:	      	n/a , module
 # -----------------------------------------------------------------------
 
-ep_check_repo_status
+ep_check_repo_status()
 {
 
 	# Check if Debian repos or outside sources are needed. 
@@ -28,12 +28,7 @@ ep_check_repo_status
 		if [[ "$sources_check" == "" ]]; then 
 			echo -e "\n==ERROR==\nRequired external repository not detected\m" 
 			
-			echo -e "\n==INFO==\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
-		        echo -e "\ntype './desktop-software --help' (without quotes) for help.\n"
-		        echo -e "See log.txt in this direcotry after any attempt for details"
-		        echo -e "If you need to add the Debian repos, please use the"
-		        echo -e "desktop-software.sh script in the main repository folder..\n"
-        
+			echo -e "\n==INFO==\nIf you wish to exit, please press CTRL+C now."
 		        echo -e "[c]ontinue, [a]dd Debian sources, [e]xit"
 		
 			# get user choice

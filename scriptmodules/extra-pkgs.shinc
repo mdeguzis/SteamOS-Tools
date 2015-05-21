@@ -10,6 +10,79 @@
 # Usage:	      	n/a , module
 # -----------------------------------------------------------------------
 
+ep_check_repo_status
+{
+
+	# Check if Debian repos or outside sources are needed. 
+	# If user did not add these, exit.
+	# Vars are set per package
+	
+	sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
+	
+	# start repo check
+	if [[ "$deb_repo_req" == "yes" ]]; then
+	
+		echo -e "\n==Repository Check==\nExternal repository needed: [Yes]\n"
+		
+		# start sources eval
+		if [[ "$sources_check" == "" ]]; then 
+			echo -e "\n==ERROR==\nRequired external repository not detected\m" 
+			
+			echo -e "\n==INFO==\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
+		        echo -e "\ntype './desktop-software --help' (without quotes) for help.\n"
+		        echo -e "See log.txt in this direcotry after any attempt for details"
+		        echo -e "If you need to add the Debian repos, please use the"
+		        echo -e "desktop-software.sh script in the main repository folder..\n"
+        
+		        echo -e "[c]ontinue, [a]dd Debian sources, [e]xit"
+		
+			# get user choice
+			read -ep "Choice: " user_choice
+		
+			
+			case "$user_choice" in
+			        c|C)
+				echo -e "\nContinuing...\n"
+			        ;;
+			        
+			        a|A)
+				echo -e "\nProceeding to add-debian-repos.sh"
+				"$scriptdir/add-debian-repos.sh"
+			        ;;
+			         
+			        e|e)
+				echo -e "\nExiting script...\n"
+				exit 1
+			        ;;
+			        
+			         
+			        *)
+				echo -e "\nInvalid Input, Exiting script.\n"
+				exit 1
+				;;
+			esac
+
+		else 
+	                # do nothing
+	                echo "" > /dev/null
+	                
+	        # end sources eval
+	        fi
+	        
+	elif [[ "$deb_repo_req" == "no" ]]; then
+		
+		echo -e "\n==Repository Check==\nExternal repository needed: [No]\n"
+	
+	# end repo check	
+        fi 
+
+	
+	deb_repo_name_a="wheezy.list"
+	deb_repo_req="no"
+	
+
+}
+
 ep_pkg_cleanup()
 {
 	#####################################################
@@ -44,7 +117,10 @@ ep_install_x360_bindings()
 	# FPS + more binds from VaporOS 2
 	# For bindings, see: /etc/actkbd-steamos-controller.conf
 	
-	# set vars
+	###############################
+	#  vars
+	###############################
+
 	pkg_type="deb"
 	PKG="vaporos-binds-xbox360"
 	PKG_FILENAME="vaporos-binds-xbox360_1.0_all.deb"
@@ -55,12 +131,22 @@ ep_install_x360_bindings()
 	# set multiflag so multiple debs are processed
 	multi="n"
 	
+	# set external Deb repo required flag
+	deb_repo_name="wheezy.list"
+	deb_repo_req="no"
+	# Eval requirements
+	ep_check_repo_status
+	
 	# test if user requests it
 	if [[ "$options" == "test" ]]; then
 		# go to test function
 		ep_test_deb
 		exit
 	fi
+
+	###############################
+	#  Install
+	###############################
 	
 	# proceed to install eval
 	ep_install_eval_pkg
@@ -78,6 +164,10 @@ ep_install_firefox()
 	# Imported from the Linux Mint LMDE 2 repository
 	# Deb binary source: deb http://packages.linuxmint.com debian import
 	
+	###############################
+	#  vars
+	###############################
+	
 	# set vars
 	pkg_type="deb"
 	PKG="firefox"
@@ -89,12 +179,22 @@ ep_install_firefox()
 	# set multiflag
 	multi="n"
 	
+	# set external Deb repo required flag
+	deb_repo_name="wheezy.list"
+	deb_repo_req="no"
+	# Eval requirements
+	ep_check_repo_status
+	
 	# test if user requests it
 	if [[ "$options" == "test" ]]; then
 		# go to test function
 		ep_test_deb
 		exit
 	fi
+	
+	###############################
+	#  Install
+	###############################
 	
 	# proceed to install eval
 	ep_install_eval_pkg
@@ -131,6 +231,12 @@ ep_install_plex()
 	prefer_deb_multi_tmp="${reponame_deb_multi}"
 	prefer_plex="/etc/apt/preferences.d/${reponame_plex}"
 	prefer_deb_multi="/etc/apt/preferences.d/${reponame_deb_multi}"
+	
+	# set external Deb repo required flag
+	deb_repo_name="wheezy.list"
+	deb_repo_req="no"
+	# Eval requirements
+	ep_check_repo_status
 	
 	###############################
 	# backup
@@ -314,15 +420,8 @@ ep_install_kodi()
 	###############################
 	# Set vars
 	###############################
+	
 	pkg_type=""
-	
-	###############################
-	# sources
-	###############################
-	
-	echo -e "\n==> Configuring sources"
-	sleep 1s
-	
 	# vars
 	reponame_kodi="kodi"
 	
@@ -331,6 +430,21 @@ ep_install_kodi()
 	
 	prefer_kodi_tmp="${reponame_kodi}"
 	prefer_kodi="/etc/apt/preferences.d/${reponame_kodi}"
+	
+	# set external Deb repo required flag
+	deb_repo_name="wheezy.list"
+	deb_repo_req="no"
+	# Eval requirements
+	ep_check_repo_status
+	
+	###############################
+	# sources
+	###############################
+	
+	echo -e "\n==> Configuring sources"
+	sleep 1s
+	
+
 	
 	# Check for existance of /etc/apt/preferences.d/{reponame_kodi} file
 	if [[ -f ${reponame_kodi} ]]; then
@@ -453,6 +567,12 @@ ep_install_chrome()
 	pkg_type=""
 	install_dir="$HOME/Downloads/Chrome"
 	
+	# set external Deb repo required flag
+	deb_repo_name="wheezy.list"
+	deb_repo_req="yes"
+	# Eval requirements
+	ep_check_repo_status
+	
 	# create and enter build dir
 	if [[ -d "$install_dir" ]]; then
 		echo -e "\n==INFO==\nChrome DIR found\n"
@@ -567,12 +687,21 @@ ep_install_gdrive()
 	# Desc: command line tool for google drive.
 	# Source: https://github.com/prasmussen/gdrive
 
+	###############################	
 	# set vars
+	###############################
+	
 	pkg_type="deb"
 	PKG=gdrive
 	PKG_FILENAME="TODO"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra"
 	BIN_LOC="/usr/bin/gdrive"
+	
+	# set external Deb repo required flag
+	deb_repo_name="wheezy.list"
+	deb_repo_req="no"
+	# Eval requirements
+	ep_check_repo_status
 	
 	# set multiflag
 	multi="n"
@@ -583,6 +712,10 @@ ep_install_gdrive()
 		ep_test_deb
 		exit
 	fi
+	
+	###############################	
+	# install
+	###############################
 	
 	# ep_install_eval_pkg
 	ep_install_eval_binary
@@ -610,7 +743,10 @@ ep_install_netflix()
 	# Source build maybe possible: https://launchpad.net/~gnome3-team/+archive/ubuntu/gnome3-staging
 	# Backup plan: compile pipelight, add as post-install configuration to firefox funct. above.
 	
+	###############################	
 	# set vars
+	###############################
+	
 	pkg_type="deb"
 	PKG="netflix-desktop"
 	PKG_FILENAME="/tmp/netflix-pkg-tmp.txt"
@@ -689,9 +825,9 @@ ep_install_pipelight()
 
 	# See: http://pipelight.net/cms/install/installation-steamos.html
 
-	#######################################
-	# Vars
-	#######################################
+	###############################	
+	# set vars
+	###############################
 	
 	# source lists
 	reponame_pipelight="pipelight"
@@ -701,9 +837,15 @@ ep_install_pipelight()
 	prefer_pipelight_tmp="${reponame_pipelight}"
 	prefer_pipelight="/etc/apt/preferences.d/${reponame_pipelight}"
 	
-	#######################################
+	# set external Deb repo required flag
+	deb_repo_name="wheezy.list"
+	deb_repo_req="no"
+	# Eval requirements
+	ep_check_repo_status
+	
+	###############################
 	# file/dir checks, backups
-	#######################################
+	###############################
 	
 	# check for existance of pipelight source list
 	if [[ -f ${sourcelist_pipelight} ]]; then
@@ -722,9 +864,9 @@ ep_install_pipelight()
 	fi
 
 	
-	#######################################
+	###############################
 	# add GPG keys
-	#######################################
+	###############################
 
 	echo -e "\n==> Adding GPG key(s)"
 	sleep 1s
@@ -755,9 +897,9 @@ ep_install_pipelight()
 	# move tmp list
 	#sudo mv ${prefer_pipelight_tmp} ${prefer_pipelight}
 
-	#######################################
+	###############################
 	# Add source
-	#######################################
+	###############################
 
 	cat <<-EOF > ${sourcelist_pipelight_tmp}
 	# Pipelight repo
@@ -773,16 +915,16 @@ ep_install_pipelight()
 	# move source list
 	sudo mv ${sourcelist_pipelight_tmp} ${sourcelist_pipelight}
 
-	#######################################
+	###############################
 	# Pre-reqs
-	#######################################
+	###############################
 	
 	# 32 bit arch (if not already added)
 	sudo dpkg --add-architecture i386
 	
-	#######################################
+	###############################
 	# Install
-	#######################################
+	###############################
 
 	echo -e "\n==> Updating pacakge lists\n"
 	sleep 2s
@@ -813,9 +955,9 @@ ep_install_pipelight()
 	# provided for informational purposes, they can be safely overwritten.
 	
 	
-	#######################################
+	###############################
 	# Post-Install configs
-	#######################################
+	################################
 	
 	# The Steam internal browser only supports a subset of the NPAPI and Pipelight 
 	# is not yet compatible with this. You can therefore only use Pipelight with 

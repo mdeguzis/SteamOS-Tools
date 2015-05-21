@@ -275,7 +275,7 @@ show_help()
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[firefox|kodi|plex|x360-bindings]
+	Extra types: 	[firefox|kodi|netflix|plex|x360-bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'

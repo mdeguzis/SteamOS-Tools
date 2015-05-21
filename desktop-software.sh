@@ -275,7 +275,7 @@ show_help()
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[firefox|kodi|plex|x360-bindings]
+	Extra types: 	[firefox|kodi|netflix|plex|x360-bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -369,7 +369,7 @@ function gpg_import()
 	gpg_key_check=$(gpg --list-keys 2B90D010)
 	if [[ "$gpg_key_check" != "" ]]; then
 		echo -e "\nDebian Archive Automatic Signing Key [OK]"
-		sleep 1s
+		sleep 0.3s
 	else
 		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now..."
 		$scriptdir/utilities/gpg_import.sh 7638D0442B90D010
@@ -381,7 +381,7 @@ function gpg_import()
 	gpg_key_check=$(gpg --list-keys 65558117)
 	if [[ "$gpg_key_check" != "" ]]; then
 		echo -e "Debian Multimeda Signing Key [OK]"
-		sleep 1s
+		sleep 0.3s
 	else
 		echo -e "Debian Multimeda Signing Key [FAIL]. Adding now..."
 		$scriptdir/utilities/gpg_import.sh 5C808C2B65558117

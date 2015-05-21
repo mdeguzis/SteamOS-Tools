@@ -16,7 +16,7 @@ ep_pkg_cleanup()
 	# cleanup package remenants and other files
 	#####################################################
 	
-	echo -e "\n==> Cleaning up pacakges, files, and other garbage\n"
+	echo -e "\n==> Cleaning up packages, files, and other garbage\n"
 	sleep 2s
 	
 	# Attempt to fix any missing packages 
@@ -585,12 +585,6 @@ ep_install_chrome()
 		# attempt to use default DIR
 		cd "/home/desktop/SteamOS-Tools/"
 	fi
-
-	###############################	
-	# Post conf for Netflix
-	###############################
-
-	# TODO
 	
 	###############################	
 	# Cleanup
@@ -654,7 +648,7 @@ ep_install_gdrive()
 ep_install_netflix()
 {
 
-	echo -e "\n==> Installing Netflix (via Chrome) from automated script..."
+	echo -e "\n==> Installing Netflix (via Chrome) from automated script...\n"
 	sleep 2s
 
 	#######################################
@@ -662,11 +656,14 @@ ep_install_netflix()
 	#######################################
 	
 	# required to display x window for Chrome
-	sudo apt-get install xserver-xephy
+	sudo apt-get install xserver-xephyr
 
 	#######################################
 	# Software function pre-req
 	#######################################
+	
+	echo -e "\n==> Installing pre-requisite software"
+	sleep 1s
 
 	pkg_test=$(which google-chrome-stable)
 
@@ -680,20 +677,30 @@ ep_install_netflix()
 	#######################################
 	# Configuration
 	#######################################
+
+	echo -e "\n==> Configuring"
+	sleep 1s
 	
 	# copy launcher to /usr/bin
 	sudo cp "$scriptdir/cfgs/netflix/Netflix-Launch.sh" "/usr/bin"
+	
+	# copy over desktop shortcut
+	sudo cp "$scriptdir/cfgs/netflix/Netflix.desktop" "/usr/share/applications"
 	
 	# mark exec
 	sudo chmod +x "/usr/bin/Netflix-Launch.sh"
 	
 	# copy banner
-	sudo cp "$scriptdir/cfgs/Netflix.png" "/home/steam/Pictures"
+	sudo cp "$scriptdir/cfgs/netflix/Netflix.png" "/home/steam/Pictures"
 
 	# NOTE:
 	# Mouse support with cursor is fine
 	# Currently working on some kind of xboxdrv swap out
 	# to allow arrow keys
+	
+	# fix ownership if need be
+	
+	sudo chown -R steam:steam "/home/steam/Pictures"
 	
 	#####################################################
 	# PKG NAME

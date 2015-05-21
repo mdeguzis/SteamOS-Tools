@@ -292,15 +292,14 @@ ep_install_plex()
 	# install Plex Home Theater
 	sudo apt-get -t wheezy install plexhometheater -y
 	
-	echo -e "\n==> Cleanup"
-	sleep 1s
-	
 	###############################
 	# cleanup
 	###############################
 	
-	# cleanup any old packages
 	rm -rf /tmp/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb
+	ep_pkg_cleanup
+	
+	# cleanup any old apt packages
 	sudo apt-get autoremove
   
 }

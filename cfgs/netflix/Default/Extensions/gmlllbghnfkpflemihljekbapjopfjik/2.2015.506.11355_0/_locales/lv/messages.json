@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Koplietojiet šo mapi vai mainiet koplietošanas iestatījumus."
+   },
+   "1014969137789706237": {
+      "message": "Saite uz lapu vai failu citviet tīmeklī"
+   },
+   "1033240210015440654": {
+      "message": "Noņemt attēlu"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} minūte}zero{{TEXT} minūtes}one{{TEXT} minūte}other{{TEXT} minūtes}}"
+   },
+   "1035347665345261212": {
+      "message": "Ievadiet piezīmi"
+   },
+   "1036132178487616999": {
+      "message": "Ievads"
+   },
+   "1041064392303158655": {
+      "message": "Limbu"
+   },
+   "1066103686460691847": {
+      "message": "Pārsvītrot"
+   },
+   "1085496824897012476": {
+      "message": "Ēģiptiešu hieroglifi"
+   },
+   "1105045461281211798": {
+      "message": "Kombinēto grafēmu savienotājs"
+   },
+   "111315886393984302": {
+      "message": "Saglabājiet dažus tīmekļa vienumus kā grāmatzīmes un pievienojiet tos šai mapei."
+   },
+   "1117324761561996205": {
+      "message": "Rediģēt"
+   },
+   "1124849668149719420": {
+      "message": "Ievadiet atsauksmes"
+   },
+   "1142044035368837035": {
+      "message": "Lielā kvarta"
+   },
+   "1148670835609345833": {
+      "message": "Grāmatzīmes rediģēšanas poga"
+   },
+   "1161548997573254809": {
+      "message": "Atcelt"
+   },
+   "1164857998440803763": {
+      "message": "Čakma"
+   },
+   "1170102576258588460": {
+      "message": "Nedalāmā defise"
+   },
+   "1185158158029036642": {
+      "message": "Noklikšķiniet, lai izveidotu jaunu grāmatzīmi vai jaunu mapi."
+   },
+   "1201286409038567178": {
+      "message": "nederīgs URL"
+   },
+   "1214729854306268929": {
+      "message": "pirms $NUM$ minūtēm",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{pirms # stundām}=1{pirms # stundas}zero{pirms # stundām}one{pirms # stundas}other{pirms # stundām}}"
+   },
+   "1232723730191754374": {
+      "message": "Fonts"
+   },
+   "1243361230826165709": {
+      "message": "Hangul"
+   },
+   "128696227290770661": {
+      "message": "Devanāgarī"
+   },
+   "1312606838421552827": {
+      "message": "Skaitļi"
+   },
+   "1316608632339176215": {
+      "message": "Dažādas rakstzīmes"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "Ceturtdaļa no lielās atstarpes"
+   },
+   "1337190557080419948": {
+      "message": "Nosaukums"
+   },
+   "1347841728719446841": {
+      "message": "E-pasta adrese"
+   },
+   "1350404634989083059": {
+      "message": "Neredzamā pluszīme"
+   },
+   "1356908927221815545": {
+      "message": "Hanu 1 vilkuma radikāļi"
+   },
+   "1373666411928680514": {
+      "message": "Viļņotā atdalāmā zīme"
+   },
+   "1378894003206512970": {
+      "message": "Noraidīt"
+   },
+   "138484781723580209": {
+      "message": "Sīriešu saīsinājuma zīme"
+   },
+   "1397568831960098153": {
+      "message": "Formāts"
+   },
+   "142359106099692409": {
+      "message": "Automātiski izveidotās mapes"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Mazs"
+   },
+   "1460136507747533015": {
+      "message": "Lai varētu koplietot mapi, lūdzu, pierakstieties."
+   },
+   "1477567329816921885": {
+      "message": "Vai zinājāt, ka varat kopīgot savas iecienītākās grāmatzīmes, izveidojot publisku mapi? Iegūstiet publisko URL un kopīgojiet to!"
+   },
+   "1507362459078633250": {
+      "message": "Diemžēl jums būs jāaizver un atkārtoti jāielādē Chrome paplašinājums un/vai jāsazinās ar inženieru komandu."
+   },
+   "1516565793778879679": {
+      "message": "Hanu — citi"
+   },
+   "1519227660570105215": {
+      "message": "Šī lapa var būt kaitīga."
+   },
+   "1556175764217302644": {
+      "message": "Khmeru patskanis: raksturīgs Aa"
+   },
+   "1566367040709255091": {
+      "message": "Formāts"
+   },
+   "1582412901770221448": {
+      "message": "Pievienots mapei “{FOLDER_NAME}”"
+   },
+   "1585233503778646014": {
+      "message": "Mandejiešu"
+   },
+   "1592899529499992997": {
+      "message": "Grāmatzīme ir noņemta no mapes."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Lai skatītu rakstzīmes nosaukumu, virziet kursoru virs attiecīgās šūnas."
+   },
+   "1630439475247732904": {
+      "message": "Augšraksts"
+   },
+   "1634874677195552014": {
+      "message": "Sestdaļa no lielās atstarpes"
+   },
+   "1635366592844795535": {
+      "message": "PIERAKSTĪTIES PĀRLŪKPROGRAMMĀ CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Laikapstākļu un astroloģiskās rakstzīmes"
+   },
+   "1665234249876251486": {
+      "message": "Rakstzīmes platuma atstarpe"
+   },
+   "1666311405952625458": {
+      "message": "Laikapstākļi, ainas un zodiaka zīmes"
+   },
+   "1678004121951995792": {
+      "message": "Aug"
+   },
+   "1680034627075195442": {
+      "message": "Varat izveidot savas mapes vai ļaut uzņēmumam Google kārtot grāmatzīmes jūsu vietā, izveidojot automātiskās mapes."
+   },
+   "1683451665637766512": {
+      "message": "Saite uz e-pasta adresi"
+   },
+   "1685884502412781083": {
+      "message": "Rindkopu atdalītājs"
+   },
+   "169055910458549089": {
+      "message": "Nevarēja izveidot savienojumu ar mūsu serveri. Lūdzu, pēc dažām minūtēm mēģiniet vēlreiz."
+   },
+   "1691734467561749621": {
+      "message": "Diemžēl nevar koplietot grāmatzīmju joslā esošās mapes."
+   },
+   "1715361312704502898": {
+      "message": "Transporta un karšu rakstzīmes"
+   },
+   "1719053155706676551": {
+      "message": "Grāmatzīmju josla"
+   },
+   "1730849295731139586": {
+      "message": "Ji"
+   },
+   "1748899684018766272": {
+      "message": "Pusplatuma Hangul aizpildītājs"
+   },
+   "1755438325907288056": {
+      "message": "Nko"
+   },
+   "1776387440523546537": {
+      "message": "Šodien"
+   },
+   "178181731883558542": {
+      "message": "Tekstlodziņš meklēšanai grāmatzīmēs."
+   },
+   "1791083579000016877": {
+      "message": "Balstīts uz ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Skatīt ar zvaigznīti atzīmētos vienumus"
+   },
+   "1803667155949248788": {
+      "message": "Imperiālie aramiešu"
+   },
+   "1827599404395723350": {
+      "message": "Vadīklu attēli"
+   },
+   "1839253253564716482": {
+      "message": "Nav atrasta neviena grāmatzīme."
+   },
+   "1847259066982820034": {
+      "message": "Izvēlēties mapi"
+   },
+   "1875246104836450162": {
+      "message": "Simbols"
+   },
+   "1879633738298009258": {
+      "message": "Vidējā matemātiskā atstarpe"
+   },
+   "1915655034817606796": {
+      "message": "Pārnesuma zīme"
+   },
+   "191946029988896895": {
+      "message": "Arābu numura zīme"
+   },
+   "1932973762029792550": {
+      "message": "Google automātiski kārto visus vienumus, kurus saglabājat kā grāmatzīmes."
+   },
+   "1942405576047748946": {
+      "message": "Grāmatzīme ir izveidota."
+   },
+   "196266011387145001": {
+      "message": "Turpināt"
+   },
+   "1963154331052663396": {
+      "message": "Latīņu rakstzīmes"
+   },
+   "1999193032742275907": {
+      "message": "Hanu 9 vilkumu radikāļi"
+   },
+   "2003860471263842959": {
+      "message": "Ļoti maza atstarpe"
+   },
+   "2015775921681923490": {
+      "message": "Iestatījumi"
+   },
+   "202031328373263910": {
+      "message": "Hanu 6 vilkumu radikāļi"
+   },
+   "2036672715320764541": {
+      "message": "Līnijas atdalītājs"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Vienums ir noņemts no mapes.}zero{No mapes ir noņemti # vienumi.}one{No mapes ir noņemts # vienums.}other{No mapes ir noņemti # vienumi.}}"
+   },
+   "2088133380647290173": {
+      "message": "Vietnē {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Ievadiet URL, lai izveidotu jaunu grāmatzīmi."
+   },
+   "2117634893694108880": {
+      "message": "Privāta"
+   },
+   "2135921744011555145": {
+      "message": "Meklējiet grāmatzīmēs"
+   },
+   "213958631597214757": {
+      "message": "Pārtraukt koplietošanu "
+   },
+   "2149498606985329379": {
+      "message": "Grāmatzīmju importēšana ir pabeigta."
+   },
+   "2159536073195133897": {
+      "message": "Atsaukt"
+   },
+   "2166866096346653276": {
+      "message": "Nav"
+   },
+   "2167636135101203592": {
+      "message": "Bengāļu"
+   },
+   "2176930521411607789": {
+      "message": "Pāra rakstzīmes"
+   },
+   "218054763532467155": {
+      "message": "Ievadiet nosaukumu"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Dzēst vienumu \u003Cb>{firstItemName}\u003C/b>}=1{Dzēst vienumu \u003Cb>{firstItemName}\u003C/b> un vēl # vienumu}zero{Dzēst vienumu \u003Cb>{firstItemName}\u003C/b> un vēl # vienumus}one{Dzēst vienumu \u003Cb>{firstItemName}\u003C/b> un vēl # vienumu}other{Dzēst vienumu \u003Cb>{firstItemName}\u003C/b> un vēl # vienumus}}"
+   },
+   "2200921183377473543": {
+      "message": "Jā"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{pirms # dienām}=1{pirms # dienas}zero{pirms # dienām}one{pirms # dienas}other{pirms # dienām}}"
+   },
+   "2228495834106697427": {
+      "message": "Apakšraksts"
+   },
+   "2253752461533441758": {
+      "message": "Hanu 10 vilkumu radikāļi"
+   },
+   "2257250286834696444": {
+      "message": "Notiek ielāde..."
+   },
+   "2280907281518645401": {
+      "message": "Katakana-hiragana dubultā defise"
+   },
+   "2301390744929043794": {
+      "message": "Lūdzu, uzgaidiet, kamēr jūsu mape tiek saglabāta serverī."
+   },
+   "2315132909835126412": {
+      "message": "Publiska"
+   },
+   "2315864755754275083": {
+      "message": "Valūta"
+   },
+   "231658276152304252": {
+      "message": "Noņemt"
+   },
+   "2353164220175503425": {
+      "message": "Kaithi numerācijas zīme"
+   },
+   "2359350477261263182": {
+      "message": "Grāmatzīmju pārvaldnieks"
+   },
+   "2362075348358411947": {
+      "message": "Saraksts ar aizzīmēm"
+   },
+   "2396988228061015409": {
+      "message": "Mapes"
+   },
+   "2398127458667829603": {
+      "message": "Tastatūra un lietotāja saskarne"
+   },
+   "2413859014200470621": {
+      "message": "Palielināt atkāpi"
+   },
+   "2414987366409119013": {
+      "message": "Jaunās mapes apraksts (neobligāti)"
+   },
+   "2444245672676114535": {
+      "message": "Ģeometriskas figūras"
+   },
+   "2454859602363061373": {
+      "message": "Izmantojiet adreses joslā redzamo zvaigznīti, lai saglabātu tīmekļa lapas."
+   },
+   "2497668314434532819": {
+      "message": "Mongoļu"
+   },
+   "2498668179494167671": {
+      "message": "Atstarpe"
+   },
+   "2506204110427755391": {
+      "message": "Ietvertas mobilās grāmatzīmes, kā arī jūsu grāmatzīmju joslā neesoši vienumi."
+   },
+   "2512307863902593558": {
+      "message": "Kharosti"
+   },
+   "2518095696810513128": {
+      "message": "Importēt grāmatzīmes..."
+   },
+   "2524757118580919241": {
+      "message": "Arābu vēres atzīme"
+   },
+   "2528672033407304265": {
+      "message": "Šī mape ir redzama tikai jums. Lai to koplietotu, noklikšķiniet uz “Iestatīt kā publisku”, un jūs saņemsiet koplietojamu saiti."
+   },
+   "2566403151253785267": {
+      "message": "Mape bez nosaukuma"
+   },
+   "2581794950690518802": {
+      "message": "0 minūšu"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Nerādīt ievadu"
+   },
+   "2620868598794227408": {
+      "message": "Šī lapa vairs nepastāv."
+   },
+   "2626676714216619519": {
+      "message": "Apakšvirsraksts"
+   },
+   "2655730128699057253": {
+      "message": "Parasts"
+   },
+   "2662413919655166560": {
+      "message": "Svētdiena"
+   },
+   "2665932089093244134": {
+      "message": "Atzīmējiet ar zvaigznīti jebkuru lapu"
+   },
+   "2678821645623495183": {
+      "message": "Cilvēki un emocijas"
+   },
+   "271255586148025786": {
+      "message": "Heksadecimāla ievade"
+   },
+   "27472132823239706": {
+      "message": "No labās puses uz kreiso"
+   },
+   "278208331708453602": {
+      "message": "Lai koplietotu mapi, izveidojiet savienojumu ar tīmekli un pierakstieties."
+   },
+   "2785193083209311775": {
+      "message": "Mar"
+   },
+   "2803486006471792395": {
+      "message": "izveidoja \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Ogamiskais raksts"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Importētas no faila"
+   },
+   "2860423337665026261": {
+      "message": "Noņemt no mapes"
+   },
+   "2870049984905408346": {
+      "message": "Virsraksts"
+   },
+   "2878157583475586619": {
+      "message": "Pievienot krāsu"
+   },
+   "2926789704127794819": {
+      "message": "Jaunās mapes nosaukums (obligāti)"
+   },
+   "2951727458776714094": {
+      "message": "Šo saiti nevar pārbaudīt."
+   },
+   "2967109838548277236": {
+      "message": "Koplietošanas saite:"
+   },
+   "2990895581472607445": {
+      "message": "Citas rakstzīmes"
+   },
+   "2993160588184042952": {
+      "message": "Amerikāņu raksti"
+   },
+   "3002524775820283106": {
+      "message": "Pievienojiet piezīmi..."
+   },
+   "3010872256194497959": {
+      "message": "Spēļu figūras"
+   },
+   "3027920889685525544": {
+      "message": "Iegravējumu partiešu"
+   },
+   "3034084095590774557": {
+      "message": "Ignorēt"
+   },
+   "3051034269680162898": {
+      "message": "Noraidīt"
+   },
+   "3054430907861836285": {
+      "message": "Dec"
+   },
+   "3085746489633838782": {
+      "message": "Numurēts saraksts"
+   },
+   "3087091861834859241": {
+      "message": "Iepazīstinām jūs ar jaunajām grāmatzīmēm!"
+   },
+   "3090613379634438188": {
+      "message": "Meores hieroglifi"
+   },
+   "3093070593773009381": {
+      "message": "Citi Austrumāzijas raksti"
+   },
+   "3114565967060091369": {
+      "message": "Hanuno"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{pēc # stundām}=1{pēc # stundas}zero{pēc # stundām}one{pēc # stundas}other{pēc # stundām}}"
+   },
+   "3140214171317206668": {
+      "message": "Vidējā kvarta"
+   },
+   "3153433695439945201": {
+      "message": "Izmantojiet zvaigznīti, lai lapu atzīmētu kā grāmatzīmi (kā parasti). Tādējādi daļa no lapas satura tiks saglabāta jūsu Google kontā, lai vēlāk to būtu vieglāk atrast."
+   },
+   "3186183325550234111": {
+      "message": "Atvērt šo saiti: "
+   },
+   "3212472770580267001": {
+      "message": "Dienvidaustrumāzijas raksti"
+   },
+   "3218408007702426636": {
+      "message": "Mūzikas simbols: legato beigas"
+   },
+   "3227675900195928275": {
+      "message": "Redžangas"
+   },
+   "3234811075540284463": {
+      "message": "Parasts"
+   },
+   "3244450940425660505": {
+      "message": "Interpunkcijas rakstzīmes"
+   },
+   "3245712009497198424": {
+      "message": "pēc $NUM$ dienas",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Nav neviena meklēšanas rezultāta."
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Vai vēlaties dzēst arī šajā mapē esošos vienumus?}zero{Vai vēlaties dzēst arī šajās mapēs esošos vienumus?}one{Vai vēlaties dzēst arī šajās mapēs esošos vienumus?}other{Vai vēlaties dzēst arī šajās mapēs esošos vienumus?}}"
+   },
+   "3284734782999930756": {
+      "message": "Vietrādis URL"
+   },
+   "328616644571689303": {
+      "message": "Mūzikas simbols: legato frāzes beigas"
+   },
+   "3309586635668050685": {
+      "message": "Ignorēšana no kreisās puses uz labo"
+   },
+   "3316092543008555482": {
+      "message": "Fonētika (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonētika (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Mape ir izveidota."
+   },
+   "3334908307836130914": {
+      "message": "Santalu"
+   },
+   "3355297279379313357": {
+      "message": "Pēdējā izmantotā"
+   },
+   "3360043590563638195": {
+      "message": "Fonta lielums"
+   },
+   "3364831016239212879": {
+      "message": "Līdzināt uz centru"
+   },
+   "3383495912989125674": {
+      "message": "Šaurā atstarpe"
+   },
+   "340057911065586090": {
+      "message": "Ideogrāfiskā atstarpe"
+   },
+   "3413537935166399959": {
+      "message": "Šarada"
+   },
+   "3413696263226173348": {
+      "message": "Rediģēt vārdu"
+   },
+   "3417560136558853718": {
+      "message": "Kannadu"
+   },
+   "3423652049926153935": {
+      "message": "Jauna mape..."
+   },
+   "3484416881429158332": {
+      "message": "Privāta mape"
+   },
+   "3490738610910152047": {
+      "message": "Bamuma"
+   },
+   "3490814222385998788": {
+      "message": "Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Vienums ir izdzēsts.}zero{Ir izdzēsti # vienumi.}one{Ir izdzēsts # vienums.}other{Ir izdzēsti # vienumi.}}"
+   },
+   "3501212562096780610": {
+      "message": "Vecākmape: "
+   },
+   "3501367450176932554": {
+      "message": "Starprindu piezīmju atdalītājs"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Oriju"
+   },
+   "3545341282138953352": {
+      "message": "Mūzikas simbols: legato sākums"
+   },
+   "3546572522856950945": {
+      "message": "Ķīļraksts"
+   },
+   "3554323414956249846": {
+      "message": "Saite"
+   },
+   "3572348996000195345": {
+      "message": "Lielā atstarpe"
+   },
+   "3596311690500158112": {
+      "message": "Grāmatzīmju pārvaldnieks īslaicīgi nav pieejams. Lūdzu, atkārtoti ielādējiet lapu."
+   },
+   "3621913747018973144": {
+      "message": "No kreisās puses uz labo"
+   },
+   "362505154270301776": {
+      "message": "Tīmekļa lapas"
+   },
+   "3630778778193389974": {
+      "message": "Pareizrakstības pārbaude"
+   },
+   "3641126700487126155": {
+      "message": "Mūzikas simbols: legato frāzes sākums"
+   },
+   "3646623530558910508": {
+      "message": "Mape ir izmainīta."
+   },
+   "3646641743349296313": {
+      "message": "Okt"
+   },
+   "3650952447025672637": {
+      "message": "Dzēst mapes un vienumus"
+   },
+   "3723533099349282495": {
+      "message": "Kaiti"
+   },
+   "37315674215151127": {
+      "message": "Kārtojiet savas grāmatzīmes"
+   },
+   "3731716253672925709": {
+      "message": "Bultiņas"
+   },
+   "373495866496779840": {
+      "message": "SKATĪT VISUS VIENUMUS, KAS IR SAGLABĀTI KĀ GRĀMATZĪMES"
+   },
+   "3735789968703193383": {
+      "message": "Skats"
+   },
+   "3737215641755068426": {
+      "message": "CJK vilkumi"
+   },
+   "3752699251010579834": {
+      "message": "Kanādiešu sillabiskā defise"
+   },
+   "377368134657453613": {
+      "message": "Lai veiktu meklēšanu lapās, kas ir saglabātas kā grāmatzīmes, pierakstieties pārlūkā Chrome."
+   },
+   "3800528517409823312": {
+      "message": "Matemātiskās burtciparu rakstzīmes"
+   },
+   "3832066920911226237": {
+      "message": "Eksportēt grāmatzīmes..."
+   },
+   "3836877357378306877": {
+      "message": "Vispārpieņemtas rakstzīmes"
+   },
+   "3880744822029422406": {
+      "message": "Ja pārtrauksiet koplietot šo mapi, koplietošanas saite vairs nedarbosies."
+   },
+   "3888658965293980754": {
+      "message": "Formāts"
+   },
+   "3893161213200925599": {
+      "message": "Atcelt"
+   },
+   "3924970930634517299": {
+      "message": "Apraksts"
+   },
+   "3947500116452515010": {
+      "message": "Šeit vēl nav nevienas grāmatzīmes!"
+   },
+   "3951067234379178869": {
+      "message": "Mape ir izdzēsta."
+   },
+   "3953750991047324531": {
+      "message": "Gudžaratu"
+   },
+   "3960988854399920931": {
+      "message": "Afrikāņu raksti"
+   },
+   "3977845230474613475": {
+      "message": "Pirmdiena"
+   },
+   "3978409745488989414": {
+      "message": "Rīt"
+   },
+   "3981527568769423358": {
+      "message": "Variantu atlasītājs"
+   },
+   "3998968827975494252": {
+      "message": "Kanādas iezemiešu"
+   },
+   "4052124018014680002": {
+      "message": "Tā kā sadaļā “Papildu sinhronizācijas iestatījumi” esat izvēlējies šifrēt savas grāmatzīmes, esam atspējojuši funkcionalitāti, kas uzņēmumam Google jāizmanto, lai piekļūtu jūsu saturam."
+   },
+   "4070285516355502772": {
+      "message": "Vārdu savienotājs"
+   },
+   "4083819681339999404": {
+      "message": "Mape ir pārvietota."
+   },
+   "4093661547607027073": {
+      "message": "Domuzīme"
+   },
+   "4132740194577129031": {
+      "message": "Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Tamilu"
+   },
+   "4141340144529743179": {
+      "message": "Līdzināt pa labi"
+   },
+   "4185431426264249075": {
+      "message": "Nē"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{pirms # minūtēm}=1{pirms # minūtes}zero{pirms # minūtēm}one{pirms # minūtes}other{pirms # minūtēm}}"
+   },
+   "4207416107225157509": {
+      "message": "Čemu"
+   },
+   "421809097037025717": {
+      "message": "Līdiešu"
+   },
+   "4219066138225986920": {
+      "message": "pirms $NUM$ stundām",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "Tai lī jaunā rakstība"
+   },
+   "4256734561546878891": {
+      "message": "Arābu"
+   },
+   "4257688962636177926": {
+      "message": "Piezīme"
+   },
+   "4313041477349547430": {
+      "message": "Atlasīt"
+   },
+   "4317807879399263422": {
+      "message": "Simboli"
+   },
+   "4371152527205140884": {
+      "message": "Birmiešu"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Hangul aizpildītājs"
+   },
+   "4394299965695763613": {
+      "message": "KĻŪDA: krāsa “$COLOR$” nav derīga.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "pēc $NUM$ stundas",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Atvērt šo saiti jaunā logā"
+   },
+   "4436859540429978060": {
+      "message": "Pašlaik nav iespējams vilkt un nomest attēlu failus.\nLūdzu, nometiet attēlu no tīmekļa pārlūkprogrammas."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Vaju"
+   },
+   "4467383198992095863": {
+      "message": "Domuzīmes un savienotāji"
+   },
+   "4485563787650970048": {
+      "message": "Transports, kartes un ceļrāži"
+   },
+   "4511605174156009486": {
+      "message": "PIERAKSTĪTIES"
+   },
+   "4536708754459423390": {
+      "message": "Saistīt ar:"
+   },
+   "4547888102017603305": {
+      "message": "Ievadiet pielāgotu krāsu, piemēram, “pink”, #F00, #D015FF vai RGB(100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Režģis"
+   },
+   "4564357083324116837": {
+      "message": "Dienvidāzijas raksti"
+   },
+   "4604654420597817764": {
+      "message": "Nulles platuma nesavienotājs"
+   },
+   "4631096075002795557": {
+      "message": "Braila raksts"
+   },
+   "4639190252078874549": {
+      "message": "Jūsu grāmatzīmes ir atjauninātas, tādēļ ir vieglāk atrast saglabātās lapas."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Vienums ir pārvietots.}zero{Ir pārvietoti # vienumi.}one{Ir pārvietots # vienums.}other{Ir pārvietoti # vienumi.}}"
+   },
+   "4677342274083596624": {
+      "message": "Bezsaistes režīms"
+   },
+   "4680868343849876958": {
+      "message": "Senā turku"
+   },
+   "468549910877472151": {
+      "message": "Importētas"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Senpersiešu"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Rīkojieties uzmanīgi!$POSTB$ Ņemiet vērā, ka ikreiz, kad kādā tīmekļa lapā ievietojat e-pasta adresi, to var atrast arī surogātpasta sūtītāji.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Tagalu"
+   },
+   "4747022692863822805": {
+      "message": "Mīnusa zīme — defise"
+   },
+   "4749120223198822539": {
+      "message": "Singāļu"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Dzēst mapi un vienumus"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Vienums ir pārvietots.}zero{Ir pārvietoti # vienumi.}one{Ir pārvietots # vienums.}other{Ir pārvietoti # vienumi.}}"
+   },
+   "482762608498192214": {
+      "message": "Sestdiena"
+   },
+   "4833178038692710844": {
+      "message": "Apvērstas un spoguļskatā attēlotas rakstzīmes"
+   },
+   "484556867028550958": {
+      "message": "Ivrita interpunkcija Maqaf"
+   },
+   "4848946125726663758": {
+      "message": "Līdzināt pa kreisi"
+   },
+   "4849410737412842755": {
+      "message": "Jūs nevarat koplietot šo mapi, jo tās vecākmape nav publiski koplietota."
+   },
+   "4856510901676745213": {
+      "message": "Ebreju"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{pēc # dienām}=1{pēc # dienas}zero{pēc # dienām}one{pēc # dienas}other{pēc # dienām}}"
+   },
+   "4886850400045987885": {
+      "message": "Saites rediģēšana"
+   },
+   "4894342917447426362": {
+      "message": "Latīņu-1 pielikums"
+   },
+   "4895451769213934183": {
+      "message": "Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Prezentācijas veidlapa vertikālai vienotājdomuzīmei"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Vienums ir mainīts.}zero{Ir mainīti # vienumi.}one{Ir mainīts # vienums.}other{Ir mainīti # vienumi.}}"
+   },
+   "4934771438157777517": {
+      "message": "Pasvītrojums"
+   },
+   "4943286974087295923": {
+      "message": "Aizvērt"
+   },
+   "4944188657066537729": {
+      "message": "Sīriešu"
+   },
+   "4974279938502768331": {
+      "message": "Rediģēt"
+   },
+   "4987339278179088082": {
+      "message": "Pievienot atribūtu “$REL_NO_FOLLOW$” ($LINK_START$uzzināt vairāk$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Parādāmais teksts:"
+   },
+   "4991252214297708837": {
+      "message": "Mapes apraksts"
+   },
+   "500023300077018967": {
+      "message": "Nav neviena ieteikuma"
+   },
+   "5002702571780362629": {
+      "message": "Avestas"
+   },
+   "5013372925252634952": {
+      "message": "Kariešu"
+   },
+   "5015669074913229206": {
+      "message": "Baliešu"
+   },
+   "5016723309142316836": {
+      "message": "Gurmuki"
+   },
+   "5042512453093360461": {
+      "message": "Uznires virziena formatēšana"
+   },
+   "5086992011880811613": {
+      "message": "Grāmatzīme ir izdzēsta."
+   },
+   "5089168125978769021": {
+      "message": "Dzēst mapi"
+   },
+   "5089667744614498582": {
+      "message": "Grāmatzīme ir pārvietota."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Mūzikas simbols: sākuma slita"
+   },
+   "5109840495091366547": {
+      "message": "Sports, svētki un aktivitātes"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Jauna mape"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} diena}zero{{TEXT} dienas}one{{TEXT} diena}other{{TEXT} dienas}}"
+   },
+   "5162393477556833033": {
+      "message": "Ar kādu URL ir jābūt saistītai šai saitei?"
+   },
+   "518089704180562683": {
+      "message": "Šodien"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Rūnu"
+   },
+   "5253985055078626542": {
+      "message": "Iegulšana no kreisās puses uz labo"
+   },
+   "5266193592374285468": {
+      "message": "Iestatīt kā publisku"
+   },
+   "5272267167655788064": {
+      "message": "Attēls"
+   },
+   "528339682728930567": {
+      "message": "Grāmatzīmju pārvaldnieks īslaicīgi nav pieejams. Lūdzu, pēc dažām minūtēm mēģiniet vēlreiz."
+   },
+   "5300191622079400984": {
+      "message": "Visi"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Noklikšķiniet, lai pievienotu aprakstu"
+   },
+   "5334597244901829906": {
+      "message": "Koplietot šo mapi"
+   },
+   "534304870772683249": {
+      "message": "Iesniegt"
+   },
+   "534369010818044160": {
+      "message": "Khmeru"
+   },
+   "5354142472798067112": {
+      "message": "Varianta atlasītājs — $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Nav tīkla savienojuma. Izmaiņas varēsiet saglabāt tikai tad, kad atkal būsiet tiešsaistē."
+   },
+   "5371009567664142864": {
+      "message": "Etiopiešu"
+   },
+   "5378436065321978089": {
+      "message": "Izveidot"
+   },
+   "538263398271363120": {
+      "message": "Čiroku"
+   },
+   "5412265752110327977": {
+      "message": "Saderība"
+   },
+   "5425054962709217464": {
+      "message": "Trešdiena"
+   },
+   "544490805551236927": {
+      "message": "Tuvo austrumu raksti"
+   },
+   "5448654348317290038": {
+      "message": "Vienotājdomuzīme"
+   },
+   "5456454482863742119": {
+      "message": "Dzēst mapes"
+   },
+   "5458956770053499082": {
+      "message": "Mūzikas rakstzīmes"
+   },
+   "546306107859654806": {
+      "message": "Pārvietot uz mapi"
+   },
+   "5474647412096976366": {
+      "message": "Lai veiktu meklēšanu lapās, kas ir saglabātas kā grāmatzīmes, izveidojiet savienojumu ar internetu."
+   },
+   "5500830105937873966": {
+      "message": "Dzēst"
+   },
+   "5517581353492371385": {
+      "message": "Vakar"
+   },
+   "5521943762943322583": {
+      "message": "Laosiešu"
+   },
+   "5529569087489430384": {
+      "message": "Iegravējumu pehlevi"
+   },
+   "5561412620611998456": {
+      "message": "Sep"
+   },
+   "5579702837382664819": {
+      "message": "Automātiski izveidota mape “\u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>”"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gotu"
+   },
+   "5603457799050818619": {
+      "message": "Pašlaik nav nevienas automātiski izveidotas mapes."
+   },
+   "5603774725128707055": {
+      "message": "Mape ir pārvietota."
+   },
+   "5621148847082889884": {
+      "message": "Šeit vēl nav nevienas mapes!"
+   },
+   "5669644158906503623": {
+      "message": "Arābu zīme Sanah"
+   },
+   "5672850901284728452": {
+      "message": "Atvērt žurnāla lapu"
+   },
+   "5673852407127287054": {
+      "message": "Mīnusa zīme — pilna platuma defise"
+   },
+   "5679720964567650205": {
+      "message": "Otrdiena"
+   },
+   "5748894773514291207": {
+      "message": "Trešdaļa no lielās atstarpes"
+   },
+   "5749465969550038727": {
+      "message": "Tagbanua"
+   },
+   "5773338884170027267": {
+      "message": "Noņemt formatējumu"
+   },
+   "5776478286503179051": {
+      "message": "Hanu 5 vilkumu radikāļi"
+   },
+   "5778201074245568998": {
+      "message": "Treknraksts"
+   },
+   "580023699785819803": {
+      "message": "Tibetiešu"
+   },
+   "5815994514834119961": {
+      "message": "Yijing un Tai Xuan Jing"
+   },
+   "5822895345080436445": {
+      "message": "Attēli"
+   },
+   "5832273633751333051": {
+      "message": "Silhetu nagri"
+   },
+   "5837746770084243727": {
+      "message": "Zīmes"
+   },
+   "5842240706321147978": {
+      "message": "Izveidot saiti"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Atdalāmās rakstzīmes"
+   },
+   "5923476740499653277": {
+      "message": "Glagolica"
+   },
+   "6002018674529763527": {
+      "message": "Nedalāmā atstarpe"
+   },
+   "6013038186284817941": {
+      "message": "Hanu 8 vilkumu radikāļi"
+   },
+   "6014514403103768983": {
+      "message": "Krāsas heksadecimālais kods"
+   },
+   "6025708931099464434": {
+      "message": "Ianna"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Teksta fona krāsa"
+   },
+   "6055751153306823909": {
+      "message": "Milzīgs"
+   },
+   "609920334473042917": {
+      "message": "Iepazīstinām jūs ar jaunajām grāmatzīmēm! Pierakstieties pārlūkprogrammā Chrome, lai varētu izmantot citas funkcijas, piemēram, labāku meklēšanu, automātiski izveidotās mapes un iepriekšējām grāmatzīmēm pievienotos attēlus."
+   },
+   "6131022146392295404": {
+      "message": "Rediģēt HTML avotu"
+   },
+   "6146119258861607037": {
+      "message": "Hanu 7 vilkumu radikāļi"
+   },
+   "6176673388074993831": {
+      "message": "Koptu"
+   },
+   "6178455470693561470": {
+      "message": "Pašlaik jūs esat bezsaistē. Lūdzu, mēģiniet vēlreiz, kad būsiet tiešsaistē."
+   },
+   "6189158371964390675": {
+      "message": "Iekļautas un punktotas rakstzīmes"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Iegulšana no labās puses uz kreiso"
+   },
+   "6207440179505974685": {
+      "message": "Šova alfabēts"
+   },
+   "6233852423673631009": {
+      "message": "Jūl"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Vai tiešām vēlaties dzēst visus šajā mapē esošos vienumus?}zero{Vai tiešām vēlaties dzēst visus šajās mapēs esošos vienumus?}one{Vai tiešām vēlaties dzēst visus šajās mapēs esošos vienumus?}other{Vai tiešām vēlaties dzēst visus šajās mapēs esošos vienumus?}}"
+   },
+   "6256177058141995632": {
+      "message": "Mongu"
+   },
+   "625779090990399178": {
+      "message": "Citas opcijas"
+   },
+   "6259598030649933216": {
+      "message": "Informācija"
+   },
+   "6263370534846330732": {
+      "message": "Tifinagu"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{Atlasīts # vienums}zero{Atlasīti # vienumi}one{Atlasīts # vienums}other{Atlasīti # vienumi}}"
+   },
+   "6281738099691391172": {
+      "message": "Teksta krāsa"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Nulles platuma nedalāmā atstarpe"
+   },
+   "6380136177516870340": {
+      "message": "Konts, ar kuru esat pierakstījies Google tīklā, atšķiras no konta, ar kuru esat pierakstījies pārlūkprogrammā Chrome."
+   },
+   "639862355711352140": {
+      "message": "UZZINĀT VAIRĀK"
+   },
+   "6410416070545265970": {
+      "message": "Pārbaudīt šo saiti"
+   },
+   "6418290353353165009": {
+      "message": "Atcelt atsaukšanu"
+   },
+   "6425676451769330238": {
+      "message": "Neatdalāmās rakstzīmes"
+   },
+   "6433056041891472200": {
+      "message": "Pierakstieties, lai iespējotu šo funkciju"
+   },
+   "6437997645764562921": {
+      "message": "Hangul Choseong aizpildītājs"
+   },
+   "6470997799115367716": {
+      "message": "Saurastru"
+   },
+   "6471970833583478119": {
+      "message": "Apakšvirsraksts"
+   },
+   "6473682978091349952": {
+      "message": "Interpunkcijas atstarpe"
+   },
+   "6489221588545746734": {
+      "message": "Kirilica"
+   },
+   "64909648993550346": {
+      "message": "Ignorēšana no labās puses uz kreiso"
+   },
+   "649459667039033491": {
+      "message": "pēc $NUM$ dienām",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Nulles platuma atstarpe"
+   },
+   "6539448903465735867": {
+      "message": "Mūzikas simbols: sākuma frāze"
+   },
+   "6544224848752157941": {
+      "message": "Samazināt atkāpi"
+   },
+   "6559526625155197659": {
+      "message": "Google meklēšana īslaicīgi nav pieejama. Pēc dažām minūtēm mēģiniet vēlreiz."
+   },
+   "6563689176501108246": {
+      "message": "Hanu 3 vilkumu radikāļi"
+   },
+   "6572308230373875858": {
+      "message": "Šīs mapes nosaukumā ir nederīgas rakstzīmes."
+   },
+   "6604826525171204065": {
+      "message": "Buhida"
+   },
+   "6606727931314199470": {
+      "message": "Feniķiešu"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ x $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Nevar sinhronizēt jūsu grāmatzīmes. Atkārtoti ielādējiet šo lapu."
+   },
+   "6661160677415877619": {
+      "message": "Rediģēt HTML"
+   },
+   "66727790049529171": {
+      "message": "Augšraksts"
+   },
+   "6673681480713693433": {
+      "message": "Atzīme no kreisās puses uz labo"
+   },
+   "6679365605648394500": {
+      "message": "Vēsturiskās rakstzīmes"
+   },
+   "6718105992776681941": {
+      "message": "Publiska mape"
+   },
+   "6731765034365779068": {
+      "message": "pēc $NUM$ minūtēm",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Senais dienvidarābu raksts"
+   },
+   "6748884117721473417": {
+      "message": "Citi Eiropas raksti"
+   },
+   "6756714832459728782": {
+      "message": "Tai lī"
+   },
+   "6781212531496313437": {
+      "message": "Saraksts"
+   },
+   "6787794440298969774": {
+      "message": "Malajalamiešu"
+   },
+   "6813860917460451806": {
+      "message": "Līciešu"
+   },
+   "6848846772159302710": {
+      "message": "Mainīt"
+   },
+   "6878231700728680871": {
+      "message": "JAUNA"
+   },
+   "687829671213164815": {
+      "message": "Diemžēl grāmatzīmju pārvaldnieks īslaicīgi nav pieejams. Lūdzu, pēc dažām stundām mēģiniet vēlreiz."
+   },
+   "6963034896702768829": {
+      "message": "Šī mape vairs nepastāv."
+   },
+   "698011532377344679": {
+      "message": "Dzimums un ģenealoģija"
+   },
+   "7004429103140794719": {
+      "message": "Pēdējie atlasītie vienumi:"
+   },
+   "7009051272745522428": {
+      "message": "Vai aizmirsāt, ko esat saglabājis? Vienkārši meklējiet! Lai atrastu pazaudētās grāmatzīmes, izmantojiet vispārīgus vārdus, piemēram, “filmas” vai “ceļot”."
+   },
+   "7056277361038404533": {
+      "message": "Grāmatzīme ir pārvietota."
+   },
+   "7058809993296833390": {
+      "message": "Pastāstiet mums, ko domājat!"
+   },
+   "7064503592469946179": {
+      "message": "Zundu"
+   },
+   "7077571379260349566": {
+      "message": "Vai tā vietā vēlaties \u003Ca class=\"col-zda\">meklēt tīmeklī\u003C/a>?"
+   },
+   "7102762854285284877": {
+      "message": "Pagspa"
+   },
+   "7124932478652977474": {
+      "message": "Saglabāta kā grāmatzīme"
+   },
+   "7154665243775472938": {
+      "message": "Mapes"
+   },
+   "7168417416563257713": {
+      "message": "Saglabāt"
+   },
+   "7178727559519269241": {
+      "message": "Dubultā slīpā defise"
+   },
+   "7256064246386232909": {
+      "message": "Javiešu"
+   },
+   "7258012171742729961": {
+      "message": "Khmeru patskanis: raksturīgs Aq"
+   },
+   "7300188402017534561": {
+      "message": "Visi"
+   },
+   "7316184946628117028": {
+      "message": "Taana"
+   },
+   "7328850288952193170": {
+      "message": "Neredzamais atdalītājs"
+   },
+   "733245618582914569": {
+      "message": "Labi"
+   },
+   "7333334175520057323": {
+      "message": "Atcelt"
+   },
+   "7339792312429709609": {
+      "message": "Hanu 2 vilkumu radikāļi"
+   },
+   "7342965026300699486": {
+      "message": "Šī ir publiska mape. Dzēšot mapi, citi vairs nevarēs to skatīt."
+   },
+   "7346825266417376383": {
+      "message": "Labi"
+   },
+   "7362095105218889721": {
+      "message": "Formāts un baltstarpas"
+   },
+   "7369763432670344230": {
+      "message": "Uz kādu e-pasta adresi ir jānovirza šai saitei?"
+   },
+   "7376646180156094924": {
+      "message": "Nosaukums"
+   },
+   "7388233788532145059": {
+      "message": "Pievienot vai noņemt saiti"
+   },
+   "7407898565330883980": {
+      "message": "Izveidot mapi"
+   },
+   "7436494590700857376": {
+      "message": "Bez nosaukuma"
+   },
+   "7454853574776276752": {
+      "message": "Labi"
+   },
+   "7466254996792639407": {
+      "message": "Gruzīnu"
+   },
+   "7487940627543583924": {
+      "message": "Ceturtdiena"
+   },
+   "7496808914788281345": {
+      "message": "Mazā domuzīme"
+   },
+   "7512206123241896524": {
+      "message": "Dzēšot publiskās mapes, citi vairs nevarēs tās skatīt."
+   },
+   "7514107325655026801": {
+      "message": "Mongoļu patskaņu atdalītājs"
+   },
+   "7517846739534508036": {
+      "message": "Attēls, kuru mēģināt vilkt, ir tā mitināšanas vietnes bloķēts."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{pēc # minūtēm}=1{pēc # minūtes}zero{pēc # minūtēm}one{pēc # minūtes}other{pēc # minūtēm}}"
+   },
+   "7556000209920718943": {
+      "message": "Kipriešu"
+   },
+   "7558709989823567445": {
+      "message": "B līnijraksts"
+   },
+   "7561680940841358107": {
+      "message": "Kajahu"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} stunda}zero{{TEXT} stundas}one{{TEXT} stunda}other{{TEXT} stundas}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Armēņu defise"
+   },
+   "762426240463793747": {
+      "message": "Daļas un saistītās rakstzīmes"
+   },
+   "7627205932825693842": {
+      "message": "Mongoļu pārnesumzīme"
+   },
+   "7666041165203922544": {
+      "message": "Atrodiet grāmatzīmes bez grūtībām"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "pēc $NUM$ stundām",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "pirms $NUM$ dienas",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "Jūn"
+   },
+   "7763561590386207075": {
+      "message": "Tīmekļa adrese"
+   },
+   "7778510137824413661": {
+      "message": "Jūs esat visu laiku labākais izstrādes programmatūras lietotājs! Pateicamies, ka atklājāt kļūdu, ko nevar novērst, vienkārši veicot atkārtotu ielādi."
+   },
+   "7787489712298922692": {
+      "message": "Ugaritiešu"
+   },
+   "7794513342167361028": {
+      "message": "Sorasompeņa"
+   },
+   "7799449305630256377": {
+      "message": "Mūzikas simbols: beigu frāze"
+   },
+   "7804811638177746132": {
+      "message": "Lūdzu, ievadiet derīgu URL."
+   },
+   "7820796809104165402": {
+      "message": "Piektdiena"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Vienums ir izveidots.}zero{Ir izveidoti # vienumi.}one{Ir izveidots # vienums.}other{Ir izveidoti # vienumi.}}"
+   },
+   "7842161096380376517": {
+      "message": "Arābu zīme Safha"
+   },
+   "7877081360738059546": {
+      "message": "Dzīvnieki, augi un ēdiens"
+   },
+   "7899357084217902569": {
+      "message": "Mīnusa zīme — mazā defise"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Vai nezināt, kas jāievada lodziņā?$END_BOLD$ Vispirms atrodiet tīmekļa lapu, uz kuru vēlaties izveidot saiti. (Varat izmantot $SEARCH_ENGINE_LINK$meklētājprogrammu$END_LINK$.) Pēc tam nokopējiet pārlūkprogrammas adreses joslā redzamo tīmekļa adresi un ielīmējiet to iepriekš esošajā lodziņā.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Atcelt"
+   },
+   "7929010027377139621": {
+      "message": "Vjetnamas taju"
+   },
+   "7944194550132470305": {
+      "message": "Pievienojiet nosaukumu..."
+   },
+   "7957751306916251232": {
+      "message": "Nederīga e-pasta adrese"
+   },
+   "7977240188055092028": {
+      "message": "Skatīt"
+   },
+   "7987287518899618882": {
+      "message": "Feb"
+   },
+   "7995071973884866910": {
+      "message": "pirms $NUM$ dienām",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Videoklipi"
+   },
+   "8011311100803127599": {
+      "message": "Zvaigznītes"
+   },
+   "8017723467201257913": {
+      "message": "Mormoņu"
+   },
+   "8018615794586730510": {
+      "message": "Parasts/serifs"
+   },
+   "8027365004962833557": {
+      "message": "Senitāļu"
+   },
+   "8110520007971944893": {
+      "message": "Google var automātiski kārtot jūsu grāmatzīmes jūsu vietā."
+   },
+   "8115055677841343820": {
+      "message": "Defise"
+   },
+   "8132750144382731373": {
+      "message": "Emocijzīmes"
+   },
+   "8139874053154312313": {
+      "message": "Defise ar diairēsi"
+   },
+   "8143412461134291283": {
+      "message": "Sūtīt atsauksmes"
+   },
+   "8146770321190721394": {
+      "message": "Osmaņu"
+   },
+   "8167437723285192120": {
+      "message": "Nav"
+   },
+   "8179849043307262288": {
+      "message": "Funkcijas lietošana"
+   },
+   "818630018883405514": {
+      "message": "Iekļautās rakstzīmes"
+   },
+   "8208069138346972268": {
+      "message": "Tehniskās rakstzīmes"
+   },
+   "8220605653109571646": {
+      "message": "Grieķu"
+   },
+   "8243618543879664815": {
+      "message": "Jan"
+   },
+   "8275729822640276507": {
+      "message": "Ir atjaunots savienojums ar tīmekli."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Atsaukt"
+   },
+   "8338269186594699884": {
+      "message": "pēcpusdienā"
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "SAPRATU!"
+   },
+   "8394518299580326671": {
+      "message": "Nulles platuma savienotājs"
+   },
+   "8401283339806880070": {
+      "message": "Taisnot"
+   },
+   "8417405596874032771": {
+      "message": "Ogamiskā atstarpes atzīme"
+   },
+   "8442861823466423570": {
+      "message": "Starprindu piezīmju beigu zīme"
+   },
+   "8454082825844118412": {
+      "message": "Hanu 11–17 vilkumu radikāļi"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Meklēšanas rezultāti vienumam “\u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>”"
+   },
+   "846893467556389257": {
+      "message": "Emocijzīmes"
+   },
+   "8509200859889253607": {
+      "message": "Bugu"
+   },
+   "8513771017811992648": {
+      "message": "Neviens"
+   },
+   "8583880697323281603": {
+      "message": "Grāmatzīme ir mainīta."
+   },
+   "8590712065595806821": {
+      "message": "Ieteikta"
+   },
+   "8605746117200843257": {
+      "message": "Starprindu piezīmju enkurs"
+   },
+   "8608038304204118820": {
+      "message": "pirms $NUM$ stundas",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Atzīmēt lapu ar zvaigznīti"
+   },
+   "8632024322663078476": {
+      "message": "Pievienot mapei"
+   },
+   "8635739256240231429": {
+      "message": "Aizvērt"
+   },
+   "8637786997742615742": {
+      "message": "Modificētāji"
+   },
+   "8639484881518821804": {
+      "message": "Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Samārijas aramiešu"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Parasts"
+   },
+   "8694618136165028235": {
+      "message": "Pievienojiet URL..."
+   },
+   "8723654283178734366": {
+      "message": "Ievadiet tīmekļa adresi"
+   },
+   "8748780785044360315": {
+      "message": "Taju"
+   },
+   "8764548034413038101": {
+      "message": "pēc $NUM$ minūtes",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "Apr"
+   },
+   "8784386825932830097": {
+      "message": "Horizontāla josla"
+   },
+   "8793684579112208899": {
+      "message": "Apakšraksts"
+   },
+   "8797138403646238716": {
+      "message": "Meores kursīvs"
+   },
+   "8801105026907713256": {
+      "message": "Retāki"
+   },
+   "8805843642052942743": {
+      "message": "Lepča"
+   },
+   "8827926534395802942": {
+      "message": "Rakstzīmes platuma atdalāmā zīme"
+   },
+   "8829617001171812634": {
+      "message": "Objekti"
+   },
+   "8835425644719990167": {
+      "message": "Hangul Jungseong aizpildītājs"
+   },
+   "8838200101653652173": {
+      "message": "Ietverošās rakstzīmes"
+   },
+   "8838938639049885476": {
+      "message": "Vidēja lieluma atstarpe"
+   },
+   "8841111838340088121": {
+      "message": "Hanu 4 vilkumu radikāļi"
+   },
+   "8860909466229522023": {
+      "message": "Slīpraksts"
+   },
+   "888434073985276543": {
+      "message": "Prezentācijas veidlapa vertikālai domuzīmei"
+   },
+   "8892104104076766085": {
+      "message": "Viļņota atdalāmā zīme"
+   },
+   "8996388564146952786": {
+      "message": "Šaurā nedalāmā atstarpe"
+   },
+   "9021466412659564505": {
+      "message": "Pierakstīties"
+   },
+   "9026903153882226079": {
+      "message": "Atzīme no labās puses uz kreiso"
+   },
+   "9034162255782924509": {
+      "message": "Bataku"
+   },
+   "9041611521175673293": {
+      "message": "Visas grāmatzīmes"
+   },
+   "9041881295809259717": {
+      "message": "Matemātiskās rakstzīmes"
+   },
+   "9072668986327887451": {
+      "message": "Ideogrāfiskais apraksts"
+   },
+   "9076212347872857205": {
+      "message": "Citēt"
+   },
+   "9083920162332648298": {
+      "message": "priekšpusdienā"
+   },
+   "9086165147555162831": {
+      "message": "Manipūru"
+   },
+   "9092805374125336008": {
+      "message": "Mai"
+   },
+   "9099680152087323883": {
+      "message": "Nov"
+   },
+   "9107905796365363672": {
+      "message": "Liels"
+   },
+   "9113260413780075008": {
+      "message": "Brāhmī"
+   },
+   "9115834469932780333": {
+      "message": "Telugu"
+   },
+   "9143484910409308303": {
+      "message": "Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Šifrētās grāmatzīmēs nevar veikt meklēšanu. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Uzziniet vairāk\u003C/a>."
+   },
+   "9165786145616395636": {
+      "message": "Mape ir noņemta no vecākmapes."
+   },
+   "9180458846772153689": {
+      "message": "Armēņu"
+   },
+   "9181119817188520774": {
+      "message": "Nav tīkla savienojuma. Izmaiņas varēsiet saglabāt tikai tad, kad atkal būsiet tiešsaistē."
+   },
+   "9204096795425905695": {
+      "message": "Neredzamās reizes"
+   },
+   "922163125711959960": {
+      "message": "pirms $NUM$ minūtes",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Pievienot"
+   },
+   "93670926879626900": {
+      "message": "Baltstarpas"
+   },
+   "93871902389648718": {
+      "message": "Mūzikas simbols: slitas beigas"
+   },
+   "960914149201689167": {
+      "message": "Decimālskaitļi"
+   },
+   "963040144042262397": {
+      "message": "Dzēst"
+   },
+   "964017479791059460": {
+      "message": "Arābu simbols: ajaha beigas"
+   },
+   "980376110610801797": {
+      "message": "Ievietot attēlu"
+   }
+}

@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Delite ovaj direktorijum ili promenite podešavanja deljenja"
+   },
+   "1014969137789706237": {
+      "message": "Povežite sa stranicom ili datotekom negde drugde na vebu"
+   },
+   "1033240210015440654": {
+      "message": "Ukloni sliku"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} minut}one{{TEXT} minut}few{{TEXT} minuta}other{{TEXT} minuta}}"
+   },
+   "1035347665345261212": {
+      "message": "Unesite napomenu"
+   },
+   "1036132178487616999": {
+      "message": "Uvod"
+   },
+   "1041064392303158655": {
+      "message": "limbu"
+   },
+   "1066103686460691847": {
+      "message": "Precrtajte"
+   },
+   "1085496824897012476": {
+      "message": "egipatski hijeroglifi"
+   },
+   "1105045461281211798": {
+      "message": "Znak povezivanja kombinovanih grafema"
+   },
+   "111315886393984302": {
+      "message": "Pokušajte da obeležite nekoliko stavki na vebu i dodajte ih u ovaj direktorijum!"
+   },
+   "1117324761561996205": {
+      "message": "Izmeni"
+   },
+   "1124849668149719420": {
+      "message": "Unesite povratne informacije"
+   },
+   "1142044035368837035": {
+      "message": "Em kvadrat"
+   },
+   "1148670835609345833": {
+      "message": "Dugme Izmeni obeleživač"
+   },
+   "1161548997573254809": {
+      "message": "Otkaži"
+   },
+   "1164857998440803763": {
+      "message": "čakmansko"
+   },
+   "1170102576258588460": {
+      "message": "Crtica koja se ne prelama"
+   },
+   "1185158158029036642": {
+      "message": "Kliknite da biste napravili nov obeleživač ili nov direktorijum."
+   },
+   "1201286409038567178": {
+      "message": "nevažeći URL"
+   },
+   "1214729854306268929": {
+      "message": "pre $NUM$ minuta",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{pre # sati}=1{pre # sata}one{pre # sata}few{pre # sata}other{pre # sati}}"
+   },
+   "1232723730191754374": {
+      "message": "Font"
+   },
+   "1243361230826165709": {
+      "message": "hangul"
+   },
+   "128696227290770661": {
+      "message": "devanagari"
+   },
+   "1312606838421552827": {
+      "message": "Broj"
+   },
+   "1316608632339176215": {
+      "message": "Razno"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "Jedna četvrtina razmaka"
+   },
+   "1337190557080419948": {
+      "message": "Naslov"
+   },
+   "1347841728719446841": {
+      "message": "Imejl adresa"
+   },
+   "1350404634989083059": {
+      "message": "Nevidljivi plus"
+   },
+   "1356908927221815545": {
+      "message": "Han jednopotezni radikali"
+   },
+   "1373666411928680514": {
+      "message": "Talasasta crta"
+   },
+   "1378894003206512970": {
+      "message": "Odbaci"
+   },
+   "138484781723580209": {
+      "message": "Sirijski znak za skraćivanje"
+   },
+   "1397568831960098153": {
+      "message": "Formatiranje"
+   },
+   "142359106099692409": {
+      "message": "Automatski direktorijumi"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Mala"
+   },
+   "1460136507747533015": {
+      "message": "Prijavite se da biste delili"
+   },
+   "1477567329816921885": {
+      "message": "Da li ste znali da možete da delite omiljene obeleživače tako što ćete podesiti direktorijum kao javni? Nabavite javni URL i delite ga!"
+   },
+   "1507362459078633250": {
+      "message": "U redu, moraćete da isključite i ponovo učitate dodatak za Chrome i/ili pošteno namučite tim inženjera.... Žao nam je :-/"
+   },
+   "1516565793778879679": {
+      "message": "Han – Drugo"
+   },
+   "1519227660570105215": {
+      "message": "Ova stranica je možda štetna"
+   },
+   "1556175764217302644": {
+      "message": "Karakteristični samoglasnik Aa u kmerskom"
+   },
+   "1566367040709255091": {
+      "message": "Format"
+   },
+   "1582412901770221448": {
+      "message": "Dodato u direktorijum {FOLDER_NAME}"
+   },
+   "1585233503778646014": {
+      "message": "mandejsko"
+   },
+   "1592899529499992997": {
+      "message": "Obeleživač je uklonjen iz direktorijuma."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Pređite kursorom preko svake ćelije da biste videli naziv znaka."
+   },
+   "1630439475247732904": {
+      "message": "Eksponentni tekst"
+   },
+   "1634874677195552014": {
+      "message": "Jedna šestina razmaka"
+   },
+   "1635366592844795535": {
+      "message": "PRIJAVI ME U CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Vremenska prognoza i astrologija"
+   },
+   "1665234249876251486": {
+      "message": "Razmak veličine jednog znaka"
+   },
+   "1666311405952625458": {
+      "message": "Vremenska prognoza, prizori i zodijački znaci"
+   },
+   "1678004121951995792": {
+      "message": "avg"
+   },
+   "1680034627075195442": {
+      "message": "Možete da napravite sopstvene direktorijume ili da prepustite Google-u da organizuje automatske direktorijume umesto vas."
+   },
+   "1683451665637766512": {
+      "message": "Link do imejl adrese"
+   },
+   "1685884502412781083": {
+      "message": "Linija za razdvajanje pasusa"
+   },
+   "169055910458549089": {
+      "message": "Povezivanje sa serverom nije uspelo. Pokušajte ponovo za nekoliko minuta."
+   },
+   "1691734467561749621": {
+      "message": "Žao nam je, ne možete da delite direktorijume na traci sa obeleživačima"
+   },
+   "1715361312704502898": {
+      "message": "Transport i mapa"
+   },
+   "1719053155706676551": {
+      "message": "Traka sa obeleživačima"
+   },
+   "1730849295731139586": {
+      "message": "ji"
+   },
+   "1748899684018766272": {
+      "message": "Oznaka praznog polja u pola širine za hangul"
+   },
+   "1755438325907288056": {
+      "message": "nko"
+   },
+   "1776387440523546537": {
+      "message": "Danas"
+   },
+   "178181731883558542": {
+      "message": "Okvir za tekst za pretragu obeleživača."
+   },
+   "1791083579000016877": {
+      "message": "Zasnovano na ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Pregledajte stavke sa zvezdicom"
+   },
+   "1803667155949248788": {
+      "message": "aramejsko"
+   },
+   "1827599404395723350": {
+      "message": "Kontrolne slike"
+   },
+   "1839253253564716482": {
+      "message": "Nije pronađen nijedan obeleživač"
+   },
+   "1847259066982820034": {
+      "message": "Izaberite direktorijum"
+   },
+   "1875246104836450162": {
+      "message": "Simbol"
+   },
+   "1879633738298009258": {
+      "message": "Srednji matematički razmak"
+   },
+   "1915655034817606796": {
+      "message": "Meka crtica"
+   },
+   "191946029988896895": {
+      "message": "Arapski znak za broj"
+   },
+   "1932973762029792550": {
+      "message": "Google automatski organizuje sve što obeležite"
+   },
+   "1942405576047748946": {
+      "message": "Obeleživač je napravljen."
+   },
+   "196266011387145001": {
+      "message": "Nastavi"
+   },
+   "1963154331052663396": {
+      "message": "Latinica"
+   },
+   "1999193032742275907": {
+      "message": "Han devetopotezni radikali"
+   },
+   "2003860471263842959": {
+      "message": "Najmanji razmak"
+   },
+   "2015775921681923490": {
+      "message": "Podešavanja"
+   },
+   "202031328373263910": {
+      "message": "Han šestopotezni radikali"
+   },
+   "2036672715320764541": {
+      "message": "Linija za razdvajanje"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Stavka je uklonjena iz direktorijuma.}one{# stavka je uklonjena iz direktorijuma.}few{# stavke su uklonjene iz direktorijuma.}other{# stavki je uklonjeno iz direktorijuma.}}"
+   },
+   "2088133380647290173": {
+      "message": "Na {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Unesite URL da biste napravili nov obeleživač."
+   },
+   "2117634893694108880": {
+      "message": "Privatno"
+   },
+   "2135921744011555145": {
+      "message": "Pretražite obeleživače"
+   },
+   "213958631597214757": {
+      "message": "Zaustavi deljenje. "
+   },
+   "2149498606985329379": {
+      "message": "Uvoz obeleživača je dovršen."
+   },
+   "2159536073195133897": {
+      "message": "Opozovite"
+   },
+   "2166866096346653276": {
+      "message": "Nijedan"
+   },
+   "2167636135101203592": {
+      "message": "bengalsko"
+   },
+   "2176930521411607789": {
+      "message": "U paru"
+   },
+   "218054763532467155": {
+      "message": "Unesite naslov"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Briše se \u003Cb>{firstItemName}\u003C/b>}=1{Briše se \u003Cb>{firstItemName}\u003C/b> i još # stavka}one{Briše se \u003Cb>{firstItemName}\u003C/b> i još # stavka}few{Briše se \u003Cb>{firstItemName}\u003C/b> i još # stavke}other{Briše se \u003Cb>{firstItemName}\u003C/b> i još # stavki}}"
+   },
+   "2200921183377473543": {
+      "message": "Da"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{pre # dana}=1{pre # dana}one{pre # dana}few{pre # dana}other{pre # dana}}"
+   },
+   "2228495834106697427": {
+      "message": "Indeksni tekst"
+   },
+   "2253752461533441758": {
+      "message": "Han desetopotezni radikali"
+   },
+   "2257250286834696444": {
+      "message": "Učitava se..."
+   },
+   "2280907281518645401": {
+      "message": "Dvostruka crtica za katakanu-hiraganu"
+   },
+   "2301390744929043794": {
+      "message": "Sačekajte da sačuvamo direktorijum na serveru"
+   },
+   "2315132909835126412": {
+      "message": "Javno"
+   },
+   "2315864755754275083": {
+      "message": "Valuta"
+   },
+   "231658276152304252": {
+      "message": "Ukloni"
+   },
+   "2353164220175503425": {
+      "message": "Kaiti znak broja"
+   },
+   "2359350477261263182": {
+      "message": "Menadžer obeleživača"
+   },
+   "2362075348358411947": {
+      "message": "Lista nabrajanja"
+   },
+   "2396988228061015409": {
+      "message": "Direktorijumi"
+   },
+   "2398127458667829603": {
+      "message": "Tastatura i korisnički interfejs"
+   },
+   "2413859014200470621": {
+      "message": "Povećajte uvlačenje"
+   },
+   "2414987366409119013": {
+      "message": "Opis novog direktorijuma (opcionalno)"
+   },
+   "2444245672676114535": {
+      "message": "Geometrijski oblici"
+   },
+   "2454859602363061373": {
+      "message": "Koristite zvezdicu u traci za adresu da biste sačuvali bilo šta na vebu"
+   },
+   "2497668314434532819": {
+      "message": "mongolsko"
+   },
+   "2498668179494167671": {
+      "message": "Razmak"
+   },
+   "2506204110427755391": {
+      "message": "Obuhvata obeleživače sa mobilnih uređaja i stavke koje se ne nalaze na traci sa obeleživačima"
+   },
+   "2512307863902593558": {
+      "message": "karošti"
+   },
+   "2518095696810513128": {
+      "message": "Uvezi obeleživače..."
+   },
+   "2524757118580919241": {
+      "message": "Arapski označivač fusnote"
+   },
+   "2528672033407304265": {
+      "message": "Ovaj direktorijum je vidljiv samo vama. Da biste ga delili, kliknite na „Podesi kao javni“ i dobićete link za deljenje."
+   },
+   "2566403151253785267": {
+      "message": "Nenaslovljeni direktorijum"
+   },
+   "2581794950690518802": {
+      "message": "0 minuta"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Odbaci uvod"
+   },
+   "2620868598794227408": {
+      "message": "Ova stranica više ne postoji"
+   },
+   "2626676714216619519": {
+      "message": "Podnaslov"
+   },
+   "2655730128699057253": {
+      "message": "Normalna"
+   },
+   "2662413919655166560": {
+      "message": "nedelja"
+   },
+   "2665932089093244134": {
+      "message": "Dodajte zvezdicu nečemu"
+   },
+   "2678821645623495183": {
+      "message": "Ljudi i emocije"
+   },
+   "271255586148025786": {
+      "message": "Heksadecimalni unos"
+   },
+   "27472132823239706": {
+      "message": "Zdesna ulevo"
+   },
+   "278208331708453602": {
+      "message": "Povežite se na veb i prijavite se da biste delili"
+   },
+   "2785193083209311775": {
+      "message": "mar"
+   },
+   "2803486006471792395": {
+      "message": "autor: \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "ogam"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Uvezeno je iz datoteke"
+   },
+   "2860423337665026261": {
+      "message": "Uklonite iz direktorijuma"
+   },
+   "2870049984905408346": {
+      "message": "Naslov"
+   },
+   "2878157583475586619": {
+      "message": "Dodajte boju"
+   },
+   "2926789704127794819": {
+      "message": "Naziv novog direktorijuma (obavezno)"
+   },
+   "2951727458776714094": {
+      "message": "Nije moguće testirati ovaj link."
+   },
+   "2967109838548277236": {
+      "message": "Link za deljenje:"
+   },
+   "2990895581472607445": {
+      "message": "Drugo"
+   },
+   "2993160588184042952": {
+      "message": "Američka pisma"
+   },
+   "3002524775820283106": {
+      "message": "Dodajte napomenu..."
+   },
+   "3010872256194497959": {
+      "message": "Figure za igru"
+   },
+   "3027920889685525544": {
+      "message": "parćanski"
+   },
+   "3034084095590774557": {
+      "message": "Zanemari"
+   },
+   "3051034269680162898": {
+      "message": "Odbaci"
+   },
+   "3054430907861836285": {
+      "message": "dec"
+   },
+   "3085746489633838782": {
+      "message": "Lista sa rednim brojevima"
+   },
+   "3087091861834859241": {
+      "message": "Dobro došli u nove obeleživače!"
+   },
+   "3090613379634438188": {
+      "message": "meriotsko, hijeroglifi"
+   },
+   "3093070593773009381": {
+      "message": "Druga istočnoazijska pisma"
+   },
+   "3114565967060091369": {
+      "message": "hanuno"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{za # sati}=1{za # sat}one{za # sat}few{za # sata}other{za # sati}}"
+   },
+   "3140214171317206668": {
+      "message": "En kvadrat"
+   },
+   "3153433695439945201": {
+      "message": "Nastavite da koristite zvezdicu da biste obeležili stranicu kao i do sada. Obeleživač će sačuvati deo stranice na Google nalogu da biste je lakše pronašli kasnije."
+   },
+   "3186183325550234111": {
+      "message": "Idi na link: "
+   },
+   "3212472770580267001": {
+      "message": "Južnoistočna azijska pisma"
+   },
+   "3218408007702426636": {
+      "message": "Muzički simbol završnog luka"
+   },
+   "3227675900195928275": {
+      "message": "redžang"
+   },
+   "3234811075540284463": {
+      "message": "Normalna"
+   },
+   "3244450940425660505": {
+      "message": "Znaci interpunkcije"
+   },
+   "3245712009497198424": {
+      "message": "za $NUM$ dan",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Nema rezultata za ovu pretragu"
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Želite li da izbrišete i stavke u ovom direktorijumu?}one{Želite li da izbrišete i stavke u ovim direktorijumima?}few{Želite li da izbrišete i stavke u ovim direktorijumima?}other{Želite li da izbrišete i stavke u ovim direktorijumima?}}"
+   },
+   "3284734782999930756": {
+      "message": "URL"
+   },
+   "328616644571689303": {
+      "message": "Muzički simbol završne spojnice"
+   },
+   "3309586635668050685": {
+      "message": "Zamena sleva udesno"
+   },
+   "3316092543008555482": {
+      "message": "Fonetika (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonetika (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Direktorijum je napravljen."
+   },
+   "3334908307836130914": {
+      "message": "ol čiki"
+   },
+   "3355297279379313357": {
+      "message": "Poslednje korišćeno"
+   },
+   "3360043590563638195": {
+      "message": "Veličina fonta"
+   },
+   "3364831016239212879": {
+      "message": "Poravnajte u centru"
+   },
+   "3383495912989125674": {
+      "message": "Mali razmak"
+   },
+   "340057911065586090": {
+      "message": "Ideografski razmak"
+   },
+   "3413537935166399959": {
+      "message": "šarada"
+   },
+   "3413696263226173348": {
+      "message": "Izmeni reč"
+   },
+   "3417560136558853718": {
+      "message": "kanada pismo"
+   },
+   "3423652049926153935": {
+      "message": "Novi direktorijum..."
+   },
+   "3484416881429158332": {
+      "message": "Privatni direktorijum"
+   },
+   "3490738610910152047": {
+      "message": "bamum"
+   },
+   "3490814222385998788": {
+      "message": "takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Stavka je izbrisana.}one{# stavka je izbrisana.}few{# stavke su izbrisane.}other{# stavki je izbrisano.}}"
+   },
+   "3501212562096780610": {
+      "message": "Nadređeni direktorijum: "
+   },
+   "3501367450176932554": {
+      "message": "Međuredni razdelnik beleški"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "orija"
+   },
+   "3545341282138953352": {
+      "message": "Muzički simbol početnog luka"
+   },
+   "3546572522856950945": {
+      "message": "klinasto"
+   },
+   "3554323414956249846": {
+      "message": "Link"
+   },
+   "3572348996000195345": {
+      "message": "Em razmak"
+   },
+   "3596311690500158112": {
+      "message": "Menadžer obeleživača je privremeno nedostupan. Ponovo učitajte stranicu."
+   },
+   "3621913747018973144": {
+      "message": "Sleva udesno"
+   },
+   "362505154270301776": {
+      "message": "Veb-stranice"
+   },
+   "3630778778193389974": {
+      "message": "Provera pravopisa"
+   },
+   "3641126700487126155": {
+      "message": "Muzički simbol početne spojnice"
+   },
+   "3646623530558910508": {
+      "message": "Direktorijum je promenjen."
+   },
+   "3646641743349296313": {
+      "message": "okt"
+   },
+   "3650952447025672637": {
+      "message": "Izbriši direktorijume i stavke"
+   },
+   "3723533099349282495": {
+      "message": "kaiti"
+   },
+   "37315674215151127": {
+      "message": "Ostanite organizovani"
+   },
+   "3731716253672925709": {
+      "message": "Strelice"
+   },
+   "373495866496779840": {
+      "message": "PRIKAŽI SVE OBELEŽENE STAVKE"
+   },
+   "3735789968703193383": {
+      "message": "Prikaz"
+   },
+   "3737215641755068426": {
+      "message": "CJK potezi"
+   },
+   "3752699251010579834": {
+      "message": "Crtica u kanadskom slogovnom pismu"
+   },
+   "377368134657453613": {
+      "message": "Prijavite se u Chrome da biste pretraživali stranice za obeleživačima"
+   },
+   "3800528517409823312": {
+      "message": "Alfanumerički matematički znaci"
+   },
+   "3832066920911226237": {
+      "message": "Izvezi obeleživače..."
+   },
+   "3836877357378306877": {
+      "message": "Zajedničko pismo"
+   },
+   "3880744822029422406": {
+      "message": "Ako prestanete da delite ovaj direktorijum, link za deljenje će prestati da funkcioniše."
+   },
+   "3888658965293980754": {
+      "message": "Formatiranje"
+   },
+   "3893161213200925599": {
+      "message": "Otkaži"
+   },
+   "3924970930634517299": {
+      "message": "Opis"
+   },
+   "3947500116452515010": {
+      "message": "Ovde još uvek nema obeleživača!"
+   },
+   "3951067234379178869": {
+      "message": "Direktorijum je izbrisan."
+   },
+   "3953750991047324531": {
+      "message": "gudžarati"
+   },
+   "3960988854399920931": {
+      "message": "Afrička pisma"
+   },
+   "3977845230474613475": {
+      "message": "ponedeljak"
+   },
+   "3978409745488989414": {
+      "message": "Sutra"
+   },
+   "3981527568769423358": {
+      "message": "Birač varijacije"
+   },
+   "3998968827975494252": {
+      "message": "kanadsko aboridžinsko"
+   },
+   "4052124018014680002": {
+      "message": "Pošto ste omogućili šifrovanje obeleživača u „Naprednim podešavanjima sinhronizacije“ onemogućili smo funkciju koja zahteva da Google vidi vaš sadržaj."
+   },
+   "4070285516355502772": {
+      "message": "Znak povezivanja reči"
+   },
+   "4083819681339999404": {
+      "message": "Direktorijum je premešten."
+   },
+   "4093661547607027073": {
+      "message": "Em crta"
+   },
+   "4132740194577129031": {
+      "message": "bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "tamilsko"
+   },
+   "4141340144529743179": {
+      "message": "Poravnajte udesno"
+   },
+   "4185431426264249075": {
+      "message": "Ne"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{pre # minuta}=1{pre # minuta}one{pre # minuta}few{pre # minuta}other{pre # minuta}}"
+   },
+   "4207416107225157509": {
+      "message": "čamsko"
+   },
+   "421809097037025717": {
+      "message": "lidijsko"
+   },
+   "4219066138225986920": {
+      "message": "pre $NUM$ sata(i)",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "novi taj lu"
+   },
+   "4256734561546878891": {
+      "message": "arapsko"
+   },
+   "4257688962636177926": {
+      "message": "Beleška"
+   },
+   "4313041477349547430": {
+      "message": "Izaberi"
+   },
+   "4317807879399263422": {
+      "message": "Simboli"
+   },
+   "4371152527205140884": {
+      "message": "burmansko"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Oznaka praznog polja za hangul"
+   },
+   "4394299965695763613": {
+      "message": "GREŠKA: „$COLOR$“ nije ispravna boja.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "za $NUM$ sat",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Otvori ovaj link u novom prozoru"
+   },
+   "4436859540429978060": {
+      "message": "Trenutno nije moguće da prevučete i otpustite datoteke slika.\nPrevucite sliku iz veb-pregledača."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "vai"
+   },
+   "4467383198992095863": {
+      "message": "Crta/veznik"
+   },
+   "4485563787650970048": {
+      "message": "Prevoz, mape i znakovi"
+   },
+   "4511605174156009486": {
+      "message": "PRIJAVI ME"
+   },
+   "4536708754459423390": {
+      "message": "Povežite sa:"
+   },
+   "4547888102017603305": {
+      "message": "Unesite podrazumevanu boju, tj. ružičastu, #F00, #D015FF ili rgb (100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Pločica"
+   },
+   "4564357083324116837": {
+      "message": "Južnoazijska pisma"
+   },
+   "4604654420597817764": {
+      "message": "Znak razdvajanja nulte dužine"
+   },
+   "4631096075002795557": {
+      "message": "Brajevo pismo"
+   },
+   "4639190252078874549": {
+      "message": "Obeleživači su ažurirani, pa lakše možete da pronađete ono što ste sačuvali."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Stavka je premeštena.}one{# stavka je premeštena.}few{# stavke su premeštene.}other{# stavki je premešteno.}}"
+   },
+   "4677342274083596624": {
+      "message": "Oflajn režim"
+   },
+   "4680868343849876958": {
+      "message": "starotursko"
+   },
+   "468549910877472151": {
+      "message": "Uvezeno je"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "staropersijsko"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Budite pažljivi.$POSTB$Ne zaboravite da svaki put kada imejl adresu navedete na veb-stranici, mogu da je pronađu i zlonamerni pošiljaoci nepoželjne pošte.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "tagalog"
+   },
+   "4747022692863822805": {
+      "message": "Crtica za minus"
+   },
+   "4749120223198822539": {
+      "message": "sinhala"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Izbriši direktorijum i stavke"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Stavka je premeštena.}one{# stavka je premeštena.}few{# stavke su premeštene.}other{# stavki je premešteno.}}"
+   },
+   "482762608498192214": {
+      "message": "subota"
+   },
+   "4833178038692710844": {
+      "message": "Okrenuto/preslikano"
+   },
+   "484556867028550958": {
+      "message": "Hebrejska crtica"
+   },
+   "4848946125726663758": {
+      "message": "Poravnajte ulevo"
+   },
+   "4849410737412842755": {
+      "message": "Ne možete da delite ovaj direktorijum zato što se njegov nadređeni direktorijum ne deli javno"
+   },
+   "4856510901676745213": {
+      "message": "hebrejsko"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{za # dana}=1{za # dan}one{za # dan}few{za # dana}other{za # dana}}"
+   },
+   "4886850400045987885": {
+      "message": "Izmena linka"
+   },
+   "4894342917447426362": {
+      "message": "Dodatak latinica 1"
+   },
+   "4895451769213934183": {
+      "message": "lisu"
+   },
+   "4920822305412968613": {
+      "message": "Prezentacija uspravne en crte"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Stavka je promenjena.}one{# stavka je promenjena.}few{# stavke su promenjene.}other{# stavki je promenjeno.}}"
+   },
+   "4934771438157777517": {
+      "message": "Podvučeno"
+   },
+   "4943286974087295923": {
+      "message": "Zatvori"
+   },
+   "4944188657066537729": {
+      "message": "sirijsko"
+   },
+   "4974279938502768331": {
+      "message": "Izmeni"
+   },
+   "4987339278179088082": {
+      "message": "Dodaj atribut „$REL_NO_FOLLOW$“ ($LINK_START$Saznajte više$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Tekst za prikaz:"
+   },
+   "4991252214297708837": {
+      "message": "Opis direktorijuma"
+   },
+   "500023300077018967": {
+      "message": "Nema predloga"
+   },
+   "5002702571780362629": {
+      "message": "avestansko"
+   },
+   "5013372925252634952": {
+      "message": "karijsko"
+   },
+   "5015669074913229206": {
+      "message": "balisko"
+   },
+   "5016723309142316836": {
+      "message": "gurmuki"
+   },
+   "5042512453093360461": {
+      "message": "Pop Directional formatiranje"
+   },
+   "5086992011880811613": {
+      "message": "Obeleživač je izbrisan."
+   },
+   "5089168125978769021": {
+      "message": "Izbriši direktorijum"
+   },
+   "5089667744614498582": {
+      "message": "Obeleživač je premešten."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Muzički simbol početnog rebra"
+   },
+   "5109840495091366547": {
+      "message": "Sport, proslave i aktivnosti"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Novi direktorijum"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} dan}one{{TEXT} dan}few{{TEXT} dana}other{{TEXT} dana}}"
+   },
+   "5162393477556833033": {
+      "message": "Na koji URL treba da vodi ovaj link?"
+   },
+   "518089704180562683": {
+      "message": "Danas"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "runsko"
+   },
+   "5253985055078626542": {
+      "message": "Ugrađivanje sleva udesno"
+   },
+   "5266193592374285468": {
+      "message": "Podesi kao javni"
+   },
+   "5272267167655788064": {
+      "message": "Slika"
+   },
+   "528339682728930567": {
+      "message": "Menadžer obeleživača je privremeno nedostupan. Pokušajte ponovo za nekoliko minuta."
+   },
+   "5300191622079400984": {
+      "message": "Sve"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Kliknite da biste dodali opis"
+   },
+   "5334597244901829906": {
+      "message": "Deli ovaj direktorijum"
+   },
+   "534304870772683249": {
+      "message": "Pošalji"
+   },
+   "534369010818044160": {
+      "message": "kmersko"
+   },
+   "5354142472798067112": {
+      "message": "Birač varijacije – $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Nema mrežne veze. Ne možete da sačuvate promene dok ponovo ne budete onlajn."
+   },
+   "5371009567664142864": {
+      "message": "etiopsko"
+   },
+   "5378436065321978089": {
+      "message": "Napravi"
+   },
+   "538263398271363120": {
+      "message": "čeroki"
+   },
+   "5412265752110327977": {
+      "message": "Kompatibilnost"
+   },
+   "5425054962709217464": {
+      "message": "sreda"
+   },
+   "544490805551236927": {
+      "message": "Bliskoistočna pisma"
+   },
+   "5448654348317290038": {
+      "message": "En crta"
+   },
+   "5456454482863742119": {
+      "message": "Izbriši direktorijume"
+   },
+   "5458956770053499082": {
+      "message": "Muzički"
+   },
+   "546306107859654806": {
+      "message": "Premesti u direktorijum"
+   },
+   "5474647412096976366": {
+      "message": "Povežite se na internet da biste pretraživali stranice dodate u obeleživače"
+   },
+   "5500830105937873966": {
+      "message": "Izbriši"
+   },
+   "5517581353492371385": {
+      "message": "Juče"
+   },
+   "5521943762943322583": {
+      "message": "laosko"
+   },
+   "5529569087489430384": {
+      "message": "pahlavi"
+   },
+   "5561412620611998456": {
+      "message": "sep"
+   },
+   "5579702837382664819": {
+      "message": "Automatski direktorijum za \u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "gotsko"
+   },
+   "5603457799050818619": {
+      "message": "Trenutno nema automatskih direktorijuma."
+   },
+   "5603774725128707055": {
+      "message": "Direktorijum je premešten."
+   },
+   "5621148847082889884": {
+      "message": "Ovde još uvek nema direktorijuma!"
+   },
+   "5669644158906503623": {
+      "message": "Arapski znak sana"
+   },
+   "5672850901284728452": {
+      "message": "Otvorite stranicu evidencije"
+   },
+   "5673852407127287054": {
+      "message": "Crtica za minus pune širine"
+   },
+   "5679720964567650205": {
+      "message": "utorak"
+   },
+   "5748894773514291207": {
+      "message": "Jedna trećina razmaka"
+   },
+   "5749465969550038727": {
+      "message": "tagbanva"
+   },
+   "5773338884170027267": {
+      "message": "Uklonite formatiranje"
+   },
+   "5776478286503179051": {
+      "message": "Han petopotezni radikali"
+   },
+   "5778201074245568998": {
+      "message": "Podebljano"
+   },
+   "580023699785819803": {
+      "message": "tibetansko"
+   },
+   "5815994514834119961": {
+      "message": "Ji đing/Taj Sjuan Đing"
+   },
+   "5822895345080436445": {
+      "message": "Slike"
+   },
+   "5832273633751333051": {
+      "message": "siloti nagri"
+   },
+   "5837746770084243727": {
+      "message": "Oznake"
+   },
+   "5842240706321147978": {
+      "message": "Link"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Razmaci"
+   },
+   "5923476740499653277": {
+      "message": "glagoljica"
+   },
+   "6002018674529763527": {
+      "message": "Razmak koji se ne prelama"
+   },
+   "6013038186284817941": {
+      "message": "Han osmopotezni radikali"
+   },
+   "6014514403103768983": {
+      "message": "Heksadecimala boje"
+   },
+   "6025708931099464434": {
+      "message": "taj tam"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Boja pozadine teksta"
+   },
+   "6055751153306823909": {
+      "message": "Ogromna"
+   },
+   "609920334473042917": {
+      "message": "Dobro došli u nove obeleživače! Prijavite se u Chrome da biste dobili još funkcija, poput bolje pretrage, automatskih direktorijuma i slika koje se dodaju ranijim obeleživačima."
+   },
+   "6131022146392295404": {
+      "message": "Izmenite HTML izvor"
+   },
+   "6146119258861607037": {
+      "message": "Han sedmopotezni radikali"
+   },
+   "6176673388074993831": {
+      "message": "koptsko"
+   },
+   "6178455470693561470": {
+      "message": "Trenutno ste oflajn. Pokušajte ponovo kada ponovo budete onlajn."
+   },
+   "6189158371964390675": {
+      "message": "Zatvoreno/sa tačkama"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Ugrađivanje zdesna ulevo"
+   },
+   "6207440179505974685": {
+      "message": "šavijsko"
+   },
+   "6233852423673631009": {
+      "message": "jul"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Želite li stvarno da izbrišete sve stavke u ovom direktorijumu?}one{Želite li stvarno da izbrišete sve stavke u ovim direktorijumima?}few{Želite li stvarno da izbrišete sve stavke u ovim direktorijumima?}other{Želite li stvarno da izbrišete sve stavke u ovim direktorijumima?}}"
+   },
+   "6256177058141995632": {
+      "message": "mjao"
+   },
+   "625779090990399178": {
+      "message": "Još opcija"
+   },
+   "6259598030649933216": {
+      "message": "Informacije"
+   },
+   "6263370534846330732": {
+      "message": "tifinah"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# izabrana stavka}one{# izabrana stavka}few{# izabrane stavke}other{# izabranih stavki}}"
+   },
+   "6281738099691391172": {
+      "message": "Boja teksta"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Razmak bez preloma nulte širine"
+   },
+   "6380136177516870340": {
+      "message": "Niste prijavljeni na Google i u Chrome pregledač pomoću istog naloga."
+   },
+   "639862355711352140": {
+      "message": "SAZNAJTE VIŠE"
+   },
+   "6410416070545265970": {
+      "message": "Testiraj ovaj link"
+   },
+   "6418290353353165009": {
+      "message": "Ponovite"
+   },
+   "6425676451769330238": {
+      "message": "Bez razmaka"
+   },
+   "6433056041891472200": {
+      "message": "Prijavite se da biste omogućili"
+   },
+   "6437997645764562921": {
+      "message": "Oznaka praznog polja Choseong za hangul"
+   },
+   "6470997799115367716": {
+      "message": "sauraštra"
+   },
+   "6471970833583478119": {
+      "message": "Manji naslov"
+   },
+   "6473682978091349952": {
+      "message": "Interpunkcijski razmak"
+   },
+   "6489221588545746734": {
+      "message": "ćirilično"
+   },
+   "64909648993550346": {
+      "message": "Zamena zdesna ulevo"
+   },
+   "649459667039033491": {
+      "message": "za $NUM$ dana",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Razmak nulte širine"
+   },
+   "6539448903465735867": {
+      "message": "Muzički simbol za početak"
+   },
+   "6544224848752157941": {
+      "message": "Smanjite uvlačenje"
+   },
+   "6559526625155197659": {
+      "message": "Google pretraga je privremeno nedostupna. Pokušajte ponovo za nekoliko minuta."
+   },
+   "6563689176501108246": {
+      "message": "Han tropotezni radikali"
+   },
+   "6572308230373875858": {
+      "message": "Naziv ovog direktorijuma sadrži nevažeće znake."
+   },
+   "6604826525171204065": {
+      "message": "buhidsko"
+   },
+   "6606727931314199470": {
+      "message": "feničansko"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ puta $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Sinhronizovanje obeleživača nije uspelo. Pokušajte da ponovo učitate ovu stranicu"
+   },
+   "6661160677415877619": {
+      "message": "Izmeni HTML"
+   },
+   "66727790049529171": {
+      "message": "Eksponentni tekst"
+   },
+   "6673681480713693433": {
+      "message": "Oznaka sleva udesno"
+   },
+   "6679365605648394500": {
+      "message": "Istorijski"
+   },
+   "6718105992776681941": {
+      "message": "Javni direktorijum"
+   },
+   "6731765034365779068": {
+      "message": "za $NUM$ minuta",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "stara južnoarapska"
+   },
+   "6748884117721473417": {
+      "message": "Druga evropska pisma"
+   },
+   "6756714832459728782": {
+      "message": "taj lu"
+   },
+   "6781212531496313437": {
+      "message": "Lista"
+   },
+   "6787794440298969774": {
+      "message": "malajalam"
+   },
+   "6813860917460451806": {
+      "message": "likijsko"
+   },
+   "6848846772159302710": {
+      "message": "Promeni"
+   },
+   "6878231700728680871": {
+      "message": "NOVO"
+   },
+   "687829671213164815": {
+      "message": "Žao nam je, Menadžer obeleživača je privremeno nedostupan. Pokušajte ponovo za nekoliko sati"
+   },
+   "6963034896702768829": {
+      "message": "Ovaj direktorijum više ne postoji."
+   },
+   "698011532377344679": {
+      "message": "Rod i genealogija"
+   },
+   "7004429103140794719": {
+      "message": "Nedavni izbori:"
+   },
+   "7009051272745522428": {
+      "message": "Zaboravili ste šta ste sačuvali? Samo pretražite. Koristite opšte termine kao što su „filmovi“ ili „putovanje“ da biste otkrili izgubljene obeleživače."
+   },
+   "7056277361038404533": {
+      "message": "Obeleživač je premešten."
+   },
+   "7058809993296833390": {
+      "message": "Recite nam šta mislite!"
+   },
+   "7064503592469946179": {
+      "message": "sudansko"
+   },
+   "7077571379260349566": {
+      "message": "Želite li da pokušate da \u003Ca class=\"col-zda\">pretražite veb\u003C/a>?"
+   },
+   "7102762854285284877": {
+      "message": "fags pa"
+   },
+   "7124932478652977474": {
+      "message": "Obeleženo je"
+   },
+   "7154665243775472938": {
+      "message": "Direktorijumi"
+   },
+   "7168417416563257713": {
+      "message": "Sačuvaj"
+   },
+   "7178727559519269241": {
+      "message": "Dve kose crtice"
+   },
+   "7256064246386232909": {
+      "message": "javansko"
+   },
+   "7258012171742729961": {
+      "message": "Karakteristični samoglasnik Aq u kmerskom"
+   },
+   "7300188402017534561": {
+      "message": "Sve"
+   },
+   "7316184946628117028": {
+      "message": "tana"
+   },
+   "7328850288952193170": {
+      "message": "Nevidljiva linija za razdvajanje"
+   },
+   "733245618582914569": {
+      "message": "Potvrdi"
+   },
+   "7333334175520057323": {
+      "message": "Otkaži"
+   },
+   "7339792312429709609": {
+      "message": "Han dvopotezni radikali"
+   },
+   "7342965026300699486": {
+      "message": "Ovo je javni direktorijum. Ako ga izbrišete, drugi neće moći da ga vide."
+   },
+   "7346825266417376383": {
+      "message": "Potvrdi"
+   },
+   "7362095105218889721": {
+      "message": "Formatiranje i razmaci"
+   },
+   "7369763432670344230": {
+      "message": "Na koju imejl adresu treba ovo da vodi?"
+   },
+   "7376646180156094924": {
+      "message": "Naziv"
+   },
+   "7388233788532145059": {
+      "message": "Dodajte ili uklonite link"
+   },
+   "7407898565330883980": {
+      "message": "Napravi direktorijum"
+   },
+   "7436494590700857376": {
+      "message": "Nenaslovljeno"
+   },
+   "7454853574776276752": {
+      "message": "Potvrdi"
+   },
+   "7466254996792639407": {
+      "message": "gruzijsko"
+   },
+   "7487940627543583924": {
+      "message": "četvrtak"
+   },
+   "7496808914788281345": {
+      "message": "Mala em crta"
+   },
+   "7512206123241896524": {
+      "message": "Ako izbrišete javne direktorijume, drugi neće moći da ih vide."
+   },
+   "7514107325655026801": {
+      "message": "Mongolski znak za razdvajanje samoglasnika"
+   },
+   "7517846739534508036": {
+      "message": "Sliku koju pokušavate da prevučete je blokirao sajt za hostovanje."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{za # minuta}=1{za # minut}one{za # minut}few{za # minuta}other{za # minuta}}"
+   },
+   "7556000209920718943": {
+      "message": "kiparsko"
+   },
+   "7558709989823567445": {
+      "message": "linear B"
+   },
+   "7561680940841358107": {
+      "message": "kaja li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} sat}one{{TEXT} sat}few{{TEXT} sata}other{{TEXT} sati}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Jermenska crtica"
+   },
+   "762426240463793747": {
+      "message": "Razlomci/srodno"
+   },
+   "7627205932825693842": {
+      "message": "Mongolska meka crtica"
+   },
+   "7666041165203922544": {
+      "message": "Lako pronađite stvari"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "za $NUM$ sata(i)",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "pre $NUM$ dana",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "jun"
+   },
+   "7763561590386207075": {
+      "message": "Veb-adresa"
+   },
+   "7778510137824413661": {
+      "message": "Vi ste najbolji korisnik interne verzije do sada! Odlično ste uočili grešku koju ne možemo jednostavno da rešimo ponovnim učitavanjem."
+   },
+   "7787489712298922692": {
+      "message": "ugarsko"
+   },
+   "7794513342167361028": {
+      "message": "sora sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Muzički simbol za kraj"
+   },
+   "7804811638177746132": {
+      "message": "Unesite važeći URL."
+   },
+   "7820796809104165402": {
+      "message": "petak"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Stavka je napravljena.}one{# stavka je napravljena.}few{# stavke su napravljene.}other{# stavki je napravljeno.}}"
+   },
+   "7842161096380376517": {
+      "message": "Arapski znak safha"
+   },
+   "7877081360738059546": {
+      "message": "Životinje, biljke i hrana"
+   },
+   "7899357084217902569": {
+      "message": "Mala crtica za minus"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Niste sigurni šta da stavite u polje?$END_BOLD$ Prvo, pronađite stranicu na vebu sa kojom želite da povežete. ($SEARCH_ENGINE_LINK$Pretraživač$END_LINK$ može da bude od koristi.) Onda kopirajte veb-adresu iz polja na traci za adresu pregledača, pa je nalepite u polje iznad.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Otkaži"
+   },
+   "7929010027377139621": {
+      "message": "taj vjet"
+   },
+   "7944194550132470305": {
+      "message": "Dodajte naslov..."
+   },
+   "7957751306916251232": {
+      "message": "Nevažeća imejl adresa"
+   },
+   "7977240188055092028": {
+      "message": "Prikaži"
+   },
+   "7987287518899618882": {
+      "message": "feb"
+   },
+   "7995071973884866910": {
+      "message": "pre $NUM$ dana",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Video snimci"
+   },
+   "8011311100803127599": {
+      "message": "Zvezdice/asterisk"
+   },
+   "8017723467201257913": {
+      "message": "deseret"
+   },
+   "8018615794586730510": {
+      "message": "Normalna/serif"
+   },
+   "8027365004962833557": {
+      "message": "etrursko"
+   },
+   "8110520007971944893": {
+      "message": "Google može automatski da organizuje obeleživače umesto vas"
+   },
+   "8115055677841343820": {
+      "message": "Crtica"
+   },
+   "8132750144382731373": {
+      "message": "Emodži"
+   },
+   "8139874053154312313": {
+      "message": "Crtica sa dve tačke"
+   },
+   "8143412461134291283": {
+      "message": "Pošalji povratne informacije"
+   },
+   "8146770321190721394": {
+      "message": "osmanja"
+   },
+   "8167437723285192120": {
+      "message": "Nijedno"
+   },
+   "8179849043307262288": {
+      "message": "Aplikacija funkcije"
+   },
+   "818630018883405514": {
+      "message": "Zatvoreno"
+   },
+   "8208069138346972268": {
+      "message": "Tehnički"
+   },
+   "8220605653109571646": {
+      "message": "grčko"
+   },
+   "8243618543879664815": {
+      "message": "jan"
+   },
+   "8275729822640276507": {
+      "message": "Ponovo ste povezani na veb."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Opozovi"
+   },
+   "8338269186594699884": {
+      "message": "po podne"
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "VAŽI"
+   },
+   "8394518299580326671": {
+      "message": "Znak povezivanja nulte širine"
+   },
+   "8401283339806880070": {
+      "message": "Poravnajte obostrano"
+   },
+   "8417405596874032771": {
+      "message": "Oznaka za razmak u ogamskom pismu"
+   },
+   "8442861823466423570": {
+      "message": "Međuredni završni član beleški"
+   },
+   "8454082825844118412": {
+      "message": "Han radikali (od 11 do 17 poteza)"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Rezultati pretrage za \u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Emotikoni"
+   },
+   "8509200859889253607": {
+      "message": "bugijsko"
+   },
+   "8513771017811992648": {
+      "message": "Nijedno"
+   },
+   "8583880697323281603": {
+      "message": "Obeleživač je promenjen."
+   },
+   "8590712065595806821": {
+      "message": "Predloženo"
+   },
+   "8605746117200843257": {
+      "message": "Međuredni oslonac beleški"
+   },
+   "8608038304204118820": {
+      "message": "pre $NUM$ sata",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Dodajte zvezdicu ovoj stranici"
+   },
+   "8632024322663078476": {
+      "message": "Dodaj u direktorijum"
+   },
+   "8635739256240231429": {
+      "message": "Zatvori"
+   },
+   "8637786997742615742": {
+      "message": "Modifikator"
+   },
+   "8639484881518821804": {
+      "message": "katakana"
+   },
+   "8650532263464760711": {
+      "message": "samarićansko"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Normalna"
+   },
+   "8694618136165028235": {
+      "message": "Dodajte URL..."
+   },
+   "8723654283178734366": {
+      "message": "Unesite veb-adresu"
+   },
+   "8748780785044360315": {
+      "message": "tajsko"
+   },
+   "8764548034413038101": {
+      "message": "za $NUM$ minut",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "apr"
+   },
+   "8784386825932830097": {
+      "message": "Horizontalna crta"
+   },
+   "8793684579112208899": {
+      "message": "Indeksni tekst"
+   },
+   "8797138403646238716": {
+      "message": "meriotsko, kurziv"
+   },
+   "8801105026907713256": {
+      "message": "Manje često"
+   },
+   "8805843642052942743": {
+      "message": "lepča"
+   },
+   "8827926534395802942": {
+      "message": "Crta veličine jednog znaka"
+   },
+   "8829617001171812634": {
+      "message": "Predmeti"
+   },
+   "8835425644719990167": {
+      "message": "Oznaka praznog polja Jungseong za hangul"
+   },
+   "8838200101653652173": {
+      "message": "Zatvoreno"
+   },
+   "8838938639049885476": {
+      "message": "En razmak"
+   },
+   "8841111838340088121": {
+      "message": "Han četvoropotezni radikali"
+   },
+   "8860909466229522023": {
+      "message": "Kurziv"
+   },
+   "888434073985276543": {
+      "message": "Prezentacija uspravne em crte"
+   },
+   "8892104104076766085": {
+      "message": "Talasasta crta"
+   },
+   "8996388564146952786": {
+      "message": "Uski razmak koji se ne prelama"
+   },
+   "9021466412659564505": {
+      "message": "Prijavite se"
+   },
+   "9026903153882226079": {
+      "message": "Oznaka zdesna ulevo"
+   },
+   "9034162255782924509": {
+      "message": "batačko"
+   },
+   "9041611521175673293": {
+      "message": "Sve stavke"
+   },
+   "9041881295809259717": {
+      "message": "Matematika"
+   },
+   "9072668986327887451": {
+      "message": "Ideografski opis"
+   },
+   "9076212347872857205": {
+      "message": "Stavite navodnike"
+   },
+   "9083920162332648298": {
+      "message": "pre podne"
+   },
+   "9086165147555162831": {
+      "message": "metei majek"
+   },
+   "9092805374125336008": {
+      "message": "maj"
+   },
+   "9099680152087323883": {
+      "message": "nov"
+   },
+   "9107905796365363672": {
+      "message": "Velika"
+   },
+   "9113260413780075008": {
+      "message": "brahmi"
+   },
+   "9115834469932780333": {
+      "message": "telugu"
+   },
+   "9143484910409308303": {
+      "message": "hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Ne možete da pretražujete šifrovane obeleživače. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Saznajte više\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Direktorijum je uklonjen iz nadređenog direktorijuma."
+   },
+   "9180458846772153689": {
+      "message": "jermensko"
+   },
+   "9181119817188520774": {
+      "message": "Nema mrežne veze. Ne možete da sačuvate promene dok ponovo ne budete onlajn"
+   },
+   "9204096795425905695": {
+      "message": "Nevidljivi znak množenja"
+   },
+   "922163125711959960": {
+      "message": "pre $NUM$ minuta",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Dodaj"
+   },
+   "93670926879626900": {
+      "message": "Razmak"
+   },
+   "93871902389648718": {
+      "message": "Muzički simbol završnog rebra"
+   },
+   "960914149201689167": {
+      "message": "Decimale"
+   },
+   "963040144042262397": {
+      "message": "Izbriši"
+   },
+   "964017479791059460": {
+      "message": "Arapski kraj ajeta"
+   },
+   "980376110610801797": {
+      "message": "Umetnite sliku"
+   }
+}

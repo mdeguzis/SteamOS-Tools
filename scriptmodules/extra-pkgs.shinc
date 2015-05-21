@@ -683,7 +683,7 @@ ep_install_netflix()
 	sudo chmod +x "/usr/bin/Netflix-Launch.sh"
 	
 	# copy banner
-	sudo cp "$scriptdir/cfgs/Netflix.png" "/home/steam/Pictures"
+	sudo cp "$scriptdir/cfgs/netflix/Netflix.png" "/home/steam/Pictures"
 
 	# NOTE:
 	# Mouse support with cursor is fine

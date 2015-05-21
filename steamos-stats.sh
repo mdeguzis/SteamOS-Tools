@@ -86,6 +86,9 @@ funct_pre_req_checks()
 		# steamcmd is not installed to any particular directory, but we
 		# will have to assume the user started in the /home/desktop DIR
 	
+		echo -e "\n==> Installing SteamCMD"
+		sleep 2s
+	
 		# steamcmd dependencies
 		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' lib32gcc1 | grep "install ok installed")
 		
@@ -132,6 +135,10 @@ funct_pre_req_checks()
 		#####################################################"
 		# FPS + more binds from VaporOS 2
 		# For bindings, see: /etc/actkbd-steamos-controller.conf
+		
+		echo -e "\n==> Installing VaporOS Xbox 360 bindings"
+		sleep 2s
+		
 		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
 		if [ "" == "$PKG_OK" ]; then
 			echo -e "vaporos-binds-xbox360 not found. Setting up vaporos-binds-xbox360 now...\n"
@@ -158,6 +165,15 @@ funct_pre_req_checks()
 		#####################################################"
 		# Since Voglperf compiles into a bin/ folder, not /usr/bin, we have to
 		# assume the git repo was cloned into /home/desktop for now.
+		
+		echo -e "\n==> Installing Voglperf"
+		sleep 2s
+		
+		# set external Deb repo required flag 
+		export deb_repo_name="wheezy.list" 
+		export deb_repo_req="yes" 
+		# Eval requirements 
+		"$scriptdir/utilities/check_repo_req.sh" 
 		
 		if [[ ! -f "/home/desktop/voglperf/bin/voglperfrun64" ]]; then
 			echo "Voglperf not found"
@@ -206,6 +222,15 @@ funct_pre_req_checks()
 		# Other core utilties from official repos 
 		#####################################################"
 	
+		echo -e "\n==> Installing other core utilties"
+		sleep 2s
+	
+		# set external Deb repo required flag 
+		export deb_repo_name="wheezy.list" 
+		export deb_repo_req="yes" 
+		# Eval requirements 
+		"$scriptdir/utilities/check_repo_req.sh" 
+	
 		if [[ -z $(type -P sensors) \
 		       || -z $(type -P nvidia-smi) \
 		       || -z $(type -P sar) \
@@ -219,7 +244,7 @@ funct_pre_req_checks()
 			sudo apt-get update
 	
 			# fetch needed pkgs
-			sudo apt-get -t wheezy install lm-sensors sysstat git -y
+			sudo apt-get install lm-sensors sysstat git -y
 			sudo apt-get install nvidia-smi openssh-server -y
 			# detect sensors automatically
 			yes | sudo sensors-detect

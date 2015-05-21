@@ -228,7 +228,11 @@ main()
 	echo -e "\n==> Would you like to purge this source list addition? [y/n]"
 	sleep 0.5s
 	# capture command
+<<<<<<< HEAD
 	read -ep "Choice: " purge_choice
+=======
+	read -ep "Choice: " >> purge_choice
+>>>>>>> master
 	
 	if [[ "$purge_choice" == "y" ]]; then
 	

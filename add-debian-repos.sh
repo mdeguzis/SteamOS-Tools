@@ -214,10 +214,19 @@ main()
 		clear
 		echo -e "\n==> Removing debian repositories...\n"
 		sleep 2s
+		
+		# original files
 		sudo rm -f ${sourcelist}
 		sudo rm -f ${backports_sourcelist}
 		sudo rm -f ${prefer}
 		sudo rm -f ${steamosprefer}
+		
+		# backups
+		sudo rm -f ${sourcelist}.bak
+		sudo rm -f ${backports_sourcelist}.bak
+		sudo rm -f ${prefer}.bak
+		sudo rm -f ${steamosprefer}.bak
+		
 		sleep 2s
 		sudo apt-get update
 		echo "Done!"

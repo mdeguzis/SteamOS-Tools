@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Partilhar esta pasta ou alterar as definições de partilha"
+   },
+   "1014969137789706237": {
+      "message": "Link para uma página ou um ficheiro noutro local na Web"
+   },
+   "1033240210015440654": {
+      "message": "Remover imagem"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} minuto}other{{TEXT} minutos}}"
+   },
+   "1035347665345261212": {
+      "message": "Introduzir uma nota"
+   },
+   "1036132178487616999": {
+      "message": "Introduction"
+   },
+   "1041064392303158655": {
+      "message": "Limbu"
+   },
+   "1066103686460691847": {
+      "message": "Rasurado"
+   },
+   "1085496824897012476": {
+      "message": "Hieróglifos egípcios"
+   },
+   "1105045461281211798": {
+      "message": "Combinar união de grafema"
+   },
+   "111315886393984302": {
+      "message": "Experimente adicionar aos marcadores alguns itens na Web e adicioná-los a esta pasta!"
+   },
+   "1117324761561996205": {
+      "message": "Editar"
+   },
+   "1124849668149719420": {
+      "message": "Introduzir comentários"
+   },
+   "1142044035368837035": {
+      "message": "Quadratim"
+   },
+   "1148670835609345833": {
+      "message": "Botão Editar marcador"
+   },
+   "1161548997573254809": {
+      "message": "Cancelar"
+   },
+   "1164857998440803763": {
+      "message": "Chakma"
+   },
+   "1170102576258588460": {
+      "message": "Hífen sem quebra"
+   },
+   "1185158158029036642": {
+      "message": "Clique para criar um novo marcador ou uma nova pasta."
+   },
+   "1201286409038567178": {
+      "message": "url inválido"
+   },
+   "1214729854306268929": {
+      "message": "há $NUM$ minutos",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{há # horas}=1{há # hora}other{há # horas}}"
+   },
+   "1232723730191754374": {
+      "message": "Tipo de letra"
+   },
+   "1243361230826165709": {
+      "message": "Hangul"
+   },
+   "128696227290770661": {
+      "message": "Devanagari"
+   },
+   "1312606838421552827": {
+      "message": "Número"
+   },
+   "1316608632339176215": {
+      "message": "Diversos"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "1/4 espaço duplo"
+   },
+   "1337190557080419948": {
+      "message": "Título"
+   },
+   "1347841728719446841": {
+      "message": "Endereço de email"
+   },
+   "1350404634989083059": {
+      "message": "Sinal invisível de soma"
+   },
+   "1356908927221815545": {
+      "message": "Radicais de 1 traço do alfabeto Han"
+   },
+   "1373666411928680514": {
+      "message": "Traço ondulado"
+   },
+   "1378894003206512970": {
+      "message": "Ignorar"
+   },
+   "138484781723580209": {
+      "message": "Marca de abreviatura siríaca"
+   },
+   "1397568831960098153": {
+      "message": "Formatar"
+   },
+   "142359106099692409": {
+      "message": "Pastas automáticas"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Pequena"
+   },
+   "1460136507747533015": {
+      "message": "Inicie sessão para partilhar"
+   },
+   "1477567329816921885": {
+      "message": "Sabia que pode partilhar os seus marcadores favoritos ao tornar uma pasta pública? Obtenha o URL público e partilhe-a!"
+   },
+   "1507362459078633250": {
+      "message": "É necessário descarregar e recarregar a extensão do Chrome e/ou recorrer à equipa de engenharia... Lamentamos :-/"
+   },
+   "1516565793778879679": {
+      "message": "Han – outros"
+   },
+   "1519227660570105215": {
+      "message": "Esta página pode ser prejudicial"
+   },
+   "1556175764217302644": {
+      "message": "Khmer – vogal inerente Aa"
+   },
+   "1566367040709255091": {
+      "message": "Formato"
+   },
+   "1582412901770221448": {
+      "message": "Adicionado a {FOLDER_NAME}"
+   },
+   "1585233503778646014": {
+      "message": "Mandaico"
+   },
+   "1592899529499992997": {
+      "message": "Marcador removido da pasta."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Coloque o cursor do rato sobre cada célula para obter o nome do caráter."
+   },
+   "1630439475247732904": {
+      "message": "Superior à linha"
+   },
+   "1634874677195552014": {
+      "message": "1/6 espaço duplo"
+   },
+   "1635366592844795535": {
+      "message": "INICIAR SESSÃO NO CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Meteorologia e astrologia"
+   },
+   "1665234249876251486": {
+      "message": "Espaço numérico"
+   },
+   "1666311405952625458": {
+      "message": "Meteorologia, cenas e signos do Zodíaco"
+   },
+   "1678004121951995792": {
+      "message": "Ago"
+   },
+   "1680034627075195442": {
+      "message": "Pode criar pastas próprias ou permitir ao Google organizá-las com as pastas automáticas."
+   },
+   "1683451665637766512": {
+      "message": "Link para um endereço de email"
+   },
+   "1685884502412781083": {
+      "message": "Separador de parágrafo"
+   },
+   "169055910458549089": {
+      "message": "Não foi possível ligar ao nosso servidor. Tente novamente dentro de alguns minutos."
+   },
+   "1691734467561749621": {
+      "message": "Não é possível partilhar pastas na Barra de marcadores"
+   },
+   "1715361312704502898": {
+      "message": "Transporte e mapa"
+   },
+   "1719053155706676551": {
+      "message": "Barra de marcadores"
+   },
+   "1730849295731139586": {
+      "message": "Yi"
+   },
+   "1748899684018766272": {
+      "message": "Meia largura – hangul – caráter de preenchimento"
+   },
+   "1755438325907288056": {
+      "message": "Nko"
+   },
+   "1776387440523546537": {
+      "message": "Hoje"
+   },
+   "178181731883558542": {
+      "message": "Caixa de texto para pesquisar nos seus marcadores."
+   },
+   "1791083579000016877": {
+      "message": "Baseado em ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Ver itens marcados com uma estrela"
+   },
+   "1803667155949248788": {
+      "message": "Aramaico imperial"
+   },
+   "1827599404395723350": {
+      "message": "Imagens de controlo"
+   },
+   "1839253253564716482": {
+      "message": "Nenhum marcador encontrado"
+   },
+   "1847259066982820034": {
+      "message": "Escolher uma pasta"
+   },
+   "1875246104836450162": {
+      "message": "Símbolo"
+   },
+   "1879633738298009258": {
+      "message": "Espaço médio matemático"
+   },
+   "1915655034817606796": {
+      "message": "Hífen virtual"
+   },
+   "191946029988896895": {
+      "message": "Símbolo numérico árabe"
+   },
+   "1932973762029792550": {
+      "message": "O Google está a organizar automaticamente todos os itens adicionados aos marcadores"
+   },
+   "1942405576047748946": {
+      "message": "Marcador criado."
+   },
+   "196266011387145001": {
+      "message": "Continuar"
+   },
+   "1963154331052663396": {
+      "message": "Latim"
+   },
+   "1999193032742275907": {
+      "message": "Radicais de 9 traços do alfabeto Han"
+   },
+   "2003860471263842959": {
+      "message": "Espaço muito fino"
+   },
+   "2015775921681923490": {
+      "message": "Definições"
+   },
+   "202031328373263910": {
+      "message": "Radicais de 6 traços do alfabeto Han"
+   },
+   "2036672715320764541": {
+      "message": "Separador de linha"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Item removido da pasta.}other{# itens removidos da pasta.}}"
+   },
+   "2088133380647290173": {
+      "message": "Em {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Introduza um URL para criar um novo marcador."
+   },
+   "2117634893694108880": {
+      "message": "Privado"
+   },
+   "2135921744011555145": {
+      "message": "Pesquisar os seus marcadores"
+   },
+   "213958631597214757": {
+      "message": "Parar a partilha. "
+   },
+   "2149498606985329379": {
+      "message": "Importação de marcadores concluída."
+   },
+   "2159536073195133897": {
+      "message": "Anular"
+   },
+   "2166866096346653276": {
+      "message": "Nenhuma"
+   },
+   "2167636135101203592": {
+      "message": "Bengali"
+   },
+   "2176930521411607789": {
+      "message": "Sincronizado"
+   },
+   "218054763532467155": {
+      "message": "Introduzir um título"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Eliminar \u003Cb>{firstItemName}\u003C/b>}=1{Eliminar \u003Cb>{firstItemName}\u003C/b> e mais # item}other{Eliminar \u003Cb>{firstItemName}\u003C/b> e mais # itens}}"
+   },
+   "2200921183377473543": {
+      "message": "Sim"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{há # dias}=1{há # dia}other{há # dias}}"
+   },
+   "2228495834106697427": {
+      "message": "Inferior à linha"
+   },
+   "2253752461533441758": {
+      "message": "Radicais de 10 traços do alfabeto Han"
+   },
+   "2257250286834696444": {
+      "message": "A carregar..."
+   },
+   "2280907281518645401": {
+      "message": "Hífen duplo katakana-hiragana"
+   },
+   "2301390744929043794": {
+      "message": "Aguarde enquanto guardamos a sua pasta no servidor"
+   },
+   "2315132909835126412": {
+      "message": "Público"
+   },
+   "2315864755754275083": {
+      "message": "Moeda"
+   },
+   "231658276152304252": {
+      "message": "Remover"
+   },
+   "2353164220175503425": {
+      "message": "Kthi – sinal de número"
+   },
+   "2359350477261263182": {
+      "message": "Gestor de marcadores"
+   },
+   "2362075348358411947": {
+      "message": "Lista com marcas"
+   },
+   "2396988228061015409": {
+      "message": "Pastas"
+   },
+   "2398127458667829603": {
+      "message": "Teclado e IU"
+   },
+   "2413859014200470621": {
+      "message": "Aumentar o avanço"
+   },
+   "2414987366409119013": {
+      "message": "Descrição da nova pasta (opcional)"
+   },
+   "2444245672676114535": {
+      "message": "Formas geométricas"
+   },
+   "2454859602363061373": {
+      "message": "Utilize a estrela na barra de endereço para guardar qualquer conteúdo da Web"
+   },
+   "2497668314434532819": {
+      "message": "Mongol"
+   },
+   "2498668179494167671": {
+      "message": "Espaço"
+   },
+   "2506204110427755391": {
+      "message": "Inclui marcadores de dispositivos móveis e itens não presentes na Barra de marcadores"
+   },
+   "2512307863902593558": {
+      "message": "Kharoshthi"
+   },
+   "2518095696810513128": {
+      "message": "Importar marcadores..."
+   },
+   "2524757118580919241": {
+      "message": "Árabe – marcador de nota de rodapé"
+   },
+   "2528672033407304265": {
+      "message": "Esta pasta está visível apenas para si. Para partilhar, clique em \"Definir como pública\" para obter um link partilhável."
+   },
+   "2566403151253785267": {
+      "message": "Pasta sem nome"
+   },
+   "2581794950690518802": {
+      "message": "0 minutos"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Ignorar introdução"
+   },
+   "2620868598794227408": {
+      "message": "Esta página já não existe"
+   },
+   "2626676714216619519": {
+      "message": "Subtítulo"
+   },
+   "2655730128699057253": {
+      "message": "Normal"
+   },
+   "2662413919655166560": {
+      "message": "Domingo"
+   },
+   "2665932089093244134": {
+      "message": "Marque com uma estrela"
+   },
+   "2678821645623495183": {
+      "message": "Pessoas e ícones expressivos"
+   },
+   "271255586148025786": {
+      "message": "Introduzir valor hexadecimal"
+   },
+   "27472132823239706": {
+      "message": "Da direita para a esquerda"
+   },
+   "278208331708453602": {
+      "message": "Ligar à Web e iniciar sessão para partilhar"
+   },
+   "2785193083209311775": {
+      "message": "Mar"
+   },
+   "2803486006471792395": {
+      "message": "de \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Ogham"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Importado a partir de um ficheiro"
+   },
+   "2860423337665026261": {
+      "message": "Remover da pasta"
+   },
+   "2870049984905408346": {
+      "message": "Título"
+   },
+   "2878157583475586619": {
+      "message": "Adicionar uma cor"
+   },
+   "2926789704127794819": {
+      "message": "Nome da nova pasta (obrigatório)"
+   },
+   "2951727458776714094": {
+      "message": "Não é possível testar este link."
+   },
+   "2967109838548277236": {
+      "message": "Partilhar link:"
+   },
+   "2990895581472607445": {
+      "message": "Outros"
+   },
+   "2993160588184042952": {
+      "message": "Grafias americanas"
+   },
+   "3002524775820283106": {
+      "message": "Adicionar uma nota..."
+   },
+   "3010872256194497959": {
+      "message": "Peças de jogo"
+   },
+   "3027920889685525544": {
+      "message": "Parta inscripcional"
+   },
+   "3034084095590774557": {
+      "message": "Ignorar"
+   },
+   "3051034269680162898": {
+      "message": "Ignorar"
+   },
+   "3054430907861836285": {
+      "message": "Dez"
+   },
+   "3085746489633838782": {
+      "message": "Lista numerada"
+   },
+   "3087091861834859241": {
+      "message": "Bem-vindo aos seus novos marcadores!"
+   },
+   "3090613379634438188": {
+      "message": "Hieróglifos meroíticos"
+   },
+   "3093070593773009381": {
+      "message": "Outras grafias da Ásia oriental"
+   },
+   "3114565967060091369": {
+      "message": "Hanunoo"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{dentro de # horas}=1{dentro de # hora}other{dentro de # horas}}"
+   },
+   "3140214171317206668": {
+      "message": "Meio quadratim"
+   },
+   "3153433695439945201": {
+      "message": "Continue a utilizar a estrela para adicionar uma página aos marcadores, como sempre fez. O seu marcador guarda uma parte da página na sua Conta Google para ser mais fácil encontrá-la mais tarde."
+   },
+   "3186183325550234111": {
+      "message": "Ir para o link: "
+   },
+   "3212472770580267001": {
+      "message": "Grafias do Sudoeste Asiático"
+   },
+   "3218408007702426636": {
+      "message": "Símbolo musical terminar laço"
+   },
+   "3227675900195928275": {
+      "message": "Rejang"
+   },
+   "3234811075540284463": {
+      "message": "Normal"
+   },
+   "3244450940425660505": {
+      "message": "Pontuação"
+   },
+   "3245712009497198424": {
+      "message": "dentro de $NUM$ dia",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Não existem resultados para a sua pesquisa"
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Também pretende eliminar os itens nesta pasta?}other{Também pretende eliminar os itens nestas pastas?}}"
+   },
+   "3284734782999930756": {
+      "message": "URL"
+   },
+   "328616644571689303": {
+      "message": "Símbolo musical terminar legato"
+   },
+   "3309586635668050685": {
+      "message": "Anular esquerda para a direita"
+   },
+   "3316092543008555482": {
+      "message": "Fonética (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonética (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Pasta criada."
+   },
+   "3334908307836130914": {
+      "message": "Ol Chiki"
+   },
+   "3355297279379313357": {
+      "message": "Utilizada pela última vez"
+   },
+   "3360043590563638195": {
+      "message": "Tamanho do tipo de letra"
+   },
+   "3364831016239212879": {
+      "message": "Alinhar ao centro"
+   },
+   "3383495912989125674": {
+      "message": "Espaço fino"
+   },
+   "340057911065586090": {
+      "message": "Espaço de idiograma"
+   },
+   "3413537935166399959": {
+      "message": "Sharada"
+   },
+   "3413696263226173348": {
+      "message": "Editar palavra"
+   },
+   "3417560136558853718": {
+      "message": "Canará"
+   },
+   "3423652049926153935": {
+      "message": "Nova pasta..."
+   },
+   "3484416881429158332": {
+      "message": "Pasta privada"
+   },
+   "3490738610910152047": {
+      "message": "Bamum"
+   },
+   "3490814222385998788": {
+      "message": "Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Item eliminado.}other{# itens eliminados.}}"
+   },
+   "3501212562096780610": {
+      "message": "Pasta principal: "
+   },
+   "3501367450176932554": {
+      "message": "Separador de anotação interlinear"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Oriya"
+   },
+   "3545341282138953352": {
+      "message": "Símbolo musical iniciar laço"
+   },
+   "3546572522856950945": {
+      "message": "Cuneiforme"
+   },
+   "3554323414956249846": {
+      "message": "Link"
+   },
+   "3572348996000195345": {
+      "message": "Espaço duplo"
+   },
+   "3596311690500158112": {
+      "message": "O Gestor de marcadores está temporariamente indisponível. Recarregue a página."
+   },
+   "3621913747018973144": {
+      "message": "Da esquerda para a direita"
+   },
+   "362505154270301776": {
+      "message": "Páginas Web"
+   },
+   "3630778778193389974": {
+      "message": "Corretor ortográfico"
+   },
+   "3641126700487126155": {
+      "message": "Símbolo musical iniciar legato"
+   },
+   "3646623530558910508": {
+      "message": "Pasta alterada."
+   },
+   "3646641743349296313": {
+      "message": "Out"
+   },
+   "3650952447025672637": {
+      "message": "Eliminar pastas e itens"
+   },
+   "3723533099349282495": {
+      "message": "Kthi"
+   },
+   "37315674215151127": {
+      "message": "Mantenha-se organizado"
+   },
+   "3731716253672925709": {
+      "message": "Setas"
+   },
+   "373495866496779840": {
+      "message": "VER TODOS OS ITENS NOS MARCADORES"
+   },
+   "3735789968703193383": {
+      "message": "Vista"
+   },
+   "3737215641755068426": {
+      "message": "Traços CJK"
+   },
+   "3752699251010579834": {
+      "message": "Canadiano – hífen para divisão silábica"
+   },
+   "377368134657453613": {
+      "message": "Inicie sessão no Chrome para pesquisar as suas páginas adicionadas aos marcadores"
+   },
+   "3800528517409823312": {
+      "message": "Alfanumérico matemático"
+   },
+   "3832066920911226237": {
+      "message": "Exportar marcadores..."
+   },
+   "3836877357378306877": {
+      "message": "Comum"
+   },
+   "3880744822029422406": {
+      "message": "Se deixar de partilhar esta pasta, o link da partilha deixa de funcionar."
+   },
+   "3888658965293980754": {
+      "message": "Formatar"
+   },
+   "3893161213200925599": {
+      "message": "Cancelar"
+   },
+   "3924970930634517299": {
+      "message": "Descrição"
+   },
+   "3947500116452515010": {
+      "message": "Ainda não existem marcadores aqui!"
+   },
+   "3951067234379178869": {
+      "message": "Pasta eliminada."
+   },
+   "3953750991047324531": {
+      "message": "Gujarati"
+   },
+   "3960988854399920931": {
+      "message": "Grafias africanas"
+   },
+   "3977845230474613475": {
+      "message": "Segunda-feira"
+   },
+   "3978409745488989414": {
+      "message": "Amanhã"
+   },
+   "3981527568769423358": {
+      "message": "Seletor de variação"
+   },
+   "3998968827975494252": {
+      "message": "Aborígene canadiano"
+   },
+   "4052124018014680002": {
+      "message": "Uma vez que optou por encriptar os seus marcadores em \"Definições de sincronização avançadas\", desativámos a funcionalidade que exigiria ao Google ver o conteúdo."
+   },
+   "4070285516355502772": {
+      "message": "Aglutinador de palavras"
+   },
+   "4083819681339999404": {
+      "message": "Pasta movida."
+   },
+   "4093661547607027073": {
+      "message": "Travessão"
+   },
+   "4132740194577129031": {
+      "message": "Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Tamil"
+   },
+   "4141340144529743179": {
+      "message": "Alinhar à direita"
+   },
+   "4185431426264249075": {
+      "message": "Não"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{há # minutos}=1{há # minuto}other{há # minutos}}"
+   },
+   "4207416107225157509": {
+      "message": "Cham"
+   },
+   "421809097037025717": {
+      "message": "Lídio"
+   },
+   "4219066138225986920": {
+      "message": "há $NUM$ horas",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "Novo Tai Lue"
+   },
+   "4256734561546878891": {
+      "message": "Árabe"
+   },
+   "4257688962636177926": {
+      "message": "Notas"
+   },
+   "4313041477349547430": {
+      "message": "Selecionar"
+   },
+   "4317807879399263422": {
+      "message": "Símbolos"
+   },
+   "4371152527205140884": {
+      "message": "Mianmar"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Hangul – caráter de preenchimento"
+   },
+   "4394299965695763613": {
+      "message": "ERRO: \"$COLOR$\" não é uma cor válida.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "dentro de $NUM$ hora",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Abrir este link numa nova janela"
+   },
+   "4436859540429978060": {
+      "message": "Neste momento, não é possível arrastar e soltar ficheiros de imagem.\nArraste uma imagem a partir do seu navegador de Internet."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Vai"
+   },
+   "4467383198992095863": {
+      "message": "Traço/conetor"
+   },
+   "4485563787650970048": {
+      "message": "Transportes, mapas e sinalização"
+   },
+   "4511605174156009486": {
+      "message": "INICIAR SESSÃO"
+   },
+   "4536708754459423390": {
+      "message": "Link para:"
+   },
+   "4547888102017603305": {
+      "message": "Introduzir cor personalizada, ou seja, cor-de-rosa, #F00, #D015FF ou rgb (100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Mosaico"
+   },
+   "4564357083324116837": {
+      "message": "Grafias da Ásia Meridional"
+   },
+   "4604654420597817764": {
+      "message": "Não aglutinador de largura zero"
+   },
+   "4631096075002795557": {
+      "message": "Braille"
+   },
+   "4639190252078874549": {
+      "message": "Os seus marcadores foram atualizados para facilitar a localização do que guardou."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Item movido.}other{# itens movidos.}}"
+   },
+   "4677342274083596624": {
+      "message": "Modo offline"
+   },
+   "4680868343849876958": {
+      "message": "Túrquico arcaico"
+   },
+   "468549910877472151": {
+      "message": "Importado"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Persa antigo"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Tenha cuidado.$POSTB$ Não se esqueça de que, sempre que inclui um endereço de email numa página Web, os spammers também o podem encontrar.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Tagalo"
+   },
+   "4747022692863822805": {
+      "message": "Hífen ou sinal de subtração"
+   },
+   "4749120223198822539": {
+      "message": "Cingalês"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Eliminar pasta e itens"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Item movido.}other{# itens movidos.}}"
+   },
+   "482762608498192214": {
+      "message": "Sábado"
+   },
+   "4833178038692710844": {
+      "message": "Simétrico/espelhado"
+   },
+   "484556867028550958": {
+      "message": "Maqaf da pontuação hebraica"
+   },
+   "4848946125726663758": {
+      "message": "Alinhar à esquerda"
+   },
+   "4849410737412842755": {
+      "message": "Não é possível partilhar esta pasta, porque o respetivo elemento principal não está partilhado publicamente"
+   },
+   "4856510901676745213": {
+      "message": "Hebraico"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{dentro de # dias}=1{dentro de # dia}other{dentro de # dias}}"
+   },
+   "4886850400045987885": {
+      "message": "Editar link"
+   },
+   "4894342917447426362": {
+      "message": "Suplemento de latim-1"
+   },
+   "4895451769213934183": {
+      "message": "Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Formulário de apresentação para traço vertical"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Item alterado.}other{# itens alterados.}}"
+   },
+   "4934771438157777517": {
+      "message": "Sublinhado"
+   },
+   "4943286974087295923": {
+      "message": "Fechar"
+   },
+   "4944188657066537729": {
+      "message": "Sírio"
+   },
+   "4974279938502768331": {
+      "message": "Editar"
+   },
+   "4987339278179088082": {
+      "message": "Adicionar o atributo \"$REL_NO_FOLLOW$\" ($LINK_START$Saiba mais$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Texto a apresentar:"
+   },
+   "4991252214297708837": {
+      "message": "Descrição da pasta"
+   },
+   "500023300077018967": {
+      "message": "Sem sugestões"
+   },
+   "5002702571780362629": {
+      "message": "Avéstico"
+   },
+   "5013372925252634952": {
+      "message": "Cariano"
+   },
+   "5015669074913229206": {
+      "message": "Balinês"
+   },
+   "5016723309142316836": {
+      "message": "Gurmukhi"
+   },
+   "5042512453093360461": {
+      "message": "Restaurar direção de escrita inicial"
+   },
+   "5086992011880811613": {
+      "message": "Marcador eliminado."
+   },
+   "5089168125978769021": {
+      "message": "Eliminar pasta"
+   },
+   "5089667744614498582": {
+      "message": "Marcador movido."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Símbolo musical iniciar linha de união"
+   },
+   "5109840495091366547": {
+      "message": "Desportos, celebrações e atividades"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Nova pasta"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} dia}other{{TEXT} dias}}"
+   },
+   "5162393477556833033": {
+      "message": "A que URL deverá corresponder este link?"
+   },
+   "518089704180562683": {
+      "message": "Hoje"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Rúnico"
+   },
+   "5253985055078626542": {
+      "message": "Incorporação da esquerda para a direita"
+   },
+   "5266193592374285468": {
+      "message": "Definir como pública"
+   },
+   "5272267167655788064": {
+      "message": "Imagem"
+   },
+   "528339682728930567": {
+      "message": "O Gestor de marcadores está temporariamente indisponível. Tente novamente dentro de alguns minutos."
+   },
+   "5300191622079400984": {
+      "message": "Tudo"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Clicar para adicionar uma descrição"
+   },
+   "5334597244901829906": {
+      "message": "Partilhar esta pasta"
+   },
+   "534304870772683249": {
+      "message": "Enviar"
+   },
+   "534369010818044160": {
+      "message": "Khmer"
+   },
+   "5354142472798067112": {
+      "message": "Seletor de variação – $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Sem ligação de rede. Não é possível guardar as alterações enquanto não voltar a estar online."
+   },
+   "5371009567664142864": {
+      "message": "Etíope"
+   },
+   "5378436065321978089": {
+      "message": "Criar"
+   },
+   "538263398271363120": {
+      "message": "Cherokee"
+   },
+   "5412265752110327977": {
+      "message": "Compatibilidade"
+   },
+   "5425054962709217464": {
+      "message": "Quarta-feira"
+   },
+   "544490805551236927": {
+      "message": "Grafias do Médio Oriente"
+   },
+   "5448654348317290038": {
+      "message": "Traço"
+   },
+   "5456454482863742119": {
+      "message": "Eliminar pastas"
+   },
+   "5458956770053499082": {
+      "message": "Musical"
+   },
+   "546306107859654806": {
+      "message": "Mover para a pasta"
+   },
+   "5474647412096976366": {
+      "message": "Ligue-se à Internet para pesquisar as suas páginas adicionadas aos marcadores"
+   },
+   "5500830105937873966": {
+      "message": "Eliminar"
+   },
+   "5517581353492371385": {
+      "message": "Ontem"
+   },
+   "5521943762943322583": {
+      "message": "Laosiano"
+   },
+   "5529569087489430384": {
+      "message": "Pahlavi inscripcional"
+   },
+   "5561412620611998456": {
+      "message": "Set"
+   },
+   "5579702837382664819": {
+      "message": "Pasta automática de \u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gótico"
+   },
+   "5603457799050818619": {
+      "message": "Não existem pastas automáticas neste momento."
+   },
+   "5603774725128707055": {
+      "message": "Pasta movida."
+   },
+   "5621148847082889884": {
+      "message": "Ainda não existem pastas aqui!"
+   },
+   "5669644158906503623": {
+      "message": "Árabe – sinal sanah"
+   },
+   "5672850901284728452": {
+      "message": "Open logs page"
+   },
+   "5673852407127287054": {
+      "message": "Hífen ou sinal de subtração em largura completa"
+   },
+   "5679720964567650205": {
+      "message": "Terça-feira"
+   },
+   "5748894773514291207": {
+      "message": "1/3 espaço duplo"
+   },
+   "5749465969550038727": {
+      "message": "Tagbanwa"
+   },
+   "5773338884170027267": {
+      "message": "Remover formatação"
+   },
+   "5776478286503179051": {
+      "message": "Radicais de 5 traços do alfabeto Han"
+   },
+   "5778201074245568998": {
+      "message": "Negrito"
+   },
+   "580023699785819803": {
+      "message": "Tibetano"
+   },
+   "5815994514834119961": {
+      "message": "Yijing/Tai xuan jing"
+   },
+   "5822895345080436445": {
+      "message": "Imagens"
+   },
+   "5832273633751333051": {
+      "message": "Syloti Nagri"
+   },
+   "5837746770084243727": {
+      "message": "Marcas"
+   },
+   "5842240706321147978": {
+      "message": "Link"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Espaçamento"
+   },
+   "5923476740499653277": {
+      "message": "Glagolítico"
+   },
+   "6002018674529763527": {
+      "message": "Espaço sem quebra"
+   },
+   "6013038186284817941": {
+      "message": "Radicais de 8 traços do alfabeto Han"
+   },
+   "6014514403103768983": {
+      "message": "Cor hexagonal"
+   },
+   "6025708931099464434": {
+      "message": "Tai Tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Cor do fundo do texto"
+   },
+   "6055751153306823909": {
+      "message": "Muito grande"
+   },
+   "609920334473042917": {
+      "message": "Bem-vindo aos seus novos marcadores! Inicie sessão no Chrome para obter mais funcionalidades, tais como pesquisa avançada, pastas automáticas e imagens adicionadas aos marcadores antigos."
+   },
+   "6131022146392295404": {
+      "message": "Editar fonte de HTML"
+   },
+   "6146119258861607037": {
+      "message": "Radicais de 7 traços do alfabeto Han"
+   },
+   "6176673388074993831": {
+      "message": "Copta"
+   },
+   "6178455470693561470": {
+      "message": "Está atualmente offline. Tente novamente quando voltar a estar online."
+   },
+   "6189158371964390675": {
+      "message": "Circunscrito/pontilhado"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Incorporação da direita para a esquerda"
+   },
+   "6207440179505974685": {
+      "message": "Shaviano"
+   },
+   "6233852423673631009": {
+      "message": "Jul"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Tem a certeza de que pretende eliminar todos os itens nesta pasta?}other{Tem a certeza de que pretende eliminar todos os itens nestas pastas?}}"
+   },
+   "6256177058141995632": {
+      "message": "Miao"
+   },
+   "625779090990399178": {
+      "message": "Mais opções"
+   },
+   "6259598030649933216": {
+      "message": "Informações"
+   },
+   "6263370534846330732": {
+      "message": "Tifinagh"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# selecionado}other{# selecionados}}"
+   },
+   "6281738099691391172": {
+      "message": "Cor do texto"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Espaço sem quebra de largura zero"
+   },
+   "6380136177516870340": {
+      "message": "Tem sessão iniciada no Google com uma conta diferente da do navegador Chrome."
+   },
+   "639862355711352140": {
+      "message": "SAIBA MAIS"
+   },
+   "6410416070545265970": {
+      "message": "Testar este link"
+   },
+   "6418290353353165009": {
+      "message": "Refazer"
+   },
+   "6425676451769330238": {
+      "message": "Sem espaço"
+   },
+   "6433056041891472200": {
+      "message": "Iniciar sessão para ativar"
+   },
+   "6437997645764562921": {
+      "message": "Hangul, choseong – caráter de preenchimento"
+   },
+   "6470997799115367716": {
+      "message": "Saurashtra"
+   },
+   "6471970833583478119": {
+      "message": "Título menor"
+   },
+   "6473682978091349952": {
+      "message": "Espaço de pontuação"
+   },
+   "6489221588545746734": {
+      "message": "Cirílico"
+   },
+   "64909648993550346": {
+      "message": "Anular direita para a esquerda"
+   },
+   "649459667039033491": {
+      "message": "dentro de $NUM$ dias",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Espaço de largura zero"
+   },
+   "6539448903465735867": {
+      "message": "Símbolo musical iniciar expressão"
+   },
+   "6544224848752157941": {
+      "message": "Reduzir o avanço"
+   },
+   "6559526625155197659": {
+      "message": "A Pesquisa Google está temporariamente indisponível. Tente novamente dentro de alguns minutos."
+   },
+   "6563689176501108246": {
+      "message": "Radicais de 3 traços do alfabeto Han"
+   },
+   "6572308230373875858": {
+      "message": "Este nome de pasta contém carateres ilegais."
+   },
+   "6604826525171204065": {
+      "message": "Buhid"
+   },
+   "6606727931314199470": {
+      "message": "Fenício"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ por $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Não é possível sincronizar os marcadores. Tente recarregar esta página"
+   },
+   "6661160677415877619": {
+      "message": "Editar HTML"
+   },
+   "66727790049529171": {
+      "message": "Superior à linha"
+   },
+   "6673681480713693433": {
+      "message": "Marca da esquerda para a direita"
+   },
+   "6679365605648394500": {
+      "message": "Histórico"
+   },
+   "6718105992776681941": {
+      "message": "Pasta pública"
+   },
+   "6731765034365779068": {
+      "message": "dentro de $NUM$ minutos",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Árabe meridional arcaico"
+   },
+   "6748884117721473417": {
+      "message": "Outras grafias europeias"
+   },
+   "6756714832459728782": {
+      "message": "Tai Le"
+   },
+   "6781212531496313437": {
+      "message": "Lista"
+   },
+   "6787794440298969774": {
+      "message": "Malaiala"
+   },
+   "6813860917460451806": {
+      "message": "Lício"
+   },
+   "6848846772159302710": {
+      "message": "Alterar"
+   },
+   "6878231700728680871": {
+      "message": "NOVO"
+   },
+   "687829671213164815": {
+      "message": "Infelizmente, o Gestor de marcadores está temporariamente indisponível. Tente novamente dentro de algumas horas"
+   },
+   "6963034896702768829": {
+      "message": "Esta pasta já não existe."
+   },
+   "698011532377344679": {
+      "message": "Género e genealogia"
+   },
+   "7004429103140794719": {
+      "message": "Seleções recentes:"
+   },
+   "7009051272745522428": {
+      "message": "Esqueceu-se do que guardou? Basta pesquisar. Experimente temos genéricos como \"filmes\" ou \"viagem\" para reencontrar os marcadores perdidos."
+   },
+   "7056277361038404533": {
+      "message": "Marcador movido."
+   },
+   "7058809993296833390": {
+      "message": "Dê-nos a sua opinião!"
+   },
+   "7064503592469946179": {
+      "message": "Sundanês"
+   },
+   "7077571379260349566": {
+      "message": "Pretende experimentar antes \u003Ca class=\"col-zda\">pesquisar na Web\u003C/a>?"
+   },
+   "7102762854285284877": {
+      "message": "Phags Pa"
+   },
+   "7124932478652977474": {
+      "message": "Adic. aos marcadores"
+   },
+   "7154665243775472938": {
+      "message": "Pastas"
+   },
+   "7168417416563257713": {
+      "message": "Guardar"
+   },
+   "7178727559519269241": {
+      "message": "Hífen oblíquo duplo"
+   },
+   "7256064246386232909": {
+      "message": "Javanês"
+   },
+   "7258012171742729961": {
+      "message": "Khmer – vogal inerente Aq"
+   },
+   "7300188402017534561": {
+      "message": "Tudo"
+   },
+   "7316184946628117028": {
+      "message": "Thaana"
+   },
+   "7328850288952193170": {
+      "message": "Separador invisível"
+   },
+   "733245618582914569": {
+      "message": "OK"
+   },
+   "7333334175520057323": {
+      "message": "Cancelar"
+   },
+   "7339792312429709609": {
+      "message": "Radicais de 2 traços do alfabeto Han"
+   },
+   "7342965026300699486": {
+      "message": "Esta é uma pasta pública. A sua eliminação impede que seja vista por outras pessoas."
+   },
+   "7346825266417376383": {
+      "message": "OK"
+   },
+   "7362095105218889721": {
+      "message": "Formato e espaço em branco"
+   },
+   "7369763432670344230": {
+      "message": "Que endereço de email deverá estar associado a este link?"
+   },
+   "7376646180156094924": {
+      "message": "Nome"
+   },
+   "7388233788532145059": {
+      "message": "Adicionar ou remover link"
+   },
+   "7407898565330883980": {
+      "message": "Criar pasta"
+   },
+   "7436494590700857376": {
+      "message": "Sem nome"
+   },
+   "7454853574776276752": {
+      "message": "OK"
+   },
+   "7466254996792639407": {
+      "message": "Georgiano"
+   },
+   "7487940627543583924": {
+      "message": "Quinta-feira"
+   },
+   "7496808914788281345": {
+      "message": "Travessão pequeno"
+   },
+   "7512206123241896524": {
+      "message": "A eliminação de pastas públicas impede que outras pessoas as vejam."
+   },
+   "7514107325655026801": {
+      "message": "Mongol – separador de vogal"
+   },
+   "7517846739534508036": {
+      "message": "A imagem que está a tentar arrastar foi bloqueada pelo site de alojamento."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{dentro de # minutos}=1{dentro de # minuto}other{dentro de # minutos}}"
+   },
+   "7556000209920718943": {
+      "message": "Cipriota"
+   },
+   "7558709989823567445": {
+      "message": "Linear B"
+   },
+   "7561680940841358107": {
+      "message": "Kayah Li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} hora}other{{TEXT} horas}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Arménio – hífen"
+   },
+   "762426240463793747": {
+      "message": "Frações/relacionado"
+   },
+   "7627205932825693842": {
+      "message": "Mongol – hífen virtual"
+   },
+   "7666041165203922544": {
+      "message": "Encontre tudo facilmente"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "dentro de $NUM$ horas",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "há $NUM$ dia",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "Jun"
+   },
+   "7763561590386207075": {
+      "message": "Endereço Web"
+   },
+   "7778510137824413661": {
+      "message": "É o melhor dogfooder de sempre! Espere até encontrar um erro em relação ao qual não conseguimos fazer um simples recarregamento para recuperar."
+   },
+   "7787489712298922692": {
+      "message": "Ugarítico"
+   },
+   "7794513342167361028": {
+      "message": "Sora Sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Símbolo musical terminar expressão"
+   },
+   "7804811638177746132": {
+      "message": "Introduza um URL válido."
+   },
+   "7820796809104165402": {
+      "message": "Sexta-feira"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Item criado.}other{# itens criados.}}"
+   },
+   "7842161096380376517": {
+      "message": "Árabe – sinal safha"
+   },
+   "7877081360738059546": {
+      "message": "Animais, plantas e alimentos"
+   },
+   "7899357084217902569": {
+      "message": "Hífen ou sinal de subtração pequeno"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Não sabe o que deve colocar na caixa?$END_BOLD$ Em primeiro lugar, localize a página na Web à qual pretende ligar. (Um $SEARCH_ENGINE_LINK$motor de pesquisa$END_LINK$ poderá ser útil). Em seguida, copie o endereço Web a partir da caixa na barra de endereço do navegador e cole-o na caixa acima.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Cancelar"
+   },
+   "7929010027377139621": {
+      "message": "Tai Viet"
+   },
+   "7944194550132470305": {
+      "message": "Adicionar um título..."
+   },
+   "7957751306916251232": {
+      "message": "Endereço de email inválido"
+   },
+   "7977240188055092028": {
+      "message": "Ver"
+   },
+   "7987287518899618882": {
+      "message": "Fev"
+   },
+   "7995071973884866910": {
+      "message": "há $NUM$ dias",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Vídeos"
+   },
+   "8011311100803127599": {
+      "message": "Estrelas/asteriscos"
+   },
+   "8017723467201257913": {
+      "message": "Deseret"
+   },
+   "8018615794586730510": {
+      "message": "Normal/serif"
+   },
+   "8027365004962833557": {
+      "message": "Itálico antigo"
+   },
+   "8110520007971944893": {
+      "message": "O Google pode organizar automaticamente os seus marcadores para não ter de o fazer"
+   },
+   "8115055677841343820": {
+      "message": "Hífen"
+   },
+   "8132750144382731373": {
+      "message": "Emoji"
+   },
+   "8139874053154312313": {
+      "message": "Hífen com trema"
+   },
+   "8143412461134291283": {
+      "message": "Enviar comentários"
+   },
+   "8146770321190721394": {
+      "message": "Osmanya"
+   },
+   "8167437723285192120": {
+      "message": "Nenhum"
+   },
+   "8179849043307262288": {
+      "message": "Aplicação de função"
+   },
+   "818630018883405514": {
+      "message": "Circunscrito"
+   },
+   "8208069138346972268": {
+      "message": "Técnico"
+   },
+   "8220605653109571646": {
+      "message": "Grego"
+   },
+   "8243618543879664815": {
+      "message": "Jan"
+   },
+   "8275729822640276507": {
+      "message": "Está novamente ligado(a) à Web."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Anular"
+   },
+   "8338269186594699884": {
+      "message": "da tarde"
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "ENTENDI"
+   },
+   "8394518299580326671": {
+      "message": "Aglutinador de largura zero"
+   },
+   "8401283339806880070": {
+      "message": "Justificar"
+   },
+   "8417405596874032771": {
+      "message": "Ogham – marca de espaço"
+   },
+   "8442861823466423570": {
+      "message": "Terminador de anotação interlinear"
+   },
+   "8454082825844118412": {
+      "message": "Radicais de 11 a 17 traços do alfabeto Han"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Resultados da pesquisa de \u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Ícones expressivos"
+   },
+   "8509200859889253607": {
+      "message": "Buginês"
+   },
+   "8513771017811992648": {
+      "message": "Nenhum"
+   },
+   "8583880697323281603": {
+      "message": "Marcador alterado."
+   },
+   "8590712065595806821": {
+      "message": "Sugerida"
+   },
+   "8605746117200843257": {
+      "message": "Âncora de anotação interlinear"
+   },
+   "8608038304204118820": {
+      "message": "há $NUM$ hora",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Marcar esta página com uma estrela"
+   },
+   "8632024322663078476": {
+      "message": "Adicionar à pasta"
+   },
+   "8635739256240231429": {
+      "message": "Fechar"
+   },
+   "8637786997742615742": {
+      "message": "Modificador"
+   },
+   "8639484881518821804": {
+      "message": "Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Samaritano"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Normal"
+   },
+   "8694618136165028235": {
+      "message": "Adicionar um URL..."
+   },
+   "8723654283178734366": {
+      "message": "Introduzir um endereço Web"
+   },
+   "8748780785044360315": {
+      "message": "Tailandês"
+   },
+   "8764548034413038101": {
+      "message": "dentro de $NUM$ minuto",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "Abr"
+   },
+   "8784386825932830097": {
+      "message": "Barra horizontal"
+   },
+   "8793684579112208899": {
+      "message": "Inferior à linha"
+   },
+   "8797138403646238716": {
+      "message": "Meroítico cursivo"
+   },
+   "8801105026907713256": {
+      "message": "Menos comum"
+   },
+   "8805843642052942743": {
+      "message": "Lepcha"
+   },
+   "8827926534395802942": {
+      "message": "Traço numérico"
+   },
+   "8829617001171812634": {
+      "message": "Objetos"
+   },
+   "8835425644719990167": {
+      "message": "Caráter de preenchimento hangul jungseong"
+   },
+   "8838200101653652173": {
+      "message": "Inclusão"
+   },
+   "8838938639049885476": {
+      "message": "Espaço simples"
+   },
+   "8841111838340088121": {
+      "message": "Radicais de 4 traços do alfabeto Han"
+   },
+   "8860909466229522023": {
+      "message": "Itálico"
+   },
+   "888434073985276543": {
+      "message": "Formulário de apresentação para travessão vertical"
+   },
+   "8892104104076766085": {
+      "message": "Traço de onda"
+   },
+   "8996388564146952786": {
+      "message": "Espaço de não quebra estreito"
+   },
+   "9021466412659564505": {
+      "message": "Iniciar sessão"
+   },
+   "9026903153882226079": {
+      "message": "Marca da direita para a esquerda"
+   },
+   "9034162255782924509": {
+      "message": "Batak"
+   },
+   "9041611521175673293": {
+      "message": "Todos os itens"
+   },
+   "9041881295809259717": {
+      "message": "Matemática"
+   },
+   "9072668986327887451": {
+      "message": "Descrição ideográfica"
+   },
+   "9076212347872857205": {
+      "message": "Citar"
+   },
+   "9083920162332648298": {
+      "message": "da manhã"
+   },
+   "9086165147555162831": {
+      "message": "Meetei Mayek"
+   },
+   "9092805374125336008": {
+      "message": "Mai"
+   },
+   "9099680152087323883": {
+      "message": "Nov"
+   },
+   "9107905796365363672": {
+      "message": "Grande"
+   },
+   "9113260413780075008": {
+      "message": "Brahmi"
+   },
+   "9115834469932780333": {
+      "message": "Telugu"
+   },
+   "9143484910409308303": {
+      "message": "Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Não é possível pesquisar em marcadores encriptados. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Saiba mais\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Pasta removida da pasta principal."
+   },
+   "9180458846772153689": {
+      "message": "Arménio"
+   },
+   "9181119817188520774": {
+      "message": "Sem ligação de rede. Não é possível guardar as alterações enquanto não voltar a estar online"
+   },
+   "9204096795425905695": {
+      "message": "Multiplicação invisível"
+   },
+   "922163125711959960": {
+      "message": "há $NUM$ minuto",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Adicionar"
+   },
+   "93670926879626900": {
+      "message": "Espaço em branco"
+   },
+   "93871902389648718": {
+      "message": "Símbolo musical terminar linha de união"
+   },
+   "960914149201689167": {
+      "message": "Decimal"
+   },
+   "963040144042262397": {
+      "message": "Eliminar"
+   },
+   "964017479791059460": {
+      "message": "Árabe – fim do ayah"
+   },
+   "980376110610801797": {
+      "message": "Inserir imagem"
+   }
+}

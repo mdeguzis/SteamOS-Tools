@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Chia sẻ thư mục này hoặc thay đổi cài đặt chia sẻ"
+   },
+   "1014969137789706237": {
+      "message": "Liên kết đến trang hoặc tệp nào đó trên web"
+   },
+   "1033240210015440654": {
+      "message": "Xóa hình ảnh"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} phút}other{{TEXT} phút}}"
+   },
+   "1035347665345261212": {
+      "message": "Nhập ghi chú"
+   },
+   "1036132178487616999": {
+      "message": "Giới thiệu"
+   },
+   "1041064392303158655": {
+      "message": "Chữ Limbu"
+   },
+   "1066103686460691847": {
+      "message": "Gạch ngang chữ"
+   },
+   "1085496824897012476": {
+      "message": "Chữ tượng hình Ai Cập"
+   },
+   "1105045461281211798": {
+      "message": "Ký tự nối tự vị kết hợp"
+   },
+   "111315886393984302": {
+      "message": "Hãy thử đánh dấu một số mục trên web và thêm các mục đó vào thư mục này!"
+   },
+   "1117324761561996205": {
+      "message": "Chỉnh sửa"
+   },
+   "1124849668149719420": {
+      "message": "Nhập phản hồi"
+   },
+   "1142044035368837035": {
+      "message": "Khoảng em"
+   },
+   "1148670835609345833": {
+      "message": "Chỉnh sửa nút dấu trang"
+   },
+   "1161548997573254809": {
+      "message": "Hủy"
+   },
+   "1164857998440803763": {
+      "message": "Chakma"
+   },
+   "1170102576258588460": {
+      "message": "Gạch nối không được ngắt"
+   },
+   "1185158158029036642": {
+      "message": "Nhấp để tạo dấu trang hoặc thư mục mới."
+   },
+   "1201286409038567178": {
+      "message": "url không hợp lệ"
+   },
+   "1214729854306268929": {
+      "message": "$NUM$ phút trước",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{# giờ trước}=1{# giờ trước}other{# giờ trước}}"
+   },
+   "1232723730191754374": {
+      "message": "Phông chữ"
+   },
+   "1243361230826165709": {
+      "message": "Chữ Hangul"
+   },
+   "128696227290770661": {
+      "message": "Chữ Devanagari"
+   },
+   "1312606838421552827": {
+      "message": "Số"
+   },
+   "1316608632339176215": {
+      "message": "Chữ khác"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "Dấu cách phần tư em"
+   },
+   "1337190557080419948": {
+      "message": "Tiêu đề"
+   },
+   "1347841728719446841": {
+      "message": "Địa chỉ email"
+   },
+   "1350404634989083059": {
+      "message": "Dấu cộng ẩn"
+   },
+   "1356908927221815545": {
+      "message": "Thán từ 1 nét chữ Hán"
+   },
+   "1373666411928680514": {
+      "message": "Dấu sóng"
+   },
+   "1378894003206512970": {
+      "message": "Bỏ qua"
+   },
+   "138484781723580209": {
+      "message": "Dấu viết tắt Xy-ri cổ"
+   },
+   "1397568831960098153": {
+      "message": "Định dạng"
+   },
+   "142359106099692409": {
+      "message": "Thư mục tự động"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Nhỏ"
+   },
+   "1460136507747533015": {
+      "message": "Vui lòng đăng nhập để chia sẻ"
+   },
+   "1477567329816921885": {
+      "message": "Bạn có biết rằng bạn có thể chia sẻ dấu trang yêu thích của mình bằng cách đặt thư mục ở chế độ công khai? Hãy nhận URL công khai và chia sẻ URL đó!"
+   },
+   "1507362459078633250": {
+      "message": "Bạn sẽ phải xóa và tải lại tiện ích Chrome và/hoặc liên hệ nhóm kỹ thuật.... Rất tiếc :-/"
+   },
+   "1516565793778879679": {
+      "message": "Chữ Hán - Khác"
+   },
+   "1519227660570105215": {
+      "message": "Trang này có thể có hại"
+   },
+   "1556175764217302644": {
+      "message": "Nguyên âm Khmer vốn có Aa"
+   },
+   "1566367040709255091": {
+      "message": "Định dạng"
+   },
+   "1582412901770221448": {
+      "message": "Đã thêm vào {FOLDER_NAME}"
+   },
+   "1585233503778646014": {
+      "message": "Chữ Mandaic"
+   },
+   "1592899529499992997": {
+      "message": "Đã xóa dấu trang khỏi thư mục."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Hãy di chuột qua mỗi ô để xem tên ký tự."
+   },
+   "1630439475247732904": {
+      "message": "Chỉ số trên"
+   },
+   "1634874677195552014": {
+      "message": "Dấu cách phần sáu em"
+   },
+   "1635366592844795535": {
+      "message": "ĐĂNG NHẬP VÀO CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Thời tiết và chiêm tinh"
+   },
+   "1665234249876251486": {
+      "message": "Dấu cách số"
+   },
+   "1666311405952625458": {
+      "message": "Thời tiết, phong cảnh và cung Hoàng Đạo"
+   },
+   "1678004121951995792": {
+      "message": "Tháng 8"
+   },
+   "1680034627075195442": {
+      "message": "Bạn có thể tạo các thư mục của riêng mình hoặc cho phép Google sắp xếp cho bạn bằng thư mục tự động."
+   },
+   "1683451665637766512": {
+      "message": "Liên kết đến một địa chỉ email"
+   },
+   "1685884502412781083": {
+      "message": "Dấu phân cách đoạn"
+   },
+   "169055910458549089": {
+      "message": "Không thể kết nối với máy chủ của chúng tôi. Vui lòng thử lại sau ít phút."
+   },
+   "1691734467561749621": {
+      "message": "Rất tiếc, bạn không thể chia sẻ thư mục trong thanh Dấu trang của mình"
+   },
+   "1715361312704502898": {
+      "message": "Giao thông và bản đồ"
+   },
+   "1719053155706676551": {
+      "message": "Thanh dấu trang"
+   },
+   "1730849295731139586": {
+      "message": "Chữ Yi"
+   },
+   "1748899684018766272": {
+      "message": "Ký tự đệm Hangul nửa độ rộng"
+   },
+   "1755438325907288056": {
+      "message": "Chữ Nko"
+   },
+   "1776387440523546537": {
+      "message": "Hôm nay"
+   },
+   "178181731883558542": {
+      "message": "Hộp văn bản để tìm kiếm thông qua các dấu trang của bạn."
+   },
+   "1791083579000016877": {
+      "message": "Dựa theo ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Xem mục được đánh dấu sao"
+   },
+   "1803667155949248788": {
+      "message": "Chữ Xy-ri Hoàng Đế"
+   },
+   "1827599404395723350": {
+      "message": "Hình ảnh điều khiển"
+   },
+   "1839253253564716482": {
+      "message": "Không tìm thấy dấu trang nào"
+   },
+   "1847259066982820034": {
+      "message": "Chọn thư mục"
+   },
+   "1875246104836450162": {
+      "message": "Biểu tượng"
+   },
+   "1879633738298009258": {
+      "message": "Dấu cách toán học trung bình"
+   },
+   "1915655034817606796": {
+      "message": "Gạch nối mềm"
+   },
+   "191946029988896895": {
+      "message": "Ký hiệu số Ả Rập"
+   },
+   "1932973762029792550": {
+      "message": "Google đang tự động sắp xếp tất cả các nội dung mà bạn đánh dấu"
+   },
+   "1942405576047748946": {
+      "message": "Đã tạo dấu trang."
+   },
+   "196266011387145001": {
+      "message": "Tiếp tục"
+   },
+   "1963154331052663396": {
+      "message": "Chữ Latinh"
+   },
+   "1999193032742275907": {
+      "message": "Thán từ 9 nét chữ Hán"
+   },
+   "2003860471263842959": {
+      "message": "Dấu cách rất hẹp"
+   },
+   "2015775921681923490": {
+      "message": "Cài đặt"
+   },
+   "202031328373263910": {
+      "message": "Thán từ 6 nét chữ Hán"
+   },
+   "2036672715320764541": {
+      "message": "Dấu phân cách dòng"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Đã xóa mục khỏi thư mục.}other{Đã xóa # mục khỏi thư mục.}}"
+   },
+   "2088133380647290173": {
+      "message": "Trên {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Nhập URL để tạo một dấu trang mới."
+   },
+   "2117634893694108880": {
+      "message": "Cá nhân"
+   },
+   "2135921744011555145": {
+      "message": "Tìm kiếm dấu trang của bạn"
+   },
+   "213958631597214757": {
+      "message": "Dừng chia sẻ. "
+   },
+   "2149498606985329379": {
+      "message": "Đã hoàn tất nhập dấu trang."
+   },
+   "2159536073195133897": {
+      "message": "Hoàn tác"
+   },
+   "2166866096346653276": {
+      "message": "Không có"
+   },
+   "2167636135101203592": {
+      "message": "Chữ Bengali"
+   },
+   "2176930521411607789": {
+      "message": "Được ghép nối"
+   },
+   "218054763532467155": {
+      "message": "Nhập tiêu đề"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Xóa \u003Cb>{firstItemName}\u003C/b>}=1{Xóa \u003Cb>{firstItemName}\u003C/b> và # mục khác}other{Xóa \u003Cb>{firstItemName}\u003C/b> và # mục khác}}"
+   },
+   "2200921183377473543": {
+      "message": "Có"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{# ngày trước}=1{# ngày trước}other{# ngày trước}}"
+   },
+   "2228495834106697427": {
+      "message": "Chỉ số dưới"
+   },
+   "2253752461533441758": {
+      "message": "Thán từ 10 nét chữ Hán"
+   },
+   "2257250286834696444": {
+      "message": "Đang tải..."
+   },
+   "2280907281518645401": {
+      "message": "Dấu hai chấm Katakana-hiragana"
+   },
+   "2301390744929043794": {
+      "message": "Vui lòng đợi trong khi chúng tôi lưu thư mục của bạn vào máy chủ"
+   },
+   "2315132909835126412": {
+      "message": "Công khai"
+   },
+   "2315864755754275083": {
+      "message": "Đơn vị tiền tệ"
+   },
+   "231658276152304252": {
+      "message": "Xóa"
+   },
+   "2353164220175503425": {
+      "message": "Ký hiệu số Kaithi"
+   },
+   "2359350477261263182": {
+      "message": "Trình quản lý dấu trang"
+   },
+   "2362075348358411947": {
+      "message": "Danh sách có dấu đầu dòng"
+   },
+   "2396988228061015409": {
+      "message": "Thư mục"
+   },
+   "2398127458667829603": {
+      "message": "Bàn phím và giao diện người dùng"
+   },
+   "2413859014200470621": {
+      "message": "Tăng thụt lề"
+   },
+   "2414987366409119013": {
+      "message": "Mô tả thư mục mới (tùy chọn)"
+   },
+   "2444245672676114535": {
+      "message": "Hình dạng hình học"
+   },
+   "2454859602363061373": {
+      "message": "Sử dụng dấu sao trong thanh địa chỉ để lưu bất kỳ thứ gì trên web"
+   },
+   "2497668314434532819": {
+      "message": "Chữ Mông Cổ"
+   },
+   "2498668179494167671": {
+      "message": "Dấu cách"
+   },
+   "2506204110427755391": {
+      "message": "Bao gồm các mục và dấu trang trên thiết bị di động không nằm trên thanh Dấu trang của bạn"
+   },
+   "2512307863902593558": {
+      "message": "Chữ Kharoshthi"
+   },
+   "2518095696810513128": {
+      "message": "Nhập dấu trang..."
+   },
+   "2524757118580919241": {
+      "message": "Dấu hiệu chú thích chân trang Ả Rập"
+   },
+   "2528672033407304265": {
+      "message": "Thư mục này chỉ hiển thị với bạn. Để chia sẻ, hãy nhấp vào \"Đặt ở chế độ công khai\" và bạn sẽ nhận được liên kết có thể chia sẻ."
+   },
+   "2566403151253785267": {
+      "message": "Thư mục không có tên"
+   },
+   "2581794950690518802": {
+      "message": "0 phút"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Bỏ qua giới thiệu"
+   },
+   "2620868598794227408": {
+      "message": "Trang này không còn tồn tại"
+   },
+   "2626676714216619519": {
+      "message": "Tiêu đề phụ"
+   },
+   "2655730128699057253": {
+      "message": "Bình thường"
+   },
+   "2662413919655166560": {
+      "message": "Chủ Nhật"
+   },
+   "2665932089093244134": {
+      "message": "Gắn dấu sao mọi thứ"
+   },
+   "2678821645623495183": {
+      "message": "Con người và biểu tượng cảm xúc"
+   },
+   "271255586148025786": {
+      "message": "Ký tự nhập hệ lục phân"
+   },
+   "27472132823239706": {
+      "message": "Từ phải sang trái"
+   },
+   "278208331708453602": {
+      "message": "Kết nối với web và đăng nhập để chia sẻ"
+   },
+   "2785193083209311775": {
+      "message": "Tháng 3"
+   },
+   "2803486006471792395": {
+      "message": "của \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Chữ Ogham"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Đã nhập từ tệp"
+   },
+   "2860423337665026261": {
+      "message": "Xóa khỏi thư mục"
+   },
+   "2870049984905408346": {
+      "message": "Tiêu đề"
+   },
+   "2878157583475586619": {
+      "message": "Thêm màu"
+   },
+   "2926789704127794819": {
+      "message": "Tên thư mục mới (bắt buộc)"
+   },
+   "2951727458776714094": {
+      "message": "Không thể kiểm tra liên kết này."
+   },
+   "2967109838548277236": {
+      "message": "Liên kết chia sẻ:"
+   },
+   "2990895581472607445": {
+      "message": "Khác"
+   },
+   "2993160588184042952": {
+      "message": "Chữ viết châu Mỹ"
+   },
+   "3002524775820283106": {
+      "message": "Thêm ghi chú..."
+   },
+   "3010872256194497959": {
+      "message": "Một số trò chơi"
+   },
+   "3027920889685525544": {
+      "message": "Chữ khắc Parthy"
+   },
+   "3034084095590774557": {
+      "message": "Bỏ qua"
+   },
+   "3051034269680162898": {
+      "message": "Bỏ qua"
+   },
+   "3054430907861836285": {
+      "message": "Tháng 12"
+   },
+   "3085746489633838782": {
+      "message": "Danh sách được đánh số"
+   },
+   "3087091861834859241": {
+      "message": "Chào mừng bạn đến với dấu trang mới!"
+   },
+   "3090613379634438188": {
+      "message": "Chữ tượng hình Meroitic"
+   },
+   "3093070593773009381": {
+      "message": "Chữ viết Đông Á khác"
+   },
+   "3114565967060091369": {
+      "message": "Chữ Hanunoo"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{sau # giờ nữa}=1{sau # giờ nữa}other{sau # giờ nữa}}"
+   },
+   "3140214171317206668": {
+      "message": "Khoảng en"
+   },
+   "3153433695439945201": {
+      "message": "Tiếp tục sử dụng dấu sao để đánh dấu trang như bạn thường làm. Dấu trang sẽ lưu một số trang vào tài khoản Google để bạn dễ tìm thấy hơn trong tương lai."
+   },
+   "3186183325550234111": {
+      "message": "Đi tới liên kết: "
+   },
+   "3212472770580267001": {
+      "message": "Chữ viết Đông Nam Á"
+   },
+   "3218408007702426636": {
+      "message": "Đoạn kết thúc ký hiệu nhạc"
+   },
+   "3227675900195928275": {
+      "message": "Chữ Rejang"
+   },
+   "3234811075540284463": {
+      "message": "Bình thường"
+   },
+   "3244450940425660505": {
+      "message": "Dấu câu"
+   },
+   "3245712009497198424": {
+      "message": "sau $NUM$ ngày nữa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Không có kết quả nào cho tìm kiếm của bạn"
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Bạn cũng muốn xóa các mục trong thư mục này phải không?}other{Bạn cũng muốn xóa các mục trong những thư mục này phải không?}}"
+   },
+   "3284734782999930756": {
+      "message": "URL"
+   },
+   "328616644571689303": {
+      "message": "Dấu luyến âm kết thúc của ký hiệu nhạc"
+   },
+   "3309586635668050685": {
+      "message": "Ghi đè từ trái sang phải"
+   },
+   "3316092543008555482": {
+      "message": "Ngữ âm (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Ngữ âm (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Đã tạo thư mục."
+   },
+   "3334908307836130914": {
+      "message": "Chữ Ol Chiki"
+   },
+   "3355297279379313357": {
+      "message": "Sử dụng lần cuối"
+   },
+   "3360043590563638195": {
+      "message": "Kích thước phông chữ"
+   },
+   "3364831016239212879": {
+      "message": "Căn giữa"
+   },
+   "3383495912989125674": {
+      "message": "Dấu cách hẹp"
+   },
+   "340057911065586090": {
+      "message": "Dấu cách tượng hình"
+   },
+   "3413537935166399959": {
+      "message": "Chữ Sharada"
+   },
+   "3413696263226173348": {
+      "message": "Chỉnh sửa từ"
+   },
+   "3417560136558853718": {
+      "message": "Chữ Kannada"
+   },
+   "3423652049926153935": {
+      "message": "Thư mục mới..."
+   },
+   "3484416881429158332": {
+      "message": "Thư mục riêng tư"
+   },
+   "3490738610910152047": {
+      "message": "Chữ Bamum"
+   },
+   "3490814222385998788": {
+      "message": "Chữ Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Đã xóa mục.}other{Đã xóa # mục.}}"
+   },
+   "3501212562096780610": {
+      "message": "Thư mục gốc: "
+   },
+   "3501367450176932554": {
+      "message": "Dấu phân cách chú thích in xen"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Chữ Oriya"
+   },
+   "3545341282138953352": {
+      "message": "Đoạn bắt đầu ký hiệu nhạc"
+   },
+   "3546572522856950945": {
+      "message": "Chữ Cuneiform"
+   },
+   "3554323414956249846": {
+      "message": "Liên kết"
+   },
+   "3572348996000195345": {
+      "message": "Dấu cách em"
+   },
+   "3596311690500158112": {
+      "message": "Trình quản lý dấu trang tạm thời không khả dụng. Hãy tải lại trang."
+   },
+   "3621913747018973144": {
+      "message": "Từ trái sang phải"
+   },
+   "362505154270301776": {
+      "message": "Trang web"
+   },
+   "3630778778193389974": {
+      "message": "Trình kiểm tra chính tả"
+   },
+   "3641126700487126155": {
+      "message": "Dấu luyến âm bắt đầu của ký hiệu nhạc"
+   },
+   "3646623530558910508": {
+      "message": "Đã thay đổi thư mục."
+   },
+   "3646641743349296313": {
+      "message": "Tháng 10"
+   },
+   "3650952447025672637": {
+      "message": "Xóa các thư mục và mục"
+   },
+   "3723533099349282495": {
+      "message": "Chữ Kaithi"
+   },
+   "37315674215151127": {
+      "message": "Luôn giữ ngăn nắp"
+   },
+   "3731716253672925709": {
+      "message": "Mũi tên"
+   },
+   "373495866496779840": {
+      "message": "XEM TẤT CẢ CÁC MỤC ĐƯỢC ĐÁNH DẤU"
+   },
+   "3735789968703193383": {
+      "message": "Xem"
+   },
+   "3737215641755068426": {
+      "message": "Nét CJK"
+   },
+   "3752699251010579834": {
+      "message": "Dấu nối âm tiết Canada"
+   },
+   "377368134657453613": {
+      "message": "Đăng nhập vào Chrome để tìm kiếm các trang được đánh dấu trang của bạn"
+   },
+   "3800528517409823312": {
+      "message": "Chữ số toán học"
+   },
+   "3832066920911226237": {
+      "message": "Xuất dấu trang..."
+   },
+   "3836877357378306877": {
+      "message": "Phổ biến"
+   },
+   "3880744822029422406": {
+      "message": "Nếu bạn dừng chia sẻ thư mục này, liên kết chia sẻ sẽ ngừng hoạt động."
+   },
+   "3888658965293980754": {
+      "message": "Định dạng"
+   },
+   "3893161213200925599": {
+      "message": "Hủy"
+   },
+   "3924970930634517299": {
+      "message": "Mô tả"
+   },
+   "3947500116452515010": {
+      "message": "Chưa có dấu trang nào ở đây!"
+   },
+   "3951067234379178869": {
+      "message": "Đã xóa thư mục."
+   },
+   "3953750991047324531": {
+      "message": "Chữ Gujarati"
+   },
+   "3960988854399920931": {
+      "message": "Chữ viết châu Phi"
+   },
+   "3977845230474613475": {
+      "message": "Thứ Hai"
+   },
+   "3978409745488989414": {
+      "message": "Ngày mai"
+   },
+   "3981527568769423358": {
+      "message": "Bộ chọn biến"
+   },
+   "3998968827975494252": {
+      "message": "Chữ của thổ dân Canada"
+   },
+   "4052124018014680002": {
+      "message": "Vì bạn đã chọn mã hóa dấu trang của mình trong \"Cài đặt đồng bộ hóa nâng cao\", chúng tôi đã tắt chức năng yêu cầu Google xem nội dung của bạn."
+   },
+   "4070285516355502772": {
+      "message": "Ký tự nối từ"
+   },
+   "4083819681339999404": {
+      "message": "Đã di chuyển thư mục."
+   },
+   "4093661547607027073": {
+      "message": "Nét em"
+   },
+   "4132740194577129031": {
+      "message": "Chữ Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Chữ Tamil"
+   },
+   "4141340144529743179": {
+      "message": "Căn phải"
+   },
+   "4185431426264249075": {
+      "message": "Không"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{# phút trước}=1{# phút trước}other{# phút trước}}"
+   },
+   "4207416107225157509": {
+      "message": "Chữ Chăm"
+   },
+   "421809097037025717": {
+      "message": "Chữ Lydia"
+   },
+   "4219066138225986920": {
+      "message": "$NUM$ giờ trước",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "Chữ Tai Lue mới"
+   },
+   "4256734561546878891": {
+      "message": "Chữ Ả Rập"
+   },
+   "4257688962636177926": {
+      "message": "Ghi chú"
+   },
+   "4313041477349547430": {
+      "message": "Chọn"
+   },
+   "4317807879399263422": {
+      "message": "Biểu tượng"
+   },
+   "4371152527205140884": {
+      "message": "Chữ Myanmar"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Ký tự đệm Hangul"
+   },
+   "4394299965695763613": {
+      "message": "LỖI: \"$COLOR$\" không phải màu hợp lệ.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "sau $NUM$ giờ nữa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Mở liên kết này trong cửa sổ mới"
+   },
+   "4436859540429978060": {
+      "message": "Không thể kéo và thả tệp hình ảnh vào thời điểm này.\nVui lòng kéo hình ảnh từ trình duyệt web của bạn."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Chữ Vai"
+   },
+   "4467383198992095863": {
+      "message": "Dấu gạch ngang/Dấu nối"
+   },
+   "4485563787650970048": {
+      "message": "Giao thông, bản đồ và bảng tín hiệu"
+   },
+   "4511605174156009486": {
+      "message": "ĐĂNG NHẬP"
+   },
+   "4536708754459423390": {
+      "message": "Liên kết đến:"
+   },
+   "4547888102017603305": {
+      "message": "Màu tùy chỉnh đầu vào, ví dụ: hồng, #F00, #D015FF hoặc rgb(100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Ô"
+   },
+   "4564357083324116837": {
+      "message": "Chữ viết Nam Á"
+   },
+   "4604654420597817764": {
+      "message": "Ký tự không nối có chiều rộng bằng không"
+   },
+   "4631096075002795557": {
+      "message": "Chữ nổi"
+   },
+   "4639190252078874549": {
+      "message": "Dấu trang của bạn đã được cập nhật, vì thế việc tìm kiếm các dấu trang bạn đã lưu trở nên dễ dàng hơn."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Đã di chuyển mục.}other{Đã di chuyển # mục.}}"
+   },
+   "4677342274083596624": {
+      "message": "Chế độ ngoại tuyến"
+   },
+   "4680868343849876958": {
+      "message": "Chữ Thổ Nhĩ Kỳ cổ"
+   },
+   "468549910877472151": {
+      "message": "Đã nhập"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Chữ Ba Tư Cổ"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Hãy cẩn thận.$POSTB$ Hãy nhớ rằng bất cứ khi nào bạn đưa địa chỉ email lên trang web, những kẻ xấu tung thư rác cũng có thể tìm thấy địa chỉ email đó.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Chữ Taglog"
+   },
+   "4747022692863822805": {
+      "message": "Gạch nối-trừ"
+   },
+   "4749120223198822539": {
+      "message": "Chữ Sinhala"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Xóa thư mục và các mục"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Đã di chuyển mục.}other{Đã di chuyển # mục.}}"
+   },
+   "482762608498192214": {
+      "message": "Thứ Bảy"
+   },
+   "4833178038692710844": {
+      "message": "Lật/Phản chiếu"
+   },
+   "484556867028550958": {
+      "message": "Dấu câu Hebrew Maqaf"
+   },
+   "4848946125726663758": {
+      "message": "Căn trái"
+   },
+   "4849410737412842755": {
+      "message": "Bạn không thể chia sẻ thư mục này vì thư mục gốc của thư mục đó không được chia sẻ công khai"
+   },
+   "4856510901676745213": {
+      "message": "Chữ Do Thái"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{sau # ngày nữa}=1{sau # ngày nữa}other{sau # ngày nữa}}"
+   },
+   "4886850400045987885": {
+      "message": "Chỉnh sửa liên kết"
+   },
+   "4894342917447426362": {
+      "message": "Chữ Latinh 1 bổ sung"
+   },
+   "4895451769213934183": {
+      "message": "Chữ Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Biểu mẫu bảng trình bày cho nét en đứng"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Đã thay đổi mục.}other{Đã thay đổi # mục.}}"
+   },
+   "4934771438157777517": {
+      "message": "Gạch dưới"
+   },
+   "4943286974087295923": {
+      "message": "Đóng"
+   },
+   "4944188657066537729": {
+      "message": "Chữ Xy-ri cổ"
+   },
+   "4974279938502768331": {
+      "message": "Chỉnh sửa"
+   },
+   "4987339278179088082": {
+      "message": "Thêm thuộc tính '$REL_NO_FOLLOW$' ($LINK_START$Tìm hiểu thêm$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Văn bản cần hiển thị:"
+   },
+   "4991252214297708837": {
+      "message": "Mô tả thư mục"
+   },
+   "500023300077018967": {
+      "message": "Không có đề xuất nào"
+   },
+   "5002702571780362629": {
+      "message": "Chữ Avestan"
+   },
+   "5013372925252634952": {
+      "message": "Chữ Caria"
+   },
+   "5015669074913229206": {
+      "message": "Chữ Bali"
+   },
+   "5016723309142316836": {
+      "message": "Chữ Gurmukhi"
+   },
+   "5042512453093360461": {
+      "message": "Định dạng hướng pop"
+   },
+   "5086992011880811613": {
+      "message": "Đã xóa dấu trang."
+   },
+   "5089168125978769021": {
+      "message": "Xóa thư mục"
+   },
+   "5089667744614498582": {
+      "message": "Đã di chuyển dấu trang."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Ký tự bắt đầu của ký hiệu nhạc"
+   },
+   "5109840495091366547": {
+      "message": "Thể thao, kỷ niệm và hoạt động"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Thư mục mới"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} ngày}other{{TEXT} ngày}}"
+   },
+   "5162393477556833033": {
+      "message": "Liên kết này sẽ đi tới URL nào?"
+   },
+   "518089704180562683": {
+      "message": "Hôm nay"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Chữ run"
+   },
+   "5253985055078626542": {
+      "message": "Nhúng từ trái sang phải"
+   },
+   "5266193592374285468": {
+      "message": "Đặt ở chế độ công khai"
+   },
+   "5272267167655788064": {
+      "message": "Hình ảnh"
+   },
+   "528339682728930567": {
+      "message": "Trình quản lý dấu trang tạm thời không khả dụng. Vui lòng thử lại sau ít phút."
+   },
+   "5300191622079400984": {
+      "message": "Tất cả"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Nhấp vào đây để thêm mô tả"
+   },
+   "5334597244901829906": {
+      "message": "Chia sẻ thư mục này"
+   },
+   "534304870772683249": {
+      "message": "Gửi"
+   },
+   "534369010818044160": {
+      "message": "Chữ Khmer"
+   },
+   "5354142472798067112": {
+      "message": "Bộ chọn biến - $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Không có kết nối mạng. Bạn không thể lưu thay đổi cho đến khi có kết nối mạng trở lại."
+   },
+   "5371009567664142864": {
+      "message": "Chữ Ethiopic"
+   },
+   "5378436065321978089": {
+      "message": "Tạo"
+   },
+   "538263398271363120": {
+      "message": "Chữ Cherokee"
+   },
+   "5412265752110327977": {
+      "message": "Tính tương thích"
+   },
+   "5425054962709217464": {
+      "message": "Thứ Tư"
+   },
+   "544490805551236927": {
+      "message": "Chữ viết Trung Đông"
+   },
+   "5448654348317290038": {
+      "message": "Nét en"
+   },
+   "5456454482863742119": {
+      "message": "Xóa thư mục"
+   },
+   "5458956770053499082": {
+      "message": "Âm nhạc"
+   },
+   "546306107859654806": {
+      "message": "Di chuyển đến thư mục"
+   },
+   "5474647412096976366": {
+      "message": "Kết nối với Internet để tìm kiếm các trang đã được đánh dấu trang của bạn"
+   },
+   "5500830105937873966": {
+      "message": "Xóa"
+   },
+   "5517581353492371385": {
+      "message": "Hôm qua"
+   },
+   "5521943762943322583": {
+      "message": "Chữ Lào"
+   },
+   "5529569087489430384": {
+      "message": "Chữ khắc Pahlavi"
+   },
+   "5561412620611998456": {
+      "message": "Tháng 9"
+   },
+   "5579702837382664819": {
+      "message": "Thư mục tự động dành cho \u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Chữ Gothic"
+   },
+   "5603457799050818619": {
+      "message": "Không có thư mục tự động nào tại thời điểm này."
+   },
+   "5603774725128707055": {
+      "message": "Đã di chuyển thư mục."
+   },
+   "5621148847082889884": {
+      "message": "Chưa có thư mục nào ở đây!"
+   },
+   "5669644158906503623": {
+      "message": "Ký hiệu Ả Rập Sanah"
+   },
+   "5672850901284728452": {
+      "message": "Mở trang nhật ký"
+   },
+   "5673852407127287054": {
+      "message": "Dấu gạch toàn chiều rộng-trừ"
+   },
+   "5679720964567650205": {
+      "message": "Thứ Ba"
+   },
+   "5748894773514291207": {
+      "message": "Dấu cách phần ba em"
+   },
+   "5749465969550038727": {
+      "message": "Chữ Tagbanwa"
+   },
+   "5773338884170027267": {
+      "message": "Xóa định dạng"
+   },
+   "5776478286503179051": {
+      "message": "Thán từ 5 nét chữ Hán"
+   },
+   "5778201074245568998": {
+      "message": "Đậm"
+   },
+   "580023699785819803": {
+      "message": "Chữ Tây Tạng"
+   },
+   "5815994514834119961": {
+      "message": "Yijing / Tai Xuan Jing"
+   },
+   "5822895345080436445": {
+      "message": "Hình ảnh"
+   },
+   "5832273633751333051": {
+      "message": "Chữ Syloti Nagri"
+   },
+   "5837746770084243727": {
+      "message": "Dấu"
+   },
+   "5842240706321147978": {
+      "message": "Liên kết"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Giãn cách"
+   },
+   "5923476740499653277": {
+      "message": "Chữ Glagolitic"
+   },
+   "6002018674529763527": {
+      "message": "Dấu cách không ngắt"
+   },
+   "6013038186284817941": {
+      "message": "Thán từ 8 nét chữ Hán"
+   },
+   "6014514403103768983": {
+      "message": "Màu thập lục phân"
+   },
+   "6025708931099464434": {
+      "message": "Chữ Tai Tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Màu nền văn bản"
+   },
+   "6055751153306823909": {
+      "message": "Rất lớn"
+   },
+   "609920334473042917": {
+      "message": "Chào mừng bạn đến với dấu trang mới! Hãy đăng nhập vào Chrome để có được nhiều tính năng hơn như: tìm kiếm tốt hơn, thư mục tự động và thêm hình ảnh vào dấu trang trước đây của bạn."
+   },
+   "6131022146392295404": {
+      "message": "Chỉnh sửa nguồn HTML"
+   },
+   "6146119258861607037": {
+      "message": "Thán từ 7 nét chữ Hán"
+   },
+   "6176673388074993831": {
+      "message": "Chữ Coptic"
+   },
+   "6178455470693561470": {
+      "message": "Bạn hiện đang ngoại tuyến. Vui lòng thử lại khi bạn trực tuyến trở lại."
+   },
+   "6189158371964390675": {
+      "message": "Bao quanh/Chấm"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Nhúng từ phải sang trái"
+   },
+   "6207440179505974685": {
+      "message": "Chữ Shavia"
+   },
+   "6233852423673631009": {
+      "message": "Tháng 7"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Bạn có chắc chắn muốn xóa tất cả các mục trong thư mục này không?}other{Bạn có chắc chắn muốn xóa tất cả các mục trong những thư mục này không?}}"
+   },
+   "6256177058141995632": {
+      "message": "Chữ Miao"
+   },
+   "625779090990399178": {
+      "message": "Tùy chọn khác"
+   },
+   "6259598030649933216": {
+      "message": "Thông tin"
+   },
+   "6263370534846330732": {
+      "message": "Chữ Tifinagh"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# được chọn}other{# được chọn}}"
+   },
+   "6281738099691391172": {
+      "message": "Màu văn bản"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Dấu cách không ngắt có chiều rộng bằng không"
+   },
+   "6380136177516870340": {
+      "message": "Bạn đã đăng nhập vào Google bằng tài khoản khác với tài khoản trên trình duyệt Chrome của bạn."
+   },
+   "639862355711352140": {
+      "message": "TÌM HIỂU THÊM"
+   },
+   "6410416070545265970": {
+      "message": "Kiểm tra liên kết này"
+   },
+   "6418290353353165009": {
+      "message": "Làm lại"
+   },
+   "6425676451769330238": {
+      "message": "Không giãn cách"
+   },
+   "6433056041891472200": {
+      "message": "Hãy đăng nhập để bật"
+   },
+   "6437997645764562921": {
+      "message": "Ký tự đệm Choseong Hangul"
+   },
+   "6470997799115367716": {
+      "message": "Chữ Saurashtra"
+   },
+   "6471970833583478119": {
+      "message": "Tiêu đề nhỏ"
+   },
+   "6473682978091349952": {
+      "message": "Dấu cách dấu câu"
+   },
+   "6489221588545746734": {
+      "message": "Chữ Kirin"
+   },
+   "64909648993550346": {
+      "message": "Ghi đè từ phải sang trái"
+   },
+   "649459667039033491": {
+      "message": "sau $NUM$ ngày nữa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Dấu cách có độ rộng bằng không"
+   },
+   "6539448903465735867": {
+      "message": "Phân tiết bắt đầu ký hiệu nhạc"
+   },
+   "6544224848752157941": {
+      "message": "Giảm thụt lề"
+   },
+   "6559526625155197659": {
+      "message": "Google Tìm kiếm tạm thời không khả dụng. Vui lòng thử lại sau ít phút."
+   },
+   "6563689176501108246": {
+      "message": "Thán từ 5 nét chữ Hán"
+   },
+   "6572308230373875858": {
+      "message": "Tên thư mục này chứa ký tự không hợp lệ."
+   },
+   "6604826525171204065": {
+      "message": "Chữ Buhid"
+   },
+   "6606727931314199470": {
+      "message": "Chữ Phoenicia"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ x $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Không thể đồng bộ các hóa dấu trang của bạn. Hãy thử tải lại trang này"
+   },
+   "6661160677415877619": {
+      "message": "Chỉnh sửa HTML"
+   },
+   "66727790049529171": {
+      "message": "Chỉ số trên"
+   },
+   "6673681480713693433": {
+      "message": "Dấu từ trái sang phải"
+   },
+   "6679365605648394500": {
+      "message": "Cổ"
+   },
+   "6718105992776681941": {
+      "message": "Thư mục công khai"
+   },
+   "6731765034365779068": {
+      "message": "sau $NUM$ phút nữa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Chữ Nam Ả-rập cũ"
+   },
+   "6748884117721473417": {
+      "message": "Chữ viết châu Âu khác"
+   },
+   "6756714832459728782": {
+      "message": "Chữ Tai Le"
+   },
+   "6781212531496313437": {
+      "message": "Danh sách"
+   },
+   "6787794440298969774": {
+      "message": "Chữ Malayalam"
+   },
+   "6813860917460451806": {
+      "message": "Chữ Lycia"
+   },
+   "6848846772159302710": {
+      "message": "Thay đổi"
+   },
+   "6878231700728680871": {
+      "message": "MỚI"
+   },
+   "687829671213164815": {
+      "message": "Rất tiếc, Trình quản lý dấu trang tạm thời không khả dụng. Vui lòng thử lại sau vài giờ"
+   },
+   "6963034896702768829": {
+      "message": "Thư mục này không tồn tại nữa."
+   },
+   "698011532377344679": {
+      "message": "Giới tính và phả hệ"
+   },
+   "7004429103140794719": {
+      "message": "Ký tự được chọn gần đây:"
+   },
+   "7009051272745522428": {
+      "message": "Bạn đã quên dấu trang mình đã lưu? Chỉ cần tìm kiếm. Hãy thử các cụm từ chung như \"phim\" hoặc \"du lịch\" để tìm lại những dấu trang đã mất."
+   },
+   "7056277361038404533": {
+      "message": "Đã di chuyển dấu trang."
+   },
+   "7058809993296833390": {
+      "message": "Hãy cho chúng tôi biết suy nghĩ của bạn!"
+   },
+   "7064503592469946179": {
+      "message": "Chữ Sunda"
+   },
+   "7077571379260349566": {
+      "message": "Bạn có muốn thử \u003Ca class=\"col-zda\">tìm kiếm trên web\u003C/a> không?"
+   },
+   "7102762854285284877": {
+      "message": "Chữ Phags Pa"
+   },
+   "7124932478652977474": {
+      "message": "Đã đánh dấu"
+   },
+   "7154665243775472938": {
+      "message": "Thư mục"
+   },
+   "7168417416563257713": {
+      "message": "Lưu"
+   },
+   "7178727559519269241": {
+      "message": "Gạch nối chéo đôi"
+   },
+   "7256064246386232909": {
+      "message": "Chữ Java"
+   },
+   "7258012171742729961": {
+      "message": "Nguyên âm Khmer vốn có Aq"
+   },
+   "7300188402017534561": {
+      "message": "Tất cả"
+   },
+   "7316184946628117028": {
+      "message": "Chữ Thaana"
+   },
+   "7328850288952193170": {
+      "message": "Dấu phân cách ẩn"
+   },
+   "733245618582914569": {
+      "message": "OK"
+   },
+   "7333334175520057323": {
+      "message": "Hủy"
+   },
+   "7339792312429709609": {
+      "message": "Thán từ 2 nét chữ Hán"
+   },
+   "7342965026300699486": {
+      "message": "Đây là thư mục công khai. Xóa thư mục này, người khác sẽ xem không xem được."
+   },
+   "7346825266417376383": {
+      "message": "OK"
+   },
+   "7362095105218889721": {
+      "message": "Định dạng và Khoảng trắng"
+   },
+   "7369763432670344230": {
+      "message": "Liên kết này đi đến địa chỉ email nào?"
+   },
+   "7376646180156094924": {
+      "message": "Tên"
+   },
+   "7388233788532145059": {
+      "message": "Thêm hoặc xóa liên kết"
+   },
+   "7407898565330883980": {
+      "message": "Tạo thư mục"
+   },
+   "7436494590700857376": {
+      "message": "Không có tiêu đề"
+   },
+   "7454853574776276752": {
+      "message": "OK"
+   },
+   "7466254996792639407": {
+      "message": "Chữ Georgia"
+   },
+   "7487940627543583924": {
+      "message": "Thứ Năm"
+   },
+   "7496808914788281345": {
+      "message": "Nét em nhỏ"
+   },
+   "7512206123241896524": {
+      "message": "Xóa thư mục công khai, người khác sẽ không xem được sẽ ngăn người khác xem chúng."
+   },
+   "7514107325655026801": {
+      "message": "Dấu phân cách nguyên âm Mông Cổ"
+   },
+   "7517846739534508036": {
+      "message": "Hình ảnh mà bạn đang cố gắng kéo đã bị trang lưu trữ chặn."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{sau # phút nữa}=1{sau # phút nữa}other{sau # phút nữa}}"
+   },
+   "7556000209920718943": {
+      "message": "Chữ Síp"
+   },
+   "7558709989823567445": {
+      "message": "Tuyến tính B"
+   },
+   "7561680940841358107": {
+      "message": "Chữ Kayah Li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} giờ}other{{TEXT} giờ}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Gạch nối Armenia"
+   },
+   "762426240463793747": {
+      "message": "Phân số/Có liên quan"
+   },
+   "7627205932825693842": {
+      "message": "Gạch nối mềm Mông Cổ"
+   },
+   "7666041165203922544": {
+      "message": "Dễ dàng tìm mọi thứ"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "sau $NUM$ giờ nữa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "$NUM$ ngày trước",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "Tháng 6"
+   },
+   "7763561590386207075": {
+      "message": "Địa chỉ web"
+   },
+   "7778510137824413661": {
+      "message": "Bạn là người dùng dogfood tốt nhất từ trước đến nay! Đây là cách khắc phục lỗi mà chúng tôi không thể thực hiện tải lại đơn giản để khôi phục."
+   },
+   "7787489712298922692": {
+      "message": "Chữ Xê-mít cổ"
+   },
+   "7794513342167361028": {
+      "message": "Chữ Sora Sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Phân tiết cuối ký hiệu nhạc"
+   },
+   "7804811638177746132": {
+      "message": "Hãy nhập url hợp lệ."
+   },
+   "7820796809104165402": {
+      "message": "Thứ Sáu"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Đã tạo mục.}other{Đã tạo # mục.}}"
+   },
+   "7842161096380376517": {
+      "message": "Ký hiệu Ả Rập Safha"
+   },
+   "7877081360738059546": {
+      "message": "Động vật, thực vật và thức ăn"
+   },
+   "7899357084217902569": {
+      "message": "Dấu gạch nhỏ-trừ"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Bạn không chắc chắn nên đưa nội dung gì vào hộp?$END_BOLD$ Trước tiên, hãy tìm trang web mà bạn muốn liên kết đến. ($SEARCH_ENGINE_LINK$Công cụ tìm kiếm$END_LINK$ có thể hữu ích.) Sau đó, sao chép địa chỉ web từ hộp trong thanh địa chỉ của trình duyệt và dán vào hộp phía trên.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Hủy"
+   },
+   "7929010027377139621": {
+      "message": "Chữ Tai Viet"
+   },
+   "7944194550132470305": {
+      "message": "Thêm tiêu đề..."
+   },
+   "7957751306916251232": {
+      "message": "Địa chỉ email không hợp lệ"
+   },
+   "7977240188055092028": {
+      "message": "Xem"
+   },
+   "7987287518899618882": {
+      "message": "Tháng 2"
+   },
+   "7995071973884866910": {
+      "message": "$NUM$ ngày trước",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Video"
+   },
+   "8011311100803127599": {
+      "message": "Dấu sao/Dấu hoa thị"
+   },
+   "8017723467201257913": {
+      "message": "Chữ Deseret"
+   },
+   "8018615794586730510": {
+      "message": "Chuẩn / serif"
+   },
+   "8027365004962833557": {
+      "message": "Chữ nghiêng cổ"
+   },
+   "8110520007971944893": {
+      "message": "Google có thể tự động sắp xếp các dấu trang của bạn, vì vậy bạn không phải làm điều đó"
+   },
+   "8115055677841343820": {
+      "message": "Gạch nối"
+   },
+   "8132750144382731373": {
+      "message": "Biểu tượng cảm xúc"
+   },
+   "8139874053154312313": {
+      "message": "Dấu nối với dấu tách đôi"
+   },
+   "8143412461134291283": {
+      "message": "Gửi phản hồi"
+   },
+   "8146770321190721394": {
+      "message": "Chữ Osmanya"
+   },
+   "8167437723285192120": {
+      "message": "Không có"
+   },
+   "8179849043307262288": {
+      "message": "Ứng dụng chức năng"
+   },
+   "818630018883405514": {
+      "message": "Bao quanh"
+   },
+   "8208069138346972268": {
+      "message": "Kỹ thuật"
+   },
+   "8220605653109571646": {
+      "message": "Chữ Hy Lạp"
+   },
+   "8243618543879664815": {
+      "message": "Tháng 1"
+   },
+   "8275729822640276507": {
+      "message": "Bạn đã kết nối lại với web."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Hoàn tác"
+   },
+   "8338269186594699884": {
+      "message": "ch"
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "OK"
+   },
+   "8394518299580326671": {
+      "message": "Ký tự nối có chiều rộng bằng không"
+   },
+   "8401283339806880070": {
+      "message": "Căn đều"
+   },
+   "8417405596874032771": {
+      "message": "Dấu cách Ogham"
+   },
+   "8442861823466423570": {
+      "message": "Dấu kết thúc chú thích in xen"
+   },
+   "8454082825844118412": {
+      "message": "Thán từ 11~17 nét chữ Hán"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Kết quả tìm kiếm dành cho \u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Biểu tượng cảm xúc"
+   },
+   "8509200859889253607": {
+      "message": "Chữ Bugin"
+   },
+   "8513771017811992648": {
+      "message": "Không có"
+   },
+   "8583880697323281603": {
+      "message": "Đã thay đổi dấu trang."
+   },
+   "8590712065595806821": {
+      "message": "Được đề xuất"
+   },
+   "8605746117200843257": {
+      "message": "Neo chú thích in xen"
+   },
+   "8608038304204118820": {
+      "message": "$NUM$ giờ trước",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Đánh dấu sao trang này"
+   },
+   "8632024322663078476": {
+      "message": "Thêm vào thư mục"
+   },
+   "8635739256240231429": {
+      "message": "Đóng"
+   },
+   "8637786997742615742": {
+      "message": "Ký tự bổ trợ"
+   },
+   "8639484881518821804": {
+      "message": "Chữ Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Chữ Samaritan"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Bình thường"
+   },
+   "8694618136165028235": {
+      "message": "Thêm url..."
+   },
+   "8723654283178734366": {
+      "message": "Nhập địa chỉ web"
+   },
+   "8748780785044360315": {
+      "message": "Chữ Thái"
+   },
+   "8764548034413038101": {
+      "message": "sau $NUM$ phút nữa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "Tháng 4"
+   },
+   "8784386825932830097": {
+      "message": "Thanh ngang"
+   },
+   "8793684579112208899": {
+      "message": "Chỉ số dưới"
+   },
+   "8797138403646238716": {
+      "message": "Chữ thảo Meroitic"
+   },
+   "8801105026907713256": {
+      "message": "Ít phổ biến"
+   },
+   "8805843642052942743": {
+      "message": "Chữ Lepcha"
+   },
+   "8827926534395802942": {
+      "message": "Dấu gạch số"
+   },
+   "8829617001171812634": {
+      "message": "Đồ vật"
+   },
+   "8835425644719990167": {
+      "message": "Ký tự đệm Jungseong Hangul"
+   },
+   "8838200101653652173": {
+      "message": "Bao quanh"
+   },
+   "8838938639049885476": {
+      "message": "Dấu cách en"
+   },
+   "8841111838340088121": {
+      "message": "Thán từ 4 nét chữ Hán"
+   },
+   "8860909466229522023": {
+      "message": "Nghiêng"
+   },
+   "888434073985276543": {
+      "message": "Biểu mẫu bảng trình bày cho nét em đứng"
+   },
+   "8892104104076766085": {
+      "message": "Dấu sóng"
+   },
+   "8996388564146952786": {
+      "message": "Dấu cách không ngắt hẹp"
+   },
+   "9021466412659564505": {
+      "message": "Đăng nhập"
+   },
+   "9026903153882226079": {
+      "message": "Dấu từ phải sang trái"
+   },
+   "9034162255782924509": {
+      "message": "Chữ Batak"
+   },
+   "9041611521175673293": {
+      "message": "Tất cả các mục"
+   },
+   "9041881295809259717": {
+      "message": "Toán học"
+   },
+   "9072668986327887451": {
+      "message": "Mô tả chữ tượng hình"
+   },
+   "9076212347872857205": {
+      "message": "Trích dẫn"
+   },
+   "9083920162332648298": {
+      "message": "sa"
+   },
+   "9086165147555162831": {
+      "message": "Chữ Meetei Mayek"
+   },
+   "9092805374125336008": {
+      "message": "Tháng 5"
+   },
+   "9099680152087323883": {
+      "message": "Tháng 11"
+   },
+   "9107905796365363672": {
+      "message": "Lớn"
+   },
+   "9113260413780075008": {
+      "message": "Chữ Brahmi"
+   },
+   "9115834469932780333": {
+      "message": "Chữ Telugu"
+   },
+   "9143484910409308303": {
+      "message": "Chữ Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Không thể tìm kiếm dấu trang được mã hóa. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Tìm hiểu thêm\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Đã xóa thư mục khỏi thư mục gốc."
+   },
+   "9180458846772153689": {
+      "message": "Chữ Armenia"
+   },
+   "9181119817188520774": {
+      "message": "Không có kết nối mạng. Bạn không thể lưu thay đổi cho đến khi bạn có kết nối mạng trở lại."
+   },
+   "9204096795425905695": {
+      "message": "Dấu thời gian ảo"
+   },
+   "922163125711959960": {
+      "message": "$NUM$ phút trước",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Thêm"
+   },
+   "93670926879626900": {
+      "message": "Khoảng trắng"
+   },
+   "93871902389648718": {
+      "message": "Ký tự kết thúc của ký hiệu nhạc"
+   },
+   "960914149201689167": {
+      "message": "Hệ thập phân"
+   },
+   "963040144042262397": {
+      "message": "Xóa"
+   },
+   "964017479791059460": {
+      "message": "Ký tự End Of Ayah của Ả Rập"
+   },
+   "980376110610801797": {
+      "message": "Chèn hình ảnh"
+   }
+}

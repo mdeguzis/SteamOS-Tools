@@ -13,59 +13,59 @@
 # -----------------------------------------------------------------------
 
 	
-	sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
-	
-	# start repo check
-	if [[ "$deb_repo_req" == "yes" ]]; then
-	
-		echo -e "\n==Repository Check==\nExternal repository needed: [Yes]"
-		
-		# start sources eval
-		if [[ "$sources_check" == "" ]]; then 
-			echo -e "\n==ERROR==\nRequired external repository *NOT* detected!" 
-			
-			echo -e "\nIf you wish to exit, please press CTRL+C now."
-		        echo -e "[c]ontinue, [a]dd Debian sources, [e]xit\n"
-		
-			# get user choice
-			sleep 0.2s
-			read -ep "Choice: " user_choice
-		
-			
-			case "$user_choice" in
-			        c|C)
-				echo -e "\nContinuing...\n"
-			        ;;
-			        
-			        a|A)
-				echo -e "\nProceeding to add-debian-repos.sh"
-				"$scriptdir/add-debian-repos.sh"
-			        ;;
-			         
-			        e|e)
-				echo -e "\nExiting script...\n"
-				exit 1
-			        ;;
-			        
-			         
-			        *)
-				echo -e "\nInvalid Input, Exiting script.\n"
-				exit 1
-				;;
-			esac
+sources_check=$(sudo find /etc/apt -type f -name "$deb_repo_name")
 
-		else 
-	                # do nothing
-	                echo "" > /dev/null
-	                
-	        # end sources eval
-	        fi
-	        
-	elif [[ "$deb_repo_req" == "no" ]]; then
-		
-		echo -e "\n==Repository Check==\nExternal repository needed: [No]"
+# start repo check
+if [[ "$deb_repo_req" == "yes" ]]; then
+
+	echo -e "\n==Repository Check==\nExternal repository needed: [Yes]"
 	
-	# end repo check	
- fi 
+	# start sources eval
+	if [[ "$sources_check" == "" ]]; then 
+		echo -e "\n==ERROR==\nRequired external repository *NOT* detected!" 
+		
+		echo -e "\nIf you wish to exit, please press CTRL+C now."
+	        echo -e "[c]ontinue, [a]dd Debian sources, [e]xit\n"
+	
+		# get user choice
+		sleep 0.2s
+		read -ep "Choice: " user_choice
+	
+		
+		case "$user_choice" in
+		        c|C)
+			echo -e "\nContinuing...\n"
+		        ;;
+		        
+		        a|A)
+			echo -e "\nProceeding to add-debian-repos.sh"
+			"$scriptdir/add-debian-repos.sh"
+		        ;;
+		         
+		        e|e)
+			echo -e "\nExiting script...\n"
+			exit 1
+		        ;;
+		        
+		         
+		        *)
+			echo -e "\nInvalid Input, Exiting script.\n"
+			exit 1
+			;;
+		esac
+
+	else 
+                # simple output
+                echo -e "Required external repository detected [OK]\n"
+                
+        # end sources eval
+        fi
+        
+elif [[ "$deb_repo_req" == "no" ]]; then
+	
+	echo -e "\n==Repository Check==\nExternal repository needed: [No]"
+
+# end repo check	
+fi 
 
 

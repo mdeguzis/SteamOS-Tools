@@ -10,75 +10,6 @@
 # Usage:	      	n/a , module
 # -----------------------------------------------------------------------
 
-ep_check_repo_status()
-{
-
-	# Check if Debian repos or outside sources are needed. 
-	# If user did not add these, exit.
-	# Vars are set per package
-	
-	sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
-	
-	# start repo check
-	if [[ "$deb_repo_req" == "yes" ]]; then
-	
-		echo -e "\n==Repository Check==\nExternal repository needed: [Yes]"
-		
-		# start sources eval
-		if [[ "$sources_check" == "" ]]; then 
-			echo -e "\n==ERROR==\nRequired external repository *NOT* detected!" 
-			
-			echo -e "\nIf you wish to exit, please press CTRL+C now."
-		        echo -e "[c]ontinue, [a]dd Debian sources, [e]xit\n"
-		
-			# get user choice
-			sleep 0.2s
-			read -ep "Choice: " user_choice
-		
-			
-			case "$user_choice" in
-			        c|C)
-				echo -e "\nContinuing...\n"
-			        ;;
-			        
-			        a|A)
-				echo -e "\nProceeding to add-debian-repos.sh"
-				"$scriptdir/add-debian-repos.sh"
-			        ;;
-			         
-			        e|e)
-				echo -e "\nExiting script...\n"
-				exit 1
-			        ;;
-			        
-			         
-			        *)
-				echo -e "\nInvalid Input, Exiting script.\n"
-				exit 1
-				;;
-			esac
-
-		else 
-	                # do nothing
-	                echo "" > /dev/null
-	                
-	        # end sources eval
-	        fi
-	        
-	elif [[ "$deb_repo_req" == "no" ]]; then
-		
-		echo -e "\n==Repository Check==\nExternal repository needed: [No]"
-	
-	# end repo check	
-        fi 
-
-	
-	deb_repo_name_a="wheezy.list"
-	deb_repo_req="no"
-	
-
-}
-
 ep_pkg_cleanup()
 {
 	#####################################################
@@ -128,10 +59,10 @@ ep_install_x360_bindings()
 	multi="n"
 	
 	# set external Deb repo required flag
-	deb_repo_name="wheezy.list"
-	deb_repo_req="no"
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
 	# Eval requirements
-	ep_check_repo_status
+	"$scriptdir/utilities/check_repo_req.sh"
 	
 	# test if user requests it
 	if [[ "$options" == "test" ]]; then
@@ -176,10 +107,10 @@ ep_install_firefox()
 	multi="n"
 	
 	# set external Deb repo required flag
-	deb_repo_name="wheezy.list"
-	deb_repo_req="no"
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
 	# Eval requirements
-	ep_check_repo_status
+	"$scriptdir/utilities/check_repo_req.sh"
 	
 	# test if user requests it
 	if [[ "$options" == "test" ]]; then
@@ -229,10 +160,10 @@ ep_install_plex()
 	prefer_deb_multi="/etc/apt/preferences.d/${reponame_deb_multi}"
 	
 	# set external Deb repo required flag
-	deb_repo_name="wheezy.list"
-	deb_repo_req="no"
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
 	# Eval requirements
-	ep_check_repo_status
+	"$scriptdir/utilities/check_repo_req.sh"
 	
 	###############################
 	# backup
@@ -428,10 +359,10 @@ ep_install_kodi()
 	prefer_kodi="/etc/apt/preferences.d/${reponame_kodi}"
 	
 	# set external Deb repo required flag
-	deb_repo_name="wheezy.list"
-	deb_repo_req="no"
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
 	# Eval requirements
-	ep_check_repo_status
+	"$scriptdir/utilities/check_repo_req.sh"
 	
 	###############################
 	# sources
@@ -564,10 +495,10 @@ ep_install_chrome()
 	install_dir="$HOME/Downloads/Chrome"
 	
 	# set external Deb repo required flag
-	deb_repo_name="wheezy.list"
-	deb_repo_req="yes"
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="yes"
 	# Eval requirements
-	ep_check_repo_status
+	"$scriptdir/utilities/check_repo_req.sh"
 	
 	# create and enter build dir
 	if [[ -d "$install_dir" ]]; then
@@ -694,10 +625,10 @@ ep_install_gdrive()
 	BIN_LOC="/usr/bin/gdrive"
 	
 	# set external Deb repo required flag
-	deb_repo_name="wheezy.list"
-	deb_repo_req="no"
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
 	# Eval requirements
-	ep_check_repo_status
+	"$scriptdir/utilities/check_repo_req.sh"
 	
 	# set multiflag
 	multi="n"
@@ -834,10 +765,10 @@ ep_install_pipelight()
 	prefer_pipelight="/etc/apt/preferences.d/${reponame_pipelight}"
 	
 	# set external Deb repo required flag
-	deb_repo_name="wheezy.list"
-	deb_repo_req="no"
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
 	# Eval requirements
-	ep_check_repo_status
+	"$scriptdir/utilities/check_repo_req.sh"
 	
 	###############################
 	# file/dir checks, backups

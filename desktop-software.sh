@@ -222,6 +222,9 @@ funct_source_modules()
 funct_set_multiarch()
 {
 	
+	echo -e "\n==> Checking for multi-arch support\n"
+	sleep 1s
+	
 	# add 32 bit support
 	multi_arch_status=$(dpkg --print-foreign-architectures)
 	
@@ -246,6 +249,9 @@ funct_set_multiarch()
 		echo -e "Multi-arch support [OK]"	
 		
 	fi
+	
+	# hold for testing
+	sleep 50s
 	
 }
 
@@ -301,6 +307,7 @@ funct_pre_req_checks()
 {
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
+	sleep 1s
 	
 	#################################
 	# debian-keyring
@@ -357,6 +364,7 @@ function gpg_import()
 	# some keys do not load in automatically, import now
 	# helper script accepts $1 as the key
 	echo -e "\n==> Importing Debian GPG keys"
+	sleep 1s
 	
 	# Key Desc: Debian Archive Automatic Signing Key
 	# Key ID: 2B90D010

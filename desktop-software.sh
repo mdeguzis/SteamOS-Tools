@@ -225,10 +225,25 @@ funct_set_multiarch()
 	# add 32 bit support
 	multi_arch_status=$(dpkg --print-foreign-architectures)
 	
-	if [[ "$mult_arch_status" != "i386" ]]; then
+	if [[ "$multi_arch_status" != "i386" ]]; then
 		
+		echo -e "Multi-arch support [FAIL]"
 		# add 32 bit support
 		sudo dpkg --add-architecture i386
+		
+		if [[ $? == '0' ]]; then
+				
+			echo -e "Multi-arch support [Addition FAILED!]"
+			sleep 1s
+		else
+			
+			echo -e "Multi-arch support [Now added]"
+			sleep 1s
+		fi
+	
+	else
+	
+		echo -e "Multi-arch support [OK]"	
 		
 	fi
 	

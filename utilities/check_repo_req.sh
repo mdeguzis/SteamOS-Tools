@@ -1,19 +1,25 @@
 
 #!/bin/bash
 # -----------------------------------------------------------------------
-# Author: 		    Michael DeGuzis
+# Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	check_repo_req.sh
 # Script Ver:	  	0.1.3
-# Description:	  Check if Debian repos or outside sources are needed. 
-#                 If user did not add these, exit.
-#                 Vars are set per package
+# Description:		Check if Debian repos or outside sources are needed. 
+#               	If user did not add these, exit.
+#               	Vars are set per package and exported from the 
+#			parent script this is called from.
 #	
 # Usage:	      	n/a , called from another script
 # -----------------------------------------------------------------------
 
 	
 sources_check=$(sudo find /etc/apt -type f -name "$deb_repo_name")
+
+# test vars if need be.
+# echo "deb_repo_req is: $deb_repo_req"
+# echo "sources_check is: $sources_check"
+# echo "deb_repo_name is: $deb_repo_name"
 
 # start repo check
 if [[ "$deb_repo_req" == "yes" ]]; then

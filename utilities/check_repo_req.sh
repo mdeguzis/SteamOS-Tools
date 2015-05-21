@@ -56,7 +56,7 @@ if [[ "$deb_repo_req" == "yes" ]]; then
 
 	else 
                 # simple output
-                echo -e "Required external repository detected [OK]\n"
+                echo -e "Required external repository detected [OK]"
                 
         # end sources eval
         fi

@@ -2,7 +2,7 @@
 Version=0.1.1
 Name=Netflix
 Comment=Launcher for Netflix via Chrome
-Exec=/usr/bin/Netflix.sh
+Exec=/usr/bin/Netflix-Launch.sh
 Icon=/home/steam/Pictures/Netflix.png
 Terminal=false
 Type=Application

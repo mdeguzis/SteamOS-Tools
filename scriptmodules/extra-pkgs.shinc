@@ -654,7 +654,7 @@ ep_install_gdrive()
 ep_install_netflix()
 {
 
-	echo -e "\n==> Installing Netflix (via Chrome) from automated script..."
+	echo -e "\n==> Installing Netflix (via Chrome) from automated script...\n"
 	sleep 2s
 
 	#######################################
@@ -662,7 +662,7 @@ ep_install_netflix()
 	#######################################
 	
 	# required to display x window for Chrome
-	sudo apt-get install xserver-xephy
+	sudo apt-get install xserver-xephyr
 
 	#######################################
 	# Software function pre-req
@@ -680,6 +680,9 @@ ep_install_netflix()
 	#######################################
 	# Configuration
 	#######################################
+	
+	echo $scriptdir
+	sleep 50s
 	
 	# copy launcher to /usr/bin
 	sudo cp "$scriptdir/cfgs/netflix/Netflix-Launch.sh" "/usr/bin"

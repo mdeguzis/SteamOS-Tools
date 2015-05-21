@@ -663,7 +663,7 @@ ep_install_netflix()
 	#######################################
 	
 	echo -e "\n==> Installing pre-requisite software"
-	sleep 2s
+	sleep 1s
 
 	pkg_test=$(which google-chrome-stable)
 
@@ -679,7 +679,7 @@ ep_install_netflix()
 	#######################################
 
 	echo -e "\n==> Configuring"
-	sleep 2s
+	sleep 1s
 	
 	# copy launcher to /usr/bin
 	sudo cp "$scriptdir/cfgs/netflix/Netflix-Launch.sh" "/usr/bin"

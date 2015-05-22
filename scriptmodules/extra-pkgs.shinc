@@ -685,7 +685,7 @@ ep_install_youtube()
 
 }
 
-ep_add_web_app_chome()
+ep_add_web_app_chrome()
 {
 
 	#######################################

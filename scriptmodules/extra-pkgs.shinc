@@ -786,7 +786,7 @@ ep_add_web_app_chome()
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
 	
-	echo -e "\n==> Installing access to $NAME (via Chrome) from automated script..."
+	echo -e "\n==> Installing web app (via Chrome) from automated script..."
 	sleep 2s
 	
 	while [[ "$web_app_choice" != "4" ]];

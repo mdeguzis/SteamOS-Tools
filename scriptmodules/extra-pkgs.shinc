@@ -745,7 +745,7 @@ ep_install_hulu()
 {
 
 	# Hulu
-	NAME"Hulu"
+	NAME="Hulu"
 	WEB_URL="www.hulu.com"
 	TARGET_NAME="Hulu"
 	SHORTCUT="Hulu.desktop"

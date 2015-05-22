@@ -435,7 +435,7 @@ get_software_type()
 	
 	elif [[ "$type" == "webapp" ]]; then
                 # add web app via chrome from helper script
-                ep_add_web_app_chome
+                ep_add_web_app_chrome
                 exit
 	
 	elif [[ "$type" == "chrome" ]]; then

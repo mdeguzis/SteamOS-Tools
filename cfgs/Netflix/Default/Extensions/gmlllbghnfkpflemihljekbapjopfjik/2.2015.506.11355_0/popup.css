@@ -1,0 +1,27 @@
+.col-popup-exp {
+  height: 420px !important;
+}
+
+.col-popup-prom {
+  height: 328px !important;
+}
+
+.colc {
+  right: 0 !important;
+  top: 0 !important;
+  -webkit-transition: none !important;
+}
+
+.colc-main {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.colc-main, .colc-fola, .colc-view, .colc-sug {
+  -webkit-transition: none !important;
+}
+
+.jfk-checkbox-checked .jfk-checkbox-checkmark {
+  background: url(http://ssl.gstatic.com/ui/v1/menu/checkmark.png) no-repeat -5px -3px !important;
+  background-image: -webkit-image-set(url(http://ssl.gstatic.com/ui/v1/menu/checkmark.png) 1x,url(http://ssl.gstatic.com/ui/v1/menu/checkmark_2x.png) 2x) !important;
+}

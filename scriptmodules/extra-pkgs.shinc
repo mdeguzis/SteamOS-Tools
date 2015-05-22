@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.8.6
+# Script Ver:	  	0.9.5
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	
@@ -16,7 +16,7 @@ ep_pkg_cleanup()
 	# cleanup package remenants and other files
 	#####################################################
 	
-	echo -e "\n==> Cleaning up pacakges, files, and other garbage\n"
+	echo -e "\n==> Cleaning up packages, files, and other garbage\n"
 	sleep 2s
 	
 	# Attempt to fix any missing packages 
@@ -568,7 +568,7 @@ ep_install_chrome()
 	# install google-chrome-stable
 	###############################
 	
-	echo -e "\n==> Installing core package 'google-chrome-stable'"
+	echo -e "\n==> Installing core package 'google-chrome-stable'\n"
 	sleep 2s
 	
 	# download
@@ -585,12 +585,6 @@ ep_install_chrome()
 		# attempt to use default DIR
 		cd "/home/desktop/SteamOS-Tools/"
 	fi
-
-	###############################	
-	# Post conf for Netflix
-	###############################
-
-	# TODO
 	
 	###############################	
 	# Cleanup
@@ -654,86 +648,178 @@ ep_install_gdrive()
 ep_install_netflix()
 {
 
-	echo -e "\n==> Installing Netflix from automated script..."
+	# Netflix
+	NAME="Netflix"
+	WEB_URL="www.netflix.com"
+	TARGET_NAME="Netflix"
+	SHORTCUT="Netflix.desktop"
+	LAUNCHER="Netflix-Launch.sh"
+	BANNER_IMG="Netflix.png"
+
+}
+
+
+ep_install_hulu()
+{
+
+	# Hulu
+	NAME="Hulu"
+	WEB_URL="www.hulu.com"
+	TARGET_NAME="Hulu"
+	SHORTCUT="Hulu.desktop"
+	LAUNCHER="Hulu-Launch.sh"
+	BANNER_IMG="Hulu.png"
+
+}
+
+ep_install_youtube()
+{
+
+	# Youtube
+	NAME="Youtube"
+	WEB_URL="www.youtube.com"
+	TARGET_NAME="Youtube"
+	SHORTCUT="Youtube.desktop"
+	LAUNCHER="Youtube-Launch.sh"
+	BANNER_IMG="Youtube.png"
+
+}
+
+ep_add_web_app_chome()
+{
+
+	#######################################
+	# Set vars
+	#######################################
+
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="yes"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	echo -e "\n==> Installing web app (via Chrome) from automated script..."
 	sleep 2s
+	
+	
+	###################################
+	# Start web app addition loop
+	###################################
+	
+	while [[ "$web_app_choice" != "4" ]];
+	do	
+		echo -e "\n##################################################################"
+		echo -e "Web application installation (via Chrome kiosk mode)"
+		echo -e "##################################################################"
+
+		# prompt user For websites they wish to add as web apps
+		echo -e "\nPlease choose which webapp you wish to add. Choose Done when finished."
+		echo "(1) Netflix"
+		echo "(2) Hulu"
+		echo "(3) Youtube"
+		echo "(4) Done"
+		echo ""
+		
+		# the prompt sometimes likes to jump above sleep
+		sleep 0.5s
+		
+		read -ep "Choice: " web_app_choice
+		
+		case "$web_app_choice" in
+		        1)
+		        ep_install_netflix
+		        ;;
+		        
+		        2)
+		        ep_install_hulu
+		        ;;
+		         
+		        3)
+		        ep_install_youtube
+			;;
+		         
+		        4)
+		        # do nothing
+		        echo -e "\n==> Exiting script\n"
+		        exit 1
+		        ;;
+		         
+		        *)
+		        echo -e "\n==ERROR==\nInvalid Selection!"
+			;;
+		esac
+		
+	
+	#######################################
+	# Pre-reqs
+	#######################################
+	
+	# required to display x window for Chrome
+	sudo apt-get install xserver-xephyr
 
 	#######################################
-	# EXPERIMENTAL !!!! DOES NOT WORK!
+	# Software function pre-req
+	#######################################
+	
+	echo -e "\n==> Installing pre-requisite software"
+	sleep 1s
+
+	pkg_test=$(which google-chrome-stable)
+
+	if [[ "$pkg_test" == "" ]]; then
+	
+		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
+		# install chrome from script
+		sleep 2s
+		ep_install_chrome
+		
+	else
+		
+		echo -e "\nPackage google-chrome-stable [OK]"
+		sleep 0.5s
+		
+	fi
+	
+	#######################################
+	# Configuration
 	#######################################
 
-	echo ""
+	echo -e "\n==> Configuring"
+	sleep 1s
+	
+	# copy launcher to /usr/bin
+	sudo cp "$scriptdir/cfgs/$TARGET_NAME/$LAUNCHER" "/usr/bin"
+	
+	# copy over desktop shortcut
+	sudo cp "$scriptdir/cfgs/$TARGET_NAME/$SHORTCUT" "/usr/share/applications"
+	
+	# copy Default folder that has "keep chrome running in background when closed"
+	# so that we don't get "unexpected crash" banner popups
+	sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/." "/home/steam/.config/google-chrome/Default/"
+	
+	# mark exec
+	sudo chmod +x "/usr/bin/$LAUNCHER"
+	
+	# copy banner
+	sudo cp "$scriptdir/cfgs/$TARGET_NAME/$BANNER_IMG" "/home/steam/Pictures"
+
+	# NOTE:
+	# Mouse support with cursor is fine
+	# Currently working on some kind of xboxdrv swap out
+	# to allow arrow keys
+	
+	# fix ownership if need be
+	
+	sudo chown -R steam:steam "/home/steam/Pictures"
+	
+	###################################
+	# end web app addition loop
+	###################################
+	done
+	
 	#####################################################
 	# PKG NAME
 	#####################################################
-	# Name: netflix-desktop
-	# Warning: libwayland-client0 ignored when building netflix-compholio!
-	# Source build maybe possible: https://launchpad.net/~gnome3-team/+archive/ubuntu/gnome3-staging
-	# Backup plan: compile pipelight, add as post-install configuration to firefox funct. above.
-	
-	###############################	
-	# set vars
-	###############################
-	
-	pkg_type="deb"
-	PKG="netflix-desktop"
-	PKG_FILENAME="/tmp/netflix-pkg-tmp.txt"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/netflix-desktop/"
-	BIN_LOC=""
-	software_list="/tmp/netflix-pkg-tmp.txt"
-	
-	# set multiflag
-	multi="y"
-	
-	###############################
-	# update and pre-reqs
-	###############################
-	
-	# install pre-reqs
-	
-	echo -e "\n==> Installing prerequisite packages"
-	sleep 2s
-	
-	sudo apt-get mingw-w64
-	
-	###############################	
-	# install netflix-desktop
-	###############################
-	
-	# test if user requests it based on type, dash test
-	if [[ "$options" == "test" ]]; then
-		# go to test function
-		ep_test_deb
-		exit
-	fi
-	
-	# set order in which packages must be installed (must be done in order!)
-	# Several sub-packages of netflix desktop must be installed properly beforehand.
-
-	temp_file="/tmp/netflix-pkg-tmp.txt"
-
-	cat <<-EOF > ${temp_file}
-	## wine-staging-i386_1.7.42_SteamOS_amd64.deb  ## NEEDS BUILT FROM PPA
-	wine-staging_1.7.42_SteamOS_amd64.deb
-	## wine-compholio-pkg
-	## ttf-mscorefonts-pkg
-	## python-pyattr-pkg
-	wine-browser-installer_0.8.9-1_SteamOS_all.deb
-	wine-silverlight5.1-installer_0.8.9-1_SteamOS_all.deb
-	netflix-desktop_0.8.9-1_SteamOS_all.deb
-	EOF
-	
-	# clean/remove existing packages so that the install does not fail
-	echo -e "\n==INFO==\nPurging previously installed packages for a clean install...\n" 
-	
-	for x in `cat $software_list`; do
-		sudo dpkg --purge $x
-	done
-	
-	# set multiflag so multiple debs are processed
-	multi="y"
-	
-	# proceed to pkg eval
-	ep_install_eval_pkg
 	
 	# cleanup
 	ep_pkg_cleanup

@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Deel deze map of wijzig de instellingen voor delen"
+   },
+   "1014969137789706237": {
+      "message": "Link naar een pagina of bestand ergens anders op internet"
+   },
+   "1033240210015440654": {
+      "message": "Afbeelding verwijderen"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} minuut}other{{TEXT} minuten}}"
+   },
+   "1035347665345261212": {
+      "message": "Geef een notitie op"
+   },
+   "1036132178487616999": {
+      "message": "Inleiding"
+   },
+   "1041064392303158655": {
+      "message": "Limbu"
+   },
+   "1066103686460691847": {
+      "message": "Doorhalen"
+   },
+   "1085496824897012476": {
+      "message": "Egyptische hiërogliefen"
+   },
+   "1105045461281211798": {
+      "message": "Combinatietekens: verbindingselement voor grafemen"
+   },
+   "111315886393984302": {
+      "message": "Maak eens enkele bladwijzers van items op internet en voeg ze toe aan deze map."
+   },
+   "1117324761561996205": {
+      "message": "Bewerken"
+   },
+   "1124849668149719420": {
+      "message": "Geef hier uw feedback op"
+   },
+   "1142044035368837035": {
+      "message": "Vierkant (em-spatie)"
+   },
+   "1148670835609345833": {
+      "message": "Knop 'Bladwijzer bewerken'"
+   },
+   "1161548997573254809": {
+      "message": "Annuleren"
+   },
+   "1164857998440803763": {
+      "message": "Chakma"
+   },
+   "1170102576258588460": {
+      "message": "Vast koppelteken"
+   },
+   "1185158158029036642": {
+      "message": "Klik hierop om een nieuwe bladwijzer of een nieuwe map te maken."
+   },
+   "1201286409038567178": {
+      "message": "ongeldige URL"
+   },
+   "1214729854306268929": {
+      "message": "$NUM$ minuten geleden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{# uur geleden}=1{# uur geleden}other{# uur geleden}}"
+   },
+   "1232723730191754374": {
+      "message": "Lettertype"
+   },
+   "1243361230826165709": {
+      "message": "Hangul (Koreaans)"
+   },
+   "128696227290770661": {
+      "message": "Devanagari"
+   },
+   "1312606838421552827": {
+      "message": "Cijfer"
+   },
+   "1316608632339176215": {
+      "message": "Overige"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "4-per-em-spatie"
+   },
+   "1337190557080419948": {
+      "message": "Titel"
+   },
+   "1347841728719446841": {
+      "message": "E-mailadres"
+   },
+   "1350404634989083059": {
+      "message": "Onzichtbaar plusteken"
+   },
+   "1356908927221815545": {
+      "message": "Han 1-Stroke Radicals"
+   },
+   "1373666411928680514": {
+      "message": "Golvend koppelstreepje"
+   },
+   "1378894003206512970": {
+      "message": "Afwijzen"
+   },
+   "138484781723580209": {
+      "message": "Oudsyrisch afkortingsteken"
+   },
+   "1397568831960098153": {
+      "message": "Opmaak"
+   },
+   "142359106099692409": {
+      "message": "Automatische mappen"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Klein"
+   },
+   "1460136507747533015": {
+      "message": "Log in om te delen"
+   },
+   "1477567329816921885": {
+      "message": "Wist u dat u uw favoriete bladwijzers kunt delen door een map openbaar te maken? Genereer de openbare URL en deel deze."
+   },
+   "1507362459078633250": {
+      "message": "U zult de Chrome-extensie moeten uitschakelen en opnieuw moeten laden en/of het IT-team lastigvallen…. Sorry :-/"
+   },
+   "1516565793778879679": {
+      "message": "Han - Overig"
+   },
+   "1519227660570105215": {
+      "message": "Deze pagina kan schadelijk zijn"
+   },
+   "1556175764217302644": {
+      "message": "Khmer klinkerteken inherent Aa"
+   },
+   "1566367040709255091": {
+      "message": "Opmaak"
+   },
+   "1582412901770221448": {
+      "message": "Toegevoegd aan {FOLDER_NAME}"
+   },
+   "1585233503778646014": {
+      "message": "Mandaïsch"
+   },
+   "1592899529499992997": {
+      "message": "Bladwijzer verwijderd uit map."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Beweeg over elke cel voor de tekennaam."
+   },
+   "1630439475247732904": {
+      "message": "Superscript"
+   },
+   "1634874677195552014": {
+      "message": "6-per-em-spatie"
+   },
+   "1635366592844795535": {
+      "message": "INLOGGEN BIJ CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Weer en astrologie"
+   },
+   "1665234249876251486": {
+      "message": "Cijferspatie"
+   },
+   "1666311405952625458": {
+      "message": "Weer, scènes en sterrenbeelden"
+   },
+   "1678004121951995792": {
+      "message": "aug"
+   },
+   "1680034627075195442": {
+      "message": "U kunt uw eigen mappen maken of Google dit laten regelen met automatische mappen."
+   },
+   "1683451665637766512": {
+      "message": "Link naar een e-mailadres"
+   },
+   "1685884502412781083": {
+      "message": "Alineascheidingsteken"
+   },
+   "169055910458549089": {
+      "message": "Kan geen verbinding maken met onze server. Probeer het over enkele minuten nog eens."
+   },
+   "1691734467561749621": {
+      "message": "Mappen in uw bladwijzerbalk kunt u niet delen"
+   },
+   "1715361312704502898": {
+      "message": "Vervoer en kaarten"
+   },
+   "1719053155706676551": {
+      "message": "Bladwijzerbalk"
+   },
+   "1730849295731139586": {
+      "message": "Yi"
+   },
+   "1748899684018766272": {
+      "message": "Halve breedte Hangul-opvulteken"
+   },
+   "1755438325907288056": {
+      "message": "Nko"
+   },
+   "1776387440523546537": {
+      "message": "Vandaag"
+   },
+   "178181731883558542": {
+      "message": "Tekstvak om uw bladwijzers te doorzoeken."
+   },
+   "1791083579000016877": {
+      "message": "Op basis van ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Items met ster bekijken"
+   },
+   "1803667155949248788": {
+      "message": "Keizerlijk Aramees"
+   },
+   "1827599404395723350": {
+      "message": "Afbeeldingen besturingselement"
+   },
+   "1839253253564716482": {
+      "message": "Geen bladwijzers gevonden"
+   },
+   "1847259066982820034": {
+      "message": "Een map kiezen"
+   },
+   "1875246104836450162": {
+      "message": "Symbool"
+   },
+   "1879633738298009258": {
+      "message": "Middelgrote wiskundige spatie"
+   },
+   "1915655034817606796": {
+      "message": "Zacht koppelteken"
+   },
+   "191946029988896895": {
+      "message": "Arabisch numeriek teken"
+   },
+   "1932973762029792550": {
+      "message": "Google deelt alle bladwijzers die u maakt automatisch in"
+   },
+   "1942405576047748946": {
+      "message": "Bladwijzer gemaakt."
+   },
+   "196266011387145001": {
+      "message": "Doorgaan"
+   },
+   "1963154331052663396": {
+      "message": "Latijn"
+   },
+   "1999193032742275907": {
+      "message": "Han 9-Stroke Radicals"
+   },
+   "2003860471263842959": {
+      "message": "Spatie (haardikte)"
+   },
+   "2015775921681923490": {
+      "message": "Instellingen"
+   },
+   "202031328373263910": {
+      "message": "Han 6-Stroke Radicals"
+   },
+   "2036672715320764541": {
+      "message": "Lijnscheidingsteken"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Item uit map verwijderd.}other{# items uit map verwijderd.}}"
+   },
+   "2088133380647290173": {
+      "message": "Op {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Geef een URL op om een nieuwe bladwijzer te maken."
+   },
+   "2117634893694108880": {
+      "message": "Privé"
+   },
+   "2135921744011555145": {
+      "message": "Uw bladwijzers doorzoeken"
+   },
+   "213958631597214757": {
+      "message": "Delen stoppen. "
+   },
+   "2149498606985329379": {
+      "message": "Importeren van bladwijzers voltooid."
+   },
+   "2159536073195133897": {
+      "message": "Ongedaan maken"
+   },
+   "2166866096346653276": {
+      "message": "Geen"
+   },
+   "2167636135101203592": {
+      "message": "Bengaals"
+   },
+   "2176930521411607789": {
+      "message": "Gekoppeld"
+   },
+   "218054763532467155": {
+      "message": "Geef een titel op"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{\u003Cb>{firstItemName}\u003C/b> verwijderen}=1{\u003Cb>{firstItemName}\u003C/b> en nog # item verwijderen}other{\u003Cb>{firstItemName}\u003C/b> en nog # items verwijderen}}"
+   },
+   "2200921183377473543": {
+      "message": "Ja"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{# dagen geleden}=1{# dag geleden}other{# dagen geleden}}"
+   },
+   "2228495834106697427": {
+      "message": "Subscript"
+   },
+   "2253752461533441758": {
+      "message": "Han 10-Stroke Radicals"
+   },
+   "2257250286834696444": {
+      "message": "Laden…"
+   },
+   "2280907281518645401": {
+      "message": "Katakana-Hiragana dubbel koppelteken"
+   },
+   "2301390744929043794": {
+      "message": "Een ogenblik geduld terwijl we uw map opslaan op de server"
+   },
+   "2315132909835126412": {
+      "message": "Openbaar"
+   },
+   "2315864755754275083": {
+      "message": "Valuta"
+   },
+   "231658276152304252": {
+      "message": "Verwijderen"
+   },
+   "2353164220175503425": {
+      "message": "Numeriek Kaithi-teken"
+   },
+   "2359350477261263182": {
+      "message": "Bladwijzerbeheer"
+   },
+   "2362075348358411947": {
+      "message": "Lijst met opsommingstekens"
+   },
+   "2396988228061015409": {
+      "message": "Mappen"
+   },
+   "2398127458667829603": {
+      "message": "Toetsenbord en UI"
+   },
+   "2413859014200470621": {
+      "message": "Inspringing vergroten"
+   },
+   "2414987366409119013": {
+      "message": "Beschrijving van nieuwe map (optioneel)"
+   },
+   "2444245672676114535": {
+      "message": "Geometrische vormen"
+   },
+   "2454859602363061373": {
+      "message": "Gebruik de ster in de adresbalk om overal op internet dingen op te slaan"
+   },
+   "2497668314434532819": {
+      "message": "Mongools"
+   },
+   "2498668179494167671": {
+      "message": "Spatie"
+   },
+   "2506204110427755391": {
+      "message": "Omvat mobiele bladwijzers en items die niet in uw bladwijzerbalk staan"
+   },
+   "2512307863902593558": {
+      "message": "Kharoshthi"
+   },
+   "2518095696810513128": {
+      "message": "Bladwijzers importeren..."
+   },
+   "2524757118580919241": {
+      "message": "Arabische voetnootmarkering"
+   },
+   "2528672033407304265": {
+      "message": "Deze map is alleen voor u zichtbaar. Als u deze wilt delen, klikt u op 'Instellen op openbaar'. U ontvangt dan een deelbare link."
+   },
+   "2566403151253785267": {
+      "message": "Naamloze map"
+   },
+   "2581794950690518802": {
+      "message": "0 minuten"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Introductie sluiten"
+   },
+   "2620868598794227408": {
+      "message": "Deze pagina bestaat niet meer"
+   },
+   "2626676714216619519": {
+      "message": "Subkop"
+   },
+   "2655730128699057253": {
+      "message": "Normaal"
+   },
+   "2662413919655166560": {
+      "message": "zondag"
+   },
+   "2665932089093244134": {
+      "message": "Geef een ster aan wat u maar wilt"
+   },
+   "2678821645623495183": {
+      "message": "Mensen en emoties"
+   },
+   "271255586148025786": {
+      "message": "Hexadecimale invoer"
+   },
+   "27472132823239706": {
+      "message": "Van rechts naar links"
+   },
+   "278208331708453602": {
+      "message": "Maak verbinding met internet en log in om te delen"
+   },
+   "2785193083209311775": {
+      "message": "mrt"
+   },
+   "2803486006471792395": {
+      "message": "door \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Ogham"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Geïmporteerd uit een bestand"
+   },
+   "2860423337665026261": {
+      "message": "Uit map verwijderen"
+   },
+   "2870049984905408346": {
+      "message": "Kop"
+   },
+   "2878157583475586619": {
+      "message": "Een kleur toevoegen"
+   },
+   "2926789704127794819": {
+      "message": "Naam van nieuwe map (vereist)"
+   },
+   "2951727458776714094": {
+      "message": "Deze link kan niet worden getest."
+   },
+   "2967109838548277236": {
+      "message": "Link voor delen:"
+   },
+   "2990895581472607445": {
+      "message": "Overig"
+   },
+   "2993160588184042952": {
+      "message": "Amerikaanse scripts"
+   },
+   "3002524775820283106": {
+      "message": "Voeg een notitie toe…"
+   },
+   "3010872256194497959": {
+      "message": "Speelstukken"
+   },
+   "3027920889685525544": {
+      "message": "Parthisch uit inscripties"
+   },
+   "3034084095590774557": {
+      "message": "Negeren"
+   },
+   "3051034269680162898": {
+      "message": "Afwijzen"
+   },
+   "3054430907861836285": {
+      "message": "dec"
+   },
+   "3085746489633838782": {
+      "message": "Genummerde lijst"
+   },
+   "3087091861834859241": {
+      "message": "Welkom bij uw nieuwe bladwijzers"
+   },
+   "3090613379634438188": {
+      "message": "Meroïtische hiërogliefen"
+   },
+   "3093070593773009381": {
+      "message": "Overige Oost-Aziatische schriften"
+   },
+   "3114565967060091369": {
+      "message": "Hanunoo"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{over # uur}=1{over # uur}other{over # uur}}"
+   },
+   "3140214171317206668": {
+      "message": "Halve vierkant (en-spatie)"
+   },
+   "3153433695439945201": {
+      "message": "Blijf de ster gebruiken om een bladwijzer voor een pagina in te stellen, net zoals voorheen. Je bladwijzer slaat een gedeelte van de pagina op in je Google-account zodat je deze later gemakkelijker kunt terugvinden."
+   },
+   "3186183325550234111": {
+      "message": "Ga naar link: "
+   },
+   "3212472770580267001": {
+      "message": "Zuid-Oost Aziatische schriften"
+   },
+   "3218408007702426636": {
+      "message": "Muzieksymbool eind boogje"
+   },
+   "3227675900195928275": {
+      "message": "Redjang"
+   },
+   "3234811075540284463": {
+      "message": "Normaal"
+   },
+   "3244450940425660505": {
+      "message": "Interpunctie"
+   },
+   "3245712009497198424": {
+      "message": "over $NUM$ dag",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Er zijn geen resultaten voor uw zoekopdracht"
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Wilt u ook de items in deze map verwijderen?}other{Wilt u ook de items in deze mappen verwijderen?}}"
+   },
+   "3284734782999930756": {
+      "message": "URL"
+   },
+   "328616644571689303": {
+      "message": "Muzieksymbool eind legatoteken"
+   },
+   "3309586635668050685": {
+      "message": "Links-naar-rechts opheffen"
+   },
+   "3316092543008555482": {
+      "message": "Fonologie (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonologie (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Map gemaakt."
+   },
+   "3334908307836130914": {
+      "message": "Ol Chiki"
+   },
+   "3355297279379313357": {
+      "message": "Laatst gebruikt"
+   },
+   "3360043590563638195": {
+      "message": "Lettergrootte"
+   },
+   "3364831016239212879": {
+      "message": "Centreren"
+   },
+   "3383495912989125674": {
+      "message": "Spatie (smal)"
+   },
+   "340057911065586090": {
+      "message": "Ideografische spatie"
+   },
+   "3413537935166399959": {
+      "message": "Sharada"
+   },
+   "3413696263226173348": {
+      "message": "Woord bewerken"
+   },
+   "3417560136558853718": {
+      "message": "Kannada"
+   },
+   "3423652049926153935": {
+      "message": "Nieuwe map…"
+   },
+   "3484416881429158332": {
+      "message": "Privé-map"
+   },
+   "3490738610910152047": {
+      "message": "Bamum"
+   },
+   "3490814222385998788": {
+      "message": "Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Item verwijderd.}other{# items verwijderd.}}"
+   },
+   "3501212562096780610": {
+      "message": "Bovenliggende map: "
+   },
+   "3501367450176932554": {
+      "message": "Interlineair annotatie-scheidingsteken"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Oriya"
+   },
+   "3545341282138953352": {
+      "message": "Muzieksymbool begin boogje"
+   },
+   "3546572522856950945": {
+      "message": "Spijkerschrift"
+   },
+   "3554323414956249846": {
+      "message": "Link"
+   },
+   "3572348996000195345": {
+      "message": "Em-spatie"
+   },
+   "3596311690500158112": {
+      "message": "Bladwijzermanager is tijdelijk niet beschikbaar. Laad de pagina opnieuw."
+   },
+   "3621913747018973144": {
+      "message": "Van links naar rechts"
+   },
+   "362505154270301776": {
+      "message": "Webpagina's"
+   },
+   "3630778778193389974": {
+      "message": "Spellingcontrole"
+   },
+   "3641126700487126155": {
+      "message": "Muzieksymbool begin legatoteken"
+   },
+   "3646623530558910508": {
+      "message": "Map gewijzigd."
+   },
+   "3646641743349296313": {
+      "message": "okt"
+   },
+   "3650952447025672637": {
+      "message": "Mappen en items verwijderen"
+   },
+   "3723533099349282495": {
+      "message": "Kaithi"
+   },
+   "37315674215151127": {
+      "message": "Houd het overzicht"
+   },
+   "3731716253672925709": {
+      "message": "Pijlen"
+   },
+   "373495866496779840": {
+      "message": "ALLE BLADWIJZERITEMS WEERGEVEN"
+   },
+   "3735789968703193383": {
+      "message": "Weergave"
+   },
+   "3737215641755068426": {
+      "message": "CJK Strokes"
+   },
+   "3752699251010579834": {
+      "message": "Canadees syllabisch koppelstreepje"
+   },
+   "377368134657453613": {
+      "message": "Log in bij Chrome om uw pagina's met bladwijzers te doorzoeken"
+   },
+   "3800528517409823312": {
+      "message": "Rekenen - Alfanumeriek"
+   },
+   "3832066920911226237": {
+      "message": "Bladwijzers exporteren..."
+   },
+   "3836877357378306877": {
+      "message": "Gangbaar"
+   },
+   "3880744822029422406": {
+      "message": "Als u deze map niet meer deelt, werkt de link voor delen niet meer."
+   },
+   "3888658965293980754": {
+      "message": "Opmaak"
+   },
+   "3893161213200925599": {
+      "message": "Annuleren"
+   },
+   "3924970930634517299": {
+      "message": "Beschrijving"
+   },
+   "3947500116452515010": {
+      "message": "Hier staan nog geen bladwijzers."
+   },
+   "3951067234379178869": {
+      "message": "Map verwijderd."
+   },
+   "3953750991047324531": {
+      "message": "Gujarati"
+   },
+   "3960988854399920931": {
+      "message": "Afrikaanse schriften"
+   },
+   "3977845230474613475": {
+      "message": "maandag"
+   },
+   "3978409745488989414": {
+      "message": "Morgen"
+   },
+   "3981527568769423358": {
+      "message": "Variantkeuze"
+   },
+   "3998968827975494252": {
+      "message": "Canadees Aboriginal"
+   },
+   "4052124018014680002": {
+      "message": "Omdat u zich bij de geavanceerde synchronisatie-instellingen heeft aangemeld voor het versleutelen van uw bladwijzers, hebben we de functionaliteit uitgeschakeld waarvoor Google uw inhoud moet kunnen bekijken."
+   },
+   "4070285516355502772": {
+      "message": "Verbindingselement voor woorden"
+   },
+   "4083819681339999404": {
+      "message": "Map verplaatst."
+   },
+   "4093661547607027073": {
+      "message": "Em-streepje"
+   },
+   "4132740194577129031": {
+      "message": "Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Tamil"
+   },
+   "4141340144529743179": {
+      "message": "Rechts uitlijnen"
+   },
+   "4185431426264249075": {
+      "message": "Nee"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{# minuten geleden}=1{# minuut geleden}other{# minuten geleden}}"
+   },
+   "4207416107225157509": {
+      "message": "Cham"
+   },
+   "421809097037025717": {
+      "message": "Lydisch"
+   },
+   "4219066138225986920": {
+      "message": "$NUM$ uur geleden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "Nieuw Tai Lue"
+   },
+   "4256734561546878891": {
+      "message": "Arabisch"
+   },
+   "4257688962636177926": {
+      "message": "Notitie"
+   },
+   "4313041477349547430": {
+      "message": "Kiezen"
+   },
+   "4317807879399263422": {
+      "message": "Symbolen"
+   },
+   "4371152527205140884": {
+      "message": "Myanmar"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Hangul-opvulteken"
+   },
+   "4394299965695763613": {
+      "message": "FOUT: '$COLOR$' is geen geldige kleur.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "over $NUM$ uur",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Deze link in een nieuw venster openen"
+   },
+   "4436859540429978060": {
+      "message": "Het is momenteel niet mogelijk afbeeldingsbestanden te slepen en neer te zetten.\nSleep een afbeelding vanuit uw webbrowser."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Vai"
+   },
+   "4467383198992095863": {
+      "message": "Streepje/koppelteken"
+   },
+   "4485563787650970048": {
+      "message": "Vervoer, kaarten en bewegwijzering"
+   },
+   "4511605174156009486": {
+      "message": "INLOGGEN"
+   },
+   "4536708754459423390": {
+      "message": "Koppelen aan:"
+   },
+   "4547888102017603305": {
+      "message": "Aangepaste kleur invoeren, bijv. roze, #F00, #D015FF of rgb(100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Tegel"
+   },
+   "4564357083324116837": {
+      "message": "Zuid-Aziatische schriften"
+   },
+   "4604654420597817764": {
+      "message": "Verdelingselement (breedte nul)"
+   },
+   "4631096075002795557": {
+      "message": "Braille"
+   },
+   "4639190252078874549": {
+      "message": "Uw bladwijzers zijn geüpdatet zodat u gemakkelijker kunt terugvinden wat u heeft opgeslagen."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Item verplaatst.}other{# items verplaatst.}}"
+   },
+   "4677342274083596624": {
+      "message": "Offlinemodus"
+   },
+   "4680868343849876958": {
+      "message": "Oudturks"
+   },
+   "468549910877472151": {
+      "message": "Geïmporteerd"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Oud-Perzisch"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Wees voorzichtig.$POSTB$ Houd er rekening mee dat elke keer wanneer een e-mailadres op een webpagina te vinden is, kwaadwillende spammers dit adres ook kunnen vinden.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Tagalog"
+   },
+   "4747022692863822805": {
+      "message": "Koppelteken/min-teken"
+   },
+   "4749120223198822539": {
+      "message": "Sinhala"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Map en items verwijderen"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Item verplaatst.}other{# items verplaatst.}}"
+   },
+   "482762608498192214": {
+      "message": "zaterdag"
+   },
+   "4833178038692710844": {
+      "message": "Gedraaid/gespiegeld"
+   },
+   "484556867028550958": {
+      "message": "Hebreeuwse interpunctie Maqaf"
+   },
+   "4848946125726663758": {
+      "message": "Links uitlijnen"
+   },
+   "4849410737412842755": {
+      "message": "U kunt deze map niet delen omdat de map op bovenliggend niveau niet openbaar is gedeeld"
+   },
+   "4856510901676745213": {
+      "message": "Hebreeuws"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{over # dagen}=1{over # dag}other{over # dagen}}"
+   },
+   "4886850400045987885": {
+      "message": "Link bewerken"
+   },
+   "4894342917447426362": {
+      "message": "Latijn-1 - Uitgebreid"
+   },
+   "4895451769213934183": {
+      "message": "Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Presentatievorm voor verticaal streepje (gemiddelde letterbreedte)"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Item gewijzigd.}other{# items gewijzigd.}}"
+   },
+   "4934771438157777517": {
+      "message": "Onderstrepen"
+   },
+   "4943286974087295923": {
+      "message": "Sluiten"
+   },
+   "4944188657066537729": {
+      "message": "Oud-Syrisch"
+   },
+   "4974279938502768331": {
+      "message": "Bewerken"
+   },
+   "4987339278179088082": {
+      "message": "Kenmerk '$REL_NO_FOLLOW$' toevoegen ($LINK_START$Meer informatie$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Weer te geven tekst:"
+   },
+   "4991252214297708837": {
+      "message": "Beschrijving van map"
+   },
+   "500023300077018967": {
+      "message": "Geen suggesties"
+   },
+   "5002702571780362629": {
+      "message": "Avestisch"
+   },
+   "5013372925252634952": {
+      "message": "Carisch"
+   },
+   "5015669074913229206": {
+      "message": "Balinees"
+   },
+   "5016723309142316836": {
+      "message": "Gurmukhi"
+   },
+   "5042512453093360461": {
+      "message": "Opmaak voor schrijfrichting herstellen"
+   },
+   "5086992011880811613": {
+      "message": "Bladwijzer verwijderd."
+   },
+   "5089168125978769021": {
+      "message": "Map verwijderen"
+   },
+   "5089667744614498582": {
+      "message": "Bladwijzer verplaatst."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Muzieksymbool begin balk"
+   },
+   "5109840495091366547": {
+      "message": "Sport, feesten en activiteiten"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Nieuwe map"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} dag}other{{TEXT} dagen}}"
+   },
+   "5162393477556833033": {
+      "message": "Naar welke URL moet deze link verwijzen?"
+   },
+   "518089704180562683": {
+      "message": "Vandaag"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Runeschrift"
+   },
+   "5253985055078626542": {
+      "message": "Links-naar-rechts ingesloten"
+   },
+   "5266193592374285468": {
+      "message": "Instellen op openbaar"
+   },
+   "5272267167655788064": {
+      "message": "Afbeelding"
+   },
+   "528339682728930567": {
+      "message": "Bladwijzermanager is tijdelijk niet beschikbaar. Probeer het over enkele minuten opnieuw."
+   },
+   "5300191622079400984": {
+      "message": "Alle"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Klik om een beschrijving toe te voegen"
+   },
+   "5334597244901829906": {
+      "message": "Deze map delen"
+   },
+   "534304870772683249": {
+      "message": "Verzenden"
+   },
+   "534369010818044160": {
+      "message": "Khmer"
+   },
+   "5354142472798067112": {
+      "message": "Variantkeuze - $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Geen netwerkverbinding. U kunt pas wijzigingen opslaan wanneer u weer online bent."
+   },
+   "5371009567664142864": {
+      "message": "Ethiopisch"
+   },
+   "5378436065321978089": {
+      "message": "Maken"
+   },
+   "538263398271363120": {
+      "message": "Cherokee"
+   },
+   "5412265752110327977": {
+      "message": "Compatibiliteit"
+   },
+   "5425054962709217464": {
+      "message": "woensdag"
+   },
+   "544490805551236927": {
+      "message": "Midden-Oosterse schriften"
+   },
+   "5448654348317290038": {
+      "message": "En-streepje"
+   },
+   "5456454482863742119": {
+      "message": "Mappen verwijderen"
+   },
+   "5458956770053499082": {
+      "message": "Muzikaal"
+   },
+   "546306107859654806": {
+      "message": "Naar map verplaatsen"
+   },
+   "5474647412096976366": {
+      "message": "Maak verbinding met internet om uw pagina's met bladwijzers te doorzoeken"
+   },
+   "5500830105937873966": {
+      "message": "Verwijderen"
+   },
+   "5517581353492371385": {
+      "message": "Gisteren"
+   },
+   "5521943762943322583": {
+      "message": "Lao"
+   },
+   "5529569087489430384": {
+      "message": "Pahlavi uit inscripties"
+   },
+   "5561412620611998456": {
+      "message": "sep"
+   },
+   "5579702837382664819": {
+      "message": "Automatische map voor \u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gotisch"
+   },
+   "5603457799050818619": {
+      "message": "Momenteel geen automatische mappen beschikbaar."
+   },
+   "5603774725128707055": {
+      "message": "Map verplaatst."
+   },
+   "5621148847082889884": {
+      "message": "Hier staan nog geen mappen"
+   },
+   "5669644158906503623": {
+      "message": "Arabisch teken Sanah"
+   },
+   "5672850901284728452": {
+      "message": "Logbestandpagina openen"
+   },
+   "5673852407127287054": {
+      "message": "Volledige breedte koppelteken/min-teken"
+   },
+   "5679720964567650205": {
+      "message": "dinsdag"
+   },
+   "5748894773514291207": {
+      "message": "3-per-em-spatie"
+   },
+   "5749465969550038727": {
+      "message": "Tagbanwa"
+   },
+   "5773338884170027267": {
+      "message": "Opmaak verwijderen"
+   },
+   "5776478286503179051": {
+      "message": "Han 5-Stroke Radicals"
+   },
+   "5778201074245568998": {
+      "message": "Vet"
+   },
+   "580023699785819803": {
+      "message": "Tibetaans"
+   },
+   "5815994514834119961": {
+      "message": "Yijing/Tai Xuan Jing"
+   },
+   "5822895345080436445": {
+      "message": "Afbeeldingen"
+   },
+   "5832273633751333051": {
+      "message": "Syloti Nagri"
+   },
+   "5837746770084243727": {
+      "message": "Markeringen"
+   },
+   "5842240706321147978": {
+      "message": "Linken"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Regelafstand"
+   },
+   "5923476740499653277": {
+      "message": "Glagolitisch"
+   },
+   "6002018674529763527": {
+      "message": "Vaste spatie"
+   },
+   "6013038186284817941": {
+      "message": "Han 8-Stroke Radicals"
+   },
+   "6014514403103768983": {
+      "message": "Hexadecimale kleur"
+   },
+   "6025708931099464434": {
+      "message": "Tai Tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Achtergrondkleur tekst"
+   },
+   "6055751153306823909": {
+      "message": "Extra groot"
+   },
+   "609920334473042917": {
+      "message": "Welkom bij uw nieuwe bladwijzers. Log in bij Chrome om meer functies te gebruiken, zoals beter zoeken, automatische mappen en afbeeldingen die worden toegevoegd aan uw eerdere bladwijzers."
+   },
+   "6131022146392295404": {
+      "message": "HTML-bron bewerken"
+   },
+   "6146119258861607037": {
+      "message": "Han 7-Stroke Radicals"
+   },
+   "6176673388074993831": {
+      "message": "Koptisch"
+   },
+   "6178455470693561470": {
+      "message": "U bent momenteel offline. Probeer het opnieuw wanneer u weer online bent."
+   },
+   "6189158371964390675": {
+      "message": "Ingesloten/gestippeld"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Rechts-naar-links ingesloten"
+   },
+   "6207440179505974685": {
+      "message": "Shavian"
+   },
+   "6233852423673631009": {
+      "message": "jul"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Weet u zeker dat u alle items in deze map wilt verwijderen?}other{Weet u zeker dat u alle items in deze mappen wilt verwijderen?}}"
+   },
+   "6256177058141995632": {
+      "message": "Miao"
+   },
+   "625779090990399178": {
+      "message": "Meer opties"
+   },
+   "6259598030649933216": {
+      "message": "Info"
+   },
+   "6263370534846330732": {
+      "message": "Tifinagh"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# geselecteerd}other{# geselecteerd}}"
+   },
+   "6281738099691391172": {
+      "message": "Tekstkleur"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Vaste spatie (breedte nul)"
+   },
+   "6380136177516870340": {
+      "message": "U bent ingelogd bij Google met een ander account dan in uw Chrome-browser."
+   },
+   "639862355711352140": {
+      "message": "MEER INFORMATIE"
+   },
+   "6410416070545265970": {
+      "message": "Deze link testen"
+   },
+   "6418290353353165009": {
+      "message": "Opnieuw"
+   },
+   "6425676451769330238": {
+      "message": "Geen spatiëring"
+   },
+   "6433056041891472200": {
+      "message": "Log in om in te schakelen"
+   },
+   "6437997645764562921": {
+      "message": "Hangul Choseong-opvulteken"
+   },
+   "6470997799115367716": {
+      "message": "Saurashtra"
+   },
+   "6471970833583478119": {
+      "message": "Tussenkop"
+   },
+   "6473682978091349952": {
+      "message": "Interpunctie-spatie"
+   },
+   "6489221588545746734": {
+      "message": "Cyrillisch"
+   },
+   "64909648993550346": {
+      "message": "Rechts-naar-links opheffen"
+   },
+   "649459667039033491": {
+      "message": "over $NUM$ dagen",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Spatie (breedte nul)"
+   },
+   "6539448903465735867": {
+      "message": "Muzieksymbool begin frase"
+   },
+   "6544224848752157941": {
+      "message": "Inspringing verkleinen"
+   },
+   "6559526625155197659": {
+      "message": "Google Zoeken is tijdelijk niet beschikbaar. Probeer het over enkele minuten opnieuw."
+   },
+   "6563689176501108246": {
+      "message": "Han 3-Stroke Radicals"
+   },
+   "6572308230373875858": {
+      "message": "Deze mapnaam bevat ongeldige tekens."
+   },
+   "6604826525171204065": {
+      "message": "Buhid"
+   },
+   "6606727931314199470": {
+      "message": "Fenicisch"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ bij $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Kan uw bladwijzers niet synchroniseren. Probeer deze pagina opnieuw te laden"
+   },
+   "6661160677415877619": {
+      "message": "HTML bewerken"
+   },
+   "66727790049529171": {
+      "message": "Superscript"
+   },
+   "6673681480713693433": {
+      "message": "Links-naar-rechts-teken (LRM)"
+   },
+   "6679365605648394500": {
+      "message": "Historisch"
+   },
+   "6718105992776681941": {
+      "message": "Openbare map"
+   },
+   "6731765034365779068": {
+      "message": "over $NUM$ minuten",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Oud Zuid-Arabisch"
+   },
+   "6748884117721473417": {
+      "message": "Overige Europese schriften"
+   },
+   "6756714832459728782": {
+      "message": "Tai Le"
+   },
+   "6781212531496313437": {
+      "message": "Lijst"
+   },
+   "6787794440298969774": {
+      "message": "Malayalam"
+   },
+   "6813860917460451806": {
+      "message": "Lycisch"
+   },
+   "6848846772159302710": {
+      "message": "Wijziging"
+   },
+   "6878231700728680871": {
+      "message": "NIEUW"
+   },
+   "687829671213164815": {
+      "message": "Bladwijzermanager is tijdelijk niet beschikbaar. Probeer het over een aantal uur opnieuw."
+   },
+   "6963034896702768829": {
+      "message": "Deze map bestaat niet meer."
+   },
+   "698011532377344679": {
+      "message": "Geslacht en genealogisch"
+   },
+   "7004429103140794719": {
+      "message": "Recente selecties:"
+   },
+   "7009051272745522428": {
+      "message": "Bent u vergeten wat u allemaal heeft opgeslagen? U kunt gewoon zoeken. Probeer algemene termen zoals 'films' of 'reizen' om vergeten bladwijzers terug te vinden."
+   },
+   "7056277361038404533": {
+      "message": "Bladwijzer verplaatst."
+   },
+   "7058809993296833390": {
+      "message": "Vertel ons wat u ervan vindt."
+   },
+   "7064503592469946179": {
+      "message": "Soendanees"
+   },
+   "7077571379260349566": {
+      "message": "Wilt u in plaats daarvan \u003Ca class=\"col-zda\">zoeken op internet\u003C/a>?"
+   },
+   "7102762854285284877": {
+      "message": "Phagspa"
+   },
+   "7124932478652977474": {
+      "message": "Bladwijzer toegevoegd"
+   },
+   "7154665243775472938": {
+      "message": "Mappen"
+   },
+   "7168417416563257713": {
+      "message": "Opslaan"
+   },
+   "7178727559519269241": {
+      "message": "Dubbel ondoorzichtig koppelteken"
+   },
+   "7256064246386232909": {
+      "message": "Javaans"
+   },
+   "7258012171742729961": {
+      "message": "Khmer klinkerteken inherent Aq"
+   },
+   "7300188402017534561": {
+      "message": "Alle"
+   },
+   "7316184946628117028": {
+      "message": "Thaana"
+   },
+   "7328850288952193170": {
+      "message": "Onzichtbaar scheidingsteken"
+   },
+   "733245618582914569": {
+      "message": "OK"
+   },
+   "7333334175520057323": {
+      "message": "Annuleren"
+   },
+   "7339792312429709609": {
+      "message": "Han 2-Stroke Radicals"
+   },
+   "7342965026300699486": {
+      "message": "Dit is een openbare map. Als u deze verwijdert, kunnen anderen de map niet meer zien."
+   },
+   "7346825266417376383": {
+      "message": "OK"
+   },
+   "7362095105218889721": {
+      "message": "Opmaak en witregels"
+   },
+   "7369763432670344230": {
+      "message": "Naar welk e-mailadres moet deze link verwijzen?"
+   },
+   "7376646180156094924": {
+      "message": "Naam"
+   },
+   "7388233788532145059": {
+      "message": "Link toevoegen of verwijderen"
+   },
+   "7407898565330883980": {
+      "message": "Map maken"
+   },
+   "7436494590700857376": {
+      "message": "Naamloos"
+   },
+   "7454853574776276752": {
+      "message": "OK"
+   },
+   "7466254996792639407": {
+      "message": "Georgisch"
+   },
+   "7487940627543583924": {
+      "message": "donderdag"
+   },
+   "7496808914788281345": {
+      "message": "Klein em-streepje"
+   },
+   "7512206123241896524": {
+      "message": "Als u openbare mappen verwijdert, kunnen anderen deze niet meer zien."
+   },
+   "7514107325655026801": {
+      "message": "Mongoolse klinkerseparator"
+   },
+   "7517846739534508036": {
+      "message": "De afbeelding die u probeert te slepen, is geblokkeerd door de hostsite."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{over # minuten}=1{over # minuut}other{over # minuten}}"
+   },
+   "7556000209920718943": {
+      "message": "Cypriotisch"
+   },
+   "7558709989823567445": {
+      "message": "Lineair B"
+   },
+   "7561680940841358107": {
+      "message": "Kayah Li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} uur}other{{TEXT} uur}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Armeens koppelteken"
+   },
+   "762426240463793747": {
+      "message": "Breuken/gerelateerd"
+   },
+   "7627205932825693842": {
+      "message": "Mongools zacht koppelteken"
+   },
+   "7666041165203922544": {
+      "message": "Vind dingen gemakkelijk terug"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "over $NUM$ uur",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "$NUM$ dag geleden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "jun"
+   },
+   "7763561590386207075": {
+      "message": "Webadres"
+   },
+   "7778510137824413661": {
+      "message": "U bent de allerbeste dogfooder aller tijden! Goed gezien: u heeft een fout gevonden die we niet kunnen oplossen door opnieuw te laden."
+   },
+   "7787489712298922692": {
+      "message": "Oegaritisch"
+   },
+   "7794513342167361028": {
+      "message": "Sora Sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Muzieksymbool eind frase"
+   },
+   "7804811638177746132": {
+      "message": "Geef een geldige URL op."
+   },
+   "7820796809104165402": {
+      "message": "vrijdag"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Item gemaakt.}other{# items gemaakt.}}"
+   },
+   "7842161096380376517": {
+      "message": "Arabisch teken Safha"
+   },
+   "7877081360738059546": {
+      "message": "Dieren, planten en eten"
+   },
+   "7899357084217902569": {
+      "message": "Klein koppelteken/min-teken"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Weet u niet zeker wat u in het vak moet invullen?$END_BOLD$ Zoek eerst de pagina op internet waarnaar u een link wilt toevoegen. (Hierbij kan een $SEARCH_ENGINE_LINK$zoekmachine$END_LINK$ handig zijn.) Kopieer het webadres vervolgens uit de adresbalk van uw browser en plak deze in het bovenstaande vak.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Annuleren"
+   },
+   "7929010027377139621": {
+      "message": "Tai Viet"
+   },
+   "7944194550132470305": {
+      "message": "Voeg een titel toe…"
+   },
+   "7957751306916251232": {
+      "message": "Ongeldig e-mailadres"
+   },
+   "7977240188055092028": {
+      "message": "Weergeven"
+   },
+   "7987287518899618882": {
+      "message": "feb"
+   },
+   "7995071973884866910": {
+      "message": "$NUM$ dagen geleden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Video's"
+   },
+   "8011311100803127599": {
+      "message": "Sterretjes/asterisken"
+   },
+   "8017723467201257913": {
+      "message": "Deseret"
+   },
+   "8018615794586730510": {
+      "message": "Normaal/serif"
+   },
+   "8027365004962833557": {
+      "message": "Oud-Italisch"
+   },
+   "8110520007971944893": {
+      "message": "Google kan automatisch uw bladwijzers voor u organiseren, zodat u dat niet zelf hoeft te doen"
+   },
+   "8115055677841343820": {
+      "message": "Koppelteken"
+   },
+   "8132750144382731373": {
+      "message": "Emoji"
+   },
+   "8139874053154312313": {
+      "message": "Koppelteken met trema"
+   },
+   "8143412461134291283": {
+      "message": "Feedback verzenden"
+   },
+   "8146770321190721394": {
+      "message": "Osmanya"
+   },
+   "8167437723285192120": {
+      "message": "Geen"
+   },
+   "8179849043307262288": {
+      "message": "Functietoepassing"
+   },
+   "818630018883405514": {
+      "message": "Ingesloten"
+   },
+   "8208069138346972268": {
+      "message": "Technisch"
+   },
+   "8220605653109571646": {
+      "message": "Grieks"
+   },
+   "8243618543879664815": {
+      "message": "jan"
+   },
+   "8275729822640276507": {
+      "message": "U heeft weer verbinding met internet."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Ongedaan maken"
+   },
+   "8338269186594699884": {
+      "message": "p.m."
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "BEGREPEN"
+   },
+   "8394518299580326671": {
+      "message": "Verbindingselement (breedte nul)"
+   },
+   "8401283339806880070": {
+      "message": "Uitvullen"
+   },
+   "8417405596874032771": {
+      "message": "Ogham spatieteken"
+   },
+   "8442861823466423570": {
+      "message": "Interlineair annotatie-eindteken"
+   },
+   "8454082825844118412": {
+      "message": "Han 11..17-Stroke Radicals"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Zoekresultaten voor \u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Emoticons"
+   },
+   "8509200859889253607": {
+      "message": "Buginees"
+   },
+   "8513771017811992648": {
+      "message": "Geen"
+   },
+   "8583880697323281603": {
+      "message": "Bladwijzer gewijzigd."
+   },
+   "8590712065595806821": {
+      "message": "Voorgesteld"
+   },
+   "8605746117200843257": {
+      "message": "Interlineair annotatie-anker"
+   },
+   "8608038304204118820": {
+      "message": "$NUM$ uur geleden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Ster toevoegen aan deze pagina"
+   },
+   "8632024322663078476": {
+      "message": "Toevoegen aan map"
+   },
+   "8635739256240231429": {
+      "message": "Sluiten"
+   },
+   "8637786997742615742": {
+      "message": "Modifier"
+   },
+   "8639484881518821804": {
+      "message": "Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Samaritaans"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Normaal"
+   },
+   "8694618136165028235": {
+      "message": "Voeg een URL toe…"
+   },
+   "8723654283178734366": {
+      "message": "Geef een webadres o"
+   },
+   "8748780785044360315": {
+      "message": "Thai"
+   },
+   "8764548034413038101": {
+      "message": "over $NUM$ minuut",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "apr"
+   },
+   "8784386825932830097": {
+      "message": "Horizontale balk"
+   },
+   "8793684579112208899": {
+      "message": "Subscript"
+   },
+   "8797138403646238716": {
+      "message": "Meroïtisch cursief"
+   },
+   "8801105026907713256": {
+      "message": "Minder gebruikelijk"
+   },
+   "8805843642052942743": {
+      "message": "Lepcha"
+   },
+   "8827926534395802942": {
+      "message": "Cijfer-koppelstreepje"
+   },
+   "8829617001171812634": {
+      "message": "Objecten"
+   },
+   "8835425644719990167": {
+      "message": "Hangul Jungseong-opvulteken"
+   },
+   "8838200101653652173": {
+      "message": "Bijsluiten"
+   },
+   "8838938639049885476": {
+      "message": "En-spatie"
+   },
+   "8841111838340088121": {
+      "message": "Han 4-Stroke Radicals"
+   },
+   "8860909466229522023": {
+      "message": "Cursief"
+   },
+   "888434073985276543": {
+      "message": "Presentatievorm voor verticaal streepje (12-punts letterbreedte)"
+   },
+   "8892104104076766085": {
+      "message": "Golvend koppelstreepje"
+   },
+   "8996388564146952786": {
+      "message": "Smalle vaste spatie"
+   },
+   "9021466412659564505": {
+      "message": "Inloggen"
+   },
+   "9026903153882226079": {
+      "message": "Rechts-naar-links-teken (RLM)"
+   },
+   "9034162255782924509": {
+      "message": "Batak"
+   },
+   "9041611521175673293": {
+      "message": "Alle items"
+   },
+   "9041881295809259717": {
+      "message": "Wiskunde"
+   },
+   "9072668986327887451": {
+      "message": "Ideografische beschrijving"
+   },
+   "9076212347872857205": {
+      "message": "Citaat"
+   },
+   "9083920162332648298": {
+      "message": "a.m."
+   },
+   "9086165147555162831": {
+      "message": "Meitei Mayek"
+   },
+   "9092805374125336008": {
+      "message": "mei"
+   },
+   "9099680152087323883": {
+      "message": "nov"
+   },
+   "9107905796365363672": {
+      "message": "Groot"
+   },
+   "9113260413780075008": {
+      "message": "Brahmi"
+   },
+   "9115834469932780333": {
+      "message": "Telugu"
+   },
+   "9143484910409308303": {
+      "message": "Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Versleutelde bladwijzers kunnen niet worden doorzocht. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Meer informatie\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Map verwijderd uit bovenliggende map."
+   },
+   "9180458846772153689": {
+      "message": "Armeens"
+   },
+   "9181119817188520774": {
+      "message": "Geen netwerkverbinding. U kunt pas wijzigingen opslaan wanneer u weer online bent."
+   },
+   "9204096795425905695": {
+      "message": "Onzichtbaar vermenigvuldigingsteken"
+   },
+   "922163125711959960": {
+      "message": "$NUM$ minuut geleden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Toevoegen"
+   },
+   "93670926879626900": {
+      "message": "Witregels"
+   },
+   "93871902389648718": {
+      "message": "Muzieksymbool eind balk"
+   },
+   "960914149201689167": {
+      "message": "Decimaal"
+   },
+   "963040144042262397": {
+      "message": "Verwijderen"
+   },
+   "964017479791059460": {
+      "message": "Arabisch einde van Ayah"
+   },
+   "980376110610801797": {
+      "message": "Afbeelding invoegen"
+   }
+}

@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.9.9.7
+# Script Ver:	0.9.9.9
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -275,7 +275,7 @@ show_help()
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[firefox|kodi|plex|x360-bindings]
+	Extra types: 	[firefox|kodi|netflix|webapp|plex|x360-bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -369,7 +369,7 @@ function gpg_import()
 	gpg_key_check=$(gpg --list-keys 2B90D010)
 	if [[ "$gpg_key_check" != "" ]]; then
 		echo -e "\nDebian Archive Automatic Signing Key [OK]"
-		sleep 1s
+		sleep 0.3s
 	else
 		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now..."
 		$scriptdir/utilities/gpg_import.sh 7638D0442B90D010
@@ -381,7 +381,7 @@ function gpg_import()
 	gpg_key_check=$(gpg --list-keys 65558117)
 	if [[ "$gpg_key_check" != "" ]]; then
 		echo -e "Debian Multimeda Signing Key [OK]"
-		sleep 1s
+		sleep 0.3s
 	else
 		echo -e "Debian Multimeda Signing Key [FAIL]. Adding now..."
 		$scriptdir/utilities/gpg_import.sh 5C808C2B65558117
@@ -433,6 +433,10 @@ get_software_type()
 	# popular software / custom specification
 	####################################################
 	
+	elif [[ "$type" == "webapp" ]]; then
+                # add web app via chrome from helper script
+                ep_add_web_app_chome
+                exit
 	
 	elif [[ "$type" == "chrome" ]]; then
                 # install plex from helper script

@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Condividi la cartella o modifica le impostazioni di condivisione"
+   },
+   "1014969137789706237": {
+      "message": "Link a una pagina o un file in un altro percorso sul Web"
+   },
+   "1033240210015440654": {
+      "message": "Rimuovi immagine"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} minuto}other{{TEXT} minuti}}"
+   },
+   "1035347665345261212": {
+      "message": "Inserisci una nota"
+   },
+   "1036132178487616999": {
+      "message": "Introduzione"
+   },
+   "1041064392303158655": {
+      "message": "Limbu"
+   },
+   "1066103686460691847": {
+      "message": "Barrato"
+   },
+   "1085496824897012476": {
+      "message": "Geroglifici egizi"
+   },
+   "1105045461281211798": {
+      "message": "Carattere di combinazione: congiunzione grafemi"
+   },
+   "111315886393984302": {
+      "message": "Prova ad aggiungere ai Preferiti alcuni elementi del Web e a inserirli in questa cartella."
+   },
+   "1117324761561996205": {
+      "message": "Modifica"
+   },
+   "1124849668149719420": {
+      "message": "Inserisci il feedback"
+   },
+   "1142044035368837035": {
+      "message": "Spazio lungo"
+   },
+   "1148670835609345833": {
+      "message": "Pulsante Modifica Preferito"
+   },
+   "1161548997573254809": {
+      "message": "Annulla"
+   },
+   "1164857998440803763": {
+      "message": "Chakma"
+   },
+   "1170102576258588460": {
+      "message": "Segno meno unificatore"
+   },
+   "1185158158029036642": {
+      "message": "Fai clic per creare un nuovo Preferito o una nuova cartella."
+   },
+   "1201286409038567178": {
+      "message": "url non valido"
+   },
+   "1214729854306268929": {
+      "message": "$NUM$ minuti fa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{# ore fa}=1{# ora fa}other{# ore fa}}"
+   },
+   "1232723730191754374": {
+      "message": "Carattere"
+   },
+   "1243361230826165709": {
+      "message": "Hangul"
+   },
+   "128696227290770661": {
+      "message": "Devanagari"
+   },
+   "1312606838421552827": {
+      "message": "Numero"
+   },
+   "1316608632339176215": {
+      "message": "Vari"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "Spazio di quattro em"
+   },
+   "1337190557080419948": {
+      "message": "Titolo"
+   },
+   "1347841728719446841": {
+      "message": "Indirizzo email"
+   },
+   "1350404634989083059": {
+      "message": "Segno più sottinteso"
+   },
+   "1356908927221815545": {
+      "message": "Radicali han 1 tratto"
+   },
+   "1373666411928680514": {
+      "message": "Simbolo di punteggiatura"
+   },
+   "1378894003206512970": {
+      "message": "Ignora"
+   },
+   "138484781723580209": {
+      "message": "Contrassegno di abbreviazione siriaco"
+   },
+   "1397568831960098153": {
+      "message": "Formato"
+   },
+   "142359106099692409": {
+      "message": "Cartelle automatiche"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Piccole"
+   },
+   "1460136507747533015": {
+      "message": "Accedi per condividere"
+   },
+   "1477567329816921885": {
+      "message": "Sapevi che puoi condividere i Preferiti desiderati creando una cartella pubblica? Recupera l'URL pubblico e condividilo."
+   },
+   "1507362459078633250": {
+      "message": "Dovrai annullare il caricamento e ricaricare l'estensione di Chrome e/o prendertela con il team di tecnici... Spiacenti :-/"
+   },
+   "1516565793778879679": {
+      "message": "Han - Altro"
+   },
+   "1519227660570105215": {
+      "message": "Questa pagina potrebbe essere dannosa"
+   },
+   "1556175764217302644": {
+      "message": "Khmer, vocale inerente Aa"
+   },
+   "1566367040709255091": {
+      "message": "Formato"
+   },
+   "1582412901770221448": {
+      "message": "Aggiunto a: {FOLDER_NAME}"
+   },
+   "1585233503778646014": {
+      "message": "Mandaico"
+   },
+   "1592899529499992997": {
+      "message": "Preferito rimosso dalla cartella."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Posiziona il puntatore sopra ogni cella per sapere il nome del carattere."
+   },
+   "1630439475247732904": {
+      "message": "Apice"
+   },
+   "1634874677195552014": {
+      "message": "Spazio di sei em"
+   },
+   "1635366592844795535": {
+      "message": "ACCEDI A CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Meteo e astrologia"
+   },
+   "1665234249876251486": {
+      "message": "Spazio numerico"
+   },
+   "1666311405952625458": {
+      "message": "Meteo, luoghi e segni zodiacali"
+   },
+   "1678004121951995792": {
+      "message": "Ago"
+   },
+   "1680034627075195442": {
+      "message": "Puoi creare cartelle personali o lasciare che Google crei cartelle automatiche per mettere ordine nei contenuti."
+   },
+   "1683451665637766512": {
+      "message": "Collega a un indirizzo email"
+   },
+   "1685884502412781083": {
+      "message": "Separatore di paragrafo"
+   },
+   "169055910458549089": {
+      "message": "Impossibile connettersi al nostro server. Riprova tra qualche minuto."
+   },
+   "1691734467561749621": {
+      "message": "Spiacenti, impossibile condividere cartelle nella barra dei Preferiti"
+   },
+   "1715361312704502898": {
+      "message": "Trasporto e mappa"
+   },
+   "1719053155706676551": {
+      "message": "Barra dei Preferiti"
+   },
+   "1730849295731139586": {
+      "message": "Yi"
+   },
+   "1748899684018766272": {
+      "message": "Riempimento Hangul di spessore ridotto"
+   },
+   "1755438325907288056": {
+      "message": "Nko"
+   },
+   "1776387440523546537": {
+      "message": "Oggi"
+   },
+   "178181731883558542": {
+      "message": "Casella di testo per la ricerca nei Preferiti."
+   },
+   "1791083579000016877": {
+      "message": "Basati su ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Visualizza i Preferiti"
+   },
+   "1803667155949248788": {
+      "message": "Aramaico imperiale"
+   },
+   "1827599404395723350": {
+      "message": "Immagini di controllo"
+   },
+   "1839253253564716482": {
+      "message": "Nessun Preferito trovato"
+   },
+   "1847259066982820034": {
+      "message": "Scegli una cartella"
+   },
+   "1875246104836450162": {
+      "message": "Simbolo"
+   },
+   "1879633738298009258": {
+      "message": "Spazio matematico medio"
+   },
+   "1915655034817606796": {
+      "message": "Trattino nascosto"
+   },
+   "191946029988896895": {
+      "message": "Carattere arabo: simbolo di numero"
+   },
+   "1932973762029792550": {
+      "message": "Google organizza automaticamente tutti i Preferiti"
+   },
+   "1942405576047748946": {
+      "message": "Preferito creato."
+   },
+   "196266011387145001": {
+      "message": "Continua"
+   },
+   "1963154331052663396": {
+      "message": "Latino"
+   },
+   "1999193032742275907": {
+      "message": "Radicali han 9 tratti"
+   },
+   "2003860471263842959": {
+      "message": "Spazio ultrasottile"
+   },
+   "2015775921681923490": {
+      "message": "Impostazioni"
+   },
+   "202031328373263910": {
+      "message": "Radicali han 6 tratti"
+   },
+   "2036672715320764541": {
+      "message": "Linea di separazione"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Elemento rimosso dalla cartella.}other{# elementi rimossi dalla cartella.}}"
+   },
+   "2088133380647290173": {
+      "message": "Su {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Inserisci un URL per creare un nuovo preferito."
+   },
+   "2117634893694108880": {
+      "message": "Privata"
+   },
+   "2135921744011555145": {
+      "message": "Cerca nei Preferiti"
+   },
+   "213958631597214757": {
+      "message": "Interrompi condivisione. "
+   },
+   "2149498606985329379": {
+      "message": "Importazione dei Preferiti completata."
+   },
+   "2159536073195133897": {
+      "message": "Annulla"
+   },
+   "2166866096346653276": {
+      "message": "Nessuna"
+   },
+   "2167636135101203592": {
+      "message": "Bengalese"
+   },
+   "2176930521411607789": {
+      "message": "Associati"
+   },
+   "218054763532467155": {
+      "message": "Inserisci un titolo"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Elimina \u003Cb>{firstItemName}\u003C/b>}=1{Elimina \u003Cb>{firstItemName}\u003C/b> e # altro elemento}other{Elimina \u003Cb>{firstItemName}\u003C/b> e # altri elementi}}"
+   },
+   "2200921183377473543": {
+      "message": "Sì"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{# giorni fa}=1{# giorno fa}other{# giorni fa}}"
+   },
+   "2228495834106697427": {
+      "message": "Pedice"
+   },
+   "2253752461533441758": {
+      "message": "Radicali han 10 tratti"
+   },
+   "2257250286834696444": {
+      "message": "Caricamento..."
+   },
+   "2280907281518645401": {
+      "message": "Carattere katakana-hiragana: doppio trattino"
+   },
+   "2301390744929043794": {
+      "message": "Attendi che la cartella venga salvata sul server"
+   },
+   "2315132909835126412": {
+      "message": "Pubblica"
+   },
+   "2315864755754275083": {
+      "message": "Valuta"
+   },
+   "231658276152304252": {
+      "message": "Rimuovi"
+   },
+   "2353164220175503425": {
+      "message": "Segno del numero Kaithi"
+   },
+   "2359350477261263182": {
+      "message": "Gestione Preferiti"
+   },
+   "2362075348358411947": {
+      "message": "Elenco puntato"
+   },
+   "2396988228061015409": {
+      "message": "Cartelle"
+   },
+   "2398127458667829603": {
+      "message": "Tastiera e UI"
+   },
+   "2413859014200470621": {
+      "message": "Aumenta rientro"
+   },
+   "2414987366409119013": {
+      "message": "Descrizione nuova cartella (facoltativa)"
+   },
+   "2444245672676114535": {
+      "message": "Forme geometriche"
+   },
+   "2454859602363061373": {
+      "message": "Utilizza la stella nella barra degli indirizzi per salvare pagine del Web."
+   },
+   "2497668314434532819": {
+      "message": "Mongolo"
+   },
+   "2498668179494167671": {
+      "message": "Spazio"
+   },
+   "2506204110427755391": {
+      "message": "Sono inclusi Preferiti aggiunti su dispositivi mobili ed elementi non presenti nella barra dei Preferiti"
+   },
+   "2512307863902593558": {
+      "message": "Kharoshthi"
+   },
+   "2518095696810513128": {
+      "message": "Importa Preferiti..."
+   },
+   "2524757118580919241": {
+      "message": "Indicatore di piè di pagina arabo"
+   },
+   "2528672033407304265": {
+      "message": "Questa cartella è visibile soltanto a te. Per condividerla, fai clic su \"Imposta come pubblica\" e riceverai un link condivisibile."
+   },
+   "2566403151253785267": {
+      "message": "Cartella senza titolo"
+   },
+   "2581794950690518802": {
+      "message": "0 minuti"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Ignora introduzione"
+   },
+   "2620868598794227408": {
+      "message": "Questa pagina non esiste più"
+   },
+   "2626676714216619519": {
+      "message": "Sottotitolo"
+   },
+   "2655730128699057253": {
+      "message": "Normali"
+   },
+   "2662413919655166560": {
+      "message": "Domenica"
+   },
+   "2665932089093244134": {
+      "message": "Aggiungi ai Preferiti con la stella"
+   },
+   "2678821645623495183": {
+      "message": "Persone ed emozioni"
+   },
+   "271255586148025786": {
+      "message": "Valore hex"
+   },
+   "27472132823239706": {
+      "message": "Da destra a sinistra"
+   },
+   "278208331708453602": {
+      "message": "Connettiti a Internet e accedi per condividere"
+   },
+   "2785193083209311775": {
+      "message": "Mar"
+   },
+   "2803486006471792395": {
+      "message": "di \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Ogham"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Importati da un file"
+   },
+   "2860423337665026261": {
+      "message": "Rimuovi dalla cartella"
+   },
+   "2870049984905408346": {
+      "message": "Titolo"
+   },
+   "2878157583475586619": {
+      "message": "Aggiungi un colore"
+   },
+   "2926789704127794819": {
+      "message": "Nome nuova cartella (obbligatorio)"
+   },
+   "2951727458776714094": {
+      "message": "Impossibile provare questo link."
+   },
+   "2967109838548277236": {
+      "message": "Link di condivisione:"
+   },
+   "2990895581472607445": {
+      "message": "Altro"
+   },
+   "2993160588184042952": {
+      "message": "Scritture americane"
+   },
+   "3002524775820283106": {
+      "message": "Aggiungi una nota..."
+   },
+   "3010872256194497959": {
+      "message": "Pezzi di gioco"
+   },
+   "3027920889685525544": {
+      "message": "Partico (iscrizioni)"
+   },
+   "3034084095590774557": {
+      "message": "Ignora"
+   },
+   "3051034269680162898": {
+      "message": "Ignora"
+   },
+   "3054430907861836285": {
+      "message": "Dic"
+   },
+   "3085746489633838782": {
+      "message": "Elenco numerato"
+   },
+   "3087091861834859241": {
+      "message": "Benvenuto nei tuoi nuovi Preferiti."
+   },
+   "3090613379634438188": {
+      "message": "Geroglifici meroitici"
+   },
+   "3093070593773009381": {
+      "message": "Altre scritture dell'Asia orientale"
+   },
+   "3114565967060091369": {
+      "message": "Hanunoo"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{tra # ore}=1{tra # ora}other{tra # ore}}"
+   },
+   "3140214171317206668": {
+      "message": "Spazio corto"
+   },
+   "3153433695439945201": {
+      "message": "Continua a utilizzare la stella per aggiungere una pagina ai Preferiti, come hai sempre fatto. I Preferiti ti consentono di salvare parte dei contenuti della pagina nel tuo account Google e di trovarli più facilmente in futuro."
+   },
+   "3186183325550234111": {
+      "message": "Vai al link: "
+   },
+   "3212472770580267001": {
+      "message": "Scritture del Sud-est asiatico"
+   },
+   "3218408007702426636": {
+      "message": "Simbolo musicale legatura di fine"
+   },
+   "3227675900195928275": {
+      "message": "Rejang"
+   },
+   "3234811075540284463": {
+      "message": "Normale"
+   },
+   "3244450940425660505": {
+      "message": "Punteggiatura"
+   },
+   "3245712009497198424": {
+      "message": "tra $NUM$ giorno",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Nessun risultato relativo alla ricerca"
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Vuoi eliminare anche gli elementi nella cartella?}other{Vuoi eliminare anche gli elementi nelle cartelle?}}"
+   },
+   "3284734782999930756": {
+      "message": "URL"
+   },
+   "328616644571689303": {
+      "message": "Simbolo musicale legato di fine"
+   },
+   "3309586635668050685": {
+      "message": "Forzatura da sinistra a destra"
+   },
+   "3316092543008555482": {
+      "message": "Fonetica (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonetica (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Cartella creata."
+   },
+   "3334908307836130914": {
+      "message": "Ol Chiki"
+   },
+   "3355297279379313357": {
+      "message": "Ultima utilizzata"
+   },
+   "3360043590563638195": {
+      "message": "Dimensioni carattere"
+   },
+   "3364831016239212879": {
+      "message": "Allinea al centro"
+   },
+   "3383495912989125674": {
+      "message": "Spazio sottile"
+   },
+   "340057911065586090": {
+      "message": "Simbolo ideografico"
+   },
+   "3413537935166399959": {
+      "message": "Sharada"
+   },
+   "3413696263226173348": {
+      "message": "Modifica parola"
+   },
+   "3417560136558853718": {
+      "message": "Kannada"
+   },
+   "3423652049926153935": {
+      "message": "Nuova cartella..."
+   },
+   "3484416881429158332": {
+      "message": "Cartella privata"
+   },
+   "3490738610910152047": {
+      "message": "Bamum"
+   },
+   "3490814222385998788": {
+      "message": "Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Elemento eliminato.}other{# elementi eliminati.}}"
+   },
+   "3501212562096780610": {
+      "message": "Cartella principale: "
+   },
+   "3501367450176932554": {
+      "message": "Separatore di annotazione interlineare"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Oriya"
+   },
+   "3545341282138953352": {
+      "message": "Simbolo musicale legatura di inizio"
+   },
+   "3546572522856950945": {
+      "message": "Cuneiforme"
+   },
+   "3554323414956249846": {
+      "message": "Link"
+   },
+   "3572348996000195345": {
+      "message": "Spazio lungo"
+   },
+   "3596311690500158112": {
+      "message": "Gestione Preferiti non è al momento disponibile. Ricarica la pagina."
+   },
+   "3621913747018973144": {
+      "message": "Da sinistra a destra"
+   },
+   "362505154270301776": {
+      "message": "Pagine web"
+   },
+   "3630778778193389974": {
+      "message": "Controllo ortografico"
+   },
+   "3641126700487126155": {
+      "message": "Simbolo musicale legato di inizio"
+   },
+   "3646623530558910508": {
+      "message": "Cartella modificata."
+   },
+   "3646641743349296313": {
+      "message": "Ott"
+   },
+   "3650952447025672637": {
+      "message": "Elimina cartelle ed elementi"
+   },
+   "3723533099349282495": {
+      "message": "Kaithi"
+   },
+   "37315674215151127": {
+      "message": "Organizza i contenuti"
+   },
+   "3731716253672925709": {
+      "message": "Frecce"
+   },
+   "373495866496779840": {
+      "message": "VISUALIZZA TUTTI I PREFERITI"
+   },
+   "3735789968703193383": {
+      "message": "Visualizzazione"
+   },
+   "3737215641755068426": {
+      "message": "Tratti CJK"
+   },
+   "3752699251010579834": {
+      "message": "Trattino sillabico canadese"
+   },
+   "377368134657453613": {
+      "message": "Accedi a Chrome per cercare nelle pagine aggiunte ai Preferiti"
+   },
+   "3800528517409823312": {
+      "message": "Alfanumerico matematico"
+   },
+   "3832066920911226237": {
+      "message": "Esporta Preferiti..."
+   },
+   "3836877357378306877": {
+      "message": "Comune"
+   },
+   "3880744822029422406": {
+      "message": "Se interrompi la condivisione di questa cartella, il link di condivisione non funzionerà più."
+   },
+   "3888658965293980754": {
+      "message": "Formato"
+   },
+   "3893161213200925599": {
+      "message": "Annulla"
+   },
+   "3924970930634517299": {
+      "message": "Descrizione"
+   },
+   "3947500116452515010": {
+      "message": "Non c'è ancora nessun Preferito."
+   },
+   "3951067234379178869": {
+      "message": "Cartella eliminata."
+   },
+   "3953750991047324531": {
+      "message": "Gujarati"
+   },
+   "3960988854399920931": {
+      "message": "Scritture africane"
+   },
+   "3977845230474613475": {
+      "message": "Lunedì"
+   },
+   "3978409745488989414": {
+      "message": "Domani"
+   },
+   "3981527568769423358": {
+      "message": "Selettore variante"
+   },
+   "3998968827975494252": {
+      "message": "Canadese autoctono"
+   },
+   "4052124018014680002": {
+      "message": "Hai scelto di crittografare i tuoi Preferiti in \"Impostazioni di sincronizzazione avanzate\", pertanto abbiamo disattivato la funzionalità che richiederebbe a Google di vedere i tuoi contenuti."
+   },
+   "4070285516355502772": {
+      "message": "Carattere unificatore"
+   },
+   "4083819681339999404": {
+      "message": "Cartella spostata."
+   },
+   "4093661547607027073": {
+      "message": "Trattino lungo"
+   },
+   "4132740194577129031": {
+      "message": "Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Tamil"
+   },
+   "4141340144529743179": {
+      "message": "Allinea a destra"
+   },
+   "4185431426264249075": {
+      "message": "No"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{# minuti fa}=1{# minuto fa}other{# minuti fa}}"
+   },
+   "4207416107225157509": {
+      "message": "Cham"
+   },
+   "421809097037025717": {
+      "message": "Lidio"
+   },
+   "4219066138225986920": {
+      "message": "$NUM$ ore fa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "Nuovo Tai Lue"
+   },
+   "4256734561546878891": {
+      "message": "Arabo"
+   },
+   "4257688962636177926": {
+      "message": "Nota"
+   },
+   "4313041477349547430": {
+      "message": "Seleziona"
+   },
+   "4317807879399263422": {
+      "message": "Simboli"
+   },
+   "4371152527205140884": {
+      "message": "Birmano"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Riempimento Hangul"
+   },
+   "4394299965695763613": {
+      "message": "ERRORE: \"$COLOR$\" non è un colore valido.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "tra $NUM$ ora",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Apri il link in un'altra finestra"
+   },
+   "4436859540429978060": {
+      "message": "Al momento non è possibile trascinare file di immagini.\nTrascina un'immagine dal browser web."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Vai"
+   },
+   "4467383198992095863": {
+      "message": "Trattino/connettore"
+   },
+   "4485563787650970048": {
+      "message": "Trasporto, mappe e segnaletica"
+   },
+   "4511605174156009486": {
+      "message": "ACCEDI"
+   },
+   "4536708754459423390": {
+      "message": "Collega a:"
+   },
+   "4547888102017603305": {
+      "message": "Inserisci un colore personalizzato, ad esempio rosa, #F00, #D015FF o rgb (100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Riquadro"
+   },
+   "4564357083324116837": {
+      "message": "Scritture sudasiatiche"
+   },
+   "4604654420597817764": {
+      "message": "Separatore di larghezza nulla"
+   },
+   "4631096075002795557": {
+      "message": "Braille"
+   },
+   "4639190252078874549": {
+      "message": "I tuoi Preferiti sono stati aggiornati per poter trovare più facilmente gli elementi salvati."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Elemento spostato.}other{# elementi spostati.}}"
+   },
+   "4677342274083596624": {
+      "message": "Modalità Offline"
+   },
+   "4680868343849876958": {
+      "message": "Turkic antico"
+   },
+   "468549910877472151": {
+      "message": "Importati"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Persiano antico"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Fai attenzione.$POSTB$ Ricorda che ogni volta che inserisci un indirizzo email in una pagina web, anche gli spammer possono trovarlo.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Tagalog"
+   },
+   "4747022692863822805": {
+      "message": "Trattino meno"
+   },
+   "4749120223198822539": {
+      "message": "Singalese"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Elimina cartella ed elementi"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Elemento spostato.}other{# elementi spostati.}}"
+   },
+   "482762608498192214": {
+      "message": "Sabato"
+   },
+   "4833178038692710844": {
+      "message": "Capovolto/speculare"
+   },
+   "484556867028550958": {
+      "message": "Punteggiatura ebraica: Maqaf"
+   },
+   "4848946125726663758": {
+      "message": "Allinea a sinistra"
+   },
+   "4849410737412842755": {
+      "message": "Impossibile condividere questa cartella perché la cartella principale non è condivisa pubblicamente"
+   },
+   "4856510901676745213": {
+      "message": "Ebraico"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{tra # giorni}=1{tra # giorno}other{tra # giorni}}"
+   },
+   "4886850400045987885": {
+      "message": "Modifica link"
+   },
+   "4894342917447426362": {
+      "message": "Supplemento latino 1"
+   },
+   "4895451769213934183": {
+      "message": "Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Scrittura verticale: forma di presentazione per trattino breve"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Elemento modificato.}other{# elementi modificati.}}"
+   },
+   "4934771438157777517": {
+      "message": "Sottolineato"
+   },
+   "4943286974087295923": {
+      "message": "Chiudi"
+   },
+   "4944188657066537729": {
+      "message": "Siriano"
+   },
+   "4974279938502768331": {
+      "message": "Modifica"
+   },
+   "4987339278179088082": {
+      "message": "Aggiungi l'attributo \"$REL_NO_FOLLOW$\" ($LINK_START$ulteriori informazioni$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Testo da visualizzare:"
+   },
+   "4991252214297708837": {
+      "message": "Descrizione cartella"
+   },
+   "500023300077018967": {
+      "message": "Nessun suggerimento"
+   },
+   "5002702571780362629": {
+      "message": "Avestico"
+   },
+   "5013372925252634952": {
+      "message": "Cario"
+   },
+   "5015669074913229206": {
+      "message": "Balinese"
+   },
+   "5016723309142316836": {
+      "message": "Gurmukhi"
+   },
+   "5042512453093360461": {
+      "message": "Fine formattazione bidirezionale"
+   },
+   "5086992011880811613": {
+      "message": "Preferito eliminato."
+   },
+   "5089168125978769021": {
+      "message": "Elimina cartella"
+   },
+   "5089667744614498582": {
+      "message": "Preferito spostato."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Simbolo musicale fascio di inizio"
+   },
+   "5109840495091366547": {
+      "message": "Sport, celebrazioni e attività"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Nuova cartella"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} giorno}other{{TEXT} giorni}}"
+   },
+   "5162393477556833033": {
+      "message": "A quale URL deve portare questo link?"
+   },
+   "518089704180562683": {
+      "message": "Oggi"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Runico"
+   },
+   "5253985055078626542": {
+      "message": "Incorporamento da sinistra a destra"
+   },
+   "5266193592374285468": {
+      "message": "Imposta come pubblica"
+   },
+   "5272267167655788064": {
+      "message": "Immagine"
+   },
+   "528339682728930567": {
+      "message": "Gestione Preferiti non è al momento disponibile. Riprova fra qualche minuto."
+   },
+   "5300191622079400984": {
+      "message": "Tutti"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Fai clic per aggiungere una descrizione"
+   },
+   "5334597244901829906": {
+      "message": "Condividi questa cartella"
+   },
+   "534304870772683249": {
+      "message": "Invia"
+   },
+   "534369010818044160": {
+      "message": "Khmer"
+   },
+   "5354142472798067112": {
+      "message": "Selettore variante - $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Nessuna connessione di rete. Impossibile salvare le modifiche finché torni online."
+   },
+   "5371009567664142864": {
+      "message": "Etiopico"
+   },
+   "5378436065321978089": {
+      "message": "Crea"
+   },
+   "538263398271363120": {
+      "message": "Cherokee"
+   },
+   "5412265752110327977": {
+      "message": "Compatibilità"
+   },
+   "5425054962709217464": {
+      "message": "Mercoledì"
+   },
+   "544490805551236927": {
+      "message": "Scritture mediorientali"
+   },
+   "5448654348317290038": {
+      "message": "Trattino breve"
+   },
+   "5456454482863742119": {
+      "message": "Elimina cartelle"
+   },
+   "5458956770053499082": {
+      "message": "Musicali"
+   },
+   "546306107859654806": {
+      "message": "Sposta nella cartella"
+   },
+   "5474647412096976366": {
+      "message": "Connettiti a Internet per cercare nelle pagine aggiunte ai Preferiti"
+   },
+   "5500830105937873966": {
+      "message": "Elimina"
+   },
+   "5517581353492371385": {
+      "message": "Ieri"
+   },
+   "5521943762943322583": {
+      "message": "Lao"
+   },
+   "5529569087489430384": {
+      "message": "Pahlavi (iscrizioni)"
+   },
+   "5561412620611998456": {
+      "message": "Set"
+   },
+   "5579702837382664819": {
+      "message": "Cartella automatica relativa a: \u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gotico"
+   },
+   "5603457799050818619": {
+      "message": "Non ci sono cartelle automatiche al momento."
+   },
+   "5603774725128707055": {
+      "message": "Cartella spostata."
+   },
+   "5621148847082889884": {
+      "message": "Non c'è ancora nessuna cartella."
+   },
+   "5669644158906503623": {
+      "message": "Simbolo arabo Sanah"
+   },
+   "5672850901284728452": {
+      "message": "Apri pagina log"
+   },
+   "5673852407127287054": {
+      "message": "Segno meno spessore pieno"
+   },
+   "5679720964567650205": {
+      "message": "Martedì"
+   },
+   "5748894773514291207": {
+      "message": "Spazio di tre em"
+   },
+   "5749465969550038727": {
+      "message": "Tagbanwa"
+   },
+   "5773338884170027267": {
+      "message": "Rimuovi formattazione"
+   },
+   "5776478286503179051": {
+      "message": "Radicali han 5 tratti"
+   },
+   "5778201074245568998": {
+      "message": "Grassetto"
+   },
+   "580023699785819803": {
+      "message": "Tibetano"
+   },
+   "5815994514834119961": {
+      "message": "Yijing/Tai Xuan Jing"
+   },
+   "5822895345080436445": {
+      "message": "Immagini"
+   },
+   "5832273633751333051": {
+      "message": "Syloti Nagri"
+   },
+   "5837746770084243727": {
+      "message": "Contrassegni"
+   },
+   "5842240706321147978": {
+      "message": "Link"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Spaziatura"
+   },
+   "5923476740499653277": {
+      "message": "Glagolitico"
+   },
+   "6002018674529763527": {
+      "message": "Spazio unificatore"
+   },
+   "6013038186284817941": {
+      "message": "Radicali han 8 tratti"
+   },
+   "6014514403103768983": {
+      "message": "Colore esadecimale"
+   },
+   "6025708931099464434": {
+      "message": "Tai Tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Colore di sfondo del testo"
+   },
+   "6055751153306823909": {
+      "message": "Molto grandi"
+   },
+   "609920334473042917": {
+      "message": "Benvenuto nei tuoi nuovi Preferiti. Accedi a Chrome per utilizzare altre funzioni, come ad esempio ricerca migliorata, cartelle automatiche e immagini aggiunte ai tuoi Preferiti precedenti."
+   },
+   "6131022146392295404": {
+      "message": "Modifica origine HTML"
+   },
+   "6146119258861607037": {
+      "message": "Radicali han 7 tratti"
+   },
+   "6176673388074993831": {
+      "message": "Coptico"
+   },
+   "6178455470693561470": {
+      "message": "Sei offline. Riprova quando sei di nuovo online."
+   },
+   "6189158371964390675": {
+      "message": "Racchiuso/punteggiato"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Incorporamento da destra a sinistra"
+   },
+   "6207440179505974685": {
+      "message": "Shavian"
+   },
+   "6233852423673631009": {
+      "message": "Lug"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Vuoi eliminare tutti gli elementi nella cartella?}other{Vuoi eliminare tutti gli elementi nelle cartelle?}}"
+   },
+   "6256177058141995632": {
+      "message": "Miao"
+   },
+   "625779090990399178": {
+      "message": "Altre opzioni"
+   },
+   "6259598030649933216": {
+      "message": "Informazioni"
+   },
+   "6263370534846330732": {
+      "message": "Tifinagh"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# selezionato}other{# selezionati}}"
+   },
+   "6281738099691391172": {
+      "message": "Colore testo"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Spazio unificatore di larghezza zero"
+   },
+   "6380136177516870340": {
+      "message": "Hai eseguito l'accesso a Google con un account diverso da quello del browser Chrome."
+   },
+   "639862355711352140": {
+      "message": "ULTERIORI INFORMAZIONI"
+   },
+   "6410416070545265970": {
+      "message": "Verifica questo link"
+   },
+   "6418290353353165009": {
+      "message": "Ripeti"
+   },
+   "6425676451769330238": {
+      "message": "Senza spaziatura"
+   },
+   "6433056041891472200": {
+      "message": "Accedi per attivare"
+   },
+   "6437997645764562921": {
+      "message": "Riempimento Hangul Choseong"
+   },
+   "6470997799115367716": {
+      "message": "Saurashtra"
+   },
+   "6471970833583478119": {
+      "message": "Titolo secondario"
+   },
+   "6473682978091349952": {
+      "message": "Spazio di punteggiatura"
+   },
+   "6489221588545746734": {
+      "message": "Cirillico"
+   },
+   "64909648993550346": {
+      "message": "Forzatura da destra a sinistra"
+   },
+   "649459667039033491": {
+      "message": "tra $NUM$ giorni",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Spazio di larghezza nulla"
+   },
+   "6539448903465735867": {
+      "message": "Simbolo musicale frase di inizio"
+   },
+   "6544224848752157941": {
+      "message": "Riduci rientro"
+   },
+   "6559526625155197659": {
+      "message": "La Ricerca Google non è al momento disponibile. Riprova fra qualche minuto."
+   },
+   "6563689176501108246": {
+      "message": "Radicali han 3 tratti"
+   },
+   "6572308230373875858": {
+      "message": "Il nome della cartella contiene caratteri non validi."
+   },
+   "6604826525171204065": {
+      "message": "Buhid"
+   },
+   "6606727931314199470": {
+      "message": "Fenicio"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ per $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Impossibile sincronizzare i Preferiti. Prova a ricaricare la pagina"
+   },
+   "6661160677415877619": {
+      "message": "Modifica HTML"
+   },
+   "66727790049529171": {
+      "message": "Apice"
+   },
+   "6673681480713693433": {
+      "message": "Contrassegno da sinistra a destra"
+   },
+   "6679365605648394500": {
+      "message": "Storici"
+   },
+   "6718105992776681941": {
+      "message": "Cartella pubblica"
+   },
+   "6731765034365779068": {
+      "message": "tra $NUM$ minuti",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Arabo meridionale antico"
+   },
+   "6748884117721473417": {
+      "message": "Altre scritture europee"
+   },
+   "6756714832459728782": {
+      "message": "Tai Le"
+   },
+   "6781212531496313437": {
+      "message": "Elenco"
+   },
+   "6787794440298969774": {
+      "message": "Malayalam"
+   },
+   "6813860917460451806": {
+      "message": "Licio"
+   },
+   "6848846772159302710": {
+      "message": "Cambia"
+   },
+   "6878231700728680871": {
+      "message": "NUOVO"
+   },
+   "687829671213164815": {
+      "message": "Spiacenti, Gestione Preferiti non è al momento disponibile. Riprova fra alcune ore"
+   },
+   "6963034896702768829": {
+      "message": "Questa cartella non esiste più."
+   },
+   "698011532377344679": {
+      "message": "Simboli di genere e genealogici"
+   },
+   "7004429103140794719": {
+      "message": "Selezioni recenti:"
+   },
+   "7009051272745522428": {
+      "message": "Non ricordi cosa hai salvato? Basta cercare. Prova a utilizzare termini generici come \"film\" o \"viaggi\" per ritrovare Preferiti di cui non ricordi il nome."
+   },
+   "7056277361038404533": {
+      "message": "Preferito spostato."
+   },
+   "7058809993296833390": {
+      "message": "Facci sapere che cosa ne pensi."
+   },
+   "7064503592469946179": {
+      "message": "Sundanese"
+   },
+   "7077571379260349566": {
+      "message": "Vuoi provare a \u003Ca class=\"col-zda\">cercare sul Web\u003C/a>?"
+   },
+   "7102762854285284877": {
+      "message": "Phags Pa"
+   },
+   "7124932478652977474": {
+      "message": "Aggiunto ai Preferiti"
+   },
+   "7154665243775472938": {
+      "message": "Cartelle"
+   },
+   "7168417416563257713": {
+      "message": "Salva"
+   },
+   "7178727559519269241": {
+      "message": "Trattino doppio obliquo"
+   },
+   "7256064246386232909": {
+      "message": "Giavanese"
+   },
+   "7258012171742729961": {
+      "message": "Khmer, vocale inerente Aq"
+   },
+   "7300188402017534561": {
+      "message": "Tutti"
+   },
+   "7316184946628117028": {
+      "message": "Thaana"
+   },
+   "7328850288952193170": {
+      "message": "Separatore sottinteso"
+   },
+   "733245618582914569": {
+      "message": "OK"
+   },
+   "7333334175520057323": {
+      "message": "Annulla"
+   },
+   "7339792312429709609": {
+      "message": "Radicali han 2 tratti"
+   },
+   "7342965026300699486": {
+      "message": "È una cartella pubblica. Se la elimini gli altri non potranno più vederla."
+   },
+   "7346825266417376383": {
+      "message": "OK"
+   },
+   "7362095105218889721": {
+      "message": "Formato e spazio vuoto"
+   },
+   "7369763432670344230": {
+      "message": "A quale indirizzo email deve portare questo link?"
+   },
+   "7376646180156094924": {
+      "message": "Nome"
+   },
+   "7388233788532145059": {
+      "message": "Aggiungi o rimuovi link"
+   },
+   "7407898565330883980": {
+      "message": "Crea cartella"
+   },
+   "7436494590700857376": {
+      "message": "Senza titolo"
+   },
+   "7454853574776276752": {
+      "message": "OK"
+   },
+   "7466254996792639407": {
+      "message": "Georgiano"
+   },
+   "7487940627543583924": {
+      "message": "Giovedì"
+   },
+   "7496808914788281345": {
+      "message": "Trattino lungo piccolo"
+   },
+   "7512206123241896524": {
+      "message": "Se elimini cartelle pubbliche, gli altri non potranno più vederle."
+   },
+   "7514107325655026801": {
+      "message": "Separatore di vocali mongolo"
+   },
+   "7517846739534508036": {
+      "message": "L'immagine che desideri trascinare è stata bloccata dal sito di hosting."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{tra # minuti}=1{tra # minuto}other{tra # minuti}}"
+   },
+   "7556000209920718943": {
+      "message": "Cipriota"
+   },
+   "7558709989823567445": {
+      "message": "Lineare B"
+   },
+   "7561680940841358107": {
+      "message": "Kayah Li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} ora}other{{TEXT} ore}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Trattino armeno"
+   },
+   "762426240463793747": {
+      "message": "Frazioni/correlati"
+   },
+   "7627205932825693842": {
+      "message": "Trattino nascosto mongolo"
+   },
+   "7666041165203922544": {
+      "message": "Trova facilmente i contenuti"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "tra $NUM$ ore",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "$NUM$ giorno fa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "Giu"
+   },
+   "7763561590386207075": {
+      "message": "Indirizzo web"
+   },
+   "7778510137824413661": {
+      "message": "Sei il dogfooder migliore in assoluto! Aspetta di riscontrare un errore che non è possibile risolvere con un semplice ricaricamento."
+   },
+   "7787489712298922692": {
+      "message": "Ugaritico"
+   },
+   "7794513342167361028": {
+      "message": "Sora Sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Simbolo musicale frase di fine"
+   },
+   "7804811638177746132": {
+      "message": "Inserisci un URL valido."
+   },
+   "7820796809104165402": {
+      "message": "Venerdì"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Elemento creato.}other{# elementi creati.}}"
+   },
+   "7842161096380376517": {
+      "message": "Simbolo arabo Safha"
+   },
+   "7877081360738059546": {
+      "message": "Animali, piante e cibo"
+   },
+   "7899357084217902569": {
+      "message": "Segno di sottrazione piccolo"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Hai dubbi su cosa inserire nella casella?$END_BOLD$Innanzitutto trova la pagina web a cui desideri collegarti (un $SEARCH_ENGINE_LINK$motore di ricerca$END_LINK$ potrebbe esserti utile). Copia quindi l'indirizzo web dalla casella nella barra degli indirizzi del browser e incollalo nella casella in alto.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Annulla"
+   },
+   "7929010027377139621": {
+      "message": "Tai Viet"
+   },
+   "7944194550132470305": {
+      "message": "Aggiungi un titolo..."
+   },
+   "7957751306916251232": {
+      "message": "Indirizzo email non valido"
+   },
+   "7977240188055092028": {
+      "message": "Visualizza"
+   },
+   "7987287518899618882": {
+      "message": "Feb"
+   },
+   "7995071973884866910": {
+      "message": "$NUM$ giorni fa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Video"
+   },
+   "8011311100803127599": {
+      "message": "Stelle/asterischi"
+   },
+   "8017723467201257913": {
+      "message": "Deseret"
+   },
+   "8018615794586730510": {
+      "message": "Normale/serif"
+   },
+   "8027365004962833557": {
+      "message": "Italico antico"
+   },
+   "8110520007971944893": {
+      "message": "Google può organizzare automaticamente i Preferiti in modo da non dover"
+   },
+   "8115055677841343820": {
+      "message": "Trattino"
+   },
+   "8132750144382731373": {
+      "message": "Emoji"
+   },
+   "8139874053154312313": {
+      "message": "Trattino con dieresi"
+   },
+   "8143412461134291283": {
+      "message": "Invia feedback"
+   },
+   "8146770321190721394": {
+      "message": "Osmanya"
+   },
+   "8167437723285192120": {
+      "message": "Nessuno"
+   },
+   "8179849043307262288": {
+      "message": "Applicazione di funzione"
+   },
+   "818630018883405514": {
+      "message": "Racchiuso"
+   },
+   "8208069138346972268": {
+      "message": "Tecnici"
+   },
+   "8220605653109571646": {
+      "message": "Greco"
+   },
+   "8243618543879664815": {
+      "message": "Gen"
+   },
+   "8275729822640276507": {
+      "message": "Sei di nuovo connesso a Internet."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Annulla"
+   },
+   "8338269186594699884": {
+      "message": "pm"
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "OK"
+   },
+   "8394518299580326671": {
+      "message": "Unione di larghezza nulla"
+   },
+   "8401283339806880070": {
+      "message": "Giustifica"
+   },
+   "8417405596874032771": {
+      "message": "Ogham, contrassegno di spazio"
+   },
+   "8442861823466423570": {
+      "message": "Terminatore di annotazione interlineare"
+   },
+   "8454082825844118412": {
+      "message": "Radicali han 11..17 tratti"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Risultati di ricerca relativi a: \u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Emoticon"
+   },
+   "8509200859889253607": {
+      "message": "Buginese"
+   },
+   "8513771017811992648": {
+      "message": "Nessuno"
+   },
+   "8583880697323281603": {
+      "message": "Preferito modificato."
+   },
+   "8590712065595806821": {
+      "message": "Suggerita"
+   },
+   "8605746117200843257": {
+      "message": "Ancora di annotazione interlineare"
+   },
+   "8608038304204118820": {
+      "message": "$NUM$ ora fa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Aggiungi ai Preferiti"
+   },
+   "8632024322663078476": {
+      "message": "Aggiungi alla cartella"
+   },
+   "8635739256240231429": {
+      "message": "Chiudi"
+   },
+   "8637786997742615742": {
+      "message": "Modificatore"
+   },
+   "8639484881518821804": {
+      "message": "Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Samaritano"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Normale"
+   },
+   "8694618136165028235": {
+      "message": "Aggiungi un URL..."
+   },
+   "8723654283178734366": {
+      "message": "Inserisci un indirizzo web"
+   },
+   "8748780785044360315": {
+      "message": "Thailandese"
+   },
+   "8764548034413038101": {
+      "message": "tra $NUM$ minuto",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "Apr"
+   },
+   "8784386825932830097": {
+      "message": "Barra orizzontale"
+   },
+   "8793684579112208899": {
+      "message": "Pedice"
+   },
+   "8797138403646238716": {
+      "message": "Corsivo meroitico"
+   },
+   "8801105026907713256": {
+      "message": "Meno comune"
+   },
+   "8805843642052942743": {
+      "message": "Lepcha"
+   },
+   "8827926534395802942": {
+      "message": "Trattino numerico"
+   },
+   "8829617001171812634": {
+      "message": "Oggetti"
+   },
+   "8835425644719990167": {
+      "message": "Riempimento Hangul Jungseong"
+   },
+   "8838200101653652173": {
+      "message": "Inclusione"
+   },
+   "8838938639049885476": {
+      "message": "Spazio breve"
+   },
+   "8841111838340088121": {
+      "message": "Radicali han 4 tratti"
+   },
+   "8860909466229522023": {
+      "message": "Corsivo"
+   },
+   "888434073985276543": {
+      "message": "Scrittura verticale: forma di presentazione per trattino lungo"
+   },
+   "8892104104076766085": {
+      "message": "Tilde"
+   },
+   "8996388564146952786": {
+      "message": "Spazio unificatore stretto"
+   },
+   "9021466412659564505": {
+      "message": "Accedi"
+   },
+   "9026903153882226079": {
+      "message": "Contrassegno da destra a sinistra"
+   },
+   "9034162255782924509": {
+      "message": "Batak"
+   },
+   "9041611521175673293": {
+      "message": "Tutti"
+   },
+   "9041881295809259717": {
+      "message": "Matematica"
+   },
+   "9072668986327887451": {
+      "message": "Descrizione ideografica"
+   },
+   "9076212347872857205": {
+      "message": "Citazione"
+   },
+   "9083920162332648298": {
+      "message": "am"
+   },
+   "9086165147555162831": {
+      "message": "Meetei Mayek"
+   },
+   "9092805374125336008": {
+      "message": "Mag"
+   },
+   "9099680152087323883": {
+      "message": "Nov"
+   },
+   "9107905796365363672": {
+      "message": "Grandi"
+   },
+   "9113260413780075008": {
+      "message": "Brahmi"
+   },
+   "9115834469932780333": {
+      "message": "Telugu"
+   },
+   "9143484910409308303": {
+      "message": "Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Impossibile effettuare ricerche nei Preferiti crittografati. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Ulteriori informazioni\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Cartella rimossa dalla cartella principale."
+   },
+   "9180458846772153689": {
+      "message": "Armeno"
+   },
+   "9181119817188520774": {
+      "message": "Nessuna connessione di rete. Impossibile salvare le modifiche finché torni online"
+   },
+   "9204096795425905695": {
+      "message": "Moltiplicazione sottintesa"
+   },
+   "922163125711959960": {
+      "message": "$NUM$ minuto fa",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Aggiungi"
+   },
+   "93670926879626900": {
+      "message": "Spazio vuoto"
+   },
+   "93871902389648718": {
+      "message": "Simbolo musicale fascio di fine"
+   },
+   "960914149201689167": {
+      "message": "Decimale"
+   },
+   "963040144042262397": {
+      "message": "Elimina"
+   },
+   "964017479791059460": {
+      "message": "Arabo: fine ayah"
+   },
+   "980376110610801797": {
+      "message": "Inserisci immagine"
+   }
+}

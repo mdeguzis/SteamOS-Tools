@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Del denne mappe, eller rediger indstillingerne for deling"
+   },
+   "1014969137789706237": {
+      "message": "Opret et link til en side eller fil et andet sted på internettet"
+   },
+   "1033240210015440654": {
+      "message": "Fjern billede"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} minut}one{{TEXT} minutter}other{{TEXT} minutter}}"
+   },
+   "1035347665345261212": {
+      "message": "Indtast en note"
+   },
+   "1036132178487616999": {
+      "message": "Introduktion"
+   },
+   "1041064392303158655": {
+      "message": "Limbu"
+   },
+   "1066103686460691847": {
+      "message": "Gennemstregning"
+   },
+   "1085496824897012476": {
+      "message": "Egyptiske hieroglyffer"
+   },
+   "1105045461281211798": {
+      "message": "Kombineret sammenkædning af grafem"
+   },
+   "111315886393984302": {
+      "message": "Prøv at tilføje noget på nettet som bogmærke og gemme dem i denne mappe."
+   },
+   "1117324761561996205": {
+      "message": "Rediger"
+   },
+   "1124849668149719420": {
+      "message": "Skriv feedback"
+   },
+   "1142044035368837035": {
+      "message": "Geviert"
+   },
+   "1148670835609345833": {
+      "message": "Knap til redigering af bogmærker"
+   },
+   "1161548997573254809": {
+      "message": "Annuller"
+   },
+   "1164857998440803763": {
+      "message": "Chakma"
+   },
+   "1170102576258588460": {
+      "message": "Hård bindestreg"
+   },
+   "1185158158029036642": {
+      "message": "Klik for at oprette et nyt bogmærke eller en ny mappe."
+   },
+   "1201286409038567178": {
+      "message": "ugyldig webadresse"
+   },
+   "1214729854306268929": {
+      "message": "for $NUM$ minutter siden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{for # timer siden}=1{for # time siden}one{for # timer siden}other{for # timer siden}}"
+   },
+   "1232723730191754374": {
+      "message": "Skrifttype"
+   },
+   "1243361230826165709": {
+      "message": "Hangul"
+   },
+   "128696227290770661": {
+      "message": "Devanagari"
+   },
+   "1312606838421552827": {
+      "message": "Tal"
+   },
+   "1316608632339176215": {
+      "message": "Diverse"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "Mellemrum, der er en fjerdedel af lang tankestreg"
+   },
+   "1337190557080419948": {
+      "message": "Titel"
+   },
+   "1347841728719446841": {
+      "message": "E-mailadresse"
+   },
+   "1350404634989083059": {
+      "message": "Usynligt plus"
+   },
+   "1356908927221815545": {
+      "message": "Han Ordstamme med 1 anslag"
+   },
+   "1373666411928680514": {
+      "message": "Bølget tankestreg"
+   },
+   "1378894003206512970": {
+      "message": "Luk"
+   },
+   "138484781723580209": {
+      "message": "Syrisk forkortelsestegn"
+   },
+   "1397568831960098153": {
+      "message": "Format"
+   },
+   "142359106099692409": {
+      "message": "Automatiske mapper"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Lille"
+   },
+   "1460136507747533015": {
+      "message": "Log ind for at dele"
+   },
+   "1477567329816921885": {
+      "message": "Vidste du, at du kan dele dine foretrukne bogmærker ved at gøre en mappe offentlig? Få den offentlige webadresse, og del den."
+   },
+   "1507362459078633250": {
+      "message": "Du er nødt til at fjerne Chrome-udvidelsen og genindlæse den og/eller plage teknikerne… Beklager :-/"
+   },
+   "1516565793778879679": {
+      "message": "Han – Andet"
+   },
+   "1519227660570105215": {
+      "message": "Denne side kan være skadelig"
+   },
+   "1556175764217302644": {
+      "message": "Khmer-indlejret vokal Aa"
+   },
+   "1566367040709255091": {
+      "message": "Format"
+   },
+   "1582412901770221448": {
+      "message": "Føjet til {FOLDER_NAME}"
+   },
+   "1585233503778646014": {
+      "message": "Mandeisk"
+   },
+   "1592899529499992997": {
+      "message": "Bogmærket blev fjernet fra mappen."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Hold musemarkøren over den enkelte celle for at få vist navnet på tegnet."
+   },
+   "1630439475247732904": {
+      "message": "Hævet skrift"
+   },
+   "1634874677195552014": {
+      "message": "Mellemrum, der er en sjettedel af lang tankestreg"
+   },
+   "1635366592844795535": {
+      "message": "LOG IND I CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Vejr og astrologi"
+   },
+   "1665234249876251486": {
+      "message": "Figurmellemrum"
+   },
+   "1666311405952625458": {
+      "message": "Vejr, landskaber og stjernetegn"
+   },
+   "1678004121951995792": {
+      "message": "Aug."
+   },
+   "1680034627075195442": {
+      "message": "Du kan oprette dine egne mapper eller lade Google organisere tingene for dig med automatiske mapper."
+   },
+   "1683451665637766512": {
+      "message": "Link til en e-mailadresse"
+   },
+   "1685884502412781083": {
+      "message": "Afsnitsseparator"
+   },
+   "169055910458549089": {
+      "message": "Der kunne ikke oprettes forbindelse til vores server. Prøv igen om et par minutter."
+   },
+   "1691734467561749621": {
+      "message": "Du kan desværre ikke dele mapper på bogmærkelinjen"
+   },
+   "1715361312704502898": {
+      "message": "Transport og kort"
+   },
+   "1719053155706676551": {
+      "message": "Bogmærkelinje"
+   },
+   "1730849295731139586": {
+      "message": "Yi"
+   },
+   "1748899684018766272": {
+      "message": "Hangul fyldtegn i halv bredde"
+   },
+   "1755438325907288056": {
+      "message": "N'ko"
+   },
+   "1776387440523546537": {
+      "message": "I dag"
+   },
+   "178181731883558542": {
+      "message": "Tekstfelt, hvor du kan søge efter dine bogmærker."
+   },
+   "1791083579000016877": {
+      "message": "ASCII-baseret"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Se stjernemarkerede elementer"
+   },
+   "1803667155949248788": {
+      "message": "Interbritisk aramæisk"
+   },
+   "1827599404395723350": {
+      "message": "Kontrolbilleder"
+   },
+   "1839253253564716482": {
+      "message": "Der blev ikke fundet nogen bogmærker"
+   },
+   "1847259066982820034": {
+      "message": "Vælg en mappe"
+   },
+   "1875246104836450162": {
+      "message": "Symbol"
+   },
+   "1879633738298009258": {
+      "message": "Mellemlangt matematisk mellemrum"
+   },
+   "1915655034817606796": {
+      "message": "Blød bindestreg"
+   },
+   "191946029988896895": {
+      "message": "Arabisk nummertegn"
+   },
+   "1932973762029792550": {
+      "message": "Google organiserer automatisk alle dine bogmærker"
+   },
+   "1942405576047748946": {
+      "message": "Bogmærket blev tilføjet."
+   },
+   "196266011387145001": {
+      "message": "Fortsæt"
+   },
+   "1963154331052663396": {
+      "message": "Latinsk"
+   },
+   "1999193032742275907": {
+      "message": "Han Ordstamme med 9 anslag"
+   },
+   "2003860471263842959": {
+      "message": "Hårspatie"
+   },
+   "2015775921681923490": {
+      "message": "Indstillinger"
+   },
+   "202031328373263910": {
+      "message": "Han Ordstamme med 6 anslag"
+   },
+   "2036672715320764541": {
+      "message": "Linjeseparator"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Elementet blev fjernet fra mappen.}one{# elementer blev fjernet fra mappen.}other{# elementer blev fjernet fra mappen.}}"
+   },
+   "2088133380647290173": {
+      "message": "På {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Indtast en webadresse for at oprette et nyt bogmærke."
+   },
+   "2117634893694108880": {
+      "message": "Privat"
+   },
+   "2135921744011555145": {
+      "message": "Søg i dine bogmærker"
+   },
+   "213958631597214757": {
+      "message": "Stop deling. "
+   },
+   "2149498606985329379": {
+      "message": "Bogmærkerne er importeret."
+   },
+   "2159536073195133897": {
+      "message": "Fortryd"
+   },
+   "2166866096346653276": {
+      "message": "Ingen"
+   },
+   "2167636135101203592": {
+      "message": "Bengali"
+   },
+   "2176930521411607789": {
+      "message": "Parret"
+   },
+   "218054763532467155": {
+      "message": "Indtast en titel"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Slet \u003Cb>{firstItemName}\u003C/b>}=1{Slet \u003Cb>{firstItemName}\u003C/b> og # andre elementer}one{Slet \u003Cb>{firstItemName}\u003C/b> og # andre elementer}other{Slet \u003Cb>{firstItemName}\u003C/b> og # andre elementer}}"
+   },
+   "2200921183377473543": {
+      "message": "Ja"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{for # dage siden}=1{for # dag siden}one{for # dage siden}other{for # dage siden}}"
+   },
+   "2228495834106697427": {
+      "message": "Sænket skrift"
+   },
+   "2253752461533441758": {
+      "message": "Han Ordstamme med 10 anslag"
+   },
+   "2257250286834696444": {
+      "message": "Indlæser…"
+   },
+   "2280907281518645401": {
+      "message": "Katakana-hiragana dobbelt bindestreg"
+   },
+   "2301390744929043794": {
+      "message": "Vent et øjeblik, mens vi gemmer din mappe på serveren"
+   },
+   "2315132909835126412": {
+      "message": "Offentlig"
+   },
+   "2315864755754275083": {
+      "message": "Valuta"
+   },
+   "231658276152304252": {
+      "message": "Fjern"
+   },
+   "2353164220175503425": {
+      "message": "Kaithi-nummertegn"
+   },
+   "2359350477261263182": {
+      "message": "Bogmærkeadministrator"
+   },
+   "2362075348358411947": {
+      "message": "Punktopstilling"
+   },
+   "2396988228061015409": {
+      "message": "Mapper"
+   },
+   "2398127458667829603": {
+      "message": "Tastatur og brugergrænseflade"
+   },
+   "2413859014200470621": {
+      "message": "Øg indrykning"
+   },
+   "2414987366409119013": {
+      "message": "Beskrivelse af ny mappe (valgfrit)"
+   },
+   "2444245672676114535": {
+      "message": "Geometriske figurer"
+   },
+   "2454859602363061373": {
+      "message": "Brug stjernen i adresselinjen, hvis du vil gemme noget fra internettet"
+   },
+   "2497668314434532819": {
+      "message": "Mongolsk"
+   },
+   "2498668179494167671": {
+      "message": "Mellemrum"
+   },
+   "2506204110427755391": {
+      "message": "Indeholder bogmærker på mobil og elementer, der ikke er i bogmærkelinjen"
+   },
+   "2512307863902593558": {
+      "message": "Kharosti"
+   },
+   "2518095696810513128": {
+      "message": "Importér bogmærker..."
+   },
+   "2524757118580919241": {
+      "message": "Arabisk fodnotemarkør"
+   },
+   "2528672033407304265": {
+      "message": "Denne mappe er kun synlig for dig. Hvis du vil dele den, skal du klikke på \"Angiv som offentlig\", så får du et link, der kan deles."
+   },
+   "2566403151253785267": {
+      "message": "Unavngiven mappe"
+   },
+   "2581794950690518802": {
+      "message": "0 minutter"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Annuller introduktion"
+   },
+   "2620868598794227408": {
+      "message": "Denne side eksisterer ikke længere"
+   },
+   "2626676714216619519": {
+      "message": "Underoverskrift"
+   },
+   "2655730128699057253": {
+      "message": "Normal"
+   },
+   "2662413919655166560": {
+      "message": "Søndag"
+   },
+   "2665932089093244134": {
+      "message": "Stjernemarkér hvad som helst"
+   },
+   "2678821645623495183": {
+      "message": "Mennesker og følelser"
+   },
+   "271255586148025786": {
+      "message": "Hex-input"
+   },
+   "27472132823239706": {
+      "message": "Højre mod venstre"
+   },
+   "278208331708453602": {
+      "message": "Opret forbindelse til internettet, og log ind for at dele"
+   },
+   "2785193083209311775": {
+      "message": "Mar."
+   },
+   "2803486006471792395": {
+      "message": "af \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Ogam"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Importeret fra en fil"
+   },
+   "2860423337665026261": {
+      "message": "Fjern fra mappe"
+   },
+   "2870049984905408346": {
+      "message": "Overskrift"
+   },
+   "2878157583475586619": {
+      "message": "Tilføj en farve"
+   },
+   "2926789704127794819": {
+      "message": "Navn på ny mappe (påkrævet)"
+   },
+   "2951727458776714094": {
+      "message": "Dette link kan ikke testes."
+   },
+   "2967109838548277236": {
+      "message": "Delingslink:"
+   },
+   "2990895581472607445": {
+      "message": "Andet"
+   },
+   "2993160588184042952": {
+      "message": "Amerikanske skrifter"
+   },
+   "3002524775820283106": {
+      "message": "Tilføj en note..."
+   },
+   "3010872256194497959": {
+      "message": "Spilbrikker"
+   },
+   "3027920889685525544": {
+      "message": "Partiske inskriptioner"
+   },
+   "3034084095590774557": {
+      "message": "Ignorer"
+   },
+   "3051034269680162898": {
+      "message": "Luk"
+   },
+   "3054430907861836285": {
+      "message": "Dec."
+   },
+   "3085746489633838782": {
+      "message": "Nummereret liste"
+   },
+   "3087091861834859241": {
+      "message": "Velkommen til dine nye bogmærker!"
+   },
+   "3090613379634438188": {
+      "message": "Meroitiske hieroglyffer"
+   },
+   "3093070593773009381": {
+      "message": "Andre østasiatiske skrifter"
+   },
+   "3114565967060091369": {
+      "message": "Hanunoo"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{om # timer}=1{om # time}one{om # timer}other{om # timer}}"
+   },
+   "3140214171317206668": {
+      "message": "Halvgeviert"
+   },
+   "3153433695439945201": {
+      "message": "Fortsæt med at bruge stjernen til at tilføje en side som bogmærke, ligesom du plejer. Dit bogmærke gemmer noget af siden på din Google-konto, så du nemmere kan finde den senere."
+   },
+   "3186183325550234111": {
+      "message": "Gå til link: "
+   },
+   "3212472770580267001": {
+      "message": "Sydøstasiatiske skrifter"
+   },
+   "3218408007702426636": {
+      "message": "Musiksymbol, der viser slutningen af en bindebue"
+   },
+   "3227675900195928275": {
+      "message": "Rejang"
+   },
+   "3234811075540284463": {
+      "message": "Normal"
+   },
+   "3244450940425660505": {
+      "message": "Tegnsætning"
+   },
+   "3245712009497198424": {
+      "message": "om $NUM$ dag",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Din søgning gav ingen resultater"
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Vil du også slette elementerne i denne mappe?}one{Vil du også slette elementerne i disse mappe?}other{Vil du også slette elementerne i disse mappe?}}"
+   },
+   "3284734782999930756": {
+      "message": "Webadresse"
+   },
+   "328616644571689303": {
+      "message": "Musiksymbol, der viser slutningen af legato"
+   },
+   "3309586635668050685": {
+      "message": "Tilsidesættelse fra venstre mod højre"
+   },
+   "3316092543008555482": {
+      "message": "Fonetik (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonetik (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Mappen blev oprettet."
+   },
+   "3334908307836130914": {
+      "message": "Ol chiki"
+   },
+   "3355297279379313357": {
+      "message": "Sidst anvendt"
+   },
+   "3360043590563638195": {
+      "message": "Skriftstørrelse"
+   },
+   "3364831016239212879": {
+      "message": "Centrer"
+   },
+   "3383495912989125674": {
+      "message": "Tyndt mellemrum"
+   },
+   "340057911065586090": {
+      "message": "Ideografisk mellemrum"
+   },
+   "3413537935166399959": {
+      "message": "Sharada"
+   },
+   "3413696263226173348": {
+      "message": "Rediger ord"
+   },
+   "3417560136558853718": {
+      "message": "Kannada"
+   },
+   "3423652049926153935": {
+      "message": "Ny mappe…"
+   },
+   "3484416881429158332": {
+      "message": "Privat mappe"
+   },
+   "3490738610910152047": {
+      "message": "Bamum"
+   },
+   "3490814222385998788": {
+      "message": "Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Elementet blev slettet.}one{# elementet blev slettet.}other{# elementet blev slettet.}}"
+   },
+   "3501212562096780610": {
+      "message": "Overordnet mappe: "
+   },
+   "3501367450176932554": {
+      "message": "Symbol, der deler kommentartekst"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Oriya"
+   },
+   "3545341282138953352": {
+      "message": "Musiksymbol, der viser begyndelsen af en bindebue"
+   },
+   "3546572522856950945": {
+      "message": "Kileskrift"
+   },
+   "3554323414956249846": {
+      "message": "Link"
+   },
+   "3572348996000195345": {
+      "message": "Lang tankestreg"
+   },
+   "3596311690500158112": {
+      "message": "Bogmærkeadministrator er ikke tilgængelig lige nu. Genindlæs siden."
+   },
+   "3621913747018973144": {
+      "message": "Venstre mod højre"
+   },
+   "362505154270301776": {
+      "message": "Websider"
+   },
+   "3630778778193389974": {
+      "message": "Stavekontrol"
+   },
+   "3641126700487126155": {
+      "message": "Musiksymbolet F-nøgle"
+   },
+   "3646623530558910508": {
+      "message": "Mappen er blevet ændret."
+   },
+   "3646641743349296313": {
+      "message": "Okt."
+   },
+   "3650952447025672637": {
+      "message": "Slet mapper og elementer"
+   },
+   "3723533099349282495": {
+      "message": "Kaithi"
+   },
+   "37315674215151127": {
+      "message": "Bevar overblikket"
+   },
+   "3731716253672925709": {
+      "message": "Pile"
+   },
+   "373495866496779840": {
+      "message": "SE ALLE BOGMÆRKER"
+   },
+   "3735789968703193383": {
+      "message": "Vis"
+   },
+   "3737215641755068426": {
+      "message": "CJK-anslag"
+   },
+   "3752699251010579834": {
+      "message": "Canadisk Syllabics-bindestreg"
+   },
+   "377368134657453613": {
+      "message": "Log ind på Chrome for at søge blandt de sider, du har angivet som bogmærke"
+   },
+   "3800528517409823312": {
+      "message": "Matematik, alfanumerisk"
+   },
+   "3832066920911226237": {
+      "message": "Eksportér bogmærker..."
+   },
+   "3836877357378306877": {
+      "message": "Udbredt"
+   },
+   "3880744822029422406": {
+      "message": "Hvis du holder op med at dele denne mappe, vil delingslinket ikke længere fungere."
+   },
+   "3888658965293980754": {
+      "message": "Format"
+   },
+   "3893161213200925599": {
+      "message": "Annuller"
+   },
+   "3924970930634517299": {
+      "message": "Beskrivelse"
+   },
+   "3947500116452515010": {
+      "message": "Her er endnu ingen bogmærker."
+   },
+   "3951067234379178869": {
+      "message": "Mappen er slettet."
+   },
+   "3953750991047324531": {
+      "message": "Gujarati"
+   },
+   "3960988854399920931": {
+      "message": "Afrikanske skrifter"
+   },
+   "3977845230474613475": {
+      "message": "Mandag"
+   },
+   "3978409745488989414": {
+      "message": "I morgen"
+   },
+   "3981527568769423358": {
+      "message": "Variantvælger"
+   },
+   "3998968827975494252": {
+      "message": "Canadisk aboriginal"
+   },
+   "4052124018014680002": {
+      "message": "Da du har valgt at kryptere dine bogmærker i \"Avancerede indstillinger for synkronisering\", har vi deaktiveret den funktionalitet, som kræver, at Google kan se dit indhold."
+   },
+   "4070285516355502772": {
+      "message": "Ordsammenkædning"
+   },
+   "4083819681339999404": {
+      "message": "Mappen blev flyttet."
+   },
+   "4093661547607027073": {
+      "message": "Lang tankestreg"
+   },
+   "4132740194577129031": {
+      "message": "Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Tamilsk"
+   },
+   "4141340144529743179": {
+      "message": "Højrejuster"
+   },
+   "4185431426264249075": {
+      "message": "Nej"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{for # minutter siden}=1{for # minut siden}one{for # minutter siden}other{for # minutter siden}}"
+   },
+   "4207416107225157509": {
+      "message": "Cham"
+   },
+   "421809097037025717": {
+      "message": "Lydisk"
+   },
+   "4219066138225986920": {
+      "message": "for $NUM$ timer siden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "Tai lue"
+   },
+   "4256734561546878891": {
+      "message": "Arabisk"
+   },
+   "4257688962636177926": {
+      "message": "Note"
+   },
+   "4313041477349547430": {
+      "message": "Markér"
+   },
+   "4317807879399263422": {
+      "message": "Symboler"
+   },
+   "4371152527205140884": {
+      "message": "Myanmar"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Hangul-fyldtegn"
+   },
+   "4394299965695763613": {
+      "message": "FEJL: \"$COLOR$\" er ikke en gyldig farve.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "om $NUM$ time",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Åbn dette link i et nyt vindue"
+   },
+   "4436859540429978060": {
+      "message": "Det er ikke muligt at trække og slippe billedfiler på nuværende tidspunkt.\nTræk et billede fra din webbrowser."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Vai"
+   },
+   "4467383198992095863": {
+      "message": "Skråstreg/forbindelsesstreg"
+   },
+   "4485563787650970048": {
+      "message": "Transport, kort og skiltning"
+   },
+   "4511605174156009486": {
+      "message": "LOG IND"
+   },
+   "4536708754459423390": {
+      "message": "Link til:"
+   },
+   "4547888102017603305": {
+      "message": "Angiv tilpasset farve, f.eks. pink, #F00, #D015FF eller rgb(100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Side om side"
+   },
+   "4564357083324116837": {
+      "message": "Sydasiatiske skrifter"
+   },
+   "4604654420597817764": {
+      "message": "Valgfrit mellemrum uden bredde"
+   },
+   "4631096075002795557": {
+      "message": "Blindskrift"
+   },
+   "4639190252078874549": {
+      "message": "Dine bogmærker er blevet opdateret, så du nemmere kan finde det, du har gemt."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Elementet blev flyttet.}one{# elementer blev flyttet.}other{# elementer blev flyttet.}}"
+   },
+   "4677342274083596624": {
+      "message": "Offlinetilstand"
+   },
+   "4680868343849876958": {
+      "message": "Oldtyrkisk"
+   },
+   "468549910877472151": {
+      "message": "Importeret"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Gammel persisk"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Vær forsigtig$POSTB$! Husk, at hver gang du angiver en e-mailadresse på en webside, kan ondsindede spammere også få fat i den.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Tagalog"
+   },
+   "4747022692863822805": {
+      "message": "Bindestreg-minus"
+   },
+   "4749120223198822539": {
+      "message": "Sinhala"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Slet mappe og elementer"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Elementet blev flyttet.}one{# elementer blev flyttet.}other{# elementer blev flyttet.}}"
+   },
+   "482762608498192214": {
+      "message": "Lørdag"
+   },
+   "4833178038692710844": {
+      "message": "Spejlvendt"
+   },
+   "484556867028550958": {
+      "message": "Hebræisk tegnsætning, maqaf"
+   },
+   "4848946125726663758": {
+      "message": "Venstrejuster"
+   },
+   "4849410737412842755": {
+      "message": "Du kan ikke dele denne mappe, da den overordnede mappe ikke er offentlig"
+   },
+   "4856510901676745213": {
+      "message": "Hebræisk"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{om # dage}=1{om # dag}one{om # dage}other{om # dage}}"
+   },
+   "4886850400045987885": {
+      "message": "Rediger link"
+   },
+   "4894342917447426362": {
+      "message": "Latin 1-tillæg"
+   },
+   "4895451769213934183": {
+      "message": "Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Præsentationsform for kort lodret tankestreg"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Elementet blev ændret.}one{# elementer blev ændret.}other{# elementer blev ændret.}}"
+   },
+   "4934771438157777517": {
+      "message": "Understregning"
+   },
+   "4943286974087295923": {
+      "message": "Luk"
+   },
+   "4944188657066537729": {
+      "message": "Syrisk"
+   },
+   "4974279938502768331": {
+      "message": "Rediger"
+   },
+   "4987339278179088082": {
+      "message": "Tilføj attributten \"$REL_NO_FOLLOW$\" ($LINK_START$Få flere oplysninger$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Tekst til visning:"
+   },
+   "4991252214297708837": {
+      "message": "Mappebeskrivelse"
+   },
+   "500023300077018967": {
+      "message": "Ingen forslag"
+   },
+   "5002702571780362629": {
+      "message": "Avestisk"
+   },
+   "5013372925252634952": {
+      "message": "Kariansk"
+   },
+   "5015669074913229206": {
+      "message": "Balinesisk"
+   },
+   "5016723309142316836": {
+      "message": "Gurmukhi"
+   },
+   "5042512453093360461": {
+      "message": "PDF (Pop Directional Formatting)"
+   },
+   "5086992011880811613": {
+      "message": "Bogmærket blev slettet."
+   },
+   "5089168125978769021": {
+      "message": "Slet mappe"
+   },
+   "5089667744614498582": {
+      "message": "Bogmærket blev flyttet."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Musiksymbol, der viser en begyndelsesbjælke"
+   },
+   "5109840495091366547": {
+      "message": "Sport, fester og aktiviteter"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Ny mappe"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} dag}one{{TEXT} dage}other{{TEXT} dage}}"
+   },
+   "5162393477556833033": {
+      "message": "Hvilken webadresse skal dette link føre hen til?"
+   },
+   "518089704180562683": {
+      "message": "I dag"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Runeskrift"
+   },
+   "5253985055078626542": {
+      "message": "Integrering fra venstre mod højre"
+   },
+   "5266193592374285468": {
+      "message": "Angiv som offentlig"
+   },
+   "5272267167655788064": {
+      "message": "Billede"
+   },
+   "528339682728930567": {
+      "message": "Bogmærkeadministrator er ikke tilgængelig lige nu. Prøv igen om et par minutter."
+   },
+   "5300191622079400984": {
+      "message": "Alle"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Klik for at tilføje en beskrivelse"
+   },
+   "5334597244901829906": {
+      "message": "Del denne mappe"
+   },
+   "534304870772683249": {
+      "message": "Send"
+   },
+   "534369010818044160": {
+      "message": "Khmer"
+   },
+   "5354142472798067112": {
+      "message": "Variantvælger – $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Der er ingen netværksforbindelse. Du kan ikke gemme ændringer, før du er online igen."
+   },
+   "5371009567664142864": {
+      "message": "Etiopisk"
+   },
+   "5378436065321978089": {
+      "message": "Opret"
+   },
+   "538263398271363120": {
+      "message": "Cherokee"
+   },
+   "5412265752110327977": {
+      "message": "Kompatibilitet"
+   },
+   "5425054962709217464": {
+      "message": "Onsdag"
+   },
+   "544490805551236927": {
+      "message": "Mellemøstlige skrifter"
+   },
+   "5448654348317290038": {
+      "message": "Kort tankestreg"
+   },
+   "5456454482863742119": {
+      "message": "Slet mapper"
+   },
+   "5458956770053499082": {
+      "message": "Musik"
+   },
+   "546306107859654806": {
+      "message": "Flyt til mappe"
+   },
+   "5474647412096976366": {
+      "message": "Opret forbindelse til internettet for at søge blandt de sider, du har angivet som bogmærke"
+   },
+   "5500830105937873966": {
+      "message": "Slet"
+   },
+   "5517581353492371385": {
+      "message": "I går"
+   },
+   "5521943762943322583": {
+      "message": "Laotisk"
+   },
+   "5529569087489430384": {
+      "message": "Pahlavi-inskriptioner"
+   },
+   "5561412620611998456": {
+      "message": "Sep."
+   },
+   "5579702837382664819": {
+      "message": "Automatisk mappe for \u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gotisk"
+   },
+   "5603457799050818619": {
+      "message": "Der er ingen automatiske mapper i øjeblikket."
+   },
+   "5603774725128707055": {
+      "message": "Mappen blev flyttet."
+   },
+   "5621148847082889884": {
+      "message": "Her er endnu ingen mapper."
+   },
+   "5669644158906503623": {
+      "message": "Det arabiske tegn Sanah"
+   },
+   "5672850901284728452": {
+      "message": "Open logs page"
+   },
+   "5673852407127287054": {
+      "message": "Bindestreg-minus i fuld bredde"
+   },
+   "5679720964567650205": {
+      "message": "Tirsdag"
+   },
+   "5748894773514291207": {
+      "message": "Mellemrum, der er en tredjedel af lang tankestreg"
+   },
+   "5749465969550038727": {
+      "message": "Tagbanwa"
+   },
+   "5773338884170027267": {
+      "message": "Fjern formatering"
+   },
+   "5776478286503179051": {
+      "message": "Han Ordstamme med 5 anslag"
+   },
+   "5778201074245568998": {
+      "message": "Fed"
+   },
+   "580023699785819803": {
+      "message": "Tibetansk"
+   },
+   "5815994514834119961": {
+      "message": "Yijing/Tai Xuan Jing"
+   },
+   "5822895345080436445": {
+      "message": "Billeder"
+   },
+   "5832273633751333051": {
+      "message": "Syloti Nagri"
+   },
+   "5837746770084243727": {
+      "message": "Markeringer"
+   },
+   "5842240706321147978": {
+      "message": "Link"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Mellemrum"
+   },
+   "5923476740499653277": {
+      "message": "Glagolitisk"
+   },
+   "6002018674529763527": {
+      "message": "Hårdt mellemrum"
+   },
+   "6013038186284817941": {
+      "message": "Han Ordstamme med 8 anslag"
+   },
+   "6014514403103768983": {
+      "message": "Farve som heksadecimal værdi"
+   },
+   "6025708931099464434": {
+      "message": "Tai tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Tekstens baggrundsfarve"
+   },
+   "6055751153306823909": {
+      "message": "Meget stor"
+   },
+   "609920334473042917": {
+      "message": "Velkommen til dine nye bogmærker. Log ind i Chrome for at få flere funktioner, f.eks. bedre søgning, automatiske mapper samt billeder føjet til dine tidligere bogmærker."
+   },
+   "6131022146392295404": {
+      "message": "Rediger HTML-kilde"
+   },
+   "6146119258861607037": {
+      "message": "Han Ordstamme med 7 anslag"
+   },
+   "6176673388074993831": {
+      "message": "Koptisk"
+   },
+   "6178455470693561470": {
+      "message": "Du er offline i øjeblikket. Prøv igen, når du er online."
+   },
+   "6189158371964390675": {
+      "message": "Punkteret"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Integrering fra højre mod venstre"
+   },
+   "6207440179505974685": {
+      "message": "Shaw'sk"
+   },
+   "6233852423673631009": {
+      "message": "Juli"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Er du sikker på, at du vil slette alle elementer i denne mappe?}one{Er du sikker på, at du vil slette alle elementer i disse mapper?}other{Er du sikker på, at du vil slette alle elementer i disse mapper?}}"
+   },
+   "6256177058141995632": {
+      "message": "Miao"
+   },
+   "625779090990399178": {
+      "message": "Flere valgmuligheder"
+   },
+   "6259598030649933216": {
+      "message": "Oplysninger"
+   },
+   "6263370534846330732": {
+      "message": "Tifinagh"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{Der er valgt #}one{Der er valgt #}other{Der er valgt #}}"
+   },
+   "6281738099691391172": {
+      "message": "Tekstfarve"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Hårdt mellemrum uden bredde"
+   },
+   "6380136177516870340": {
+      "message": "Du er logget ind på Google med en anden konto end i din Chrome-browser."
+   },
+   "639862355711352140": {
+      "message": "FÅ FLERE OPLYSNINGER"
+   },
+   "6410416070545265970": {
+      "message": "Afprøv dette link"
+   },
+   "6418290353353165009": {
+      "message": "Annuller fortryd"
+   },
+   "6425676451769330238": {
+      "message": "Usynlige tegn"
+   },
+   "6433056041891472200": {
+      "message": "Log ind for at aktivere"
+   },
+   "6437997645764562921": {
+      "message": "Hangul Choseong-fyldtegn"
+   },
+   "6470997799115367716": {
+      "message": "Saurashtra"
+   },
+   "6471970833583478119": {
+      "message": "Mindre overskrift"
+   },
+   "6473682978091349952": {
+      "message": "Tegnsætningsmellemrum"
+   },
+   "6489221588545746734": {
+      "message": "Kyrillisk"
+   },
+   "64909648993550346": {
+      "message": "Tilsidesættelse fra højre mod venstre"
+   },
+   "649459667039033491": {
+      "message": "om $NUM$ dage",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Mellemrum uden bredde"
+   },
+   "6539448903465735867": {
+      "message": "Musiksymbol, der angiver starten på en frase"
+   },
+   "6544224848752157941": {
+      "message": "Formindsk indrykning"
+   },
+   "6559526625155197659": {
+      "message": "Google Søgning er ikke tilgængelig lige nu. Prøv igen om et par minutter."
+   },
+   "6563689176501108246": {
+      "message": "Han Ordstamme med 3 anslag"
+   },
+   "6572308230373875858": {
+      "message": "Navnet på mappen indeholder ugyldige tegn."
+   },
+   "6604826525171204065": {
+      "message": "Buhid"
+   },
+   "6606727931314199470": {
+      "message": "Fønikisk"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ x $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Dine bogmærker kunne ikke synkroniseres. Prøv at genindlæse siden"
+   },
+   "6661160677415877619": {
+      "message": "Rediger HTML"
+   },
+   "66727790049529171": {
+      "message": "Hævet skrift"
+   },
+   "6673681480713693433": {
+      "message": "Venstre mod højre-mærke"
+   },
+   "6679365605648394500": {
+      "message": "Historisk"
+   },
+   "6718105992776681941": {
+      "message": "Offentlig mappe"
+   },
+   "6731765034365779068": {
+      "message": "om $NUM$ minutter",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Gammel sydarabisk"
+   },
+   "6748884117721473417": {
+      "message": "Andre europæiske skrifter"
+   },
+   "6756714832459728782": {
+      "message": "Tai le"
+   },
+   "6781212531496313437": {
+      "message": "Liste"
+   },
+   "6787794440298969774": {
+      "message": "Malayalam"
+   },
+   "6813860917460451806": {
+      "message": "Lykisk"
+   },
+   "6848846772159302710": {
+      "message": "Rediger"
+   },
+   "6878231700728680871": {
+      "message": "NY"
+   },
+   "687829671213164815": {
+      "message": "Bogmærkeadministrator er ikke tilgængelig lige nu. Prøv igen om et par timer."
+   },
+   "6963034896702768829": {
+      "message": "Denne mappe findes ikke længere."
+   },
+   "698011532377344679": {
+      "message": "Køn og oprindelse"
+   },
+   "7004429103140794719": {
+      "message": "Seneste valg:"
+   },
+   "7009051272745522428": {
+      "message": "Har du glemt, hvad du har gemt? Bare søg efter det. Prøv generelle termet som \"film\" eller \"rejse\" for at finde dine bogmærker igen."
+   },
+   "7056277361038404533": {
+      "message": "Bogmærket blev flyttet."
+   },
+   "7058809993296833390": {
+      "message": "Giv os din mening"
+   },
+   "7064503592469946179": {
+      "message": "Sundanesisk"
+   },
+   "7077571379260349566": {
+      "message": "Vil du prøve at \u003Ca class=\"col-zda\">søge på nettet\u003C/a> i stedet?"
+   },
+   "7102762854285284877": {
+      "message": "Phags Pa"
+   },
+   "7124932478652977474": {
+      "message": "Gemt som bogmærke"
+   },
+   "7154665243775472938": {
+      "message": "Mapper"
+   },
+   "7168417416563257713": {
+      "message": "Gem"
+   },
+   "7178727559519269241": {
+      "message": "Dobbelt skråstreg"
+   },
+   "7256064246386232909": {
+      "message": "Javanesisk"
+   },
+   "7258012171742729961": {
+      "message": "Khmer-indlejret vokal Aq"
+   },
+   "7300188402017534561": {
+      "message": "Alle"
+   },
+   "7316184946628117028": {
+      "message": "Thaana"
+   },
+   "7328850288952193170": {
+      "message": "Usynlig separator"
+   },
+   "733245618582914569": {
+      "message": "OK"
+   },
+   "7333334175520057323": {
+      "message": "Annuller"
+   },
+   "7339792312429709609": {
+      "message": "Han Ordstamme med 2 anslag"
+   },
+   "7342965026300699486": {
+      "message": "Dette er en offentlig mappe. Hvis du sletter den, kan andre ikke se den."
+   },
+   "7346825266417376383": {
+      "message": "OK"
+   },
+   "7362095105218889721": {
+      "message": "Format og mellemrum"
+   },
+   "7369763432670344230": {
+      "message": "Hvilken e-mailadresse skal dette link føre hen til?"
+   },
+   "7376646180156094924": {
+      "message": "Navn"
+   },
+   "7388233788532145059": {
+      "message": "Tilføj eller fjern link"
+   },
+   "7407898565330883980": {
+      "message": "Opret mappe"
+   },
+   "7436494590700857376": {
+      "message": "Ikke-navngivet"
+   },
+   "7454853574776276752": {
+      "message": "OK"
+   },
+   "7466254996792639407": {
+      "message": "Georgisk"
+   },
+   "7487940627543583924": {
+      "message": "Torsdag"
+   },
+   "7496808914788281345": {
+      "message": "Lille lang tankestreg"
+   },
+   "7512206123241896524": {
+      "message": "Hvis du sletter offentlige mapper, kan andre ikke se dem."
+   },
+   "7514107325655026801": {
+      "message": "Mongolsk vokalseparator"
+   },
+   "7517846739534508036": {
+      "message": "Det billede, du forsøger at trække, er blokeret af hostwebsitet."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{om # minutter}=1{om # minut}one{om # minutter}other{om # minutter}}"
+   },
+   "7556000209920718943": {
+      "message": "Cypriotisk"
+   },
+   "7558709989823567445": {
+      "message": "Linear B"
+   },
+   "7561680940841358107": {
+      "message": "Kayah Li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} time}one{{TEXT} timer}other{{TEXT} timer}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Armensk bindestreg"
+   },
+   "762426240463793747": {
+      "message": "Brøktegn"
+   },
+   "7627205932825693842": {
+      "message": "Mongolsk blød bindestreg"
+   },
+   "7666041165203922544": {
+      "message": "Du kan nemt finde dine ting"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "om $NUM$ timer",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "for $NUM$ dag siden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "Juni"
+   },
+   "7763561590386207075": {
+      "message": "Webadresse"
+   },
+   "7778510137824413661": {
+      "message": "Du må være verdens bedste dogfooder! Du har lige fundet en fejl, vi ikke kan klare med en simpel genindlæsning."
+   },
+   "7787489712298922692": {
+      "message": "Ugaritisk"
+   },
+   "7794513342167361028": {
+      "message": "Sora Sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Musiksymbol, der angiver slutningen af en frase"
+   },
+   "7804811638177746132": {
+      "message": "Angiv en gyldig webadresse."
+   },
+   "7820796809104165402": {
+      "message": "Fredag"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Elementet blev oprettet.}one{# elementer blev oprettet.}other{# elementer blev oprettet.}}"
+   },
+   "7842161096380376517": {
+      "message": "Det arabiske tegn Safha"
+   },
+   "7877081360738059546": {
+      "message": "Dyr, planter og mad"
+   },
+   "7899357084217902569": {
+      "message": "Lille bindestreg-minus"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Er du i tvivl om, hvad du skal angive i feltet?$END_BOLD$ Find først den side på nettet, du vil linke til (en $SEARCH_ENGINE_LINK$søgemaskine$END_LINK$ kan være nyttig). Kopiér derefter webadressen fra feltet i browserens adresselinje, og indsæt den i feltet ovenfor.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Annuller"
+   },
+   "7929010027377139621": {
+      "message": "Tai viet"
+   },
+   "7944194550132470305": {
+      "message": "Tilføj en titel..."
+   },
+   "7957751306916251232": {
+      "message": "Ugyldig e-mailadresse"
+   },
+   "7977240188055092028": {
+      "message": "Vis"
+   },
+   "7987287518899618882": {
+      "message": "Feb."
+   },
+   "7995071973884866910": {
+      "message": "for $NUM$ dage siden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Videoer"
+   },
+   "8011311100803127599": {
+      "message": "Stjerner"
+   },
+   "8017723467201257913": {
+      "message": "Deseret"
+   },
+   "8018615794586730510": {
+      "message": "Normal/serif"
+   },
+   "8027365004962833557": {
+      "message": "Olditaliensk"
+   },
+   "8110520007971944893": {
+      "message": "Google kan organisere dine bogmærker automatisk, så du ikke behøver gøre det"
+   },
+   "8115055677841343820": {
+      "message": "Bindestreg"
+   },
+   "8132750144382731373": {
+      "message": "Emoji"
+   },
+   "8139874053154312313": {
+      "message": "Bindestreg med trema"
+   },
+   "8143412461134291283": {
+      "message": "Send feedback"
+   },
+   "8146770321190721394": {
+      "message": "Osmanya"
+   },
+   "8167437723285192120": {
+      "message": "Ingen"
+   },
+   "8179849043307262288": {
+      "message": "Anvendelse af funktion"
+   },
+   "818630018883405514": {
+      "message": "Omsluttet"
+   },
+   "8208069138346972268": {
+      "message": "Teknisk"
+   },
+   "8220605653109571646": {
+      "message": "Græsk"
+   },
+   "8243618543879664815": {
+      "message": "Jan."
+   },
+   "8275729822640276507": {
+      "message": "Du har forbindelse til internettet igen."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Fortryd"
+   },
+   "8338269186594699884": {
+      "message": "pm"
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "DET ER FORSTÅET"
+   },
+   "8394518299580326671": {
+      "message": "Hård mellemrum uden bredde"
+   },
+   "8401283339806880070": {
+      "message": "Juster"
+   },
+   "8417405596874032771": {
+      "message": "Ogam mellemrumstegn"
+   },
+   "8442861823466423570": {
+      "message": "Symbol, der markerer slutningen af kommentartekst"
+   },
+   "8454082825844118412": {
+      "message": "Han Han Ordstamme med 11..17 anslag"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Søgeresultater for \u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Humørikoner"
+   },
+   "8509200859889253607": {
+      "message": "Buginesisk"
+   },
+   "8513771017811992648": {
+      "message": "Ingen"
+   },
+   "8583880697323281603": {
+      "message": "Bogmærket blev ændret."
+   },
+   "8590712065595806821": {
+      "message": "Forslag"
+   },
+   "8605746117200843257": {
+      "message": "Symbol, der markerer begyndelsen af kommentartekst"
+   },
+   "8608038304204118820": {
+      "message": "for $NUM$ time siden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Stjernemarkér denne side"
+   },
+   "8632024322663078476": {
+      "message": "Føj til mappe"
+   },
+   "8635739256240231429": {
+      "message": "Luk"
+   },
+   "8637786997742615742": {
+      "message": "Modificerende bogstav"
+   },
+   "8639484881518821804": {
+      "message": "Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Samaritansk"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Normal"
+   },
+   "8694618136165028235": {
+      "message": "Tilføj en webadresse..."
+   },
+   "8723654283178734366": {
+      "message": "Indtast en webadresse"
+   },
+   "8748780785044360315": {
+      "message": "Thailandsk"
+   },
+   "8764548034413038101": {
+      "message": "om $NUM$ minut",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "Apr."
+   },
+   "8784386825932830097": {
+      "message": "Vandret bjælke"
+   },
+   "8793684579112208899": {
+      "message": "Sænket skrift"
+   },
+   "8797138403646238716": {
+      "message": "Meroitisk kursiv"
+   },
+   "8801105026907713256": {
+      "message": "Mindre udbredt"
+   },
+   "8805843642052942743": {
+      "message": "Lepcha"
+   },
+   "8827926534395802942": {
+      "message": "Taltankestreg"
+   },
+   "8829617001171812634": {
+      "message": "Objekter"
+   },
+   "8835425644719990167": {
+      "message": "Hangul Jungseong-fyldtegn"
+   },
+   "8838200101653652173": {
+      "message": "Omfatter"
+   },
+   "8838938639049885476": {
+      "message": "Kort mellemrum"
+   },
+   "8841111838340088121": {
+      "message": "Han Ordstamme med 4 anslag"
+   },
+   "8860909466229522023": {
+      "message": "Kursiv"
+   },
+   "888434073985276543": {
+      "message": "Præsentationsform for lang lodret tankestreg"
+   },
+   "8892104104076766085": {
+      "message": "Bølgestreg"
+   },
+   "8996388564146952786": {
+      "message": "Smalt, hårdt mellemrum"
+   },
+   "9021466412659564505": {
+      "message": "Log ind"
+   },
+   "9026903153882226079": {
+      "message": "Højre mod venstre-mærke"
+   },
+   "9034162255782924509": {
+      "message": "Batak"
+   },
+   "9041611521175673293": {
+      "message": "Alle bogmærker"
+   },
+   "9041881295809259717": {
+      "message": "Matematik"
+   },
+   "9072668986327887451": {
+      "message": "Ideografisk beskrivelse"
+   },
+   "9076212347872857205": {
+      "message": "Citat"
+   },
+   "9083920162332648298": {
+      "message": "am"
+   },
+   "9086165147555162831": {
+      "message": "Meetei Mayek"
+   },
+   "9092805374125336008": {
+      "message": "Maj"
+   },
+   "9099680152087323883": {
+      "message": "Nov."
+   },
+   "9107905796365363672": {
+      "message": "Stor"
+   },
+   "9113260413780075008": {
+      "message": "Brahmi"
+   },
+   "9115834469932780333": {
+      "message": "Telugu"
+   },
+   "9143484910409308303": {
+      "message": "Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Det er ikke muligt at søge efter krypterede bogmærker. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Få flere oplysninger\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Mappen blev fjernet fra den overordnede mappe."
+   },
+   "9180458846772153689": {
+      "message": "Armensk"
+   },
+   "9181119817188520774": {
+      "message": "Der er ingen netværksforbindelse. Du kan ikke gemme ændringer, før du er online igen."
+   },
+   "9204096795425905695": {
+      "message": "Usynlige klokkeslæt"
+   },
+   "922163125711959960": {
+      "message": "for $NUM$ minut siden",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Tilføj"
+   },
+   "93670926879626900": {
+      "message": "Blanktegn"
+   },
+   "93871902389648718": {
+      "message": "Musiksymbol, der viser en slutbjælke"
+   },
+   "960914149201689167": {
+      "message": "Decimaltal"
+   },
+   "963040144042262397": {
+      "message": "Slet"
+   },
+   "964017479791059460": {
+      "message": "Arabisk symbol ved slutningen af et vers"
+   },
+   "980376110610801797": {
+      "message": "Indsæt billede"
+   }
+}

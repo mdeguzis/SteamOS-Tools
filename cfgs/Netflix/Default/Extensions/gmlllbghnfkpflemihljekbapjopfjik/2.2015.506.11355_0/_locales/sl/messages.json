@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Dajte to mapo v skupno rabo ali spremenite nastavitve skupne rabe"
+   },
+   "1014969137789706237": {
+      "message": "Povezava na stran ali datoteko nekje drugje v spletu"
+   },
+   "1033240210015440654": {
+      "message": "Odstrani sliko"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} minuta}one{{TEXT} minuta}two{{TEXT} minuti}few{{TEXT} minute}other{{TEXT} minut}}"
+   },
+   "1035347665345261212": {
+      "message": "Vnesite opombo"
+   },
+   "1036132178487616999": {
+      "message": "Introduction"
+   },
+   "1041064392303158655": {
+      "message": "Pisava limbu"
+   },
+   "1066103686460691847": {
+      "message": "Prečrtaj"
+   },
+   "1085496824897012476": {
+      "message": "Egipčanski hieroglifi"
+   },
+   "1105045461281211798": {
+      "message": "Znak za ločevanje digrafov"
+   },
+   "111315886393984302": {
+      "message": "Poskusite ustvariti zaznamke za spletne strani in jih dodati v to mapo."
+   },
+   "1117324761561996205": {
+      "message": "Uredi"
+   },
+   "1124849668149719420": {
+      "message": "Vnesite povratne informacije"
+   },
+   "1142044035368837035": {
+      "message": "Celec"
+   },
+   "1148670835609345833": {
+      "message": "Gumb za urejanje zaznamka"
+   },
+   "1161548997573254809": {
+      "message": "Prekliči"
+   },
+   "1164857998440803763": {
+      "message": "Pisava čakma"
+   },
+   "1170102576258588460": {
+      "message": "Nedeljivi vezaj"
+   },
+   "1185158158029036642": {
+      "message": "Kliknite, če želite ustvariti nov zaznamek ali novo mapo."
+   },
+   "1201286409038567178": {
+      "message": "neveljaven URL"
+   },
+   "1214729854306268929": {
+      "message": "pred toliko minutami: $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{pred # urami}=1{pred # uro}one{pred # uro}two{pred # urama}few{pred # urami}other{pred # urami}}"
+   },
+   "1232723730191754374": {
+      "message": "Pisava"
+   },
+   "1243361230826165709": {
+      "message": "Pisava hangul"
+   },
+   "128696227290770661": {
+      "message": "Devangarska pisava"
+   },
+   "1312606838421552827": {
+      "message": "Številka"
+   },
+   "1316608632339176215": {
+      "message": "Razno"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "Presledek velikosti četrtine pike"
+   },
+   "1337190557080419948": {
+      "message": "Naslov"
+   },
+   "1347841728719446841": {
+      "message": "E-poštni naslov"
+   },
+   "1350404634989083059": {
+      "message": "Neviden znak za plus"
+   },
+   "1356908927221815545": {
+      "message": "1-potezni radikali v pisavi han"
+   },
+   "1373666411928680514": {
+      "message": "Valoviti pomišljaj"
+   },
+   "1378894003206512970": {
+      "message": "Opusti"
+   },
+   "138484781723580209": {
+      "message": "Sirski znak za okrajšavo"
+   },
+   "1397568831960098153": {
+      "message": "Oblika"
+   },
+   "142359106099692409": {
+      "message": "Samodejne mape"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Mala"
+   },
+   "1460136507747533015": {
+      "message": "Prijavite se, če želite dati v skupno rabo"
+   },
+   "1477567329816921885": {
+      "message": "Ste vedeli, da lahko priljubljene zaznamke delite z drugimi tako, da mapo nastavite kot javno? Ustvarite javni URL in ga dajte v skupno rabo."
+   },
+   "1507362459078633250": {
+      "message": "Morali boste odstraniti in znova naložiti razširitev za Chrome in/ali začeti sitnariti računalničarjem ... Se opravičujemo. :-/"
+   },
+   "1516565793778879679": {
+      "message": "Han – drugo"
+   },
+   "1519227660570105215": {
+      "message": "Ta stran je morda škodljiva"
+   },
+   "1556175764217302644": {
+      "message": "Kmerski inherentni samoglasnik Aa"
+   },
+   "1566367040709255091": {
+      "message": "Oblika"
+   },
+   "1582412901770221448": {
+      "message": "Dodano v mapo {IME MAPE}"
+   },
+   "1585233503778646014": {
+      "message": "Mandajska pisava"
+   },
+   "1592899529499992997": {
+      "message": "Zaznamek je bil odstranjen iz mape."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Če želite prikazati ime znaka, premaknite miškin kazalec na vsako celico."
+   },
+   "1630439475247732904": {
+      "message": "Nadpisano"
+   },
+   "1634874677195552014": {
+      "message": "Presledek velikosti šestine pike"
+   },
+   "1635366592844795535": {
+      "message": "PRIJAVA V CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Vreme in astrologija"
+   },
+   "1665234249876251486": {
+      "message": "Presledek med številkama"
+   },
+   "1666311405952625458": {
+      "message": "Vreme, prizori in zodiakalna znamenja"
+   },
+   "1678004121951995792": {
+      "message": "avg"
+   },
+   "1680034627075195442": {
+      "message": "Mape lahko ustvarite sami ali prepustite organizacijo Googlu, ki bo samodejno ustvaril mape."
+   },
+   "1683451665637766512": {
+      "message": "Povezava na e-poštni naslov"
+   },
+   "1685884502412781083": {
+      "message": "Znak za ločevanje odstavkov"
+   },
+   "169055910458549089": {
+      "message": "Povezave s strežnikom ni bilo mogoče vzpostaviti. Poskusite znova čez nekaj minut."
+   },
+   "1691734467561749621": {
+      "message": "Map ne morete dati v skupno rabo v vrstici z zaznamki"
+   },
+   "1715361312704502898": {
+      "message": "Prevoz in zemljevid"
+   },
+   "1719053155706676551": {
+      "message": "Vrstica z zaznamki"
+   },
+   "1730849295731139586": {
+      "message": "Pisava ji"
+   },
+   "1748899684018766272": {
+      "message": "Hangulsko polnilo polovične dolžine"
+   },
+   "1755438325907288056": {
+      "message": "PIsava nko"
+   },
+   "1776387440523546537": {
+      "message": "Danes"
+   },
+   "178181731883558542": {
+      "message": "Besedilno polje za iskanje po zaznamkih."
+   },
+   "1791083579000016877": {
+      "message": "Na temelju nabora znakov ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Ogled elementov z zvezdico"
+   },
+   "1803667155949248788": {
+      "message": "Imperialna aramejska pisava"
+   },
+   "1827599404395723350": {
+      "message": "Slike kontrolnikov"
+   },
+   "1839253253564716482": {
+      "message": "Najden ni bil noben zaznamek"
+   },
+   "1847259066982820034": {
+      "message": "Izberite mapo"
+   },
+   "1875246104836450162": {
+      "message": "Simbol"
+   },
+   "1879633738298009258": {
+      "message": "Srednje dolgi matematični presledek"
+   },
+   "1915655034817606796": {
+      "message": "Mehki vezaj"
+   },
+   "191946029988896895": {
+      "message": "Arabski številski znak"
+   },
+   "1932973762029792550": {
+      "message": "Google samodejno organizira vse, kar daste v zaznamke"
+   },
+   "1942405576047748946": {
+      "message": "Zaznamek je bil ustvarjen."
+   },
+   "196266011387145001": {
+      "message": "Naprej"
+   },
+   "1963154331052663396": {
+      "message": "Latinsko"
+   },
+   "1999193032742275907": {
+      "message": "9-potezni radikali v pisavi han"
+   },
+   "2003860471263842959": {
+      "message": "Zelo majhen presledek"
+   },
+   "2015775921681923490": {
+      "message": "Nastavitve"
+   },
+   "202031328373263910": {
+      "message": "6-potezni radikali v pisavi han"
+   },
+   "2036672715320764541": {
+      "message": "Znak za ločevanje vrstic"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Element je bil odstranjen iz mape.}one{Iz mape je bil odstranjen # element.}two{Iz mape sta bila odstranjena # elementa.}few{Iz mape so bili odstranjeni # elementi.}other{Iz mape je bilo odstranjenih # elementov.}}"
+   },
+   "2088133380647290173": {
+      "message": "Na mestu {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Vnesite URL, če želite ustvariti nov zaznamek."
+   },
+   "2117634893694108880": {
+      "message": "Zasebna"
+   },
+   "2135921744011555145": {
+      "message": "Iskanje po zaznamkih"
+   },
+   "213958631597214757": {
+      "message": "Ustavi skupno rabo. "
+   },
+   "2149498606985329379": {
+      "message": "Uvoz zaznamkov končan."
+   },
+   "2159536073195133897": {
+      "message": "Razveljavi"
+   },
+   "2166866096346653276": {
+      "message": "Brez"
+   },
+   "2167636135101203592": {
+      "message": "Bengalska pisava"
+   },
+   "2176930521411607789": {
+      "message": "V paru"
+   },
+   "218054763532467155": {
+      "message": "Vnesite naslov"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Izbris elementa \u003Cb>{firstItemName}\u003C/b>}=1{Izbris elementa \u003Cb>{firstItemName}\u003C/b> in še # elementa}one{Izbris elementa \u003Cb>{firstItemName}\u003C/b> in še # elementa}two{Izbris elementa \u003Cb>{firstItemName}\u003C/b> in še # elementov}few{Izbris elementa \u003Cb>{firstItemName}\u003C/b> in še # elementov}other{Izbris elementa \u003Cb>{firstItemName}\u003C/b> in še # elementov}}"
+   },
+   "2200921183377473543": {
+      "message": "Da"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{pred # dnevi}=1{pred # dnevom}one{pred # dnevom}two{pred # dnevoma}few{pred # dnevi}other{pred # dnevi}}"
+   },
+   "2228495834106697427": {
+      "message": "Podpisano"
+   },
+   "2253752461533441758": {
+      "message": "10-potezni radikali v pisavi han"
+   },
+   "2257250286834696444": {
+      "message": "Nalaganje ..."
+   },
+   "2280907281518645401": {
+      "message": "Enačaj v katakani in hiragani"
+   },
+   "2301390744929043794": {
+      "message": "Počakajte, medtem ko se mapa shranjuje v strežnik"
+   },
+   "2315132909835126412": {
+      "message": "Javna"
+   },
+   "2315864755754275083": {
+      "message": "Valuta"
+   },
+   "231658276152304252": {
+      "message": "Odstrani"
+   },
+   "2353164220175503425": {
+      "message": "Številski znak kaiti"
+   },
+   "2359350477261263182": {
+      "message": "Upravitelj zaznamkov"
+   },
+   "2362075348358411947": {
+      "message": "Označen seznam"
+   },
+   "2396988228061015409": {
+      "message": "Mape"
+   },
+   "2398127458667829603": {
+      "message": "Tipkovnica in uporabniški vmesnik"
+   },
+   "2413859014200470621": {
+      "message": "Povečaj zamik"
+   },
+   "2414987366409119013": {
+      "message": "Opis nove mape (neobvezno)"
+   },
+   "2444245672676114535": {
+      "message": "Geometrijski liki"
+   },
+   "2454859602363061373": {
+      "message": "Uporabite zvezdico v naslovni vrstici, da kar koli shranite v spletu"
+   },
+   "2497668314434532819": {
+      "message": "Mongolska pisava"
+   },
+   "2498668179494167671": {
+      "message": "Presledek"
+   },
+   "2506204110427755391": {
+      "message": "Vključuje zaznamke v mobilnih napravah in elemente, ki niso v vrstici z zaznamki"
+   },
+   "2512307863902593558": {
+      "message": "Pisava karošti"
+   },
+   "2518095696810513128": {
+      "message": "Uvoz zaznamkov …"
+   },
+   "2524757118580919241": {
+      "message": "Arabska oznaka za sprotno opombo"
+   },
+   "2528672033407304265": {
+      "message": "Ta mapa je vidna samo vam. Če jo želite dati v skupno rabo, kliknite »Nastavi kot javno« in ustvarili boste povezavo za skupno rabo."
+   },
+   "2566403151253785267": {
+      "message": "Neimenovana mapa"
+   },
+   "2581794950690518802": {
+      "message": "0 minut"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Opusti uvod"
+   },
+   "2620868598794227408": {
+      "message": "Ta stran ne obstaja več"
+   },
+   "2626676714216619519": {
+      "message": "Podnaslov"
+   },
+   "2655730128699057253": {
+      "message": "Navadna"
+   },
+   "2662413919655166560": {
+      "message": "Nedelja"
+   },
+   "2665932089093244134": {
+      "message": "Dodajte zvezdico"
+   },
+   "2678821645623495183": {
+      "message": "Ljudje in čustva"
+   },
+   "271255586148025786": {
+      "message": "Šestnajstiški vnos"
+   },
+   "27472132823239706": {
+      "message": "Od desne proti levi"
+   },
+   "278208331708453602": {
+      "message": "Če želite dati v skupno rabo, se povežite s spletom in se prijavite"
+   },
+   "2785193083209311775": {
+      "message": "mar"
+   },
+   "2803486006471792395": {
+      "message": "avtor: \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Ogamska pisava"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Uvoz iz datoteke končan"
+   },
+   "2860423337665026261": {
+      "message": "Odstrani iz mape"
+   },
+   "2870049984905408346": {
+      "message": "Naslov"
+   },
+   "2878157583475586619": {
+      "message": "Dodaj barvo"
+   },
+   "2926789704127794819": {
+      "message": "Ime nove mape (obvezno)"
+   },
+   "2951727458776714094": {
+      "message": "Te povezave ni mogoče preskusiti."
+   },
+   "2967109838548277236": {
+      "message": "Povezava za skupno rabo:"
+   },
+   "2990895581472607445": {
+      "message": "Drugo"
+   },
+   "2993160588184042952": {
+      "message": "Ameriške pisave"
+   },
+   "3002524775820283106": {
+      "message": "Dodajte opombo ..."
+   },
+   "3010872256194497959": {
+      "message": "Deli iger"
+   },
+   "3027920889685525544": {
+      "message": "Napisni partijan"
+   },
+   "3034084095590774557": {
+      "message": "Prezri"
+   },
+   "3051034269680162898": {
+      "message": "Opusti"
+   },
+   "3054430907861836285": {
+      "message": "dec"
+   },
+   "3085746489633838782": {
+      "message": "Oštevilčen seznam"
+   },
+   "3087091861834859241": {
+      "message": "Pozdravljeni v novih zaznamkih!"
+   },
+   "3090613379634438188": {
+      "message": "Merotski hieroglifi"
+   },
+   "3093070593773009381": {
+      "message": "Druge vzhodnoazijske pisave"
+   },
+   "3114565967060091369": {
+      "message": "Pisava hanunu"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{čez # ur}=1{čez # uro}one{čez # uro}two{čez # uri}few{čez # ure}other{čez # ur}}"
+   },
+   "3140214171317206668": {
+      "message": "Polovinec"
+   },
+   "3153433695439945201": {
+      "message": "Še naprej lahko dodajate strani med zaznamke z zvezdico. Zaznamek bo v Google Račun shranil del strani, da jo boste pozneje lažje našli."
+   },
+   "3186183325550234111": {
+      "message": "Pojdi na povezavo: "
+   },
+   "3212472770580267001": {
+      "message": "Jugovzhodnoazijske pisave"
+   },
+   "3218408007702426636": {
+      "message": "Glasbeni simbol za konec ligature"
+   },
+   "3227675900195928275": {
+      "message": "Pisava rejang"
+   },
+   "3234811075540284463": {
+      "message": "Navadno"
+   },
+   "3244450940425660505": {
+      "message": "Ločila"
+   },
+   "3245712009497198424": {
+      "message": "čez $NUM$ dan",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Za vaše iskanje ni rezultatov"
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Želite izbrisati tudi elemente v tej mapi?}one{Želite izbrisati tudi elemente v teh mapah?}two{Želite izbrisati tudi elemente v teh mapah?}few{Želite izbrisati tudi elemente v teh mapah?}other{Želite izbrisati tudi elemente v teh mapah?}}"
+   },
+   "3284734782999930756": {
+      "message": "URL"
+   },
+   "328616644571689303": {
+      "message": "Glasbeni simbol za konec legato vezaja"
+   },
+   "3309586635668050685": {
+      "message": "Preglasitev od leve proti desni"
+   },
+   "3316092543008555482": {
+      "message": "Fonetično (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonetično (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Mapa je bila ustvarjena."
+   },
+   "3334908307836130914": {
+      "message": "Pisava ol čiki"
+   },
+   "3355297279379313357": {
+      "message": "Nazadnje uporabljena"
+   },
+   "3360043590563638195": {
+      "message": "Velikost pisave"
+   },
+   "3364831016239212879": {
+      "message": "Poravnaj na sredino"
+   },
+   "3383495912989125674": {
+      "message": "Ozki presledek"
+   },
+   "340057911065586090": {
+      "message": "Ideografski presledek"
+   },
+   "3413537935166399959": {
+      "message": "Pisava šarada"
+   },
+   "3413696263226173348": {
+      "message": "Uredi besedo"
+   },
+   "3417560136558853718": {
+      "message": "Kannadska pisava"
+   },
+   "3423652049926153935": {
+      "message": "Nova mapa ..."
+   },
+   "3484416881429158332": {
+      "message": "Zasebna mapa"
+   },
+   "3490738610910152047": {
+      "message": "Bamumska pisava"
+   },
+   "3490814222385998788": {
+      "message": "Pisava takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Element je bil izbrisan.}one{Izbrisan je bil # element.}two{Izbrisana sta bila # elementa.}few{Izbrisani so bili # elementi.}other{Izbrisanih je bilo # elementov.}}"
+   },
+   "3501212562096780610": {
+      "message": "Nadrejena mapa: "
+   },
+   "3501367450176932554": {
+      "message": "Znak za ločevanje medvrstičnih opomb"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Orijska pisava"
+   },
+   "3545341282138953352": {
+      "message": "Glasbeni simbol za začetek ligature"
+   },
+   "3546572522856950945": {
+      "message": "Klinopis"
+   },
+   "3554323414956249846": {
+      "message": "Povezava"
+   },
+   "3572348996000195345": {
+      "message": "Dolgi presledek"
+   },
+   "3596311690500158112": {
+      "message": "Upravitelj zaznamkov trenutno ni na voljo. Znova naložite stran."
+   },
+   "3621913747018973144": {
+      "message": "Od leve proti desni"
+   },
+   "362505154270301776": {
+      "message": "Spletne strani"
+   },
+   "3630778778193389974": {
+      "message": "Preverjanje črkovanja"
+   },
+   "3641126700487126155": {
+      "message": "Glasbeni simbol za začetek legato vezaja"
+   },
+   "3646623530558910508": {
+      "message": "Mapa spremenjena."
+   },
+   "3646641743349296313": {
+      "message": "okt"
+   },
+   "3650952447025672637": {
+      "message": "Izbriši mape in elemente"
+   },
+   "3723533099349282495": {
+      "message": "Pisava kaiti"
+   },
+   "37315674215151127": {
+      "message": "Ostanite organizirani"
+   },
+   "3731716253672925709": {
+      "message": "Puščice"
+   },
+   "373495866496779840": {
+      "message": "PRIKAŽI VSE ZAZNAMKE"
+   },
+   "3735789968703193383": {
+      "message": "Prikaz"
+   },
+   "3737215641755068426": {
+      "message": "Poteze KJK"
+   },
+   "3752699251010579834": {
+      "message": "Kanadski enačaj"
+   },
+   "377368134657453613": {
+      "message": "Prijavite se v Chrome, če želite iskati po straneh, ki ste jih dodali med zaznamke"
+   },
+   "3800528517409823312": {
+      "message": "Matematično alfanumerično"
+   },
+   "3832066920911226237": {
+      "message": "Izvoz zaznamkov …"
+   },
+   "3836877357378306877": {
+      "message": "Splošno"
+   },
+   "3880744822029422406": {
+      "message": "Če ustavite skupno rabo te mape, povezava za skupno rabo ne bo več delovala."
+   },
+   "3888658965293980754": {
+      "message": "Oblika"
+   },
+   "3893161213200925599": {
+      "message": "Prekliči"
+   },
+   "3924970930634517299": {
+      "message": "Opis"
+   },
+   "3947500116452515010": {
+      "message": "Tu še ni nobenega zaznamka."
+   },
+   "3951067234379178869": {
+      "message": "Mapa izbrisana."
+   },
+   "3953750991047324531": {
+      "message": "Gudžaratska pisava"
+   },
+   "3960988854399920931": {
+      "message": "Afriške pisave"
+   },
+   "3977845230474613475": {
+      "message": "Ponedeljek"
+   },
+   "3978409745488989414": {
+      "message": "Jutri"
+   },
+   "3981527568769423358": {
+      "message": "Izbirnik različic"
+   },
+   "3998968827975494252": {
+      "message": "Pisava kanadskih staroselcev"
+   },
+   "4052124018014680002": {
+      "message": "Ker ste v dodatnih nastavitvah sinhronizacije izbrali šifriranje zaznamkov, so funkcije, pri katerih bi moral Google dostopati do vaše vsebine, onemogočene."
+   },
+   "4070285516355502772": {
+      "message": "Navadni presledek brez preloma med besedama"
+   },
+   "4083819681339999404": {
+      "message": "Mapa je bila premaknjena."
+   },
+   "4093661547607027073": {
+      "message": "Dolgi pomišljaj"
+   },
+   "4132740194577129031": {
+      "message": "Bopomofska pisava"
+   },
+   "4137824748636628400": {
+      "message": "Tamilska pisava"
+   },
+   "4141340144529743179": {
+      "message": "Poravnaj desno"
+   },
+   "4185431426264249075": {
+      "message": "Ne"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{pred # minutami}=1{pred # minuto}one{pred # minuto}two{pred # minutama}few{pred # minutami}other{pred # minutami}}"
+   },
+   "4207416107225157509": {
+      "message": "Čamska pisava"
+   },
+   "421809097037025717": {
+      "message": "Lidijska pisava"
+   },
+   "4219066138225986920": {
+      "message": "pred toliko urami: $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "Pisava novi tai lue"
+   },
+   "4256734561546878891": {
+      "message": "Arabska pisava"
+   },
+   "4257688962636177926": {
+      "message": "Opomba"
+   },
+   "4313041477349547430": {
+      "message": "Izberi"
+   },
+   "4317807879399263422": {
+      "message": "Simboli"
+   },
+   "4371152527205140884": {
+      "message": "Mjanmarska pisava"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Hangulsko polnilo"
+   },
+   "4394299965695763613": {
+      "message": "NAPAKA: »$COLOR$« ni veljavna barva.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "čez $NUM$ uro",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Odpri to povezavo v novem oknu"
+   },
+   "4436859540429978060": {
+      "message": "Trenutno ni mogoče vleči in spuščati slikovnih datotek.\nPovlecite sliko iz spletnega brskalnika."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Pisava vai"
+   },
+   "4467383198992095863": {
+      "message": "Pomišljaj/vezaj"
+   },
+   "4485563787650970048": {
+      "message": "Prevoz, zemljevidi in znaki"
+   },
+   "4511605174156009486": {
+      "message": "PRIJAVA"
+   },
+   "4536708754459423390": {
+      "message": "Povezava na:"
+   },
+   "4547888102017603305": {
+      "message": "Barva vnosa po meri, npr. rožnata, #F00, #D015FF ali RGB (100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Ploščica"
+   },
+   "4564357083324116837": {
+      "message": "Južnoazijske pisave"
+   },
+   "4604654420597817764": {
+      "message": "Znak za navadni presledek"
+   },
+   "4631096075002795557": {
+      "message": "Braillova pisava"
+   },
+   "4639190252078874549": {
+      "message": "Zaznamki so posodobljeni, da lažje najdete, kar ste shranili."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Element je bil premaknjen.}one{Premaknjen je bil # element.}two{Premaknjena sta bila # elementa.}few{Premaknjeni so bili # elementi.}other{Premaknjenih je bilo # elementov.}}"
+   },
+   "4677342274083596624": {
+      "message": "Način brez povezave"
+   },
+   "4680868343849876958": {
+      "message": "Stara turška pisava"
+   },
+   "468549910877472151": {
+      "message": "Uvoz končan"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Staroperzijska pisava"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Bodite previdni.$POSTB$Vedno, ko na spletno stran vnesete e-poštni naslov, ga lahko najdejo tudi nadležni pošiljatelji vsiljene pošte.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Tagaloška pisava"
+   },
+   "4747022692863822805": {
+      "message": "Znak za minus"
+   },
+   "4749120223198822539": {
+      "message": "Sinhalska pisava"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Izbriši mapo in elemente"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Element je bil premaknjen.}one{Premaknjen je bil # element.}two{Premaknjena sta bila # elementa.}few{Premaknjeni so bili # elementi.}other{Premaknjenih je bilo # elementov.}}"
+   },
+   "482762608498192214": {
+      "message": "Sobota"
+   },
+   "4833178038692710844": {
+      "message": "Obrnjeno/zrcaljeno"
+   },
+   "484556867028550958": {
+      "message": "Hebrejsko ločilo maqaf"
+   },
+   "4848946125726663758": {
+      "message": "Poravnaj levo"
+   },
+   "4849410737412842755": {
+      "message": "Te mape ne morete dati v skupno rabo, ker njena nadrejena mapa ni v javni skupni rabi"
+   },
+   "4856510901676745213": {
+      "message": "Hebrejska pisava"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{čez # dni}=1{čez # dan}one{čez # dan}two{čez # dneva}few{čez # dni}other{čez # dni}}"
+   },
+   "4886850400045987885": {
+      "message": "Urejanje povezave"
+   },
+   "4894342917447426362": {
+      "message": "Latinski 1 – dodatno"
+   },
+   "4895451769213934183": {
+      "message": "Pisava lisu"
+   },
+   "4920822305412968613": {
+      "message": "Predstavitvena oblika za navpični kratki pomišljaj"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Element je bil spremenjen.}one{Spremenjen je bil # element.}two{Spremenjena sta bila # elementa.}few{Spremenjeni so bili # elementi.}other{Spremenjenih je bilo # elementov.}}"
+   },
+   "4934771438157777517": {
+      "message": "Podčrtano"
+   },
+   "4943286974087295923": {
+      "message": "Zapri"
+   },
+   "4944188657066537729": {
+      "message": "Sirska pisava"
+   },
+   "4974279938502768331": {
+      "message": "Uredi"
+   },
+   "4987339278179088082": {
+      "message": "Dodaj atribut »$REL_NO_FOLLOW$« ($LINK_START$Več o tem$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Besedilo za prikaz:"
+   },
+   "4991252214297708837": {
+      "message": "Opis mape"
+   },
+   "500023300077018967": {
+      "message": "Ni predlogov"
+   },
+   "5002702571780362629": {
+      "message": "Avestanska pisava"
+   },
+   "5013372925252634952": {
+      "message": "Karijska pisava"
+   },
+   "5015669074913229206": {
+      "message": "Balijska pisava"
+   },
+   "5016723309142316836": {
+      "message": "Pisava gurmuki"
+   },
+   "5042512453093360461": {
+      "message": "Zaključek smernega oblikovanja"
+   },
+   "5086992011880811613": {
+      "message": "Zaznamek je bil izbrisan."
+   },
+   "5089168125978769021": {
+      "message": "Izbris mape"
+   },
+   "5089667744614498582": {
+      "message": "Zaznamek je bil premaknjen."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Glasbeni simbol za začetek prečke"
+   },
+   "5109840495091366547": {
+      "message": "Šport, praznovanja in dejavnosti"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Nova mapa"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} dan}one{{TEXT} dan}two{{TEXT} dneva}few{{TEXT} dnevi}other{{TEXT} dni}}"
+   },
+   "5162393477556833033": {
+      "message": "Na kateri URL naj usmerja povezava?"
+   },
+   "518089704180562683": {
+      "message": "Danes"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Runska pisava"
+   },
+   "5253985055078626542": {
+      "message": "Vdelava od leve proti desni"
+   },
+   "5266193592374285468": {
+      "message": "Nastavi kot javno"
+   },
+   "5272267167655788064": {
+      "message": "Slika"
+   },
+   "528339682728930567": {
+      "message": "Upravitelj zaznamkov trenutno ni na voljo. Poskusite znova čez nekaj minut."
+   },
+   "5300191622079400984": {
+      "message": "Vse"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Kliknite, če želite dodati opis"
+   },
+   "5334597244901829906": {
+      "message": "Daj to mapo v skupno rabo"
+   },
+   "534304870772683249": {
+      "message": "Pošlji"
+   },
+   "534369010818044160": {
+      "message": "Kmerska pisava"
+   },
+   "5354142472798067112": {
+      "message": "Izbirnik različic – $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Ni omrežne povezave. Sprememb ne morete shraniti, dokler se ne znova povežete s spletom."
+   },
+   "5371009567664142864": {
+      "message": "Etiopska pisava"
+   },
+   "5378436065321978089": {
+      "message": "Ustvari"
+   },
+   "538263398271363120": {
+      "message": "Čerokeščina"
+   },
+   "5412265752110327977": {
+      "message": "Združljivost"
+   },
+   "5425054962709217464": {
+      "message": "Sreda"
+   },
+   "544490805551236927": {
+      "message": "Pisave Srednjega vzhoda"
+   },
+   "5448654348317290038": {
+      "message": "Pomišljaj"
+   },
+   "5456454482863742119": {
+      "message": "Delete folders"
+   },
+   "5458956770053499082": {
+      "message": "Glasba"
+   },
+   "546306107859654806": {
+      "message": "Premakni v mapo"
+   },
+   "5474647412096976366": {
+      "message": "Vzpostavite povezavo z internetom, če želite iskati po straneh, dodanih med zaznamke"
+   },
+   "5500830105937873966": {
+      "message": "Izbriši"
+   },
+   "5517581353492371385": {
+      "message": "Včeraj"
+   },
+   "5521943762943322583": {
+      "message": "Laoška pisava"
+   },
+   "5529569087489430384": {
+      "message": "Napisna pahlavska pisava"
+   },
+   "5561412620611998456": {
+      "message": "sep"
+   },
+   "5579702837382664819": {
+      "message": "Samodejna mapa za \u003Cspan class=\"col-tlv-title\">{MAPA}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gotska pisava"
+   },
+   "5603457799050818619": {
+      "message": "Trenutno ni samodejnih map."
+   },
+   "5603774725128707055": {
+      "message": "Mapa je bila premaknjena."
+   },
+   "5621148847082889884": {
+      "message": "Tu še ni nobene mape."
+   },
+   "5669644158906503623": {
+      "message": "Arabski znak sana"
+   },
+   "5672850901284728452": {
+      "message": "Open logs page"
+   },
+   "5673852407127287054": {
+      "message": "Dolgi znak za minus"
+   },
+   "5679720964567650205": {
+      "message": "Torek"
+   },
+   "5748894773514291207": {
+      "message": "Presledek velikosti tretjine pike"
+   },
+   "5749465969550038727": {
+      "message": "Pisava takbanva"
+   },
+   "5773338884170027267": {
+      "message": "Odstrani oblikovanje"
+   },
+   "5776478286503179051": {
+      "message": "5-potezni radikali v pisavi han"
+   },
+   "5778201074245568998": {
+      "message": "Krepko"
+   },
+   "580023699785819803": {
+      "message": "Tibetanska pisava"
+   },
+   "5815994514834119961": {
+      "message": "I Ching/Taj Šuan Čing"
+   },
+   "5822895345080436445": {
+      "message": "Slike"
+   },
+   "5832273633751333051": {
+      "message": "Silotska pisava"
+   },
+   "5837746770084243727": {
+      "message": "Znaki"
+   },
+   "5842240706321147978": {
+      "message": "Poveži"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Razmik"
+   },
+   "5923476740499653277": {
+      "message": "Glagolica"
+   },
+   "6002018674529763527": {
+      "message": "Nedeljivi presledek"
+   },
+   "6013038186284817941": {
+      "message": "8-potezni radikali v pisavi han"
+   },
+   "6014514403103768983": {
+      "message": "Šestnajstiška barva"
+   },
+   "6025708931099464434": {
+      "message": "Pisava tai tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Barva ozadja besedila"
+   },
+   "6055751153306823909": {
+      "message": "Velikanska"
+   },
+   "609920334473042917": {
+      "message": "Pozdravljeni v novih zaznamkih. Prijavite se v Chrome in uporabljali boste lahko več funkcij, na primer boljše iskanje, samodejne mape in slike, dodane prejšnjim zaznamkom."
+   },
+   "6131022146392295404": {
+      "message": "Urejanje izvorne kode HTML"
+   },
+   "6146119258861607037": {
+      "message": "7-potezni radikali v pisavi han"
+   },
+   "6176673388074993831": {
+      "message": "Koptska pisava"
+   },
+   "6178455470693561470": {
+      "message": "Trenutno ste brez povezave. Poskusite znova, ko bo povezava znova vzpostavljena."
+   },
+   "6189158371964390675": {
+      "message": "Obdano/črtkano"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Vdelava od desne proti levi"
+   },
+   "6207440179505974685": {
+      "message": "Šavijska pisava"
+   },
+   "6233852423673631009": {
+      "message": "jul"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Ste prepričani, da želite izbrisati vse elemente v tej mapi?}one{Ste prepričani, da želite izbrisati vse elemente v teh mapah?}two{Ste prepričani, da želite izbrisati vse elemente v teh mapah?}few{Ste prepričani, da želite izbrisati vse elemente v teh mapah?}other{Ste prepričani, da želite izbrisati vse elemente v teh mapah?}}"
+   },
+   "6256177058141995632": {
+      "message": "Pisava miao"
+   },
+   "625779090990399178": {
+      "message": "Več možnosti"
+   },
+   "6259598030649933216": {
+      "message": "Informacije"
+   },
+   "6263370534846330732": {
+      "message": "Pisava tifinagh"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# izbran element}one{# izbran element}two{# izbrana elementa}few{# izbrani elementi}other{# izbranih elementov}}"
+   },
+   "6281738099691391172": {
+      "message": "Barva besedila"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Navaden nedeljivi presledek"
+   },
+   "6380136177516870340": {
+      "message": "V Google ste prijavljeni z drugim računom kot v brskalnik Chrome."
+   },
+   "639862355711352140": {
+      "message": "VEČ O TEM"
+   },
+   "6410416070545265970": {
+      "message": "Preskusi to povezavo"
+   },
+   "6418290353353165009": {
+      "message": "Uveljavi"
+   },
+   "6425676451769330238": {
+      "message": "Sestavljivi znaki"
+   },
+   "6433056041891472200": {
+      "message": "Če želite omogočiti, se prijavite"
+   },
+   "6437997645764562921": {
+      "message": "Hangulsko polnilo čoseong"
+   },
+   "6470997799115367716": {
+      "message": "Pisava sauraštra"
+   },
+   "6471970833583478119": {
+      "message": "Manjši naslov"
+   },
+   "6473682978091349952": {
+      "message": "Presledek, enak dolžini ločila"
+   },
+   "6489221588545746734": {
+      "message": "Cirilica"
+   },
+   "64909648993550346": {
+      "message": "Preglasitev od desne proti levi"
+   },
+   "649459667039033491": {
+      "message": "čez toliko dni: $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Navadni presledek"
+   },
+   "6539448903465735867": {
+      "message": "Glasbeni simbol za začetek fraze"
+   },
+   "6544224848752157941": {
+      "message": "Zmanjšaj zamik"
+   },
+   "6559526625155197659": {
+      "message": "Iskanje Google trenutno ni na voljo. Poskusite znova čez nekaj minut."
+   },
+   "6563689176501108246": {
+      "message": "3-potezni radikali v pisavi han"
+   },
+   "6572308230373875858": {
+      "message": "Ime te mape vsebuje neveljavne znake."
+   },
+   "6604826525171204065": {
+      "message": "Buhidska pisava"
+   },
+   "6606727931314199470": {
+      "message": "Feničanska pisava"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ po $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Zaznamkov ni mogoče sinhronizirati. Poskusite znova naložiti to stran"
+   },
+   "6661160677415877619": {
+      "message": "Uredi HTML"
+   },
+   "66727790049529171": {
+      "message": "Nadpisano"
+   },
+   "6673681480713693433": {
+      "message": "Oznaka od leve proti desni"
+   },
+   "6679365605648394500": {
+      "message": "Zgodovinsko"
+   },
+   "6718105992776681941": {
+      "message": "Javna mapa"
+   },
+   "6731765034365779068": {
+      "message": "čez toliko minut: $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Stara južnoarabska pisava"
+   },
+   "6748884117721473417": {
+      "message": "Druge evropske pisave"
+   },
+   "6756714832459728782": {
+      "message": "Pisava tai le"
+   },
+   "6781212531496313437": {
+      "message": "Seznam"
+   },
+   "6787794440298969774": {
+      "message": "Malajalamska pisava"
+   },
+   "6813860917460451806": {
+      "message": "Licijska pisava"
+   },
+   "6848846772159302710": {
+      "message": "Spremeni"
+   },
+   "6878231700728680871": {
+      "message": "NOVO"
+   },
+   "687829671213164815": {
+      "message": "Upravitelj zaznamkov trenutno ni na voljo. Poskusite znova čez nekaj ur."
+   },
+   "6963034896702768829": {
+      "message": "Ta mapa ne obstaja več."
+   },
+   "698011532377344679": {
+      "message": "Spol in rodoslovje"
+   },
+   "7004429103140794719": {
+      "message": "Nedavne izbire:"
+   },
+   "7009051272745522428": {
+      "message": "Ste pozabili, kaj ste shranili? Preprosto poiščite. Izgubljene zaznamke poskusite poiskati s splošnimi izrazi, kot so »filmi« ali »potovanja«."
+   },
+   "7056277361038404533": {
+      "message": "Zaznamek je bil premaknjen."
+   },
+   "7058809993296833390": {
+      "message": "Povejte nam svoje mnenje."
+   },
+   "7064503592469946179": {
+      "message": "Sundanska pisava"
+   },
+   "7077571379260349566": {
+      "message": "Želite namesto tega poskusiti \u003Ca class=\"col-zda\">iskati v spletu\u003C/a>?"
+   },
+   "7102762854285284877": {
+      "message": "Pisava fags pa"
+   },
+   "7124932478652977474": {
+      "message": "Dodano med zaznamke"
+   },
+   "7154665243775472938": {
+      "message": "Mape"
+   },
+   "7168417416563257713": {
+      "message": "Shrani"
+   },
+   "7178727559519269241": {
+      "message": "Poševni enačaj"
+   },
+   "7256064246386232909": {
+      "message": "Javanska pisava"
+   },
+   "7258012171742729961": {
+      "message": "Kmerski inherentni samoglasnik Aq"
+   },
+   "7300188402017534561": {
+      "message": "Vsi"
+   },
+   "7316184946628117028": {
+      "message": "Maldivska pisava"
+   },
+   "7328850288952193170": {
+      "message": "Nevidno ločilo"
+   },
+   "733245618582914569": {
+      "message": "V redu"
+   },
+   "7333334175520057323": {
+      "message": "Prekliči"
+   },
+   "7339792312429709609": {
+      "message": "2-potezni radikali v pisavi han"
+   },
+   "7342965026300699486": {
+      "message": "To je javna mapa. Če jo izbrišete, preprečite drugim, da bi jo videli."
+   },
+   "7346825266417376383": {
+      "message": "V redu"
+   },
+   "7362095105218889721": {
+      "message": "Oblika in presledki"
+   },
+   "7369763432670344230": {
+      "message": "Na kateri e-poštni naslov usmerja ta povezava?"
+   },
+   "7376646180156094924": {
+      "message": "Ime"
+   },
+   "7388233788532145059": {
+      "message": "Dodaj ali odstrani povezavo"
+   },
+   "7407898565330883980": {
+      "message": "Ustvari mapo"
+   },
+   "7436494590700857376": {
+      "message": "Neimenovan"
+   },
+   "7454853574776276752": {
+      "message": "V redu"
+   },
+   "7466254996792639407": {
+      "message": "Gruzinska pisava"
+   },
+   "7487940627543583924": {
+      "message": "Četrtek"
+   },
+   "7496808914788281345": {
+      "message": "Majhen dolgi pomišljaj"
+   },
+   "7512206123241896524": {
+      "message": "Če izbrišete javne mape, preprečite drugim, da bi jih videli."
+   },
+   "7514107325655026801": {
+      "message": "Mongolski znak za ločevanje samoglasnikov"
+   },
+   "7517846739534508036": {
+      "message": "Sliko, ki jo poskušate povleči, je blokiralo gostiteljsko spletno mesto."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{čez # minut}=1{čez # minuto}one{čez # minuto}two{čez # minuti}few{čez # minute}other{čez # minut}}"
+   },
+   "7556000209920718943": {
+      "message": "Ciprska pisava"
+   },
+   "7558709989823567445": {
+      "message": "Linearna pisava B"
+   },
+   "7561680940841358107": {
+      "message": "Pisava kajah li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} ura}one{{TEXT} ura}two{{TEXT} uri}few{{TEXT} ure}other{{TEXT} ur}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Armenski vezaj"
+   },
+   "762426240463793747": {
+      "message": "Ulomki/sorodno"
+   },
+   "7627205932825693842": {
+      "message": "Mongolski mehki vezaj"
+   },
+   "7666041165203922544": {
+      "message": "Preprosto poiščite"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "čez toliko ur: $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "pred $NUM$ dnevom",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "jun"
+   },
+   "7763561590386207075": {
+      "message": "Spletni naslov"
+   },
+   "7778510137824413661": {
+      "message": "Ste najboljšejši preskuševalec programske opreme vseh časov! Znate sprožiti napako, ki je ne moremo odpraviti s preprostim vnovičnim nalaganjem."
+   },
+   "7787489712298922692": {
+      "message": "Ugaritska pisava"
+   },
+   "7794513342167361028": {
+      "message": "Pisava sora sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Glasbeni simbol za zaključek fraze"
+   },
+   "7804811638177746132": {
+      "message": "Vnesite veljaven URL."
+   },
+   "7820796809104165402": {
+      "message": "Petek"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Element je bil ustvarjen.}one{Ustvarjen je bil # element.}two{Ustvarjena sta bila # elementa.}few{Ustvarjeni so bili # elementi.}other{Ustvarjenih je bilo # elementov.}}"
+   },
+   "7842161096380376517": {
+      "message": "Arabski znak safha"
+   },
+   "7877081360738059546": {
+      "message": "Živali, rastline in hrana"
+   },
+   "7899357084217902569": {
+      "message": "Majhen znak za minus"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Ne veste, kaj bi vnesli v polje?$END_BOLD$Najprej v spletu poiščite stran, na katero želite, da usmerja povezava. (Uporabite $SEARCH_ENGINE_LINK$iskalnik$END_LINK$.) Nato kopirajte spletni naslov iz polja v naslovni vrstici brskalnika in ga prilepite v zgornje polje.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Prekliči"
+   },
+   "7929010027377139621": {
+      "message": "Pisava tai viet"
+   },
+   "7944194550132470305": {
+      "message": "Dodajte naslov ..."
+   },
+   "7957751306916251232": {
+      "message": "Neveljaven e-poštni naslov"
+   },
+   "7977240188055092028": {
+      "message": "Prikaži"
+   },
+   "7987287518899618882": {
+      "message": "feb"
+   },
+   "7995071973884866910": {
+      "message": "pred toliko dnevi: $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Videoposnetki"
+   },
+   "8011311100803127599": {
+      "message": "Zvezdice/asteriski"
+   },
+   "8017723467201257913": {
+      "message": "Deseret (mormonska pisava)"
+   },
+   "8018615794586730510": {
+      "message": "Navadno/serif"
+   },
+   "8027365004962833557": {
+      "message": "Staroitalska pisava"
+   },
+   "8110520007971944893": {
+      "message": "Google lahko samodejno organizira zaznamke"
+   },
+   "8115055677841343820": {
+      "message": "Vezaj"
+   },
+   "8132750144382731373": {
+      "message": "Znaki »emoji«"
+   },
+   "8139874053154312313": {
+      "message": "Vezaj z diarezo"
+   },
+   "8143412461134291283": {
+      "message": "Pošiljanje povratnih informacij"
+   },
+   "8146770321190721394": {
+      "message": "Osmanijska pisava"
+   },
+   "8167437723285192120": {
+      "message": "Brez"
+   },
+   "8179849043307262288": {
+      "message": "Operator za uporabo funkcije"
+   },
+   "818630018883405514": {
+      "message": "Obdano"
+   },
+   "8208069138346972268": {
+      "message": "Tehnika"
+   },
+   "8220605653109571646": {
+      "message": "Grška pisava"
+   },
+   "8243618543879664815": {
+      "message": "jan"
+   },
+   "8275729822640276507": {
+      "message": "Znova ste povezani s spletom."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Razveljavi"
+   },
+   "8338269186594699884": {
+      "message": "pop"
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "RAZUMEM"
+   },
+   "8394518299580326671": {
+      "message": "Znak za združevanje"
+   },
+   "8401283339806880070": {
+      "message": "Poravnaj"
+   },
+   "8417405596874032771": {
+      "message": "Ogamska oznaka presledka"
+   },
+   "8442861823466423570": {
+      "message": "Zaključni znak za medvrstično opombo"
+   },
+   "8454082825844118412": {
+      "message": "11–17-potezni radikali v pisavi han"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Rezultati iskanja za \u003Cspan class=\"col-tlv-title\">{ISKALNA POIZVEDBA}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Čustveni simboli"
+   },
+   "8509200859889253607": {
+      "message": "Buginska pisava"
+   },
+   "8513771017811992648": {
+      "message": "Nič"
+   },
+   "8583880697323281603": {
+      "message": "Zaznamek je bil spremenjen."
+   },
+   "8590712065595806821": {
+      "message": "Predlagana"
+   },
+   "8605746117200843257": {
+      "message": "Sidro za ločevanje pripomb"
+   },
+   "8608038304204118820": {
+      "message": "pred $NUM$ uro",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Označitev te strani z zvezdico"
+   },
+   "8632024322663078476": {
+      "message": "Dodaj v mapo"
+   },
+   "8635739256240231429": {
+      "message": "Zapri"
+   },
+   "8637786997742615742": {
+      "message": "Modifikator"
+   },
+   "8639484881518821804": {
+      "message": "Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Samaritanska pisava"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Navadno"
+   },
+   "8694618136165028235": {
+      "message": "Dodajte URL ..."
+   },
+   "8723654283178734366": {
+      "message": "Vnesite spletni naslov"
+   },
+   "8748780785044360315": {
+      "message": "Tajska pisava"
+   },
+   "8764548034413038101": {
+      "message": "čez $NUM$ minuto",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "apr"
+   },
+   "8784386825932830097": {
+      "message": "Vodoravna črta"
+   },
+   "8793684579112208899": {
+      "message": "Podpisano"
+   },
+   "8797138403646238716": {
+      "message": "Meriotska kurziva"
+   },
+   "8801105026907713256": {
+      "message": "Manj pogosto"
+   },
+   "8805843642052942743": {
+      "message": "Pisava lepča"
+   },
+   "8827926534395802942": {
+      "message": "Številski pomišljaj"
+   },
+   "8829617001171812634": {
+      "message": "Predmeti"
+   },
+   "8835425644719990167": {
+      "message": "Hangulsko polnilo džungseong"
+   },
+   "8838200101653652173": {
+      "message": "Obdajajoči znaki"
+   },
+   "8838938639049885476": {
+      "message": "Kratki presledek"
+   },
+   "8841111838340088121": {
+      "message": "4-potezni radikali v pisavi han"
+   },
+   "8860909466229522023": {
+      "message": "Ležeče"
+   },
+   "888434073985276543": {
+      "message": "Predstavitvena oblika za navpični dolgi pomišljaj"
+   },
+   "8892104104076766085": {
+      "message": "Tilda"
+   },
+   "8996388564146952786": {
+      "message": "Ozek nedeljiv presledek"
+   },
+   "9021466412659564505": {
+      "message": "Prijava"
+   },
+   "9026903153882226079": {
+      "message": "Oznaka od desne proti levi"
+   },
+   "9034162255782924509": {
+      "message": "Pisava batak"
+   },
+   "9041611521175673293": {
+      "message": "Vsi elementi"
+   },
+   "9041881295809259717": {
+      "message": "Matematika"
+   },
+   "9072668986327887451": {
+      "message": "Ideografski opis"
+   },
+   "9076212347872857205": {
+      "message": "Označi kot citat"
+   },
+   "9083920162332648298": {
+      "message": "dop"
+   },
+   "9086165147555162831": {
+      "message": "Manipurska pisava"
+   },
+   "9092805374125336008": {
+      "message": "maj"
+   },
+   "9099680152087323883": {
+      "message": "nov"
+   },
+   "9107905796365363672": {
+      "message": "Velika"
+   },
+   "9113260413780075008": {
+      "message": "Pisava brahmi"
+   },
+   "9115834469932780333": {
+      "message": "Teluška pisava"
+   },
+   "9143484910409308303": {
+      "message": "Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Po šifriranih zaznamkih ni mogoče iskati. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Več o tem\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Mapa je bila odstranjena iz nadrejene mape."
+   },
+   "9180458846772153689": {
+      "message": "Armenska pisava"
+   },
+   "9181119817188520774": {
+      "message": "Ni omrežne povezave. Sprememb ne morete shraniti, dokler se znova ne povežete s spletom"
+   },
+   "9204096795425905695": {
+      "message": "Neviden znak za krat"
+   },
+   "922163125711959960": {
+      "message": "pred $NUM$ minuto",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Dodaj"
+   },
+   "93670926879626900": {
+      "message": "Presledki"
+   },
+   "93871902389648718": {
+      "message": "Glasbeni simbol za konec prečke"
+   },
+   "960914149201689167": {
+      "message": "Decimalno"
+   },
+   "963040144042262397": {
+      "message": "Izbriši"
+   },
+   "964017479791059460": {
+      "message": "Arabski konec ajaha"
+   },
+   "980376110610801797": {
+      "message": "Vstavi sliko"
+   }
+}

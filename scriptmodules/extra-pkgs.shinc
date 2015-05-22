@@ -829,7 +829,7 @@ ep_add_web_app_chome()
 		read -ep "Choice: " custom_name
 		
 		echo -e "\nPlease enter path to image banner (best: 460x215)\n"
-		echo -e :\nLeave this blank if you wish to use the default\n"
+		echo -e "\nLeave this blank if you wish to use the default\n"
 		sleep 0.5s
 		read -ep "Choice: " custom_img
 		

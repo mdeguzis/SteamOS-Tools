@@ -814,7 +814,7 @@ ep_add_web_app_chome()
 		        ;;
 		        
 		        2)
-		        ep_install_hulku
+		        ep_install_hulu
 		        ;;
 		         
 		        3)

@@ -31,8 +31,8 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 ## Contents
 * cfgs/ - various configuration files, including package lists for Debian software installations.
 * docs/ - readme files for each script.
-* extra/ - various extra scripts for packages and more (including Netflix!)
-* scriptmodules/ - plugable bash modules / routines for any of the below scripts.
+* extra/ - various extra scripts
+* scriptmodules/ - plugable bash modules / routines for any of the below scripts. Scripts for packages and more (including Netflix!)
 * utilities/ - various scripts to handle small parts of the SteamOS-Tools repository (plugable objects)
   * build-deb-from-ppa.sh - attempts to build a Debian package from a PPA repository.
   * build-deb-from-src.sh - attempts to build a Debian package from a git source tree.

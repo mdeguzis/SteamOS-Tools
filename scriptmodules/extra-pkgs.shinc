@@ -681,11 +681,13 @@ ep_install_netflix()
 	
 		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
 		# install chrome from script
+		sleep 2s
 		ep_install_chrome
 		
 	else
 		
 		echo -e "\nPackage google-chrome-stable [OK]"
+		sleep 0.5s
 		
 	fi
 	

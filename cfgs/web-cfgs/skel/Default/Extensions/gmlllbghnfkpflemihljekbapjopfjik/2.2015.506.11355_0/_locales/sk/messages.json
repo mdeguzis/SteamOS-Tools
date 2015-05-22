@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Zdieľajte tento priečinok alebo zmeňte nastavenia zdieľania"
+   },
+   "1014969137789706237": {
+      "message": "Odkaz na stránku alebo súbor v inom webovom umiestnení"
+   },
+   "1033240210015440654": {
+      "message": "Odstrániť obrázok"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} minúta}few{{TEXT} minúty}many{{TEXT} minúty}other{{TEXT} minút}}"
+   },
+   "1035347665345261212": {
+      "message": "Zadajte popis"
+   },
+   "1036132178487616999": {
+      "message": "Úvod"
+   },
+   "1041064392303158655": {
+      "message": "Písmo Limbu"
+   },
+   "1066103686460691847": {
+      "message": "Prečiarknutie"
+   },
+   "1085496824897012476": {
+      "message": "Egyptské hieroglyfy"
+   },
+   "1105045461281211798": {
+      "message": "Kombinovaný spojovník grafém"
+   },
+   "111315886393984302": {
+      "message": "Uložte si nejaké položky na internete ako záložky a pridajte ich do tohto priečinka"
+   },
+   "1117324761561996205": {
+      "message": "Upraviť"
+   },
+   "1124849668149719420": {
+      "message": "Zadajte spätnú väzbu"
+   },
+   "1142044035368837035": {
+      "message": "Štvorček"
+   },
+   "1148670835609345833": {
+      "message": "Tlačidlo Upraviť záložku"
+   },
+   "1161548997573254809": {
+      "message": "Zrušiť"
+   },
+   "1164857998440803763": {
+      "message": "Písmo Chakma"
+   },
+   "1170102576258588460": {
+      "message": "Pevný spojovník"
+   },
+   "1185158158029036642": {
+      "message": "Kliknutím vytvoríte novú záložku alebo priečinok."
+   },
+   "1201286409038567178": {
+      "message": "neplatná webová adresa"
+   },
+   "1214729854306268929": {
+      "message": "pred $NUM$ minútami",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{pred # hodinami}=1{pred # hodinou}few{pred # hodinami}many{pred # hod}other{pred # hodinami}}"
+   },
+   "1232723730191754374": {
+      "message": "Písmo"
+   },
+   "1243361230826165709": {
+      "message": "Písmo Hangul"
+   },
+   "128696227290770661": {
+      "message": "Písmo Dévanágarí"
+   },
+   "1312606838421552827": {
+      "message": "Číslo"
+   },
+   "1316608632339176215": {
+      "message": "Rôzne"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "Štvrtina dlhej medzery"
+   },
+   "1337190557080419948": {
+      "message": "Názov"
+   },
+   "1347841728719446841": {
+      "message": "E-mailová adresa"
+   },
+   "1350404634989083059": {
+      "message": "Neviditeľné plus"
+   },
+   "1356908927221815545": {
+      "message": "Radikály znakov Han – 1 ťah"
+   },
+   "1373666411928680514": {
+      "message": "Pomlčka (vlnovka)"
+   },
+   "1378894003206512970": {
+      "message": "Zrušiť"
+   },
+   "138484781723580209": {
+      "message": "Sýrsky znak skrátenia"
+   },
+   "1397568831960098153": {
+      "message": "Formát"
+   },
+   "142359106099692409": {
+      "message": "Automatické priečinky"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Malé"
+   },
+   "1460136507747533015": {
+      "message": "Ak chcete zdieľať obsah, prihláste sa."
+   },
+   "1477567329816921885": {
+      "message": "Viete, že svoje obľúbené záložky môžete zdieľať zverejnením svojho priečinka? Získajte jeho verejnú webovú adresu a zdieľajte ju!"
+   },
+   "1507362459078633250": {
+      "message": "Budete musieť zrušiť načítanie rozšírenia prehliadača Chrome a znova ho načítať a/alebo kontaktovať anglický tím.... Ospravedlňujeme sa :-/"
+   },
+   "1516565793778879679": {
+      "message": "Han – iné"
+   },
+   "1519227660570105215": {
+      "message": "Táto stránka môže byť škodlivá"
+   },
+   "1556175764217302644": {
+      "message": "Khmérska samohlásková inherencia Aa"
+   },
+   "1566367040709255091": {
+      "message": "Formát"
+   },
+   "1582412901770221448": {
+      "message": "Pridané do: {FOLDER_NAME}"
+   },
+   "1585233503778646014": {
+      "message": "Aramejské písmo Mandejcov"
+   },
+   "1592899529499992997": {
+      "message": "Záložka bola odstránená z priečinka."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Ak chcete zobraziť názov znaku, prejdite kurzorom nad príslušnú bunku."
+   },
+   "1630439475247732904": {
+      "message": "Horný index"
+   },
+   "1634874677195552014": {
+      "message": "Šestina dlhej medzery"
+   },
+   "1635366592844795535": {
+      "message": "PRIHLÁSIŤ SA DO PREHLIADAČA CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Počasie a astrológia"
+   },
+   "1665234249876251486": {
+      "message": "Tabuľková medzera"
+   },
+   "1666311405952625458": {
+      "message": "Počasie, scenérie a znamenia zverokruhu"
+   },
+   "1678004121951995792": {
+      "message": "aug."
+   },
+   "1680034627075195442": {
+      "message": "Môžete si vytvárať vlastné priečinky alebo dovoliť Googlu, aby obsah usporadúval za vás do automatických priečinkov."
+   },
+   "1683451665637766512": {
+      "message": "Odkaz na e-mailovú adresu"
+   },
+   "1685884502412781083": {
+      "message": "Oddeľovač odsekov"
+   },
+   "169055910458549089": {
+      "message": "K nášmu serveru sa nepodarilo pripojiť. Skúste to znova o niekoľko minút."
+   },
+   "1691734467561749621": {
+      "message": "Je nám to ľúto, ale nemôžete zdieľať priečinky na paneli so záložkami"
+   },
+   "1715361312704502898": {
+      "message": "Doprava a mapy"
+   },
+   "1719053155706676551": {
+      "message": "Panel so záložkami"
+   },
+   "1730849295731139586": {
+      "message": "Písmo Yi"
+   },
+   "1748899684018766272": {
+      "message": "Hangul Filler (polovičná šírka)"
+   },
+   "1755438325907288056": {
+      "message": "Písmo Nko"
+   },
+   "1776387440523546537": {
+      "message": "Dnes"
+   },
+   "178181731883558542": {
+      "message": "Textové pole na vyhľadávanie záložiek."
+   },
+   "1791083579000016877": {
+      "message": "Podľa ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Zobraziť položky označené hviezdičkou"
+   },
+   "1803667155949248788": {
+      "message": "Aramejské imperiálne písmo"
+   },
+   "1827599404395723350": {
+      "message": "Kontrolné obrázky"
+   },
+   "1839253253564716482": {
+      "message": "Nenašli sa žiadne záložky"
+   },
+   "1847259066982820034": {
+      "message": "Vybrať priečinok"
+   },
+   "1875246104836450162": {
+      "message": "Symbol"
+   },
+   "1879633738298009258": {
+      "message": "Stredná matematická medzera"
+   },
+   "1915655034817606796": {
+      "message": "Voliteľný rozdeľovník"
+   },
+   "191946029988896895": {
+      "message": "Arabčina – znak čísla"
+   },
+   "1932973762029792550": {
+      "message": "Google automaticky usporadúva všetok obsah, ktorý si uložíte ako záložky"
+   },
+   "1942405576047748946": {
+      "message": "Záložka bola vytvorená."
+   },
+   "196266011387145001": {
+      "message": "Pokračovať"
+   },
+   "1963154331052663396": {
+      "message": "Latinské"
+   },
+   "1999193032742275907": {
+      "message": "Radikály znakov Han – 9 ťahov"
+   },
+   "2003860471263842959": {
+      "message": "Medzera šírky desatinnej čiarky"
+   },
+   "2015775921681923490": {
+      "message": "Nastavenia"
+   },
+   "202031328373263910": {
+      "message": "Radikály znakov Han – 6 ťahov"
+   },
+   "2036672715320764541": {
+      "message": "Oddeľovač riadkov"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Z priečinka bola odstránená položka.}few{Z priečinka boli odstránené # položky.}many{Z priečinka bolo odstránenej # položky.}other{Z priečinka bolo odstránených # položiek.}}"
+   },
+   "2088133380647290173": {
+      "message": "Na webe {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Zadajte webovú adresu na vytvorenie novej záložky."
+   },
+   "2117634893694108880": {
+      "message": "Súkromný"
+   },
+   "2135921744011555145": {
+      "message": "Prehľadať záložky"
+   },
+   "213958631597214757": {
+      "message": "Zastaviť zdieľanie "
+   },
+   "2149498606985329379": {
+      "message": "Importovanie záložiek bolo dokončené."
+   },
+   "2159536073195133897": {
+      "message": "Späť"
+   },
+   "2166866096346653276": {
+      "message": "Žiadny"
+   },
+   "2167636135101203592": {
+      "message": "Bengálske písmo"
+   },
+   "2176930521411607789": {
+      "message": "Párové"
+   },
+   "218054763532467155": {
+      "message": "Zadajte názov"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Odstrániť položku \u003Cb>{firstItemName}\u003C/b>}=1{Odstrániť položku \u003Cb>{firstItemName}\u003C/b> a # ďalšiu}few{Odstrániť položku \u003Cb>{firstItemName}\u003C/b> a # ďalšie}many{Odstrániť položku \u003Cb>{firstItemName}\u003C/b> a # ďalšej}other{Odstrániť položku \u003Cb>{firstItemName}\u003C/b> a # ďalších}}"
+   },
+   "2200921183377473543": {
+      "message": "Áno"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{pred # dňami}=1{pred # dňom}few{pred # dňami}many{pred # dňom}other{pred # dňami}}"
+   },
+   "2228495834106697427": {
+      "message": "Dolný index"
+   },
+   "2253752461533441758": {
+      "message": "Radikály znakov Han – 10 ťahov"
+   },
+   "2257250286834696444": {
+      "message": "Načítava sa..."
+   },
+   "2280907281518645401": {
+      "message": "Dvojitý spojovník (katakana a hiragana)"
+   },
+   "2301390744929043794": {
+      "message": "Čakajte, kým váš priečinok uložíme na server"
+   },
+   "2315132909835126412": {
+      "message": "Verejný"
+   },
+   "2315864755754275083": {
+      "message": "Mena"
+   },
+   "231658276152304252": {
+      "message": "Odstrániť"
+   },
+   "2353164220175503425": {
+      "message": "Kaithi – znak čísla"
+   },
+   "2359350477261263182": {
+      "message": "Správca záložiek"
+   },
+   "2362075348358411947": {
+      "message": "Zoznam s odrážkami"
+   },
+   "2396988228061015409": {
+      "message": "Priečinky"
+   },
+   "2398127458667829603": {
+      "message": "Klávesnica a používateľské rozhranie"
+   },
+   "2413859014200470621": {
+      "message": "Zväčšiť odsadenie"
+   },
+   "2414987366409119013": {
+      "message": "Popis nového priečinka (povinné)"
+   },
+   "2444245672676114535": {
+      "message": "Geometrické tvary"
+   },
+   "2454859602363061373": {
+      "message": "Pomocou hviezdičky na paneli s adresou si môžete uložiť, čokoľvek vám napadne"
+   },
+   "2497668314434532819": {
+      "message": "Mongolské písmo"
+   },
+   "2498668179494167671": {
+      "message": "Medzera"
+   },
+   "2506204110427755391": {
+      "message": "Zahrnuje záložky z mobilných zariadení a položky, ktoré nepochádzajú z vášho panela so záložkami."
+   },
+   "2512307863902593558": {
+      "message": "Písmo Kharóšthí"
+   },
+   "2518095696810513128": {
+      "message": "Importovať záložky..."
+   },
+   "2524757118580919241": {
+      "message": "Arabčina – značka poznámky pod čiarou"
+   },
+   "2528672033407304265": {
+      "message": "Tento priečinok vidíte iba vy. Ak ho chcete zdieľať, kliknite na tlačidlo Nastaviť ako verejný. Tak získate odkaz na zdieľanie."
+   },
+   "2566403151253785267": {
+      "message": "Priečinok bez názvu"
+   },
+   "2581794950690518802": {
+      "message": "0 minút"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Zrušiť úvod"
+   },
+   "2620868598794227408": {
+      "message": "Táto stránka už neexistuje"
+   },
+   "2626676714216619519": {
+      "message": "Podnadpis"
+   },
+   "2655730128699057253": {
+      "message": "Normálne"
+   },
+   "2662413919655166560": {
+      "message": "nedeľa"
+   },
+   "2665932089093244134": {
+      "message": "Označte hviezdičkou čokoľvek"
+   },
+   "2678821645623495183": {
+      "message": "Ľudia a emócie"
+   },
+   "271255586148025786": {
+      "message": "Šestnástkový vstup"
+   },
+   "27472132823239706": {
+      "message": "Sprava doľava"
+   },
+   "278208331708453602": {
+      "message": "Ak chcete zdieľať, pripojte sa k webu a prihláste sa"
+   },
+   "2785193083209311775": {
+      "message": "mar."
+   },
+   "2803486006471792395": {
+      "message": "autor: \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Oghamové písmo"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Importované zo súboru"
+   },
+   "2860423337665026261": {
+      "message": "Odstrániť z priečinka"
+   },
+   "2870049984905408346": {
+      "message": "Nadpis"
+   },
+   "2878157583475586619": {
+      "message": "Pridať farbu"
+   },
+   "2926789704127794819": {
+      "message": "Názov nového priečinka (povinné)"
+   },
+   "2951727458776714094": {
+      "message": "Tento odkaz nie je možné testovať."
+   },
+   "2967109838548277236": {
+      "message": "Odkaz na zdieľanie:"
+   },
+   "2990895581472607445": {
+      "message": "Iné"
+   },
+   "2993160588184042952": {
+      "message": "Americké písma"
+   },
+   "3002524775820283106": {
+      "message": "Pridajte popis..."
+   },
+   "3010872256194497959": {
+      "message": "Figúrky"
+   },
+   "3027920889685525544": {
+      "message": "Písmo Sasánovcov (Parthian)"
+   },
+   "3034084095590774557": {
+      "message": "Ignorovať"
+   },
+   "3051034269680162898": {
+      "message": "Zrušiť"
+   },
+   "3054430907861836285": {
+      "message": "dec."
+   },
+   "3085746489633838782": {
+      "message": "Číslovaný zoznam"
+   },
+   "3087091861834859241": {
+      "message": "Vitajte vo svojich nových záložkách!"
+   },
+   "3090613379634438188": {
+      "message": "Meroitické hieroglyfy"
+   },
+   "3093070593773009381": {
+      "message": "Iné východoázijské písma"
+   },
+   "3114565967060091369": {
+      "message": "Písmo Hanunoo"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{o # hodín}=1{o # hodinu}few{o # hodiny}many{o # hodiny}other{o # hodín}}"
+   },
+   "3140214171317206668": {
+      "message": "Štvorček"
+   },
+   "3153433695439945201": {
+      "message": "Pomocou hviezdičky si môžete stránky ukladať ako záložky. Záložky uložia časť stránok do vášho účtu Google, aby ste ich neskôr ľahšie našli."
+   },
+   "3186183325550234111": {
+      "message": "Prejsť na odkaz: "
+   },
+   "3212472770580267001": {
+      "message": "Písma juhovýchodnej Ázie"
+   },
+   "3218408007702426636": {
+      "message": "Hudobný symbol – koniec viazania"
+   },
+   "3227675900195928275": {
+      "message": "Rejangské písmo"
+   },
+   "3234811075540284463": {
+      "message": "Normálne"
+   },
+   "3244450940425660505": {
+      "message": "Interpunkcia"
+   },
+   "3245712009497198424": {
+      "message": "o $NUM$ deň",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Vášmu vyhľadávaniu nezodpovedajú žiadne výsledky"
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Chcete odstrániť aj položky v tomto priečinku?}few{Chcete odstrániť aj položky v týchto priečinkoch?}many{Chcete odstrániť aj položky v týchto priečinkoch?}other{Chcete odstrániť aj položky v týchto priečinkoch?}}"
+   },
+   "3284734782999930756": {
+      "message": "Webová adresa"
+   },
+   "328616644571689303": {
+      "message": "Hudobný symbol – koniec ligatúry"
+   },
+   "3309586635668050685": {
+      "message": "Prepisovanie zľava doprava"
+   },
+   "3316092543008555482": {
+      "message": "Fonetika (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonetika (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Priečinok bol vytvorený."
+   },
+   "3334908307836130914": {
+      "message": "Písmo Ol Chiki"
+   },
+   "3355297279379313357": {
+      "message": "Minule"
+   },
+   "3360043590563638195": {
+      "message": "Veľkosť písma"
+   },
+   "3364831016239212879": {
+      "message": "Zarovnať na stred"
+   },
+   "3383495912989125674": {
+      "message": "Tenká medzera"
+   },
+   "340057911065586090": {
+      "message": "Ideografická medzera"
+   },
+   "3413537935166399959": {
+      "message": "Písmo Sharada"
+   },
+   "3413696263226173348": {
+      "message": "Upraviť slovo"
+   },
+   "3417560136558853718": {
+      "message": "Kannadské písmo"
+   },
+   "3423652049926153935": {
+      "message": "Nový priečinok..."
+   },
+   "3484416881429158332": {
+      "message": "Súkromný priečinok"
+   },
+   "3490738610910152047": {
+      "message": "Písmo Bamum"
+   },
+   "3490814222385998788": {
+      "message": "Písmo Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Bola odstránená položka.}few{Boli odstránené # položky.}many{Bolo odstránenej # položky.}other{Bolo odstránených # položiek.}}"
+   },
+   "3501212562096780610": {
+      "message": "Nadradený priečinok: "
+   },
+   "3501367450176932554": {
+      "message": "Medziriadkový oddeľovač anotácií"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Písmo Oriya"
+   },
+   "3545341282138953352": {
+      "message": "Hudobný symbol – začiatok viazania"
+   },
+   "3546572522856950945": {
+      "message": "Klinové písmo"
+   },
+   "3554323414956249846": {
+      "message": "Webová adresa"
+   },
+   "3572348996000195345": {
+      "message": "Dlhá medzera"
+   },
+   "3596311690500158112": {
+      "message": "Správca záložiek je dočasne nedostupný. Znova načítajte stránku."
+   },
+   "3621913747018973144": {
+      "message": "Zľava doprava"
+   },
+   "362505154270301776": {
+      "message": "Webové stránky"
+   },
+   "3630778778193389974": {
+      "message": "Kontrola pravopisu"
+   },
+   "3641126700487126155": {
+      "message": "Hudobný symbol – začiatok ligatúry"
+   },
+   "3646623530558910508": {
+      "message": "Priečinok bol zmenený."
+   },
+   "3646641743349296313": {
+      "message": "okt."
+   },
+   "3650952447025672637": {
+      "message": "Odstrániť priečinky a položky"
+   },
+   "3723533099349282495": {
+      "message": "Písmo Kaithi"
+   },
+   "37315674215151127": {
+      "message": "Zachovajte si v záložkách poriadok"
+   },
+   "3731716253672925709": {
+      "message": "Šípky"
+   },
+   "373495866496779840": {
+      "message": "ZOBRAZIŤ VŠETKY ZÁLOŽKY"
+   },
+   "3735789968703193383": {
+      "message": "Zobrazenie"
+   },
+   "3737215641755068426": {
+      "message": "Ťahy čínskeho, japonského a kórejského písma"
+   },
+   "3752699251010579834": {
+      "message": "Kanadský slabičný spojovník"
+   },
+   "377368134657453613": {
+      "message": "Ak chcete vyhľadávať vo svojich záložkách, prihláste sa do prehliadača Chrome"
+   },
+   "3800528517409823312": {
+      "message": "Alfanumerická matematika"
+   },
+   "3832066920911226237": {
+      "message": "Exportovať záložky..."
+   },
+   "3836877357378306877": {
+      "message": "Bežné"
+   },
+   "3880744822029422406": {
+      "message": "Ak ukončíte zdieľanie tohto priečinka, odkaz na zdieľanie prestane fungovať."
+   },
+   "3888658965293980754": {
+      "message": "Formát"
+   },
+   "3893161213200925599": {
+      "message": "Zrušiť"
+   },
+   "3924970930634517299": {
+      "message": "Popis"
+   },
+   "3947500116452515010": {
+      "message": "Ešte tu nie sú žiadne záložky"
+   },
+   "3951067234379178869": {
+      "message": "Priečinok bol odstránený."
+   },
+   "3953750991047324531": {
+      "message": "Gudžarátske písmo"
+   },
+   "3960988854399920931": {
+      "message": "Africké písma"
+   },
+   "3977845230474613475": {
+      "message": "pondelok"
+   },
+   "3978409745488989414": {
+      "message": "Zajtra"
+   },
+   "3981527568769423358": {
+      "message": "Výber variácie"
+   },
+   "3998968827975494252": {
+      "message": "Písma pôvodných obyvateľov Kanady"
+   },
+   "4052124018014680002": {
+      "message": "Keďže ste v časti Rozšírené nastavenia synchronizácie aktivovali možnosť šifrovania záložiek, zakázali sme funkciu vyžadujúcu od služby Google, aby si zobrazovala váš obsah."
+   },
+   "4070285516355502772": {
+      "message": "Spojovník slov"
+   },
+   "4083819681339999404": {
+      "message": "Priečinok bol premiestnený."
+   },
+   "4093661547607027073": {
+      "message": "Dlhá pomlčka"
+   },
+   "4132740194577129031": {
+      "message": "Písmo Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Tamilské písmo"
+   },
+   "4141340144529743179": {
+      "message": "Zarovnať doprava"
+   },
+   "4185431426264249075": {
+      "message": "Nie"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{pred # minútami}=1{pred # minútou}few{pred # minútami}many{pred # min}other{pred # minútami}}"
+   },
+   "4207416107225157509": {
+      "message": "Písmo Čam"
+   },
+   "421809097037025717": {
+      "message": "Lýdske písmo"
+   },
+   "4219066138225986920": {
+      "message": "pred $NUM$ hodinami",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "Nové písmo Tai Lue"
+   },
+   "4256734561546878891": {
+      "message": "Arabské písmo"
+   },
+   "4257688962636177926": {
+      "message": "Popis"
+   },
+   "4313041477349547430": {
+      "message": "Vybrať"
+   },
+   "4317807879399263422": {
+      "message": "Symboly"
+   },
+   "4371152527205140884": {
+      "message": "Mjanmarské písmo"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Rezerva pre kórejské písmená"
+   },
+   "4394299965695763613": {
+      "message": "CHYBA: „$COLOR$“ nie je platná farba",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "o $NUM$ hodinu",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Otvoriť tento odkaz v novom okne"
+   },
+   "4436859540429978060": {
+      "message": "V súčasnosti nie je možné presunúť myšou súbory obrázkov.\nPresuňte obrázok myšou zo svojho webového prehliadača."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Písmo Vai"
+   },
+   "4467383198992095863": {
+      "message": "Pomlčka/spojovník"
+   },
+   "4485563787650970048": {
+      "message": "Doprava, mapy a značky"
+   },
+   "4511605174156009486": {
+      "message": "PRIHLÁSIŤ SA"
+   },
+   "4536708754459423390": {
+      "message": "Prepojiť s:"
+   },
+   "4547888102017603305": {
+      "message": "Zadať vlastnú farbu, napr. ružovú, #F00, #D015FF alebo rgb(100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Štvorec"
+   },
+   "4564357083324116837": {
+      "message": "Juhoázijské písma"
+   },
+   "4604654420597817764": {
+      "message": "Nespojovník s nulovou šírkou"
+   },
+   "4631096075002795557": {
+      "message": "Braillovo písmo"
+   },
+   "4639190252078874549": {
+      "message": "Vylepšili sme funkciu záložiek, aby ste ľahšie nachádzali to, čo ste si uložili."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Bola premiestnená položka.}few{Boli premiestnené # položky.}many{Bolo premiestnenej # položky.}other{Bolo premiestnených # položiek.}}"
+   },
+   "4677342274083596624": {
+      "message": "Režim offline"
+   },
+   "4680868343849876958": {
+      "message": "Staré turkické písmo"
+   },
+   "468549910877472151": {
+      "message": "Importované"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Staroperzské písmo"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Postupujte opatrne.$POSTB$ Nezabudnite, že ak na webovú stránku pridáte e-mailovú adresu, môžu ju získať aj šíritelia spamu.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Tagalské písmo"
+   },
+   "4747022692863822805": {
+      "message": "Spojovník – mínus"
+   },
+   "4749120223198822539": {
+      "message": "Sinhalské písmo"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Odstrániť priečinok a položky"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Bola premiestnená položka.}few{Boli premiestnené # položky.}many{Bolo premiestnenej # položky.}other{Bolo premiestnených # položiek.}}"
+   },
+   "482762608498192214": {
+      "message": "sobota"
+   },
+   "4833178038692710844": {
+      "message": "Otočené/zrkadlové"
+   },
+   "484556867028550958": {
+      "message": "Hebrejská interpunkcia Maqaf"
+   },
+   "4848946125726663758": {
+      "message": "Zarovnať doľava"
+   },
+   "4849410737412842755": {
+      "message": "Tento priečinok nemôžete zdieľať, pretože jeho nadradený priečinok nie je verejne zdieľaný"
+   },
+   "4856510901676745213": {
+      "message": "Hebrejské písmo"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{o # dní}=1{o # deň}few{o # dni}many{o # dňa}other{o # dní}}"
+   },
+   "4886850400045987885": {
+      "message": "Upraviť odkaz"
+   },
+   "4894342917447426362": {
+      "message": "Doplnok latinskej abecedy 1"
+   },
+   "4895451769213934183": {
+      "message": "Písmo Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Spôsob zobrazenia zvislej strednej pomlčky"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Bola zmenená položka.}few{Boli zmenené # položky.}many{Bolo zmenenej # položky.}other{Bolo zmenených # položiek.}}"
+   },
+   "4934771438157777517": {
+      "message": "Podčiarknuté"
+   },
+   "4943286974087295923": {
+      "message": "Zavrieť"
+   },
+   "4944188657066537729": {
+      "message": "Sýrske písmo"
+   },
+   "4974279938502768331": {
+      "message": "Upraviť"
+   },
+   "4987339278179088082": {
+      "message": "Pridať atribút $REL_NO_FOLLOW$ ($LINK_START$Viac informácií$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Text na zobrazenie:"
+   },
+   "4991252214297708837": {
+      "message": "Popis priečinka"
+   },
+   "500023300077018967": {
+      "message": "Žiadne návrhy"
+   },
+   "5002702571780362629": {
+      "message": "Avestánske písmo"
+   },
+   "5013372925252634952": {
+      "message": "Karijské písmo"
+   },
+   "5015669074913229206": {
+      "message": "Balinézske písmo"
+   },
+   "5016723309142316836": {
+      "message": "Gurmukhské písmo"
+   },
+   "5042512453093360461": {
+      "message": "Výber smerového formátovania"
+   },
+   "5086992011880811613": {
+      "message": "Záložka bola odstránená."
+   },
+   "5089168125978769021": {
+      "message": "Odstrániť priečinok"
+   },
+   "5089667744614498582": {
+      "message": "Záložka bola premiestnená."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Hudobný symbol – začiatok trámca"
+   },
+   "5109840495091366547": {
+      "message": "Šport, oslavy a aktivity"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Nový priečinok"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} deň}few{{TEXT} dni}many{{TEXT} dňa}other{{TEXT} dní}}"
+   },
+   "5162393477556833033": {
+      "message": "Na ktorú webovú adresu má tento odkaz smerovať?"
+   },
+   "518089704180562683": {
+      "message": "Dnes"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Runové písmo"
+   },
+   "5253985055078626542": {
+      "message": "Vkladanie zľava doprava"
+   },
+   "5266193592374285468": {
+      "message": "Nastaviť ako verejný"
+   },
+   "5272267167655788064": {
+      "message": "Obrázok"
+   },
+   "528339682728930567": {
+      "message": "Správca záložiek je dočasne nedostupný. Skúste to znova o niekoľko minút."
+   },
+   "5300191622079400984": {
+      "message": "Všetko"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Kliknite tu a pridajte popis"
+   },
+   "5334597244901829906": {
+      "message": "Zdieľať priečinok"
+   },
+   "534304870772683249": {
+      "message": "Odoslať"
+   },
+   "534369010818044160": {
+      "message": "Khmérske písmo"
+   },
+   "5354142472798067112": {
+      "message": "Výber variácie – $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Žiadne pripojenie k sieti. Zmeny budete môcť uložiť, až keď budete znova online."
+   },
+   "5371009567664142864": {
+      "message": "Etiópske písmo"
+   },
+   "5378436065321978089": {
+      "message": "Vytvoriť"
+   },
+   "538263398271363120": {
+      "message": "Čerokézske písmo"
+   },
+   "5412265752110327977": {
+      "message": "Kompatibilita"
+   },
+   "5425054962709217464": {
+      "message": "streda"
+   },
+   "544490805551236927": {
+      "message": "Blízkovýchodné písma"
+   },
+   "5448654348317290038": {
+      "message": "Stredná pomlčka"
+   },
+   "5456454482863742119": {
+      "message": "Odstrániť priečinky"
+   },
+   "5458956770053499082": {
+      "message": "Hudobné"
+   },
+   "546306107859654806": {
+      "message": "Presunúť do priečinka"
+   },
+   "5474647412096976366": {
+      "message": "Ak chcete vyhľadávať vo svojich záložkách, pripojte sa k internetu."
+   },
+   "5500830105937873966": {
+      "message": "Odstrániť"
+   },
+   "5517581353492371385": {
+      "message": "Včera"
+   },
+   "5521943762943322583": {
+      "message": "Laoské písmo"
+   },
+   "5529569087489430384": {
+      "message": "Stredoperské písmo (Pahlavi)"
+   },
+   "5561412620611998456": {
+      "message": "sep."
+   },
+   "5579702837382664819": {
+      "message": "Automatický priečinok pre položku \u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gótske písmo"
+   },
+   "5603457799050818619": {
+      "message": "Momentálne neexistujú žiadne automatické priečinky."
+   },
+   "5603774725128707055": {
+      "message": "Priečinok bol premiestnený."
+   },
+   "5621148847082889884": {
+      "message": "Ešte tu nie sú žiadne priečinky"
+   },
+   "5669644158906503623": {
+      "message": "Arabčina – znak Sanah"
+   },
+   "5672850901284728452": {
+      "message": "Otvoriť stránku s denníkmi"
+   },
+   "5673852407127287054": {
+      "message": "Spojovník – mínus s úplnou šírkou"
+   },
+   "5679720964567650205": {
+      "message": "utorok"
+   },
+   "5748894773514291207": {
+      "message": "Tretina dlhej medzery"
+   },
+   "5749465969550038727": {
+      "message": "Písmo Tagbanwa"
+   },
+   "5773338884170027267": {
+      "message": "Odstrániť formátovanie"
+   },
+   "5776478286503179051": {
+      "message": "Radikály znakov Han – 5 ťahov"
+   },
+   "5778201074245568998": {
+      "message": "Tučné"
+   },
+   "580023699785819803": {
+      "message": "Tibetské písmo"
+   },
+   "5815994514834119961": {
+      "message": "I-ťing / Tai Xuan Jing"
+   },
+   "5822895345080436445": {
+      "message": "Obrázky"
+   },
+   "5832273633751333051": {
+      "message": "Písmo Syloti Nagri"
+   },
+   "5837746770084243727": {
+      "message": "Značky"
+   },
+   "5842240706321147978": {
+      "message": "Odkaz"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "S medzerou"
+   },
+   "5923476740499653277": {
+      "message": "Hlaholika"
+   },
+   "6002018674529763527": {
+      "message": "Pevná medzera"
+   },
+   "6013038186284817941": {
+      "message": "Radikály znakov Han – 8 ťahov"
+   },
+   "6014514403103768983": {
+      "message": "Šestnástková farba"
+   },
+   "6025708931099464434": {
+      "message": "Písmo Tai Tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Farba pozadia textu"
+   },
+   "6055751153306823909": {
+      "message": "Veľmi veľké"
+   },
+   "609920334473042917": {
+      "message": "Vitajte vo svojich nových záložkách! Prihláste sa do prehliadača Chrome a získate ďalšie funkcie, ako sú lepšie vyhľadávanie, automatické priečinky a obrázky pridané k predošlým záložkám."
+   },
+   "6131022146392295404": {
+      "message": "Upraviť zdroj HTML"
+   },
+   "6146119258861607037": {
+      "message": "Radikály znakov Han – 7 ťahov"
+   },
+   "6176673388074993831": {
+      "message": "Koptské písmo"
+   },
+   "6178455470693561470": {
+      "message": "Momentálne ste offline. Skúste to znova, keď budete opäť online."
+   },
+   "6189158371964390675": {
+      "message": "Uzatvorené/bodkované"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Vkladanie sprava doľava"
+   },
+   "6207440179505974685": {
+      "message": "Shawovo písmo"
+   },
+   "6233852423673631009": {
+      "message": "júl"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Naozaj chcete odstrániť všetky položky v tomto priečinku?}few{Naozaj chcete odstrániť všetky položky v týchto priečinkoch?}many{Naozaj chcete odstrániť všetky položky v týchto priečinkoch?}other{Naozaj chcete odstrániť všetky položky v týchto priečinkoch?}}"
+   },
+   "6256177058141995632": {
+      "message": "Písmo Miao"
+   },
+   "625779090990399178": {
+      "message": "Ďalšie možnosti"
+   },
+   "6259598030649933216": {
+      "message": "Informácie"
+   },
+   "6263370534846330732": {
+      "message": "Berberské písmo (Tifinagh)"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# vybraná položka}few{# vybrané položky}many{# vybranej položky}other{# vybraných položiek}}"
+   },
+   "6281738099691391172": {
+      "message": "Farba textu"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Pevná medzera s nulovou šírkou"
+   },
+   "6380136177516870340": {
+      "message": "Do služby Google ste prihlásený/-á pomocou iného účtu ako je ten, pomocou ktorého ste sa prihlásili do prehliadača Chrome"
+   },
+   "639862355711352140": {
+      "message": "VIAC INFORMÁCIÍ"
+   },
+   "6410416070545265970": {
+      "message": "Testovať tento odkaz"
+   },
+   "6418290353353165009": {
+      "message": "Znova"
+   },
+   "6425676451769330238": {
+      "message": "Bez medzier"
+   },
+   "6433056041891472200": {
+      "message": "Prihláste sa, aby ste túto funkciu mohli povoliť"
+   },
+   "6437997645764562921": {
+      "message": "Rezerva pre kórejské iniciály"
+   },
+   "6470997799115367716": {
+      "message": "Písmo Sauraštra"
+   },
+   "6471970833583478119": {
+      "message": "Menší nadpis"
+   },
+   "6473682978091349952": {
+      "message": "Interpunkčná medzera"
+   },
+   "6489221588545746734": {
+      "message": "Azbuka"
+   },
+   "64909648993550346": {
+      "message": "Prepisovanie sprava doľava"
+   },
+   "649459667039033491": {
+      "message": "o $NUM$ d.",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Medzera s nulovou šírkou"
+   },
+   "6539448903465735867": {
+      "message": "Hudobný symbol – začiatok frázy"
+   },
+   "6544224848752157941": {
+      "message": "Zmenšiť odsadenie"
+   },
+   "6559526625155197659": {
+      "message": "Vyhľadávanie Google je dočasne nedostupné. Skúste to znova neskôr o niekoľko minút."
+   },
+   "6563689176501108246": {
+      "message": "Radikály znakov Han – 3 ťahy"
+   },
+   "6572308230373875858": {
+      "message": "Názov tohto priečinka obsahuje nepovolené znaky"
+   },
+   "6604826525171204065": {
+      "message": "Písmo Buhid"
+   },
+   "6606727931314199470": {
+      "message": "Fenické písmo"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ x $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Vaše záložky sa nedajú synchronizovať. Skúste túto stránku znova načítať."
+   },
+   "6661160677415877619": {
+      "message": "Upraviť kód HTML"
+   },
+   "66727790049529171": {
+      "message": "Horný index"
+   },
+   "6673681480713693433": {
+      "message": "Označenie zľava doprava"
+   },
+   "6679365605648394500": {
+      "message": "Historické"
+   },
+   "6718105992776681941": {
+      "message": "Verejný priečinok"
+   },
+   "6731765034365779068": {
+      "message": "o $NUM$ min",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Staré juhoarabské písmo"
+   },
+   "6748884117721473417": {
+      "message": "Iné európske písma"
+   },
+   "6756714832459728782": {
+      "message": "Písmo Tai Le"
+   },
+   "6781212531496313437": {
+      "message": "Zoznam"
+   },
+   "6787794440298969774": {
+      "message": "Malajálamské písmo"
+   },
+   "6813860917460451806": {
+      "message": "Lykijské písmo"
+   },
+   "6848846772159302710": {
+      "message": "Zmena"
+   },
+   "6878231700728680871": {
+      "message": "NOVÉ"
+   },
+   "687829671213164815": {
+      "message": "Je nám to ľúto, ale Správca záložiek je dočasne nedostupný. Skúste to znova o niekoľko hodín."
+   },
+   "6963034896702768829": {
+      "message": "Tento priečinok už neexistuje"
+   },
+   "698011532377344679": {
+      "message": "Pohlavie a genealógia"
+   },
+   "7004429103140794719": {
+      "message": "Nedávno vybrané:"
+   },
+   "7009051272745522428": {
+      "message": "Zabudli ste, čo ste si uložili? Stačí použiť vyhľadávanie. Skúste stratené záložky nájsť pomocou všeobecných výrazov ako „filmy“ alebo „cestovanie“."
+   },
+   "7056277361038404533": {
+      "message": "Záložka bola premiestnená."
+   },
+   "7058809993296833390": {
+      "message": "Povedzte nám svoj názor!"
+   },
+   "7064503592469946179": {
+      "message": "Sundské písmo"
+   },
+   "7077571379260349566": {
+      "message": "Chcete namiesto toho skúsiť \u003Ca class=\"col-zda\">vyhľadávanie na webe\u003C/a>?"
+   },
+   "7102762854285284877": {
+      "message": "Písmo Phags Pa"
+   },
+   "7124932478652977474": {
+      "message": "Uložené ako záložka"
+   },
+   "7154665243775472938": {
+      "message": "Priečinky"
+   },
+   "7168417416563257713": {
+      "message": "Uložiť"
+   },
+   "7178727559519269241": {
+      "message": "Dvojitý šikmý spojovník"
+   },
+   "7256064246386232909": {
+      "message": "Jávske písmo"
+   },
+   "7258012171742729961": {
+      "message": "Khmérska samohlásková inherencia Aq"
+   },
+   "7300188402017534561": {
+      "message": "Všetko"
+   },
+   "7316184946628117028": {
+      "message": "Písmo Thaana"
+   },
+   "7328850288952193170": {
+      "message": "Neviditeľný oddeľovač"
+   },
+   "733245618582914569": {
+      "message": "OK"
+   },
+   "7333334175520057323": {
+      "message": "Zrušiť"
+   },
+   "7339792312429709609": {
+      "message": "Radikály znakov Han – 2 ťahy"
+   },
+   "7342965026300699486": {
+      "message": "Toto je verejný priečinok. Ak ho odstránite, ostatní používatelia si ho už nebudú môcť zobraziť."
+   },
+   "7346825266417376383": {
+      "message": "OK"
+   },
+   "7362095105218889721": {
+      "message": "Formát a medzery"
+   },
+   "7369763432670344230": {
+      "message": "Na akú e-mailovú adresu má byť prepojený tento odkaz?"
+   },
+   "7376646180156094924": {
+      "message": "Názov"
+   },
+   "7388233788532145059": {
+      "message": "Pridať alebo odstrániť odkaz"
+   },
+   "7407898565330883980": {
+      "message": "Vytvoriť priečinok"
+   },
+   "7436494590700857376": {
+      "message": "Bez názvu"
+   },
+   "7454853574776276752": {
+      "message": "OK"
+   },
+   "7466254996792639407": {
+      "message": "Gruzínske písmo"
+   },
+   "7487940627543583924": {
+      "message": "štvrtok"
+   },
+   "7496808914788281345": {
+      "message": "Skrátená dlhá pomlčka"
+   },
+   "7512206123241896524": {
+      "message": "Po odstránení verejných priečinkov si ich už nebudú môcť zobraziť ostatní používatelia."
+   },
+   "7514107325655026801": {
+      "message": "Mongolský oddeľovač samohlások"
+   },
+   "7517846739534508036": {
+      "message": "Obrázok, ktorý chcete presunúť myšou, bol zablokovaný hostiteľskou stránkou."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{o # minút}=1{o # minútu}few{o # minúty}many{o # minúty}other{o # minút}}"
+   },
+   "7556000209920718943": {
+      "message": "Cyperské písmo"
+   },
+   "7558709989823567445": {
+      "message": "Lineárne písmo B"
+   },
+   "7561680940841358107": {
+      "message": "Písmo Kayah Li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} hodina}few{{TEXT} hodiny}many{{TEXT} hodiny}other{{TEXT} hodín}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Arménsky spojovník"
+   },
+   "762426240463793747": {
+      "message": "Zlomky/súvisiace"
+   },
+   "7627205932825693842": {
+      "message": "Mongolský voliteľný rozdeľovník"
+   },
+   "7666041165203922544": {
+      "message": "Hľadajte veci jednoduchšie"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "o $NUM$ h",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "pred $NUM$ dňom",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "jún"
+   },
+   "7763561590386207075": {
+      "message": "Webová adresa"
+   },
+   "7778510137824413661": {
+      "message": "Ste najlepším interným vývojárom, akého sme kedy poznali! Našli ste chybu, ktorú nedokážeme odstrániť jednoduchým opätovným načítaním."
+   },
+   "7787489712298922692": {
+      "message": "Ugaritské písmo"
+   },
+   "7794513342167361028": {
+      "message": "Písmo Sora Sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Hudobný symbol – koniec frázy"
+   },
+   "7804811638177746132": {
+      "message": "Zadajte platnú webovú adresu"
+   },
+   "7820796809104165402": {
+      "message": "piatok"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Bola vytvorená položka.}few{Boli vytvorené # položky.}many{Bolo vytvorenej # položky.}other{Bolo vytvorených # položiek.}}"
+   },
+   "7842161096380376517": {
+      "message": "Arabčina – znak Safha"
+   },
+   "7877081360738059546": {
+      "message": "Zvieratá, rastliny a jedlo"
+   },
+   "7899357084217902569": {
+      "message": "Krátky spojovník – mínus"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Nemáte istotu v tom, čo zadať do tohto poľa?$END_BOLD$Najprv na webe nájdite stránku, na ktorú chcete vytvoriť odkaz. (Môžete na to použiť $SEARCH_ENGINE_LINK$vyhľadávač$END_LINK$.) Potom skopírujte webovú adresu z panela s adresou v prehliadači a vložte ju do vyššie uvedeného poľa.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Zrušiť"
+   },
+   "7929010027377139621": {
+      "message": "Písmo Tai Viet"
+   },
+   "7944194550132470305": {
+      "message": "Pridajte názov..."
+   },
+   "7957751306916251232": {
+      "message": "Neplatná e-mailová adresa"
+   },
+   "7977240188055092028": {
+      "message": "Zobraziť"
+   },
+   "7987287518899618882": {
+      "message": "feb."
+   },
+   "7995071973884866910": {
+      "message": "pred $NUM$ dňami",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Videá"
+   },
+   "8011311100803127599": {
+      "message": "Hviezdy/hviezdičky"
+   },
+   "8017723467201257913": {
+      "message": "Písmo Deseret"
+   },
+   "8018615794586730510": {
+      "message": "Normálne/pätkové"
+   },
+   "8027365004962833557": {
+      "message": "Staroitalické písmo"
+   },
+   "8110520007971944893": {
+      "message": "Google môže za vás automaticky usporiadať záložky"
+   },
+   "8115055677841343820": {
+      "message": "Spojovník"
+   },
+   "8132750144382731373": {
+      "message": "Ikony emodži"
+   },
+   "8139874053154312313": {
+      "message": "Spojovník s dierézou"
+   },
+   "8143412461134291283": {
+      "message": "Odoslať spätnú väzbu"
+   },
+   "8146770321190721394": {
+      "message": "Osmanské písmo"
+   },
+   "8167437723285192120": {
+      "message": "Žiadne"
+   },
+   "8179849043307262288": {
+      "message": "Aplikácia funkcie"
+   },
+   "818630018883405514": {
+      "message": "Uzavreté"
+   },
+   "8208069138346972268": {
+      "message": "Technické"
+   },
+   "8220605653109571646": {
+      "message": "Grécke písmo"
+   },
+   "8243618543879664815": {
+      "message": "jan."
+   },
+   "8275729822640276507": {
+      "message": "Ste znova pripojený/-á k webu"
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Späť"
+   },
+   "8338269186594699884": {
+      "message": "pop."
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "DOBRE"
+   },
+   "8394518299580326671": {
+      "message": "Spojovník s nulovou šírkou"
+   },
+   "8401283339806880070": {
+      "message": "Zarovnať"
+   },
+   "8417405596874032771": {
+      "message": "Ogham – znak medzery"
+   },
+   "8442861823466423570": {
+      "message": "Medziriadkové zakončenie anotácie"
+   },
+   "8454082825844118412": {
+      "message": "Radikály znakov Han – 11 až 17 ťahov"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Výsledky vyhľadávania výrazu \u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Emotikony"
+   },
+   "8509200859889253607": {
+      "message": "Buginézske písmo"
+   },
+   "8513771017811992648": {
+      "message": "Žiadne"
+   },
+   "8583880697323281603": {
+      "message": "Záložka bola zmenená."
+   },
+   "8590712065595806821": {
+      "message": "Navrhnuté"
+   },
+   "8605746117200843257": {
+      "message": "Medziriadkové ukotvenie anotácie"
+   },
+   "8608038304204118820": {
+      "message": "pred $NUM$ hodinou",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Označiť túto stránku hviezdičkou"
+   },
+   "8632024322663078476": {
+      "message": "Pridať do priečinka"
+   },
+   "8635739256240231429": {
+      "message": "Zavrieť"
+   },
+   "8637786997742615742": {
+      "message": "Modifikátor"
+   },
+   "8639484881518821804": {
+      "message": "Písmo Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Samaritánske písmo"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Normálne"
+   },
+   "8694618136165028235": {
+      "message": "Pridajte webovú adresu..."
+   },
+   "8723654283178734366": {
+      "message": "Zadajte webovú adresu"
+   },
+   "8748780785044360315": {
+      "message": "Thajské písmo"
+   },
+   "8764548034413038101": {
+      "message": "o $NUM$ minútu",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "apr."
+   },
+   "8784386825932830097": {
+      "message": "Hrazda"
+   },
+   "8793684579112208899": {
+      "message": "Dolný index"
+   },
+   "8797138403646238716": {
+      "message": "Meroitická kurzíva"
+   },
+   "8801105026907713256": {
+      "message": "Menej bežné"
+   },
+   "8805843642052942743": {
+      "message": "Lepčské písmo"
+   },
+   "8827926534395802942": {
+      "message": "Tabuľková pomlčka"
+   },
+   "8829617001171812634": {
+      "message": "Objekty"
+   },
+   "8835425644719990167": {
+      "message": "Rezerva pre kórejské mediály"
+   },
+   "8838200101653652173": {
+      "message": "Uzatváracie"
+   },
+   "8838938639049885476": {
+      "message": "Stredná medzera"
+   },
+   "8841111838340088121": {
+      "message": "Radikály znakov Han – 4 ťahy"
+   },
+   "8860909466229522023": {
+      "message": "Kurzíva"
+   },
+   "888434073985276543": {
+      "message": "Spôsob zobrazenia zvislej dlhej pomlčky"
+   },
+   "8892104104076766085": {
+      "message": "Vlnovková pomlčka"
+   },
+   "8996388564146952786": {
+      "message": "Úzka pevná medzera"
+   },
+   "9021466412659564505": {
+      "message": "Prihlásiť sa"
+   },
+   "9026903153882226079": {
+      "message": "Označenie sprava doľava"
+   },
+   "9034162255782924509": {
+      "message": "Písmo Batak"
+   },
+   "9041611521175673293": {
+      "message": "Všetky položky"
+   },
+   "9041881295809259717": {
+      "message": "Matematika"
+   },
+   "9072668986327887451": {
+      "message": "Ideografický popis"
+   },
+   "9076212347872857205": {
+      "message": "Citácia"
+   },
+   "9083920162332648298": {
+      "message": "dop."
+   },
+   "9086165147555162831": {
+      "message": "Písmo Meetei Mayek"
+   },
+   "9092805374125336008": {
+      "message": "máj"
+   },
+   "9099680152087323883": {
+      "message": "nov."
+   },
+   "9107905796365363672": {
+      "message": "Veľké"
+   },
+   "9113260413780075008": {
+      "message": "Písmo Bráhmí"
+   },
+   "9115834469932780333": {
+      "message": "Telugské písmo"
+   },
+   "9143484910409308303": {
+      "message": "Písmo Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "V šifrovaných záložkách nie je možné vyhľadávať. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Ďalšie informácie\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Priečinok bol odstránený z nadradeného priečinka."
+   },
+   "9180458846772153689": {
+      "message": "Arménske písmo"
+   },
+   "9181119817188520774": {
+      "message": "Žiadne pripojenie k sieti. Zmeny budete môcť uložiť, až keď budete znova online."
+   },
+   "9204096795425905695": {
+      "message": "Neviditeľné krát"
+   },
+   "922163125711959960": {
+      "message": "pred $NUM$ minútou",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Pridať"
+   },
+   "93670926879626900": {
+      "message": "Medzera"
+   },
+   "93871902389648718": {
+      "message": "Hudobný symbol – koniec trámca"
+   },
+   "960914149201689167": {
+      "message": "Desatinné číslo"
+   },
+   "963040144042262397": {
+      "message": "Odstrániť"
+   },
+   "964017479791059460": {
+      "message": "Arabčina – koniec Ayah"
+   },
+   "980376110610801797": {
+      "message": "Vložiť obrázok"
+   }
+}

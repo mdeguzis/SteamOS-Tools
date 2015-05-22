@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Kongsi folder ini atau tukar tetapan perkongsian"
+   },
+   "1014969137789706237": {
+      "message": "Pautkan ke halaman atau fail di tempat lain di web"
+   },
+   "1033240210015440654": {
+      "message": "Alih Keluar Imej"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} minit}other{{TEXT} minit}}"
+   },
+   "1035347665345261212": {
+      "message": "Masukkan nota"
+   },
+   "1036132178487616999": {
+      "message": "Pengenalan"
+   },
+   "1041064392303158655": {
+      "message": "Limbu"
+   },
+   "1066103686460691847": {
+      "message": "Potong"
+   },
+   "1085496824897012476": {
+      "message": "Hieroglif Mesir"
+   },
+   "1105045461281211798": {
+      "message": "Combining Grapheme Joiner"
+   },
+   "111315886393984302": {
+      "message": "Cuba tandai beberapa item di web dan tambahkan pada folder ini!"
+   },
+   "1117324761561996205": {
+      "message": "Edit"
+   },
+   "1124849668149719420": {
+      "message": "Masukkan maklum balas"
+   },
+   "1142044035368837035": {
+      "message": "Em Quad"
+   },
+   "1148670835609345833": {
+      "message": "Butang edit penanda halaman"
+   },
+   "1161548997573254809": {
+      "message": "Batal"
+   },
+   "1164857998440803763": {
+      "message": "Chakma"
+   },
+   "1170102576258588460": {
+      "message": "Non-breaking Hyphen"
+   },
+   "1185158158029036642": {
+      "message": "Klik untuk membuat penanda halaman baharu atau folder baharu."
+   },
+   "1201286409038567178": {
+      "message": "url tidak sah"
+   },
+   "1214729854306268929": {
+      "message": "$NUM$ minit yang lalu",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{# jam yang lalu}=1{# jam yang lalu}other{# jam yang lalu}}"
+   },
+   "1232723730191754374": {
+      "message": "Fon"
+   },
+   "1243361230826165709": {
+      "message": "Hangul"
+   },
+   "128696227290770661": {
+      "message": "Devanagari"
+   },
+   "1312606838421552827": {
+      "message": "Nombor"
+   },
+   "1316608632339176215": {
+      "message": "Pelbagai"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "Four-per-em Space"
+   },
+   "1337190557080419948": {
+      "message": "Tajuk"
+   },
+   "1347841728719446841": {
+      "message": "Alamat e-mel"
+   },
+   "1350404634989083059": {
+      "message": "Invisible Plus"
+   },
+   "1356908927221815545": {
+      "message": "Han 1-Stroke Radicals"
+   },
+   "1373666411928680514": {
+      "message": "Wavy Dash"
+   },
+   "1378894003206512970": {
+      "message": "Buang"
+   },
+   "138484781723580209": {
+      "message": "Syriac Abbreviation Mark"
+   },
+   "1397568831960098153": {
+      "message": "Format"
+   },
+   "142359106099692409": {
+      "message": "Folder auto"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Kecil"
+   },
+   "1460136507747533015": {
+      "message": "Sila log masuk untuk berkongsi"
+   },
+   "1477567329816921885": {
+      "message": "Adakah anda tahu anda boleh berkongsi penanda halaman kegemaran anda dengan membuat folder awam? Dapatkan URL awam dan kongsikan!"
+   },
+   "1507362459078633250": {
+      "message": "Baiklah, anda perlu menyahmuat dan memuat semula sambungan chrome dan/atau berleter panjang kepada pasukan kejuruteraan.... Maaf :-/"
+   },
+   "1516565793778879679": {
+      "message": "Han - Other"
+   },
+   "1519227660570105215": {
+      "message": "Halaman ini mungkin berbahaya"
+   },
+   "1556175764217302644": {
+      "message": "Khmer Vowel Inherent Aa"
+   },
+   "1566367040709255091": {
+      "message": "Format"
+   },
+   "1582412901770221448": {
+      "message": "Ditambahkan pada {FOLDER_NAME}"
+   },
+   "1585233503778646014": {
+      "message": "Mandaic"
+   },
+   "1592899529499992997": {
+      "message": "Penanda halaman dialih keluar dari folder."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Sila tuding di atas setiap sel untuk nama aksara."
+   },
+   "1630439475247732904": {
+      "message": "Superskrip"
+   },
+   "1634874677195552014": {
+      "message": "Six-per-em Space"
+   },
+   "1635366592844795535": {
+      "message": "LOG MASUK KE CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Cuaca dan Astrologi"
+   },
+   "1665234249876251486": {
+      "message": "Figure Space"
+   },
+   "1666311405952625458": {
+      "message": "Cuaca, Pemandangan dan Tanda Zodiak"
+   },
+   "1678004121951995792": {
+      "message": "Ogo"
+   },
+   "1680034627075195442": {
+      "message": "Anda boleh membuat folder anda sendiri atau membiarkan Google menyusun untuk anda menggunakan folder auto."
+   },
+   "1683451665637766512": {
+      "message": "Pautan ke alamat e-mel"
+   },
+   "1685884502412781083": {
+      "message": "Pemisah Perenggan"
+   },
+   "169055910458549089": {
+      "message": "Tidak dapat menyambung ke pelayan kami. Sila cuba lagi dalam masa beberapa minit."
+   },
+   "1691734467561749621": {
+      "message": "Maaf, anda tidak boleh berkongsi folder dalam bar Penanda Halaman anda"
+   },
+   "1715361312704502898": {
+      "message": "Pengangkutan Dan Peta"
+   },
+   "1719053155706676551": {
+      "message": "Bar Penanda Halaman"
+   },
+   "1730849295731139586": {
+      "message": "Yi"
+   },
+   "1748899684018766272": {
+      "message": "Halfwidth Hangul Filler"
+   },
+   "1755438325907288056": {
+      "message": "Nko"
+   },
+   "1776387440523546537": {
+      "message": "Hari ini"
+   },
+   "178181731883558542": {
+      "message": "Kotak teks untuk mencari menerusi penanda halaman anda."
+   },
+   "1791083579000016877": {
+      "message": "Berasaskan ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Lihat item berbintang"
+   },
+   "1803667155949248788": {
+      "message": "Imperial Aramaic"
+   },
+   "1827599404395723350": {
+      "message": "Kawal Gambar"
+   },
+   "1839253253564716482": {
+      "message": "Tiada penanda halaman ditemui"
+   },
+   "1847259066982820034": {
+      "message": "Pilih folder"
+   },
+   "1875246104836450162": {
+      "message": "Simbol"
+   },
+   "1879633738298009258": {
+      "message": "Medium Mathematical Space"
+   },
+   "1915655034817606796": {
+      "message": "Soft Hyphen"
+   },
+   "191946029988896895": {
+      "message": "Arabic Number Sign"
+   },
+   "1932973762029792550": {
+      "message": "Google menyusun segala perkara yang anda tandai secara automatik"
+   },
+   "1942405576047748946": {
+      "message": "Penanda halaman dibuat."
+   },
+   "196266011387145001": {
+      "message": "Seterusnya"
+   },
+   "1963154331052663396": {
+      "message": "Bahasa Latin"
+   },
+   "1999193032742275907": {
+      "message": "Han 9-Stroke Radicals"
+   },
+   "2003860471263842959": {
+      "message": "Hair Space"
+   },
+   "2015775921681923490": {
+      "message": "Tetapan"
+   },
+   "202031328373263910": {
+      "message": "Han 6-Stroke Radicals"
+   },
+   "2036672715320764541": {
+      "message": "Pemisah Garis"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Item dialih keluar dari folder.}other{# item dialih keluar dari folder.}}"
+   },
+   "2088133380647290173": {
+      "message": "Di {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Masukkan URL untuk membuat penanda halaman baharu."
+   },
+   "2117634893694108880": {
+      "message": "Peribadi"
+   },
+   "2135921744011555145": {
+      "message": "Cari penanda halaman anda"
+   },
+   "213958631597214757": {
+      "message": "Berhenti berkongsi. "
+   },
+   "2149498606985329379": {
+      "message": "Import penanda halaman selesai."
+   },
+   "2159536073195133897": {
+      "message": "Buat asal"
+   },
+   "2166866096346653276": {
+      "message": "Tiada"
+   },
+   "2167636135101203592": {
+      "message": "Bahasa Benggala"
+   },
+   "2176930521411607789": {
+      "message": "Berpasangan"
+   },
+   "218054763532467155": {
+      "message": "Masukkan tajuk"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Padam \u003Cb>{firstItemName}\u003C/b>}=1{DPadam \u003Cb>{firstItemName}\u003C/b> dan # iitem lagi}other{Padam \u003Cb>{firstItemName}\u003C/b> dan # item lagi}}"
+   },
+   "2200921183377473543": {
+      "message": "Ya"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{# hari yang lalu}=1{# hari yang lalu}other{# hari yang lalu}}"
+   },
+   "2228495834106697427": {
+      "message": "Subscript"
+   },
+   "2253752461533441758": {
+      "message": "Han 10-Stroke Radicals"
+   },
+   "2257250286834696444": {
+      "message": "Memuatkan..."
+   },
+   "2280907281518645401": {
+      "message": "Katakana-hiragana Double Hyphen"
+   },
+   "2301390744929043794": {
+      "message": "Sila tunggu sementara kami menyimpan folder anda ke pelayan"
+   },
+   "2315132909835126412": {
+      "message": "Umum"
+   },
+   "2315864755754275083": {
+      "message": "Mata wang"
+   },
+   "231658276152304252": {
+      "message": "Alih keluar"
+   },
+   "2353164220175503425": {
+      "message": "Kaithi Number Sign"
+   },
+   "2359350477261263182": {
+      "message": "Pengurus Penanda Halaman"
+   },
+   "2362075348358411947": {
+      "message": "Senarai titik tumpu khas"
+   },
+   "2396988228061015409": {
+      "message": "Folder"
+   },
+   "2398127458667829603": {
+      "message": "Papan kekunci dan UI"
+   },
+   "2413859014200470621": {
+      "message": "Tambah ensot"
+   },
+   "2414987366409119013": {
+      "message": "Keterangan folder baharu (pilihan)"
+   },
+   "2444245672676114535": {
+      "message": "Bentuk Geometri"
+   },
+   "2454859602363061373": {
+      "message": "Gunakan bintang dalam bar alamat untuk menyimpan apa sahaja di web"
+   },
+   "2497668314434532819": {
+      "message": "Bahasa Mongolia"
+   },
+   "2498668179494167671": {
+      "message": "Ruang"
+   },
+   "2506204110427755391": {
+      "message": "Termasuk penanda halaman mudah alih dan item yang tiada dalam bar Penanda Halaman anda"
+   },
+   "2512307863902593558": {
+      "message": "Kharoshthi"
+   },
+   "2518095696810513128": {
+      "message": "Import penanda halaman…"
+   },
+   "2524757118580919241": {
+      "message": "Arabic Footnote Marker"
+   },
+   "2528672033407304265": {
+      "message": "Folder ini hanya kelihatan kepada anda. Untuk berkongsi, klik \"Tetapkan kepada awam\" dan anda akan mendapat pautan yang boleh dikongsikan."
+   },
+   "2566403151253785267": {
+      "message": "Folder Tanpa Tajuk"
+   },
+   "2581794950690518802": {
+      "message": "0 minit"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Ketepikan pengenalan"
+   },
+   "2620868598794227408": {
+      "message": "Halaman ini tidak wujud lagi"
+   },
+   "2626676714216619519": {
+      "message": "Tajuk kecil"
+   },
+   "2655730128699057253": {
+      "message": "Biasa"
+   },
+   "2662413919655166560": {
+      "message": "Ahad"
+   },
+   "2665932089093244134": {
+      "message": "Bintangkan apa sahaja"
+   },
+   "2678821645623495183": {
+      "message": "Orang dan Emosi"
+   },
+   "271255586148025786": {
+      "message": "Input Heks"
+   },
+   "27472132823239706": {
+      "message": "Kanan-ke-kiri"
+   },
+   "278208331708453602": {
+      "message": "Sambung ke web dan log masuk untuk berkongsi"
+   },
+   "2785193083209311775": {
+      "message": "Mac"
+   },
+   "2803486006471792395": {
+      "message": "oleh \u003Cspan class=\"col-fv-author\">{NAMA_PENGARANG}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Ogham"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Diimport dari fail"
+   },
+   "2860423337665026261": {
+      "message": "Alih keluar dari folder"
+   },
+   "2870049984905408346": {
+      "message": "Tajuk"
+   },
+   "2878157583475586619": {
+      "message": "Tambah warna"
+   },
+   "2926789704127794819": {
+      "message": "Nama folder baharu (diperlukan)"
+   },
+   "2951727458776714094": {
+      "message": "Pautan ini tidak dapat diuji."
+   },
+   "2967109838548277236": {
+      "message": "Kongsi pautan:"
+   },
+   "2990895581472607445": {
+      "message": "Lain"
+   },
+   "2993160588184042952": {
+      "message": "American Scripts"
+   },
+   "3002524775820283106": {
+      "message": "Tambah nota..."
+   },
+   "3010872256194497959": {
+      "message": "Game Pieces"
+   },
+   "3027920889685525544": {
+      "message": "Inscriptional Parthian"
+   },
+   "3034084095590774557": {
+      "message": "Abaikan"
+   },
+   "3051034269680162898": {
+      "message": "Buang"
+   },
+   "3054430907861836285": {
+      "message": "Dis"
+   },
+   "3085746489633838782": {
+      "message": "Senarai bernombor"
+   },
+   "3087091861834859241": {
+      "message": "Selamat datang ke penanda halaman baharu anda!"
+   },
+   "3090613379634438188": {
+      "message": "Heiroglif Meroitik"
+   },
+   "3093070593773009381": {
+      "message": "Other East Asian Scripts"
+   },
+   "3114565967060091369": {
+      "message": "Hanunoo"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{dalam # jam}=1{dalam # jam}other{dalam # jam}}"
+   },
+   "3140214171317206668": {
+      "message": "En Quad"
+   },
+   "3153433695439945201": {
+      "message": "Teruskan menggunakan bintang untuk menandai halaman, seperti yang selalu anda lakukan. Penanda halaman anda akan menyimpan sesetengah halaman ke akaun Google anda agar mudah untuk dicari nanti."
+   },
+   "3186183325550234111": {
+      "message": "Pautan pergi ke "
+   },
+   "3212472770580267001": {
+      "message": "Southeast Asian Scripts"
+   },
+   "3218408007702426636": {
+      "message": "Musical Symbol End Tie"
+   },
+   "3227675900195928275": {
+      "message": "Rejang"
+   },
+   "3234811075540284463": {
+      "message": "Biasa"
+   },
+   "3244450940425660505": {
+      "message": "Tanda baca"
+   },
+   "3245712009497198424": {
+      "message": "dalam $NUM$ hari",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Tiada hasil untuk carian anda"
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Adakah anda ingin memadamkan item dalam folder ini juga?}other{Adakah anda ingin memadamkan item dalam folder ini juga?}}"
+   },
+   "3284734782999930756": {
+      "message": "URL"
+   },
+   "328616644571689303": {
+      "message": "Musical Symbol End Slur"
+   },
+   "3309586635668050685": {
+      "message": "Left-to-right Override"
+   },
+   "3316092543008555482": {
+      "message": "Phonetics (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Phonetics (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Folder dibuat."
+   },
+   "3334908307836130914": {
+      "message": "Ol Chiki"
+   },
+   "3355297279379313357": {
+      "message": "Terakhir digunakan"
+   },
+   "3360043590563638195": {
+      "message": "Saiz fon"
+   },
+   "3364831016239212879": {
+      "message": "Jajar tengah"
+   },
+   "3383495912989125674": {
+      "message": "Thin Space"
+   },
+   "340057911065586090": {
+      "message": "Ideographic Space"
+   },
+   "3413537935166399959": {
+      "message": "Sharada"
+   },
+   "3413696263226173348": {
+      "message": "Edit Perkataan"
+   },
+   "3417560136558853718": {
+      "message": "Bahasa Kannada"
+   },
+   "3423652049926153935": {
+      "message": "Folder baharu..."
+   },
+   "3484416881429158332": {
+      "message": "Folder peribadi"
+   },
+   "3490738610910152047": {
+      "message": "Bamum"
+   },
+   "3490814222385998788": {
+      "message": "Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Item dipadamkan.}other{# item dipadamkan.}}"
+   },
+   "3501212562096780610": {
+      "message": "Folder induk: "
+   },
+   "3501367450176932554": {
+      "message": "Interlinear Annotation Separator"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Bahasa Oriya"
+   },
+   "3545341282138953352": {
+      "message": "Musical Symbol Begin Tie"
+   },
+   "3546572522856950945": {
+      "message": "Cuneiform"
+   },
+   "3554323414956249846": {
+      "message": "Pautan"
+   },
+   "3572348996000195345": {
+      "message": "Em Space"
+   },
+   "3596311690500158112": {
+      "message": "Pengurus Penanda Halaman tidak tersedia buat sementara waktu. Sila muat semula halaman."
+   },
+   "3621913747018973144": {
+      "message": "Kiri-ke-kanan"
+   },
+   "362505154270301776": {
+      "message": "Halaman web"
+   },
+   "3630778778193389974": {
+      "message": "Penyemak Ejaan"
+   },
+   "3641126700487126155": {
+      "message": "Musical Symbol Begin Slur"
+   },
+   "3646623530558910508": {
+      "message": "Folder telah diubah."
+   },
+   "3646641743349296313": {
+      "message": "Okt"
+   },
+   "3650952447025672637": {
+      "message": "Padamkan folder dan item"
+   },
+   "3723533099349282495": {
+      "message": "Kaithi"
+   },
+   "37315674215151127": {
+      "message": "Kekal tersusun"
+   },
+   "3731716253672925709": {
+      "message": "Anak panah"
+   },
+   "373495866496779840": {
+      "message": "LIHAT SEMUA ITEM DITANDA HALAMAN"
+   },
+   "3735789968703193383": {
+      "message": "Paparan"
+   },
+   "3737215641755068426": {
+      "message": "CJK Strokes"
+   },
+   "3752699251010579834": {
+      "message": "Canadian Syllabics Hyphen"
+   },
+   "377368134657453613": {
+      "message": "Log masuk ke Chrome untuk mencari halaman anda yang ditandai"
+   },
+   "3800528517409823312": {
+      "message": "Math Alphanumeric"
+   },
+   "3832066920911226237": {
+      "message": "Eksport penanda halaman…"
+   },
+   "3836877357378306877": {
+      "message": "Biasa"
+   },
+   "3880744822029422406": {
+      "message": "Jika anda berhenti berkongsi folder ini, pautan kongsi akan berhenti berfungsi."
+   },
+   "3888658965293980754": {
+      "message": "Format"
+   },
+   "3893161213200925599": {
+      "message": "Batal"
+   },
+   "3924970930634517299": {
+      "message": "Huraian"
+   },
+   "3947500116452515010": {
+      "message": "Belum ada penanda halaman di sini lagi!"
+   },
+   "3951067234379178869": {
+      "message": "Folder telah dipadamkan."
+   },
+   "3953750991047324531": {
+      "message": "Bahasa Gujerat"
+   },
+   "3960988854399920931": {
+      "message": "African Scripts"
+   },
+   "3977845230474613475": {
+      "message": "Isnin"
+   },
+   "3978409745488989414": {
+      "message": "Esok"
+   },
+   "3981527568769423358": {
+      "message": "Pemilih Variasi"
+   },
+   "3998968827975494252": {
+      "message": "Canadian Aboriginal"
+   },
+   "4052124018014680002": {
+      "message": "Oleh kerana anda telah memilih untuk menyulitkan penanda halaman anda dalam \"Tetapan penyegerakan terperinci\", kami telah melumpuhkan kefungsian yang akan memerlukan Google melihat kandungan anda."
+   },
+   "4070285516355502772": {
+      "message": "Word Joiner"
+   },
+   "4083819681339999404": {
+      "message": "Folder dialihkan."
+   },
+   "4093661547607027073": {
+      "message": "Em Dash"
+   },
+   "4132740194577129031": {
+      "message": "Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Bahasa Tamil"
+   },
+   "4141340144529743179": {
+      "message": "Jajar ke kanan"
+   },
+   "4185431426264249075": {
+      "message": "Tidak"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{# minit yang lalu}=1{# minit yang lalu}other{# minit yang lalu}}"
+   },
+   "4207416107225157509": {
+      "message": "Cham"
+   },
+   "421809097037025717": {
+      "message": "Lydian"
+   },
+   "4219066138225986920": {
+      "message": "$NUM$ jam yang lalu",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "New Tai Lue"
+   },
+   "4256734561546878891": {
+      "message": "Bahasa Arab"
+   },
+   "4257688962636177926": {
+      "message": "Nota"
+   },
+   "4313041477349547430": {
+      "message": "Pilih"
+   },
+   "4317807879399263422": {
+      "message": "Simbol"
+   },
+   "4371152527205140884": {
+      "message": "Myanmar"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Hangul Filler"
+   },
+   "4394299965695763613": {
+      "message": "RALAT: \"$COLOR$\" bukan warna yang sah.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "dalam $NUM$ jam",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Buka pautan ini dalam tetingkap baharu"
+   },
+   "4436859540429978060": {
+      "message": "Anda tidak boleh menyeret dan melepaskan fail imej pada masa ini.\nSila seret imej dari penyemak imbas web anda."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Vai"
+   },
+   "4467383198992095863": {
+      "message": "Sengkang/Penyambung"
+   },
+   "4485563787650970048": {
+      "message": "Pengangkutan, Peta dan Papan Tanda"
+   },
+   "4511605174156009486": {
+      "message": "LOG MASUK"
+   },
+   "4536708754459423390": {
+      "message": "Pautan ke:"
+   },
+   "4547888102017603305": {
+      "message": "Input warna tersuai, cth. merah jambu, #F00, #D015FF atau rgb(100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Jubin"
+   },
+   "4564357083324116837": {
+      "message": "South Asian Scripts"
+   },
+   "4604654420597817764": {
+      "message": "Zero Width Non-joiner"
+   },
+   "4631096075002795557": {
+      "message": "Braille"
+   },
+   "4639190252078874549": {
+      "message": "Penanda halaman anda telah dikemas kini, jadi lebih mudah untuk mencari perkara yang telah anda simpan."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Item dialihkan.}other{# item dialihkan.}}"
+   },
+   "4677342274083596624": {
+      "message": "Mod Luar Talian"
+   },
+   "4680868343849876958": {
+      "message": "Old Turkic"
+   },
+   "468549910877472151": {
+      "message": "Diimport"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Old Persian"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Berhati-hati.$POSTB$ Ingatlah, setiap kali anda menyertakan alamat e-mel pada halaman web, penghantar spam yang berbahaya boleh menjumpainya juga.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Bahasa Tagalog"
+   },
+   "4747022692863822805": {
+      "message": "Hyphen-minus"
+   },
+   "4749120223198822539": {
+      "message": "Bahasa Sinhala"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Padamkan folder dan item"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Item dialihkan.}other{# item dialihkan.}}"
+   },
+   "482762608498192214": {
+      "message": "Sabtu"
+   },
+   "4833178038692710844": {
+      "message": "Flipped/Mirrored"
+   },
+   "484556867028550958": {
+      "message": "Hebrew Punctuation Maqaf"
+   },
+   "4848946125726663758": {
+      "message": "Jajar ke kiri"
+   },
+   "4849410737412842755": {
+      "message": "Anda tidak boleh berkongsi folder ini kerana folder induk tidak dikongsi secara umum"
+   },
+   "4856510901676745213": {
+      "message": "Bahasa Ibrani"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{dalam # hari}=1{dalam # hari}other{dalam # hari}}"
+   },
+   "4886850400045987885": {
+      "message": "Edit Pautan"
+   },
+   "4894342917447426362": {
+      "message": "Latin 1 Supplement"
+   },
+   "4895451769213934183": {
+      "message": "Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Bentuk Persembahan Untuk Vertical Em Dash"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Item diubah.}other{# item diubah.}}"
+   },
+   "4934771438157777517": {
+      "message": "Garis bawah"
+   },
+   "4943286974087295923": {
+      "message": "Tutup"
+   },
+   "4944188657066537729": {
+      "message": "Syriac"
+   },
+   "4974279938502768331": {
+      "message": "Edit"
+   },
+   "4987339278179088082": {
+      "message": "Tambahkan '$REL_NO_FOLLOW$' atribut ($LINK_START$Ketahui lebih lanjut$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Teks untuk dipaparkan:"
+   },
+   "4991252214297708837": {
+      "message": "Huraian folder"
+   },
+   "500023300077018967": {
+      "message": "Tiada Cadangan"
+   },
+   "5002702571780362629": {
+      "message": "Avestan"
+   },
+   "5013372925252634952": {
+      "message": "Carian"
+   },
+   "5015669074913229206": {
+      "message": "Bahasa Bali"
+   },
+   "5016723309142316836": {
+      "message": "Gurmukhi"
+   },
+   "5042512453093360461": {
+      "message": "Pop Directional Formatting"
+   },
+   "5086992011880811613": {
+      "message": "Penanda halaman dipadamkan."
+   },
+   "5089168125978769021": {
+      "message": "Padamkan folder"
+   },
+   "5089667744614498582": {
+      "message": "Penanda halaman dialihkan."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Musical Symbol Begin Beam"
+   },
+   "5109840495091366547": {
+      "message": "Sukan, Perayaan dan Aktiviti"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Folder baharu"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} hari}other{{TEXT} hari}}"
+   },
+   "5162393477556833033": {
+      "message": "Pautan ini harus pergi ke URL apa?"
+   },
+   "518089704180562683": {
+      "message": "Hari ini"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Runic"
+   },
+   "5253985055078626542": {
+      "message": "Pembenaman kiri ke kanan"
+   },
+   "5266193592374285468": {
+      "message": "Tetapkan kepada awam"
+   },
+   "5272267167655788064": {
+      "message": "(xlb) (Malay)"
+   },
+   "528339682728930567": {
+      "message": "Pengurus Penanda Halaman tidak tersedia buat sementara waktu. Sila cuba lagi selepas beberapa minit."
+   },
+   "5300191622079400984": {
+      "message": "Semua"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Klik untuk menambahkan keterangan"
+   },
+   "5334597244901829906": {
+      "message": "Kongsikan folder ini"
+   },
+   "534304870772683249": {
+      "message": "Serah"
+   },
+   "534369010818044160": {
+      "message": "Bahasa Kemboja"
+   },
+   "5354142472798067112": {
+      "message": "Pemilih Variasi - $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Tiada sambungan rangkaian. Anda tidak boleh menyimpan perubahan sehingga anda kembali ke dalam talian."
+   },
+   "5371009567664142864": {
+      "message": "Ethiopic"
+   },
+   "5378436065321978089": {
+      "message": "Buat"
+   },
+   "538263398271363120": {
+      "message": "Cherokee"
+   },
+   "5412265752110327977": {
+      "message": "Keserasian"
+   },
+   "5425054962709217464": {
+      "message": "Rabu"
+   },
+   "544490805551236927": {
+      "message": "Middle Eastern Scripts"
+   },
+   "5448654348317290038": {
+      "message": "En Dash"
+   },
+   "5456454482863742119": {
+      "message": "Padamkan folder"
+   },
+   "5458956770053499082": {
+      "message": "Muzikal"
+   },
+   "546306107859654806": {
+      "message": "Alih ke folder"
+   },
+   "5474647412096976366": {
+      "message": "Sambung ke Internet untuk mencari halaman anda yang ditandai"
+   },
+   "5500830105937873966": {
+      "message": "Padam"
+   },
+   "5517581353492371385": {
+      "message": "Semalam"
+   },
+   "5521943762943322583": {
+      "message": "Bahasa Lao"
+   },
+   "5529569087489430384": {
+      "message": "Inscriptional Pahlavi"
+   },
+   "5561412620611998456": {
+      "message": "Sep"
+   },
+   "5579702837382664819": {
+      "message": "Folder automatik untuk \u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gothic"
+   },
+   "5603457799050818619": {
+      "message": "Tiada folder auto pada masa ini."
+   },
+   "5603774725128707055": {
+      "message": "Folder dialihkan."
+   },
+   "5621148847082889884": {
+      "message": "Belum ada folder di sini lagi!"
+   },
+   "5669644158906503623": {
+      "message": "Arabic Sign Sanah"
+   },
+   "5672850901284728452": {
+      "message": "Buka halaman log"
+   },
+   "5673852407127287054": {
+      "message": "Fullwidth Hyphen-minus"
+   },
+   "5679720964567650205": {
+      "message": "Selasa"
+   },
+   "5748894773514291207": {
+      "message": "Three-per-em Space"
+   },
+   "5749465969550038727": {
+      "message": "Tagbanwa"
+   },
+   "5773338884170027267": {
+      "message": "Buang pemformatan"
+   },
+   "5776478286503179051": {
+      "message": "Han 5-Stroke Radicals"
+   },
+   "5778201074245568998": {
+      "message": "Huruf tebal"
+   },
+   "580023699785819803": {
+      "message": "Bahasa Tibet"
+   },
+   "5815994514834119961": {
+      "message": "Yijing / Tai Xuan Jing"
+   },
+   "5822895345080436445": {
+      "message": "Imej"
+   },
+   "5832273633751333051": {
+      "message": "Syloti Nagri"
+   },
+   "5837746770084243727": {
+      "message": "Tanda"
+   },
+   "5842240706321147978": {
+      "message": "Pautan"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Jarak"
+   },
+   "5923476740499653277": {
+      "message": "Glagolitic"
+   },
+   "6002018674529763527": {
+      "message": "No-break Space"
+   },
+   "6013038186284817941": {
+      "message": "Han 8-Stroke Radicals"
+   },
+   "6014514403103768983": {
+      "message": "Warna heks"
+   },
+   "6025708931099464434": {
+      "message": "Tai Tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Warna latar belakang teks"
+   },
+   "6055751153306823909": {
+      "message": "Sangat besar"
+   },
+   "609920334473042917": {
+      "message": "Selamat datang ke penanda halaman baharu anda! Log masuk ke Chrome untuk mendapatkan lebih banyak ciri seperti: carian yang lebih baik, folder auto dan imej yang ditambahkan pada penanda halaman lalu anda."
+   },
+   "6131022146392295404": {
+      "message": "Edit sumber HTML"
+   },
+   "6146119258861607037": {
+      "message": "Han 7-Stroke Radicals"
+   },
+   "6176673388074993831": {
+      "message": "Coptic"
+   },
+   "6178455470693561470": {
+      "message": "Anda kini berada di luar talian. Sila cuba lagi apabila anda kembali dalam talian."
+   },
+   "6189158371964390675": {
+      "message": "Enclosed/Dotted"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Right-to-left Embedding"
+   },
+   "6207440179505974685": {
+      "message": "Shavian"
+   },
+   "6233852423673631009": {
+      "message": "Jul"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Adakah anda pasti ingin memadamkan semua item dalam folder ini?}other{Adakah anda pasti ingin memadamkan semua item dalam folder ini?}}"
+   },
+   "6256177058141995632": {
+      "message": "Miao"
+   },
+   "625779090990399178": {
+      "message": "Lagi pilihan"
+   },
+   "6259598030649933216": {
+      "message": "Maklumat"
+   },
+   "6263370534846330732": {
+      "message": "Tifinagh"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# dipilih}other{# dipilih}}"
+   },
+   "6281738099691391172": {
+      "message": "Warna teks"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Zero Width No-break Space"
+   },
+   "6380136177516870340": {
+      "message": "Anda dilog masuk ke Google dengan akaun yang berbeza daripada penyemak imbas Chrome anda."
+   },
+   "639862355711352140": {
+      "message": "KETAHUI LEBIH LANJUT"
+   },
+   "6410416070545265970": {
+      "message": "Uji pautan ini"
+   },
+   "6418290353353165009": {
+      "message": "Buat semula"
+   },
+   "6425676451769330238": {
+      "message": "Nonspacing"
+   },
+   "6433056041891472200": {
+      "message": "Log masuk untuk mendayakan"
+   },
+   "6437997645764562921": {
+      "message": "Hangul Choseong Filler"
+   },
+   "6470997799115367716": {
+      "message": "Saurashtra"
+   },
+   "6471970833583478119": {
+      "message": "Tajuk kecil"
+   },
+   "6473682978091349952": {
+      "message": "Punctuation Space"
+   },
+   "6489221588545746734": {
+      "message": "Cyril"
+   },
+   "64909648993550346": {
+      "message": "Right-to-left Override"
+   },
+   "649459667039033491": {
+      "message": "dalam $NUM$ hari",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Zero Width Space"
+   },
+   "6539448903465735867": {
+      "message": "Musical Symbol Begin Phrase"
+   },
+   "6544224848752157941": {
+      "message": "Kurangkan ensot"
+   },
+   "6559526625155197659": {
+      "message": "Carian Google tidak tersedia buat sementara waktu. Cuba lagi dalam beberapa minit."
+   },
+   "6563689176501108246": {
+      "message": "Han 3-Stroke Radicals"
+   },
+   "6572308230373875858": {
+      "message": "Nama folder ini mengandungi aksara yang tidak sah."
+   },
+   "6604826525171204065": {
+      "message": "Buhid"
+   },
+   "6606727931314199470": {
+      "message": "Phoenician"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ kali $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Tidak dapat menyegerakkan penanda halaman. Cuba muat semula halaman ini"
+   },
+   "6661160677415877619": {
+      "message": "Edit HTML"
+   },
+   "66727790049529171": {
+      "message": "Superskrip"
+   },
+   "6673681480713693433": {
+      "message": "Tanda Kiri ke kanan"
+   },
+   "6679365605648394500": {
+      "message": "Sejarah"
+   },
+   "6718105992776681941": {
+      "message": "Folder awam"
+   },
+   "6731765034365779068": {
+      "message": "dalam $NUM$ minit",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Old South Arabian"
+   },
+   "6748884117721473417": {
+      "message": "Other European Scripts"
+   },
+   "6756714832459728782": {
+      "message": "Tai Le"
+   },
+   "6781212531496313437": {
+      "message": "Senarai"
+   },
+   "6787794440298969774": {
+      "message": "Bahasa Malayalam"
+   },
+   "6813860917460451806": {
+      "message": "Lycian"
+   },
+   "6848846772159302710": {
+      "message": "Tukar"
+   },
+   "6878231700728680871": {
+      "message": "BAHARU"
+   },
+   "687829671213164815": {
+      "message": "Maaf, Pengurus Penanda Halaman tidak tersedia buat sementara waktu. Sila cuba semula dalam masa beberapa jam"
+   },
+   "6963034896702768829": {
+      "message": "Folder ini tidak wujud lagi."
+   },
+   "698011532377344679": {
+      "message": "Gender and Genealogical"
+   },
+   "7004429103140794719": {
+      "message": "Pilihan Terbaru:"
+   },
+   "7009051272745522428": {
+      "message": "Terlupa perkara yang anda simpan? Cari sahaja. Cuba istilah umum seperti \"filem\" atau \"perjalanan\" untuk menemui semula penanda halaman yang hilang."
+   },
+   "7056277361038404533": {
+      "message": "Penanda halaman dialihkan."
+   },
+   "7058809993296833390": {
+      "message": "Beritahu kami pendapat anda!"
+   },
+   "7064503592469946179": {
+      "message": "Bahasa Sunda"
+   },
+   "7077571379260349566": {
+      "message": "Adakah anda mahu cuba \u003Ca class=\"col-zda\">membuat carian di web\u003C/a>?"
+   },
+   "7102762854285284877": {
+      "message": "Phags Pa"
+   },
+   "7124932478652977474": {
+      "message": "Ditanda halaman"
+   },
+   "7154665243775472938": {
+      "message": "Folder"
+   },
+   "7168417416563257713": {
+      "message": "Simpan"
+   },
+   "7178727559519269241": {
+      "message": "Double Oblique Hyphen"
+   },
+   "7256064246386232909": {
+      "message": "Bahasa Jawa"
+   },
+   "7258012171742729961": {
+      "message": "Khmer Vowel Inherent Aq"
+   },
+   "7300188402017534561": {
+      "message": "Semua"
+   },
+   "7316184946628117028": {
+      "message": "Thaana"
+   },
+   "7328850288952193170": {
+      "message": "Pemisah Tidak Boleh Dilihat"
+   },
+   "733245618582914569": {
+      "message": "OK"
+   },
+   "7333334175520057323": {
+      "message": "Batal"
+   },
+   "7339792312429709609": {
+      "message": "Han 2-Stroke Radicals"
+   },
+   "7342965026300699486": {
+      "message": "Ini folder awam. Apabila folder ini dipadamkan, orang lain akan dihalang daripada dapat melihat folder."
+   },
+   "7346825266417376383": {
+      "message": "OK"
+   },
+   "7362095105218889721": {
+      "message": "Format & Whitespace"
+   },
+   "7369763432670344230": {
+      "message": "Alamat e-mel apakah yang harus dipautkan?"
+   },
+   "7376646180156094924": {
+      "message": "Nama"
+   },
+   "7388233788532145059": {
+      "message": "Tambah atau alih keluar pautan"
+   },
+   "7407898565330883980": {
+      "message": "Buat folder"
+   },
+   "7436494590700857376": {
+      "message": "Tidak bertajuk"
+   },
+   "7454853574776276752": {
+      "message": "OK"
+   },
+   "7466254996792639407": {
+      "message": "Bahasa Georgia"
+   },
+   "7487940627543583924": {
+      "message": "Khamis"
+   },
+   "7496808914788281345": {
+      "message": "Small Em Dash"
+   },
+   "7512206123241896524": {
+      "message": "Apabila folder awam dipadamkan, orang lain akan dihalang daripada dapat melihat folder."
+   },
+   "7514107325655026801": {
+      "message": "Mongolian Vowel Separator"
+   },
+   "7517846739534508036": {
+      "message": "Imej yang cuba anda seret telah disekat oleh tapak pengehosan."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{dalam # minit}=1{dalam # minit}other{dalam # minit}}"
+   },
+   "7556000209920718943": {
+      "message": "Cypriot"
+   },
+   "7558709989823567445": {
+      "message": "Linear B"
+   },
+   "7561680940841358107": {
+      "message": "Kayah Li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} jam}other{{TEXT} jam}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Armenian Hyphen"
+   },
+   "762426240463793747": {
+      "message": "Fractions/Related"
+   },
+   "7627205932825693842": {
+      "message": "Mongolian Soft Hyphen"
+   },
+   "7666041165203922544": {
+      "message": "Cari sesuatu dengan mudah"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "dalam $NUM$ jam",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "$NUM$ hari yang lalu",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "Jun"
+   },
+   "7763561590386207075": {
+      "message": "Alamat web"
+   },
+   "7778510137824413661": {
+      "message": "Andalah penguji cuba yang terbaik! Cara terhebat untuk menangani ralat yang kami tidak dapat lakukan muat semula ringkas untuk memulihkannya."
+   },
+   "7787489712298922692": {
+      "message": "Ugaritic"
+   },
+   "7794513342167361028": {
+      "message": "Sora Sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Musical Symbol End Phrase"
+   },
+   "7804811638177746132": {
+      "message": "Sila masukkan url yang sah."
+   },
+   "7820796809104165402": {
+      "message": "Jumaat"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Item dibuat.}other{# item dibuat.}}"
+   },
+   "7842161096380376517": {
+      "message": "Arabic Sign Safha"
+   },
+   "7877081360738059546": {
+      "message": "Haiwan, Tumbuhan dan Makanan"
+   },
+   "7899357084217902569": {
+      "message": "Small Hyphen-minus"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Tidak pasti apa yang hendak diletakkan di dalam kotak?$END_BOLD$ Mula-mula, cari halaman yang mahu dipaut di web. ($SEARCH_ENGINE_LINK$Enjin carian$END_LINK$ might be useful.) mungkin berguna). Kemudian, salin alamat web itu dari kotak dalam bar alamat penyemak imbas anda, kemudian tampalkannya ke dalam kotak di atas.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Batal"
+   },
+   "7929010027377139621": {
+      "message": "Tai Viet"
+   },
+   "7944194550132470305": {
+      "message": "Tambah tajuk..."
+   },
+   "7957751306916251232": {
+      "message": "Alamat e-mel tidak sah"
+   },
+   "7977240188055092028": {
+      "message": "Lihat"
+   },
+   "7987287518899618882": {
+      "message": "Feb"
+   },
+   "7995071973884866910": {
+      "message": "$NUM$ hari yang lalu",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Video"
+   },
+   "8011311100803127599": {
+      "message": "Stars/Asterisks"
+   },
+   "8017723467201257913": {
+      "message": "Deseret"
+   },
+   "8018615794586730510": {
+      "message": "Normal / serif"
+   },
+   "8027365004962833557": {
+      "message": "Old Italic"
+   },
+   "8110520007971944893": {
+      "message": "Google boleh menyusun penanda halaman anda secara automatik jadi anda tidak perlu melakukannya"
+   },
+   "8115055677841343820": {
+      "message": "Tanda Sempang"
+   },
+   "8132750144382731373": {
+      "message": "Emoji"
+   },
+   "8139874053154312313": {
+      "message": "Hyphen With Diaeresis"
+   },
+   "8143412461134291283": {
+      "message": "Hantar maklum balas"
+   },
+   "8146770321190721394": {
+      "message": "Osmanya"
+   },
+   "8167437723285192120": {
+      "message": "Tiada"
+   },
+   "8179849043307262288": {
+      "message": "Aplikasi Fungsi"
+   },
+   "818630018883405514": {
+      "message": "Enclosed"
+   },
+   "8208069138346972268": {
+      "message": "Teknikal"
+   },
+   "8220605653109571646": {
+      "message": "Bahasa Greek"
+   },
+   "8243618543879664815": {
+      "message": "Jan"
+   },
+   "8275729822640276507": {
+      "message": "Anda disambungkan ke web lagi."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Buat asal"
+   },
+   "8338269186594699884": {
+      "message": "ptg"
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "FAHAM"
+   },
+   "8394518299580326671": {
+      "message": "Zero Width Joiner"
+   },
+   "8401283339806880070": {
+      "message": "Imbang"
+   },
+   "8417405596874032771": {
+      "message": "Ogham Space Mark"
+   },
+   "8442861823466423570": {
+      "message": "Interlinear Annotation Terminator"
+   },
+   "8454082825844118412": {
+      "message": "Han 11..17-Stroke Radicals"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Hasil carian untuk \u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Emosikon"
+   },
+   "8509200859889253607": {
+      "message": "Buginese"
+   },
+   "8513771017811992648": {
+      "message": "Tiada"
+   },
+   "8583880697323281603": {
+      "message": "Penanda halaman diubah."
+   },
+   "8590712065595806821": {
+      "message": "Dicadangkan"
+   },
+   "8605746117200843257": {
+      "message": "Interlinear Annotation Anchor"
+   },
+   "8608038304204118820": {
+      "message": "$NUM$ jam yang lalu",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Bintangkan halaman ini"
+   },
+   "8632024322663078476": {
+      "message": "Tambahkan pada folder"
+   },
+   "8635739256240231429": {
+      "message": "Tutup"
+   },
+   "8637786997742615742": {
+      "message": "Pengubah suai"
+   },
+   "8639484881518821804": {
+      "message": "Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Samaritan"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Biasa"
+   },
+   "8694618136165028235": {
+      "message": "Tambah url..."
+   },
+   "8723654283178734366": {
+      "message": "Masukkan alamat web"
+   },
+   "8748780785044360315": {
+      "message": "Bahasa Thai"
+   },
+   "8764548034413038101": {
+      "message": "dalam $NUM$ minit",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "Apr"
+   },
+   "8784386825932830097": {
+      "message": "Palang Tunggal"
+   },
+   "8793684579112208899": {
+      "message": "Subskrip"
+   },
+   "8797138403646238716": {
+      "message": "Meroitic Cursive"
+   },
+   "8801105026907713256": {
+      "message": "Kurang Biasa Digunakan"
+   },
+   "8805843642052942743": {
+      "message": "Lepcha"
+   },
+   "8827926534395802942": {
+      "message": "Figure Dash"
+   },
+   "8829617001171812634": {
+      "message": "Objek"
+   },
+   "8835425644719990167": {
+      "message": "Hangul Jungseong Filler"
+   },
+   "8838200101653652173": {
+      "message": "Enclosing"
+   },
+   "8838938639049885476": {
+      "message": "En Space"
+   },
+   "8841111838340088121": {
+      "message": "Han 4-Stroke Radicals"
+   },
+   "8860909466229522023": {
+      "message": "Huruf condong"
+   },
+   "888434073985276543": {
+      "message": "Bentuk Persembahan Untuk Vertical Em Dash"
+   },
+   "8892104104076766085": {
+      "message": "Wave Dash"
+   },
+   "8996388564146952786": {
+      "message": "Narrow No-break Space"
+   },
+   "9021466412659564505": {
+      "message": "Log masuk"
+   },
+   "9026903153882226079": {
+      "message": "Tanda Kanan ke kiri"
+   },
+   "9034162255782924509": {
+      "message": "Batak"
+   },
+   "9041611521175673293": {
+      "message": "Semua Item"
+   },
+   "9041881295809259717": {
+      "message": "Math"
+   },
+   "9072668986327887451": {
+      "message": "Ideographic Description"
+   },
+   "9076212347872857205": {
+      "message": "Petikan"
+   },
+   "9083920162332648298": {
+      "message": "pg"
+   },
+   "9086165147555162831": {
+      "message": "Meetei Mayek"
+   },
+   "9092805374125336008": {
+      "message": "Mei"
+   },
+   "9099680152087323883": {
+      "message": "Nov"
+   },
+   "9107905796365363672": {
+      "message": "Besar"
+   },
+   "9113260413780075008": {
+      "message": "Brahmi"
+   },
+   "9115834469932780333": {
+      "message": "Bahasa Telugu"
+   },
+   "9143484910409308303": {
+      "message": "Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Penanda halaman yang disulitkan tidak boleh dicari. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Ketahui lebih lanjut\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Folder dialih keluar dari folder induk."
+   },
+   "9180458846772153689": {
+      "message": "Bahasa Armenia"
+   },
+   "9181119817188520774": {
+      "message": "Tiada sambungan rangkaian. Anda tidak boleh menyimpan perubahan sehingga anda kembali dalam talian"
+   },
+   "9204096795425905695": {
+      "message": "Invisible Times"
+   },
+   "922163125711959960": {
+      "message": "$NUM$ minit yang lalu",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Tambah"
+   },
+   "93670926879626900": {
+      "message": "Whitespace"
+   },
+   "93871902389648718": {
+      "message": "Musical Symbol End Beam"
+   },
+   "960914149201689167": {
+      "message": "Perpuluhan"
+   },
+   "963040144042262397": {
+      "message": "Padam"
+   },
+   "964017479791059460": {
+      "message": "Arabic End Of Ayah"
+   },
+   "980376110610801797": {
+      "message": "Masukkan imej"
+   }
+}

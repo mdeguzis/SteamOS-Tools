@@ -650,6 +650,16 @@ ep_install_netflix()
 
 	echo -e "\n==> Installing Netflix (via Chrome) from automated script...\n"
 	sleep 2s
+	
+	#######################################
+	# Set vars
+	#######################################
+
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="yes"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
 
 	#######################################
 	# Pre-reqs

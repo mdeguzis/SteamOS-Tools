@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Compartiu aquesta carpeta o canvieu les opcions per compartir"
+   },
+   "1014969137789706237": {
+      "message": "Enllaç a una pàgina o a un fitxer al web"
+   },
+   "1033240210015440654": {
+      "message": "Suprimeix imatge"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} minut}other{{TEXT} minuts}}"
+   },
+   "1035347665345261212": {
+      "message": "Introduïu una nota."
+   },
+   "1036132178487616999": {
+      "message": "Introducció"
+   },
+   "1041064392303158655": {
+      "message": "Limbu"
+   },
+   "1066103686460691847": {
+      "message": "Ratlla"
+   },
+   "1085496824897012476": {
+      "message": "Jeroglífics egipcis"
+   },
+   "1105045461281211798": {
+      "message": "Unió de grafema combinable"
+   },
+   "111315886393984302": {
+      "message": "Proveu d'afegir alguns elements del web a les adreces d'interès i afegiu-los a aquesta carpeta."
+   },
+   "1117324761561996205": {
+      "message": "Edita"
+   },
+   "1124849668149719420": {
+      "message": "Introduïu suggeriments."
+   },
+   "1142044035368837035": {
+      "message": "Quadratí llarg"
+   },
+   "1148670835609345833": {
+      "message": "Botó per editar l'adreça d'interès"
+   },
+   "1161548997573254809": {
+      "message": "Cancel·la"
+   },
+   "1164857998440803763": {
+      "message": "Chakma"
+   },
+   "1170102576258588460": {
+      "message": "Guionet de no separació"
+   },
+   "1185158158029036642": {
+      "message": "Feu-hi clic per crear una adreça d'interès o una carpeta nova."
+   },
+   "1201286409038567178": {
+      "message": "URL no vàlid"
+   },
+   "1214729854306268929": {
+      "message": "fa $NUM$ minuts",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{Fa # hores}=1{Fa # hora}other{Fa # hores}}"
+   },
+   "1232723730191754374": {
+      "message": "Tipus de lletra"
+   },
+   "1243361230826165709": {
+      "message": "Hangul"
+   },
+   "128696227290770661": {
+      "message": "Devanagari"
+   },
+   "1312606838421552827": {
+      "message": "Número"
+   },
+   "1316608632339176215": {
+      "message": "Diversos"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "Quart d'espai"
+   },
+   "1337190557080419948": {
+      "message": "Títol"
+   },
+   "1347841728719446841": {
+      "message": "Adreça electrònica"
+   },
+   "1350404634989083059": {
+      "message": "Signe més invisible"
+   },
+   "1356908927221815545": {
+      "message": "Radicals d'1 traç han"
+   },
+   "1373666411928680514": {
+      "message": "Guió ondulat"
+   },
+   "1378894003206512970": {
+      "message": "Descarta"
+   },
+   "138484781723580209": {
+      "message": "Marca d'abreviació del siríac"
+   },
+   "1397568831960098153": {
+      "message": "Format"
+   },
+   "142359106099692409": {
+      "message": "Carpetes automàtiques"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Petita"
+   },
+   "1460136507747533015": {
+      "message": "Inicieu la sessió per compartir"
+   },
+   "1477567329816921885": {
+      "message": "Sabeu que podeu compartir les vostres adreces d'interès preferides fent una carpeta pública? Obteniu l'URL públic i compartiu-lo."
+   },
+   "1507362459078633250": {
+      "message": "Vaja... Haureu de desinstal·lar i tornar a instal·lar l'extensió de Chrome o contactar amb l'equip d'enginyeria..."
+   },
+   "1516565793778879679": {
+      "message": "Han: altres"
+   },
+   "1519227660570105215": {
+      "message": "És possible que aquesta pàgina sigui perillosa."
+   },
+   "1556175764217302644": {
+      "message": "Vocal Aa inherent al khmer"
+   },
+   "1566367040709255091": {
+      "message": "Format"
+   },
+   "1582412901770221448": {
+      "message": "Afegit a {FOLDER_NAME}"
+   },
+   "1585233503778646014": {
+      "message": "Mandeu"
+   },
+   "1592899529499992997": {
+      "message": "S'ha tret l'adreça d'interès de la carpeta."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Passeu el cursor per sobre de cada cel·la per consultar el nom del caràcter."
+   },
+   "1630439475247732904": {
+      "message": "Superíndex"
+   },
+   "1634874677195552014": {
+      "message": "Sisè d'espai"
+   },
+   "1635366592844795535": {
+      "message": "INICIA LA SESSIÓ A CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Meteorologia i astrologia"
+   },
+   "1665234249876251486": {
+      "message": "Espai numèric"
+   },
+   "1666311405952625458": {
+      "message": "Meteorologia, escenes i signes del zodíac"
+   },
+   "1678004121951995792": {
+      "message": "Ag."
+   },
+   "1680034627075195442": {
+      "message": "Podeu crear les vostres carpetes o deixar que Google les organitzi automàticament en carpetes automàtiques."
+   },
+   "1683451665637766512": {
+      "message": "Enllaç a una adreça electrònica"
+   },
+   "1685884502412781083": {
+      "message": "Separador de paràgraf"
+   },
+   "169055910458549089": {
+      "message": "No s'ha pogut connectar amb el servidor. Torneu-ho a provar d'aquí a uns quants minuts."
+   },
+   "1691734467561749621": {
+      "message": "Les carpetes de la barra d'adreces d'interès no es poden compartir"
+   },
+   "1715361312704502898": {
+      "message": "Transport i mapa"
+   },
+   "1719053155706676551": {
+      "message": "Barra d'adreces d'interès"
+   },
+   "1730849295731139586": {
+      "message": "Yi"
+   },
+   "1748899684018766272": {
+      "message": "Caràcter d'emplenament hangul de mitja amplada"
+   },
+   "1755438325907288056": {
+      "message": "N'Ko"
+   },
+   "1776387440523546537": {
+      "message": "Avui"
+   },
+   "178181731883558542": {
+      "message": "Quadre de text per fer cerques a les adreces d'interès."
+   },
+   "1791083579000016877": {
+      "message": "Basat en ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Mostra els elements destacats"
+   },
+   "1803667155949248788": {
+      "message": "Arameu imperial"
+   },
+   "1827599404395723350": {
+      "message": "Imatges de control"
+   },
+   "1839253253564716482": {
+      "message": "No s'ha trobat cap adreça d'interès"
+   },
+   "1847259066982820034": {
+      "message": "Trieu una carpeta"
+   },
+   "1875246104836450162": {
+      "message": "Símbol"
+   },
+   "1879633738298009258": {
+      "message": "Espai matemàtic intermedi"
+   },
+   "1915655034817606796": {
+      "message": "Guionet virtual"
+   },
+   "191946029988896895": {
+      "message": "Signe de número de l'àrab"
+   },
+   "1932973762029792550": {
+      "message": "Google organitza automàticament tot el que afegiu a les adreces d'interès"
+   },
+   "1942405576047748946": {
+      "message": "S'ha creat una adreça d'interès."
+   },
+   "196266011387145001": {
+      "message": "Continua"
+   },
+   "1963154331052663396": {
+      "message": "Llatí"
+   },
+   "1999193032742275907": {
+      "message": "Radicals de 9 traços han"
+   },
+   "2003860471263842959": {
+      "message": "Espai molt fi"
+   },
+   "2015775921681923490": {
+      "message": "Configuració"
+   },
+   "202031328373263910": {
+      "message": "Radicals de 6 traços han"
+   },
+   "2036672715320764541": {
+      "message": "Separador de línia"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{S'ha tret l'element de la carpeta.}other{S'han tret # elements de la carpeta.}}"
+   },
+   "2088133380647290173": {
+      "message": "A {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Introduïu un URL per crear una adreça d'interès."
+   },
+   "2117634893694108880": {
+      "message": "Privada"
+   },
+   "2135921744011555145": {
+      "message": "Cerca a les adreces d'interès"
+   },
+   "213958631597214757": {
+      "message": "No vull compartir-la."
+   },
+   "2149498606985329379": {
+      "message": "Les adreces d'interès s'han importat."
+   },
+   "2159536073195133897": {
+      "message": "Desfés"
+   },
+   "2166866096346653276": {
+      "message": "Cap"
+   },
+   "2167636135101203592": {
+      "message": "Bengalí"
+   },
+   "2176930521411607789": {
+      "message": "Sincronitzats"
+   },
+   "218054763532467155": {
+      "message": "Introduïu un títol"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Suprimeix \u003Cb>{firstItemName}\u003C/b>}=1{Suprimeix \u003Cb>{firstItemName}\u003C/b> i # element més}other{Suprimeix \u003Cb>{firstItemName}\u003C/b> i # elements més}}"
+   },
+   "2200921183377473543": {
+      "message": "Sí"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{Fa # dies}=1{Fa # dia}other{Fa # dies}}"
+   },
+   "2228495834106697427": {
+      "message": "Subíndex"
+   },
+   "2253752461533441758": {
+      "message": "Radicals de 10 traços han"
+   },
+   "2257250286834696444": {
+      "message": "S’està carregant..."
+   },
+   "2280907281518645401": {
+      "message": "Guionet doble del katakana-hiragana"
+   },
+   "2301390744929043794": {
+      "message": "Espereu mentre es desa la carpeta al servidor"
+   },
+   "2315132909835126412": {
+      "message": "Pública"
+   },
+   "2315864755754275083": {
+      "message": "Moneda"
+   },
+   "231658276152304252": {
+      "message": "Suprimeix"
+   },
+   "2353164220175503425": {
+      "message": "Símbol numèric kaithi"
+   },
+   "2359350477261263182": {
+      "message": "Gestor d'adreces d'interès"
+   },
+   "2362075348358411947": {
+      "message": "Llista amb pics"
+   },
+   "2396988228061015409": {
+      "message": "Carpetes"
+   },
+   "2398127458667829603": {
+      "message": "Teclat i IU"
+   },
+   "2413859014200470621": {
+      "message": "Augmenta el sagnat"
+   },
+   "2414987366409119013": {
+      "message": "Descripció de la carpeta nova (opcional)"
+   },
+   "2444245672676114535": {
+      "message": "Formes geomètriques"
+   },
+   "2454859602363061373": {
+      "message": "Feu servir l'estrella de la barra d'adreces per desar qualsevol cosa que trobeu al web."
+   },
+   "2497668314434532819": {
+      "message": "Mongol"
+   },
+   "2498668179494167671": {
+      "message": "Espai"
+   },
+   "2506204110427755391": {
+      "message": "Inclou les adreces d'interès del mòbil i els elements que no apareixen a la vostra barra d'adreces d'interès"
+   },
+   "2512307863902593558": {
+      "message": "Kharoshthi"
+   },
+   "2518095696810513128": {
+      "message": "Importa les adreces d'interès..."
+   },
+   "2524757118580919241": {
+      "message": "Marcador de nota al peu de l'àrab"
+   },
+   "2528672033407304265": {
+      "message": "Ningú més no pot veure aquesta carpeta. Per compartir-la, feu clic a Fes-la pública i obtindreu un enllaç que podreu compartir."
+   },
+   "2566403151253785267": {
+      "message": "Carpeta sense títol"
+   },
+   "2581794950690518802": {
+      "message": "0 minuts"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Omet la introducció"
+   },
+   "2620868598794227408": {
+      "message": "Aquesta pàgina ja no existeix."
+   },
+   "2626676714216619519": {
+      "message": "Subtítol"
+   },
+   "2655730128699057253": {
+      "message": "Normal"
+   },
+   "2662413919655166560": {
+      "message": "Diumenge"
+   },
+   "2665932089093244134": {
+      "message": "Feu servir l'estrella per afegir una pàgina a les adreces d'interès"
+   },
+   "2678821645623495183": {
+      "message": "Persones i emoticones"
+   },
+   "271255586148025786": {
+      "message": "Entrada hexadecimal"
+   },
+   "27472132823239706": {
+      "message": "De dreta a esquerra"
+   },
+   "278208331708453602": {
+      "message": "Connecteu-vos a Internet i inicieu la sessió per compartir la carpeta"
+   },
+   "2785193083209311775": {
+      "message": "Març"
+   },
+   "2803486006471792395": {
+      "message": "de \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Ogham"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "S'han importat des d'un fitxer"
+   },
+   "2860423337665026261": {
+      "message": "Suprimeix de la carpeta"
+   },
+   "2870049984905408346": {
+      "message": "Títol"
+   },
+   "2878157583475586619": {
+      "message": "Afegeix un color"
+   },
+   "2926789704127794819": {
+      "message": "Nom de la carpeta nova (obligatori)"
+   },
+   "2951727458776714094": {
+      "message": "Aquest enllaç no es pot provar."
+   },
+   "2967109838548277236": {
+      "message": "Enllaç per compartir:"
+   },
+   "2990895581472607445": {
+      "message": "Altres"
+   },
+   "2993160588184042952": {
+      "message": "Alfabets americans"
+   },
+   "3002524775820283106": {
+      "message": "Afegiu una nota..."
+   },
+   "3010872256194497959": {
+      "message": "Peces del joc"
+   },
+   "3027920889685525544": {
+      "message": "Part inscripcional"
+   },
+   "3034084095590774557": {
+      "message": "Ignora"
+   },
+   "3051034269680162898": {
+      "message": "Ignora"
+   },
+   "3054430907861836285": {
+      "message": "Des."
+   },
+   "3085746489633838782": {
+      "message": "Llista numerada"
+   },
+   "3087091861834859241": {
+      "message": "Us donem la benvinguda a les noves adreces d'interès!"
+   },
+   "3090613379634438188": {
+      "message": "Jeroglífics meroítics"
+   },
+   "3093070593773009381": {
+      "message": "Altres alfabets de l'est d'Àsia"
+   },
+   "3114565967060091369": {
+      "message": "Hanunoo"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{D'aquí a # hores}=1{D'aquí a # hora}other{D'aquí a # hores}}"
+   },
+   "3140214171317206668": {
+      "message": "Quadratí curt"
+   },
+   "3153433695439945201": {
+      "message": "Continueu fent servir l'estrella per afegir una pàgina a les adreces d'interès, tal com heu fet sempre. L'adreça d'interès desarà una part de la pàgina al vostre compte de Google perquè us resulti més fàcil accedir-hi més endavant."
+   },
+   "3186183325550234111": {
+      "message": "Vés a l'enllaç: "
+   },
+   "3212472770580267001": {
+      "message": "Alfabets del sud-est d'Àsia"
+   },
+   "3218408007702426636": {
+      "message": "Símbol musical de final de lligadura de prolongació"
+   },
+   "3227675900195928275": {
+      "message": "Rejang"
+   },
+   "3234811075540284463": {
+      "message": "Normal"
+   },
+   "3244450940425660505": {
+      "message": "Puntuació"
+   },
+   "3245712009497198424": {
+      "message": "d'aquí a $NUM$ dia",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "No hi ha cap resultat que coincideixi amb els criteris de cerca."
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Voleu suprimir també els elements d'aquesta carpeta?}other{Voleu suprimir també els elements d'aquestes carpetes?}}"
+   },
+   "3284734782999930756": {
+      "message": "URL"
+   },
+   "328616644571689303": {
+      "message": "Símbol musical de final de lligadura"
+   },
+   "3309586635668050685": {
+      "message": "Substitució d'esquerra a dreta"
+   },
+   "3316092543008555482": {
+      "message": "Fonètica (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonètica (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "S'ha creat la carpeta."
+   },
+   "3334908307836130914": {
+      "message": "Santali"
+   },
+   "3355297279379313357": {
+      "message": "Darrer ús"
+   },
+   "3360043590563638195": {
+      "message": "Mida de la lletra"
+   },
+   "3364831016239212879": {
+      "message": "Alinea al centre"
+   },
+   "3383495912989125674": {
+      "message": "Espai fi"
+   },
+   "340057911065586090": {
+      "message": "Espai ideogràfic"
+   },
+   "3413537935166399959": {
+      "message": "Sharada"
+   },
+   "3413696263226173348": {
+      "message": "Edita el document Word"
+   },
+   "3417560136558853718": {
+      "message": "Kannada"
+   },
+   "3423652049926153935": {
+      "message": "Carpeta nova..."
+   },
+   "3484416881429158332": {
+      "message": "Carpeta privada"
+   },
+   "3490738610910152047": {
+      "message": "Bamum"
+   },
+   "3490814222385998788": {
+      "message": "Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{S'ha suprimit l'element.}other{S'han suprimit # elements.}}"
+   },
+   "3501212562096780610": {
+      "message": "Carpeta principal: "
+   },
+   "3501367450176932554": {
+      "message": "Separador d'anotacions entre línies"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Oriya"
+   },
+   "3545341282138953352": {
+      "message": "Símbol musical d'inici de lligadura de prolongació"
+   },
+   "3546572522856950945": {
+      "message": "Cuneïforme"
+   },
+   "3554323414956249846": {
+      "message": "Enllaç"
+   },
+   "3572348996000195345": {
+      "message": "Espai llarg"
+   },
+   "3596311690500158112": {
+      "message": "El gestor d'adreces d'interès no està disponible en aquest moment. Torneu a carregar la pàgina."
+   },
+   "3621913747018973144": {
+      "message": "D’esquerra a dreta"
+   },
+   "362505154270301776": {
+      "message": "Pàgines web"
+   },
+   "3630778778193389974": {
+      "message": "Corrector ortogràfic"
+   },
+   "3641126700487126155": {
+      "message": "Símbol musical d'inici de lligadura"
+   },
+   "3646623530558910508": {
+      "message": "La carpeta s'ha canviat."
+   },
+   "3646641743349296313": {
+      "message": "Oct."
+   },
+   "3650952447025672637": {
+      "message": "Suprimeix les carpetes i els elements"
+   },
+   "3723533099349282495": {
+      "message": "Kaithi"
+   },
+   "37315674215151127": {
+      "message": "Manteniu organitzades les adreces d'interès"
+   },
+   "3731716253672925709": {
+      "message": "Fletxes"
+   },
+   "373495866496779840": {
+      "message": "MOSTRA LES ADRECES D'INTERÈS"
+   },
+   "3735789968703193383": {
+      "message": "Visualització"
+   },
+   "3737215641755068426": {
+      "message": "Traços CJK"
+   },
+   "3752699251010579834": {
+      "message": "Guió de l'escriptura sil·làbica dels indígenes canadencs"
+   },
+   "377368134657453613": {
+      "message": "Inicieu la sessió a Chrome per cercar les pàgines que heu afegit a les adreces d'interès"
+   },
+   "3800528517409823312": {
+      "message": "Alfanumèrics de matemàtiques"
+   },
+   "3832066920911226237": {
+      "message": "Exporta les adreces d'interès..."
+   },
+   "3836877357378306877": {
+      "message": "Comú"
+   },
+   "3880744822029422406": {
+      "message": "Si decidiu no compartir aquesta carpeta, l'enllaç per compartir també deixarà de funcionar."
+   },
+   "3888658965293980754": {
+      "message": "Format"
+   },
+   "3893161213200925599": {
+      "message": "Cancel·la"
+   },
+   "3924970930634517299": {
+      "message": "Descripció"
+   },
+   "3947500116452515010": {
+      "message": "Encara no hi ha cap adreça d'interès."
+   },
+   "3951067234379178869": {
+      "message": "La carpeta s'ha suprimit."
+   },
+   "3953750991047324531": {
+      "message": "Gujarati"
+   },
+   "3960988854399920931": {
+      "message": "Alfabets africans"
+   },
+   "3977845230474613475": {
+      "message": "Dilluns"
+   },
+   "3978409745488989414": {
+      "message": "Demà"
+   },
+   "3981527568769423358": {
+      "message": "Selector de variants"
+   },
+   "3998968827975494252": {
+      "message": "Aborigen canadenc"
+   },
+   "4052124018014680002": {
+      "message": "Com que heu triat encriptar les adreces d'interès a Configuració avançada de la sincronització, la funcionalitat que requereix que Google vegi el contingut s'ha desactivat."
+   },
+   "4070285516355502772": {
+      "message": "Unió de paraules"
+   },
+   "4083819681339999404": {
+      "message": "S'ha mogut la carpeta."
+   },
+   "4093661547607027073": {
+      "message": "Guió llarg"
+   },
+   "4132740194577129031": {
+      "message": "Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Tàmil"
+   },
+   "4141340144529743179": {
+      "message": "Alinea a la dreta"
+   },
+   "4185431426264249075": {
+      "message": "No"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{Fa # minuts}=1{Fa # minut}other{Fa # minuts}}"
+   },
+   "4207416107225157509": {
+      "message": "Txam"
+   },
+   "421809097037025717": {
+      "message": "Lidi"
+   },
+   "4219066138225986920": {
+      "message": "fa $NUM$ hores",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "Tai Lue modern"
+   },
+   "4256734561546878891": {
+      "message": "Àrab"
+   },
+   "4257688962636177926": {
+      "message": "Nota"
+   },
+   "4313041477349547430": {
+      "message": "Selecciona"
+   },
+   "4317807879399263422": {
+      "message": "Símbols"
+   },
+   "4371152527205140884": {
+      "message": "Birmà"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Caràcter d'emplenament hangul"
+   },
+   "4394299965695763613": {
+      "message": "ERROR: \"$COLOR$\" no és un color vàlid.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "d'aquí a $NUM$ hora",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Obre aquest enllaç en una finestra nova"
+   },
+   "4436859540429978060": {
+      "message": "En aquest moment no es poden arrossegar i col·locar fitxers d'imatges.\nArrossegueu una imatge des del navegador web."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Vai"
+   },
+   "4467383198992095863": {
+      "message": "Guió/Connector"
+   },
+   "4485563787650970048": {
+      "message": "Transport, mapes i senyalització"
+   },
+   "4511605174156009486": {
+      "message": "INICIA LA SESSIÓ"
+   },
+   "4536708754459423390": {
+      "message": "Enllaça amb:"
+   },
+   "4547888102017603305": {
+      "message": "Introduïu un color personalitzat, com ara rosa, #F00, #D015FF o RGB (100, 50, 25)."
+   },
+   "4549927294981813316": {
+      "message": "Mosaic"
+   },
+   "4564357083324116837": {
+      "message": "Alfabets del sud d'Àsia"
+   },
+   "4604654420597817764": {
+      "message": "Separador d'amplada nul·la"
+   },
+   "4631096075002795557": {
+      "message": "Braille"
+   },
+   "4639190252078874549": {
+      "message": "Les adreces d'interès s'han actualitzat perquè us sigui més fàcil trobar les pàgines que hàgiu desat."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{S'ha mogut l'element.}other{S'han mogut # elements.}}"
+   },
+   "4677342274083596624": {
+      "message": "Mode sense connexió"
+   },
+   "4680868343849876958": {
+      "message": "Turc antic"
+   },
+   "468549910877472151": {
+      "message": "S'han importat."
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Persa antic"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Aneu amb compte.$POSTB$ Recordeu que cada vegada que incloeu una adreça electrònica a una pàgina web, els indesitjables que envien correu brossa també la poden trobar.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Tagal"
+   },
+   "4747022692863822805": {
+      "message": "Guió menys"
+   },
+   "4749120223198822539": {
+      "message": "Singalès"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Suprimeix la carpeta i els elements"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{S'ha mogut l'element.}other{S'han mogut # elements.}}"
+   },
+   "482762608498192214": {
+      "message": "Dissabte"
+   },
+   "4833178038692710844": {
+      "message": "Girat/Reflectit"
+   },
+   "484556867028550958": {
+      "message": "Puntuació hebrea maqaf"
+   },
+   "4848946125726663758": {
+      "message": "Alinea a l'esquerra"
+   },
+   "4849410737412842755": {
+      "message": "Aquesta carpeta no es pot compartir perquè la carpeta principal no s'ha compartit públicament"
+   },
+   "4856510901676745213": {
+      "message": "Hebreu"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{D'aquí a # dies}=1{D'aquí a # dia}other{D'aquí a # dies}}"
+   },
+   "4886850400045987885": {
+      "message": "Edició de l'enllaç"
+   },
+   "4894342917447426362": {
+      "message": "Suplement de llatí 1"
+   },
+   "4895451769213934183": {
+      "message": "Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Formulari de presentació per a guió curt vertical"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{S'ha modificat l'element.}other{S'han modificat # elements.}}"
+   },
+   "4934771438157777517": {
+      "message": "Subratllat"
+   },
+   "4943286974087295923": {
+      "message": "Tanca"
+   },
+   "4944188657066537729": {
+      "message": "Siríac"
+   },
+   "4974279938502768331": {
+      "message": "Edita"
+   },
+   "4987339278179088082": {
+      "message": "Afegeix l'atribut $REL_NO_FOLLOW$ ($LINK_START$Més informació$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Text que es mostrarà:"
+   },
+   "4991252214297708837": {
+      "message": "Descripció de la carpeta"
+   },
+   "500023300077018967": {
+      "message": "No hi ha cap suggeriment."
+   },
+   "5002702571780362629": {
+      "message": "Avèstic"
+   },
+   "5013372925252634952": {
+      "message": "Cària"
+   },
+   "5015669074913229206": {
+      "message": "Balinès"
+   },
+   "5016723309142316836": {
+      "message": "Gurmukhi"
+   },
+   "5042512453093360461": {
+      "message": "Format direccional POP"
+   },
+   "5086992011880811613": {
+      "message": "S'ha suprimit l'adreça d'interès."
+   },
+   "5089168125978769021": {
+      "message": "Suprimeix carpeta"
+   },
+   "5089667744614498582": {
+      "message": "S'ha mogut una adreça d'interès."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Símbol musical d'inici de compàs"
+   },
+   "5109840495091366547": {
+      "message": "Esports, celebracions i activitats"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Carpeta nova"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} dia}other{{TEXT} dies}}"
+   },
+   "5162393477556833033": {
+      "message": "A quin URL ha d'anar aquest enllaç?"
+   },
+   "518089704180562683": {
+      "message": "Avui"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Rúnic"
+   },
+   "5253985055078626542": {
+      "message": "Inserció d'esquerra a dreta"
+   },
+   "5266193592374285468": {
+      "message": "Fes-la pública"
+   },
+   "5272267167655788064": {
+      "message": "Imatge"
+   },
+   "528339682728930567": {
+      "message": "El gestor d'adreces d'interès no està disponible en aquest moment. Torneu-ho a provar d'aquí a uns quants minuts."
+   },
+   "5300191622079400984": {
+      "message": "Tots"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Feu clic per afegir una descripció"
+   },
+   "5334597244901829906": {
+      "message": "Comparteix aquesta carpeta"
+   },
+   "534304870772683249": {
+      "message": "Envia"
+   },
+   "534369010818044160": {
+      "message": "Khmer"
+   },
+   "5354142472798067112": {
+      "message": "Selector de variant: $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "No hi ha connexió de xarxa. No podeu desar els canvis fins que no us hi torneu a connectar."
+   },
+   "5371009567664142864": {
+      "message": "Etiòpic"
+   },
+   "5378436065321978089": {
+      "message": "Crea"
+   },
+   "538263398271363120": {
+      "message": "Cherokee"
+   },
+   "5412265752110327977": {
+      "message": "Compatibilitat"
+   },
+   "5425054962709217464": {
+      "message": "Dimecres"
+   },
+   "544490805551236927": {
+      "message": "Alfabets de l'Orient Mitjà"
+   },
+   "5448654348317290038": {
+      "message": "Guió curt"
+   },
+   "5456454482863742119": {
+      "message": "Suprimeix les carpetes"
+   },
+   "5458956770053499082": {
+      "message": "Musical"
+   },
+   "546306107859654806": {
+      "message": "Mou a la carpeta"
+   },
+   "5474647412096976366": {
+      "message": "Connecteu-vos a Internet per fer cerques a les pàgines que heu afegit a les adreces d'interès"
+   },
+   "5500830105937873966": {
+      "message": "Suprimeix"
+   },
+   "5517581353492371385": {
+      "message": "Ahir"
+   },
+   "5521943762943322583": {
+      "message": "Laosià"
+   },
+   "5529569087489430384": {
+      "message": "Pahlavi inscripcional"
+   },
+   "5561412620611998456": {
+      "message": "Set."
+   },
+   "5579702837382664819": {
+      "message": "Carpeta automàtica per a \u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gòtic"
+   },
+   "5603457799050818619": {
+      "message": "En aquest moment no hi ha cap carpeta automàtica."
+   },
+   "5603774725128707055": {
+      "message": "S'ha mogut la carpeta."
+   },
+   "5621148847082889884": {
+      "message": "Encara no hi ha cap carpeta."
+   },
+   "5669644158906503623": {
+      "message": "Signe àrab sanà"
+   },
+   "5672850901284728452": {
+      "message": "Obre la pàgina de registres"
+   },
+   "5673852407127287054": {
+      "message": "Signe menys d'amplada completa"
+   },
+   "5679720964567650205": {
+      "message": "Dimarts"
+   },
+   "5748894773514291207": {
+      "message": "Terç d'espai"
+   },
+   "5749465969550038727": {
+      "message": "Tagbanwa"
+   },
+   "5773338884170027267": {
+      "message": "Suprimeix el format"
+   },
+   "5776478286503179051": {
+      "message": "Radicals de 5 traços han"
+   },
+   "5778201074245568998": {
+      "message": "Negreta"
+   },
+   "580023699785819803": {
+      "message": "Tibetà"
+   },
+   "5815994514834119961": {
+      "message": "Yijing/Tai Xuan Jing"
+   },
+   "5822895345080436445": {
+      "message": "Imatges"
+   },
+   "5832273633751333051": {
+      "message": "Syloti Nagri"
+   },
+   "5837746770084243727": {
+      "message": "Marques"
+   },
+   "5842240706321147978": {
+      "message": "Enllaça"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Espaiat"
+   },
+   "5923476740499653277": {
+      "message": "Glagolític"
+   },
+   "6002018674529763527": {
+      "message": "Espai de no separació"
+   },
+   "6013038186284817941": {
+      "message": "Radicals de 8 traços han"
+   },
+   "6014514403103768983": {
+      "message": "Color hexadecimal"
+   },
+   "6025708931099464434": {
+      "message": "Tai Tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Color de fons del text"
+   },
+   "6055751153306823909": {
+      "message": "Enorme"
+   },
+   "609920334473042917": {
+      "message": "Us donem la benvinguda a les noves adreces d'interès! Inicieu la sessió a Chrome per obtenir més funcions: una cerca millorada, carpetes automàtiques i imatges que s'afegeixen a les adreces d'interès anteriors."
+   },
+   "6131022146392295404": {
+      "message": "Edita la font HTML"
+   },
+   "6146119258861607037": {
+      "message": "Radicals de 7 traços han"
+   },
+   "6176673388074993831": {
+      "message": "Copte"
+   },
+   "6178455470693561470": {
+      "message": "En aquest moment no teniu connexió. Torneu-ho a provar quan us torneu a connectar."
+   },
+   "6189158371964390675": {
+      "message": "Adjunt/Puntejat"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Inserció de dreta a esquerra"
+   },
+   "6207440179505974685": {
+      "message": "Shavian"
+   },
+   "6233852423673631009": {
+      "message": "Jul."
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Confirmeu que voleu suprimir tots els elements d'aquesta carpeta?}other{Confirmeu que voleu suprimir tots els elements d'aquestes carpetes?}}"
+   },
+   "6256177058141995632": {
+      "message": "Miao"
+   },
+   "625779090990399178": {
+      "message": "Més opcions"
+   },
+   "6259598030649933216": {
+      "message": "Informació"
+   },
+   "6263370534846330732": {
+      "message": "Tifinag"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# seleccionat}other{# seleccionats}}"
+   },
+   "6281738099691391172": {
+      "message": "Color del text"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Espai de no separació d'amplada nul·la"
+   },
+   "6380136177516870340": {
+      "message": "Heu iniciat la sessió a Google amb un compte diferent del que feu servir al navegador Chrome."
+   },
+   "639862355711352140": {
+      "message": "MÉS INFORMACIÓ"
+   },
+   "6410416070545265970": {
+      "message": "Prova aquest enllaç"
+   },
+   "6418290353353165009": {
+      "message": "Refés"
+   },
+   "6425676451769330238": {
+      "message": "Sense espaiat"
+   },
+   "6433056041891472200": {
+      "message": "Inicia la sessió per activar aquesta opció"
+   },
+   "6437997645764562921": {
+      "message": "Caràcter d'emplenament hangul choseong"
+   },
+   "6470997799115367716": {
+      "message": "Saurashtra"
+   },
+   "6471970833583478119": {
+      "message": "Títol secundari"
+   },
+   "6473682978091349952": {
+      "message": "Espai de puntuació"
+   },
+   "6489221588545746734": {
+      "message": "Ciríl·lic"
+   },
+   "64909648993550346": {
+      "message": "Substitució de dreta a esquerra"
+   },
+   "649459667039033491": {
+      "message": "d'aquí a $NUM$ dies",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Espai d'amplada nul·la"
+   },
+   "6539448903465735867": {
+      "message": "Símbol musical d'inici de frase"
+   },
+   "6544224848752157941": {
+      "message": "Redueix el sagnat"
+   },
+   "6559526625155197659": {
+      "message": "La Cerca de Google no està disponible en aquest moment. Torneu-ho a provar d'aquí a uns quants minuts."
+   },
+   "6563689176501108246": {
+      "message": "Radicals de 3 traços han"
+   },
+   "6572308230373875858": {
+      "message": "El nom d'aquesta carpeta conté caràcters no vàlids."
+   },
+   "6604826525171204065": {
+      "message": "Buhid"
+   },
+   "6606727931314199470": {
+      "message": "Fenici"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ per $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "No es poden sincronitzar les adreces d'interès. Proveu de tornar a carregar la pàgina."
+   },
+   "6661160677415877619": {
+      "message": "Edita l'HTML"
+   },
+   "66727790049529171": {
+      "message": "Superíndex"
+   },
+   "6673681480713693433": {
+      "message": "Marca d'esquerra a dreta"
+   },
+   "6679365605648394500": {
+      "message": "Històric"
+   },
+   "6718105992776681941": {
+      "message": "Carpeta pública"
+   },
+   "6731765034365779068": {
+      "message": "d'aquí a $NUM$ minuts",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Àrab antic meridional"
+   },
+   "6748884117721473417": {
+      "message": "Altres alfabets europeus"
+   },
+   "6756714832459728782": {
+      "message": "Tai Le"
+   },
+   "6781212531496313437": {
+      "message": "Llista"
+   },
+   "6787794440298969774": {
+      "message": "Malaiàlam"
+   },
+   "6813860917460451806": {
+      "message": "Lici"
+   },
+   "6848846772159302710": {
+      "message": "Canvia"
+   },
+   "6878231700728680871": {
+      "message": "CREA"
+   },
+   "687829671213164815": {
+      "message": "El gestor d'adreces d'interès no està disponible en aquest moment. Torneu-ho a provar d'aquí a unes quantes hores."
+   },
+   "6963034896702768829": {
+      "message": "Aquesta carpeta ja no existeix."
+   },
+   "698011532377344679": {
+      "message": "Gènere i genealogia"
+   },
+   "7004429103140794719": {
+      "message": "Darreres seleccions:"
+   },
+   "7009051272745522428": {
+      "message": "Heu oblidat les pàgines que heu desat? Només cal que feu una cerca amb termes generals, com ara \"pel·lícules\" o \"viatges\", per trobar les adreces d'interès perdudes."
+   },
+   "7056277361038404533": {
+      "message": "S'ha mogut una adreça d'interès."
+   },
+   "7058809993296833390": {
+      "message": "Doneu-nos la vostra opinió"
+   },
+   "7064503592469946179": {
+      "message": "Sundanès"
+   },
+   "7077571379260349566": {
+      "message": "Voleu provar de \u003Ca class=\"col-zda\">fer la cerca al web\u003C/a>?"
+   },
+   "7102762854285284877": {
+      "message": "Phags Pa"
+   },
+   "7124932478652977474": {
+      "message": "Afegit"
+   },
+   "7154665243775472938": {
+      "message": "Carpetes"
+   },
+   "7168417416563257713": {
+      "message": "Desa"
+   },
+   "7178727559519269241": {
+      "message": "Guió oblic doble"
+   },
+   "7256064246386232909": {
+      "message": "Javanès"
+   },
+   "7258012171742729961": {
+      "message": "Vocal Aq inherent al khmer"
+   },
+   "7300188402017534561": {
+      "message": "Tots"
+   },
+   "7316184946628117028": {
+      "message": "Thaana"
+   },
+   "7328850288952193170": {
+      "message": "Separador invisible"
+   },
+   "733245618582914569": {
+      "message": "D’acord"
+   },
+   "7333334175520057323": {
+      "message": "Cancel·la"
+   },
+   "7339792312429709609": {
+      "message": "Radicals de 2 traços han"
+   },
+   "7342965026300699486": {
+      "message": "Aquesta carpeta és pública. Si la suprimiu, la resta d'usuaris no podran veure-la."
+   },
+   "7346825266417376383": {
+      "message": "D’acord"
+   },
+   "7362095105218889721": {
+      "message": "Format i espai en blanc"
+   },
+   "7369763432670344230": {
+      "message": "Amb quina adreça electrònica s'ha d'enllaçar?"
+   },
+   "7376646180156094924": {
+      "message": "Nom"
+   },
+   "7388233788532145059": {
+      "message": "Afegeix o elimina l'enllaç"
+   },
+   "7407898565330883980": {
+      "message": "Crea una carpeta"
+   },
+   "7436494590700857376": {
+      "message": "Sense títol"
+   },
+   "7454853574776276752": {
+      "message": "D’acord"
+   },
+   "7466254996792639407": {
+      "message": "Georgià"
+   },
+   "7487940627543583924": {
+      "message": "Dijous"
+   },
+   "7496808914788281345": {
+      "message": "Guió llarg petit"
+   },
+   "7512206123241896524": {
+      "message": "Si suprimiu carpetes públiques, els altres usuaris no podran veure-les."
+   },
+   "7514107325655026801": {
+      "message": "Separador de vocals del mongol"
+   },
+   "7517846739534508036": {
+      "message": "El lloc d'allotjament ha bloquejat la imatge que esteu provant d'arrossegar."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{D'aquí a # minuts}=1{D'aquí a # minut}other{D'aquí a # minuts}}"
+   },
+   "7556000209920718943": {
+      "message": "Xipriota"
+   },
+   "7558709989823567445": {
+      "message": "Lineal B"
+   },
+   "7561680940841358107": {
+      "message": "Kayah Li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} hora}other{{TEXT} hores}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Guió de l'armeni"
+   },
+   "762426240463793747": {
+      "message": "Fraccions/Relacionats"
+   },
+   "7627205932825693842": {
+      "message": "Guió virtual del mongol"
+   },
+   "7666041165203922544": {
+      "message": "Trobeu-ho tot fàcilment."
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "d'aquí a $NUM$ hores",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "fa $NUM$ dia",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "Juny"
+   },
+   "7763561590386207075": {
+      "message": "Adreça web"
+   },
+   "7778510137824413661": {
+      "message": "Sou el millor verificador. Heu trobat un error que no es pot solucionar simplement tornant a carregar la pàgina."
+   },
+   "7787489712298922692": {
+      "message": "Ugarític"
+   },
+   "7794513342167361028": {
+      "message": "Sora Sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Símbol musical de final de frase"
+   },
+   "7804811638177746132": {
+      "message": "Introduïu un URL vàlid."
+   },
+   "7820796809104165402": {
+      "message": "Divendres"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{S'ha creat l'element.}other{S'han creat # elements.}}"
+   },
+   "7842161096380376517": {
+      "message": "Signe àrab safha"
+   },
+   "7877081360738059546": {
+      "message": "Animals, plantes i aliments"
+   },
+   "7899357084217902569": {
+      "message": "Signe menys petit"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$No sabeu què posar al quadre?$END_BOLD$ En primer lloc, localitzeu la pàgina web amb què vulgueu enllaçar (podeu fer servir un $SEARCH_ENGINE_LINK$motor de cerca$END_LINK$). A continuació, copieu l'adreça web de la barra d'adreces del navegador i enganxeu-la al quadre de sobre.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Cancel·la"
+   },
+   "7929010027377139621": {
+      "message": "Tai Viet"
+   },
+   "7944194550132470305": {
+      "message": "Afegiu un títol..."
+   },
+   "7957751306916251232": {
+      "message": "L'adreça electrònica no és vàlida."
+   },
+   "7977240188055092028": {
+      "message": "Mostra"
+   },
+   "7987287518899618882": {
+      "message": "Febr."
+   },
+   "7995071973884866910": {
+      "message": "fa $NUM$ dies",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Vídeos"
+   },
+   "8011311100803127599": {
+      "message": "Estrelles/Asteriscs"
+   },
+   "8017723467201257913": {
+      "message": "Deseret"
+   },
+   "8018615794586730510": {
+      "message": "Normal/serif"
+   },
+   "8027365004962833557": {
+      "message": "Itàlic antic"
+   },
+   "8110520007971944893": {
+      "message": "Google pot organitzar les adreces d'interès automàticament per estalviar-vos feina"
+   },
+   "8115055677841343820": {
+      "message": "Guionet"
+   },
+   "8132750144382731373": {
+      "message": "Emoji"
+   },
+   "8139874053154312313": {
+      "message": "Guió amb dièresi"
+   },
+   "8143412461134291283": {
+      "message": "Envia suggeriments"
+   },
+   "8146770321190721394": {
+      "message": "Osmanya"
+   },
+   "8167437723285192120": {
+      "message": "Cap"
+   },
+   "8179849043307262288": {
+      "message": "Aplicació de funcions"
+   },
+   "818630018883405514": {
+      "message": "Adjunt"
+   },
+   "8208069138346972268": {
+      "message": "Tècnic"
+   },
+   "8220605653109571646": {
+      "message": "Grec"
+   },
+   "8243618543879664815": {
+      "message": "Gen."
+   },
+   "8275729822640276507": {
+      "message": "Us heu tornat a connectar a Internet."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Desfés"
+   },
+   "8338269186594699884": {
+      "message": "p. m."
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "ENTESOS"
+   },
+   "8394518299580326671": {
+      "message": "Unió d'amplada nul·la"
+   },
+   "8401283339806880070": {
+      "message": "Justificat"
+   },
+   "8417405596874032771": {
+      "message": "Marca d'espai de l'ogham"
+   },
+   "8442861823466423570": {
+      "message": "Terminador d'anotacions entre línies"
+   },
+   "8454082825844118412": {
+      "message": "Radicals d'entre 11 i 17 traços han"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Resultats de la cerca per a \u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Emoticones"
+   },
+   "8509200859889253607": {
+      "message": "Buginès"
+   },
+   "8513771017811992648": {
+      "message": "Cap"
+   },
+   "8583880697323281603": {
+      "message": "S'ha modificat l'adreça d'interès."
+   },
+   "8590712065595806821": {
+      "message": "Suggerida"
+   },
+   "8605746117200843257": {
+      "message": "Àncora d'anotacions entre línies"
+   },
+   "8608038304204118820": {
+      "message": "fa $NUM$ hora",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Destaca aquesta pàgina"
+   },
+   "8632024322663078476": {
+      "message": "Afegeix a la carpeta"
+   },
+   "8635739256240231429": {
+      "message": "Tanca"
+   },
+   "8637786997742615742": {
+      "message": "Modificador"
+   },
+   "8639484881518821804": {
+      "message": "Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Samarità"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Normal"
+   },
+   "8694618136165028235": {
+      "message": "Afegiu un URL..."
+   },
+   "8723654283178734366": {
+      "message": "Introduïu una adreça web."
+   },
+   "8748780785044360315": {
+      "message": "Tai"
+   },
+   "8764548034413038101": {
+      "message": "d'aquí a $NUM$ minut",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "Abr."
+   },
+   "8784386825932830097": {
+      "message": "Barra fixa"
+   },
+   "8793684579112208899": {
+      "message": "Subíndex"
+   },
+   "8797138403646238716": {
+      "message": "Meroític en cursiva"
+   },
+   "8801105026907713256": {
+      "message": "Menys comú"
+   },
+   "8805843642052942743": {
+      "message": "Lepcha"
+   },
+   "8827926534395802942": {
+      "message": "Guió numèric"
+   },
+   "8829617001171812634": {
+      "message": "Objectes"
+   },
+   "8835425644719990167": {
+      "message": "Caràcter d'emplenament hangul jungseong"
+   },
+   "8838200101653652173": {
+      "message": "Tancament"
+   },
+   "8838938639049885476": {
+      "message": "Espai curt"
+   },
+   "8841111838340088121": {
+      "message": "Radicals de 4 traços han"
+   },
+   "8860909466229522023": {
+      "message": "Cursiva"
+   },
+   "888434073985276543": {
+      "message": "Formulari de presentació per a guió llarg vertical"
+   },
+   "8892104104076766085": {
+      "message": "Guió ondulat"
+   },
+   "8996388564146952786": {
+      "message": "Espai de no separació estret"
+   },
+   "9021466412659564505": {
+      "message": "Inicia la sessió"
+   },
+   "9026903153882226079": {
+      "message": "Marca de dreta a esquerra"
+   },
+   "9034162255782924509": {
+      "message": "Batak"
+   },
+   "9041611521175673293": {
+      "message": "Tots els elements"
+   },
+   "9041881295809259717": {
+      "message": "Matemàtiques"
+   },
+   "9072668986327887451": {
+      "message": "Descripció ideogràfica"
+   },
+   "9076212347872857205": {
+      "message": "Cita"
+   },
+   "9083920162332648298": {
+      "message": "a. m."
+   },
+   "9086165147555162831": {
+      "message": "Meetei Mayek"
+   },
+   "9092805374125336008": {
+      "message": "Maig"
+   },
+   "9099680152087323883": {
+      "message": "Nov."
+   },
+   "9107905796365363672": {
+      "message": "Gran"
+   },
+   "9113260413780075008": {
+      "message": "Brahmi"
+   },
+   "9115834469932780333": {
+      "message": "Telugu"
+   },
+   "9143484910409308303": {
+      "message": "Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "No es poden fer cerques a les adreces d'interès encriptades. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Més informació\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "S'ha tret la carpeta de la carpeta principal."
+   },
+   "9180458846772153689": {
+      "message": "Armeni"
+   },
+   "9181119817188520774": {
+      "message": "No hi ha connexió de xarxa. No podeu desar els canvis fins que no us hi torneu a connectar."
+   },
+   "9204096795425905695": {
+      "message": "Hores invisibles"
+   },
+   "922163125711959960": {
+      "message": "fa $NUM$ minut",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Afegeix"
+   },
+   "93670926879626900": {
+      "message": "Espai en blanc"
+   },
+   "93871902389648718": {
+      "message": "Símbol musical de final de compàs"
+   },
+   "960914149201689167": {
+      "message": "Decimal"
+   },
+   "963040144042262397": {
+      "message": "Suprimeix"
+   },
+   "964017479791059460": {
+      "message": "Caràcter àrab de final d'aleia"
+   },
+   "980376110610801797": {
+      "message": "Insereix una imatge"
+   }
+}

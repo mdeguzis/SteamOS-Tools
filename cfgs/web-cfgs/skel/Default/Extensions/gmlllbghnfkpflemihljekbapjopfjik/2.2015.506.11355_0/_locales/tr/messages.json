@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Bu klasörü paylaşın veya paylaşım ayarlarını değiştirin"
+   },
+   "1014969137789706237": {
+      "message": "Web'de başka bir konumdaki bir sayfaya veya dosyaya bağlantı oluştur"
+   },
+   "1033240210015440654": {
+      "message": "Resmi Kaldır"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} dakika}other{{TEXT} dakika}}"
+   },
+   "1035347665345261212": {
+      "message": "Bir not girin"
+   },
+   "1036132178487616999": {
+      "message": "Giriş"
+   },
+   "1041064392303158655": {
+      "message": "Limbu"
+   },
+   "1066103686460691847": {
+      "message": "Üstünü çiz"
+   },
+   "1085496824897012476": {
+      "message": "Mısır Hiyeroglifleri"
+   },
+   "1105045461281211798": {
+      "message": "Grafem Birleştirici"
+   },
+   "111315886393984302": {
+      "message": "Web'den bazı öğelere yer işareti koymayı ve bunları bu klasöre eklemeyi deneyin!"
+   },
+   "1117324761561996205": {
+      "message": "Düzenle"
+   },
+   "1124849668149719420": {
+      "message": "Geri bildirim girin"
+   },
+   "1142044035368837035": {
+      "message": "Büyük Kare"
+   },
+   "1148670835609345833": {
+      "message": "Yer işaretini düzenle düğmesi"
+   },
+   "1161548997573254809": {
+      "message": "İptal"
+   },
+   "1164857998440803763": {
+      "message": "Chakma"
+   },
+   "1170102576258588460": {
+      "message": "Aralıksız Kısa Çizgi"
+   },
+   "1185158158029036642": {
+      "message": "Yeni bir yer işareti veya klasör oluşturmak için tıklayın."
+   },
+   "1201286409038567178": {
+      "message": "geçersiz URL"
+   },
+   "1214729854306268929": {
+      "message": "$NUM$ dakika önce",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{# saat önce}=1{# saat önce}other{# saat önce}}"
+   },
+   "1232723730191754374": {
+      "message": "Yazı tipi"
+   },
+   "1243361230826165709": {
+      "message": "Hangul"
+   },
+   "128696227290770661": {
+      "message": "Devanagari"
+   },
+   "1312606838421552827": {
+      "message": "Sayı"
+   },
+   "1316608632339176215": {
+      "message": "Çeşitli"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "Dört Uzun Boşluk"
+   },
+   "1337190557080419948": {
+      "message": "Başlık"
+   },
+   "1347841728719446841": {
+      "message": "E-posta adresi"
+   },
+   "1350404634989083059": {
+      "message": "Görünmez Artı"
+   },
+   "1356908927221815545": {
+      "message": "Han 1 Çizgili Radikaller"
+   },
+   "1373666411928680514": {
+      "message": "Tilde"
+   },
+   "1378894003206512970": {
+      "message": "Kapat"
+   },
+   "138484781723580209": {
+      "message": "Süryanice Kısaltma İşareti"
+   },
+   "1397568831960098153": {
+      "message": "Biçim"
+   },
+   "142359106099692409": {
+      "message": "Otomatik klasörler"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Küçük"
+   },
+   "1460136507747533015": {
+      "message": "Paylaşmak için lütfen oturum açın"
+   },
+   "1477567329816921885": {
+      "message": "Bir klasörü herkese açık yaparak favori yer işaretlerinizi paylaşabileceğinizi biliyor muydunuz? Herkese açık URL'yi alın ve paylaşın!"
+   },
+   "1507362459078633250": {
+      "message": "Tamam, Chrome uzantısının yüklemesini kaldırıp tekrar yüklemek zorunda kalacaksınız ve/veya mühendislik ekibinin başının etini yiyeceksiniz... Üzgünüz :-/"
+   },
+   "1516565793778879679": {
+      "message": "Han - Diğer"
+   },
+   "1519227660570105215": {
+      "message": "Bu sayfa zararlı olabilir"
+   },
+   "1556175764217302644": {
+      "message": "Khmer Sesli Doğal Aa"
+   },
+   "1566367040709255091": {
+      "message": "Biçim"
+   },
+   "1582412901770221448": {
+      "message": "{FOLDER_NAME} klasörüne eklendi"
+   },
+   "1585233503778646014": {
+      "message": "Mandence"
+   },
+   "1592899529499992997": {
+      "message": "Yer işareti klasörden kaldırıldı."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Lütfen, karakter adı için fareyle her bir hücrenin üzerine gelin."
+   },
+   "1630439475247732904": {
+      "message": "Üst Simge"
+   },
+   "1634874677195552014": {
+      "message": "Altı Uzun Boşluk"
+   },
+   "1635366592844795535": {
+      "message": "CHROME'DA OTURUM AÇ"
+   },
+   "1645072860136239307": {
+      "message": "Hava ve Astrolojik"
+   },
+   "1665234249876251486": {
+      "message": "Rakam Boşluğu"
+   },
+   "1666311405952625458": {
+      "message": "Hava, Sahneler ve Zodyak işaretleri"
+   },
+   "1678004121951995792": {
+      "message": "Ağu"
+   },
+   "1680034627075195442": {
+      "message": "Kendi klasörlerinizi oluşturabilir veya Google'ın otomatik klasörlerle sizin yerinize düzenlemesine izin verebilirsiniz."
+   },
+   "1683451665637766512": {
+      "message": "Bir e-posta adresine bağlantı"
+   },
+   "1685884502412781083": {
+      "message": "Paragraf Ayırıcı"
+   },
+   "169055910458549089": {
+      "message": "Sunucumuza bağlanılamadı. Lütfen birkaç dakika içinde tekrar deneyin."
+   },
+   "1691734467561749621": {
+      "message": "Maalesef Yer İşaretleri çubuğunuzdaki klasörleri paylaşamazsınız"
+   },
+   "1715361312704502898": {
+      "message": "Ulaşım ve Harita"
+   },
+   "1719053155706676551": {
+      "message": "Yer İşaretleri Çubuğu"
+   },
+   "1730849295731139586": {
+      "message": "Yi"
+   },
+   "1748899684018766272": {
+      "message": "Yarım Genişlikte Hangul Dolgu"
+   },
+   "1755438325907288056": {
+      "message": "Nko"
+   },
+   "1776387440523546537": {
+      "message": "Bugün"
+   },
+   "178181731883558542": {
+      "message": "Yer işaretlerinizde arama yapmak için metin kutusu."
+   },
+   "1791083579000016877": {
+      "message": "ASCII Tabanlı"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Yıldız işaretli öğeleri görüntüle"
+   },
+   "1803667155949248788": {
+      "message": "İmparatorluk Aramicesi"
+   },
+   "1827599404395723350": {
+      "message": "Kontrol Sembolleri"
+   },
+   "1839253253564716482": {
+      "message": "Yer işareti bulunamadı"
+   },
+   "1847259066982820034": {
+      "message": "Bir klasör seç"
+   },
+   "1875246104836450162": {
+      "message": "Sembol"
+   },
+   "1879633738298009258": {
+      "message": "Kesir Çizgisi"
+   },
+   "1915655034817606796": {
+      "message": "Kesme Çizgisi"
+   },
+   "191946029988896895": {
+      "message": "Arapça Rakamlar"
+   },
+   "1932973762029792550": {
+      "message": "Google, yer işareti olarak kaydettiğiniz her şeyi otomatik olarak düzenler"
+   },
+   "1942405576047748946": {
+      "message": "Yer işareti oluşturuldu."
+   },
+   "196266011387145001": {
+      "message": "Devam"
+   },
+   "1963154331052663396": {
+      "message": "Latince"
+   },
+   "1999193032742275907": {
+      "message": "Han 9 Çizgili Radikaller"
+   },
+   "2003860471263842959": {
+      "message": "Dar Boşluk"
+   },
+   "2015775921681923490": {
+      "message": "Ayarlar"
+   },
+   "202031328373263910": {
+      "message": "Han 6 Çizgili Radikaller"
+   },
+   "2036672715320764541": {
+      "message": "Satır Ayırıcı"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Öğe klasörden kaldırıldı.}other{# öğe klasörden kaldırıldı.}}"
+   },
+   "2088133380647290173": {
+      "message": "{WEBSITE} web sitesinde"
+   },
+   "2102196226288832274": {
+      "message": "Yeni bir yer işareti oluşturmak için bir URL girin."
+   },
+   "2117634893694108880": {
+      "message": "Gizli"
+   },
+   "2135921744011555145": {
+      "message": "Yer işaretlerinizde arama yapın"
+   },
+   "213958631597214757": {
+      "message": "Paylaşmayı durdur. "
+   },
+   "2149498606985329379": {
+      "message": "Yer işaretlerinin içe aktarılması tamamlandı."
+   },
+   "2159536073195133897": {
+      "message": "Geri al"
+   },
+   "2166866096346653276": {
+      "message": "Yok"
+   },
+   "2167636135101203592": {
+      "message": "Bengalce"
+   },
+   "2176930521411607789": {
+      "message": "Eşli"
+   },
+   "218054763532467155": {
+      "message": "Bir başlık girin"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Şunu sil: \u003Cb>{firstItemName}\u003C/b>}=1{Şunları sil: \u003Cb>{firstItemName}\u003C/b> ve diğer # öğe}other{Şunları sil: \u003Cb>{firstItemName}\u003C/b> ve diğer # öğe}}"
+   },
+   "2200921183377473543": {
+      "message": "Evet"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{# gün önce}=1{# gün önce}other{# gün önce}}"
+   },
+   "2228495834106697427": {
+      "message": "Alt Simge"
+   },
+   "2253752461533441758": {
+      "message": "Han 10 Çizgili Radikaller"
+   },
+   "2257250286834696444": {
+      "message": "Yükleniyor…"
+   },
+   "2280907281518645401": {
+      "message": "Katakana-hiragana Çift Kısa Çizgi"
+   },
+   "2301390744929043794": {
+      "message": "Klasörünüz sunucuya kaydedilirken lütfen bekleyin"
+   },
+   "2315132909835126412": {
+      "message": "Herkese açık"
+   },
+   "2315864755754275083": {
+      "message": "Para Birimi"
+   },
+   "231658276152304252": {
+      "message": "Kaldır"
+   },
+   "2353164220175503425": {
+      "message": "Kaithi Rakamı"
+   },
+   "2359350477261263182": {
+      "message": "Yer İşareti Yöneticisi"
+   },
+   "2362075348358411947": {
+      "message": "Madde işaretli liste"
+   },
+   "2396988228061015409": {
+      "message": "Klasörler"
+   },
+   "2398127458667829603": {
+      "message": "Klavye ve Kullanıcı Arayüzü"
+   },
+   "2413859014200470621": {
+      "message": "Girintiyi artır"
+   },
+   "2414987366409119013": {
+      "message": "Yeni klasör açıklaması (isteğe bağlı)"
+   },
+   "2444245672676114535": {
+      "message": "Geometrik Şekiller"
+   },
+   "2454859602363061373": {
+      "message": "Web'den bir şeyi kaydetmek için adres çubuğundaki yıldızı kullanın"
+   },
+   "2497668314434532819": {
+      "message": "Moğolca"
+   },
+   "2498668179494167671": {
+      "message": "Boşluk"
+   },
+   "2506204110427755391": {
+      "message": "Yer İşaretleri çubuğunuzda bulunmayan mobil yer işaretlerini ve öğeleri içerir."
+   },
+   "2512307863902593558": {
+      "message": "Gandara"
+   },
+   "2518095696810513128": {
+      "message": "Yer işaretlerini içe aktar..."
+   },
+   "2524757118580919241": {
+      "message": "Arapça Dipnot İşareti"
+   },
+   "2528672033407304265": {
+      "message": "Bu klasörü yalnızca siz görebilirsiniz. Paylaşmak için \"Herkese açık yap\"ı tıklayın, paylaşılabilir bir bağlantı alırsınız."
+   },
+   "2566403151253785267": {
+      "message": "Adsız Klasör"
+   },
+   "2581794950690518802": {
+      "message": "0 dakika"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Tanıtımı kapat"
+   },
+   "2620868598794227408": {
+      "message": "Bu sayfa artık yok"
+   },
+   "2626676714216619519": {
+      "message": "Alt başlık"
+   },
+   "2655730128699057253": {
+      "message": "Normal"
+   },
+   "2662413919655166560": {
+      "message": "Pazar"
+   },
+   "2665932089093244134": {
+      "message": "İstediğiniz şeye yıldız ekleyin"
+   },
+   "2678821645623495183": {
+      "message": "İnsanlar ve Duygular"
+   },
+   "271255586148025786": {
+      "message": "Onaltılık Giriş"
+   },
+   "27472132823239706": {
+      "message": "Sağdan sola"
+   },
+   "278208331708453602": {
+      "message": "Paylaşmak için web'e bağlanın ve oturum açın"
+   },
+   "2785193083209311775": {
+      "message": "Mart"
+   },
+   "2803486006471792395": {
+      "message": "kullanıcı: \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Ogham"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Bir dosyadan içe aktarıldı"
+   },
+   "2860423337665026261": {
+      "message": "Klasörden kaldır"
+   },
+   "2870049984905408346": {
+      "message": "Başlık"
+   },
+   "2878157583475586619": {
+      "message": "Renk ekle"
+   },
+   "2926789704127794819": {
+      "message": "Yeni klasör adı (gerekli)"
+   },
+   "2951727458776714094": {
+      "message": "Bu bağlantı test edilemiyor."
+   },
+   "2967109838548277236": {
+      "message": "Paylaşım bağlantısı:"
+   },
+   "2990895581472607445": {
+      "message": "Diğer"
+   },
+   "2993160588184042952": {
+      "message": "Amerikan Alfabeleri"
+   },
+   "3002524775820283106": {
+      "message": "Not ekleyin..."
+   },
+   "3010872256194497959": {
+      "message": "Piyonlar"
+   },
+   "3027920889685525544": {
+      "message": "Pers Yazı Dili"
+   },
+   "3034084095590774557": {
+      "message": "Yoksay"
+   },
+   "3051034269680162898": {
+      "message": "Kapat"
+   },
+   "3054430907861836285": {
+      "message": "Ara"
+   },
+   "3085746489633838782": {
+      "message": "Numaralı liste"
+   },
+   "3087091861834859241": {
+      "message": "Yeni yer işaretlerinize hoş geldiniz!"
+   },
+   "3090613379634438188": {
+      "message": "Meroitik Hieroglifler"
+   },
+   "3093070593773009381": {
+      "message": "Diğer Doğu Asya Alfabeleri"
+   },
+   "3114565967060091369": {
+      "message": "Hanunoo"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{# saat içinde}=1{# saat içinde}other{# saat içinde}}"
+   },
+   "3140214171317206668": {
+      "message": "Orta Uzunlukta Boşluk"
+   },
+   "3153433695439945201": {
+      "message": "Bir sayfaya yer işareti koymak için daha önce yaptığınız gibi yıldız kullanmaya devam edin. Yer işaretiniz bazı sayfaları daha sonra kolayca bulabilmeniz için Google Hesabınıza kaydeder."
+   },
+   "3186183325550234111": {
+      "message": "Şu bağlantıya git: "
+   },
+   "3212472770580267001": {
+      "message": "Güneydoğu Asya Alfabeleri"
+   },
+   "3218408007702426636": {
+      "message": "Müzik Sembolü Bağ Sonu"
+   },
+   "3227675900195928275": {
+      "message": "Rejang"
+   },
+   "3234811075540284463": {
+      "message": "Normal"
+   },
+   "3244450940425660505": {
+      "message": "Noktalama İşaretleri"
+   },
+   "3245712009497198424": {
+      "message": "$NUM$ gün içinde",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Aramanız için hiçbir sonuç bulunamadı"
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Bu klasördeki öğeleri de silmek istiyor musunuz?}other{Bu klasörlerdeki öğeleri de silmek istiyor musunuz?}}"
+   },
+   "3284734782999930756": {
+      "message": "URL"
+   },
+   "328616644571689303": {
+      "message": "Müzik Sembolü Ses Kaydırma Sonu"
+   },
+   "3309586635668050685": {
+      "message": "Soldan Sağa Geçersiz Kılma"
+   },
+   "3316092543008555482": {
+      "message": "Fonetik (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonetik (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Klasör oluşturuldu."
+   },
+   "3334908307836130914": {
+      "message": "Ol Chiki"
+   },
+   "3355297279379313357": {
+      "message": "Son kullanılan"
+   },
+   "3360043590563638195": {
+      "message": "Yazı tipi boyutu"
+   },
+   "3364831016239212879": {
+      "message": "Ortaya hizala"
+   },
+   "3383495912989125674": {
+      "message": "İnce Boşluk"
+   },
+   "340057911065586090": {
+      "message": "İdeografik Boşluk"
+   },
+   "3413537935166399959": {
+      "message": "Sharada"
+   },
+   "3413696263226173348": {
+      "message": "Kelime Düzenle"
+   },
+   "3417560136558853718": {
+      "message": "Kannada dili"
+   },
+   "3423652049926153935": {
+      "message": "Yeni klasör..."
+   },
+   "3484416881429158332": {
+      "message": "Gizli klasör"
+   },
+   "3490738610910152047": {
+      "message": "Bamum dili"
+   },
+   "3490814222385998788": {
+      "message": "Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Öğe silindi.}other{# öğe silindi.}}"
+   },
+   "3501212562096780610": {
+      "message": "Üst klasör: "
+   },
+   "3501367450176932554": {
+      "message": "Satır Arası Açıklama Ayracı"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Oriya"
+   },
+   "3545341282138953352": {
+      "message": "Müzik Sembolü Bağ Başı"
+   },
+   "3546572522856950945": {
+      "message": "Çivi Yazısı"
+   },
+   "3554323414956249846": {
+      "message": "Bağlantı"
+   },
+   "3572348996000195345": {
+      "message": "Uzun Boşluk"
+   },
+   "3596311690500158112": {
+      "message": "Yer İşareti Yöneticisi geçici olarak kullanılamıyor. Lütfen sayfayı tekrar yükleyin."
+   },
+   "3621913747018973144": {
+      "message": "Soldan sağa"
+   },
+   "362505154270301776": {
+      "message": "Web Sayfaları"
+   },
+   "3630778778193389974": {
+      "message": "Yazım Denetleyicisi"
+   },
+   "3641126700487126155": {
+      "message": "Müzik Sembolü Ses Kaydırma Başı"
+   },
+   "3646623530558910508": {
+      "message": "Klasör değiştirildi."
+   },
+   "3646641743349296313": {
+      "message": "Eki"
+   },
+   "3650952447025672637": {
+      "message": "Klasörleri ve öğeleri sil"
+   },
+   "3723533099349282495": {
+      "message": "Kaithi"
+   },
+   "37315674215151127": {
+      "message": "Düzenli kalın"
+   },
+   "3731716253672925709": {
+      "message": "Oklar"
+   },
+   "373495866496779840": {
+      "message": "YER İŞARETİ KOYULAN TÜM ÖĞELERİ GÖRÜNTÜLE"
+   },
+   "3735789968703193383": {
+      "message": "Görünüm"
+   },
+   "3737215641755068426": {
+      "message": "CJK Çizgileri"
+   },
+   "3752699251010579834": {
+      "message": "Kanadaca Hece Ayırma Çizgisi"
+   },
+   "377368134657453613": {
+      "message": "Yer işareti koyulmuş sayfalarınızda arama yapmak için Chrome'da oturum açın"
+   },
+   "3800528517409823312": {
+      "message": "Matematik Alfa-sayısal"
+   },
+   "3832066920911226237": {
+      "message": "Yer işaretlerini dışa aktar..."
+   },
+   "3836877357378306877": {
+      "message": "Ortak"
+   },
+   "3880744822029422406": {
+      "message": "Bu klasörü paylaşmaktan vazgeçerseniz paylaşım bağlantısı artık çalışmaz."
+   },
+   "3888658965293980754": {
+      "message": "Biçim"
+   },
+   "3893161213200925599": {
+      "message": "İptal"
+   },
+   "3924970930634517299": {
+      "message": "Açıklama"
+   },
+   "3947500116452515010": {
+      "message": "Burada henüz yer işareti yok!"
+   },
+   "3951067234379178869": {
+      "message": "Klasör silindi."
+   },
+   "3953750991047324531": {
+      "message": "Gucerat dili"
+   },
+   "3960988854399920931": {
+      "message": "Afrika Alfabeleri"
+   },
+   "3977845230474613475": {
+      "message": "Pazartesi"
+   },
+   "3978409745488989414": {
+      "message": "Yarın"
+   },
+   "3981527568769423358": {
+      "message": "Varyasyon Seçici"
+   },
+   "3998968827975494252": {
+      "message": "Kanada Yerli"
+   },
+   "4052124018014680002": {
+      "message": "\"Gelişmiş senkronizasyon ayarları\"nda yer işaretlerinizi şifrelemeyi seçtiğinizden, içeriğinizi görmek için Google'ı gerektiren işlevselliği devre dışı bıraktık."
+   },
+   "4070285516355502772": {
+      "message": "Kelime Birleştirici"
+   },
+   "4083819681339999404": {
+      "message": "Klasör taşındı."
+   },
+   "4093661547607027073": {
+      "message": "Uzun Tire"
+   },
+   "4132740194577129031": {
+      "message": "Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Tamil dili"
+   },
+   "4141340144529743179": {
+      "message": "Sağa hizala"
+   },
+   "4185431426264249075": {
+      "message": "Hayır"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{# dakika önce}=1{# dakika önce}other{# dakika önce}}"
+   },
+   "4207416107225157509": {
+      "message": "Çam"
+   },
+   "421809097037025717": {
+      "message": "Lidya"
+   },
+   "4219066138225986920": {
+      "message": "$NUM$ saat önce",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "Yeni Tai Lue"
+   },
+   "4256734561546878891": {
+      "message": "Arapça"
+   },
+   "4257688962636177926": {
+      "message": "Not"
+   },
+   "4313041477349547430": {
+      "message": "Seç"
+   },
+   "4317807879399263422": {
+      "message": "Semboller"
+   },
+   "4371152527205140884": {
+      "message": "Myanmar Dili"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Hangul Dolgu"
+   },
+   "4394299965695763613": {
+      "message": "HATA: \"$COLOR$\" geçerli bir renk değil.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "$NUM$ saat içinde",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Bu bağlantıyı yeni sekmede aç"
+   },
+   "4436859540429978060": {
+      "message": "Şu anda resim dosyaları sürüklenip bırakılamaz.\nLütfen web tarayıcınızdan bir resim sürükleyin."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Vai"
+   },
+   "4467383198992095863": {
+      "message": "Tire / Bağlayıcı"
+   },
+   "4485563787650970048": {
+      "message": "Ulaşım, Haritalar ve Tabelalar"
+   },
+   "4511605174156009486": {
+      "message": "OTURUM AÇ"
+   },
+   "4536708754459423390": {
+      "message": "Bağlantı oluşturulacak hesap:"
+   },
+   "4547888102017603305": {
+      "message": "Özel renk girin, ör. pembe #F00, #D015FF veya rgb(100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Bölüm"
+   },
+   "4564357083324116837": {
+      "message": "Güney Asya Alfabeleri"
+   },
+   "4604654420597817764": {
+      "message": "Sıfır Genişlikli Bitiştirici"
+   },
+   "4631096075002795557": {
+      "message": "Braille"
+   },
+   "4639190252078874549": {
+      "message": "Yer işaretleriniz güncellendi; artık kaydettiklerinizi bulmak daha kolay."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Öğe taşındı.}other{# öğe taşındı.}}"
+   },
+   "4677342274083596624": {
+      "message": "Çevrimdışı Mod"
+   },
+   "4680868343849876958": {
+      "message": "Eski Türkçe"
+   },
+   "468549910877472151": {
+      "message": "İçe aktarıldı"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Eski Fars"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Dikkatli olun.$POSTB$ Bir web sayfasına e-posta adresi eklediğinizde, tehlikeli spam göndericilerin de adresi bulabileceğini unutmayın.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Tagalog"
+   },
+   "4747022692863822805": {
+      "message": "Kısa Çizgi-eksi"
+   },
+   "4749120223198822539": {
+      "message": "Seylanca"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Klasörü ve öğeleri sil"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Öğe taşındı.}other{# öğe taşındı.}}"
+   },
+   "482762608498192214": {
+      "message": "Cumartesi"
+   },
+   "4833178038692710844": {
+      "message": "Ters Döndürülmüş /Yansımalı"
+   },
+   "484556867028550958": {
+      "message": "İbranice Noktalama İşareti Maqaf"
+   },
+   "4848946125726663758": {
+      "message": "Sola hizala"
+   },
+   "4849410737412842755": {
+      "message": "Üst klasörü herkese açık olarak paylaşılmadığından bu klasörü paylaşamazsınız"
+   },
+   "4856510901676745213": {
+      "message": "İbranice"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{# gün içinde}=1{# gün içinde}other{# gün içinde}}"
+   },
+   "4886850400045987885": {
+      "message": "Bağlantıyı Düzenle"
+   },
+   "4894342917447426362": {
+      "message": "Latin 1 Ek"
+   },
+   "4895451769213934183": {
+      "message": "Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Dikey Orta Çizgi için Sunu Formu"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Öğe değiştirildi.}other{# öğe değiştirildi.}}"
+   },
+   "4934771438157777517": {
+      "message": "Altı çizili"
+   },
+   "4943286974087295923": {
+      "message": "Kapat"
+   },
+   "4944188657066537729": {
+      "message": "Süryanice"
+   },
+   "4974279938502768331": {
+      "message": "Düzenle"
+   },
+   "4987339278179088082": {
+      "message": "\"$REL_NO_FOLLOW$\" özelliğini ekle ($LINK_START$Daha fazla bilgi edinin$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Görüntülenecek metin:"
+   },
+   "4991252214297708837": {
+      "message": "Klasör açıklaması"
+   },
+   "500023300077018967": {
+      "message": "Öneri yok"
+   },
+   "5002702571780362629": {
+      "message": "Avesta dili"
+   },
+   "5013372925252634952": {
+      "message": "Karyaca"
+   },
+   "5015669074913229206": {
+      "message": "Bali Dili"
+   },
+   "5016723309142316836": {
+      "message": "Gurmukhi"
+   },
+   "5042512453093360461": {
+      "message": "Pop Yönlü Biçimlendirme"
+   },
+   "5086992011880811613": {
+      "message": "Yer işareti silindi."
+   },
+   "5089168125978769021": {
+      "message": "Klasörü sil"
+   },
+   "5089667744614498582": {
+      "message": "Yer işareti taşındı."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Müzik Sembolü Birleştirme Başı"
+   },
+   "5109840495091366547": {
+      "message": "Spor, Kutlamalar ve Etkinlikler"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Yeni klasör"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} gün}other{{TEXT} gün}}"
+   },
+   "5162393477556833033": {
+      "message": "Bu bağlantı hangi URL'ye gitmeli?"
+   },
+   "518089704180562683": {
+      "message": "Bugün"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Runik"
+   },
+   "5253985055078626542": {
+      "message": "Soldan Sağa Katıştırma"
+   },
+   "5266193592374285468": {
+      "message": "Herkese açık yap"
+   },
+   "5272267167655788064": {
+      "message": "Resim"
+   },
+   "528339682728930567": {
+      "message": "Yer İşareti Yöneticisi geçici olarak kullanılamıyor. Lütfen birkaç dakika içinde tekrar deneyin."
+   },
+   "5300191622079400984": {
+      "message": "Tümü"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Açıklama eklemek için tıklayın"
+   },
+   "5334597244901829906": {
+      "message": "Bu klasörü paylaş"
+   },
+   "534304870772683249": {
+      "message": "Gönder"
+   },
+   "534369010818044160": {
+      "message": "Kmerce"
+   },
+   "5354142472798067112": {
+      "message": "Varyasyon Seçici - $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Ağ bağlantısı yok. Tekrar çevrimiçi olmadan değişiklikleri kaydedemezsiniz."
+   },
+   "5371009567664142864": {
+      "message": "Etiyopya"
+   },
+   "5378436065321978089": {
+      "message": "Oluştur"
+   },
+   "538263398271363120": {
+      "message": "Cherokee Dili"
+   },
+   "5412265752110327977": {
+      "message": "Uyumluluk"
+   },
+   "5425054962709217464": {
+      "message": "Çarşamba"
+   },
+   "544490805551236927": {
+      "message": "Orta Doğu Yazıları"
+   },
+   "5448654348317290038": {
+      "message": "Orta Tire"
+   },
+   "5456454482863742119": {
+      "message": "Klasörleri sil"
+   },
+   "5458956770053499082": {
+      "message": "Müzikal"
+   },
+   "546306107859654806": {
+      "message": "Klasöre taşı"
+   },
+   "5474647412096976366": {
+      "message": "Yer işareti koyulmuş sayfalarınızda arama yapmak için İnternet'e bağlanın"
+   },
+   "5500830105937873966": {
+      "message": "Sil"
+   },
+   "5517581353492371385": {
+      "message": "Dün"
+   },
+   "5521943762943322583": {
+      "message": "Laoca"
+   },
+   "5529569087489430384": {
+      "message": "Pehlevi yazı dili"
+   },
+   "5561412620611998456": {
+      "message": "Eyl"
+   },
+   "5579702837382664819": {
+      "message": "\u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span> için otomatik klasör"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gotik"
+   },
+   "5603457799050818619": {
+      "message": "Şu anda hiçbir otomatik klasör yok."
+   },
+   "5603774725128707055": {
+      "message": "Klasör taşındı."
+   },
+   "5621148847082889884": {
+      "message": "Burada henüz klasör yok!"
+   },
+   "5669644158906503623": {
+      "message": "Arapça Sanah İşareti"
+   },
+   "5672850901284728452": {
+      "message": "Günlükler sayfasını aç"
+   },
+   "5673852407127287054": {
+      "message": "Tam Kısa Çizgi-eksi"
+   },
+   "5679720964567650205": {
+      "message": "Salı"
+   },
+   "5748894773514291207": {
+      "message": "Üç Uzun Boşluk"
+   },
+   "5749465969550038727": {
+      "message": "Tagbanwa"
+   },
+   "5773338884170027267": {
+      "message": "Biçimlendirmeyi kaldır"
+   },
+   "5776478286503179051": {
+      "message": "Han 5 Çizgili Radikaller"
+   },
+   "5778201074245568998": {
+      "message": "Kalın"
+   },
+   "580023699785819803": {
+      "message": "Tibetçe"
+   },
+   "5815994514834119961": {
+      "message": "Yijing / Tai Xuan Jing"
+   },
+   "5822895345080436445": {
+      "message": "Resimler"
+   },
+   "5832273633751333051": {
+      "message": "Syloti Nagri"
+   },
+   "5837746770084243727": {
+      "message": "İşaretler"
+   },
+   "5842240706321147978": {
+      "message": "Bağlantı"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Boşluk"
+   },
+   "5923476740499653277": {
+      "message": "Glagolitik"
+   },
+   "6002018674529763527": {
+      "message": "Aralıksız Boşluk"
+   },
+   "6013038186284817941": {
+      "message": "Han 8 Çizgili Radikaller"
+   },
+   "6014514403103768983": {
+      "message": "Onaltılık renk"
+   },
+   "6025708931099464434": {
+      "message": "Tai Tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Metin arka plan rengi"
+   },
+   "6055751153306823909": {
+      "message": "Çok büyük"
+   },
+   "609920334473042917": {
+      "message": "Yeni yer işaretlerinize hoş geldiniz! Daha iyi arama, otomatik klasörler ve geçmişteki yer işaretlerinize eklenen resimler gibi daha fazla özellik edinmek için Chrome'da oturum açın."
+   },
+   "6131022146392295404": {
+      "message": "HTML kaynağını düzenle"
+   },
+   "6146119258861607037": {
+      "message": "Han 7 Çizgili Radikaller"
+   },
+   "6176673388074993831": {
+      "message": "Kıpti dili"
+   },
+   "6178455470693561470": {
+      "message": "Şu anda çevrimdışısınız. Lütfen çevrimiçi olduğunuzda tekrar deneyin."
+   },
+   "6189158371964390675": {
+      "message": "Kapalı / Noktalı"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Sağdan Sola Yerleşik"
+   },
+   "6207440179505974685": {
+      "message": "Shaw"
+   },
+   "6233852423673631009": {
+      "message": "Tem"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Bu klasördeki tüm öğeleri silmek istediğinizden emin misiniz?}other{Bu klasörlerdeki tüm öğeleri silmek istediğinizden emin misiniz?}}"
+   },
+   "6256177058141995632": {
+      "message": "Miao"
+   },
+   "625779090990399178": {
+      "message": "Diğer seçenekler"
+   },
+   "6259598030649933216": {
+      "message": "Bilgiler"
+   },
+   "6263370534846330732": {
+      "message": "Tifinagh"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# öğe seçildi}other{# öğe seçildi}}"
+   },
+   "6281738099691391172": {
+      "message": "Metin rengi"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Sıfır Genişlikli Bölünemez Boşluk"
+   },
+   "6380136177516870340": {
+      "message": "Google'da oturum açtığınız hesap, Chrome tarayıcınızdaki hesaptan farklı."
+   },
+   "639862355711352140": {
+      "message": "DAHA FAZLA BİLGİ EDİNİN"
+   },
+   "6410416070545265970": {
+      "message": "Bu bağlantıyı test et"
+   },
+   "6418290353353165009": {
+      "message": "Yeniden yap"
+   },
+   "6425676451769330238": {
+      "message": "Boşluksuz"
+   },
+   "6433056041891472200": {
+      "message": "Etkinleştirmek için oturum aç"
+   },
+   "6437997645764562921": {
+      "message": "Hangul Choseong Dolgu"
+   },
+   "6470997799115367716": {
+      "message": "Saurashtra"
+   },
+   "6471970833583478119": {
+      "message": "Küçük başlık"
+   },
+   "6473682978091349952": {
+      "message": "Noktalama Boşluğu"
+   },
+   "6489221588545746734": {
+      "message": "Kiril"
+   },
+   "64909648993550346": {
+      "message": "Sağdan Sola Geçersiz Kılma"
+   },
+   "649459667039033491": {
+      "message": "$NUM$ gün içinde",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Sıfır Genişlikli Boşluk"
+   },
+   "6539448903465735867": {
+      "message": "Müzik Sembolü Cümle Başı"
+   },
+   "6544224848752157941": {
+      "message": "Girintiyi azalt"
+   },
+   "6559526625155197659": {
+      "message": "Google Arama geçici olarak kullanılamıyor. Birkaç dakika içine sonra tekrar deneyin."
+   },
+   "6563689176501108246": {
+      "message": "Han 3 Çizgili Radikaller"
+   },
+   "6572308230373875858": {
+      "message": "Bu klasör adında geçersiz karakterler var."
+   },
+   "6604826525171204065": {
+      "message": "Buhid"
+   },
+   "6606727931314199470": {
+      "message": "Fenike"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ x $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Yer işaretleriniz senkronize edilemiyor. Bu sayfayı tekrar yüklemeyi deneyin"
+   },
+   "6661160677415877619": {
+      "message": "HTML'yi düzenle"
+   },
+   "66727790049529171": {
+      "message": "Üst simge"
+   },
+   "6673681480713693433": {
+      "message": "Soldan Sağa İşaretleme"
+   },
+   "6679365605648394500": {
+      "message": "Tarihi"
+   },
+   "6718105992776681941": {
+      "message": "Herkese açık klasör"
+   },
+   "6731765034365779068": {
+      "message": "$NUM$ dakika içinde",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Eski Güney Arabistan Dili"
+   },
+   "6748884117721473417": {
+      "message": "Diğer Avrupa Yazıları"
+   },
+   "6756714832459728782": {
+      "message": "Tai Le"
+   },
+   "6781212531496313437": {
+      "message": "Liste"
+   },
+   "6787794440298969774": {
+      "message": "Malayalam dili"
+   },
+   "6813860917460451806": {
+      "message": "Likya"
+   },
+   "6848846772159302710": {
+      "message": "Değiştir"
+   },
+   "6878231700728680871": {
+      "message": "YENİ"
+   },
+   "687829671213164815": {
+      "message": "Maalesef Yer İşareti Yöneticisi geçici olarak kullanılamıyor. Lütfen birkaç saat içinde tekrar deneyin."
+   },
+   "6963034896702768829": {
+      "message": "Bu klasör artık yok."
+   },
+   "698011532377344679": {
+      "message": "Cinsiyet ve Soyla İlgili"
+   },
+   "7004429103140794719": {
+      "message": "Son Seçimler:"
+   },
+   "7009051272745522428": {
+      "message": "Neler kaydettiğinizi unuttunuz mu? Bulmak için arama yapmanız yeterli. Kayıp yer işaretlerinizi tekrar keşfetmek için \"filmler\" veya \"gezi\" gibi genel terimleri kullanın."
+   },
+   "7056277361038404533": {
+      "message": "Yer işareti taşındı."
+   },
+   "7058809993296833390": {
+      "message": "Görüşlerinizi bize bildirin!"
+   },
+   "7064503592469946179": {
+      "message": "Sundanese"
+   },
+   "7077571379260349566": {
+      "message": "Bunun yerine \u003Ca class=\"col-zda\">web'de arama yapmayı\u003C/a> denemek ister misiniz?"
+   },
+   "7102762854285284877": {
+      "message": "Phags Pa"
+   },
+   "7124932478652977474": {
+      "message": "Yer işareti koyuldu"
+   },
+   "7154665243775472938": {
+      "message": "Klasörler"
+   },
+   "7168417416563257713": {
+      "message": "Kaydet"
+   },
+   "7178727559519269241": {
+      "message": "Eğik Eşittir İşareti"
+   },
+   "7256064246386232909": {
+      "message": "Java Dili"
+   },
+   "7258012171742729961": {
+      "message": "Khmer Sesli Doğal Aq"
+   },
+   "7300188402017534561": {
+      "message": "Tümü"
+   },
+   "7316184946628117028": {
+      "message": "Thaana"
+   },
+   "7328850288952193170": {
+      "message": "Görünmez Ayırıcı"
+   },
+   "733245618582914569": {
+      "message": "Tamam"
+   },
+   "7333334175520057323": {
+      "message": "İptal"
+   },
+   "7339792312429709609": {
+      "message": "Han 2 Çizgili Radikaller"
+   },
+   "7342965026300699486": {
+      "message": "Bu herkese açık bir klasör. Bunu silerseniz başkalarının görmesini engellersiniz."
+   },
+   "7346825266417376383": {
+      "message": "Tamam"
+   },
+   "7362095105218889721": {
+      "message": "Biçim ve Boşluk"
+   },
+   "7369763432670344230": {
+      "message": "Bu, hangi e-posta adresine bağlanmalı?"
+   },
+   "7376646180156094924": {
+      "message": "Ad"
+   },
+   "7388233788532145059": {
+      "message": "Bağlantı ekle veya kaldır"
+   },
+   "7407898565330883980": {
+      "message": "Klasör oluştur"
+   },
+   "7436494590700857376": {
+      "message": "Adsız"
+   },
+   "7454853574776276752": {
+      "message": "Tamam"
+   },
+   "7466254996792639407": {
+      "message": "Gürcüce"
+   },
+   "7487940627543583924": {
+      "message": "Perşembe"
+   },
+   "7496808914788281345": {
+      "message": "Küçük Geniş Tire"
+   },
+   "7512206123241896524": {
+      "message": "Herkese açık klasörleri silmek başkalarının onları görmesini engeller."
+   },
+   "7514107325655026801": {
+      "message": "Moğolca Sesli Ayırıcı"
+   },
+   "7517846739534508036": {
+      "message": "Sürüklemeye çalıştığınız resim, barındıran site tarafından engellenmiştir."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{# dakika içinde}=1{# dakika içinde}other{ # dakika içinde}}"
+   },
+   "7556000209920718943": {
+      "message": "Kıbrıs Yunancası"
+   },
+   "7558709989823567445": {
+      "message": "Lineer B"
+   },
+   "7561680940841358107": {
+      "message": "Kayah Li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} saat}other{{TEXT} saat}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Ermenice Kısa Çizgi"
+   },
+   "762426240463793747": {
+      "message": "Kesirler / İlgili"
+   },
+   "7627205932825693842": {
+      "message": "Moğolca Değiştirilebilir Kısa Çizgi"
+   },
+   "7666041165203922544": {
+      "message": "Aradığınız şeyleri kolayca bulun"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "$NUM$ saat içinde",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "$NUM$ gün önce",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "Haz"
+   },
+   "7763561590386207075": {
+      "message": "Web adresi"
+   },
+   "7778510137824413661": {
+      "message": "En iyi test kullanıcısı sizsiniz! Basit bir geri yüklemeyle kurtaramayacağımız bir hatayı buldunuz."
+   },
+   "7787489712298922692": {
+      "message": "Ugarit"
+   },
+   "7794513342167361028": {
+      "message": "Sora Sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Müzik Sembolü Cümle Sonu"
+   },
+   "7804811638177746132": {
+      "message": "Lütfen geçerli bir URL girin."
+   },
+   "7820796809104165402": {
+      "message": "Cuma"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Öğe oluşturuldu.}other{# öğe oluşturuldu.}}"
+   },
+   "7842161096380376517": {
+      "message": "Arapça Safha İşareti"
+   },
+   "7877081360738059546": {
+      "message": "Hayvanlar, Bitkiler ve Yiyecekler"
+   },
+   "7899357084217902569": {
+      "message": "Küçük Kısa Çizgi-eksi"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Kutuya ne yazacağınızdan emin değil misiniz?$END_BOLD$ İlk olarak bağlantı vermek istediğiniz sayfayı web’de bulun. (Bunun için bir $SEARCH_ENGINE_LINK$arama motoru$END_LINK$ kullanabilirsiniz.) Ardından, tarayıcınızın adres çubuğundaki kutudan web adresini kopyalayın ve yukarıdaki kutuya yapıştırın.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "İptal"
+   },
+   "7929010027377139621": {
+      "message": "Tai Viet"
+   },
+   "7944194550132470305": {
+      "message": "Bir başlık ekleyin..."
+   },
+   "7957751306916251232": {
+      "message": "Geçersiz e-posta adresi"
+   },
+   "7977240188055092028": {
+      "message": "Görüntüle"
+   },
+   "7987287518899618882": {
+      "message": "Şub"
+   },
+   "7995071973884866910": {
+      "message": "$NUM$ gün önce",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Videolar"
+   },
+   "8011311100803127599": {
+      "message": "Yıldızlar/Asteriskler"
+   },
+   "8017723467201257913": {
+      "message": "Deseret"
+   },
+   "8018615794586730510": {
+      "message": "Normal / tırnaklı"
+   },
+   "8027365004962833557": {
+      "message": "Eski İtalik"
+   },
+   "8110520007971944893": {
+      "message": "Google yer işaretlerinizi otomatik olarak düzenleyebildiğinden bunu sizin yapmanız gerekmez"
+   },
+   "8115055677841343820": {
+      "message": "Kısa Çizgi"
+   },
+   "8132750144382731373": {
+      "message": "Emoji"
+   },
+   "8139874053154312313": {
+      "message": "İki Noktalı Kısa Çizgi"
+   },
+   "8143412461134291283": {
+      "message": "Geri bildirim gönderme"
+   },
+   "8146770321190721394": {
+      "message": "Osmanya"
+   },
+   "8167437723285192120": {
+      "message": "Yok"
+   },
+   "8179849043307262288": {
+      "message": "İşlev Uygulaması"
+   },
+   "818630018883405514": {
+      "message": "Kapalı"
+   },
+   "8208069138346972268": {
+      "message": "Teknik"
+   },
+   "8220605653109571646": {
+      "message": "Yunanca"
+   },
+   "8243618543879664815": {
+      "message": "Oca"
+   },
+   "8275729822640276507": {
+      "message": "Web'e tekrar bağlandınız."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Geri al"
+   },
+   "8338269186594699884": {
+      "message": "ös"
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "ANLADIM"
+   },
+   "8394518299580326671": {
+      "message": "Sıfır Genişlik Birleştirici"
+   },
+   "8401283339806880070": {
+      "message": "Yasla"
+   },
+   "8417405596874032771": {
+      "message": "Ogham Boşluk İşareti"
+   },
+   "8442861823466423570": {
+      "message": "Satır Arası Açıklama Sonlandırıcı"
+   },
+   "8454082825844118412": {
+      "message": "Han 11..17 Çizgili Radikaller"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "\u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span> için arama sonuçları"
+   },
+   "846893467556389257": {
+      "message": "İfadeler"
+   },
+   "8509200859889253607": {
+      "message": "Buginese"
+   },
+   "8513771017811992648": {
+      "message": "Yok"
+   },
+   "8583880697323281603": {
+      "message": "Yer işareti değiştirildi."
+   },
+   "8590712065595806821": {
+      "message": "Önerilen"
+   },
+   "8605746117200843257": {
+      "message": "Satır Arası Açıklama Bağlayıcı"
+   },
+   "8608038304204118820": {
+      "message": "$NUM$ saat önce",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Bu sayfaya yıldız ekle"
+   },
+   "8632024322663078476": {
+      "message": "Klasöre ekle"
+   },
+   "8635739256240231429": {
+      "message": "Kapat"
+   },
+   "8637786997742615742": {
+      "message": "Niteleyici"
+   },
+   "8639484881518821804": {
+      "message": "Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Samiri dili"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Normal"
+   },
+   "8694618136165028235": {
+      "message": "Bir URL ekleyin..."
+   },
+   "8723654283178734366": {
+      "message": "Bir web adresi girin"
+   },
+   "8748780785044360315": {
+      "message": "Tai dili"
+   },
+   "8764548034413038101": {
+      "message": "$NUM$ dakika içinde",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "Nis"
+   },
+   "8784386825932830097": {
+      "message": "Barfiks"
+   },
+   "8793684579112208899": {
+      "message": "Alt simge"
+   },
+   "8797138403646238716": {
+      "message": "Meroitik El Yazısı"
+   },
+   "8801105026907713256": {
+      "message": "Yaygın Değil"
+   },
+   "8805843642052942743": {
+      "message": "Lepcha"
+   },
+   "8827926534395802942": {
+      "message": "Kesik Çizgi"
+   },
+   "8829617001171812634": {
+      "message": "Nesneler"
+   },
+   "8835425644719990167": {
+      "message": "Hangul Jungseong Dolgu"
+   },
+   "8838200101653652173": {
+      "message": "Kapsayan"
+   },
+   "8838938639049885476": {
+      "message": "Boşluk"
+   },
+   "8841111838340088121": {
+      "message": "Han 4 Çizgili Radikaller"
+   },
+   "8860909466229522023": {
+      "message": "İtalik"
+   },
+   "888434073985276543": {
+      "message": "Dikey Geniş Çizgi için Sunu Formu"
+   },
+   "8892104104076766085": {
+      "message": "Tilde"
+   },
+   "8996388564146952786": {
+      "message": "Dar Bölünemez Boşluk"
+   },
+   "9021466412659564505": {
+      "message": "Oturum aç"
+   },
+   "9026903153882226079": {
+      "message": "Sağdan Sola İşaretleme"
+   },
+   "9034162255782924509": {
+      "message": "Batak"
+   },
+   "9041611521175673293": {
+      "message": "Tüm Öğeler"
+   },
+   "9041881295809259717": {
+      "message": "Matematik"
+   },
+   "9072668986327887451": {
+      "message": "Kavramsal Açıklama"
+   },
+   "9076212347872857205": {
+      "message": "Alıntı"
+   },
+   "9083920162332648298": {
+      "message": "öö"
+   },
+   "9086165147555162831": {
+      "message": "Meetei Mayek"
+   },
+   "9092805374125336008": {
+      "message": "May"
+   },
+   "9099680152087323883": {
+      "message": "Kas"
+   },
+   "9107905796365363672": {
+      "message": "Büyük"
+   },
+   "9113260413780075008": {
+      "message": "Brahmi"
+   },
+   "9115834469932780333": {
+      "message": "Telugu dili"
+   },
+   "9143484910409308303": {
+      "message": "Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Şifrelenmiş yer işaretlerinde arama yapılamaz. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Daha fazla bilgi edinin\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Klasör, ana klasörden kaldırıldı."
+   },
+   "9180458846772153689": {
+      "message": "Ermenice"
+   },
+   "9181119817188520774": {
+      "message": "Ağ bağlantısı yok. Tekrar çevrimiçi olmadan değişiklikleri kaydedemezsiniz."
+   },
+   "9204096795425905695": {
+      "message": "Görünmez Çarpı"
+   },
+   "922163125711959960": {
+      "message": "$NUM$ dakika önce",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Ekle"
+   },
+   "93670926879626900": {
+      "message": "Boşluk"
+   },
+   "93871902389648718": {
+      "message": "Müzik Sembolü Birleştirme Sonu"
+   },
+   "960914149201689167": {
+      "message": "Ondalık"
+   },
+   "963040144042262397": {
+      "message": "Sil"
+   },
+   "964017479791059460": {
+      "message": "Arapça Ayah'ın Sonu"
+   },
+   "980376110610801797": {
+      "message": "Resim ekle"
+   }
+}

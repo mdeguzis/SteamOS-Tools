@@ -721,7 +721,7 @@ ep_add_web_app_chrome()
 		echo "(1) Netflix"
 		echo "(2) Hulu"
 		echo "(3) Youtube"
-		echo "(4) Youtube"
+		echo "(4) Custom"
 		echo "(5) Done"
 		echo ""
 		

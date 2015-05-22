@@ -683,6 +683,10 @@ ep_install_netflix()
 		# install chrome from script
 		ep_install_chrome
 		
+	else
+		
+		echo -e "\nPackage google-chrome-stable [OK]"
+		
 	fi
 	
 	#######################################

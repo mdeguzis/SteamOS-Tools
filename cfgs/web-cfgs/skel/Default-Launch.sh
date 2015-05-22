@@ -9,7 +9,7 @@ main ()
 	/usr/bin/Xephyr :15 -ac -screen $WIN_RES -fullscreen -host-cursor -once & XEPHYR_PID=$!
 
 	export DISPLAY=:15
-	LD_PRELOAD= google-chrome --kiosk https://www.netflix.com/ --window-size=$COMMA_WIN_RES &&
+	LD_PRELOAD= google-chrome --kiosk WEB_URL_TEMP --window-size=$COMMA_WIN_RES &&
 
 	sleep 1
 	killall chrome
@@ -18,4 +18,4 @@ main ()
 }
 
 # start main and log
-main &> /home/steam/chrome-log.txt
+main &> /home/steam/web-chrome-log.txt

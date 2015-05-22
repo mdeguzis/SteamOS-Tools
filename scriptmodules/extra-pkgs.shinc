@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.9.2
+# Script Ver:	  	0.9.5
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	
@@ -786,12 +786,15 @@ ep_add_web_app_chome()
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
 	
-	echo -e "\n==> Installing access to $NAME (via Chrome) from automated script...\n"
+	echo -e "\n==> Installing access to $NAME (via Chrome) from automated script..."
 	sleep 2s
 	
 	while [[ "$web_app_choice" != "4" ]];
 	do	
-		
+		echo -e "##################################################################"
+		echo -e "Web application installation (via Chrome kiosk mode)"
+		echo -e "##################################################################"
+
 		# prompt user For websites they wish to add as web apps
 		echo -e "\nPlease choose which webapp you wish to add. Choose Done when finished."
 		echo "(1) Netflix"

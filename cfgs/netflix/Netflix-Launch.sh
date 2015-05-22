@@ -1,6 +1,6 @@
 #!/bin/sh
 
-main ()
+main()
 {
 
 	WIN_RES=$(DISPLAY=:0 xdpyinfo | grep dimensions | awk '{print $2}')

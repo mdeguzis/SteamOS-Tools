@@ -712,9 +712,9 @@ ep_add_web_app_chrome()
 	
 	while [[ "$web_app_choice" != "4" ]];
 	do	
-		echo -e "\n##################################################################"
+		echo -e "\n#############################################################"
 		echo -e "Web application installation (via Chrome kiosk mode)"
-		echo -e "##################################################################"
+		echo -e "#############################################################"
 
 		# prompt user For websites they wish to add as web apps
 		echo -e "\nPlease choose which webapp you wish to add. Choose Done when finished."
@@ -852,9 +852,9 @@ ep_add_web_app_chrome()
 		fi
 		
 		# perform sed replacements on skel files
-		sed -i "s|LAUNCHER_NAME|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"
-		sed -i "s|NAME_TEMP|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"
-		sed -i "s|WEB_URL_TEMP|$custom_url|g" "/usr/bin/${custom_name}-Launch.sh"
+		sudo sed -i "s|LAUNCHER_NAME|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"
+		sudo sed -i "s|NAME_TEMP|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"
+		sudo sed -i "s|WEB_URL_TEMP|$custom_url|g" "/usr/bin/${custom_name}-Launch.sh"
 		
 		# mark launcher exex
 		sudo chmod +x "/usr/bin/$LAUNCHER"

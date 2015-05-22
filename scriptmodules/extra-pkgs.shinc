@@ -783,6 +783,11 @@ ep_add_web_app_chome()
 	echo -e "\n==> Installing web app (via Chrome) from automated script..."
 	sleep 2s
 	
+	
+	###################################
+	# Start web app addition loop
+	###################################
+	
 	while [[ "$web_app_choice" != "4" ]];
 	do	
 		echo -e "\n##################################################################"
@@ -825,7 +830,6 @@ ep_add_web_app_chome()
 			;;
 		esac
 		
-	done
 	
 	#######################################
 	# Pre-reqs
@@ -888,6 +892,11 @@ ep_add_web_app_chome()
 	# fix ownership if need be
 	
 	sudo chown -R steam:steam "/home/steam/Pictures"
+	
+	###################################
+	# end web app addition loop
+	###################################
+	done
 	
 	#####################################################
 	# PKG NAME

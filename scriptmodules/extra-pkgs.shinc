@@ -822,7 +822,8 @@ ep_add_web_app_chome()
 		         
 		        4)
 		        # do nothing
-		        echo "" > /dev/null
+		        echo -e "\n==> Exiting script\n"
+		        exit 1
 		        ;;
 		         
 		        *)

@@ -751,9 +751,6 @@ ep_install_hulu()
 	SHORTCUT="Hulu.desktop"
 	LAUNCHER="Hulu-Launch.sh"
 	BANNER_IMG="Hulu.png"
-	
-	# add and eval shortcut
-	ep_add_media_via_chome
 
 }
 
@@ -767,9 +764,6 @@ ep_install_youtube()
 	SHORTCUT="Youtube.desktop"
 	LAUNCHER="Youtube-Launch.sh"
 	BANNER_IMG="Youtube.png"
-	
-	# add and eval shortcut
-	ep_add_media_via_chome
 
 }
 

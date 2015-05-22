@@ -737,7 +737,7 @@ ep_install_hulu()
 {
 
 	# Hulu
-	Name="Hulu"
+	NAME"Hulu"
 	WEB_URL="www.hulu.com"
 	TARGET_NAME="hulu"
 	SHORTCUT="Hulu.desktop
@@ -753,7 +753,7 @@ ep_install_youtube()
 {
 
 	# Youtube
-	Name="Youtube"
+	NAME="Youtube"
 	WEB_URL="www.youtube.com"
 	TARGET_NAME="youtube"
 	SHORTCUT="Youtube.desktop

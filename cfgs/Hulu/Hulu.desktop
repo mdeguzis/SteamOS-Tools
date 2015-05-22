@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=0.1.1
-Name=Netflix
+Name=Hulu
 Comment=Launcher for Hulu via Chrome
 Exec=/usr/bin/Hulu-Launch.sh
 Icon=/home/steam/Pictures/Hulu.png

@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Permiteți accesul la acest dosar sau schimbați setările de permitere a accesului"
+   },
+   "1014969137789706237": {
+      "message": "Creați un link către o pagină sau un fișier din altă locație de pe web"
+   },
+   "1033240210015440654": {
+      "message": "Eliminați imaginea"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} minut}few{{TEXT} minute}other{{TEXT} de minute}}"
+   },
+   "1035347665345261212": {
+      "message": "Introduceți o notă"
+   },
+   "1036132178487616999": {
+      "message": "Introducere"
+   },
+   "1041064392303158655": {
+      "message": "Limbu"
+   },
+   "1066103686460691847": {
+      "message": "Tăiat cu o linie"
+   },
+   "1085496824897012476": {
+      "message": "Hieroglife egiptene"
+   },
+   "1105045461281211798": {
+      "message": "Caracter de îmbinare grafeme"
+   },
+   "111315886393984302": {
+      "message": "Încercați să marcați câteva elemente de pe web și să le adăugați în acest dosar!"
+   },
+   "1117324761561996205": {
+      "message": "Editați"
+   },
+   "1124849668149719420": {
+      "message": "Introduceți feedback"
+   },
+   "1142044035368837035": {
+      "message": "Interlinie em"
+   },
+   "1148670835609345833": {
+      "message": "Buton pentru editarea marcajului"
+   },
+   "1161548997573254809": {
+      "message": "Anulați"
+   },
+   "1164857998440803763": {
+      "message": "Chakma"
+   },
+   "1170102576258588460": {
+      "message": "Cratimă de unire"
+   },
+   "1185158158029036642": {
+      "message": "Dați clic pentru a crea un marcaj nou sau un dosar nou."
+   },
+   "1201286409038567178": {
+      "message": "adresă URL nevalidă"
+   },
+   "1214729854306268929": {
+      "message": "acum $NUM$ (de) minute",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{acum # ore}=1{acum # oră}few{acum # ore}other{acum # de ore}}"
+   },
+   "1232723730191754374": {
+      "message": "Font"
+   },
+   "1243361230826165709": {
+      "message": "Hangul"
+   },
+   "128696227290770661": {
+      "message": "Devanagari"
+   },
+   "1312606838421552827": {
+      "message": "Numere"
+   },
+   "1316608632339176215": {
+      "message": "Diverse"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "O pătrime din spațiul em"
+   },
+   "1337190557080419948": {
+      "message": "Titlu"
+   },
+   "1347841728719446841": {
+      "message": "Adresă de e-mail"
+   },
+   "1350404634989083059": {
+      "message": "Semnul plus invizibil"
+   },
+   "1356908927221815545": {
+      "message": "Radicali HAN dintr-o linie"
+   },
+   "1373666411928680514": {
+      "message": "Liniuță vălurită"
+   },
+   "1378894003206512970": {
+      "message": "Închideți"
+   },
+   "138484781723580209": {
+      "message": "Simbol de abreviere sirian"
+   },
+   "1397568831960098153": {
+      "message": "Formatați"
+   },
+   "142359106099692409": {
+      "message": "Dosare generate automat"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Mic"
+   },
+   "1460136507747533015": {
+      "message": "Conectați-vă pentru a trimite"
+   },
+   "1477567329816921885": {
+      "message": "Știați că puteți permite accesul la marcajele preferate permițând accesul public la un dosar? Obțineți adresa URL publică și trimiteți-o!"
+   },
+   "1507362459078633250": {
+      "message": "Ok, va trebui să anulați încărcarea extensiei Chrome, apoi să o reîncărcați și/sau să îi bateți la cap pe cei din echipa tehnică.... Ne pare rău :-/"
+   },
+   "1516565793778879679": {
+      "message": "Han – Altele"
+   },
+   "1519227660570105215": {
+      "message": "Această pagină poate fi periculoasă"
+   },
+   "1556175764217302644": {
+      "message": "Aa vocală implicită khmeră"
+   },
+   "1566367040709255091": {
+      "message": "Formatare"
+   },
+   "1582412901770221448": {
+      "message": "Adăugat la {FOLDER_NAME}"
+   },
+   "1585233503778646014": {
+      "message": "Mandaică"
+   },
+   "1592899529499992997": {
+      "message": "Marcaj eliminat din dosar."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Treceți peste fiecare celulă pentru numele caracterului."
+   },
+   "1630439475247732904": {
+      "message": "Exponent"
+   },
+   "1634874677195552014": {
+      "message": "O șesime din spațiu em"
+   },
+   "1635366592844795535": {
+      "message": "CONECTAȚI-VĂ LA CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Meteorologice și astrologice"
+   },
+   "1665234249876251486": {
+      "message": "Spațiu cu lățime de un caracter"
+   },
+   "1666311405952625458": {
+      "message": "Meteo, peisaje și semne zodiacale"
+   },
+   "1678004121951995792": {
+      "message": "Aug."
+   },
+   "1680034627075195442": {
+      "message": "Puteți să vă creați propriile dosare sau să lăsați ca Google să se ocupe de organizare, cu dosare generate automat."
+   },
+   "1683451665637766512": {
+      "message": "Creați un link către o adresă de e-mail"
+   },
+   "1685884502412781083": {
+      "message": "Separator de paragrafe"
+   },
+   "169055910458549089": {
+      "message": "Nu s-a putut realiza conexiunea la server. Încercați din nou peste câteva minute."
+   },
+   "1691734467561749621": {
+      "message": "Ne pare rău, nu puteți să permiteți accesul la dosare în Bara de marcaje"
+   },
+   "1715361312704502898": {
+      "message": "Transport și hărți"
+   },
+   "1719053155706676551": {
+      "message": "Bara de marcaje"
+   },
+   "1730849295731139586": {
+      "message": "Yi"
+   },
+   "1748899684018766272": {
+      "message": "Element de completare hangul cu jumătate de lățime"
+   },
+   "1755438325907288056": {
+      "message": "Nko"
+   },
+   "1776387440523546537": {
+      "message": "Astăzi"
+   },
+   "178181731883558542": {
+      "message": "Casetă de text pentru căutarea în marcaje."
+   },
+   "1791083579000016877": {
+      "message": "Bazate pe ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Vedeți articolele cu stea"
+   },
+   "1803667155949248788": {
+      "message": "Aramaică imperială"
+   },
+   "1827599404395723350": {
+      "message": "Imagini de comandă"
+   },
+   "1839253253564716482": {
+      "message": "Nu s-au găsit marcaje"
+   },
+   "1847259066982820034": {
+      "message": "Alegeți un dosar"
+   },
+   "1875246104836450162": {
+      "message": "Simbol"
+   },
+   "1879633738298009258": {
+      "message": "Spațiu matematic mediu"
+   },
+   "1915655034817606796": {
+      "message": "Cratimă simplă"
+   },
+   "191946029988896895": {
+      "message": "Semn numeric arab"
+   },
+   "1932973762029792550": {
+      "message": "Google organizează automat tot ce marcați"
+   },
+   "1942405576047748946": {
+      "message": "Marcaj creat."
+   },
+   "196266011387145001": {
+      "message": "Continuați"
+   },
+   "1963154331052663396": {
+      "message": "Latine"
+   },
+   "1999193032742275907": {
+      "message": "Radicali HAN din 9 linii"
+   },
+   "2003860471263842959": {
+      "message": "Spațiu foarte mic"
+   },
+   "2015775921681923490": {
+      "message": "Setări"
+   },
+   "202031328373263910": {
+      "message": "Radicali HAN din 6 linii"
+   },
+   "2036672715320764541": {
+      "message": "Separator de rânduri"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Element eliminat din dosar.}few{# elemente eliminate din dosar.}other{# de elemente eliminate din dosar.}}"
+   },
+   "2088133380647290173": {
+      "message": "Pe {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Pentru a crea un marcaj nou, introduceți o adresă URL."
+   },
+   "2117634893694108880": {
+      "message": "Privat"
+   },
+   "2135921744011555145": {
+      "message": "Căutați în marcaje"
+   },
+   "213958631597214757": {
+      "message": "Dezactivați accesul. "
+   },
+   "2149498606985329379": {
+      "message": "Importul marcajelor s-a încheiat."
+   },
+   "2159536073195133897": {
+      "message": "Anulați"
+   },
+   "2166866096346653276": {
+      "message": "Niciunul"
+   },
+   "2167636135101203592": {
+      "message": "Bengaleză"
+   },
+   "2176930521411607789": {
+      "message": "Împerecheate"
+   },
+   "218054763532467155": {
+      "message": "Introduceți un titlu"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Ștergeți \u003Cb>{firstItemName}\u003C/b>}=1{Ștergeți \u003Cb>{firstItemName}\u003C/b> și încă # element}few{Ștergeți \u003Cb>{firstItemName}\u003C/b> și încă # elemente}other{Ștergeți \u003Cb>{firstItemName}\u003C/b> și încă # de elemente}}"
+   },
+   "2200921183377473543": {
+      "message": "Da"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{acum # zile}=1{acum # zi}few{acum # zile}other{acum # de zile}}"
+   },
+   "2228495834106697427": {
+      "message": "Indice"
+   },
+   "2253752461533441758": {
+      "message": "Radicali HAN din 10 linii"
+   },
+   "2257250286834696444": {
+      "message": "Se încarcă..."
+   },
+   "2280907281518645401": {
+      "message": "Cratimă dublă katakana-hiragana"
+   },
+   "2301390744929043794": {
+      "message": "Așteptați cât se salvează dosarul pe server"
+   },
+   "2315132909835126412": {
+      "message": "Public"
+   },
+   "2315864755754275083": {
+      "message": "Simbol monetar"
+   },
+   "231658276152304252": {
+      "message": "Eliminați"
+   },
+   "2353164220175503425": {
+      "message": "Semn numeric Kaithi"
+   },
+   "2359350477261263182": {
+      "message": "Manager de marcaje"
+   },
+   "2362075348358411947": {
+      "message": "Listă cu marcatori"
+   },
+   "2396988228061015409": {
+      "message": "Dosare"
+   },
+   "2398127458667829603": {
+      "message": "Tastatură și interfață de utilizare"
+   },
+   "2413859014200470621": {
+      "message": "Măriți indentarea"
+   },
+   "2414987366409119013": {
+      "message": "Descriere dosar nou (opțională)"
+   },
+   "2444245672676114535": {
+      "message": "Forme geometrice"
+   },
+   "2454859602363061373": {
+      "message": "Folosiți steaua din bara de adrese pentru a salva orice de pe web"
+   },
+   "2497668314434532819": {
+      "message": "Mongolă"
+   },
+   "2498668179494167671": {
+      "message": "Spațiu"
+   },
+   "2506204110427755391": {
+      "message": "Include marcaje mobile și elemente care nu se regăsesc în Bara de marcaje"
+   },
+   "2512307863902593558": {
+      "message": "Kharoshthi"
+   },
+   "2518095696810513128": {
+      "message": "Importați marcajele..."
+   },
+   "2524757118580919241": {
+      "message": "Marcator arab notă de subsol"
+   },
+   "2528672033407304265": {
+      "message": "Acest dosar este vizibil numai pentru dvs. Pentru a permite accesul la acesta, dați clic pe „Setați ca public” și veți primi un link de trimis."
+   },
+   "2566403151253785267": {
+      "message": "Dosar fără titlu"
+   },
+   "2581794950690518802": {
+      "message": "Niciun minut"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Închideți introducerea"
+   },
+   "2620868598794227408": {
+      "message": "Această pagină nu mai există"
+   },
+   "2626676714216619519": {
+      "message": "Subtitlu"
+   },
+   "2655730128699057253": {
+      "message": "Normal"
+   },
+   "2662413919655166560": {
+      "message": "Duminică"
+   },
+   "2665932089093244134": {
+      "message": "Marcați orice cu stea"
+   },
+   "2678821645623495183": {
+      "message": "Persoane și sentimente"
+   },
+   "271255586148025786": {
+      "message": "Hexazecimal"
+   },
+   "27472132823239706": {
+      "message": "De la dreapta la stânga"
+   },
+   "278208331708453602": {
+      "message": "Accesați internetul și conectați-vă pentru a permite accesul"
+   },
+   "2785193083209311775": {
+      "message": "Mar."
+   },
+   "2803486006471792395": {
+      "message": "de \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Ogham"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Importate dintr-un fișier"
+   },
+   "2860423337665026261": {
+      "message": "Eliminați din dosar"
+   },
+   "2870049984905408346": {
+      "message": "Titlu"
+   },
+   "2878157583475586619": {
+      "message": "Adăugați o culoare"
+   },
+   "2926789704127794819": {
+      "message": "Nume dosar nou (obligatoriu)"
+   },
+   "2951727458776714094": {
+      "message": "Acest link nu poate fi testat."
+   },
+   "2967109838548277236": {
+      "message": "Trimiteți linkul:"
+   },
+   "2990895581472607445": {
+      "message": "Altele"
+   },
+   "2993160588184042952": {
+      "message": "Scrieri din America"
+   },
+   "3002524775820283106": {
+      "message": "Adăugați o notă..."
+   },
+   "3010872256194497959": {
+      "message": "Piese de joc"
+   },
+   "3027920889685525544": {
+      "message": "Partă inscripțională"
+   },
+   "3034084095590774557": {
+      "message": "Ignorați"
+   },
+   "3051034269680162898": {
+      "message": "Închideți"
+   },
+   "3054430907861836285": {
+      "message": "Dec."
+   },
+   "3085746489633838782": {
+      "message": "Listă numerotată"
+   },
+   "3087091861834859241": {
+      "message": "Bun venit la noile dvs. marcaje!"
+   },
+   "3090613379634438188": {
+      "message": "Hieroglife meroitice"
+   },
+   "3093070593773009381": {
+      "message": "Alte scrieri din Asia de Est"
+   },
+   "3114565967060091369": {
+      "message": "Hanunoo"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{peste # ore}=1{peste # oră}few{peste # ore}other{peste # de ore}}"
+   },
+   "3140214171317206668": {
+      "message": "Interlinie en"
+   },
+   "3153433695439945201": {
+      "message": "Folosiți în continuare steaua pentru a marca o pagină, ca până acum. Marcajul va salva o parte a paginii în Contul Google, pentru a fi mai ușor de găsit ulterior."
+   },
+   "3186183325550234111": {
+      "message": "Accesați linkul: "
+   },
+   "3212472770580267001": {
+      "message": "Scrieri din sud-estul Asiei"
+   },
+   "3218408007702426636": {
+      "message": "Simbol muzical final legătură de valoare"
+   },
+   "3227675900195928275": {
+      "message": "Rejang"
+   },
+   "3234811075540284463": {
+      "message": "Normal"
+   },
+   "3244450940425660505": {
+      "message": "Semne de punctuație"
+   },
+   "3245712009497198424": {
+      "message": "peste $NUM$ zi",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Nu există rezultate pentru căutarea dvs."
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Doriți să ștergeți elementele din acest dosar?}few{Doriți să ștergeți elementele din aceste dosare?}other{Doriți să ștergeți elementele din aceste dosare?}}"
+   },
+   "3284734782999930756": {
+      "message": "Adresă URL"
+   },
+   "328616644571689303": {
+      "message": "Simbol muzical final legătură de expresie"
+   },
+   "3309586635668050685": {
+      "message": "Suprascriere stânga-spre-dreapta"
+   },
+   "3316092543008555482": {
+      "message": "Fonetice (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonetice (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Dosar creat."
+   },
+   "3334908307836130914": {
+      "message": "Ol Chiki"
+   },
+   "3355297279379313357": {
+      "message": "Ultimul utilizat"
+   },
+   "3360043590563638195": {
+      "message": "Dimensiune font"
+   },
+   "3364831016239212879": {
+      "message": "Aliniați la centru"
+   },
+   "3383495912989125674": {
+      "message": "Spațiu îngust"
+   },
+   "340057911065586090": {
+      "message": "Spațiu ideografic"
+   },
+   "3413537935166399959": {
+      "message": "Sharada"
+   },
+   "3413696263226173348": {
+      "message": "Editați cuvântul"
+   },
+   "3417560136558853718": {
+      "message": "Kannada"
+   },
+   "3423652049926153935": {
+      "message": "Dosar nou..."
+   },
+   "3484416881429158332": {
+      "message": "Dosar privat"
+   },
+   "3490738610910152047": {
+      "message": "Bamum"
+   },
+   "3490814222385998788": {
+      "message": "Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Element șters.}few{# elemente șterse.}other{# de elemente șterse.}}"
+   },
+   "3501212562096780610": {
+      "message": "Dosar părinte: "
+   },
+   "3501367450176932554": {
+      "message": "Separator adnotare interlineară"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Oriya"
+   },
+   "3545341282138953352": {
+      "message": "Simbol muzical început legătură de valoare"
+   },
+   "3546572522856950945": {
+      "message": "Cuneiformă"
+   },
+   "3554323414956249846": {
+      "message": "Link"
+   },
+   "3572348996000195345": {
+      "message": "Spațiu em"
+   },
+   "3596311690500158112": {
+      "message": "Managerul de marcaje este temporar indisponibil. Reîncărcați pagina."
+   },
+   "3621913747018973144": {
+      "message": "De la stânga la dreapta"
+   },
+   "362505154270301776": {
+      "message": "Pagini web"
+   },
+   "3630778778193389974": {
+      "message": "Verificator ortografic"
+   },
+   "3641126700487126155": {
+      "message": "Simbol muzical început legătură de expresie"
+   },
+   "3646623530558910508": {
+      "message": "Dosarul a fost schimbat."
+   },
+   "3646641743349296313": {
+      "message": "Oct."
+   },
+   "3650952447025672637": {
+      "message": "Ștergeți dosarele și elementele"
+   },
+   "3723533099349282495": {
+      "message": "Kaithi"
+   },
+   "37315674215151127": {
+      "message": "Păstrați lucrurile în ordine"
+   },
+   "3731716253672925709": {
+      "message": "Săgeți"
+   },
+   "373495866496779840": {
+      "message": "VEDEȚI TOATE ELEMENTELE MARCATE"
+   },
+   "3735789968703193383": {
+      "message": "Afișare"
+   },
+   "3737215641755068426": {
+      "message": "Taste CJK"
+   },
+   "3752699251010579834": {
+      "message": "Cratimă silabică canadiană"
+   },
+   "377368134657453613": {
+      "message": "Conectați-vă la Chrome pentru a căuta paginile marcate"
+   },
+   "3800528517409823312": {
+      "message": "Matematice alfanumerice"
+   },
+   "3832066920911226237": {
+      "message": "Exportați marcajele..."
+   },
+   "3836877357378306877": {
+      "message": "Frecvente"
+   },
+   "3880744822029422406": {
+      "message": "Dacă nu mai permiteți accesul la acest dosar, linkul trimis nu va mai funcționa."
+   },
+   "3888658965293980754": {
+      "message": "Formatați"
+   },
+   "3893161213200925599": {
+      "message": "Anulați"
+   },
+   "3924970930634517299": {
+      "message": "Descriere"
+   },
+   "3947500116452515010": {
+      "message": "Aici nu sunt încă marcaje!"
+   },
+   "3951067234379178869": {
+      "message": "Dosarul a fost șters."
+   },
+   "3953750991047324531": {
+      "message": "Gujarati"
+   },
+   "3960988854399920931": {
+      "message": "Scrieri din Africa"
+   },
+   "3977845230474613475": {
+      "message": "Luni"
+   },
+   "3978409745488989414": {
+      "message": "Mâine"
+   },
+   "3981527568769423358": {
+      "message": "Selector de variație"
+   },
+   "3998968827975494252": {
+      "message": "Canadiană aborigenă"
+   },
+   "4052124018014680002": {
+      "message": "Deoarece ați ales să vă criptați marcajele în „Setări avansate de sincronizare”, am dezactivat funcțiile pentru care Google ar trebui să vă vadă conținutul."
+   },
+   "4070285516355502772": {
+      "message": "Element de îmbinare cuvinte"
+   },
+   "4083819681339999404": {
+      "message": "Dosar mutat."
+   },
+   "4093661547607027073": {
+      "message": "Liniuță em"
+   },
+   "4132740194577129031": {
+      "message": "Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Tamilă"
+   },
+   "4141340144529743179": {
+      "message": "Aliniați la dreapta"
+   },
+   "4185431426264249075": {
+      "message": "Nu"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{acum # minute}=1{acum # minut}few{acum # minute}other{acum # de minute}}"
+   },
+   "4207416107225157509": {
+      "message": "Cham"
+   },
+   "421809097037025717": {
+      "message": "Lydiană"
+   },
+   "4219066138225986920": {
+      "message": "acum $NUM$ (de) ore",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "New Tai Lue"
+   },
+   "4256734561546878891": {
+      "message": "Arabă"
+   },
+   "4257688962636177926": {
+      "message": "Notă"
+   },
+   "4313041477349547430": {
+      "message": "Selectaţi"
+   },
+   "4317807879399263422": {
+      "message": "Simboluri"
+   },
+   "4371152527205140884": {
+      "message": "Birmană"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Element de completare hangul"
+   },
+   "4394299965695763613": {
+      "message": "EROARE: „$COLOR$” nu este o culoare validă.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "peste $NUM$ oră",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Deschideți acest link într-o fereastră nouă"
+   },
+   "4436859540429978060": {
+      "message": "Momentan, nu se pot trage și plasa fișiere imagine.\nTrageți o imagine din browserul web."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Vai"
+   },
+   "4467383198992095863": {
+      "message": "Linie/conector"
+   },
+   "4485563787650970048": {
+      "message": "Transport, hărți și panouri informative"
+   },
+   "4511605174156009486": {
+      "message": "CONECTAȚI-VĂ"
+   },
+   "4536708754459423390": {
+      "message": "Creați un link către:"
+   },
+   "4547888102017603305": {
+      "message": "Introduceți culoarea personalizată, de ex., roz, #F00, #D015FF sau rgb(100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Grilă"
+   },
+   "4564357083324116837": {
+      "message": "Scrieri din Asia de Sud"
+   },
+   "4604654420597817764": {
+      "message": "Separator cu lățime zero"
+   },
+   "4631096075002795557": {
+      "message": "braille"
+   },
+   "4639190252078874549": {
+      "message": "Marcajele dvs. au fost actualizate, pentru a găsi mai ușor ceea ce ați salvat."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Element mutat.}few{# elemente mutate.}other{# de elemente mutate.}}"
+   },
+   "4677342274083596624": {
+      "message": "Modul offline"
+   },
+   "4680868343849876958": {
+      "message": "Turcă veche"
+   },
+   "468549910877472151": {
+      "message": "Importate"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Persană veche"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Fiți precaut(ă).$POSTB$ Rețineți că dacă introduceți o adresă de e-mail într-o pagină web, aceasta poate fi găsită de către utilizatorii care trimit spam.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Tagalog"
+   },
+   "4747022692863822805": {
+      "message": "Cratimă minus"
+   },
+   "4749120223198822539": {
+      "message": "Singhaleză"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Ștergeți dosarul și elementele"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Element mutat.}few{# elemente mutate.}other{# de elemente mutate.}}"
+   },
+   "482762608498192214": {
+      "message": "Sâmbătă"
+   },
+   "4833178038692710844": {
+      "message": "Inversate/în oglindă"
+   },
+   "484556867028550958": {
+      "message": "Semn de punctuație ebraic maqaf"
+   },
+   "4848946125726663758": {
+      "message": "Aliniați la stânga"
+   },
+   "4849410737412842755": {
+      "message": "Nu puteți să permiteți accesul la acest dosar, deoarece nu este permis accesul public la dosarul părinte din care face parte"
+   },
+   "4856510901676745213": {
+      "message": "Ebraică"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{peste # zile}=1{peste # zi}few{peste # zile}other{peste # de zile}}"
+   },
+   "4886850400045987885": {
+      "message": "Editați linkul"
+   },
+   "4894342917447426362": {
+      "message": "Caractere Latin-1 suplimentar"
+   },
+   "4895451769213934183": {
+      "message": "Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Formă de prezentare pentru liniuța en verticală"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Element modificat.}few{# elemente modificate.}other{# de elemente modificate.}}"
+   },
+   "4934771438157777517": {
+      "message": "Subliniat"
+   },
+   "4943286974087295923": {
+      "message": "Închideți"
+   },
+   "4944188657066537729": {
+      "message": "Siriacă"
+   },
+   "4974279938502768331": {
+      "message": "Editați"
+   },
+   "4987339278179088082": {
+      "message": "Adăugați atributul „$REL_NO_FOLLOW$” ($LINK_START$Aflați mai multe$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Text de afișat:"
+   },
+   "4991252214297708837": {
+      "message": "Descrierea dosarului"
+   },
+   "500023300077018967": {
+      "message": "Nicio sugestie"
+   },
+   "5002702571780362629": {
+      "message": "Avestică"
+   },
+   "5013372925252634952": {
+      "message": "Cariană"
+   },
+   "5015669074913229206": {
+      "message": "Balineză"
+   },
+   "5016723309142316836": {
+      "message": "Gurmukhi"
+   },
+   "5042512453093360461": {
+      "message": "Formatare direcțională POP"
+   },
+   "5086992011880811613": {
+      "message": "Marcaj șters."
+   },
+   "5089168125978769021": {
+      "message": "Ștergeți dosarul"
+   },
+   "5089667744614498582": {
+      "message": "Marcaj mutat."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Simbol muzical început de ligatură"
+   },
+   "5109840495091366547": {
+      "message": "Sport, festivități și activități"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Dosar nou"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} zi}few{{TEXT} zile}other{{TEXT} de zile}}"
+   },
+   "5162393477556833033": {
+      "message": "Către ce adresă URL trebuie să trimită acest link?"
+   },
+   "518089704180562683": {
+      "message": "Astăzi"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Runică"
+   },
+   "5253985055078626542": {
+      "message": "Încorporare stânga-spre-dreapta"
+   },
+   "5266193592374285468": {
+      "message": "Setați ca public"
+   },
+   "5272267167655788064": {
+      "message": "Imagine"
+   },
+   "528339682728930567": {
+      "message": "Managerul de marcaje este temporar indisponibil. Încercați din nou peste câteva minute."
+   },
+   "5300191622079400984": {
+      "message": "Toate"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Dați clic pentru a adăuga o descriere"
+   },
+   "5334597244901829906": {
+      "message": "Permiteți accesul la acest dosar"
+   },
+   "534304870772683249": {
+      "message": "Trimiteți"
+   },
+   "534369010818044160": {
+      "message": "Khmeră"
+   },
+   "5354142472798067112": {
+      "message": "Selector de variație – $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Nicio conexiune la rețea. Nu puteți salva modificările până nu vă reconectați la internet."
+   },
+   "5371009567664142864": {
+      "message": "Etiopiană"
+   },
+   "5378436065321978089": {
+      "message": "Creați"
+   },
+   "538263398271363120": {
+      "message": "Cherokee"
+   },
+   "5412265752110327977": {
+      "message": "Compatibilitate"
+   },
+   "5425054962709217464": {
+      "message": "Miercuri"
+   },
+   "544490805551236927": {
+      "message": "Scrieri din Orientul Mijlociu"
+   },
+   "5448654348317290038": {
+      "message": "Liniuță en"
+   },
+   "5456454482863742119": {
+      "message": "Ștergeți dosare"
+   },
+   "5458956770053499082": {
+      "message": "Muzicale"
+   },
+   "546306107859654806": {
+      "message": "Mutați în dosar"
+   },
+   "5474647412096976366": {
+      "message": "Conectați-vă la internet pentru a căuta paginile marcate"
+   },
+   "5500830105937873966": {
+      "message": "Ștergeți"
+   },
+   "5517581353492371385": {
+      "message": "Ieri"
+   },
+   "5521943762943322583": {
+      "message": "Laoțiană"
+   },
+   "5529569087489430384": {
+      "message": "Pahlavi inscripțională"
+   },
+   "5561412620611998456": {
+      "message": "Sep."
+   },
+   "5579702837382664819": {
+      "message": "Dosar generat automat pentru \u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gotică"
+   },
+   "5603457799050818619": {
+      "message": "Momentan nu există niciun dosar generat automat."
+   },
+   "5603774725128707055": {
+      "message": "Dosar mutat."
+   },
+   "5621148847082889884": {
+      "message": "Momentan nu este niciun dosar aici!"
+   },
+   "5669644158906503623": {
+      "message": "Semnul arab Sanah"
+   },
+   "5672850901284728452": {
+      "message": "Deschideți pagina de jurnale"
+   },
+   "5673852407127287054": {
+      "message": "Cratimă minus cu lățime întreagă"
+   },
+   "5679720964567650205": {
+      "message": "Marți"
+   },
+   "5748894773514291207": {
+      "message": "O treime din spațiul em"
+   },
+   "5749465969550038727": {
+      "message": "Tagbanwa"
+   },
+   "5773338884170027267": {
+      "message": "Eliminați formatarea"
+   },
+   "5776478286503179051": {
+      "message": "Radicali HAN din 5 linii"
+   },
+   "5778201074245568998": {
+      "message": "Aldin"
+   },
+   "580023699785819803": {
+      "message": "Tibetană"
+   },
+   "5815994514834119961": {
+      "message": "Yijing/Tai Xuan Jing"
+   },
+   "5822895345080436445": {
+      "message": "Imagini"
+   },
+   "5832273633751333051": {
+      "message": "Syloti Nagri"
+   },
+   "5837746770084243727": {
+      "message": "Semne"
+   },
+   "5842240706321147978": {
+      "message": "Creați un link"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Spațiere"
+   },
+   "5923476740499653277": {
+      "message": "Glagolitică"
+   },
+   "6002018674529763527": {
+      "message": "Spațiu de unire"
+   },
+   "6013038186284817941": {
+      "message": "Radicali HAN din 8 linii"
+   },
+   "6014514403103768983": {
+      "message": "Culoare hexazecimală"
+   },
+   "6025708931099464434": {
+      "message": "Tai Tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Culoarea de fundal a textului"
+   },
+   "6055751153306823909": {
+      "message": "Imens"
+   },
+   "609920334473042917": {
+      "message": "Bun venit la noile dvs. marcaje! Conectați-vă la Chrome pentru a beneficia de mai multe funcții, cum ar fi: căutare mai bună, dosare generate automat și imagini adăugate la marcajele anterioare."
+   },
+   "6131022146392295404": {
+      "message": "Editați sursa HTML"
+   },
+   "6146119258861607037": {
+      "message": "Radicali HAN din 7 linii"
+   },
+   "6176673388074993831": {
+      "message": "Coptică"
+   },
+   "6178455470693561470": {
+      "message": "În prezent sunteți offline. Încercați din nou când reveniți online."
+   },
+   "6189158371964390675": {
+      "message": "Închise/Cu puncte"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Încorporare dreapta-spre-stânga"
+   },
+   "6207440179505974685": {
+      "message": "Alfabetul lui G. B. Shaw"
+   },
+   "6233852423673631009": {
+      "message": "Iul."
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Sigur doriți să ștergeți toate elementele din acest dosar?}few{Sigur doriți să ștergeți toate elementele din aceste dosare?}other{Sigur doriți să ștergeți toate elementele din aceste dosare?}}"
+   },
+   "6256177058141995632": {
+      "message": "Miao"
+   },
+   "625779090990399178": {
+      "message": "Mai multe opțiuni"
+   },
+   "6259598030649933216": {
+      "message": "Informații"
+   },
+   "6263370534846330732": {
+      "message": "Tifinagh"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# selectat}few{# selectate}other{# selectate}}"
+   },
+   "6281738099691391172": {
+      "message": "Culoare text"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Spațiu de unire cu lățime zero"
+   },
+   "6380136177516870340": {
+      "message": "V-ați conectat la Google cu alt cont decât cel din browserul Chrome."
+   },
+   "639862355711352140": {
+      "message": "AFLAȚI MAI MULTE"
+   },
+   "6410416070545265970": {
+      "message": "Testați acest link"
+   },
+   "6418290353353165009": {
+      "message": "Refaceți"
+   },
+   "6425676451769330238": {
+      "message": "Fără spații"
+   },
+   "6433056041891472200": {
+      "message": "Conectați-vă pentru activare"
+   },
+   "6437997645764562921": {
+      "message": "Element de completare choseong hangul"
+   },
+   "6470997799115367716": {
+      "message": "Saurashtra"
+   },
+   "6471970833583478119": {
+      "message": "Titlu secundar"
+   },
+   "6473682978091349952": {
+      "message": "Spațiu de punctuație"
+   },
+   "6489221588545746734": {
+      "message": "Chirilică"
+   },
+   "64909648993550346": {
+      "message": "Suprascriere dreapta-spre-stânga"
+   },
+   "649459667039033491": {
+      "message": "peste $NUM$ (de) zile",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Spațiu cu lățime zero"
+   },
+   "6539448903465735867": {
+      "message": "Simbol muzical început de expresie"
+   },
+   "6544224848752157941": {
+      "message": "Reduceți indentarea"
+   },
+   "6559526625155197659": {
+      "message": "Căutarea Google este temporar indisponibilă. Încercați din nou peste câteva minute."
+   },
+   "6563689176501108246": {
+      "message": "Radicali HAN din 3 linii"
+   },
+   "6572308230373875858": {
+      "message": "Numele acestui dosar conține caractere nepermise."
+   },
+   "6604826525171204065": {
+      "message": "Buhid"
+   },
+   "6606727931314199470": {
+      "message": "Feniciană"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ x $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Nu se pot sincroniza marcajele. Încercați să reîncărcați această pagină"
+   },
+   "6661160677415877619": {
+      "message": "Editați codul HTML"
+   },
+   "66727790049529171": {
+      "message": "Exponent"
+   },
+   "6673681480713693433": {
+      "message": "Marcaj stânga-spre-dreapta"
+   },
+   "6679365605648394500": {
+      "message": "Istorice"
+   },
+   "6718105992776681941": {
+      "message": "Dosar public"
+   },
+   "6731765034365779068": {
+      "message": "peste $NUM$ (de) minute",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Sud-arabă veche"
+   },
+   "6748884117721473417": {
+      "message": "Alte scrieri din Europa"
+   },
+   "6756714832459728782": {
+      "message": "Tai Le"
+   },
+   "6781212531496313437": {
+      "message": "Listă"
+   },
+   "6787794440298969774": {
+      "message": "Malayalam"
+   },
+   "6813860917460451806": {
+      "message": "Lyciană"
+   },
+   "6848846772159302710": {
+      "message": "Modificați"
+   },
+   "6878231700728680871": {
+      "message": "NOU"
+   },
+   "687829671213164815": {
+      "message": "Ne pare rău, dar Managerul de marcaje este temporar indisponibil. Încercați din nou peste câteva ore"
+   },
+   "6963034896702768829": {
+      "message": "Acest dosar nu mai există."
+   },
+   "698011532377344679": {
+      "message": "Genealogie și gen"
+   },
+   "7004429103140794719": {
+      "message": "Selecții recente:"
+   },
+   "7009051272745522428": {
+      "message": "Ați uitat ce ați salvat? Este suficient să căutați. Încercați termeni generali ca „filme” sau „călătorie” pentru a redescoperi marcajele uitate."
+   },
+   "7056277361038404533": {
+      "message": "Marcaj mutat."
+   },
+   "7058809993296833390": {
+      "message": "Spuneți-ne ce credeți!"
+   },
+   "7064503592469946179": {
+      "message": "Sundaneză"
+   },
+   "7077571379260349566": {
+      "message": "Doriți să încercați să \u003Ca class=\"col-zda\">căutați pe web\u003C/a>?"
+   },
+   "7102762854285284877": {
+      "message": "Phags Pa"
+   },
+   "7124932478652977474": {
+      "message": "Marcat"
+   },
+   "7154665243775472938": {
+      "message": "Dosare"
+   },
+   "7168417416563257713": {
+      "message": "Salvați"
+   },
+   "7178727559519269241": {
+      "message": "Cratimă oblică dublă"
+   },
+   "7256064246386232909": {
+      "message": "Javaneză"
+   },
+   "7258012171742729961": {
+      "message": "Aq vocală implicită khmeră"
+   },
+   "7300188402017534561": {
+      "message": "Toate"
+   },
+   "7316184946628117028": {
+      "message": "Thaana"
+   },
+   "7328850288952193170": {
+      "message": "Separator invizibil"
+   },
+   "733245618582914569": {
+      "message": "OK"
+   },
+   "7333334175520057323": {
+      "message": "Anulați"
+   },
+   "7339792312429709609": {
+      "message": "Radicali HAN din 2 linii"
+   },
+   "7342965026300699486": {
+      "message": "Acesta este un dosar public. Dacă îl ștergeți, alte persoane nu îl vor mai putea vedea."
+   },
+   "7346825266417376383": {
+      "message": "OK"
+   },
+   "7362095105218889721": {
+      "message": "Formatare și spațiu alb"
+   },
+   "7369763432670344230": {
+      "message": "Către ce adresă de e-mail trebuie să trimită acest link?"
+   },
+   "7376646180156094924": {
+      "message": "Nume"
+   },
+   "7388233788532145059": {
+      "message": "Adăugați sau eliminați un link"
+   },
+   "7407898565330883980": {
+      "message": "Creați un dosar"
+   },
+   "7436494590700857376": {
+      "message": "Fără titlu"
+   },
+   "7454853574776276752": {
+      "message": "OK"
+   },
+   "7466254996792639407": {
+      "message": "Georgiană"
+   },
+   "7487940627543583924": {
+      "message": "Joi"
+   },
+   "7496808914788281345": {
+      "message": "Liniuță em scurtă"
+   },
+   "7512206123241896524": {
+      "message": "Dacă ștergeți dosare publice, ceilalți nu le vor mai putea vedea."
+   },
+   "7514107325655026801": {
+      "message": "Separator vocale mongoleze"
+   },
+   "7517846739534508036": {
+      "message": "Imaginea pe care încercați să o trageți a fost blocată de site-ul de găzduire."
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{peste # minute}=1{peste # minut}few{peste # minute}other{peste # de minute}}"
+   },
+   "7556000209920718943": {
+      "message": "Cipriotă"
+   },
+   "7558709989823567445": {
+      "message": "B liniar"
+   },
+   "7561680940841358107": {
+      "message": "Kayah Li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{{TEXT} oră}few{{TEXT} ore}other{{TEXT} de ore}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Cratimă armeană"
+   },
+   "762426240463793747": {
+      "message": "Fracții/Similare"
+   },
+   "7627205932825693842": {
+      "message": "Cratimă simplă mongolă"
+   },
+   "7666041165203922544": {
+      "message": "Găsiți lucrurile cu ușurință"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "peste $NUM$ (de) ore",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "acum $NUM$ zi",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "Iun."
+   },
+   "7763561590386207075": {
+      "message": "Adresă web"
+   },
+   "7778510137824413661": {
+      "message": "Sunteți cel mai bun tester intern dintotdeauna! Chiar ați găsit o eroare pentru care o simplă reîncărcare nu este suficientă pentru recuperare."
+   },
+   "7787489712298922692": {
+      "message": "Ugaritică"
+   },
+   "7794513342167361028": {
+      "message": "Sora Sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Simbol muzical final de expresie"
+   },
+   "7804811638177746132": {
+      "message": "Introduceți o adresă URL validă."
+   },
+   "7820796809104165402": {
+      "message": "Vineri"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Element creat.}few{# elemente create.}other{# de elemente create.}}"
+   },
+   "7842161096380376517": {
+      "message": "Semnul arab Safha"
+   },
+   "7877081360738059546": {
+      "message": "Animale, plante și mâncare"
+   },
+   "7899357084217902569": {
+      "message": "Cratimă minus mică"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Nu știți sigur ce să introduceți în casetă?$END_BOLD$ Mai întâi, găsiți pe web pagina către care doriți să creați un link. (Un $SEARCH_ENGINE_LINK$motor de căutare$END_LINK$ ar putea fi util.) Apoi, copiați adresa web din caseta barei de adrese a browserului și inserați-o în caseta de mai sus.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Anulați"
+   },
+   "7929010027377139621": {
+      "message": "Tai Viet"
+   },
+   "7944194550132470305": {
+      "message": "Adăugați un titlu..."
+   },
+   "7957751306916251232": {
+      "message": "Adresă de e-mail nevalidă"
+   },
+   "7977240188055092028": {
+      "message": "Vedeți"
+   },
+   "7987287518899618882": {
+      "message": "Feb."
+   },
+   "7995071973884866910": {
+      "message": "acum $NUM$ (de) zile",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Videoclipuri"
+   },
+   "8011311100803127599": {
+      "message": "Stele/asteriscuri"
+   },
+   "8017723467201257913": {
+      "message": "Mormonă"
+   },
+   "8018615794586730510": {
+      "message": "Normal/serif"
+   },
+   "8027365004962833557": {
+      "message": "Italică veche"
+   },
+   "8110520007971944893": {
+      "message": "Google poate să vă organizeze automat marcajele, scutindu-vă de această activitate"
+   },
+   "8115055677841343820": {
+      "message": "Cratimă"
+   },
+   "8132750144382731373": {
+      "message": "Emoji"
+   },
+   "8139874053154312313": {
+      "message": "Cratimă cu diereză"
+   },
+   "8143412461134291283": {
+      "message": "Trimiteți feedback"
+   },
+   "8146770321190721394": {
+      "message": "Osmanya"
+   },
+   "8167437723285192120": {
+      "message": "Fără"
+   },
+   "8179849043307262288": {
+      "message": "Semnul aplicării funcției"
+   },
+   "818630018883405514": {
+      "message": "Închise"
+   },
+   "8208069138346972268": {
+      "message": "Tehnice"
+   },
+   "8220605653109571646": {
+      "message": "Greacă"
+   },
+   "8243618543879664815": {
+      "message": "Ian."
+   },
+   "8275729822640276507": {
+      "message": "V-ați reconectat la internet."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Anulați"
+   },
+   "8338269186594699884": {
+      "message": "p.m."
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "AM ÎNȚELES"
+   },
+   "8394518299580326671": {
+      "message": "Element de îmbinare cu lățime zero"
+   },
+   "8401283339806880070": {
+      "message": "Aliniați stânga-dreapta"
+   },
+   "8417405596874032771": {
+      "message": "Marcaj spațiu ogham"
+   },
+   "8442861823466423570": {
+      "message": "Demarcație adnotare interlineară"
+   },
+   "8454082825844118412": {
+      "message": "Radicali HAN 11..17 linii"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Rezultatele căutării pentru \u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Emoticonuri"
+   },
+   "8509200859889253607": {
+      "message": "Bugineză"
+   },
+   "8513771017811992648": {
+      "message": "Niciunul"
+   },
+   "8583880697323281603": {
+      "message": "Marcaj modificat."
+   },
+   "8590712065595806821": {
+      "message": "Sugerat"
+   },
+   "8605746117200843257": {
+      "message": "Ancoră de adnotare interlineară"
+   },
+   "8608038304204118820": {
+      "message": "acum $NUM$ oră",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Marcați această pagină cu stea"
+   },
+   "8632024322663078476": {
+      "message": "Adăugați în dosar"
+   },
+   "8635739256240231429": {
+      "message": "Închideți"
+   },
+   "8637786997742615742": {
+      "message": "Modificator"
+   },
+   "8639484881518821804": {
+      "message": "Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Samariteană"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Normal"
+   },
+   "8694618136165028235": {
+      "message": "Adăugați o adresă URL..."
+   },
+   "8723654283178734366": {
+      "message": "Introduceți o adresă web"
+   },
+   "8748780785044360315": {
+      "message": "Thailandeză"
+   },
+   "8764548034413038101": {
+      "message": "peste $NUM$ minut",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "Apr."
+   },
+   "8784386825932830097": {
+      "message": "Bară orizontală"
+   },
+   "8793684579112208899": {
+      "message": "Indice"
+   },
+   "8797138403646238716": {
+      "message": "Meroitică cursivă"
+   },
+   "8801105026907713256": {
+      "message": "Mai puțin frecvente"
+   },
+   "8805843642052942743": {
+      "message": "Lepcha"
+   },
+   "8827926534395802942": {
+      "message": "Liniuță cu lățime de un caracter"
+   },
+   "8829617001171812634": {
+      "message": "Obiecte"
+   },
+   "8835425644719990167": {
+      "message": "Element de completare jungseong hangul"
+   },
+   "8838200101653652173": {
+      "message": "Închidere"
+   },
+   "8838938639049885476": {
+      "message": "Spațiu en"
+   },
+   "8841111838340088121": {
+      "message": "Radicali HAN din 4 linii"
+   },
+   "8860909466229522023": {
+      "message": "Cursiv"
+   },
+   "888434073985276543": {
+      "message": "Formă de prezentare pentru liniuța em verticală"
+   },
+   "8892104104076766085": {
+      "message": "Liniuță ondulată"
+   },
+   "8996388564146952786": {
+      "message": "Spațiu de unire îngust"
+   },
+   "9021466412659564505": {
+      "message": "Conectați-vă"
+   },
+   "9026903153882226079": {
+      "message": "Marcaj dreapta-spre-stânga"
+   },
+   "9034162255782924509": {
+      "message": "Batak"
+   },
+   "9041611521175673293": {
+      "message": "Toate elementele"
+   },
+   "9041881295809259717": {
+      "message": "Matematice"
+   },
+   "9072668986327887451": {
+      "message": "Descriere ideografică"
+   },
+   "9076212347872857205": {
+      "message": "Ghilimele"
+   },
+   "9083920162332648298": {
+      "message": "a.m."
+   },
+   "9086165147555162831": {
+      "message": "Meetei Mayek"
+   },
+   "9092805374125336008": {
+      "message": "Mai"
+   },
+   "9099680152087323883": {
+      "message": "Nov."
+   },
+   "9107905796365363672": {
+      "message": "Mare"
+   },
+   "9113260413780075008": {
+      "message": "Brahmi"
+   },
+   "9115834469932780333": {
+      "message": "Telugu"
+   },
+   "9143484910409308303": {
+      "message": "Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Nu se pot căuta marcajele criptate. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Aflați mai multe\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Dosar eliminat din dosarul părinte."
+   },
+   "9180458846772153689": {
+      "message": "Armeană"
+   },
+   "9181119817188520774": {
+      "message": "Nicio conexiune la rețea. Nu puteți salva modificările până nu vă reconectați la internet"
+   },
+   "9204096795425905695": {
+      "message": "Semnul înmulțirii invizibil"
+   },
+   "922163125711959960": {
+      "message": "acum $NUM$ minut",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Adăugați"
+   },
+   "93670926879626900": {
+      "message": "Spațiu alb"
+   },
+   "93871902389648718": {
+      "message": "Simbol muzical final de ligatură"
+   },
+   "960914149201689167": {
+      "message": "Zecimale"
+   },
+   "963040144042262397": {
+      "message": "Ștergeți"
+   },
+   "964017479791059460": {
+      "message": "Final de verset arab"
+   },
+   "980376110610801797": {
+      "message": "Inserați o imagine"
+   }
+}

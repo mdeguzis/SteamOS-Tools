@@ -1,0 +1,1953 @@
+{
+   "101199566431814132": {
+      "message": "Shiriki folda hii au ubadilishe mipangilio ya kushiriki"
+   },
+   "1014969137789706237": {
+      "message": "Unganisha kwa ukurasa au faili mahali pengine kwenye mtandao"
+   },
+   "1033240210015440654": {
+      "message": "Ondoa Picha"
+   },
+   "1033564061371790408": {
+      "message": "{COUNT,plural, =0{}=1{Dakika {TEXT}}other{Dakika {TEXT}}}"
+   },
+   "1035347665345261212": {
+      "message": "Weka dokezo"
+   },
+   "1036132178487616999": {
+      "message": "Introduction"
+   },
+   "1041064392303158655": {
+      "message": "KiIimbu"
+   },
+   "1066103686460691847": {
+      "message": "Mkato"
+   },
+   "1085496824897012476": {
+      "message": "Hieroglifu za Misri"
+   },
+   "1105045461281211798": {
+      "message": "Kiunganishi cha Kuchanganya Grafimu"
+   },
+   "111315886393984302": {
+      "message": "Jaribu kualamisha baadhi ya kurasa kwenye wavuti na kuziongeza katika folda hii!"
+   },
+   "1117324761561996205": {
+      "message": "Badilisha"
+   },
+   "1124849668149719420": {
+      "message": "Weka maoni"
+   },
+   "1142044035368837035": {
+      "message": "Em Nne"
+   },
+   "1148670835609345833": {
+      "message": "Badilisha kitufe cha alamisho"
+   },
+   "1161548997573254809": {
+      "message": "Ghairi"
+   },
+   "1164857998440803763": {
+      "message": "Chakma"
+   },
+   "1170102576258588460": {
+      "message": "Kistariungio kisicho na kikomo"
+   },
+   "1185158158029036642": {
+      "message": "Bofya ili uweke alamisho au folda mpya."
+   },
+   "1201286409038567178": {
+      "message": "url isiyo sahihi"
+   },
+   "1214729854306268929": {
+      "message": "Dakika $NUM$ zilizopita",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "1225947679433892226": {
+      "message": "{NUM,plural, =0{Saa # zilizopita}=1{Saa # iliyopita}other{Saa # zilizopita}}"
+   },
+   "1232723730191754374": {
+      "message": "Fonti"
+   },
+   "1243361230826165709": {
+      "message": "Hangul"
+   },
+   "128696227290770661": {
+      "message": "Devanagari"
+   },
+   "1312606838421552827": {
+      "message": "Nambari"
+   },
+   "1316608632339176215": {
+      "message": "Anuai"
+   },
+   "1325447181056095975": {
+      "message": "Please bookmark some pages and try again."
+   },
+   "1336361520364082363": {
+      "message": "Nafasi Nne kwa kila em"
+   },
+   "1337190557080419948": {
+      "message": "Kichwa"
+   },
+   "1347841728719446841": {
+      "message": "Anwani ya barua pepe"
+   },
+   "1350404634989083059": {
+      "message": "Nyongeza Isiyoonekana"
+   },
+   "1356908927221815545": {
+      "message": "Mstari 1 wa Kipekee wa Han"
+   },
+   "1373666411928680514": {
+      "message": "Dashi ya Kiwimbi"
+   },
+   "1378894003206512970": {
+      "message": "Ondoa"
+   },
+   "138484781723580209": {
+      "message": "Alama ya Ufupisho ya Kishamu"
+   },
+   "1397568831960098153": {
+      "message": "Muumbo"
+   },
+   "142359106099692409": {
+      "message": "Folda zilizoundwa kiotomatiki"
+   },
+   "1437051989465419947": {
+      "message": "Search results"
+   },
+   "1450542521305039995": {
+      "message": "Ndogo"
+   },
+   "1460136507747533015": {
+      "message": "Tafadhali ingia katika akaunti ili ushiriki"
+   },
+   "1477567329816921885": {
+      "message": "Je, ulijua kuwa unaweza kushiriki alamisho zako unazopendelea kwa kuifanya folda kuwa ya umma? Jipatie URL ya umma na ushiriki!"
+   },
+   "1507362459078633250": {
+      "message": "Sawa, itabidi uondoe na upakie tena kiendelezi cha chrome au la uisumbue mno timu ya uhandisi.... Samahani :-/"
+   },
+   "1516565793778879679": {
+      "message": "Han - Nyingine"
+   },
+   "1519227660570105215": {
+      "message": "Ukurasa huu huenda una madhara"
+   },
+   "1556175764217302644": {
+      "message": "Aa ya Vokali Asili ya Khmer"
+   },
+   "1566367040709255091": {
+      "message": "Muumbo"
+   },
+   "1582412901770221448": {
+      "message": "Umeongezwa kwenye {FOLDER_NAME}"
+   },
+   "1585233503778646014": {
+      "message": "Mandaic"
+   },
+   "1592899529499992997": {
+      "message": "Alamisho imeondolewa kwenye folda."
+   },
+   "1594074305226612589": {
+      "message": "Category"
+   },
+   "1603625918394102877": {
+      "message": "Recommendations for "
+   },
+   "1619554456134652514": {
+      "message": "Tafadhali elea juu ya kila kisanduku ili upate jina la herufi."
+   },
+   "1630439475247732904": {
+      "message": "Herufi ya juu"
+   },
+   "1634874677195552014": {
+      "message": "Nafasi ya Sita kwa kila em"
+   },
+   "1635366592844795535": {
+      "message": "INGIA KATIKA CHROME"
+   },
+   "1645072860136239307": {
+      "message": "Hali ya hewa na Unajimu"
+   },
+   "1665234249876251486": {
+      "message": "Nafasi ya Tarakimu"
+   },
+   "1666311405952625458": {
+      "message": "Hali ya hewa, Mandhari na ishara za Nyota"
+   },
+   "1678004121951995792": {
+      "message": "Agosti"
+   },
+   "1680034627075195442": {
+      "message": "Unaweza kuunda folda zako mwenyewe au uruhusu Google ikupangie kupitia folda zilizoundwa kiotomatiki."
+   },
+   "1683451665637766512": {
+      "message": "Kiungo cha anwani ya barua pepe"
+   },
+   "1685884502412781083": {
+      "message": "Kigawa Aya"
+   },
+   "169055910458549089": {
+      "message": "Haikuweza kuunganisha kwenye seva yetu. Tafadhali jaribu tena baada ya dakika chache."
+   },
+   "1691734467561749621": {
+      "message": "Samahani, huwezi kushiriki folda katika sehemu yako ya Alamisho"
+   },
+   "1715361312704502898": {
+      "message": "Usafiri Na Ramani"
+   },
+   "1719053155706676551": {
+      "message": "Sehemu ya Alamisho"
+   },
+   "1730849295731139586": {
+      "message": "Yi"
+   },
+   "1748899684018766272": {
+      "message": "Kijazaji cha Upananusu cha Hangul"
+   },
+   "1755438325907288056": {
+      "message": "Nko"
+   },
+   "1776387440523546537": {
+      "message": "Leo"
+   },
+   "178181731883558542": {
+      "message": "Kisanduku cha maandishi cha kukagua alamisho zako."
+   },
+   "1791083579000016877": {
+      "message": "Yenye ASCII"
+   },
+   "1796916450152826566": {
+      "message": "List view"
+   },
+   "1799055681547226163": {
+      "message": "Angalia vipengee vyenye nyota"
+   },
+   "1803667155949248788": {
+      "message": "Aramiki ya Kifalme"
+   },
+   "1827599404395723350": {
+      "message": "Dhibiti Picha"
+   },
+   "1839253253564716482": {
+      "message": "Hakuna alamisho zilizopatikana"
+   },
+   "1847259066982820034": {
+      "message": "Chagua folda"
+   },
+   "1875246104836450162": {
+      "message": "Alama"
+   },
+   "1879633738298009258": {
+      "message": "Nafasi ya Kati ya Kihisabati"
+   },
+   "1915655034817606796": {
+      "message": "Kistariungio Laini"
+   },
+   "191946029988896895": {
+      "message": "Ishara ya Nambari ya Kiarabu"
+   },
+   "1932973762029792550": {
+      "message": "Google inapanga kiotomatiki vitu vyote unavyoalamisha"
+   },
+   "1942405576047748946": {
+      "message": "Alamisho imewekwa."
+   },
+   "196266011387145001": {
+      "message": "Endelea"
+   },
+   "1963154331052663396": {
+      "message": "Kilatini"
+   },
+   "1999193032742275907": {
+      "message": "Mistari 9 ya Kipekee ya Han"
+   },
+   "2003860471263842959": {
+      "message": "Nafasi ya Nywele"
+   },
+   "2015775921681923490": {
+      "message": "Mipangilio"
+   },
+   "202031328373263910": {
+      "message": "Mistari 6 ya Kipekee ya Han"
+   },
+   "2036672715320764541": {
+      "message": "Kitenganishi Mstari"
+   },
+   "2085656217833573245": {
+      "message": "{numItems,plural, =1{Kipengee kimeondolewa kwenye folda.}other{Vipengee # vimeondolewa kwenye folda.}}"
+   },
+   "2088133380647290173": {
+      "message": "Kwenye {WEBSITE}"
+   },
+   "2102196226288832274": {
+      "message": "Weka URL ili uunde alamisho mpya."
+   },
+   "2117634893694108880": {
+      "message": "Faragha"
+   },
+   "2135921744011555145": {
+      "message": "Tafuta alamisho zako"
+   },
+   "213958631597214757": {
+      "message": "Acha kushiriki. "
+   },
+   "2149498606985329379": {
+      "message": "Uletaji wa alamisho umekamilika."
+   },
+   "2159536073195133897": {
+      "message": "Tendua"
+   },
+   "2166866096346653276": {
+      "message": "Hakuna"
+   },
+   "2167636135101203592": {
+      "message": "Kibengali"
+   },
+   "2176930521411607789": {
+      "message": "Imeoanishwa"
+   },
+   "218054763532467155": {
+      "message": "Weka kichwa"
+   },
+   "2195758109188330562": {
+      "message": "{numItems,plural, =0{Futa \u003Cb>{firstItemName}\u003C/b>}=1{Futa \u003Cb>{firstItemName}\u003C/b> na kipengee # zaidi}other{Futa \u003Cb>{firstItemName}\u003C/b> na vipengee # zaidi}}"
+   },
+   "2200921183377473543": {
+      "message": "Ndiyo"
+   },
+   "2201987819238134290": {
+      "message": "{NUM,plural, =0{Siku # zilizopita}=1{Siku # iliyopita}other{Siku # zilizopita}}"
+   },
+   "2228495834106697427": {
+      "message": "Herufi ya chini"
+   },
+   "2253752461533441758": {
+      "message": "Mistari 10 ya Kipekee ya Han"
+   },
+   "2257250286834696444": {
+      "message": "Inapakia..."
+   },
+   "2280907281518645401": {
+      "message": "Vistariungio Viwili vya Katakana-hiragana"
+   },
+   "2301390744929043794": {
+      "message": "Tafadhali subiri wakati tunahifadhi folda yako kwenye seva"
+   },
+   "2315132909835126412": {
+      "message": "Umma"
+   },
+   "2315864755754275083": {
+      "message": "Fedha"
+   },
+   "231658276152304252": {
+      "message": "Ondoa"
+   },
+   "2353164220175503425": {
+      "message": "Ishara ya Nambari ya Kaithi"
+   },
+   "2359350477261263182": {
+      "message": "Kidhibiti cha Alamisho"
+   },
+   "2362075348358411947": {
+      "message": "Orodha ya vitone"
+   },
+   "2396988228061015409": {
+      "message": "Folda"
+   },
+   "2398127458667829603": {
+      "message": "Kibodi na Kiolesura"
+   },
+   "2413859014200470621": {
+      "message": "Ongeza nafasi"
+   },
+   "2414987366409119013": {
+      "message": "Maelezo ya folda mpya (hiari)"
+   },
+   "2444245672676114535": {
+      "message": "Maumbo ya Jeometriki"
+   },
+   "2454859602363061373": {
+      "message": "Tumia nyota katika sehemu ya anwani ili uhifadhi chochote katika wavuti"
+   },
+   "2497668314434532819": {
+      "message": "Kimongolia"
+   },
+   "2498668179494167671": {
+      "message": "Nafasi"
+   },
+   "2506204110427755391": {
+      "message": "Inajumuisha alamisho za vifaa vya mkononi na zile ambazo haziko katika sehemu yako ya alamisho"
+   },
+   "2512307863902593558": {
+      "message": "Kharoshthi"
+   },
+   "2518095696810513128": {
+      "message": "Leta alamisho..."
+   },
+   "2524757118580919241": {
+      "message": "Alama ya Kirejeo cha Kiarabu"
+   },
+   "2528672033407304265": {
+      "message": "Folda hii inaonekana kwako pekee. Ili kuishiriki, bofya \"weka iwe ya umma\" na utapata kiungo kinachoweza kushirikiwa."
+   },
+   "2566403151253785267": {
+      "message": "Folda Isiyo na jina"
+   },
+   "2581794950690518802": {
+      "message": "Dakika 0"
+   },
+   "2608454409093505599": {
+      "message": "Auto folder"
+   },
+   "2619769175243212891": {
+      "message": "Ondoa utangulizi"
+   },
+   "2620868598794227408": {
+      "message": "Ukurasa huu haupo tena"
+   },
+   "2626676714216619519": {
+      "message": "Kichwa kidogo"
+   },
+   "2655730128699057253": {
+      "message": "Kawaida"
+   },
+   "2662413919655166560": {
+      "message": "Jumapili"
+   },
+   "2665932089093244134": {
+      "message": "Alamisha chochote"
+   },
+   "2678821645623495183": {
+      "message": "Watu na Hisia"
+   },
+   "271255586148025786": {
+      "message": "Ingizo la Hex"
+   },
+   "27472132823239706": {
+      "message": "Kulia kwenda kushoto"
+   },
+   "278208331708453602": {
+      "message": "Unganisha kwenye wavuti na uingie katika akaunti ili ushiriki"
+   },
+   "2785193083209311775": {
+      "message": "Machi"
+   },
+   "2803486006471792395": {
+      "message": "na \u003Cspan class=\"col-fv-author\">{AUTHOR_NAME}\u003C/span>"
+   },
+   "2852912314751968082": {
+      "message": "Ogham"
+   },
+   "2854553310495850050": {
+      "message": "Internal only"
+   },
+   "2856195586300956496": {
+      "message": "Zimeletwa kutoka faili"
+   },
+   "2860423337665026261": {
+      "message": "Ondoa kwenye folda"
+   },
+   "2870049984905408346": {
+      "message": "Kichwa"
+   },
+   "2878157583475586619": {
+      "message": "Ongeza rangi"
+   },
+   "2926789704127794819": {
+      "message": "Jina la folda mpya (lazima liwekwe)"
+   },
+   "2951727458776714094": {
+      "message": "Kiungo hiki hakiwezi kufanyiwa majaribio."
+   },
+   "2967109838548277236": {
+      "message": "Kiungo cha kushiriki:"
+   },
+   "2990895581472607445": {
+      "message": "Kingine"
+   },
+   "2993160588184042952": {
+      "message": "Hati za Marekani"
+   },
+   "3002524775820283106": {
+      "message": "Ongeza dokezo..."
+   },
+   "3010872256194497959": {
+      "message": "Vipande vya Mchezo"
+   },
+   "3027920889685525544": {
+      "message": "Mwandiko wa Kiparthi"
+   },
+   "3034084095590774557": {
+      "message": "Puuza"
+   },
+   "3051034269680162898": {
+      "message": "Ondoa"
+   },
+   "3054430907861836285": {
+      "message": "Desemba"
+   },
+   "3085746489633838782": {
+      "message": "Orodha yenye nambari"
+   },
+   "3087091861834859241": {
+      "message": "Karibu kwenye alamisho zako mpya!"
+   },
+   "3090613379634438188": {
+      "message": "Hieroglifu za Merotiki"
+   },
+   "3093070593773009381": {
+      "message": "Hati Nyingine za Asia ya Mashariki"
+   },
+   "3114565967060091369": {
+      "message": "Hanunoo"
+   },
+   "3133386258042146978": {
+      "message": "{NUM,plural, =0{baada ya saa #}=1{baada ya saa #}other{baada ya saa #}}"
+   },
+   "3140214171317206668": {
+      "message": "En Nne"
+   },
+   "3153433695439945201": {
+      "message": "Endelea kutumia nyota ili ualamishe ukurasa, kama ilivyo desturi. Alamisho yako itahifadhi sehemu ya ukurasa kwenye akaunti yako ya Google ili iwe rahisi kuupata baadaye."
+   },
+   "3186183325550234111": {
+      "message": "Nenda kwenye kiungo: "
+   },
+   "3212472770580267001": {
+      "message": "Hati za Asia ya Kusini"
+   },
+   "3218408007702426636": {
+      "message": "Alama ya Kimuziki ya Kumaliza Mafungo"
+   },
+   "3227675900195928275": {
+      "message": "Rejang"
+   },
+   "3234811075540284463": {
+      "message": "Kawaida"
+   },
+   "3244450940425660505": {
+      "message": "Utenganishi"
+   },
+   "3245712009497198424": {
+      "message": "baada ya siku $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "3248191933104379517": {
+      "message": "Hakuna matokeo ya utafutaji wako"
+   },
+   "3275784965391951363": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Ungependa kufuta vipengee katika folda hii?}other{Ungependa kufuta vipengee katika folda hizi?}}"
+   },
+   "3284734782999930756": {
+      "message": "URL"
+   },
+   "328616644571689303": {
+      "message": "Alama ya Kimuziki ya Kumaliza Kusita"
+   },
+   "3309586635668050685": {
+      "message": "Ubatilishaji wa Kushoto-hadi-kulia"
+   },
+   "3316092543008555482": {
+      "message": "Fonetiki (X-IPA)"
+   },
+   "3324755840173728931": {
+      "message": "Fonetiki (IPA)"
+   },
+   "3328377906372603674": {
+      "message": "Folda imeundwa."
+   },
+   "3334908307836130914": {
+      "message": "Ol Chiki"
+   },
+   "3355297279379313357": {
+      "message": "Iliyotumika mara ya mwisho"
+   },
+   "3360043590563638195": {
+      "message": "Ukubwa wa herufi"
+   },
+   "3364831016239212879": {
+      "message": "Pangilia katikati"
+   },
+   "3383495912989125674": {
+      "message": "Nafasi Nyembamba"
+   },
+   "340057911065586090": {
+      "message": "Nafasi ya Idiogramu"
+   },
+   "3413537935166399959": {
+      "message": "Sharada"
+   },
+   "3413696263226173348": {
+      "message": "Badilisha Neno"
+   },
+   "3417560136558853718": {
+      "message": "Kikannada"
+   },
+   "3423652049926153935": {
+      "message": "Folda mpya..."
+   },
+   "3484416881429158332": {
+      "message": "Folda ya faragha"
+   },
+   "3490738610910152047": {
+      "message": "Bamum"
+   },
+   "3490814222385998788": {
+      "message": "Takri"
+   },
+   "3493389010978087325": {
+      "message": "{numItems,plural, =1{Kipengee kimefutwa.}other{Vipengee # vimefutwa.}}"
+   },
+   "3501212562096780610": {
+      "message": "Folda kuu: "
+   },
+   "3501367450176932554": {
+      "message": "Kitenganishi cha Maelezo Yanayolingana"
+   },
+   "350784886925845499": {
+      "message": "{FOLDER} - Bookmark Manager"
+   },
+   "3535517608883245353": {
+      "message": "Kioriya"
+   },
+   "3545341282138953352": {
+      "message": "Alama ya Muziki ya Kuanza Kufunga"
+   },
+   "3546572522856950945": {
+      "message": "Kunefomu"
+   },
+   "3554323414956249846": {
+      "message": "Kiungo"
+   },
+   "3572348996000195345": {
+      "message": "Nafasi ya Em"
+   },
+   "3596311690500158112": {
+      "message": "Kidhibiti cha Alamisho hakipatikani kwa sasa. Tafadhali pakia ukurasa huu tena."
+   },
+   "3621913747018973144": {
+      "message": "Kushoto kwenda kulia"
+   },
+   "362505154270301776": {
+      "message": "Kurasa za wavuti"
+   },
+   "3630778778193389974": {
+      "message": "Kikagua Tahajia"
+   },
+   "3641126700487126155": {
+      "message": "Alama ya Kimuziki ya Kuanza Kusita"
+   },
+   "3646623530558910508": {
+      "message": "Folda imebadilishwa."
+   },
+   "3646641743349296313": {
+      "message": "Oktoba"
+   },
+   "3650952447025672637": {
+      "message": "Futa folda na vipengee"
+   },
+   "3723533099349282495": {
+      "message": "Kaithi"
+   },
+   "37315674215151127": {
+      "message": "Panga mambo yako"
+   },
+   "3731716253672925709": {
+      "message": "Vishale"
+   },
+   "373495866496779840": {
+      "message": "ANGALIA KURASA ZOTE ULIZOALAMISHA"
+   },
+   "3735789968703193383": {
+      "message": "Mwonekano"
+   },
+   "3737215641755068426": {
+      "message": "Mistari ya CJK"
+   },
+   "3752699251010579834": {
+      "message": "Kistariungio cha Silabi za Kikanada"
+   },
+   "377368134657453613": {
+      "message": "Ingia katika Chrome ili utafute kurasa zako zilizoalamishwa"
+   },
+   "3800528517409823312": {
+      "message": "Nambari na Herufi za Hisabati"
+   },
+   "3832066920911226237": {
+      "message": "Hamisha alamisho..."
+   },
+   "3836877357378306877": {
+      "message": "Kawaida"
+   },
+   "3880744822029422406": {
+      "message": "Ukiacha kushiriki folda hii, kiungo cha kushiriki kitaacha kufanya kazi."
+   },
+   "3888658965293980754": {
+      "message": "Muumbo"
+   },
+   "3893161213200925599": {
+      "message": "Ghairi"
+   },
+   "3924970930634517299": {
+      "message": "Maelezo"
+   },
+   "3947500116452515010": {
+      "message": "Bado hakuna alamisho zozote!"
+   },
+   "3951067234379178869": {
+      "message": "Folda imefutwa."
+   },
+   "3953750991047324531": {
+      "message": "Kigujarati"
+   },
+   "3960988854399920931": {
+      "message": "Hati za Kiafrika"
+   },
+   "3977845230474613475": {
+      "message": "Jumatatu"
+   },
+   "3978409745488989414": {
+      "message": "Kesho"
+   },
+   "3981527568769423358": {
+      "message": "Kiteuzi cha Utofautishaji"
+   },
+   "3998968827975494252": {
+      "message": "Kanada ya Asili"
+   },
+   "4052124018014680002": {
+      "message": "Kwa kuwa umechagua kusimba alamisho zako kwa njia fiche katika \"Mipangilio mahiri ya usawazishaji\", tumezima utendaji ambao ungehitaji Google iangalie maudhui yako."
+   },
+   "4070285516355502772": {
+      "message": "Kiunganishi cha Neno"
+   },
+   "4083819681339999404": {
+      "message": "Folda imehamishwa."
+   },
+   "4093661547607027073": {
+      "message": "Dashi ya Em"
+   },
+   "4132740194577129031": {
+      "message": "Bopomofo"
+   },
+   "4137824748636628400": {
+      "message": "Kitamili"
+   },
+   "4141340144529743179": {
+      "message": "Pangilia kulia"
+   },
+   "4185431426264249075": {
+      "message": "Hapana"
+   },
+   "4195157973939034839": {
+      "message": "{NUM,plural, =0{Dakika # zilizopita}=1{Dakika # iliyopita}other{Dakika # zilizopita}}"
+   },
+   "4207416107225157509": {
+      "message": "Cham"
+   },
+   "421809097037025717": {
+      "message": "Kilidia"
+   },
+   "4219066138225986920": {
+      "message": "Saa $NUM$ zilizopita",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4254960932890105428": {
+      "message": "Tai Lue Mpya"
+   },
+   "4256734561546878891": {
+      "message": "Kiarabu"
+   },
+   "4257688962636177926": {
+      "message": "Maelezo"
+   },
+   "4313041477349547430": {
+      "message": "Teua"
+   },
+   "4317807879399263422": {
+      "message": "Alama"
+   },
+   "4371152527205140884": {
+      "message": "Myama"
+   },
+   "4380394239807746302": {
+      "message": "Suggest"
+   },
+   "4393959625255107395": {
+      "message": "Kijazaji cha Hangul"
+   },
+   "4394299965695763613": {
+      "message": "HILITAFU: \"$COLOR$\" si rangi sahihi.",
+      "placeholders": {
+         "COLOR": {
+            "content": "$1"
+         }
+      }
+   },
+   "4410916238261187817": {
+      "message": "baada ya saa $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "4423461532694888187": {
+      "message": "Fungua kiungo hiki katika dirisha jipya"
+   },
+   "4436859540429978060": {
+      "message": "Huwezi kuburuta na kuweka faili za picha kwa wakati huu.\nTafadhali buruta picha kutoka kivinjari chako cha wavuti."
+   },
+   "4437205840090971415": {
+      "message": "Price"
+   },
+   "4448630528399860587": {
+      "message": "Vai"
+   },
+   "4467383198992095863": {
+      "message": "Dashi/Kiunganishi"
+   },
+   "4485563787650970048": {
+      "message": "Usafiri, Ramani na Ishara"
+   },
+   "4511605174156009486": {
+      "message": "INGIA KATIKA AKAUNTI"
+   },
+   "4536708754459423390": {
+      "message": "Unganisha kwa:"
+   },
+   "4547888102017603305": {
+      "message": "Ingiza rangi maalum, yaani rangi ya waridi, #F00, #D015FF au rgb (100, 50, 25)"
+   },
+   "4549927294981813316": {
+      "message": "Kigae"
+   },
+   "4564357083324116837": {
+      "message": "Hati za Asia ya Kusini"
+   },
+   "4604654420597817764": {
+      "message": "Kitounganishi cha Upana Tupu"
+   },
+   "4631096075002795557": {
+      "message": "Breli"
+   },
+   "4639190252078874549": {
+      "message": "Alamisho zako zimesasishwa, kwa hivyo ni rahisi zaidi kupata ulichohifadhi."
+   },
+   "4656590351979220611": {
+      "message": "{numItems,plural, =1{Kipengee kimehamishwa.}other{Vipengee # vimehamishwa.}}"
+   },
+   "4677342274083596624": {
+      "message": "Hali ya Nje ya mtandao"
+   },
+   "4680868343849876958": {
+      "message": "Kituruki cha Kale"
+   },
+   "468549910877472151": {
+      "message": "Zimeletwa"
+   },
+   "469477235199550748": {
+      "message": "We were unable to find any suggestions for you. Bookmark some more pages and try again."
+   },
+   "4705883336173572181": {
+      "message": "Kiajemi cha Kale"
+   },
+   "4719211226413877639": {
+      "message": "$PREB$Kuwa makini.$POSTB$ Kumbuka kuwa kila wakati unapojumuisha anwani ya barua pepe kwenye ukurasa wa wavuti, watu wanaotuma barua taka wanaweza pia kuipata.",
+      "placeholders": {
+         "POSTB": {
+            "content": "$1"
+         },
+         "PREB": {
+            "content": "$2"
+         }
+      }
+   },
+   "4719252541512909049": {
+      "message": "Kitagalogu"
+   },
+   "4747022692863822805": {
+      "message": "Kistariungio-hasi"
+   },
+   "4749120223198822539": {
+      "message": "Kisinhala"
+   },
+   "4777755382377009548": {
+      "message": "Folder "
+   },
+   "4806941490284711499": {
+      "message": "Futa folda na vipengee"
+   },
+   "482023609949292589": {
+      "message": "{numItems,plural, =1{Kipengee kimehamishwa.}other{Vipengee # vimehamishwa.}}"
+   },
+   "482762608498192214": {
+      "message": "Jumamosi"
+   },
+   "4833178038692710844": {
+      "message": "Iliyogeuzwa/Akisiwa"
+   },
+   "484556867028550958": {
+      "message": "Maqaf ya Kutenganisha ya Kiebrania"
+   },
+   "4848946125726663758": {
+      "message": "Pangilia kushoto"
+   },
+   "4849410737412842755": {
+      "message": "Huwezi kushiriki folda hii kwa sababu folda kuu ya folda hii haijashirikiwa hadharani"
+   },
+   "4856510901676745213": {
+      "message": "Kiyahudi"
+   },
+   "4876378647058083664": {
+      "message": "{NUM,plural, =0{baada ya siku #}=1{baada ya siku #}other{baada ya siku #}}"
+   },
+   "4886850400045987885": {
+      "message": "Badilisha Kiungo"
+   },
+   "4894342917447426362": {
+      "message": "Kijalizo cha Kilatini 1"
+   },
+   "4895451769213934183": {
+      "message": "Lisu"
+   },
+   "4920822305412968613": {
+      "message": "Fomu ya Uwasilishaji Ya Mistari Wima ya En"
+   },
+   "4924494577575330019": {
+      "message": "{numItems,plural, =1{Kipengee kimebadilishwa.}other{Vipengee # vimebadilishwa.}}"
+   },
+   "4934771438157777517": {
+      "message": "Pigia Mstari"
+   },
+   "4943286974087295923": {
+      "message": "Funga"
+   },
+   "4944188657066537729": {
+      "message": "Kisiria"
+   },
+   "4974279938502768331": {
+      "message": "Badilisha"
+   },
+   "4987339278179088082": {
+      "message": "Ongeza sifa ya '$REL_NO_FOLLOW$' ($LINK_START$Pata maelezo zaidi$LINK_END$)",
+      "placeholders": {
+         "LINK_END": {
+            "content": "$1"
+         },
+         "LINK_START": {
+            "content": "$2"
+         },
+         "REL_NO_FOLLOW": {
+            "content": "$3"
+         }
+      }
+   },
+   "4988324590519821891": {
+      "message": "Maandishi ya kuonyesha:"
+   },
+   "4991252214297708837": {
+      "message": "Maelezo ya folda"
+   },
+   "500023300077018967": {
+      "message": "Hakuna Mapendekezo"
+   },
+   "5002702571780362629": {
+      "message": "Kiavestani"
+   },
+   "5013372925252634952": {
+      "message": "Kikari"
+   },
+   "5015669074913229206": {
+      "message": "Balinese"
+   },
+   "5016723309142316836": {
+      "message": "Kigurmukhi"
+   },
+   "5042512453093360461": {
+      "message": "Uumbizaji wa Kufuata Ibukizi"
+   },
+   "5086992011880811613": {
+      "message": "Alamisho imefutwa."
+   },
+   "5089168125978769021": {
+      "message": "Futa folda"
+   },
+   "5089667744614498582": {
+      "message": "Alamisho imehamishwa."
+   },
+   "5091977456489870115": {
+      "message": "An issue occured retrieving suggestions."
+   },
+   "5098760451332717026": {
+      "message": "Alama ya Muziki ya Boriti ya Kuanza"
+   },
+   "5109840495091366547": {
+      "message": "Michezo, Sherehe na Shughuli"
+   },
+   "5111612377742357508": {
+      "message": "Recommended"
+   },
+   "5161136602189081305": {
+      "message": "Folda mpya"
+   },
+   "5162366761471751537": {
+      "message": "{COUNT,plural, =0{}=1{Siku {TEXT}}other{Siku {TEXT}}}"
+   },
+   "5162393477556833033": {
+      "message": "Kiungo hiki kinafaa kwenda kwa URL gani?"
+   },
+   "518089704180562683": {
+      "message": "Leo"
+   },
+   "5217401654984037028": {
+      "message": "We were unable to find any suggestions for this item. Please try a different one."
+   },
+   "5246409156772260248": {
+      "message": "Runic"
+   },
+   "5253985055078626542": {
+      "message": "Upachikaji wa Kushoto-hadi-kulia"
+   },
+   "5266193592374285468": {
+      "message": "Weka iwe ya umma"
+   },
+   "5272267167655788064": {
+      "message": "Picha"
+   },
+   "528339682728930567": {
+      "message": "Kidhibiti cha Alamisho hakipatikani kwa sasa. Tafadhali jaribu tena baada ya dakika chache,"
+   },
+   "5300191622079400984": {
+      "message": "Zote"
+   },
+   "5305493859040531582": {
+      "message": "Try removing the type restriction for more results!"
+   },
+   "5328412494790717118": {
+      "message": "Bofya ili uongeze maelezo"
+   },
+   "5334597244901829906": {
+      "message": "Shiriki folda hii"
+   },
+   "534304870772683249": {
+      "message": "Wasilisha"
+   },
+   "534369010818044160": {
+      "message": "Kikhmer"
+   },
+   "5354142472798067112": {
+      "message": "Kiteuzi cha Utofauti - $SEQNUM$",
+      "placeholders": {
+         "SEQNUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "535699780400907966": {
+      "message": "$DAYS_PART$$DAYS_SEPARATOR$$HOURS_PART$$HOURS_SEPARATOR$$MINUTES_PART$",
+      "placeholders": {
+         "DAYS_PART": {
+            "content": "$1"
+         },
+         "DAYS_SEPARATOR": {
+            "content": "$2"
+         },
+         "HOURS_PART": {
+            "content": "$3"
+         },
+         "HOURS_SEPARATOR": {
+            "content": "$4"
+         },
+         "MINUTES_PART": {
+            "content": "$5"
+         }
+      }
+   },
+   "5369754108335659754": {
+      "message": "Hakuna muunganisho wa mtandao. Huwezi kuhifadhi mabadiliko mpaka urudi mtandaoni."
+   },
+   "5371009567664142864": {
+      "message": "Kihabeshi"
+   },
+   "5378436065321978089": {
+      "message": "Unda"
+   },
+   "538263398271363120": {
+      "message": "Kicherokee"
+   },
+   "5412265752110327977": {
+      "message": "Uoanaji"
+   },
+   "5425054962709217464": {
+      "message": "Jumatano"
+   },
+   "544490805551236927": {
+      "message": "Hati za Mashariki ya Kati"
+   },
+   "5448654348317290038": {
+      "message": "Dashi ya En"
+   },
+   "5456454482863742119": {
+      "message": "Futa folda"
+   },
+   "5458956770053499082": {
+      "message": "Ya Muziki"
+   },
+   "546306107859654806": {
+      "message": "Weka kwenye folda"
+   },
+   "5474647412096976366": {
+      "message": "Unganisha kwenye Intaneti ili uweze kutafuta kurasa zako zilizoalamishwa"
+   },
+   "5500830105937873966": {
+      "message": "Futa"
+   },
+   "5517581353492371385": {
+      "message": "Jana"
+   },
+   "5521943762943322583": {
+      "message": "Kilao"
+   },
+   "5529569087489430384": {
+      "message": "Mwandiko wa Pahlavi"
+   },
+   "5561412620611998456": {
+      "message": "Septemba"
+   },
+   "5579702837382664819": {
+      "message": "Folda iliyoundwa kiotomatiki ya \u003Cspan class=\"col-tlv-title\">{FOLDER}\u003C/span>"
+   },
+   "5591817825901366736": {
+      "message": "Bookmarks"
+   },
+   "560258241964036554": {
+      "message": "Gothiki"
+   },
+   "5603457799050818619": {
+      "message": "Hakuna folda zilizoundwa kiotomatiki kwa wakati huu."
+   },
+   "5603774725128707055": {
+      "message": "Folda imehamishwa."
+   },
+   "5621148847082889884": {
+      "message": "Bado hakuna folda yoyote!"
+   },
+   "5669644158906503623": {
+      "message": "Ishara ya Kiarabu ya Sanah"
+   },
+   "5672850901284728452": {
+      "message": "Open logs page"
+   },
+   "5673852407127287054": {
+      "message": "Kistariungio hasi cha Upana kamili"
+   },
+   "5679720964567650205": {
+      "message": "Jumanne"
+   },
+   "5748894773514291207": {
+      "message": "Nafasi Tatu kwa kila em"
+   },
+   "5749465969550038727": {
+      "message": "Tagbanwa"
+   },
+   "5773338884170027267": {
+      "message": "Ondoa umbizo"
+   },
+   "5776478286503179051": {
+      "message": "Mistari 5 ya Kipekee ya Han"
+   },
+   "5778201074245568998": {
+      "message": "Herufi nzito"
+   },
+   "580023699785819803": {
+      "message": "Kitibeti"
+   },
+   "5815994514834119961": {
+      "message": "Yijing / Tai Xuan Jing"
+   },
+   "5822895345080436445": {
+      "message": "Picha"
+   },
+   "5832273633751333051": {
+      "message": "Syloti Nagri"
+   },
+   "5837746770084243727": {
+      "message": "Alama"
+   },
+   "5842240706321147978": {
+      "message": "Kiungo"
+   },
+   "5901988325256570549": {
+      "message": "Reorder by title"
+   },
+   "5910310630152328151": {
+      "message": "Kuweka Nafasi"
+   },
+   "5923476740499653277": {
+      "message": "Glagoliti"
+   },
+   "6002018674529763527": {
+      "message": "Nafasi isiyokuwa na Pengo"
+   },
+   "6013038186284817941": {
+      "message": "Mistari 8 ya Kipekee ya Han"
+   },
+   "6014514403103768983": {
+      "message": "Rangi ya heksadesimali"
+   },
+   "6025708931099464434": {
+      "message": "Tai Tham"
+   },
+   "6033899037238526353": {
+      "message": "{QUERY} search - Bookmark Manager"
+   },
+   "6054019973079589033": {
+      "message": "Rangi ya mandharinyuma ya maandishi"
+   },
+   "6055751153306823909": {
+      "message": "Kubwa"
+   },
+   "609920334473042917": {
+      "message": "Karibu kwenye alamisho zako mpya! Ingia katika Chrome ili upate vipengele zaidi kama vile: utafutaji bora, folda zilizoundwa kiotomatiki na picha zilizoongezwa katika alamisho zako za awali."
+   },
+   "6131022146392295404": {
+      "message": "Badilisha chanzo cha HTML"
+   },
+   "6146119258861607037": {
+      "message": "Mistari 7 ya Kipekee ya Han"
+   },
+   "6176673388074993831": {
+      "message": "Kikhufti"
+   },
+   "6178455470693561470": {
+      "message": "Upo nje ya mtandao kwa sasa. Tafadhali jaribu tena utakaporudi mtandaoni."
+   },
+   "6189158371964390675": {
+      "message": "Iliyoambatishwa/Nuktishwa"
+   },
+   "6195717342584646029": {
+      "message": "$MONTH_NAME$ $YEAR_NUM$",
+      "placeholders": {
+         "MONTH_NAME": {
+            "content": "$1"
+         },
+         "YEAR_NUM": {
+            "content": "$2"
+         }
+      }
+   },
+   "6203942595425427729": {
+      "message": "Upachikaji wa Kulia kuelekea kushoto"
+   },
+   "6207440179505974685": {
+      "message": "Kishavi"
+   },
+   "6233852423673631009": {
+      "message": "Julai"
+   },
+   "6253147562582857321": {
+      "message": "{NUM_OF_FOLDERS,plural, =1{Je, una uhakika ungependa kufuta alamisho zote zilizo katika folda hii?}other{Je, una uhakika ungependa kufuta alamisho zote zilizo katika folda hizi?}}"
+   },
+   "6256177058141995632": {
+      "message": "Miao"
+   },
+   "625779090990399178": {
+      "message": "Chaguo zaidi"
+   },
+   "6259598030649933216": {
+      "message": "Maelezo"
+   },
+   "6263370534846330732": {
+      "message": "Tifinagh"
+   },
+   "62686912805627037": {
+      "message": "{NUM_OF_ITEMS,plural, =1{# imechaguliwa}other{# zimechaguliwa}}"
+   },
+   "6281738099691391172": {
+      "message": "Rangi ya maandishi"
+   },
+   "6301951743370594966": {
+      "message": "Your search returned no results. Try removing the type restriction!"
+   },
+   "6351097488428000929": {
+      "message": "Nafasi yenye Upana Tupu Isiyokuwa na Pengo"
+   },
+   "6380136177516870340": {
+      "message": "Umeingia katika Google kwa akaunti tofauti na ile ya kivinjari chako cha Chrome."
+   },
+   "639862355711352140": {
+      "message": "PATA MAELEZO ZAIDI"
+   },
+   "6410416070545265970": {
+      "message": "Jaribu kiungo hiki"
+   },
+   "6418290353353165009": {
+      "message": "Rudia"
+   },
+   "6425676451769330238": {
+      "message": "Isiyo na nafasi"
+   },
+   "6433056041891472200": {
+      "message": "Ingia katika akaunti ili uwashe"
+   },
+   "6437997645764562921": {
+      "message": "Kijazaji cha Hangul Choseong"
+   },
+   "6470997799115367716": {
+      "message": "Saurashtra"
+   },
+   "6471970833583478119": {
+      "message": "Kichwa kidogo"
+   },
+   "6473682978091349952": {
+      "message": "Nafasi ya Kutenganisha"
+   },
+   "6489221588545746734": {
+      "message": "Kisiriliki"
+   },
+   "64909648993550346": {
+      "message": "Ubatilishaji wa Kulia kwenda kushoto"
+   },
+   "649459667039033491": {
+      "message": "baada ya siku $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6536780297877318846": {
+      "message": "Nafasi ya Upana Tupu"
+   },
+   "6539448903465735867": {
+      "message": "Alama ya Muziki ya Kifungu cha Kuanza"
+   },
+   "6544224848752157941": {
+      "message": "Punguza nafasi"
+   },
+   "6559526625155197659": {
+      "message": "Huduma ya Tafuta na Google haipatikani kwa sasa. Jaribu tena baada ya dakika chache."
+   },
+   "6563689176501108246": {
+      "message": "Mistari 3 ya Kipekee ya Han"
+   },
+   "6572308230373875858": {
+      "message": "Jina hili la folda lina herufi zisizoruhusiwa."
+   },
+   "6604826525171204065": {
+      "message": "Buhid"
+   },
+   "6606727931314199470": {
+      "message": "Kifoneshia"
+   },
+   "6615361696210824363": {
+      "message": "$NUM_COLS$ kwa $NUM_ROWS$",
+      "placeholders": {
+         "NUM_COLS": {
+            "content": "$1"
+         },
+         "NUM_ROWS": {
+            "content": "$2"
+         }
+      }
+   },
+   "6646879811322446587": {
+      "message": "Alamisho zako hazikusawazishwa. Jaribu kupakia tena ukurasa huu"
+   },
+   "6661160677415877619": {
+      "message": "Badilisha HTML"
+   },
+   "66727790049529171": {
+      "message": "Herufi ya juu"
+   },
+   "6673681480713693433": {
+      "message": "Alama ya Kushoto-hadi-kulia"
+   },
+   "6679365605648394500": {
+      "message": "Ya Kihistoria"
+   },
+   "6718105992776681941": {
+      "message": "Folda ya umma"
+   },
+   "6731765034365779068": {
+      "message": "baada ya dakika $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "6739342875396455242": {
+      "message": "Kiarabu cha zamani cha Kusini"
+   },
+   "6748884117721473417": {
+      "message": "Hati Nyingine za Ulaya"
+   },
+   "6756714832459728782": {
+      "message": "Tai Le"
+   },
+   "6781212531496313437": {
+      "message": "Orodha"
+   },
+   "6787794440298969774": {
+      "message": "Kimalayalam"
+   },
+   "6813860917460451806": {
+      "message": "Kilisia"
+   },
+   "6848846772159302710": {
+      "message": "Badilisha"
+   },
+   "6878231700728680871": {
+      "message": "MPYA"
+   },
+   "687829671213164815": {
+      "message": "Samahani, lakini Kidhibiti cha Alamisho hakipatikani kwa sasa. Tafadhali jaribu tena baada ya saa chache"
+   },
+   "6963034896702768829": {
+      "message": "Folda hii haipatikani tena."
+   },
+   "698011532377344679": {
+      "message": "Jinsia na Nasaba"
+   },
+   "7004429103140794719": {
+      "message": "Uteuzi wa Hivi Karibuni:"
+   },
+   "7009051272745522428": {
+      "message": "Je, umesahau ulichohifadhi? Kitafute tu. Jaribu kutumia maneno ya jumla kama \"filamu\" au \"usafiri\" ili upate tena alamisho zilizopotea."
+   },
+   "7056277361038404533": {
+      "message": "Alamisho imehamishwa."
+   },
+   "7058809993296833390": {
+      "message": "Twambie unachofikiria!"
+   },
+   "7064503592469946179": {
+      "message": "Sundanese"
+   },
+   "7077571379260349566": {
+      "message": "Je, unataka kujaribu \u003Ca class=\"col-zda\">kutafuta kwenye wavuti\u003C/a> badala yake?"
+   },
+   "7102762854285284877": {
+      "message": "Phags Pa"
+   },
+   "7124932478652977474": {
+      "message": "Umealamishwa"
+   },
+   "7154665243775472938": {
+      "message": "Folda"
+   },
+   "7168417416563257713": {
+      "message": "Hifadhi"
+   },
+   "7178727559519269241": {
+      "message": "Kistariungio cha Mishazari Miwili"
+   },
+   "7256064246386232909": {
+      "message": "Kijava"
+   },
+   "7258012171742729961": {
+      "message": "Aq ya Vokali Asili ya Khmer"
+   },
+   "7300188402017534561": {
+      "message": "Zote"
+   },
+   "7316184946628117028": {
+      "message": "Thaana"
+   },
+   "7328850288952193170": {
+      "message": "Kitenganishi Kisichoonekana"
+   },
+   "733245618582914569": {
+      "message": "SAWA"
+   },
+   "7333334175520057323": {
+      "message": "Ghairi"
+   },
+   "7339792312429709609": {
+      "message": "Mistari 2 ya Kipekee ya Han"
+   },
+   "7342965026300699486": {
+      "message": "Hii ni folda ya umma. Kuifuta kutawazuia wengine kuwa na uwezo wa kuiona."
+   },
+   "7346825266417376383": {
+      "message": "SAWA"
+   },
+   "7362095105218889721": {
+      "message": "Muumbo na Nafasi nyeupe"
+   },
+   "7369763432670344230": {
+      "message": "Je, ni anwani gani ya barua pepe inapaswa kuunganishwa na hii?"
+   },
+   "7376646180156094924": {
+      "message": "Jina"
+   },
+   "7388233788532145059": {
+      "message": "Ongeza au uondoe kiungo"
+   },
+   "7407898565330883980": {
+      "message": "Unda folda"
+   },
+   "7436494590700857376": {
+      "message": "Isiyo na jina"
+   },
+   "7454853574776276752": {
+      "message": "Sawa"
+   },
+   "7466254996792639407": {
+      "message": "Kijiojia"
+   },
+   "7487940627543583924": {
+      "message": "Alhamisi"
+   },
+   "7496808914788281345": {
+      "message": "Mstari Mdogo wa Em"
+   },
+   "7512206123241896524": {
+      "message": "Kufuta folda za umma kutawazuia wengine kuwa na uwezo wa kuziona."
+   },
+   "7514107325655026801": {
+      "message": "Kitenganishi cha Vokali ya Kimongolia"
+   },
+   "7517846739534508036": {
+      "message": "Picha unayojaribu kuburuta imezuiliwa na tovuti pangishi"
+   },
+   "7555563249261926682": {
+      "message": "{NUM,plural, =0{baada ya dakika #}=1{baada ya dakika #}other{baada ya dakika #}}"
+   },
+   "7556000209920718943": {
+      "message": "Kisaiprasi"
+   },
+   "7558709989823567445": {
+      "message": "Mstari B"
+   },
+   "7561680940841358107": {
+      "message": "Kayah Li"
+   },
+   "7568095371260566948": {
+      "message": "{COUNT,plural, =0{}=1{Saa {TEXT}}other{Saa {TEXT}}}"
+   },
+   "7596432446723472214": {
+      "message": "We were unable to find any suggestions for you. Add more items to the folder and try again."
+   },
+   "7623431174830624038": {
+      "message": "Kistariungio cha Kiarmenia"
+   },
+   "762426240463793747": {
+      "message": "Sehemu mgao/Zinazohusiana"
+   },
+   "7627205932825693842": {
+      "message": "Kistariungio Laini cha Kimongolia"
+   },
+   "7666041165203922544": {
+      "message": "Pata vitu kwa urahisi"
+   },
+   "7687211811508159108": {
+      "message": "Unable to retrieve suggestions for an empty folder. Add some items and try again."
+   },
+   "7748106961535935847": {
+      "message": "baada ya saa $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7751005667409112662": {
+      "message": "Siku $NUM$ iliyopita",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "7754736007020239723": {
+      "message": "Juni"
+   },
+   "7763561590386207075": {
+      "message": "Anwani ya wavuti"
+   },
+   "7778510137824413661": {
+      "message": "Wewe ni mshiriki bora kabisa kuwahi tokea katika jaribio la kindani! Umegundua hitilafu ambayo hatuwezi kurekebisha kwa kupakia upya."
+   },
+   "7787489712298922692": {
+      "message": "Ugaritic"
+   },
+   "7794513342167361028": {
+      "message": "Sora Sompeng"
+   },
+   "7799449305630256377": {
+      "message": "Alama ya Fungu la Mwisho la Muziki"
+   },
+   "7804811638177746132": {
+      "message": "Tafadhali weka url sahihi."
+   },
+   "7820796809104165402": {
+      "message": "Ijumaa"
+   },
+   "7837019345094275313": {
+      "message": "{numItems,plural, =1{Kipengee kimeundwa.}other{Vipengee # vimeundwa.}}"
+   },
+   "7842161096380376517": {
+      "message": "Ishara ya Kiarabu ya Safha"
+   },
+   "7877081360738059546": {
+      "message": "Wanyama, Mimea na Chakula"
+   },
+   "7899357084217902569": {
+      "message": "Kistariungio-hasi Ndogo"
+   },
+   "7905781103187741064": {
+      "message": "$START_BOLD$Je, hujui unastahili kuweka nini katika kisanduku?$END_BOLD$ Kwanza, tafuta ukurasa unaotaka kuunganisha kwenye wavuti. ($SEARCH_ENGINE_LINK$injini ya utafutaji$END_LINK$ inaweza kusaidia.) Kisha nakili anwani ya wavuti kutoka kisanduku  katika sehemu ya anwani ya kivinjari chako, na uibandike kwenye kisanduku kilicho hapo juu.",
+      "placeholders": {
+         "END_BOLD": {
+            "content": "$1"
+         },
+         "END_LINK": {
+            "content": "$2"
+         },
+         "SEARCH_ENGINE_LINK": {
+            "content": "$3"
+         },
+         "START_BOLD": {
+            "content": "$4"
+         }
+      }
+   },
+   "7915251430570083450": {
+      "message": "Ghairi"
+   },
+   "7929010027377139621": {
+      "message": "Tai Viet"
+   },
+   "7944194550132470305": {
+      "message": "Ongeza kichwa..."
+   },
+   "7957751306916251232": {
+      "message": "Anwani ya barua pepe si sahihi"
+   },
+   "7977240188055092028": {
+      "message": "Angalia"
+   },
+   "7987287518899618882": {
+      "message": "Februari"
+   },
+   "7995071973884866910": {
+      "message": "Siku $NUM$ zilizopita",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8008659366698984178": {
+      "message": "Video"
+   },
+   "8011311100803127599": {
+      "message": "Nyota / Alama ya Kinyota"
+   },
+   "8017723467201257913": {
+      "message": "Desereti"
+   },
+   "8018615794586730510": {
+      "message": "Ya Kawaida / serif"
+   },
+   "8027365004962833557": {
+      "message": "Italiki ya Kale"
+   },
+   "8110520007971944893": {
+      "message": "Google inaweza kupanga alamisho zako kiotomatiki kwa hiyo huna haja ya kufanya hivyo"
+   },
+   "8115055677841343820": {
+      "message": "Kistariungio"
+   },
+   "8132750144382731373": {
+      "message": "Emoji"
+   },
+   "8139874053154312313": {
+      "message": "Kistariungio na Alama ya Kutofautisha Matamshi"
+   },
+   "8143412461134291283": {
+      "message": "Tuma maoni"
+   },
+   "8146770321190721394": {
+      "message": "Osmanya"
+   },
+   "8167437723285192120": {
+      "message": "Hakuna"
+   },
+   "8179849043307262288": {
+      "message": "Programu ya Fomyula saidizi"
+   },
+   "818630018883405514": {
+      "message": "Iliyoambatishwa"
+   },
+   "8208069138346972268": {
+      "message": "Ya kiufundi"
+   },
+   "8220605653109571646": {
+      "message": "Kigiriki"
+   },
+   "8243618543879664815": {
+      "message": "Januari"
+   },
+   "8275729822640276507": {
+      "message": "Umeunganishwa tena kwenye wavuti."
+   },
+   "8326016121095925083": {
+      "message": "Location"
+   },
+   "8335280220243538613": {
+      "message": "Tendua"
+   },
+   "8338269186594699884": {
+      "message": "mchana"
+   },
+   "8349590636030562194": {
+      "message": "Entities"
+   },
+   "8375480305752533335": {
+      "message": "NIMEELEWA"
+   },
+   "8394518299580326671": {
+      "message": "Kiunganishi cha Upana Tupu"
+   },
+   "8401283339806880070": {
+      "message": "Sawazisha"
+   },
+   "8417405596874032771": {
+      "message": "Alama ya Nafasi ya Ogham"
+   },
+   "8442861823466423570": {
+      "message": "Kimalizio cha Maelezo Yanayolingana"
+   },
+   "8454082825844118412": {
+      "message": "Mistari 11 hadi 17 ya Kipekee ya Han"
+   },
+   "845676589918576610": {
+      "message": "Based on your interest in:"
+   },
+   "8459240917425469878": {
+      "message": "Matokeo ya utafutaji ya \u003Cspan class=\"col-tlv-title\">{SEARCH_TERM}\u003C/span>"
+   },
+   "846893467556389257": {
+      "message": "Vikaragosi"
+   },
+   "8509200859889253607": {
+      "message": "Buginese"
+   },
+   "8513771017811992648": {
+      "message": "Hakuna"
+   },
+   "8583880697323281603": {
+      "message": "Alamisho imebadilishwa."
+   },
+   "8590712065595806821": {
+      "message": "Iliyopendekezwa"
+   },
+   "8605746117200843257": {
+      "message": "Nanga ya Maelezo Yanayolingana"
+   },
+   "8608038304204118820": {
+      "message": "Saa $NUM$ iliyopita",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "8618253608886563193": {
+      "message": "Tia nyota kwenye ukurasa huu"
+   },
+   "8632024322663078476": {
+      "message": "Ongeza kwenye folda"
+   },
+   "8635739256240231429": {
+      "message": "Funga"
+   },
+   "8637786997742615742": {
+      "message": "Kirekebishi"
+   },
+   "8639484881518821804": {
+      "message": "Katakana"
+   },
+   "8650532263464760711": {
+      "message": "Kisamaria"
+   },
+   "8656517483230131428": {
+      "message": "Select"
+   },
+   "8690833453096490736": {
+      "message": "Kawaida"
+   },
+   "8694618136165028235": {
+      "message": "Ongeza url..."
+   },
+   "8723654283178734366": {
+      "message": "Weka anwani ya wavuti"
+   },
+   "8748780785044360315": {
+      "message": "Kitailandi"
+   },
+   "8764548034413038101": {
+      "message": "baada ya dakika $NUM$",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "877609626717798805": {
+      "message": "Aprili"
+   },
+   "8784386825932830097": {
+      "message": "Upau Mlalo"
+   },
+   "8793684579112208899": {
+      "message": "Herufi ya chini"
+   },
+   "8797138403646238716": {
+      "message": "Merotiki Iliyoviringwa na Kuunganishwa"
+   },
+   "8801105026907713256": {
+      "message": "Isiyo ya kawaida"
+   },
+   "8805843642052942743": {
+      "message": "Kilepcha"
+   },
+   "8827926534395802942": {
+      "message": "Dashi ya Mchoro"
+   },
+   "8829617001171812634": {
+      "message": "Vitu"
+   },
+   "8835425644719990167": {
+      "message": "Kijazaji cha Hangul Jungseong"
+   },
+   "8838200101653652173": {
+      "message": "Kuambatisha"
+   },
+   "8838938639049885476": {
+      "message": "Nafasi ya En"
+   },
+   "8841111838340088121": {
+      "message": "Mistari 4 ya Kipekee ya Han"
+   },
+   "8860909466229522023": {
+      "message": "Italiki"
+   },
+   "888434073985276543": {
+      "message": "Fomu ya Uwasilishaji Ya Mistari Wima ya Em"
+   },
+   "8892104104076766085": {
+      "message": "Dashi ya Kiwimbi"
+   },
+   "8996388564146952786": {
+      "message": "Nafasi Nyembamba isiyo na Pengo"
+   },
+   "9021466412659564505": {
+      "message": "Ingia katika akaunti"
+   },
+   "9026903153882226079": {
+      "message": "Alama ya Kulia-hadi-kushoto"
+   },
+   "9034162255782924509": {
+      "message": "Kibataki"
+   },
+   "9041611521175673293": {
+      "message": "Alamisho Zote"
+   },
+   "9041881295809259717": {
+      "message": "Hisabati"
+   },
+   "9072668986327887451": {
+      "message": "Maelezo ya Idiografia"
+   },
+   "9076212347872857205": {
+      "message": "Nukuu"
+   },
+   "9083920162332648298": {
+      "message": "asubuhi"
+   },
+   "9086165147555162831": {
+      "message": "Meetei Mayek"
+   },
+   "9092805374125336008": {
+      "message": "Mei"
+   },
+   "9099680152087323883": {
+      "message": "Novemba"
+   },
+   "9107905796365363672": {
+      "message": "Kubwa mno"
+   },
+   "9113260413780075008": {
+      "message": "Brahmi"
+   },
+   "9115834469932780333": {
+      "message": "Kitelugu"
+   },
+   "9143484910409308303": {
+      "message": "Hiragana"
+   },
+   "9148646719734889095": {
+      "message": "Alamisho zilizosimbwa kwa njia fiche haziwezi kutafutwa. \u003Ca class=\"col-srch-lrn-mr\" href=\"{URL}\">Pata maelezo zaidi\u003C/a>"
+   },
+   "9165786145616395636": {
+      "message": "Folda imeondolewa kwenye folda kuu."
+   },
+   "9180458846772153689": {
+      "message": "Kiarmeni"
+   },
+   "9181119817188520774": {
+      "message": "Hakuna muunganisho wa mtandao. Huwezi kuhifadhi mabadiliko mpaka urudi mtandaoni"
+   },
+   "9204096795425905695": {
+      "message": "Muda Usiyoonekana"
+   },
+   "922163125711959960": {
+      "message": "Dakika $NUM$ iliyopita",
+      "placeholders": {
+         "NUM": {
+            "content": "$1"
+         }
+      }
+   },
+   "930782679857911410": {
+      "message": "Ongeza"
+   },
+   "93670926879626900": {
+      "message": "Nafasi nyeupe"
+   },
+   "93871902389648718": {
+      "message": "Alama ya Muziki ya Boriti ya Kumaliza"
+   },
+   "960914149201689167": {
+      "message": "Desimali"
+   },
+   "963040144042262397": {
+      "message": "Futa"
+   },
+   "964017479791059460": {
+      "message": "Mwisho Wa Ayah ya Kiarabu"
+   },
+   "980376110610801797": {
+      "message": "Weka picha"
+   }
+}

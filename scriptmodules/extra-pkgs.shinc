@@ -732,6 +732,126 @@ ep_install_netflix()
 
 }
 
+
+ep_install_hulu()
+{
+
+	# Hulu
+	Name="Hulu"
+	WEB_URL="www.hulu.com"
+	TARGET_NAME="hulu"
+	SHORTCUT="Hulu.desktop
+	LAUNCHER="Hulu-Launch.sh"
+	BANNER_IMG="Hulu.png"
+	
+	# add and eval shortcut
+	ep_add_media_via_chome
+
+}
+
+ep_install_youtube()
+{
+
+	# Youtube
+	Name="Youtube"
+	WEB_URL="www.youtube.com"
+	TARGET_NAME="youtube"
+	SHORTCUT="Youtube.desktop
+	LAUNCHER="Youtube-Launch.sh"
+	BANNER_IMG="Youtube.png"
+	
+	# add and eval shortcut
+	ep_add_media_via_chome
+
+}
+
+ep_add_media_via_chome()
+{
+
+	#######################################
+	# Set vars
+	#######################################
+
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="yes"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	echo -e "\n==> Installing access to $NAME (via Chrome) from automated script...\n"
+	sleep 2s
+	
+	#######################################
+	# Pre-reqs
+	#######################################
+	
+	# required to display x window for Chrome
+	sudo apt-get install xserver-xephyr
+
+	#######################################
+	# Software function pre-req
+	#######################################
+	
+	echo -e "\n==> Installing pre-requisite software"
+	sleep 1s
+
+	pkg_test=$(which google-chrome-stable)
+
+	if [[ "$pkg_test" == "" ]]; then
+	
+		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
+		# install chrome from script
+		sleep 2s
+		ep_install_chrome
+		
+	else
+		
+		echo -e "\nPackage google-chrome-stable [OK]"
+		sleep 0.5s
+		
+	fi
+	
+	#######################################
+	# Configuration
+	#######################################
+
+	echo -e "\n==> Configuring"
+	sleep 1s
+	
+	# copy launcher to /usr/bin
+	sudo cp "$scriptdir/cfgs/$TARGET_NAME/LAUNCHER" "/usr/bin"
+	
+	# copy over desktop shortcut
+	sudo cp "$scriptdir/cfgs/hu$TARGET_NAME/$SHORTCUT" "/usr/share/applications"
+	
+	# copy Default folder that has "keep chrome running in background when closed"
+	# so that we don't get "unexpected crash" banner popups
+	sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/." "/home/steam/.config/google-chrome/Default/"
+	
+	# mark exec
+	sudo chmod +x "/usr/bin/$LAUNCHER"
+	
+	# copy banner
+	sudo cp "$scriptdir/cfgs/$TARGET_NAME/$BANNER_IMG" "/home/steam/Pictures"
+
+	# NOTE:
+	# Mouse support with cursor is fine
+	# Currently working on some kind of xboxdrv swap out
+	# to allow arrow keys
+	
+	# fix ownership if need be
+	
+	sudo chown -R steam:steam "/home/steam/Pictures"
+	
+	#####################################################
+	# PKG NAME
+	#####################################################
+	
+	# cleanup
+	ep_pkg_cleanup
+
+}
+
 ep_install_pipelight()
 {
 

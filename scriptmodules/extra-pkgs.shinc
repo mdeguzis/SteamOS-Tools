@@ -799,7 +799,7 @@ ep_add_web_app_chrome()
 	# copy launcher to /usr/bin
 	# Eval based on custom url or not
 	
-	if [[ "custom_url" == "no" ]]; then
+	if [[ "$custom_url" == "no" ]]; then
 	
 		sudo cp "$scriptdir/cfgs/$TARGET_NAME/$LAUNCHER" "/usr/bin"
 		
@@ -816,7 +816,7 @@ ep_add_web_app_chrome()
 		# copy banner
 		sudo cp "$scriptdir/cfgs/$TARGET_NAME/$BANNER_IMG" "/home/steam/Pictures"
 		
-	elif [[ "custom_url" == "yes" ]]; then
+	elif [[ "$custom_url" == "yes" ]]; then
 		
 		# Prompt for url
 		

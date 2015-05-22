@@ -648,6 +648,14 @@ ep_install_gdrive()
 ep_install_netflix()
 {
 
+	############################
+	# NOTE!
+	############################
+	
+	# This function will go to a more basic setup, such as
+	# ep_install_hulu below and utilize ep_add_media_via_chome once 
+	# Hulu and Youtube are confirmed working via this new method.
+
 	echo -e "\n==> Installing Netflix (via Chrome) from automated script...\n"
 	sleep 2s
 	
@@ -699,20 +707,20 @@ ep_install_netflix()
 	sleep 1s
 	
 	# copy launcher to /usr/bin
-	sudo cp "$scriptdir/cfgs/netflix/Netflix-Launch.sh" "/usr/bin"
+	sudo cp "$scriptdir/cfgs/Netflix/Netflix-Launch.sh" "/usr/bin"
 	
 	# copy over desktop shortcut
-	sudo cp "$scriptdir/cfgs/netflix/Netflix.desktop" "/usr/share/applications"
+	sudo cp "$scriptdir/cfgs/Netflix/Netflix.desktop" "/usr/share/applications"
 	
 	# copy Default folder that has "keep chrome running in background when closed"
 	# so that we don't get "unexpected crash" banner popups
-	sudo cp -r "$scriptdir/cfgs/netflix/Default/." "/home/steam/.config/google-chrome/Default/"
+	sudo cp -r "$scriptdir/cfgs/Netflix/Default/." "/home/steam/.config/google-chrome/Default/"
 	
 	# mark exec
 	sudo chmod +x "/usr/bin/Netflix-Launch.sh"
 	
 	# copy banner
-	sudo cp "$scriptdir/cfgs/netflix/Netflix.png" "/home/steam/Pictures"
+	sudo cp "$scriptdir/cfgs/Netflix/Netflix.png" "/home/steam/Pictures"
 
 	# NOTE:
 	# Mouse support with cursor is fine
@@ -739,7 +747,7 @@ ep_install_hulu()
 	# Hulu
 	NAME"Hulu"
 	WEB_URL="www.hulu.com"
-	TARGET_NAME="hulu"
+	TARGET_NAME="Hulu"
 	SHORTCUT="Hulu.desktop
 	LAUNCHER="Hulu-Launch.sh"
 	BANNER_IMG="Hulu.png"
@@ -755,7 +763,7 @@ ep_install_youtube()
 	# Youtube
 	NAME="Youtube"
 	WEB_URL="www.youtube.com"
-	TARGET_NAME="youtube"
+	TARGET_NAME="Youtube"
 	SHORTCUT="Youtube.desktop
 	LAUNCHER="Youtube-Launch.sh"
 	BANNER_IMG="Youtube.png"

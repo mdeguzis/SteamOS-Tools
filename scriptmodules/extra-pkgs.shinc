@@ -568,7 +568,7 @@ ep_install_chrome()
 	# install google-chrome-stable
 	###############################
 	
-	echo -e "\n==> Installing core package 'google-chrome-stable'"
+	echo -e "\n==> Installing core package 'google-chrome-stable'\n"
 	sleep 2s
 	
 	# download

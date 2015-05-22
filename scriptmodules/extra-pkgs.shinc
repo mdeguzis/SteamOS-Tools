@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.8.6
+# Script Ver:	  	0.9.2
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	
@@ -689,7 +689,7 @@ ep_install_netflix()
 	
 	# copy Default folder that has "keep chrome running in background when closed"
 	# so that we don't get "unexpected crash" banner popups
-	sudo cp -r "$scriptdir/cfgs/netflix/Default/*" " /home/steam/.config/google-chrome/Default"
+	sudo cp -r "$scriptdir/cfgs/netflix/Default/." " /home/steam/.config/google-chrome/Default"
 	
 	# mark exec
 	sudo chmod +x "/usr/bin/Netflix-Launch.sh"

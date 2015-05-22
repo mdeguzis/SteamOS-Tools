@@ -679,6 +679,7 @@ ep_install_netflix()
 
 	if [[ "$pkg_test" == "" ]]; then
 	
+		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
 		# install chrome from script
 		ep_install_chrome
 		

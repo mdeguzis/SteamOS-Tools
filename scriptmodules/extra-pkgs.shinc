@@ -869,10 +869,10 @@ ep_add_web_app_chome()
 	sleep 1s
 	
 	# copy launcher to /usr/bin
-	sudo cp "$scriptdir/cfgs/$TARGET_NAME/LAUNCHER" "/usr/bin"
+	sudo cp "$scriptdir/cfgs/$TARGET_NAME/$LAUNCHER" "/usr/bin"
 	
 	# copy over desktop shortcut
-	sudo cp "$scriptdir/cfgs/hu$TARGET_NAME/$SHORTCUT" "/usr/share/applications"
+	sudo cp "$scriptdir/cfgs/$TARGET_NAME/$SHORTCUT" "/usr/share/applications"
 	
 	# copy Default folder that has "keep chrome running in background when closed"
 	# so that we don't get "unexpected crash" banner popups

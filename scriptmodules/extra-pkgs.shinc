@@ -923,7 +923,7 @@ ep_add_web_app_chrome()
 			# use custom banner
 			sudo cp "$custom_img" "/home/steam/Pictures"
 			new_img="/home/steam/Pictures/${custom_img}.png"			
-			sudo sed -i "s|IMG_TMP|$new_img|g" "/usr/share/applications/${custom_name}.desktop"
+			sudo sed -i "s|IMG_TMP|$custom_img|g" "/usr/share/applications/${custom_name}.desktop"
 			
 		fi
 

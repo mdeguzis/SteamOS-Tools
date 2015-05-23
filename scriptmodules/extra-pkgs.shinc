@@ -695,12 +695,22 @@ ep_add_web_app_chrome()
 	# set external Deb repo required flag
 	export deb_repo_name="wheezy.list"
 	export deb_repo_req="yes"
+	
+	# set custom url to no as a default
+	custom_url="no"
+	
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
 	
 	echo -e "\n==> Installing web app (via Chrome) from automated script..."
 	sleep 2s
 	
+	# create Google chrome dir if it does not exist to copy our cfgs in
+	
+	if [[ -d "/home/steam/.config/google-chrome/Default/" ]]; then
+		# creat DIR
+		sudo mkdir -p "/home/steam/.config/google-chrome/Default"
+	fi
 	
 	###################################
 	# Start web app addition loop
@@ -708,16 +718,17 @@ ep_add_web_app_chrome()
 	
 	while [[ "$web_app_choice" != "4" ]];
 	do	
-		echo -e "\n##################################################################"
+		echo -e "\n#############################################################"
 		echo -e "Web application installation (via Chrome kiosk mode)"
-		echo -e "##################################################################"
+		echo -e "#############################################################"
 
 		# prompt user For websites they wish to add as web apps
 		echo -e "\nPlease choose which webapp you wish to add. Choose Done when finished."
 		echo "(1) Netflix"
 		echo "(2) Hulu"
 		echo "(3) Youtube"
-		echo "(4) Done"
+		echo "(4) Custom"
+		echo "(5) Done"
 		echo ""
 		
 		# the prompt sometimes likes to jump above sleep
@@ -739,6 +750,10 @@ ep_add_web_app_chrome()
 			;;
 		         
 		        4)
+		        custom_url="yes"
+		        ;;
+		         
+		        5)
 		        # do nothing
 		        echo -e "\n==> Exiting script\n"
 		        exit 1
@@ -788,29 +803,87 @@ ep_add_web_app_chrome()
 	sleep 1s
 	
 	# copy launcher to /usr/bin
-	sudo cp "$scriptdir/cfgs/$TARGET_NAME/$LAUNCHER" "/usr/bin"
+	# Eval based on custom url or not
 	
-	# copy over desktop shortcut
-	sudo cp "$scriptdir/cfgs/$TARGET_NAME/$SHORTCUT" "/usr/share/applications"
+	if [[ "$custom_url" == "no" ]]; then
 	
-	# copy Default folder that has "keep chrome running in background when closed"
-	# so that we don't get "unexpected crash" banner popups
-	sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/." "/home/steam/.config/google-chrome/Default/"
-	
-	# mark exec
-	sudo chmod +x "/usr/bin/$LAUNCHER"
-	
-	# copy banner
-	sudo cp "$scriptdir/cfgs/$TARGET_NAME/$BANNER_IMG" "/home/steam/Pictures"
+		sudo cp "$scriptdir/cfgs/$TARGET_NAME/$LAUNCHER" "/usr/bin"
+		
+		# copy over desktop shortcut
+		sudo cp "$scriptdir/cfgs/$TARGET_NAME/$SHORTCUT" "/usr/share/applications"
+		
+		# copy Default folder that has "keep chrome running in background when closed"
+		# so that we don't get "unexpected crash" banner popups
+		sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/." "/home/steam/.config/google-chrome/Default/"
+		
+		# mark exec
+		sudo chmod +x "/usr/bin/$LAUNCHER"
+		
+		# copy banner
+		sudo cp "$scriptdir/cfgs/$TARGET_NAME/$BANNER_IMG" "/home/steam/Pictures"
+		
+	elif [[ "$custom_url" == "yes" ]]; then
+		
+		# Prompt for url
+		
+		echo -e "\nPlease enter your web url you wish to access\n"
+		sleep 0.5s
+		read -ep "Choice: " custom_url
+		
+		echo -e "\nPlease enter a name for this web app\n"
+		sleep 0.5s
+		read -ep "Choice: " custom_name
+		
+		echo -e "\nPlease enter path to image banner (best: 460x215)"
+		echo -e "Leave this blank if you wish to use the default\n"
+		sleep 0.5s
+		read -ep "Choice: " custom_img
+		
+		# copy skel files over
+		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${custom_name}-Launch.sh"
+		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications/${custom_name}.desktop"
+		sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/." "/home/steam/.config/google-chrome/Default/"
+		
+		if [[ "$custom_img" == "" ]]; then
+		
+			# copy over default banner
+			sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.png" "/home/steam/Pictures/WebApp-Default.png"
+			new_img="/home/steam/Pictures/WebApp-Default.png"			
+			sudo sed -i "s|IMG_TMP|$new_img|g" "/usr/share/applications/${custom_name}.desktop"
+		else
+			
+			# use custom banner
+			sudo cp "$custom_img" "/home/steam/Pictures"
+			new_img="/home/steam/Pictures/${custom_img}.png"			
+			sudo sed -i "s|IMG_TMP|$new_img|g" "/usr/share/applications/${custom_name}.desktop"
+			
+		fi
+
+		# set launch file loc for easy swapout
+		launch_loc="/usr/bin/${custom_name}-Launch.sh"
+		
+		# perform sed replacements on skel files
+		sudo sed -i "s|LAUNCHER_NAME|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"
+		sudo sed -i "s|LAUNCHER_TMP|$launch_loc|g" "/usr/share/applications/${custom_name}.desktop"
+		sudo sed -i "s|NAME_TMP|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"
+		sudo sed -i "s|WEB_URL_TMP|$custom_url|g" "/usr/bin/${custom_name}-Launch.sh"
+		
+		# mark launcher exec
+		sudo chmod +x "/usr/bin/${custom_name}-Launch.sh"
+		
+	fi
 
 	# NOTE:
 	# Mouse support with cursor is fine
 	# Currently working on some kind of xboxdrv swap out
 	# to allow arrow keys
 	
+	###################################
+	# correct permissions
+	###################################
 	# fix ownership if need be
 	
-	sudo chown -R steam:steam "/home/steam/Pictures"
+	sudo chown -R steam:steam "/home/steam/"
 	
 	###################################
 	# end web app addition loop

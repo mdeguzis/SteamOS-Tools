@@ -743,7 +743,7 @@ ep_add_web_app_chrome()
 	# Start web app addition loop
 	###################################
 	
-	while [[ "$web_app_choice" != "7" || "$web_app_choice" != "done" ]];
+	while [[ "$web_app_choice" != "6" || "$web_app_choice" != "done" ]];
 	do	
 		echo -e "\n#############################################################"
 		echo -e "Web application installation (via Chrome kiosk mode)"
@@ -751,13 +751,12 @@ ep_add_web_app_chrome()
 
 		# prompt user For websites they wish to add as web apps
 		echo -e "\nPlease choose which webapp you wish to add. Choose Done when finished."
-		echo "(1) Amazon Prime Movies"		
-		echo "(2) Hulu"
-		echo "(3) Netflix"
-		echo "(4) SoundCloud"
-		echo "(5) Youtube"
-		echo "(6) Custom"
-		echo "(7) Done"
+		echo "(1) Hulu"
+		echo "(2) Netflix"
+		echo "(3) SoundCloud"
+		echo "(4) Youtube"
+		echo "(5) Custom"
+		echo "(6) Done"
 		echo ""
 		
 		# the prompt sometimes likes to jump above sleep
@@ -766,19 +765,16 @@ ep_add_web_app_chrome()
 		read -ep "Choice: " web_app_choice
 		
 		case "$web_app_choice" in
-		        1)
-		        ep_install_prime_movies
-		        ;;
 		        
-		        2)
+		        1)
 		        ep_install_hulu
 		        ;;
 		         
-		        3)
+		        2)
 		        ep_install_netflix
 			;;
 
-		        4)
+		        3)
 		        ep_install_soundcloud
 		        ;;
 		        
@@ -786,11 +782,11 @@ ep_add_web_app_chrome()
 		        ep_install_youtube
 		        ;;
 		         
-		        6)
+		        5)
 		        custom_url="yes"
 		        ;;
 		         
-		        7|done)
+		        6|done)
 		        # do nothing
 		        echo -e "\n==> Exiting script\n"
 		        exit 1

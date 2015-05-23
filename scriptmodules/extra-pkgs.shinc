@@ -852,11 +852,13 @@ ep_add_web_app_chrome()
 			sudo sed -i "s|IMG_TMP|$new_img|g" "/usr/share/applications/${custom_name}.desktop"
 			
 		fi
-		
+
+		# set launch file loc for easy swapout
+		launch_loc="/usr/bin/${custom_name}-Launch.sh"
 		
 		# perform sed replacements on skel files
 		sudo sed -i "s|LAUNCHER_NAME|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"
-		sudo sed -i "s|LAUNCHER_TMP|$custom_url|g" "/usr/share/applications/${custom_name}.desktop"
+		sudo sed -i "s|LAUNCHER_TMP|$launch_loc|g" "/usr/share/applications/${custom_name}.desktop"
 		sudo sed -i "s|NAME_TMP|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"
 		sudo sed -i "s|WEB_URL_TMP|$custom_url|g" "/usr/bin/${custom_name}-Launch.sh"
 		

@@ -699,6 +699,19 @@ ep_install_soundcloud()
 
 }
 
+ep_install_prime_movies()
+{
+
+	# Amazon Prime Movies
+	NAME="Amazon Prime Movies"
+	WEB_URL="http://www.amazon.com/Prime-Instant-Video/b?node=2676882011"
+	TARGET_NAME="Amazon Prime Movies"
+	SHORTCUT="Amazon-Prime-Movies.desktop"
+	LAUNCHER="Amazon-Prime-Movies-Launch.sh"
+	BANNER_IMG="Amazon-Prime-Movies.png"
+
+}
+
 ep_add_web_app_chrome()
 {
 

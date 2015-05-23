@@ -782,26 +782,32 @@ ep_add_web_app_chrome()
 		        
 		        1)
 		        ep_install_chrome_exts
+		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
 		        
 		        2)
 		        ep_install_hulu
+		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
 		         
 		        3)
 		        ep_install_netflix
+		        kiosk_opt="/usr/bin/$LAUNCHER"
 			;;
 
 		        4)
 		        ep_install_soundcloud
+		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
 		        
 		    	5)
 		        ep_install_youtube
+		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
 		         
 		        6)
 		        custom_url="yes"
+		        # kiosk_opt handled in custom url sequence below
 		        ;;
 		         
 		        7|done)
@@ -931,6 +937,45 @@ ep_add_web_app_chrome()
 	# Mouse support with cursor is fine
 	# Currently working on some kind of xboxdrv swap out
 	# to allow arrow keys
+	
+	###################################
+	# Kiosk mode
+	###################################
+	
+	# Ask user if they want to enable kiosk mode
+	echo -e "\n==> Kiosk mode configuration"
+	echo -e "Do you wish to enable kios mode (default)? This will remove all window borders [y/n]\n"
+	
+	# the prompt sometimes likes to jump above sleep
+	sleep 0.5s
+	
+	read -ep "Choice: " kiosk_choice
+	
+	if [[ "$kiosk_choice" == "y" ]]; then
+	
+		# do nothing, this is default
+		echo "" > /dev/null
+	
+	elif [[ "$kiosk_choice" == "n" ]]; the
+	
+		# remove kiosk parameter
+		if [[ "$custom_url" == "no" ]]; then
+		
+			# remove kiosk mode from normal launher
+			sudo sed -i "s|--kiosk ||g" "$kiosk_opt"
+			
+		elif [[ "$custom_url" == "yes" ]]; then
+		
+			# remove kiosk mode from custom launher
+			sudo sed -i "s|--kiosk ||g" "/usr/bin/${custom_name}-Launch.sh"
+		fi
+
+	else
+	
+		echo "\nInvalid selection. Default used\n"
+		sleep 1s
+	
+	fi
 	
 	###################################
 	# correct permissions

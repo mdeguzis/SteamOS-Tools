@@ -846,6 +846,7 @@ ep_add_web_app_chrome()
 	
 	if [[ "$custom_url" == "no" ]]; then
 	
+		# copy launcher
 		sudo cp "$scriptdir/cfgs/$TARGET_NAME/$LAUNCHER" "/usr/bin"
 		
 		# copy over desktop shortcut
@@ -855,11 +856,11 @@ ep_add_web_app_chrome()
 		# so that we don't get "unexpected crash" banner popups
 		sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/." "/home/steam/.config/google-chrome/Default/"
 		
-		# mark exec
-		sudo chmod +x "/usr/bin/$LAUNCHER"
-		
 		# copy banner
 		sudo cp "$scriptdir/cfgs/$TARGET_NAME/$BANNER_IMG" "/home/steam/Pictures"
+		
+		# mark exec
+		sudo chmod +x "/usr/bin/$LAUNCHER"
 		
 	elif [[ "$custom_url" == "yes" ]]; then
 		

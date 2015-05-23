@@ -743,7 +743,7 @@ ep_add_web_app_chrome()
 	# Start web app addition loop
 	###################################
 	
-	while [[ "$web_app_choice" != "7" ]];
+	while [[ "$web_app_choice" != "7" || "$web_app_choice" == "done" ]];
 	do	
 		echo -e "\n#############################################################"
 		echo -e "Web application installation (via Chrome kiosk mode)"

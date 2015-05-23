@@ -917,8 +917,7 @@ ep_add_web_app_chrome()
 		
 			# copy over default banner
 			sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.png" "/home/steam/Pictures/WebApp-Default.png"
-			new_img="/home/steam/Pictures/WebApp-Default.png"			
-			sudo sed -i "s|IMG_TMP|$new_img|g" "/usr/share/applications/${custom_name}.desktop"
+			sudo sed -i "s|IMG_TMP|$custom_img|g" "/usr/share/applications/${custom_name}.desktop"
 		else
 			
 			# use custom banner
@@ -953,7 +952,7 @@ ep_add_web_app_chrome()
 	
 	# Ask user if they want to enable kiosk mode
 	echo -e "\n==> Kiosk mode configuration"
-	echo -e "Do you wish to enable kios mode (default)? This will remove all window borders [y/n]\n"
+	echo -e "Do you wish to enable kiosk mode (default)? This will remove all window borders [y/n]\n"
 	
 	# the prompt sometimes likes to jump above sleep
 	sleep 0.5s

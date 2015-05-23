@@ -98,14 +98,18 @@ Installs some gaming tools, such as jstest, WINE, and more.
 ***
 ### Extra Types available
 ***
-`kodi`      
-Kicks off an automated script to install Kodi, as provided by the [SteamOS Kodi repository](http://forum.kodi.tv/showthread.php?tid=197422)  
-
-`firefox`      
-Sourced from Linux Mint LMDE 2.    
 
 `chrome`      
 Installs Google-Chrome-Stable from Google's download severs.
+
+`firefox`      
+Sourced from Linux Mint LMDE 2.
+
+`kodi`      
+Kicks off an automated script to install Kodi, as provided by the [SteamOS Kodi repository](http://forum.kodi.tv/showthread.php?tid=197422)  
+
+`webapp`      
+Installs the `google-chrome-stable` pre-requisite package, then queries which website you would like to add as a "web app." Custom urls and images are allowed to be specified.
 
 `plex`      
 Kicks off an automated script to install plexhometheatre.  

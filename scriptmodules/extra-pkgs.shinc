@@ -864,6 +864,16 @@ ep_add_web_app_chrome()
 	# copy launcher to /usr/bin
 	# Eval based on custom url or not
 	
+	# copy default user files for Google chrome over
+	# do not overwrite the Default folder if it exists already
+	if [[ -d "/home/steam/.config/google-chrome/Default/" ]]; then
+		# do nothing
+		echo "" > /dev/null
+	else
+		sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/." "/home/steam/.config/google-chrome/Default/"	
+	fi
+	
+	# Evaluate custom url or not
 	if [[ "$custom_url" == "no" ]]; then
 	
 		# copy launcher
@@ -871,11 +881,7 @@ ep_add_web_app_chrome()
 		
 		# copy over desktop shortcut
 		sudo cp "$scriptdir/cfgs/$TARGET_NAME/$SHORTCUT" "/usr/share/applications"
-		
-		# copy Default folder that has "keep chrome running in background when closed"
-		# so that we don't get "unexpected crash" banner popups
-		sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/." "/home/steam/.config/google-chrome/Default/"
-		
+
 		# copy banner
 		sudo cp "$scriptdir/cfgs/$TARGET_NAME/$BANNER_IMG" "/home/steam/Pictures"
 		
@@ -902,7 +908,6 @@ ep_add_web_app_chrome()
 		# copy skel files over
 		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${custom_name}-Launch.sh"
 		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications/${custom_name}.desktop"
-		sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/." "/home/steam/.config/google-chrome/Default/"
 		
 		if [[ "$custom_img" == "" ]]; then
 		

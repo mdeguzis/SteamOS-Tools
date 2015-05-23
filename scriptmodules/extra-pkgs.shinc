@@ -972,7 +972,7 @@ ep_add_web_app_chrome()
 
 	else
 	
-		echo "\nInvalid selection. Default used\n"
+		echo -e "\nInvalid selection. Default used\n"
 		sleep 1s
 	
 	fi

@@ -727,8 +727,9 @@ ep_add_web_app_chrome()
 		echo "(1) Netflix"
 		echo "(2) Hulu"
 		echo "(3) Youtube"
-		echo "(4) Custom"
-		echo "(5) Done"
+		echo "(4) Soundcloud"
+		echo "(5) Custom"
+		echo "(6) Done"
 		echo ""
 		
 		# the prompt sometimes likes to jump above sleep
@@ -748,12 +749,16 @@ ep_add_web_app_chrome()
 		        3)
 		        ep_install_youtube
 			;;
-		         
+
 		        4)
-		        custom_url="yes"
+		        ep_install_soundcloud
 		        ;;
 		         
 		        5)
+		        custom_url="yes"
+		        ;;
+		         
+		        6)
 		        # do nothing
 		        echo -e "\n==> Exiting script\n"
 		        exit 1

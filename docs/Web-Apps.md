@@ -15,7 +15,6 @@ The extension [Shortcut Manager](https://chrome.google.com/webstore/detail/short
 **Extensions that provide controller support**
 ===
 Please keep in mind that the majority, if not all, of these extensions are only tested with an official Xbox 360 controller. Please see the extension page documentation for more.
-
 * [Plex Web](https://chrome.google.com/webstore/detail/gamepad-for-plex-web/haoeganpancihdffhohfeeeejpbahlld)
 * [Netflix](https://chrome.google.com/webstore/detail/netflix-controller-suppor/flakmgbknagcohphpoogebajjbmlmngh)
 

@@ -956,7 +956,7 @@ ep_add_web_app_chrome()
 		# do nothing, this is default
 		echo "" > /dev/null
 	
-	elif [[ "$kiosk_choice" == "n" ]]; the
+	elif [[ "$kiosk_choice" == "n" ]]; then
 	
 		# remove kiosk parameter
 		if [[ "$custom_url" == "no" ]]; then

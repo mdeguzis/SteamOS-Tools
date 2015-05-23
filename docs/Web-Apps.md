@@ -12,7 +12,7 @@ This is a bit tricky for now. I play on mapping something to an Xbox 360 control
 ===
 The extension [Shortcut Manager](https://chrome.google.com/webstore/detail/shortcut-manager/mgjjeipcdnnjhgodgjpfkffcejoljijf) will allow you to add your own custom shortcuts. Open any `/usr/bin/NAME-Launcher.sh` file and remove the `--kiosk` temporarily. Launch the web app and add this extension. Details for the exetension are in the link. This is beneficial if your air mouse or remote does not have a CTRL key like mine.
 
-**Extensions that provide controller support*
+**Extensions that provide controller support**
 ===
 Please keep in mind that the majority, if not all, of these extensions are only tested with an official Xbox 360 controller. Please see the extension page documentation for more.
 

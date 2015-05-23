@@ -842,14 +842,17 @@ ep_add_web_app_chrome()
 		
 			# copy over default banner
 			sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.png" "/home/steam/Pictures/WebApp-Default.png"
-			sed "s|IMG_TMP|$custom_name|g" "/home/steam/Pictures/WebApp-Default.png"
+			new_img="/home/steam/Pictures/WebApp-Default.png"			
+			sudo sed -i "s|IMG_TMP|$new_img|g" "/usr/share/applications/${custom_name}.desktop"
 		else
 			
 			# use custom banner
 			sudo cp "$custom_img" "/home/steam/Pictures"
-			sed "s|IMG_TMP|$custom_name|g" "$custom_img"
+			new_img="/home/steam/Pictures/${custom_img}.png"			
+			sudo sed -i "s|IMG_TMP|$new_img|g" "/usr/share/applications/${custom_name}.desktop"
 			
 		fi
+		
 		
 		# perform sed replacements on skel files
 		sudo sed -i "s|LAUNCHER_NAME|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"

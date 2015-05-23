@@ -685,6 +685,20 @@ ep_install_youtube()
 
 }
 
+
+ep_install_soundcloud()
+{
+
+	# Soundcloud
+	NAME="Soundcloud"
+	WEB_URL="www.soundcloud.com"
+	TARGET_NAME="Soundcloud"
+	SHORTCUT="Soundcloud.desktop"
+	LAUNCHER="Soundcloud-Launch.sh"
+	BANNER_IMG="Soundcloud.png"
+
+}
+
 ep_add_web_app_chrome()
 {
 

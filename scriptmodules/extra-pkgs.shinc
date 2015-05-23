@@ -716,7 +716,7 @@ ep_install_chrome_exts()
 {
 
 	# Chrome-Extensions
-	NAME="Chrome Extensions
+	NAME="Chrome Extensions"
 	WEB_URL="https://chrome.google.com/webstore/category/extensions"
 	TARGET_NAME="Chrome-Extensions"
 	SHORTCUT="Chrome-Extensions.desktop"

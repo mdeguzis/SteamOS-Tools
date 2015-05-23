@@ -705,6 +705,12 @@ ep_add_web_app_chrome()
 	echo -e "\n==> Installing web app (via Chrome) from automated script..."
 	sleep 2s
 	
+	# create Google chrome dir if it does not exist to copy our cfgs in
+	
+	if [[ -d "/home/steam/.config/google-chrome/Default/" ]]; then
+		# creat DIR
+		sudo mkdir -p "/home/steam/.config/google-chrome/Default"
+	fi
 	
 	###################################
 	# Start web app addition loop
@@ -795,13 +801,6 @@ ep_add_web_app_chrome()
 
 	echo -e "\n==> Configuring"
 	sleep 1s
-	
-	# create Google chrome dir if it does not exist to copy our cfgs in
-	
-	if [[ -d "/home/steam/.config/google-chrome/Default/" ]]; then
-		# creat DIR
-		sudo mkdir -p "/home/steam/.config/google-chrome/Default/"
-	fi
 	
 	# copy launcher to /usr/bin
 	# Eval based on custom url or not

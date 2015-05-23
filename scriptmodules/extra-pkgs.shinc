@@ -798,6 +798,7 @@ ep_add_web_app_chrome()
 		         
 		        *)
 		        echo -e "\n==ERROR==\nInvalid Selection!"
+		        break
 			;;
 		esac
 		

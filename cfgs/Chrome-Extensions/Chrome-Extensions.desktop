@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=0.1.1
+Name=Chrome Extensions
+Comment=Launcher for Chrome Extensions page
+Exec=/usr/bin/Chrome-Extensions-Launch.sh
+Icon=/home/steam/Pictures/Chrome-Extensions.png
+Terminal=false
+Type=Application
+Categories=Utility;Application;

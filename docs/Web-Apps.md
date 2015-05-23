@@ -33,11 +33,7 @@ Please keep in mind that the majority, if not all, of these extensions are only 
 
 **The Process**
 ===
-The script, on initial launch, the script will display relevant warnings and also ask you to add the Debian repository(s) if not detected first. You will need these added for installing Google Chrome, so please add them if advised to do so.  
-
-**NEW**
-===
-You will be allowed to select a few "preset" web urls for the web app. You can choose custom to enter your own.
+The script, on initial launch, the script will display relevant warnings and also ask you to add the Debian repository(s) if not detected first. You will need these added for installing Google Chrome, so please add them if advised to do so. You will be allowed to select a few "preset" web urls for the web app. You can choose custom to enter your own.
 
 Note:  
 One nice device to have, until I can figure out some gamepad input to control the arrow keys, is to buy a nice Air Mouse like [this device](http://www.amazon.com/Aerb-Wireless-Keyboard-Multifunctional-3-Gsensor/dp/B00K768DHY/ref=sr_1_1?ie=UTF8&qid=1432255815&sr=8-1&keywords=air+mouse) on Amazon. I personally have this device and can attest it works great on SteamOS / Plex / Kodi, as well as general purpose tasks.
@@ -46,6 +42,14 @@ One nice device to have, until I can figure out some gamepad input to control th
 **Adding the Netflix launcher to Chrome**
 ===
 Return to Steam Big Picture Mode and click on your library. Choose the "+" sign and "Add non-Steam game to my library." Locate "Netflix" and hit ok/A on your controller.
+
+**Additional artowork / Steam banner images**
+===
+If you wish to add images / banners for your own custom URLs or web apps you add, you can checkout these resources:
+
+* [/r/Steamgrid](http://www.reddit.com/r/steamgrid)
+* The ['extra-artwork'](https://github.com/ProfessorKaos64/SteamOS-Tools/tree/master/cfgs/extra-artwork) folder within this GitHub repository. Extra artwork / banners can be added upon reques.
+* [Google image search](https://www.google.com/search?q=steam&biw=1366&bih=644&tbm=isch&source=lnt&tbs=isz:ex,iszw:460,iszh:215) with the 460x215 image dimension specification.
 
 **Summary**
 ===

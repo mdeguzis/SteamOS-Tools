@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	0.9.9.9
+# Script Ver:	1.0.0.1
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -275,7 +275,7 @@ show_help()
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[firefox|kodi|netflix|webapp|plex|x360-bindings]
+	Extra types: 	[firefox|kodi|webapp|plex|x360-bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -437,7 +437,6 @@ get_software_type()
                 # add web app via chrome from helper script
                 ep_add_web_app_chrome
                 exit
-	
 	elif [[ "$type" == "chrome" ]]; then
                 # install plex from helper script
                 ep_install_chrome
@@ -449,10 +448,6 @@ get_software_type()
         elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script
                 ep_install_kodi
-                exit
-	elif [[ "$type" == "netflix" ]]; then
-                # install netflix from helper script
-                ep_install_netflix
                 exit
 	elif [[ "$type" == "plex" ]]; then
                 # install plex from helper script

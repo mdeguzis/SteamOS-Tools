@@ -81,19 +81,19 @@ Standalone emulation packages from the Debian repositories. This also includes r
 Installs prerequisite packages for compiling emulation packages from source and then compiles and builds libretro packages from source (will take some time to install). See the [script header](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/master/scriptmodules/emu-from-source.shinc) for the latest test stats on build time.  (basic routines are done, some work left)     
 
 `emulation-src-deps`            
-Packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable). (in-progress)  
-
-`upnp-dlna`            
-Installs packages required UPnP / DLNA streaming from a mobile device (experimental / in-progres)   
-
-`<pkg_name>`     
-Installs package(s) specifified from Alchemist/Wheezy. You can specify any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
+Packages required for [building](https://wiki.debian.org/CreatePackageFromPPA) Debian packages from emulator source code (e.g. ppa:libretro/stable). (in-progress) 
 
 `games-pkg`           
 Installs a some Linux games that you can then add to Steam via the "add non-Steam game" option.
 
 `gaming-tools`         
 Installs some gaming tools, such as jstest, WINE, and more.
+
+`<pkg_name>`     
+Installs package(s) specifified from Alchemist/Wheezy. You can specify any number of space-delimited packages such as "pkg1 pkg2 pkg3".  
+
+`upnp-dlna`            
+Installs packages required UPnP / DLNA streaming from a mobile device (experimental / in-progres)   
 
 ***
 ### Extra Types available

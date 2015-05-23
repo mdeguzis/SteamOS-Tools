@@ -872,9 +872,12 @@ ep_add_web_app_chrome()
 	# Currently working on some kind of xboxdrv swap out
 	# to allow arrow keys
 	
+	###################################
+	# correct permissions
+	###################################
 	# fix ownership if need be
 	
-	sudo chown -R steam:steam "/home/steam/Pictures"
+	sudo chown -R steam:steam "/home/steam/"
 	
 	###################################
 	# end web app addition loop

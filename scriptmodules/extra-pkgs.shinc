@@ -856,9 +856,9 @@ ep_add_web_app_chrome()
 		
 		# perform sed replacements on skel files
 		sudo sed -i "s|LAUNCHER_NAME|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"
+		sudo sed -i "s|LAUNCHER_TMP|$custom_url|g" "/usr/share/applications/${custom_name}.desktop"
 		sudo sed -i "s|NAME_TMP|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"
 		sudo sed -i "s|WEB_URL_TMP|$custom_url|g" "/usr/bin/${custom_name}-Launch.sh"
-		sudo sed -i "s|LAUNCHER_TMP|$custom_url|g" "/usr/bin/${custom_name}-Launch.sh"
 		
 		# mark launcher exec
 		sudo chmod +x "/usr/bin/${custom_name}-Launch.sh"

@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=0.1.1
-Name=NAME_TEMP
-Comment=Launcher for NAME_TEMP via Chrome
-Exec=/usr/bin/LAUNCHER_TEMP.sh
-Icon=/home/steam/Pictures/IMG_TEMP.png
+Name=NAME_TMP
+Comment=Launcher for NAME_TMP via Chrome
+Exec=LAUNCHER_TMP
+Icon=IMG_TMP
 Terminal=false
 Type=Application
 Categories=Utility;Application;

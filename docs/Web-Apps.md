@@ -8,6 +8,10 @@ Be advised this is a work in progress. Netflix will launch via `google-chrome-st
 
 This is a bit tricky for now. I play on mapping something to an Xbox 360 controller. In the meantime, `CTRL+SHIFT+W` will close the current window.
 
+**Custom Shortcuts**
+
+The extension [Shortcut Manager](https://chrome.google.com/webstore/detail/shortcut-manager/mgjjeipcdnnjhgodgjpfkffcejoljijf) will allow you to add your own custom shortcuts. Open any `/usr/bin/NAME-Launcher.sh` file and remove the `--kiosk` temporarily. Launch the web app and add this extension. Details for the exetension are in the link. This is beneficial if your air mouse or remote does not have a CTRL key like mine.
+
 **Pre-requisites**
 
 * Some Linux knowledge

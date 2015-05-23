@@ -2,7 +2,7 @@
 Version=0.1.1
 Name=Amazon
 Comment=Launcher for Amazon Prime via Chrome
-Exec=/usr/bin/Amazon-Prime-Launch.sh
+Exec=/usr/bin/Amazon-Prime-Movies-Launch.sh
 Icon=/home/steam/Pictures/Amazon-Prime-Movies.png
 Terminal=false
 Type=Application

@@ -790,7 +790,7 @@ ep_add_web_app_chrome()
 		        custom_url="yes"
 		        ;;
 		         
-		        7)
+		        7|done)
 		        # do nothing
 		        echo -e "\n==> Exiting script\n"
 		        exit 1

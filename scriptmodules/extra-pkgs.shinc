@@ -870,7 +870,7 @@ ep_add_web_app_chrome()
 	chrome_dir_check=$(sudo ls  "/home/steam/.config/google-chrome/Default")
         if [[ "$chrome_dir_check" != "" ]]; then
                 # do nothing
-                echo "\n==INFO==\nChrome Default DIR exists. Skipping..."
+                echo -e "\n==INFO==\nChrome Default DIR exists. Skipping..."
         else
                 echo -e "\n==INFO==\nChrome Default DIR does not exist. Adding..."
                 sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/."  "/home/steam/.config/google-chrome/Default/"

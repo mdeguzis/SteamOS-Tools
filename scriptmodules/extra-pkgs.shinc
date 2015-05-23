@@ -866,12 +866,16 @@ ep_add_web_app_chrome()
 	
 	# copy default user files for Google chrome over
 	# do not overwrite the Default folder if it exists already
-	if [[ -d "/home/steam/.config/google-chrome/Default/" ]]; then
-		# do nothing
-		echo "" > /dev/null
-	else
-		sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/." "/home/steam/.config/google-chrome/Default/"	
-	fi
+	
+	chrome_dir_check=$(sudo ls  "/home/steam/.config/google-chrome/Default")
+        if [[ "$chrome_dir_check" != "" ]]; then
+                # do nothing
+                echo "Chrome Default DIR exists. Skipping..."
+        else
+                echo "Chrome Default DIR does not exist. Adding..."
+                sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/." "/home/steam/.config/go$
+        fi
+
 	
 	# Evaluate custom url or not
 	if [[ "$custom_url" == "no" ]]; then

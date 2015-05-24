@@ -23,7 +23,7 @@ Apt-pin preferences are subject to change. Ideally, the testing branch will be t
 #### Installing and Uninstalling software
 Please pay careful attention while installing software lists, packages, or using any scripts that require software installation. I do my best to ensure no software list or singular package is going to remove or overwrite a Valve SteamOS/Steam package, but please be advised. If a software routine, or software install requires to remove* software, please read the output throughly before proceeding. 
 
-Removing software packages cam be tricky, so while there is a "uninstall" option to several scripts, please excercise caution, or remove packages one by one to ensure they will not remove critical SteamOS packages. A listing of default SteamOS packages can be found on [Distrowatch](http://distrowatch.com/table.php?distribution=steamos).
+Removing software packages can be tricky, so while there is a "uninstall" option to several scripts, please excercise caution, or remove packages one by one to ensure they will not remove critical SteamOS packages. A listing of default SteamOS packages can be found on [Distrowatch](http://distrowatch.com/table.php?distribution=steamos).
 
 ####Conclusion
 

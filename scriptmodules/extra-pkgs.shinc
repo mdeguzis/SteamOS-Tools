@@ -725,6 +725,19 @@ ep_install_chrome_exts()
 
 }
 
+ep_install_twitch()
+{
+
+	# Twitch
+	NAME="Twitch"
+	WEB_URL="www.twitch.tv"
+	TARGET_NAME="Twitch"
+	SHORTCUT="Twitch.desktop"
+	LAUNCHER="Twitch-Launch.sh"
+	BANNER_IMG="Twitch.png"
+
+}
+
 ep_add_web_app_chrome()
 {
 
@@ -756,7 +769,7 @@ ep_add_web_app_chrome()
 	# Start web app addition loop
 	###################################
 	
-	while [[ "$web_app_choice" != "7" || "$web_app_choice" != "done" ]];
+	while [[ "$web_app_choice" != "8" || "$web_app_choice" != "done" ]];
 	do	
 		echo -e "\n#############################################################"
 		echo -e "Web application installation (via Chrome kiosk mode)"
@@ -768,9 +781,10 @@ ep_add_web_app_chrome()
 		echo "(2) Hulu"
 		echo "(3) Netflix"
 		echo "(4) SoundCloud"
-		echo "(5) Youtube"
-		echo "(6) Custom"
-		echo "(7) Done"
+		echo "(5) Twitch"
+		echo "(6) Youtube"
+		echo "(7) Custom"
+		echo "(8) Done"
 		echo ""
 		
 		# the prompt sometimes likes to jump above sleep
@@ -801,16 +815,21 @@ ep_add_web_app_chrome()
 		        ;;
 		        
 		    	5)
+		        ep_install_twitch
+		        kiosk_opt="/usr/bin/$LAUNCHER"
+		        ;;
+
+		    	6)
 		        ep_install_youtube
 		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
 		         
-		        6)
+		        7)
 		        custom_url="yes"
 		        # kiosk_opt handled in custom url sequence below
 		        ;;
 		         
-		        7|done)
+		        8|done)
 		        # do nothing
 		        echo -e "\n==> Exiting script\n"
 		        exit 1

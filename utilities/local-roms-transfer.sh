@@ -48,9 +48,9 @@ local_transfer_roms()
 	loc_path="$loc_path"
 	if [[ "$loc_path" == "" ]]; then
 		# var blank this run, get input
-		read loc_path
+		read -ep ">> " loc_path
 	else
-		read loc_path
+		read -ep ">> " loc_path
 		# user chose to keep var value from last
 		if [[ "$loc_path" == "" ]]; then
 			loc_path="$loc_path_tmp"
@@ -68,12 +68,12 @@ local_transfer_roms()
 	dest_path="$dest_path"
 	if [[ "$dest_path" == "" ]]; then
 		# var blank this run, get input
-		read dest_path
+		read -ep ">> " dest_path
 	elif [[ "$dest_path" == "default" ]]; then
 		# var blank this run, get input
 		dest_path="/home/steam/ROMs"
 	else
-		read dest_path
+		read -ep ">> " dest_path
 		# user chose to keep var value from last
 		if [[ "$dest_path" == "" ]]; then
 			dest_path="$dest_path_tmp"
@@ -96,9 +96,9 @@ local_transfer_roms()
 	target_dir_tmp="$target_dir"
 	if [[ "$target_dir" == "" ]]; then
 		# var blank this run, get input
-		read target_dir
+		read -ep ">> " target_dir
 	else
-		read target_dir
+		read -ep ">> " target_dir
 		# user chose to keep var value from last
 		if [[ "$target_dir" == "" ]]; then
 			remote_dir="$target_dir_tmp"

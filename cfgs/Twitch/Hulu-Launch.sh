@@ -9,7 +9,7 @@ main ()
 	/usr/bin/Xephyr :15 -ac -screen $WIN_RES -fullscreen -host-cursor -once & XEPHYR_PID=$!
 
 	export DISPLAY=:15
-	LD_PRELOAD= google-chrome --kiosk www.youtube.com --window-size=$COMMA_WIN_RES &&
+	LD_PRELOAD= google-chrome --kiosk www.twitch.tv --window-size=$COMMA_WIN_RES &&
 
 	sleep 1
 	killall chrome

@@ -7,8 +7,8 @@
 # Description:		This script dumps ROMs or files over local
 #
 # Usage:	      	./local-rom-transfer.sh
-#			            ./local-rom-transfer.sh --help
-#			            source ./local-rom-transfer.sh
+#			./local-rom-transfer.sh --help
+#			source ./local-rom-transfer.sh
 # ------------------------------------------------------------------------
 
 arg="$1"
@@ -138,7 +138,7 @@ local_transfer_roms()
 	
 	echo ""
 	# determine if target dir is a file or directory
-	if [[ -d "$target_dir"]]; then
+	if [[ -d "$target_dir" ]]; then
 		# copy entire dir
 		sudo cp -r $target_dir/ $dest_path
 	else

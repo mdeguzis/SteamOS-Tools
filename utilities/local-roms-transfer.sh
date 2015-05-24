@@ -132,12 +132,12 @@ local_transfer_roms()
 	loc_user=$(echo $USER)
 	
 	# copy ROMs
-	echo -e "\n==> Executing CMD: sudo cp $loc_path $target_dir"
+	echo -e "\n==> Executing CMD: sudo cp -r $target_dir $dest_path
 	sleep 1s
 	
 	# execute
 	echo ""
-	sudo cp -r $loc_path/ $target_dir
+	sudo cp -r $target_dir/ $dest_path
 	echo ""
 	
 	# cleanup

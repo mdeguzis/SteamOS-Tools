@@ -131,13 +131,19 @@ local_transfer_roms()
 	
 	loc_user=$(echo $USER)
 	
-	# copy ROMs
-	echo -e "\n==> Executing CMD: sudo cp -r $target_dir $dest_path"
+	echo -e "==> Copying ROMs, please wait...\n"
 	sleep 1s
 	
 	# execute
+	
 	echo ""
-	sudo cp -r $target_dir/ $dest_path
+	# determine if target dir is a file or directory
+	if [[ -d "$target_dir"]]; then
+		# copy entire dir
+		sudo cp -r $target_dir/ $dest_path
+	else
+		# copy file
+		sudo cp $target_dir/ $dest_path
 	echo ""
 	
 	# cleanup

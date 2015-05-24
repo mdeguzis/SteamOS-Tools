@@ -103,7 +103,7 @@ local_transfer_roms()
 	# enter dir for tab completion of DIR/FIle
 	cd $loc_path
 	
-	echo -e "\nEnter target ROM DIR to copy "
+	echo -e "\nEnter target ROM DIR to copy"
 	echo -e "[ENTER to last: $target_dir]:"
 	echo -e "(use quotes on any single DIR name with spaces)"
 	# set tmp var for last run, if exists
@@ -132,7 +132,7 @@ local_transfer_roms()
 	loc_user=$(echo $USER)
 	
 	# copy ROMs
-	echo -e "\n==> Executing CMD: sudo cp -r $target_dir $dest_path
+	echo -e "\n==> Executing CMD: sudo cp -r $target_dir $dest_path"
 	sleep 1s
 	
 	# execute

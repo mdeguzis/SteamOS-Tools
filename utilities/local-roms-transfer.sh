@@ -59,6 +59,29 @@ local_transfer_roms()
 			loc_path="$loc_path"
 		fi
 	fi
+	
+	echo -e "\n==> Enter dest path user for ROMS/Files: "
+	echo -e "Type default to use the default /home/steam/ROMs DIR"
+	echo -e "[ENTER to use last: $loc_path]"
+	
+	# set tmp var for last run, if exists
+	dest_path="$dest_path"
+	if [[ "$dest_path" == "" ]]; then
+		# var blank this run, get input
+		read dest_path
+	elif [[ "$dest_path" == "default" ]]; then
+		# var blank this run, get input
+		dest_path="/home/steam/ROMs"
+	else
+		read dest_path
+		# user chose to keep var value from last
+		if [[ "$dest_path" == "" ]]; then
+			dest_path="$dest_path_tmp"
+		else
+			# keep user choice
+			dest_path="$dest_path"
+		fi
+	fi
 
 	# Show remote list first
 	echo -e "\n==> Showing listing of source dir first...press q to quit listing\n"
@@ -92,20 +115,13 @@ local_transfer_roms()
 	
 	loc_user=$(echo $USER)
 	
-	# Set ROM DIR based on local user
-	if [[ "$loc_user" == "desktop" ]]; then
-		ROM_DIR="/home/desktop/ROMs"
-	elif [[ "$loc_user" == "steam" ]]; then
-		ROM_DIR="/home/steam/ROMs"
-	fi
-	
 	# copy ROMs
-	echo -e "\n==> Executing CMD: sudo cp $loc_path $ROM_DIR"
+	echo -e "\n==> Executing CMD: sudo cp $loc_path $dest_path"
 	sleep 1s
 	
 	# execute
 	echo ""
-	sudo cp -r $loc_path/ $ROM_DIR
+	sudo cp -r $loc_path/ $dest_path
 	echo ""
 	
 	# cleanup

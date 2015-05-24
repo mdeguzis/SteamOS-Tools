@@ -19,4 +19,3 @@ main ()
 
 # start main and log
 main &> /home/steam/chrome-log.txt
-Enter file contents here

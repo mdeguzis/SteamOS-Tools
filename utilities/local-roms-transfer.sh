@@ -40,7 +40,7 @@ fi
 local_transfer_roms()
 {
 	
-
+	clear
 	echo -e "\n==> Enter source path user for ROMS/Files:"
 	echo -e "[ENTER to use last: $loc_path]"
 	
@@ -69,9 +69,12 @@ local_transfer_roms()
 	if [[ "$dest_path" == "" ]]; then
 		# var blank this run, get input
 		read -ep ">> " dest_path
-	elif [[ "$dest_path" == "default" ]]; then
-		# var blank this run, get input
-		dest_path="/home/steam/ROMs"
+		
+		# set default path if entered
+		if [[  then"$dest_path" == "default" ]];
+			dest_path="/home/steam/ROMs"
+		fi
+		
 	else
 		read -ep ">> " dest_path
 		# user chose to keep var value from last

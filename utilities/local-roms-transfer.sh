@@ -71,7 +71,7 @@ local_transfer_roms()
 		read -ep ">> " dest_path
 		
 		# set default path if entered
-		if [[  then"$dest_path" == "default" ]];
+		if [[  then"$dest_path" == "default" ]]; then
 			dest_path="/home/steam/ROMs"
 		fi
 		

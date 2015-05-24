@@ -144,6 +144,7 @@ local_transfer_roms()
 	else
 		# copy file
 		sudo cp $target_dir/ $dest_path
+	fi
 	echo ""
 	
 	# cleanup

@@ -41,6 +41,10 @@ local_transfer_roms()
 {
 	
 	clear
+	
+	# set start dir
+	start_dir="$PWD"
+	
 	echo -e "\n==> Enter source path user for ROMS/Files:"
 	echo -e "[ENTER to use last: $loc_path]"
 	
@@ -96,6 +100,9 @@ local_transfer_roms()
 	
 	ls $loc_path | less
 	
+	# enter dir for tab completion of DIR/FIle
+	cd $loc_path
+	
 	echo -e "\nEnter target ROM DIR to copy "
 	echo -e "[ENTER to last: $target_dir]:"
 	echo -e "(use quotes on any single DIR name with spaces)"
@@ -125,12 +132,12 @@ local_transfer_roms()
 	loc_user=$(echo $USER)
 	
 	# copy ROMs
-	echo -e "\n==> Executing CMD: sudo cp $loc_path $dest_path"
+	echo -e "\n==> Executing CMD: sudo cp $loc_path $target_dir"
 	sleep 1s
 	
 	# execute
 	echo ""
-	sudo cp -r $loc_path/ $dest_path
+	sudo cp -r $loc_path/ $target_dir
 	echo ""
 	
 	# cleanup
@@ -142,6 +149,9 @@ local_transfer_roms()
 		sudo chown -R steam:steam "$ROM_DIR"
 		sudo chmod -R 755 "$ROM_DIR"
 	fi
+	
+	# return to start dir
+	cd "$start_dir"
 	
 }
 

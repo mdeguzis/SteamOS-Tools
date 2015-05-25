@@ -105,7 +105,7 @@ local_transfer_roms()
 	# enter dir for tab completion of DIR/FIle
 	cd $loc_path
 	
-	echo -e "\nEnter target ROM DIR to copy"
+	echo -e "\nEnter target ROM DIR or file to copy"
 	echo -e "[ENTER to last: $target_dir]:"
 	echo -e "(use quotes on any single DIR name with spaces)"
 
@@ -120,7 +120,7 @@ local_transfer_roms()
 		read -ep ">> " target_dir
 		# user chose to keep var value from last
 		if [[ "$target_dir" == "" ]]; then
-			remote_dir="$target_dir_tmp"
+			target_dir="$target_dir_tmp"
 		else
 			# keep user choice
 			target_dir="$target_dir"

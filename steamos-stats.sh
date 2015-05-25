@@ -88,7 +88,7 @@ funct_pre_req_checks()
 		# steamcmd is not installed to any particular directory, but we
 		# will have to assume the user started in the /home/desktop DIR
 	
-		echo -e "\n==> CHecking for SteamCMD"
+		echo -e "\n==> SteamCMD"
 		sleep 2s
 	
 		# steamcmd dependencies
@@ -128,7 +128,7 @@ funct_pre_req_checks()
 				exit 1
 			fi
 		else
-			echo "Found package 'steamcmd' [Ok]"
+			echo "Checking for 'steamcmd' [Ok]"
 			sleep 0.2s
 		fi
 	
@@ -138,7 +138,7 @@ funct_pre_req_checks()
 		# FPS + more binds from VaporOS 2
 		# For bindings, see: /etc/actkbd-steamos-controller.conf
 		
-		echo -e "\n==> Installing VaporOS Xbox 360 bindings"
+		echo -e "\n==> VaporOS Xbox 360 bindings"
 		sleep 2s
 		
 		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
@@ -150,15 +150,15 @@ funct_pre_req_checks()
 			sudo dpkg -i vaporos-binds-xbox360_1.0_all.deb
 			cd
 			if [ $? == '0' ]; then
-				echo "Successfully installed 'vaporos-binds-xbox360'"
+				echo -e "\nSuccessfully installed 'vaporos-binds-xbox360'"
 				sleep 2s
 			else
-				echo "Could not install 'vaporos-binds-xbox360'. Exiting..."
+				echo -e "\nCould not install 'vaporos-binds-xbox360'. Exiting..."
 				sleep 2s
 				exit 1
 			fi
 		else
-			echo "Checking for 'vaporos-binds-xbox360 [OK]'."
+			echo -e "\nChecking for 'vaporos-binds-xbox360 [OK]'."
 			sleep 0.2s
 		fi
 	

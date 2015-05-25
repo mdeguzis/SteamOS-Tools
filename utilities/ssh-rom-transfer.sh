@@ -60,7 +60,7 @@ ssh_transfer_roms()
 	echo -e "[ENTER to use last: $loc_user]"
 	
 	# set tmp var for last run, if exists
-	loc_user="$loc_user"
+	loc_user_tmp="$loc_user"
 	if [[ "$loc_user" == "" ]]; then
 		# var blank this run, get input
 		read loc_user
@@ -79,7 +79,7 @@ ssh_transfer_roms()
 	echo -e "[ENTER to use last: $user]"
 	
 	# set tmp var for last run, if exists
-	user_tmp="$user"
+	user_tmp_tmp="$user"
 	if [[ "$user" == "" ]]; then
 		# var blank this run, get input
 		read user

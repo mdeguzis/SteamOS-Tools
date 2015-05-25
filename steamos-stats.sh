@@ -179,7 +179,7 @@ funct_pre_req_checks()
 		"$scriptdir/utilities/check_repo_req.sh" 
 		
 		if [[ ! -f "/home/desktop/voglperf/bin/voglperfrun64" ]]; then
-			echo "Voglperf not found"
+			echo -e "\nVoglperf not found"
 			echo "Attempting to install this now..."
 			sleep 1s
 			# Fetch binaries

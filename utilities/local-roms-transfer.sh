@@ -153,11 +153,11 @@ local_transfer_roms()
 	# cleanup
 	echo -e "\n==> Cleaning up directory permissions\n"
 	if [[ "$loc_user" == "desktop" ]]; then
-		sudo chown -R desktop:desktop "$ROM_DIR"
-		sudo chmod -R 755 "$ROM_DIR"
+		sudo chown -R desktop:desktop "$dest_path"
+		sudo chmod -R 755 "$dest_path"
 	elif [[ "$loc_user" == "steam" ]]; then
-		sudo chown -R steam:steam "$ROM_DIR"
-		sudo chmod -R 755 "$ROM_DIR"
+		sudo chown -R steam:steam "$dest_path"
+		sudo chmod -R 755 "$dest_path"
 	fi
 	
 	# return to start dir

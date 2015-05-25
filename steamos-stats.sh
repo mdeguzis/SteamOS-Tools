@@ -80,7 +80,6 @@ funct_pre_req_checks()
 	echo "#####################################################"
 	echo "Package pre-req checks"
 	echo "#####################################################"
-	echo ""
 	
 		#####################################################"
 		# SteamCMD
@@ -89,7 +88,7 @@ funct_pre_req_checks()
 		# steamcmd is not installed to any particular directory, but we
 		# will have to assume the user started in the /home/desktop DIR
 	
-		echo -e "\n==> Installing SteamCMD"
+		echo -e "\n==> CHecking for SteamCMD"
 		sleep 2s
 	
 		# steamcmd dependencies
@@ -100,7 +99,7 @@ funct_pre_req_checks()
 			sleep 1s
 			sudo apt-get install lib32gcc1
 		else
-			echo "Checking for lib32gcc1: [Ok]"
+			echo -e "\nChecking for lib32gcc1: [Ok]"
 			sleep 0.2s
 		fi
 	

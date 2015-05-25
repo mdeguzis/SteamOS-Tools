@@ -182,7 +182,7 @@ funct_pre_req_checks()
 			echo -e "Attempting to install this now...\n"
 			sleep 1s
 			# Fetch binaries
-			sudo apt-get install steamos-dev 
+			sudo apt-get install 
 			# we need to remove apt pinning preferences temporarily only due to the fact
 			# that mesa-common-dev has dep issues with apt pinning. This is being looked at
 			if [[ -d "/etc/apt/preferences" ]]; then
@@ -190,10 +190,18 @@ funct_pre_req_checks()
 				sudo mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
 			fi 
 	 		sudo apt-get update 
-	 		sudo apt-get install git ca-certificates cmake g++ gcc-multilib g++-multilib 
-	 		sudo apt-get install mesa-common-dev libedit-dev libtinfo-dev libtinfo-dev:i386 
+	 		sudo apt-get install steamos-dev  git ca-certificates cmake g++ gcc-multilib \
+	 		g++-multilib mesa-common-dev libedit-dev libtinfo-dev libtinfo-dev:i386 \
+	 		ncurses-dev
+			
 			cd ~
-			git clone https://github.com/ValveSoftware/voglperf
+			
+			# Valve official repo
+			# git clone https://github.com/ValveSoftware/voglperf
+			
+			# Kingtaurus (ahead and newer)
+			git clonehttps://github.com/kingtaurus/voglperf
+			
 			cd voglperf/
 			make
 	

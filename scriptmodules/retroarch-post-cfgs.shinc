@@ -282,7 +282,7 @@ if [[ "$apt_mode" == "install" ]]; then
 
 	echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src'"
 	echo -e "as a non-Steam game in Big Picture Mode.\n"
-	echo -e "Please see $scriptdir/docs/desktop-software-readme.md for"
+	echo -e "Please see $scriptdir/docs/Retroarch-info.md for"
 	echo -e "more information\n"
 	sleep 1s
 	

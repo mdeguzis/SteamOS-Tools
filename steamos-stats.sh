@@ -27,6 +27,9 @@ funct_set_main_vars()
 	# Valve's installer will use proprietary drivers, if available
 	active_driver="nvidia"
 	supported_gpu="yes"
+	
+	# set default scriptdir
+	scriptdir="/home/desktop/SteamOS-Tools"
 }
 
 funct_pre_req_checks()

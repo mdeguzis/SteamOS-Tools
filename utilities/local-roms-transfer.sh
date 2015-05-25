@@ -49,7 +49,7 @@ local_transfer_roms()
 	echo -e "[ENTER to use last: $loc_path]"
 	
 	# set tmp var for last run, if exists
-	loc_path="$loc_path"
+	loc_path_tmp="$loc_path"
 	if [[ "$loc_path" == "" ]]; then
 		# var blank this run, get input
 		echo ""
@@ -71,7 +71,7 @@ local_transfer_roms()
 	echo -e "[ENTER to use last: $loc_path]"
 	
 	# set tmp var for last run, if exists
-	dest_path="$dest_path"
+	dest_path_tmp="$dest_path"
 	if [[ "$dest_path" == "" ]]; then
 		# var blank this run, get input
 		echo ""
@@ -106,6 +106,7 @@ local_transfer_roms()
 	echo -e "\nEnter target ROM DIR to copy"
 	echo -e "[ENTER to last: $target_dir]:"
 	echo -e "(use quotes on any single DIR name with spaces)"
+
 	# set tmp var for last run, if exists
 	target_dir_tmp="$target_dir"
 	if [[ "$target_dir" == "" ]]; then

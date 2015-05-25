@@ -143,10 +143,10 @@ local_transfer_roms()
 	# determine if target dir is a file or directory
 	if [ -d "$target_dir" ]; then
 		# copy entire dir
-		sudo cp -r $target_dir/ $dest_path
+		sudo cp -rv $target_dir/ $dest_path
 	else
 		# copy file
-		sudo cp $target_dir $dest_path/
+		sudo cp -v $target_dir $dest_path/
 	fi
 	echo ""
 	

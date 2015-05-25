@@ -68,7 +68,7 @@ local_transfer_roms()
 	
 	echo -e "\n==> Enter dest path user for ROMS/Files: "
 	echo -e "Type default to use the default /home/steam/ROMs DIR"
-	echo -e "[ENTER to use last: $loc_path]"
+	echo -e "[ENTER to use last: $dest_path]"
 	
 	# set tmp var for last run, if exists
 	dest_path_tmp="$dest_path"

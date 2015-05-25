@@ -88,6 +88,8 @@ local_transfer_roms()
 		# user chose to keep var value from last
 		if [[ "$dest_path" == "" ]]; then
 			dest_path="$dest_path_tmp"
+		elif [[ "$dest_path" == "default" ]]; then
+			dest_path="/home/steam/ROMs"
 		else
 			# keep user choice
 			dest_path="$dest_path"

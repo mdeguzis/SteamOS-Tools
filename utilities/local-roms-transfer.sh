@@ -3,7 +3,7 @@
 # Author: 	    	Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name: 		local-rom-transfer.sh
-# Script Ver: 		0.1.1
+# Script Ver: 		0.2.1
 # Description:		This script dumps ROMs or files over local
 #
 # Usage:	      	./local-rom-transfer.sh
@@ -132,19 +132,19 @@ local_transfer_roms()
 	
 	loc_user=$(echo $USER)
 	
-	echo -e "==> Copying ROMs, please wait...\n"
+	echo -e "\n==> Copying ROMs, please wait...\n"
 	sleep 1s
 	
 	# execute
 	
 	echo ""
 	# determine if target dir is a file or directory
-	if [[ -d "$target_dir" ]]; then
+	if [ -d "$target_dir" ]; then
 		# copy entire dir
 		sudo cp -r $target_dir/ $dest_path
 	else
 		# copy file
-		sudo cp $target_dir/ $dest_path
+		sudo cp $target_dir $dest_path/
 	fi
 	echo ""
 	

@@ -168,7 +168,7 @@ funct_pre_req_checks()
 		# Since Voglperf compiles into a bin/ folder, not /usr/bin, we have to
 		# assume the git repo was cloned into /home/desktop for now.
 		
-		echo -e "\n==> Installing Voglperf"
+		echo -e "\n==> Voglperf"
 		sleep 2s
 		
 		# set external Deb repo required flag 
@@ -179,7 +179,7 @@ funct_pre_req_checks()
 		
 		if [[ ! -f "/home/desktop/voglperf/bin/voglperfrun64" ]]; then
 			echo -e "\nVoglperf not found"
-			echo "Attempting to install this now..."
+			echo -e "Attempting to install this now...\n"
 			sleep 1s
 			# Fetch binaries
 			sudo apt-get install steamos-dev 

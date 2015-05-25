@@ -57,7 +57,7 @@ ssh_transfer_roms()
 	fi
 
 	echo -e "\n==> Enter local user for ROMS/Files (deskop/steam):"
-	echo -e "[ENTER to use last: $loc_user]"
+	echo -e "    [ENTER to use last: $loc_user]"
 	
 	# set tmp var for last run, if exists
 	loc_user_tmp="$loc_user"
@@ -76,7 +76,7 @@ ssh_transfer_roms()
 	fi
 
 	echo -e "\n==> Enter Remote User: "
-	echo -e "[ENTER to use last: $user]"
+	echo -e "    [ENTER to use last: $user]"
 	
 	# set tmp var for last run, if exists
 	user_tmp_tmp="$user"
@@ -95,7 +95,7 @@ ssh_transfer_roms()
 	fi
 
 	echo -e "\n==> Enter remote hostname: "
-	echo -e "[ENTER to use last: $host]"
+	echo -e "    [ENTER to use last: $host]"
 	# set tmp var for last run, if exists
 	host_tmp="$host"
 	if [[ "$host" == "" ]]; then
@@ -113,8 +113,8 @@ ssh_transfer_roms()
 	fi
 
 	echo -e "\n==> Enter remote DIR: "
-	echo -e "[ENTER to use last: $remote_dir]:"
-	echo -e "(use quotes on any single DIR name with spaces)"
+	echo -e "    [ENTER to use last: $remote_dir]:"
+	echo -e "    (use quotes on any single DIR name with spaces)"
 	# set tmp var for last run, if exists
 	remote_dir_tmp="$remote_dir"
 	if [[ "$remote_dir" == "" ]]; then
@@ -138,8 +138,8 @@ ssh_transfer_roms()
 	ssh ${user}@${host} ls ${remote_dir} | less
 	
 	echo -e "\nEnter target ROM DIR to copy "
-	echo -e "[ENTER to last: $target_dir]:"
-	echo -e "(use quotes on any single DIR name with spaces)"
+	echo -e "    [ENTER to last: $target_dir]:"
+	echo -e "    (use quotes on any single DIR name with spaces)"
 	# set tmp var for last run, if exists
 	target_dir_tmp="$target_dir"
 	if [[ "$target_dir" == "" ]]; then

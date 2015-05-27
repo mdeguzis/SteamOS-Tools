@@ -645,6 +645,59 @@ ep_install_gdrive()
 	ep_pkg_cleanup
 }
 
+
+ep_install_antimicro()
+{
+
+	echo -e "\n==> Installing Antimicro from automated script..."
+	sleep 2s
+
+	echo ""
+	#####################################################
+	# Antimicro
+	#####################################################
+	# Name: Antimicro
+	# Desc: command line tool for google drive.
+	# Type: PPA rebuild
+	# Source: https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro
+
+	###############################	
+	# set vars
+	###############################
+	
+	pkg_type="deb"
+	PKG=antimicro
+	PKG_FILENAME="TODO"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/utilities/NAME_HERE.deb"
+	BIN_LOC="/usr/bin/antimicro"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	# set multiflag
+	multi="n"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
+	
+	###############################	
+	# install
+	###############################
+	
+	# install antimicro
+	ep_install_eval_pkg
+	
+	# cleanup
+	ep_pkg_cleanup
+}
+
 ep_install_netflix()
 {
 

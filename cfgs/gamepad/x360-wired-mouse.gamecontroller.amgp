@@ -9,6 +9,8 @@
         <set index="1">
             <stick index="1">
                 <stickbutton index="1">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
                     <slots>
                         <slot>
                             <code>1</code>
@@ -16,7 +18,13 @@
                         </slot>
                     </slots>
                 </stickbutton>
+                <stickbutton index="2">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
+                </stickbutton>
                 <stickbutton index="3">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
                     <slots>
                         <slot>
                             <code>4</code>
@@ -24,7 +32,13 @@
                         </slot>
                     </slots>
                 </stickbutton>
+                <stickbutton index="4">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
+                </stickbutton>
                 <stickbutton index="5">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
                     <slots>
                         <slot>
                             <code>2</code>
@@ -32,7 +46,13 @@
                         </slot>
                     </slots>
                 </stickbutton>
+                <stickbutton index="6">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
+                </stickbutton>
                 <stickbutton index="7">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
                     <slots>
                         <slot>
                             <code>3</code>
@@ -40,9 +60,29 @@
                         </slot>
                     </slots>
                 </stickbutton>
+                <stickbutton index="8">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
+                </stickbutton>
             </stick>
             <stick index="2">
+                <stickbutton index="1">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
+                    <slots>
+                        <slot>
+                            <code>4</code>
+                            <mode>mousebutton</mode>
+                        </slot>
+                    </slots>
+                </stickbutton>
+                <stickbutton index="2">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
+                </stickbutton>
                 <stickbutton index="3">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
                     <slots>
                         <slot>
                             <code>7</code>
@@ -50,7 +90,13 @@
                         </slot>
                     </slots>
                 </stickbutton>
+                <stickbutton index="4">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
+                </stickbutton>
                 <stickbutton index="5">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
                     <slots>
                         <slot>
                             <code>5</code>
@@ -58,13 +104,23 @@
                         </slot>
                     </slots>
                 </stickbutton>
+                <stickbutton index="6">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
+                </stickbutton>
                 <stickbutton index="7">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
                     <slots>
                         <slot>
                             <code>6</code>
                             <mode>mousebutton</mode>
                         </slot>
                     </slots>
+                </stickbutton>
+                <stickbutton index="8">
+                    <mousespeedx>65</mousespeedx>
+                    <mousespeedy>65</mousespeedy>
                 </stickbutton>
             </stick>
             <button index="1">

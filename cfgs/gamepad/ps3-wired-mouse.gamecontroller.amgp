@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gamecontroller configversion="17" appversion="2.14">
     <!--The SDL name for a joystick is included for informational purposes only.-->
-    <sdlname>X360 Wireless Controller</sdlname>
+    <sdlname>PS3 Controller</sdlname>
     <!--The GUID for a joystick is included for informational purposes only.-->
-    <guid>030000005e0400001907000000010000</guid>
+    <guid>030000004c0500006802000011010000</guid>
     <names/>
     <sets>
         <set index="1">
             <stick index="1">
+                <diagonalRange>65</diagonalRange>
                 <stickbutton index="1">
                     <mousespeedx>65</mousespeedx>
                     <mousespeedy>65</mousespeedy>
@@ -37,6 +38,7 @@
                     <mousespeedy>65</mousespeedy>
                 </stickbutton>
                 <stickbutton index="5">
+                    <toggle>true</toggle>
                     <mousespeedx>65</mousespeedx>
                     <mousespeedy>65</mousespeedy>
                     <slots>

@@ -11,6 +11,8 @@ main ()
 	export DISPLAY=:15
 	LD_PRELOAD= google-chrome --kiosk www.hulu.com --window-size=$COMMA_WIN_RES &&
 
+	#antimicro_temp
+
 	sleep 1
 	killall chrome
 	kill $XEPHYR_PID

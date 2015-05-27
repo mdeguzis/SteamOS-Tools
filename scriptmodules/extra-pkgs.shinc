@@ -965,6 +965,13 @@ ep_add_web_app_chrome()
 	# Currently working on some kind of xboxdrv swap out
 	# to allow arrow keys
 	
+	
+	#######################################
+	# Antimicro gamepad controls
+	#######################################
+	
+	# placeholder for antimicro profile swaps
+	
 	###################################
 	# Kiosk mode
 	###################################

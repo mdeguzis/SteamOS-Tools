@@ -667,9 +667,9 @@ ep_install_antimicro()
 	
 	pkg_type="deb"
 	PKG=antimicro
-	PKG_FILENAME="TODO"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/utilities/NAME_HERE.deb"
-	BIN_LOC="/usr/bin/antimicro"
+	PKG_FILENAME="antimicro_2.14+git20150527-SteamOS_amd64.deb"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/utilities"
+	BIN_LOC="/usr/local/bin/antimicro"
 	
 	# set external Deb repo required flag
 	export deb_repo_name="wheezy.list"

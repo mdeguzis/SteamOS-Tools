@@ -1,0 +1,15 @@
+# PS3 Bluthooth Antimicro Settings 
+
+# Mouse settings
+# PPS X = 1300 PPS
+# PPS Y = 1300 PPS
+# Deadzone = 6000
+# Max Zone = 32000
+
+# PS3 Wired Antimicro Settings 
+
+# Mouse settings
+# PPS X = 1300 PPS
+# PPS Y = 1300 PPS
+# Deadzone = 6000
+# Max Zone = 32000

@@ -9,7 +9,7 @@ main ()
 	/usr/bin/Xephyr :15 -ac -screen $WIN_RES -fullscreen -host-cursor -once & XEPHYR_PID=$!
 
 	# start antimicro mouse control
-        #antimicro_temp
+        #antimicro_tmp
 
 	export DISPLAY=:15
 	LD_PRELOAD= google-chrome --kiosk http://www.amazon.com/Prime-Instant-Video/b?node=2676882011 --window-size=$COMMA_WIN_RES &&

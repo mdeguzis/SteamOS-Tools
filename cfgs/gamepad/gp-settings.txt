@@ -1,5 +1,5 @@
 #########################################
-# PS3 Bluthooth Antimicro Settings 
+# PS3 Bluetooth Antimicro Settings 
 #########################################
 
 # Mouse settings

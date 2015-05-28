@@ -484,7 +484,7 @@ ep_install_chrome()
 {
 	# See: https://github.com/ValveSoftware/SteamOS/wiki/Installing-Google-Chrome-for-Netflix
 
-	echo -e "\n==> Installing Chrome from automated script..."
+	echo -e "\n==> Installing Chrome from automated script...\n"
 	sleep 2s
 	
 	###############################	
@@ -652,7 +652,6 @@ ep_install_antimicro()
 	echo -e "\n==> Installing Antimicro from automated script..."
 	sleep 2s
 
-	echo ""
 	#####################################################
 	# Antimicro
 	#####################################################

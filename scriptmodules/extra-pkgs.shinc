@@ -1045,7 +1045,7 @@ ep_add_web_app_chrome()
 	
 	read -ep "Choice: " kiosk_choice
 	
-	if [[ "$skip_kiosk" != "yes" && $kiosk_choice" == "y" ]]; then
+	if [[ "$skip_kiosk" != "yes" && "$kiosk_choice" == "y" ]]; then
 	
 		# do nothing, this is default
 		echo "" > /dev/null

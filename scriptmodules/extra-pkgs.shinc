@@ -926,6 +926,22 @@ ep_add_web_app_chrome()
 		
 	fi
 	
+	pkg_test=$(which antimicro)
+
+	if [[ "$pkg_test" == "" ]]; then
+	
+		echo -e "\n==INFO==\nantimicro not found! Installing now..."
+		# install antimicro from script
+		sleep 2s
+		ep_install_antimicro
+		
+	else
+		
+		echo -e "\nPackage gantimicro [OK]"
+		sleep 0.5s
+		
+	fi
+	
 	#######################################
 	# Configuration
 	#######################################
@@ -1028,7 +1044,7 @@ ep_add_web_app_chrome()
 
 	if [[ -d "$antimicro_dir" ]]; then
 		# DIR found
-		echo -e "\nantimicro directory found. Skipping"
+		echo -e "Antimicro directory found. Skipping"
 	else
 		# create dir
 		sudo mkdir -p "$antimicro_dir"

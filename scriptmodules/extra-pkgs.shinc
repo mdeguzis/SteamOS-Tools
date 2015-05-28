@@ -934,7 +934,6 @@ ep_add_web_app_chrome()
 		        8|done)
 		        # skip kios mode
 		        skip_kiosk="yes"
-		        echo -e "\nContinuing to contols configuration...."
 		        ;;
 		         
 		        *)
@@ -1037,38 +1036,47 @@ ep_add_web_app_chrome()
 	###################################
 	
 	# Ask user if they want to enable kiosk mode
-	echo -e "\n==> Kiosk mode configuration"
-	echo -e "Do you wish to enable kiosk mode (default)? This will remove all window borders [y/n]\n"
 	
-	# the prompt sometimes likes to jump above sleep
-	sleep 0.5s
-	
-	read -ep "Choice: " kiosk_choice
-	
-	if [[ "$skip_kiosk" != "yes" && "$kiosk_choice" == "y" ]]; then
-	
-		# do nothing, this is default
-		echo "" > /dev/null
-	
-	elif [[ "$skip_kiosk" != "yes" && "$kiosk_choice" == "n" ]]; then
-	
-		# remove kiosk parameter
-		if [[ "$custom_url" == "no" ]]; then
+	if [[ "$skip_kiosk" != "yes" ]]; then
 		
-			# remove kiosk mode from normal launher
-			sudo sed -i "s|--kiosk ||g" "$kiosk_opt"
+		echo -e "\n==> Kiosk mode configuration"
+		echo -e "Do you wish to enable kiosk mode (default)? This will remove all window borders [y/n]\n"
+		
+		# the prompt sometimes likes to jump above sleep
+		sleep 0.5s
+		
+		read -ep "Choice: " kiosk_choice
+		
+		if [[ "$kiosk_choice" == "y" ]]; then
+		
+			# do nothing, this is default
+			echo "" > /dev/null
+		
+		elif [[ "$kiosk_choice" == "n" ]]; then
+		
+			# remove kiosk parameter
+			if [[ "$custom_url" == "no" ]]; then
 			
-		elif [[ "$custom_url" == "yes" ]]; then
+				# remove kiosk mode from normal launher
+				sudo sed -i "s|--kiosk ||g" "$kiosk_opt"
+				
+			elif [[ "$custom_url" == "yes" ]]; then
+			
+				# remove kiosk mode from custom launher
+				sudo sed -i "s|--kiosk ||g" "/usr/bin/${custom_name}-Launch.sh"
+			fi
+	
+		else
 		
-			# remove kiosk mode from custom launher
-			sudo sed -i "s|--kiosk ||g" "/usr/bin/${custom_name}-Launch.sh"
+			echo -e "\nInvalid selection. Default used\n"
+			sleep 1s
+		
 		fi
-
-	else
+		
+	elif [[ "$skip_kiosk" != "no" ]]; then
 	
-		echo -e "\nInvalid selection. Default used\n"
-		sleep 1s
-	
+		echo -e "\nContinuing to contols configuration...."
+		
 	fi
 	
 	###################################

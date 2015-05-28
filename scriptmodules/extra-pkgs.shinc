@@ -818,6 +818,52 @@ ep_add_web_app_chrome()
 		sudo mkdir -p "/home/steam/.config/google-chrome/Default"
 	fi
 	
+	#######################################
+	# Pre-reqs
+	#######################################
+	
+	# required to display x window for Chrome
+	sudo apt-get install xserver-xephyr
+
+	#######################################
+	# Software function pre-req
+	#######################################
+	
+	echo -e "\n==> Installing pre-requisite software"
+	sleep 1s
+
+	pkg_test=$(which google-chrome-stable)
+
+	if [[ "$pkg_test" == "" ]]; then
+	
+		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
+		# install chrome from script
+		sleep 2s
+		ep_install_chrome
+		
+	else
+		
+		echo -e "\nPackage google-chrome-stable [OK]"
+		sleep 0.5s
+		
+	fi
+	
+	pkg_test=$(which antimicro)
+
+	if [[ "$pkg_test" == "" ]]; then
+	
+		echo -e "\n==INFO==\nantimicro not found! Installing now..."
+		# install antimicro from script
+		sleep 2s
+		ep_install_antimicro
+		
+	else
+		
+		echo -e "Package gantimicro [OK]"
+		sleep 0.5s
+		
+	fi
+	
 	###################################
 	# Start web app addition loop
 	###################################
@@ -895,53 +941,6 @@ ep_add_web_app_chrome()
 			;;
 		esac
 		
-	
-	#######################################
-	# Pre-reqs
-	#######################################
-	
-	# required to display x window for Chrome
-	sudo apt-get install xserver-xephyr
-
-	#######################################
-	# Software function pre-req
-	#######################################
-	
-	echo -e "\n==> Installing pre-requisite software"
-	sleep 1s
-
-	pkg_test=$(which google-chrome-stable)
-
-	if [[ "$pkg_test" == "" ]]; then
-	
-		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
-		# install chrome from script
-		sleep 2s
-		ep_install_chrome
-		
-	else
-		
-		echo -e "\nPackage google-chrome-stable [OK]"
-		sleep 0.5s
-		
-	fi
-	
-	pkg_test=$(which antimicro)
-
-	if [[ "$pkg_test" == "" ]]; then
-	
-		echo -e "\n==INFO==\nantimicro not found! Installing now..."
-		# install antimicro from script
-		sleep 2s
-		ep_install_antimicro
-		
-	else
-		
-		echo -e "Package gantimicro [OK]"
-		sleep 0.5s
-		
-	fi
-	
 	#######################################
 	# Configuration
 	#######################################

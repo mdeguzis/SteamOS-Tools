@@ -1058,19 +1058,19 @@ ep_add_web_app_chrome()
 	case "$gp_mouse_choice" in
 
 		1)
-		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wired-mouse.gamecontroller.amgp"
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wired-mouse.gamecontroller.amgp &"
 		;;
 
 		2)
-		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wireless-mouse.gamecontroller.amgp"
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wireless-mouse.gamecontroller.amgp &"
 		;;
 		 
 		3)
-		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wired-mouse.gamecontroller.amgp"
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wired-mouse.gamecontroller.amgp &"
 		;;
 
 		4)
-		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wireless-mouse.gamecontroller.amgp"
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wireless-mouse.gamecontroller.amgp &"
 		;;
 
 		5)

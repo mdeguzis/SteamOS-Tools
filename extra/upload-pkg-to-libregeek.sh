@@ -58,7 +58,7 @@ funct_set_dir()
 	      ;;
 	      
 	      4)
-	      destdir="/home2/thelinu2/public_html/SteamOS-Extra/utlities"
+	      destdir="/home2/thelinu2/public_html/SteamOS-Extra/utilities"
 	      ;;
 	      
 	      5)

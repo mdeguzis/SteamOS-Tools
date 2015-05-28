@@ -4,9 +4,21 @@
 ===
 Be advised this is a work in progress. Netflix will launch via `google-chrome-stable` and connect to netflix in `--kiosk` mode. A default users config directory for Google chrome is copied over, so that the "unexpected shutdown" message is avoided (since for now, you must use the center Xbox 360 controller / PS3 controller to exit.). I am currently working on creating some snap in script code to add Hulu, Youtube, and so forth. I need to gather the images and test those sites first though.
 
-**Cleanly exiting Chrome** 
+**Controls** 
 ===
-This is a bit tricky for now. I play on mapping something to an Xbox 360 controller. In the meantime, `CTRL+SHIFT+W` will close the current window.
+This assumes you have enabled mouse control for the web app in question for supported gamepads listed during the script.
+
+####Gamepad 
+* Left Joystick (Up/Down/Left/Right) - Move mouse cursor
+* Right Joystick (Up/Down/Left/Right) - Scroll wheel
+* A/LB - Mouse left button
+* B/RB - Mouse right button
+* Dpad (left/right) - backward or forward page navigation
+* Back button - Exit web app
+
+####Keyoard
+* `CTRL+W` will close the current tab (recommended).
+* `CTRL+SHIFT+W` will close the current window.
 
 **Custom Shortcuts**
 ===

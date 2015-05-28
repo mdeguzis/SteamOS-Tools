@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.9.5
+# Script Ver:	  	0.9.9
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	
@@ -805,9 +805,6 @@ ep_add_web_app_chrome()
 	# set custom url to no as a default
 	custom_url="no"
 	
-	# default skip kiosk mode set when done
-	skip_kiosk=no
-	
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
 	
@@ -819,52 +816,6 @@ ep_add_web_app_chrome()
 	if [[ -d "/home/steam/.config/google-chrome/Default/" ]]; then
 		# create DIR
 		sudo mkdir -p "/home/steam/.config/google-chrome/Default"
-	fi
-	
-	#######################################
-	# Pre-reqs
-	#######################################
-	
-	# required to display x window for Chrome
-	sudo apt-get install xserver-xephyr
-
-	#######################################
-	# Software function pre-req
-	#######################################
-	
-	echo -e "\n==> Installing pre-requisite software"
-	sleep 1s
-
-	pkg_test=$(which google-chrome-stable)
-
-	if [[ "$pkg_test" == "" ]]; then
-	
-		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
-		# install chrome from script
-		sleep 2s
-		ep_install_chrome
-		
-	else
-		
-		echo -e "\nPackage google-chrome-stable [OK]"
-		sleep 0.5s
-		
-	fi
-	
-	pkg_test=$(which antimicro)
-
-	if [[ "$pkg_test" == "" ]]; then
-	
-		echo -e "\n==INFO==\nantimicro not found! Installing now..."
-		# install antimicro from script
-		sleep 2s
-		ep_install_antimicro
-		
-	else
-		
-		echo -e "Package antimicro [OK]"
-		sleep 0.5s
-		
 	fi
 	
 	###################################
@@ -932,8 +883,9 @@ ep_add_web_app_chrome()
 		        ;;
 		         
 		        8|done)
-		        # skip kios mode
-		        skip_kiosk="yes"
+		        # do nothing
+		        echo -e "\n==> Exiting script\n"
+		        exit 1
 		        ;;
 		         
 		        *)
@@ -943,6 +895,52 @@ ep_add_web_app_chrome()
 			;;
 		esac
 		
+	
+	#######################################
+	# Pre-reqs
+	#######################################
+	
+	# required to display x window for Chrome
+	sudo apt-get install xserver-xephyr
+
+	#######################################
+	# Software function pre-req
+	#######################################
+	
+	echo -e "\n==> Installing pre-requisite software"
+	sleep 1s
+
+	pkg_test=$(which google-chrome-stable)
+
+	if [[ "$pkg_test" == "" ]]; then
+	
+		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
+		# install chrome from script
+		sleep 2s
+		ep_install_chrome
+		
+	else
+		
+		echo -e "\nPackage google-chrome-stable [OK]"
+		sleep 0.5s
+		
+	fi
+	
+	pkg_test=$(which antimicro)
+
+	if [[ "$pkg_test" == "" ]]; then
+	
+		echo -e "\n==INFO==\nantimicro not found! Installing now..."
+		# install antimicro from script
+		sleep 2s
+		ep_install_antimicro
+		
+	else
+		
+		echo -e "Package gantimicro [OK]"
+		sleep 0.5s
+		
+	fi
 	
 	#######################################
 	# Configuration
@@ -1031,66 +1029,11 @@ ep_add_web_app_chrome()
 		
 	fi
 
-	###################################
-	# Kiosk mode
-	###################################
+	# NOTE:
+	# Mouse support with cursor is fine
+	# Currently working on some kind of xboxdrv swap out
+	# to allow arrow keys
 	
-	# Ask user if they want to enable kiosk mode
-	
-	if [[ "$skip_kiosk" != "yes" ]]; then
-		
-		echo -e "\n==> Kiosk mode configuration"
-		echo -e "Do you wish to enable kiosk mode (default)? This will remove all window borders [y/n]\n"
-		
-		# the prompt sometimes likes to jump above sleep
-		sleep 0.5s
-		
-		read -ep "Choice: " kiosk_choice
-		
-		if [[ "$kiosk_choice" == "y" ]]; then
-		
-			# do nothing, this is default
-			echo "" > /dev/null
-		
-		elif [[ "$kiosk_choice" == "n" ]]; then
-		
-			# remove kiosk parameter
-			if [[ "$custom_url" == "no" ]]; then
-			
-				# remove kiosk mode from normal launher
-				sudo sed -i "s|--kiosk ||g" "$kiosk_opt"
-				
-			elif [[ "$custom_url" == "yes" ]]; then
-			
-				# remove kiosk mode from custom launher
-				sudo sed -i "s|--kiosk ||g" "/usr/bin/${custom_name}-Launch.sh"
-			fi
-	
-		else
-		
-			echo -e "\nInvalid selection. Default used\n"
-			sleep 1s
-		
-		fi
-		
-	elif [[ "$skip_kiosk" != "no" ]]; then
-	
-		echo -e "\nContinuing to contols configuration...."
-		break
-		
-	fi
-	
-	###################################
-	# correct permissions
-	###################################
-	# fix ownership if need be
-	
-	sudo chown -R steam:steam "/home/steam/"
-	
-	###################################
-	# end web app addition loop
-	###################################
-	done
 	
 	#######################################
 	# Antimicro gamepad controls
@@ -1167,6 +1110,57 @@ ep_add_web_app_chrome()
 
 	# remove launchers temp file
 	rm -f /tmp/launchers.txt
+
+	###################################
+	# Kiosk mode
+	###################################
+	
+	# Ask user if they want to enable kiosk mode
+	echo -e "\n==> Kiosk mode configuration"
+	echo -e "Do you wish to enable kiosk mode (default)? This will remove all window borders [y/n]\n"
+	
+	# the prompt sometimes likes to jump above sleep
+	sleep 0.5s
+	
+	read -ep "Choice: " kiosk_choice
+	
+	if [[ "$kiosk_choice" == "y" ]]; then
+	
+		# do nothing, this is default
+		echo "" > /dev/null
+	
+	elif [[ "$kiosk_choice" == "n" ]]; then
+	
+		# remove kiosk parameter
+		if [[ "$custom_url" == "no" ]]; then
+		
+			# remove kiosk mode from normal launher
+			sudo sed -i "s|--kiosk ||g" "$kiosk_opt"
+			
+		elif [[ "$custom_url" == "yes" ]]; then
+		
+			# remove kiosk mode from custom launher
+			sudo sed -i "s|--kiosk ||g" "/usr/bin/${custom_name}-Launch.sh"
+		fi
+
+	else
+	
+		echo -e "\nInvalid selection. Default used\n"
+		sleep 1s
+	
+	fi
+	
+	###################################
+	# correct permissions
+	###################################
+	# fix ownership if need be
+	
+	sudo chown -R steam:steam "/home/steam/"
+	
+	###################################
+	# end web app addition loop
+	###################################
+	done
 	
 	#####################################################
 	# PKG NAME

@@ -6,8 +6,9 @@ Be advised this is a work in progress. Netflix will launch via `google-chrome-st
 
 **Controls** 
 ===
-This assumes you have enabled mouse control for the web app in question.
+This assumes you have enabled mouse control for the web app in question for supported gamepads listed during the script.
 
+####Gamepad 
 * Left Joystick (Up/Down/Left/Right) - Move mouse cursor
 * Right Joystick (Up/Down/Left/Right) - Scroll wheel
 * A/LB - Mouse left button

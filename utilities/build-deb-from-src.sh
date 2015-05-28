@@ -125,6 +125,9 @@ main()
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
+			# create DIRS
+			mkdir -p "$git_dir"
+			cd "$git_dir"
 			# create and clone to current dir
 			git clone "$git_url" .
 		

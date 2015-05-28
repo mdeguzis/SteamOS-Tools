@@ -16,6 +16,7 @@ main()
 
 	sleep 1
 	killall chrome
+	killall antimicro
 	kill $XEPHYR_PID
 
 }

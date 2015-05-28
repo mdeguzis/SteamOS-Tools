@@ -930,8 +930,7 @@ ep_add_web_app_chrome()
 		         
 		        8|done)
 		        # do nothing
-		        echo -e "\n==> Exiting script\n"
-		        exit 1
+		        echo -e "\n==> Continuing to contols configuration\n"
 		        ;;
 		         
 		        *)

@@ -805,6 +805,9 @@ ep_add_web_app_chrome()
 	# set custom url to no as a default
 	custom_url="no"
 	
+	# default skip kiosk mode set when done
+	skip_kiosk=no
+	
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
 	
@@ -929,8 +932,9 @@ ep_add_web_app_chrome()
 		        ;;
 		         
 		        8|done)
-		        # do nothing
-		        echo -e "\n==> Continuing to contols configuration\n"
+		        # skip kios mode
+		        skip_kiosk="yes"
+		        echo -e "\nContinuing to contols configuration...."
 		        ;;
 		         
 		        *)
@@ -1041,12 +1045,12 @@ ep_add_web_app_chrome()
 	
 	read -ep "Choice: " kiosk_choice
 	
-	if [[ "$kiosk_choice" == "y" ]]; then
+	if [[ "$skip_kiosk" != "yes" && $kiosk_choice" == "y" ]]; then
 	
 		# do nothing, this is default
 		echo "" > /dev/null
 	
-	elif [[ "$kiosk_choice" == "n" ]]; then
+	elif [[ "$skip_kiosk" != "yes" && "$kiosk_choice" == "n" ]]; then
 	
 		# remove kiosk parameter
 		if [[ "$custom_url" == "no" ]]; then

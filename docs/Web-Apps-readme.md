@@ -63,6 +63,11 @@ If you wish to add images / banners for your own custom URLs or web apps you add
 * The ['extra-artwork'](https://github.com/ProfessorKaos64/SteamOS-Tools/tree/master/cfgs/extra-artwork) folder within this GitHub repository. Extra artwork / banners can be added upon reques.
 * [Google image search](https://www.google.com/search?q=steam&biw=1366&bih=644&tbm=isch&source=lnt&tbs=isz:ex,iszw:460,iszh:215) with the 460x215 image dimension specification.
 
+
+**Troubleshooting** 
+===
+There are rare occasions where antimicro does not release its process when you are done with a web app. If cases such as this, use the center button on your gamepad to select the "Exit Game" option from the Steam overlay. If extreme cases, a reboot will do the trick if all else fails.
+
 **Summary**
 ===
 If you have any questions, comments, or criticisms, please submit an issues ticket on GitHub.

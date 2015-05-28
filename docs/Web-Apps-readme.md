@@ -11,8 +11,9 @@ This assumes you have enabled mouse control for the web app in question for supp
 ####Gamepad 
 * Left Joystick (Up/Down/Left/Right) - Move mouse cursor
 * Right Joystick (Up/Down/Left/Right) - Scroll wheel
-* A/LB - Mouse left button
-* B/RB - Mouse right button
+* A/LB/cross - Mouse left button
+* B/RB/circle - Mouse right button
+* Y/triangle - Esc button (exits most video in fullscreen)
 * Dpad (left/right) - backward or forward page navigation
 * Back button - Exit web app
 

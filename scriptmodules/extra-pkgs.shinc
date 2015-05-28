@@ -1076,6 +1076,7 @@ ep_add_web_app_chrome()
 	elif [[ "$skip_kiosk" != "no" ]]; then
 	
 		echo -e "\nContinuing to contols configuration...."
+		break
 		
 	fi
 	

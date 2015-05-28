@@ -1035,7 +1035,11 @@ ep_add_web_app_chrome()
 	fi
 
 	# copy in default profiles
-	sudo cp "$scriptdir/cfgs/gamepad/." "$antimicro_dir"
+	sudo cp -r "$scriptdir/cfgs/gamepad/." "$antimicro_dir"
+
+	echo -e "\n#############################################################"
+	echo -e "Setting mouse control for available gamepads"
+	echo -e "#############################################################"
 
 	# prompt user For controller type if they wish to enable gp mouse control
 	echo -e "\nPlease choose your controller type for web app mouse control"

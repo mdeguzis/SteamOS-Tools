@@ -1022,9 +1022,75 @@ ep_add_web_app_chrome()
 	#######################################
 	# Antimicro gamepad controls
 	#######################################
+
+	# create antimicro dir
+	antimicro_dir="/home/steam/antimicro"
+
+	if [[ -d "$antimicro_dir" ]]; then
+		# DIR found
+		echo -e "\nantimicro directory found. Skipping"
+	else
+		# create dir
+		sudo mkdir -p "$antimicro_dir"
+	fi
+
+	# copy in default profiles
+	sudo cp "$scriptdir/cfgs/gamepad/." "$antimicro_dir"
+
+	# prompt user For controller type if they wish to enable gp mouse control
+	echo -e "\nPlease choose your controller type for web app mouse control"
+	echo "(1) Xbox 360 (wired)"
+	echo "(2) Xbox 360 (wireless)"
+	echo "(3) PS3 Sixaxis (wired)"
+	echo "(4) PS3 Sixaxis (bluetooth)"
+	echo "(5) None (skip)"
+	echo ""
 	
-	# placeholder for antimicro profile swaps
+	# the prompt sometimes likes to jump above sleep
+	sleep 0.5s
+
+	read -ep "Choice: " gp_mouse_choice
+
+	case "$gp_mouse_choice" in
+
+		1)
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wired-mouse.gamecontroller.amgp"
+		;;
+
+		2)
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wireless-mouse.gamecontroller.amgp"
+		;;
+		 
+		3)
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wired-mouse.gamecontroller.amgp"
+		;;
+
+		4)
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wireless-mouse.gamecontroller.amgp"
+		;;
+
+		5)
+		gp_cmd="#mouse_control_disabled"
+		;;
+		 
+		*)
+		echo -e "\n==ERROR==\nInvalid Selection!"
+		sleep 1s
+		continue
+		;;
+	esac
+
+	# perform swaps for mouse profiles
 	
+	sudo find /usr/bin -name '*Launch.sh' | while read line; do
+	    # echo "Processing file '$line'"
+	    sudo sed -i "s|#antimicro_tmp|$gp_cmd|g" $line 
+	done
+
+
+	# remove launchers temp file
+	rm -f /tmp/launchers.txt
+
 	###################################
 	# Kiosk mode
 	###################################

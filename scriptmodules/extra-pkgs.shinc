@@ -823,7 +823,10 @@ ep_add_web_app_chrome()
 	#######################################
 	
 	# required to display x window for Chrome
-	sudo apt-get install xserver-xephyr
+	# recently discovered, was libqt-dev for antimciro
+	# This will need added as s dependency into the .deb pkg
+	
+	sudo apt-get install xserver-xephyr libqt4-dev
 
 	#######################################
 	# Software function pre-req
@@ -1155,6 +1158,7 @@ ep_add_web_app_chrome()
 	# fix ownership if need be
 	
 	sudo chown -R steam:steam "/home/steam/"
+	sudo chmod -R 755 "/home/steam/antimicro"
 	
 	###################################
 	# end web app addition loop

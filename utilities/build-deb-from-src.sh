@@ -59,8 +59,8 @@ main()
 	
 	clear
 	# create build dir and git dir, enter it
-	#mkdir -p "$git_dir"
-	#cd "$git_dir"
+	# mkdir -p "$git_dir"
+	# cd "$git_dir"
 	
 	# Ask user for repos / vars
 	echo -e "==> Please enter or paste the git URL now:"
@@ -121,7 +121,7 @@ main()
 			mkdir -p "$git_dir"
 			cd "$git_dir"
 			git clone "$git_url" .
-	else
+		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
@@ -132,7 +132,16 @@ main()
 			git clone "$git_url" .
 		
 		fi
-			
+	
+	else
+		
+			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+			sleep 2s
+			# create DIRS
+			mkdir -p "$git_dir"
+			cd "$git_dir"
+			# create and clone to current dir
+			git clone "$git_url" .	
 	fi
 	
  

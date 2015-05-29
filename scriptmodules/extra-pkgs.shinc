@@ -860,7 +860,7 @@ ep_add_web_app_chrome()
 		
 	else
 		
-		echo -e "Package gantimicro [OK]"
+		echo -e "Package antimicro [OK]"
 		sleep 0.5s
 		
 	fi

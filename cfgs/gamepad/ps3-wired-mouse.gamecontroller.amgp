@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gamecontroller configversion="17" appversion="2.14">
     <!--The SDL name for a joystick is included for informational purposes only.-->
-    <sdlname>X360 Controller</sdlname>
+    <sdlname>PS3 Controller</sdlname>
     <!--The GUID for a joystick is included for informational purposes only.-->
-    <guid>030000005e0400008e02000014010000</guid>
+    <guid>030000004c0500006802000011010000</guid>
     <names/>
     <sets>
         <set index="1">
@@ -164,6 +164,14 @@
                     <slot>
                         <code>3</code>
                         <mode>mousebutton</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="3">
+                <slots>
+                    <slot>
+                        <code>0x20</code>
+                        <mode>keyboard</mode>
                     </slot>
                 </slots>
             </button>

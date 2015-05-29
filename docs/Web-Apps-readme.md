@@ -13,6 +13,7 @@ This assumes you have enabled mouse control for the web app in question for supp
 * Right Joystick (Up/Down/Left/Right) - Scroll wheel
 * A/LB/cross - Mouse left button
 * B/RB/circle - Mouse right button
+* X/square - Spacebar (useful for pausing videos)
 * Y/triangle - Esc button (exits most video in fullscreen)
 * Dpad (left/right) - backward or forward page navigation
 * Back button - Exit web app

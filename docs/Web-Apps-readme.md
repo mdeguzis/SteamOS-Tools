@@ -16,6 +16,7 @@ This assumes you have enabled mouse control for the web app in question for supp
 * X/square - Spacebar (useful for pausing videos)
 * Y/triangle - Esc button (exits most video in fullscreen)
 * Dpad (left/right) - backward or forward page navigation
+* Dpad (left/right/up/down) - Digital movement in [Youtube's Leanback mode](http://www.youtube.com/tv)
 * Back button - Exit web app
 
 ####Keyoard

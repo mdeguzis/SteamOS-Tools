@@ -18,6 +18,9 @@ This assumes you have enabled mouse control for the web app in question for supp
 * Dpad (left/right) - backward or forward page navigation
 * Dpad (left/right/up/down) - Digital movement in [Youtube's Leanback mode](http://www.youtube.com/tv)
 * Back button - Exit web app
+* LT/L2 -Zoom out
+* RT/R2 - Zoom in
+* R3/Right stick click - Reset zoom position to default.
 
 ####Keyoard
 * `CTRL+W` will close the current tab (recommended).

@@ -806,7 +806,7 @@ ep_add_web_app_chrome()
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
 	
-	echo -e "\n==> Installing web app (via Chrome) from automated script..."
+	echo -e "\n==> Installing web app (via Chrome) from automated script...\n"
 	sleep 2s
 	
 	# create Google chrome dir if it does not exist to copy our cfgs in

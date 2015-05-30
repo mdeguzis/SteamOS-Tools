@@ -988,7 +988,8 @@ ep_add_web_app_chrome()
 		sleep 0.5s
 		read -ep "Choice: " custom_url
 		
-		echo -e "\nPlease enter a name for this web app\n"
+		echo -e "\nPlease enter a name for this web app:"
+		echo -e "For names with spaces, please use a dash or underscore\n"
 		sleep 0.5s
 		read -ep "Choice: " custom_name
 		
@@ -1045,7 +1046,7 @@ ep_add_web_app_chrome()
 
 	if [[ -d "$antimicro_dir" ]]; then
 		# DIR found
-		echo -e "Antimicro directory found. Skipping"
+		echo -e "\nAntimicro directory found. Skipping"
 	else
 		# create dir
 		sudo mkdir -p "$antimicro_dir"

@@ -54,8 +54,6 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 
 * Coming soon
 
-\* TODO (hey I have other cool stuff, ya know, to do).
-
 ## Branches
 There are three main branches at the moment
 

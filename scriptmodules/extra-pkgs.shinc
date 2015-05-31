@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.9.9
+# Script Ver:	  	0.1.1
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	
@@ -90,14 +90,17 @@ ep_install_lutris()
 	# Lutris (Open Gaming Platform Frontend)
 	#####################################################
 
-	
 	###############################
 	#  vars
 	###############################
 
 	pkg_type="deb"
 	PKG="lutris"
-	PKG_FILENAME="lutris_0.3.6.3_all.deb"
+	
+	# grab latest release intelligently (should result in lutris_x.x.x.x_all.deb)
+	PKG_FILENAME=$(curl https://lutris.net/downloads/ | awk '/deb/ {print $2}' | \
+	cut -d'/' -f 5 | grep lutris | sed "s|'>lutris_[0-9].[0-9].[0-9].[0-9]_all.deb<||g")
+	
 	BASE_URL="https://lutris.net/releases"
 	BIN_LOC=""
 	PKG_DIR=""

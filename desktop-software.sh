@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.0.0.1
+# Script Ver:	1.0.0.3
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -275,7 +275,7 @@ show_help()
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[firefox|kodi|webapp|plex|x360-bindings]
+	Extra types: 	[firefox|kodi|lutris|plex|webapp|x360-bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -432,7 +432,11 @@ get_software_type()
 	####################################################
 	# popular software / custom specification
 	####################################################
-	
+
+	elif [[ "$type" == "lutris" ]]; then
+                # add web app via chrome from helper script
+                ep_install_lutris
+                exit
 	elif [[ "$type" == "webapp" ]]; then
                 # add web app via chrome from helper script
                 ep_add_web_app_chrome

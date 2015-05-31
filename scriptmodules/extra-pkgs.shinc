@@ -97,7 +97,7 @@ ep_install_lutris()
 	pkg_type="deb"
 	PKG="lutris"
 	
-	echo -e "==> Determining latest release package from lutris.net\n"
+	echo -e "\n==> Determining latest release package from lutris.net\n"
 	# grab latest release intelligently (should result in lutris_x.x.x.x_all.deb)
 	PKG_FILENAME=$(curl https://lutris.net/downloads/ | awk '/deb/ {print $2}' | \
 	cut -d'/' -f 5 | grep lutris | sed "s|'>lutris_[0-9].[0-9].[0-9].[0-9]_all.deb<||g")

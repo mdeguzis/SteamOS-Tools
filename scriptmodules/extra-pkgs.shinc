@@ -97,7 +97,7 @@ ep_install_lutris()
 
 	pkg_type="deb"
 	PKG="lutris"
-	PKG_FILENAME="lutris-latest.deb"
+	PKG_FILENAME="lutris_0.3.6.3_all.deb"
 	BASE_URL="https://lutris.net/releases"
 	BIN_LOC=""
 	PKG_DIR=""

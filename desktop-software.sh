@@ -457,12 +457,6 @@ get_software_type()
                 # install plex from helper script
                 ep_install_x360_bindings
                 exit
-        elif [[ "$type" == "ue4" ]]; then
-                # install ue4 from helper script
-                #software_list="$scriptdir/cfgs/ue4.txt"
-                # skip to ue4 module for now, setup.sh within that build
-                # script will attempt to get our source deps.
-                m_install_ue4_src
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"
@@ -813,7 +807,6 @@ main()
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/mobile-upnp-dlna"
-	import "$scriptdir/scriptmodules/ue4-from-src"
 
         # generate software listing based on type or skip to auto script
         get_software_type
@@ -1078,53 +1071,6 @@ main()
 		
 		# kick off helper script
 		install_mobile_upnp_dlna
-		
-	elif [[ "$type" == "ue4" ]]; then
-	
-
-		if [[ "$options" == "uninstall" ]]; then
-	                uninstall="yes"
-	
-	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/ue4.txt
-	                clear
-			cat $software_list | less
-			exit
-	        
-	        elif [[ "$options" == "check" ]]; then
-
-                        clear
-                        # loop over packages and check
-			echo -e "==> Validating packages already installed...\n"
-			
-			for i in `cat $software_list`; do
-			
-				if [[ "$i" =~ "!broken!" ]]; then
-					skipflag="yes"
-					echo -e "skipping broken package: $i ..."
-					sleep 0.3s
-				else
-					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				
-					if [ "" == "$PKG_OK" ]; then
-						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]"
-						sleep 0.3s
-					else
-						echo -e "Packge $i [OK]"
-						sleep 0.3s
-					fi
-				fi
-			done
-			echo ""
-			exit
-			
-		fi
-        
-		install_software
-		
-		# kick off helper script
-		m_install_ue4_src
 		
         elif [[ "$type" == "$type" ]]; then
         

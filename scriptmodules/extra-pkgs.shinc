@@ -83,6 +83,53 @@ ep_install_x360_bindings()
 	
 }
 
+ep_install_lutris()
+{
+	
+	#####################################################
+	# Lutris (Open Gaming Platform Frontend)
+	#####################################################
+
+	
+	###############################
+	#  vars
+	###############################
+
+	pkg_type="deb"
+	PKG="lutris"
+	PKG_FILENAME="lutris-latest.deb"
+	BASE_URL="https://lutris.net/releases"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag so multiple debs are processed
+	multi="n"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="yes"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
+
+	###############################
+	#  Install
+	###############################
+	
+	# proceed to install eval
+	ep_install_eval_pkg
+	
+	# cleanup
+	ep_pkg_cleanup
+	
+}
+
 ep_install_firefox()
 {
 	#####################################################

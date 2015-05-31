@@ -16,8 +16,7 @@ cd SteamOS-Tools/
 To update your local copy of files:
 ```
 cd SteamOS-Tools/
-git fetch
-git merge
+git pull
 ```
 
 There is also a testing branch for this repository, but I advise against using it.

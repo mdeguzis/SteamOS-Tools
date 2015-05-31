@@ -50,6 +50,10 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 ## Wiki
 - In time I hope to maintain a colletion of useful articles or links to Steamcommunity Guides that still work, currate them and other such things*.
 
+## Video demonstrations / tutorials
+
+* Coming soon
+
 \* TODO (hey I have other cool stuff, ya know, to do).
 
 ## Branches

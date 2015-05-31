@@ -61,8 +61,8 @@ There are three main branches at the moment
 Default branch - "stable" work that gets PRs, fixes, priority over all other branches.  
 `testing`  
 Branch where new scripts are made, larger alterations to existing ones implemented, and more.  
-`testing-wheezy`  
-Now that wheezy is stable, evaluation of current repository and packages is underway. **Not** recommended for use.  
+`testing-jessie`  
+Now that Jessie is stable, evaluation of current repository and packages is underway. **Not** recommended for use.  
 
 ## Pull requests / suggestions
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page

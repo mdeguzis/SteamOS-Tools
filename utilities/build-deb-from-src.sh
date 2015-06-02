@@ -45,7 +45,7 @@ fi
 install_prereqs()
 {
 	clear
-	echo -e "==> Installing pre-requisites for building...\n"
+	echo -e "==> Assessing prerequisites for building...\n"
 	sleep 1s
 	# install needed packages
 	sudo apt-get install git devscripts build-essential checkinstall \
@@ -242,5 +242,6 @@ main()
 }
 
 # start main
+install_prereqs
 main
 

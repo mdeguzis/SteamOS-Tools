@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.9.5
+# Script Ver:	  	0.1.1
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	
@@ -61,6 +61,57 @@ ep_install_x360_bindings()
 	# set external Deb repo required flag
 	export deb_repo_name="wheezy.list"
 	export deb_repo_req="no"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
+
+	###############################
+	#  Install
+	###############################
+	
+	# proceed to install eval
+	ep_install_eval_pkg
+	
+	# cleanup
+	ep_pkg_cleanup
+	
+}
+
+ep_install_lutris()
+{
+	
+	#####################################################
+	# Lutris (Open Gaming Platform Frontend)
+	#####################################################
+
+	###############################
+	#  vars
+	###############################
+
+	pkg_type="deb"
+	PKG="lutris"
+	
+	echo -e "\n==> Determining latest release package from lutris.net\n"
+	# grab latest release intelligently (should result in lutris_x.x.x.x_all.deb)
+	PKG_FILENAME=$(curl https://lutris.net/downloads/ | awk '/deb/ {print $2}' | \
+	cut -d'/' -f 5 | grep lutris | sed "s|'>lutris_[0-9].[0-9].[0-9].[0-9]_all.deb<||g")
+	
+	BASE_URL="https://lutris.net/releases"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag so multiple debs are processed
+	multi="n"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="yes"
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
 	
@@ -484,7 +535,7 @@ ep_install_chrome()
 {
 	# See: https://github.com/ValveSoftware/SteamOS/wiki/Installing-Google-Chrome-for-Netflix
 
-	echo -e "\n==> Installing Chrome from automated script..."
+	echo -e "\n==> Installing Chrome from automated script...\n"
 	sleep 2s
 	
 	###############################	
@@ -652,7 +703,6 @@ ep_install_antimicro()
 	echo -e "\n==> Installing Antimicro from automated script..."
 	sleep 2s
 
-	echo ""
 	#####################################################
 	# Antimicro
 	#####################################################
@@ -667,7 +717,7 @@ ep_install_antimicro()
 	
 	pkg_type="deb"
 	PKG=antimicro
-	PKG_FILENAME="antimicro_2.14+git20150527-SteamOS_amd64.deb"
+	PKG_FILENAME="antimicro_2.14+git20150528-SteamOS-1_amd64.deb"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/utilities"
 	BIN_LOC="/usr/local/bin/antimicro"
 	
@@ -686,6 +736,17 @@ ep_install_antimicro()
 		ep_test_deb
 		exit
 	fi
+	
+	#######################################
+	# Pre-reqs
+	#######################################
+	
+	# required to display program on clean install
+	# recently discovered by user, see issue #53 
+	# This will need added as a dependency into the
+	# .deb pkg if confirmed
+	
+	sudo apt-get install libsdl2-2.0-0 libsdl2-2.0-0:i386  
 	
 	###############################	
 	# install
@@ -737,7 +798,6 @@ ep_install_youtube()
 	BANNER_IMG="Youtube.png"
 
 }
-
 
 ep_install_soundcloud()
 {
@@ -808,7 +868,7 @@ ep_add_web_app_chrome()
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
 	
-	echo -e "\n==> Installing web app (via Chrome) from automated script..."
+	echo -e "\n==> Installing web app (via Chrome) from automated script...\n"
 	sleep 2s
 	
 	# create Google chrome dir if it does not exist to copy our cfgs in
@@ -816,6 +876,55 @@ ep_add_web_app_chrome()
 	if [[ -d "/home/steam/.config/google-chrome/Default/" ]]; then
 		# create DIR
 		sudo mkdir -p "/home/steam/.config/google-chrome/Default"
+	fi
+	
+	#######################################
+	# Pre-reqs
+	#######################################
+	
+	# required to display x window for Chrome
+	# recently discovered, was libqt-dev for antimciro
+	# This will need added as s dependency into the .deb pkg
+	
+	sudo apt-get install xserver-xephyr libqt4-dev
+
+	#######################################
+	# Software function pre-req
+	#######################################
+	
+	echo -e "\n==> Installing pre-requisite software"
+	sleep 1s
+
+	pkg_test=$(which google-chrome-stable)
+
+	if [[ "$pkg_test" == "" ]]; then
+	
+		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
+		# install chrome from script
+		sleep 2s
+		ep_install_chrome
+		
+	else
+		
+		echo -e "\nPackage google-chrome-stable [OK]"
+		sleep 0.5s
+		
+	fi
+	
+	pkg_test=$(which antimicro)
+
+	if [[ "$pkg_test" == "" ]]; then
+	
+		echo -e "\n==INFO==\nantimicro not found! Installing now..."
+		# install antimicro from script
+		sleep 2s
+		ep_install_antimicro
+		
+	else
+		
+		echo -e "Package antimicro [OK]"
+		sleep 0.5s
+		
 	fi
 	
 	###################################
@@ -895,53 +1004,6 @@ ep_add_web_app_chrome()
 			;;
 		esac
 		
-	
-	#######################################
-	# Pre-reqs
-	#######################################
-	
-	# required to display x window for Chrome
-	sudo apt-get install xserver-xephyr
-
-	#######################################
-	# Software function pre-req
-	#######################################
-	
-	echo -e "\n==> Installing pre-requisite software"
-	sleep 1s
-
-	pkg_test=$(which google-chrome-stable)
-
-	if [[ "$pkg_test" == "" ]]; then
-	
-		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
-		# install chrome from script
-		sleep 2s
-		ep_install_chrome
-		
-	else
-		
-		echo -e "\nPackage google-chrome-stable [OK]"
-		sleep 0.5s
-		
-	fi
-	
-	pkg_test=$(which antimicro)
-
-	if [[ "$pkg_test" == "" ]]; then
-	
-		echo -e "\n==INFO==\nantimicro not found! Installing now..."
-		# install antimicro from script
-		sleep 2s
-		ep_install_antimicro
-		
-	else
-		
-		echo -e "Package gantimicro [OK]"
-		sleep 0.5s
-		
-	fi
-	
 	#######################################
 	# Configuration
 	#######################################
@@ -988,7 +1050,8 @@ ep_add_web_app_chrome()
 		sleep 0.5s
 		read -ep "Choice: " custom_url
 		
-		echo -e "\nPlease enter a name for this web app\n"
+		echo -e "\nPlease enter a name for this web app:"
+		echo -e "For names with spaces, please use a dash or underscore\n"
 		sleep 0.5s
 		read -ep "Choice: " custom_name
 		
@@ -1004,8 +1067,9 @@ ep_add_web_app_chrome()
 		if [[ "$custom_img" == "" ]]; then
 		
 			# copy over default banner
+			default_img="/home/steam/Pictures/WebApp-Default.png"
 			sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.png" "/home/steam/Pictures/WebApp-Default.png"
-			sudo sed -i "s|IMG_TMP|$custom_img|g" "/usr/share/applications/${custom_name}.desktop"
+			sudo sed -i "s|IMG_TMP|$default_img|g" "/usr/share/applications/${custom_name}.desktop"
 		else
 			
 			# use custom banner
@@ -1044,7 +1108,7 @@ ep_add_web_app_chrome()
 
 	if [[ -d "$antimicro_dir" ]]; then
 		# DIR found
-		echo -e "Antimicro directory found. Skipping"
+		echo -e "\nAntimicro directory found. Skipping"
 	else
 		# create dir
 		sudo mkdir -p "$antimicro_dir"
@@ -1156,6 +1220,7 @@ ep_add_web_app_chrome()
 	# fix ownership if need be
 	
 	sudo chown -R steam:steam "/home/steam/"
+	sudo chmod -R 755 "/home/steam/antimicro"
 	
 	###################################
 	# end web app addition loop

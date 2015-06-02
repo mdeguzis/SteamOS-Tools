@@ -16,8 +16,7 @@ cd SteamOS-Tools/
 To update your local copy of files:
 ```
 cd SteamOS-Tools/
-git fetch
-git merge
+git pull
 ```
 
 There is also a testing branch for this repository, but I advise against using it.
@@ -50,7 +49,9 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 ## Wiki
 - In time I hope to maintain a colletion of useful articles or links to Steamcommunity Guides that still work, currate them and other such things*.
 
-\* TODO (hey I have other cool stuff, ya know, to do).
+## Video demonstrations / tutorials
+
+* Coming soon
 
 ## Branches
 There are three main branches at the moment
@@ -59,8 +60,8 @@ There are three main branches at the moment
 Default branch - "stable" work that gets PRs, fixes, priority over all other branches.  
 `testing`  
 Branch where new scripts are made, larger alterations to existing ones implemented, and more.  
-`testing-wheezy`  
-Now that wheezy is stable, evaluation of current repository and packages is underway. **Not** recommended for use.  
+`testing-jessie`  
+Now that Jessie is stable, evaluation of current repository and packages is underway. **Not** recommended for use.  
 
 ## Pull requests / suggestions
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page

@@ -124,6 +124,18 @@
                 </stickbutton>
             </stick>
             <dpad index="1">
+                <dpadbutton index="1">
+                    <slots>
+                        <slot>
+                            <code>0x1000023</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                        <slot>
+                            <code>0x1000013</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
                 <dpadbutton index="2">
                     <slots>
                         <slot>
@@ -132,6 +144,18 @@
                         </slot>
                         <slot>
                             <code>0x1000014</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
+                <dpadbutton index="4">
+                    <slots>
+                        <slot>
+                            <code>0x1000023</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                        <slot>
+                            <code>0x1000015</code>
                             <mode>keyboard</mode>
                         </slot>
                     </slots>
@@ -149,6 +173,34 @@
                     </slots>
                 </dpadbutton>
             </dpad>
+            <trigger index="1">
+                <triggerbutton index="2">
+                    <slots>
+                        <slot>
+                            <code>0x1000021</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                        <slot>
+                            <code>0x2d</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </triggerbutton>
+            </trigger>
+            <trigger index="2">
+                <triggerbutton index="2">
+                    <slots>
+                        <slot>
+                            <code>0x1000021</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                        <slot>
+                            <code>0x1000002b</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </triggerbutton>
+            </trigger>
             <button index="1">
                 <slots>
                     <slot>
@@ -165,6 +217,14 @@
                     </slot>
                 </slots>
             </button>
+            <button index="3">
+                <slots>
+                    <slot>
+                        <code>0x20</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
             <button index="5">
                 <slots>
                     <slot>
@@ -173,6 +233,18 @@
                     </slot>
                     <slot>
                         <code>0x57</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="9">
+                <slots>
+                    <slot>
+                        <code>0x1000021</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>0x30</code>
                         <mode>keyboard</mode>
                     </slot>
                 </slots>

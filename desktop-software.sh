@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.0.0.1
+# Script Ver:	1.0.0.3
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -275,7 +275,7 @@ show_help()
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[firefox|kodi|webapp|plex|x360-bindings]
+	Extra types: 	[firefox|kodi|lutris|plex|webapp|x360-bindings]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -432,7 +432,11 @@ get_software_type()
 	####################################################
 	# popular software / custom specification
 	####################################################
-	
+
+	elif [[ "$type" == "lutris" ]]; then
+                # add web app via chrome from helper script
+                ep_install_lutris
+                exit
 	elif [[ "$type" == "webapp" ]]; then
                 # add web app via chrome from helper script
                 ep_add_web_app_chrome
@@ -457,12 +461,6 @@ get_software_type()
                 # install plex from helper script
                 ep_install_x360_bindings
                 exit
-        elif [[ "$type" == "ue4" ]]; then
-                # install ue4 from helper script
-                #software_list="$scriptdir/cfgs/ue4.txt"
-                # skip to ue4 module for now, setup.sh within that build
-                # script will attempt to get our source deps.
-                m_install_ue4_src
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"
@@ -813,7 +811,6 @@ main()
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/mobile-upnp-dlna"
-	import "$scriptdir/scriptmodules/ue4-from-src"
 
         # generate software listing based on type or skip to auto script
         get_software_type
@@ -1078,53 +1075,6 @@ main()
 		
 		# kick off helper script
 		install_mobile_upnp_dlna
-		
-	elif [[ "$type" == "ue4" ]]; then
-	
-
-		if [[ "$options" == "uninstall" ]]; then
-	                uninstall="yes"
-	
-	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/ue4.txt
-	                clear
-			cat $software_list | less
-			exit
-	        
-	        elif [[ "$options" == "check" ]]; then
-
-                        clear
-                        # loop over packages and check
-			echo -e "==> Validating packages already installed...\n"
-			
-			for i in `cat $software_list`; do
-			
-				if [[ "$i" =~ "!broken!" ]]; then
-					skipflag="yes"
-					echo -e "skipping broken package: $i ..."
-					sleep 0.3s
-				else
-					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				
-					if [ "" == "$PKG_OK" ]; then
-						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]"
-						sleep 0.3s
-					else
-						echo -e "Packge $i [OK]"
-						sleep 0.3s
-					fi
-				fi
-			done
-			echo ""
-			exit
-			
-		fi
-        
-		install_software
-		
-		# kick off helper script
-		m_install_ue4_src
 		
         elif [[ "$type" == "$type" ]]; then
         

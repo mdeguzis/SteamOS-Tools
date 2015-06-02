@@ -108,11 +108,14 @@ Sourced from Linux Mint LMDE 2.
 `kodi`      
 Kicks off an automated script to install Kodi, as provided by the [SteamOS Kodi repository](http://forum.kodi.tv/showthread.php?tid=197422)  
 
-`webapp`      
-Installs the `google-chrome-stable` pre-requisite package, then queries which website you would like to add as a "web app." Custom urls and images are allowed to be specified.
+`lutris`      
+Kicks off an automated script to install the open gaming frontend platform [Lutris](https://lutris.net/). 
 
 `plex`      
-Kicks off an automated script to install plexhometheatre.  
+Kicks off an automated script to install plexhometheatre. 
+
+`webapp`      
+Installs the `google-chrome-stable` pre-requisite package, then queries which website you would like to add as a "web app." Custom urls and images are allowed to be specified.
 
 `xbox-bindings`      
 Installs the nice set of controller bindings from [Sharkwouter](https://github.com/sharkwouter) and his [VaporOS 2](https://steamcommunity.com/groups/steamuniverse/discussions/1/612823460253620427/) SteamOS variant

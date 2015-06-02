@@ -4,7 +4,7 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.1.5
+# Script Ver:	0.1.7
 # Description:	Attempts to build a deb package from a git src
 #
 # Usage:	sudo ./build-deb-from-src.sh
@@ -59,8 +59,8 @@ main()
 	
 	clear
 	# create build dir and git dir, enter it
-	mkdir -p "$git_dir"
-	cd "$git_dir"
+	# mkdir -p "$git_dir"
+	# cd "$git_dir"
 	
 	# Ask user for repos / vars
 	echo -e "==> Please enter or paste the git URL now:"
@@ -121,15 +121,27 @@ main()
 			mkdir -p "$git_dir"
 			cd "$git_dir"
 			git clone "$git_url" .
-	else
+		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
+			# create DIRS
+			mkdir -p "$git_dir"
+			cd "$git_dir"
 			# create and clone to current dir
 			git clone "$git_url" .
 		
 		fi
-			
+	
+	else
+		
+			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+			sleep 2s
+			# create DIRS
+			mkdir -p "$git_dir"
+			cd "$git_dir"
+			# create and clone to current dir
+			git clone "$git_url" .	
 	fi
 	
  

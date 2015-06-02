@@ -743,7 +743,7 @@ ep_install_antimicro()
 	
 	# required to display program on clean install
 	# recently discovered by user, see issue #53 
-	# This will need added as s dependency into the
+	# This will need added as a dependency into the
 	# .deb pkg if confirmed
 	
 	sudo apt-get install libsdl2-2.0-0 libsdl2-2.0-0:i386  

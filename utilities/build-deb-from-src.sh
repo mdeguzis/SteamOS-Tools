@@ -49,7 +49,7 @@ install_prereqs()
 	sleep 1s
 	# install needed packages
 	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring
+	debian-keyring debian-archive-keyring cmake
 
 }
 

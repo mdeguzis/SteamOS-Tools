@@ -166,9 +166,7 @@ main()
 	
 	while [[ "$src_cmd" != "done" ]];
 	do
-		# capture command
-		read -ep "Build CMD >> " src_cmd
-		
+	
 		# ignore executing src_cmd if "done"
 		if [[ "$src_cmd" == "done" ]]; then
 			# do nothing
@@ -178,6 +176,10 @@ main()
 			$src_cmd
 			echo ""
 		fi
+		
+		# capture command
+		read -ep "Build CMD >> " src_cmd
+		
 	done
   
 	############################

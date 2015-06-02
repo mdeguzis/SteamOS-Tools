@@ -1,0 +1,13 @@
+## Antimicro
+Maintainer: [ ]
+Summary:  [ ]
+Name: [ ] 
+Version: [ ] 
+Release: [ ] 
+License: [ ] 
+Group: [ ]
+Architecture: [ ]
+Source location: [ ]
+Alternate source location: [ ]
+Requiquires [ ]
+Provides: [ ]

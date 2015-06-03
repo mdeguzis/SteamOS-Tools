@@ -14,6 +14,7 @@
 * [Artwork](#artwork)
 * [Thanks](#thanks)
 * [Troubleshooting](#troubleshooting)
+  * [Issue 1: Window sizing](#issue1)
 
 <a name="summary"></a>
 **Summary**
@@ -98,6 +99,21 @@ Thanks to Shark, Ryochan7, and Dubigrasu of the Steam Universe forums for the la
 **Troubleshooting**
 ===
 
+<a name="issue1"></a>
+***
+**Issue 1:**  
+The Google Chrome window for the web app does not cover the entire screen.
+
+*Solution:*    
+If you start Chrome in desktop mode and its window is adjusted to fit between a left and top bar, the next time is started in Xephyr it will use exactly that size and not fill the screen. Perform the following in a terminal window session:
+
+```
+sudo su - steam
+google-chrome
+```
+
+Resize Chrome to be really full screen (so to cover everything) using F11 on your keyboard, then close it with Ctrl+W. Return to Steam, and try it again in Xephyr to see if that is still the case (or even try smaller window sizes to see if it remembers them).
+
 If you have any questions, comments, or criticisms, please submit an issues ticket on GitHub.
 
-
+***

@@ -125,5 +125,4 @@ google-chrome
 ```
 
 Resize Chrome to be really full screen (so to cover everything) using F11 on your keyboard, then close it with Ctrl+W. Return to Steam, and try it again in Xephyr to see if that is still the case (or even try smaller window sizes to see if it remembers them).
-
-***
+===

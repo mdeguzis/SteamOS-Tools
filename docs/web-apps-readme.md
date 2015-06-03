@@ -32,8 +32,11 @@ This assumes you have enabled mouse control for the web app in question for supp
 * Right Joystick (Up/Down/Left/Right) - Scroll wheel
 * A/LB - Mouse left button
 * B/RB - Mouse right button
+* X/square - Spacebar (useful for pausing fullscreen videos)
+* Y/triange - Esc (useful for exiting fullscreen mode on videos)
 * Dpad (left/right) - backward or forward page navigation
 * Dpad (left/right/up/down) - Digital button navigation with 
+* R3 (right stick click) - Reset zoom status to default view. 
 * Back button - Exit web app
 
 <a name="keyboard"></a>
@@ -62,11 +65,12 @@ Please keep in mind that the majority, if not all, of these extensions are only 
 
 <a name="install"></a>
 #Installation
-
-    sudo apt-get install git
-    git clone https://github.com/ProfessorKaos64/SteamOS-Tools
-    cd SteamOS-Tools
-    ./desktop-software.sh install webapp
+```
+sudo apt-get install git
+git clone https://github.com/ProfessorKaos64/SteamOS-Tools
+cd SteamOS-Tools
+./desktop-software.sh install webapp
+```
 
 <a name="process"></a>
 #The Process

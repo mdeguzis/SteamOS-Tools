@@ -32,6 +32,7 @@ This assumes you have enabled mouse control for the web app in question for supp
 * A/LB - Mouse left button
 * B/RB - Mouse right button
 * Dpad (left/right) - backward or forward page navigation
+* Dpad (left/right/up/down) - Digital button navigation with 
 * Back button - Exit web app
 
 <a name="keyboard"></a>

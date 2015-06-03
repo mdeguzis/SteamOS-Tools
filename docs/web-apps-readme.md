@@ -98,6 +98,7 @@ Thanks to Shark, Ryochan7, and Dubigrasu of the Steam Universe forums for the la
 <a name="troubleshooting"></a>
 **Troubleshooting**
 ===
+This section will cover common known issues, how to possibly deal with them, etc. If you have any questions, comments, or criticisms, please submit an issues ticket on GitHub. Most issues will be stored within the issues section, not in this location.
 
 <a name="issue1"></a>
 ***
@@ -113,7 +114,5 @@ google-chrome
 ```
 
 Resize Chrome to be really full screen (so to cover everything) using F11 on your keyboard, then close it with Ctrl+W. Return to Steam, and try it again in Xephyr to see if that is still the case (or even try smaller window sizes to see if it remembers them).
-
-If you have any questions, comments, or criticisms, please submit an issues ticket on GitHub.
 
 ***

@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=0.1.1
-Name=Hulu
-Comment=Launcher for Hulu via Chrome
-Exec=/usr/bin/Hulu-Launch.sh
-Icon=/home/steam/Pictures/Hulu.png
-Terminal=false
-Type=Application
-Categories=Utility;Application;

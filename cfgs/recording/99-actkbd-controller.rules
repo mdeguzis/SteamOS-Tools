@@ -1,0 +1,1 @@
+ACTION=="add", ENV{ID_INPUT_JOYSTICK}=="?*", RUN+="/usr/sbin/actkbd -D --device $tempnode --config /etc/actkbd-steamos-controller.conf"

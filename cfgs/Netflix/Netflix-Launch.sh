@@ -10,13 +10,14 @@ main()
 
 	# start antimicro mouse control
         #antimicro_tmp
+	antimicro_PID=$!
 
 	export DISPLAY=:15
 	LD_PRELOAD= google-chrome --kiosk https://www.netflix.com/ --window-size=$COMMA_WIN_RES &&
 
 	sleep 1
 	killall chrome
-	killall antimicro
+	kill $antimicro_PID
 	kill $XEPHYR_PID
 
 }

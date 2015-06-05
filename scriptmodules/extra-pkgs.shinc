@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	0.9.9
+# Script Ver:	  	1.3.1
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	
@@ -61,6 +61,57 @@ ep_install_x360_bindings()
 	# set external Deb repo required flag
 	export deb_repo_name="wheezy.list"
 	export deb_repo_req="no"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
+
+	###############################
+	#  Install
+	###############################
+	
+	# proceed to install eval
+	ep_install_eval_pkg
+	
+	# cleanup
+	ep_pkg_cleanup
+	
+}
+
+ep_install_lutris()
+{
+	
+	#####################################################
+	# Lutris (Open Gaming Platform Frontend)
+	#####################################################
+
+	###############################
+	#  vars
+	###############################
+
+	pkg_type="deb"
+	PKG="lutris"
+	
+	echo -e "\n==> Determining latest release package from lutris.net\n"
+	# grab latest release intelligently (should result in lutris_x.x.x.x_all.deb)
+	PKG_FILENAME=$(curl https://lutris.net/downloads/ | awk '/deb/ {print $2}' | \
+	cut -d'/' -f 5 | grep lutris | sed "s|'>lutris_[0-9].[0-9].[0-9].[0-9]_all.deb<||g")
+	
+	BASE_URL="https://lutris.net/releases"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag so multiple debs are processed
+	multi="n"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="yes"
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
 	
@@ -666,7 +717,7 @@ ep_install_antimicro()
 	
 	pkg_type="deb"
 	PKG=antimicro
-	PKG_FILENAME="antimicro_2.14+git20150528-SteamOS-1_amd64.deb"
+	PKG_FILENAME="antimicro_2.14+git20150602-SteamOS-1_amd64.deb"
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/utilities"
 	BIN_LOC="/usr/local/bin/antimicro"
 	
@@ -685,6 +736,17 @@ ep_install_antimicro()
 		ep_test_deb
 		exit
 	fi
+	
+	#######################################
+	# Pre-reqs
+	#######################################
+	
+	# required to display program on clean install
+	# recently discovered by user, see issue #53 
+	# This will need added as a dependency into the
+	# .deb pkg if confirmed
+	
+	sudo apt-get install libsdl2-2.0-0 libsdl2-2.0-0:i386  
 	
 	###############################	
 	# install

@@ -45,10 +45,12 @@ fi
 install_prereqs()
 {
 	clear
-	echo -e "\n==>Installing pre-requisites for building...\n"
+	echo -e "==> Assessing prerequisites for building...\n"
 	sleep 1s
 	# install needed packages
-	sudo apt-get install git devscripts build-essential checkinstall
+	sudo apt-get install git devscripts build-essential checkinstall \
+	debian-keyring debian-archive-keyring cmake g++ libqt4-dev libqt4-dev \
+	libxi-dev libxtst-dev libX11-dev
 
 }
 
@@ -164,9 +166,7 @@ main()
 	
 	while [[ "$src_cmd" != "done" ]];
 	do
-		# capture command
-		read -ep "Build CMD >> " src_cmd
-		
+	
 		# ignore executing src_cmd if "done"
 		if [[ "$src_cmd" == "done" ]]; then
 			# do nothing
@@ -176,6 +176,10 @@ main()
 			$src_cmd
 			echo ""
 		fi
+		
+		# capture command
+		read -ep "Build CMD >> " src_cmd
+		
 	done
   
 	############################
@@ -241,5 +245,6 @@ main()
 }
 
 # start main
+install_prereqs
 main
 

@@ -24,6 +24,10 @@ if [[ "$opt" == "install" ]]; then
   # set scriptdir
   scriptdir="/home/desktop/SteamOS-Tools"
   
+  ############################################
+  # Prerequisite packages
+  ############################################
+  
   #Build deps (for source building)
   sudo apt-get install build-essential zlib1g-dev libsdl1.2-dev libsdl2-dev libjpeg-dev \
   nasm tar libbz2-dev libgtk2.0-dev cmake git libfluidsynth-dev libgme-dev \
@@ -34,14 +38,6 @@ if [[ "$opt" == "install" ]]; then
   ############################################
   
   brutal_dir="/home/steam/brutal-doom"
-  
-  # GPG key for building using "build-deb-from-ppa"
-  # deb-src http://archive.getdeb.net/ubuntu vivid-getdeb apps
-  # A8A515F046D7E7CF
-  
-  ############################################
-  # Prerequisite packages
-  ############################################
   
   ############################################
   # Create folders for Project

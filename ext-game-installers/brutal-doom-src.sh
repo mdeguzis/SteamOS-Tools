@@ -138,12 +138,12 @@ elif [[ "$opt" == "install" ]]; then
   BACKUPGZDOOM="$(sed -n 's/.*#define GIT_DESCRIPTION "\(.*\)".*/\1/p' \
   gzdoom/src/gitinfo.h)" && \
   mkdir -pv "$BACKUPGZDOOM"
-
-  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/gzdoom.pk3" "$BACKUPGZDOOM"
-  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/lights.pk3" "$BACKUPGZDOOM"
-  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/brightmaps.pk3" "$BACKUPGZDOOM"
-  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/output_sdl/liboutput_sdl.so" "$BACKUPGZDOOM"
-  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/$FMODFOLDER/api/lib/$FMODFILE.so" "$BACKUPGZDOOM"
+  
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/gzdoom.pk3" "$BACKUPGZDOOM"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/lights.pk3" "$BACKUPGZDOOM"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/brightmaps.pk3" "$BACKUPGZDOOM"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/liboutput_sdl.so" "$BACKUPGZDOOM"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/$FMODFOLDER/api/lib/$FMODFILE.so" "$BACKUPGZDOOM"
   
   #############################################
   # install GZDoom (deb pkg may be built later)
@@ -173,11 +173,11 @@ elif [[ "$opt" == "install" ]]; then
   # liboutput_sdl.so and libfmodex64-4.26.36.so or 
   # libfmodex-4.26.36.so to /usr/games/gzdoom: 
   
-  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/gzdoom.pk3" "/usr/games/gzdoom"
-  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/lights.pk3" "/usr/games/gzdoom"
-  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/brightmaps.pk3" "/usr/games/gzdoom"
-  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/output_sdl/liboutput_sdl.so" "/usr/games/gzdoom"
-  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/$FMODFOLDER/api/lib/$FMODFILE.so" "/usr/games/gzdoom"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/gzdoom.pk3" "/usr/games/gzdoom"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/lights.pk3" "/usr/games/gzdoom"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/brightmaps.pk3" "/usr/games/gzdoom"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/liboutput_sdl.so" "/usr/games/gzdoom"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/$FMODFOLDER/api/lib/$FMODFILE.so" "/usr/games/gzdoom"
   
   #############################################
   # create GZDoom script

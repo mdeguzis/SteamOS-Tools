@@ -35,7 +35,9 @@ if [[ "$opt" == "-help" ]]; then
   show_help
 
 elif [[ "$opt" == "install" ]]; then
-
+  
+  clear
+  
   # set scriptdir
   scriptdir="/home/desktop/SteamOS-Tools"
   
@@ -176,9 +178,9 @@ elif [[ "$opt" == "install" ]]; then
   ############################################
   
   # TODO ?
-
-elif [[ "$opt" == "uninstall" ]]; then
-
+  
+  elif [[ "$opt" == "uninstall" ]]; then
+  
   #uninstall
   
   # Remove /usr/games/gzdoom directory and all its files:

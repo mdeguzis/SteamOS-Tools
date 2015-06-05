@@ -2,7 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [pair-ps3-bluetooth-readme.md](#pair-ps3-bluetooth-readmemd)
+- [remote-record-steam-readme.md](#remote-record-steam-readmemd)
 - [About](#about)
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)

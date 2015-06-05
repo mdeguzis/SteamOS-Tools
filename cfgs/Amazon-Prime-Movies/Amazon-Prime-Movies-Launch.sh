@@ -10,14 +10,13 @@ main ()
 
 	# start antimicro mouse control
         #antimicro_tmp
-	antimicro_PID=$!
 
 	export DISPLAY=:15
 	LD_PRELOAD= google-chrome --kiosk http://www.amazon.com/Prime-Instant-Video/b?node=2676882011 --window-size=$COMMA_WIN_RES &&
 
 	sleep 1
 	killall chrome
-	kill $antimicro_PID
+	killall antimicro
 	kill $XEPHYR_PID
 
 }

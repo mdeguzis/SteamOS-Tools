@@ -11,6 +11,7 @@
 #                   Compile using CMake.
 #
 # Usage:	          ./brutal-doom.sh [install|uninstall]
+#                   ./brutal-doom.sh -help
 #
 # Warning:	        You MUST have the Debian repos added properly for
 #	                	Installation of the pre-requisite packages.
@@ -19,7 +20,21 @@
 # get option
 opt="$1"
 
-if [[ "$opt" == "install" ]]; then
+show_help()
+{
+  
+  clear
+  echo -e "Usage:\n"
+  echo -e "./brutal-doom.sh [install|uninstall]"
+  echo -e "./brutal-doom.sh -help"
+  exit 1
+}
+
+if [[ "$opt" == "-help" ]]; then
+  
+  show_help
+
+elif [[ "$opt" == "install" ]]; then
 
   # set scriptdir
   scriptdir="/home/desktop/SteamOS-Tools"
@@ -172,5 +187,10 @@ elif [[ "$opt" == "uninstall" ]]; then
   # Remove gzdoom script:
   cd /usr/bin && \
   sudo rm -fv gzdoom
+  
+else
+
+  # if nothing specified, show help
+    show_help
 
 fi

@@ -28,11 +28,13 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 ```
 
 ## Contents
+* artwork - banners and various images/artwork for SteamOS.
 * cfgs/ - various configuration files, including package lists for Debian software installations.
 * docs/ - readme files for each script.
 * extra/ - various extra scripts
+* game-fixes - a location to store some small deployable fixes for games.
 * scriptmodules/ - plugable bash modules / routines for any of the below scripts. Scripts for packages and more (including Netflix!)
-* utilities/ - various scripts to handle small parts of the SteamOS-Tools repository (plugable objects)
+* utilities/ - various scripts to handle small parts of the SteamOS-Tools repository (plugable objects) and standalone tools for use.
   * build-deb-from-ppa.sh - attempts to build a Debian package from a PPA repository.
   * build-deb-from-src.sh - attempts to build a Debian package from a git source tree.
   * build-test-chroot.sh - build a Debian or SteamOS jail for testing **[in progress]**
@@ -40,11 +42,11 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
   * gpg_import.sh - import GPG keys (used internally).
   * pair-ps3-bluetooth.sh - pairs your PS3 blueooth controllers to a supported receiver.
   * ssh-rom-transfer.sh - transfer ROMs over SSH to a remote computer.
+  * steamos-stats.sh - displays useful stats while gaming over SSH from another device.
 * README.md - This file.
 * add-debian-repos.sh - adds debian repositories for installing Debian wheezy software.
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages. Please see the readme file in docs/ for the full listing of options.
 * disclaimer.md - safety warnings for this repository.
-* steamos-stats.sh - displays useful stats while gaming over SSH from another device.
 
 ## Wiki
 - In time I hope to maintain a colletion of useful articles or links to Steamcommunity Guides that still work, currate them and other such things*.

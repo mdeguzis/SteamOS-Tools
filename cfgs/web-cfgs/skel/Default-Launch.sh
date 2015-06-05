@@ -10,14 +10,13 @@ main ()
 
 	# start antimicro mouse control
         #antimicro_tmp
-        antimicro_PID=$!
 
 	export DISPLAY=:15
 	LD_PRELOAD= google-chrome --kiosk WEB_URL_TMP --window-size=$COMMA_WIN_RES &&
 
 	sleep 1
 	killall chrome
-	kill $antimicro_PID
+	killall antimicro
 	kill $XEPHYR_PID
 
 }

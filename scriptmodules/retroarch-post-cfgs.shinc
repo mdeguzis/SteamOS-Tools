@@ -128,6 +128,10 @@ if [[ "$apt_mode" == "install" ]]; then
 		fi
 	done
 	
+	# correct owners for base folders
+	sudo chown -R steam:steam $steam_home
+	sudo chown -R desktop:desktop $desktop_home
+	
 	#################################################
 	# Application parameters 
 	#################################################

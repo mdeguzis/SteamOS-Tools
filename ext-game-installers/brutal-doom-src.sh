@@ -45,7 +45,7 @@ if [[ "$opt" == "install" ]]; then
   
   echo -n "\n==> Checkin for Brutal Doom directory"
   
-  if [[ -d "$brutal_dir" ]]
+  if [[ -d "$brutal_dir" ]]; then
     echo -n "\nBrutal Doom directory found"
   else
     sudo mkdir $brutal_dir

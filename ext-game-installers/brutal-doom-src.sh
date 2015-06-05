@@ -142,6 +142,7 @@ main ()
   gzdoom/src/gitinfo.h)" && \
   mkdir -pv "$BACKUPGZDOOM"
   
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/gzdoom" "$BACKUPGZDOOM"
   sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/gzdoom.pk3" "$BACKUPGZDOOM"
   sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/lights.pk3" "$BACKUPGZDOOM"
   sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/brightmaps.pk3" "$BACKUPGZDOOM"
@@ -176,6 +177,7 @@ main ()
   # liboutput_sdl.so and libfmodex64-4.26.36.so or 
   # libfmodex-4.26.36.so to /usr/games/gzdoom: 
   
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/gzdoom" "/usr/games/gzdoom"
   sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/gzdoom.pk3" "/usr/games/gzdoom"
   sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/lights.pk3" "/usr/games/gzdoom"
   sudo cp -v "/home/$USER/gzdoom_build/gzdoom/build/brightmaps.pk3" "/usr/games/gzdoom"
@@ -198,7 +200,7 @@ main ()
   sudo cp -v gzdoom /usr/bin && \
   rm -fv gzdoom
   
-  echo -e "\n==INFO==\nexecut gzdoom with 'gzdoom' from a terminal window to run\n"
+  echo -e "\n==INFO==\nExecute gzdoom with 'gzdoom' from a terminal window to run"
   
   ############################################
   # Configure

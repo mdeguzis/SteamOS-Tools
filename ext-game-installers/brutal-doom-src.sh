@@ -26,7 +26,7 @@ show_help()
   clear
   echo -e "Usage:\n"
   echo -e "./brutal-doom.sh [install|uninstall]"
-  echo -e "./brutal-doom.sh -help"
+  echo -e "./brutal-doom.sh -help\n"
   exit 1
 }
 

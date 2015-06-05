@@ -174,9 +174,16 @@ elif [[ "$opt" == "install" ]]; then
   FMODFOLDER="fmodapi42636linux"
   FMODFILE="libfmodex-4.26.36"
   fi && \
-  sudo cp -v /home/$USER/gzdoom_build/gzdoom/{build/{gzdoom,\
-  gzdoom.pk3,lights.pk3,brightmaps.pk3,output_sdl/liboutput_sdl.so},\
-  $FMODFOLDER/api/lib/$FMODFILE.so} /usr/games/gzdoom
+  
+  # Copy gzdoom, gzdoom.pk3, lights.pk3, brightmaps.pk3, 
+  # liboutput_sdl.so and libfmodex64-4.26.36.so or 
+  # libfmodex-4.26.36.so to /usr/games/gzdoom: 
+  
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/gzdoom.pk3" "/usr/games/gzdoom"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/lights.pk3" "/usr/games/gzdoom"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/brightmaps.pk3" "/usr/games/gzdoom"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/output_sdl/liboutput_sdl.so" "/usr/games/gzdoom"
+  sudo cp -v "/home/$USER/gzdoom_build/gzdoom_build/gzdoom/$FMODFOLDER/api/lib/$FMODFILE.so" /usr/games/gzdoom
   
   #############################################
   # create GZDoom script

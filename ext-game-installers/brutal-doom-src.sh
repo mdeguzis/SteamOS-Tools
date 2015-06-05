@@ -65,7 +65,7 @@ elif [[ "$opt" == "install" ]]; then
   sleep 0.2s
   
   if [[ -d "$HOME/gzdoom_build" ]]; then
-    echo -n "\nBrutal Doom build directory found, cleaning"
+    echo -e "\nBrutal Doom build directory found, cleaning"
     sudo rm -rf "$HOME/gzdoom-doom"
   else
     sudo mkdir "$HOME/gzdoom_build"

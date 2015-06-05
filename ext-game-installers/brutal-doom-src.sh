@@ -38,6 +38,9 @@ elif [[ "$opt" == "install" ]]; then
   
   clear
   
+  # remove previous dirs
+  sudo rm -f
+  
   # set scriptdir
   scriptdir="/home/desktop/SteamOS-Tools"
   
@@ -54,8 +57,6 @@ elif [[ "$opt" == "install" ]]; then
   # vars
   ############################################
   
-  brutal_dir="/home/steam/brutal-doom"
-  
   ############################################
   # Create folders for Project
   ############################################
@@ -63,14 +64,12 @@ elif [[ "$opt" == "install" ]]; then
   echo -e "\n==> Checking for Brutal Doom directory"
   sleep 0.2s
   
-  if [[ -d "$brutal_dir" ]]; then
-    echo -n "\nBrutal Doom directory found"
+  if [[ -d "$HOME/gzdoom_build" ]]; then
+    echo -n "\nBrutal Doom build directory found, cleaning"
+    sudo rm -rf "$HOME/gzdoom-doom"
   else
-    sudo mkdir $brutal_dir
+    sudo mkdir "$HOME/gzdoom_build"
   fi
-  
-  # enter dir
-  cd $brutal_dir
   
   ############################################
   # acquire GZDoom
@@ -78,9 +77,6 @@ elif [[ "$opt" == "install" ]]; then
 
   echo -e "\n==> Acquiring GZDoom files\n"
   sleep 2s
-  
-  # build dir
-  mkdir -pv $HOME/gzdoom_build
   
   # source location
   cd $HOME/gzdoom_build && \

@@ -60,7 +60,7 @@ elif [[ "$opt" == "install" ]]; then
   # Create folders for Project
   ############################################
   
-  echo -n "\n==> Checkin for Brutal Doom directory"
+  echo -e "\n==> Checking for Brutal Doom directory"
   
   if [[ -d "$brutal_dir" ]]; then
     echo -n "\nBrutal Doom directory found"

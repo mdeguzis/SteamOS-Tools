@@ -37,11 +37,11 @@ extra_opts=$(echo "${@: -1}")
 #echo "Software type 1: $type"
 #echo "Extra opts 1: $extra_opts"
 #echo -e "Availble custom pkg list 1: \n"
-#cat custom-pkg.txt
+#cat software-lists/custom-pkg.txt
 #sleep 50s
 
 # remove old custom files
-rm -f "custom-pkg.txt"
+rm -f "software-lists/custom-pkg.txt"
 rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
@@ -49,26 +49,26 @@ while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type_tmp="$2"
-	echo "$type_tmp" >> "custom-pkg.txt"
+	echo "$type_tmp" >> "software-lists/custom-pkg.txt"
 	# Shift all the parameters down by one
 	shift
 done
 
 # Strip symbols from large pkg pastes from build-depends
-sed -i "s|(>= [0-9].[0-9].[0-9])||g" custom-pkg.txt
-sed -i "s|(<< [0-9].[0-9].[0-9])||g" custom-pkg.txt
-sed -i "s|(>= [0-9].[0-9][0-9])||g" custom-pkg.txt
-sed -i "s|(>= [0-9])||g" custom-pkg.txt
-sed -i "s|(>= [0-9].[0-9][0-9])||g" custom-pkg.txt
-sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" custom-pkg.txt
-sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" custom-pkg.txt
-sed -i "s|[ |]| |g" custom-pkg.txt
-sed -i "s|  | |g" custom-pkg.txt
+sed -i "s|(>= [0-9].[0-9].[0-9])||g" software-lists/custom-pkg.txt
+sed -i "s|(<< [0-9].[0-9].[0-9])||g" software-lists/custom-pkg.txt
+sed -i "s|(>= [0-9].[0-9][0-9])||g" software-lists/custom-pkg.txt
+sed -i "s|(>= [0-9])||g" software-lists/custom-pkg.txt
+sed -i "s|(>= [0-9].[0-9][0-9])||g" software-lists/custom-pkg.txt
+sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" software-lists/custom-pkg.txt
+sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" software-lists/custom-pkg.txt
+sed -i "s|[ |]| |g" software-lists/custom-pkg.txt
+sed -i "s|  | |g" software-lists/custom-pkg.txt
 
 # set custom flag for use later on if line count
-# of testing custom pkg test errorscustom-pkg.txt exceeds 1
-if [ -f "custom-pkg.txt" ]; then
-	LINECOUNT=$(wc -l "custom-pkg.txt" | cut -f1 -d' ')
+# of testing custom pkg test errorssoftware-lists/custom-pkg.txt exceeds 1
+if [ -f "software-lists/custom-pkg.txt" ]; then
+	LINECOUNT=$(wc -l "software-lists/custom-pkg.txt" | cut -f1 -d' ')
 else
 	# do nothing
 	echo "" > /dev/null 
@@ -86,7 +86,7 @@ fi
 #echo "Software type 2: $type"
 #echo "Extra opts 2: $extra_opts"
 #echo -e "Availble custom pkg list 2: \n"
-#cat custom-pkg.txt
+#cat software-lists/custom-pkg.txt
 #sleep 10s
 
 apt_mode="install"
@@ -397,35 +397,35 @@ get_software_type()
 	
         if [[ "$type" == "basic" ]]; then
                 # add basic software to temp list
-                software_list="$scriptdir/cfgs/basic-software.txt"
+                software_list="$scriptdir/cfgs/software-lists/basic-software.txt"
         elif [[ "$type" == "extra" ]]; then
                 # add full softare to temp list
-                software_list="$scriptdir/cfgs/extra-software.txt"
+                software_list="$scriptdir/cfgs/software-lists/extra-software.txt"
         elif [[ "$type" == "emulation" ]]; then
                 # add emulation softare to temp list
-                software_list="$scriptdir/cfgs/emulation.txt"
+                software_list="$scriptdir/cfgs/software-lists/emulation.txt"
         elif [[ "$type" == "emulation-src" ]]; then
                 # add emulation softare to temp list
-                software_list="$scriptdir/cfgs/emulation-src.txt"
+                software_list="$scriptdir/cfgs/software-lists/emulation-src.txt"
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
-                software_list="$scriptdir/cfgs/emulation-src-deps.txt"
+                software_list="$scriptdir/cfgs/software-lists/emulation-src-deps.txt"
         elif [[ "$type" == "upnp-dlna" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/upnp-dlna.txt "
+                software_list="$scriptdir/cfgs/software-lists/upnp-dlna.txt"
         elif [[ "$type" == "gaming-tools" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/gaming-tools.txt "
+                software_list="$scriptdir/cfgs/software-lists/gaming-tools.txt"
         elif [[ "$type" == "games-pkg" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/games-pkg.txt"
+                software_list="$scriptdir/cfgs/software-lists/games-pkg.txt"
         elif [[ "$type" == "pcsx2-testing" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/pcsx2-src-deps.txt"
+                software_list="$scriptdir/cfgs/software-lists/pcsx2-src-deps.txt"
                 m_install_pcsx2_src
                 exit
             
@@ -463,7 +463,7 @@ get_software_type()
                 exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
-		software_list="custom-pkg.txt"
+		software_list="software-lists/custom-pkg.txt"
         fi
 }
 
@@ -715,7 +715,7 @@ install_software()
 	###########################################################
 	
 	# Remove custom package list
-	rm -f custom-pkg.txt
+	rm -f software-lists/custom-pkg.txt
 	
 	# If software type was for emulation, continue building
 	# emulators from source (DISABLE FOR NOW)
@@ -821,7 +821,7 @@ main()
         		uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from $scriptdir/cfgs/basic-software.txt
+                        # show listing from $scriptdir/cfgs/software-lists/basic-software.txt
                         clear
                         cat $software_list | less
 			exit
@@ -861,7 +861,7 @@ main()
                         uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from $scriptdir/cfgs/extra-software.txt
+                        # show listing from $scriptdir/cfgs/software-lists/extra-software.txt
                         clear
 			cat $software_list | less
 			exit
@@ -902,7 +902,7 @@ main()
                         uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from $scriptdir/cfgs/emulation.txt
+                        # show listing from $scriptdir/cfgs/software-lists/emulation.txt
                         clear
 			cat $software_list | less
 			exit
@@ -950,7 +950,7 @@ main()
 	                uninstall="yes"
 	
 	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/emulation-src.txt
+	                # show listing from $scriptdir/cfgs/software-lists/emulation-src.txt
 	                clear
 	                echo $type
 	                echo $options
@@ -993,7 +993,7 @@ main()
 	                uninstall="yes"
 	
 	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/emulation-src-deps.txt
+	                # show listing from $scriptdir/cfgs/software-lists/emulation-src-deps.txt
 	                clear
 			cat $software_list | less
 			exit
@@ -1036,7 +1036,7 @@ main()
 	                uninstall="yes"
 	
 	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/upnp-dlna.txt
+	                # show listing from $scriptdir/cfgs/software-lists/upnp-dlna.txt
 	                clear
 			cat $software_list | less
 			exit
@@ -1154,5 +1154,5 @@ strings log_temp.txt > log.txt
 sed -i 's|\[J||g' log.txt
 
 # remove file not needed anymore
-rm -f "custom-pkg.txt"
+rm -f "software-lists/custom-pkg.txt"
 rm -f "log_temp.txt"

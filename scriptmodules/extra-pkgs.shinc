@@ -768,7 +768,7 @@ ep_install_netflix()
 	TARGET_NAME="Netflix"
 	SHORTCUT="Netflix.desktop"
 	LAUNCHER="Netflix-Launch.sh"
-	BANNER_IMG="Netflix.png"
+	BANNER_IMG="$scriptdir/artwork/banners/Netflix.png"
 
 }
 
@@ -782,7 +782,7 @@ ep_install_hulu()
 	TARGET_NAME="Hulu"
 	SHORTCUT="Hulu.desktop"
 	LAUNCHER="Hulu-Launch.sh"
-	BANNER_IMG="$scriptdir/webcfgs/artwork/Hulu.png"
+	BANNER_IMG="$scriptdir/artwork/banners/Hulu.png"
 
 }
 
@@ -795,7 +795,7 @@ ep_install_youtube()
 	TARGET_NAME="Youtube"
 	SHORTCUT="Youtube.desktop"
 	LAUNCHER="Youtube-Launch.sh"
-	BANNER_IMG="$scriptdir/webcfgs/artwork/Youtube.png"
+	BANNER_IMG="$scriptdir/artwork/banners/Youtube.png"
 
 }
 
@@ -808,7 +808,7 @@ ep_install_soundcloud()
 	TARGET_NAME="Soundcloud"
 	SHORTCUT="Soundcloud.desktop"
 	LAUNCHER="Soundcloud-Launch.sh"
-	BANNER_IMG="$scriptdir/webcfgs/artwork/Soundcloud.png"
+	BANNER_IMG="$scriptdir/artwork/banners/Soundcloud.png"
 
 }
 
@@ -821,7 +821,7 @@ ep_install_prime_movies()
 	TARGET_NAME="Amazon-Prime-Movies"
 	SHORTCUT="Amazon-Prime-Movies.desktop"
 	LAUNCHER="Amazon-Prime-Movies-Launch.sh"
-	BANNER_IMG="$scriptdir/webcfgs/artwork/Amazon-Prime-Movies.png"
+	BANNER_IMG="$scriptdir/artwork/banners/Amazon-Prime-Movies.png"
 
 }
 
@@ -834,7 +834,7 @@ ep_install_chrome_exts()
 	TARGET_NAME="Chrome-Extensions"
 	SHORTCUT="Chrome-Extensions.desktop"
 	LAUNCHER="Chrome-Extensions-Launch.sh"
-	BANNER_IMG="$scriptdir/webcfgs/artwork/Chrome-Extensions.png"
+	BANNER_IMG="$scriptdir/artwork/banners/Chrome-Extensions.png"
 
 }
 
@@ -847,7 +847,7 @@ ep_install_twitch()
 	TARGET_NAME="Twitch"
 	SHORTCUT="Twitch.desktop"
 	LAUNCHER="Twitch-Launch.sh"
-	BANNER_IMG="$scriptdir/webcfgs/artwork/Twitch.png"
+	BANNER_IMG="$scriptdir/artwork/banners/Twitch.png"
 
 }
 

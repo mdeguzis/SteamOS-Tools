@@ -61,6 +61,7 @@ elif [[ "$opt" == "install" ]]; then
   ############################################
   
   echo -e "\n==> Checking for Brutal Doom directory"
+  sleep 0.2s
   
   if [[ -d "$brutal_dir" ]]; then
     echo -n "\nBrutal Doom directory found"
@@ -74,6 +75,9 @@ elif [[ "$opt" == "install" ]]; then
   ############################################
   # acquire GZDoom
   ############################################
+
+  echo -e "\n==> Acquiring GZDoom files\n"
+  sleep 2s
   
   # build dir
   mkdir -pv $HOME/gzdoom_build
@@ -95,6 +99,8 @@ elif [[ "$opt" == "install" ]]; then
   # acquire FMOD
   ############################################
   
+  echo -e "\n==> Acquiring FMOD files\n"
+  
   cd $HOME/gzdoom_build && \
   if [ "$(uname -m)" = "x86_64" ]; then 
   FMODFOLDER="fmodapi42636linux64" 
@@ -107,6 +113,9 @@ elif [[ "$opt" == "install" ]]; then
   ############################################
   # Build GZDoom
   ############################################
+  
+  echo -e "\n==> Configuring GZDoom\n"
+  sleep 2s
   
   cd $HOME/gzdoom_build/gzdoom/build && \
   if [ "$(uname -m)" = "x86_64" ]; then
@@ -126,6 +135,9 @@ elif [[ "$opt" == "install" ]]; then
   # Backup files
   ############################################
   
+  echo -e "\n==> Backing up important files\n"
+  sleep 2s
+  
   cd $HOME/gzdoom_build && \
   BACKUPGZDOOM="$(sed -n 's/.*#define GIT_DESCRIPTION "\(.*\)".*/\1/p' \
   gzdoom/src/gitinfo.h)" && \
@@ -142,6 +154,12 @@ elif [[ "$opt" == "install" ]]; then
   #############################################
   # install GZDoom (deb pkg may be built later)
   #############################################
+
+  echo -e "\n==> Building GZDoom\n"
+  sleep 2s
+  
+  echo -e "\n==> Backing up important files\n"
+  sleep 2s
   
   sudo mkdir -pv /usr/games/gzdoom
   
@@ -160,8 +178,13 @@ elif [[ "$opt" == "install" ]]; then
   gzdoom.pk3,lights.pk3,brightmaps.pk3,output_sdl/liboutput_sdl.so},\
   $FMODFOLDER/api/lib/$FMODFILE.so} /usr/games/gzdoom
   
+  #############################################
   # create GZDoom script
+  #############################################
   
+  echo -e "\n==> Creating GZDoom script\n"
+  sleep 2s
+ 
   cd /tmp && \
   echo '#!/bin/sh' > gzdoom && \
   echo >> gzdoom && \
@@ -177,11 +200,17 @@ elif [[ "$opt" == "install" ]]; then
   # Configure
   ############################################
   
+  echo -e "\n==> Running post-configuration\n"
+  sleep 2s
+  
   # TODO ?
   
-  elif [[ "$opt" == "uninstall" ]]; then
+elif [[ "$opt" == "uninstall" ]]; then
   
   #uninstall
+  
+  echo -e "\n==> Uninstalling GZDoom...\n"
+  sleep 2s
   
   # Remove /usr/games/gzdoom directory and all its files:
   cd /usr/games && \

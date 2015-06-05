@@ -767,8 +767,8 @@ ep_install_netflix()
 	WEB_URL="www.netflix.com"
 	TARGET_NAME="Netflix"
 	SHORTCUT="Netflix.desktop"
-	LAUNCHER="Netflix-Launch.sh"
-	BANNER_IMG="Netflix.png"
+	LAUNCHER="/usr/bin/Netflix-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Netflix.png"
 
 }
 
@@ -781,8 +781,8 @@ ep_install_hulu()
 	WEB_URL="www.hulu.com"
 	TARGET_NAME="Hulu"
 	SHORTCUT="Hulu.desktop"
-	LAUNCHER="Hulu-Launch.sh"
-	BANNER_IMG="Hulu.png"
+	LAUNCHER="/usr/bin/Hulu-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Hulu.png"
 
 }
 
@@ -794,8 +794,8 @@ ep_install_youtube()
 	WEB_URL="www.youtube.com"
 	TARGET_NAME="Youtube"
 	SHORTCUT="Youtube.desktop"
-	LAUNCHER="Youtube-Launch.sh"
-	BANNER_IMG="Youtube.png"
+	LAUNCHER="/usr/bin/Youtube-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Youtube.png"
 
 }
 
@@ -807,8 +807,8 @@ ep_install_soundcloud()
 	WEB_URL="www.soundcloud.com"
 	TARGET_NAME="Soundcloud"
 	SHORTCUT="Soundcloud.desktop"
-	LAUNCHER="Soundcloud-Launch.sh"
-	BANNER_IMG="Soundcloud.png"
+	LAUNCHER="/usr/bin/Soundcloud-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Soundcloud.png"
 
 }
 
@@ -820,8 +820,8 @@ ep_install_prime_movies()
 	WEB_URL="http://www.amazon.com/Prime-Instant-Video/b?node=2676882011"
 	TARGET_NAME="Amazon-Prime-Movies"
 	SHORTCUT="Amazon-Prime-Movies.desktop"
-	LAUNCHER="Amazon-Prime-Movies-Launch.sh"
-	BANNER_IMG="Amazon-Prime-Movies.png"
+	LAUNCHER="/usr/bin/Amazon-Prime-Movies-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Amazon-Prime-Movies.png"
 
 }
 
@@ -833,8 +833,8 @@ ep_install_chrome_exts()
 	WEB_URL="https://chrome.google.com/webstore/category/extensions"
 	TARGET_NAME="Chrome-Extensions"
 	SHORTCUT="Chrome-Extensions.desktop"
-	LAUNCHER="Chrome-Extensions-Launch.sh"
-	BANNER_IMG="Chrome-Extensions.png"
+	LAUNCHER="/usr/bin/Chrome-Extensions-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Chrome-Extensions.png"
 
 }
 
@@ -846,8 +846,8 @@ ep_install_twitch()
 	WEB_URL="www.twitch.tv"
 	TARGET_NAME="Twitch"
 	SHORTCUT="Twitch.desktop"
-	LAUNCHER="Twitch-Launch.sh"
-	BANNER_IMG="Twitch.png"
+	LAUNCHER="/usr/bin/Twitch-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Twitch.png"
 
 }
 

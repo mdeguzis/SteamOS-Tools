@@ -30,16 +30,19 @@ show_help()
   exit 1
 }
 
-if [[ "$opt" == "-help" ]]; then
+main ()
+{
+  
+  if [[ "$opt" == "-help" ]]; then
   
   show_help
-
-elif [[ "$opt" == "install" ]]; then
+  
+  elif [[ "$opt" == "install" ]]; then
   
   clear
   
-  # remove previous dirs
-  sudo rm -f
+  # remove previous log"
+  rm -f "$scriptdir/logs/gzdoom-install.log"
   
   # set scriptdir
   scriptdir="/home/desktop/SteamOS-Tools"
@@ -74,7 +77,7 @@ elif [[ "$opt" == "install" ]]; then
   ############################################
   # acquire GZDoom
   ############################################
-
+  
   echo -e "\n==> Acquiring GZDoom files\n"
   sleep 2s
   
@@ -148,7 +151,7 @@ elif [[ "$opt" == "install" ]]; then
   #############################################
   # install GZDoom (deb pkg may be built later)
   #############################################
-
+  
   echo -e "\n==> Building GZDoom\n"
   sleep 2s
   
@@ -185,7 +188,7 @@ elif [[ "$opt" == "install" ]]; then
   
   echo -e "\n==> Creating GZDoom script\n"
   sleep 2s
- 
+  
   cd /tmp && \
   echo '#!/bin/sh' > gzdoom && \
   echo >> gzdoom && \
@@ -226,3 +229,8 @@ else
     show_help
 
 fi
+
+}
+
+# start script and log
+main | tee "$scriptdir/logs/gzdoom-install.log"

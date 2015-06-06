@@ -8,16 +8,16 @@
  
 ### Usage
 
-Install and run the script using the following command:
+Install using the script using 'desktop-software.sh':
 ```
-./remote-record-steam.sh
+./desktop-software.sh install gameplay-recording
 ```
 
 Alternatively, and ideally, clone the repo for easy updates
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
-cd SteamOS-Tools/utilities
-./remote-record-steam.sh
+cd SteamOS-Tools
+./desktop-software.sh install gameplay-recording
 ```
 
 ### Please note

@@ -362,7 +362,7 @@ ep_install_gameplay_recording()
 	# Required files
 	############################################
 	
-	echo -e "\n==> Adding required files\n"
+	echo -e "\n==> Adding required files"
 	sleep 0.5s
 	
 	# Pull in files for recording from cfgs/recording

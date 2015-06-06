@@ -388,6 +388,37 @@ ep_install_plex()
   
 }
 
+ep_install_gameplay_recording()
+{
+
+	############################################
+	# Prerequisite packages
+	############################################
+	
+	echo -e "==> Checking for prerequisite packages"
+	
+	sudo apt-get install libav-tools libx264-123
+	
+	############################################
+	# Required files
+	############################################
+	
+	# Pull in files for recording from cfgs/recording
+	
+	sudo cp "$scriptdir/cfgs/recording/recording-start" "/usr/local/bin"
+	sudo cp "$scriptdir/cfgs/recording/recording-stop" "/usr/local/bin"
+	sudo cp "$scriptdir/cfgs/recording/99-actkbd-controller.rules" "/etc/udev/rules.d"
+	sudo cp "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" "/etc"
+	
+	############################################
+	# Configure
+	############################################
+	
+	sudo chmod +x "/usr/local/bin/recording-stop"
+	sudo chmod +x "/usr/local/bin/recording-start"
+
+}
+
 ep_install_kodi()
 {
 	# Source: http://forum.kodi.tv/showthread.php?tid=197422

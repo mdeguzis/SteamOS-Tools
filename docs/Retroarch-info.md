@@ -11,7 +11,6 @@
 - [PSX/PS1 BIOS Files](#psxps1-bios-files)
 - [Disc Images](#disc-images)
 - [Input (General)](#input-general)
-- [Input (General)](#input-general-1)
 - [Input (Xbox 360 Controllers)](#input-xbox-360-controllers)
 - [Input (Sony PS3 Controllers)](#input-sony-ps3-controllers)
 - [Tested / known working cores](#tested--known-working-cores)

@@ -948,7 +948,7 @@ ep_install_pipelight()
 
 }
 
-ep_install_x360_bindings()
+ep_install_xb360_bindings()
 {
 	
 	echo ""

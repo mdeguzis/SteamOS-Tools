@@ -386,7 +386,6 @@ ep_install_gameplay_recording()
 	# Advise user
 	############################################
 
-	echo ""
 	cat <<-EOF
 	#####################################################
 	# Usage
@@ -400,7 +399,7 @@ ep_install_gameplay_recording()
 	EOF
 	
 	# ask for reboot
-	echo -e "\n Would you like to reboot now? [y/n]"
+	echo -e "\nWould you like to reboot now? [y/n]"
 	
 	read -ep "Choice: " reboot_choice
 

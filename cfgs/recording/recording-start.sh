@@ -17,12 +17,14 @@ mkdir $DIR
 fi
 
 # set name of the recording
+DATE=$(date +"_%Y%m%d")
 NUMBER=1
 while [ -f $DIR/$STARTNAME$NUMBER.$FORMAT ]
 do
 NUMBER=$(($NUMBER+1))
 done
-NAME=$STARTNAME$NUMBER
+NAME=$STARTNAME$NUMBER$DATE 
+
 
 # start the recording
 avconv -f pulse -i default /tmp/pulse.wav -f x11grab -r ${FRAMERATE} -s $RES -i $DISPLAY -acodec pcm_s16le -vcodec libx264 -preset ultrafast -crf 0 -threads 0 $DIR/$NAME.mkv

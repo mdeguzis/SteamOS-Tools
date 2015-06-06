@@ -49,7 +49,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	# If the DIR is already there, the fetch info should be intact
 	if [[ -d "$git_dir" ]]; then
 		
-		echo -e "\n==INFO==\nGit folder already exists! Attempting git pull...\n"
+		echo -e "==INFO==\nGit folder already exists! Attempting git pull...\n"
 		sleep 1s
 		# attempt to pull the latest source first
 		cd $git_dir

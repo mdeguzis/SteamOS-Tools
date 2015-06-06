@@ -1001,6 +1001,33 @@ ep_install_xb360_bindings()
 	# For bindings, see: /etc/actkbd-steamos-controller.conf
 	
 	###############################
+	# issue warning
+	###############################
+
+	clear
+	
+	cat <<-EOF
+	Please be advised this deb package overwrites the
+	custom Xbox 360 controller mapps in the file
+	/etc/actkbd-steamos-controller.conf"
+	
+	It is advised to install the gameplay-recording
+	module before running this package if you intend to
+	record gameplay. Press q to quit or any other key
+	to continue.
+	
+	EOF
+	
+	read -ep "Choice: " user_choice
+	
+	if [[ "$user_choice" == "q" ]]; then
+		exit 1
+	else 
+		
+		echo -e "\nContinuing...\n"
+	fi
+	
+	###############################
 	#  vars
 	###############################
 

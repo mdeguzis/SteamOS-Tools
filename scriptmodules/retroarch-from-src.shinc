@@ -269,7 +269,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	
 	# output finish
 	echo -e "\nTime started: ${time_stamp_start}"
-	echo -e "Time started: ${time_stamp_end}"
+	echo -e "Time stopped: ${time_stamp_end}"
 	echo -e "Total Runtime (minutes): $runtime\n"
 
 	echo -e "\nProceeding to Retroarch/Libretro post-install configuration in...\n"

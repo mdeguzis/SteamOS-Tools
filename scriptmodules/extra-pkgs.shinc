@@ -403,10 +403,10 @@ ep_install_gameplay_recording()
 	
 	read -ep "Choice: " reboot_choice
 
-	if [[ "$reboot_choice" == "no" ]]; then
+	if [[ "$reboot_choice" == "n" ]]; then
 		# user declined reboot request
 		echo "" > /dev/null
-	elif [[ "$reboot_choice" == "yes" ]]; then
+	elif [[ "$reboot_choice" == "y" ]]; then
 		# user accepted reboot request
 		echo -e "\nRebooting in " 
 		echo "5" && sleep 1 && echo "4" && sleep 1 && \

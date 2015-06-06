@@ -168,4 +168,4 @@ You can find a list of cores tested with games already [here](https://github.com
 ##I Can't find my shader core!
 Some shaders, such as eagle, are of a `.cg` not `.cgp` file extension/type. Loading shader presets only works with a `.cgp` file.
 
-To load cg files, increment the passes by 1 and then go to where it says N/A and navigate to the `.cg` file.
+To load cg files, load a cgp shader (i.e. one that you can see), increment the passes by 1 and then go to where it says N/A and navigate to the `.cg` file. Alternatively, you can change the first pass, but I suggest adding another pass to add this cg file.

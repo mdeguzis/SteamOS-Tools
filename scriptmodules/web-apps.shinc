@@ -292,7 +292,7 @@ add_web_app_chrome()
 		sudo cp "$BANNER_IMG" "/home/steam/Pictures"
 		
 		# mark exec
-		sudo chmod +x "/usr/bin/${NAME}-Launch.sh"
+		sudo chmod +x "/usr/bin/${TARGET_NAME}-Launch.sh"
 		
 		# perform sed replacements on skel files
 		sudo sed -i "s|LAUNCHER_TMP|$LAUNCHER|g" "/usr/share/applications/${TARGET_NAME}.desktop"

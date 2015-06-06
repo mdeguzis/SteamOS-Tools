@@ -222,7 +222,11 @@ if [[ "$apt_mode" == "install" ]]; then
 	sudo cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_steam"
 	
 	# download and extract shaders
-	wget - P /tmp "https://github.com/libretro/common-shaders/archive/master.zip"
+	
+	echo -e "\n==>Fetchng shaders from Libretro (Git)\n"
+	wget -P /tmp "https://github.com/libretro/common-shaders/archive/master.zip"
+	# extract
+	unzip "/tmp/master.zip" -d "/tmp"
 	# distribute shaders
 	cp -r "/tmp/common-shaders-master/." "$retroarch_shaders_desktop"
 	sudo cp -r "/tmp/common-shaders-master/." "$retroarch_shaders_steam"

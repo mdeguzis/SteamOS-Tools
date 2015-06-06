@@ -385,13 +385,13 @@ ep_install_gameplay_recording()
 	# get user input
 	read -ep "Choice: " mapping_choice
 	
-	if [[ "$mapping_choice" == "r" ]]
+	if [[ "$mapping_choice" == "r" ]]; then
 		
 		# copy over file that exists
 		sudo cp "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
 		"/etc/actkbd-steamos-controller.conf"
 	
-	elif [[ "$mapping_choice" == "a" ]]
+	elif [[ "$mapping_choice" == "a" ]]; then
 	
 		# append instead
 		cat "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \

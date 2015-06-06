@@ -1,22 +1,19 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Table of Contents**
 
-    - [Usage](#usage)
-    - [General](#general)
-    - [Source build information](#source-build-information)
-        - [Testing machine specifications](#testing-machine-specifications)
-- [#####Testing machine specifications](######testing-machine-specifications)
-- [####Latest Testing Results](#####latest-testing-results)
-      - [Latest Testing Results](#latest-testing-results)
-    - [General](#general-1)
-      - [PSX/PS1 BIOS Files](#psxps1-bios-files)
-    - [Disc Images](#disc-images)
-    - [Input (General)](#input-general)
-    - [Input (General)](#input-general-1)
-    - [Input (Xbox 360 Controllers)](#input-xbox-360-controllers)
-    - [Input (Sony PS3 Controllers)](#input-sony-ps3-controllers)
-    - [Tested / known working cores](#tested--known-working-cores)
+- [Usage](#usage)
+- [General](#general)
+- [Source build information](#source-build-information)
+    - [Testing machine specifications](#testing-machine-specifications)
+    - [Latest Testing Results](#latest-testing-results)
+- [General](#general-1)
+- [PSX/PS1 BIOS Files](#psxps1-bios-files)
+- [Disc Images](#disc-images)
+- [Input (General)](#input-general)
+- [Input (Xbox 360 Controllers)](#input-xbox-360-controllers)
+- [Input (Sony PS3 Controllers)](#input-sony-ps3-controllers)
+- [Tested / known working cores](#tested--known-working-cores)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -121,9 +118,6 @@ Please take note of the following general modifications:
  
 Please note: The center button of either the Sony or Microsoft controllers is not ideal for opening the Retroarch menu or quitting Retroarch. Steam Big Picture Mode / SteamOS uses this button by default to bring up the Steam overlay. Save states are not supported on all consoles/cores.
 
-***
-# Input (General)
-***
 Each controller preset, if chosen during the Retroarch post-install sequence, is preset for 4 players maxiumum. If you wish to configure more, please use the input settings section of Retroarch.
 
 ***

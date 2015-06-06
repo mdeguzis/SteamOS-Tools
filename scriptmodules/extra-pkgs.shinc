@@ -376,9 +376,9 @@ ep_install_gameplay_recording()
 	# Ask user anyway to confirm
 	
 	if [[ -f "/etc/actkbd-steamos-controller.conf" ]]; then
-	
-		echo -e "\nExiting custom controller assignments already found!"
-		echo -e "Showing the existing file..."
+		
+		echo -e "\n==WARNING==\nExiting custom controller assignments already found!"
+		echo -e "Showing the existing file...\n"
 		less "/etc/actkbd-steamos-controller.conf"
 		echo -e "\n(r)eplace or (a)append our changes?"
 	

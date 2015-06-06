@@ -1,0 +1,1308 @@
+
+# -----------------------------------------------------------------------
+# Author: 		Michael DeGuzis
+# Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	  	extra-pkgs.
+<<<<<<< HEAD
+# Script Ver:	  	1.3.2
+=======
+# Script Ver:	  	1.3.1
+>>>>>>> master
+# Description:		Module for isntalling useful pacakges otherwise not 
+#			found in The Debian wheezy repositories directly.
+#	
+# Usage:	      	n/a , module
+# -----------------------------------------------------------------------
+
+ep_pkg_cleanup()
+{
+	#####################################################
+	# cleanup package remenants and other files
+	#####################################################
+	
+	echo -e "\n==> Cleaning up packages, files, and other garbage\n"
+	sleep 2s
+	
+	# Attempt to fix any missing packages 
+	# This is until all deps are acconted for
+	sudo apt-get install -f
+
+	# remove leftover files
+	rm -rf ./*.deb* 
+	rm -rf /tmp/*.deb*
+	rm -f "$temp_file"
+	
+	# GPG key files
+	rm -f ./*.Release.key*
+	rm -f /tmp/*.Release.key*
+}
+
+ep_install_lutris()
+{
+	
+	#####################################################
+	# Lutris (Open Gaming Platform Frontend)
+	#####################################################
+
+	###############################
+	#  vars
+	###############################
+
+	pkg_type="deb"
+	PKG="lutris"
+	
+	echo -e "\n==> Determining latest release package from lutris.net\n"
+	# grab latest release intelligently (should result in lutris_x.x.x.x_all.deb)
+	PKG_FILENAME=$(curl https://lutris.net/downloads/ | awk '/deb/ {print $2}' | \
+	cut -d'/' -f 5 | grep lutris | sed "s|'>lutris_[0-9].[0-9].[0-9].[0-9]_all.deb<||g")
+	
+	BASE_URL="https://lutris.net/releases"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag so multiple debs are processed
+	multi="n"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="yes"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
+
+	###############################
+	#  Install
+	###############################
+	
+	# proceed to install eval
+	ep_install_eval_pkg
+	
+	# cleanup
+	ep_pkg_cleanup
+	
+}
+
+ep_install_firefox()
+{
+	#####################################################
+	# Firefox (imported 20150415)
+	#####################################################
+	# Imported from the Linux Mint LMDE 2 repository
+	# Deb binary source: deb http://packages.linuxmint.com debian import
+	
+	###############################
+	#  vars
+	###############################
+	
+	# set vars
+	pkg_type="deb"
+	PKG="firefox"
+	PKG_FILENAME="firefox_37.0.2_SteamOS_amd64.deb"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/browsers"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag
+	multi="n"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
+	
+	###############################
+	#  Install
+	###############################
+	
+	# proceed to install eval
+	ep_install_eval_pkg
+	
+	# cleanup
+	ep_pkg_cleanup
+}
+
+ep_install_plex()
+{
+
+	echo -e "\n==> Installing Plex Home Theater from automated script..."
+	sleep 2s
+	
+	###############################
+	#  vars
+	###############################
+	
+	pkg_type=""
+	
+	echo -e "\n==> Configuring sources"
+	sleep 1s
+	
+	# source lists
+	reponame_plex="plex"
+	reponame_deb_multi="deb-multimedia"
+	
+	sourcelist_plex_tmp="${reponame_plex}.list"
+	sourcelist_deb_multi_tmp="${reponame_deb_multi}.list"
+	sourcelist_plex="/etc/apt/sources.list.d/${reponame_plex}.list"
+	sourcelist_deb_multi="/etc/apt/sources.list.d/${reponame_deb_multi}.list"
+	
+	prefer_plex_tmp="${reponame_plex}"
+	prefer_deb_multi_tmp="${reponame_deb_multi}"
+	prefer_plex="/etc/apt/preferences.d/${reponame_plex}"
+	prefer_deb_multi="/etc/apt/preferences.d/${reponame_deb_multi}"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	###############################
+	# backup
+	###############################
+
+	
+	# Check for existance of /etc/apt/preferences.d/{prefer_plex} file
+	if [[ -f ${prefer_plex} ]]; then
+		# backup preferences file
+		echo -e "\n==> Backing up ${prefer_plex} to ${prefer_plex}.bak"
+		sudo mv ${prefer_plex} ${prefer_plex}.bak
+		sleep 1s
+	fi
+	
+	# Check for existance of /etc/apt/preferences.d/{prefer_deb_multi} file
+	if [[ -f ${prefer_deb_multi} ]]; then
+		# backup preferences file
+		echo -e "\n==> Backing up ${prefer_deb_multi} to ${prefer_deb_multi}.bak"
+		sudo mv ${prefer_deb_multi} ${prefer_deb_multi}.bak
+		sleep 1s
+	fi
+	
+	# check for existance of plex source list
+	if [[ -f ${sourcelist_plex} ]]; then
+		# backup sources list file
+		echo -e "\n==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak"
+		sudo mv ${sourcelist_plex} ${sourcelist_plex}.bak
+		sleep 1s
+	fi
+	
+	# check for existance of deb_multi source list
+	if [[ -f ${sourcelist_deb_multi} ]]; then
+		# backup sources list file
+		echo -e "\n==> Backing up ${sourcelist_deb_multi} to ${sourcelist_deb_multi}.bak"
+		sudo mv ${sourcelist_deb_multi} ${sourcelist_deb_multi}.bak
+		sleep 1s
+	fi
+
+	###############################
+	# add GPG keys
+	###############################
+	
+	echo -e "\n==> Adding GPG key(s)"
+	sleep 1s
+	
+	# Key Desc: Debian Multimedia
+	# Key ID: 65558117
+	# Full Key ID: 5C808C2B65558117
+	gpg_key_check=$(gpg --list-keys 65558117)
+	
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "\nDebian Multimedia Key [OK]\n"
+		sleep 1s
+	else
+		echo -e "\nDebian Multimedia Key [FAIL]. Adding now...\n"
+		"$scriptdir/extra/gpg_import.sh" 5C808C2B65558117
+	fi
+	
+	###############################
+	# update and pre-reqs
+	###############################
+	
+	echo -e "==> Installing prerequisite software\n"
+	sleep 1s
+	
+	# Plex
+	sleep 1s
+	
+	# Plex
+	sleep 1s
+	
+	# Plex
+	sudo curl http://shell.ninthgate.se/packages/shell-ninthgate-se-keyring.key | sudo apt-key add -
+	sudo apt-get update
+	
+	# deb-multimedia-keyring
+	sudo apt-get install deb-multimedia-keyring
+
+	###############################	
+	# Add prefs
+	###############################
+	
+	echo -e "\n==> Adding /etc/apt configurations"
+	sleep 1s
+	
+	# Create and add required text to preferences file
+	# Verified policy with apt-cache policy
+	# sudo temp file list, then move because of perms
+	
+	cat <<-EOF > ${prefer_plex_tmp}
+	Package: *
+	Pin: origin ""
+	Pin-Priority:110
+	
+	Package: *
+	Pin: release n=wheezy
+	Pin-Priority:110
+	EOF
+
+	cat <<-EOF > ${prefer_deb_multi_tmp}
+	Package: *
+	Pin: origin ""
+	Pin-Priority:110
+	
+	Package: *
+	Pin: release l=Unofficial Multimedia Packages
+	Pin-Priority:110
+	EOF
+	
+	# move tmp lists in 2 easy actions
+	sudo mv ${prefer_plex_tmp} ${prefer_plex}
+	sudo mv ${prefer_deb_multi_tmp} ${prefer_deb_multi}
+	
+	###############################	
+	# Add sources
+	###############################
+	
+	# Deb multimedia
+	# add to tmp file, then move
+	
+	cat <<-EOF > ${sourcelist_plex_tmp}
+	# Plex team repo
+	deb http://shell.ninthgate.se/packages/debian wheezy main
+	EOF
+
+	cat <<-EOF > ${sourcelist_deb_multi_tmp}
+	# Deb multimedia repo
+	deb http://www.deb-multimedia.org wheezy main non-free
+	EOF
+
+	# move lists
+	sudo mv -v ${sourcelist_plex_tmp} ${sourcelist_plex}
+	sudo mv -v ${sourcelist_deb_multi_tmp} ${sourcelist_deb_multi}
+
+	###############################	
+	# update system and sources
+	###############################
+
+	sudo apt-key update
+	sudo apt-get update
+
+	###############################	
+	# resolve outstanding deps
+	###############################
+	
+	echo -e "\n==> Resolving missing Debian packages"
+	sleep 1s
+	
+	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/Plex/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
+	cd /tmp
+	sudo gdebi ttf-ubuntu-font-family*.deb
+	
+	###############################
+	# Install actions
+	###############################
+
+	echo -e "\n==> Installing Plex Home Theater"
+	sleep 1s
+	# install Plex Home Theater
+	sudo apt-get -t wheezy install plexhometheater -y
+	
+	###############################
+	# cleanup
+	###############################
+	
+	rm -rf /tmp/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb
+	ep_pkg_cleanup
+	
+	# cleanup any old apt packages
+	sudo apt-get autoremove
+  
+}
+
+ep_install_gameplay_recording()
+{
+
+	#####################################################
+	# Gameplay video recording
+	#####################################################
+	# See/Source: goo.gl/pi24cK [Steam Community]
+
+	echo -e "\n==> Installing gameplay recording capability..."
+	sleep 2s
+
+	############################################
+	# Prerequisite packages
+	############################################
+	
+	echo -e "\n==> Checking for prerequisite packages\n"
+	sleep 0.5s
+	
+	sudo apt-get install libav-tools libx264-123
+	
+	############################################
+	# Required files
+	############################################
+	
+	echo -e "\n==> Adding required files"
+	sleep 0.5s
+	
+	# Pull in files for recording from cfgs/recording
+
+	sudo cp "$scriptdir/cfgs/recording/recording-start.sh" "/usr/local/bin"
+	sudo cp "$scriptdir/cfgs/recording/recording-stop.sh" "/usr/local/bin"
+	sudo cp "$scriptdir/cfgs/recording/99-actkbd-controller.rules" "/etc/udev/rules.d"
+	
+	# we want to append this to the controller file as to not upset an existing
+	# setup, such as a previously added xb360 bindings.
+	# Ask user anyway to confirm
+	
+	if [[ -f "/etc/actkbd-steamos-controller.conf" ]]; then
+		
+		echo -e "\n==WARNING==\nExiting custom controller assignments already found!"
+		echo -e "Showing the existing file...\n"
+		less "/etc/actkbd-steamos-controller.conf"
+		echo -e "\n(r)eplace or (a)append our changes?"
+	
+		# get user input
+		sleep 0.3s
+		read -ep "Choice: " mapping_choice
+		
+		if [[ "$mapping_choice" == "r" ]]; then
+			
+			# copy over file that exists
+			sudo cp "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
+			"/etc/actkbd-steamos-controller.conf"
+		
+		elif [[ "$mapping_choice" == "a" ]]; then
+		
+			# append instead
+			cat "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
+			| sudo tee --append "/etc/actkbd-steamos-controller.conf"
+		
+		else
+		
+			# default is to keep
+			echo -e "Invalid input detected, keeping existing file and appending!"
+			cat "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
+			| sudo tee --append "/etc/actkbd-steamos-controller.conf"
+		
+		fi
+		
+	else
+	
+		# controller custom mappings not found
+		echo "" > /dev/null
+		
+	fi
+
+	############################################
+	# Configure
+	############################################
+
+	echo -e "\n==> Configuring\n"
+	sleep 0.5s
+	
+	sudo chmod +x "/usr/local/bin/recording-stop.sh"
+	sudo chmod +x "/usr/local/bin/recording-start.sh"
+	
+	############################################
+	# Advise user
+	############################################
+
+	cat <<-EOF
+	#####################################################
+	# Usage
+	#####################################################
+	
+	Now you can start recording with LB+RB+A and stop the 
+	recording with LB+RB+X on your Xbox 360 controller. 
+	You can find the recordings in /home/steam/Videos/.
+	
+	Please reboot your PC to complete the installation
+	EOF
+	
+	# ask for reboot
+	echo -e "\nWould you like to reboot now? [y/n]"
+	
+	read -ep "Choice: " reboot_choice
+
+	if [[ "$reboot_choice" == "n" ]]; then
+		# user declined reboot request
+		echo "" > /dev/null
+	elif [[ "$reboot_choice" == "y" ]]; then
+		# user accepted reboot request
+		echo -e "\nRebooting in " 
+		echo -n "5 " && sleep 1 && echo -n "4 " && sleep 1 && \
+		echo -n "3 " && sleep 1 && echo -n "2 " && sleep 1  && echo -n "1"
+		sudo reboot
+	else
+		# do not reboot if incorrect selection is made
+		echo -e "\nIncorrect selection! Reboot cancelled."
+		echo "" > /dev/null
+	fi
+	
+}
+
+ep_install_kodi()
+{
+	# Source: http://forum.kodi.tv/showthread.php?tid=197422
+  
+	echo -e "\n==> Installing Kodi from automated script..."
+	sleep 2s
+	
+	###############################
+	# Set vars
+	###############################
+	
+	pkg_type=""
+	# vars
+	reponame_kodi="kodi"
+	
+	sourcelist_kodi_tmp="${reponame_kodi}.list"
+	sourcelist_kodi="/etc/apt/sources.list.d/${reponame_kodi}.list"
+	
+	prefer_kodi_tmp="${reponame_kodi}"
+	prefer_kodi="/etc/apt/preferences.d/${reponame_kodi}"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	###############################
+	# sources
+	###############################
+	
+	echo -e "\n==> Configuring sources"
+	sleep 1s
+	
+
+	
+	# Check for existance of /etc/apt/preferences.d/{reponame_kodi} file
+	if [[ -f ${reponame_kodi} ]]; then
+		# backup preferences file
+		echo -e "\n==> Backing up ${reponame_kodi} to ${reponame_kodi}.bak\n"
+		sudo mv ${reponame_kodi} ${reponame_kodi}.bak
+		sleep 1s
+	fi
+	
+	# check for existance of plex source list
+	if [[ -f ${sourcelist_kodi} ]]; then
+		# backup sources list file
+		echo -e "\n==> Backing up ${sourcelist_kodi} to ${sourcelist_kodi}.bak\n"
+		sudo mv ${sourcelist_kodi} ${sourcelist_kodi}.bak
+		sleep 1s
+	fi
+
+	###############################
+	# add GPG keys
+	###############################
+	
+	# may not be needed
+	
+	###############################
+	# update and pre-reqs
+	###############################
+	
+	# evolution-data-server-common is provided by Valve, but 
+	# the Kodi installation expects, it, but this will break the install process
+	# we will ignore this later
+	
+	# add gpg key
+	wget -O - http://mirrors.xbmc.org/apt/steamos/steam@xbmc.org.gpg.key | sudo apt-key add -
+	
+	###############################	
+	# Add prefs
+	###############################
+	
+	echo -e "\n==> Adding /etc/apt configurations\n"
+	sleep 1s
+	
+	# Create and add required text to preferences file
+	# Verified policy with apt-cache policy
+	# write to tmp, then move
+	
+	cat <<-EOF > ${prefer_kodi_tmp}
+	Package: *
+	Pin: origin mirrors.xbmc.org
+	Pin-Priority: 500
+	 
+	Package: libtag1c2a libtag1-vanilla
+	Pin: origin mirrors.xbmc.org
+	Pin-Priority: 901
+	EOF
+	
+	# move pref file
+	sudo mv ${prefer_kodi_tmp} ${prefer_kodi}
+	
+	###############################	
+	# Add sources
+	###############################
+	
+	# Kodi source cfg
+	# write to tmp, move after
+	
+	cat <<-EOF > ${sourcelist_kodi_tmp}
+	# Kodi team repo
+	deb http://mirrors.xbmc.org/apt/steamos alchemist main
+	EOF
+	
+	# move source list
+	sudo mv ${sourcelist_kodi_tmp} ${sourcelist_kodi}
+
+	###############################	
+	# update source lists
+	###############################
+	
+	sudo apt-get update
+
+	###############################	
+	# resolve outstanding deps
+	###############################
+	
+	# n/a for now
+	
+	###############################
+	# cleanup
+	###############################
+	
+	# n/a for now
+	
+	###############################
+	# Install actions
+	###############################
+
+	echo -e "\n==> Installing Kodi via apt-get\n"
+	sleep 1s
+
+	# install Kodi download only, we need to ignore 'evolution-data-server-common'
+	# Valve alredy provides this. We will download kodi and then install ignoring this.
+ 	
+ 	sudo apt-get install kodi
+	
+	# cleanup
+	ep_pkg_cleanup
+  
+}
+
+ep_install_chrome()
+{
+	# See: https://github.com/ValveSoftware/SteamOS/wiki/Installing-Google-Chrome-for-Netflix
+
+	echo -e "\n==> Installing Chrome from automated script...\n"
+	sleep 2s
+	
+	###############################	
+	# set vars
+	###############################
+
+	pkg_type=""
+	install_dir="$HOME/Downloads/Chrome"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="yes"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	# create and enter build dir
+	if [[ -d "$install_dir" ]]; then
+		echo -e "\n==INFO==\nChrome DIR found"
+	else
+		echo -e "\n==INFO==\nChrome DIR not found, creating...\n"
+		sleep 1s
+		mkdir -p "$install_dir"
+	fi
+	
+	cd "$install_dir"
+	
+	###############################
+	# Plugins such as gnash?
+	###############################
+	
+	# TODO
+	
+	###############################
+	# update and pre-reqs
+	###############################
+	
+	# install pre-reqs
+	
+	echo -e "\n==> Installing prerequisite packages\n"
+	sleep 2s
+	
+	sudo apt-get install indicator-application libappindicator1 \
+	libappindicator3-1 libdbusmenu-glib4 libdbusmenu-gtk3-4 \
+	libdbusmenu-gtk4 libindicator3-7 libindicator7 libglib2.0-0 \
+	libxss1 xdg-utils
+	
+	#######################
+	# libappindiactor
+	#######################
+	
+	# libappindicator1 required but not needed explictly
+	# This really only allows applications to export a menu into the panel
+	# Based on KSNI it also works in KDE and will fallback to generic Systray 
+	# support if none of those are available. 
+	
+	# set vars
+	pkg_type="deb"
+	PKG="libappindicator1"
+	PKG_FILENAME="libappindicator1_12.10.1_SteamOS_amd64.deb"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/browsers"
+	BIN_LOC=""
+	
+	# set multiflag
+	multi="n"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
+	
+	# proceed to pkg eval for libappindicator1
+	ep_install_eval_pkg
+
+	# libglib2.0.0 is only ver. 2.33, when libappindicator is asking for >=2.37.3
+	# Need to find / compile 2.37 from somewhere. Maybe grab the wheezy source and try (risky).
+	# For now, attempt will be made at altering depends ver just down to our level
+	
+	###############################	
+	# install google-chrome-stable
+	###############################
+	
+	echo -e "\n==> Installing core package 'google-chrome-stable'\n"
+	sleep 2s
+	
+	# download
+	wget -O google-chrome-stable_current_amd64.deb \
+	"https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+	
+	# install
+	sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+	# back out of installdir
+	if [[ -d "$scriptdir" ]]; then
+		cd "$scriptdir"
+	else
+		# attempt to use default DIR
+		cd "/home/desktop/SteamOS-Tools/"
+	fi
+	
+	###############################	
+	# Cleanup
+	###############################
+
+	ep_pkg_cleanup
+
+}
+
+ep_install_gdrive()
+{
+
+	echo -e "\n==> Installing Gdrive from automated script..."
+	sleep 2s
+
+	echo ""
+	#####################################################
+	# Gdrive (cli) 
+	#####################################################
+	# Name: Gdrive
+	# Desc: command line tool for google drive.
+	# Source: https://github.com/prasmussen/gdrive
+
+	###############################	
+	# set vars
+	###############################
+	
+	pkg_type="deb"
+	PKG=gdrive
+	PKG_FILENAME="TODO"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra"
+	BIN_LOC="/usr/bin/gdrive"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	# set multiflag
+	multi="n"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
+	
+	###############################	
+	# install
+	###############################
+	
+	# ep_install_eval_pkg
+	ep_install_eval_binary
+	
+	# cleanup
+	ep_pkg_cleanup
+}
+
+
+ep_install_antimicro()
+{
+
+	echo -e "\n==> Installing Antimicro from automated script..."
+	sleep 2s
+
+	#####################################################
+	# Antimicro
+	#####################################################
+	# Name: Antimicro
+	# Desc: command line tool for google drive.
+	# Type: PPA rebuild
+	# Source: https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro
+
+	###############################	
+	# set vars
+	###############################
+	
+	pkg_type="deb"
+	PKG=antimicro
+	PKG_FILENAME="antimicro_2.14+git20150602-SteamOS-1_amd64.deb"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/utilities"
+	BIN_LOC="/usr/local/bin/antimicro"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	# set multiflag
+	multi="n"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
+	
+	#######################################
+	# Pre-reqs
+	#######################################
+	
+	# required to display program on clean install
+	# recently discovered by user, see issue #53 
+	# This will need added as a dependency into the
+	# .deb pkg if confirmed
+	
+	sudo apt-get install libsdl2-2.0-0 libsdl2-2.0-0:i386  
+	
+	###############################	
+	# install
+	###############################
+	
+	# install antimicro
+	ep_install_eval_pkg
+	
+	# cleanup
+	ep_pkg_cleanup
+}
+
+ep_install_pipelight()
+{
+
+	#######################################
+	# EXPERIMENTAL !!!! DOES NOT WORK!
+	#######################################
+
+	echo -e "\n==> Installing Pipelight from automated script..."
+	sleep 2s
+
+	# See: http://pipelight.net/cms/install/installation-steamos.html
+
+	###############################	
+	# set vars
+	###############################
+	
+	# source lists
+	reponame_pipelight="pipelight"
+	sourcelist_pipelight_tmp="${reponame_pipelight}.list"
+	sourcelist_pipelight="/etc/apt/sources.list.d/${reponame_pipelight}.list"
+	
+	prefer_pipelight_tmp="${reponame_pipelight}"
+	prefer_pipelight="/etc/apt/preferences.d/${reponame_pipelight}"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	###############################
+	# file/dir checks, backups
+	###############################
+	
+	# check for existance of pipelight source list
+	if [[ -f ${sourcelist_pipelight} ]]; then
+		# backup sources list file
+		echo -e "\n==> Backing up ${sourcelist_pipelight} to ${sourcelist_pipelight}.bak"
+		sudo mv ${sourcelist_pipelight} ${sourcelist_pipelight}.bak
+		sleep 1s
+	fi
+	
+	# Check for existance of /etc/apt/preferences.d/{prefer_pipelight} file
+	if [[ -f ${prefer_pipelight} ]]; then
+		# backup preferences file
+		echo -e "\n==> Backing up ${prefer_pipelight} to ${prefer_pipelight}.bak"
+		sudo mv ${prefer_pipelight} ${prefer_pipelight}.bak
+		sleep 1s
+	fi
+
+	
+	###############################
+	# add GPG keys
+	###############################
+
+	echo -e "\n==> Adding GPG key(s)"
+	sleep 1s
+	
+	# GPG Key
+	wget http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/SteamOS/Release.key
+	sudo apt-key add Release.key
+
+	###############################	
+	# Add prefs
+	###############################
+	
+	echo -e "\n==> Adding /etc/apt configurations\n"
+	sleep 1s
+	
+	# disable prefs for now....
+	
+	# Create and add required text to preferences file
+	# Verified policy with apt-cache policy
+	# sudo temp file list, then move because of perms
+	
+	#cat <<-EOF > ${prefer_pipelight_tmp}
+	#Package: *
+	#Pin: origin ""
+	#Pin-Priority:110
+	#EOF
+	
+	# move tmp list
+	#sudo mv ${prefer_pipelight_tmp} ${prefer_pipelight}
+
+	###############################
+	# Add source
+	###############################
+
+	cat <<-EOF > ${sourcelist_pipelight_tmp}
+	# Pipelight repo
+	deb http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/SteamOS/ ./
+	EOF
+	
+	# May use single line echo here. Likely this source addition has errors
+	# with using an EOF list with the trailing "./"
+	
+	#echo "deb http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/SteamOS/ ./" \
+	#${sourcelist_pipelight_tmp}
+	
+	# move source list
+	sudo mv ${sourcelist_pipelight_tmp} ${sourcelist_pipelight}
+
+	###############################
+	# Pre-reqs
+	###############################
+	
+	# 32 bit arch (if not already added)
+	sudo dpkg --add-architecture i386
+	
+	###############################
+	# Install
+	###############################
+
+	echo -e "\n==> Updating pacakge lists\n"
+	sleep 2s
+	
+	sudo apt-get update
+	
+	echo -e "\n==> Installing pipelight\n"
+	sleep 2s
+	
+	#######################################
+	################ ERRORS ###############
+	#######################################
+	
+	# This method still seems to require wine-staging. 
+	# Need to discuss yet on IRC with the pipelight team.
+	# Wine staging deb does not seem to exist in the repo below
+	# It also still appears as a depedency in the 'Packages' list
+	# http://download.opensuse.org/repositories/home:/DarkPlayer:/Pipelight/Debian_7.0/
+	
+	sudo apt-get -o Dpkg::Options::="--force-overwrite" install pipelight-multi
+	sudo pipelight-plugin --update
+
+	# Info
+	# The Dpkg::Options::="--force-overwrite" option is required since the libssl 
+	# package inside the SteamOS repository is not completely Multiarch ready and 
+	# the 32 bit version tries to overwrite the changelog of the 64 bit version. 
+	# Since both versions of the changelog contain the same content and are only 
+	# provided for informational purposes, they can be safely overwritten.
+	
+	
+	###############################
+	# Post-Install configs
+	################################
+	
+	# The Steam internal browser only supports a subset of the NPAPI and Pipelight 
+	# is not yet compatible with this. You can therefore only use Pipelight with 
+	# normal desktop browsers like the preinstalled Iceweasel browser.
+	
+	sudo pipelight-plugin --enable silverlight
+
+	# cleanup
+	ep_pkg_cleanup
+
+}
+
+ep_install_xb360_bindings()
+{
+	
+	echo ""
+	#####################################################
+	# VaporOS bindings (controller shortcuts)
+	# !! Some issues, needs looked at, repacked maybe !!
+	#####################################################
+	# FPS + more binds from VaporOS 2
+	# For bindings, see: /etc/actkbd-steamos-controller.conf
+	
+	###############################
+	# issue warning
+	###############################
+
+	clear
+	
+	cat <<-EOF
+	##########################################################
+	Warning:
+	##########################################################"
+	Please be advised this deb package overwrites the
+	custom Xbox 360 controller mapps in the file
+	'/etc/actkbd-steamos-controller.conf'
+	
+	It is advised to install the gameplay-recording
+	module before running this package if you intend to
+	record gameplay as well. Press q to quit or any other 
+	key to continue.
+	
+	EOF
+	
+	read -ep "Choice: " user_choice
+	
+	if [[ "$user_choice" == "q" ]]; then
+		exit 1
+	else 
+		
+		echo -e "\nContinuing..."
+		sleep 1s
+	fi
+	
+	###############################
+	#  vars
+	###############################
+
+	pkg_type="deb"
+	PKG="vaporos-binds-xbox360"
+	PKG_FILENAME="vaporos-binds-xbox360_1.0_all.deb"
+	BASE_URL="https://github.com/sharkwouter/vaporos/raw/master/pool/main/v/vaporos-binds-xbox360/"
+	BIN_LOC="/usr/bin/gdrive"
+	PKG_DIR="/usr/share/doc/vaporos-binds-xbox360"
+	
+	# set multiflag so multiple debs are processed
+	multi="n"
+	
+	# set external Deb repo required flag
+	export deb_repo_name="wheezy.list"
+	export deb_repo_req="no"
+	# Eval requirements
+	"$scriptdir/utilities/check_repo_req.sh"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
+
+	###############################
+	#  Install
+	###############################
+	
+	# proceed to install eval
+	ep_install_eval_pkg
+	
+	# cleanup
+	ep_pkg_cleanup
+	
+}
+
+ep_install_eval_pkg()
+{
+
+	echo -e "\n==> Installing $PKG via external script\n"
+
+	#####################################################
+	# Binary package eval routine using dpkg or gdebi
+	#####################################################
+	
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed" 2> /dev/null)
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
+		sleep 2s
+		
+		# check for multiple debs for install
+		if [[ "$multi" == "y" ]]; then
+		
+			cd /tmp
+			# Download files recursively form base URL folder, skip index.html
+			# See: http://stackoverflow.com/a/5335576
+			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
+			
+			# process install in loop for each package in our software list
+			for x in `cat $software_list`; do
+				sudo dpkg -i "$x"
+			done
+			
+		elif [[ "$multi" == "n" ]]; then
+		
+			# download target singluar deb
+			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+			# process install
+			sudo gdebi "/tmp/$PKG_FILENAME"
+		fi
+
+		# cleanup
+		rm -f "/tmp/$PKG_FILENAME"
+		
+		# cleanup leftover debs
+		rm -f /tmp/*.deb*
+		
+		if [ $? == '0' ]; then
+			echo -e "\n==INFO==\nSuccessfully installed $PKG"
+			sleep 2s
+		else
+			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."
+			sleep 3s
+			exit 1
+		fi
+	else
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
+	fi
+
+	# back out of any temp dir to script dir
+	if [[ "$scriptdir" != "" ]]; then
+		cd "$scriptdir"
+	else
+		cd "$HOME"
+	fi
+	
+}
+
+ep_install_eval_binary()
+{
+
+	echo -e "\n==> Installing $PKG binary via external script"
+
+	echo ""
+	#####################################################
+	# Binary package eval routine
+	#####################################################
+	# This is mainly for binary file dumps only.
+	# For example, gdrive has binaries that require no depdencies.
+	# This is subject to change in the future.
+	
+	if [[ ! -f "$BIN_LOC" || -d "$PKG_DIR" ]]; then
+		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
+		sleep 2s
+		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+		sudo gdebi "/tmp/$PKG_FILENAME"
+		# cleanup
+		rm -f "/tmp/$PKG_FILENAME"
+		
+		if [ $? == '0' ]; then
+			echo -e "\n==INFO==\nSuccessfully installed $PKG\n"
+			sleep 2s
+		else
+			echo -e "\n==INFO==\nCould not install $PKG. Exiting..."
+			sleep 3s
+			exit 1
+		fi
+	else
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
+	fi
+
+}
+ep_test_deb()
+{
+	clear
+	echo -e "==> User requested testing of package routine!"
+	sleep 1s
+	
+	###############################	
+	# set vars
+	###############################
+	
+	test_loc="/tmp/pkg-test"
+	log="log.txt"
+	
+	###############################	
+	# Pre-checks
+	###############################
+	
+	# check that the tmpfs (/tmp) filesystem is not full.
+	# if it is, instruct user they need to reboot
+	
+	df_chk=$(df -h /tmp | grep "[0-9]%" | cut -c 34-37)
+	
+	if [[ "$df_chk" == "100%" ]]; then
+		echo -e "\n==WARNING!==\nThe tempfs temp file system in /tmp is full!"
+		echo -e "Please issue 'sudo reboot' to clear this when possible! Exiting in..."
+		echo -e "\n5" && sleep 1s
+		echo "4" && sleep 1s
+		echo "3" && sleep 1s
+		echo "2" && sleep 1s
+		echo -e "1\n" && sleep 1s
+		exit
+	else
+		# output small reminder
+		echo -e "\n==INFO==\nNotice: tmpfs (/tmp) usage is at: $df_chk\n"
+		sleep 3s
+	fi
+	
+	###############################	
+	# Commence test
+	###############################
+
+	# start testing if eval
+	if [[ "$pkg_type" == "deb" ]]; then
+		
+		# TESTING ONLY - download all netflix-dekstop files from libregeek
+		# After download, install $pkg, and remove it.
+		
+		# test for dir and create/remove
+		if [[ -d "$test_loc" ]]; then
+			# remove
+			rm -rf "$test_loc"
+			# recreate
+			mkdir -p "$test_loc"
+		else
+			# create
+			mkdir -p "$test_loc"
+		fi
+		
+		cd "$test_loc"
+		# check for multiple debs for install
+		if [[ "$multi" == "y" ]]; then
+		
+			# Download files recursively form base URL folder, skip index.html
+			# See: http://stackoverflow.com/a/5335576
+			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
+			
+		elif [[ "$multi" == "n" ]]; then
+		
+			# download target singluar deb
+			wget "$BASE_URL/$PKG_FILENAME"
+
+		fi
+		
+		echo -e "\n==> Listing downloaded pkgs in $test_loc\n"
+		sleep 2s
+		ls "$test_loc" | less
+		
+		# set pkg
+		sleep 0.5s
+		echo ""
+		read -ep "Enter Pkg to test >> " PKG
+		
+		# isntall 
+		echo -e "\n==> Attempting install of deb pkg $PKG\n"
+		sleep 2s
+		sudo dpkg -i "$PKG" | tee pkg_test_results.txt
+		
+		echo -e "\n==> Continuing to removal...\n" 
+		sleep 1s
+	
+		# remove pkg and pkg_test_results.txt log
+		# This var is based on the last cached pkg installed
+		
+		dpkg_remove_tmp=$(ls -tl "/var/lib/dpkg/info" | head -2 | awk '{print $9}' | grep .list)
+		echo "$dpkg_remove_tmp" > temp.txt
+		
+		#remove .list suffix 
+		sed -i "s|.list||g" temp.txt
+		dpkg_remove_tmp=$(cat temp.txt)
+
+		echo -e "\n==> Purging test package $PKG\n"
+		sleep 2s
+		sudo dpkg --purge "$dpkg_remove_tmp"
+
+		# review
+		echo -e "\n==> End of test cycle. Exiting. Please review $log\n"
+		sleep 2s
+		
+	else
+		# Not yet implemented
+		echo -e "\nTesting function for this package not yet implemented\n"
+		sleep 2s
+		exit
+		
+	# end testing if eval
+	fi
+	
+}
+
+ep_test_opts()
+{
+	# simple echo of passed opts for testing only
+	echo "opts received: "
+	echo -e "options : $options"
+	echo "Software type : $type"
+	echo "Extra opts : $extra_opts"
+	echo -e "Availble custom pkg list 2: \n"
+	cat custom-pkg.txt
+	sleep 50s
+	exit
+}
+
+

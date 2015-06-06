@@ -266,7 +266,9 @@ add_web_app_chrome()
 	# copy default user files for Google chrome over
 	# do not overwrite the Default folder if it exists already
 	
+	# Chrome default directory check
 	chrome_dir_check=$(sudo ls  "/home/steam/.config/google-chrome/Default")
+	
         if [[ "$chrome_dir_check" != "" ]]; then
                 # do nothing
                 echo -e "\nChrome Default DIR exists. Skipping..."
@@ -281,7 +283,7 @@ add_web_app_chrome()
 	
 		# copy default launcher, modify based on values pased from
 		# web_app_{web_app_name}
-		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${NAME}-Launch.sh"
+		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${TARGET_NAME}-Launch.sh"
 		
 		# copy over desktop shortcut
 		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications"

@@ -275,7 +275,8 @@ show_help()
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[firefox|kodi|lutris|plex|webapp|x360-bindings]
+	Extra types: 	[firefox|kodi|lutris|plex|webapp]
+	Functions: 	[x360-bindingsgameplay-recording]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -437,10 +438,6 @@ get_software_type()
                 # add web app via chrome from helper script
                 ep_install_lutris
                 exit
-	elif [[ "$type" == "webapp" ]]; then
-                # add web app via chrome from helper script
-                ep_add_web_app_chrome
-                exit
 	elif [[ "$type" == "chrome" ]]; then
                 # install plex from helper script
                 ep_install_chrome
@@ -449,6 +446,10 @@ get_software_type()
                 # install plex from helper script
                 ep_install_firefox
                 exit
+        elif [[ "$type" == "gameplay-recording" ]]; then
+                # install plex from helper script
+                ep_install_gameplay_recording
+                exit
         elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script
                 ep_install_kodi
@@ -456,6 +457,10 @@ get_software_type()
 	elif [[ "$type" == "plex" ]]; then
                 # install plex from helper script
                 ep_install_plex
+                exit
+	elif [[ "$type" == "webapp" ]]; then
+                # add web app via chrome from helper script
+                ep_add_web_app_chrome
                 exit
         elif [[ "$type" == "x360-bindings" ]]; then
                 # install plex from helper script

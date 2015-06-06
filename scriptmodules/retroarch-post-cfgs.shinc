@@ -221,6 +221,14 @@ if [[ "$apt_mode" == "install" ]]; then
 	cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_desktop"
 	sudo cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_steam"
 	
+	# download and extract shaders
+	wget - P /tmp "/https://github.com/libretro/common-shaders/archive/master.zip"
+	# distribute shaders
+	cp -r "/tmp/common-shaders-master/." "$retroarch_shaders_desktop"
+	sudo cp -r "/tmp/common-shaders-master/." "$retroarch_shaders_steam"
+	# remove tmp file
+	rm -f "/tmp/master.zip"
+	
 	# add small launcher script
 	# this will acively swap out the current user (desktop or steam) so that the
 	# appropriate retroarch.cfg file will be user
@@ -236,7 +244,6 @@ if [[ "$apt_mode" == "install" ]]; then
 	find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_desktop" 2> /dev/null
 	find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_steam" 2> /dev/null
 	
-
 	#################################################
 	# Extra
 	#################################################

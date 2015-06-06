@@ -8,7 +8,114 @@
 # Usage:	      	n/a , module
 # -----------------------------------------------------------------------
 
-ep_add_web_app_chrome()
+web_app_netflix()
+{
+
+	# Netflix
+	NAME="Netflix"
+	WEB_URL="www.netflix.com"
+	TARGET_NAME="Netflix"
+	SHORTCUT="Netflix.desktop"
+	LAUNCHER="/usr/bin/Netflix-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Netflix.png"
+	
+	# add web-app
+	add_web_app_chrome
+}
+
+
+web_app_hulu()
+{
+
+	# Hulu
+	NAME="Hulu"
+	WEB_URL="www.hulu.com"
+	TARGET_NAME="Hulu"
+	SHORTCUT="Hulu.desktop"
+	LAUNCHER="/usr/bin/Hulu-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Hulu.png"
+	
+	# add web-app
+	add_web_app_chrome
+}
+
+web_app_youtube()
+{
+
+	# Youtube
+	NAME="Youtube"
+	WEB_URL="www.youtube.com"
+	TARGET_NAME="Youtube"
+	SHORTCUT="Youtube.desktop"
+	LAUNCHER="/usr/bin/Youtube-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Youtube.png"
+	
+	# add web-app
+	add_web_app_chrome
+}
+
+web_app_soundcloud()
+{
+
+	# Soundcloud
+	NAME="Soundcloud"
+	WEB_URL="www.soundcloud.com"
+	TARGET_NAME="Soundcloud"
+	SHORTCUT="Soundcloud.desktop"
+	LAUNCHER="/usr/bin/Soundcloud-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Soundcloud.png"
+	
+	# add web-app
+	add_web_app_chrome
+}
+
+web_app_prime_movies()
+{
+
+	# Amazon Prime Movies
+	NAME="Amazon Prime Movies"
+	WEB_URL="http://www.amazon.com/Prime-Instant-Video/b?node=2676882011"
+	TARGET_NAME="Amazon-Prime-Movies"
+	SHORTCUT="Amazon-Prime-Movies.desktop"
+	LAUNCHER="/usr/bin/Amazon-Prime-Movies-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Amazon-Prime-Movies.png"
+	
+	# add web-app
+	add_web_app_chrome
+}
+
+web_app_chrome_exts()
+{
+
+	# Chrome-Extensions
+	NAME="Chrome Extensions"
+	WEB_URL="https://chrome.google.com/webstore/category/extensions"
+	TARGET_NAME="Chrome-Extensions"
+	SHORTCUT="Chrome-Extensions.desktop"
+	LAUNCHER="/usr/bin/Chrome-Extensions-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Chrome-Extensions.png"
+	
+	# add web-app
+	add_web_app_chrome
+}
+
+web_app_twitch()
+{
+
+	# Twitch
+	NAME="Twitch"
+	WEB_URL="www.twitch.tv"
+	TARGET_NAME="Twitch"
+	SHORTCUT="Twitch.desktop"
+	LAUNCHER="/usr/bin/Twitch-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Twitch.png"
+	
+	# add web-app
+	add_web_app_chrome
+
+}
+
+add_web_app_chrome()
 {
 
 	#######################################
@@ -59,7 +166,7 @@ ep_add_web_app_chrome()
 		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
 		# install chrome from script
 		sleep 2s
-		ep_install_chrome
+		web_app_chrome
 		
 	else
 		
@@ -75,7 +182,7 @@ ep_add_web_app_chrome()
 		echo -e "\n==INFO==\nantimicro not found! Installing now..."
 		# install antimicro from script
 		sleep 2s
-		ep_install_antimicro
+		web_app_antimicro
 		
 	else
 		
@@ -114,32 +221,32 @@ ep_add_web_app_chrome()
 		case "$web_app_choice" in
 		        
 		        1)
-		        ep_install_chrome_exts
+		        web_app_chrome_exts
 		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
 		        
 		        2)
-		        ep_install_hulu
+		        web_app_hulu
 		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
 		         
 		        3)
-		        ep_install_netflix
+		        web_app_netflix
 		        kiosk_opt="/usr/bin/$LAUNCHER"
 			;;
 
 		        4)
-		        ep_install_soundcloud
+		        web_app_soundcloud
 		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
 		        
 		    	5)
-		        ep_install_twitch
+		        web_app_twitch
 		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
 
 		    	6)
-		        ep_install_youtube
+		        web_app_youtube
 		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
 		         
@@ -188,7 +295,7 @@ ep_add_web_app_chrome()
 	if [[ "$custom_url" == "no" ]]; then
 	
 		# copy default launcher, modify based on values pased from
-		# ep_install_{web_app_name}
+		# web_app_{web_app_name}
 		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${NAME}-Launch.sh"
 		
 		# copy over desktop shortcut

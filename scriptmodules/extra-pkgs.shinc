@@ -451,8 +451,8 @@ ep_install_gameplay_recording()
 	elif [[ "$reboot_choice" == "y" ]]; then
 		# user accepted reboot request
 		echo -e "\nRebooting in " 
-		echo -n "5" && sleep 1 && echo -n "4" && sleep 1 && \
-		echo -n "3" && sleep 1 && echo -n "2" && sleep 1  && echo -n "1"
+		echo -n "5 " && sleep 1 && echo -n "4 " && sleep 1 && \
+		echo -n "3 " && sleep 1 && echo -n "2 " && sleep 1  && echo -n "1"
 		sudo reboot
 	else
 		# do not reboot if incorrect selection is made

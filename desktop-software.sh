@@ -276,7 +276,7 @@ show_help()
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
 	Extra types: 	[firefox|kodi|lutris|plex|webapp]
-	Functions: 	[x360-bindingsgameplay-recording]
+	Functions: 	[x360-bindings|gameplay-recording]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'

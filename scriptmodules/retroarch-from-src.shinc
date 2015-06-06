@@ -225,58 +225,61 @@ if [[ "$apt_mode" == "install" ]]; then
 	# end retroarch build eval
 	fi
 
-	############################
-	# Begin core build eval
-	###########################
+	##################################################
+	# Asses if all cores are to be built or just one
+	##################################################
 	
-	if [[ "$core_check" != "" ]]; then
+	# no options specifed in './desktop-software install emulation-src' cmd
+	if [[ "$extra_opts" != "" ]]; then
 		
-		##################################################
-		# Asses if all cores are to be built or just one
-		##################################################
-		
-		# no options specifed in './desktop-software install emulation-src' cmd
-		if [[ "$extra_opts" == "" ]]; then
-		
-			# build cores
-			./libretro-build.sh
-			
-		else
-			
-			echo -e "\n==> Attempting to build core $extra_opts now..."
-			./libretro-build.sh $extra_opts
-		fi
-		
-		echo -e "\n==INFO=="
-		echo -e "It seems the libretro cores are already built to $core_loc"
-		echo -e "Would you like to rebuild [y], or [n]?\n"
-		
-		# the prompt sometimes likes to jump above sleep
-		sleep 0.5s
-		
-		# gather user input
-		read -ep "Choice: " user_input_core
-		
-		if [[ "$user_input_core" == "n" ]]; then
-			echo -e "\n==> Skipping core builds...\n"
-			sleep 2s
-		elif [[ "$user_input_core" == "y" ]]; then
-			echo -e "\n==> Rebuilding Libretro cores...\n"
-			sleep 2s
-			# build cores
-			./libretro-build.sh
-		else
-			echo -e "\n==ERROR=="
-			echo -e "Invalid input, exiting...\n"
-			sleep 2s
-			exit
-		fi
-	else	
-		echo -e "\n==INFO==\nLibretro cores do not appear to be built."
-		echo -e "Building now..."
 		sleep 2s
+		echo -e "\n==> Building $extra_opts from user request"
+		sleep 2s
+		./libretro-build.sh $extra_opts
+	
+	else
+
+		######################################
+		# Begin core build eval for all cores
+		#####################################
 		
-	# end retroarch build eval
+		if [[ "$core_check" != "" ]]; then
+			
+	
+			
+			echo -e "\n==INFO=="
+			echo -e "It seems the libretro cores are already built to $core_loc"
+			echo -e "Would you like to rebuild [y], or [n]?\n"
+			
+			# the prompt sometimes likes to jump above sleep
+			sleep 0.5s
+			
+			# gather user input
+			read -ep "Choice: " user_input_core
+			
+			if [[ "$user_input_core" == "n" ]]; then
+				echo -e "\n==> Skipping core builds...\n"
+				sleep 2s
+			elif [[ "$user_input_core" == "y" ]]; then
+				echo -e "\n==> Rebuilding Libretro cores...\n"
+				sleep 2s
+				# build cores
+				./libretro-build.sh
+			else
+				echo -e "\n==ERROR=="
+				echo -e "Invalid input, exiting...\n"
+				sleep 2s
+				exit
+			fi
+		else	
+			echo -e "\n==INFO==\nLibretro cores do not appear to be built."
+			echo -e "Building now..."
+			sleep 2s
+			
+		# end retroarch build eval
+		fi
+	
+	# end specific build request check
 	fi
 	
 	#################################################

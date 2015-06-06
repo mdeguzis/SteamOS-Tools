@@ -815,7 +815,7 @@ main()
 	import "$scriptdir/scriptmodules/emulation"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
-	import "$scriptdir/scriptmodules/mobile-upnp-dlna"
+	import "$scriptdir/scriptmodules/web-apps"
 
         # generate software listing based on type or skip to auto script
         get_software_type

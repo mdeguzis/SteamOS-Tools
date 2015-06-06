@@ -16,7 +16,7 @@
   - [Input (Xbox 360 Controllers)](#input-xbox-360-controllers)
   - [Input (Sony PS3 Controllers)](#input-sony-ps3-controllers)
 - [Shaders](#shaders)
-  - [Tested / known working cores](#tested--known-working-cores)
+- [Tested / known working cores](#tested--known-working-cores)
 - [Troubleshoting](#troubleshoting)
   - [I Can't find my shader core!](#i-cant-find-my-shader-core)
 
@@ -54,7 +54,7 @@ After running the emulation-src type, currently you must still perform the follo
 Below you can find related information pertaining to building Retroarch/Libretro from source. This will only include items outside the automatic build script invoked by `desktop-software.sh`.
 
 ##Testing machine specifications
-===
+
 **SteamOS-Test**  
 * CPU: Intel Core 2 Quad Q9550
 * RAM: 6 GB DDR2
@@ -74,7 +74,6 @@ Below you can find related information pertaining to building Retroarch/Libretro
 * GPU: Nvidia GTX 550 Ti
 
 ##Latest Testing Results
-===
 
 **Host: SteamOS-Test**  
 Date: 20150429  
@@ -106,13 +105,13 @@ Mednafen is very picky about which BIOS to use. The ones that you might need are
 Copy this file to the `$HOME/ROMs` directory of the user you are working with. Most commonly this is `/home/steam/ROMs`. If you can't find one of these, just rename the respective scph100x.bin BIOS (such as scph1001.bin) to scph550x.bin (such as scph5501.bin) and it will take it. 
 
 ***
-##Disc Images
+#Disc Images
 ***
 
 Mednafen requires you to load games through CUE sheets. Ensure that the CUE sheet is properly set up in order for the game to run. See the Cue sheet (.cue) for more.
 
 ***
-##Input (General)
+#Input (General)
 ***
 Please take note of the following general modifications:
 
@@ -126,15 +125,17 @@ Please note: The center button of either the Sony or Microsoft controllers is no
 Each controller preset, if chosen during the Retroarch post-install sequence, is preset for 4 players maxiumum. If you wish to configure more, please use the input settings section of Retroarch.
 
 ***
-##Input (Xbox 360 Controllers)
+#Input
 ***
+Below is all available known information for gamepad input and control.
+Please submit suggestions as an issues ticket.
+
+##Input (Xbox 360 Controllers)
 The Xbox controllers are mapped exactly has Retroarch has requested each button to be. See the below diagram.
 
 ![alt text](http://www.libregeek.org/wp-content/uploads/2014/04/xbox-controller-mapping-1024x768.jpg "Xbox 360 Controller")
 
-***
 ##Input (Sony PS3 Controllers)
-***
 
 The Sony Dualshock 3 controller is setup in the same fashion as the above Xbox 360 controller. The main things to keep in mind are
 
@@ -150,7 +151,7 @@ The Sony Dualshock 3 controller is setup in the same fashion as the above Xbox 3
 Shaders are assessed at build time for Retroarch. The pre-requisite pacakge `nvidia-cg-toolkit` is pre-installed before the build kicks off.
 
 ***
-##Tested / known working cores
+#Tested / known working cores
 ***
 You can find a list of cores tested with games already [here](https://github.com/ProfessorKaos64/SteamOS-Tools/edit/testing/docs/Retroarch-Testing-Checklist.md)
 

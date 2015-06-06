@@ -365,7 +365,7 @@ add_web_app_chrome()
 
 	if [[ -d "$antimicro_dir" ]]; then
 		# DIR found
-		echo -e "Antimicro directory found. Skipping"
+		echo -e "Antimicro DIR found. Skipping..."
 	else
 		# create dir
 		sudo mkdir -p "$antimicro_dir"

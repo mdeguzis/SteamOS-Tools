@@ -366,12 +366,46 @@ ep_install_gameplay_recording()
 	sleep 0.5s
 	
 	# Pull in files for recording from cfgs/recording
-	
-	sudo cp "$scriptdir/cfgs/recording/recording-start.sh" "/usr/local/bin"
-	sudo cp "$scriptdir/cfgs/recording/recording-stop.sh" "/usr/local/bin"
+
+	sudo cp "$scriptdir/cfgs/recording/recording-start" "/usr/local/bin"
+	sudo cp "$scriptdir/cfgs/recording/recording-stop" "/usr/local/bin"
 	sudo cp "$scriptdir/cfgs/recording/99-actkbd-controller.rules" "/etc/udev/rules.d"
-	sudo cp "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" "/etc"
 	
+	# we want to append this to the controller file as to not upset an existing
+	# setup, such as a previously added xb360 bindings.
+	# Ask user anyway to confirm
+	
+	if [[ -f "/etc/actkbd-steamos-controller.conf" ]]; then
+	
+		echo -e "\nExiting custom controller assignments already found!"
+		echo -e "Showing the existing file..."
+		less "/etc/actkbd-steamos-controller.conf"
+		echo -e "\n(r)eplace or (a)append our changes?"
+	
+	# get user input
+	read -ep "Choice: " mapping_choice
+	
+	if [[ "$mapping_choice" == "r" ]]
+		
+		# copy over file that exists
+		sudo cp "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
+		"/etc/actkbd-steamos-controller.conf"
+	
+	elif [[ "$mapping_choice" == "a" ]]
+	
+		# append instead
+		cat "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
+		| sudo tee --append "/etc/actkbd-steamos-controller.conf"
+	
+	else
+	
+		# default is to keep
+		echo -e "Invalid input detected, keeping existing file and appending!"
+		cat "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
+		| sudo tee --append "/etc/actkbd-steamos-controller.conf"
+	
+	fi
+
 	############################################
 	# Configure
 	############################################

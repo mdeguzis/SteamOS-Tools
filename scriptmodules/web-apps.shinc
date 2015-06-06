@@ -286,7 +286,7 @@ add_web_app_chrome()
 		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${TARGET_NAME}-Launch.sh"
 		
 		# copy over desktop shortcut
-		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications"
+		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications/${TARGET_NAME}.desktop"
 
 		# copy banner
 		sudo cp "$BANNER_IMG" "/home/steam/Pictures"

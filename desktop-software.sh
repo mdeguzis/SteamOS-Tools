@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.0.0.3
+# Script Ver:	1.0.1.5
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -460,7 +460,7 @@ get_software_type()
                 exit
 	elif [[ "$type" == "webapp" ]]; then
                 # add web app via chrome from helper script
-                ep_add_web_app_chrome
+                add_web_app_chrome
                 exit
         elif [[ "$type" == "x360-bindings" ]]; then
                 # install plex from helper script

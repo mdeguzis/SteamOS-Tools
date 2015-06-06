@@ -33,6 +33,8 @@ However, if you wish to built a specific core, you can specify the core name as 
 ./desktop-software.sh install emulation-src mame
 ```
 
+For a list of cores, please reference this [libretro-super](https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91) file. 
+
 ***
 ### General
 ***

@@ -468,7 +468,7 @@ get_software_type()
                 exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
-		software_list="software-lists/custom-pkg.txt"
+		software_list="custom-pkg.txt"
         fi
 }
 

@@ -127,7 +127,7 @@ if [[ "$apt_mode" == "install" ]]; then
 		
 	# no options specifed in './desktop-software install emulation-src' cmd
 	# if not core was specified, $extra_opts will be the pkg type
-	if [[ "$extra_opts" != "emulation-src" ]]; then
+	if [[ "$extra_opts" == "emulation-src" ]]; then
 	
 		# fetch cores
 		./libretro-fetch.sh 
@@ -232,7 +232,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	
 	# no options specifed in './desktop-software install emulation-src' cmd
 	# if not core was specified, $extra_opts will be the pkg type
-	if [[ "$extra_opts" != "emulation-src" ]]; then
+	if [[ "$extra_opts" == "emulation-src" ]]; then
 		
 		sleep 2s
 		echo -e "\n==> Building $extra_opts from user request"

@@ -126,7 +126,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	##################################################
 		
 	# no options specifed in './desktop-software install emulation-src' cmd
-	if [[ "$extra_opts" == "" ]]
+	if [[ "$extra_opts" == "" ]]; then
 	
 		# fetch cores
 		./libretro-fetch.sh 

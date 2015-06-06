@@ -30,13 +30,22 @@ This assumes you have enabled mouse control for the web app in question for supp
 ####Gamepad 
 * Left Joystick (Up/Down/Left/Right) - Move mouse cursor
 * Right Joystick (Up/Down/Left/Right) - Scroll wheel
+<<<<<<< HEAD:docs/web-apps-readme.md
 * A/LB/cross - Mouse left button
 * B/RB/circle - Mouse right button
+* X/square - Spacebar (useful for pausing videos)
+* Y/triangle - Esc button (exits most video in fullscreen)
+* Dpad (left/right) - backward or forward page navigation
+* Dpad (left/right/up/down) - Digital movement in [Youtube's Leanback mode](http://www.youtube.com/tv)
+=======
+* A/LB - Mouse left button
+* B/RB - Mouse right button
 * X/square - Spacebar (useful for pausing fullscreen videos)
 * Y/triange - Esc (useful for exiting fullscreen mode on videos)
 * Dpad (left/right) - backward or forward page navigation
 * Dpad (left/right/up/down) - Digital button navigation with 
 * R3 (right stick click) - Reset zoom status to default view. 
+>>>>>>> master:docs/web-apps-readme.md
 * Back button - Exit web app
 * LT/L2 -Zoom out
 * RT/R2 - Zoom in
@@ -98,13 +107,19 @@ If you wish to add images / banners for your own custom URLs or web apps you add
 * The ['extra-artwork'](https://github.com/ProfessorKaos64/SteamOS-Tools/tree/master/cfgs/extra-artwork) folder within this GitHub repository. Extra artwork / banners can be added upon reques.
 * [Google image search](https://www.google.com/search?q=steam&biw=1366&bih=644&tbm=isch&source=lnt&tbs=isz:ex,iszw:460,iszh:215) with the 460x215 image dimension specification.
 
+<<<<<<< HEAD:docs/web-apps-readme.md
 
 **Troubleshooting** 
 ===
 There are rare occasions where antimicro does not release its process when you are done with a web app. If cases such as this, use the center button on your gamepad to select the "Exit Game" option from the Steam overlay. If extreme cases, a reboot will do the trick if all else fails.
 
+**Summary**
+===
+If you have any questions, comments, or criticisms, please submit an issues ticket on GitHub.
+=======
 <a name="thanks"></a>
 #Thanks
+>>>>>>> master:docs/web-apps-readme.md
 
 Thanks to Shark, Ryochan7, and Dubigrasu of the Steam Universe forums for the launcher help.
 

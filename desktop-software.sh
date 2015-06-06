@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.0.0.3
+# Script Ver:	1.0.1.5
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -37,7 +37,7 @@ extra_opts=$(echo "${@: -1}")
 #echo "Software type 1: $type"
 #echo "Extra opts 1: $extra_opts"
 #echo -e "Availble custom pkg list 1: \n"
-#cat custom-pkg.txt
+#cat software-lists/custom-pkg.txt
 #sleep 50s
 
 # remove old custom files
@@ -55,18 +55,18 @@ while [ "$2" != "" ]; do
 done
 
 # Strip symbols from large pkg pastes from build-depends
-sed -i "s|(>= [0-9].[0-9].[0-9])||g" custom-pkg.txt
-sed -i "s|(<< [0-9].[0-9].[0-9])||g" custom-pkg.txt
-sed -i "s|(>= [0-9].[0-9][0-9])||g" custom-pkg.txt
-sed -i "s|(>= [0-9])||g" custom-pkg.txt
-sed -i "s|(>= [0-9].[0-9][0-9])||g" custom-pkg.txt
-sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" custom-pkg.txt
-sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" custom-pkg.txt
-sed -i "s|[ |]| |g" custom-pkg.txt
-sed -i "s|  | |g" custom-pkg.txt
+sed -i "s|(>= [0-9].[0-9].[0-9])||g" "custom-pkg.txt"
+sed -i "s|(<< [0-9].[0-9].[0-9])||g" "custom-pkg.txt"
+sed -i "s|(>= [0-9].[0-9][0-9])||g" "custom-pkg.txt"
+sed -i "s|(>= [0-9])||g" "custom-pkg.txt"
+sed -i "s|(>= [0-9].[0-9][0-9])||g" "custom-pkg.txt"
+sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" "custom-pkg.txt"
+sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" "custom-pkg.txt"
+sed -i "s|[ |]| |g" "custom-pkg.txt"
+sed -i "s|  | |g" "custom-pkg.txt"
 
 # set custom flag for use later on if line count
-# of testing custom pkg test errorscustom-pkg.txt exceeds 1
+# of testing custom pkg test errorssoftware-lists/custom-pkg.txt exceeds 1
 if [ -f "custom-pkg.txt" ]; then
 	LINECOUNT=$(wc -l "custom-pkg.txt" | cut -f1 -d' ')
 else
@@ -86,7 +86,7 @@ fi
 #echo "Software type 2: $type"
 #echo "Extra opts 2: $extra_opts"
 #echo -e "Availble custom pkg list 2: \n"
-#cat custom-pkg.txt
+#cat software-lists/custom-pkg.txt
 #sleep 10s
 
 apt_mode="install"
@@ -275,7 +275,8 @@ show_help()
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[firefox|kodi|lutris|plex|webapp|x360-bindings]
+	Extra types: 	[firefox|kodi|lutris|plex|webapp]
+	Functions: 	[xb360-bindings|gameplay-recording]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -397,35 +398,35 @@ get_software_type()
 	
         if [[ "$type" == "basic" ]]; then
                 # add basic software to temp list
-                software_list="$scriptdir/cfgs/basic-software.txt"
+                software_list="$scriptdir/cfgs/software-lists/basic-software.txt"
         elif [[ "$type" == "extra" ]]; then
                 # add full softare to temp list
-                software_list="$scriptdir/cfgs/extra-software.txt"
+                software_list="$scriptdir/cfgs/software-lists/extra-software.txt"
         elif [[ "$type" == "emulation" ]]; then
                 # add emulation softare to temp list
-                software_list="$scriptdir/cfgs/emulation.txt"
+                software_list="$scriptdir/cfgs/software-lists/emulation.txt"
         elif [[ "$type" == "emulation-src" ]]; then
                 # add emulation softare to temp list
-                software_list="$scriptdir/cfgs/emulation-src.txt"
+                software_list="$scriptdir/cfgs/software-lists/emulation-src.txt"
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
-                software_list="$scriptdir/cfgs/emulation-src-deps.txt"
+                software_list="$scriptdir/cfgs/software-lists/emulation-src-deps.txt"
         elif [[ "$type" == "upnp-dlna" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/upnp-dlna.txt "
+                software_list="$scriptdir/cfgs/software-lists/upnp-dlna.txt"
         elif [[ "$type" == "gaming-tools" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/gaming-tools.txt "
+                software_list="$scriptdir/cfgs/software-lists/gaming-tools.txt"
         elif [[ "$type" == "games-pkg" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/games-pkg.txt"
+                software_list="$scriptdir/cfgs/software-lists/games-pkg.txt"
         elif [[ "$type" == "pcsx2-testing" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/pcsx2-src-deps.txt"
+                software_list="$scriptdir/cfgs/software-lists/pcsx2-src-deps.txt"
                 m_install_pcsx2_src
                 exit
             
@@ -437,10 +438,6 @@ get_software_type()
                 # add web app via chrome from helper script
                 ep_install_lutris
                 exit
-	elif [[ "$type" == "webapp" ]]; then
-                # add web app via chrome from helper script
-                ep_add_web_app_chrome
-                exit
 	elif [[ "$type" == "chrome" ]]; then
                 # install plex from helper script
                 ep_install_chrome
@@ -448,6 +445,10 @@ get_software_type()
         elif [[ "$type" == "firefox" ]]; then
                 # install plex from helper script
                 ep_install_firefox
+                exit
+        elif [[ "$type" == "gameplay-recording" ]]; then
+                # install plex from helper script
+                ep_install_gameplay_recording
                 exit
         elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script
@@ -457,9 +458,13 @@ get_software_type()
                 # install plex from helper script
                 ep_install_plex
                 exit
-        elif [[ "$type" == "x360-bindings" ]]; then
+	elif [[ "$type" == "webapp" ]]; then
+                # add web app via chrome from helper script
+                add_web_app_chrome
+                exit
+        elif [[ "$type" == "xb360-bindings" ]]; then
                 # install plex from helper script
-                ep_install_x360_bindings
+                ep_install_xb360_bindings
                 exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
@@ -732,7 +737,7 @@ install_software()
         elif [[ "$type" == "emulation-src" ]]; then
                 # call external build script
                 clear
-                echo -e "\n==> Proceeding to install emulator pkgs from source..."
+                echo -e "==> Proceeding to install emulator pkgs from source..."
                 sleep 2s
                 retroarch_src_main
                 rpc_configure_retroarch
@@ -810,7 +815,7 @@ main()
 	import "$scriptdir/scriptmodules/emulation"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
-	import "$scriptdir/scriptmodules/mobile-upnp-dlna"
+	import "$scriptdir/scriptmodules/web-apps"
 
         # generate software listing based on type or skip to auto script
         get_software_type
@@ -821,7 +826,7 @@ main()
         		uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from $scriptdir/cfgs/basic-software.txt
+                        # show listing from $scriptdir/cfgs/software-lists/basic-software.txt
                         clear
                         cat $software_list | less
 			exit
@@ -861,7 +866,7 @@ main()
                         uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from $scriptdir/cfgs/extra-software.txt
+                        # show listing from $scriptdir/cfgs/software-lists/extra-software.txt
                         clear
 			cat $software_list | less
 			exit
@@ -902,7 +907,7 @@ main()
                         uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from $scriptdir/cfgs/emulation.txt
+                        # show listing from $scriptdir/cfgs/software-lists/emulation.txt
                         clear
 			cat $software_list | less
 			exit
@@ -950,7 +955,7 @@ main()
 	                uninstall="yes"
 	
 	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/emulation-src.txt
+	                # show listing from $scriptdir/cfgs/software-lists/emulation-src.txt
 	                clear
 	                echo $type
 	                echo $options
@@ -993,7 +998,7 @@ main()
 	                uninstall="yes"
 	
 	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/emulation-src-deps.txt
+	                # show listing from $scriptdir/cfgs/software-lists/emulation-src-deps.txt
 	                clear
 			cat $software_list | less
 			exit
@@ -1036,7 +1041,7 @@ main()
 	                uninstall="yes"
 	
 	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/upnp-dlna.txt
+	                # show listing from $scriptdir/cfgs/software-lists/upnp-dlna.txt
 	                clear
 			cat $software_list | less
 			exit

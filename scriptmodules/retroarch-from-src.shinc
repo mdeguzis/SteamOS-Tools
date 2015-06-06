@@ -135,6 +135,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	else
 		
 		echo -e "\n==> Attempting to fetch core $extra_opts now...\n"
+		./libretro-fetch.sh retroarch
 		./libretro-fetch.sh $extra_opts
 	fi
 	

@@ -367,8 +367,8 @@ ep_install_gameplay_recording()
 	
 	# Pull in files for recording from cfgs/recording
 
-	sudo cp "$scriptdir/cfgs/recording/recording-start" "/usr/local/bin"
-	sudo cp "$scriptdir/cfgs/recording/recording-stop" "/usr/local/bin"
+	sudo cp "$scriptdir/cfgs/recording/recording-start.sh" "/usr/local/bin"
+	sudo cp "$scriptdir/cfgs/recording/recording-stop.sh" "/usr/local/bin"
 	sudo cp "$scriptdir/cfgs/recording/99-actkbd-controller.rules" "/etc/udev/rules.d"
 	
 	# we want to append this to the controller file as to not upset an existing

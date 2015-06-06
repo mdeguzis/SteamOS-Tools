@@ -4,7 +4,8 @@
 
 - [Usage](#usage)
 - [General](#general)
-  - [Source build information](#source-build-information)
+- [Source build information](#source-build-information)
+- [Testing](#testing)
   - [Testing machine specifications](#testing-machine-specifications)
   - [Latest Testing Results](#latest-testing-results)
 - [General](#general-1)

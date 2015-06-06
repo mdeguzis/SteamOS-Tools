@@ -234,7 +234,6 @@ if [[ "$apt_mode" == "install" ]]; then
 	# if not core was specified, $extra_opts will be the pkg type
 	if [[ "$extra_opts" == "emulation-src" ]]; then
 		
-
 		######################################
 		# Begin core build eval for all cores
 		#####################################
@@ -275,7 +274,7 @@ if [[ "$apt_mode" == "install" ]]; then
 		# end retroarch build eval
 		fi
 	
-	elif [[ "$extra_opts" != "emulation-src" ]]; the
+	elif [[ "$extra_opts" != "emulation-src" ]]; then
 	
 		sleep 2s
 		echo -e "\n==> Building $extra_opts from user request"

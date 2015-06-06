@@ -1,16 +1,6 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [remote-record-steam-readme.md](#remote-record-steam-readmemd)
-- [About](#about)
-- [Prerequisites](#prerequisites)
-- [Usage](#usage)
-- [Please note](#please-note)
-
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# remote-record-steam-readme.md
+# gameplay-recording-readme.md
 
 ### About
  

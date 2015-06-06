@@ -28,7 +28,7 @@ type="$2"
 # Specify a final arg for any extra options to build in later
 # The command being echo'd will contain the last arg used.
 # See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
-extra_opts=$(echo "${@: -1}")
+export extra_opts=$(echo "${@: -1}")
 
 #############################################
 # Test arguments (1st pass) here:

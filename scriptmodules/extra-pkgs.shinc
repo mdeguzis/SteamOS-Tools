@@ -1027,7 +1027,8 @@ ep_install_xb360_bindings()
 		exit 1
 	else 
 		
-		echo -e "\nContinuing...\n"
+		echo -e "\nContinuing..."
+		sleep 1s
 	fi
 	
 	###############################

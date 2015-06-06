@@ -41,7 +41,7 @@ extra_opts=$(echo "${@: -1}")
 #sleep 50s
 
 # remove old custom files
-rm -f "$scriptdir/cfgs/software-lists/custom-pkg.txt"
+rm -f "custom-pkg.txt"
 rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
@@ -67,8 +67,8 @@ sed -i "s|  | |g" "custom-pkg.txt"
 
 # set custom flag for use later on if line count
 # of testing custom pkg test errorssoftware-lists/custom-pkg.txt exceeds 1
-if [ -f "$scriptdir/software-lists/custom-pkg.txt" ]; then
-	LINECOUNT=$(wc -l "software-lists/custom-pkg.txt" | cut -f1 -d' ')
+if [ -f "custom-pkg.txt" ]; then
+	LINECOUNT=$(wc -l "custom-pkg.txt" | cut -f1 -d' ')
 else
 	# do nothing
 	echo "" > /dev/null 
@@ -720,7 +720,7 @@ install_software()
 	###########################################################
 	
 	# Remove custom package list
-	rm -f software-lists/custom-pkg.txt
+	rm -f custom-pkg.txt
 	
 	# If software type was for emulation, continue building
 	# emulators from source (DISABLE FOR NOW)
@@ -1159,5 +1159,5 @@ strings log_temp.txt > log.txt
 sed -i 's|\[J||g' log.txt
 
 # remove file not needed anymore
-rm -f "software-lists/custom-pkg.txt"
+rm -f "custom-pkg.txt"
 rm -f "log_temp.txt"

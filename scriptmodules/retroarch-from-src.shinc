@@ -231,6 +231,22 @@ if [[ "$apt_mode" == "install" ]]; then
 	
 	if [[ "$core_check" != "" ]]; then
 		
+		##################################################
+		# Asses if all cores are to be built or just one
+		##################################################
+		
+		# no options specifed in './desktop-software install emulation-src' cmd
+		if [[ "$extra_opts" == "" ]]; then
+		
+			# build cores
+			./libretro-build.sh
+			
+		else
+			
+			echo -e "\n==> Attempting to build core $extra_opts now..."
+			./libretro-build.sh $extra_opts
+		fi
+		
 		echo -e "\n==INFO=="
 		echo -e "It seems the libretro cores are already built to $core_loc"
 		echo -e "Would you like to rebuild [y], or [n]?\n"
@@ -260,22 +276,6 @@ if [[ "$apt_mode" == "install" ]]; then
 		echo -e "Building now..."
 		sleep 2s
 		
-		##################################################
-		# Asses if all cores are to be built or just one
-		##################################################
-		
-		# no options specifed in './desktop-software install emulation-src' cmd
-		if [[ "$extra_opts" == "" ]]; then
-		
-			# build cores
-			./libretro-build.sh
-			
-		else
-			
-			echo -e "\n==> Attempting to build core $extra_opts now..."
-			./libretro-build.sh $extra_opts
-		fi
-
 	# end retroarch build eval
 	fi
 	

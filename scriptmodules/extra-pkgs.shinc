@@ -358,8 +358,8 @@ ep_install_gameplay_recording()
 	
 	# Pull in files for recording from cfgs/recording
 	
-	sudo cp "$scriptdir/cfgs/recording/recording-start" "/usr/local/bin"
-	sudo cp "$scriptdir/cfgs/recording/recording-stop" "/usr/local/bin"
+	sudo cp "$scriptdir/cfgs/recording/recording-start.sh" "/usr/local/bin"
+	sudo cp "$scriptdir/cfgs/recording/recording-stop.sh" "/usr/local/bin"
 	sudo cp "$scriptdir/cfgs/recording/99-actkbd-controller.rules" "/etc/udev/rules.d"
 	sudo cp "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" "/etc"
 	
@@ -367,8 +367,8 @@ ep_install_gameplay_recording()
 	# Configure
 	############################################
 	
-	sudo chmod +x "/usr/local/bin/recording-stop"
-	sudo chmod +x "/usr/local/bin/recording-start"
+	sudo chmod +x "/usr/local/bin/recording-stop.sh"
+	sudo chmod +x "/usr/local/bin/recording-start.sh"
 
 }
 

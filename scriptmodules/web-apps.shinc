@@ -308,10 +308,10 @@ add_web_app_chrome()
 		sudo chmod +x "/usr/bin/${NAME}-Launch.sh"
 		
 		# perform sed replacements on skel files
-		sudo sed -i "s|LAUNCHER_TMP|$LAUNCHER|g" "/usr/share/applications/${NAME}.desktop"
-		sudo sed -i "s|NAME_TMP|$NAME|g" "/usr/share/applications/${NAME}.desktop"
-		sudo sed -i "s|IMG_TMP|$BANNER_IMG|g" "/usr/share/applications/${NAME}.desktop"
-		sudo sed -i "s|WEB_URL_TMP|$WEB_URL|g" "/usr/bin/${NAME}-Launch.sh"
+		sudo sed -i "s|LAUNCHER_TMP|$LAUNCHER|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+		sudo sed -i "s|NAME_TMP|$NAME|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+		sudo sed -i "s|IMG_TMP|$BANNER_IMG|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+		sudo sed -i "s|WEB_URL_TMP|$WEB_URL|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
 		
 	elif [[ "$custom_url" == "yes" ]]; then
 		

@@ -18,7 +18,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ***
-### Usage
+# Usage
 ***
 
 Building Retroarch and Libretro cores from source is called from the main `desktop-software` script.
@@ -36,7 +36,7 @@ However, if you wish to built a specific core, you can specify the core name as 
 For a list of cores, please reference this [libretro-super](https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91) file. 
 
 ***
-### General
+# General
 ***
 After running the emulation-src type, currently you must still perform the following as of 20150427:
 
@@ -44,11 +44,11 @@ After running the emulation-src type, currently you must still perform the follo
 2. Configure your joypad via Retroarch > Settings > Input Settings (use bind all to configure all buttons at once)
 3. Transfer any ROMs you had on your system, into appropriate folder structures under `/home/steam/ROMs`
 ***
-### Source build information
+# Source build information
 ***
 Below you can find related information pertaining to building Retroarch/Libretro from source. This will only include items outside the automatic build script invoked by `desktop-software.sh`.
 
-#####Testing machine specifications
+#Testing machine specifications
 ===
 **SteamOS-Test**  
 * CPU: Intel Core 2 Quad Q9550
@@ -68,7 +68,7 @@ Below you can find related information pertaining to building Retroarch/Libretro
 * HDD: Intel SSD
 * GPU: Nvidia GTX 550 Ti
 
-####Latest Testing Results
+##Latest Testing Results
 ===
 
 **Host: SteamOS-Test**  
@@ -86,11 +86,11 @@ Cores failed:
 Already fetched:    
 
 ***
-### General
+# General
 ***
 Since the "system" directory of Retroarch is pre-configured to `/home/<user>/ROMs`, you'll want to also dump your BOIS files in this location as well.
 
-####PSX/PS1 BIOS Files
+##PSX/PS1 BIOS Files
 
 Mednafen is very picky about which BIOS to use. The ones that you might need are:
 
@@ -101,13 +101,13 @@ Mednafen is very picky about which BIOS to use. The ones that you might need are
 Copy this file to the `$HOME/ROMs` directory of the user you are working with. Most commonly this is `/home/steam/ROMs`. If you can't find one of these, just rename the respective scph100x.bin BIOS (such as scph1001.bin) to scph550x.bin (such as scph5501.bin) and it will take it. 
 
 ***
-### Disc Images
+# Disc Images
 ***
 
 Mednafen requires you to load games through CUE sheets. Ensure that the CUE sheet is properly set up in order for the game to run. See the Cue sheet (.cue) for more.
 
 ***
-### Input (General)
+# Input (General)
 ***
 Please take note of the following general modifications:
 
@@ -119,19 +119,19 @@ Please take note of the following general modifications:
 Please note: The center button of either the Sony or Microsoft controllers is not ideal for opening the Retroarch menu or quitting Retroarch. Steam Big Picture Mode / SteamOS uses this button by default to bring up the Steam overlay. Save states are not supported on all consoles/cores.
 
 ***
-### Input (General)
+# Input (General)
 ***
 Each controller preset, if chosen during the Retroarch post-install sequence, is preset for 4 players maxiumum. If you wish to configure more, please use the input settings section of Retroarch.
 
 ***
-### Input (Xbox 360 Controllers)
+# Input (Xbox 360 Controllers)
 ***
 The Xbox controllers are mapped exactly has Retroarch has requested each button to be. See the below diagram.
 
 ![alt text](http://www.libregeek.org/wp-content/uploads/2014/04/xbox-controller-mapping-1024x768.jpg "Xbox 360 Controller")
 
 ***
-### Input (Sony PS3 Controllers)
+# Input (Sony PS3 Controllers)
 ***
 
 The Sony Dualshock 3 controller is setup in the same fashion as the above Xbox 360 controller. The main things to keep in mind are
@@ -142,6 +142,21 @@ The Sony Dualshock 3 controller is setup in the same fashion as the above Xbox 3
 * Triange is "Y"
 
 ***
-### Tested / known working cores
+# Shaders
+***
+
+Shaders are assessed at build time for Retroarch. The pre-requisite pacakge `nvidia-cg-toolkit` is pre-installed before the build kicks off.
+
+***
+# Tested / known working cores
 ***
 You can find a list of cores tested with games already [here](https://github.com/ProfessorKaos64/SteamOS-Tools/edit/testing/docs/Retroarch-Testing-Checklist.md)
+
+***
+# Troubleshoting
+***
+
+## I Can't find my shader core!
+Some shaders, such as eagle, are of a `.cg` not `.cgp` file extension/type. Loading shader presets only works with a `.cgp` file.
+
+To load cg files, increment the passes by 1 and then go to where it says N/A and navigate to the `.cg` file.

@@ -223,7 +223,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	
 	# download and extract shaders
 	
-	echo -e "\n==>Fetchng shaders from Libretro (Git)\n"
+	echo -e "\n==> Fetchng shaders from Libretro (Git)\n"
 	wget -P /tmp "https://github.com/libretro/common-shaders/archive/master.zip"
 	# extract
 	unzip -o "/tmp/master.zip" -d "/tmp"

@@ -2,15 +2,37 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Usage](#usage)
 - [General](#general)
-- [BIOS](#bios)
-- [Disc Images](#discimages)
+- [Source build information](#source-build-information)
+    - [Testing machine specifications](#testing-machine-specifications)
+    - [Latest Testing Results](#latest-testing-results)
+- [General](#general-1)
+- [PSX/PS1 BIOS Files](#psxps1-bios-files)
+- [Disc Images](#disc-images)
 - [Input (General)](#input-general)
 - [Input (Xbox 360 Controllers)](#input-xbox-360-controllers)
 - [Input (Sony PS3 Controllers)](#input-sony-ps3-controllers)
 - [Tested / known working cores](#tested--known-working-cores)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+***
+### Usage
+***
+
+Building Retroarch and Libretro cores from source is called from the main `desktop-software` script.
+
+```
+./desktop-software.sh install emulation-src
+```
+
+However, if you wish to built a specific core, you can specify the core name as so:
+
+```
+./desktop-software.sh install emulation-src mame
+```
+
 ***
 ### General
 ***

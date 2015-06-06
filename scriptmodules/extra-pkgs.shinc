@@ -349,12 +349,16 @@ ep_install_gameplay_recording()
 	############################################
 	
 	echo -e "\n==> Checking for prerequisite packages\n"
+	sleep 0.5s
 	
 	sudo apt-get install libav-tools libx264-123
 	
 	############################################
 	# Required files
 	############################################
+	
+	echo -e "\n==> Adding required files\n"
+	sleep 0.5s
 	
 	# Pull in files for recording from cfgs/recording
 	
@@ -366,6 +370,9 @@ ep_install_gameplay_recording()
 	############################################
 	# Configure
 	############################################
+
+	echo -e "\n==> Configuring\n"
+	sleep 0.5s
 	
 	sudo chmod +x "/usr/local/bin/recording-stop.sh"
 	sudo chmod +x "/usr/local/bin/recording-start.sh"

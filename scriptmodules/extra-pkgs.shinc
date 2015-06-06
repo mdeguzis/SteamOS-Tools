@@ -383,6 +383,7 @@ ep_install_gameplay_recording()
 		echo -e "\n(r)eplace or (a)append our changes?"
 	
 		# get user input
+		sleep 0.3s
 		read -ep "Choice: " mapping_choice
 		
 		if [[ "$mapping_choice" == "r" ]]; then

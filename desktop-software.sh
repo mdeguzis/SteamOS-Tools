@@ -41,7 +41,7 @@ extra_opts=$(echo "${@: -1}")
 #sleep 50s
 
 # remove old custom files
-rm -f "software-lists/custom-pkg.txt"
+rm -f "$scriptdir/cfgs/software-lists/custom-pkg.txt"
 rm -f "log.txt"
 
 # loop argument 2 until no more is specfied
@@ -49,25 +49,25 @@ while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type_tmp="$2"
-	echo "$type_tmp" >> "software-lists/custom-pkg.txt"
+	echo "$type_tmp" >> "$scriptdir/cfgs/software-lists/custom-pkg.txt"
 	# Shift all the parameters down by one
 	shift
 done
 
 # Strip symbols from large pkg pastes from build-depends
-sed -i "s|(>= [0-9].[0-9].[0-9])||g" software-lists/custom-pkg.txt
-sed -i "s|(<< [0-9].[0-9].[0-9])||g" software-lists/custom-pkg.txt
-sed -i "s|(>= [0-9].[0-9][0-9])||g" software-lists/custom-pkg.txt
-sed -i "s|(>= [0-9])||g" software-lists/custom-pkg.txt
-sed -i "s|(>= [0-9].[0-9][0-9])||g" software-lists/custom-pkg.txt
-sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" software-lists/custom-pkg.txt
-sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" software-lists/custom-pkg.txt
-sed -i "s|[ |]| |g" software-lists/custom-pkg.txt
-sed -i "s|  | |g" software-lists/custom-pkg.txt
+sed -i "s|(>= [0-9].[0-9].[0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
+sed -i "s|(<< [0-9].[0-9].[0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
+sed -i "s|(>= [0-9].[0-9][0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
+sed -i "s|(>= [0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
+sed -i "s|(>= [0-9].[0-9][0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
+sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
+sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
+sed -i "s|[ |]| |g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
+sed -i "s|  | |g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
 
 # set custom flag for use later on if line count
 # of testing custom pkg test errorssoftware-lists/custom-pkg.txt exceeds 1
-if [ -f "software-lists/custom-pkg.txt" ]; then
+if [ -f "$scriptdir/software-lists/custom-pkg.txt" ]; then
 	LINECOUNT=$(wc -l "software-lists/custom-pkg.txt" | cut -f1 -d' ')
 else
 	# do nothing

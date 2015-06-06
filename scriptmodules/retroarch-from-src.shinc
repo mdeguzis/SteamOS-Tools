@@ -10,12 +10,16 @@
 #
 #			See: https://wiki.debian.org/CreatePackageFromPPA
 # Usage:	  	N/A, called from another script
+#			(optional) build an individual core with:
+#			
 #
 #Last tested:		Please see SteamOS-Tools/docs/Retroarch-info.md 
 # -------------------------------------------------------------------------------
 
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
+
+opt="$1"
 
 retroarch_src_main()
 {
@@ -49,7 +53,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	# If the DIR is already there, the fetch info should be intact
 	if [[ -d "$git_dir" ]]; then
 		
-		echo -e "\n==INFO==\nGit folder already exists! Attempting git pull...\n"
+		echo -e "==INFO==\nGit folder already exists! Attempting git pull...\n"
 		sleep 1s
 		# attempt to pull the latest source first
 		cd $git_dir
@@ -117,8 +121,21 @@ if [[ "$apt_mode" == "install" ]]; then
 	# proceed to global fetch:
 	############################
 	
-	# fetch cores
-	./libretro-fetch.sh 
+	##################################################
+	# Asses if all cores are to be built or just one
+	##################################################
+		
+	# no options specifed in './desktop-software install emulation-src' cmd
+	if [[ "$extra_opts" == "" ]]
+	
+		# fetch cores
+		./libretro-fetch.sh 
+		
+	else
+		
+		echo -e "\n==> Attempting to build core $extra_opts now..."
+		./libretro-fetch.sh $extra_opts
+	fi
 	
 	#################################################
 	# Build player and cores
@@ -242,8 +259,22 @@ if [[ "$apt_mode" == "install" ]]; then
 		echo -e "\n==INFO==\nLibretro cores do not appear to be built."
 		echo -e "Building now..."
 		sleep 2s
-		# build cores
-		./libretro-build.sh
+		
+		##################################################
+		# Asses if all cores are to be built or just one
+		##################################################
+		
+		# no options specifed in './desktop-software install emulation-src' cmd
+		if [[ "$extra_opts" == "" ]]
+		
+			# build cores
+			./libretro-build.sh
+			
+		else
+			
+			echo -e "\n==> Attempting to build core $extra_opts now..."
+			./libretro-build.sh $extra_opts
+		fi
 
 	# end retroarch build eval
 	fi
@@ -269,7 +300,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	
 	# output finish
 	echo -e "\nTime started: ${time_stamp_start}"
-	echo -e "Time started: ${time_stamp_end}"
+	echo -e "Time stopped: ${time_stamp_end}"
 	echo -e "Total Runtime (minutes): $runtime\n"
 
 	echo -e "\nProceeding to Retroarch/Libretro post-install configuration in...\n"

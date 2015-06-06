@@ -11,6 +11,23 @@
 - [Tested / known working cores](#tested--known-working-cores)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+***
+### Usage
+***
+
+Building Retroarch and Libretro cores from source is called from the main `desktop-software` script.
+
+```
+./desktop-software.sh install emulation-src
+```
+
+However, if you wish to built a specific core, you can specify the core name as so:
+
+```
+./desktop-software.sh install emulation-src mame
+```
+
 ***
 ### General
 ***

@@ -737,7 +737,7 @@ install_software()
         elif [[ "$type" == "emulation-src" ]]; then
                 # call external build script
                 clear
-                echo -e "\n==> Proceeding to install emulator pkgs from source..."
+                echo -e "==> Proceeding to install emulator pkgs from source..."
                 sleep 2s
                 retroarch_src_main
                 rpc_configure_retroarch

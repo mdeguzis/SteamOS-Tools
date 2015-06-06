@@ -18,9 +18,7 @@ web_app_netflix()
 	SHORTCUT="Netflix.desktop"
 	LAUNCHER="/usr/bin/Netflix-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Netflix.png"
-	
-	# add web-app
-	add_web_app_chrome
+
 }
 
 
@@ -34,9 +32,7 @@ web_app_hulu()
 	SHORTCUT="Hulu.desktop"
 	LAUNCHER="/usr/bin/Hulu-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Hulu.png"
-	
-	# add web-app
-	add_web_app_chrome
+
 }
 
 web_app_youtube()
@@ -49,9 +45,7 @@ web_app_youtube()
 	SHORTCUT="Youtube.desktop"
 	LAUNCHER="/usr/bin/Youtube-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Youtube.png"
-	
-	# add web-app
-	add_web_app_chrome
+
 }
 
 web_app_soundcloud()
@@ -64,9 +58,7 @@ web_app_soundcloud()
 	SHORTCUT="Soundcloud.desktop"
 	LAUNCHER="/usr/bin/Soundcloud-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Soundcloud.png"
-	
-	# add web-app
-	add_web_app_chrome
+
 }
 
 web_app_prime_movies()
@@ -80,8 +72,6 @@ web_app_prime_movies()
 	LAUNCHER="/usr/bin/Amazon-Prime-Movies-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Amazon-Prime-Movies.png"
 	
-	# add web-app
-	add_web_app_chrome
 }
 
 web_app_chrome_exts()
@@ -95,8 +85,6 @@ web_app_chrome_exts()
 	LAUNCHER="/usr/bin/Chrome-Extensions-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Chrome-Extensions.png"
 	
-	# add web-app
-	add_web_app_chrome
 }
 
 web_app_twitch()
@@ -109,9 +97,6 @@ web_app_twitch()
 	SHORTCUT="Twitch.desktop"
 	LAUNCHER="/usr/bin/Twitch-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Twitch.png"
-	
-	# add web-app
-	add_web_app_chrome
 
 }
 

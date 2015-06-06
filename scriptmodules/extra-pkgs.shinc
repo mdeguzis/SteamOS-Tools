@@ -1007,6 +1007,9 @@ ep_install_xb360_bindings()
 	clear
 	
 	cat <<-EOF
+	##########################################################
+	Warning:
+	##########################################################"
 	Please be advised this deb package overwrites the
 	custom Xbox 360 controller mapps in the file
 	/etc/actkbd-steamos-controller.conf"

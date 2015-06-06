@@ -382,28 +382,35 @@ ep_install_gameplay_recording()
 		less "/etc/actkbd-steamos-controller.conf"
 		echo -e "\n(r)eplace or (a)append our changes?"
 	
-	# get user input
-	read -ep "Choice: " mapping_choice
-	
-	if [[ "$mapping_choice" == "r" ]]; then
+		# get user input
+		read -ep "Choice: " mapping_choice
 		
-		# copy over file that exists
-		sudo cp "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
-		"/etc/actkbd-steamos-controller.conf"
-	
-	elif [[ "$mapping_choice" == "a" ]]; then
-	
-		# append instead
-		cat "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
-		| sudo tee --append "/etc/actkbd-steamos-controller.conf"
-	
+		if [[ "$mapping_choice" == "r" ]]; then
+			
+			# copy over file that exists
+			sudo cp "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
+			"/etc/actkbd-steamos-controller.conf"
+		
+		elif [[ "$mapping_choice" == "a" ]]; then
+		
+			# append instead
+			cat "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
+			| sudo tee --append "/etc/actkbd-steamos-controller.conf"
+		
+		else
+		
+			# default is to keep
+			echo -e "Invalid input detected, keeping existing file and appending!"
+			cat "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
+			| sudo tee --append "/etc/actkbd-steamos-controller.conf"
+		
+		fi
+		
 	else
 	
-		# default is to keep
-		echo -e "Invalid input detected, keeping existing file and appending!"
-		cat "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
-		| sudo tee --append "/etc/actkbd-steamos-controller.conf"
-	
+		# controller custom mappings not found
+		echo "" > /dev/null
+		
 	fi
 
 	############################################

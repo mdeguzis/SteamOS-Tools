@@ -1,19 +1,22 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [Usage](#usage)
-- [General](#general)
-- [Source build information](#source-build-information)
-    - [Testing machine specifications](#testing-machine-specifications)
-    - [Latest Testing Results](#latest-testing-results)
-- [General](#general-1)
-- [PSX/PS1 BIOS Files](#psxps1-bios-files)
-- [Disc Images](#disc-images)
-- [Input (General)](#input-general)
-- [Input (Xbox 360 Controllers)](#input-xbox-360-controllers)
-- [Input (Sony PS3 Controllers)](#input-sony-ps3-controllers)
-- [Tested / known working cores](#tested--known-working-cores)
+    - [Usage](#usage)
+    - [General](#general)
+    - [Source build information](#source-build-information)
+        - [Testing machine specifications](#testing-machine-specifications)
+- [#####Testing machine specifications](######testing-machine-specifications)
+- [####Latest Testing Results](#####latest-testing-results)
+      - [Latest Testing Results](#latest-testing-results)
+    - [General](#general-1)
+      - [PSX/PS1 BIOS Files](#psxps1-bios-files)
+    - [Disc Images](#disc-images)
+    - [Input (General)](#input-general)
+    - [Input (General)](#input-general-1)
+    - [Input (Xbox 360 Controllers)](#input-xbox-360-controllers)
+    - [Input (Sony PS3 Controllers)](#input-sony-ps3-controllers)
+    - [Tested / known working cores](#tested--known-working-cores)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

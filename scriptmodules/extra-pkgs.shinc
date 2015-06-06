@@ -1069,10 +1069,10 @@ ep_add_web_app_chrome()
 		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications"
 
 		# copy banner
-		sudo cp "$scriptdir/artwork/banners/$BANNER_IMG" "/home/steam/Pictures"
+		sudo cp "$BANNER_IMG" "/home/steam/Pictures"
 		
 		# mark exec
-		sudo chmod +x "/usr/bin/$LAUNCHER"
+		sudo chmod +x "/usr/bin/${NAME}-Launch.sh"
 		
 		# perform sed replacements on skel files
 		sudo sed -i "s|LAUNCHER_TMP|$LAUNCHER|g" "/usr/share/applications/${custom_name}.desktop"

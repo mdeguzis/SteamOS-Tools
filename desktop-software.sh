@@ -49,21 +49,21 @@ while [ "$2" != "" ]; do
 	# set type var to arugment, append to custom list
 	# for mutliple package specifications by user
 	type_tmp="$2"
-	echo "$type_tmp" >> "$scriptdir/cfgs/software-lists/custom-pkg.txt"
+	echo "$type_tmp" >> "custom-pkg.txt"
 	# Shift all the parameters down by one
 	shift
 done
 
 # Strip symbols from large pkg pastes from build-depends
-sed -i "s|(>= [0-9].[0-9].[0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
-sed -i "s|(<< [0-9].[0-9].[0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
-sed -i "s|(>= [0-9].[0-9][0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
-sed -i "s|(>= [0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
-sed -i "s|(>= [0-9].[0-9][0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
-sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
-sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
-sed -i "s|[ |]| |g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
-sed -i "s|  | |g" "$scriptdir/cfgs/software-lists/custom-pkg.txt"
+sed -i "s|(>= [0-9].[0-9].[0-9])||g" "custom-pkg.txt"
+sed -i "s|(<< [0-9].[0-9].[0-9])||g" "custom-pkg.txt"
+sed -i "s|(>= [0-9].[0-9][0-9])||g" "custom-pkg.txt"
+sed -i "s|(>= [0-9])||g" "custom-pkg.txt"
+sed -i "s|(>= [0-9].[0-9][0-9])||g" "custom-pkg.txt"
+sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" "custom-pkg.txt"
+sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" "custom-pkg.txt"
+sed -i "s|[ |]| |g" "custom-pkg.txt"
+sed -i "s|  | |g" "custom-pkg.txt"
 
 # set custom flag for use later on if line count
 # of testing custom pkg test errorssoftware-lists/custom-pkg.txt exceeds 1

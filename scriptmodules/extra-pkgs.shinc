@@ -341,6 +341,11 @@ ep_install_plex()
 ep_install_gameplay_recording()
 {
 
+	#####################################################
+	# Gameplay video recording
+	#####################################################
+	# See/Source: goo.gl/pi24cK [Steam Community]
+
 	echo -e "\n==> Installing gameplay recording capability..."
 	sleep 2s
 
@@ -376,7 +381,44 @@ ep_install_gameplay_recording()
 	
 	sudo chmod +x "/usr/local/bin/recording-stop.sh"
 	sudo chmod +x "/usr/local/bin/recording-start.sh"
+	
+	############################################
+	# Advise user
+	############################################
 
+	echo ""
+	cat <<-EOF
+	#####################################################
+	# Usage
+	#####################################################
+	
+	Now you can start recording with LB+RB+A and stop the 
+	recording with LB+RB+X on your Xbox 360 controller. 
+	You can find the recordings in /home/steam/Videos/.
+	
+	Please reboot your PC to complete the installation
+	EOF
+	
+	# ask for reboot
+	echo -e "\n Would you like to reboot now? [y/n]"
+	
+	read -ep "Choice: " reboot_choice
+
+	if [[ "$reboot_choice" == "no" ]]; then
+		# user declined reboot request
+		echo "" > /dev/null
+	elif [[ "$reboot_choice" == "yes" ]]; then
+		# user accepted reboot request
+		echo -e "\nRebooting in " 
+		echo "5" && sleep 1 && echo "4" && sleep 1 && \
+		echo "3" && sleep 1 && echo "2" && sleep 1  && echo "1"
+		sudo reboot
+	else
+		# do not reboot if incorrect selection is made
+		echo -e "\nIncorrect selection! Reboot cancelled."
+		echo "" > /dev/null
+	fi
+	
 }
 
 ep_install_kodi()

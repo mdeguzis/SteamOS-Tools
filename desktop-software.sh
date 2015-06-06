@@ -276,7 +276,7 @@ show_help()
 	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
 	Extra types: 	[firefox|kodi|lutris|plex|webapp]
-	Functions: 	[x360-bindings|gameplay-recording]
+	Functions: 	[xb360-bindings|gameplay-recording]
 	
 	Install with:
 	'sudo ./desktop-software [option] [type]'
@@ -462,9 +462,9 @@ get_software_type()
                 # add web app via chrome from helper script
                 add_web_app_chrome
                 exit
-        elif [[ "$type" == "x360-bindings" ]]; then
+        elif [[ "$type" == "xb360-bindings" ]]; then
                 # install plex from helper script
-                ep_install_x360_bindings
+                ep_install_xb360_bindings
                 exit
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response

@@ -309,7 +309,7 @@ add_web_app_chrome()
 		read -ep "Choice: " custom_url
 		
 		echo -e "\nPlease enter a name for this web app:"
-		echo -e "Avoid a name with '.' symbols."
+		echo -e "Avoid a name with '.' symbols.\n"
 		sleep 0.5s
 		read -ep "Choice: " custom_name
 		

@@ -309,13 +309,13 @@ add_web_app_chrome()
 		read -ep "Choice: " custom_url
 		
 		echo -e "\nPlease enter a name for this web app:"
+		echo -e "Avoid a name with '.' symbols.
 		sleep 0.5s
 		read -ep "Choice: " custom_name
 		
 		# To take care of names with spaces, we will set TARGET_NAME
-		# change spaces to dashes, periods to dashes for sites like
-		# gizwiz.tv
-		TARGET_NAME=$(echo $custom_name | sed "s| |-|" | sed "s|.|-|")
+		# change spaces to dashes
+		TARGET_NAME=$(echo $custom_name | sed "s| |-|")
 		
 		echo -e "\nPlease enter path to image banner (best: 460x215)"
 		echo -e "Leave this blank if you wish to use the default\n"

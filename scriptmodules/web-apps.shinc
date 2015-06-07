@@ -167,7 +167,7 @@ add_web_app_chrome()
 		echo -e "\n==INFO==\nantimicro not found! Installing now..."
 		# install antimicro from script
 		sleep 2s
-		web_app_antimicro
+		ep_install_antimicro
 		
 	else
 		

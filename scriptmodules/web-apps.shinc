@@ -141,7 +141,7 @@ add_web_app_chrome()
 	# Software function pre-req
 	#######################################
 	
-	echo -e "\n==> Installing pre-requisite software"
+	echo -e "\n==> Assessing pre-requisite software"
 	sleep 1s
 
 	pkg_test=$(which google-chrome-stable)

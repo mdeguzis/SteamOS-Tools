@@ -151,7 +151,7 @@ add_web_app_chrome()
 		echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
 		# install chrome from script
 		sleep 2s
-		web_app_chrome
+		ep_install_chrome
 		
 	else
 		

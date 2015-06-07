@@ -460,6 +460,7 @@ get_software_type()
                 exit
 	elif [[ "$type" == "webapp" ]]; then
                 # add web app via chrome from helper script
+                ep_install_chrome
                 add_web_app_chrome
                 exit
         elif [[ "$type" == "xb360-bindings" ]]; then

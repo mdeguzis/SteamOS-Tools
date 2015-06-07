@@ -309,9 +309,12 @@ add_web_app_chrome()
 		read -ep "Choice: " custom_url
 		
 		echo -e "\nPlease enter a name for this web app:"
-		echo -e "For names with spaces, please use a dash or underscore\n"
 		sleep 0.5s
 		read -ep "Choice: " custom_name
+		
+		# To take care of names with spaces, we will set TARGET_NAME
+		# change spaces to dashes
+		TARGET_NAME=$(echo $custom_name | sed "s| |-|")
 		
 		echo -e "\nPlease enter path to image banner (best: 460x215)"
 		echo -e "Leave this blank if you wish to use the default\n"
@@ -319,21 +322,21 @@ add_web_app_chrome()
 		read -ep "Choice: " custom_img
 		
 		# copy skel files over
-		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${custom_name}-Launch.sh"
-		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications/${custom_name}.desktop"
+		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${TARGET_NAME}-Launch.sh"
+		sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications/${TARGET_NAME}.desktop"
 		
 		if [[ "$custom_img" == "" ]]; then
 		
 			# copy over default banner
 			default_img="/home/steam/Pictures/WebApp-Default.png"
 			sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.png" "/home/steam/Pictures/WebApp-Default.png"
-			sudo sed -i "s|IMG_TMP|$default_img|g" "/usr/share/applications/${custom_name}.desktop"
+			sudo sed -i "s|IMG_TMP|$default_img|g" "/usr/share/applications/${TARGET_NAME}.desktop"
 		else
 			
 			# use custom banner
 			sudo cp "$custom_img" "/home/steam/Pictures"
 			new_img="/home/steam/Pictures/${custom_img}.png"			
-			sudo sed -i "s|IMG_TMP|$custom_img|g" "/usr/share/applications/${custom_name}.desktop"
+			sudo sed -i "s|IMG_TMP|$custom_img|g" "/usr/share/applications/${TARGET_NAME}.desktop"
 			
 		fi
 
@@ -341,12 +344,12 @@ add_web_app_chrome()
 		launch_loc="/usr/bin/${custom_name}-Launch.sh"
 		
 		# perform sed replacements on skel files
-		sudo sed -i "s|LAUNCHER_TMP|$launch_loc|g" "/usr/share/applications/${custom_name}.desktop"
-		sudo sed -i "s|NAME_TMP|$custom_name|g" "/usr/share/applications/${custom_name}.desktop"
-		sudo sed -i "s|WEB_URL_TMP|$custom_url|g" "/usr/bin/${custom_name}-Launch.sh"
+		sudo sed -i "s|LAUNCHER_TMP|$launch_loc|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+		sudo sed -i "s|NAME_TMP|$custom_name|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+		sudo sed -i "s|WEB_URL_TMP|$custom_url|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
 		
 		# mark launcher exec
-		sudo chmod +x "/usr/bin/${custom_name}-Launch.sh"
+		sudo chmod +x "/usr/bin/${TARGET_NAME}-Launch.sh"
 		
 	fi
 

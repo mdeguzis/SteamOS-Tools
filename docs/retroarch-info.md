@@ -18,7 +18,8 @@
 - [Shaders](#shaders)
 - [Tested / known working cores](#tested--known-working-cores)
 - [Troubleshoting](#troubleshoting)
-  - [I can't find my shader core!](#i-cant-find-my-shader-core)
+  - [I Can't find my shader core!](#i-cant-find-my-shader-core)
+  - [My game won't launch from detect core!](#my-game-wont-launch-from-detect-core)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

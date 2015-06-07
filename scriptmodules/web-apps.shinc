@@ -341,7 +341,7 @@ add_web_app_chrome()
 		fi
 
 		# set launch file loc for easy swapout
-		launch_loc="/usr/bin/${custom_name}-Launch.sh"
+		launch_loc="/usr/bin/${TARGET_NAME}-Launch.sh"
 		
 		# perform sed replacements on skel files
 		sudo sed -i "s|LAUNCHER_TMP|$launch_loc|g" "/usr/share/applications/${TARGET_NAME}.desktop"

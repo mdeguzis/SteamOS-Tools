@@ -18,7 +18,7 @@
 - [Shaders](#shaders)
 - [Tested / known working cores](#tested--known-working-cores)
 - [Troubleshoting](#troubleshoting)
-  - [I Can't find my shader core!](#i-cant-find-my-shader-core)
+  - [I can't find my shader core!](#i-cant-find-my-shader-core)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -169,3 +169,7 @@ You can find a list of cores tested with games already [here](https://github.com
 Some shaders, such as eagle, are of a `.cg` not `.cgp` file extension/type. Loading shader presets only works with a `.cgp` file.
 
 To load cg files, load a cgp shader (i.e. one that you can see), increment the passes by 1 and then go to where it says N/A and navigate to the `.cg` file. Alternatively, you can change the first pass, but I suggest adding another pass to add this cg file.
+
+##My game won't launch from detect core!
+As it was today, 20150607, there are times when building from and active Git source can be a disadvantageous. For all the benefits it brings, there will be times when things break. In this example a [bad commit](https://github.com/libretro/RetroArch/commit/0eacc9ff30835fc4898b0e25806f96dda150d1b0) broke core detection mechanisms for content loaded. However, you can still load the core, then the content just fine.
+

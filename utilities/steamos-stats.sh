@@ -4,10 +4,12 @@
 # Author: 		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/scripts
 # Scipt Name:		steamos-stats.sh
-# Script Ver:		0.7.5
+# Script Ver:		0.7.8
 # Description:		Monitors various stats easily over an SSH connetion
 #			to gauge performance and temperature loads on steamos.
 # Usage:		./steamos-stats.sh -gpu [gfx driver] -appid [APPID]
+#			The cmd 'steamos-stats' can also be used post-install
+#
 # Warning:		You MUST have the Debian repos added properly for 
 #			Installation of the pre-requisite packages.
 # TODO:			Add AMD GPU support
@@ -89,7 +91,7 @@ funct_pre_req_checks()
 		# will have to assume the user started in the /home/desktop DIR
 	
 		echo -e "\n==> SteamCMD"
-		sleep 2s
+		sleep 1s
 	
 		# steamcmd dependencies
 		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' lib32gcc1 | grep "install ok installed")
@@ -139,7 +141,7 @@ funct_pre_req_checks()
 		# For bindings, see: /etc/actkbd-steamos-controller.conf
 		
 		echo -e "\n==> VaporOS Xbox 360 bindings"
-		sleep 2s
+		sleep 1s
 		
 		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
 		if [ "" == "$PKG_OK" ]; then
@@ -314,6 +316,14 @@ funct_pre_req_checks()
 	   # Volgperf integration is disabled for now
 	   # echo -ne 'showfps on\n' |  echo -ne 'game start $APPID \n' | sudo -u steam /home/desktop/voglperf/bin/voglperfrun64
 	fi
+	
+	####################################################################
+	# Post install
+	####################################################################
+	
+	# copy script to /usr/bin for easy use
+	sudo cp "$scriptdir/utilities/steamos-stats.sh" "/usr/bin/steamos-stats"
+	sudo chmod +x "/usr/bin/steamos-stats"
 }
 
 funct_main_loop()

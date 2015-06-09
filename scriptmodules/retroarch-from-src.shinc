@@ -52,7 +52,6 @@ if [[ "$apt_mode" == "install" ]]; then
 	# optional backup Git fork if there is a regression in Retroarch
 	###########################################################################
 	# Updated and tested roughly once a week to ensure some kind of stability
-	# The fork of libretro-setup has the Git URLS changed to this fork:
 	# https://github.com/ProfessorKaos64/RetroArch
 	
 	# export git_url="https://github.com/ProfessorKaos64/libretro-super"

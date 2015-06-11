@@ -40,13 +40,12 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
   * build-test-chroot.sh - build a Debian or SteamOS jail for testing **[in progress]**
   * buld-test-docker.sh - create a docker container for testing.
   * gpg_import.sh - import GPG keys (used internally).
-  * enable-gameplay-recording.sh - enables gameplay recording via gamepad button calls
   * pair-ps3-bluetooth.sh - pairs your PS3 blueooth controllers to a supported receiver.
   * ssh-rom-transfer.sh - transfer ROMs over SSH to a remote computer.
   * steamos-stats.sh - displays useful stats while gaming over SSH from another device.
 * README.md - This file.
 * add-debian-repos.sh - adds debian repositories for installing Debian wheezy software.
-* desktop-software.sh - script to install custom and bulk Debian desktop software packages. Please see the readme file in docs/ for the full listing of options.
+* desktop-software.sh - script to install custom and bulk Debian desktop software packages, as well as special additional packages/utilities, such as gameplay recording, "web apps," and more. Please see the readme file in docs/ for the full listing of options.
 * disclaimer.md - safety warnings for this repository.
 
 ## Wiki

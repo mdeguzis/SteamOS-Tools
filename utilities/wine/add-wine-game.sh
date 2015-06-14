@@ -2,7 +2,7 @@
 # -----------------------------------------------------------------------
 # Author: 	    	Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name: 		wine-game-launch.sh
+# Scipt Name: 		add-wine-game.sh
 # Script Ver: 		0.1.1
 # Description:		Launch Windows game using Crossover / Wine
 #

@@ -58,12 +58,12 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 ## Branches
 There are three main branches at the moment
 
-`master`  
+`alchemist`  
 Default branch - "stable" work that gets PRs, fixes, priority over all other branches.  
+`brewmaster`  
+Now that Jessie is stable, evaluation of current repository and packages is underway. **Not** recommended for use.
 `testing`  
 Branch where new scripts are made, larger alterations to existing ones implemented, and more.  
-`testing-jessie`  
-Now that Jessie is stable, evaluation of current repository and packages is underway. **Not** recommended for use.  
 
 ## Pull requests / suggestions
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page

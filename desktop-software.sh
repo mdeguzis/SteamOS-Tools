@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.0.1.5
+# Script Ver:	1.1.1.5
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -266,7 +266,7 @@ show_help()
 
 	---------------------------------------------------------------
 	Any package you wish to specify yourself. Alchemist repos will be
-	used first, followed by Debian wheezy.
+	used first, followed by Debian jessie.
 	
 	For a complete list, type:
 	'./desktop-software list [type]'
@@ -358,7 +358,7 @@ main_install_eval_pkg()
 
 function gpg_import()
 {
-	# When installing from wheezy and wheezy backports,
+	# When installing from jessie and jessie backports,
 	# some keys do not load in automatically, import now
 	# helper script accepts $1 as the key
 	echo -e "\n==> Importing Debian GPG keys"
@@ -507,7 +507,7 @@ add_repos()
 install_software()
 {
 	# For a list of Debian software pacakges, please see:
-	# https://packages.debian.org/search?keywords=wheezy
+	# https://packages.debian.org/search?keywords=jessie
 
 	###########################################################
 	# Pre-checks and setup
@@ -556,7 +556,7 @@ install_software()
 	# Installation routine (alchmist/main)
 	###########################################################
 	
-	# Install from Alchemist first, wheezy as backup, wheezy-backports 
+	# Install from Alchemist first, jessie as backup, jessie-backports 
 	# as a last ditch effort
 	
 	# let user know checks in progress
@@ -602,10 +602,10 @@ install_software()
 				#fi
 			 
 				###########################################################
-				# Installation routine (wheezy - 2nd stage)
+				# Installation routine (jessie - 2nd stage)
 				###########################################################
 				
-				# Packages that fail to install, use wheezy repositories
+				# Packages that fail to install, use jessie repositories
 				# The conf string is a part of a dry run result
 				if [[ $? == '0' ]]; then
 				
@@ -622,26 +622,26 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Could not install package $i from Alchemist repo, trying wheezy..."
+						echo -e "\n==> Could not install package $i from Alchemist repo, trying jessie..."
 						sleep 2s
 					else
-						echo -e "\n==> Removal requested (from wheezy) for package: $i \n"
+						echo -e "\n==> Removal requested (from jessie) for package: $i \n"
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
+					sudo apt-get $cache_tmp -t jessie $apt_mode $i
 					
 				fi
 					
 				###########################################################
-				# Installation routine (wheezy-backports - 2nd stage)
+				# Installation routine (jessie-backports - 2nd stage)
 				###########################################################
 				
-				# Packages that fail to install, use wheezy-backports repository
+				# Packages that fail to install, use jessie-backports repository
 				if [[ $? == '0' ]]; then
 				
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Successfully installed $i from wheezy repo! / Nothing to Install" 
+						echo -e "\n==> Successfully installed $i from jessie repo! / Nothing to Install" 
 						sleep 2s
 					else
 						echo -e "\n==> Removal succeeded for package: $i \n"
@@ -653,14 +653,14 @@ install_software()
 				else
 					
 					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Could not install package $i from wheezy repo, trying wheezy-backports"
+						echo -e "\n==> Could not install package $i from jessie repo, trying jessie-backports"
 						sleep 2s
 					else
-						echo -e "\n==> Removal requested (from wheezy-backports) for package: $i"
+						echo -e "\n==> Removal requested (from jessie-backports) for package: $i"
 						sleep 1s
 					fi
 					
-					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
+					sudo apt-get $cache_tmp -t jessie-backports $apt_mode $i
 					
 					# clear the screen from the last install if it was. (looking into this)
 					# a broken pkg
@@ -678,7 +678,7 @@ install_software()
 					# attempt to resolve missing
 					sudo apt-get $cache_tmp $apt_mode -f
 					
-					echo -e "\n==> Could not install or remove ALL packages from wheezy.\n"
+					echo -e "\n==> Could not install or remove ALL packages from jessie.\n"
 					echo -e "Please check log.txt in the directory you ran this from.\n"
 					echo -e "Failure occurred on package: ${i}\n"
 					pkg_fail="yes"
@@ -747,9 +747,9 @@ install_software()
 
 show_warning()
 {
-	# do a small check for existing wheezy/wheezy-backports lists
+	# do a small check for existing jessie/jessie-backports lists
 	echo ""
-        sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
+        sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")
         
         clear
         echo "##########################################################"

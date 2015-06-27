@@ -5,7 +5,7 @@
 # Scipt Name:	  	extra-pkgs.
 # Script Ver:	  	1.3.2
 # Description:		Module for isntalling useful pacakges otherwise not 
-#			found in The Debian wheezy repositories directly.
+#			found in The Debian jessie repositories directly.
 #	
 # Usage:	      	n/a , module
 # -----------------------------------------------------------------------
@@ -60,7 +60,7 @@ ep_install_lutris()
 	multi="n"
 	
 	# set external Deb repo required flag
-	export deb_repo_name="wheezy.list"
+	export deb_repo_name="jessie.list"
 	export deb_repo_req="yes"
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
@@ -108,7 +108,7 @@ ep_install_firefox()
 	multi="n"
 	
 	# set external Deb repo required flag
-	export deb_repo_name="wheezy.list"
+	export deb_repo_name="jessie.list"
 	export deb_repo_req="no"
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
@@ -161,7 +161,7 @@ ep_install_plex()
 	prefer_deb_multi="/etc/apt/preferences.d/${reponame_deb_multi}"
 	
 	# set external Deb repo required flag
-	export deb_repo_name="wheezy.list"
+	export deb_repo_name="jessie.list"
 	export deb_repo_req="no"
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
@@ -260,7 +260,7 @@ ep_install_plex()
 	Pin-Priority:110
 	
 	Package: *
-	Pin: release n=wheezy
+	Pin: release n=jessie
 	Pin-Priority:110
 	EOF
 
@@ -287,12 +287,12 @@ ep_install_plex()
 	
 	cat <<-EOF > ${sourcelist_plex_tmp}
 	# Plex team repo
-	deb http://shell.ninthgate.se/packages/debian wheezy main
+	deb http://shell.ninthgate.se/packages/debian jessie main
 	EOF
 
 	cat <<-EOF > ${sourcelist_deb_multi_tmp}
 	# Deb multimedia repo
-	deb http://www.deb-multimedia.org wheezy main non-free
+	deb http://www.deb-multimedia.org jessie main non-free
 	EOF
 
 	# move lists
@@ -324,7 +324,7 @@ ep_install_plex()
 	echo -e "\n==> Installing Plex Home Theater"
 	sleep 1s
 	# install Plex Home Theater
-	sudo apt-get -t wheezy install plexhometheater -y
+	sudo apt-get -t jessie install plexhometheater -y
 	
 	###############################
 	# cleanup
@@ -484,7 +484,7 @@ ep_install_kodi()
 	prefer_kodi="/etc/apt/preferences.d/${reponame_kodi}"
 	
 	# set external Deb repo required flag
-	export deb_repo_name="wheezy.list"
+	export deb_repo_name="jessie.list"
 	export deb_repo_req="no"
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
@@ -620,7 +620,7 @@ ep_install_chrome()
 	install_dir="$HOME/Downloads/Chrome"
 	
 	# set external Deb repo required flag
-	export deb_repo_name="wheezy.list"
+	export deb_repo_name="jessie.list"
 	export deb_repo_req="yes"
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
@@ -686,7 +686,7 @@ ep_install_chrome()
 	ep_install_eval_pkg
 
 	# libglib2.0.0 is only ver. 2.33, when libappindicator is asking for >=2.37.3
-	# Need to find / compile 2.37 from somewhere. Maybe grab the wheezy source and try (risky).
+	# Need to find / compile 2.37 from somewhere. Maybe grab the jessie source and try (risky).
 	# For now, attempt will be made at altering depends ver just down to our level
 	
 	###############################	
@@ -744,7 +744,7 @@ ep_install_gdrive()
 	BIN_LOC="/usr/bin/gdrive"
 	
 	# set external Deb repo required flag
-	export deb_repo_name="wheezy.list"
+	export deb_repo_name="jessie.list"
 	export deb_repo_req="no"
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
@@ -796,7 +796,7 @@ ep_install_antimicro()
 	BIN_LOC="/usr/local/bin/antimicro"
 	
 	# set external Deb repo required flag
-	export deb_repo_name="wheezy.list"
+	export deb_repo_name="jessie.list"
 	export deb_repo_req="no"
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
@@ -858,7 +858,7 @@ ep_install_pipelight()
 	prefer_pipelight="/etc/apt/preferences.d/${reponame_pipelight}"
 	
 	# set external Deb repo required flag
-	export deb_repo_name="wheezy.list"
+	export deb_repo_name="jessie.list"
 	export deb_repo_req="no"
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
@@ -1047,7 +1047,7 @@ ep_install_xb360_bindings()
 	multi="n"
 	
 	# set external Deb repo required flag
-	export deb_repo_name="wheezy.list"
+	export deb_repo_name="jessie.list"
 	export deb_repo_req="no"
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"

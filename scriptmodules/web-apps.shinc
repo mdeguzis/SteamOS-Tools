@@ -106,9 +106,8 @@ add_web_app_chrome()
 	#######################################
 	# Set vars
 	#######################################
-
 	# set external Deb repo required flag
-	export deb_repo_name="wheezy.list"
+	export deb_repo_name="jessie.list"
 	export deb_repo_req="yes"
 	
 	# set custom url to no as a default

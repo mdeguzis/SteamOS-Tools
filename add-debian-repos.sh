@@ -28,8 +28,8 @@ fi
 funct_set_vars()
 {
 	# Set default user options
-	reponame="wheezy"
-	backports_reponame="wheezy-backports"
+	reponame="jessie"
+	backports_reponame="jessie-backports"
 	
 	# tmp vars
 	sourcelist_tmp="${reponame}.list"
@@ -172,19 +172,19 @@ main()
 		fi
 	
 		#####################################################
-		# Create and add required text to wheezy.list
+		# Create and add required text to jessie.list
 		#####################################################
 
-		# Debian wheezy
+		# Debian jessie
 		cat <<-EOF > ${sourcelist_tmp}
-		# Debian-wheezy repo
-		deb ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
-		deb-src ftp://mirror.nl.leaseweb.net/debian/ wheezy main contrib non-free
+		# Debian-jessie repo
+		deb ftp://mirror.nl.leaseweb.net/debian/ jessie main contrib non-free
+		deb-src ftp://mirror.nl.leaseweb.net/debian/ jessie main contrib non-free
 		EOF
 		
-		# Debian wheezy-backports
+		# Debian jessie-backports
 		cat <<-EOF > ${backports_sourcelist_tmp}
-		deb http://http.debian.net/debian wheezy-backports main
+		deb http://http.debian.net/debian jessie-backports main
 		EOF
 
 		# move tmp var files into target locations
@@ -206,7 +206,7 @@ main()
 		echo -e "\nYou can now not only install package from the SteamOS repository," 
 		echo -e "but also from the Debian repository with either:\n\n"
 		echo -e "'sudo apt-get install <package_name>'"
-		echo -e "'sudo apt-get -t [wheezy|wheezy-backports] install <package_name>'\n"
+		echo -e "'sudo apt-get -t [jessie|jessie-backports] install <package_name>'\n"
 		echo -e "Warning: If the apt package manager seems to want to remove a lot"
 		echo -e "of packages you have already installed, be very careful about proceeding.\n"
 	

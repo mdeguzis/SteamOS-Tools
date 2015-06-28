@@ -312,7 +312,7 @@ funct_pre_req_checks()
 	#################################
 	# set vars
 	PKG="debian-keyring"
-	source_type=""
+	source_type="jessie"
 	
 	main_install_eval_pkg
 	
@@ -321,7 +321,7 @@ funct_pre_req_checks()
 	#################################
 	# set vars
 	PKG="gdebi"
-	source_type=""
+	source_type="jessie"
 	
 	main_install_eval_pkg
 	

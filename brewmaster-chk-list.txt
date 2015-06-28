@@ -1,0 +1,10 @@
+-----------------------------------------------------
+checklist for repo functionality under brewmaster
+-----------------------------------------------------
+
+- add-debian-repos.sh [OK]
+	- GPG imports [FAIL], may not bee needed anymore? 
+	- keep function for gpg import for future use if need be
+
+- desktop-software.sh tests
+	- simple software install tests from jessie, gedit [PENDING]

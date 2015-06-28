@@ -178,13 +178,18 @@ main()
 		# Debian jessie
 		cat <<-EOF > ${sourcelist_tmp}
 		# Debian-jessie repo
-		deb ftp://mirror.nl.leaseweb.net/debian/ jessie main contrib non-free
-		deb-src ftp://mirror.nl.leaseweb.net/debian/ jessie main contrib non-free
+		deb http://httpredir.debian.org/debian jessie main contrib non-free
+		deb-src http://httpredir.debian.org/debian jessie main contrib non-free
+		# Debian-jessie updates repo
+		deb http://httpredir.debian.org/debian jessie-updates main
+		deb-src http://httpredir.debian.org/debian jessie-updates main
+
 		EOF
 		
 		# Debian jessie-backports
 		cat <<-EOF > ${backports_sourcelist_tmp}
-		deb http://http.debian.net/debian jessie-backports main
+		deb http://httpredir.debian.org/debian jessie-backports main contrib non-free
+		deb-src http://httpredir.debian.org/debian jessie-backports main contrib non-free
 		EOF
 
 		# move tmp var files into target locations

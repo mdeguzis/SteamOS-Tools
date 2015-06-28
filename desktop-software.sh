@@ -1137,7 +1137,7 @@ main()
 
 funct_source_modules
 show_warning
-gpg_import
+# gpg_import <- disable for now, may not be needed
 funct_set_multiarch
 funct_pre_req_checks
 add_repos

@@ -201,10 +201,6 @@ main()
 		# Debian-jessie repo
 		deb http://httpredir.debian.org/debian jessie main contrib non-free
 		deb-src http://httpredir.debian.org/debian jessie main contrib non-free
-		# Debian-jessie updates repo
-		deb http://httpredir.debian.org/debian jessie-updates main
-		deb-src http://httpredir.debian.org/debian jessie-updates main
-
 		EOF
 		
 		# Debian jessie-backports

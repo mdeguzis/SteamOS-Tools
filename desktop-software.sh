@@ -320,8 +320,8 @@ funct_pre_req_checks()
 	# gdebi
 	#################################
 	# set vars
-	PKG="gdebi "
-	source_type="jessie"
+	PKG="gdebi"
+	source_type="jessie "
 	
 	main_install_eval_pkg
 	

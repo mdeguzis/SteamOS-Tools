@@ -44,6 +44,7 @@ funct_set_vars()
 	prefer="/etc/apt/preferences.d/${reponame}"
 	backports_prefer="/etc/apt/preferences.d/${backports_reponame}"
 	steamos_prefer="/etc/apt/preferences.d/steamos"
+	
 }
 
 show_help()
@@ -73,6 +74,26 @@ funct_show_warning()
 
 main()
 {
+
+	#####################################################
+	# old release targets
+	#####################################################
+	
+	# old targets
+	# remove old targets that should not be used with jessie / brewmaster
+	
+	if [[ -f "/etc/apt/preferences.d/wheezy" ]]; then
+		# delete preferences file
+		sudo rm -f /etc/apt/preferences.d/wheezy*
+		sleep 1s
+	fi
+	
+	if [[ -f "/etc/apt/sources.list.d/wheezy" ]]; then
+		# delete sources file
+		sudo rm -f /etc/apt/sources.list.d/wheezy*
+		sleep 1s
+	fi
+	
 	#####################################################
 	# Install/Uninstall process
 	#####################################################

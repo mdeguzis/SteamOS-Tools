@@ -149,7 +149,7 @@ funct_pre_req_checks()
 			sleep 1s
 			cd ~/Downloads
 			wget -O vaporos-binds-xbox360_1.0_all.deb \
-			"https://raw.githubusercontent.com/sharkwouter/vaporos/blob/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb"
+			"https://github.com/sharkwouter/vaporos/raw/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb"
 			sudo dpkg -i vaporos-binds-xbox360_1.0_all.deb
 			cd
 			if [ $? == '0' ]; then

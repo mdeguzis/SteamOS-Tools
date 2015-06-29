@@ -148,7 +148,8 @@ funct_pre_req_checks()
 			echo -e "vaporos-binds-xbox360 not found. Setting up vaporos-binds-xbox360 now...\n"
 			sleep 1s
 			cd ~/Downloads
-			wget https://github.com/sharkwouter/steamos-installer/blob/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb
+			wget -O vaporos-binds-xbox360_1.0_all.deb \
+			"https://raw.githubusercontent.com/sharkwouter/vaporos/blob/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb"
 			sudo dpkg -i vaporos-binds-xbox360_1.0_all.deb
 			cd
 			if [ $? == '0' ]; then
@@ -174,7 +175,7 @@ funct_pre_req_checks()
 		sleep 2s
 		
 		# set external Deb repo required flag 
-		export deb_repo_name="wheezy.list" 
+		export deb_repo_name="jessie.list" 
 		export deb_repo_req="yes" 
 		# Eval requirements 
 		"$scriptdir/utilities/check_repo_req.sh" 
@@ -238,7 +239,7 @@ funct_pre_req_checks()
 		sleep 2s
 	
 		# set external Deb repo required flag 
-		export deb_repo_name="wheezy.list" 
+		export deb_repo_name="jessie.list" 
 		export deb_repo_req="yes" 
 		# Eval requirements 
 		"$scriptdir/utilities/check_repo_req.sh" 

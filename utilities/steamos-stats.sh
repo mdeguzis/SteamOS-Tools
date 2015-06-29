@@ -202,7 +202,7 @@ funct_pre_req_checks()
 			# git clone https://github.com/ValveSoftware/voglperf
 			
 			# Kingtaurus (ahead and newer)
-			git clonehttps://github.com/kingtaurus/voglperf
+			git clone https://github.com/kingtaurus/voglperf
 			
 			cd voglperf/
 			make

@@ -61,9 +61,6 @@ else
 
 fi
 
-# check pacakge with main script
-main_install_eval_pkg
-
 # create WG_DIR DIR if it does not exist
 # "wine game starts"
 
@@ -71,9 +68,26 @@ main_install_eval_pkg
 # create game launch script
 ################################################################
 
-################################################
+################################################################
+# Configuration
+################################################################
+
+# create wine user if it does not exist
+# set no pw (for now)
+
+user_check=$(cut -d: -f1 /etc/passwd | grep wine)
+
+if [[ "$user_check" != "" ]]; then
+	# user found
+	echo -e "\nUser 'wine' found..."
+else
+	# user not found
+	echo -e "\nUser 'wine' not found, creating..."
+	sudo useradd -d /home/wine/ wine
+	# add to steam group
+	useradd -G steam,audio,dip,video,plugdev,netdev,bluetooth,pulse-access,desktop wine
+
 # prompt for game name, store to 'game_id'
-################################################
 
 ################################################
 # set game launcher name based on game id

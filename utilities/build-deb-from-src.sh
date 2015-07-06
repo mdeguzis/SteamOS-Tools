@@ -49,9 +49,9 @@ install_prereqs()
 	sleep 1s
 	
 	# install needed packages
-	# current packages that are broken: g++
+	# current packages that are broken: g++ build-essential
 	
-	sudo apt-get install git devscripts checkinstall build-essential \
+	sudo apt-get install git devscripts checkinstall \
 	debian-keyring debian-archive-keyring cmake libqt4-dev libqt4-dev \
 	libxi-dev libxtst-dev libX11-dev cmake steamos-dev
 

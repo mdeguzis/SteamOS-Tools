@@ -312,7 +312,8 @@ funct_pre_req_checks()
 	#################################
 	# set vars
 	PKG="debian-keyring"
-	source_type="-t jessie "
+	# prepend a space for a source type
+	source_type=""
 	
 	main_install_eval_pkg
 	
@@ -321,7 +322,8 @@ funct_pre_req_checks()
 	#################################
 	# set vars
 	PKG="gdebi"
-	source_type="-t jessie "
+	# prepend a space for a source type
+	source_type=""
 	
 	main_install_eval_pkg
 	

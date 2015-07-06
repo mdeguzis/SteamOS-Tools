@@ -321,7 +321,7 @@ funct_pre_req_checks()
 	# gdebi
 	#################################
 	# set vars
-	PKG="gdebi"
+	PKG="gdebi-core"
 	# prepend a space for a source type
 	source_type=""
 	

@@ -356,6 +356,7 @@ main_install_eval_pkg()
 		fi
 	else
 		echo "Checking for $PKG [OK]"
+		sleep 0.5s
 
 	fi
 

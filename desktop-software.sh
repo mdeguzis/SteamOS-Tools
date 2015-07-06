@@ -339,7 +339,7 @@ main_install_eval_pkg()
 	
 	# assess via dpkg OR traditional 'which'
 	PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-	PKG_OK_WHICH=$(which $PKG | grep "install ok installed")
+	PKG_OK_WHICH=$(which $PKG)
 	
 	if [[ "$PKG_OK_DPKG" == "" || "$PKG_OK_WHICH" == "" ]]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"

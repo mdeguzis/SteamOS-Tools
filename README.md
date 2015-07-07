@@ -61,7 +61,9 @@ There are three main branches at the moment
 `alchemist`  
 Default branch - "stable" work that gets PRs, fixes, priority over all other branches.  
 `brewmaster`  
-Now that Jessie is stable, evaluation of current repository and packages is underway. **Not** recommended for use.  
+Now that Jessie is stable, evaluation of the Brewmaster SteamOS release and packages is underway. **Not** recommended for use.  
+`brewmaster-beta`  
+Based on the brewmaster-beta repo for SteamOS "V2". **Not** recommended for use.  
 `testing`  
 Branch where new scripts are made, larger alterations to existing ones implemented, and more.  
 

@@ -122,6 +122,9 @@ add_web_app_chrome()
 	# create Google chrome dir if it does not exist to copy our cfgs in
 	
 	if [[ -d "/home/steam/.config/google-chrome/Default/" ]]; then
+		# directory exists
+		echo "" > /dev/null
+	else
 		# create DIR
 		sudo mkdir -p "/home/steam/.config/google-chrome/Default"
 	fi

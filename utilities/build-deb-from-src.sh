@@ -47,10 +47,13 @@ install_prereqs()
 	clear
 	echo -e "==> Assessing prerequisites for building...\n"
 	sleep 1s
+	
 	# install needed packages
-	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring cmake g++ libqt4-dev libqt4-dev \
-	libxi-dev libxtst-dev libX11-dev
+	# current packages that are broken: g++ build-essential
+	
+	sudo apt-get install git devscripts checkinstall \
+	debian-keyring debian-archive-keyring cmake libqt4-dev libqt4-dev \
+	libxi-dev libxtst-dev libX11-dev cmake steamos-dev
 
 }
 

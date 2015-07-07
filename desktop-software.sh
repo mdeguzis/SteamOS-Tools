@@ -321,7 +321,7 @@ funct_pre_req_checks()
 	# gdebi
 	#################################
 	# set vars
-	PKG="gdebi"
+	PKG="gdebi-core"
 	# prepend a space for a source type
 	source_type=""
 	
@@ -337,8 +337,11 @@ main_install_eval_pkg()
 	# Package eval routine
 	#####################################################
 	
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-	if [ "" == "$PKG_OK" ]; then
+	# assess via dpkg OR traditional 'which'
+	PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	PKG_OK_WHICH=$(which $PKG)
+	
+	if [[ "$PKG_OK_DPKG" == "" && "$PKG_OK_WHICH" == "" ]]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		sudo apt-get $cache_tmp ${source_type}install $PKG
@@ -353,6 +356,7 @@ main_install_eval_pkg()
 		fi
 	else
 		echo "Checking for $PKG [OK]"
+		sleep 0.5s
 
 	fi
 

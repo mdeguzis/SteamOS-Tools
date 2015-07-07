@@ -2,9 +2,11 @@
 checklist for repo functionality under brewmaster
 -----------------------------------------------------
 
+Last tested: 20150628
+
 - add-debian-repos.sh [OK]
-	- GPG imports [FAIL], may not bee needed anymore? 
-	- keep function for gpg import for future use if need be
+	- GPG imports [keys updated]
+	- jessie-backports [FAIL]
 
 - desktop-software.sh tests
-	- simple software install tests from jessie, gedit [PENDING]
+	- simple software install tests from jessie, gedit [OK]

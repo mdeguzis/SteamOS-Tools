@@ -789,10 +789,13 @@ ep_install_antimicro()
 	# set vars
 	###############################
 	
+	# Note, the git source for antimicro does not seem to build correctly
+	# on Brewmaster. The deb package from Ryochan's releases page seems to install.
+	
 	pkg_type="deb"
 	PKG=antimicro
-	PKG_FILENAME="antimicro_2.14+git20150602-SteamOS-1_amd64.deb"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/utilities"
+	PKG_FILENAME="antimicro_2.15-1.jessie_amd64.deb"
+	BASE_URL="https://github.com/Ryochan7/antimicro/releases/download/2.15/"
 	BIN_LOC="/usr/local/bin/antimicro"
 	
 	# set external Deb repo required flag

@@ -53,7 +53,7 @@ install_prereqs()
 	
 	sudo apt-get install git devscripts checkinstall \
 	debian-keyring debian-archive-keyring cmake libqt4-dev libqt4-dev \
-	libxi-dev libxtst-dev libX11-dev cmake steamos-dev
+	libxi-dev libxtst-dev libX11-dev cmake steamos-dev libsdl2-2.0-0 \
 
 }
 

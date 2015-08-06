@@ -54,6 +54,7 @@ m_install_ue4_src()
 	
 	if [[ "$PKG_OK_DPKG" == "" && "$PKG_OK_WHICH" == "" ]]; then
 		
+		echo "\n==INFO==\nClang-3.5 not found!\n"
 		# Set default user options
 		
 		# tmp vars

@@ -146,6 +146,9 @@ m_install_ue4_src()
 		echo -e "\n==> Building sources...please wait"
 		sleep 2s
 		
+		# Enter build dir
+		cd "$git_dir"
+		
 		############################
 		# proceed to global build:
 		############################
@@ -163,7 +166,9 @@ m_install_ue4_src()
 		# start UE4 build eval
 		if [[ "$ue4_check" != "" ]]; then
 		
-			echo -e "\n==INFO=="
+			# Note here: the ue4 check should be the pointed towards a binary or something first.
+			# the directory check will always be full from the clone
+			echo -e "\n==INFO=="\
 			echo -e "It seems UE4 is already built in $git_dir"
 			echo -e "Would you like to rebuild [y], or [n]?\n"
 			
@@ -194,9 +199,9 @@ m_install_ue4_src()
 			echo -e "Building now...\n"
 			sleep 2s
 		  
-			  # build UE4
-			  ./Setup.sh
-			 ./GenerateProjectFiles.sh
+			# build UE4
+			./Setup.sh
+			./GenerateProjectFiles.sh
 			    
 			# Rebuild SDL2
 			# echo -e "Rebuilding SDL support\n"

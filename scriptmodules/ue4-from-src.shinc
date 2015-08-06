@@ -27,7 +27,7 @@ if [[ "$apt_mode" == "install" ]]; then
   #################################################
   
   # Handled by desktop-software.sh
-  # Software list: cfgs/ue4.txt
+  # Software list: cfgs/software-lists/ue4.txt
   
   ######################
   # Clang notice:

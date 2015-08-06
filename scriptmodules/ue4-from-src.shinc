@@ -84,7 +84,7 @@ m_install_ue4_src()
 			EOF
 			
 			# move tmp var files into target locations
-			sudo mv  ${prefer_tmp}  ${prefer}
+			sudo mv ${prefer_tmp} ${prefer}
 			
 			##############################################
 			# Check for lists in repos.d
@@ -101,12 +101,15 @@ m_install_ue4_src()
 			# Create and add required text to clang list
 			##############################################
 	
-			# Debian wheezy
+			# Clang 3.5 list
 			cat <<-EOF > ${sourcelist_tmp}
 			# Clang 3.5
 			# See: http://sylvestre.ledru.info/blog/2014/08/11/clang-3-4-3-5
 			deb http://llvm.org/apt/unstable/ llvm-toolchain-3.5 main
 			EOF
+			
+			# move tmp var files into target locations
+			sudo mv  ${sourcelist_tmp} ${sourcelist}
 			
 			# Update system
 			echo -e "\n==> Updating index of packages for clang-.3.5 install...\n"

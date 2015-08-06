@@ -54,7 +54,8 @@ m_install_ue4_src()
 		
 		if [[ "$PKG_OK_DPKG" == "" && "$PKG_OK_WHICH" == "" ]]; then
 			
-			echo "\n==INFO==\nClang-3.5 not found!\n"
+			echo -e "\n==INFO==\nClang-3.5 not found! Installing...\n"
+			sleep 2s
 			# Set default user options
 			
 			# tmp vars
@@ -91,7 +92,7 @@ m_install_ue4_src()
 			
 			if [[ -f ${sourcelist} ]]; then
 		        	# backup sources list file
-		        	echo -e "==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
+		        	echo -e "\n==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
 		        	sudo mv ${sourcelist} ${sourcelist}.bak
 		        	sleep 1s
 			fi
@@ -108,7 +109,7 @@ m_install_ue4_src()
 			EOF
 			
 			# Update system
-			echo -e "\n==> Updating index of packages...\n"
+			echo -e "\n==> Updating index of packages for clang-.3.5 install...\n"
 			sleep 2s
 			sudo apt-get update
 			

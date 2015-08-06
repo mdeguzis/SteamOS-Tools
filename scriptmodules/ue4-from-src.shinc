@@ -182,9 +182,13 @@ if [[ "$apt_mode" == "install" ]]; then
   	echo -e "\nUE4 does not appear to be built."
   	echo -e "Building now...\n"
   	sleep 2s
+  	
   	# build UE4
   	./Setup.sh
-    ./GenerateProjectFiles.sh
+    	./GenerateProjectFiles.sh
+    	
+    	# Rebuild SDL2
+ 	cd Engine/Source/ThirdParty/SDL2 && ./build.sh
   
   # end UE4 build eval
   fi

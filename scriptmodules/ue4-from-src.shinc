@@ -195,13 +195,17 @@ or CTRL+C to abort.\n"
   
   elif [[ "$apt_mode" == "remove" ]]; then
   
-    #Remove directories, build files, etc if uninstall is specified by user
-    echo -e "\n==> Removing related files for UE4-src routine"
-    sleep 2s
-    
-    # remove directories
-    sudo rm -rf "$install_dir" "$git_dir" "$symlink_target"
+  # Add dekstop launcher file here
+  # Transfer to /usr/share/applications
+  # TODO !!!
+
+  #Remove directories, build files, etc if uninstall is specified by user
+  echo -e "\n==> Removing related files for UE4-src routine"
+  sleep 2s
   
+  # remove directories
+  sudo rm -rf "$install_dir" "$git_dir" "$symlink_target"
+
   # end apt mode if check  
   fi
 

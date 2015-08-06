@@ -4,11 +4,11 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.0.1.5
+# Script Ver:	1.9.3.3
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
-#		some sort of additional value.in any dynamically called 
+#		some sort of additional value. In any dynamically called 
 #		list (basic,extra,emulation, and so on).Pkg names marked
 #		!broke! are skipped and the rest are attempted to be installed
 #
@@ -118,8 +118,8 @@ function import()
     # @param $1 the .shinc file to import, without .shinc extension
     module=$1
 
-    if [ -f $module.shinc ]; then
-      source $module.shinc
+    if [ -f "$module.shinc" ]; then
+      source "$module.shinc"
       echo "Loaded module $(basename $module.shinc)"
       return
     fi
@@ -265,7 +265,7 @@ show_help()
 	docs/ directory for full details.
 
 	---------------------------------------------------------------
-	Any package you wish to specify yourself. Alchemist repos will be
+	Any package you wish to specify yourself. alchemist repos will be
 	used first, followed by Debian wheezy.
 	
 	For a complete list, type:
@@ -288,7 +288,7 @@ show_help()
 	Press enter to continue...
 	EOF
 	
-	read -n 1
+	read -r -n 1
 	echo -e "\nContinuing...\n"
 	clear
 
@@ -312,6 +312,7 @@ funct_pre_req_checks()
 	#################################
 	# set vars
 	PKG="debian-keyring"
+	# prepend a space for a source type
 	source_type=""
 	
 	main_install_eval_pkg
@@ -320,7 +321,8 @@ funct_pre_req_checks()
 	# gdebi
 	#################################
 	# set vars
-	PKG="gdebi"
+	PKG="gdebi-core"
+	# prepend a space for a source type
 	source_type=""
 	
 	main_install_eval_pkg
@@ -335,8 +337,11 @@ main_install_eval_pkg()
 	# Package eval routine
 	#####################################################
 	
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-	if [ "" == "$PKG_OK" ]; then
+	# assess via dpkg OR traditional 'which'
+	PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	PKG_OK_WHICH=$(which $PKG)
+	
+	if [[ "$PKG_OK_DPKG" == "" && "$PKG_OK_WHICH" == "" ]]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
 		sudo apt-get $cache_tmp ${source_type}install $PKG
@@ -351,6 +356,7 @@ main_install_eval_pkg()
 		fi
 	else
 		echo "Checking for $PKG [OK]"
+		sleep 0.5s
 
 	fi
 
@@ -369,11 +375,23 @@ function gpg_import()
 	# Full Key ID: 7638D0442B90D010
 	gpg_key_check=$(gpg --list-keys 2B90D010)
 	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "\nDebian Archive Automatic Signing Key [OK]"
+		sleep 0.3s
+	else
+		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now..."
+		$scriptdir/utilities/gpg_import.sh 7638D0442B90D010
+	fi
+	
+	# Key Desc: Debian Archive Automatic Signing Key
+	# Key ID: 65558117
+	# Full Key ID: 5C808C2B65558117
+	gpg_key_check=$(gpg --list-keys 65558117)
+	if [[ "$gpg_key_check" != "" ]]; then
 		echo -e "Debian Multimeda Signing Key [OK]"
 		sleep 0.3s
 	else
 		echo -e "Debian Multimeda Signing Key [FAIL]. Adding now..."
-		$scriptdir/utilities/gpg_import.sh 7638D0442B90D010
+		$scriptdir/utilities/gpg_import.sh 5C808C2B65558117
 	fi
 
 }
@@ -544,7 +562,7 @@ install_software()
 	# Installation routine (alchmist/main)
 	###########################################################
 	
-	# Install from Alchemist first, wheezy as backup, wheezy-backports 
+	# Install from alchemist first, wheezy as backup, wheezy-backports 
 	# as a last ditch effort
 	
 	# let user know checks in progress
@@ -571,91 +589,16 @@ install_software()
 		
 			if [ "" == "$PKG_OK" ] || [ "$apt_mode" == "remove" ]; then
 			
-				# try Alchemist first
+				# try alchemist first
 				if [ "$apt_mode" != "remove" ]; then
-					echo -e "\n==> Attempting $i automatic package installation / Alchemist repo...\n"
+					echo -e "\n==> Attempting $i automatic package installation...\n"
 					sleep 1s
 				else
-					echo -e "\n==> Removal requested (from Alchemist) for package: $i \n"
+					echo -e "\n==> Removal requested for package: $i \n"
 					sleep 1s
 				fi
 				
 				sudo apt-get $cache_tmp $apt_mode $i
-				
-				# REMOVED for now for further testing
-				# return to loop if user hit "n" to removal instead of pushing onward
-				#if [ $? == 1 ] && [ "$apt_mode" == "remove" ]; then
-				#	# Return back to loop
-				#	return
-				#fi
-			 
-				###########################################################
-				# Installation routine (wheezy - 2nd stage)
-				###########################################################
-				
-				# Packages that fail to install, use wheezy repositories
-				# The conf string is a part of a dry run result
-				if [[ $? == '0' ]]; then
-				
-					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Successfully installed $i from Alchemist repo! / Nothing to Install"
-						sleep 1s
-					else
-						echo -e "\n==> Removal succeeded for package: $i \n"
-						sleep 1s
-					fi
-					
-					# head back to for loop
-					continue
-				else
-					
-					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Could not install package $i from Alchemist repo, trying wheezy..."
-						sleep 2s
-					else
-						echo -e "\n==> Removal requested (from wheezy) for package: $i \n"
-						sleep 1s
-					fi
-					
-					sudo apt-get $cache_tmp -t wheezy $apt_mode $i
-					
-				fi
-					
-				###########################################################
-				# Installation routine (wheezy-backports - 2nd stage)
-				###########################################################
-				
-				# Packages that fail to install, use wheezy-backports repository
-				if [[ $? == '0' ]]; then
-				
-					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Successfully installed $i from wheezy repo! / Nothing to Install" 
-						sleep 2s
-					else
-						echo -e "\n==> Removal succeeded for package: $i \n"
-						sleep 1s
-					fi
-				
-					# head back to for loop
-					continue
-				else
-					
-					if [ "$apt_mode" != "remove" ]; then
-						echo -e "\n==> Could not install package $i from wheezy repo, trying wheezy-backports"
-						sleep 2s
-					else
-						echo -e "\n==> Removal requested (from wheezy-backports) for package: $i"
-						sleep 1s
-					fi
-					
-					sudo apt-get $cache_tmp -t wheezy-backports $apt_mode $i
-					
-					# clear the screen from the last install if it was. (looking into this)
-					# a broken pkg
-					if [[ "$skipflag" == "yes"  ]]; then
-						clear
-					fi
-				fi
 				
 				###########################################################
 				# Fail out if any pkg installs fail (-z = zero length)
@@ -666,7 +609,9 @@ install_software()
 					# attempt to resolve missing
 					sudo apt-get $cache_tmp $apt_mode -f
 					
-					echo -e "\n==> Could not install or remove ALL packages from wheezy.\n"
+					echo -e "\n==> Could not install or remove ALL packages from the"
+					echo -e "alchemist repositories, wheezy sources, or alternative"
+					echo -e "source lists you have configured.\n"
 					echo -e "Please check log.txt in the directory you ran this from.\n"
 					echo -e "Failure occurred on package: ${i}\n"
 					pkg_fail="yes"
@@ -762,7 +707,7 @@ show_warning()
         echo -e "[c]ontinue, [a]dd Debian sources, [e]xit"
 
 	# get user choice
-	read -ep "Choice: " user_choice
+	read -erp "Choice: " user_choice
 
 	
 	case "$user_choice" in
@@ -1125,7 +1070,7 @@ main()
 
 funct_source_modules
 show_warning
-gpg_import
+# gpg_import <- disable for now, may not be needed
 funct_set_multiarch
 funct_pre_req_checks
 add_repos

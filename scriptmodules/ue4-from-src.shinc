@@ -114,7 +114,10 @@ m_install_ue4_src()
 				cd "$install_dir"
 				# clone and fetch super build (evaluating currently)
 				git clone "$git_url"
-		
+			else
+				# already up to date
+				echo -e "\n==Info==\nGit directory already up to date!"
+			
 			# end  git pull check
 			fi
 		
@@ -159,7 +162,7 @@ m_install_ue4_src()
 		
 			# Note here: the ue4 check should be the pointed towards a binary or something first.
 			# the directory check will always be full from the clone
-			echo -e "\n==INFO=="\
+			echo -e "\n==INFO==\n"
 			echo -e "It seems UE4 is already built in $git_dir"
 			echo -e "Would you like to rebuild [y], or [n]?\n"
 			

@@ -114,14 +114,6 @@ m_install_ue4_src()
 				cd "$install_dir"
 				# clone and fetch super build (evaluating currently)
 				git clone "$git_url"
-			else
-				  echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
-				  sleep 2s
-				  # create and clone
-				  mkdir -p "$install_dir"
-				  cd "$install_dir"
-				  # clone and fetch super build (evaluating currently)
-				  git clone "$git_url"
 		
 			# end  git pull check
 			fi
@@ -135,6 +127,8 @@ m_install_ue4_src()
 			cd "$install_dir"
 			# clone and fetch super build (evaluating currently)
 			git clone "$git_url"
+			# Enter build dir
+			cd "$git_dir"
 		
 		# end git check if
 		fi
@@ -145,10 +139,7 @@ m_install_ue4_src()
 		
 		echo -e "\n==> Building sources...please wait"
 		sleep 2s
-		
-		# Enter build dir
-		cd "$git_dir"
-		
+
 		############################
 		# proceed to global build:
 		############################

@@ -748,11 +748,12 @@ main()
 	echo "#####################################################"
 	echo "Loading script modules"
 	echo "#####################################################"
-	import "$scriptdir/scriptmodules/retroarch-from-src"
 	import "$scriptdir/scriptmodules/emulators-from-src"
 	import "$scriptdir/scriptmodules/emulation"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
+	import "$scriptdir/scriptmodules/retroarch-from-src"
+	import "$scriptdir/scriptmodules/ue4"
 	import "$scriptdir/scriptmodules/web-apps"
 
         # generate software listing based on type or skip to auto script

@@ -464,6 +464,11 @@ get_software_type()
                 # install plex from helper script
                 ep_install_plex
                 exit
+        elif [[ "$type" == "ue4" ]]; then
+                # install plex from helper script
+                software_list="ue4.txt"
+                m_install_ue4_src
+                exit
 	elif [[ "$type" == "webapp" ]]; then
                 # add web app via chrome from helper script
                 add_web_app_chrome

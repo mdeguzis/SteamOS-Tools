@@ -606,7 +606,7 @@ install_software()
 				# Fail out if any pkg installs fail (-z = zero length)
 				###########################################################
 			
-				if [[ $? == '0' ]]; then
+				if [[ $? != '0' ]]; then
 					
 					# attempt to resolve missing
 					sudo apt-get $cache_tmp $apt_mode -f

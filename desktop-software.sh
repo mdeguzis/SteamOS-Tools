@@ -417,14 +417,10 @@ get_software_type()
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/emulation-src-deps.txt"
-        elif [[ "$type" == "upnp-dlna" ]]; then
-                # add emulation softare to temp list
-                # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/software-lists/upnp-dlna.txt"
         elif [[ "$type" == "gaming-tools" ]]; then
-                # add emulation softare to temp list
-                # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/software-lists/gaming-tools.txt"
+	        # add emulation softare to temp list
+	        # remember to kick off script at the end of dep installs
+	        software_list="$scriptdir/cfgs/software-lists/gaming-tools.txt"
         elif [[ "$type" == "games-pkg" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
@@ -434,7 +430,10 @@ get_software_type()
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/software-lists/pcsx2-src-deps.txt"
                 m_install_pcsx2_src
-                exit
+        elif [[ "$type" == "upnp-dlna" ]]; then
+                # add emulation softare to temp list
+                # remember to kick off script at the end of dep installs
+                software_list="$scriptdir/cfgs/software-lists/upnp-dlna.txt"
             
 	####################################################
 	# popular software / custom specification
@@ -466,9 +465,7 @@ get_software_type()
                 exit
         elif [[ "$type" == "ue4" ]]; then
                 # install plex from helper script
-                software_list="ue4.txt"
-                m_install_ue4_src
-                exit
+                software_list="$scriptdir/cfgs/software-lists/ue4.txt"
 	elif [[ "$type" == "webapp" ]]; then
                 # add web app via chrome from helper script
                 add_web_app_chrome
@@ -973,6 +970,52 @@ main()
 		fi
         
 		install_software
+	
+	elif [[ "$type" == "ue4" ]]; then
+
+		if [[ "$options" == "uninstall" ]]; then
+	                uninstall="yes"
+	
+	        elif [[ "$options" == "list" ]]; then
+	                # show listing from $scriptdir/cfgs/software-lists/upnp-dlna.txt
+	                clear
+			cat $software_list | less
+			exit
+	        
+	        elif [[ "$options" == "check" ]]; then
+
+                        clear
+                        # loop over packages and check
+			echo -e "==> Validating packages already installed...\n"
+			
+			for i in `cat $software_list`; do
+			
+				if [[ "$i" =~ "!broken!" ]]; then
+					skipflag="yes"
+					echo -e "skipping broken package: $i ..."
+					sleep 0.3s
+				else
+					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				
+					if [ "" == "$PKG_OK" ]; then
+						# dpkg outputs it's own line that can't be supressed
+						echo -e "Packge $i [Not Found]"
+						sleep 0.3s
+					else
+						echo -e "Packge $i [OK]"
+						sleep 0.3s
+					fi
+				fi
+			done
+			echo ""
+			exit
+			
+		fi
+        
+		install_software
+		
+		# kick off ue4 script
+		m_install_ue4_src
 		
 	elif [[ "$type" == "upnp-dlna" ]]; then
 

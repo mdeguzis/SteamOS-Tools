@@ -65,7 +65,7 @@ m_install_ue4_src()
 		is potentially destructive). You can force this by supplying -updatedeps flag
 		if for some reason you want to unpack them again.
 		
-		Press [ENTER] to continue or "exit" to abort.\n"
+		Press [ENTER] to continue or "exit" to abort.
 		
 		See: https://github.com/EpicGames/UnrealEngine#linux
 		EOF
@@ -123,8 +123,18 @@ m_install_ue4_src()
 				  # clone and fetch super build (evaluating currently)
 				  git clone "$git_url"
 		
-		# end  git pull check
-		fi
+			# end  git pull check
+			fi
+		
+		else
+			# build DIRs do not exist
+			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
+			sleep 2s
+			# create and clone
+			mkdir -p "$install_dir"
+			cd "$install_dir"
+			# clone and fetch super build (evaluating currently)
+			git clone "$git_url"
 		
 		# end git check if
 		fi
@@ -189,7 +199,8 @@ m_install_ue4_src()
 			 ./GenerateProjectFiles.sh
 			    
 			# Rebuild SDL2
-			cd Engine/Source/ThirdParty/SDL2 && ./build.sh
+			# echo -e "Rebuilding SDL support\n"
+			# cd Engine/Source/ThirdParty/SDL2 && ./build.sh
 			
 			# end UE4 build eval
 		fi

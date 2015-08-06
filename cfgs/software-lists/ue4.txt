@@ -11,3 +11,6 @@ cmake
 dos2unix
 clang-3.5
 xdg-user-dirs
+libxinerama-dev
+libxrandr-dev
+x11proto-xinerama-dev

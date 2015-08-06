@@ -2,15 +2,17 @@
 
 # -------------------------------------------------------------------------------
 # Author:     		Michael DeGuzis
-# Git:		  	    https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:		  ue4-from-source.sh
+# Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:		ue4-from-source.sh
 # Script Ver:	  	0.1.1
 # Description:		script to install ue4 from source.
 #
-#	See:            hhttps://wiki.unrealengine.com/Building_On_Linux
+# See:            	https://wiki.unrealengine.com/Building_On_Linux
+#			https://github.com/EpicGames/UnrealEngine#linux
+#
 # Usage:	      	N/A, called from another script
 #
-#Last tested:		  Please see SteamOS-Tools/docs/desktop-software-readme.md 
+#Last tested:		Please see SteamOS-Tools/docs/desktop-software-readme.md 
 # -------------------------------------------------------------------------------
 
 time_start=$(date +%s)

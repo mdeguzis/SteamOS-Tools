@@ -31,6 +31,7 @@ Please refer to the readme files in the docs/ folder in this reppository. Normal
 * artwork - banners and various images/artwork for SteamOS.
 * cfgs/ - various configuration files, including package lists for Debian software installations.
 * docs/ - readme files for each script.
+* ext-game-installers/ - Game installers for games outside Steam (e.g. GZDoom)
 * extra/ - various extra scripts
 * game-fixes - a location to store some small deployable fixes for games.
 * scriptmodules/ - plugable bash modules / routines for any of the below scripts. Scripts for packages and more (including Netflix!)

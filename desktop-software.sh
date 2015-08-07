@@ -463,7 +463,10 @@ get_software_type()
                 # install plex from helper script
                 ep_install_plex
                 exit
-        elif [[ "$type" == "ue4" ]]; then
+	elif [[ "$type" == "ue4-src" ]]; then
+		# install plex from helper script
+		m_install_ue4
+        elif [[ "$type" == "ue4-src" ]]; then
                 # install plex from helper script
                 software_list="$scriptdir/cfgs/software-lists/ue4.txt"
 	elif [[ "$type" == "webapp" ]]; then
@@ -750,7 +753,7 @@ main()
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/retroarch-from-src"
-	#import "$scriptdir/scriptmodules/ue4-from-src"
+	import "$scriptdir/scriptmodules/ue4-from-src"
 	import "$scriptdir/scriptmodules/ue4"
 	import "$scriptdir/scriptmodules/web-apps"
 
@@ -972,7 +975,7 @@ main()
         
 		install_software
 	
-	elif [[ "$type" == "ue4" ]]; then
+	elif [[ "$type" == "ue4-src" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then
 	                uninstall="yes"

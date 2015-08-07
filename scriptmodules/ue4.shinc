@@ -1,17 +1,18 @@
 #!/bin/bash
 
 # -------------------------------------------------------------------------------
-# Author:     		Michael DeGuzis
-# Git:			      https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:		  ue4-from-source.sh
-# Script Ver:	  	0.1.1
-# Description:		script to install ue4 using Linux binary.
+# Author:     	Michael DeGuzis
+# Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	ue4-from-source.sh
+# Script Ver:	0.1.1
+# Description:	script to install ue4 using Linux binary.
 #
-# See:            https://forums.unrealtournament.com/showthread.php?14240-How-to-run-UT4-Alpha-bu ild
+# See:          https://forums.unrealtournament.com/showthread.php?14240-How-to-run-UT4-Alpha-build
+#		https://forums.unrealtournament.com/showthread.php?12011-Unreal-Tournament-Pre-Alpha-Playable-Build
 #
-# Usage:	      	N/A, called from another script
+# Usage:	N/A, called from another script
 #
-#                 Please see SteamOS-Tools/docs/desktop-software-readme.md 
+#               Please see SteamOS-Tools/docs/desktop-software-readme.md 
 # -------------------------------------------------------------------------------
 
 time_start=$(date +%s)
@@ -19,20 +20,34 @@ time_stamp_start=(`date +"%T"`)
 
 m_install_ue4()
 {
+	ut4_dir="/home/steam/ut4-linux"
 	
 	# start apt mode if check
 	if [[ "$apt_mode" == "install" ]]; then
+	
+		if [[ -d "ut4-dir" ]]; then
+			# DIR exists
+			echo -e "\nUT4 Game directory found"
+		else
+			sudo mkdir -p "ut4-dir"
+		fi
+		
+		cd "$ut4-dir"
 	
 		#################################################
 		# Prerequisites
 		#################################################
 		
-		# Handled by desktop-software.sh
-		# Software list: cfgs/software-lists/ue4.txt
+		#################################################
+		# Gather files
+		#################################################
+		
+		wget 
 		
 		#################################################
 		# Initial setup
 		#################################################
+		
 		
 		
 		# notify user they MUST have a UE4 account to build
@@ -42,7 +57,7 @@ m_install_ue4()
 		Warning: Please read the below carefully!
 		#####################################################
 
-    TODO!
+    		TODO!
 
 		Press [ENTER] to continue or "exit" to abort.
 		

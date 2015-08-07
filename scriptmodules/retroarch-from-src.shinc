@@ -280,6 +280,7 @@ if [[ "$apt_mode" == "install" ]]; then
 			echo -e "\n==INFO==\nLibretro cores do not appear to be built."
 			echo -e "Building now..."
 			sleep 2s
+			./libretro-build.sh
 			
 		# end retroarch build eval
 		fi

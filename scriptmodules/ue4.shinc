@@ -1,0 +1,107 @@
+#!/bin/bash
+
+# -------------------------------------------------------------------------------
+# Author:     		Michael DeGuzis
+# Git:			      https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:		  ue4-from-source.sh
+# Script Ver:	  	0.1.1
+# Description:		script to install ue4 using Linux binary.
+#
+# See:            https://forums.unrealtournament.com/showthread.php?14240-How-to-run-UT4-Alpha-bu ild
+#
+# Usage:	      	N/A, called from another script
+#
+#                 Please see SteamOS-Tools/docs/desktop-software-readme.md 
+# -------------------------------------------------------------------------------
+
+time_start=$(date +%s)
+time_stamp_start=(`date +"%T"`)
+
+m_install_ue4()
+{
+	
+	# start apt mode if check
+	if [[ "$apt_mode" == "install" ]]; then
+	
+		#################################################
+		# Prerequisites
+		#################################################
+		
+		# Handled by desktop-software.sh
+		# Software list: cfgs/software-lists/ue4.txt
+		
+		#################################################
+		# Initial setup
+		#################################################
+		
+		
+		# notify user they MUST have a UE4 account to build
+		clear
+		cat <<-EOF
+		#####################################################
+		Warning: Please read the below carefully!
+		#####################################################
+
+    TODO!
+
+		Press [ENTER] to continue or "exit" to abort.
+		
+		See: https://github.com/EpicGames/UnrealEngine#linux
+		EOF
+		
+		read -ep "Choice: " user_choice
+		
+		if [[ "$user_choice" == "exit" ]]; then
+			# exit script
+			exit 1
+		else
+			# continue normally
+			printf "\nContinuing...\n" 
+			sleep 1s
+			clear
+		fi  
+		
+		# set vars
+		export install_dir="/home/desktop/ue4-src"
+		export git_dir="/home/desktop/ue4-src/UnrealEngine"
+		export git_url="https://github.com/3dluvr/UnrealEngine.git"
+		#export symlink_target="/usr/bin/ue4"
+		#export binary_loc="$git_dir/ue4"
+		
+		#################################################
+		# Gather files from forum zip
+		#################################################
+		
+		echo -e "\n==> Acquiring files...please wait"
+		sleep 2
+		
+		#################################################
+		# Post install configuration
+		#################################################
+		
+		# TODO
+		
+		#################################################
+		# Cleanup
+		#################################################
+		
+		# clean up dirs
+	
+	
+	elif [[ "$apt_mode" == "remove" ]]; then
+	
+		# Add dekstop launcher file here
+		# Transfer to /usr/share/applications
+		# TODO !!!
+		
+		#Remove directories, build files, etc if uninstall is specified by user
+		echo -e "\n==> Removing related files for UE4-src routine"
+		sleep 2s
+		
+		# remove directories
+		sudo rm -rf "$install_dir" "$git_dir" "$symlink_target"
+		
+		# end apt mode if check  
+	fi
+
+}

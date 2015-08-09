@@ -133,6 +133,7 @@ cfg_gzdoom_controls()
 	
 	# NO:
 	# sed -i 's|use_joypad=true|use_joypad=false|g' "$wad_dir/zdoom.ini"
+	echo "" > /dev/null
 	
 }
 

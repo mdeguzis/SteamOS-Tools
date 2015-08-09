@@ -217,9 +217,9 @@ gzdoom_main ()
 		echo -e "\n==> Copying available .wad and .pk3 files to $wad_dir\n"
 		
 		# find and copy over files
-		find /tmp -name "*.wad" -exec cp {} -t $wad_dir \; 2> /dev/null
-		find /tmp -name "*.pk3" -exec cp {} -t $wad_dir \; 2> /dev/null
-
+		find /tmp -name "*.wad" -exec cp {} $wad_dir \; #2> /dev/null
+		find /tmp -name "*.pk3" -exec cp {} $wad_dir \; #2> /dev/null
+		
 		##############################################
 		# Configure ~/.config/gzdoom/zdoom.ini ?
 		##############################################

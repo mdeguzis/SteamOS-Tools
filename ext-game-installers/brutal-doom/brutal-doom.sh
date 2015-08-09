@@ -362,7 +362,6 @@ gzdoom_main ()
 		sudo chmod -R 755 "$antimicr_dir"
 		sudo chmod -R 755 "$wad_dir"
 		
-
 		
 		##############################################
 		# Final notice for user

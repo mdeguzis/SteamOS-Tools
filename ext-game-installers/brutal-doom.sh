@@ -4,7 +4,7 @@
 # Author:           Michael DeGuzis
 # Git:		    https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	    brutal-doom.sh
-# Script Ver:	    0.0.1
+# Script Ver:	    0.5.1
 # Description:	    Installs the latest Brutal Doom under Linux / SteamOS
 #
 # Usage:	    ./brutal-doom.sh [install|uninstall]
@@ -57,7 +57,7 @@ gzdoom_add_repos()
   	# Key Desc: drdteam Signing Key
 	# Key ID: AF88540B
 	# Full Key ID: 392203ABAF88540B
-	gpg_key_check=$(gpg --list-keys 65558117)
+	gpg_key_check=$(gpg --list-keys AF88540B)
 	if [[ "$gpg_key_check" != "" ]]; then
 		echo -e "drdteam Signing Key [OK]"
 		sleep 0.3s
@@ -241,10 +241,10 @@ gzdoom_main ()
 		
 		EOF
   
-elif [[ "$opt" == "uninstall" ]]; then
+	elif [[ "$opt" == "uninstall" ]]; then
 	
-	#uninstall
-	
+		#uninstall
+		
 		echo -e "\n==> Uninstalling GZDoom...\n"
 		sleep 2s
 		

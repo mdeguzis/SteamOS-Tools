@@ -48,10 +48,10 @@ gzdoom_add_repos()
 {
   	clear
   	
-  	echo -e "==> Importing drdteam GPG key"
+  	echo -e "==> Importing drdteam GPG key\n"
   	$scriptdir/utilities/gpg_import.sh 392203ABAF88540B
   	
-	echo -e "==> Adding GZDOOM repositories\n"
+	echo -e "\n==> Adding GZDOOM repositories\n"
 	sleep 1s
 	
 	# Check for existance of /etc/apt/preferences.d/{prefer} file

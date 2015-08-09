@@ -151,6 +151,7 @@ gzdoom_main ()
 		############################################
 		
 		gzdoom_dir="/usr/games/gzdoom"
+		wad_dir="~/.config/zdoom/"
 		bdoom_mod="/tmp/brutalv20.pk3"
 		
 		############################################
@@ -182,9 +183,9 @@ gzdoom_main ()
 		
 		EOF
 		
-		read -ep "WAD Directory: " wad_dir
+		read -ep "WAD Directory: " user_wad_dir
 		
-		if [[ "$wad_dir" == "" ]]; then
+		if [[ "$user_wad_dir" == "" ]]; then
 			cat <<-EOF
 			
 			==Warning==
@@ -214,7 +215,7 @@ gzdoom_main ()
 		
 		echo -e "\n==> Copying available .wad and .pk3 files to /usr/games/gzdoom\n"
 		
-		sudo cp "$wad_dir/*.wad" "$gzdoom_dir" 2> /dev/null
+		sudo cp "$user_wad_dir/*.wad" "$wad_dir" 2> /dev/null
 		sudo cp "$bdoom_mod" "$gzdoom_dir" 2> /dev/null
 		
 		cat <<-EOF

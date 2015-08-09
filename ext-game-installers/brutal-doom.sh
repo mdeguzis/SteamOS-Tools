@@ -208,7 +208,7 @@ gzdoom_main ()
 		
 		cd /tmp
 		curl -o brutalv20.zip -L http://www.moddb.com/downloads/mirror/85648/100/32232ab16e3826c34b034f637f0eb124
-		unzip brutalv20.zip
+		unzip -o brutalv20.zip
 		
 		# ensure wad and pk3 files are not uppercase
 		rename 's/\.WAD$/\.wad/' /tmp/*.WAD

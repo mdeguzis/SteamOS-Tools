@@ -211,14 +211,14 @@ gzdoom_main ()
 		unzip -o brutalv20.zip
 		
 		# ensure wad and pk3 files are not uppercase
-		rename 's/\.WAD$/\.wad/' /tmp/*.WAD
-		rename 's/\.PK3$/\.pk3/' /tmp/*.PK3
+		rename 's/\.WAD$/\.wad/' /tmp/*.WAD 2> /dev/null
+		rename 's/\.PK3$/\.pk3/' /tmp/*.PK3 2>/dev/null
 		
 		echo -e "\n==> Copying available .wad and .pk3 files to /usr/games/gzdoom\n"
 		
 		# find and copy over files
-		find /tmp -name "*.WAD" -exec cp {} -t $wad_dir  \; #2> /dev/null
-		find /tmp -name "*.pk3" -exec cp {} -t $wad_dir  \; #2> /dev/null
+		find /tmp -name "*.Wad" -exec cp {} -t $wad_dir  \; 2> /dev/null
+		find /tmp -name "*.pk3" -exec cp {} -t $wad_dir  \; 2> /dev/null
 
 		##############################################
 		# Configure ~/.config/gzdoom/zdoom.ini ?

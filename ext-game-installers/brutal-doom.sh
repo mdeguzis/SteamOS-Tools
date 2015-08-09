@@ -191,7 +191,8 @@ gzdoom_main ()
 			==Warning==
 			No WAD DIR specified!
 			You will need to manually copy your .wad
-			files later to /usr/games/gzdoom!
+			files later to /usr/games/gzdoom! If you do NOT,
+			GZDoom will fail to run!
 			
 			Press enter to continue...
 			
@@ -234,7 +235,7 @@ gzdoom_main ()
 		Results
 		==================================================================
 		Installation and configuration of GZDOOM for Brutal Doom complete.
-		You can run BrutalDoom with the command 'gzdoom'
+		You can run BrutalDoom with the command 'gzdoom'.
 		
 		EOF
   

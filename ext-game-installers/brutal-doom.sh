@@ -122,6 +122,20 @@ gzdoom_add_repos()
 
 }
 
+cfg_gzdoom_controls()
+{
+	
+	# Ask user if they want to use a joypad
+	# TODO
+	
+	# YES:
+	# sed -i 's|use_joypad=false|use_joypad=true|g' "$wad_dir/zdoom.ini"
+	
+	# NO:
+	# sed -i 's|use_joypad=true|use_joypad=false|g' "$wad_dir/zdoom.ini"
+	
+}
+
 gzdoom_main ()
 {
   
@@ -258,10 +272,13 @@ gzdoom_main ()
 		
 		# Configure zdoom.ini or use antimicro?
 		
+		# ask user if they want to use a joypad, this will be called
+		# from a configure function to be re-ran at any time
+		
 		# TODO
-		# copy and use gamepad profiles from SteamOS-Tools/cfgs/gamepad/
-		# for gamepad usage, if desired
-		# Will need a custom .desktop file / launcher
+		# cfg_gzdoom_controls
+		
+		# zdoom.ini has a parameter called 'use_joypad=false'
 		
 		cat <<-EOF
 		
@@ -281,6 +298,7 @@ gzdoom_main ()
 		sleep 2s
 		
 		sudo apt-get remove gzdoom
+		rm -rf "$wad_dir"
 	
 	else
 	

@@ -214,11 +214,14 @@ gzdoom_main ()
 		rename 's/\.WAD$/\.wad/' /tmp/*.WAD 2> /dev/null
 		rename 's/\.PK3$/\.pk3/' /tmp/*.PK3 2>/dev/null
 		
-		echo -e "\n==> Copying available .wad and .pk3 files to /usr/games/gzdoom\n"
+		echo -e "\n==> Copying available .wad and .pk3 files to $wad_dir\n"
+		
+		echo $wad_dir
+		exit
 		
 		# find and copy over files
-		find /tmp -name "*.Wad" -exec cp {} -t $wad_dir  \; 2> /dev/null
-		find /tmp -name "*.pk3" -exec cp {} -t $wad_dir  \; 2> /dev/null
+		find /tmp -name "*.Wad" -exec cp {} -t $wad_dir \; 2> /dev/null
+		find /tmp -name "*.pk3" -exec cp {} -t $wad_dir \; 2> /dev/null
 
 		##############################################
 		# Configure ~/.config/gzdoom/zdoom.ini ?

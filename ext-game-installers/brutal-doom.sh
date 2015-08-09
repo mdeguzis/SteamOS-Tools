@@ -220,7 +220,15 @@ gzdoom_main ()
 		
 		cat <<-EOF
 		
+		##############################################
 		# Configure ~/.config/gzdoom/zdoom.ini ?
+		##############################################
+		
+		# Default paths should be fine:
+		
+		# Path=~/.config/gzdoom
+		# Path=/usr/local/share/
+		# Path=$DOOMWADDI
 		
 		==================================================================
 		Results

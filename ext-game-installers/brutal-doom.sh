@@ -181,6 +181,19 @@ gzdoom_main ()
 		
 		read -ep "WAD Directory: " wad_dir
 		
+		if [[ "$wad_dir" == "" ]]; then
+			cat <<-EOF
+			Warning! No WAD DIR specified!
+			You will need to manually copy your .wad
+			files later to /usr/games/gzdoom!
+			
+			Press enter to continue...
+			
+			EOF
+			read -r -n 1
+			
+		fi
+		
 		#######################
 		# Download Brutal Doom
 		#######################
@@ -190,7 +203,7 @@ gzdoom_main ()
 		# See: http://www.moddb.com/mods/brutal-doom/downloads/brutal-doom-version-20
 		# Need exact zip file name so curl can follow the redirect link
 		
-		cp /tmp
+		cd /tmp
 		curl -o brutalv20.zip -L http://www.moddb.com/downloads/mirror/85648/100/32232ab16e3826c34b034f637f0eb124
 		unzip brutalv20.zip
 		

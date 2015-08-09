@@ -215,12 +215,13 @@ gzdoom_main ()
 		sudo cp "$bdoom_mod" "$gzdoom_dir" 2> /dev/null
 		
 		cat <<-EOF
+		==================================================================
+		Results
+		==================================================================
 		Installation and configuration of GZDOOM for Brutal Doom complete.
 		You can run BrutalDoom with the command 'gzdoom'
 		
 		EOF
-		
-		clear 
   
 elif [[ "$opt" == "uninstall" ]]; then
 	

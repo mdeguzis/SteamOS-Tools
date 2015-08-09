@@ -140,6 +140,14 @@ gzdoom_main ()
 		# set scriptdir
 		scriptdir="/home/desktop/SteamOS-Tools"
 		
+		# pre-created gzdoom directory, as this is only created on first run
+		
+		if [[ ! -e $wad_dir ]]; then
+		    mkdir -p $wad_dir
+		elif [[ ! -d $wad_dir ]]; then
+		    echo "$wad_dir already exists but is not a directory" 1>&2
+		fi
+		
 		############################################
 		# Prerequisite packages
 		############################################
@@ -219,8 +227,8 @@ gzdoom_main ()
 		# find and copy over files
 		# Suppress permission denied erros from other tmp files with
 		# "! -readable -prune"
-		find /tmp ! -readable -prune -name "*.wad" -exec cp {} $wad_dir \; 2> /dev/null
-		find /tmp ! -readable -prune -name "*.pk3" -exec cp {} $wad_dir \; 2> /dev/null
+		find /tmp ! -readable -prune -name "*.wad" -exec cp -v {} $wad_dir \; 2> /dev/null
+		find /tmp ! -readable -prune -name "*.pk3" -exec cp -v {} $wad_dir \; 2> /dev/null
 		
 		##############################################
 		# Configure ~/.config/gzdoom/zdoom.ini ?

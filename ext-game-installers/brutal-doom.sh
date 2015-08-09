@@ -49,7 +49,18 @@ gzdoom_add_repos()
   	clear
   	
   	echo -e "==> Importing drdteam GPG key\n"
-  	$scriptdir/utilities/gpg_import.sh 392203ABAF88540B
+  	
+  	# Key Desc: drdteam Signing Key
+	# Key ID: AF88540B
+	# Full Key ID: 392203ABAF88540B
+	gpg_key_check=$(gpg --list-keys 65558117)
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "drdteam Signing Key [OK]"
+		sleep 0.3s
+	else
+		echo -e "Debian Multimeda Signing Key [FAIL]. Adding now..."
+		$scriptdir/utilities/gpg_import.sh AF88540B
+	fi
   	
 	echo -e "\n==> Adding GZDOOM repositories\n"
 	sleep 1s

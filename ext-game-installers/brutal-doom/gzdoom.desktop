@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=0.1.1
+Name=GZDoom-Launch
+Comment=Launcher for gzdoom
+Exec=gzdoom-launch.sh
+Icon=gzdoom
+Terminal=false
+Type=Application
+Categories=Game;
+Name[en_US]=gzdoom

@@ -129,10 +129,10 @@ cfg_gzdoom_controls()
 	# TODO
 	
 	# YES:
-	# sed -i 's|use_joypad=false|use_joypad=true|g' "$wad_dir/zdoom.ini"
+	# sed -i 's|use_joystick=false|use_joystick=true|g' "$wad_dir/zdoom.ini"
 	
 	# NO:
-	# sed -i 's|use_joypad=true|use_joypad=false|g' "$wad_dir/zdoom.ini"
+	# sed -i 's|use_joystick=true|use_joystick=false|g' "$wad_dir/zdoom.ini"
 	echo "" > /dev/null
 	
 }
@@ -264,7 +264,8 @@ gzdoom_main ()
 		sudo ln -s "$wad_dir" "/home/steam/.config/gzdoom"
 		
 		# correct permissions
-		sudo chown steam:steam "/home/steam/.config/gzdoom"
+		sudo chown -R steam:steam "$wad_dir_steam"
+		sudo chown -R deskto:desktop "$wad_dir"
 		sudo chmod -R 755 "$wad_dir"
 		
 		##############################################

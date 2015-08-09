@@ -33,7 +33,7 @@ show_help()
 gzdoom_set_vars()
 {
 	gzdoom_dir="/usr/games/gzdoom"
-	wad_dir="~/.config/gzdoom"
+	wad_dir="$HOME/.config/gzdoom"
 	bdoom_mod="/tmp/brutalv20.pk3"
 	
 	# Set default user options
@@ -147,7 +147,7 @@ gzdoom_main ()
 		gzdoom_set_vars
 		gzdoom_add_repos
 		
-		echo -e "\n==> Installing prerequisite packages"
+		echo -e "\n==> Installing prerequisite packages\n"
 		sudo apt-get install unzip
 		
 		############################################
@@ -168,7 +168,7 @@ gzdoom_main ()
 		
 		# Warn user about WADS
 		cat <<-EOF
-		Pleas be aware, that in order to use Brutal Doom (aside from
+		Please be aware, that in order to use Brutal Doom (aside from
 		Installing GZDOOM here), you will need to acquire .wad files.
 		These files you will have if you own Doom/Doom2/Doom Final.
 		Rename all of these files including their .wad extensions to be 

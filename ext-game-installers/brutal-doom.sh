@@ -32,6 +32,10 @@ show_help()
 
 gzdoom_set_vars()
 {
+	gzdoom_dir="/usr/games/gzdoom"
+	wad_dir="~/.config/gzdoom/"
+	bdoom_mod="/tmp/brutalv20.pk3"
+	
 	# Set default user options
 	reponame="gzdoom"
 	
@@ -143,16 +147,8 @@ gzdoom_main ()
 		gzdoom_set_vars
 		gzdoom_add_repos
 		
-		echo -e "==> Installing prerequisite packages"
+		echo -e "\n==> Installing prerequisite packages"
 		sudo apt-get install unzip
-		
-		############################################
-		# vars (other)
-		############################################
-		
-		gzdoom_dir="/usr/games/gzdoom"
-		wad_dir="~/.config/zdoom/"
-		bdoom_mod="/tmp/brutalv20.pk3"
 		
 		############################################
 		# Install GZDoom
@@ -217,10 +213,8 @@ gzdoom_main ()
 		echo -e "\n==> Copying available .wad and .pk3 files to /usr/games/gzdoom\n"
 		
 		sudo cp "$user_wad_dir/*.wad" "$wad_dir" 2> /dev/null
-		sudo cp "$bdoom_mod" "$gzdoom_dir" 2> /dev/null
-		
-		cat <<-EOF
-		
+		sudo cp "$bdoom_mod" "$wad_dir" 2> /dev/null
+
 		##############################################
 		# Configure ~/.config/gzdoom/zdoom.ini ?
 		##############################################
@@ -231,6 +225,7 @@ gzdoom_main ()
 		# Path=/usr/local/share/
 		# Path=$DOOMWADDI
 		
+		cat <<-EOF
 		==================================================================
 		Results
 		==================================================================

@@ -210,10 +210,15 @@ gzdoom_main ()
 		curl -o brutalv20.zip -L http://www.moddb.com/downloads/mirror/85648/100/32232ab16e3826c34b034f637f0eb124
 		unzip brutalv20.zip
 		
+		# ensure wad and pk3 files are not uppercase
+		rename 's/\.WAD$/\.wad/' /tmp/*.WAD
+		rename 's/\.PK3$/\.pk3/' /tmp/*.PK3
+		
 		echo -e "\n==> Copying available .wad and .pk3 files to /usr/games/gzdoom\n"
 		
-		sudo cp "$user_wad_dir/*.wad" "$wad_dir" 2> /dev/null
-		sudo cp "$bdoom_mod" "$wad_dir" 2> /dev/null
+		# find and copy over files
+		find /tmp -name "*.WAD" -exec cp {} -t $wad_dir  \;
+		find /tmp -name "*.pk3" -exec cp {} -t $wad_dir  \;
 
 		##############################################
 		# Configure ~/.config/gzdoom/zdoom.ini ?
@@ -241,12 +246,7 @@ elif [[ "$opt" == "uninstall" ]]; then
 		echo -e "\n==> Uninstalling GZDoom...\n"
 		sleep 2s
 		
-		# Remove /usr/games/gzdoom directory and all its files:
-		cd /usr/games && \
-		sudo rm -rfv gzdoom
-		# Remove gzdoom script:
-		cd /usr/bin && \
-		sudo rm -fv gzdoom
+		sudo apt-get remove gzdoom
 	
 	else
 	

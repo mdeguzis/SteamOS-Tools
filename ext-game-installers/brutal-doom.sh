@@ -230,7 +230,7 @@ gzdoom_main ()
 		find /tmp -name "*.pk3" -exec cp -v {} $wad_dir \; 2>&1 | grep -v "Permission denied"
 		
 		##############################################
-		# Configure ~/.config/gzdoom/zdoom.ini ?
+		# Configure ~/.config/gzdoom/zdoom.ini 
 		##############################################
 		
 		# Default paths should be fine:
@@ -238,6 +238,9 @@ gzdoom_main ()
 		# Path=~/.config/gzdoom
 		# Path=/usr/local/share/
 		# Path=$DOOMWADDI
+		
+		# fullscreen
+		sed -i 's|fullscreen=false|fullscreen=true|g' "$wad_dir/zdoom.ini"
 		
 		cat <<-EOF
 		

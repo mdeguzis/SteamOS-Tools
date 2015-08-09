@@ -4,7 +4,7 @@
 # Author:           Michael DeGuzis
 # Git:		    https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	    brutal-doom.sh
-# Script Ver:	    0.5.1
+# Script Ver:	    0.5.3
 # Description:	    Installs the latest Brutal Doom under Linux / SteamOS
 #
 # Usage:	    ./brutal-doom.sh [install|uninstall]
@@ -163,6 +163,7 @@ gzdoom_main ()
 		# Prerequisite packages
 		############################################
 		
+		ep_install_antimicro
 		gzdoom_set_vars
 		gzdoom_add_repos
 		

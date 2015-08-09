@@ -32,9 +32,9 @@ show_help()
 
 gzdoom_set_vars()
 {
-	gzdoom_dir="/usr/games/gzdoom"
-	wad_dir="$HOME/.config/gzdoom"
-	wad_dir_steam="/home/steam/.config/gzdoom"
+	gzdoom_dir="/usr/games/gzdoom/"
+	wad_dir="$HOME/.config/gzdoom/"
+	wad_dir_steam="/home/steam/.config/gzdoom/"
 	bdoom_mod="/tmp/brutalv20.pk3"
 	
 	# Set default user options
@@ -141,22 +141,6 @@ gzdoom_main ()
 		# set scriptdir
 		scriptdir="/home/desktop/SteamOS-Tools"
 		
-		# pre-created gzdoom directory, as this is only created on first run
-		
-		# desktop user
-		if [[ ! -e $wad_dir ]]; then
-		    mkdir -p $wad_dir
-		elif [[ ! -d $wad_dir ]]; then
-		    echo "$wad_dir already exists but is not a directory" 1>&2
-		fi
-		
-		# steam user
-		if [[ ! -e $wad_dir_steam ]]; then
-		    sudo mkdir -p $wad_dir_steam
-		elif [[ ! -d $wad_dir_steam ]]; then
-		    echo "$wad_dir_steam already exists but is not a directory" 1>&2
-		fi
-		
 		############################################
 		# Prerequisite packages
 		############################################
@@ -248,6 +232,10 @@ gzdoom_main ()
 		# Path=/usr/local/share/
 		# Path=$DOOMWADDI
 		
+		# start gzdoom to /dev/null to generate blank zdoom.ini file
+		gzdoom &> /dev/null
+		killall gzdoom
+		
 		# fullscreen
 		sed -i 's|fullscreen=false|fullscreen=true|g' "$wad_dir/zdoom.ini"
 		
@@ -263,7 +251,7 @@ gzdoom_main ()
 		
 		# correct permissions
 		sudo chown steam:steam "/home/steam/.config/gzdoom"
-		chmod 755 "$wad_dir"
+		sudo chmod 755 "$wad_dir"
 		
 		cat <<-EOF
 		

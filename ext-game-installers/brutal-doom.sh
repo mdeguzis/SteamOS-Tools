@@ -219,6 +219,9 @@ gzdoom_main ()
 		sudo cp "$bdoom_mod" "$gzdoom_dir" 2> /dev/null
 		
 		cat <<-EOF
+		
+		# Configure ~/.config/gzdoom/zdoom.ini ?
+		
 		==================================================================
 		Results
 		==================================================================

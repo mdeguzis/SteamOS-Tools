@@ -212,7 +212,7 @@ gzdoom_main ()
 		curl -o brutalv20.zip -L http://www.moddb.com/downloads/mirror/85648/100/32232ab16e3826c34b034f637f0eb124
 		unzip brutalv20.zip
 		
-		echo -e "==> Copying .wad and .pk3 files to /usr/games/gzdoom"
+		echo -e "\n==> Copying available .wad and .pk3 files to /usr/games/gzdoom\n"
 		
 		sudo cp "$wad_dir/*.wad" "$gzdoom_dir" 2> /dev/null
 		sudo cp "$bdoom_mod" "$gzdoom_dir" 2> /dev/null

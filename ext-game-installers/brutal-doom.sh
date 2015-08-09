@@ -252,6 +252,17 @@ gzdoom_main ()
 		sudo chown steam:steam "/home/steam/.config/gzdoom"
 		sudo chmod 755 "$wad_dir"
 		
+		##############################################
+		# Configure gamepad, if user wants it
+		##############################################
+		
+		# Configure zdoom.ini or use antimicro?
+		
+		# TODO
+		# copy and use gamepad profiles from SteamOS-Tools/cfgs/gamepad/
+		# for gamepad usage, if desired
+		# Will need a custom .desktop file / launcher
+		
 		cat <<-EOF
 		
 		==================================================================

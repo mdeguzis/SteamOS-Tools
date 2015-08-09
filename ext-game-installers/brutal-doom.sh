@@ -157,7 +157,7 @@ gzdoom_main ()
 		echo -e "\n==> Installing GZDoom\n"
 		sleep 2s
 		
-		sudo apt-get install gzdoom
+		sudo apt-get install unzip gzdoom
 		
 		############################################
 		# Configure
@@ -183,7 +183,9 @@ gzdoom_main ()
 		
 		if [[ "$wad_dir" == "" ]]; then
 			cat <<-EOF
-			Warning! No WAD DIR specified!
+			
+			==Warning==
+			No WAD DIR specified!
 			You will need to manually copy your .wad
 			files later to /usr/games/gzdoom!
 			
@@ -209,8 +211,8 @@ gzdoom_main ()
 		
 		echo -e "==> Copying .wad and .pk3 files to /usr/games/gzdoom"
 		
-		sudo cp "$wad_dir/*.wad" "$gzdoom_dir"
-		sudo cp "$bdoom_mod" "$gzdoom_dir"
+		sudo cp "$wad_dir/*.wad" "$gzdoom_dir" 2> /dev/null
+		sudo cp "$bdoom_mod" "$gzdoom_dir" 2> /dev/null
 		
 		cat <<-EOF
 		Installation and configuration of GZDOOM for Brutal Doom complete.

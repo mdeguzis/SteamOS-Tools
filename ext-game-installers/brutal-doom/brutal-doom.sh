@@ -33,9 +33,12 @@ show_help()
 gzdoom_set_vars()
 {
 	gzdoom_dir="/usr/games/gzdoom/"
+	gzdoom_exec="/usr/bin/gzdoom"
 	wad_dir="$HOME/.config/gzdoom/"
 	wad_dir_steam="/home/steam/.config/gzdoom/"
+	gzdoom_config="$HOME/.config/gzdoom/zdoom.ini"
 	bdoom_mod="/tmp/brutalv20.pk3"
+	antimicro_dir="/home/desktop/antimicro"
 	
 	# Set default user options
 	reponame="gzdoom"
@@ -241,7 +244,7 @@ gzdoom_main ()
 		find /tmp -name "*.pk3" -exec cp -v {} $wad_dir \; 2>&1 | grep -v "Permission denied"
 		
 		##############################################
-		# Configure ~/.config/gzdoom/zdoom.ini 
+		# Configure 
 		##############################################
 		
 		# Default paths should be fine:
@@ -263,27 +266,110 @@ gzdoom_main ()
 		# possibly copy to the steam config directory for gzdoom later
 		sudo ln -s "$wad_dir" "/home/steam/.config/gzdoom"
 		
-		# correct permissions
-		sudo chown -R steam:steam "$wad_dir_steam"
-		sudo chown -R deskto:desktop "$wad_dir"
-		sudo chmod -R 755 "$wad_dir"
+
+		# backup original gzdoom desktop file
+		sudo cp "$gzdoom_exec" "$gzdoom_exec.bak"
+
+		# copy our launcher into /usr/bin and mark exec
+		sudo cp "$scriptdir/ext-game-installers/brutal-doom/gzdoom.sh" "$gzdoom_exec"
+		sudo chmod +x "$gzdoom_exec"
+
+		# copy our desktop file into /usr/share/applications
+		sudo cp "$scriptdir/ext-game-installers/brutal-doom/gzdoom.desktop" "/usr/share/applications"
+
 		
 		##############################################
 		# Configure gamepad, if user wants it
 		##############################################
 		
 		# Configure zdoom.ini or use antimicro?
+		# # zdoom.ini has a parameter called 'use_joypad=false', but is wonky
+
+		# create antimicro dir
+		antimicro_dir="/home/steam/antimicro"
+
+		if [[ -d "$antimicro_dir" ]]; then
+			# DIR found
+			echo -e "Antimicro DIR found. Skipping..."
+		else
+			# create dir
+			mkdir -p "$antimicro_dir"
+		fi
 		
-		# ask user if they want to use a joypad, this will be called
-		# from a configure function to be re-ran at any time
+		# copy in default gamepad profiles
+		sudo cp -r "$scriptdir/cfgs/gamepad/gzdoom/." "$antimicro_dir"
+
+		echo -e "\n#############################################################"
+		echo -e "Setting gamepad control for available gamepads"
+		echo -e "#############################################################"
+
+		# prompt user For controller type if they wish to enable gp mouse control
+		echo -e "\nPlease choose your controller type for web app mouse control"
+		echo "(1) Xbox 360 (wired)"
+		echo "(2) Xbox 360 (wireless) - coming soon"
+		echo "(3) PS3 Sixaxis (wired) - coming soon"
+		echo "(4) PS3 Sixaxis (bluetooth) - coming soon"
+		echo "(5) None (skip)"
+		echo ""
+
+		# the prompt sometimes likes to jump above sleep
+		sleep 0.5s
+
+		read -ep "Choice: " gp_choice
+
+		case "$gp_choice" in
+
+			1)
+			am_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wired-gzdoom.gamecontroller.amgp \&"
+			;;
+
+			2)
+			
+			;;
+			 
+			3)
+			
+			;;
+
+			4)
+			
+			;;
+
+			5)
+			# do nothing
+			;;
+			 
+			*)
+			echo -e "\n==ERROR==\nInvalid Selection!"
+			sleep 1s
+			continue
+			;;
+		esac
+
+		# perform swaps for mouse profiles
+		sudo sed -i "s|#antimicro_tmp|$am_cmd|" "$gzdoom_conifg"
+
+
+		##############################################
+		# Cleanup
+		##############################################
+
+		# correct permissions
+		sudo chown -R steam:steam "$wad_dir_steam"
+		sudo chown -R deskto:desktop "$wad_dir"
+
 		
-		# TODO
-		# cfg_gzdoom_controls
+		sudo chmod -R 755 "$antimicr_dir"
+		sudo chmod -R 755 "$wad_dir"
 		
-		# zdoom.ini has a parameter called 'use_joypad=false'
+
+		
+		##############################################
+		# Final notice for user
+		##############################################
 		
 		cat <<-EOF
-		
+
 		==================================================================
 		Results
 		==================================================================

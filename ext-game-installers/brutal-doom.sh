@@ -17,6 +17,9 @@
 # get option
 opt="$1"
 
+# set scriptdir
+scriptdir="$OLDPWD"
+
 show_help()
 {
   
@@ -44,6 +47,10 @@ gzdoom_set_vars()
 gzdoom_add_repos()
 {
   	clear
+  	
+  	echo -e "==> Importing drdteam GPG key"
+  	$scriptdir/utilities/gpg_import.sh 392203ABAF88540B
+  	
 	echo -e "==> Adding GZDOOM repositories\n"
 	sleep 1s
 	
@@ -63,8 +70,8 @@ gzdoom_add_repos()
 	Pin-Priority:110
 	EOF
 	
-# move tmp var files into target locations
-sudo mv  ${prefer_tmp}  ${prefer}
+	# move tmp var files into target locations
+	sudo mv  ${prefer_tmp}  ${prefer}
 	
 	#####################################################
 	# Check for lists in repos.d

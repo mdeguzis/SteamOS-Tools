@@ -379,7 +379,7 @@ add_web_app_chrome()
 	fi
 
 	# copy in default profiles
-	sudo cp -r "$scriptdir/cfgs/gamepad/." "$antimicro_dir"
+	sudo cp -r "$scriptdir/cfgs/gamepad/web/." "$antimicro_dir"
 
 	echo -e "\n#############################################################"
 	echo -e "Setting mouse control for available gamepads"

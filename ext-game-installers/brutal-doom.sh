@@ -225,10 +225,9 @@ gzdoom_main ()
 		echo -e "\n==> Copying available .wad and .pk3 files to $wad_dir\n"
 		
 		# find and copy over files
-		# Suppress permission denied erros from other tmp files with
-		# "! -readable -prune"
-		find /tmp ! -readable -prune -name "*.wad" -exec cp -v {} $wad_dir \; 2> /dev/null
-		find /tmp ! -readable -prune -name "*.pk3" -exec cp -v {} $wad_dir \; 2> /dev/null
+		# Filter out permission denied errors
+		find /tmp -name "*.wad" -exec cp -v {} $wad_dir \; 2>&1 | grep -v "Permission denied"
+		find /tmp -name "*.pk3" -exec cp -v {} $wad_dir \; 2>&1 | grep -v "Permission denied"
 		
 		##############################################
 		# Configure ~/.config/gzdoom/zdoom.ini ?

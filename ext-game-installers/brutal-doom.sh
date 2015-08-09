@@ -34,6 +34,7 @@ gzdoom_set_vars()
 {
 	gzdoom_dir="/usr/games/gzdoom"
 	wad_dir="$HOME/.config/gzdoom"
+	wad_dir_steam="/home/steam/.config/gzdoom"
 	bdoom_mod="/tmp/brutalv20.pk3"
 	
 	# Set default user options
@@ -142,10 +143,18 @@ gzdoom_main ()
 		
 		# pre-created gzdoom directory, as this is only created on first run
 		
+		# desktop user
 		if [[ ! -e $wad_dir ]]; then
 		    mkdir -p $wad_dir
 		elif [[ ! -d $wad_dir ]]; then
 		    echo "$wad_dir already exists but is not a directory" 1>&2
+		fi
+		
+		# steam user
+		if [[ ! -e $wad_dir_steam ]]; then
+		    sudo mkdir -p $wad_dir_steam
+		elif [[ ! -d $wad_dir_steam ]]; then
+		    echo "$wad_dir_steam already exists but is not a directory" 1>&2
 		fi
 		
 		############################################
@@ -241,6 +250,20 @@ gzdoom_main ()
 		
 		# fullscreen
 		sed -i 's|fullscreen=false|fullscreen=true|g' "$wad_dir/zdoom.ini"
+		
+		# link the config directory to the steam user
+		
+		if [[ -d /home/steam/.config/gzdoom ]]; then
+			sudo rm -rf /home/steam/.config/gzdoom
+		fi
+		
+		# link configuration files to desktop user
+		# possibly copy to the steam config directory for gzdoom later
+		sudo ln -s "$wad_dir" "/home/steam/.config/gzdoom"
+		
+		# correct permissions
+		sudo chown steam:steam "/home/steam/.config/gzdoom"
+		chmod 755 "$wad_dir"
 		
 		cat <<-EOF
 		

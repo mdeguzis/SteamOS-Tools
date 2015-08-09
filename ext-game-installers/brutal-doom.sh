@@ -160,6 +160,9 @@ gzdoom_main ()
 		
 		sudo apt-get install gzdoom
 		
+		# start gzdoom to /dev/null to generate blank zdoom.ini file
+		gzdoom &> /dev/null
+		
 		############################################
 		# Configure
 		############################################
@@ -231,10 +234,6 @@ gzdoom_main ()
 		# Path=~/.config/gzdoom
 		# Path=/usr/local/share/
 		# Path=$DOOMWADDI
-		
-		# start gzdoom to /dev/null to generate blank zdoom.ini file
-		gzdoom &> /dev/null
-		killall gzdoom
 		
 		# fullscreen
 		sed -i 's|fullscreen=false|fullscreen=true|g' "$wad_dir/zdoom.ini"

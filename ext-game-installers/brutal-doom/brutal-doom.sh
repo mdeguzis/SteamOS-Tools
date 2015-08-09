@@ -170,6 +170,17 @@ gzdoom_main ()
 		echo -e "\n==> Installing prerequisite packages\n"
 		sudo apt-get install unzip
 		
+
+		############################################
+		# Backup original files
+		############################################
+
+		# backup original gzdoom desktop file
+		sudo cp "$gzdoom_exec" "$gzdoom_exec.bak"
+
+		# backup wad dir
+		sudo cp "$wad_dir" "$wad_dir.bak"
+
 		############################################
 		# Install GZDoom
 		############################################
@@ -220,9 +231,9 @@ gzdoom_main ()
 			
 		fi
 		
-		#######################
+		##############################################
 		# Download Brutal Doom
-		#######################
+		##############################################
 		
 		echo -e "\n==> Downloading Brutal Doom mod, please wait\n"
 		
@@ -266,10 +277,6 @@ gzdoom_main ()
 		# link configuration files to desktop user
 		# possibly copy to the steam config directory for gzdoom later
 		sudo ln -s "$wad_dir" "/home/steam/.config/gzdoom"
-		
-
-		# backup original gzdoom desktop file
-		sudo cp "$gzdoom_exec" "$gzdoom_exec.bak"
 
 		# copy our launcher into /usr/bin and mark exec
 		sudo cp "$scriptdir/ext-game-installers/brutal-doom/gzdoom.sh" "$gzdoom_exec"

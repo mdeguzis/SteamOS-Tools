@@ -143,6 +143,9 @@ gzdoom_main ()
 		gzdoom_set_vars
 		gzdoom_add_repos
 		
+		echo -e "==> Installing prerequisite packages"
+		sudo apt-get install unzip
+		
 		############################################
 		# vars (other)
 		############################################
@@ -157,7 +160,7 @@ gzdoom_main ()
 		echo -e "\n==> Installing GZDoom\n"
 		sleep 2s
 		
-		sudo apt-get install unzip gzdoom
+		sudo apt-get install gzdoom
 		
 		############################################
 		# Configure

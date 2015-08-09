@@ -250,7 +250,7 @@ gzdoom_main ()
 		
 		# correct permissions
 		sudo chown steam:steam "/home/steam/.config/gzdoom"
-		sudo chmod 755 "$wad_dir"
+		sudo chmod -R 755 "$wad_dir"
 		
 		##############################################
 		# Configure gamepad, if user wants it

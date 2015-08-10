@@ -40,7 +40,7 @@ gzdoom_set_vars()
 	wad_dir_steam="/home/steam/.config/gzdoom"
 	gzdoom_config="$HOME/.config/gzdoom/zdoom.ini"
 	antimicro_dir="/home/desktop/antimicro"
-	gzdoom_desktop_file="/usr/share/applications/gzdoom.desktop"
+	gzdoom_desktop_file="/usr/share/applications/gzdoom-launch.desktop"
 	bdoom_mod="/tmp/brutalv20.pk3"
 	
 	# Set default user options
@@ -292,7 +292,7 @@ gzdoom_main ()
 		sudo chmod +x "$gzdoom_exec"
 
 		# copy our desktop file into /usr/share/applications
-		sudo cp "$scriptdir/ext-game-installers/brutal-doom/gzdoom.desktop" "/usr/share/applications"
+		sudo cp "$scriptdir/ext-game-installers/brutal-doom/gzdoom-launch.desktop" "/usr/share/applications"
 
 		##############################################
 		# Configure gamepad, if user wants it

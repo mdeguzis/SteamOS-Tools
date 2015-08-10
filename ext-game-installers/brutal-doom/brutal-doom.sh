@@ -367,10 +367,7 @@ gzdoom_main ()
 
 		# correct permissions
 		sudo chown -R steam:steam "$wad_dir_steam"
-		sudo chown -R desktop:desktop "$wad_dir"
-
 		sudo chmod -R 755 "$antimicro_dir"
-		sudo chmod -R 755 "$wad_dir"
 		
 		##############################################
 		# Final notice for user

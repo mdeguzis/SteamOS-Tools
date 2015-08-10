@@ -296,7 +296,7 @@ gzdoom_main ()
 		# Configure zdoom.ini or use antimicro?
 		# # zdoom.ini has a parameter called 'use_joypad=false', but is wonky
 
-		echo -e "\n==> CConfiguring Antimicro\n"
+		echo -e "\n==> Configuring Antimicro\n"
 
 		if [[ -d "$antimicro_dir" ]]; then
 			# DIR found
@@ -357,7 +357,7 @@ gzdoom_main ()
 		esac
 
 		# perform swaps for mouse profiles
-		sudo sed -i "s|#antimicro_tmp|$am_cmd|" "$gzdoom_desktop_file"
+		sudo sed -i "s|#antimicro_tmp|$am_cmd|" "$gzdoom_exec"
 
 		##############################################
 		# Cleanup

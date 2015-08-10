@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=0.1.1
-Name=GZDoom-Launch
+Name=GZDoom (Custom)
 Comment=Launcher for gzdoom
 Exec=/usr/bin/gzdoom-launch
 Icon=gzdoom

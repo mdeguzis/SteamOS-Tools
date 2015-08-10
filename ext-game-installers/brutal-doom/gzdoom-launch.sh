@@ -9,7 +9,7 @@ main ()
         #antimicro_tmp
 
 	# start gzdoom
-	gzdoom
+	/usr/bin/gzdoom
 
 	# kill controller profile after gzdoom exits
 	killall antimicro

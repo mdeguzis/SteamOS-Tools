@@ -32,10 +32,10 @@ show_help()
 
 gzdoom_set_vars()
 {
-	gzdoom_dir="/usr/games/gzdoom/"
+	gzdoom_dir="/usr/games/gzdoom"
 	gzdoom_exec="/usr/bin/gzdoom"
-	wad_dir="$HOME/.config/gzdoom/"
-	wad_dir_steam="/home/steam/.config/gzdoom/"
+	wad_dir="$HOME/.config/gzdoom"
+	wad_dir_steam="/home/steam/.config/gzdoom"
 	gzdoom_config="$HOME/.config/gzdoom/zdoom.ini"
 	bdoom_mod="/tmp/brutalv20.pk3"
 	antimicro_dir="/home/desktop/antimicro"
@@ -178,7 +178,7 @@ gzdoom_main ()
 		sudo cp "$gzdoom_exec" "$gzdoom_exec.bak"
 
 		# backup wad dir
-		sudo cp -r "$wad_dir" "$wad_dir.bak"
+		cp -r "$wad_dir" "$wad_dir.bak"
 
 		############################################
 		# Install GZDoom

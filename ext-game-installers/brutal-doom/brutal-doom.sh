@@ -241,8 +241,6 @@ gzdoom_main ()
 		# If zdoom.ini exists, gzdoom will launch, which we do not want
 		gzdoom &> /dev/null
 		
-		#echo -e "pausing for review"
-		#sleep 50s
 		
 		##############################################
 		# Download Brutal Doom
@@ -282,10 +280,15 @@ gzdoom_main ()
 		# Path=$DOOMWADDI
 		
 		# fullscreen
-		sed -i 's|fullscreen=false|fullscreen=true|g' "$wad_dir/zdoom.ini"
+		# sed -i 's|fullscreen=false|fullscreen=true|g' "$wad_dir/zdoom.ini"
 		
 		# Timidity++ sound
-		sed -i 's|snd_mididevice=-1|snd_mididevice=-2|g' "$wad_dir/zdoom.ini"
+		# sed -i 's|snd_mididevice=-1|snd_mididevice=-2|g' "$wad_dir/zdoom.ini"
+		
+		# Instead of using sed swaps to congfigure, try dumping out config file for now
+		# This will overwrite the generated config, so it will be backed up
+		cp "$wad_dir/zdoom.ini" cp "$wad_dir/zdoom.ini.bak"
+		cp "$scripdirext-game-installers/brutal-doom/zdoom.ini" "$wad_dir"
 		
 		# link configuration files to desktop user
 		# possibly copy to the steam config directory for gzdoom later

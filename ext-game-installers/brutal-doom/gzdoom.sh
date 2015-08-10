@@ -17,4 +17,8 @@ main ()
 }
 
 # start main and log
-main &> /home/steam/gzdoom-log.txt
+if [[ "$USER" == "desktop" ]]; then
+	main &> /home/desktop/gzdoom-log.txt
+elif [[ "$USER" == "steam" ]]; then
+	main &> /home/steam/gzdoom-log.txt
+fi

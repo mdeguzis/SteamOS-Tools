@@ -178,8 +178,10 @@ gzdoom_main ()
 		# backup original gzdoom desktop file
 		sudo cp "$gzdoom_exec" "$gzdoom_exec.bak"
 
-		# backup wad dir
-		cp -r "$wad_dir" "$wad_dir.bak"
+		# backup wad dir if it exists
+		if [[ -d "$wad_dir" ]]; then
+			cp -r "$wad_dir" "$wad_dir.bak"
+		fi
 
 		############################################
 		# Install GZDoom

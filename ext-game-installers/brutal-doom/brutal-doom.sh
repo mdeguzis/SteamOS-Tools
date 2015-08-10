@@ -292,6 +292,8 @@ gzdoom_main ()
 		# Configure zdoom.ini or use antimicro?
 		# # zdoom.ini has a parameter called 'use_joypad=false', but is wonky
 
+		echo -e "\n==> CConfiguring Antimicro\n"
+
 		if [[ -d "$antimicro_dir" ]]; then
 			# DIR found
 			echo -e "Antimicro DIR found. Skipping..."
@@ -360,12 +362,10 @@ gzdoom_main ()
 
 		# correct permissions
 		sudo chown -R steam:steam "$wad_dir_steam"
-		sudo chown -R deskto:desktop "$wad_dir"
+		sudo chown -R desktop:desktop "$wad_dir"
 
-		
-		sudo chmod -R 755 "$antimicr_dir"
+		sudo chmod -R 755 "$antimicro_dir"
 		sudo chmod -R 755 "$wad_dir"
-		
 		
 		##############################################
 		# Final notice for user

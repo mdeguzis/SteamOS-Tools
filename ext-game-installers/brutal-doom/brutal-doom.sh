@@ -34,12 +34,14 @@ gzdoom_set_vars()
 {
 	gzdoom_dir="/usr/games/gzdoom"
 	gzdoom_exec="/usr/bin/gzdoom"
+	gzdoom_launcher="/usr/bin/gzdoom-launcher"
+	
 	wad_dir="$HOME/.config/gzdoom"
 	wad_dir_steam="/home/steam/.config/gzdoom"
 	gzdoom_config="$HOME/.config/gzdoom/zdoom.ini"
-	bdoom_mod="/tmp/brutalv20.pk3"
 	antimicro_dir="/home/desktop/antimicro"
 	gzdoom_desktop_file="/usr/share/applications/gzdoom.desktop"
+	bdoom_mod="/tmp/brutalv20.pk3"
 	
 	# Set default user options
 	reponame="gzdoom"
@@ -101,7 +103,7 @@ gzdoom_add_repos()
 	
 	if [[ -f ${sourcelist} ]]; then
         	# backup sources list file
-        	echo -e "==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
+        	echo -e "\n==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
         	sudo mv ${sourcelist} ${sourcelist}.bak
         	sleep 1s
 	fi
@@ -176,7 +178,7 @@ gzdoom_main ()
 		############################################
 
 		# backup original gzdoom desktop file
-		sudo cp "$gzdoom_exec" "$gzdoom_exec.bak"
+		# sudo cp "$gzdoom_exec" "$gzdoom_exec.bak"
 
 		# backup wad dir if it exists
 		if [[ -d "$wad_dir" ]]; then
@@ -283,7 +285,7 @@ gzdoom_main ()
 		sudo ln -s "$wad_dir" "/home/steam/.config/gzdoom"
 
 		# copy our launcher into /usr/bin and mark exec
-		sudo cp "$scriptdir/ext-game-installers/brutal-doom/gzdoom.sh" "$gzdoom_exec"
+		sudo cp "$scriptdir/ext-game-installers/brutal-doom/gzdoom-launch.sh" "$gzdoom_launcher"
 		sudo chmod +x "$gzdoom_exec"
 
 		# copy our desktop file into /usr/share/applications
@@ -357,7 +359,7 @@ gzdoom_main ()
 		esac
 
 		# perform swaps for mouse profiles
-		sudo sed -i "s|#antimicro_tmp|$am_cmd|" "$gzdoom_exec"
+		sudo sed -i "s|#antimicro_tmp|$am_cmd|" "$gzdoom_launcher"
 
 		##############################################
 		# Cleanup

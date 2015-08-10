@@ -39,6 +39,7 @@ gzdoom_set_vars()
 	gzdoom_config="$HOME/.config/gzdoom/zdoom.ini"
 	bdoom_mod="/tmp/brutalv20.pk3"
 	antimicro_dir="/home/desktop/antimicro"
+	gzdoom_desktop_file="/usr/share/applications/gzdoom.desktop"
 	
 	# Set default user options
 	reponame="gzdoom"
@@ -227,6 +228,10 @@ gzdoom_main ()
 			
 		fi
 		
+		# start gzdoom to /dev/null to generate blank zdoom.ini file
+		# If zdoom.ini exists, gzdoom will launch, which we do not want
+		gzdoom &> /dev/null
+		
 		##############################################
 		# Download Brutal Doom
 		##############################################
@@ -269,10 +274,6 @@ gzdoom_main ()
 			sudo rm -rf /home/desktop/.config/gzdoom
 		fi
 		
-		# start gzdoom to /dev/null to generate blank zdoom.ini file
-		# If zdoom.ini exists, gzdoom will launch, which we do not want
-		gzdoom &> /dev/null
-		
 		# link configuration files to desktop user
 		# possibly copy to the steam config directory for gzdoom later
 		
@@ -286,7 +287,6 @@ gzdoom_main ()
 		# copy our desktop file into /usr/share/applications
 		sudo cp "$scriptdir/ext-game-installers/brutal-doom/gzdoom.desktop" "/usr/share/applications"
 
-		
 		##############################################
 		# Configure gamepad, if user wants it
 		##############################################
@@ -355,8 +355,7 @@ gzdoom_main ()
 		esac
 
 		# perform swaps for mouse profiles
-		sudo sed -i "s|#antimicro_tmp|$am_cmd|" "$gzdoom_conifg"
-
+		sudo sed -i "s|#antimicro_tmp|$am_cmd|" "$gzdoom_desktop_file"
 
 		##############################################
 		# Cleanup

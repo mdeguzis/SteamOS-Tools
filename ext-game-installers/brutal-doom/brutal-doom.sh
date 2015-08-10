@@ -280,6 +280,9 @@ gzdoom_main ()
 		# fullscreen
 		sed -i 's|fullscreen=false|fullscreen=true|g' "$wad_dir/zdoom.ini"
 		
+		# Timidity++ sound
+		sed -i 's|snd_mididevice=-1|snd_mididevice=-2|g' "$wad_dir/zdoom.ini"
+		
 		# link configuration files to desktop user
 		# possibly copy to the steam config directory for gzdoom later
 		

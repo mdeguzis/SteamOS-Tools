@@ -170,7 +170,6 @@ gzdoom_main ()
 		echo -e "\n==> Installing prerequisite packages\n"
 		sudo apt-get install unzip
 		
-
 		############################################
 		# Backup original files
 		############################################
@@ -179,7 +178,7 @@ gzdoom_main ()
 		sudo cp "$gzdoom_exec" "$gzdoom_exec.bak"
 
 		# backup wad dir
-		sudo cp "$wad_dir" "$wad_dir.bak"
+		sudo cp -r "$wad_dir" "$wad_dir.bak"
 
 		############################################
 		# Install GZDoom
@@ -189,9 +188,6 @@ gzdoom_main ()
 		sleep 2s
 		
 		sudo apt-get install gzdoom
-		
-		# start gzdoom to /dev/null to generate blank zdoom.ini file
-		gzdoom &> /dev/null
 		
 		############################################
 		# Configure
@@ -268,11 +264,14 @@ gzdoom_main ()
 		# fullscreen
 		sed -i 's|fullscreen=false|fullscreen=true|g' "$wad_dir/zdoom.ini"
 		
-		# link the config directory to the steam user
-		
-		if [[ -d /home/steam/.config/gzdoom ]]; then
-			sudo rm -rf /home/steam/.config/gzdoom
+		# Remove the previous config file / DIR (backed up previous)
+		if [[ -d /home/desktop/.config/gzdoom ]]; then
+			sudo rm -rf /home/desktop/.config/gzdoom
 		fi
+		
+		# start gzdoom to /dev/null to generate blank zdoom.ini file
+		# If zdoom.ini exists, gzdoom will launch, which we do not want
+		gzdoom &> /dev/null
 		
 		# link configuration files to desktop user
 		# possibly copy to the steam config directory for gzdoom later
@@ -292,9 +291,6 @@ gzdoom_main ()
 		
 		# Configure zdoom.ini or use antimicro?
 		# # zdoom.ini has a parameter called 'use_joypad=false', but is wonky
-
-		# create antimicro dir
-		antimicro_dir="/home/steam/antimicro"
 
 		if [[ -d "$antimicro_dir" ]]; then
 			# DIR found

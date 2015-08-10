@@ -33,7 +33,6 @@ show_help()
 gzdoom_set_vars()
 {
 	gzdoom_dir="/usr/games/gzdoom"
-	gzdoom_exec="/usr/bin/gzdoom"
 	gzdoom_launcher="/usr/bin/gzdoom-launcher"
 	
 	wad_dir="$HOME/.config/gzdoom"
@@ -370,6 +369,7 @@ gzdoom_main ()
 
 		# correct permissions
 		sudo chown -R steam:steam "$wad_dir_steam"
+		sudo chmod -R 755 "$wad_dir"
 		sudo chmod -R 755 "$antimicro_dir"
 		
 		##############################################

@@ -34,6 +34,7 @@ gzdoom_set_vars()
 {
 	gzdoom_dir="/usr/games/gzdoom"
 	gzdoom_launcher="/usr/bin/gzdoom-launcher"
+	brutaldoom_launcher="/usr/bin/brutaldoom-launcher"
 	
 	wad_dir="$HOME/.config/gzdoom"
 	wad_dir_steam="/home/steam/.config/gzdoom"
@@ -290,11 +291,14 @@ gzdoom_main ()
 		sudo ln -s "$wad_dir" "/home/steam/.config/gzdoom"
 
 		# copy our launcher into /usr/bin and mark exec
-		sudo cp "$scriptdir/ext-game-installers/brutal-doom/gzdoom-launch.sh" "$gzdoom_launcher"
-		sudo chmod +x "$gzdoom_exec"
+		sudo cp "$scriptdir/ext-game-installers/brutal-doom/gzdoom-launcher.sh" "$gzdoom_launcher"
+		sudo cp "$scriptdir/ext-game-installers/brutal-doom/brutaldoom-launcher.sh" "$brutaldoom_launcher"
+		sudo chmod +x "$gzdoom_launcher"
+		sudo chmod +x "$brutaldoom_launcher"
 
-		# copy our desktop file into /usr/share/applications
+		# copy our desktop files into /usr/share/applications
 		sudo cp "$scriptdir/ext-game-installers/brutal-doom/gzdoom-launch.desktop" "/usr/share/applications"
+		sudo cp "$scriptdir/ext-game-installers/brutal-doom/brutaldoom-launch.desktop" "/usr/share/applications"
 
 		##############################################
 		# Configure gamepad, if user wants it

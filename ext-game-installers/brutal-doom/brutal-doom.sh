@@ -232,6 +232,11 @@ gzdoom_main ()
 			
 		fi
 		
+		# Remove the previous config file / DIR (backed up previous)
+		if [[ -d /home/desktop/.config/gzdoom ]]; then
+			sudo rm -rf /home/desktop/.config/gzdoom
+		fi
+		
 		# start gzdoom to /dev/null to generate blank zdoom.ini file
 		# If zdoom.ini exists, gzdoom will launch, which we do not want
 		gzdoom &> /dev/null
@@ -275,11 +280,6 @@ gzdoom_main ()
 		
 		# fullscreen
 		sed -i 's|fullscreen=false|fullscreen=true|g' "$wad_dir/zdoom.ini"
-		
-		# Remove the previous config file / DIR (backed up previous)
-		if [[ -d /home/desktop/.config/gzdoom ]]; then
-			sudo rm -rf /home/desktop/.config/gzdoom
-		fi
 		
 		# link configuration files to desktop user
 		# possibly copy to the steam config directory for gzdoom later

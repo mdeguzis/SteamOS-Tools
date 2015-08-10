@@ -2,7 +2,7 @@
 Version=0.1.1
 Name=GZDoom-Launch
 Comment=Launcher for gzdoom
-Exec=gzdoom-launch.sh
+Exec=/usr/bin/gzdoom-launch
 Icon=gzdoom
 Terminal=false
 Type=Application

@@ -265,6 +265,9 @@ gzdoom_main ()
 		
 		# find and copy over files
 		# Filter out permission denied errors
+		
+		# TODO: come up with an automatic way to load latest brutal doom (i.e. v20) rather than
+		# specify the exact file name in /usr/bin/brutaldoom-launcher
 		find /tmp -name "*.wad" -exec cp -v {} $wad_dir \; 2>&1 | grep -v "Permission denied"
 		find /tmp -name "*.pk3" -exec cp -v {} $wad_dir \; 2>&1 | grep -v "Permission denied"
 		
@@ -389,7 +392,8 @@ gzdoom_main ()
 		Results
 		==================================================================
 		Installation and configuration of GZDOOM for Brutal Doom complete.
-		You can run BrutalDoom with the command 'gzdoom'.
+		You can run BrutalDoom with the command 'gzdoom' in desktop mode,
+		or add "GZDOOM" or "Brutal Doom" ass non-steam games in SteamOS BPM
 		
 		EOF
   

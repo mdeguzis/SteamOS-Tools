@@ -275,6 +275,8 @@ gzdoom_main ()
 		
 		# link configuration files to desktop user
 		# possibly copy to the steam config directory for gzdoom later
+		
+		sudo rm -f "/home/steam/.config/gzdoom"
 		sudo ln -s "$wad_dir" "/home/steam/.config/gzdoom"
 
 		# copy our launcher into /usr/bin and mark exec

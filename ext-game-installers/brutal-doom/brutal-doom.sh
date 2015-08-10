@@ -236,6 +236,9 @@ gzdoom_main ()
 		# If zdoom.ini exists, gzdoom will launch, which we do not want
 		gzdoom &> /dev/null
 		
+		echo -e "pausing for review"
+		sleep 50s
+		
 		##############################################
 		# Download Brutal Doom
 		##############################################

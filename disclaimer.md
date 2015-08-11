@@ -4,7 +4,9 @@ Please take time to read the following!
 #### General overview
 These scripts are written for, and developed on official Valve SteamOS images.
 
-Usage of these scripts is at your own risk! If you are at all concerned about the safety of your SteamOS installation, please have a recent or base root partition backup ready! This is typically captured when SteamOS is first installed. If you wish to update it, and feel ok doing so, please do so now. This can be found in the grub boot menu when you first start your PC. If the boot process skips past this, you will need to change the `GRUB_HIDDEN_TIMEOUT_QUIET` to `true` and the `GRUB_TIMEOUT` settings to 3 or 4 seconds. Plese reference the example snippet below. You will then need to run `sudo update-grub` at a terminal window to update the grub boot file.
+Usage of these scripts is at your own risk! If you are at all concerned about the safety of your SteamOS installation, please have a recent or base root partition backup ready! This is typically captured when SteamOS is first installed. If you wish to update it, and feel ok doing so, please do so now. This can be found in the grub boot menu when you first start your PC and pressing ESC quickly when booting past your motherboard splash screen. If the boot process skips past this too quicky for your tastes, you may want to change the `GRUB_HIDDEN_TIMEOUT_QUIET` to `true` and the `GRUB_TIMEOUT` settings to 3 or 4 seconds. 
+
+Plese reference the example snippet below. You will then need to run `sudo update-grub` at a terminal window to update the grub boot file.
 
 ```
 GRUB_DEFAULT=0

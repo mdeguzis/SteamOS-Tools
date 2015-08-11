@@ -2,7 +2,7 @@
 Name=Papo & Yo
 Comment=Launcher for Papo & Yo
 Exec=/home/desktop/PapoYo/PapoYo.sh
-Icon=/home/desktop/PapoYo/PapoYoIcon.png
+Icon=/home/desktop/Pictures/PapoYo/PapoYoIcon.png
 Terminal=false
 Type=Application
 Categories=Network;FileTransfer;Game;

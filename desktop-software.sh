@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.3.3
+# Script Ver:	1.9.3.5
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -273,7 +273,7 @@ show_help()
 	
 	
 	Options: 	[install|uninstall|list|check|test] 
-	Types: 		[basic|extra|emulation|emulation-src|emulation-src-deps]
+	Types: 		[basic|extra|emulators|retroarch-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
 	Extra types: 	[firefox|kodi|lutris|plex|webapp]
 	Functions: 	[xb360-bindings|gameplay-recording]
@@ -408,12 +408,12 @@ get_software_type()
         elif [[ "$type" == "extra" ]]; then
                 # add full softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/extra-software.txt"
-        elif [[ "$type" == "emulation" ]]; then
+        elif [[ "$type" == "emulators.txt" ]]; then
                 # add emulation softare to temp list
-                software_list="$scriptdir/cfgs/software-lists/emulation.txt"
-        elif [[ "$type" == "emulation-src" ]]; then
+                software_list="$scriptdir/cfgs/software-lists/emulators.txt"
+        elif [[ "$type" == "retroarch-src" ]]; then
                 # add emulation softare to temp list
-                software_list="$scriptdir/cfgs/software-lists/emulation-src.txt"
+                software_list="$scriptdir/cfgs/software-lists/retroarch-src.txt"
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/emulation-src-deps.txt"
@@ -493,10 +493,10 @@ add_repos()
         elif [[ "$type" == "extra" ]]; then
                 # non-required for now
                 echo "" > /dev/null
-        elif [[ "$type" == "emulation" ]]; then
+        elif [[ "$type" == "emulators" ]]; then
                 # retroarch
                 echo "" > /dev/null
-        elif [[ "$type" == "emulation-src" ]]; then
+        elif [[ "$type" == "retroarch-src" ]]; then
                 # retroarch-src
                 echo "" > /dev/null
         elif [[ "$type" == "emulation-src-deps" ]]; then

@@ -265,8 +265,8 @@ show_help()
 	docs/ directory for full details.
 
 	---------------------------------------------------------------
-	Any package you wish to specify yourself. alchemist repos will be
-	used first, followed by Debian wheezy.
+	Any package you wish to specify yourself. brewmaster repos will be
+	used first, followed by Debian jessie.
 	
 	For a complete list, type:
 	'./desktop-software list [type]'
@@ -364,7 +364,7 @@ main_install_eval_pkg()
 
 function gpg_import()
 {
-	# When installing from wheezy and wheezy backports,
+	# When installing from jessie and jessie backports,
 	# some keys do not load in automatically, import now
 	# helper script accepts $1 as the key
 	echo -e "\n==> Importing Debian GPG keys"
@@ -518,7 +518,7 @@ add_repos()
 install_software()
 {
 	# For a list of Debian software pacakges, please see:
-	# https://packages.debian.org/search?keywords=wheezy
+	# https://packages.debian.org/search?keywords=jessie
 
 	###########################################################
 	# Pre-checks and setup
@@ -567,7 +567,7 @@ install_software()
 	# Installation routine (alchmist/main)
 	###########################################################
 	
-	# Install from alchemist first, wheezy as backup, wheezy-backports 
+	# Install from brewmaster first, jessie as backup, jessie-backports 
 	# as a last ditch effort
 	
 	# let user know checks in progress
@@ -594,7 +594,7 @@ install_software()
 		
 			if [ "" == "$PKG_OK" ] || [ "$apt_mode" == "remove" ]; then
 			
-				# try alchemist first
+				# try brewmaster first
 				if [ "$apt_mode" != "remove" ]; then
 					echo -e "\n==> Attempting $i automatic package installation...\n"
 					sleep 1s
@@ -615,7 +615,7 @@ install_software()
 					sudo apt-get $cache_tmp $apt_mode -f
 					
 					echo -e "\n==> Could not install or remove ALL packages from the"
-					echo -e "alchemist repositories, wheezy sources, or alternative"
+					echo -e "brewmaster repositories, jessie sources, or alternative"
 					echo -e "source lists you have configured.\n"
 					echo -e "Please check log.txt in the directory you ran this from.\n"
 					echo -e "Failure occurred on package: ${i}\n"
@@ -685,9 +685,9 @@ install_software()
 
 show_warning()
 {
-	# do a small check for existing wheezy/wheezy-backports lists
+	# do a small check for existing jessie/jessie-backports lists
 	echo ""
-        sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
+        sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")
         
         clear
         echo "##########################################################"
@@ -1021,7 +1021,7 @@ main()
 		# kick off ue4 script
 		# m_install_ue4_src
 		
-		# Use binary built for Linux instead for Alchemist
+		# Use binary built for Linux instead for brewmaster
 		m_install_ue4
 		
 	elif [[ "$type" == "upnp-dlna" ]]; then

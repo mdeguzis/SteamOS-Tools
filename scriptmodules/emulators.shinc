@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name: 		emulation.shinc
-# Script Ver:	  	0.6.3
+# Script Ver:	  	0.6.5
 # Description:		script to install emulation packages not found in the
 #                 	Debian repositories (e.g. PPSSPP). gdebi is now in use
 #			in order to autoresolve deps from .deb pkgs.

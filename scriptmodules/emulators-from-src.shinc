@@ -2,8 +2,8 @@
 
 # -------------------------------------------------------------------------------
 # Author:     		Michael DeGuzis
-# Git:		  	    https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:		  emulators-from-src.shinc
+# Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:		emulators-from-src.shinc
 # Script Ver:	  	0.1.1
 # Description:		script to build emulators from source
 #

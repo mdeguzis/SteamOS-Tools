@@ -3,7 +3,7 @@ Tools and scripts for SteamOS.
 
 ## Warning
 
-Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/master/disclaimer.md).
+Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/alchemist/disclaimer.md).
 
 ## Usage
 

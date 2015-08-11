@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.3.2
+# Script Ver:	  	1.3.3
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian wheezy repositories directly.
 #	
@@ -97,6 +97,7 @@ ep_install_antimicro()
 
 ep_install_chrome()
 {
+
 	# See: https://github.com/ValveSoftware/SteamOS/wiki/Installing-Google-Chrome-for-Netflix
 
 	echo -e "\n==> Installing Chrome from automated script...\n"
@@ -211,6 +212,7 @@ ep_install_chrome()
 
 ep_install_firefox()
 {
+
 	#####################################################
 	# Firefox (imported 20150415)
 	#####################################################
@@ -832,8 +834,6 @@ ep_install_plex()
   
 }
 
-}
-
 ep_install_xb360_bindings()
 {
 	
@@ -1013,8 +1013,10 @@ ep_install_eval_binary()
 	fi
 
 }
+
 ep_test_deb()
 {
+
 	clear
 	echo -e "==> User requested testing of package routine!"
 	sleep 1s
@@ -1134,6 +1136,7 @@ ep_test_deb()
 
 ep_test_opts()
 {
+
 	# simple echo of passed opts for testing only
 	echo "opts received: "
 	echo -e "options : $options"

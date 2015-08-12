@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.3.5
+# Script Ver:	1.9.3.6
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -749,7 +749,7 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emulators-from-src"
-	import "$scriptdir/scriptmodules/emulation"
+	import "$scriptdir/scriptmodules/emulators"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/retroarch-from-src"

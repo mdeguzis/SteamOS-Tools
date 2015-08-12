@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.3.6
+# Script Ver:	1.9.3.5
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -265,8 +265,8 @@ show_help()
 	docs/ directory for full details.
 
 	---------------------------------------------------------------
-	Any package you wish to specify yourself. alchemist repos will be
-	used first, followed by Debian wheezy.
+	Any package you wish to specify yourself. brewmaster repos will be
+	used first, followed by Debian jessie.
 	
 	For a complete list, type:
 	'./desktop-software list [type]'
@@ -364,7 +364,7 @@ main_install_eval_pkg()
 
 function gpg_import()
 {
-	# When installing from wheezy and wheezy backports,
+	# When installing from jessie and jessie backports,
 	# some keys do not load in automatically, import now
 	# helper script accepts $1 as the key
 	echo -e "\n==> Importing Debian GPG keys"
@@ -518,7 +518,7 @@ add_repos()
 install_software()
 {
 	# For a list of Debian software pacakges, please see:
-	# https://packages.debian.org/search?keywords=wheezy
+	# https://packages.debian.org/search?keywords=jessie
 
 	###########################################################
 	# Pre-checks and setup
@@ -567,7 +567,7 @@ install_software()
 	# Installation routine (alchmist/main)
 	###########################################################
 	
-	# Install from alchemist first, wheezy as backup, wheezy-backports 
+	# Install from brewmaster first, jessie as backup, jessie-backports 
 	# as a last ditch effort
 	
 	# let user know checks in progress
@@ -592,18 +592,25 @@ install_software()
 			# setup firstcheck var for first run through
 			firstcheck="yes"
 		
-			if [ "" == "$PKG_OK" ] || [ "$apt_mode" == "remove" ]; then
+			# Assess pacakge requests
+			if [ "$PKG_OK" == "" ] && [ "$apt_mode" == "install" ]; then
 			
-				# try alchemist first
-				if [ "$apt_mode" != "remove" ]; then
-					echo -e "\n==> Attempting $i automatic package installation...\n"
-					sleep 1s
-				else
-					echo -e "\n==> Removal requested for package: $i \n"
+				echo -e "\n==> Attempting $i automatic package installation...\n"
+				sudo apt-get $cache_tmp $apt_mode $i
+				sleep 1s
+					
+			elif [ "$apt_mode" == "remove" ]; then
+				
+				echo -e "\n==> Removal requested for package: $i \n"
+				
+				if [ "$PKG_OK" == "" ]; then
+					
+					echp -e "\n==ERROR==\nPackage is not on this system!"
 					sleep 1s
 				fi
 				
 				sudo apt-get $cache_tmp $apt_mode $i
+			fi
 				
 				###########################################################
 				# Fail out if any pkg installs fail (-z = zero length)
@@ -615,7 +622,7 @@ install_software()
 					sudo apt-get $cache_tmp $apt_mode -f
 					
 					echo -e "\n==> Could not install or remove ALL packages from the"
-					echo -e "alchemist repositories, wheezy sources, or alternative"
+					echo -e "brewmaster repositories, jessie sources, or alternative"
 					echo -e "source lists you have configured.\n"
 					echo -e "Please check log.txt in the directory you ran this from.\n"
 					echo -e "Failure occurred on package: ${i}\n"
@@ -685,9 +692,9 @@ install_software()
 
 show_warning()
 {
-	# do a small check for existing wheezy/wheezy-backports lists
+	# do a small check for existing jessie/jessie-backports lists
 	echo ""
-        sources_check=$(sudo find /etc/apt -type f -name "wheezy*.list")
+        sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")
         
         clear
         echo "##########################################################"
@@ -749,7 +756,7 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emulators-from-src"
-	import "$scriptdir/scriptmodules/emulators"
+	import "$scriptdir/scriptmodules/emulation"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/retroarch-from-src"
@@ -1021,7 +1028,7 @@ main()
 		# kick off ue4 script
 		# m_install_ue4_src
 		
-		# Use binary built for Linux instead for Alchemist
+		# Use binary built for Linux instead for brewmaster
 		m_install_ue4
 		
 	elif [[ "$type" == "upnp-dlna" ]]; then

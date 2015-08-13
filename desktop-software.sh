@@ -741,11 +741,17 @@ check_software_status()
 	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 	
+	echo "showing pkg list:"
 	cat "custom-pkg.txt"
 	sleep 5s
 	clear
+	echo "showing what software list is set to:"
 	echo $software_list
-	sleep 10s
+	echo "showing contents of variable software_list:"
+	cat $softare_list
+	cat 
+	# exit test
+	exit 1
 	
 	echo $PKG_OK
 	

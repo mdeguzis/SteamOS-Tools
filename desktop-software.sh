@@ -614,8 +614,8 @@ install_software()
 				
 				if [ "$PKG_OK" == "" ]; then
 					
-					echo -e "\n==ERROR==\nPackage is not on this system!"
-					sleep 1s
+					echo -e "==ERROR==\nPackage is not on this system! Removal skipped\n"
+					sleep 2s
 				fi
 				
 				sudo apt-get $cache_tmp $apt_mode $i

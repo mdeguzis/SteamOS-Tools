@@ -610,7 +610,6 @@ install_software()
 				fi
 				
 				sudo apt-get $cache_tmp $apt_mode $i
-			fi
 				
 				###########################################################
 				# Fail out if any pkg installs fail (-z = zero length)
@@ -635,8 +634,6 @@ install_software()
 
 		# end broken PKG test loop if/fi
 		fi
-		# reset skip flag
-		skipflag="no"
 		
 	# end PKG OK test loop itself
 	done

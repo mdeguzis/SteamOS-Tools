@@ -208,7 +208,7 @@ function setDesktopEnvironment()
   fi
 }
 
-funct_source_modules()
+source_modules()
 {
 	
 	script_invoke_path="$0"
@@ -219,7 +219,7 @@ funct_source_modules()
 
 }
 
-funct_set_multiarch()
+set_multiarch()
 {
 	
 	echo -e "\n==> Checking for multi-arch support\n"
@@ -271,7 +271,6 @@ show_help()
 	For a complete list, type:
 	'./desktop-software list [type]'
 	
-	
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulators|retroarch-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
@@ -301,7 +300,7 @@ if [[ "$1" == "--help" ]]; then
 	exit 0
 fi
 
-funct_pre_req_checks()
+pre_req_checks()
 {
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
@@ -734,7 +733,7 @@ show_warning()
         sleep 2s
 }
 
-check_software_status()
+manual_software_check()
 {
 	
 	echo -e "==> Validating packages already installed...\n"
@@ -802,7 +801,8 @@ main()
         		uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from $scriptdir/cfgs/software-lists/basic-software.txt
+                        # show listing from $scriptdir/cfgs/software-lists
+                        clear
                         less $software_list
                         exit 1
 			
@@ -810,14 +810,14 @@ main()
                         
                         clear
                         # loop over packages and check
-			check_software_status
+			manual_software_check
 			exit 1
 		fi
 		
 		# load functions necessary for software actions
 		gpg_import
-		funct_set_multiarch
-		funct_pre_req_checks
+		set_multiarch
+		pre_req_checks
 		add_repos
 
 		# kick off install function
@@ -860,7 +860,7 @@ main()
 # handle prerequisite actions for script
 #####################################################
 
-funct_source_modules
+source_modules
 show_warning
 
 #####################################################

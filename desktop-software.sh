@@ -281,7 +281,7 @@ show_help()
 	Install with:
 	'sudo ./desktop-software [option] [type]'
 	
-	Large pacakge lists:
+	Large package lists:
 	If you are pasting a build-depends post with symbols, please enclose the
 	package list in quotes and it will be filterd appropriately.
 
@@ -628,25 +628,6 @@ install_software()
 					echo -e "Failure occurred on package: ${i}\n"
 					pkg_fail="yes"
 					exit
-				fi
-				
-				# set firstcheck to "no" so "resume" below does not occur
-				firstcheck="no"
-	
-			else
-				# package was found
-				# check if we resumed pkg checks if loop was restarted
-				
-				if [[ "$firstcheck" == "yes"  ]]; then
-					
-					echo -e "$i package status: [OK]"
-					sleep 0.3s
-				else
-					
-					echo -e "\n==> Restarting package checks...\n"
-					sleep 3s
-					echo -e "$i package status: [OK]"
-					sleep 0.3s
 				fi
 			
 			# end PKG OK test loop if/fi

@@ -809,13 +809,14 @@ main()
                         # show listing from $scriptdir/cfgs/software-lists/basic-software.txt
                         clear
                         cat $software_list | less
-			exit
+			exit 1
 			
 		elif [[ "$options" == "check" ]]; then
                         
                         clear
                         # loop over packages and check
 			check_software_status
+			exit 1
 		fi
 
 		install_software

@@ -815,9 +815,7 @@ main()
 			exit 1
 		fi
 		
-		# load functions
-		funct_source_modules
-		show_warning
+		# load functions necessary for software actions
 		gpg_import
 		funct_set_multiarch
 		funct_pre_req_checks
@@ -860,9 +858,10 @@ main()
 }
 
 #####################################################
-# handle prerequisite actions
+# handle prerequisite actions for script
 #####################################################
 
+funct_source_modules
 show_warning
 
 #####################################################

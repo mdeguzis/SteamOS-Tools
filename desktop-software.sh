@@ -744,18 +744,15 @@ check_software_status()
 	#####################################
 	# Function TESTING
 	#####################################
-	echo "showing pkg list:"
-	cat "custom-pkg.txt"
-	echo "showing what software list is set to:"
-	echo $software_list
-	echo "showing contents of variable software_list:"
-	cat $softare_list
+	#echo "showing pkg list:"
+	#cat "custom-pkg.txt"
+	#echo "showing what software list is set to:"
+	#echo $software_list
+	#echo "showing contents of variable software_list:"
+	#cat $softare_list
 	# exit test
-	exit
+	#exit
 	#####################################
-	
-	echo $PKG_OK
-	
 	
 	for i in `cat $software_list`; do
 	
@@ -764,6 +761,8 @@ check_software_status()
 			echo -e "skipping broken package: $i ..."
 			sleep 0.3s
 		else
+		
+			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 			if [ "$PKG_OK" == "" ]; then
 				# dpkg outputs it's own line that can't be supressed
 				echo -e "Package $i [Not Found]" > /dev/null

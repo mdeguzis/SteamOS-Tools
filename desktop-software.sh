@@ -734,7 +734,7 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emulators-from-src"
-	import "$scriptdir/scriptmodules/emulation"
+	import "$scriptdir/scriptmodules/emulators"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/retroarch-from-src"

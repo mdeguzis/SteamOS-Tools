@@ -599,7 +599,7 @@ install_software()
 				sudo apt-get $cache_tmp $apt_mode $i
 				sleep 1s
 				
-			elif [ "$PKG_OK" != "" ] && [ "$apt_mode" == "install" ]; then
+			elif [ "$PKG_OK" != "" ]; then
 			
 				echo -e "$i package status: [OK]"
 				sleep 0.3s

@@ -803,7 +803,6 @@ main()
 
                 elif [[ "$options" == "list" ]]; then
                         # show listing from $scriptdir/cfgs/software-lists/basic-software.txt
-                        clear
                         less $software_list
                         exit 1
 			

@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.3.5
+# Script Ver:	1.9.8.7
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -208,7 +208,7 @@ function setDesktopEnvironment()
   fi
 }
 
-funct_source_modules()
+source_modules()
 {
 	
 	script_invoke_path="$0"
@@ -219,7 +219,7 @@ funct_source_modules()
 
 }
 
-funct_set_multiarch()
+set_multiarch()
 {
 	
 	echo -e "\n==> Checking for multi-arch support\n"
@@ -271,7 +271,6 @@ show_help()
 	For a complete list, type:
 	'./desktop-software list [type]'
 	
-	
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulators|retroarch-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
@@ -281,7 +280,7 @@ show_help()
 	Install with:
 	'sudo ./desktop-software [option] [type]'
 	
-	Large pacakge lists:
+	Large package lists:
 	If you are pasting a build-depends post with symbols, please enclose the
 	package list in quotes and it will be filterd appropriately.
 
@@ -301,7 +300,7 @@ if [[ "$1" == "--help" ]]; then
 	exit 0
 fi
 
-funct_pre_req_checks()
+pre_req_checks()
 {
 	
 	echo -e "\n==> Checking for prerequisite software...\n"
@@ -564,7 +563,7 @@ install_software()
 	cache_tmp=$(echo "-o dir::cache::archives="/home/desktop/cache_temp"")
 	
 	###########################################################
-	# Installation routine (alchmist/main)
+	# Installation routine (brewmaster/main)
 	###########################################################
 	
 	# Install from brewmaster first, jessie as backup, jessie-backports 
@@ -589,18 +588,33 @@ install_software()
 			# Force if statement to run if unininstalled is specified for exiting software
 			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 			
+			# report package current status
+			if [ "$PKG_OK" != "" ]; then
+				echo -e "$i package status: [OK]"
+				sleep 0.3s
+			else
+				echo -e "$i package status: [Not found]"
+				sleep 0.3s
+			fi			
+	
 			# setup firstcheck var for first run through
 			firstcheck="yes"
 		
-			if [ "" == "$PKG_OK" ] || [ "$apt_mode" == "remove" ]; then
+			# Assess pacakge requests
+			if [ "$PKG_OK" == "" ] && [ "$apt_mode" == "install" ]; then
 			
-				# try brewmaster first
-				if [ "$apt_mode" != "remove" ]; then
-					echo -e "\n==> Attempting $i automatic package installation...\n"
-					sleep 1s
-				else
-					echo -e "\n==> Removal requested for package: $i \n"
-					sleep 1s
+				echo -e "\n==> Attempting $i automatic package installation...\n"
+				sudo apt-get $cache_tmp $apt_mode $i
+				sleep 1s
+					
+			elif [ "$apt_mode" == "remove" ]; then
+				
+				echo -e "\n==> Removal requested for package: $i \n"
+				
+				if [ "$PKG_OK" == "" ]; then
+					
+					echo -e "==ERROR==\nPackage is not on this system! Removal skipped\n"
+					sleep 2s
 				fi
 				
 				sudo apt-get $cache_tmp $apt_mode $i
@@ -622,33 +636,12 @@ install_software()
 					pkg_fail="yes"
 					exit
 				fi
-				
-				# set firstcheck to "no" so "resume" below does not occur
-				firstcheck="no"
-	
-			else
-				# package was found
-				# check if we resumed pkg checks if loop was restarted
-				
-				if [[ "$firstcheck" == "yes"  ]]; then
-					
-					echo -e "$i package status: [OK]"
-					sleep 0.3s
-				else
-					
-					echo -e "\n==> Restarting package checks...\n"
-					sleep 3s
-					echo -e "$i package status: [OK]"
-					sleep 0.3s
-				fi
 			
-			# end PKG OK test loop if/fi
+			# end PKG OK/FAIL test loop if/fi
 			fi
 
 		# end broken PKG test loop if/fi
 		fi
-		# reset skip flag
-		skipflag="no"
 		
 	# end PKG OK test loop itself
 	done
@@ -740,6 +733,36 @@ show_warning()
         sleep 2s
 }
 
+manual_software_check()
+{
+	
+	echo -e "==> Validating packages already installed...\n"
+	
+	for i in `cat $software_list`; do
+	
+		if [[ "$i" =~ "!broken!" ]]; then
+			skipflag="yes"
+			echo -e "skipping broken package: $i ..."
+			sleep 0.3s
+		else
+		
+			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+			if [ "$PKG_OK" == "" ]; then
+				# dpkg outputs it's own line that can't be supressed
+				echo -e "Package $i [Not Found]" > /dev/null
+				sleep 0.3s
+			else
+				echo -e "Packge $i [OK]"
+				sleep 0.3s
+			fi
+		fi
+
+	done
+	echo ""
+	exit 1	
+
+}
+
 main()
 {
 	clear
@@ -749,7 +772,7 @@ main()
 	echo "Loading script modules"
 	echo "#####################################################"
 	import "$scriptdir/scriptmodules/emulators-from-src"
-	import "$scriptdir/scriptmodules/emulation"
+	import "$scriptdir/scriptmodules/emulators"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/retroarch-from-src"
@@ -759,265 +782,63 @@ main()
 
         # generate software listing based on type or skip to auto script
         get_software_type
-
-	if [[ "$type" == "basic" ]]; then
+        
+        #############################################
+        # Main install functionality
+        #############################################
+        
+	# Assess software types and fire of installation routines if need be.
+	# The first section will be basic checks, then specific use cases will be
+	# assessed
+	
+	if [[ "$type" == "basic" ||
+	      "$type" == "extra" ||
+	      "$type" == "emulation-src" ||
+	      "$type" == "emulation-src-deps" ||
+	      "$type" == "$type" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then
         		uninstall="yes"
 
                 elif [[ "$options" == "list" ]]; then
-                        # show listing from $scriptdir/cfgs/software-lists/basic-software.txt
+                        # show listing from $scriptdir/cfgs/software-lists
                         clear
-                        cat $software_list | less
-			exit
+                        less $software_list
+                        exit 1
+			
 		elif [[ "$options" == "check" ]]; then
                         
                         clear
                         # loop over packages and check
-			echo -e "==> Validating packages already installed...\n"
-			
-			for i in `cat $software_list`; do
-			
-				if [[ "$i" =~ "!broken!" ]]; then
-					skipflag="yes"
-					echo -e "skipping broken package: $i ..."
-					sleep 0.3s
-				else
-					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-					if [ "" == "$PKG_OK" ]; then
-						# dpkg outputs it's own line that can't be supressed
-						echo -e "Package $i [Not Found]" > /dev/null
-						sleep 0.3s
-					else
-						echo -e "Packge $i [OK]"
-						sleep 0.3s
-					fi
-				fi
-			done
-			echo ""
-			exit
+			manual_software_check
+			exit 1
 		fi
+		
+		# load functions necessary for software actions
+		# GPG import should not be needed under brewmaster/Jessie
+		
+		# gpg_import
+		set_multiarch
+		pre_req_checks
+		add_repos
 
+		# kick off install function
 		install_software
+	fi
 
-	elif [[ "$type" == "extra" ]]; then
+        #############################################
+        # Supplemental installs / modules
+        #############################################
+        
+        if [[ "$type" == "emulation" ]]; then
 
-		if [[ "$options" == "uninstall" ]]; then
-                        uninstall="yes"
-
-                elif [[ "$options" == "list" ]]; then
-                        # show listing from $scriptdir/cfgs/software-lists/extra-software.txt
-                        clear
-			cat $software_list | less
-			exit
-                
-                elif [[ "$options" == "check" ]]; then
-                        
-                        clear
-                        # loop over packages and check
-			echo -e "==> Validating packages already installed...\n"
-			
-			for i in `cat $software_list`; do
-			
-				if [[ "$i" =~ "!broken!" ]]; then
-					skipflag="yes"
-					echo -e "skipping broken package: $i ..."
-					sleep 0.3s
-				else
-					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-					if [ "" == "$PKG_OK" ]; then
-						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]"
-						sleep 0.3s
-					else
-						echo -e "Packge $i [OK]"
-						sleep 0.3s
-					fi
-				fi
-			done
-			echo ""
-			exit
-		fi
-                
-		install_software
-                
-        elif [[ "$type" == "emulation" ]]; then
-
-		if [[ "$options" == "uninstall" ]]; then
-                        uninstall="yes"
-
-                elif [[ "$options" == "list" ]]; then
-                        # show listing from $scriptdir/cfgs/software-lists/emulation.txt
-                        clear
-			cat $software_list | less
-			exit
-                
-                elif [[ "$options" == "check" ]]; then
-                        
-                        clear
-                        # loop over packages and check
-			echo -e "==> Validating packages already installed...\n"
-			
-			for i in `cat $software_list`; do
-			
-				if [[ "$i" =~ "!broken!" ]]; then
-					skipflag="yes"
-					echo -e "skipping broken package: $i ..."
-					sleep 0.3s
-				else
-					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-					if [ "" == "$PKG_OK" ]; then
-						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]"
-						sleep 0.3s
-					else
-						echo -e "Packge $i [OK]"
-						sleep 0.3s
-					fi
-				fi
-			done
-			
-			# We also want to loop through the module, checks will output fine 
-			m_emulation_install_main
-			exit
-			
-		fi
-                
-		install_software
 		# kick off extra modules for buld debs
 		echo -e "\n==> Proceeding to supplemental emulation package routine\n"
 		sleep 2s
 		m_emulation_install_main
-
-        elif [[ "$type" == "emulation-src" ]]; then
-
-		if [[ "$options" == "uninstall" ]]; then
-	                uninstall="yes"
-	
-	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/software-lists/emulation-src.txt
-	                clear
-	                echo $type
-	                echo $options
-			cat $software_list | less
-			exit
-	        
-	        elif [[ "$options" == "check" ]]; then
-	        	
-	        	clear
-                        # loop over packages and check
-			echo -e "==> Validating packages already installed...\n"
-			
-			for i in `cat $software_list`; do
-			
-				if [[ "$i" =~ "!broken!" ]]; then
-					skipflag="yes"
-					echo -e "skipping broken package: $i ..."
-					sleep 0.3s
-				else
-					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-					if [ "" == "$PKG_OK" ]; then
-						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]"
-						sleep 0.3s
-					else
-						echo -e "Packge $i [OK]"
-						sleep 0.3s
-					fi
-				fi
-			done
-			echo ""
-			exit
-		fi
-        
-		install_software
 		
-        elif [[ "$type" == "emulation-src-deps" ]]; then
-
-		if [[ "$options" == "uninstall" ]]; then
-	                uninstall="yes"
-	
-	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/software-lists/emulation-src-deps.txt
-	                clear
-			cat $software_list | less
-			exit
-	        
-	        elif [[ "$options" == "check" ]]; then
-
-                        clear
-                        # loop over packages and check
-			echo -e "==> Validating packages already installed...\n"
-			
-			for i in `cat $software_list`; do
-			
-				if [[ "$i" =~ "!broken!" ]]; then
-					skipflag="yes"
-					echo -e "skipping broken package: $i ..."
-					sleep 0.3s
-				else
-					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				
-					if [ "" == "$PKG_OK" ]; then
-						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]"
-						sleep 0.3s
-					else
-						echo -e "Packge $i [OK]"
-						sleep 0.3s
-					fi
-				fi
-			done
-			echo ""
-			exit
-			
-		fi
-        
-		install_software
-	
 	elif [[ "$type" == "ue4-src" ]]; then
 
-		if [[ "$options" == "uninstall" ]]; then
-	                uninstall="yes"
-	
-	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/software-lists/upnp-dlna.txt
-	                clear
-			cat $software_list | less
-			exit
-	        
-	        elif [[ "$options" == "check" ]]; then
-
-                        clear
-                        # loop over packages and check
-			echo -e "==> Validating packages already installed...\n"
-			
-			for i in `cat $software_list`; do
-			
-				if [[ "$i" =~ "!broken!" ]]; then
-					skipflag="yes"
-					echo -e "skipping broken package: $i ..."
-					sleep 0.3s
-				else
-					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				
-					if [ "" == "$PKG_OK" ]; then
-						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]"
-						sleep 0.3s
-					else
-						echo -e "Packge $i [OK]"
-						sleep 0.3s
-					fi
-				fi
-			done
-			echo ""
-			exit
-			
-		fi
-        
-		install_software
-		
 		# kick off ue4 script
 		# m_install_ue4_src
 		
@@ -1026,93 +847,10 @@ main()
 		
 	elif [[ "$type" == "upnp-dlna" ]]; then
 
-		if [[ "$options" == "uninstall" ]]; then
-	                uninstall="yes"
-	
-	        elif [[ "$options" == "list" ]]; then
-	                # show listing from $scriptdir/cfgs/software-lists/upnp-dlna.txt
-	                clear
-			cat $software_list | less
-			exit
-	        
-	        elif [[ "$options" == "check" ]]; then
-
-                        clear
-                        # loop over packages and check
-			echo -e "==> Validating packages already installed...\n"
-			
-			for i in `cat $software_list`; do
-			
-				if [[ "$i" =~ "!broken!" ]]; then
-					skipflag="yes"
-					echo -e "skipping broken package: $i ..."
-					sleep 0.3s
-				else
-					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				
-					if [ "" == "$PKG_OK" ]; then
-						# dpkg outputs it's own line that can't be supressed
-						echo -e "Packge $i [Not Found]"
-						sleep 0.3s
-					else
-						echo -e "Packge $i [OK]"
-						sleep 0.3s
-					fi
-				fi
-			done
-			echo ""
-			exit
-			
-		fi
-        
-		install_software
-		
 		# kick off helper script
 		install_mobile_upnp_dlna
 		
-        elif [[ "$type" == "$type" ]]; then
-        
-		if [[ "$options" == "uninstall" ]]; then
-                        uninstall="yes"
-
-                elif [[ "$options" == "list" ]]; then
-                        # no list to show
-                        clear
-			echo -e "No listing for $type \n"
-			exit
-                
-                elif [[ "$options" == "check" ]]; then
-                	
-                	clear
-			# loop over packages and check
-			echo -e "==> Validating packages already installed...\n"
-	
-			for i in `cat $software_list`; do
-				if [[ "$i" =~ "!broken!" ]]; then
-					skipflag="yes"
-					echo -e "skipping broken package: $i ..."
-					sleep 0.3s
-				else
-					PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-					
-					if [ "" == "$PKG_OK" ]; then
-						# dpkg outputs it's own line that can't be supressed
-						echo -e "Package $i [Not Found]"
-						sleep 0.3s
-					else
-						echo -e "Package $i [OK]"
-						sleep 0.3s
-						
-					fi
-				fi
-
-			done
-			echo ""
-			exit
-		fi
-		install_software
 	fi
-	
 	
 	# cleanup package leftovers
 	echo -e "\n==> Cleaning up unused packages\n"
@@ -1121,15 +859,11 @@ main()
 }
 
 #####################################################
-# handle prerequisite software
+# handle prerequisite actions for script
 #####################################################
 
-funct_source_modules
+source_modules
 show_warning
-gpg_import
-funct_set_multiarch
-funct_pre_req_checks
-add_repos
 
 #####################################################
 # MAIN

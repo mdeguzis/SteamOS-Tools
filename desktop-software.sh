@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.3.5
+# Script Ver:	1.9.8.7
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -739,21 +739,6 @@ check_software_status()
 	
 	echo -e "==> Validating packages already installed...\n"
 	
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-	
-	#####################################
-	# Function TESTING
-	#####################################
-	#echo "showing pkg list:"
-	#cat "custom-pkg.txt"
-	#echo "showing what software list is set to:"
-	#echo $software_list
-	#echo "showing contents of variable software_list:"
-	#cat $softare_list
-	# exit test
-	#exit
-	#####################################
-	
 	for i in `cat $software_list`; do
 	
 		if [[ "$i" =~ "!broken!" ]]; then
@@ -829,7 +814,16 @@ main()
 			check_software_status
 			exit 1
 		fi
+		
+		# load functions
+		funct_source_modules
+		show_warning
+		gpg_import
+		funct_set_multiarch
+		funct_pre_req_checks
+		add_repos
 
+		# kick off install function
 		install_software
 	fi
 
@@ -866,15 +860,10 @@ main()
 }
 
 #####################################################
-# handle prerequisite software
+# handle prerequisite actions
 #####################################################
 
-funct_source_modules
 show_warning
-gpg_import
-funct_set_multiarch
-funct_pre_req_checks
-add_repos
 
 #####################################################
 # MAIN

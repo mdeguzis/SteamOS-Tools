@@ -638,22 +638,6 @@ install_software()
 					exit
 				fi
 			
-			else
-				# package was found
-				# check if we resumed pkg checks if loop was restarted
-				
-				if [[ "$firstcheck" == "yes"  ]]; then
-					
-					echo -e "$i package status: [OK]"
-					sleep 0.3s
-				else
-					
-					echo -e "\n==> Restarting package checks...\n"
-					sleep 3s
-					echo -e "$i package status: [OK]"
-					sleep 0.3s
-				fi
-			
 			# end PKG OK/FAIL test loop if/fi
 			fi
 

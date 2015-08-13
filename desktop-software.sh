@@ -804,7 +804,8 @@ main()
                 elif [[ "$options" == "list" ]]; then
                         # show listing from $scriptdir/cfgs/software-lists/basic-software.txt
                         clear
-                        cat $software_list | less
+                        less $software_list
+                        exit 1
 			
 		elif [[ "$options" == "check" ]]; then
                         

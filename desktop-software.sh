@@ -739,6 +739,12 @@ check_software_status()
 	
 	echo -e "==> Validating packages already installed...\n"
 	
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+	
+	echo $PKG_OK
+	
+	sleep 10s
+	
 	for i in `cat $software_list`; do
 	
 		if [[ "$i" =~ "!broken!" ]]; then
@@ -746,10 +752,7 @@ check_software_status()
 			echo -e "skipping broken package: $i ..."
 			sleep 0.3s
 		else
-		
-		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-			
-			if [ "" == "$PKG_OK" ]; then
+			if [ "$PKG_OK" == "" ]; then
 				# dpkg outputs it's own line that can't be supressed
 				echo -e "Package $i [Not Found]" > /dev/null
 				sleep 0.3s

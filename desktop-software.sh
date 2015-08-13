@@ -589,9 +589,11 @@ install_software()
 			# Force if statement to run if unininstalled is specified for exiting software
 			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 			
+			# setup firstcheck var for first run through
+			firstcheck="yes"
 		
 			# Assess pacakge requests
-			if [ "$PKG_OK" == "" ] && [ "$apt_mode" == "install" ]; then
+			if [ "$PKG_OK" == "" ]; then
 			
 				echo -e "\n==> Attempting $i automatic package installation...\n"
 				sudo apt-get $cache_tmp $apt_mode $i
@@ -632,7 +634,23 @@ install_software()
 					exit
 				fi
 			
-			# end PKG OK test loop if/fi
+			else
+				# package was found
+				# check if we resumed pkg checks if loop was restarted
+				
+				if [[ "$firstcheck" == "yes"  ]]; then
+					
+					echo -e "$i package status: [OK]"
+					sleep 0.3s
+				else
+					
+					echo -e "\n==> Restarting package checks...\n"
+					sleep 3s
+					echo -e "$i package status: [OK]"
+					sleep 0.3s
+				fi
+			
+			# end PKG OK/FAIL test loop if/fi
 			fi
 
 		# end broken PKG test loop if/fi

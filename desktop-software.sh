@@ -741,6 +741,12 @@ check_software_status()
 	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 	
+	cat "custom-pkg.txt"
+	sleep 5s
+	clear
+	echo $software_list
+	sleep 10s
+	
 	echo $PKG_OK
 	
 	sleep 10s
@@ -832,6 +838,7 @@ main()
 		echo -e "\n==> Proceeding to supplemental emulation package routine\n"
 		sleep 2s
 		m_emulation_install_main
+		
 	elif [[ "$type" == "ue4-src" ]]; then
 
 		# kick off ue4 script

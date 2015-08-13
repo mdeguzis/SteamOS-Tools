@@ -788,7 +788,6 @@ main()
         # generate software listing based on type or skip to auto script
         get_software_type
         
-        
         #############################################
         # Main install functionality
         #############################################

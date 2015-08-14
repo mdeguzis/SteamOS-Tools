@@ -14,6 +14,7 @@ main ()
   	echo -e "\nPlease choose your controller type for this patch"
   	echo "(1) Xbox 360 (wired)"
   	echo "(2) Xbox 360 (wireless)"
+  	echo "(3) DirectInput dll blocker (fallback)"
   	echo ""
   	
   	# the prompt sometimes likes to jump above sleep
@@ -32,11 +33,22 @@ main ()
   	  gp_type="xb360-wireless"
   	  patch_rl
   		;;
-  		 
+  		
+  		3)
+  		cp ../misc/dinput8.dll /home/desktop
+
+      echo -e "==> dinput8.dll copied to /home/desktop.\n"
+      
+      echo -e "You will have to set xinput8 to 'native,builtin' in winecfg." 
+      echo -e "You can use x360ce.exe to configure it which requires"
+      echo -e ".net 4, etc installed as stated on appdb.winehq.org entry for x360ce)"
+      echo -e "or just use the editor to edit x360ce.ini"
+  		;;
+  		
   		*)
   		echo -e "\n==ERROR==\nInvalid Selection!"
   		sleep 1s
-  		continue
+  		return
   		;;
   	esac
 
@@ -54,8 +66,6 @@ patch_rl()
       cp xb360-wired/xinput1_3.dll "/home/desktop/.PlayOnLinux/wineprefix/Steam/drive_c/Program Files/Steam/steamapps/common/rocketleague/Binaries/Win32/"
       cp xb360-wired/xinput9_1_0.dll "/home/desktop/.PlayOnLinux/wineprefix/Steam/drive_c/Program Files/Steam/steamapps/common/rocketleague/Binaries/Win32/"
   
-    fi
-  
   elif [[ -d "/home/desktop/.cxoffice" ]]; then
   
     echo -e "\nCrossover detected"
@@ -65,8 +75,6 @@ patch_rl()
       cp xb360-wired/xb360-wired/xinput1_3.dll "/home/desktop/.cxoffice/wineprefix/Steam/drive_c/Program Files/Steam/steamapps/common/rocketleague/Binaries/Win32/"
       cp xb360-wired/xb360-wired/xinput9_1_0.dll "/home/desktop/.PlayOncxofficeLinux/wineprefix/Steam/drive_c/Program Files/Steam/steamapps/common/rocketleague/Binaries/Win32/"
   
-    fi
-  
   elif [[ -d "/home/desktop/.wine" ]]; then
   
     echo -e "\nVanilla Wine detected"
@@ -75,8 +83,6 @@ patch_rl()
       cp xb360-wireless/xinput1_3.dll "/home/desktop/.wine/wineprefix/Steam/drive_c/Program Files/Steam/steamapps/common/rocketleague/Binaries/Win32/"
       cp xb360-wired/xinput1_3.dll "/home/desktop/.wine/wineprefix/Steam/drive_c/Program Files/Steam/steamapps/common/rocketleague/Binaries/Win32/"
       cp xb360-wired/xinput9_1_0.dll "/home/desktop/.wine/wineprefix/Steam/drive_c/Program Files/Steam/steamapps/common/rocketleague/Binaries/Win32/"
-  
-    fi
   
   fi
   

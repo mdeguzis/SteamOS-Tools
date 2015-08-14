@@ -69,7 +69,7 @@ if [[ "$deb_repo_req" == "yes" ]]; then
         
 elif [[ "$deb_repo_req" == "no" ]]; then
 	
-	echo -e "\n==Repository Check==\nExternal repository needed: [No]"
+	echo -e "\n==Repository Check==\nExternal repository needed: [No]\n"
 
 # end repo check	
 fi 

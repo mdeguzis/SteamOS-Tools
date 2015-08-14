@@ -30,13 +30,13 @@
 Building Retroarch and Libretro cores from source is called from the main `desktop-software` script.
 
 ```
-./desktop-software.sh install emulation-src
+./desktop-software.sh install retroarch-src
 ```
 
 However, if you wish to built a specific core, you can specify the core name as so:
 
 ```
-./desktop-software.sh install emulation-src mame
+./desktop-software.sh install retroarch-src mame
 ```
 
 For a list of cores, please reference this [libretro-super](https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91) file. 
@@ -44,7 +44,7 @@ For a list of cores, please reference this [libretro-super](https://github.com/l
 ***
 #General
 ***
-After running the emulation-src type, currently you must still perform the following as of 20150427:
+After running the retroarch-src type, currently you must still perform the following as of 20150427:
 
 1. Add "Retroarch-Src" as a "non-Steam" game using the "+" icon on the Libary section of SteamOS
 2. Configure your joypad via Retroarch > Settings > Input Settings (use bind all to configure all buttons at once)

@@ -133,36 +133,6 @@ ep_install_chrome()
 	
 	# TODO
 	
-	###############################
-	# update and pre-reqs
-	###############################
-	
-	# install pre-reqs
-	
-	echo -e "\n==> Installing prerequisite packages\n"
-	sleep 2s
-	
-	sudo apt-get install indicator-application libappindicator1 \
-	libappindicator3-1 libdbusmenu-glib4 libdbusmenu-gtk3-4 \
-	libdbusmenu-gtk4 libindicator3-7 libindicator7 libglib2.0-0 \
-	libxss1 xdg-utils
-	
-	#######################
-	# libappindiactor
-	#######################
-	
-	# libappindicator1 required but not needed explictly
-	# This really only allows applications to export a menu into the panel
-	# Based on KSNI it also works in KDE and will fallback to generic Systray 
-	# support if none of those are available. 
-	
-	# set vars
-	pkg_type="deb"
-	PKG="libappindicator1"
-	PKG_FILENAME="libappindicator1_12.10.1_SteamOS_amd64.deb"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/browsers"
-	BIN_LOC=""
-	
 	# set multiflag
 	multi="n"
 	
@@ -172,13 +142,6 @@ ep_install_chrome()
 		ep_test_deb
 		exit
 	fi
-	
-	# proceed to pkg eval for libappindicator1
-	ep_install_eval_pkg
-
-	# libglib2.0.0 is only ver. 2.33, when libappindicator is asking for >=2.37.3
-	# Need to find / compile 2.37 from somewhere. Maybe grab the jessie source and try (risky).
-	# For now, attempt will be made at altering depends ver just down to our level
 	
 	###############################	
 	# install google-chrome-stable
@@ -192,7 +155,7 @@ ep_install_chrome()
 	"https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 	
 	# install
-	sudo dpkg -i google-chrome-stable_current_amd64.deb
+	sudo gdebi google-chrome-stable_current_amd64.deb
 
 	# back out of installdir
 	if [[ -d "$scriptdir" ]]; then

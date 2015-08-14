@@ -44,11 +44,11 @@ For a list of cores, please reference this [libretro-super](https://github.com/l
 ***
 #General
 ***
-After running the retroarch-src type, currently you must still perform the following as of 20150427:
+After running the retroarch-src type, currently you must still perform the following as of 20150814:
 
 1. Add "Retroarch-Src" as a "non-Steam" game using the "+" icon on the Libary section of SteamOS
-2. Configure your joypad via Retroarch > Settings > Input Settings (use bind all to configure all buttons at once)
-3. Transfer any ROMs you had on your system, into appropriate folder structures under `/home/steam/ROMs`
+2. If you do not select one of my predefined control schemes, you will need to configure your controller in Retroarch
+3. Transfer any ROMs you had on your system, into appropriate folder structures under `/home/steam/ROMs`. See the optional [SSH ROM transfer](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/brewmaster-beta/utilities/ssh-rom-transfer.sh) script.
 
 ***
 #Source build information
@@ -99,7 +99,7 @@ Already fetched:
 ***
 #General
 ***
-Since the "system" directory of Retroarch is pre-configured to `/home/<user>/ROMs`, you'll want to also dump your BOIS files in this location as well.
+Since the "system" directory of Retroarch is pre-configured to `/home/<user>/ROMs`, you'll want to also dump your BIOS files in this location as well.
 
 ##PSX/PS1 BIOS Files
 

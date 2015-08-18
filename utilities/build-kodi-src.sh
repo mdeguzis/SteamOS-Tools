@@ -129,8 +129,12 @@ main()
 	#################################################
 	# Build Kodi
 	#################################################
+  	
+  	# Note (needed?):
+  	# When listing the application depends, reference https://packages.debian.org/sid/kodi
+  	# for an idea of what packages are needed.
   
-  	#create the Kodi executable manually perform these steps:
+  	# create the Kodi executable manually perform these steps:
 	
 	./bootstrap
 	

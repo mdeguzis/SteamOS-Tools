@@ -24,9 +24,9 @@ install_prereqs()
 	clear
 	echo -e "==> Assessing prerequisites for building...\n"
 	sleep 1s
-	
+
 	# install needed packages for building kodi
-	
+
 	sudo apt-get install autoconf automake autopoint autotools-dev cmake curl \
 	debhelper default-jre gawk gperf libao-dev libasound2-dev \
 	libass-dev libavahi-client-dev libavahi-common-dev libbluetooth-dev \
@@ -42,7 +42,7 @@ install_prereqs()
 	libxinerama-dev libxml2-dev libxmu-dev libxrandr-dev libxslt1-dev libxt-dev \
 	libyajl-dev lsb-release nasm python-dev python-imaging python-support swig unzip \
 	uuid-dev yasm zip zlib1g-dev
-	
+
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache
 }
@@ -50,22 +50,22 @@ install_prereqs()
 main()
 {
 	build_dir="/home/desktop/build-kodi-tmp"
-	
+
 	clear
-	
+
 	# set var for git URL
 	git_url="git://github.com/xbmc/xbmc.git build-kodi-tmp"
-	
+
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
 	# If the DIR is already there, the fetch info should be intact
-	
+
 	if [[ -d "$build_dir" ]]; then
-	
+
 		echo -e "\n==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
 		sleep 1s
 		read -ep "Choice: " git_choice
-		
+
 		if [[ "$git_choice" == "p" ]]; then
 			# attempt to pull the latest source first
 			echo -e "\n==> Attempting git pull..."
@@ -73,10 +73,10 @@ main()
 			cd "$build_dir"
 			# eval git status
 			output=$(git pull 2> /dev/null)
-		
+
 			# evaluate git pull. Remove, create, and clone if it fails
 			if [[ "$output" != "Already up-to-date." ]]; then
-	
+
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
 				sleep 2s
 				cd
@@ -87,7 +87,7 @@ main()
 				# enter build dir
 				cd "$build_dir"
 			fi
-			
+
 		elif [[ "$git_choice" == "r" ]]; then
 			echo -e "\n==> Removing and cloning repository again..."
 			sleep 2s
@@ -100,7 +100,7 @@ main()
 			# enter build dir
 			cd "$build_dir"
 		else
-		
+
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
 			# create DIRS
@@ -109,11 +109,11 @@ main()
 			git clone "$git_url"
 			# enter build dir
 			cd "$build_dir"
-		
+
 		fi
-	
+
 	else
-		
+
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
 			# create DIRS
@@ -123,33 +123,33 @@ main()
 			# enter build dir
 			cd "$build_dir" 
 	fi
-	
- 
+
+
 	#################################################
 	# Build Kodi
 	#################################################
-  	
+
   	# Note (needed?):
   	# When listing the application depends, reference https://packages.debian.org/sid/kodi
   	# for an idea of what packages are needed.
-  
+
   	# create the Kodi executable manually perform these steps:
-	
+
 	./bootstrap
-	
+
 	# ./configure <option1> <option2> PREFIX=<system prefix>... 
 	# (See --help for available options). For now, use the default PREFIX
         # A full listing of supported options can be viewed by typing './configure --help'.
 	# Default install path is: 
-	
+
 	./configure
-	
+
 	# make the package
 	# By adding -j<number> to the make command, you describe how many
      	# concurrent jobs will be used. So for quad-core the command is:
-	
+
 	make -j4
-	
+
 	# since we are building a deb pkg, we will not use 'make install'
 	# make install
 
@@ -157,29 +157,29 @@ main()
 	# Not used for now ...
 
 	# make -C tools/depends/target/binary-addons
-	
+
 	####################################
 	# (Optional) build Kodi test suite
 	####################################
-	
+
 	make check
-	
+
 	# compile the test suite without running it
 	make testsuite
 
 	# The test suite program can be run manually as well.
 	# The name of the test suite program is 'kodi-test' and will build in the Kodi source tree.
 	# To bring up the 'help' notes for the program, type the following:
-	
+
 	# ./kodi-test --gtest_help
-  
+
 	############################
 	# proceed to DEB BUILD
 	############################
-	
+
 	echo -e "\n==> Building Debian package from source"
 	sleep 2s
-	
+
 	# build deb package
 	sudo checkinstall
 
@@ -189,42 +189,42 @@ main()
 	#################################################
 	# Post install configuration
 	#################################################
-	
+
 	# TODO
-	
+
 	#################################################
 	# Cleanup
 	#################################################
-	
+
 	# clean up dirs
-	
+
 	# note time ended
 	time_end=$(date +%s)
 	time_stamp_end=(`date +"%T"`)
 	runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
-	
+
 	# output finish
 	echo -e "\nTime started: ${time_stamp_start}"
 	echo -e "Time started: ${time_stamp_end}"
 	echo -e "Total Runtime (minutes): $runtime\n"
 
-	
+
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
-	
+
 	# back out of build temp to script dir if called from git clone
 	if [[ "$scriptdir" != "" ]]; then
 		cd "$scriptdir"
 	else
 		cd "$HOME"
 	fi
-	
+
 	# inform user of packages
 	echo -e "\n############################################################"
 	echo -e "If package was built without errors you will see it below."
 	echo -e "If you don't, please check build dependcy errors listed above."
 	echo -e "############################################################\n"
-	
+
 	echo -e "Showing contents of: $build_dir:"
 	ls "$build_dir" 
 	echo ""

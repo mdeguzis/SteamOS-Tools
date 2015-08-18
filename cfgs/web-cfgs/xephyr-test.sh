@@ -35,6 +35,7 @@ cp "Xephyr-Test.desktop" "/usr/share/applications"
 
 # (2) Xephyr test
 Xephyr -ac -screen 1366x768 -br -reset -terminate 2> /dev/null :3 &
+# DISPLAY=:3.0 google-chrome --kiosk www.google.com &
 sleep 1
 killall Xephyr
 

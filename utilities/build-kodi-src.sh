@@ -34,7 +34,7 @@ install_prereqs()
 	libcec-dev libcurl4-openssl-dev libcwiid-dev libdbus-1-dev libfontconfig1-dev \
 	libfreetype6-dev libfribidi-dev libgif-dev libgl1-mesa-dev libglew-dev \
 	libgl1-mesa-dev libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev \
-	liblzo2-dev libmicrohttpd-dev libmodplug-devlibmpcdec-dev libmpeg2-4-dev \
+	liblzo2-dev libmicrohttpd-dev libmodplug-dev libmpcdec-dev libmpeg2-4-dev \
 	libmysqlclient-dev libnfs-dev libogg-dev libpcre3-dev libplist-dev libpng12-dev \
 	libpulse-dev librtmp-dev libsdl2-dev libshairplay-dev libsmbclient-dev \
 	libsqlite3-dev libssh-dev libssl-dev libswscale-dev libtag1-dev libtiff5-dev \

@@ -12,6 +12,7 @@
 #               	script. A deb package is built from this script. 
 #
 # Usage:      		./build-kodi-src.sh
+# See Also:		https://packages.debian.org/sid/kodi
 # -------------------------------------------------------------------------------
 
 scriptdir=$(pwd)

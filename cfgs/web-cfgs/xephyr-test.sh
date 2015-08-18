@@ -21,14 +21,14 @@ sudo apt-get install xephyr xnest xdpyinfo
 # Copy desktop file over for use in BPM
 cp "Xephyr-Test.desktop" "/usr/share/applications"
 
-##################################################################
+###################################################################
 # Informational
 ###################################################################
 
 # Get current window resolution of display
 WIN_RES=$(DISPLAY=:0 xdpyinfo | grep dimensions | awk '{print $2}')
 
-##################################################################
+###################################################################
 # Test scenarios
 ###################################################################
 

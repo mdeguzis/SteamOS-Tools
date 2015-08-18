@@ -4,7 +4,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.1.3
+# Script Ver:		0.1.9
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -41,20 +41,22 @@ install_prereqs()
 	libtinyxml-dev libtool libudev-dev libusb-dev libva-dev libvdpau-dev libvorbis-dev \
 	libxinerama-dev libxml2-dev libxmu-dev libxrandr-dev libxslt1-dev libxt-dev \
 	libyajl-dev lsb-release nasm python-dev python-imaging python-support swig unzip \
-	uuid-dev yasm zip zlib1g-dev
+	uuid-dev yasm zip zlib1g-dev | grep "newest" > /dev/null
 
 	# When compiling frequently, it is recommended to use ccache
-	sudo apt-get install ccache
+	sudo apt-get install ccache | grep "newest" > /dev/null
+
+	# Exit status 0 returned because command executed successfully.
+	if [[ $? = 0 ]]; then
+		echo -e "All packages up to date!\n"
+		sleep 1s
+	fi
+
 }
 
 main()
 {
-	build_dir="/home/desktop/build-kodi-tmp"
-
-	clear
-
-	# set var for git URL
-	git_url="git://github.com/xbmc/xbmc.git build-kodi-tmp"
+	build_dir="/home/desktop/kodi/"
 
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
@@ -77,36 +79,32 @@ main()
 			# evaluate git pull. Remove, create, and clone if it fails
 			if [[ "$output" != "Already up-to-date." ]]; then
 
-				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
 				sleep 2s
-				cd
 				rm -rf "$build_dir"
-				mkdir -p "$build_dir"
-				# create and clone
-				git clone "$git_url"
+				# create and clone to $HOME/kodi
+				cd
+				git clone git://github.com/xbmc/xbmc.git kodi
 				# enter build dir
 				cd "$build_dir"
 			fi
 
 		elif [[ "$git_choice" == "r" ]]; then
-			echo -e "\n==> Removing and cloning repository again..."
+			echo -e "\n==> Removing and cloning repository again...\n"
 			sleep 2s
-			# remove, clone, enter
+			sudo rm -rf "$build_dir"
+			# create and clone to $HOME/kodi
 			cd
-			rm -rf "$build_dir"
-			mkdir -p "$build_dir"
-			# create and clone
-			git clone "$git_url"
+			git clone git://github.com/xbmc/xbmc.git kodi
 			# enter build dir
 			cd "$build_dir"
 		else
 
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
 			sleep 2s
-			# create DIRS
-			mkdir -p "$build_dir"
-			# create and clone
-			git clone "$git_url"
+			# create and clone to $HOME/kodi
+			cd
+			git clone git://github.com/xbmc/xbmc.git kodi
 			# enter build dir
 			cd "$build_dir"
 
@@ -114,14 +112,14 @@ main()
 
 	else
 
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
 			sleep 2s
 			# create DIRS
 			mkdir -p "$build_dir"
 			# create and clone to current dir
-			git clone "$git_url"
+			git clone git://github.com/xbmc/xbmc.git kodi
 			# enter build dir
-			cd "$build_dir" 
+			cd "$build_dir"
 	fi
 
 
@@ -133,6 +131,27 @@ main()
   	# When listing the application depends, reference https://packages.debian.org/sid/kodi
   	# for an idea of what packages are needed.
 
+	#[NOTICE] crossguid / libcrossguid-dev all Linux destributions.
+        #Kodi now requires crossguid which is not available in Ubuntu
+        # repositories at this time. We supply a Makefile in tools/depends/target/crossguid
+        # to make it easy to install into /usr/local.
+
+	# This above method has issues with using the suggested prefix /usr/local
+	# use our package rebuilt from https://launchpad.net/~team-xbmc nightly
+
+	echo -e "\n==> Installing crossbuild dependency\n"
+	sleep 2s
+
+	wget -O "/tmp/libcrossguid1.deb" "http://www.libregeek.org/SteamOS-Extra/utilities/libcrossguid1_0.1~git20150807.8f399e8_amd64.deb"
+        sudo gdebi "/tmp/libcrossguid1.deb"
+        sudo rm -f "/tmp/libcrossguid1.deb"
+
+	wget -O "/tmp/crossbuild.deb" "http://www.libregeek.org/SteamOS-Extra/utilities/libcrossguid-dev_0.1~git20150807.8f399e8_amd64.deb"
+	sudo gdebi "/tmp/crossbuild.deb"
+	sudo rm -f "/tmp/crossbuild.deb"
+
+exit 1
+
   	# create the Kodi executable manually perform these steps:
 
 	./bootstrap
@@ -140,7 +159,7 @@ main()
 	# ./configure <option1> <option2> PREFIX=<system prefix>... 
 	# (See --help for available options). For now, use the default PREFIX
         # A full listing of supported options can be viewed by typing './configure --help'.
-	# Default install path is: 
+	# Default install path is:
 
 	./configure
 
@@ -148,7 +167,8 @@ main()
 	# By adding -j<number> to the make command, you describe how many
      	# concurrent jobs will be used. So for quad-core the command is:
 
-	make -j4
+	# make -j4
+	make -j2
 
 	# since we are building a deb pkg, we will not use 'make install'
 	# make install
@@ -162,10 +182,11 @@ main()
 	# (Optional) build Kodi test suite
 	####################################
 
-	make check
+	# make check
 
 	# compile the test suite without running it
-	make testsuite
+
+	# make testsuite
 
 	# The test suite program can be run manually as well.
 	# The name of the test suite program is 'kodi-test' and will build in the Kodi source tree.
@@ -212,13 +233,6 @@ main()
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
 
-	# back out of build temp to script dir if called from git clone
-	if [[ "$scriptdir" != "" ]]; then
-		cd "$scriptdir"
-	else
-		cd "$HOME"
-	fi
-
 	# inform user of packages
 	echo -e "\n############################################################"
 	echo -e "If package was built without errors you will see it below."
@@ -226,7 +240,7 @@ main()
 	echo -e "############################################################\n"
 
 	echo -e "Showing contents of: $build_dir:"
-	ls "$build_dir" 
+	ls "$build_dir"
 	echo ""
 
 }

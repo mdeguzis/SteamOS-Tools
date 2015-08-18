@@ -462,7 +462,7 @@ get_software_type()
                 # install plex from helper script
                 ep_install_plex
                 exit
-	elif [[ "$type" == "ue4-src" ]]; then
+	elif [[ "$type" == "ue4" ]]; then
 		# install plex from helper script
 		m_install_ue4
         elif [[ "$type" == "ue4-src" ]]; then

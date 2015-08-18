@@ -45,7 +45,6 @@ install_prereqs()
 	libxslt1-dev, libxt-dev, libyajl-dev, lsb-release, nasm, python-dev, python-imaging, 
 	python-support, swig, unzip, uuid-dev, yasm, zip, zlib1g-dev
 
-
 }
 
 main()
@@ -71,7 +70,7 @@ main()
 			# attempt to pull the latest source first
 			echo -e "\n==> Attempting git pull..."
 			sleep 2s
-			cd "$git_dir"
+			cd "$build_dir"
 			# eval git status
 			output=$(git pull 2> /dev/null)
 		
@@ -95,7 +94,7 @@ main()
 			# remove, clone, enter
 			cd
 			rm -rf "$build_dir"
-			mkdir -p "$git_dir"
+			mkdir -p "$build_dir"
 			# create and clone
 			git clone "$git_url"
 			# enter build dir
@@ -137,6 +136,7 @@ main()
 	# ./configure <option1> <option2> PREFIX=<system prefix>... 
 	# (See --help for available options). For now, use the default PREFIX
         # A full listing of supported options can be viewed by typing './configure --help'.
+	# Default install path is: 
 	
 	./configure
 	
@@ -218,14 +218,11 @@ main()
 	echo -e "\n############################################################"
 	echo -e "If package was built without errors you will see it below."
 	echo -e "If you don't, please check build dependcy errors listed above."
-	echo -e "cd $build_dir"
-	echo -e "cd $build_folder"
 	echo -e "############################################################\n"
 	
 	echo -e "Showing contents of: $build_dir:"
 	ls "$build_dir" 
 	echo ""
-	ls "$git_dir"
 
 }
 

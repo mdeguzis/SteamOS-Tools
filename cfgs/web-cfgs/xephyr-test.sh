@@ -19,18 +19,25 @@ sudo apt-get install xephyr xnest
 # Copy desktop file over for use in BPM
 cp "Xephyr-Test.desktop" "/usr/share/applications"
 
-# Xnest basic test
-Xnest :3 -geometry 1280x1024+200+200 -name "Xnest Test Window" 2> /dev/null & xclock -display :3 &
-sleep 1
-killall Xnest
+##################################################################
+# Test scenarios
+###################################################################
 
-# Xephyr test
+# Each section below can test a certain method. Uncomment the method
+# you wish to test
+
+# (1) Xnest basic test
+# Xnest :3 -geometry 1280x1024+200+200 -name "Xnest Test Window" 2> /dev/null & xclock -display :3 &
+##sleep 1
+# killall Xnest
+
+# (2) Xephyr test
 Xephyr -ac -screen 1280x1024 -br -reset -terminate 2> /dev/null :3 &
 sleep 1
 killall Xephyr
 
-# test using gnome desktop
-Xephyr -ac -screen 1280x1024 -br -reset -terminate 2> /dev/null :3 & \
-DISPLAY=:3 gnome-session & DISPLAY=:3.0 ssh -XfC dekstop@steamos xterm
-sleep 1
-killall Xephyr
+# (3) test using gnome desktop
+# Xephyr -ac -screen 1280x1024 -br -reset -terminate 2> /dev/null :3 & \
+# DISPLAY=:3 gnome-session & DISPLAY=:3.0 ssh -XfC dekstop@steamos xterm
+# sleep 1
+# killall Xephyr

@@ -230,25 +230,33 @@ main()
 		sudo mv  ${sourcelist_tmp} ${sourcelist}
 		sudo mv  ${multimedia_sourcelist_tmp} ${multimedia_sourcelist}
 		sudo mv  ${backports_sourcelist_tmp} ${backports_sourcelist}
-
+		
 		# Update system
 		echo -e "\n==> Updating index of packages...\n"
 		sleep 2s
 		sudo apt-get update
+		
+		echo -e "\n==> Updating keyring for deb-multimedia...\n"
+		# update keyring for deb-multimedia
+		sudo apt-get install deb-multimedia-keyring
 	
 		#####################################################
 		# Remind user how to install
 		#####################################################
-		clear
-		echo -e "\n###########################################################"
-		echo "How to use"
-		echo -e "###########################################################"
-		echo -e "\nYou can now not only install package from the SteamOS repository," 
-		echo -e "but also from the Debian repository with either:\n\n"
-		echo -e "'sudo apt-get install <package_name>'"
-		echo -e "'sudo apt-get -t [jessie|jessie-backports] install <package_name>'\n"
-		echo -e "Warning: If the apt package manager seems to want to remove a lot"
-		echo -e "of packages you have already installed, be very careful about proceeding.\n"
+		cat <<-EOF
+		###########################################################"
+		How to use"
+		###########################################################"
+		You can now not only install package from the SteamOS repository,
+		but also from the Debian repository with either:
+		
+		'sudo apt-get install <package_name>'
+		'sudo apt-get -t [jessie|jessie-backports|deb-multimedia] install <package_name>'
+		
+		Warning: If the apt package manager seems to want to remove a lot
+		"of packages you have already installed, be very careful about proceeding.
+		
+		EOF
 	
 	elif [[ "$install" == "no" ]]; then
 		clear

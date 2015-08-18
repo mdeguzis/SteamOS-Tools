@@ -21,6 +21,16 @@ cp "Xephyr-Test.desktop" "/usr/share/applications"
 
 # Xnest basic test
 Xnest :3 -geometry 1280x1024+200+200 -name "Xnest Test Window" 2> /dev/null & xclock -display :3 &
+sleep 1
 killall Xnest
 
+# Xephyr test
+Xephyr -ac -screen 1280x1024 -br -reset -terminate 2> /dev/null :3 &
+sleep 1
+killall Xephyr
 
+# test using gnome desktop
+Xephyr -ac -screen 1280x1024 -br -reset -terminate 2> /dev/null :3 & \
+DISPLAY=:3 gnome-session & DISPLAY=:3.0 ssh -XfC dekstop@steamos xterm
+sleep 1
+killall Xephyr

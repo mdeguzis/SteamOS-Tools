@@ -2,11 +2,11 @@
 # -------------------------------------------------------------------------------
 # Author:    		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	  xephyr-test.sh
-# Script Ver:		0.1.1
-# Description:	Basic test with xephyr/xnest to draw a display window
+# Scipt Name:   xephyr-test.sh
+# Script Ver:   0.1.1
+# Description:  Basic test with xephyr/xnest to draw a display window
 #
-# Usage:      	xephyr-test.sh
+# Usage:        xephyr-test.sh
 #               non-Steam addition of Xephyr-Test desktop shortcut
 #
 # See:          http://jeffskinnerbox.me/posts/2014/Apr/29/howto-using-xephyr-to-

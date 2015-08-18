@@ -401,7 +401,8 @@ ep_install_kodi()
 	# The previous team-Kodi install method by WSNIPEX can be found in
 	# the scriptmodules/archive folder. This method is currently broken.
 	
-	# Source: http://forum.kodi.tv/showthread.php?tid=197422
+	# Package sourced from: built from git [PENDING]
+	# Source: https://github.com/xbmc/xbmc/blob/master/docs/README.linux
   
   	echo -e "Install for Kodi currently broken. Please try again later.
   	exit 1

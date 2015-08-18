@@ -4,7 +4,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.1.1
+# Script Ver:		0.1.3
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -14,12 +14,9 @@
 # Usage:      		./build-kodi-src.sh
 # -------------------------------------------------------------------------------
 
-arg1="$1"
 scriptdir=$(pwd)
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
-# reset source command for while loop
-src_cmd=""
 
 install_prereqs()
 {
@@ -157,6 +154,7 @@ main()
 	####################################
 	# (Optional) build Kodi test suite
 	####################################
+	
 	make check
 	
 	# compile the test suite without running it

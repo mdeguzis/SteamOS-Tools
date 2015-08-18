@@ -11,6 +11,8 @@
 #
 # See:          http://jeffskinnerbox.me/posts/2014/Apr/29/howto-using-xephyr-to-
 #               create-a-new-display-in-a-window/
+#
+# Also:         cfgs/web-cfgs/skel/Default-Launch.sh for the current implementation
 # -------------------------------------------------------------------------------
 
 # pre-reqs

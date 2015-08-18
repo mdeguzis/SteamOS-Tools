@@ -31,7 +31,7 @@ install_prereqs()
 	debhelper default-jre gawk gperf libao-dev libasound2-dev \
 	libass-dev libavahi-client-dev libavahi-common-dev libbluetooth-dev \
 	libbluray-dev libboost-dev libboost-thread-dev libbz2-dev libcap-dev libcdio-dev \
-	libcec-dev libcurl4-openssl-devlibcurl4-gnutls-dev libcurl-dev libcwiid-dev \
+	libcec-dev libcurl4-openssl-dev libcurl4-gnutls-dev libcurl-dev libcwiid-dev \
 	libdbus-1-dev libfontconfig-dev libfreetype6-dev libfribidi-dev libgif-dev \ 
 	libgl1-mesa-dev libgl-dev libglew-dev libglu1-mesa-dev libglu-dev libiso9660-dev \ 
 	libjasper-dev libjpeg-dev libltdl-dev liblzo2-dev libmicrohttpd-dev libmodplug-dev \ 
@@ -42,7 +42,6 @@ install_prereqs()
 	libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev libxmu-dev libxrandr-dev \ 
 	libxslt1-dev libxt-dev libyajl-dev lsb-release nasm python-dev python-imaging \ 
 	python-support swig unzip uuid-dev yasm zip zlib1g-dev
-	
 	
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache

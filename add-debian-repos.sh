@@ -237,12 +237,16 @@ main()
 		sudo apt-get update
 		
 		echo -e "\n==> Updating keyring for deb-multimedia...\n"
+		sleep 2s
 		# update keyring for deb-multimedia
 		sudo apt-get install deb-multimedia-keyring
+		sudo apt-key update
 	
 		#####################################################
 		# Remind user how to install
 		#####################################################
+		
+		clear
 		cat <<-EOF
 		###########################################################"
 		How to use"

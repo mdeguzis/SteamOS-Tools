@@ -89,7 +89,7 @@ main()
 		
 		cat <<-EOF
 		==> Adding Debian ${reponame}, ${backports_reponame},and 
-		    ${multimedia_reponame} repositories"
+		    ${multimedia_reponame} repositories
 		EOF
 		sleep 1s
 		
@@ -155,7 +155,7 @@ main()
 		Pin-Priority:110
 		EOF
 		
-		cat <<-EOF > ${multimedia_prefer}
+		cat <<-EOF > ${multimedia_prefer_tmp}
 		Package: *
 		Pin: origin ""
 		Pin-Priority:100

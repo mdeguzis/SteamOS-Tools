@@ -20,7 +20,13 @@ time_stamp_start=(`date +"%T"`)
 
 m_install_ue4()
 {
-	ut4_dir="/home/steam/ut4-linux"
+	current_dir=$(pwd)
+	ut4_dir="/home/desktop/ut4-linux"
+	ut4_bin_dir="$ut4_dir/LinuxNoEditor/Engine/Binaries/Linux/"
+	ut4_exe="$ut4_dir/$ut4_bin_dir/UE4-Linux-Test UnrealTournament"
+	
+	ue4_shortcut_tmp="/home/desktop/ue4-alpha.deskop"
+	ue4_cli_tmp="/usr/bin/ue4-alpha"
 	
 	# start apt mode if check
 	if [[ "$apt_mode" == "install" ]]; then
@@ -29,7 +35,7 @@ m_install_ue4()
 			# DIR exists
 			echo -e "\nUT4 Game directory found"
 		else
-			sudo mkdir -p "ut4-dir"
+			mkdir -p "ut4-dir"
 		fi
 		
 		cd "$ut4-dir"
@@ -42,65 +48,66 @@ m_install_ue4()
 		# Gather files
 		#################################################
 		
-		wget 
-		
-		#################################################
-		# Initial setup
-		#################################################
-		
-		
-		
-		# notify user they MUST have a UE4 account to build
-		clear
-		cat <<-EOF
-		#####################################################
-		Warning: Please read the below carefully!
-		#####################################################
-
-    		TODO!
-
-		Press [ENTER] to continue or "exit" to abort.
-		
-		See: https://github.com/EpicGames/UnrealEngine#linux
-		EOF
-		
-		read -ep "Choice: " user_choice
-		
-		if [[ "$user_choice" == "exit" ]]; then
-			# exit script
-			exit 1
-		else
-			# continue normally
-			printf "\nContinuing...\n" 
-			sleep 1s
-			clear
-		fi  
-		
-		# set vars
-		export install_dir="/home/desktop/ue4-src"
-		export git_dir="/home/desktop/ue4-src/UnrealEngine"
-		export git_url="https://github.com/3dluvr/UnrealEngine.git"
-		#export symlink_target="/usr/bin/ue4"
-		#export binary_loc="$git_dir/ue4"
-		
-		#################################################
-		# Gather files from forum zip
-		#################################################
+		# sourced from https://aur.archlinux.org/packages/ut4/
 		
 		echo -e "\n==> Acquiring files...please wait"
 		sleep 2
+		
+		wget "https://s3.amazonaws.com/unrealtournament/UnrealTournament-Client-XAN-2634754-Linux.zip"
+		
+		#################################################
+		# Setup
+		#################################################
+
+		unzip -o "UnrealTournament-Client-XAN-2634754-Linux.zip"
 		
 		#################################################
 		# Post install configuration
 		#################################################
 		
-		# TODO
+		echo -e "\n==> Creating executable and desktop launcher"
+		
+		cat <<-EOF> ${ue4_cli_tmp}
+		#!/bin/bash
+		# execute ue4 alpha
+		cd $ut4_dir/$ut4_bin_dir
+		UE4-Linux-Test UnrealTournament
+		EOF
+		
+		cat <<-EOF> ${ue4_shortcut_tmp}
+		[Desktop Entry]
+		Name=UE4 alpha
+		Comment=Launcher for UE4 Tournament alpha
+		Exec=/usr/bin/ue4-alpha
+		Icon=
+		Terminal=false
+		Type=Application
+		Categories=Game;
+		MimeType=x-scheme-handler/steam;
+		EOF
+		
+		# move tmp var files into target locations
+		sudo mv ${ue4_shortcut_tmp}  "/usr/share/applications"
+		sudo mv ${ue4_cli_tmp} "/usr/bin"
+		
+		# mark exec
+		sudo chmod +x ${ue4_cli_tmp}
 		
 		#################################################
 		# Cleanup
 		#################################################
 		
 		# clean up dirs
+		
+		# return to previous dir
+		cd $current_dir
+		
+		clear
+		cat <<-EOF
+		Installation is finished. You can either run 'ue4-alpha' from
+		the command line, or start 'UE4 aplha' from you applications directory.
+		The launcher should show up as a non-Steam game as well in SteamOS BPM.
+		EOF
 	
 	
 	elif [[ "$apt_mode" == "remove" ]]; then

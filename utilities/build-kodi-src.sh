@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # -------------------------------------------------------------------------------
-# Author:    	  Michael DeGuzis
-# Git:	    	  https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	  build-kodi-src.sh
-# Script Ver: 	0.1.1
-# Description:	Attempts to build a deb package from kodi-src
-#               https://github.com/xbmc/xbmc/blob/master/docs/README.linux
-#               This is a fork of the build-deb-from-src.sh script. Due to the 
-#               amount of steps to build kodi, it was decided to have it's own 
-#               script. A deb package is built from this script. 
+# Author:    		Michael DeGuzis
+# Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	  	build-kodi-src.sh
+# Script Ver:		0.1.1
+# Description:		Attempts to build a deb package from kodi-src
+#               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
+#               	This is a fork of the build-deb-from-src.sh script. Due to the 
+#               	amount of steps to build kodi, it was decided to have it's own 
+#               	script. A deb package is built from this script. 
 #
-# Usage:      	./build-kodi-src.sh
+# Usage:      		./build-kodi-src.sh
 # -------------------------------------------------------------------------------
 
 arg1="$1"
@@ -30,43 +30,38 @@ install_prereqs()
 	# install needed packages for building kodi
 	
 	sudo apt-get install autoconf, automake, autopoint, autotools-dev, cmake, curl,
-  debhelper, default-jre, gawk, gperf, libao-dev, libasound2-dev,
-  libass-dev, libavahi-client-dev, libavahi-common-dev, libbluetooth-dev,
-  libbluray-dev, libboost-dev, libboost-thread-dev, libbz2-dev, libcap-dev, libcdio-dev,
-  libcec-dev, libcurl4-openssl-dev,libcurl4-gnutls-dev, libcurl-dev, libcwiid-dev,
-  libdbus-1-dev, libfontconfig-dev, libfreetype6-dev, libfribidi-dev, libgif-dev, 
-  libgl1-mesa-dev, libgl-dev, libglew-dev, libglu1-mesa-dev, libglu-dev, libiso9660-dev, 
-  libjasper-dev, libjpeg-dev, libltdl-dev, liblzo2-dev, libmicrohttpd-dev, libmodplug-dev, 
-  libmpcdec-dev, libmpeg2-4-dev, libmysqlclient-dev, libnfs-dev, libogg-dev, libpcre3-dev, 
-  libplist-dev, libpng12-dev, libpng-dev, libpulse-dev, librtmp-dev,libsdl2-dev,
-  libshairplay-dev, libsmbclient-dev, libsqlite3-dev, libssh-dev, libssl-dev, libswscale-dev,
-  libtag1-dev, libtiff-dev, libtinyxml-dev, libtool, libudev-dev, libusb-dev, libva-dev, 
-  libvdpau-dev, libvorbis-dev, libxinerama-dev, libxml2-dev, libxmu-dev, libxrandr-dev, 
-  libxslt1-dev, libxt-dev, libyajl-dev, lsb-release, nasm, python-dev, python-imaging, 
-  python-support, swig, unzip, uuid-dev, yasm, zip, zlib1g-dev
+	debhelper, default-jre, gawk, gperf, libao-dev, libasound2-dev,
+	libass-dev, libavahi-client-dev, libavahi-common-dev, libbluetooth-dev,
+	libbluray-dev, libboost-dev, libboost-thread-dev, libbz2-dev, libcap-dev, libcdio-dev,
+	libcec-dev, libcurl4-openssl-dev,libcurl4-gnutls-dev, libcurl-dev, libcwiid-dev,
+	libdbus-1-dev, libfontconfig-dev, libfreetype6-dev, libfribidi-dev, libgif-dev, 
+	libgl1-mesa-dev, libgl-dev, libglew-dev, libglu1-mesa-dev, libglu-dev, libiso9660-dev, 
+	libjasper-dev, libjpeg-dev, libltdl-dev, liblzo2-dev, libmicrohttpd-dev, libmodplug-dev, 
+	libmpcdec-dev, libmpeg2-4-dev, libmysqlclient-dev, libnfs-dev, libogg-dev, libpcre3-dev, 
+	libplist-dev, libpng12-dev, libpng-dev, libpulse-dev, librtmp-dev,libsdl2-dev,
+	libshairplay-dev, libsmbclient-dev, libsqlite3-dev, libssh-dev, libssl-dev, libswscale-dev,
+	libtag1-dev, libtiff-dev, libtinyxml-dev, libtool, libudev-dev, libusb-dev, libva-dev, 
+	libvdpau-dev, libvorbis-dev, libxinerama-dev, libxml2-dev, libxmu-dev, libxrandr-dev, 
+	libxslt1-dev, libxt-dev, libyajl-dev, lsb-release, nasm, python-dev, python-imaging, 
+	python-support, swig, unzip, uuid-dev, yasm, zip, zlib1g-dev
 
 
 }
 
 main()
 {
-	build_dir="/home/desktop/build-kodi-temp"
-	git_dir="$build_dir/git-temp"
+	build_dir="/home/desktop/build-kodi-tmp"
 	
 	clear
-	# create build dir and git dir, enter it
-	# mkdir -p "$git_dir"
-	# cd "$git_dir"
-	
 	
 	# set var for git URL
-	git_url="https://github.com/xbmc/xbmc"
+	git_url="git://github.com/xbmc/xbmc.git build-kodi-tmp"
 	
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
 	# If the DIR is already there, the fetch info should be intact
 	
-	if [[ -d "$git_dir" ]]; then
+	if [[ -d "$build_dir" ]]; then
 	
 		echo -e "\n==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
 		sleep 1s
@@ -85,31 +80,36 @@ main()
 	
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
 				sleep 2s
-				rm -rf "$git_dir"
-				mkdir -p "$git_dir"
-				cd "$git_dir"
-				# clone to current DIR
-				git clone "$git_url" .
+				cd
+				rm -rf "$build_dir"
+				mkdir -p "$build_dir"
+				# create and clone
+				git clone "$git_url"
+				# enter build dir
+				cd "$build_dir"
 			fi
 			
 		elif [[ "$git_choice" == "r" ]]; then
 			echo -e "\n==> Removing and cloning repository again..."
 			sleep 2s
 			# remove, clone, enter
-			rm -rf "$git_dir"
-			cd "$build_dir"
+			cd
+			rm -rf "$build_dir"
 			mkdir -p "$git_dir"
-			cd "$git_dir"
-			git clone "$git_url" .
+			# create and clone
+			git clone "$git_url"
+			# enter build dir
+			cd "$build_dir"
 		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
 			# create DIRS
-			mkdir -p "$git_dir"
-			cd "$git_dir"
-			# create and clone to current dir
-			git clone "$git_url" .
+			mkdir -p "$build_dir"
+			# create and clone
+			git clone "$git_url"
+			# enter build dir
+			cd "$build_dir"
 		
 		fi
 	
@@ -118,26 +118,61 @@ main()
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
 			# create DIRS
-			mkdir -p "$git_dir"
-			cd "$git_dir"
+			mkdir -p "$build_dir"
 			# create and clone to current dir
-			git clone "$git_url" .	
+			git clone "$git_url"
+			# enter build dir
+			cd "$build_dir" 
 	fi
 	
  
 	#################################################
-	# Build PKG
+	# Build Kodi
 	#################################################
-	
-  # enter build commands here
   
+  	#create the Kodi executable manually perform these steps:
+	
+	./bootstrap
+	
+	# ./configure <option1> <option2> PREFIX=<system prefix>... 
+	# (See --help for available options). For now, use the default PREFIX
+        # A full listing of supported options can be viewed by typing './configure --help'.
+	
+	./configure
+	
+	# make the package
+	# By adding -j<number> to the make command, you describe how many
+     	# concurrent jobs will be used. So for quad-core the command is:
+	
+	make -j4
+	
+	# since we are building a deb pkg, we will not use 'make install'
+	# make install
+
+	# From v14 with commit 4090a5f a new API for binary addons is available. 
+	# Not used for now ...
+
+	# make -C tools/depends/target/binary-addons
+	
+	####################################
+	# (Optional) build Kodi test suite
+	####################################
+	make check
+	
+	# compile the test suite without running it
+	make testsuite
+
+	# The test suite program can be run manually as well.
+	# The name of the test suite program is 'kodi-test' and will build in the Kodi source tree.
+	# To bring up the 'help' notes for the program, type the following:
+	
+	# ./kodi-test --gtest_help
   
 	############################
 	# proceed to DEB BUILD
 	############################
 	
 	echo -e "\n==> Building Debian package from source"
-	echo -e "When finished, please enter the word 'done' without quotes"
 	sleep 2s
 	
 	# build deb package

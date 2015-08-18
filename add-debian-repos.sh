@@ -30,19 +30,26 @@ funct_set_vars()
 	# Set default user options
 	reponame="jessie"
 	backports_reponame="jessie-backports"
+	multimedia_reponame="deb-multimedia"
 	
 	# tmp vars
 	sourcelist_tmp="${reponame}.list"
 	backports_sourcelist_tmp="${backports_reponame}.list"
+	multimedia_sourcelist_tmp="${multimedia_reponame}.list"
+	
 	prefer_tmp="${reponame}"
 	backports_prefer_tmp="${backports_reponame}"
+	multimedia_prefer_tmp="${multimedia_reponame}"
 	steamos_prefer_tmp="steamos"
 	
 	# target vars
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
 	backports_sourcelist="/etc/apt/sources.list.d/${backports_reponame}.list"
+	multimedia_sourcelist="/etc/apt/sources.list.d/${multimedia_reponame}.list"
+	
 	prefer="/etc/apt/preferences.d/${reponame}"
 	backports_prefer="/etc/apt/preferences.d/${backports_reponame}"
+	multimedia_prefer="/etc/apt/preferences.d/${multimedia_reponame}"
 	steamos_prefer="/etc/apt/preferences.d/steamos"
 }
 
@@ -79,7 +86,9 @@ main()
 	
 	if [[ "$install" == "yes" ]]; then
 		clear
-		echo -e "==> Adding Debian ${reponame} and ${backports_reponame} repositories\n"
+		
+		echo -e "==> Adding Debian ${reponame}, ${backports_reponame}, \
+		and ${multimedia_reponame} repositories\n"
 		sleep 1s
 		
 		# Check for existance of /etc/apt/preferences file (deprecated, see below)
@@ -113,6 +122,14 @@ main()
 			sudo mv ${backports_prefer} ${backports_prefer}.bak
 			sleep 1s
 		fi
+		
+		# Check for existance of /etc/apt/preferences.d/{multimedia_prefer} file
+		if [[ -f ${multimedia_prefer} ]]; then
+			# backup preferences file
+			echo -e "==> Backing up ${multimedia_prefer} to ${multimedia_prefer}.bak\n"
+			sudo mv ${multimedia_prefer} ${multimedia_prefer}.bak
+			sleep 1s
+		fi
 	
 		# Create and add required text to preferences file
 		# Verified policy with apt-cache policy
@@ -135,6 +152,12 @@ main()
 		Pin: release o=Debian 
 		Pin-Priority:110
 		EOF
+		
+		cat <<-EOF > ${multimedia_prefer}
+		Package: *
+		Pin: origin ""
+		Pin-Priority:100
+		EOF
 	
 		cat <<-EOF > ${steamos_prefer_tmp}
 		Package: *
@@ -149,6 +172,7 @@ main()
 		# move tmp var files into target locations
 		sudo mv  ${prefer_tmp}  ${prefer}
 		sudo mv  ${backports_prefer_tmp}  ${backports_prefer}
+		sudo mv  ${multimedia_prefer_tmp}  ${multimedia_prefer}
 		sudo mv  ${steamos_prefer_tmp}  ${steamos_prefer}
 		
 		#####################################################
@@ -171,6 +195,13 @@ main()
 	        	sleep 1s
 		fi
 	
+		if [[ -f ${multimedia_sourcelist} ]]; then
+	        	# backup sources list file
+	        	echo -e "==> Backing up ${multimedia_sourcelist} to ${multimedia_sourcelist}.bak\n"
+	        	sudo mv ${multimedia_sourcelist} ${multimedia_sourcelist}.bak
+	        	sleep 1s
+		fi
+	
 		#####################################################
 		# Create and add required text to jessie.list
 		#####################################################
@@ -186,9 +217,15 @@ main()
 		cat <<-EOF > ${backports_sourcelist_tmp}
 		deb http://http.debian.net/debian jessie-backports main
 		EOF
+		
+		# Debian-multimedia
+		cat <<-EOF > ${multimedia_sourcelist_tmp}
+		deb http://www.deb-multimedia.org jessie main non-free
+		EOF
 
 		# move tmp var files into target locations
 		sudo mv  ${sourcelist_tmp} ${sourcelist}
+		sudo mv  ${multimedia_sourcelist_tmp} ${multimedia_sourcelist}
 		sudo mv  ${backports_sourcelist_tmp} ${backports_sourcelist}
 
 		# Update system
@@ -218,12 +255,14 @@ main()
 		# original files
 		sudo rm -f ${sourcelist}
 		sudo rm -f ${backports_sourcelist}
+		sudo rm -f ${multimedia_sourcelist}
 		sudo rm -f ${prefer}
 		sudo rm -f ${steamosprefer}
 		
 		# backups
 		sudo rm -f ${sourcelist}.bak
 		sudo rm -f ${backports_sourcelist}.bak
+		sudo rm -f ${multimedia_sourcelist}.bak
 		sudo rm -f ${prefer}.bak
 		sudo rm -f ${steamosprefer}.bak
 		

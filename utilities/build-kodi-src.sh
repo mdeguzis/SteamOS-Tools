@@ -210,6 +210,7 @@ main()
 
 	# create needed directories
 	sudo mkdir -p "/usr/local/share/doc"
+	sudo mkdir -p "/usr/local/share/icons"
 
 	############################
 	# proceed to DEB BUILD

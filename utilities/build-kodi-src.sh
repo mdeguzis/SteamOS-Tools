@@ -136,6 +136,8 @@ main()
         # repositories at this time. We supply a Makefile in tools/depends/target/crossguid
         # to make it easy to install into /usr/local.
 
+	# make -C tools/depends/target/crossguid PREFIX=/usr/local/crossguid
+
 	# This above method has issues with using the suggested prefix /usr/local
 	# use our package rebuilt from https://launchpad.net/~team-xbmc nightly
 

@@ -41,7 +41,7 @@ install_prereqs()
 	libtinyxml-dev libtool libudev-dev libusb-dev libva-dev libvdpau-dev libvorbis-dev \
 	libxinerama-dev libxml2-dev libxmu-dev libxrandr-dev libxslt1-dev libxt-dev \
 	libyajl-dev lsb-release nasm python-dev python-imaging python-support swig unzip \
-	uuid-dev yasm zip zlib1g-dev | grep "newest" > /dev/null
+	uuid-dev yasm zip zlib1g-dev gdebi | grep "newest" > /dev/null
 
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache | grep "newest" > /dev/null
@@ -151,8 +151,6 @@ main()
 	wget -O "/tmp/crossbuild.deb" "http://www.libregeek.org/SteamOS-Extra/utilities/libcrossguid-dev_0.1~git20150807.8f399e8_amd64.deb"
 	sudo gdebi "/tmp/crossbuild.deb"
 	sudo rm -f "/tmp/crossbuild.deb"
-
-exit 1
 
   	# create the Kodi executable manually perform these steps:
 

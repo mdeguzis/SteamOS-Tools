@@ -409,8 +409,6 @@ ep_install_kodi()
 	# cleanup
 	ep_pkg_cleanup
 }
-  
-}
 
 ep_install_lutris()
 {

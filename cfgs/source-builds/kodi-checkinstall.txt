@@ -1,0 +1,16 @@
+This package will be built according to these values: 
+
+0 -  Maintainer: [ ProfessorKaos64 <professorkaos64@linux.com> ]
+1 -  Summary: [ Rebuild of Kodi Media Center for SteamOS 2.0/brewmaster from git/xbmc ]
+2 -  Name:    [ kodi ]
+3 -  Version: [ 16 ]
+4 -  Release: [ steamos2 ]
+5 -  License: [ GPL ]
+6 -  Group:   [ video ]
+7 -  Architecture: [ amd64 ]
+8 -  Source location: [ kodi ]
+9 -  Alternate source location: [ /tmp ]
+10 - Requires: [ mesa-utils x11-utils fonts-dejavu-core fonts-roboto libjs-jquery libjs-iscroll python-imaging ]
+11 - Provides: [ kodi ]
+12 - Conflicts: [  ]
+13 - Replaces: [ kodi ]

@@ -32,6 +32,9 @@ time_stamp_start=(`date +"%T"`)
 # model control file after:
 # https://packages.debian.org/sid/kodi
 
+# Current checkinstall config:
+# cfgs/source-builds/kodi-checkinstall.txt
+
 install_prereqs()
 {
 	clear
@@ -200,6 +203,13 @@ main()
 	# To bring up the 'help' notes for the program, type the following:
 
 	# ./kodi-test --gtest_help
+
+	############################
+	# DEB build pre-reqs
+	############################
+
+	# create needed directories
+	sudo mkdir -p "/usr/local/share/doc"
 
 	############################
 	# proceed to DEB BUILD

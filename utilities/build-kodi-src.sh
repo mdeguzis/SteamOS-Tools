@@ -41,16 +41,10 @@ install_prereqs()
 	libtinyxml-dev libtool libudev-dev libusb-dev libva-dev libvdpau-dev libvorbis-dev \
 	libxinerama-dev libxml2-dev libxmu-dev libxrandr-dev libxslt1-dev libxt-dev \
 	libyajl-dev lsb-release nasm python-dev python-imaging python-support swig unzip \
-	uuid-dev yasm zip zlib1g-dev gdebi | grep "newest" > /dev/null
+	uuid-dev yasm zip zlib1g-dev gdebi
 
 	# When compiling frequently, it is recommended to use ccache
-	sudo apt-get install ccache | grep "newest" > /dev/null
-
-	# Exit status 0 returned because command executed successfully.
-	if [[ $? = 0 ]]; then
-		echo -e "All packages up to date!\n"
-		sleep 1s
-	fi
+	sudo apt-get install ccache
 
 }
 

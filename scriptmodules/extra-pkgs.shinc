@@ -173,54 +173,6 @@ ep_install_chrome()
 
 }
 
-ep_install_firefox()
-{
-
-	#####################################################
-	# Firefox (imported 20150415)
-	#####################################################
-	# Imported from the Linux Mint LMDE 2 repository
-	# Deb binary source: deb http://packages.linuxmint.com debian import
-	
-	###############################
-	#  vars
-	###############################
-	
-	# set vars
-	pkg_type="deb"
-	PKG="firefox"
-	PKG_FILENAME="firefox_37.0.2_SteamOS_amd64.deb"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/browsers"
-	BIN_LOC=""
-	PKG_DIR=""
-	
-	# set multiflag
-	multi="n"
-	
-	# set external Deb repo required flag
-	export deb_repo_name="jessie.list"
-	export deb_repo_req="no"
-	# Eval requirements
-	"$scriptdir/utilities/check_repo_req.sh"
-	
-	# test if user requests it
-	if [[ "$options" == "test" ]]; then
-		# go to test function
-		ep_test_deb
-		exit
-	fi
-	
-	###############################
-	#  Install
-	###############################
-	
-	# proceed to install eval
-	ep_install_eval_pkg
-	
-	# cleanup
-	ep_pkg_cleanup
-}
-
 ep_install_gameplay_recording()
 {
 
@@ -401,33 +353,15 @@ ep_install_kodi()
 	# The previous team-Kodi install method by WSNIPEX can be found in
 	# the scriptmodules/archive folder. This method is currently broken.
 	
-	# Package sourced from: built from git [PENDING]
-	# Source: https://github.com/xbmc/xbmc/blob/master/docs/README.linux
-  
-  	echo -e "Install for Kodi currently broken. Please try again later.
-  	exit 1
+	# Package sourced from: 
+	# https://github.com/sharkwouter/vaporos-mod/tree/master/pool/main/k/kodi
   
 	echo -e "\n==> Installing Kodi from automated script..."
 	sleep 2s
 	
-	#####################################################
-	# Kodi 
-	#####################################################
-	
-	###############################
-	#  vars
-	###############################
-	
-	# set vars
-	pkg_type="deb"
-	PKG="kodi"
-	PKG_FILENAME=""
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/"
-	BIN_LOC=""
-	PKG_DIR=""
-	
-	# set multiflag
-	multi="n"
+	#######################################
+	# general
+	#######################################
 	
 	# set external Deb repo required flag
 	export deb_repo_name="jessie.list"
@@ -436,18 +370,40 @@ ep_install_kodi()
 	# Eval requirements
 	"$scriptdir/utilities/check_repo_req.sh"
 	
-	# test if user requests it
-	if [[ "$options" == "test" ]]; then
-		# go to test function
-		ep_test_deb
-		exit
-	fi
+	#######################################
+	# kodi-bin
+	#######################################
 	
-	###############################
-	#  Install
-	###############################
+	# set vars
+	pkg_type="deb"
+	PKG="kodi-bin"
+	PKG_FILENAME="kodi-bin_14.1~git20150131.1014-38e4046-0_amd64.deb"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/kodi/"
+	BIN_LOC=""
+	PKG_DIR=""
 	
-	# proceed to install eval
+	# set multiflag
+	multi="n"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	#######################################
+	# kodi
+	#######################################
+	
+	# set vars
+	pkg_type="deb"
+	PKG="kodi"
+	PKG_FILENAME="kodi_14.1~git20150131.1014-38e4046-0_all.deb"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/kodi/"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag
+	multi="n"
+	
+	# install package
 	ep_install_eval_pkg
 	
 	# cleanup
@@ -819,7 +775,7 @@ ep_install_eval_pkg()
 			
 			# process install in loop for each package in our software list
 			for x in `cat $software_list`; do
-				sudo dpkg -i "$x"
+				sudo gdebi -i "$x"
 			done
 			
 		elif [[ "$multi" == "n" ]]; then

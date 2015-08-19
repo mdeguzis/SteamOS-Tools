@@ -19,6 +19,19 @@ scriptdir=$(pwd)
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
+##################################
+# Informational
+##################################
+
+# Source build notes:
+# https://github.com/xbmc/xbmc/blob/master/docs/README.linux
+
+# Current version:
+# https://github.com/xbmc/xbmc/blob/master/version.txt
+
+# model control file after:
+# https://packages.debian.org/sid/kodi
+
 install_prereqs()
 {
 	clear

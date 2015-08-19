@@ -274,7 +274,7 @@ show_help()
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulators|retroarch-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[firefox|kodi|lutris|plex|webapp]
+	Extra types: 	[kodi|lutris|plex|webapp]
 	Functions: 	[xb360-bindings|gameplay-recording]
 	
 	Install with:
@@ -445,10 +445,6 @@ get_software_type()
 	elif [[ "$type" == "chrome" ]]; then
                 # install plex from helper script
                 ep_install_chrome
-                exit
-        elif [[ "$type" == "firefox" ]]; then
-                # install plex from helper script
-                ep_install_firefox
                 exit
         elif [[ "$type" == "gameplay-recording" ]]; then
                 # install plex from helper script

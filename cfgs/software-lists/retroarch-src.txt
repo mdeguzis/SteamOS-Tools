@@ -15,3 +15,5 @@ libsdl-ttf2.0-dev
 nvidia-cg-toolkit
 nvidia-cg-dev
 bc
+libasound2-dev
+alsa-dev

@@ -19,6 +19,9 @@
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
+echo $extra_opts
+exit 1
+
 opt="$1"
 
 retroarch_src_main()

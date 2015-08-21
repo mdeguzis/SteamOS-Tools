@@ -212,7 +212,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	
 	# swap home_temp out for each user DIR path
 	sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-	sudo sed -i "s|home_temp|$steam_home|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
+	sudo sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
 	# create desktop application link 
 	sudo cp "$scriptdir/cfgs/retroarch/retroarch.desktop" "/usr/share/applications"

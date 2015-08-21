@@ -250,8 +250,6 @@ if [[ "$apt_mode" == "install" ]]; then
 		
 		if [[ "$core_check" != "" ]]; then
 			
-	
-			
 			echo -e "\n==INFO=="
 			echo -e "It seems the libretro cores are already built to $core_loc"
 			echo -e "Would you like to rebuild [y], or [n]?\n"

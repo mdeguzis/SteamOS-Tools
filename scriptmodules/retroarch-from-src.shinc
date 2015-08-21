@@ -2,9 +2,9 @@
 
 # -------------------------------------------------------------------------------
 # Author:     		Michael DeGuzis
-# Git:		  	https://github.com/ProfessorKaos64/SteamOS-Tools
+# Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.4.8
+# Script Ver:	  	0.5.3
 # Description:		script to install retroarch/libretro softare as a 
 #                 	part of install-debian-software.sh
 #

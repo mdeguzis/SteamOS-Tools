@@ -17,3 +17,4 @@ nvidia-cg-dev
 bc
 libasound2-dev
 alsa-dev
+unzip

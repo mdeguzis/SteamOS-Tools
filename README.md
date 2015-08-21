@@ -21,7 +21,7 @@ git pull
 
 There is also a testing branch for this repository, but I advise against using it.
 
-Please refer to the wiki located to your right in this repository for all supplemental information. Normal script execution, sans arguments, goes a little bit like:
+Please refer to the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki). located to your right in this repository for all supplemental information. Normal script execution, sans arguments, goes a little bit like:
 
 ```
 ./script-name.sh

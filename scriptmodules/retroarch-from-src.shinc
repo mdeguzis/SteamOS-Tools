@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		emu-from-source.sh
-# Script Ver:	  	0.5.3
+# Script Ver:	  	0.5.5
 # Description:		script to install retroarch/libretro softare as a 
 #                 	part of install-debian-software.sh
 #
@@ -161,10 +161,6 @@ if [[ "$apt_mode" == "install" ]]; then
 	############################
 	# These mostly include cores that fail to build
 	
-	sed -i -e '/libretro_build_core bsnes/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/libretro_build_core bsnes_cplusplus98/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/libretro_build_core bsnes_mercury/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/libretro_build_core bnes/d' "$git_dir/libretro-build.sh"
 	sed -i -e '/build_libretro_test/d' "$git_dir/libretro-build.sh"
 
 	############################

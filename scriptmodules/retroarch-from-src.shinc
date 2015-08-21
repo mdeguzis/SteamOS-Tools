@@ -141,7 +141,7 @@ if [[ "$apt_mode" == "install" ]]; then
 		# fetch cores
 		./libretro-fetch.sh 
 		
-	else
+	elif [[ "$extra_opts" != "retrorch-src" ]]; then
 		
 		echo -e "\n==> Attempting to fetch core $extra_opts now...\n"
 		./libretro-fetch.sh retroarch

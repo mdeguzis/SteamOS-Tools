@@ -5,6 +5,10 @@ Tools and scripts for SteamOS.
 
 Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/alchemist/disclaimer.md).
 
+## Wiki
+
+Please refer to the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki). located to your right in this repository for all supplemental information.
+
 ## Usage
 
 To clone this repository to your local computer, you will need the `git` software package. After this is installed, clone SteamOS-Tools with:
@@ -21,7 +25,7 @@ git pull
 
 There is also a testing branch for this repository, but I advise against using it.
 
-Please refer to the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki). located to your right in this repository for all supplemental information. Normal script execution, sans arguments, goes a little bit like:
+Normal script execution, sans arguments, goes a little bit like:
 
 ```
 ./script-name.sh

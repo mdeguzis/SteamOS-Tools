@@ -19,11 +19,6 @@
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
-echo $extra_opts
-sleep 10s
-exit 1
-
-
 retroarch_src_main()
 {
 

@@ -134,9 +134,9 @@ if [[ "$apt_mode" == "install" ]]; then
 	# Asses if all cores are to be built or just one
 	##################################################
 		
-	# no options specifed in './desktop-software install emulation-src' cmd
+	# no options specifed in './desktop-software install retroarch-src' cmd
 	# if not core was specified, $extra_opts will be the pkg type
-	if [[ "$extra_opts" == "emulation-src" ]]; then
+	if [[ "$extra_opts" == "retrorch-src" ]]; then
 	
 		# fetch cores
 		./libretro-fetch.sh 
@@ -240,9 +240,9 @@ if [[ "$apt_mode" == "install" ]]; then
 	# Asses if all cores are to be built or just one
 	##################################################
 	
-	# no options specifed in './desktop-software install emulation-src' cmd
+	# no options specifed in './desktop-software install retroarch-src' cmd
 	# if not core was specified, $extra_opts will be the pkg type
-	if [[ "$extra_opts" == "emulation-src" ]]; then
+	if [[ "$extra_opts" == "retroarch-src" ]]; then
 		
 		######################################
 		# Begin core build eval for all cores
@@ -283,10 +283,10 @@ if [[ "$apt_mode" == "install" ]]; then
 		# end retroarch build eval
 		fi
 	
-	elif [[ "$extra_opts" != "emulation-src" ]]; then
+	elif [[ "$extra_opts" != "retroarch-src" ]]; then
 	
 		sleep 2s
-		echo -e "\n==> Building $extra_opts from user request"
+		echo -e "\n==> Building $extra_opts from user request\n"
 		sleep 2s
 		./libretro-build.sh $extra_opts
 	
@@ -329,7 +329,7 @@ if [[ "$apt_mode" == "install" ]]; then
 elif [[ "$apt_mode" == "remove" ]]; then
 	
 	#Remove directories, build files, etc if uninstall is specified by user
-	echo -e "\n==> Removing related files for emulation-src routine"
+	echo -e "\n==> Removing related files for retroarch-src routine"
 	sleep 2s
 	
 	# remove directories

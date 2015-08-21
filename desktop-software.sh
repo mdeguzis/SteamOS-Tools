@@ -30,6 +30,9 @@ type="$2"
 # See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
 extra_opts=$(echo "${@: -1}")
 
+echo $extra_opts
+exit 1
+
 #############################################
 # Test arguments (1st pass) here:
 #############################################

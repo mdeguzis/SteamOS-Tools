@@ -1,6 +1,6 @@
 [Desktop Entry] 
 Version=0.1.1 
-Name=Xephyr Terst
+Name=Xephyr Test
 Comment=Test basic Xephyr functionality
 Exec=/tmp/xephyr-test.sh
 Icon=IMG_TMP 

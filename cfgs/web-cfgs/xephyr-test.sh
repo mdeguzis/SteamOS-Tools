@@ -42,10 +42,10 @@ WIN_RES=$(DISPLAY=:0 xdpyinfo | grep dimensions | awk '{print $2}')
 
 # (2) Xephyr test
 Xephyr -ac -screen $WIN_RES -br -reset -terminate 2> /dev/null :3 &
-DISPLAY=:3.0 google-chrome --kiosk www.google.com &
+#DISPLAY=:3.0 google-chrome --kiosk www.google.com &
 sleep 10s
 killall Xephyr
-killall google-chrome
+#killall google-chrome
 
 # (3) test using gnome desktop
 # Xephyr -ac -screen 1280x1024 -br -reset -terminate 2> /dev/null :3 & \

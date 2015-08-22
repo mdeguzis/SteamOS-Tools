@@ -36,15 +36,19 @@ WIN_RES=$(DISPLAY=:0 xdpyinfo | grep dimensions | awk '{print $2}')
 # you wish to test. Display resolutions are specified manually for now.
 
 # (1) Xnest basic test
+#setsid sh -c 'exec google-chrome <> /dev/tty2 >
+
+# WORKS:
 # Xnest :3 -geometry 1280x1024+200+200 -name "Xnest Test Window" 2> /dev/null & xclock -display :3 &
-# sleep 1
-# killall Xnest
+
+# DOES NOT WORK:
+Xnest :3 -geometry 1280x1024+200+200 -name "Xnest Test Window" 2> /dev/null & google-chrome -display :3 &
 
 # (2) Xephyr test
-Xephyr -ac -screen $WIN_RES -br -reset -terminate 2> /dev/null :3 &
+# Xephyr -ac -screen $WIN_RES -br -reset -terminate 2> /dev/null :3 &
 #DISPLAY=:3.0 google-chrome --kiosk www.google.com &
-sleep 10s
-killall Xephyr
+# sleep 10s
+# killall Xephyr
 #killall google-chrome
 
 # (3) test using gnome desktop

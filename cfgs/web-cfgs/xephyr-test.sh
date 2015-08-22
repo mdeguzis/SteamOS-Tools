@@ -16,10 +16,10 @@
 # -------------------------------------------------------------------------------
 
 # pre-reqs
-sudo apt-get install xserver-xephyr xnest xdpyinfo
+# sudo apt-get install xserver-xephyr xnest xdpyinfo
 
 # Copy desktop file over for use in BPM
-cp "Xephyr-Test.desktop" "/usr/share/applications"
+# cp "Xephyr-Test.desktop" "/usr/share/applications"
 
 ###################################################################
 # Informational

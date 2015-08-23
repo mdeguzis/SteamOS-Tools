@@ -1,6 +1,6 @@
 [Desktop Entry] 
 Version=0.1.1 
-Name=Xephyr Test
+Name=Window Test
 Comment=Test basic Xephyr functionality
 Exec=/home/desktop/SteamOS-Tools/cfgs/web-cfgs/window-test.sh
 Icon=IMG_TMP 

@@ -42,7 +42,7 @@ WIN_RES=$(DISPLAY=:0 xdpyinfo | grep dimensions | awk '{print $2}')
 # Xnest :3 -geometry 1280x1024+200+200 -name "Xnest Test Window" 2> /dev/null & xclock -display :3 &
 
 # DOES NOT WORK:
-Xnest :3 -geometry 1280x1024+200+200 -name "Xnest Test Window" 2> /dev/null & google-chrome -display :3 &
+# Xnest :3 -geometry 1280x1024+200+200 -name "Xnest Test Window" 2> /dev/null & google-chrome -display :3 &
 
 # (2) Xephyr test
 # Xephyr -ac -screen $WIN_RES -br -reset -terminate 2> /dev/null :3 &
@@ -56,3 +56,8 @@ Xnest :3 -geometry 1280x1024+200+200 -name "Xnest Test Window" 2> /dev/null & go
 # DISPLAY=:3 gnome-session & DISPLAY=:3.0 ssh -XfC dekstop@steamos xterm
 # sleep 1
 # killall Xephyr
+
+# (4) xterm/openbox tests
+startx xterm -- :1 vt6
+sleep 10s
+exit 1

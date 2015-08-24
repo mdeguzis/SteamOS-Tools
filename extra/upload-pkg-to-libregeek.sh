@@ -35,8 +35,9 @@ funct_set_dir()
 	echo -e "(3) SteamOS-Extra/browser"
 	echo -e "(4) SteamOS-Extra/utilities"
 	echo -e "(5) SteamOS-Extra/misc"
-	echo -e "(6) SteamOS-Extra/Multimedia"
-	echo -e "(7) Default Public HTML\n"
+	echo -e "(6) SteamOS-Extra/multimedia"
+	echo -e "(7) SteamOS-Extra/experimental"
+	echo -e "(8) Default Public HTML\n"
 	
 	# the prompt sometimes likes to jump above sleep
 	sleep 0.5s
@@ -69,7 +70,11 @@ funct_set_dir()
 	      destdir="/home2/thelinu2/public_html/SteamOS-Extra/multimedia"
 	      ;;
 	      
-	      7)
+	      8)
+	      destdir="/home2/thelinu2/public_html/experimental"
+	      ;;
+	      
+	      8)
 	      destdir="/home2/thelinu2/public_html/"
 	      ;;
 	      

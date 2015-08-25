@@ -68,8 +68,19 @@ main()
 	
 	# set scriptdir
 	scriptdir="$HOME/SteamOS-Tools"
-	
 	build_dir="/home/desktop/build-deb-temp"
+	
+	# check for repos
+	sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")
+	
+	if [[ "$sources_check" == "" ]]; then
+                echo -e " Those \nJessie sources do *NOT* appear to be added at first glance. Adding now..."
+                sleep 2s
+                "$scriptdir/add-debian-repos.sh"
+        else
+                echo -e " On \ninitial check, Jessie sources appear to be added."
+                sleep 2s
+        fi
 	
 	# remove previous dirs if they exist
 	if [[ -d "$build_dir" ]]; then

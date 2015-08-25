@@ -35,21 +35,21 @@ funct_set_vars()
 	# tmp vars
 	sourcelist_tmp="${reponame}.list"
 	backports_sourcelist_tmp="${backports_reponame}.list"
-	multimedia_sourcelist_tmp="${multimedia_reponame}.list"
+	#multimedia_sourcelist_tmp="${multimedia_reponame}.list"
 	
 	prefer_tmp="${reponame}"
 	backports_prefer_tmp="${backports_reponame}"
-	multimedia_prefer_tmp="${multimedia_reponame}"
+	#multimedia_prefer_tmp="${multimedia_reponame}"
 	steamos_prefer_tmp="steamos"
 	
 	# target vars
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
 	backports_sourcelist="/etc/apt/sources.list.d/${backports_reponame}.list"
-	multimedia_sourcelist="/etc/apt/sources.list.d/${multimedia_reponame}.list"
+	#multimedia_sourcelist="/etc/apt/sources.list.d/${multimedia_reponame}.list"
 	
 	prefer="/etc/apt/preferences.d/${reponame}"
 	backports_prefer="/etc/apt/preferences.d/${backports_reponame}"
-	multimedia_prefer="/etc/apt/preferences.d/${multimedia_reponame}"
+	#multimedia_prefer="/etc/apt/preferences.d/${multimedia_reponame}"
 	steamos_prefer="/etc/apt/preferences.d/steamos"
 }
 
@@ -88,8 +88,7 @@ main()
 		clear
 		
 		cat <<-EOF
-		==> Adding Debian ${reponame}, ${backports_reponame},and 
-		    ${multimedia_reponame} repositories
+		==> Adding Debian ${reponame}, ${backports_reponame} repositories
 		    
 		EOF
 		sleep 1s
@@ -156,11 +155,11 @@ main()
 		Pin-Priority:110
 		EOF
 		
-		cat <<-EOF > ${multimedia_prefer_tmp}
-		Package: *
-		Pin: origin ""
-		Pin-Priority:150
-		EOF
+		#cat <<-EOF > ${multimedia_prefer_tmp}
+		#Package: *
+		#Pin: origin ""
+		#Pin-Priority:150
+		#EOF
 	
 		cat <<-EOF > ${steamos_prefer_tmp}
 		Package: *
@@ -175,7 +174,7 @@ main()
 		# move tmp var files into target locations
 		sudo mv  ${prefer_tmp}  ${prefer}
 		sudo mv  ${backports_prefer_tmp}  ${backports_prefer}
-		sudo mv  ${multimedia_prefer_tmp}  ${multimedia_prefer}
+		#sudo mv  ${multimedia_prefer_tmp}  ${multimedia_prefer}
 		sudo mv  ${steamos_prefer_tmp}  ${steamos_prefer}
 		
 		#####################################################
@@ -222,13 +221,13 @@ main()
 		EOF
 		
 		# Debian-multimedia
-		cat <<-EOF > ${multimedia_sourcelist_tmp}
-		deb http://www.deb-multimedia.org jessie main non-free
-		EOF
+		#cat <<-EOF > ${multimedia_sourcelist_tmp}
+		#deb http://www.deb-multimedia.org jessie main non-free
+		#EOF
 
 		# move tmp var files into target locations
 		sudo mv  ${sourcelist_tmp} ${sourcelist}
-		sudo mv  ${multimedia_sourcelist_tmp} ${multimedia_sourcelist}
+		#sudo mv  ${multimedia_sourcelist_tmp} ${multimedia_sourcelist}
 		sudo mv  ${backports_sourcelist_tmp} ${backports_sourcelist}
 		
 		# Update system
@@ -236,11 +235,11 @@ main()
 		sleep 2s
 		sudo apt-get update
 		
-		echo -e "\n==> Updating keyring for deb-multimedia and updating lists [again]...\n"
-		sleep 2s
+		#echo -e "\n==> Updating keyring for deb-multimedia and updating lists [again]...\n"
+		#sleep 2s
 		# update keyring for deb-multimedia
-		sudo apt-get install deb-multimedia-keyring
-		sudo apt-get update
+		#sudo apt-get install deb-multimedia-keyring
+		#sudo apt-get update
 	
 		#####################################################
 		# Remind user how to install
@@ -255,7 +254,7 @@ main()
 		but also from the Debian repository with either:
 		
 		'sudo apt-get install <package_name>'
-		'sudo apt-get -t [jessie|jessie-backports|deb-multimedia] install <package_name>'
+		'sudo apt-get -t [jessie|jessie-backports] install <package_name>'
 		
 		Warning: If the apt package manager seems to want to remove a lot
 		"of packages you have already installed, be very careful about proceeding.

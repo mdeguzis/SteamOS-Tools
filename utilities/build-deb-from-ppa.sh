@@ -64,11 +64,11 @@ install_prereqs()
 	sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")
 	
 	if [[ "$sources_check" == "" ]]; then
-                echo -e "\n==INFO==\nSources do *NOT* appear to be added at first glance. Adding now..."
+                echo -e "\n==INFO==\nSources do *NOT* appear to be added at first glance. Adding now...\n"
                 sleep 2s
                 "$scriptdir/add-debian-repos.sh"
         else
-                echo -e "\n==INFO==\nJessie sources appear to be added."
+                echo -e "\n==INFO==\nJessie sources appear to be added.\n"
                 sleep 2s
         fi
 	

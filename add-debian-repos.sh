@@ -149,7 +149,7 @@ main()
 		cat <<-EOF > ${backports_prefer_tmp}
 		Package: *
 		Pin: origin ""
-		Pin-Priority:100
+		Pin-Priority:120
 		
 		Package: *
 		Pin: release o=Debian 
@@ -159,7 +159,7 @@ main()
 		cat <<-EOF > ${multimedia_prefer_tmp}
 		Package: *
 		Pin: origin ""
-		Pin-Priority:100
+		Pin-Priority:150
 		EOF
 	
 		cat <<-EOF > ${steamos_prefer_tmp}

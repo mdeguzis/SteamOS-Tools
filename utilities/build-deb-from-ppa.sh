@@ -68,7 +68,7 @@ install_prereqs()
                 sleep 2s
                 "$scriptdir/add-debian-repos.sh"
         else
-                echo -e ""\n==INFO==\nJessie sources appear to be added."
+                echo -e "\n==INFO==\nJessie sources appear to be added."
                 sleep 2s
         fi
 	

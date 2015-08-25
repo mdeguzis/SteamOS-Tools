@@ -56,19 +56,9 @@ install_prereqs()
 
 	clear
 	echo -e "==> Installing pre-requisites for building...\n"
-	sleep 1s
-	# install needed packages
-	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring cmake
-
-}
-
-main()
-{
 	
 	# set scriptdir
 	scriptdir="$HOME/SteamOS-Tools"
-	build_dir="/home/desktop/build-deb-temp"
 	
 	# check for repos
 	sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")
@@ -81,6 +71,18 @@ main()
                 echo -e " On \ninitial check, Jessie sources appear to be added."
                 sleep 2s
         fi
+	
+	sleep 1s
+	# install needed packages
+	sudo apt-get install git devscripts build-essential checkinstall \
+	debian-keyring debian-archive-keyring cmake
+
+}
+
+main()
+{
+	
+	build_dir="/home/desktop/build-deb-temp"
 	
 	# remove previous dirs if they exist
 	if [[ -d "$build_dir" ]]; then

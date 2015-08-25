@@ -55,22 +55,24 @@ install_prereqs()
 {
 
 	clear
-	echo -e "==> Installing pre-requisites for building...\n"
-	
 	# set scriptdir
 	scriptdir="$HOME/SteamOS-Tools"
+	
+	echo -e "==> Checking for Debian sources...\n"
 	
 	# check for repos
 	sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")
 	
 	if [[ "$sources_check" == "" ]]; then
-                echo -e "==> Jessie sources do *NOT* appear to be added at first glance. Adding now..."
+                echo -e "\n==INFO==\nSources do *NOT* appear to be added at first glance. Adding now..."
                 sleep 2s
                 "$scriptdir/add-debian-repos.sh"
         else
-                echo -e "==> On \ninitial check, Jessie sources appear to be added."
+                echo -e ""\n==INFO==\nJessie sources appear to be added."
                 sleep 2s
         fi
+	
+	echo -e "==> Installing pre-requisites for building...\n"
 	
 	sleep 1s
 	# install needed packages

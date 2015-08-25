@@ -58,7 +58,7 @@ install_prereqs()
 	# set scriptdir
 	scriptdir="$HOME/SteamOS-Tools"
 	
-	echo -e "==> Checking for Debian sources...\n"
+	echo -e "==> Checking for Debian sources..."
 	
 	# check for repos
 	sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")

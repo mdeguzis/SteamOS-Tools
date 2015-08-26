@@ -28,5 +28,3 @@ fi
 # Download only on user confirmation
 
 echo -e "==> Fetching Alchemist"
-
-if -f

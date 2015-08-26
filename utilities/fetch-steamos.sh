@@ -63,12 +63,12 @@ main()
   
   # dowload alchemist
   release="alchemist"
-  download_dir="/home/$USER/downlaods/alchemist"
+  download_dir="/home/$USER/downloads/alchemist"
   download_release
   
   # download brewmaster
   #release="brewmaster"
-  #download_dir="/home/$USER/downlaods/brewmaster"
+  #download_dir="/home/$USER/downloads/brewmaster"
   
 }
 

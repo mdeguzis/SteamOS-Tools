@@ -11,9 +11,6 @@
 # Usage:      		./fetch-steamos.sh
 # -------------------------------------------------------------------------------
 
-a_download_dir="/home/$USER/downloads/alchemist"
-b_download_dir="/home/$USER/downloads/brewmaster"
-
 clear
 
 #####################
@@ -30,16 +27,45 @@ if [[ ! -d $"b_download_dir" ]]; then
   mkdir -p "$b_download_dir"
 fi
 
-#####################
-# alchemist
-#####################
+# dowload alchemist
+release="alchemist"
+download_dir="/home/$USER/downlaods/alchemist"
 
-if [[ -f "$a_download_dir/SteamOS.DVD.iso" || -f "$a_download_dir/SteamOSInstaller.zip" ]]; then
-  echo -e "Alchemist release installers found, overwrite?"
-else
-  echo -e "not found"
-fi
+# download brewmaster
+release="brewmaster"
+download_dir="/home/$USER/downlaods/brewmaster"
+
+download_release()
+{
+  
+  echo -e "==> Fetching $release"
+  
+  if [[ -f "$download_dir/SteamOS.DVD.iso" 
+     && -f "$download_dir/SteamOSInstaller.zip" 
+     &&
+     ]]; then
+    echo -e "$release release installers found, overwrite?"
+    
+    # get user choice
+  	read -erp "Choice: " choice
+  	
+    if [[ "choice" == "y" ]]; then
+      wget -r "http://repo.steampowered.com/download/$release/*"
+    else
+      echo -e "Skipping download\n"
+    fi
+    
+  else
+    echo -e "$release Release not found in target directory. Downloading now"
+    sleep 2s
+    cd "$download_dir"
+    wget --no-parent --recursive --level=1 --no-directories --reject "index.html*" \
+    http://repo.steampowered.com/download/alchemist/
+  
+  fi
+  
+}
 
 # Download only on user confirmation
 
-echo -e "==> Fetching Alchemist"
+

@@ -4,7 +4,7 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.3.2
+# Script Ver:	0.3.3
 # Description:	Attempts to build a deb package from a PPA
 #
 # See:		If you are building from Ubuntu main, check the website
@@ -64,11 +64,11 @@ install_prereqs()
 	sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")
 	
 	if [[ "$sources_check" == "" ]]; then
-                echo -e "==INFO==\nSources do *NOT* appear to be added at first glance. Adding now...\n"
+                echo -e "\n==INFO==\nSources do *NOT* appear to be added at first glance. Adding now..."
                 sleep 2s
                 "$scriptdir/add-debian-repos.sh"
         else
-                echo -e "==INFO==\nJessie sources appear to be added.\n"
+                echo -e "\n==INFO==\nJessie sources appear to be added."
                 sleep 2s
         fi
 	

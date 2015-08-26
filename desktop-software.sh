@@ -327,6 +327,16 @@ pre_req_checks()
 	
 	main_install_eval_pkg
 	
+	#################################
+	# python-software-properties
+	#################################
+	# set vars
+	PKG="python-software-properties"
+	# prepend a space for a source type
+	source_type=""
+	
+	main_install_eval_pkg
+	
 }
 
 

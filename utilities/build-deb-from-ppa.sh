@@ -4,7 +4,7 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.2.9
+# Script Ver:	0.3.2
 # Description:	Attempts to build a deb package from a PPA
 #
 # See:		If you are building from Ubuntu main, check the website
@@ -72,7 +72,7 @@ install_prereqs()
                 sleep 2s
         fi
 	
-	echo -e "==> Installing pre-requisites for building...\n"
+	echo -e "\n==> Installing pre-requisites for building...\n"
 	
 	sleep 1s
 	# install needed packages

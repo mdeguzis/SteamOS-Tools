@@ -19,7 +19,7 @@ b_download_dir="/home/$USER/downloads/brewmaster"
 #####################
 
 if [[ -f "$a_download_dir/SteamOS.DVD.iso" || -f "$a_download_dir/SteamOSInstaller.zip" ]]
-  echo -e "Alchemist release installers found, overwrite?
+  echo -e "Alchemist release installers found, overwrite?"
 else
   echo -e "not found"
 fi

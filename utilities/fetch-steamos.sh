@@ -34,7 +34,6 @@ download_release()
   
   if [[ -f "$download_dir/SteamOS.DVD.iso" 
      && -f "$download_dir/SteamOSInstaller.zip" 
-     &&
      ]]; then
     echo -e "$release release installers found, overwrite?"
     

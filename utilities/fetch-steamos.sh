@@ -19,7 +19,7 @@ clear
 # alchemist
 #####################
 
-if [[ -f "$a_download_dir/SteamOS.DVD.iso" || -f "$a_download_dir/SteamOSInstaller.zip" ]]
+if [[ -f "$a_download_dir/SteamOS.DVD.iso" || -f "$a_download_dir/SteamOSInstaller.zip" ]]; then
   echo -e "Alchemist release installers found, overwrite?"
 else
   echo -e "not found"

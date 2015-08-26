@@ -30,7 +30,7 @@ fi
 download_release()
 {
   
-  echo -e "==> Fetching $release"
+  echo -e "==> Fetching $release\n"
   
   if [[ -f "$download_dir/SteamOS.DVD.iso" 
      && -f "$download_dir/SteamOSInstaller.zip" 
@@ -47,7 +47,8 @@ download_release()
     fi
     
   else
-    echo -e "$release Release not found in target directory. Downloading now"
+    echo -e "$release Release not found in target directory. Downloading to:"
+    echo -e "$download_dir"
     sleep 2s
     cd "$download_dir"
     wget --no-parent --recursive --level=1 --no-directories --reject "index.html*" \

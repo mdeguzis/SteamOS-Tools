@@ -589,7 +589,7 @@ install_software()
 				echo -e "$i package status: [OK]"
 				sleep 0.3s
 			else
-				echo -e "$i package status: [Not found]"
+				echo -e "\n$i package status: [Not found]"
 				sleep 0.3s
 			fi			
 	

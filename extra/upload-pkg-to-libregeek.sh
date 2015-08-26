@@ -70,7 +70,7 @@ funct_set_dir()
 	      destdir="/home2/thelinu2/public_html/SteamOS-Extra/multimedia"
 	      ;;
 	      
-	      8)
+	      7)
 	      destdir="/home2/thelinu2/public_html/experimental"
 	      ;;
 	      

@@ -13,20 +13,6 @@
 
 clear
 
-#####################
-# directories
-#####################
-
-# check fo existance of dirs
-
-if [[ ! -d $"a_download_dir" ]]; then
-  mkdir -p "$a_download_dir"
-fi
-
-if [[ ! -d $"b_download_dir" ]]; then
-  mkdir -p "$b_download_dir"
-fi
-
 download_release()
 {
   
@@ -58,8 +44,29 @@ download_release()
   
 }
 
+pre_reqs()
+{
+  #####################
+  # directories
+  #####################
+  
+  # check fo existance of dirs
+  
+  if [[ ! -d $"a_download_dir" ]]; then
+    mkdir -p "$a_download_dir"
+  fi
+  
+  if [[ ! -d $"b_download_dir" ]]; then
+    mkdir -p "$b_download_dir"
+  fi
+
+}
+
 main()
 {
+  
+  # check for prereqs
+  pre_reqs
   
   # dowload alchemist
   release="alchemist"

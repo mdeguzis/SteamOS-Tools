@@ -15,6 +15,21 @@ a_download_dir="/home/$USER/downloads/alchemist"
 b_download_dir="/home/$USER/downloads/brewmaster"
 
 clear
+
+#####################
+# directories
+#####################
+
+# check fo existance of dirs
+
+if [[ ! -d $"a_download_dir" ]]; then
+  mkdir -p "$a_download_dir"
+fi
+
+if [[ ! -d $"b_download_dir" ]]; then
+  mkdir -p "$b_download_dir"
+fi
+
 #####################
 # alchemist
 #####################

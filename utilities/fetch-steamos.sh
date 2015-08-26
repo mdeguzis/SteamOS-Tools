@@ -30,10 +30,11 @@ fi
 # dowload alchemist
 release="alchemist"
 download_dir="/home/$USER/downlaods/alchemist"
+download_release
 
 # download brewmaster
-release="brewmaster"
-download_dir="/home/$USER/downlaods/brewmaster"
+#release="brewmaster"
+#download_dir="/home/$USER/downlaods/brewmaster"
 
 download_release()
 {

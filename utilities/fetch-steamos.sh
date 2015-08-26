@@ -52,29 +52,26 @@ pre_reqs()
   
   # check fo existance of dirs
   
-  if [[ ! -d $"a_download_dir" ]]; then
-    mkdir -p "$a_download_dir"
-  fi
-  
-  if [[ ! -d $"b_download_dir" ]]; then
-    mkdir -p "$b_download_dir"
+  if [[ ! -d $"download_dir" ]]; then
+    mkdir -p "$download_dir"
   fi
 
 }
 
 main()
 {
+
   
-  # check for prereqs
-  pre_reqs
   
   # dowload alchemist
   release="alchemist"
   download_dir="/home/$USER/downloads/alchemist"
+  pre_reqs
   download_release
   
   # download brewmaster
   #release="brewmaster"
+  #pre_reqs
   #download_dir="/home/$USER/downloads/brewmaster"
   
 }

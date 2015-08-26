@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.8.8
+# Script Ver:	1.9.9.1
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -64,6 +64,7 @@ sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" "custom-pkg.txt"
 sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" "custom-pkg.txt"
 sed -i "s|[ |]| |g" "custom-pkg.txt"
 sed -i "s|  | |g" "custom-pkg.txt"
+sed -i "s|(<<| |g" "custom-pkg.txt"
 
 # set custom flag for use later on if line count
 # of testing custom pkg test errorssoftware-lists/custom-pkg.txt exceeds 1

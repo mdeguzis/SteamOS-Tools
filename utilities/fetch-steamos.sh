@@ -27,15 +27,6 @@ if [[ ! -d $"b_download_dir" ]]; then
   mkdir -p "$b_download_dir"
 fi
 
-# dowload alchemist
-release="alchemist"
-download_dir="/home/$USER/downlaods/alchemist"
-download_release
-
-# download brewmaster
-#release="brewmaster"
-#download_dir="/home/$USER/downlaods/brewmaster"
-
 download_release()
 {
   
@@ -67,6 +58,20 @@ download_release()
   
 }
 
-# Download only on user confirmation
+main()
+{
+  
+  # dowload alchemist
+  release="alchemist"
+  download_dir="/home/$USER/downlaods/alchemist"
+  download_release
+  
+  # download brewmaster
+  #release="brewmaster"
+  #download_dir="/home/$USER/downlaods/brewmaster"
+  
+}
 
+# Start script
+main
 

@@ -14,6 +14,7 @@
 a_download_dir="/home/$USER/downloads/alchemist"
 b_download_dir="/home/$USER/downloads/brewmaster"
 
+clear
 #####################
 # alchemist
 #####################

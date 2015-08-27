@@ -70,8 +70,11 @@ download_release()
 	wget "$base_url/$release/SHA512SUMS"
 
 	# replace download location in integrity check files
-	sed -i 'g|/var/www/download|$HOME/downloads/$release|g' "$HOME/downloads/$release/MD5SUM"
-	sed -i 'g|/var/www/download|$HOME/downloads/$release|g' "$HOME/downloads/$release/SHA512SUMS"
+	orig_prefix="/var/www/download"
+	new_prefix="$HOME/downloads/$release"
+	
+	sed -i 'g|$orig_prefix|$new_prefix|g' "$HOME/downloads/$release/MD5SUM"
+	sed -i 'g|$orig_prefix|$new_prefix|g' "$HOME/downloads/$release/SHA512SUMS"
 }
 
 main()
@@ -101,7 +104,7 @@ main()
     file="$base_url/SteamOSInstaller.zip"
     check_file_existance
     download_release
-    check_integrity
+    check_download_integrity
     ;;
     
     2)

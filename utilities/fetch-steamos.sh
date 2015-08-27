@@ -96,7 +96,7 @@ main()
     ;;
     
     4)
-    
+    ;;
     
     *)
     echo "Invalid Input, exiting"

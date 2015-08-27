@@ -111,8 +111,8 @@ download_release()
 	orig_prefix="\/var\/www\/download"
 	new_prefix="$HOME/downloads/$release"
 	
-	echo -e "\nold prefix is: $old_prefix"
-	echo -e "\new prex is $new_prefix"
+	echo -e "\nold prefix is: $orig_prefix"
+	echo -e "ew prex is $new_prefix"
 	echo ""
 	
 	sed 's|$orig_prefix|$new_prefix|g' "$HOME/downloads/$release/MD5SUMS"

@@ -101,10 +101,10 @@ check_file_existance()
 	if [[ -f "$HOME/downloads/$release/$file" ]]; then
 	
 		echo -e "\nFile exists, overwrite? (y/n)"
-		read -erp "Choice: " dl_choice
+		read -erp "Choice: " rdl_choice
 		echo ""
 		
-		if [[ "$dl_choice" == "y" ]]; then
+		if [[ "$rdl_choice" == "y" ]]; then
 		
 			# Remove file and download again
 			rm -rf "$HOME/downloads/$release/$file"
@@ -113,9 +113,8 @@ check_file_existance()
 		else
 		
 			# Abort script and exit to prompt
-			echo -e "\nAborting..."
-			clear
-			exit 1
+			echo -e "\nSkipping download..."
+			sleep 2s
 			
 		fi
 
@@ -132,6 +131,7 @@ download_release()
 {
 	
 	# download requested file
+
 	cd "$HOME/downloads/$release"
 	wget --no-clobber "$base_url/$release/$file"
 	

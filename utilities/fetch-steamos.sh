@@ -111,8 +111,11 @@ download_release()
 	orig_prefix="/var/www/download"
 	new_prefix="$HOME/downloads/$release"
 	
-	sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/MD5SUMS"
-	sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
+	sed -i 's|$orig_prefix|$new_prefix|g' "$HOME/downloads/$release/MD5SUMS"
+	sed -i 's|$orig_prefix|$new_prefix|g' "$HOME/downloads/$release/SHA512SUMS"
+	
+	# testing
+	exit 1
 }
 
 main()
@@ -131,7 +134,7 @@ main()
 
   	clear
   	# prompt user if they would like to load a controller config
-  	echo -e "\nPlease choose a release to download. Releases checked for integrity \n"
+  	echo -e "Please choose a release to download. Releases checked for integrity\n"
   	echo "(1) Alchemist (standard zip, UEFI only)"
   	echo "(2) Alchemist (legacy ISO, BIOS systems)"
   	echo "(3) Brewmaster (standard zip, UEFI only)"

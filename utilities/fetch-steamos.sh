@@ -165,10 +165,9 @@ download_release()
 	#trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
 	#trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
 	
-	sed "/$file/!d" "$HOME/downloads/$release/MD5SUMS"
-	sed "/$file/!d" "$HOME/downloads/$release/SHA512SUMS"
-	
-	exit 1
+	sed -i "/$file/!d" "$HOME/downloads/$release/MD5SUMS"
+	sed -i "/$file/!d" "$HOME/downloads/$release/SHA512SUMS"
+
 }
 
 main()

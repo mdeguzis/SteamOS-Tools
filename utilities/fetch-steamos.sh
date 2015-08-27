@@ -122,7 +122,7 @@ download_release()
 	
 	# download requested file
 	cd "$HOME/downloads/$release"
-	#wget --no-clobber "$base_url/$release/$file"
+	wget --no-clobber "$base_url/$release/$file"
 	
 	# download MD5 and SHA files
 	rm -f MD5SUMS
@@ -151,6 +151,13 @@ download_release()
 		sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
 		
 	fi
+	
+	# remove MD512/SHA512 line that does not match our file so we don't get check errors
+	trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
+	trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
+	
+	sed -i '/$trim_md512sum/d' "$HOME/downloads/$release/MD5SUMS"
+	sed -i '/$trim_sha512sum/d' "$HOME/downloads/$release/SHA512SUMS"
 	
 }
 

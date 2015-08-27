@@ -86,7 +86,7 @@ check_file_existance()
 	fi
   
 	# check for file existance
-	if [[ -f "$file" ]]; then
+	if [[ -f "$HOME/downloads/$release/$file" ]]; then
 	
 		echo -e "\nFile exists, overwrite? (y/n)"
 		read -erp "Choice: " dl_choice

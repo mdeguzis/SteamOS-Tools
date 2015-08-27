@@ -28,38 +28,50 @@ image_drive()
 {
 	
 	echo -e "\nImage SteamOS to drive? (y/n)"
-	read -erp "Choice: " drive_choice
+	read -erp "Choice: " usb_choice
 	echo ""
 	
-	if [[ "$file" == "SteamOSInstaller.zip" ]]; then
-		
-		echo -e "\n==>Showing current usb drives\n"
-		lsblk
-		
-		echo -e "\n==> Enter drive path: "
-		sleep 0.5s
-		read -erp "Choice: " drive_choice
-		
-		echo -e "\n==> Installing release to usb drive"
-		unzip $file -d $drive_choice
-		
-	elif [[ "$file" == "SteamOSDVD.iso" ]]; then
+	if [[ "$usb_choice"  == "y" ]]; then
 	
-		echo -e "\n==>Showing current usb drives\n"
-		lsblk
-		
-		echo -e "\n==> Enter drive path: "
-		sleep 0.5s
-		read -erp "Choice: " drive_choice
-		
-		echo -e "\n==> Installing release to usb drive"
-		sudo dd if=$file of=$drive_choice
-		
-	else
 	
-		echo -e "\nAborting..."
-		clear
-		exit 1
+		if [[ "$file" == "SteamOSInstaller.zip" ]]; then
+			
+			echo -e "\n==>Showing current usb drives\n"
+			lsblk
+			
+			echo -e "\n==> Enter drive path: "
+			sleep 0.5s
+			read -erp "Choice: " drive_choice
+			
+			echo -e "==> Formatting drive"
+			parted $drive_choice mkpart primary fat32
+			
+			echo -e "\n==> Installing release to usb drive"
+			unzip $file -d $drive_choice
+			
+		elif [[ "$file" == "SteamOSDVD.iso" ]]; then
+		
+			echo -e "\n==>Showing current usb drives\n"
+			lsblk
+			
+			echo -e "\n==> Enter drive path: "
+			sleep 0.5s
+			read -erp "Choice: " drive_choice
+			
+			echo -e "\n==> Installing release to usb drive"
+			sudo dd if=$file of=$drive_choice
+			
+		else
+		
+			echo -e "\nAborting..."
+			clear
+			exit 1
+			
+		fi
+		
+	elif [[ "$usb_choice"  == "n" ]]; then
+	
+		echo -e "\nSkipping USB installation"
 		
 	fi
 	
@@ -122,7 +134,7 @@ download_release()
 	
 	# download requested file
 	cd "$HOME/downloads/$release"
-	wget --no-clobber "$base_url/$release/$file"
+	#wget --no-clobber "$base_url/$release/$file"
 	
 	# download MD5 and SHA files
 	rm -f MD5SUMS

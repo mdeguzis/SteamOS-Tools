@@ -1,12 +1,13 @@
 #!/bin/bash
-
 # -------------------------------------------------------------------------------
 # Author:    	  	Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		0.8.1
+# Script Ver:		0.8.3
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #                 	to specified directory and run SHA512 checks against them.
+#			Allows user to then image/unzip the installer to their USB
+#			drive.
 #
 # Usage:      		./fetch-steamos.sh
 # -------------------------------------------------------------------------------

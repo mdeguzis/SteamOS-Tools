@@ -19,9 +19,9 @@ download_release()
   echo -e "==> Fetching $release\n"
   
   if [[ -f "$download_dir/SteamOS.DVD.iso" 
-     && -f "$download_dir/SteamOSInstaller.zip" 
+     && -f "$download_dir/SteamOSInstaller.zip"
      ]]; then
-    echo -e "$release release installers found, overwrite?"
+    echo -e "$release release installer files found, overwrite?"
     
     # get user choice
   	read -erp "Choice: " choice
@@ -52,7 +52,7 @@ pre_reqs()
   
   # check fo existance of dirs
   
-  if [[ ! -d $"download_dir" ]]; then
+  if [[ ! -d "$download_dir" ]]; then
     mkdir -p "$download_dir"
   fi
 
@@ -60,8 +60,6 @@ pre_reqs()
 
 main()
 {
-
-  
   
   # dowload alchemist
   release="alchemist"

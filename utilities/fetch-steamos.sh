@@ -253,20 +253,21 @@ check_file_existance()
 download_release()
 {
 	
+	# enter base directory for release
+	cd "$HOME/downloads/$release"
+	
 	# download requested file (Valve official)
-
+	
 	if [[ "$file" == "SteamOSInstaller.zip" || "file" == "SteamOSDVD.iso" ]]; then
 	
-		cd "$HOME/downloads/$release"
 		wget --no-clobber "$base_url/$release/$file"
 		
 	elif [[ "$file" == "vaporos2.iso" ]]; then
 	
-		cd "$HOME/downloads/$release"
 		wget --no-clobber "$base_url/$release/$file"
 	
 	elif [[ "$file" == "stephensons.iso" ]]; then 
-	
+		
 		if [[ "$pull" == "no" ]]; then
 		
 			# prereqs
@@ -279,11 +280,6 @@ download_release()
 			# generate iso image
 			./gen.sh
 			
-			# testing
-			ls
-			sleep 10s
-			exit 1
-			
 		elif [[ "$pull" == "yes" ]]; then
 			
 			# update repo
@@ -292,11 +288,7 @@ download_release()
 			
 			# generate iso image
 			./gen.sh
-			
-			# testing
-			ls
-			sleep 10s
-			exit 1
+
 		fi
 		
 	fi

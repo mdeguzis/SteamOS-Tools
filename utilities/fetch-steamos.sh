@@ -33,7 +33,6 @@ image_drive()
 	
 	if [[ "$usb_choice"  == "y" ]]; then
 	
-	
 		if [[ "$file" == "SteamOSInstaller.zip" ]]; then
 			
 			echo -e "\n==>Showing current usb drives\n"
@@ -80,7 +79,7 @@ image_drive()
 check_download_integrity()
 {
   
-  echo -e "\n==> Checking integrity of installer\n"
+  echo -e "\n==> Checking integrity of installer"
   
   echo -e "\nMD5 Check:"
   md5sum -c "$HOME/downloads/$release/$file" "$HOME/downloads/$release/MD5SUMS"
@@ -166,9 +165,11 @@ download_release()
 	#trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
 	#trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
 	
-	sed -i '/$file/!d' "$HOME/downloads/$release/MD5SUMS"
-	sed -i '/$file/!d' "$HOME/downloads/$release/SHA512SUMS"
+	echo $file
+	sed '/$file/!d' "$HOME/downloads/$release/MD5SUMS"
+	sed '/$file/!d' "$HOME/downloads/$release/SHA512SUMS"
 	
+	exit 1
 }
 
 main()

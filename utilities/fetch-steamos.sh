@@ -102,7 +102,7 @@ image_drive()
 check_download_integrity()
 {
   
-	echo -e "==> Checking integrity of installer"
+	echo -e "==> Checking integrity of installer\n"
 	sleep 2s
 	
 	# remove old MD5 and SHA files
@@ -186,7 +186,7 @@ check_file_existance()
 		else
 		
 			# Abort script and exit to prompt
-			echo -e "\nSkipping download..."
+			echo -e "Skipping download..."
 			sleep 2s
 			
 		fi
@@ -217,7 +217,14 @@ download_release()
 	
 	elif [[ "$file" == "TBD" ]]; then 
 	
-		echo "Stephenson's Rocket"
+		git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
+		cd $release
+		./gen.sh
+		
+		# testing
+		ls
+		sleep 10s
+		exit 1
 		
 	fi
 }
@@ -244,9 +251,10 @@ main()
   	echo "(2) Alchemist (legacy ISO, BIOS systems)"
   	echo "(3) Brewmaster (standard zip, UEFI only)"
   	echo "(4) Brewmaster (legacy ISO, BIOS systems)"
-  	echo "(5) Stephensons Rocket (option coming soon)"
-  	echo "(6) VaporOS (Legacy ISO)"
-  	echo "(7) VaporOS (Stephenson's Rocket Mod)"
+  	echo "(5) Stephensons Rocket (Alchemist repsin)"
+  	echo "(6) Stephensons Rocket (Brewmaster repsin)"
+  	echo "(7) VaporOS (Legacy ISO)"
+  	echo "(8) VaporOS (Stephenson's Rocket Mod)"
   	echo ""
   	
   	# the prompt sometimes likes to jump above sleep
@@ -294,15 +302,25 @@ main()
 		
 		5)
 		base_url="https://github.com/steamos-community/stephensons-rocket"
-		release="stephensonrocket"
+		release="alchemist"
 		file="TBD"
-		md5file="MD5SUMS"
-		shafile="SHA512SUMS"
+		md5file="none"
+		shafile="none"
 		download_release
 		#image_drive
 		;;
 		
 		6)
+		base_url="https://github.com/steamos-community/stephensons-rocket"
+		release="brewmaster"
+		file="TBD"
+		md5file="none"
+		shafile="none"
+		download_release
+		#image_drive
+		;;
+		
+		7)
 		base_url="http://trashcan-gaming.nl"
 		release="iso"
 		file="vaporos2.iso"
@@ -311,7 +329,7 @@ main()
 		#image_drive
 		;;
 		
-		7)
+		8)
 		base_url="https://github.com/sharkwouter/vaporos-mod"
 		release="iso"
 		file="vaporos2.iso"

@@ -66,7 +66,7 @@ download_release()
 	rm -f "$HOME/downloads/$release/MD5SUM"
 	rm -f "$HOME/downloads/$release/SHAD512SUMS"
 	
-	wget --no-clobber "$base_url/$release/MD5SUMS"
+	wget --no-clobber "$base_url/$release/MD5SUM"
 	wget --no-clobber "$base_url/$release/SHA512SUMS"
 
 	# replace download location in integrity check files
@@ -101,7 +101,6 @@ main()
   case "$rel_choice" in
     1)
     release="alchemist"
-    file="$base_url/SteamOSInstaller.zip"
     check_file_existance
     download_release
     check_download_integrity

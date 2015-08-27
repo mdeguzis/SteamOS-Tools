@@ -40,16 +40,16 @@ pre_reqs()
 	echo -e "\n==> Checking for prerequisite packages\n"
 	
 	#check for unzip
-	distro_check=$(uname -r)
+	distro_check=$(lsb_release -i | cut -c 17-25)
 	
-	if [[ "$distro_check" == "*Debian*" ]]; then
+	if [[ "$distro_check" == "Debian" ]]; then
 	
-		echo -e "\nDistro detected: Debian variant"
+		echo -e "\nDistro detected: Debian"
 		# set package manager
 		pkginstall="apt-get install"
 		sudo $pkginstall unzip git
 	
-	elif [[ "$distro_check" =~ "ARCH" ]]; then
+	elif [[ "$distro_check" == "Arch" ]]; then
 		
 		echo -e "\nDistro detected: Arch Linux variant"
 		echo -e "Warning!: only official Valve releases are supporte for this variant!"

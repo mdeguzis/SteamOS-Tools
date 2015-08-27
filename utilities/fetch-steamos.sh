@@ -17,10 +17,10 @@ check_download_integrity()
   echo -e "\n==> Checking integrity of installer\n"
   
   echo -e "\nMD5 Check:"
-  MD5SUM -c "$HOME/downloads/$release/$file" "$HOME/downloads/$release/MD5SUM"
+  md5sum -c "$HOME/downloads/$release/$file" "$HOME/downloads/$release/MD5SUM"
   
   echo -e "\nSHA512 Check:"
-  SHA512SUM -c "$HOME/downloads/$release/$file" "$HOME/downloads/$release/SHA512SUMS"
+  sha512sum -c "$HOME/downloads/$release/$file" "$HOME/downloads/$release/SHA512SUMS"
   
 }
 
@@ -60,14 +60,14 @@ download_release()
 	# download requested file
 	cd "$HOME/downloads/$release"
 	wget --no-parent --recursive --no-directories --reject "index.html*" \
-	--no-clobber http://repo.steampowered.com/download/$release/$file
+	--no-clobber "$baseurl/$release/$file
 	
 	# download MD5 and SHA files
 	rm -f "$HOME/downloads/$release/MD5SUM"
 	rm -f "$HOME/downloads/$release/SHAD512SUMS"
 	
-	wget "$base_url/$release/MD5SUMS"
-	wget "$base_url/$release/SHA512SUMS"
+	wget --no-clobber "$base_url/$release/MD5SUMS"
+	wget --no-clobber "$base_url/$release/SHA512SUMS"
 
 	# replace download location in integrity check files
 	orig_prefix="/var/www/download"

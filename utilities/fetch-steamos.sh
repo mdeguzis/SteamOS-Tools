@@ -38,8 +38,9 @@ download_release()
     echo -e "Downloading to: $download_dir"
     sleep 2s
     cd "$download_dir"
-    wget --no-parent --recursive --level=1 --no-directories --reject "index.html*" \
-    --no-clobber http://repo.steampowered.com/download/$release/
+    echo "fetching http://repo.steampowered.com/download/$release/"
+   #wget --no-parent --recursive --level=1 --no-directories --reject "index.html*" \
+    #--no-clobber http://repo.steampowered.com/download/$release/
   
   fi
   

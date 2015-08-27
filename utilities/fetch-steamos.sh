@@ -45,6 +45,12 @@ pre_reqs()
 	if [[ "$pkg_result" == "" ]]; then
 		sudo apt-get install unzip
 	fi
+	
+	pkg_result=$(which git)
+	if [[ "$pkg_result" == "" ]]; then
+		sudo apt-get install git
+	fi
+	
 }
 
 image_drive()
@@ -263,10 +269,16 @@ download_release()
 	
 		if [[ "$pull" == "no" ]]; then
 		
+			# prereqs
+			sudo apt-get install apt-utils
+			
+			# clone
 			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
 			cd stephensons-rocket
+			
 			# generate iso image
 			./gen.sh
+			
 			# testing
 			ls
 			sleep 10s
@@ -277,8 +289,10 @@ download_release()
 			# update repo
 			cd stephensons-rocket
 			git pull
+			
 			# generate iso image
 			./gen.sh
+			
 			# testing
 			ls
 			sleep 10s

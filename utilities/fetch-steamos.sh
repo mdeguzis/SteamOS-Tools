@@ -4,7 +4,7 @@
 # Author:    	  	Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		0.3.1
+# Script Ver:		0.8.1
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #                 	to specified directory and run SHA512 checks against them.
 #
@@ -42,7 +42,7 @@ image_drive()
 		echo -e "\n==> Installing release to usb drive"
 		unzip $file -d $drive_choice
 		
-	if [[ "$file" == "SteamOSDVD.iso" ]]; then
+	elif [[ "$file" == "SteamOSDVD.iso" ]]; then
 	
 		echo -e "\n==>Showing current usb drives\n"
 		lsblk

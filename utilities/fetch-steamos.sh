@@ -4,7 +4,7 @@
 # Author:    	  	Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		0.1.1
+# Script Ver:		0.3.1
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #                 	to specified directory and run SHA512 checks against them.
 #
@@ -25,7 +25,9 @@ image_drive()
 	
 	if [[ "$file=" == "SteamOSInstaller.zip" ]]; then
 		
-		echo -e "==> I"
+		echo -e "\b==>Showing current usb drives\n"
+		lsblk
+		echo -e "==> Installing release to usb drive"
 		
 		if 
 		
@@ -91,8 +93,8 @@ download_release()
 {
 	
 	# download requested file
-	cd "$HOME/downloads/$release"
-	wget --no-clobber "$base_url/$release/$file"
+	#cd "$HOME/downloads/$release"
+	#wget --no-clobber "$base_url/$release/$file"
 	
 	# download MD5 and SHA files
 	rm -f MD5SUMS
@@ -186,5 +188,6 @@ main()
 } 
 
 # Start script
-pre_reqs
-main
+#pre_reqs
+#main
+download release

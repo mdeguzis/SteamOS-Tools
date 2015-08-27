@@ -188,4 +188,4 @@ main()
 # Start script
 #pre_reqs
 #main
-download release
+download_release

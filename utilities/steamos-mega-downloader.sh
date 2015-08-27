@@ -209,7 +209,7 @@ check_file_existance()
   	# check for git repo existance (stephesons rocket)
   	if [[ -d "$HOME/downloads/$release/stephensons-rocket" ]]; then
   	
-  		echo -e "\n$Github directory exists in destination directory\nRemove or pull? (r/p)\n"
+  		echo -e "\nGithub directory exists in destination directory\nRemove or pull? (r/p)\n"
 		read -erp "Choice: " rdl_choice
 		echo ""
   	

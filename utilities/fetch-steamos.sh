@@ -14,7 +14,13 @@
 pre_reqs()
 {
 	echo -e "\n==> Checking fo prerequisite packages\n"
-	sudo apt-get install unzip sha512sum md5sum
+	
+	#check for unzip
+	
+	pkg_result=$(which unzip)
+	if [[ "pkg_result" == "" ]]; then
+		sudo apt-get install unzip
+	fi
 }
 
 image_drive()
@@ -96,7 +102,7 @@ download_release()
 	
 	# download MD5 and SHA files
 	rm -f MD5SUMS
-	rm -f SHAD512SUMS
+	rm -f SHA512SUMS
 	
 	wget --no-clobber "$base_url/$release/MD5SUMS"
 	wget --no-clobber "$base_url/$release/SHA512SUMS"
@@ -105,7 +111,7 @@ download_release()
 	orig_prefix="/var/www/download"
 	new_prefix="$HOME/downloads/$release"
 	
-	sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/MD5SUM"
+	sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/MD5SUMS"
 	sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
 }
 
@@ -130,7 +136,6 @@ main()
   	echo "(2) Alchemist (legacy ISO, BIOS systems)"
   	echo "(3) Brewmaster (standard zip, UEFI only)"
   	echo "(4) Brewmaster (legacy ISO, BIOS systems)"
-  	echo ""
   	echo ""
   	
   	# the prompt sometimes likes to jump above sleep

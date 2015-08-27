@@ -107,7 +107,7 @@ check_file_existance()
 		if [[ "$dl_choice" == "y" ]]; then
 		
 			# Remove file and download again
-			#rm -rf "$HOME/downloads/$release/$file"
+			rm -rf "$HOME/downloads/$release/$file"
 			download_release
 			
 		else

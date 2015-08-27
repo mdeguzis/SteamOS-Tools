@@ -328,17 +328,22 @@ main()
 	# set base DIR
 	base_dir="$HOME/downloads"
 
-  	# prompt user if they would like to load a controller config
-  	echo -e "Please choose a release to download. Releases checked for integrity\n"
-  	echo "(1) Alchemist (standard zip, UEFI only)"
-  	echo "(2) Alchemist (legacy ISO, BIOS systems)"
-  	echo "(3) Brewmaster (standard zip, UEFI only)"
-  	echo "(4) Brewmaster (legacy ISO, BIOS systems)"
-  	echo "(5) Stephensons Rocket (Alchemist repsin)"
-  	echo "(6) Stephensons Rocket (Brewmaster repsin)"
-  	echo "(7) VaporOS (Legacy ISO)"
-  	echo "(8) VaporOS (Stephenson's Rocket Mod)"
-  	echo ""
+	# prompt user if they would like to load a controller config
+	
+	cat <<-EOF
+	Please choose a release to download.
+	Releases checked for integrity
+	
+	(1) Alchemist (standard zip, UEFI only)
+	(2) Alchemist (legacy ISO, BIOS systems)
+	(3) Brewmaster (standard zip, UEFI only)
+	(4) Brewmaster (legacy ISO, BIOS systems)
+	(5) Stephensons Rocket (Alchemist repsin)
+	(6) Stephensons Rocket (Brewmaster repsin)
+	(7) VaporOS (Legacy ISO)
+	(8) VaporOS (Stephenson's Rocket Mod)
+
+	EOF
   	
   	# the prompt sometimes likes to jump above sleep
 	sleep 0.5s

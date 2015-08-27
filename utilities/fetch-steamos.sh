@@ -11,6 +11,34 @@
 # Usage:      		./fetch-steamos.sh
 # -------------------------------------------------------------------------------
 
+pre_reqs()
+{
+	echo -e "\n==> Checking fo prerequisite packages\n"
+	sudo apt-get install unzip sha512sum md5sum
+}
+
+image_drive()
+{
+	echo -e "\nImage SteamOS to drive? (y/n)"
+	read -erp "Choice: " drive_choice
+	echo ""
+	
+	if [[ "$file=" == "SteamOSInstaller.zip" ]]; then
+		
+		echo -e "==> I"
+		
+		if 
+		
+	else
+	
+		echo -e "\nAborting..."
+		clear
+		exit 1
+		
+	fi
+	
+}
+
 check_download_integrity()
 {
   
@@ -33,17 +61,22 @@ check_file_existance()
 	fi
   
 	# check for file existance
-	if [[ -f "$HOME/downloads/$release/$file" ]]; then
+	if [[ -f "$file" ]]; then
 	
 		echo -e "\nFile exists, overwrite? (y/n)"
 		read -erp "Choice: " dl_choice
+		echo ""
 		
 		if [[ "$dl_choice" == "y" ]]; then
+		
 			download_release
+			
 		else
+		
 			echo -e "\nAborting..."
 			clear
 			exit 1
+			
 		fi
 
   	else
@@ -78,10 +111,18 @@ download_release()
 
 main()
 {
-    # set base URL
-    base_url="repo.steampowered.com/download"
-    base_dir="$HOME/downloads"
-  
+	
+	cat <<-EOF
+	------------------------------------------------------
+	SteamOS Installer download utility
+	------------------------------------------------------
+	
+	EOF
+	
+	# set base URL
+	base_url="repo.steampowered.com/download"
+	base_dir="$HOME/downloads"
+
   	clear
   	# prompt user if they would like to load a controller config
   	echo -e "\nPlease choose a release to download. Releases checked for integrity \n"
@@ -97,35 +138,53 @@ main()
 	
 	read -erp "Choice: " rel_choice
 	
-  case "$rel_choice" in
-    1)
-    release="alchemist"
-    file="SteamOSInstaller.zip"
-    check_file_existance
-    download_release
-    check_download_integrity
-    ;;
-    
-    2)
-    
-    ;;
-    
-    3)
-    
-    ;;
-    
-    4)
-    ;;
-    
-    *)
-    echo "Invalid Input, exiting"
-    exit 1
-    ;;
-    
+	case "$rel_choice" in
+	
+		1)
+		release="alchemist"
+		file="SteamOSInstaller.zip"
+		check_file_existance
+		download_release
+		check_download_integrity
+		#image_drive
+		;;
+		
+		2)
+		release="alchemist"
+		file="SteamOSDVD.iso"
+		check_file_existance
+		download_release
+		check_download_integrity
+		#image_drive
+		;;
+		
+		3)
+		release="brewmaster"
+		file="SteamOSInstaller.zip"
+		check_file_existance
+		download_release
+		check_download_integrity
+		#image_drive
+		;;
+		
+		4)
+		release="brewmaster"
+		file="SteamOSDVD.iso"
+		check_file_existance
+		download_release
+		check_download_integrity
+		#image_drive
+		;;
+		
+		*)
+		echo "Invalid Input, exiting"
+		exit 1
+		;;
+	
 	esac
  
 } 
 
 # Start script
+pre_reqs
 main
-

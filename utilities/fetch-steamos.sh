@@ -133,7 +133,7 @@ download_release()
 	
 	# download requested file
 	cd "$HOME/downloads/$release"
-	#wget --no-clobber "$base_url/$release/$file"
+	wget --no-clobber "$base_url/$release/$file"
 	
 	# download MD5 and SHA files
 	rm -f MD5SUMS
@@ -148,15 +148,15 @@ download_release()
 		iso_new="$HOME/downloads/$release/SteamOSDVD.iso"
 		zip_new="$HOME/downloads/$release/SteamOSInstaller.zip"
 		
-		sed -i "s|SteamOSDVD.iso|$iso_new|g" "$HOME/downloads/$release/MD5SUMS"
-		sed -i "s|SteamOSInstaller.zip|$zip_new|g" "$HOME/downloads/$release/MD5SUMS"
+		#sed -i "s|SteamOSDVD.iso|$iso_new|g" "$HOME/downloads/$release/MD5SUMS"
+		#sed -i "s|SteamOSInstaller.zip|$zip_new|g" "$HOME/downloads/$release/MD5SUMS"
 		
 	elif [[ "$release" == "brewmaster" ]]; then
 	
 		orig_prefix="/var/www/download"
 		new_prefix="$HOME/downloads/$release"
 		
-		sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
+		#sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
 		
 	fi
 	

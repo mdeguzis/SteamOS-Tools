@@ -155,7 +155,7 @@ check_file_existance()
 	# check for file existance
 	if [[ -f "$HOME/downloads/$release/$file" ]]; then
 	
-		echo -e "\n$file exists in destination directory, overwrite? (y/n)"
+		echo -e "\n$file exists in destination directory\nOverwrite? (y/n)"
 		read -erp "Choice: " rdl_choice
 		echo ""
 		

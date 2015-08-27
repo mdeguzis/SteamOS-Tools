@@ -237,7 +237,7 @@ main()
 	if [[ "$1" == "--checkonly" ]]; then
  
  		# just check integrity of files
- 		check_file_existance
+ 		check_download_integrity
  		
  	else
  		# Check for and download release

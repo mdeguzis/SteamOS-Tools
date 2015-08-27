@@ -44,9 +44,16 @@ pre_reqs()
 	
 	if [[ "$distro_check" == "*Debian*" ]]; then
 	
-		sudo apt-get install unzip git
+		echo -e "Distro detected: Debian variant"
+		# set package manager
+		pkginstall="apt-get install"
+		sudo $pkginstall unzip git
 	
 	elif [[ "$distro_check" =~ "ARCH" ]]; then
+		echo -e "Distro detected: Arch Linux variant"
+		# set package manager
+		pkginstall="pacman -S"
+		sudo $pkginstall unzip git
 	
 		# Stephensons vairants require apt-tools, not included YET
 		echo -e "Distro detected: Arch Linux variant"

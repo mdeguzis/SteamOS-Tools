@@ -119,7 +119,7 @@ download_release()
 		# remove SteamOSImage.zip, not needed
 		sed "s|SteamOSImage.zip|$new_prefix|d" "$HOME/downloads/$release/MD5SUMS"
 		
-	elif[[ "$release" == "brewmaster" ]]; then
+	elif [[ "$release" == "brewmaster" ]]; then
 	
 		orig_prefix="/var/www/download"
 		new_prefix="$HOME/downloads/$release"

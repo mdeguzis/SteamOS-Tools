@@ -81,7 +81,7 @@ image_drive()
 			read -erp "Choice: " drive_choice
 			
 			echo -e "\n==> Installing release to usb drive"
-			sudo dd if="$file" of="$drive_choice"
+			sudo dd bs=1M if="$file" of="$drive_choice"
 			
 		else
 		
@@ -228,7 +228,7 @@ main()
   	echo "(3) Brewmaster (standard zip, UEFI only)"
   	echo "(4) Brewmaster (legacy ISO, BIOS systems)"
   	echo "(5) Stephensons Rocket (option coming soon)"
-  	echo "(6) VaporOS (option coming soon)"
+  	echo "(6) VaporOS"
   	echo ""
   	
   	# the prompt sometimes likes to jump above sleep

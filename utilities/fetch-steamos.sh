@@ -97,7 +97,7 @@ download_release()
 {
 	
 	# download requested file
-	#cd "$HOME/downloads/$release"
+	cd "$HOME/downloads/$release"
 	#wget --no-clobber "$base_url/$release/$file"
 	
 	# download MD5 and SHA files
@@ -112,7 +112,7 @@ download_release()
 	new_prefix="$HOME/downloads/$release"
 	
 	echo -e "\nold prefix is: $orig_prefix"
-	echo -e "ew prex is $new_prefix"
+	echo -e "new prex is $new_prefix"
 	echo ""
 	
 	sed "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/MD5SUMS"

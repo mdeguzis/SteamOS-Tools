@@ -59,8 +59,7 @@ download_release()
 	
 	# download requested file
 	cd "$HOME/downloads/$release"
-	wget --no-parent --recursive --no-directories --reject "index.html*" \
-	--no-clobber "$base_url/$release/$file"
+	wget --no-clobber "$base_url/$release/$file"
 	
 	# download MD5 and SHA files
 	rm -f MD5SUMS

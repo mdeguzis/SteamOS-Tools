@@ -94,16 +94,16 @@ check_download_integrity()
 	
 	# for some reason, only the brewmaster integrity check files have /var/www/download in them
 	if [[ "$release" == "alchemist" ]]; then
-	
-	# do nothing
-	echo "" > /dev/null
-	
+		
+		# do nothing
+		echo "" > /dev/null
+		
 	elif [[ "$release" == "brewmaster" ]]; then
 	
-	orig_prefix="/var/www/download"
-	#new_prefix="$HOME/downloads/$release"
-	
-	sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/SHA512SUMS"
+		orig_prefix="/var/www/download"
+		#new_prefix="$HOME/downloads/$release"
+		
+		sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/SHA512SUMS"
 	
 	fi
 	
@@ -252,6 +252,28 @@ main()
 
 # check integrity only, if requested
 if [[ "$1" == "--checkonly" ]]; then
+
+	echo -e "Check which release?\n"
+  	echo "(1) Alchemist"
+  	echo "(2) Brewmaster"
+  	
+  	# the prompt sometimes likes to jump above sleep
+	sleep 0.5s
+	
+	read -erp "Choice: " chk_choice
+	
+	case "$chk_choice" in
+
+		1)
+		release="alchemist"
+		;;
+		
+		1)
+		release="brewmaster"
+		;;
+		
+	esac
+
 	clear
 	check_download_integrity
 	exit

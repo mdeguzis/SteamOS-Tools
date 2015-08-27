@@ -117,7 +117,7 @@ download_release()
 		sed -i "s|SteamOSDVDInstaller.zip|$zip_new|g" "$HOME/downloads/$release/MD5SUMS"
 		
 		# remove SteamOSImage.zip, not needed
-		sed -i "|SteamOSImage.zip|d" "$HOME/downloads/$release/MD5SUMS"
+		sed -i '' '/SteamOSImage.zip/d' "$HOME/downloads/$release/MD5SUMS"
 		
 	elif [[ "$release" == "brewmaster" ]]; then
 	

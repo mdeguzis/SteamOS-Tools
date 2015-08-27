@@ -3,7 +3,7 @@
 # Author:    	  	Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		0.9.2
+# Script Ver:		0.9.3
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #                 	to specified directory and run SHA512 checks against them.
 #			Allows user to then image/unzip the installer to their USB
@@ -253,6 +253,7 @@ main()
 # check integrity only, if requested
 if [[ "$1" == "--checkonly" ]]; then
 
+	clear
 	echo -e "Check which release?\n"
   	echo "(1) Alchemist"
   	echo "(2) Brewmaster"
@@ -274,7 +275,6 @@ if [[ "$1" == "--checkonly" ]]; then
 		
 	esac
 
-	clear
 	check_download_integrity
 	exit
 fi

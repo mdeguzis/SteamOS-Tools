@@ -153,11 +153,11 @@ download_release()
 	fi
 	
 	# remove MD512/SHA512 line that does not match our file so we don't get check errors
-	trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
-	trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
+	#trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
+	#trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
 	
-	sed -i '/$trim_md512sum/d' "$HOME/downloads/$release/MD5SUMS"
-	sed -i '/$trim_sha512sum/d' "$HOME/downloads/$release/SHA512SUMS"
+	sed -i '/$file/!d' "$HOME/downloads/$release/MD5SUMS"
+	sed -i '/$file/!d' "$HOME/downloads/$release/SHA512SUMS"
 	
 }
 

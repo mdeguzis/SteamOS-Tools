@@ -186,6 +186,5 @@ main()
 } 
 
 # Start script
-#pre_reqs
-#main
-download_release
+pre_reqs
+main

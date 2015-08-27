@@ -105,8 +105,8 @@ download_release()
 	orig_prefix="/var/www/download"
 	new_prefix="$HOME/downloads/$release"
 	
-	sed -i "g|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/MD5SUM"
-	sed -i "g|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
+	sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/MD5SUM"
+	sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
 }
 
 main()

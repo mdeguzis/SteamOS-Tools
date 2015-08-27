@@ -106,17 +106,27 @@ download_release()
 	
 	wget --no-clobber "$base_url/$release/MD5SUMS"
 	wget --no-clobber "$base_url/$release/SHA512SUMS"
-
-	# replace download location in integrity check files
-	orig_prefix="/var/www/download"
-	new_prefix="$HOME/downloads/$release"
 	
-	echo -e "\nold prefix is: $orig_prefix"
-	echo -e "new prex is $new_prefix"
-	echo ""
+	# for some reason, only the brewmaster integrity check files have /var/www/download in them
+	if [[ "$release" == "alchemist" ]]; then
 	
-	sed "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/MD5SUMS"
-	sed "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
+		iso_new="$HOME/downloads/$release/SteamOSDVD.iso"
+		zip_new="$HOME/downloads/$release/SteamOSDVDInstaller.zip"
+		
+		sed "s|SteamOSDVD.iso|$iso_new|g" "$HOME/downloads/$release/MD5SUMS"
+		sed "s|SteamOSDVD.iso|$zip_new|g" "$HOME/downloads/$release/MD5SUMS"
+		
+		# remove SteamOSImage.zip, not needed
+		sed "s|SteamOSImage.zip|$new_prefix|d" "$HOME/downloads/$release/MD5SUMS"
+		
+	elif[[ "$release" == "brewmaster" ]]; then
+	
+		orig_prefix="/var/www/download"
+		new_prefix="$HOME/downloads/$release"
+		
+		sed "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
+		
+	fi
 	
 	# testing
 	exit 1

@@ -82,10 +82,10 @@ check_download_integrity()
   echo -e "\n==> Checking integrity of installer"
   
   echo -e "\nMD5 Check:"
-  md5sum -c "$HOME/downloads/$release/$file" "$HOME/downloads/$release/MD5SUMS"
+  md5sum -c "$HOME/downloads/$release/MD5SUMS"
   
   echo -e "\nSHA512 Check:"
-  sha512sum -c "$HOME/downloads/$release/$file" "$HOME/downloads/$release/SHA512SUMS"
+  sha512sum -c "$HOME/downloads/$release/SHA512SUMS"
   
 }
 
@@ -107,7 +107,7 @@ check_file_existance()
 		if [[ "$dl_choice" == "y" ]]; then
 		
 			# Remove file and download again
-			rm -rf "$HOME/downloads/$release/$file"
+			#rm -rf "$HOME/downloads/$release/$file"
 			download_release
 			
 		else
@@ -133,7 +133,7 @@ download_release()
 	
 	# download requested file
 	cd "$HOME/downloads/$release"
-	wget --no-clobber "$base_url/$release/$file"
+	#wget --no-clobber "$base_url/$release/$file"
 	
 	# download MD5 and SHA files
 	rm -f MD5SUMS
@@ -145,18 +145,15 @@ download_release()
 	# for some reason, only the brewmaster integrity check files have /var/www/download in them
 	if [[ "$release" == "alchemist" ]]; then
 	
-		iso_new="$HOME/downloads/$release/SteamOSDVD.iso"
-		zip_new="$HOME/downloads/$release/SteamOSInstaller.zip"
-		
-		#sed -i "s|SteamOSDVD.iso|$iso_new|g" "$HOME/downloads/$release/MD5SUMS"
-		#sed -i "s|SteamOSInstaller.zip|$zip_new|g" "$HOME/downloads/$release/MD5SUMS"
+		# do nothing
+		echo "" > /dev/null
 		
 	elif [[ "$release" == "brewmaster" ]]; then
 	
 		orig_prefix="/var/www/download"
-		new_prefix="$HOME/downloads/$release"
+		#new_prefix="$HOME/downloads/$release"
 		
-		#sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
+		sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/SHA512SUMS"
 		
 	fi
 	
@@ -165,8 +162,8 @@ download_release()
 	#trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
 	#trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
 	
-	sed -i "/$file/!d" "$HOME/downloads/$release/MD5SUMS"
-	sed -i "/$file/!d" "$HOME/downloads/$release/SHA512SUMS"
+	sed -i "/$file/!d" MD5SUMS
+	sed -i "/$file/!d" SHA512SUMS
 
 }
 

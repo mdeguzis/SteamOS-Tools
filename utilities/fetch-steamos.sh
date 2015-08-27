@@ -107,7 +107,7 @@ check_file_existance()
 		if [[ "$dl_choice" == "y" ]]; then
 		
 			# Remove file and download again
-			#rm -rf "$HOME/downloads/$release/$file"
+			rm -rf "$HOME/downloads/$release/$file"
 			download_release
 			
 		else
@@ -133,7 +133,7 @@ download_release()
 	
 	# download requested file
 	cd "$HOME/downloads/$release"
-	#wget --no-clobber "$base_url/$release/$file"
+	wget --no-clobber "$base_url/$release/$file"
 	
 	# download MD5 and SHA files
 	rm -f MD5SUMS

@@ -38,8 +38,8 @@ download_release()
     echo -e "Downloading to: $download_dir"
     sleep 2s
     cd "$download_dir"
-    wget --content-disposition --no-parent --recursive --level=1 --no-directories --reject "index.html*" \
-    http://repo.steampowered.com/download/alchemist/
+    wget --no-parent --recursive --level=1 --no-directories --reject "index.html*" \
+    --no-clobber http://repo.steampowered.com/download/alchemist/
   
   fi
   

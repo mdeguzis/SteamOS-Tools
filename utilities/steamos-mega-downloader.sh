@@ -316,6 +316,7 @@ download_release()
 
 main()
 {
+	clear
 	
 	cat <<-EOF
 	------------------------------------------------------
@@ -327,7 +328,6 @@ main()
 	# set base DIR
 	base_dir="$HOME/downloads"
 
-  	clear
   	# prompt user if they would like to load a controller config
   	echo -e "Please choose a release to download. Releases checked for integrity\n"
   	echo "(1) Alchemist (standard zip, UEFI only)"

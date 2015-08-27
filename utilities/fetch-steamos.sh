@@ -106,12 +106,19 @@ check_download_integrity()
 	echo -e "==> Checking integrity of installer"
 	sleep 2s
 	
-	# download MD5 and SHA files
-	rm -f MD5SUMS
-	rm -f SHA512SUMS
+	# remove old MD5 and SHA files
+	rm -f $md5file
+	rm -f $shafile
 	
-	wget --no-clobber "$base_url/$release/MD5SUMS"
-	wget --no-clobber "$base_url/$release/SHA512SUMS"
+	# download md5sum
+	if [[ "$md5file" != "none" ]];then
+		wget --no-clobber "$base_url/$release/$md5file"
+	fi
+	
+	# download shasum
+	if [[ "$shafile" != "none" ]];then
+		wget --no-clobber "$base_url/$release/$shafile"
+	fi
 	
 	# for some reason, only the brewmaster integrity check files have /var/www/download in them
 	if [[ "$release" == "alchemist" ]]; then
@@ -124,7 +131,7 @@ check_download_integrity()
 		orig_prefix="/var/www/download"
 		#new_prefix="$HOME/downloads/$release"
 		
-		sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/SHA512SUMS"
+		sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$shafile"
 	
 	fi
 	
@@ -133,14 +140,22 @@ check_download_integrity()
 	#trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
 	#trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
 	
-	sed -i "/$file/!d" MD5SUMS
-	sed -i "/$file/!d" SHA512SUMS
+	sed -i "/$file/!d" $md5file
+	sed -i "/$file/!d" $shafile
   
-	echo -e "\nMD5 Check:"
-	md5sum -c "$HOME/downloads/$release/MD5SUMS"
+	if [[ "$md5file" != "none" ]];then
 	
-	echo -e "\nSHA512 Check:"
-	sha512sum -c "$HOME/downloads/$release/SHA512SUMS"
+		echo -e "\nMD5 Check:"
+		md5sum -c "$HOME/downloads/$release/$md5file"
+	
+	fi
+	
+	if [[ "$shafile" != "none" ]];then
+	
+		echo -e "\nSHA512 Check:"
+		sha512sum -c "$HOME/downloads/$release/$shafile"
+		
+	fi
   
 }
 
@@ -202,8 +217,7 @@ main()
 	
 	EOF
 	
-	# set base URL
-	base_url="repo.steampowered.com/download"
+	# set base DIR
 	base_dir="$HOME/downloads"
 
   	clear
@@ -213,6 +227,8 @@ main()
   	echo "(2) Alchemist (legacy ISO, BIOS systems)"
   	echo "(3) Brewmaster (standard zip, UEFI only)"
   	echo "(4) Brewmaster (legacy ISO, BIOS systems)"
+  	echo "(5) Stephensons Rocket (option coming soon)"
+  	echo "(6) VaporOS (option coming soon)"
   	echo ""
   	
   	# the prompt sometimes likes to jump above sleep
@@ -223,27 +239,56 @@ main()
 	case "$rel_choice" in
 	
 		1)
+		base_url="repo.steampowered.com/download"
 		release="alchemist"
 		file="SteamOSInstaller.zip"
+		md5file="MD5SUMS"
+		shafile="SHA512SUMS"
 		#image_drive
 		;;
 		
 		2)
+		base_url="repo.steampowered.com/download"
 		release="alchemist"
 		file="SteamOSDVD.iso"
+		md5file="MD5SUMS"
+		shafile="SHA512SUMS"
 		#image_drive
 		;;
 		
 		3)
+		base_url="repo.steampowered.com/download"
 		release="brewmaster"
 		file="SteamOSInstaller.zip"
-		
+		md5file="MD5SUMS"
+		shafile="SHA512SUMS"
 		#image_drive
 		;;
 		
 		4)
+		base_url="repo.steampowered.com/download"
 		release="brewmaster"
 		file="SteamOSDVD.iso"
+		md5file="MD5SUMS"
+		shafile="SHA512SUMS"
+		#image_drive
+		;;
+		
+		5)
+		base_url="TBD"
+		release="stephensonrocket"
+		file="TBD"
+		md5file="MD5SUMS"
+		shafile="SHA512SUMS"
+		#image_drive
+		;;
+		
+		6)
+		base_url="http://trashcan-gaming.nl/iso/"
+		release="iso"
+		file="vaporos2.iso"
+		md5file="vaporos2.iso.md5"
+		shafile="none"
 		#image_drive
 		;;
 		

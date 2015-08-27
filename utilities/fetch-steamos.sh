@@ -365,6 +365,8 @@ main()
 		file="stephensons.iso"
 		md5file="none"
 		shafile="none"
+		# set github default action
+		pull="no"
 		#image_drive
 		;;
 		
@@ -374,6 +376,8 @@ main()
 		file="stephensons.iso"
 		md5file="none"
 		shafile="none"
+		# set github default action
+		pull="no"
 		#image_drive
 		;;
 		
@@ -392,6 +396,8 @@ main()
 		file="vaporos2.iso"
 		md5file="vaporos2.iso.md5"
 		shafile="none"
+		# set github default action
+		pull="no"
 		#image_drive
 		;;
 		

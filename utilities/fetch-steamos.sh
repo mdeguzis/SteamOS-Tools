@@ -102,7 +102,7 @@ image_drive()
 check_download_integrity()
 {
   
-	echo -e "==> Checking integrity of installer\n"
+	echo -e "\n==> Checking integrity of installer\n"
 	sleep 2s
 	
 	# remove old MD5 and SHA files
@@ -116,7 +116,7 @@ check_download_integrity()
 		
 	else
 		
-		echo -e "\nIntegrity check skipped, no md5 file to check"
+		echo -e "Integrity check skipped, no md5 file to check"
 	
 	fi
 	
@@ -127,7 +127,7 @@ check_download_integrity()
 		
 	else
 		
-		echo -e "\nIntegrity check skipped, no sha file to check"
+		echo -e "Integrity check skipped, no sha file to check"
 	
 	fi
 	
@@ -365,7 +365,6 @@ main()
 		file="stephensons.iso"
 		md5file="none"
 		shafile="none"
-		download_release
 		#image_drive
 		;;
 		
@@ -375,7 +374,6 @@ main()
 		file="stephensons.iso"
 		md5file="none"
 		shafile="none"
-		download_release
 		#image_drive
 		;;
 		

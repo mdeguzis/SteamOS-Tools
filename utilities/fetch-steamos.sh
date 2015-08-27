@@ -50,7 +50,7 @@ pre_reqs()
 	
 		# Stephensons vairants require apt-tools, not included YET
 		echo -e "Warning: Only official Valve releases are supported at this time"
-		sleep 3s
+		sleep 5s
 	else
 	
 		echo -e "Warning: Distro not supported"

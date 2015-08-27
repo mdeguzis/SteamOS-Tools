@@ -9,11 +9,31 @@
 #			Allows user to then image/unzip the installer to their USB
 #			drive.
 #
-# Usage:      		./fetch-steamos.sh
+# Usage:      		./fetch-steamos.sh 
+#			./fetch-steamos.sh --help
 #			./fetch-steamos.sh --checkonly
 # -------------------------------------------------------------------------------
 
 arg1="$1"
+
+help()
+{
+	
+	clear
+	cat <<-EOF
+	#####################################################
+	Help file
+	#####################################################
+	
+	Usage:
+	
+	./fetch-steamos.sh 		-fetch release, checked for file integrity
+	./fetch-steamos.sh --help	-show this help file
+	./fetch-steamos.sh --checkonly	-Check existing release files (if exist)
+	
+	EOF
+	
+}
 
 pre_reqs()
 {

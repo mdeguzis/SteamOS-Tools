@@ -234,7 +234,7 @@ main()
 	esac
 	
 	# assess if download is needed
-	if [[ "$1" == "--checkonly" ]]; then
+	if [[ "$arg1" == "--checkonly" ]]; then
  
  		# just check integrity of files
  		check_download_integrity

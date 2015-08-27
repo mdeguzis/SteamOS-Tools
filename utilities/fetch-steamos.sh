@@ -40,15 +40,23 @@ pre_reqs()
 	echo -e "\n==> Checking fo prerequisite packages\n"
 	
 	#check for unzip
+	distro_check=$(uname -r)
 	
-	pkg_result=$(which unzip)
-	if [[ "$pkg_result" == "" ]]; then
-		sudo apt-get install unzip
-	fi
+	if [[ "$distro_check" == "*Debian*" ]]
 	
-	pkg_result=$(which git)
-	if [[ "$pkg_result" == "" ]]; then
-		sudo apt-get install git
+		sudo apt-get install unzip git
+	
+	elif [[ "$distro_check" == "*ARCH*" ]]
+	
+		# Stephensons vairants require apt-tools, not included YET
+		echo -e "Warning: Only official Valve releases are supported at this time"
+		sleep 3s
+	else
+	
+		echo -e "Distro not supported"
+		sleep 3s
+		exit 1
+		
 	fi
 	
 }

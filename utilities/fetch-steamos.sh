@@ -100,6 +100,7 @@ main()
   case "$rel_choice" in
     1)
     release="alchemist"
+    file="SteamOSInstaller.zip"
     check_file_existance
     download_release
     check_download_integrity

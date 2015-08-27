@@ -33,11 +33,12 @@ download_release()
     fi
     
   else
-    echo -e "$release Release not found in target directory. Downloading to:"
-    echo -e "$download_dir"
+  
+    echo -e "$release Release not found in target directory." 
+    echo -e "Downloading to: $download_dir"
     sleep 2s
     cd "$download_dir"
-    wget --no-parent --recursive --level=1 --no-directories --reject "index.html*" \
+    wget --content-disposition --no-parent --recursive --level=1 --no-directories --reject "index.html*" \
     http://repo.steampowered.com/download/alchemist/
   
   fi
@@ -60,6 +61,13 @@ pre_reqs()
 
 main()
 {
+  
+  # remove any duplicated files. If something went wrong and we ended
+  # up with, for instance, SteamOSDVD.iso.1, let's remove that
+  #find "$download_dir/alchemist" -name *.so | xargs sudo cp -t "/usr/lib/libretro" 2> /dev/null
+  
+  # testing
+  exit 1
   
   # dowload alchemist
   release="alchemist"

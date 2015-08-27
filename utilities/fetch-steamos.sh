@@ -111,12 +111,24 @@ check_download_integrity()
 	
 	# download md5sum
 	if [[ "$md5file" != "none" ]];then
+	
 		wget --no-clobber "$base_url/$release/$md5file"
+		
+	else
+		
+		echo -e "\nIntegrity check skipped, no md5 file to check"
+	
 	fi
 	
 	# download shasum
 	if [[ "$shafile" != "none" ]];then
+	
 		wget --no-clobber "$base_url/$release/$shafile"
+		
+	else
+		
+		echo -e "\nIntegrity check skipped, no sha file to check"
+	
 	fi
 	
 	# for some reason, only the brewmaster integrity check files have /var/www/download in them

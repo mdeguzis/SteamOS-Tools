@@ -82,6 +82,7 @@ image_drive()
 check_download_integrity()
 {
   
+  	clear
 	echo -e "==> Checking integrity of installer"
 	sleep 2s
 	
@@ -237,6 +238,7 @@ main()
 	if [[ "$arg1" == "--checkonly" ]]; then
  
  		# just check integrity of files
+ 		cd "$HOME/downloads/$release"
  		check_download_integrity
  		
  	else

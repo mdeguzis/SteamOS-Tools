@@ -10,7 +10,10 @@
 #			drive.
 #
 # Usage:      		./fetch-steamos.sh
+#			./fetch-steamos.sh --checkonly
 # -------------------------------------------------------------------------------
+
+arg1="$1"
 
 pre_reqs()
 {
@@ -79,13 +82,44 @@ image_drive()
 check_download_integrity()
 {
   
-  echo -e "==> Checking integrity of installer"
+	echo -e "==> Checking integrity of installer"
+	sleep 2s
+	
+	# download MD5 and SHA files
+	rm -f MD5SUMS
+	rm -f SHA512SUMS
+	
+	wget --no-clobber "$base_url/$release/MD5SUMS"
+	wget --no-clobber "$base_url/$release/SHA512SUMS"
+	
+	# for some reason, only the brewmaster integrity check files have /var/www/download in them
+	if [[ "$release" == "alchemist" ]]; then
+	
+	# do nothing
+	echo "" > /dev/null
+	
+	elif [[ "$release" == "brewmaster" ]]; then
+	
+	orig_prefix="/var/www/download"
+	#new_prefix="$HOME/downloads/$release"
+	
+	sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/SHA512SUMS"
+	
+	fi
+	
+	# remove MD512/SHA512 line that does not match our file so we don't get check errors
+	
+	#trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
+	#trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
+	
+	sed -i "/$file/!d" MD5SUMS
+	sed -i "/$file/!d" SHA512SUMS
   
-  echo -e "\nMD5 Check:"
-  md5sum -c "$HOME/downloads/$release/MD5SUMS"
-  
-  echo -e "\nSHA512 Check:"
-  sha512sum -c "$HOME/downloads/$release/SHA512SUMS"
+	echo -e "\nMD5 Check:"
+	md5sum -c "$HOME/downloads/$release/MD5SUMS"
+	
+	echo -e "\nSHA512 Check:"
+	sha512sum -c "$HOME/downloads/$release/SHA512SUMS"
   
 }
 
@@ -134,36 +168,6 @@ download_release()
 
 	cd "$HOME/downloads/$release"
 	wget --no-clobber "$base_url/$release/$file"
-	
-	# download MD5 and SHA files
-	rm -f MD5SUMS
-	rm -f SHA512SUMS
-	
-	wget --no-clobber "$base_url/$release/MD5SUMS"
-	wget --no-clobber "$base_url/$release/SHA512SUMS"
-	
-	# for some reason, only the brewmaster integrity check files have /var/www/download in them
-	if [[ "$release" == "alchemist" ]]; then
-	
-		# do nothing
-		echo "" > /dev/null
-		
-	elif [[ "$release" == "brewmaster" ]]; then
-	
-		orig_prefix="/var/www/download"
-		#new_prefix="$HOME/downloads/$release"
-		
-		sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/SHA512SUMS"
-		
-	fi
-	
-	# remove MD512/SHA512 line that does not match our file so we don't get check errors
-	
-	#trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
-	#trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
-	
-	sed -i "/$file/!d" MD5SUMS
-	sed -i "/$file/!d" SHA512SUMS
 
 }
 
@@ -242,6 +246,17 @@ main()
  
 } 
 
+#######################################
 # Start script
+#######################################
+
+# check integrity only, if requested
+if [[ "$1" == "--checkonly" ]]; then
+	clear
+	check_download_integrity
+	exit
+fi
+
+# MAIN
 pre_reqs
 main

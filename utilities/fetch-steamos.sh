@@ -66,9 +66,6 @@ main()
   # up with, for instance, SteamOSDVD.iso.1, let's remove that
   #find "$download_dir/alchemist" -name *.so | xargs sudo cp -t "/usr/lib/libretro" 2> /dev/null
   
-  # testing
-  exit 1
-  
   # dowload alchemist
   release="alchemist"
   download_dir="/home/$USER/downloads/alchemist"

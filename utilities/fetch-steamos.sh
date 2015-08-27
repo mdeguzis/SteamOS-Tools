@@ -39,7 +39,7 @@ download_release()
     sleep 2s
     cd "$download_dir"
     wget --no-parent --recursive --level=1 --no-directories --reject "index.html*" \
-    --no-clobber http://repo.steampowered.com/download/alchemist/
+    --no-clobber http://repo.steampowered.com/download/$release/
   
   fi
   

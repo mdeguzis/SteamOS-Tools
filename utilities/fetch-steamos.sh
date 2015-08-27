@@ -170,7 +170,41 @@ check_file_existance()
 		mkdir -p "$HOME/downloads/$release"
 	fi
   
-	# check for file existance
+  	# check for git repo existance (stephesons rocket)
+  	if [[ -d "$HOME/downloads/$release/stephensons-rocket" ]]; then
+  	
+  		echo -e "\n$Github directory exists in destination directory\nRemove or pull? (r/p)\n"
+		read -erp "Choice: " rdl_choice
+		echo ""
+  	
+	  	if [[ "$rdl_choice" == "r" ]]; then
+			
+				# do not pull directory in downdload section
+				pull="no"
+				# Remove file and download again
+				rm -rf "$HOME/downloads/$release/stephensons-rocket"
+				download_release
+				
+			else
+				
+				# pull directory in downdload section
+				pull="yes"
+				# Abort script and exit to prompt
+				echo -e "Skipping download..."
+				sleep 2s
+				
+			fi
+	
+	  	else
+	  		
+	  		# File does not exist, download release
+	  		download_release
+	  	
+	  	fi
+	  	
+	 fi
+  	
+	# check for file existance (Valve releases)
 	if [[ -f "$HOME/downloads/$release/$file" ]]; then
 	
 		echo -e "\n$file exists in destination directory\nOverwrite? (y/n)\n"
@@ -215,16 +249,31 @@ download_release()
 		cd "$HOME/downloads/$release"
 		wget --no-clobber "$base_url/$release/$file"
 	
-	elif [[ "$file" == "TBD" ]]; then 
+	elif [[ "$file" == "stephensons.iso" ]]; then 
 	
-		git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
-		cd $release
-		./gen.sh
+		if [[ "$pull" == "no" ]]; then
 		
-		# testing
-		ls
-		sleep 10s
-		exit 1
+			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
+			cd stephensons-rocket
+			# generate iso image
+			./gen.sh
+			# testing
+			ls
+			sleep 10s
+			exit 1
+			
+		elif [[ "$pull" == "yes" ]]; then
+			
+			# update repo
+			cd stephensons-rocket
+			git pull
+			# generate iso image
+			./gen.sh
+			# testing
+			ls
+			sleep 10s
+			exit 1
+		fi
 		
 	fi
 }
@@ -303,7 +352,7 @@ main()
 		5)
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="alchemist"
-		file="TBD"
+		file="stephensons.iso"
 		md5file="none"
 		shafile="none"
 		download_release
@@ -313,7 +362,7 @@ main()
 		6)
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="brewmaster"
-		file="TBD"
+		file="stephensons.iso"
 		md5file="none"
 		shafile="none"
 		download_release

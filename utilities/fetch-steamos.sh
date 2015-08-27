@@ -3,7 +3,7 @@
 # Author:    	  	Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		0.8.5
+# Script Ver:		0.9.2
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #                 	to specified directory and run SHA512 checks against them.
 #			Allows user to then image/unzip the installer to their USB
@@ -79,7 +79,7 @@ image_drive()
 check_download_integrity()
 {
   
-  echo -e "\n==> Checking integrity of installer"
+  echo -e "==> Checking integrity of installer"
   
   echo -e "\nMD5 Check:"
   md5sum -c "$HOME/downloads/$release/MD5SUMS"

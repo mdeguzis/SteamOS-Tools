@@ -3,7 +3,7 @@
 # Author:    	  	Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		0.9.3
+# Script Ver:		0.9.5
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #                 	to specified directory and run SHA512 checks against them.
 #			Allows user to then image/unzip the installer to their USB
@@ -42,11 +42,11 @@ pre_reqs()
 	#check for unzip
 	distro_check=$(uname -r)
 	
-	if [[ "$distro_check" == "*Debian*" ]]
+	if [[ "$distro_check" == "*Debian*" ]]; then
 	
 		sudo apt-get install unzip git
 	
-	elif [[ "$distro_check" == "*ARCH*" ]]
+	elif [[ "$distro_check" == "*ARCH*" ]]; then
 	
 		# Stephensons vairants require apt-tools, not included YET
 		echo -e "Warning: Only official Valve releases are supported at this time"

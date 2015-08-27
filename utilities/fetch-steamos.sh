@@ -71,7 +71,7 @@ check_download_integrity()
   echo -e "\n==> Checking integrity of installer\n"
   
   echo -e "\nMD5 Check:"
-  md5sum -c "$HOME/downloads/$release/$file" "$HOME/downloads/$release/MD5SUM"
+  md5sum -c "$HOME/downloads/$release/$file" "$HOME/downloads/$release/MD5SUMS"
   
   echo -e "\nSHA512 Check:"
   sha512sum -c "$HOME/downloads/$release/$file" "$HOME/downloads/$release/SHA512SUMS"
@@ -135,7 +135,7 @@ download_release()
 	if [[ "$release" == "alchemist" ]]; then
 	
 		iso_new="$HOME/downloads/$release/SteamOSDVD.iso"
-		zip_new="$HOME/downloads/$release/SteamOSDVDInstaller.zip"
+		zip_new="$HOME/downloads/$release/SteamOSInstaller.zip"
 		
 		sed -i "s|SteamOSDVD.iso|$iso_new|g" "$HOME/downloads/$release/MD5SUMS"
 		sed -i "s|SteamOSInstaller.zip|$zip_new|g" "$HOME/downloads/$release/MD5SUMS"
@@ -145,8 +145,8 @@ download_release()
 		
 	elif [[ "$release" == "brewmaster" ]]; then
 	
-		orig_prefix="/var/www/download"
-		new_prefix="$HOME/downloads/$release"
+		orig_prefix="  /var/www/download"
+		new_prefix="  $HOME/downloads/$release"
 		
 		sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
 		

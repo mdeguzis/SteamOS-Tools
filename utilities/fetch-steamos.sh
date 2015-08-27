@@ -139,10 +139,11 @@ check_download_integrity()
 	#trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
 	#trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
 	
-	sed -i "/$file/!d" $md5file
-	sed -i "/$file/!d" $shafile
   
 	if [[ "$md5file" != "none" ]];then
+	
+		sed -i "/$file/!d" $md5file
+		sed -i "/$file/!d" $shafile
 	
 		echo -e "\nMD5 Check:"
 		md5sum -c "$HOME/downloads/$release/$md5file"
@@ -150,6 +151,9 @@ check_download_integrity()
 	fi
 	
 	if [[ "$shafile" != "none" ]];then
+	
+		sed -i "/$file/!d" $md5file
+		sed -i "/$file/!d" $shafile
 	
 		echo -e "\nSHA512 Check:"
 		sha512sum -c "$HOME/downloads/$release/$shafile"
@@ -199,12 +203,26 @@ check_file_existance()
 download_release()
 {
 	
-	# download requested file
+	# download requested file (Valve official)
 
-	cd "$HOME/downloads/$release"
-	wget --no-clobber "$base_url/$release/$file"
-
+	if [[ "$file" == "SteamOSInstaller.zip" || "file" == "SteamOSDVD.iso" ]]; then
+	
+		cd "$HOME/downloads/$release"
+		wget --no-clobber "$base_url/$release/$file"
+		
+	elif [[ "$file" == "vaporos2.iso" ]]; then
+	
+		cd "$HOME/downloads/$release"
+		wget --no-clobber "$base_url/$release/$file"
+	
+	elif [[ "$file" == "TBD" ]]; then 
+	
+		echo "Stephenson's Rocket"
+		
+	fi
 }
+
+
 
 main()
 {
@@ -227,7 +245,8 @@ main()
   	echo "(3) Brewmaster (standard zip, UEFI only)"
   	echo "(4) Brewmaster (legacy ISO, BIOS systems)"
   	echo "(5) Stephensons Rocket (option coming soon)"
-  	echo "(6) VaporOS"
+  	echo "(6) VaporOS (Legacy ISO)"
+  	echo "(7) VaporOS (Stephenson's Rocket Mod)"
   	echo ""
   	
   	# the prompt sometimes likes to jump above sleep
@@ -274,16 +293,26 @@ main()
 		;;
 		
 		5)
-		base_url="TBD"
+		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="stephensonrocket"
 		file="TBD"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
+		download_release
 		#image_drive
 		;;
 		
 		6)
 		base_url="http://trashcan-gaming.nl"
+		release="iso"
+		file="vaporos2.iso"
+		md5file="vaporos2.iso.md5"
+		shafile="none"
+		#image_drive
+		;;
+		
+		7)
+		base_url="https://github.com/sharkwouter/vaporos-mod"
 		release="iso"
 		file="vaporos2.iso"
 		md5file="vaporos2.iso.md5"

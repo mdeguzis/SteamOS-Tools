@@ -179,21 +179,19 @@ check_file_existance()
   	
 	  	if [[ "$rdl_choice" == "r" ]]; then
 			
-				# do not pull directory in downdload section
-				pull="no"
-				# Remove file and download again
-				rm -rf "$HOME/downloads/$release/stephensons-rocket"
-				download_release
+			# do not pull directory in downdload section
+			pull="no"
+			# Remove file and download again
+			rm -rf "$HOME/downloads/$release/stephensons-rocket"
+			download_release
 				
-			else
+		elif [[ "$rdl_choice" == "p" ]]; then
 				
-				# pull directory in downdload section
-				pull="yes"
-				# Abort script and exit to prompt
-				echo -e "Skipping download..."
-				sleep 2s
-				
-			fi
+			# pull directory in downdload section
+			pull="yes"
+			# Abort script and exit to prompt
+			echo -e "Skipping download..."
+			sleep 2s
 	
 	  	else
 	  		

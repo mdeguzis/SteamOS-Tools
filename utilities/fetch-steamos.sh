@@ -25,15 +25,34 @@ pre_reqs()
 
 image_drive()
 {
+	
 	echo -e "\nImage SteamOS to drive? (y/n)"
 	read -erp "Choice: " drive_choice
 	echo ""
 	
-	if [[ "$file=" == "SteamOSInstaller.zip" ]]; then
+	if [[ "$file" == "SteamOSInstaller.zip" ]]; then
 		
-		echo -e "\b==>Showing current usb drives\n"
+		echo -e "\n==>Showing current usb drives\n"
 		lsblk
-		echo -e "==> Installing release to usb drive"
+		
+		echo -e "\n==> Enter drive path: "
+		sleep 0.5s
+		read -erp "Choice: " drive_choice
+		
+		echo -e "\n==> Installing release to usb drive"
+		unzip $file -d $drive_choice
+		
+	if [[ "$file" == "SteamOSDVD.iso" ]]; then
+	
+		echo -e "\n==>Showing current usb drives\n"
+		lsblk
+		
+		echo -e "\n==> Enter drive path: "
+		sleep 0.5s
+		read -erp "Choice: " drive_choice
+		
+		echo -e "\n==> Installing release to usb drive"
+		sudo dd if=$file of=$drive_choice
 		
 	else
 	
@@ -128,8 +147,6 @@ download_release()
 		
 	fi
 	
-	# testing
-	exit 1
 }
 
 main()

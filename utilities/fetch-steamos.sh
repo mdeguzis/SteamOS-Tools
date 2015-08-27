@@ -204,36 +204,25 @@ main()
 		1)
 		release="alchemist"
 		file="SteamOSInstaller.zip"
-		check_file_existance
-		download_release
-		check_download_integrity
 		#image_drive
 		;;
 		
 		2)
 		release="alchemist"
 		file="SteamOSDVD.iso"
-		check_file_existance
-		download_release
-		check_download_integrity
 		#image_drive
 		;;
 		
 		3)
 		release="brewmaster"
 		file="SteamOSInstaller.zip"
-		check_file_existance
-		download_release
-		check_download_integrity
+		
 		#image_drive
 		;;
 		
 		4)
 		release="brewmaster"
 		file="SteamOSDVD.iso"
-		check_file_existance
-		download_release
-		check_download_integrity
 		#image_drive
 		;;
 		
@@ -243,41 +232,26 @@ main()
 		;;
 	
 	esac
+	
+	# assess if download is needed
+	if [[ "$1" == "--checkonly" ]]; then
  
+ 		# just check integrity of files
+ 		check_file_existance
+ 		
+ 	else
+ 		# Check for and download release
+ 		check_file_existance
+ 		download_release
+		check_download_integrity
+		
+ 	fi
+ 	
 } 
 
 #######################################
 # Start script
 #######################################
-
-# check integrity only, if requested
-if [[ "$1" == "--checkonly" ]]; then
-
-	clear
-	echo -e "Check which release?\n"
-  	echo "(1) Alchemist"
-  	echo "(2) Brewmaster"
-  	
-  	# the prompt sometimes likes to jump above sleep
-	sleep 0.5s
-	
-	read -erp "Choice: " chk_choice
-	
-	case "$chk_choice" in
-
-		1)
-		release="alchemist"
-		;;
-		
-		1)
-		release="brewmaster"
-		;;
-		
-	esac
-
-	check_download_integrity
-	exit
-fi
 
 # MAIN
 pre_reqs

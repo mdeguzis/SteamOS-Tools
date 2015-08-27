@@ -47,6 +47,10 @@ check_file_existance()
 		fi
 
   	else
+  	
+  		download_release
+  	
+  	fi
 	
 }
 

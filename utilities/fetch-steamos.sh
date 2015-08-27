@@ -95,10 +95,13 @@ check_file_existance()
 		
 		if [[ "$dl_choice" == "y" ]]; then
 		
+			# Remove file and download again
+			rm -rf "$HOME/downloads/$release/$file"
 			download_release
 			
 		else
 		
+			# Abort script and exit to prompt
 			echo -e "\nAborting..."
 			clear
 			exit 1
@@ -106,7 +109,8 @@ check_file_existance()
 		fi
 
   	else
-  	
+  		
+  		# File does not exist, download release
   		download_release
   	
   	fi

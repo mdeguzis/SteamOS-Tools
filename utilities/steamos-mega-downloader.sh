@@ -5,7 +5,7 @@
 # Scipt Name:	  	fetch-steamos.sh
 # Script Ver:		0.9.5
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
-#                 	to specified directory and run SHA512 checks against them.
+#			to specified directory and run SHA512 checks against them.
 #			Allows user to then image/unzip the installer to their USB
 #			drive.
 #
@@ -49,6 +49,7 @@ pre_reqs()
 	elif [[ "$distro_check" =~ "ARCH" ]]; then
 	
 		# Stephensons vairants require apt-tools, not included YET
+		echo -e "Distro detected: Arch Linux variant"
 		echo -e "Warning: Only official Valve releases are supported at this time"
 		sleep 5s
 	else

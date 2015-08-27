@@ -29,8 +29,6 @@ image_drive()
 		lsblk
 		echo -e "==> Installing release to usb drive"
 		
-		if 
-		
 	else
 	
 		echo -e "\nAborting..."

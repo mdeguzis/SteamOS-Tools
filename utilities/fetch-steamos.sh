@@ -102,7 +102,6 @@ image_drive()
 check_download_integrity()
 {
   
-  	clear
 	echo -e "==> Checking integrity of installer"
 	sleep 2s
 	

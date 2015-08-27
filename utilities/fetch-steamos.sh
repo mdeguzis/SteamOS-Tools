@@ -37,7 +37,7 @@ help()
 
 pre_reqs()
 {
-	echo -e "\n==> Checking fo prerequisite packages\n"
+	echo -e "\n==> Checking for prerequisite packages\n"
 	
 	#check for unzip
 	distro_check=$(uname -r)
@@ -46,14 +46,14 @@ pre_reqs()
 	
 		sudo apt-get install unzip git
 	
-	elif [[ "$distro_check" == "*ARCH*" ]]; then
+	elif [[ "$distro_check" =~ "ARCH" ]]; then
 	
 		# Stephensons vairants require apt-tools, not included YET
 		echo -e "Warning: Only official Valve releases are supported at this time"
 		sleep 3s
 	else
 	
-		echo -e "Distro not supported"
+		echo -e "Warning: Distro not supported"
 		sleep 3s
 		exit 1
 		

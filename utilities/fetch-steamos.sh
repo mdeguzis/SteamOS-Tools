@@ -2,11 +2,11 @@
 
 # -------------------------------------------------------------------------------
 # Author:    	  	Michael DeGuzis
-# Git:			      https://github.com/ProfessorKaos64/SteamOS-Tools
+# Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		  0.1.1
+# Script Ver:		0.1.1
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
-#                 to specified directory and run SHA512 checks against them.
+#                 	to specified directory and run SHA512 checks against them.
 #
 # Usage:      		./fetch-steamos.sh
 # -------------------------------------------------------------------------------
@@ -63,10 +63,10 @@ download_release()
 	--no-clobber "$base_url/$release/$file"
 	
 	# download MD5 and SHA files
-	rm -f "$HOME/downloads/$release/MD5SUM"
-	rm -f "$HOME/downloads/$release/SHAD512SUMS"
+	rm -f MD5SUMS
+	rm -f SHAD512SUMS
 	
-	wget --no-clobber "$base_url/$release/MD5SUM"
+	wget --no-clobber "$base_url/$release/MD5SUMS"
 	wget --no-clobber "$base_url/$release/SHA512SUMS"
 
 	# replace download location in integrity check files

@@ -44,24 +44,26 @@ pre_reqs()
 	
 	if [[ "$distro_check" == "*Debian*" ]]; then
 	
-		echo -e "Distro detected: Debian variant"
+		echo -e "\nDistro detected: Debian variant"
 		# set package manager
 		pkginstall="apt-get install"
 		sudo $pkginstall unzip git
 	
 	elif [[ "$distro_check" =~ "ARCH" ]]; then
-		echo -e "Distro detected: Arch Linux variant"
+		
+		echo -e "\nDistro detected: Arch Linux variant"
+		echo -e "Warning!: only official Valve releases are supporte for this variant!"
+		sleep 5s
+		
 		# set package manager
 		pkginstall="pacman -S"
 		sudo $pkginstall unzip git
 	
-		# Stephensons vairants require apt-tools, not included YET
-		echo -e "Distro detected: Arch Linux variant"
-		echo -e "Warning: Only official Valve releases are supported at this time"
-		sleep 5s
+		# Stephensons/VaporOS-mod vairants require apt-tools, not available for Arch Linux
+		
 	else
 	
-		echo -e "Warning: Distro not supported"
+		echo -e "Warning!: Distro not supported"
 		sleep 3s
 		exit 1
 		
@@ -287,7 +289,7 @@ download_release()
 		if [[ "$pull" == "no" ]]; then
 		
 			# prereqs
-			sudo apt-get install apt-utils
+			sudo $pkginstall apt-utils
 			
 			# clone
 			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release

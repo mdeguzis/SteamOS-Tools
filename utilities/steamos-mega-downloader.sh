@@ -289,7 +289,7 @@ download_release()
 		if [[ "$pull" == "no" ]]; then
 		
 			# prereqs
-			sudo $pkginstall apt-utils xorriso
+			sudo $pkginstall apt-utils xorriso syslinux
 			
 			# clone
 			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
@@ -301,7 +301,7 @@ download_release()
 		elif [[ "$pull" == "yes" ]]; then
 			
 			# prereqs
-			sudo $pkginstall apt-utils xorriso
+			sudo $pkginstall apt-utils xorriso syslinux
 			
 			# update repo
 			cd stephensons-rocket

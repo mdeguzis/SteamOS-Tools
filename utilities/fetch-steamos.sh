@@ -114,7 +114,7 @@ download_release()
 		zip_new="$HOME/downloads/$release/SteamOSDVDInstaller.zip"
 		
 		sed -i "s|SteamOSDVD.iso|$iso_new|g" "$HOME/downloads/$release/MD5SUMS"
-		sed -i "s|SteamOSDVDInstaller.zip|$zip_new|g" "$HOME/downloads/$release/MD5SUMS"
+		sed -i "s|SteamOSInstaller.zip|$zip_new|g" "$HOME/downloads/$release/MD5SUMS"
 		
 		# remove SteamOSImage.zip, not needed
 		sed -i '/SteamOSImage.zip/d' "$HOME/downloads/$release/MD5SUMS"

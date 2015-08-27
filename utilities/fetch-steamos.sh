@@ -113,22 +113,24 @@ download_release()
 		iso_new="$HOME/downloads/$release/SteamOSDVD.iso"
 		zip_new="$HOME/downloads/$release/SteamOSDVDInstaller.zip"
 		
-		sed "s|SteamOSDVD.iso|$iso_new|g" "$HOME/downloads/$release/MD5SUMS"
-		sed "s|SteamOSDVD.iso|$zip_new|g" "$HOME/downloads/$release/MD5SUMS"
+		sed -i "s|SteamOSDVD.iso|$iso_new|g" "$HOME/downloads/$release/MD5SUMS"
+		sed -i "s|SteamOSDVD.iso|$zip_new|g" "$HOME/downloads/$release/MD5SUMS"
 		
 		# remove SteamOSImage.zip, not needed
-		sed "s|SteamOSImage.zip|$new_prefix|d" "$HOME/downloads/$release/MD5SUMS"
+		sed -i "|SteamOSImage.zip|d" "$HOME/downloads/$release/MD5SUMS"
 		
 	elif [[ "$release" == "brewmaster" ]]; then
 	
 		orig_prefix="/var/www/download"
 		new_prefix="$HOME/downloads/$release"
 		
-		sed "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
+		sed -i "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
 		
 	fi
 	
 	# testing
+	less "$HOME/downloads/$release/MD5SUMS"
+	less "$HOME/downloads/$release/SHA512SUMS"
 	exit 1
 }
 

@@ -19,7 +19,7 @@ pre_reqs()
 	#check for unzip
 	
 	pkg_result=$(which unzip)
-	if [[ "pkg_result" == "" ]]; then
+	if [[ "$pkg_result" == "" ]]; then
 		sudo apt-get install unzip
 	fi
 }
@@ -43,10 +43,10 @@ image_drive()
 			read -erp "Choice: " drive_choice
 			
 			echo -e "==> Formatting drive"
-			parted $drive_choice mkpart primary fat32
+			parted "$drive_choice" mkpart primary fat32
 			
 			echo -e "\n==> Installing release to usb drive"
-			unzip $file -d $drive_choice
+			unzip "$file" -d $drive_choice
 			
 		elif [[ "$file" == "SteamOSDVD.iso" ]]; then
 		
@@ -58,7 +58,7 @@ image_drive()
 			read -erp "Choice: " drive_choice
 			
 			echo -e "\n==> Installing release to usb drive"
-			sudo dd if=$file of=$drive_choice
+			sudo dd if="$file" of="$drive_choice"
 			
 		else
 		
@@ -165,9 +165,8 @@ download_release()
 	#trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
 	#trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
 	
-	echo $file
-	sed '/$file/!d' "$HOME/downloads/$release/MD5SUMS"
-	sed '/$file/!d' "$HOME/downloads/$release/SHA512SUMS"
+	sed "/$file/!d" "$HOME/downloads/$release/MD5SUMS"
+	sed "/$file/!d" "$HOME/downloads/$release/SHA512SUMS"
 	
 	exit 1
 }

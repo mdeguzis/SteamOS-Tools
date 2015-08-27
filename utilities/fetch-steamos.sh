@@ -108,15 +108,15 @@ download_release()
 	wget --no-clobber "$base_url/$release/SHA512SUMS"
 
 	# replace download location in integrity check files
-	orig_prefix="\/var\/www\/download"
+	orig_prefix="/var/www/download"
 	new_prefix="$HOME/downloads/$release"
 	
 	echo -e "\nold prefix is: $orig_prefix"
 	echo -e "ew prex is $new_prefix"
 	echo ""
 	
-	sed 's|$orig_prefix|$new_prefix|g' "$HOME/downloads/$release/MD5SUMS"
-	sed 's|$orig_prefix|$new_prefix|g' "$HOME/downloads/$release/SHA512SUMS"
+	sed "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/MD5SUMS"
+	sed "s|$orig_prefix|$new_prefix|g" "$HOME/downloads/$release/SHA512SUMS"
 	
 	# testing
 	exit 1

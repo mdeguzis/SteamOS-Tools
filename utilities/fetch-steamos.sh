@@ -283,7 +283,7 @@ main()
 		;;
 		
 		6)
-		base_url="http://trashcan-gaming.nl/iso/"
+		base_url="http://trashcan-gaming.nl"
 		release="iso"
 		file="vaporos2.iso"
 		md5file="vaporos2.iso.md5"

@@ -44,14 +44,14 @@ pre_reqs()
 	
 	if [[ "$distro_check" == "Debian" ]]; then
 	
-		echo -e "\nDistro detected: Debian"
+		echo -e "Distro detected: Debian"
 		# set package manager
 		pkginstall="apt-get install"
 		sudo $pkginstall unzip git
 	
 	elif [[ "$distro_check" == "Arch" ]]; then
 		
-		echo -e "\nDistro detected: Arch Linux variant"
+		echo -e "Distro detected: Arch Linux variant"
 		echo -e "Warning!: only official Valve releases are supported!"
 		sleep 5s
 		
@@ -126,7 +126,7 @@ image_drive()
 check_download_integrity()
 {
   
-	echo -e "\n==> Checking integrity of installer\n"
+	echo -e "==> Checking integrity of installer\n"
 	sleep 2s
 	
 	# remove old MD5 and SHA files

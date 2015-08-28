@@ -361,7 +361,6 @@ main()
 		file="SteamOSInstaller.zip"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
-		image_drive
 		;;
 		
 		2)
@@ -370,7 +369,6 @@ main()
 		file="SteamOSDVD.iso"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
-		image_drive
 		;;
 		
 		3)
@@ -379,7 +377,6 @@ main()
 		file="SteamOSInstaller.zip"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
-		image_drive
 		;;
 		
 		4)
@@ -388,7 +385,6 @@ main()
 		file="SteamOSDVD.iso"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
-		image_drive
 		;;
 		
 		5)
@@ -399,7 +395,6 @@ main()
 		shafile="none"
 		# set github default action
 		pull="no"
-		image_drive
 		;;
 		
 		6)
@@ -410,7 +405,6 @@ main()
 		shafile="none"
 		# set github default action
 		pull="no"
-		image_drive
 		;;
 		
 		7)
@@ -419,7 +413,6 @@ main()
 		file="vaporos2.iso"
 		md5file="vaporos2.iso.md5"
 		shafile="none"
-		image_drive
 		;;
 		
 		8)
@@ -430,7 +423,7 @@ main()
 		shafile="none"
 		# set github default action
 		pull="no"
-		image_drive
+		
 		;;
 		
 		*)
@@ -452,6 +445,7 @@ main()
  		check_file_existance
  		download_release
 		check_download_integrity
+		image_drive
 		
  	fi
  	

@@ -415,8 +415,8 @@ main()
 		distro="stephensons"
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="alchemist"
-		file="stephensons-rocket/rocket.iso"
-		md5file="stephensons-rocket/rocket.iso.md5"
+		file="rocket.iso"
+		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action
 		pull="no"
@@ -426,8 +426,8 @@ main()
 		dsitro="stephensons"
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="brewmaster"
-		file="stephensons-rocket/rocket.iso"
-		md5file="stephensons-rocket/rocket.iso.md5"
+		file="rocket.iso"
+		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action
 		pull="no"

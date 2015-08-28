@@ -289,7 +289,7 @@ download_release()
 		if [[ "$pull" == "no" ]]; then
 		
 			# prereqs
-			sudo $pkginstall apt-utils xorriso syslinux realpath
+			sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
 			
 			# clone
 			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
@@ -301,7 +301,7 @@ download_release()
 		elif [[ "$pull" == "yes" ]]; then
 			
 			# prereqs
-			sudo $pkginstall apt-utils xorriso syslinux realpath
+			sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
 			
 			# update repo
 			cd stephensons-rocket
@@ -361,7 +361,7 @@ main()
 		file="SteamOSInstaller.zip"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
-		#image_drive
+		image_drive
 		;;
 		
 		2)
@@ -370,7 +370,7 @@ main()
 		file="SteamOSDVD.iso"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
-		#image_drive
+		image_drive
 		;;
 		
 		3)
@@ -379,7 +379,7 @@ main()
 		file="SteamOSInstaller.zip"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
-		#image_drive
+		image_drive
 		;;
 		
 		4)
@@ -388,7 +388,7 @@ main()
 		file="SteamOSDVD.iso"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
-		#image_drive
+		image_drive
 		;;
 		
 		5)
@@ -399,7 +399,7 @@ main()
 		shafile="none"
 		# set github default action
 		pull="no"
-		#image_drive
+		image_drive
 		;;
 		
 		6)
@@ -410,7 +410,7 @@ main()
 		shafile="none"
 		# set github default action
 		pull="no"
-		#image_drive
+		image_drive
 		;;
 		
 		7)
@@ -419,7 +419,7 @@ main()
 		file="vaporos2.iso"
 		md5file="vaporos2.iso.md5"
 		shafile="none"
-		#image_drive
+		image_drive
 		;;
 		
 		8)
@@ -430,7 +430,7 @@ main()
 		shafile="none"
 		# set github default action
 		pull="no"
-		#image_drive
+		image_drive
 		;;
 		
 		*)

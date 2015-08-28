@@ -261,7 +261,7 @@ check_file_existance()
 	# check for file existance (Valve releases)
 	if [[ -f "$HOME/downloads/$release/$file" ]]; then
 	
-		echo -e "\n$file exists in destination directory\nOverwrite? (y/n)\n"
+		echo -e "$file exists in destination directory\nOverwrite? (y/n)\n"
 		read -erp "Choice: " rdl_choice
 		echo ""
 		

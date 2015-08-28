@@ -7,7 +7,7 @@
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #			to specified directory and run SHA512 checks against them.
 #			Allows user to then image/unzip the installer to their USB
-#			drive.
+#			drive. This NOT associated with Valve whatsover.
 #
 # Usage:      		./fetch-steamos.sh 
 #			./fetch-steamos.sh --help
@@ -30,6 +30,8 @@ help()
 	./fetch-steamos.sh 		-fetch release, checked for file integrity
 	./fetch-steamos.sh --help	-show this help file
 	./fetch-steamos.sh --checkonly	-Check existing release files (if exist)
+	
+	This utility is NOT associated with Valve whatsover.
 	
 	EOF
 	

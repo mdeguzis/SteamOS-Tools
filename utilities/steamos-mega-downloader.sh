@@ -147,7 +147,7 @@ check_download_integrity()
 	# download shasum
 	if [[ "$shafile" != "none" ]];then
 	
-		if [[ $file == "$stephensons-rocket/rocket.iso" ]]; then
+		if [[ "$distro" == "$stephensons"  ]]; then
 		
 			# pull to update files
 			git pull
@@ -175,7 +175,11 @@ check_download_integrity()
 		orig_prefix="/var/www/download"
 		#new_prefix="$HOME/downloads/$release"
 		
-		sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$shafile"
+		if [[ "$distro" != "$stephensons" ]]; then
+		
+			sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$shafile"
+			
+		fi
 	
 	fi
 	
@@ -187,10 +191,10 @@ check_download_integrity()
   
 	if [[ "$md5file" != "none" ]];then
 	
-		if [[ "$file" != "$stephensons-rocket/rocket.iso" ]]; then
+		if [[ "$distro" != "$stephensons" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
-			sed -i "/$file/!d" $md5file
+			"$distro" -i "/$file/!d" $md5file
 			
 		fi
 	
@@ -201,10 +205,10 @@ check_download_integrity()
 	
 	if [[ "$shafile" != "none" ]];then
 	
-		if [[ "$file" != "$stephensons-rocket/rocket.iso" ]]; then
+		if [[ "$distro" != "$stephensons"  ]]; then
 		
 			# strip extra line(s) from Valve checksum file
-			sed -i "/$file/!d" $shafile
+			"$distro" -i "/$file/!d" $shafile
 			
 		fi
 		echo -e "\nSHA512 Check:"
@@ -300,7 +304,7 @@ download_release()
 	
 		wget --no-clobber "$base_url/$release/$file"
 	
-	elif [[ "$file" == "stephensons.iso" ]]; then 
+	elif [[ "$distro" != "$stephensons"  ]]; then 
 		
 		if [[ "$pull" == "no" ]]; then
 		
@@ -372,6 +376,7 @@ main()
 	case "$rel_choice" in
 	
 		1)
+		distro="official"
 		base_url="repo.steampowered.com/download"
 		release="alchemist"
 		file="SteamOSInstaller.zip"
@@ -380,6 +385,7 @@ main()
 		;;
 		
 		2)
+		distro="official"
 		base_url="repo.steampowered.com/download"
 		release="alchemist"
 		file="SteamOSDVD.iso"
@@ -388,6 +394,7 @@ main()
 		;;
 		
 		3)
+		distro="official"
 		base_url="repo.steampowered.com/download"
 		release="brewmaster"
 		file="SteamOSInstaller.zip"
@@ -396,6 +403,7 @@ main()
 		;;
 		
 		4)
+		distro="official"
 		base_url="repo.steampowered.com/download"
 		release="brewmaster"
 		file="SteamOSDVD.iso"
@@ -404,6 +412,7 @@ main()
 		;;
 		
 		5)
+		distro="stephensons"
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="alchemist"
 		file="stephensons-rocket/rocket.iso"
@@ -414,6 +423,7 @@ main()
 		;;
 		
 		6)
+		dsitro="stephensons"
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="brewmaster"
 		file="stephensons-rocket/rocket.iso"
@@ -424,6 +434,7 @@ main()
 		;;
 		
 		7)
+		distro="vaporos"
 		base_url="http://trashcan-gaming.nl"
 		release="iso"
 		file="vaporos2.iso"
@@ -432,6 +443,7 @@ main()
 		;;
 		
 		8)
+		distro="vaporos-mod"
 		base_url="https://github.com/sharkwouter/vaporos-mod"
 		release="iso"
 		file="vaporos2.iso"

@@ -187,8 +187,12 @@ check_download_integrity()
   
 	if [[ "$md5file" != "none" ]];then
 	
-		sed -i "/$file/!d" $md5file
-		sed -i "/$file/!d" $shafile
+		if [[ "$file" != ""$stephensons-rocket/rocket.iso" ]]; then
+		
+			# strip extra line(s) from Valve checksum file
+			sed -i "/$file/!d" $md5file
+			
+		fi
 	
 		echo -e "\nMD5 Check:"
 		md5sum -c "$HOME/downloads/$release/$md5file"
@@ -197,9 +201,12 @@ check_download_integrity()
 	
 	if [[ "$shafile" != "none" ]];then
 	
-		sed -i "/$file/!d" $md5file
-		sed -i "/$file/!d" $shafile
-	
+		if [[ "$file" != ""$stephensons-rocket/rocket.iso" ]]; then
+		
+			# strip extra line(s) from Valve checksum file
+			sed -i "/$file/!d" $shafile
+			
+		fi
 		echo -e "\nSHA512 Check:"
 		sha512sum -c "$HOME/downloads/$release/$shafile"
 		

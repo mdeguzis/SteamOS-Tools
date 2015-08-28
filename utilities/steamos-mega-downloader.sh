@@ -296,11 +296,11 @@ download_release()
 	
 	# download requested file (Valve official)
 	
-	if [[ "$file" == "SteamOSInstaller.zip" || "file" == "SteamOSDVD.iso" ]]; then
+	if [[ "$distro" == "valve_official" ]]; then
 	
 		wget --no-clobber "$base_url/$release/$file"
 		
-	elif [[ "$file" == "vaporos2.iso" ]]; then
+	elif [[ "$distro" == "vaporos" ]]; then
 	
 		wget --no-clobber "$base_url/$release/$file"
 
@@ -315,8 +315,19 @@ download_release()
 			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
 			cd stephensons-rocket
 			
-			# generate iso image
-			./gen.sh
+			if [[ "$distro" == "vaporos-mod" ]]; then
+			
+				# clone sharkwouter's repo and build
+				git clone $base_url
+				cd ..
+				./gen.sh -n "VaporOS" vaporos-mod
+				
+			else
+			
+				# generate "stock" iso image
+				./gen.sh
+				
+			fi
 			
 			# move iso up a dir for easy md4/sha checks
 			mv "rocket.iso" $base_url/$release
@@ -381,7 +392,7 @@ main()
 	case "$rel_choice" in
 	
 		1)
-		distro="official"
+		distro="valve_official"
 		base_url="repo.steampowered.com/download"
 		release="alchemist"
 		file="SteamOSInstaller.zip"
@@ -390,7 +401,7 @@ main()
 		;;
 		
 		2)
-		distro="official"
+		distro="valve_official"
 		base_url="repo.steampowered.com/download"
 		release="alchemist"
 		file="SteamOSDVD.iso"
@@ -399,16 +410,15 @@ main()
 		;;
 		
 		3)
-		distro="official"
+		distro="valve_official"
 		base_url="repo.steampowered.com/download"
 		release="brewmaster"
 		file="SteamOSInstaller.zip"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
 		;;
-		
-		4)
-		distro="official"
+				4)
+		distro="valve_official"
 		base_url="repo.steampowered.com/download"
 		release="brewmaster"
 		file="SteamOSDVD.iso"
@@ -449,7 +459,7 @@ main()
 		
 		8)
 		distro="vaporos-mod"
-		base_url="https://github.com/sharkwouter/vaporos-mod"
+		base_url="https://github.com/sharkwouter/vaporos-mod.git"
 		release="iso"
 		file="vaporos2.iso"
 		md5file="vaporos2.iso.md5"

@@ -52,7 +52,7 @@ pre_reqs()
 	elif [[ "$distro_check" == "Arch" ]]; then
 		
 		echo -e "\nDistro detected: Arch Linux variant"
-		echo -e "Warning!: only official Valve releases are supporte for this variant!"
+		echo -e "Warning!: only official Valve releases are supported!"
 		sleep 5s
 		
 		# set package manager

@@ -147,8 +147,17 @@ check_download_integrity()
 	# download shasum
 	if [[ "$shafile" != "none" ]];then
 	
-		wget --no-clobber "$base_url/$release/$shafile"
+		if [[ $file == "$stephensons-rocket/rocket.iso" ]]; then
 		
+			# pull to update files
+			git pull
+		else
+		
+			# wget as normal
+			wget --no-clobber "$base_url/$release/$shafile"
+			
+		fi
+	
 	else
 		
 		echo -e "Integrity check skipped, no sha file to check"

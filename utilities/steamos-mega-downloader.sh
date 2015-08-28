@@ -48,6 +48,13 @@ pre_reqs()
 		# set package manager
 		pkginstall="apt-get install"
 		sudo $pkginstall unzip git
+		
+	elif [[ "$distro_check" == "SteamOS" ]]; then
+	
+		echo -e "Distro detected: SteamOS"
+		# set package manager
+		pkginstall="apt-get install"
+		sudo $pkginstall unzip git
 	
 	elif [[ "$distro_check" == "Arch" ]]; then
 		

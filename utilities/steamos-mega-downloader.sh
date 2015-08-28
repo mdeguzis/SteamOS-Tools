@@ -117,7 +117,7 @@ image_drive()
 		
 	elif [[ "$usb_choice"  == "n" ]]; then
 	
-		echo -e "\nSkipping USB installation"
+		echo -e "Skipping USB installation"
 		
 	fi
 	
@@ -390,8 +390,8 @@ main()
 		5)
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="alchemist"
-		file="stephensons.iso"
-		md5file="none"
+		file="rocket.iso"
+		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action
 		pull="no"
@@ -400,8 +400,8 @@ main()
 		6)
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="brewmaster"
-		file="stephensons.iso"
-		md5file="none"
+		file="rocket.iso"
+		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action
 		pull="no"

@@ -147,7 +147,7 @@ check_download_integrity()
 	# download shasum
 	if [[ "$shafile" != "none" ]];then
 	
-		if [[ "$distro" == "$stephensons"  ]]; then
+		if [[ "$distro" == "stephensons" ]]; then
 		
 			# pull to update files
 			git pull
@@ -191,10 +191,10 @@ check_download_integrity()
   
 	if [[ "$md5file" != "none" ]];then
 	
-		if [[ "$distro" != "$stephensons" ]]; then
+		if [[ "$distro" != "stephensons" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
-			"$distro" -i "/$file/!d" $md5file
+			sed -i "/$file/!d" $md5file
 			
 		fi
 	
@@ -205,7 +205,7 @@ check_download_integrity()
 	
 	if [[ "$shafile" != "none" ]];then
 	
-		if [[ "$distro" != "$stephensons"  ]]; then
+		if [[ "$distro" != "stephensons" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
 			"$distro" -i "/$file/!d" $shafile
@@ -303,8 +303,8 @@ download_release()
 	elif [[ "$file" == "vaporos2.iso" ]]; then
 	
 		wget --no-clobber "$base_url/$release/$file"
-	
-	elif [[ "$distro" != "$stephensons"  ]]; then 
+
+	elif [[ "$distro" != "stephensons" ]]; then 
 		
 		if [[ "$pull" == "no" ]]; then
 		

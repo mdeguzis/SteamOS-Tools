@@ -304,7 +304,7 @@ download_release()
 	
 		wget --no-clobber "$base_url/$release/$file"
 
-	elif [[ "$distro" != "stephensons" ]]; then 
+	elif [[ "$distro" == "stephensons" ]]; then 
 		
 		if [[ "$pull" == "no" ]]; then
 		

@@ -175,7 +175,7 @@ check_download_integrity()
 		orig_prefix="/var/www/download"
 		#new_prefix="$HOME/downloads/$release"
 		
-		if [[ "$distro" != "$stephensons" ]]; then
+		if [[ "$distro" != "stephensons" ]]; then
 		
 			sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$shafile"
 			
@@ -208,7 +208,7 @@ check_download_integrity()
 		if [[ "$distro" != "stephensons" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
-			"$distro" -i "/$file/!d" $shafile
+			sed -i "/$file/!d" $shafile
 			
 		fi
 		echo -e "\nSHA512 Check:"

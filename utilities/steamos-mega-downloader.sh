@@ -187,7 +187,7 @@ check_download_integrity()
   
 	if [[ "$md5file" != "none" ]];then
 	
-		if [[ "$file" != ""$stephensons-rocket/rocket.iso" ]]; then
+		if [[ "$file" != "$stephensons-rocket/rocket.iso" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
 			sed -i "/$file/!d" $md5file
@@ -201,7 +201,7 @@ check_download_integrity()
 	
 	if [[ "$shafile" != "none" ]];then
 	
-		if [[ "$file" != ""$stephensons-rocket/rocket.iso" ]]; then
+		if [[ "$file" != "$stephensons-rocket/rocket.iso" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
 			sed -i "/$file/!d" $shafile

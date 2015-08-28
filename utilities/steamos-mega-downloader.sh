@@ -85,22 +85,22 @@ image_drive()
 			echo -e "\n==>Showing current usb drives\n"
 			lsblk
 			
-			echo -e "\n==> Enter drive path: "
+			echo -e "\n==> Enter path drive to drive (usually /run/media/...):"
 			sleep 0.5s
-			read -erp "Choice: " drive_choice
+			read -erp "Choice: " dir_choice
 			
 			echo -e "==> Formatting drive"
 			parted "$drive_choice" mkpart primary fat32
 			
 			echo -e "\n==> Installing release to usb drive"
-			unzip "$file" -d $drive_choice
+			unzip "$file" -d $dir_choice
 			
 		elif [[ "$file" == "SteamOSDVD.iso" ]]; then
 		
 			echo -e "\n==>Showing current usb drives\n"
 			lsblk
 			
-			echo -e "\n==> Enter drive path: "
+			echo -e "\n==> Enter drive path (e.g. /dev/sdX):"
 			sleep 0.5s
 			read -erp "Choice: " drive_choice
 			

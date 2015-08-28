@@ -318,6 +318,10 @@ download_release()
 			# generate iso image
 			./gen.sh
 			
+			# move iso up a dir for easy md4/sha checks
+			mv "rocket.iso" $base_url/$release
+			mv "rocket.iso.md5" $base_url/$release
+			
 		elif [[ "$pull" == "yes" ]]; then
 			
 			# prereqs

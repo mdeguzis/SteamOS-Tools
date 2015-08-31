@@ -49,6 +49,8 @@ arch_debian_docker()
 	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/gnupg1.tar.gz"
 	tar -C /tmp/ -xzvf /tmp/gnupg1.tar.gz
 	cd /tmp/gnupg1
+	# correct PGP key
+	sed -i 's|D238EA65D64C67ED4C3073F28A861B1C7EFD60D9|2071B08A33BD3F06'
 	makepkg -sri
 	rm -rf /tmp/gnupg1/
 	

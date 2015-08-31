@@ -322,36 +322,44 @@ download_release()
 
 	elif [[ "$distro" == "stephensons" ]]; then 
 		
-		if [[ "$pull" == "no" ]]; then
+		# prereqs for Arch/Non-arch users
 		
-			# prereqs
+		if [[ "$distro_check" != "Arch" ]]; then
+		
+			# standard deps
+			sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
+		
+		elif [[ "$distro_check" == "Arch" ]]; then
 			
-			if [[ "$distro_check" != "Arch" ]]; then
+			# standard deps
+			sudo $pkginstall xorriso syslinux realpath isolinux
 			
-				# standard deps
-				sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
-				
-			elif [[ "$distro_check" == "Arch" ]]; then
+			# apt
+			pkg_chk=$(pacman -Q apt)
+			if [[ "$pkg_chk" == "" ]]; then
 			
-				# standard deps
-				sudo $pkginstall xorriso syslinux realpath isolinux
-				
-				# apt
-				pkg_chk=$(pacman -Q apt)
-				if [[ "$pkg_chk" == "" ]]; then
-					mkdir -p /tmp/apt
-					wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/apt.tar.gz"
-					tar -C /tmp/ -xzvf /tmp/apt.tar.gz
-					cd /tmp/apt
-					makepkg -sri
-					rm -rf /tmp/apt/
-				fi
+				mkdir -p /tmp/apt
+				wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/apt.tar.gz"
+				tar -C /tmp/ -xzvf /tmp/apt.tar.gz
+				cd /tmp/apt
+				makepkg -sri
+				rm -rf /tmp/apt/
 				
 			fi
-			
+		
+		fi
+		
+		# user did not request git pull for Stephenson's repo
+		if [[ "$pull" == "no" ]]; then
+		
 			# clone
 			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
 			cd stephensons-rocket
+			
+			# remove apt-utils req for arch users (provided by apt AUR package)
+			if [[ "$distro_check" == "Arch" ]]; then
+				sed -i 's|apt-utils ||g' gen.sh
+			fi
 			
 			if [[ "$distro" == "vaporos-mod" ]]; then
 			
@@ -371,6 +379,7 @@ download_release()
 			mv "rocket.iso" $base_url/$release
 			mv "rocket.iso.md5" $base_url/$release
 			
+		# user requested git pull for stephensons repo
 		elif [[ "$pull" == "yes" ]]; then
 			
 			# prereqs
@@ -379,6 +388,11 @@ download_release()
 			# update repo
 			cd stephensons-rocket
 			git pull
+			
+			# remove apt-utils req for arch users (provided by apt AUR package)
+			if [[ "$distro_check" == "Arch" ]]; then
+				sed -i 's|apt-utils ||g' gen.sh
+			fi
 			
 			# generate iso image
 			./gen.sh
@@ -478,7 +492,7 @@ main()
 		;;
 		
 		6)
-		dsitro="stephensons"
+		distro="stephensons"
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="brewmaster"
 		file="rocket.iso"

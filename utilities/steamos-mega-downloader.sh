@@ -16,6 +16,29 @@
 
 arg1="$1"
 
+arch_debian_docker()
+{
+	
+	# build debian docker (must have AUR helper pacaur for now)
+	
+	# pre reqs
+	$pkginstall --needed base-devel
+	
+	# cower
+	mkdir -p /tmp/cower
+	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz"
+	tar -xzvf -C /tmp/cower /tmp/cower.tar.gz
+	cd /tmp/cower
+	makepkg -sri
+	
+	#mkdir wheezy-chroot
+	#debootstrap wheezy ./wheezy-chroot http://http.debian.net/debian/
+	#cd wheezy-chroot
+	#tar cpf - . | docker import - debian
+	#docker run -t -i --rm debian /bin/bash
+	
+}
+
 help()
 {
 	
@@ -63,6 +86,10 @@ pre_reqs()
 		echo -e "Distro detected: Arch Linux variant"
 		echo -e "Warning!: only official Valve releases are supported!"
 		sleep 5s
+		
+		# testing only
+		# Possibly build Debian docker container to do this
+		arch_debian_docker
 		
 		# set package manager
 		pkginstall="pacman -S"

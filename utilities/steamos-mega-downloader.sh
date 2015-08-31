@@ -41,9 +41,12 @@ pre_reqs()
 {
 	echo -e "\n==> Checking for prerequisite packages\n"
 	
-	#check for unzip
+	#check for distro name
 	distro_check=$(lsb_release -i | cut -c 17-25)
 	
+	############################################
+	# Debian
+	############################################
 	if [[ "$distro_check" == "Debian" ]]; then
 	
 		echo -e "Distro detected: Debian"
@@ -59,6 +62,9 @@ pre_reqs()
 			fi
 		done
 		
+	############################################
+	# SteamOS
+	############################################
 	elif [[ "$distro_check" == "SteamOS" ]]; then
 	
 		echo -e "Distro detected: SteamOS"
@@ -74,6 +80,9 @@ pre_reqs()
 			fi
 		done
 	
+	############################################
+	# Arch Linux
+	############################################
 	elif [[ "$distro_check" == "Arch" ]]; then
 		
 		echo -e "Distro detected: Arch Linux"
@@ -102,7 +111,10 @@ pre_reqs()
 			rm -rf /tmp/apt/
 			
 		fi
-		
+	
+	############################################
+	# All Others
+	############################################	
 	else
 	
 		echo -e "Warning!: Distro not supported"

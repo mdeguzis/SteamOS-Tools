@@ -24,7 +24,7 @@ arch_debian_docker()
 	# build debian docker (must have AUR helper pacaur for now)
 	
 	# pre reqs
-	$pkginstall --needed base-devel docker
+	$pkginstall base-devel docker
 	
 	#######################################
 	# process  docker packages
@@ -33,6 +33,7 @@ arch_debian_docker()
 	###########################
 	# debootstrap
 	###########################
+	
 	mkdir -p /tmp/debootstrap
 	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/debootstrap.tar.gz"
 	tar -C /tmp/ -xzvf /tmp/debootstrap.tar.gz

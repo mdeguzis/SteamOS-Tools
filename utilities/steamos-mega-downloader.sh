@@ -289,7 +289,7 @@ check_file_existance()
 	fi
   
   	# check for git repo existance (stephesons rocket)
-  	if [[ "$git" == "yes ]]; then
+  	if [[ "$git" == "yes" ]]; then
   	
 	  	# attempt to pull the latest source first
 		echo -e "==> Attempting git pull..."

@@ -149,7 +149,7 @@ check_download_integrity()
 		
 	else
 		
-		echo -e "Integrity check skipped, no md5 file to check"
+		echo -e "MD5 Check:\nNo file to check"
 	
 	fi
 	
@@ -169,7 +169,7 @@ check_download_integrity()
 	
 	else
 		
-		echo -e "Integrity check skipped, no sha file to check"
+		echo -e "SHA check:\nNo file to check"
 	
 	fi
 	

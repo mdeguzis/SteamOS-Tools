@@ -23,9 +23,6 @@ arch_debian_docker()
 	
 	# build debian docker (must have AUR helper pacaur for now)
 	
-	# pre reqs
-	$pkginstall base-devel docker
-	
 	#######################################
 	# process  docker packages
 	#######################################

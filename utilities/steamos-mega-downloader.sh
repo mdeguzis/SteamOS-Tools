@@ -334,7 +334,7 @@ download_release()
 			# standard deps
 			deps="libisoburn syslinux coreutils rsync p7zip wget"
 			for dep in ${deps}; do
-				pkg_chk=$(pacman -Q apt)
+				pkg_chk=$(pacman -Q ${dep})
 				if [[ "$pkg_chk" == "" ]]; then
 					:
 				else

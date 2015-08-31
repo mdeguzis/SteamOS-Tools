@@ -36,13 +36,13 @@ arch_debian_docker()
 	makepkg -sri
 	rm -rf /tmp/debootstrap/
 	
-	# debian-keyring
-	mkdir -p /tmp/debian-keyring
-	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/debian-keyring.tar.gz"
-	tar -C /tmp/ -xzvf /tmp/debian-keyring.tar.gz
-	cd /tmp/debian-keyring
+	# ubuntu-keyring
+	mkdir -p /tmp/ubuntu-keyring
+	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/ubuntu-keyring.tar.gz"
+	tar -C /tmp/ -xzvf /tmp/ubuntu-keyring.tar.gz
+	cd /tmp/ubuntu-keyring
 	makepkg -sri
-	rm -rf /tmp/debian-keyring/
+	rm -rf /tmp/ubuntu-keyring/
 	
 	# gnupg1
 	mkdir -p /tmp/gnupg1
@@ -51,6 +51,8 @@ arch_debian_docker()
 	cd /tmp/gnupg1
 	makepkg -sri
 	rm -rf /tmp/gnupg1/
+	
+	exit 1
 	
 	#######################################
 	# make debian environment

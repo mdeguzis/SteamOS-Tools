@@ -328,7 +328,12 @@ download_release()
 				echo -e "\n==Info==\nGit directory pull failed. Removing...\n"
 				sleep 2s
 				rm -rf "$HOME/downloads/$release/$distro"
+			
 	
+			else
+			
+				# shot output
+				echo "$output\n"
 			fi
 		
 		else

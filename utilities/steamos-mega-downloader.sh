@@ -332,7 +332,14 @@ download_release()
 		elif [[ "$distro_check" == "Arch" ]]; then
 			
 			# standard deps
-			sudo $pkginstall xorriso syslinux realpath isolinux
+			deps="libisoburn syslinux coreutils rsync p7zip wget"
+			for dep in ${deps}; do
+				if pacman -Q ${dep} >/dev/null 2>&1;
+					:
+				else
+					$pkginstall  ${dep}
+				fi
+			done
 			
 			# apt
 			pkg_chk=$(pacman -Q apt)

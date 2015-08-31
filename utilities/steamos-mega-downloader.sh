@@ -328,6 +328,12 @@ download_release()
 			
 			if [[ "$distro_check" != "Arch" ]]; then
 			
+				# standard deps
+				sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
+				
+			elif [[ "$distro_check" == "Arch" ]]; then
+			
+				# standard deps
 				sudo $pkginstall xorriso syslinux realpath isolinux
 				
 				# apt
@@ -340,11 +346,6 @@ download_release()
 					makepkg -sri
 					rm -rf /tmp/apt/
 				fi
-				
-			elif [[ "$distro_check" == "Arch" ]]; then
-			
-				# enter chroot here
-				sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
 				
 			fi
 			

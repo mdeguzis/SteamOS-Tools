@@ -334,7 +334,8 @@ download_release()
 			# standard deps
 			deps="libisoburn syslinux coreutils rsync p7zip wget"
 			for dep in ${deps}; do
-				if pacman -Q ${dep} >/dev/null 2>&1;
+				pkg_chk=$(pacman -Q apt)
+				if [[ "$pkg_chk" == "" ]]; then
 					:
 				else
 					$pkginstall  ${dep}
@@ -365,7 +366,7 @@ download_release()
 			
 			# remove apt-utils req for arch users (provided by apt AUR package)
 			if [[ "$distro_check" == "Arch" ]]; then
-				sed -i 's|apt-utils ||g' gen.sh
+				sed -i 's|apt-utils xorriso syslinux rsync wget p7zip-full realpath||g' gen.sh
 			fi
 			
 			if [[ "$distro" == "vaporos-mod" ]]; then
@@ -396,9 +397,9 @@ download_release()
 			cd stephensons-rocket
 			git pull
 			
-			# remove apt-utils req for arch users (provided by apt AUR package)
+			# remove apt-specific packages, handled in prereqs above
 			if [[ "$distro_check" == "Arch" ]]; then
-				sed -i 's|apt-utils ||g' gen.sh
+				sed -i 's|apt-utils xorriso syslinux rsync wget p7zip-full realpath||g' gen.sh
 			fi
 			
 			# generate iso image

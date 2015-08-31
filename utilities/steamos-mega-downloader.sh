@@ -311,7 +311,7 @@ download_release()
 		
 		# try git pull first
 		
-		if [[ -d "$HOME/downloads/$release/$distro" ]]; the
+		if [[ -d "$HOME/downloads/$release/$distro" ]]; then
 		
 			echo -e "Git DIR exists, trying remote pull"
 		

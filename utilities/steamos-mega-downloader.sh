@@ -28,7 +28,9 @@ arch_debian_docker()
 	# process  docker packages
 	#######################################
 	
+	###########################
 	# debootstrap
+	###########################
 	mkdir -p /tmp/debootstrap
 	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/debootstrap.tar.gz"
 	tar -C /tmp/ -xzvf /tmp/debootstrap.tar.gz
@@ -36,7 +38,9 @@ arch_debian_docker()
 	makepkg -sri
 	rm -rf /tmp/debootstrap/
 	
+	###########################
 	# ubuntu-keyring
+	###########################
 	mkdir -p /tmp/ubuntu-keyring
 	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/ubuntu-keyring.tar.gz"
 	tar -C /tmp/ -xzvf /tmp/ubuntu-keyring.tar.gz
@@ -44,13 +48,22 @@ arch_debian_docker()
 	makepkg -sri
 	rm -rf /tmp/ubuntu-keyring/
 	
+	###########################
 	# gnupg1
+	###########################
+	
+	# correct PGP key (invalid on current 20150831 pkgbuild)
+	gpg_chk=$(sudo pacman-key -l| grep 33BD3F06)
+	if [[ "$gpg_chk" == "" ]]; then
+		sudo pacman-key -r 2071B08A33BD3F06
+	fi
+	
+	# build
 	mkdir -p /tmp/gnupg1
 	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/gnupg1.tar.gz"
 	tar -C /tmp/ -xzvf /tmp/gnupg1.tar.gz
 	cd /tmp/gnupg1
-	# correct PGP key
-	sed -i 's|D238EA65D64C67ED4C3073F28A861B1C7EFD60D9|2071B08A33BD3F06'
+	
 	makepkg -sri
 	rm -rf /tmp/gnupg1/
 	
@@ -384,7 +397,17 @@ download_release()
 		if [[ "$pull" == "no" ]]; then
 		
 			# prereqs
-			sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
+			
+			if [[ "$distro_check" != "Arch" ]]; then
+			
+				sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
+				
+			elif [[ "$distro_check" == "Arch" ]]; then
+			
+				# enter chroot here
+				echo "" > /dev/null
+				
+			fi
 			
 			# clone
 			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release

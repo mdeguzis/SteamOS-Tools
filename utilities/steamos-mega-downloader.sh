@@ -338,7 +338,8 @@ download_release()
 				if [[ "$pkg_chk" == "" ]]; then
 					sudo $pkginstall  ${dep}
 				else
-					echo "" > /dev/null
+					echo "package ${dep} [OK]"
+					sleep .3s
 				fi
 			done
 			

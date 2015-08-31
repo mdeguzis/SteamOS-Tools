@@ -313,11 +313,11 @@ download_release()
 		
 		if [[ -d "$HOME/downloads/$release/$distro" ]]; then
 		
-			echo -e "Git DIR exists, trying remote pull"
+			echo -e "==INFO==\nGit DIR exists, trying remote pull"
+			sleep 2s
 		
 			# change to git folder
 			cd "$HOME/downloads/$release/$distro"
-			
 			
 			# eval git status
 			output=$(git pull 2> /dev/null)

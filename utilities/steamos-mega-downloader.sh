@@ -368,7 +368,7 @@ download_release()
 			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
 			cd stephensons-rocket
 			
-			# remove apt-utils req for arch users (provided by apt AUR package)
+			# remove apt-specific packages, handled in pre_req function
 			if [[ "$distro_check" == "Arch" ]]; then
 				sed -i 's|apt-utils xorriso syslinux rsync wget p7zip-full realpath||g' gen.sh
 			fi
@@ -387,7 +387,7 @@ download_release()
 				
 			fi
 			
-			# move iso up a dir for easy md4/sha checks
+			# move iso up a dir for easy md5/sha checks
 			mv "rocket.iso" $base_url/$release
 			mv "rocket.iso.md5" $base_url/$release
 			
@@ -398,7 +398,7 @@ download_release()
 			cd stephensons-rocket
 			git pull
 			
-			# remove apt-specific packages, handled in prereqs above
+			# remove apt-specific packages, handled in pre_req function
 			if [[ "$distro_check" == "Arch" ]]; then
 				sed -i 's|apt-utils xorriso syslinux rsync wget p7zip-full realpath||g' gen.sh
 			fi

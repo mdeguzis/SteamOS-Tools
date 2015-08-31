@@ -134,22 +134,23 @@ pre_reqs()
 		# testing only
 		# Possibly build Debian docker container to do this
 		
+		# set package manager
+		pkginstall="pacman -S"
+		
 		echo -e "\n(Experimental) Build Debian Docker container for non-Valve releases? (y/n)"
 		sleep 0.3s
 		read -erp "Choice: " docker_choice
 		
 		if [[ "$docker_choice" == "y" ]]; then
+		
+			# Stephensons/VaporOS-mod vairants require apt-tools, not available for Arch Linux
+			sudo $pkginstall unzip git base-devel docker
 			arch_debian_docker
 		else
-			# do nothing
-			echo "" > /dev/null
+			# install standard set
+			sudo $pkginstall unzip git
 		fi
-		
-		# set package manager
-		pkginstall="pacman -S"
-		sudo $pkginstall unzip git
-	
-		# Stephensons/VaporOS-mod vairants require apt-tools, not available for Arch Linux
+
 		
 	else
 	

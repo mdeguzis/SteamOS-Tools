@@ -42,6 +42,11 @@ help()
 
 pre_reqs()
 {
+	# check fo existance of dirs
+	if [[ ! -d "$HOME/downloads/$release" ]]; then
+		mkdir -p "$HOME/downloads/$release"
+	fi
+	
 	echo -e "\n==> Checking for prerequisite packages\n"
 	
 	#check for distro name
@@ -280,65 +285,6 @@ check_download_integrity()
   
 }
 
-check_file_existance()
-{
-	
-	# check fo existance of dirs
-	if [[ ! -d "$HOME/downloads/$release" ]]; then
-		mkdir -p "$HOME/downloads/$release"
-	fi
-  
-  	# Check git existance (stephesons rocket / vaporos-mod)
-  	if [[ "$git" == "yes" && -d "$HOME/downloads/$release/$distro" ]]; then
-  	
-	  	# attempt to pull the latest source first
-		echo -e "==> Attempting git pull..."
-		sleep 2s
-		
-		# eval git status
-		output=$(git pull 2> /dev/null)
-		
-		# evaluate git pull. Remove, create, and clone if it fails
-		if [[ "$output" != "Already up-to-date." ]]; then
-	
-			echo -e "\n==Info==\nGit directory pull failed. Removing...\n"
-			sleep 2s
-			rm -rf "$HOME/downloads/$release/$distro"
-
-		fi
- 
-	  	
-  	
-	# check for file existance (Valve releases)
-	elif [[ "$git" == "no" && -f "$HOME/downloads/$release/$file" ]]; then
-	
-		echo -e "$file exists in destination directory\nOverwrite? (y/n)\n"
-		read -erp "Choice: " rdl_choice
-		echo ""
-		
-		if [[ "$rdl_choice" == "y" ]]; then
-		
-			# Remove file and download again
-			rm -rf "$HOME/downloads/$release/$file"
-			download_release
-			
-		else
-		
-			# Abort script and exit to prompt
-			echo -e "Skipping download..."
-			sleep 2s
-			
-		fi
-
-  	else
-  		
-  		# File does not exist, download release
-  		download_release
-  	
-  	fi
-	
-}
-
 download_release()
 {
 	
@@ -349,69 +295,74 @@ download_release()
 	
 	if [[ "$distro" == "valve_official" ]]; then
 	
+		# remove previous file
+		rm -f "$base_url/$release/$file"
+		# download
 		wget --no-clobber "$base_url/$release/$file"
 		
 	elif [[ "$distro" == "vaporos" ]]; then
 	
+		# remove previous file
+		rm -f "$base_url/$release/$file"
+		# download
 		wget --no-clobber "$base_url/$release/$file"
 
 	elif [[ "$distro" == "stephensons" ]]; then 
 		
-		# user did not request git pull for Stephenson's repo
-		if [[ "$pull" == "no" ]]; then
+		# try git pull first
 		
-			# clone
-			# use our modified repo for now, until Arch is supported
+		if [[ -d "$HOME/downloads/$release/$distro" ]]; the
+		
+			echo -e "Git DIR exists, trying remote pull"
+		
+			# change to git folder
+			cd "$HOME/downloads/$release/$distro"
+			
+			
+			# eval git status
+			output=$(git pull 2> /dev/null)
+			
+			# evaluate git pull. Remove, create, and clone if it fails
+			if [[ "$output" != "Already up-to-date." ]]; then
+		
+				echo -e "\n==Info==\nGit directory pull failed. Removing...\n"
+				sleep 2s
+				rm -rf "$HOME/downloads/$release/$distro"
+	
+			fi
+		
+		else
+			# git dir does not exist, clone
 			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
 			cd stephensons-rocket
+		
+		fi
+		
+		# remove apt-specific packages, handled in pre_req function
+		if [[ "$distro_check" == "Arch" ]]; then
+			sed -i 's|apt-utils xorriso syslinux rsync wget p7zip-full realpath||g' gen.sh
+		fi
+		
+		if [[ "$distro" == "vaporos-mod" ]]; then
+		
+			# clone sharkwouter's repo and build
+			git clone $base_url
+			cd ..
+			./gen.sh -n "VaporOS" vaporos-mod
 			
-			# remove apt-specific packages, handled in pre_req function
-			if [[ "$distro_check" == "Arch" ]]; then
-				sed -i 's|apt-utils xorriso syslinux rsync wget p7zip-full realpath||g' gen.sh
-			fi
-			
-			if [[ "$distro" == "vaporos-mod" ]]; then
-			
-				# clone sharkwouter's repo and build
-				git clone $base_url
-				cd ..
-				./gen.sh -n "VaporOS" vaporos-mod
-				
-			else
-			
-				# generate "stock" iso image
-				./gen.sh
-				
-			fi
-			
-			# move iso up a dir for easy md5/sha checks and for storage
-			mv "rocket.iso" $base_url/$release
-			mv "rocket.iso.md5" $base_url/$release
-			
-		# user requested git pull for stephensons repo
-		elif [[ "$pull" == "yes" ]]; then
-			
-			# update repo
-			cd stephensons-rocket
-			git pull
-			
-			# remove apt-specific packages, handled in pre_req function
-			if [[ "$distro_check" == "Arch" ]]; then
-				sed -i 's|apt-utils xorriso syslinux rsync wget p7zip-full realpath||g' gen.sh
-			fi
-			
-			# generate iso image
+		else
+		
+			# generate "stock" iso image
 			./gen.sh
 			
-			# move iso up a dir for easy md5/sha checks and for storage
-			mv "rocket.iso" $base_url/$release
-			mv "rocket.iso.md5" $base_url/$release
-
 		fi
+		
+		# move iso up a dir for easy md5/sha checks and for storage
+		mv "rocket.iso" $base_url/$release
+		mv "rocket.iso.md5" $base_url/$release
 		
 	fi
 }
-
 
 
 main()
@@ -496,7 +447,7 @@ main()
 		;;
 		
 		5)
-		distro="stephensons-rocket"
+		distro="stephensons"
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="alchemist"
 		file="rocket.iso"
@@ -508,7 +459,7 @@ main()
 		;;
 		
 		6)
-		distro="stephensons-rocket"
+		distro="stephensons"
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="brewmaster"
 		file="rocket.iso"
@@ -558,7 +509,6 @@ main()
  		
  	else
  		# Check for and download release
- 		check_file_existance
  		download_release
 		check_download_integrity
 		image_drive

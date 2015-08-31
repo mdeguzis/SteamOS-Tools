@@ -66,7 +66,7 @@ pre_reqs()
 				sudo apt-get install ${dep}
 			else
 				echo "package ${dep} [OK]"
-				sleep .3s
+				sleep .2s
 			fi
 		done
 		
@@ -333,7 +333,7 @@ download_release()
 			else
 			
 				# shot output
-				echo "$output\n"
+				echo -e "$output\n"
 			fi
 		
 		else

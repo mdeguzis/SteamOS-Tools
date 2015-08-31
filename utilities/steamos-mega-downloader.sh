@@ -27,7 +27,7 @@ arch_debian_docker()
 	# cower
 	mkdir -p /tmp/cower
 	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz"
-	tar -C /tmp/cower -xzvf /tmp/cower.tar.gz
+	tar -C /tmp/ -xzvf /tmp/cower.tar.gz
 	cd /tmp/cower
 	makepkg -sri
 	

@@ -362,6 +362,7 @@ download_release()
 		if [[ "$pull" == "no" ]]; then
 		
 			# clone
+			echo ""
 			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
 			cd stephensons-rocket
 			

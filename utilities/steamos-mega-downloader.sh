@@ -149,7 +149,8 @@ image_drive()
 			echo -e "\n==> Installing release to usb drive"
 			unzip "$file" -d $dir_choice
 			
-		elif [[ "$file" == "SteamOSDVD.iso" ]]; then
+		elif [[ "$file" == "SteamOSDVD.iso" ||
+			"$file" == "rocket.iso ]]; then
 		
 			echo -e "\n==>Showing current usb drives\n"
 			lsblk
@@ -160,10 +161,11 @@ image_drive()
 			
 			echo -e "\n==> Installing release to usb drive"
 			sudo dd bs=1M if="$file" of="$drive_choice"
+		
 			
 		else
 		
-			echo -e "\nAborting..."
+			echo -e "\nRelease not supported for this operation. Aborting..."
 			clear
 			exit 1
 			

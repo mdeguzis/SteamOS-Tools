@@ -16,70 +16,6 @@
 
 arg1="$1"
 
-arch_debian_docker()
-{
-	
-	echo -e "\n==> Building Debian docker container\n"
-	
-	# build debian docker (must have AUR helper pacaur for now)
-	
-	#######################################
-	# process  docker packages
-	#######################################
-	
-	###########################
-	# debootstrap
-	###########################
-	
-	mkdir -p /tmp/debootstrap
-	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/debootstrap.tar.gz"
-	tar -C /tmp/ -xzvf /tmp/debootstrap.tar.gz
-	cd /tmp/debootstrap
-	makepkg -sri
-	rm -rf /tmp/debootstrap/
-	
-	###########################
-	# ubuntu-keyring
-	###########################
-	mkdir -p /tmp/ubuntu-keyring
-	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/ubuntu-keyring.tar.gz"
-	tar -C /tmp/ -xzvf /tmp/ubuntu-keyring.tar.gz
-	cd /tmp/ubuntu-keyring
-	makepkg -sri
-	rm -rf /tmp/ubuntu-keyring/
-	
-	###########################
-	# gnupg1
-	###########################
-	
-	# correct PGP key (invalid on current 20150831 pkgbuild)
-	gpg_chk=$(sudo pacman-key -l| grep 33BD3F06)
-	if [[ "$gpg_chk" == "" ]]; then
-		sudo pacman-key -r 2071B08A33BD3F06
-	fi
-	
-	# build
-	mkdir -p /tmp/gnupg1
-	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/gnupg1.tar.gz"
-	tar -C /tmp/ -xzvf /tmp/gnupg1.tar.gz
-	cd /tmp/gnupg1
-	
-	makepkg -sri
-	rm -rf /tmp/gnupg1/
-	
-	#######################################
-	# make debian environment
-	#######################################
-	
-	mkdir -p "$HOME/wheezy-chroot"
-	debootstrap wheezy "$HOME/wheezy-chroot" http://http.debian.net/debian/
-	cd "$HOME/wheezy-chroot"
-	tar cpf - . | docker import - debian
-	docker run -t -i --rm debian /bin/bash
-	
-	exit 1
-}
-
 help()
 {
 	
@@ -125,29 +61,21 @@ pre_reqs()
 	elif [[ "$distro_check" == "Arch" ]]; then
 		
 		echo -e "Distro detected: Arch Linux"
+		
+		# May keep a distro download hosted on libregreek for VaporOS and Stephenson's Rocket
 		echo -e "Warning!: only official Valve releases are supported!"
 		sleep 5s
-		
-		# testing only
-		# Possibly build Debian docker container to do this
 		
 		# set package manager
 		pkginstall="pacman -S"
 		
-		echo -e "\n(Experimental) Build Debian Docker container for non-Valve releases? (y/n)"
-		sleep 0.3s
-		read -erp "Choice: " docker_choice
+		# install standard set
+		pkg_chk=$(pacman -Q unzip && pacman -Q git)
+		if [[ "$pkg_chk" == "" ]]; then
 		
-		if [[ "$docker_choice" == "y" ]]; then
-		
-			# Stephensons/VaporOS-mod vairants require apt-tools, not available for Arch Linux
-			sudo $pkginstall unzip git base-devel docker
-			arch_debian_docker
-		else
-			# install standard set
 			sudo $pkginstall unzip git
-		fi
 
+		fi
 		
 	else
 	

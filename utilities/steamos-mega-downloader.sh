@@ -24,12 +24,37 @@ arch_debian_docker()
 	# pre reqs
 	$pkginstall --needed base-devel
 	
-	# cower
-	mkdir -p /tmp/cower
-	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz"
-	tar -C /tmp/ -xzvf /tmp/cower.tar.gz
-	cd /tmp/cower
+	#######################################
+	# process  docker packages
+	#######################################
+	
+	# debootstrap
+	mkdir -p /tmp/debootstrap
+	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/debootstrap.tar.gz"
+	tar -C /tmp/ -xzvf /tmp/debootstrap.tar.gz
+	cd /tmp/debootstrap
 	makepkg -sri
+	rm -rf /tmp/debootstrap/
+	
+	# debian-keyring
+	mkdir -p /tmp/debian-keyring
+	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/debian-keyring.tar.gz"
+	tar -C /tmp/ -xzvf /tmp/debian-keyring.tar.gz
+	cd /tmp/debian-keyring
+	makepkg -sri
+	rm -rf /tmp/debian-keyring/
+	
+	# gnupg1
+	mkdir -p /tmp/gnupg1
+	wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/gnupg1.tar.gz"
+	tar -C /tmp/ -xzvf /tmp/gnupg1.tar.gz
+	cd /tmp/gnupg1
+	makepkg -sri
+	rm -rf /tmp/gnupg1/
+	
+	#######################################
+	# make debian environment
+	#######################################
 	
 	#mkdir wheezy-chroot
 	#debootstrap wheezy ./wheezy-chroot http://http.debian.net/debian/
@@ -83,13 +108,23 @@ pre_reqs()
 	
 	elif [[ "$distro_check" == "Arch" ]]; then
 		
-		echo -e "Distro detected: Arch Linux variant"
+		echo -e "Distro detected: Arch Linux"
 		echo -e "Warning!: only official Valve releases are supported!"
 		sleep 5s
 		
 		# testing only
 		# Possibly build Debian docker container to do this
-		arch_debian_docker
+		
+		echo -e "\n(Experimental) Build Debian Docker container for non-Valve releases? (y/n)"
+		sleep 0.3s
+		read -erp "Choice: " docker_choice
+		
+		if [[ "$docker_choice" == "y" ]]; then
+			arch_debian_docker
+		else
+			# do nothing
+			echo "" > /dev/null
+		fi
 		
 		# set package manager
 		pkginstall="pacman -S"

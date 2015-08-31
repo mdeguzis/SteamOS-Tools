@@ -292,7 +292,7 @@ check_file_existance()
   	if [[ "$git" == "yes" && -d "$HOME/downloads/$release/$distro" ]]; then
   	
 	  	# attempt to pull the latest source first
-		echo -e "\n==> Attempting git pull..."
+		echo -e "==> Attempting git pull..."
 		sleep 2s
 		
 		cd "$HOME/downloads/$release/$distro"
@@ -303,10 +303,9 @@ check_file_existance()
 		# evaluate git pull. Remove, create, and clone if it fails
 		if [[ "$output" != "Already up-to-date." ]]; then
 	
-			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
 			sleep 2s
 			rm -rf "$HOME/downloads/$release/$distro"
-			download_release
 
 		fi
  
@@ -314,7 +313,7 @@ check_file_existance()
 	 fi
   	
 	# check for file existance (Valve releases)
-	if [[ -f "$HOME/downloads/$release/$file" ]]; then
+	if [[ "$git" == "no" && -f "$HOME/downloads/$release/$file" ]]; then
 	
 		echo -e "$file exists in destination directory\nOverwrite? (y/n)\n"
 		read -erp "Choice: " rdl_choice

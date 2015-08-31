@@ -152,10 +152,10 @@ image_drive()
 			echo -e "\n==> Installing release to usb drive"
 			unzip "$file" -d $dir_choice
 			
-		elif [[ "$file" == "SteamOSDVD.iso" ||
-			"$file" == "rocket.iso ]]; then
+		elif [[ "$file" == "SteamOSDVD.iso" || \
+			$file" == "rocket.iso ]]; then
 		
-			echo -e "\n==>Showing current usb drives\n"
+			echo -e "\n==> Showing current usb drives\n"
 			lsblk
 			
 			echo -e "\n==> Enter drive path (e.g. /dev/sdX):"

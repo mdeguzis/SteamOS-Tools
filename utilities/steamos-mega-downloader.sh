@@ -19,10 +19,12 @@ arg1="$1"
 arch_debian_docker()
 {
 	
+	echo -e "\n==> Building Debian docker container\n"
+	
 	# build debian docker (must have AUR helper pacaur for now)
 	
 	# pre reqs
-	$pkginstall --needed base-devel
+	$pkginstall --needed base-devel docker
 	
 	#######################################
 	# process  docker packages
@@ -67,18 +69,17 @@ arch_debian_docker()
 	makepkg -sri
 	rm -rf /tmp/gnupg1/
 	
-	exit 1
-	
 	#######################################
 	# make debian environment
 	#######################################
 	
-	#mkdir wheezy-chroot
-	#debootstrap wheezy ./wheezy-chroot http://http.debian.net/debian/
-	#cd wheezy-chroot
-	#tar cpf - . | docker import - debian
-	#docker run -t -i --rm debian /bin/bash
+	mkdir -p "$HOME/wheezy-chroot"
+	debootstrap wheezy "$HOME/wheezy-chroot" http://http.debian.net/debian/
+	cd "$HOME/wheezy-chroot"
+	tar cpf - . | docker import - debian
+	docker run -t -i --rm debian /bin/bash
 	
+	exit 1
 }
 
 help()

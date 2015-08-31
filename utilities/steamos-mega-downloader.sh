@@ -364,8 +364,9 @@ download_release()
 		if [[ "$pull" == "no" ]]; then
 		
 			# clone
-			echo ""
-			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
+			# use our modified repo for now, until Arch is supported
+			git clone --depth=1 https://github.com/ProfessorKaos64/stephensons-rocket --branch $release
+			#git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
 			cd stephensons-rocket
 			
 			# remove apt-utils req for arch users (provided by apt AUR package)

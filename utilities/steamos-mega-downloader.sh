@@ -144,7 +144,8 @@ image_drive()
 			read -erp "Choice: " dir_choice
 			
 			echo -e "==> Formatting drive"
-			parted "$drive_choice" mkpart primary fat32
+			parted "$drive_choice" mktable msdos
+			parted "$drive_choice" mkpart primary fat32 1024 100%
 			
 			echo -e "\n==> Installing release to usb drive"
 			unzip "$file" -d $dir_choice

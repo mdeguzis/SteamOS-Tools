@@ -47,34 +47,60 @@ pre_reqs()
 	if [[ "$distro_check" == "Debian" ]]; then
 	
 		echo -e "Distro detected: Debian"
-		# set package manager
-		pkginstall="apt-get install"
-		sudo $pkginstall unzip git
+		
+		deps="libisoburn syslinux coreutils rsync p7zip wget unzip git"
+		for dep in ${deps}; do
+			pkg_chk=$(dpkg-query -s ${dep})
+			if [[ "$pkg_chk" == "" ]]; then
+				sudo apt-get install ${dep}
+			else
+				echo "package ${dep} [OK]"
+				sleep .3s
+			fi
+		done
 		
 	elif [[ "$distro_check" == "SteamOS" ]]; then
 	
 		echo -e "Distro detected: SteamOS"
-		# set package manager
-		pkginstall="apt-get install"
-		sudo $pkginstall unzip git
+		
+		deps="libisoburn syslinux coreutils rsync p7zip wget unzip git"
+		for dep in ${deps}; do
+			pkg_chk=$(dpkg-query -s ${dep})
+			if [[ "$pkg_chk" == "" ]]; then
+				sudo apt-get install ${dep}
+			else
+				echo "package ${dep} [OK]"
+				sleep .3s
+			fi
+		done
 	
 	elif [[ "$distro_check" == "Arch" ]]; then
 		
 		echo -e "Distro detected: Arch Linux"
-		
-		# May keep a distro download hosted on libregreek for VaporOS and Stephenson's Rocket
-		echo -e "Warning!: only official Valve releases are supported!"
-		sleep 5s
-		
-		# set package manager
-		pkginstall="pacman -S"
-		
-		# install standard set
-		pkg_chk=$(pacman -Q unzip && pacman -Q git)
+
+		# Check dependencies (stephensons and vaporos-mod)
+		deps="libisoburn syslinux coreutils rsync p7zip wget unzip git"
+		for dep in ${deps}; do
+			pkg_chk=$(pacman -Q ${dep})
+			if [[ "$pkg_chk" == "" ]]; then
+				sudo pacman -S  ${dep}
+			else
+				echo "package ${dep} [OK]"
+				sleep .3s
+			fi
+		done
+			
+		# apt (need for stephenson's rocket / vaporos-mod)
+		pkg_chk=$(pacman -Q apt)
 		if [[ "$pkg_chk" == "" ]]; then
 		
-			sudo $pkginstall unzip git
-
+			mkdir -p /tmp/apt
+			wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/apt.tar.gz"
+			tar -C /tmp/ -xzvf /tmp/apt.tar.gz
+			cd /tmp/apt
+			makepkg -sri
+			rm -rf /tmp/apt/
+			
 		fi
 		
 	else
@@ -322,42 +348,6 @@ download_release()
 
 	elif [[ "$distro" == "stephensons" ]]; then 
 		
-		# prereqs for Arch/Non-arch users
-		
-		if [[ "$distro_check" != "Arch" ]]; then
-		
-			# standard deps
-			sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
-		
-		elif [[ "$distro_check" == "Arch" ]]; then
-			
-			# standard deps
-			deps="libisoburn syslinux coreutils rsync p7zip wget"
-			for dep in ${deps}; do
-				pkg_chk=$(pacman -Q ${dep})
-				if [[ "$pkg_chk" == "" ]]; then
-					sudo $pkginstall  ${dep}
-				else
-					echo "package ${dep} [OK]"
-					sleep .3s
-				fi
-			done
-			
-			# apt
-			pkg_chk=$(pacman -Q apt)
-			if [[ "$pkg_chk" == "" ]]; then
-			
-				mkdir -p /tmp/apt
-				wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/apt.tar.gz"
-				tar -C /tmp/ -xzvf /tmp/apt.tar.gz
-				cd /tmp/apt
-				makepkg -sri
-				rm -rf /tmp/apt/
-				
-			fi
-		
-		fi
-		
 		# user did not request git pull for Stephenson's repo
 		if [[ "$pull" == "no" ]]; then
 		
@@ -391,9 +381,6 @@ download_release()
 			
 		# user requested git pull for stephensons repo
 		elif [[ "$pull" == "yes" ]]; then
-			
-			# prereqs
-			sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
 			
 			# update repo
 			cd stephensons-rocket

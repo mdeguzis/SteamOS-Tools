@@ -209,7 +209,7 @@ check_download_integrity()
 	# download shasum
 	if [[ "$shafile" != "none" ]];then
 	
-		if [[ "$distro" == "stephensons" ]]; then
+		if [[ "$distro" == "stephensons-rocket" ]]; then
 		
 			# pull to update files
 			git pull
@@ -237,7 +237,7 @@ check_download_integrity()
 		orig_prefix="/var/www/download"
 		#new_prefix="$HOME/downloads/$release"
 		
-		if [[ "$distro" != "stephensons" ]]; then
+		if [[ "$distro" != "stephensons-rocket" ]]; then
 		
 			sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$shafile"
 			
@@ -253,7 +253,7 @@ check_download_integrity()
   
 	if [[ "$md5file" != "none" ]];then
 	
-		if [[ "$distro" != "stephensons" ]]; then
+		if [[ "$distro" != "stephensons-rocket" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
 			sed -i "/$file/!d" $md5file
@@ -267,7 +267,7 @@ check_download_integrity()
 	
 	if [[ "$shafile" != "none" ]];then
 	
-		if [[ "$distro" != "stephensons" ]]; then
+		if [[ "$distro" != "stephensons-rocket" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
 			sed -i "/$file/!d" $shafile
@@ -289,34 +289,27 @@ check_file_existance()
 	fi
   
   	# check for git repo existance (stephesons rocket)
-  	if [[ -d "$HOME/downloads/$release/stephensons-rocket" ]]; then
+  	if [[ "$git" == "yes" && -d $HOME/downloads/$release/$distro" ]]; then
   	
-  		echo -e "\nGithub directory exists in destination directory\nRemove or pull? (r/p)\n"
-		read -erp "Choice: " rdl_choice
-		echo ""
-  	
-	  	if [[ "$rdl_choice" == "r" ]]; then
-			
-			# do not pull directory in downdload section
-			pull="no"
-			# Remove file and download again
-			rm -rf "$HOME/downloads/$release/stephensons-rocket"
-			download_release
-				
-		elif [[ "$rdl_choice" == "p" ]]; then
-				
-			# pull directory in downdload section
-			pull="yes"
-			# Abort script and exit to prompt
-			echo -e "Skipping download..."
-			sleep 2s
+	  	# attempt to pull the latest source first
+		echo -e "\n==> Attempting git pull..."
+		sleep 2s
+		
+		cd "$HOME/downloads/$release/$distro"
+		
+		# eval git status
+		output=$(git pull 2> /dev/null)
+		
+		# evaluate git pull. Remove, create, and clone if it fails
+		if [[ "$output" != "Already up-to-date." ]]; then
 	
-	  	else
-	  		
-	  		# File does not exist, download release
-	  		download_release
-	  	
-	  	fi
+			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+			sleep 2s
+			rm -rf "$HOME/downloads/$release/$distro"
+			download_release
+
+		fi
+ 
 	  	
 	 fi
   	
@@ -471,6 +464,7 @@ main()
 		base_url="repo.steampowered.com/download"
 		release="alchemist"
 		file="SteamOSInstaller.zip"
+		git="no"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
 		;;
@@ -480,6 +474,7 @@ main()
 		base_url="repo.steampowered.com/download"
 		release="alchemist"
 		file="SteamOSDVD.iso"
+		git="no"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
 		;;
@@ -489,23 +484,27 @@ main()
 		base_url="repo.steampowered.com/download"
 		release="brewmaster"
 		file="SteamOSInstaller.zip"
+		git="no"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
 		;;
-				4)
+		
+		4)
 		distro="valve_official"
 		base_url="repo.steampowered.com/download"
 		release="brewmaster"
 		file="SteamOSDVD.iso"
+		git="no"
 		md5file="MD5SUMS"
 		shafile="SHA512SUMS"
 		;;
 		
 		5)
-		distro="stephensons"
+		distro="stephensons-rocket"
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="alchemist"
 		file="rocket.iso"
+		git="yes"
 		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action
@@ -513,10 +512,11 @@ main()
 		;;
 		
 		6)
-		distro="stephensons"
+		distro="stephensons-rocket"
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="brewmaster"
 		file="rocket.iso"
+		git="yes"
 		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action
@@ -528,6 +528,7 @@ main()
 		base_url="http://trashcan-gaming.nl"
 		release="iso"
 		file="vaporos2.iso"
+		git="no"
 		md5file="vaporos2.iso.md5"
 		shafile="none"
 		;;
@@ -537,6 +538,7 @@ main()
 		base_url="https://github.com/sharkwouter/vaporos-mod.git"
 		release="iso"
 		file="vaporos2.iso"
+		git="yes"
 		md5file="vaporos2.iso.md5"
 		shafile="none"
 		# set github default action

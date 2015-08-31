@@ -338,7 +338,7 @@ download_release()
 				if [[ "$pkg_chk" == "" ]]; then
 					:
 				else
-					$pkginstall  ${dep}
+					sudo $pkginstall  ${dep}
 				fi
 			done
 			

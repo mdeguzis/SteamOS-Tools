@@ -288,14 +288,12 @@ check_file_existance()
 		mkdir -p "$HOME/downloads/$release"
 	fi
   
-  	# check for git repo existance (stephesons rocket)
-  	if [[ "$git" == "yes" ]]; then
+  	# Check git existance (stephesons rocket / vaporos-mod)
+  	if [[ "$git" == "yes" && -d "$HOME/downloads/$release/$distro" ]]; then
   	
 	  	# attempt to pull the latest source first
 		echo -e "==> Attempting git pull..."
 		sleep 2s
-		
-		cd "$HOME/downloads/$release/$distro"
 		
 		# eval git status
 		output=$(git pull 2> /dev/null)
@@ -303,7 +301,7 @@ check_file_existance()
 		# evaluate git pull. Remove, create, and clone if it fails
 		if [[ "$output" != "Already up-to-date." ]]; then
 	
-			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
+			echo -e "\n==Info==\nGit directory pull failed. Removing...\n"
 			sleep 2s
 			rm -rf "$HOME/downloads/$release/$distro"
 
@@ -312,7 +310,7 @@ check_file_existance()
 	  	
   	
 	# check for file existance (Valve releases)
-	elif [[ "$git" == "no" &&-f "$HOME/downloads/$release/$file" ]]; then
+	elif [[ "$git" == "no" && -f "$HOME/downloads/$release/$file" ]]; then
 	
 		echo -e "$file exists in destination directory\nOverwrite? (y/n)\n"
 		read -erp "Choice: " rdl_choice

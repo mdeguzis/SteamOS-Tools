@@ -320,7 +320,7 @@ download_release()
 			cd "$HOME/downloads/$release/$distro"
 			
 			# eval git status
-			output=$(git pull 2> /dev/null)
+			output=$(git pull)
 			
 			# evaluate git pull. Remove, create, and clone if it fails
 			if [[ "$output" != "Already up-to-date." ]]; then

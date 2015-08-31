@@ -307,7 +307,7 @@ download_release()
 		# download
 		wget --no-clobber "$base_url/$release/$file"
 
-	elif [[ "$distro" == "stephensons" ]]; then 
+	elif [[ "$distro" == "stephensons-rocket" ]]; then 
 		
 		# try git pull first
 		
@@ -447,7 +447,7 @@ main()
 		;;
 		
 		5)
-		distro="stephensons"
+		distro="stephensons-rocket"
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="alchemist"
 		file="rocket.iso"
@@ -459,7 +459,7 @@ main()
 		;;
 		
 		6)
-		distro="stephensons"
+		distro="stephensons-rocket"
 		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="brewmaster"
 		file="rocket.iso"

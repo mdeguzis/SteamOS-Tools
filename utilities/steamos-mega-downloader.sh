@@ -328,12 +328,23 @@ download_release()
 			
 			if [[ "$distro_check" != "Arch" ]]; then
 			
-				sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
+				sudo $pkginstall xorriso syslinux realpath isolinux
+				
+				# apt
+				pkg_chk=$(pacman -Q apt)
+				if [[ "$pkg_chk" == "" ]]; then
+					mkdir -p /tmp/apt
+					wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/apt.tar.gz"
+					tar -C /tmp/ -xzvf /tmp/apt.tar.gz
+					cd /tmp/apt
+					makepkg -sri
+					rm -rf /tmp/apt/
+				fi
 				
 			elif [[ "$distro_check" == "Arch" ]]; then
 			
 				# enter chroot here
-				echo "" > /dev/null
+				sudo $pkginstall apt-utils xorriso syslinux realpath isolinux
 				
 			fi
 			

@@ -31,6 +31,9 @@ help()
 	./fetch-steamos.sh --help	-show this help file
 	./fetch-steamos.sh --checkonly	-Check existing release files (if exist)
 	
+	Please note:
+	Stephenson's Rocket and VaporOS are not official Valve releases of SteamOS.
+	
 	This utility is NOT associated with Valve whatsover.
 	
 	EOF
@@ -86,7 +89,7 @@ pre_reqs()
 	elif [[ "$distro_check" == "Arch" ]]; then
 		
 		echo -e "Distro detected: Arch Linux"
-		echo -e "Only official Valve releases are supported at this time!"
+		echo -e "Only official Valve releases are supported at this time!\n"
 		sleep 2s
 		
 		# Check dependencies (stephensons and vaporos-mod)

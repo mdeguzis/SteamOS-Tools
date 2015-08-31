@@ -289,7 +289,7 @@ check_file_existance()
 	fi
   
   	# check for git repo existance (stephesons rocket)
-  	if [[ "$git" == "yes" && -d "$HOME/downloads/$release/$distro" ]]; then
+  	if [[ "$git" == "yes ]]; then
   	
 	  	# attempt to pull the latest source first
 		echo -e "==> Attempting git pull..."
@@ -310,10 +310,9 @@ check_file_existance()
 		fi
  
 	  	
-	 fi
   	
 	# check for file existance (Valve releases)
-	if [[ "$git" == "no" && -f "$HOME/downloads/$release/$file" ]]; then
+	elif [[ "$git" == "no" &&-f "$HOME/downloads/$release/$file" ]]; then
 	
 		echo -e "$file exists in destination directory\nOverwrite? (y/n)\n"
 		read -erp "Choice: " rdl_choice

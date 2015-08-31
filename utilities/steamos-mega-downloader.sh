@@ -86,7 +86,9 @@ pre_reqs()
 	elif [[ "$distro_check" == "Arch" ]]; then
 		
 		echo -e "Distro detected: Arch Linux"
-
+		echo -e "Only official Valve releases are supported at this time!"
+		sleep 2s
+		
 		# Check dependencies (stephensons and vaporos-mod)
 		deps="libisoburn syslinux coreutils rsync p7zip wget unzip git"
 		for dep in ${deps}; do

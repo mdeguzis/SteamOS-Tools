@@ -389,7 +389,7 @@ download_release()
 				
 			fi
 			
-			# move iso up a dir for easy md5/sha checks
+			# move iso up a dir for easy md5/sha checks and for storage
 			mv "rocket.iso" $base_url/$release
 			mv "rocket.iso.md5" $base_url/$release
 			
@@ -407,6 +407,10 @@ download_release()
 			
 			# generate iso image
 			./gen.sh
+			
+			# move iso up a dir for easy md5/sha checks and for storage
+			mv "rocket.iso" $base_url/$release
+			mv "rocket.iso.md5" $base_url/$release
 
 		fi
 		

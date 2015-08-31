@@ -336,9 +336,9 @@ download_release()
 			for dep in ${deps}; do
 				pkg_chk=$(pacman -Q ${dep})
 				if [[ "$pkg_chk" == "" ]]; then
-					:
-				else
 					sudo $pkginstall  ${dep}
+				else
+					echo "" > /dev/null
 				fi
 			done
 			

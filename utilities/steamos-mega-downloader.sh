@@ -227,17 +227,25 @@ image_drive()
 check_download_integrity()
 {
   
-	echo -e "==> Checking integrity of installer\n"
+	echo -e "\n==> Checking integrity of installer\n"
 	sleep 2s
 	
-	# remove old MD5 and SHA files
+	# remove old MD5 and SHA files (Valve)
+	# For Stephenson's this is handled on release build
 	rm -f "$HOME/downloads/$release/$md5file"
 	rm -f "$HOME/downloads/$release/$shafile"
 	
 	# download md5sum
 	if [[ "$md5file" != "none" ]];then
 	
-		wget --no-clobber "$base_url/$release/$md5file"
+		if [[ "$distro" == "stephensons-rocket" ]]; then
+		
+			# This is handled during build
+			echo "" > /dev/null
+		else
+			wget --no-clobber "$base_url/$release/$md5file"
+			
+		fi
 		
 	else
 		
@@ -250,8 +258,8 @@ check_download_integrity()
 	
 		if [[ "$distro" == "stephensons-rocket" ]]; then
 		
-			# pull to update files
-			git pull
+			# This is handled during build
+			echo "" > /dev/null
 		else
 		
 			# wget as normal

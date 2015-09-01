@@ -239,7 +239,7 @@ check_download_integrity()
 		
 	elif [[ "$release" == "brewmaster" ]]; then
 	
-		orig_prefix="/var/www/download"
+		orig_prefix="/var/www/download/brewmaster/"
 		#new_prefix="$HOME/downloads/$release"
 		
 		if [[ "$distro" == "valve-offical" ]]; then
@@ -292,7 +292,7 @@ download_release()
 	
 	if [[ "$distro" == "valve-official" ]]; then
 	
-		# remove previous file
+		# remove previous files
 		rm -f "$base_url/$release/$file"
 		# download
 		wget --no-clobber "$base_url/$release/$file"

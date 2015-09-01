@@ -27,9 +27,9 @@ help()
 	
 	Usage:
 	
-	./fetch-steamos.sh 		-fetch release, checked for file integrity
-	./fetch-steamos.sh --help	-show this help file
-	./fetch-steamos.sh --checkonly	-Check existing release files (if exist)
+	./steamos-mega-downloader.sh 		-fetch release, checked for file integrity
+	./steamos-mega-downloader..sh --help	-show this help file
+	./steamos-mega-downloader. --checkonly	-Check existing release files (if exist)
 	
 	Please note:
 	Stephenson's Rocket and VaporOS are not official Valve releases of SteamOS.
@@ -86,7 +86,7 @@ pre_reqs()
 		
 		if [[ "$sources_check1" == "" && "$sources_check2" == "" ]]; then
 		
-			echo -e "==WARNING==\nDebian sources are needed for xorriso, add now? (y/n)"
+			echo -e "\n==WARNING==\nDebian sources are needed for xorriso, add now? (y/n)"
 			read -erp "Choice: " sources_choice
 		
 			if [[ "$sources_choice" == "y" ]]; then

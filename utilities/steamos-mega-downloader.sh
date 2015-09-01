@@ -237,6 +237,11 @@ check_download_integrity()
 		
 			# This is handled during build
 			echo "" > /dev/null
+			
+		elif [[ "$distro" == "vaporos" ]]; then
+		
+			wget --no-clobber "$base_url/iso/$shafile"
+		
 		else
 			wget --no-clobber "$base_url/$release/$md5file"
 			
@@ -376,7 +381,7 @@ download_vaporos_legacy()
 	# remove previous files if desired
 	if [[ "$HOME/downloads/$release/$file" ]]; then
 		
-		echo -e "$file exists, overwrite? (y/n)"
+		echo -e "\n$file exists, overwrite? (y/n)"
 		# get user choice
 		read -erp "Choice: " rdl_choice
 		

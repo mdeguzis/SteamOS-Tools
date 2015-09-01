@@ -230,11 +230,6 @@ check_download_integrity()
 	echo -e "\n==> Checking integrity of installer\n"
 	sleep 2s
 	
-	# remove old MD5 and SHA files (Valve)
-	# For Stephenson's this is handled on release build
-	rm -f "$HOME/downloads/$release/$md5file"
-	rm -f "$HOME/downloads/$release/$shafile"
-	
 	# download md5sum
 	if [[ "$md5file" != "none" ]];then
 	
@@ -336,6 +331,8 @@ download_release()
 	
 		# remove previous files
 		rm -f "$HOME/downloads/$release/$file"
+		rm -f "$HOME/downloads/$release/$md5file"
+		rm -f "$HOME/downloads/$release/$shafile"
 		# download
 		wget --no-clobber "$base_url/$release/$file"
 		
@@ -343,6 +340,7 @@ download_release()
 	
 		# remove previous file
 		rm -f "$HOME/downloads/$release/$file"
+		rm -f "$HOME/downloads/$release/$md5file"
 		# download
 		wget --no-clobber "$base_url/$release/$file"
 
@@ -406,8 +404,8 @@ download_release()
 		fi
 		
 		# move iso up a dir for easy md5/sha checks and for storage
-		#mv "rocket.iso" "$HOME/downloads/$release/"
-		#mv "rocket.iso.md5" "$HOME/downloads/$release/"
+		mv "rocket.iso" "$HOME/downloads/$release/"
+		mv "rocket.iso.md5" "$HOME/downloads/$release/"
 		
 	fi
 }

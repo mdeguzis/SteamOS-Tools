@@ -245,7 +245,7 @@ check_download_integrity()
 		if [[ "$distro" == "valve-offical" ]]; then
 		
 			sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$shafile"
-			sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$md5file
+			sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$md5file"
 			
 		fi
 	

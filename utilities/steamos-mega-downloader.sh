@@ -406,8 +406,8 @@ download_release()
 		fi
 		
 		# move iso up a dir for easy md5/sha checks and for storage
-		mv "rocket.iso" "$HOME/downloads/$release/"
-		mv "rocket.iso.md5" "$HOME/downloads/$release/"
+		#mv "rocket.iso" "$HOME/downloads/$release/"
+		#mv "rocket.iso.md5" "$HOME/downloads/$release/"
 		
 	fi
 }

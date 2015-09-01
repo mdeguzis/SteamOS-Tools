@@ -648,6 +648,7 @@ main()
  		
  	else
  		# Check for and download release
+ 		pre_reqs
  		download_release_main
 		check_download_integrity
 		image_drive
@@ -661,5 +662,4 @@ main()
 #######################################
 
 # MAIN
-pre_reqs
 main

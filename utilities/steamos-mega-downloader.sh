@@ -59,7 +59,7 @@ pre_reqs()
 	
 		echo -e "Distro detected: Debian"
 		
-		deps="libisoburn syslinux coreutils rsync p7zip wget unzip git"
+		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath"
 		for dep in ${deps}; do
 			pkg_chk=$(dpkg-query -s ${dep})
 			if [[ "$pkg_chk" == "" ]]; then
@@ -76,7 +76,7 @@ pre_reqs()
 	
 		echo -e "Distro detected: SteamOS"
 		
-		deps="libisoburn syslinux coreutils rsync p7zip wget unzip git"
+		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath"
 		for dep in ${deps}; do
 			pkg_chk=$(dpkg-query -s ${dep})
 			if [[ "$pkg_chk" == "" ]]; then

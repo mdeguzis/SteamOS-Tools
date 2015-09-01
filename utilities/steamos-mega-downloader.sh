@@ -255,6 +255,11 @@ check_download_integrity()
 		
 			# This is handled during build
 			echo "" > /dev/null
+			
+		elif [[ "$distro" == "vaporos" ]]; then
+		
+			wget --no-clobber "$base_url/iso/$shafile"
+		
 		else
 		
 			# wget as normal
@@ -324,10 +329,13 @@ download_valve_steamos()
 	# Downloads singular file (mainly ISO images or Valve's installers)
 	# Also used for legacy VaporOS (ISO image)
 	
+	# move to release folder
+	cd "$HOME/downloads/$release"
+	
 	# remove previous files if desired
 	if [[ "$HOME/downloads/$release/$file" ]]; then
 		
-		echo -e "$file exists, overwrite? (y/n)"
+		echo -e "\n$file exists, overwrite? (y/n)"
 		# get user choice
 		read -erp "Choice: " rdl_choice
 		
@@ -361,6 +369,9 @@ download_vaporos_legacy()
 {
 	# Downloads singular file (mainly ISO images or Valve's installers)
 	# Also used for legacy VaporOS (ISO image)
+	
+	# move to release folder
+	cd "$HOME/downloads/$release"
 	
 	# remove previous files if desired
 	if [[ "$HOME/downloads/$release/$file" ]]; then

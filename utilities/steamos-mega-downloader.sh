@@ -319,7 +319,115 @@ check_download_integrity()
   
 }
 
-download_release()
+download_file()
+{
+	# Downloads singular file (mainly ISO images or Valve's installers)
+	# Also used for legacy VaporOS (ISO image)
+	
+	# remove previous files if desired
+	if [[ "$$HOME/downloads/$release/$file" ]]; then
+		
+		echo -e "\n$file exists, overwrite? (y/n)"
+		# get user choice
+		read -erp "Choice: " rdl_choice
+		
+		if [[ "$rdl_choice" == "y" ]]; then
+		
+			# remove and download
+			rm -f "$HOME/downloads/$release/$file"
+			rm -f "$HOME/downloads/$release/$md5file"
+			rm -f "$HOME/downloads/$release/$shafile"
+			wget --no-clobber "$base_url/$release/$file"
+			
+		elif [[ "$rdl_choice" == "n" ]]; then
+			# download, no removal
+			wget --no-clobber "$base_url/$release/$file"
+	
+		fi
+	else
+	
+		# file does not exist, download
+		wget --no-clobber "$base_url/$release/$file"
+		
+	fi
+	
+}
+
+download_stephenson()
+{
+	# Downloads and builds iso/checksum for Stephenson's Rocket or
+	# VaporOS-Mod
+	
+	# try git pull first
+	
+	if [[ -d "$HOME/downloads/$release/$distro" ]]; then
+	
+		echo -e "==INFO==\nGit DIR exists, trying remote pull"
+		sleep 2s
+	
+		# change to git folder
+		cd "$HOME/downloads/$release/$distro"
+		
+		# remove previous iso and checksum (if exists)
+		rm -f "rocket.iso"
+		rm -f "rocket.iso.md5"
+		
+		# eval git status
+		output=$(git pull)
+		
+		# evaluate git pull. Remove, create, and clone if it fails
+		if [[ "$output" != "Already up-to-date." ]]; then
+	
+			echo -e "\n==Info==\nGit directory pull failed. Removing...\n"
+			sleep 2s
+			rm -rf "$HOME/downloads/$release/$distro"
+		
+
+		else
+		
+			# echo output
+			echo -e "$output\n"
+		fi
+	
+	else
+		# git dir does not exist, clone
+		git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
+		cd stephensons-rocket
+	
+	fi
+	
+	# remove apt-specific packages, handled in pre_req function
+	if [[ "$distro_check" == "Arch" ]]; then
+		sed -i 's|apt-utils xorriso syslinux rsync wget p7zip-full realpath||g' gen.sh
+	fi
+	
+	# Generate image andchecksum files
+	if [[ "$distro" == "vaporos-mod" ]]; then
+	
+		# clone sharkwouter's repo and build
+		git clone $base_url
+		cd ..
+		./gen.sh -n "VaporOS" vaporos-mod
+		
+	else
+	
+		# generate "stock" iso image
+		./gen.sh
+		
+	fi
+	
+	# move iso up a dir for easy md5/sha checks and for storage
+	echo -e "\n==> Transferring files to release folder\n"
+	sleep 2s
+	mv -v "rocket.iso" "$HOME/downloads/$release/"
+	mv -v "rocket.iso.md5" "$HOME/downloads/$release/"
+	
+	# move to release folder for checksum validation
+	cd "$HOME/downloads/$release"
+
+}
+
+download_release_main()
 {
 	
 	# enter base directory for release
@@ -329,89 +437,15 @@ download_release()
 	
 	if [[ "$distro" == "valve-official" ]]; then
 	
-		# remove previous files
-		rm -f "$HOME/downloads/$release/$file"
-		rm -f "$HOME/downloads/$release/$md5file"
-		rm -f "$HOME/downloads/$release/$shafile"
-		# download
-		wget --no-clobber "$base_url/$release/$file"
+		download_file
 		
 	elif [[ "$distro" == "vaporos" ]]; then
 	
-		# remove previous file
-		rm -f "$HOME/downloads/$release/$file"
-		rm -f "$HOME/downloads/$release/$md5file"
-		# download
-		wget --no-clobber "$base_url/$release/$file"
+		download_file
 
 	elif [[ "$distro" == "stephensons-rocket" ]]; then 
 		
-		# try git pull first
-		
-		if [[ -d "$HOME/downloads/$release/$distro" ]]; then
-		
-			echo -e "==INFO==\nGit DIR exists, trying remote pull"
-			sleep 2s
-		
-			# change to git folder
-			cd "$HOME/downloads/$release/$distro"
-			
-			# remove previous iso and checksum (if exists)
-			rm -f "rocket.iso"
-			rm -f "rocket.iso.md5"
-			
-			# eval git status
-			output=$(git pull)
-			
-			# evaluate git pull. Remove, create, and clone if it fails
-			if [[ "$output" != "Already up-to-date." ]]; then
-		
-				echo -e "\n==Info==\nGit directory pull failed. Removing...\n"
-				sleep 2s
-				rm -rf "$HOME/downloads/$release/$distro"
-			
-	
-			else
-			
-				# echo output
-				echo -e "$output\n"
-			fi
-		
-		else
-			# git dir does not exist, clone
-			git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
-			cd stephensons-rocket
-		
-		fi
-		
-		# remove apt-specific packages, handled in pre_req function
-		if [[ "$distro_check" == "Arch" ]]; then
-			sed -i 's|apt-utils xorriso syslinux rsync wget p7zip-full realpath||g' gen.sh
-		fi
-		
-		# Generate image andchecksum files
-		if [[ "$distro" == "vaporos-mod" ]]; then
-		
-			# clone sharkwouter's repo and build
-			git clone $base_url
-			cd ..
-			./gen.sh -n "VaporOS" vaporos-mod
-			
-		else
-		
-			# generate "stock" iso image
-			./gen.sh
-			
-		fi
-		
-		# move iso up a dir for easy md5/sha checks and for storage
-		echo -e "\n==> Transferring files to release folder\n"
-		sleep 2s
-		mv -v "rocket.iso" "$HOME/downloads/$release/"
-		mv -v "rocket.iso.md5" "$HOME/downloads/$release/"
-		
-		# move to release folder for checksum validation
-		cd "$HOME/downloads/$release"
+		download_stephensons
 		
 	fi
 }
@@ -560,7 +594,7 @@ main()
  		
  	else
  		# Check for and download release
- 		download_release
+ 		download_release_main
 		check_download_integrity
 		image_drive
 		

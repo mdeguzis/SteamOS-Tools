@@ -289,7 +289,7 @@ download_release()
 	
 	# download requested file (Valve official)
 	
-	if [[ "$distro" == "valve_official" ]]; then
+	if [[ "$distro" == "valve-official" ]]; then
 	
 		# remove previous file
 		rm -f "$base_url/$release/$file"
@@ -408,7 +408,7 @@ main()
 	case "$rel_choice" in
 	
 		1)
-		distro="valve_official"
+		distro="valve-official"
 		base_url="repo.steampowered.com/download"
 		release="alchemist"
 		file="SteamOSInstaller.zip"
@@ -418,7 +418,7 @@ main()
 		;;
 		
 		2)
-		distro="valve_official"
+		distro="valve-official"
 		base_url="repo.steampowered.com/download"
 		release="alchemist"
 		file="SteamOSDVD.iso"
@@ -428,7 +428,7 @@ main()
 		;;
 		
 		3)
-		distro="valve_official"
+		distro="valve-official"
 		base_url="repo.steampowered.com/download"
 		release="brewmaster"
 		file="SteamOSInstaller.zip"
@@ -438,7 +438,7 @@ main()
 		;;
 		
 		4)
-		distro="valve_official"
+		distro="valve-official"
 		base_url="repo.steampowered.com/download"
 		release="brewmaster"
 		file="SteamOSDVD.iso"

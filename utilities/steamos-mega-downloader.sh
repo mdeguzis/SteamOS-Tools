@@ -263,7 +263,8 @@ check_download_integrity()
 			
 		elif [[ "$distro" == "vaporos" ]]; then
 		
-			wget --no-clobber "$base_url/iso/$shafile"
+			# no shafile currently for release
+			echo "" > /dev/null
 		
 		else
 		
@@ -619,9 +620,9 @@ main()
 		distro="vaporos"
 		base_url="http://trashcan-gaming.nl"
 		release="Alchemist"
-		file="vaporos2.iso"
+		file="vaporos2.1.iso"
 		git="no"
-		md5file="vaporos2.iso.md5"
+		md5file="vaporos2.1.iso.md5"
 		shafile="none"
 		;;
 		
@@ -629,9 +630,9 @@ main()
 		distro="vaporos-mod"
 		base_url="https://github.com/sharkwouter/vaporos-mod.git"
 		release="alchemist"
-		file="vaporos2.iso"
+		file="vaporos.iso"
 		git="yes"
-		md5file="vaporos2.iso.md5"
+		md5file="vaporos.iso.md5"
 		shafile="none"
 		# set github default action
 		pull="no"

@@ -335,9 +335,6 @@ download_valve_steamos()
 	# Downloads singular file (mainly ISO images or Valve's installers)
 	# Also used for legacy VaporOS (ISO image)
 	
-	# move to release folder
-	cd "$HOME/downloads/$release"
-	
 	# remove previous files if desired
 	if [[ "$HOME/downloads/$release/$file" ]]; then
 		
@@ -375,9 +372,6 @@ download_vaporos_legacy()
 {
 	# Downloads singular file (mainly ISO images or Valve's installers)
 	# Also used for legacy VaporOS (ISO image)
-	
-	# move to release folder
-	cd "$HOME/downloads/$release"
 	
 	# remove previous files if desired
 	if [[ "$HOME/downloads/$release/$file" ]]; then
@@ -450,6 +444,7 @@ download_stephensons()
 	
 	else
 		# git dir does not exist, clone
+		echo ""
 		git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
 		cd stephensons-rocket
 	

@@ -404,8 +404,10 @@ download_release()
 		fi
 		
 		# move iso up a dir for easy md5/sha checks and for storage
-		mv "rocket.iso" "$HOME/downloads/$release/"
-		mv "rocket.iso.md5" "$HOME/downloads/$release/"
+		echo -e "\n==> Transferring files to release folder\n"
+		sleep 2s
+		mv -v "rocket.iso" "$HOME/downloads/$release/"
+		mv -v "rocket.iso.md5" "$HOME/downloads/$release/"
 		
 	fi
 }

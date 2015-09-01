@@ -169,6 +169,23 @@ pre_reqs()
 	
 }
 
+show_summary()
+{
+	
+	cat <<-EOF
+	------------------------------------------------------------
+	Summary
+	------------------------------------------------------------
+	
+	Your USB ddrive is ready. Please reboot your computer with the
+	USB drive connected. Either set your computer to boot from a 
+	USB device first, or select it from the boot menu.
+	
+	Please see github.com/ValveSoftware/SteamOS/wiki for more.
+	
+	EOF
+}
+
 image_drive()
 {
 	
@@ -191,8 +208,12 @@ image_drive()
 			parted "$drive_choice" mktable msdos
 			parted "$drive_choice" mkpart primary fat32 1024 100%
 			
-			echo -e "\n==> Installing release to usb drive"
+			echo -e "\n==> Installing release to usb drive\n"
+			
+			# unzip archive to drive
 			unzip "$file" -d $dir_choice
+			
+			show_summary
 			
 		elif [[ "$file" == "SteamOSDVD.iso" || \
 			$file" == "rocket.iso ]]; then
@@ -204,10 +225,13 @@ image_drive()
 			sleep 0.5s
 			read -erp "Choice: " drive_choice
 			
-			echo -e "\n==> Installing release to usb drive"
-			sudo dd bs=1M if="$file" of="$drive_choice"
-		
+			echo -e "\n==> Installing release to usb drive..."
+			echo -e "     This will take some time, please wait.\n"
 			
+			# image drive
+			sudo dd bs=1M if="$file" of="$drive_choice"
+			
+			show_summary
 		else
 		
 			echo -e "\nRelease not supported for this operation. Aborting..."

@@ -216,7 +216,7 @@ image_drive()
 			
 			echo -e "==> Formatting drive"
 			
-			umount $drive_choice" 
+			umount "$drive_choice" 
 			$format_drive "$drive_choice" 
 			
 			echo -e "\n==> Enter folder path to drive (usually /run/media/...):"

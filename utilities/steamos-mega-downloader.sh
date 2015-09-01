@@ -64,6 +64,12 @@ pre_reqs()
 			pkg_chk=$(dpkg-query -s ${dep})
 			if [[ "$pkg_chk" == "" ]]; then
 				sudo apt-get install ${dep}
+				
+				if [[ $? = 100 ]]; then
+					echo -e "Cannot install ${dep}. Please install this manually \n"
+					exit 1
+				fi
+				
 			else
 				echo "package ${dep} [OK]"
 			fi
@@ -81,6 +87,12 @@ pre_reqs()
 			pkg_chk=$(dpkg-query -s ${dep})
 			if [[ "$pkg_chk" == "" ]]; then
 				sudo apt-get install ${dep}
+				
+				if [[ $? = 100 ]]; then
+					echo -e "Cannot install ${dep}. Please install this manually \n"
+					exit 1
+				fi
+				
 			else
 				echo "package ${dep} [OK]"
 				sleep .3s
@@ -102,6 +114,12 @@ pre_reqs()
 			pkg_chk=$(pacman -Q ${dep})
 			if [[ "$pkg_chk" == "" ]]; then
 				sudo pacman -S  ${dep}
+				
+				if [[ $? = 100 ]]; then
+					echo -e "Cannot install ${dep}. Please install this manually \n"
+					exit 1
+				fi
+				
 			else
 				echo "package ${dep} [OK]"
 				sleep .3s

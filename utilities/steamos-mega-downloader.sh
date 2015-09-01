@@ -66,7 +66,6 @@ pre_reqs()
 				sudo apt-get install ${dep}
 			else
 				echo "package ${dep} [OK]"
-				sleep .2s
 			fi
 		done
 		
@@ -197,8 +196,8 @@ check_download_integrity()
 	sleep 2s
 	
 	# remove old MD5 and SHA files
-	rm -f $md5file
-	rm -f $shafile
+	rm -f "$HOME/downloads/$release/$md5file"
+	rm -f "$HOME/downloads/$release/$shafile"
 	
 	# download md5sum
 	if [[ "$md5file" != "none" ]];then
@@ -293,14 +292,14 @@ download_release()
 	if [[ "$distro" == "valve-official" ]]; then
 	
 		# remove previous files
-		rm -f "$base_url/$release/$file"
+		rm -f "$HOME/downloads/$release/$file"
 		# download
 		wget --no-clobber "$base_url/$release/$file"
 		
 	elif [[ "$distro" == "vaporos" ]]; then
 	
 		# remove previous file
-		rm -f "$base_url/$release/$file"
+		rm -f "$HOME/downloads/$release/$file"
 		# download
 		wget --no-clobber "$base_url/$release/$file"
 

@@ -357,7 +357,7 @@ download_file()
 	
 }
 
-download_stephenson()
+download_stephensons()
 {
 	# Downloads and builds iso/checksum for Stephenson's Rocket or
 	# VaporOS-Mod

@@ -80,13 +80,21 @@ pre_reqs()
 	############################################
 	elif [[ "$distro_check" == "SteamOS" ]]; then
 
-		echo -e "==WARNING==\nDebian sources are needed for xorriso, install? (y/n)"
-		read -erp "Choice: " sources_choice
-	
-		if [[ "$sources_choice" == "y" ]]; then
-			../add-debian-repos.sh
-		elif [[ "$sources_choice" == "n" ]]; then
-			echo -e "Sources addition skipped"
+		# Debian sources are required to install xorriso for Stephenson's Rocket
+		sources_check1=$(sudo find /etc/apt -type f -name "jessie*.list")
+		sources_check2=$(sudo find /etc/apt -type f -name "wheezy*.list")
+		
+		if [[ "$sources_check1" == "" && "$sources_check2" == "" ]]; then
+		
+			echo -e "==WARNING==\nDebian sources are needed for xorriso, add now? (y/n)"
+			read -erp "Choice: " sources_choice
+		
+			if [[ "$sources_choice" == "y" ]]; then
+				../add-debian-repos.sh
+			elif [[ "$sources_choice" == "n" ]]; then
+				echo -e "Sources addition skipped"
+			fi
+			
 		fi
 		
 		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath"

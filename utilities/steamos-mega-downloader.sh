@@ -97,7 +97,9 @@ pre_reqs()
 			
 		fi
 		
-		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath"
+		# Note: added isolinux, as syslinux contained within SteamOS does not contain
+		# isohdpfx.bin, but isolinux does.
+		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath isolinux"
 		for dep in ${deps}; do
 			pkg_chk=$(dpkg-query -s ${dep})
 			if [[ "$pkg_chk" == "" ]]; then

@@ -188,6 +188,16 @@ show_summary()
 
 image_drive()
 {
+	# set mkdosfs location
+	if [[ "$distro_check" == "SteamOS" || "$distro_check" == "SteamOS" ]]; then
+	
+		$format_drive="sudo /sbin/mkdosfs -F 32 -I"
+	
+	else
+		
+		$format_drive="sudo mkdosfs -F 32 -I"
+	
+	fi
 	
 	echo -e "\nImage SteamOS to drive? (y/n)"
 	read -erp "Choice: " usb_choice
@@ -200,13 +210,18 @@ image_drive()
 			echo -e "\n==>Showing current usb drives\n"
 			lsblk
 			
-			echo -e "\n==> Enter path drive to drive (usually /run/media/...):"
+			echo -e "\n==> Enter drive path (usually /run/media/...):"
 			sleep 0.5s
-			read -erp "Choice: " dir_choice
+			read -erp "Choice: " drive_choice
 			
 			echo -e "==> Formatting drive"
-			parted "$drive_choice" mktable msdos
-			parted "$drive_choice" mkpart primary fat32 1024 100%
+			
+			umount $drive_choice" 
+			$format_drive "$drive_choice" 
+			
+			echo -e "\n==> Enter folder path to drive (usually /run/media/...):"
+			sleep 0.5s
+			read -erp "Choice: " dir_choice
 			
 			echo -e "\n==> Installing release to usb drive\n"
 			

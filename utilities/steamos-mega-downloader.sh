@@ -586,7 +586,6 @@ main()
 	sleep 0.5s
 	
 	read -erp "Choice: " rel_choice
-	echo ""
 	
 	case "$rel_choice" in
 	

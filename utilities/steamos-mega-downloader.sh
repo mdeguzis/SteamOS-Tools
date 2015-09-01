@@ -167,7 +167,6 @@ pre_reqs()
 		
 	fi
 	
-	echo ""
 }
 
 image_drive()

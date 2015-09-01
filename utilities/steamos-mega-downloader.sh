@@ -340,7 +340,11 @@ download_file()
 			wget --no-clobber "$base_url/$release/$file"
 			
 		elif [[ "$rdl_choice" == "n" ]]; then
-			# download, no removal
+		
+			# remove so download sequence fetchs fresh checksums
+			rm -f "$HOME/downloads/$release/$md5file"
+			rm -f "$HOME/downloads/$release/$shafile"
+			# download main file, no removal
 			wget --no-clobber "$base_url/$release/$file"
 	
 		fi

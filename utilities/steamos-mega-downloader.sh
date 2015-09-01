@@ -460,7 +460,7 @@ main()
 	SteamOS Installer download utility | Distro:$distro_check
 	------------------------------------------------------------
 	For more information, see the wiki at: 
-	github.com/ValveSoftware/SteamOS
+	github.com/ValveSoftware/SteamOS/wiki
 	
 	EOF
 	
@@ -471,7 +471,7 @@ main()
 	
 	cat <<-EOF
 	Please choose a release to download.
-	Releases checked for integrity
+	Releases are checked for integrity
 	
 	(1) Alchemist (standard zip, UEFI only)
 	(2) Alchemist (legacy ISO, BIOS systems)

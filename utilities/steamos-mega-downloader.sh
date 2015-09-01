@@ -350,6 +350,10 @@ download_release()
 			# change to git folder
 			cd "$HOME/downloads/$release/$distro"
 			
+			# remove previous iso and checksum (if exists)
+			rm -f "rocket.iso"
+			rm -f "rocket.iso.md5"
+			
 			# eval git status
 			output=$(git pull)
 			
@@ -394,8 +398,8 @@ download_release()
 		fi
 		
 		# move iso up a dir for easy md5/sha checks and for storage
-		mv "rocket.iso" $base_url/$release
-		mv "rocket.iso.md5" $base_url/$release
+		mv "rocket.iso" "$HOME/downloads/$release/"
+		mv "rocket.iso.md5" "$HOME/downloads/$release/"
 		
 	fi
 }

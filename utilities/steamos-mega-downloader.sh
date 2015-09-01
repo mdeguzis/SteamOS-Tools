@@ -327,7 +327,7 @@ download_file()
 	# remove previous files if desired
 	if [[ "$$HOME/downloads/$release/$file" ]]; then
 		
-		echo -e "\n$file exists, overwrite? (y/n)"
+		echo -e "$file exists, overwrite? (y/n)"
 		# get user choice
 		read -erp "Choice: " rdl_choice
 		

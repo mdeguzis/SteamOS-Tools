@@ -319,13 +319,13 @@ check_download_integrity()
   
 }
 
-download_file()
+download_valve_steamos()
 {
 	# Downloads singular file (mainly ISO images or Valve's installers)
 	# Also used for legacy VaporOS (ISO image)
 	
 	# remove previous files if desired
-	if [[ "$$HOME/downloads/$release/$file" ]]; then
+	if [[ "$HOME/downloads/$release/$file" ]]; then
 		
 		echo -e "$file exists, overwrite? (y/n)"
 		# get user choice
@@ -352,6 +352,44 @@ download_file()
 	
 		# file does not exist, download
 		wget --no-clobber "$base_url/$release/$file"
+		
+	fi
+	
+}
+
+download_vaporos_legacy()
+{
+	# Downloads singular file (mainly ISO images or Valve's installers)
+	# Also used for legacy VaporOS (ISO image)
+	
+	# remove previous files if desired
+	if [[ "$HOME/downloads/$release/$file" ]]; then
+		
+		echo -e "$file exists, overwrite? (y/n)"
+		# get user choice
+		read -erp "Choice: " rdl_choice
+		
+		if [[ "$rdl_choice" == "y" ]]; then
+		
+			# remove and download
+			rm -f "$HOME/downloads/$release/$file"
+			rm -f "$HOME/downloads/$release/$md5file"
+			rm -f "$HOME/downloads/$release/$shafile"
+			wget --no-clobber "$base_url/iso/$file"
+			
+		elif [[ "$rdl_choice" == "n" ]]; then
+		
+			# remove so download sequence fetchs fresh checksums
+			rm -f "$HOME/downloads/$release/$md5file"
+			rm -f "$HOME/downloads/$release/$shafile"
+			# download main file, no removal
+			wget --no-clobber "$base_url/iso/$file"
+	
+		fi
+	else
+	
+		# file does not exist, download
+		wget --no-clobber "$base_url/iso/$file"
 		
 	fi
 	
@@ -441,11 +479,11 @@ download_release_main()
 	
 	if [[ "$distro" == "valve-official" ]]; then
 	
-		download_file
+		download_valve_steamos
 		
 	elif [[ "$distro" == "vaporos" ]]; then
 	
-		download_file
+		download_vaporos_legacy
 
 	elif [[ "$distro" == "stephensons-rocket" ]]; then 
 		
@@ -483,8 +521,9 @@ main()
 	(4) Brewmaster (legacy ISO, BIOS systems)
 	(5) Stephensons Rocket (Alchemist repsin)
 	(6) Stephensons Rocket (Brewmaster repsin)
-	(7) VaporOS (Legacy ISO)
-	(8) VaporOS (Stephenson's Rocket Mod)
+	(7) VaporOS (Alchemist, Legacy ISO)
+	(8) VaporOS (Alchemist, Stephenson's Rocket Mod)
+	(9) VaporOS (Brewmaster, Stephenson's Rocket Mod)
 
 	EOF
   	
@@ -563,7 +602,7 @@ main()
 		7)
 		distro="vaporos"
 		base_url="http://trashcan-gaming.nl"
-		release="iso"
+		release="Alchemist"
 		file="vaporos2.iso"
 		git="no"
 		md5file="vaporos2.iso.md5"
@@ -573,7 +612,18 @@ main()
 		8)
 		distro="vaporos-mod"
 		base_url="https://github.com/sharkwouter/vaporos-mod.git"
-		release="iso"
+		release="alchemist"
+		file="vaporos2.iso"
+		git="yes"
+		md5file="vaporos2.iso.md5"
+		shafile="none"
+		# set github default action
+		pull="no"
+		
+		8)
+		distro="vaporos-mod"
+		base_url="https://github.com/sharkwouter/vaporos-mod.git"
+		release="brewmaster"
 		file="vaporos2.iso"
 		git="yes"
 		md5file="vaporos2.iso.md5"

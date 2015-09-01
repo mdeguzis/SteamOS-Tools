@@ -240,7 +240,7 @@ check_download_integrity()
 			
 		elif [[ "$distro" == "vaporos" ]]; then
 		
-			wget --no-clobber "$base_url/iso/$shafile"
+			wget --no-clobber "$base_url/iso/$md5file"
 		
 		else
 			wget --no-clobber "$base_url/$release/$md5file"

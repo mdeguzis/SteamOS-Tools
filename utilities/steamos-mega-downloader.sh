@@ -373,7 +373,7 @@ download_release()
 	
 			else
 			
-				# shot output
+				# echo output
 				echo -e "$output\n"
 			fi
 		
@@ -389,6 +389,7 @@ download_release()
 			sed -i 's|apt-utils xorriso syslinux rsync wget p7zip-full realpath||g' gen.sh
 		fi
 		
+		# Generate image andchecksum files
 		if [[ "$distro" == "vaporos-mod" ]]; then
 		
 			# clone sharkwouter's repo and build
@@ -408,6 +409,9 @@ download_release()
 		sleep 2s
 		mv -v "rocket.iso" "$HOME/downloads/$release/"
 		mv -v "rocket.iso.md5" "$HOME/downloads/$release/"
+		
+		# move to release folder for checksum validation
+		cd "$HOME/downloads/$release"
 		
 	fi
 }
@@ -552,7 +556,6 @@ main()
 	if [[ "$arg1" == "--checkonly" ]]; then
  
  		# just check integrity of files
- 		cd "$HOME/downloads/$release"
  		check_download_integrity
  		
  	else

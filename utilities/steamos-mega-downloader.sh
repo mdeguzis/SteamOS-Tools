@@ -253,7 +253,7 @@ check_download_integrity()
 	# Check md5sum of installer
 	if [[ "$md5file" != "none" ]];then
 	
-		if [[ "$distro" == "valve-official ]]; then
+		if [[ "$distro" == "valve-official" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
 			sed -i "/$file/!d" $md5file

@@ -158,7 +158,7 @@ main()
 		cat <<-EOF > ${multimedia_prefer_tmp}
 		Package: *
 		Pin: origin ""
-		Pin-Priority:150
+		Pin-Priority:100
 		EOF
 	
 		cat <<-EOF > ${steamos_prefer_tmp}

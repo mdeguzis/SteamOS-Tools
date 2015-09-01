@@ -88,11 +88,6 @@ pre_reqs()
 		elif [[ "$sources_choice" == "n" ]]; then
 			echo -e "Sources addition skipped"
 		fi
-	
-	if [[ "$usb_choice"  == "y" ]]; then
-		
-
-		echo -e "Distro detected: SteamOS"
 		
 		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath"
 		for dep in ${deps}; do

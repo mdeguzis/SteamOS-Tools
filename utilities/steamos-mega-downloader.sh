@@ -167,6 +167,7 @@ pre_reqs()
 		
 	fi
 	
+	echo ""
 }
 
 image_drive()
@@ -421,15 +422,21 @@ download_stephensons()
 		# change to git folder
 		cd "$HOME/downloads/$release/$distro"
 		
-		# remove previous iso and checksum (if exists)
+		# remove previous ISOs and checksum (if exists)
+		rm -f "SteamOSDVD.iso"
 		rm -f "rocket.iso"
 		rm -f "rocket.iso.md5"
 		
 		# eval git status
 		output=$(git pull)
 		
+		# set fallback if there is an issue upstream (will use professorkaos64 fork below)
+		# Fallback set: 20150901
+		# See: https://github.com/steamos-community/stephensons-rocket/pull/111
+		fallback="true"
+		
 		# evaluate git pull. Remove, create, and clone if it fails
-		if [[ "$output" != "Already up-to-date." ]]; then
+		if [[ "$output" != "Already up-to-date." || "$fallback" == "true" ]]; then
 	
 			echo -e "\n==Info==\nGit directory pull failed. Removing...\n"
 			sleep 2s
@@ -444,8 +451,13 @@ download_stephensons()
 	
 	else
 		# git dir does not exist, clone
-		echo ""
-		git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
+		# git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
+		
+		# Backup repo if there is an issue that can be fixed in the interim until PR is merged
+		# by DirectHex
+		git clone --depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release
+		
+		# Enter git repo
 		cd stephensons-rocket
 	
 	fi
@@ -488,15 +500,16 @@ download_release_main()
 	cd "$HOME/downloads/$release"
 	
 	# download requested file (Valve official)
-	
 	if [[ "$distro" == "valve-official" ]]; then
 	
 		download_valve_steamos
-		
+	
+	# download requested file (VaporOS legacy)	
 	elif [[ "$distro" == "vaporos" ]]; then
 	
 		download_vaporos_legacy
 
+	# download requested file (Stephenson's Rocket variant)
 	elif [[ "$distro" == "stephensons-rocket" ]]; then 
 		
 		download_stephensons
@@ -614,7 +627,7 @@ main()
 		7)
 		distro="vaporos"
 		base_url="http://trashcan-gaming.nl"
-		release="Alchemist"
+		release="alchemist"
 		file="vaporos2.1.iso"
 		git="no"
 		md5file="vaporos2.1.iso.md5"

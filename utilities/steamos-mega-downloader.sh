@@ -242,7 +242,7 @@ check_download_integrity()
 		orig_prefix="/var/www/download"
 		#new_prefix="$HOME/downloads/$release"
 		
-		if [[ "$distro" != "stephensons-rocket" ]]; then
+		if [[ "$distro" == "valve-offical" ]]; then
 		
 			sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$shafile"
 			
@@ -250,15 +250,10 @@ check_download_integrity()
 	
 	fi
 	
-	# remove MD512/SHA512 line that does not match our file so we don't get check errors
-	
-	#trim_md512sum=$(grep -v $file "$HOME/downloads/$release/MD5SUMS")
-	#trim_sha512sum=$(grep -v $file "$HOME/downloads/$release/SHA512SUMS")
-	
-  
+	# Check md5sum of installer
 	if [[ "$md5file" != "none" ]];then
 	
-		if [[ "$distro" != "stephensons-rocket" ]]; then
+		if [[ "$distro" == "valve-official ]]; then
 		
 			# strip extra line(s) from Valve checksum file
 			sed -i "/$file/!d" $md5file
@@ -270,9 +265,10 @@ check_download_integrity()
 	
 	fi
 	
+	# Check sha512sum of installer
 	if [[ "$shafile" != "none" ]];then
 	
-		if [[ "$distro" != "stephensons-rocket" ]]; then
+		if [[ "$distro" == "valve-official" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
 			sed -i "/$file/!d" $shafile

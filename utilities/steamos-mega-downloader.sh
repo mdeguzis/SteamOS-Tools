@@ -619,6 +619,7 @@ main()
 		shafile="none"
 		# set github default action
 		pull="no"
+		;;
 		
 		8)
 		distro="vaporos-mod"
@@ -630,7 +631,6 @@ main()
 		shafile="none"
 		# set github default action
 		pull="no"
-		
 		;;
 		
 		*)

@@ -80,7 +80,7 @@ pre_reqs()
 	############################################
 	elif [[ "$distro_check" == "SteamOS" ]]; then
 
-		echo -e "==WARNING==\nDebian Jessie sources are needed for xorriso, install? (y/n)"
+		echo -e "==WARNING==\nDebian sources are needed for xorriso, install? (y/n)"
 		read -erp "Choice: " sources_choice
 	
 		if [[ "$sources_choice" == "y" ]]; then

@@ -438,11 +438,18 @@ download_stephensons()
 		# evaluate git pull. Remove, create, and clone if it fails
 		if [[ "$output" != "Already up-to-date." || "$fallback" == "true" ]]; then
 	
-			echo -e "\n==Info==\nGit directory pull failed. Removing...\n"
+			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning\n"
 			sleep 2s
 			rm -rf "$HOME/downloads/$release/$distro"
+			# git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
 		
-
+			# Backup repo if there is an issue that can be fixed in the interim until PR is merged
+			# by DirectHex
+			git clone --depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release
+		
+			# Enter git repo
+			cd stephensons-rocket
+	
 		else
 		
 			# echo output

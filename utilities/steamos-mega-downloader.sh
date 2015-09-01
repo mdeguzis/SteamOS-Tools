@@ -241,7 +241,7 @@ check_download_integrity()
 		orig_prefix="/var/www/download/brewmaster/"
 		#new_prefix="$HOME/downloads/$release"
 		
-		if [[ "$distro" == "valve-offical" ]]; then
+		if [[ "$distro" == "valve-official" ]]; then
 		
 			sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$shafile"
 			sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$md5file"

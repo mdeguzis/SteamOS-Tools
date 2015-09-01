@@ -79,7 +79,19 @@ pre_reqs()
 	# SteamOS
 	############################################
 	elif [[ "$distro_check" == "SteamOS" ]]; then
+
+		echo -e "==WARNING==\nDebian Jessie sources are needed for xorriso, install? (y/n)"
+		read -erp "Choice: " sources_choice
 	
+		if [[ "$sources_choice" == "y" ]]; then
+			../add-debian-repos.sh
+		elif [[ "$sources_choice" == "n" ]]; then
+			echo -e "Sources addition skipped"
+		fi
+	
+	if [[ "$usb_choice"  == "y" ]]; then
+		
+
 		echo -e "Distro detected: SteamOS"
 		
 		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath"

@@ -414,7 +414,7 @@ eval_git_repo()
 {
 
 	# set fallback if true	
-	if [[ "$fallback" == "true" ]]
+	if [[ "$fallback" == "true" ]]; then
 	
 		# set gitrul to fallback url
 		giturl="$giturl_fallback"

@@ -88,7 +88,7 @@ main()
 		clear
 		
 		cat <<-EOF
-		==> Adding Debian ${reponame}, ${backports_reponame}, and ${multimedia_reponam} repositories
+		==> Adding Debian ${reponame}, ${backports_reponame}, and ${multimedia_reponame} repositories
 		    
 		EOF
 		sleep 1s

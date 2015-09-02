@@ -394,7 +394,7 @@ check_download_integrity()
 		fi
 	
 		echo -e "\nMD5 Check:"
-		md5check=$(md5sum -c "$HOME/downloads/$release/$md5file" | grep "OK" 2> /dev/null)
+		md5check=$(md5sum -c "$HOME/downloads/$release/$md5file" | grep "OK" &> /dev/null)
 		
 		if [[ "$md5check" != "" ]]; then
 			# output check test
@@ -417,7 +417,7 @@ check_download_integrity()
 			
 		fi
 		echo -e "\nSHA512 Check:"
-		shacheck=$(sha512sum -c "$HOME/downloads/$release/$shafile" | grep "OK" 2> /dev/null)
+		shacheck=$(sha512sum -c "$HOME/downloads/$release/$shafile" | grep "OK" &> /dev/null)
 		
 		if [[ "shacheck" != "" ]]; then
 			# output check test

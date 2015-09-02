@@ -59,7 +59,7 @@ pre_reqs()
 	
 		echo -e "Distro detected: Debian"
 		
-		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath"
+		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath unzip"
 		for dep in ${deps}; do
 			pkg_chk=$(dpkg-query -s ${dep})
 			if [[ "$pkg_chk" == "" ]]; then
@@ -99,7 +99,7 @@ pre_reqs()
 		
 		# Note: added isolinux, as syslinux contained within SteamOS does not contain
 		# isohdpfx.bin, but isolinux does.
-		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath isolinux"
+		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath isolinux unzip"
 		for dep in ${deps}; do
 			pkg_chk=$(dpkg-query -s ${dep})
 			if [[ "$pkg_chk" == "" ]]; then

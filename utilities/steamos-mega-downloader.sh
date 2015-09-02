@@ -393,7 +393,7 @@ check_download_integrity()
 			
 		fi
 	
-		echo -e "\nMD5 Check:"
+		echo -e "MD5 Check:"
 		md5check=$(md5sum -c "$HOME/downloads/$release/$md5file" | grep OK)
 		
 		if [[ "$md5check" == "$file: OK" ]]; then

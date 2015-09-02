@@ -396,14 +396,14 @@ check_download_integrity()
 		echo -e "\nMD5 Check:"
 		md5check=$(md5sum -c "$HOME/downloads/$release/$md5file" | grep "OK" &> /dev/null)
 		
-		if [[ "$md5check" != "" ]]; then
+		if [[ "$md5check" == "$file: OK" ]]; then
 			# output check test
 			echo "$md5check"
 			
-		elif [[ "$md5check" == "" ]]; then
+		else
 			# let user know check failed and to retry with overwrite
 			clear
-			echo -e "\n==ERROR==\nmd5sum check failed. Please rerun this script and choose to overwrite"
+			echo -e "\n==ERROR==\nmd5sum check failed.\nPlease rerun this script and choose to overwrite"
 			exit 1
 		fi
 		
@@ -421,14 +421,14 @@ check_download_integrity()
 		echo -e "\nSHA512 Check:"
 		shacheck=$(sha512sum -c "$HOME/downloads/$release/$shafile" | grep "OK" &> /dev/null)
 		
-		if [[ "shacheck" != "" ]]; then
+		if [[ "shacheck" == "$file: OK" ]]; then
 			# output check test
 			echo "$shacheck"
 			
-		elif [[ "shacheck" == "" ]]; then
+		else 
 			# let user know check failed and to retry with overwrite
 			clear
-			echo -e "\n==ERROR==\nsha512sum check failed. Please rerun this script and choose to overwrite"
+			echo -e "\n==ERROR==\nsha512sum check failed.\nPlease rerun this script and choose to overwrite"
 			exit 1
 		fi
 		

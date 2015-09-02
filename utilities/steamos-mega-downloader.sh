@@ -207,26 +207,24 @@ image_drive()
 	
 		if [[ "$file" == "SteamOSInstaller.zip" ]]; then
 			
-			echo -e "\n==>Showing current usb drives\n"
+			echo -e "\n==> Showing current usb drives\n"
 			lsblk
 			
-			echo -e "\n==> Enter drive path (usually /run/media/...):"
+			echo -e "\n==> Enter drive path (usually /dev/sdX):"
 			sleep 0.5s
 			read -erp "Choice: " drive_choice
 			
 			echo -e "==> Formatting drive"
 			
-			umount "$drive_choice" 
-			$format_drive "$drive_choice" 
-			
-			echo -e "\n==> Enter folder path to drive (usually /run/media/...):"
-			sleep 0.5s
-			read -erp "Choice: " dir_choice
+			# mount, format, and mount again :P
+			sudo umount "$drive_choice" 
+			$format_drive "$drive_choice"
+			sudo mount "$drive_choice" "/media/usb"
 			
 			echo -e "\n==> Installing release to usb drive\n"
 			
 			# unzip archive to drive
-			unzip "$file" -d $dir_choice
+			unzip "$file" -d "/media/usb"
 			
 			show_summary
 			

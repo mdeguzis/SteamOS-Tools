@@ -492,8 +492,6 @@ download_valve_steamos()
 			# remove so download sequence fetchs fresh checksums
 			rm -f "$HOME/downloads/$release/$md5file"
 			rm -f "$HOME/downloads/$release/$shafile"
-			# download main file, no removal
-			wget --no-clobber "$base_url/$release/$file"
 	
 		fi
 	else
@@ -553,7 +551,7 @@ download_stephensons()
 	# See: https://github.com/steamos-community/stephensons-rocket/pull/111
 	fallback="true"
 	
-	# evaluate git dir
+	# eval repo status for Stephenson's Rocket
 	eval_git_repo
 	
 	# remove apt-specific packages, handled in pre_req function
@@ -573,6 +571,7 @@ download_stephensons()
 		# remove fallback for eval
 		fallback="false"
 		
+		# eval repo status
 		eval_git_repo
 		
 		cd ..
@@ -753,9 +752,10 @@ main()
 		file="vaporos.iso"
 		git="yes"
 		gitdir="stephensons-rocket"
-		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
-		giturl_alt="https://github.com/sharkwouter/vaporos-mod.git"
 		gitdir_alt="vaporos-mod"
+		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
+		giturl_fallback="--depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release"
+		giturl_alt="https://github.com/sharkwouter/vaporos-mod.git"
 		md5file="vaporos.iso.md5"
 		shafile="none"
 		# set github default action
@@ -768,9 +768,10 @@ main()
 		file="vaporos2.iso"
 		git="yes"
 		gitdir="stephensons-rocket"
-		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
-		giturl_alt="https://github.com/sharkwouter/vaporos-mod.git"
 		gitdir_alt="vaporos-mod"
+		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
+		giturl_fallback="--depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release"
+		giturl_alt="https://github.com/sharkwouter/vaporos-mod.git"
 		md5file="vaporos2.iso.md5"
 		shafile="none"
 		# set github default action

@@ -813,7 +813,7 @@ main()
 		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
 		giturl_fallback="--depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release"
 		giturl_alt="https://github.com/sharkwouter/vaporos-mod.git"
-		md5file="vaporos2.iso.md5"
+		md5file="vaporos.iso.md5"
 		shafile="none"
 		# set github default action
 		pull="no"

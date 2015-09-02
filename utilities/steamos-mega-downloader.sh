@@ -499,7 +499,7 @@ download_stephensons()
 		sleep 2s
 	
 		# change to git folder
-		cd "$HOME/downloads/$release/$distro"
+		cd "$HOME/downloads/$release/$gitdir"
 		
 		# remove previous ISOs and checksum (if exists)
 		rm -f "SteamOSDVD.iso"

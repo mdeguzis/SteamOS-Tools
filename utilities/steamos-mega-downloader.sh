@@ -410,6 +410,60 @@ check_download_integrity()
   
 }
 
+eval_git_repo()
+{
+	
+	if [[ -d "$HOME/downloads/$release/$gitdir" ]]; then
+	
+		echo -e "\n==INFO==\nGit DIR exists, trying remote pull"
+		sleep 2s
+	
+		# change to git folder
+		cd "$HOME/downloads/$release/$gitdir"
+		
+		# remove previous ISOs and checksum (if exists)
+		rm -f "$file"
+		rm -f "$md5sum"
+		rm -f "SteamOSDVD.iso"
+		
+		# eval git status
+		output=$(git pull)
+		
+		# set fallback if there is an issue upstream (will use professorkaos64 fork below)
+		# Fallback set: 20150901
+		# See: https://github.com/steamos-community/stephensons-rocket/pull/111
+		fallback="true"
+		
+		# evaluate git pull. Remove, create, and clone if it fails
+		if [[ "$output" != "Already up-to-date." || "$fallback" == "true" ]]; then
+	
+			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning\n"
+			sleep 2s
+			rm -rf "$HOME/downloads/$release/$distro"
+			
+			# clone
+			git clone $giturl_fallback
+		
+			# Enter git repo
+			d "$gitdir"
+	
+		else
+		
+			# echo output
+			echo -e "$output\n"
+		fi
+	
+	else
+		# git dir does not exist, clone
+		git clone $giturl_fallback
+		
+		# Enter git repo
+		cd "$gitdir"
+	
+	fi
+	
+}
+
 download_valve_steamos()
 {
 	# Downloads singular file (mainly ISO images or Valve's installers)
@@ -491,62 +545,8 @@ download_stephensons()
 	# Downloads and builds iso/checksum for Stephenson's Rocket or
 	# VaporOS-Mod
 	
-	# try git pull first
-	
-	if [[ -d "$HOME/downloads/$release/$gitdir" ]]; then
-	
-		echo -e "\n==INFO==\nGit DIR exists, trying remote pull"
-		sleep 2s
-	
-		# change to git folder
-		cd "$HOME/downloads/$release/$gitdir"
-		
-		# remove previous ISOs and checksum (if exists)
-		rm -f "SteamOSDVD.iso"
-		rm -f "rocket.iso"
-		rm -f "rocket.iso.md5"
-		
-		# eval git status
-		output=$(git pull)
-		
-		# set fallback if there is an issue upstream (will use professorkaos64 fork below)
-		# Fallback set: 20150901
-		# See: https://github.com/steamos-community/stephensons-rocket/pull/111
-		fallback="true"
-		
-		# evaluate git pull. Remove, create, and clone if it fails
-		if [[ "$output" != "Already up-to-date." || "$fallback" == "true" ]]; then
-	
-			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning\n"
-			sleep 2s
-			rm -rf "$HOME/downloads/$release/$distro"
-			# git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
-		
-			# Backup repo if there is an issue that can be fixed in the interim until PR is merged
-			# by DirectHex
-			git clone --depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release
-		
-			# Enter git repo
-			cd stephensons-rocket
-	
-		else
-		
-			# echo output
-			echo -e "$output\n"
-		fi
-	
-	else
-		# git dir does not exist, clone
-		# git clone --depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release
-		
-		# Backup repo if there is an issue that can be fixed in the interim until PR is merged
-		# by DirectHex
-		git clone --depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release
-		
-		# Enter git repo
-		cd stephensons-rocket
-	
-	fi
+	# evaluate git dir
+	eval_git_repo
 	
 	# remove apt-specific packages, handled in pre_req function
 	if [[ "$distro_check" == "Arch" ]]; then
@@ -559,8 +559,6 @@ download_stephensons()
 		echo -e "\n==INFO==\nVaporOS-mod detected\n"
 		sleep 2s
 	
-		# clone sharkwouter's repo and build
-		git clone $base_url
 		cd ..
 		./gen.sh -n "VaporOS" vaporos-mod
 		
@@ -696,11 +694,12 @@ main()
 		
 		5)
 		distro="stephensons-rocket"
-		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="alchemist"
 		file="rocket.iso"
 		git="yes"
 		gitdir="stephensons-rocket"
+		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
+		giturl_fallback="--depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release"
 		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action
@@ -709,11 +708,12 @@ main()
 		
 		6)
 		distro="stephensons-rocket"
-		base_url="https://github.com/steamos-community/stephensons-rocket"
 		release="brewmaster"
 		file="rocket.iso"
 		git="yes"
 		gitdir="stephensons-rocket"
+		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
+		giturl_fallback="--depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release"
 		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action
@@ -736,6 +736,7 @@ main()
 		release="alchemist"
 		file="vaporos.iso"
 		git="yes"
+		giturl_alt="https://github.com/sharkwouter/vaporos-mod.git"
 		gitdir="stephensons-rocket"
 		md5file="vaporos.iso.md5"
 		shafile="none"
@@ -745,10 +746,10 @@ main()
 		
 		8)
 		distro="vaporos-mod"
-		base_url="https://github.com/sharkwouter/vaporos-mod.git"
 		release="brewmaster"
 		file="vaporos2.iso"
 		git="yes"
+		giturl_alt="https://github.com/sharkwouter/vaporos-mod.git"
 		gitdir="stephensons-rocket"
 		md5file="vaporos2.iso.md5"
 		shafile="none"

@@ -260,6 +260,7 @@ image_drive()
 			sudo unzip "$file" -d "/tmp/steamos-usb"
 			
 			# unount drive 
+			echo -e "\nUmounting USB drive. Please do not reove until done"
 			sudo umount "$drive_choice" 
 			
 			# show user end summary
@@ -280,6 +281,10 @@ image_drive()
 			
 			# image drive
 			sudo dd bs=1M if="$file" of="$drive_choice"
+			
+			# unount drive 
+			echo -e "\nUmounting USB drive. Please do not reove until done"
+			sudo umount "$drive_choice" 
 			
 			# show user end summary
 			show_summary

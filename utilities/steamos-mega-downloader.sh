@@ -423,7 +423,7 @@ eval_git_repo()
 	
 	if [[ -d "$HOME/downloads/$release/$gitdir" ]]; then
 	
-		echo -e "\n==INFO==\nGit DIR exists, trying remote pull"
+		echo -e "\n==INFO==\nGit DIR $gitdir exists, trying remote pull"
 		sleep 2s
 	
 		# change to git folder

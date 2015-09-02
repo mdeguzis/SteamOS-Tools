@@ -234,6 +234,10 @@ image_drive()
 			# unzip archive to drive
 			sudo unzip "$file" -d "/tmp/steamos-usb"
 			
+			# unount drive 
+			sudo umount "$drive_choice" 
+			
+			# show user end summary
 			show_summary
 			
 		elif [[ "$file" == "SteamOSDVD.iso" || \
@@ -252,6 +256,7 @@ image_drive()
 			# image drive
 			sudo dd bs=1M if="$file" of="$drive_choice"
 			
+			# show user end summary
 			show_summary
 		else
 		

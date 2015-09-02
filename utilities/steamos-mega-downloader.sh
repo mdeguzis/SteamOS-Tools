@@ -394,8 +394,17 @@ check_download_integrity()
 		fi
 	
 		echo -e "\nMD5 Check:"
-		md5sum -c "$HOME/downloads/$release/$md5file"
-	
+		md5check=$(md5sum -c "$HOME/downloads/$release/$md5file" | grep "OK")
+		
+		if [[ "$md5check" != "" ]]; then
+			# output check test
+			echo "$md5check"
+			
+		elif [[ "$md5check" == "" ]]; then
+			# let user know check failed and to retry with overwrite
+			echo -e "\nmd5sum check failed. Please rerun this script and choose to overwrite"
+		fi
+		
 	fi
 	
 	# Check sha512sum of installer
@@ -408,7 +417,16 @@ check_download_integrity()
 			
 		fi
 		echo -e "\nSHA512 Check:"
-		sha512sum -c "$HOME/downloads/$release/$shafile"
+		shacheck=$(sha512sum -c "$HOME/downloads/$release/$shafile" | grep "OK")
+		
+		if [[ "shacheck" != "" ]]; then
+			# output check test
+			echo "shacheck"
+			
+		elif [[ "shacheck" == "" ]]; then
+			# let user know check failed and to retry with overwrite
+			echo -e "\nsha512sum check failed. Please rerun this script and choose to overwrite"
+		fi
 		
 	fi
   

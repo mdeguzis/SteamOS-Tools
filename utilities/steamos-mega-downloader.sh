@@ -806,7 +806,7 @@ main()
 		9)
 		distro="vaporos-mod"
 		release="brewmaster"
-		file="vaporos2.iso"
+		file="vaporos.iso"
 		git="yes"
 		gitdir="stephensons-rocket"
 		gitdir_alt="vaporos-mod"

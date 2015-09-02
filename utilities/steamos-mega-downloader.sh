@@ -214,17 +214,26 @@ image_drive()
 			sleep 0.5s
 			read -erp "Choice: " drive_choice
 			
-			echo -e "==> Formatting drive"
+			echo -e "\n==> Formatting drive"
 			
 			# mount, format, and mount again :P
 			sudo umount "$drive_choice" 
 			$format_drive "$drive_choice"
-			sudo mount "$drive_choice" "/media/usb"
+			
+			# create tmp dir and moutn drive
+			if [[ -d "/tmp/steamos-usb" ]]; then
+				rm -rf "/tmp/steamos-usb/*"
+			else
+				mkdir -p "/tmp/steamos-usb"
+			fi
+			
+			# mount drive to tmp location
+			sudo mount "$drive_choice" "/tmp/steamos-usb"
 			
 			echo -e "\n==> Installing release to usb drive\n"
 			
 			# unzip archive to drive
-			unzip "$file" -d "/media/usb"
+			sudo unzip "$file" -d "/tmp/steamos-usb"
 			
 			show_summary
 			

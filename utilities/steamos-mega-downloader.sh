@@ -6,7 +6,6 @@
 # Script Ver:		0.9.7
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #			to specified directory and run SHA512 checks against them.
-#			Allows user to then image/unzip the installer to their USB
 #			drive. This NOT associated with Valve whatsover.
 #
 # Usage:      		./fetch-steamos.sh 
@@ -172,13 +171,16 @@ show_summary()
 {
 	
 	cat <<-EOF
+	
 	------------------------------------------------------------
 	Summary
 	------------------------------------------------------------
 	
-	Your USB ddrive is ready. Please reboot your computer with the
+	Your USB drive is now ready. Please reboot your computer with the
 	USB drive connected. Either set your computer to boot from a 
-	USB device first, or select it from the boot menu.
+	USB device first, or select it from the boot menu. Please ensure
+	that before booting the USB drive, you ensure you have the proper
+	EFI settings (if applicatble) for your motherboard.
 	
 	Please see github.com/ValveSoftware/SteamOS/wiki for more.
 	

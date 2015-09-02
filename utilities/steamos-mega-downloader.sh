@@ -422,7 +422,7 @@ check_download_integrity()
 		fi
 		
 		echo -e "\nSHA512 Check:"
-		shacheck=$(sha512sum -c "$HOME/downloads/$release/$shafile" | "grep $file: OK")
+		shacheck=$(sha512sum -c "$HOME/downloads/$release/$shafile" | grep "$file: OK")
 		
 		if [[ "$shacheck" == "$file: OK" ]]; then
 			# output check test

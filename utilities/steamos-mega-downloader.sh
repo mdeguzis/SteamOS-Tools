@@ -595,6 +595,11 @@ download_release_main()
 	
 		download_vaporos_legacy
 
+	# download requested file (VaporOS legacy)	
+	elif [[ "$distro" == "vaporos-mod" ]]; then
+	
+		download_stephensons
+		
 	# download requested file (Stephenson's Rocket variant)
 	elif [[ "$distro" == "stephensons-rocket" ]]; then 
 		

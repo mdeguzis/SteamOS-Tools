@@ -725,7 +725,7 @@ main()
 		;;
 		
 		8)
-		distro="vaporos-mod"
+		distro="stephensons-rocket"
 		base_url="https://github.com/sharkwouter/vaporos-mod.git"
 		release="alchemist"
 		file="vaporos.iso"
@@ -737,7 +737,7 @@ main()
 		;;
 		
 		8)
-		distro="vaporos-mod"
+		distro="stephensons-rocket"
 		base_url="https://github.com/sharkwouter/vaporos-mod.git"
 		release="brewmaster"
 		file="vaporos2.iso"

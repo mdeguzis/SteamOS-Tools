@@ -390,6 +390,7 @@ check_download_integrity()
 		
 			# strip extra line(s) from Valve checksum file
 			#sed -i "/$file/!d" $md5file
+			:
 			
 		fi
 	
@@ -416,6 +417,7 @@ check_download_integrity()
 		
 			# strip extra line(s) from Valve checksum file
 			#sed -i "/$file/!d" $shafile
+			:
 			
 		fi
 		echo -e "\nSHA512 Check:"

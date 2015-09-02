@@ -394,13 +394,13 @@ check_download_integrity()
 			
 		fi
 	
-		echo -e "MD5 Check:"
+		echo -e "\nMD5 Check:"
 		# we only want to check for our $file only below
 		md5check=$(md5sum -c "$HOME/downloads/$release/$md5file" | grep "$file: OK")
 		
 		if [[ "$md5check" == "$file: OK" ]]; then
 			# output check test
-			echo -e "\n$md5check"
+			echo -e "$md5check"
 			
 		else
 			# let user know check failed and to retry with overwrite

@@ -310,6 +310,10 @@ check_download_integrity()
 	echo -e "\n==> Checking integrity of installer\n"
 	sleep 2s
 
+	# If the checksum file exists and the user did not choose to overwrite
+	# the release, the clobber option flag will essentially skip downloading
+	# and keep the local version of the checksum
+
 	# download md5sum
 	if [[ "$md5file" != "none" ]];then
 	
@@ -490,7 +494,9 @@ download_valve_steamos()
 		elif [[ "$rdl_choice" == "n" ]]; then
 		
 			# Do not overwrite files
-			# If checksum exists, it will be downloaded in the integrity check
+			# If checksum does not exist, it will be downloaded in the integrity check function
+			# If the checksum file exists, the --clobber flag will keep the existing checksum
+			# due to the filename matching the remote.
 			# If integrity check fails, users should overwrite on retry
 			echo "" > /dev/null
 	
@@ -527,7 +533,9 @@ download_vaporos_legacy()
 		elif [[ "$rdl_choice" == "n" ]]; then
 		
 			# Do not overwrite files
-			# If checksum exists, it will be downloaded in the integrity check
+			# If checksum does not exist, it will be downloaded in the integrity check function
+			# If the checksum file exists, the --clobber flag will keep the existing checksum
+			# due to the filename matching the remote.
 			# If integrity check fails, users should overwrite on retry
 			echo "" > /dev/null
 	

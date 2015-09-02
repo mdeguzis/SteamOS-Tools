@@ -493,7 +493,7 @@ download_stephensons()
 	
 	# try git pull first
 	
-	if [[ -d "$HOME/downloads/$release/$distro" ]]; then
+	if [[ -d "$HOME/downloads/$release/$gitdir" ]]; then
 	
 		echo -e "\n==INFO==\nGit DIR exists, trying remote pull"
 		sleep 2s
@@ -555,6 +555,9 @@ download_stephensons()
 	
 	# Generate image andchecksum files
 	if [[ "$distro" == "vaporos-mod" ]]; then
+	
+		echo -e \n"==INFO==\nVaporOS-mod detected\n"
+		sleep 2s
 	
 		# clone sharkwouter's repo and build
 		git clone $base_url
@@ -696,6 +699,7 @@ main()
 		release="alchemist"
 		file="rocket.iso"
 		git="yes"
+		gitdir="stephensons-rocket"
 		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action
@@ -708,6 +712,7 @@ main()
 		release="brewmaster"
 		file="rocket.iso"
 		git="yes"
+		gitdir="stephensons-rocket"
 		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action
@@ -725,11 +730,12 @@ main()
 		;;
 		
 		8)
-		distro="stephensons-rocket"
+		distro="vaporos-mod"
 		base_url="https://github.com/sharkwouter/vaporos-mod.git"
 		release="alchemist"
 		file="vaporos.iso"
 		git="yes"
+		gitdir="stephensons-rocket"
 		md5file="vaporos.iso.md5"
 		shafile="none"
 		# set github default action
@@ -737,11 +743,12 @@ main()
 		;;
 		
 		8)
-		distro="stephensons-rocket"
+		distro="vaporos-mod"
 		base_url="https://github.com/sharkwouter/vaporos-mod.git"
 		release="brewmaster"
 		file="vaporos2.iso"
 		git="yes"
+		gitdir="stephensons-rocket"
 		md5file="vaporos2.iso.md5"
 		shafile="none"
 		# set github default action

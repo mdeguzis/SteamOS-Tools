@@ -402,7 +402,7 @@ check_download_integrity()
 			
 		elif [[ "$md5check" == "" ]]; then
 			# let user know check failed and to retry with overwrite
-			echo -e "\nmd5sum check failed. Please rerun this script and choose to overwrite"
+			echo -e "\n==ERROR==\nmd5sum check failed. Please rerun this script and choose to overwrite"
 		fi
 		
 	fi
@@ -421,11 +421,11 @@ check_download_integrity()
 		
 		if [[ "shacheck" != "" ]]; then
 			# output check test
-			echo "shacheck"
+			echo "$shacheck"
 			
 		elif [[ "shacheck" == "" ]]; then
 			# let user know check failed and to retry with overwrite
-			echo -e "\nsha512sum check failed. Please rerun this script and choose to overwrite"
+			echo -e "\n==ERROR==\nsha512sum check failed. Please rerun this script and choose to overwrite"
 		fi
 		
 	fi

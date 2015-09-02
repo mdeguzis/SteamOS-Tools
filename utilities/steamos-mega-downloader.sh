@@ -191,11 +191,11 @@ image_drive()
 	# set mkdosfs location
 	if [[ "$distro_check" == "SteamOS" || "$distro_check" == "SteamOS" ]]; then
 	
-		$format_drive="sudo /sbin/mkdosfs -F 32 -I"
+		format_drive="sudo /sbin/mkdosfs -F 32 -I"
 	
 	else
 		
-		$format_drive="sudo mkdosfs -F 32 -I"
+		format_drive="sudo mkdosfs -F 32 -I"
 	
 	fi
 	

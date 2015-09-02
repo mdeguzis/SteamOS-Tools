@@ -372,7 +372,7 @@ check_download_integrity()
 	elif [[ "$release" == "brewmaster" ]]; then
 	
 		orig_prefix="/var/www/download/brewmaster/"
-		#new_prefix="$HOME/downloads/$release"
+		#new_prefix="$HOME/downloads/$release";
 		
 		if [[ "$distro" == "valve-official" ]]; then
 		
@@ -444,7 +444,9 @@ check_download_integrity()
 eval_git_repo()
 {
 
-	# set fallback if true	
+	# set fallback if true
+	# Ths likely only is used in cases where simple bugs can be fixed in a
+	# local fork and used until upstream is fixed.
 	if [[ "$fallback" == "true" ]]; then
 	
 		# set gitrul to fallback url

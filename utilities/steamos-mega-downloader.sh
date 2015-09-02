@@ -401,7 +401,7 @@ check_download_integrity()
 		
 		if [[ "$md5check" == "$file: OK" ]]; then
 			# output check test
-			echo "$md5check"
+			echo "\n$md5check"
 			
 		else
 			# let user know check failed and to retry with overwrite
@@ -803,7 +803,7 @@ main()
 		pull="no"
 		;;
 		
-		8)
+		9)
 		distro="vaporos-mod"
 		release="brewmaster"
 		file="vaporos2.iso"

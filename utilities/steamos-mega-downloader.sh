@@ -495,7 +495,7 @@ download_stephensons()
 	
 	if [[ -d "$HOME/downloads/$release/$distro" ]]; then
 	
-		echo -e "==INFO==\nGit DIR exists, trying remote pull"
+		echo -e "\n==INFO==\nGit DIR exists, trying remote pull"
 		sleep 2s
 	
 		# change to git folder

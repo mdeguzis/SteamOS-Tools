@@ -389,7 +389,7 @@ check_download_integrity()
 		if [[ "$distro" == "valve-official" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
-			sed -i "/$file/!d" $md5file
+			#sed -i "/$file/!d" $md5file
 			
 		fi
 	
@@ -415,7 +415,7 @@ check_download_integrity()
 		if [[ "$distro" == "valve-official" ]]; then
 		
 			# strip extra line(s) from Valve checksum file
-			sed -i "/$file/!d" $shafile
+			#sed -i "/$file/!d" $shafile
 			
 		fi
 		echo -e "\nSHA512 Check:"

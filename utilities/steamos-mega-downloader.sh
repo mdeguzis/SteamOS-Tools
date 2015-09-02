@@ -556,7 +556,7 @@ download_stephensons()
 	# Generate image andchecksum files
 	if [[ "$distro" == "vaporos-mod" ]]; then
 	
-		echo -e \n"==INFO==\nVaporOS-mod detected\n"
+		echo -e "\n==INFO==\nVaporOS-mod detected\n"
 		sleep 2s
 	
 		# clone sharkwouter's repo and build

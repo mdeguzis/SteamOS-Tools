@@ -12,7 +12,6 @@
 # Usage:      		./fetch-steamos.sh 
 #			./fetch-steamos.sh --help
 #			./fetch-steamos.sh --checkonly
-# -------------------------------------------------------------------------------
 
 arg1="$1"
 
@@ -214,7 +213,7 @@ image_drive()
 			sleep 0.5s
 			read -erp "Choice: " drive_choice
 			
-			echo -e "\n==> Formatting drive"
+			echo -e "\n==> Formatting drive\n"
 			
 			# mount, format, and mount again :P
 			sudo umount "$drive_choice" 

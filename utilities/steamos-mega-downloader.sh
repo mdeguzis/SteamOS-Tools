@@ -405,7 +405,7 @@ check_download_integrity()
 			
 		else
 			# let user know check failed and to retry with overwrite
-			clear
+			#clear
 			echo -e "\n==ERROR==\nmd5sum check failed.\nPlease rerun this script and choose to overwrite"
 			exit 1
 		fi
@@ -433,7 +433,7 @@ check_download_integrity()
 			
 		else 
 			# let user know check failed and to retry with overwrite
-			clear
+			#clear
 			echo -e "\n==ERROR==\nsha512sum check failed.\nPlease rerun this script and choose to overwrite"
 			exit 1
 		fi

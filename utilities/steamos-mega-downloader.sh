@@ -420,6 +420,7 @@ check_download_integrity()
 			:
 			
 		fi
+		
 		echo -e "\nSHA512 Check:"
 		shacheck=$(sha512sum -c "$HOME/downloads/$release/$shafile" | grep OK)
 		

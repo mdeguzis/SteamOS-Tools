@@ -395,6 +395,7 @@ check_download_integrity()
 		fi
 	
 		echo -e "MD5 Check:"
+		# we only want to check for our $file only below
 		md5check=$(md5sum -c "$HOME/downloads/$release/$md5file" | grep "$file: OK")
 		
 		if [[ "$md5check" == "$file: OK" ]]; then
@@ -422,6 +423,7 @@ check_download_integrity()
 		fi
 		
 		echo -e "\nSHA512 Check:"
+		# we only want to check for our $file only below
 		shacheck=$(sha512sum -c "$HOME/downloads/$release/$shafile" | grep "$file: OK")
 		
 		if [[ "$shacheck" == "$file: OK" ]]; then

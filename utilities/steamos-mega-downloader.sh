@@ -3,7 +3,7 @@
 # Author:    	  	Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		1.2.1
+# Script Ver:		1.2.2
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #			to specified directory and run SHA512 checks against them.
 #			drive. This NOT associated with Valve whatsover.
@@ -11,6 +11,7 @@
 # Usage:      		./fetch-steamos.sh 
 #			./fetch-steamos.sh --help
 #			./fetch-steamos.sh --checkonly
+# -------------------------------------------------------------------------------
 
 arg1="$1"
 
@@ -333,7 +334,7 @@ check_download_integrity()
 		
 	else
 		
-		echo -e "MD5 Check:\nNo file to check"
+		echo -e "\nMD5 Check:\nNo file to check"
 	
 	fi
 	
@@ -451,7 +452,7 @@ eval_git_repo()
 	
 		# set gitrul to fallback url
 		giturl="$giturl_fallback"
-		echo -e "\n==INFO==\nUsing fallback git url."
+		echo -e "\n==INFO==\nUsing fallback git url.\n"
 	
 	fi
 	

@@ -12,7 +12,6 @@
 #			./fetch-steamos.sh --help
 #			./fetch-steamos.sh --checkonly
 # -------------------------------------------------------------------------------
-
 arg1="$1"
 
 help()
@@ -401,7 +400,7 @@ check_download_integrity()
 		
 		if [[ "$md5check" == "$file: OK" ]]; then
 			# output check test
-			echo "\n$md5check"
+			echo -e "\n$md5check"
 			
 		else
 			# let user know check failed and to retry with overwrite

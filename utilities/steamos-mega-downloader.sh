@@ -451,6 +451,7 @@ eval_git_repo()
 	
 		# set gitrul to fallback url
 		giturl="$giturl_fallback"
+		echo -e "\n==INFO==\nUsing fallback git url."
 	
 	fi
 	

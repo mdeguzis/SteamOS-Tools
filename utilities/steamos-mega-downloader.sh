@@ -3,7 +3,7 @@
 # Author:    	  	Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		0.9.7
+# Script Ver:		1.0.0
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #			to specified directory and run SHA512 checks against them.
 #			drive. This NOT associated with Valve whatsover.

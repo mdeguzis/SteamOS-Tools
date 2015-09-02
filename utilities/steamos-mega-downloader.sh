@@ -313,7 +313,7 @@ check_download_integrity()
 	# download md5sum
 	if [[ "$md5file" != "none" ]];then
 	
-		if [[ "$distro" == "stephensons-rocket" ]]; then
+		if [[ "$distro" == "stephensons-rocket" || "$distro" == "vaporos-mod" ]]; then
 		
 			# This is handled during build
 			echo "" > /dev/null
@@ -574,8 +574,9 @@ download_stephensons()
 	# move iso up a dir for easy md5/sha checks and for storage
 	echo -e "\n==> Transferring files to release folder\n"
 	sleep 2s
-	mv -v "rocket.iso" "$HOME/downloads/$release/"
-	mv -v "rocket.iso.md5" "$HOME/downloads/$release/"
+	
+	mv -v "$file" "$HOME/downloads/$release/"
+	mv -v "$md5file" "$HOME/downloads/$release/"
 	
 	# move to release folder for checksum validation
 	cd "$HOME/downloads/$release"

@@ -309,7 +309,7 @@ check_download_integrity()
   
 	echo -e "\n==> Checking integrity of installer\n"
 	sleep 2s
-	
+
 	# download md5sum
 	if [[ "$md5file" != "none" ]];then
 	
@@ -489,9 +489,10 @@ download_valve_steamos()
 			
 		elif [[ "$rdl_choice" == "n" ]]; then
 		
-			# remove so download sequence fetchs fresh checksums
-			rm -f "$HOME/downloads/$release/$md5file"
-			rm -f "$HOME/downloads/$release/$shafile"
+			# Do not overwrite files
+			# If checksum exists, it will be downloaded in the integrity check
+			# If integrity check fails, users should overwrite on retry
+			echo "" > /dev/null
 	
 		fi
 	else
@@ -525,11 +526,10 @@ download_vaporos_legacy()
 			
 		elif [[ "$rdl_choice" == "n" ]]; then
 		
-			# remove so download sequence fetchs fresh checksums
-			rm -f "$HOME/downloads/$release/$md5file"
-			rm -f "$HOME/downloads/$release/$shafile"
-			# download main file, no removal
-			wget --no-clobber "$base_url/iso/$file"
+			# Do not overwrite files
+			# If checksum exists, it will be downloaded in the integrity check
+			# If integrity check fails, users should overwrite on retry
+			echo "" > /dev/null
 	
 		fi
 	else

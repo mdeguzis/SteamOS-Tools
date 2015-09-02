@@ -514,6 +514,7 @@ download_valve_steamos()
 			rm -f "$HOME/downloads/$release/$file"
 			rm -f "$HOME/downloads/$release/$md5file"
 			rm -f "$HOME/downloads/$release/$shafile"
+			echo ""
 			wget --no-clobber "$base_url/$release/$file"
 			
 		elif [[ "$rdl_choice" == "n" ]]; then
@@ -553,6 +554,7 @@ download_vaporos_legacy()
 			rm -f "$HOME/downloads/$release/$file"
 			rm -f "$HOME/downloads/$release/$md5file"
 			rm -f "$HOME/downloads/$release/$shafile"
+			echo ""
 			wget --no-clobber "$base_url/iso/$file"
 			
 		elif [[ "$rdl_choice" == "n" ]]; then

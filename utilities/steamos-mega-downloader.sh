@@ -452,7 +452,7 @@ eval_git_repo()
 	
 		# set gitrul to fallback url
 		giturl="$giturl_fallback"
-		echo -e "\n==INFO==\nUsing fallback git url.\n"
+		echo -e "\n==INFO==\nUsing fallback git url."
 	
 	fi
 	
@@ -488,7 +488,7 @@ eval_git_repo()
 		else
 		
 			# echo output
-			echo -e "$output\n"
+			echo -e "$output"
 		fi
 	
 	else
@@ -603,7 +603,7 @@ download_stephensons()
 	# Generate image andchecksum files
 	if [[ "$distro" == "vaporos-mod" ]]; then
 	
-		echo -e "\n==INFO==\nVaporOS-mod detected\n"
+		echo -e "\n==INFO==\nVaporOS-mod detected"
 		sleep 2s
 		
 		# set new giturl and eval

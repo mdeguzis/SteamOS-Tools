@@ -672,7 +672,7 @@ main()
 	
 	cat <<-EOF
 	------------------------------------------------------------
-	SteamOS Installer download utility | Distro:$distro_check
+	SteamOS Installer download utility | Distro: $distro_check
 	------------------------------------------------------------
 	For more information, see the wiki at: 
 	github.com/ValveSoftware/SteamOS/wiki

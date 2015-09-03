@@ -287,8 +287,8 @@ create_usb_iso()
 	echo -e "    This will take some time, please wait.\n"
 	
 	# mount, format, and mount again :P
-	sudo umount "$drive_choice" 
-	$format_drive "$drive_choice"
+	sudo umount ${drive_choice}*
+	$format_drive ${drive_choice} 
 	
 	# image drive
 	sudo dd bs=1M if=${file} of=${drive_choice}
@@ -317,8 +317,8 @@ create_usb_zip()
 	echo -e "\n==> Formatting drive\n"
 	
 	# mount, format, and mount again :P
-	sudo umount "$drive_choice" 
-	$format_drive "$drive_choice"
+	sudo umount ${$drive_choice}*
+	$format_drive ${$drive_choice}
 	
 	# create tmp dir and moutn drive
 	if [[ -d "/tmp/steamos-usb" ]]; then

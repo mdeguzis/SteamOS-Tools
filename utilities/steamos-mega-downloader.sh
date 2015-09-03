@@ -670,9 +670,13 @@ main()
 {
 	clear
 	
+	# set distro for title header
+	distribution=$(lsb_release -i | cut -c 17-25)
+	codename=$(lsb_release -i | cut -c 11-25)
+	
 	cat <<-EOF
 	------------------------------------------------------------
-	SteamOS Installer download utility | Distro: $distro_check
+	SteamOS Mega Downloader | Distro: $distribution: $codename
 	------------------------------------------------------------
 	For more information, see the wiki at: 
 	github.com/ValveSoftware/SteamOS/wiki

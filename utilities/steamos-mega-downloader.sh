@@ -52,6 +52,7 @@ show_banner()
 		@@@@@@@@@@@@@@@@&(((((((((((((((((((((((((&@@@@@@@@@@@@@@@@	
 		
 		EOF
+		sleep 5s
 		
 	else
 		# do not show banner, mobile device or small window
@@ -59,7 +60,6 @@ show_banner()
 	
 	fi
 	
-	sleep 5s
 }
 
 help()

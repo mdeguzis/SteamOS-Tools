@@ -248,25 +248,26 @@ show_summary()
 	that before booting the USB drive, you ensure you have the proper
 	EFI settings (if applicatble) for your motherboard.
 	
+	If you chose to burn an applicable ISO image to a CD or DVD,
+	please reboot your computer with the disc inserted.
+	
 	Please see github.com/ValveSoftware/SteamOS/wiki for more.
 	
 	EOF
 }
 
-burn_dvd()
+burn_disc()
 {
-	
-	# To-do:
-	# potential commands to do the burn:
-		# wodim -v dev=/dev/sr1 speed=10 -eject name.iso
-		# growisofs -dvd-compat -Z /dev/sr1=myiso.iso
-		# sudo burn -I -n test_image.iso
-		# cdrecord -v -pad speed=1 dev=0,0,0 src.iso
-	
+
 	# find out drive name
 	drive_name=$(cat "/proc/sys/dev/cdrom/info" | grep "drive name" | cut -f 3 )
 	optical_drive=$(echo /dev/${drive_name})
 	
+	# burn ISO image
+	xorriso -as cdrecord -v dev=${optical_drive} blank=as_needed ${file}
+
+	# eject disc for labeling or examination
+	eject ${optical_drive}
 	
 }
 
@@ -353,11 +354,11 @@ install_image()
 	
 	fi
 	
-	echo -e "\nImage SteamOS to USB drive? (y/n)"
-	read -erp "Choice: " usb_choice
+	echo -e "\nWould you like to make a USB drive or CD/DVD (ISO type only)? (y/n)"
+	read -erp "Choice: " choice
 	echo ""
 	
-	if [[ "$usb_choice"  == "y" ]]; then
+	if [[ "$choice"  == "y" ]]; then
 	
 		# detect zip file
 		if [[ "$check_zip" != "" ]]; then
@@ -367,7 +368,20 @@ install_image()
 		# detect ISO image
 		elif [[ "$check_iso" != "" ]]; then
 		
-			create_usb_iso
+			echo -e "\nDo you wish to use a USB Drive (u), or a Disc (d)? "
+			echo -e "An average 1.4 GB DVD is needed for Disc imaging\n"
+			read -erp "Choice: " ud_choice
+			echo ""
+			
+			if [[ "$ud_choice" == "u" ]]; then
+		
+				create_usb_iso
+				
+			elif [ "$ud_choice" == "d" ]]; then
+			
+				burn_disc
+				
+			fi
 			
 			# provide if statement soon to choose optical method as well
 			
@@ -379,7 +393,7 @@ install_image()
 			
 		fi
 		
-	elif [[ "$usb_choice"  == "n" ]]; then
+	elif [[ "$choice"  == "n" ]]; then
 	
 		echo -e "Skipping USB installation"
 		

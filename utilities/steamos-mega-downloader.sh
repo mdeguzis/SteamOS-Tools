@@ -16,7 +16,9 @@ arg1="$1"
 
 show_banner()
 {
-	if [ "$COLUMNS" -gt 60 && "$ROWS" -gt 30 ]; then
+	col="$COLUMNS"
+	row="$ROWS"
+	if [ "$col" -gt 60 && "$row" -gt 30 ]; then
 
 		# show banner
 		cat <<-EOF

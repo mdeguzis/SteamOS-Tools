@@ -6,7 +6,8 @@
 # Script Ver:		1.2.2
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #			to specified directory and run SHA512 checks against them.
-#			drive. This NOT associated with Valve whatsover.
+#			Installs to a USB drive. 
+#			This NOT associated with Valve whatsover.
 #
 # Usage:      		./fetch-steamos.sh 
 #			./fetch-steamos.sh --help
@@ -73,6 +74,7 @@ help()
 	Please note:
 	Stephenson's Rocket and VaporOS are not official Valve releases of SteamOS.
 	
+	The utility will also offer to image/unzip the release to your USB drive.
 	This utility is NOT associated with Valve whatsover.
 	
 	EOF

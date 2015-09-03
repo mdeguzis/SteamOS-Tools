@@ -51,6 +51,7 @@ show_banner()
 	
 	EOF
 	
+	sleep 5s
 }
 
 help()

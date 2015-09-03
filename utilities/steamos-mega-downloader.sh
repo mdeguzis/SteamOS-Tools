@@ -365,7 +365,7 @@ install_image()
 			create_usb_zip
 			
 		# detect ISO image
-		elif [[ "$check_iso" != "" ]; then
+		elif [[ "$check_iso" != "" ]]; then
 		
 			create_usb_iso
 			

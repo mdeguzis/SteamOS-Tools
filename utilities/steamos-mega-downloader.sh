@@ -256,12 +256,92 @@ show_summary()
 burn_dvd()
 {
 	
-	# To-do
-	:
+	# To-do:
+	# potential commands to do the burn:
+		# wodim -v dev=/dev/sr1 speed=10 -eject name.iso
+		# growisofs -dvd-compat -Z /dev/sr1=myiso.iso
+		# sudo burn -I -n test_image.iso
+		# cdrecord -v -pad speed=1 dev=0,0,0 src.iso
+	
+	# find out drive name
+	drive_name=$(cat "/proc/sys/dev/cdrom/info" | grep "drive name" | cut -f 3 )
+	optical_drive=$(echo /dev/${drive_name})
+	
+	
 }
 
-image_drive()
+create_usb_iso()
 {
+
+	echo -e "\n==> Showing current usb drives\n"
+	lsblk
+	
+	echo -e "\n==> Enter drive path (e.g. /dev/sdX):"
+	sleep 0.5s
+	read -erp "Choice: " drive_choice
+	
+	echo -e "\n==> Installing release to usb drive..."
+	echo -e "    This will take some time, please wait.\n"
+	
+	# image drive
+	sudo dd bs=1M if="$file" of="$drive_choice"
+	
+	# unount drive 
+	echo -e "\nUmounting USB drive. Please do not reove until done"
+	sudo umount "$drive_choice" 
+	
+	# show user end summary
+	show_summary
+	
+}
+
+create_usb_zip()
+{
+	
+	echo -e "\n==> Showing current usb drives\n"
+	lsblk
+	
+	echo -e "\n==> Enter drive path (usually /dev/sdX):"
+	sleep 0.5s
+	read -erp "Choice: " drive_choice
+	
+	echo -e "\n==> Formatting drive\n"
+	
+	# mount, format, and mount again :P
+	sudo umount "$drive_choice" 
+	$format_drive "$drive_choice"
+	
+	# create tmp dir and moutn drive
+	if [[ -d "/tmp/steamos-usb" ]]; then
+		rm -rf "/tmp/steamos-usb/*"
+	else
+		mkdir -p "/tmp/steamos-usb"
+	fi
+	
+	# mount drive to tmp location
+	sudo mount "$drive_choice" "/tmp/steamos-usb"
+	
+	echo -e "\n==> Installing release to usb drive\n"
+	
+	# unzip archive to drive
+	sudo unzip "$file" -d "/tmp/steamos-usb"
+	
+	# unount drive 
+	echo -e "\nUmounting USB drive. Please do not reove until done"
+	sudo umount "$drive_choice" 
+	
+	# show user end summary
+	show_summary
+	
+}
+
+install_image()
+{
+	# check $file extension
+	# ask user if they wish to use a DVD/CD or USB drive for ISO images later below
+	check_iso=$(echo $file | grep -i iso)
+	check_zip=$(echo $file | grep -i zip)
+	
 	# set mkdosfs location
 	if [[ "$distro_check" == "SteamOS" || "$distro_check" == "SteamOS" ]]; then
 	
@@ -279,65 +359,18 @@ image_drive()
 	
 	if [[ "$usb_choice"  == "y" ]]; then
 	
-		if [[ "$file" == "SteamOSInstaller.zip" ]]; then
+		# detect zip file
+		if [[ "$check_zip" != "" ]]; then
 			
-			echo -e "\n==> Showing current usb drives\n"
-			lsblk
+			create_usb_zip
 			
-			echo -e "\n==> Enter drive path (usually /dev/sdX):"
-			sleep 0.5s
-			read -erp "Choice: " drive_choice
-			
-			echo -e "\n==> Formatting drive\n"
-			
-			# mount, format, and mount again :P
-			sudo umount "$drive_choice" 
-			$format_drive "$drive_choice"
-			
-			# create tmp dir and moutn drive
-			if [[ -d "/tmp/steamos-usb" ]]; then
-				rm -rf "/tmp/steamos-usb/*"
-			else
-				mkdir -p "/tmp/steamos-usb"
-			fi
-			
-			# mount drive to tmp location
-			sudo mount "$drive_choice" "/tmp/steamos-usb"
-			
-			echo -e "\n==> Installing release to usb drive\n"
-			
-			# unzip archive to drive
-			sudo unzip "$file" -d "/tmp/steamos-usb"
-			
-			# unount drive 
-			echo -e "\nUmounting USB drive. Please do not reove until done"
-			sudo umount "$drive_choice" 
-			
-			# show user end summary
-			show_summary
-			
-		elif [[ "$file" == "SteamOSDVD.iso" || \
-			$file" == "rocket.iso ]]; then
+		# detect ISO image
+		elif [[ "$check_iso" != "" ]; then
 		
-			echo -e "\n==> Showing current usb drives\n"
-			lsblk
+			create_usb_iso
 			
-			echo -e "\n==> Enter drive path (e.g. /dev/sdX):"
-			sleep 0.5s
-			read -erp "Choice: " drive_choice
+			# provide if statement soon to choose optical method as well
 			
-			echo -e "\n==> Installing release to usb drive..."
-			echo -e "    This will take some time, please wait.\n"
-			
-			# image drive
-			sudo dd bs=1M if="$file" of="$drive_choice"
-			
-			# unount drive 
-			echo -e "\nUmounting USB drive. Please do not reove until done"
-			sudo umount "$drive_choice" 
-			
-			# show user end summary
-			show_summary
 		else
 		
 			echo -e "\nRelease not supported for this operation. Aborting..."
@@ -896,7 +929,7 @@ main()
  		pre_reqs
  		download_release_main
 		check_download_integrity
-		image_drive
+		install_image
 		
  	fi
  	

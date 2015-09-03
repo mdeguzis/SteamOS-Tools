@@ -382,7 +382,7 @@ install_image()
 		
 				create_usb_iso
 				
-			elif [ "$ud_choice" == "d" ]]; then
+			elif [[ "$ud_choice" == "d" ]]; then
 			
 				burn_disc
 				

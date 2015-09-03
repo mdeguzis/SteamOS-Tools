@@ -1,7 +1,6 @@
 #!/bin/bash
 # -------------------------------------------------------------------------------
 # Author:    	  	Michael DeGuzis
-# Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	fetch-steamos.sh
 # Script Ver:		1.2.2
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
@@ -291,6 +290,7 @@ create_usb_iso()
 	echo -e "\nUmounting USB drive. Please do not remove until done"
 	sudo umount "$drive_choice" 
 	echo -e "Done"
+	sleep 2s
 	
 	# show user end summary
 	show_summary

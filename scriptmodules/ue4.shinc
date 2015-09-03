@@ -90,7 +90,7 @@ m_install_ue4()
 		EOF
 		
 		# mark exec
-		sudo chmod +x ${ue4_cli_tmp}
+		chmod +x ${ue4_cli_tmp}
 		
 		# move tmp var files into target locations
 		sudo mv ${ue4_shortcut_tmp}  "/usr/share/applications"

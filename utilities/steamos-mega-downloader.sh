@@ -268,6 +268,9 @@ burn_disc()
 	# eject disc for labeling or examination
 	eject ${optical_drive}
 	
+	# show user end summary
+	show_summary
+	
 }
 
 create_usb_iso()

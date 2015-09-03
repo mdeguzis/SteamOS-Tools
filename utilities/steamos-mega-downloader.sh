@@ -665,11 +665,13 @@ download_stephensons()
 		eval_git_repo
 		
 		cd ..
+		echo ""
 		./gen.sh -n "VaporOS" vaporos-mod
 		
 	else
 	
 		# generate "stock" iso image
+		echo ""
 		./gen.sh
 		
 	fi

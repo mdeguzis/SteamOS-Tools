@@ -253,6 +253,13 @@ show_summary()
 	EOF
 }
 
+burn_dvd()
+{
+	
+	# To-do
+	:
+}
+
 image_drive()
 {
 	# set mkdosfs location
@@ -266,7 +273,7 @@ image_drive()
 	
 	fi
 	
-	echo -e "\nImage SteamOS to drive? (y/n)"
+	echo -e "\nImage SteamOS to USB drive? (y/n)"
 	read -erp "Choice: " usb_choice
 	echo ""
 	

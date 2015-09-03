@@ -23,22 +23,22 @@ m_install_ue4()
 	current_dir=$(pwd)
 	ut4_dir="/home/desktop/ut4-linux"
 	ut4_bin_dir="$ut4_dir/LinuxNoEditor/Engine/Binaries/Linux/"
-	ut4_exe="$ut4_dir/$ut4_bin_dir/UE4-Linux-Test UnrealTournament"
+	ut4_exe="$ut4_bin_dir/UE4-Linux-Test UnrealTournament"
 	
 	ue4_shortcut_tmp="/home/desktop/ue4-alpha.deskop"
-	ue4_cli_tmp="/usr/bin/ue4-alpha"
+	ue4_cli_tmp="/home/desktop/ue4-alpha"
 	
 	# start apt mode if check
 	if [[ "$apt_mode" == "install" ]]; then
 	
-		if [[ -d "ut4-dir" ]]; then
+		if [[ -d "$ut4_dir" ]]; then
 			# DIR exists
 			echo -e "\nUT4 Game directory found"
 		else
-			mkdir -p "ut4-dir"
+			mkdir -p "$ut4_dir"
 		fi
 		
-		cd "$ut4-dir"
+		cd "$ut4_dir"
 	
 		#################################################
 		# Prerequisites
@@ -53,13 +53,13 @@ m_install_ue4()
 		echo -e "\n==> Acquiring files...please wait"
 		sleep 2
 		
-		wget "https://s3.amazonaws.com/unrealtournament/UnrealTournament-Client-XAN-2634754-Linux.zip"
+		wget "https://s3.amazonaws.com/unrealtournament/UnrealTournament-Client-XAN-2665501-Linux.zip"
 		
 		#################################################
 		# Setup
 		#################################################
 
-		unzip -o "UnrealTournament-Client-XAN-2634754-Linux.zip"
+		unzip -o "UnrealTournament-Client-XAN-2665501-Linux.zip"
 		
 		#################################################
 		# Post install configuration
@@ -70,7 +70,7 @@ m_install_ue4()
 		cat <<-EOF> ${ue4_cli_tmp}
 		#!/bin/bash
 		# execute ue4 alpha
-		cd $ut4_dir/$ut4_bin_dir
+		cd $ut4_bin_dir
 		UE4-Linux-Test UnrealTournament
 		EOF
 		
@@ -86,12 +86,12 @@ m_install_ue4()
 		MimeType=x-scheme-handler/steam;
 		EOF
 		
+		# mark exec
+		sudo chmod +x ${ue4_cli_tmp}
+		
 		# move tmp var files into target locations
 		sudo mv ${ue4_shortcut_tmp}  "/usr/share/applications"
 		sudo mv ${ue4_cli_tmp} "/usr/bin"
-		
-		# mark exec
-		sudo chmod +x ${ue4_cli_tmp}
 		
 		#################################################
 		# Cleanup
@@ -121,7 +121,8 @@ m_install_ue4()
 		sleep 2s
 		
 		# remove directories
-		sudo rm -rf "$install_dir" "$git_dir" "$symlink_target"
+		sudo rm -rf "/usr/share/applications/ue4-alpha.deskop" "/usr/bin/ue4-alpha" \
+		"$ut4_dir"
 		
 		# end apt mode if check  
 	fi

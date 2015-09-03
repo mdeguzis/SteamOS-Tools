@@ -676,7 +676,7 @@ main()
 	
 	cat <<-EOF
 	------------------------------------------------------------
-	SteamOS Mega Downloader | Distro: $distribution: $codename
+	SteamOS Mega Downloader | Distro: $distribution ($codename)
 	------------------------------------------------------------
 	For more information, see the wiki at: 
 	github.com/ValveSoftware/SteamOS/wiki

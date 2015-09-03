@@ -712,8 +712,8 @@ main()
 	clear
 	
 	# banner test
-	show_banner
-	clear
+	# show_banner
+	# clear
 	
 	# set distro for title header
 	distribution=$(lsb_release -i | cut -c 17-25)

@@ -283,12 +283,16 @@ create_usb_iso()
 	echo -e "\n==> Installing release to usb drive..."
 	echo -e "    This will take some time, please wait.\n"
 	
+	# mount, format, and mount again :P
+	sudo umount "$drive_choice" 
+	$format_drive "$drive_choice"
+	
 	# image drive
-	sudo dd bs=1M if="$file" of="$drive_choice"
+	sudo dd bs=1M if=${file} of=${drive_choice}
 	
 	# unount drive 
 	echo -e "\nUmounting USB drive. Please do not remove until done"
-	sudo umount "$drive_choice" 
+	sudo umount ${drive_choice} 
 	echo -e "Done"
 	sleep 2s
 	
@@ -345,7 +349,7 @@ install_image()
 	check_zip=$(echo $file | grep -i zip)
 	
 	# set mkdosfs location
-	if [[ "$distro_check" == "SteamOS" || "$distro_check" == "SteamOS" ]]; then
+	if [[ "$distro_check" == "SteamOS" || "$distro_check" == "Debian" ]]; then
 	
 		format_drive="sudo /sbin/mkdosfs -F 32 -I"
 	

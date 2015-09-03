@@ -283,12 +283,14 @@ create_usb_iso()
 	sleep 0.5s
 	read -erp "Choice: " drive_choice
 	
-	echo -e "\n==> Installing release to usb drive..."
-	echo -e "    This will take some time, please wait.\n"
+	echo -e "\n==> Formatting drive\n"
 	
 	# mount, format, and mount again :P
 	sudo umount ${drive_choice}*
 	$format_drive ${drive_choice} 
+	
+	echo -e "\n==> Installing release to usb drive..."
+	echo -e "    This will take some time, please wait.\n"
 	
 	# image drive
 	sudo dd bs=1M if=${file} of=${drive_choice}

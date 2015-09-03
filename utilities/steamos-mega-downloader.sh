@@ -710,6 +710,9 @@ main()
 {
 	clear
 	
+	# banner test
+	show_banner
+	
 	# set distro for title header
 	distribution=$(lsb_release -i | cut -c 17-25)
 	codename=$(lsb_release -c | cut -c 11-25)
@@ -874,10 +877,6 @@ main()
  
  		# just check integrity of files
  		check_download_integrity
- 	
- 	elif [[ "$arg1" == "--bannertest" ]]; then
- 
- 		show_banner
  		
  	else
  		# Check for and download release

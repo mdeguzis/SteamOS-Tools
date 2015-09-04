@@ -227,11 +227,11 @@ funct_create_chroot()
 	# enter chroot to test
 	
 	echo -e "\nYou will now be placed into the chroot. Press [ENTER].
-If you wish  to leave out any post operations and remain with a 'stock' chroot, type 'stock', 
-then [ENTER] instead. A stock chroot is only intended and suggested for the Debian chroot type."
+	If you wish  to leave out any post operations and remain with a 'stock' chroot, type 'stock',
+	then [ENTER] instead. A stock chroot is only intended and suggested for the Debian chroot type."
 	
-	echo -e "\nYou may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to manually
-enter the chroot."
+	echo -e "\nYou may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to manually 
+	enter the chroot."
 	
 	EOF
 	

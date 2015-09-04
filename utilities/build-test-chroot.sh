@@ -102,7 +102,7 @@ fi
 funct_prereqs()
 {
 	
-	echo -e "\n==> Installing prerequisite packages\n"
+	echo -e "==> Installing prerequisite packages\n"
 	sleep 1s
 	
 	# Install the required packages 
@@ -159,7 +159,7 @@ function gpg_import()
 		sleep 1s
 	else
 		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now...\n"
-		gpg_import.sh 7DEEB7438ABDDD96
+		./gpg_import.sh 7DEEB7438ABDDD96
 	fi
 
 }

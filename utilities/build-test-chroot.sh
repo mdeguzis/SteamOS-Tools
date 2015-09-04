@@ -25,14 +25,11 @@
 # set $USER since we run as root/sudo
 # The reason for running sudo is do to the post install commands being inside the chroot
 # Rather than run into issues adding user(s) to /etc/sudoers, we will run elevated.
-USER="$SUDO_USER"
+
+export USER="$SUDO_USER"
 #echo "user test: $USER"
 #exit 1
 
-#test file creation
-echo "Creating /home/$USER/.bash_aliases"
-touch "/home/$USER/.bash_aliases"
-exit 1
 
 # remove old custom files
 rm -f "log.txt"

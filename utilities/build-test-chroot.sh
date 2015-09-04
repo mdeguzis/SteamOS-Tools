@@ -78,19 +78,19 @@ funct_set_target()
 	if [[ "$type" == "debian" ]]; then
 	
 		target="debian-${release}"
-		target_URL="http://http.debian.net/debian/${release}"
+		target_URL="http://http.debian.net/debian/debian"
 		beta_flag="no"
 	
 	elif [[ "$type" == "steamos" ]]; then
 		
 		target="steamos-${release}"
-		target_URL="http://repo.steampowered.com/${release}"
+		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="no"
 	
 	elif [[ "$type" == "steamos-beta" ]]; then
 	
 		target="steamos-beta-${release}"
-		target_URL="http://repo.steampowered.com/${release}"
+		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="yes"
 	
 	elif [[ "$type" == "--help" ]]; then

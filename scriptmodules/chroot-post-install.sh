@@ -193,20 +193,13 @@ if [[ "$tmp_type" == "steamos" || "$tmp_type" == "steamos-beta" ]]; then
 	echo -e "\n==> Cleaning up packages"
 	
 	# eliminate unecessary packages
-	if [[ "$release" == "alchemist" ]]; then
-	
-		apt-get -t wheezy install deborphan
-		deborphan -a
-	
-	elif [[ "$release" == "brewmaster" ]]; then
-	
-		apt-get -t jessie install deborphan
-		deborphan -a
-	
-	fi
+	apt-get -t jessie install deborphan
+	deborphan -a
 	
 	# exit chroot
 	echo -e "\nExiting chroot!\n"
+	echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 
+enter the chroot again."
 	exit
 	
 	sleep 2s

@@ -216,13 +216,13 @@ funct_create_chroot()
 	chmod +x /home/desktop/chroots/${target}/tmp/chroot-post-install.sh
 
 	# Modify target based on opts
-	sed -i "s|"type_tmp"|${type}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_type"|${type}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# Change opt-in based on opts
-	sed -i "s|"beta_tmp"|${beta_flag}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_beta"|${beta_flag}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# modify release_tmp for Debian Wheezy / Jessie in post-install script
-	sed -i "s|"release_tmp"|${release}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_release"|${release}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# enter chroot to test
 	
@@ -242,13 +242,13 @@ enter the chroot."
 	
 		# Captured carriage return / blank line only, continue on as normal
 		# Modify target based on opts
-		sed -i "s|"stock_tmp"|"no"|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+		sed -i "s|"tmp_stock"|"no"|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 		#printf "zero length detected..."
 		
 	elif [[ "$stock_choice" == "stock" ]]; then
 	
 		# Modify target based on opts
-		sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+		sed -i "s|"tmp_stock"|"yes"|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 		
 	elif [[ "$stock_choice" != "stock" ]]; then
 	

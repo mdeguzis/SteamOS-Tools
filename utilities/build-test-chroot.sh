@@ -4,15 +4,16 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.1.3
+# Script Ver:	0.3.3
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. SteamOS targets allow brewmaster/alchemist release types.
 #               See: https://wiki.debian.org/chroot
 #
-# Usage:	sudo ./build-test-chroot.sh [OPTIONS]
-# Options:	-type [debian|steamos] 
-#		-release [wheezy|jessie|alchemist|brewmaster]
-#
+# Usage:	sudo ./build-test-chroot.sh [type] [release]
+# Options:	types: [debian|steamos] 
+#		releases debian:  [wheezy|jessie]
+#		releases steamos: [alchemist|brewmaster]]
+#		
 # Help:		sudo ./build-test-chroot.sh --help for help
 #
 # Warning:	You MUST have the Debian repos added properly for
@@ -23,10 +24,8 @@
 rm -f "log.txt"
 
 # set arguments / defaults
-opt1="$1"
-type="$2"
-opt2="$3"
-release="$4"
+type="$1"
+release="$2"
 stock_choice=""
 
 show_help()
@@ -70,35 +69,32 @@ funct_prereqs()
 
 funct_set_target()
 {
-
-	if [[ "$opt1" == "-type" ]]; then
 	
-	  if [[ "$type" == "debian" ]]; then
-	  
-	  	target="debian"
-	  	release="jessie"
-	  	target_URL="http://http.debian.net/debian"
-	  	beta_flag="no"
-	  	
-	  elif [[ "$type" == "steamos" ]]; then
+	if [[ "$type" == "debian" ]]; then
+	
+		target="debian"
+		release="jessie"
+		target_URL="http://http.debian.net/debian"
+		beta_flag="no"
+	
+	elif [[ "$type" == "steamos" ]]; then
 		
 		target="steamos"
 		release="brewmaster"
 		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="no"
-	    
-	  elif [[ "$type" == "steamos-beta" ]]; then
-		
+	
+	elif [[ "$type" == "steamos-beta" ]]; then
+	
 		target="steamos-beta"
 		release="brewmaster"
 		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="yes"
-	    
-	  fi
-	  
-	elif [[ "$opt1" == "--help" ]]; then
+	
+	elif [[ "$type" == "--help" ]]; then
+		
 		show_help
-	fi
+		fi
 
 }
 

@@ -23,8 +23,10 @@
 rm -f "log.txt"
 
 # set arguments / defaults
-opt1=$1
-opt2=$2
+opt1="$1"
+type="$2"
+opt2="$3"
+release="$4"
 stock_choice=""
 
 show_help()
@@ -70,21 +72,22 @@ funct_set_target()
 {
 
 	if [[ "$opt1" == "-type" ]]; then
-	  if [[ "$opt2" == "debian" ]]; then
+	
+	  if [[ "$type" == "debian" ]]; then
 	  
 	  	target="debian"
 	  	release="jessie"
 	  	target_URL="http://http.debian.net/debian"
 	  	beta_flag="no"
 	  	
-	  elif [[ "$opt2" == "steamos" ]]; then
+	  elif [[ "$type" == "steamos" ]]; then
 		
 		target="steamos"
 		release="brewmaster"
 		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="no"
 	    
-	  elif [[ "$opt2" == "steamos-beta" ]]; then
+	  elif [[ "$type" == "steamos-beta" ]]; then
 		
 		target="steamos-beta"
 		release="brewmaster"

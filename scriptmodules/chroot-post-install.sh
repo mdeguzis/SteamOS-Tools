@@ -30,6 +30,7 @@ type="tmp_type"
 beta_opt_in="tmp_beta"
 stock_opt="tmp_stock"
 release="tmp_release"
+full_target="${type}_${release}"
 
 # bail out if strock opt was changed to yes in ./build-test-chroot
 if [[ "$stock_opt" == "yes" ]]; then
@@ -221,10 +222,30 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	apt-get install deborphan
 	deborphan -a
 	
+	# create alias for easy use of command
+	alias_check_steamos_brew=$(cat "$HOME/.bashrc" | grep chroot-steamos-brewmaster)
+	
+	if [[ "$alias_check_steamos_brew" == "" ]]; then
+	
+		cat <<-EOF >> "$HOME/.bashrc"
+		
+		# chroot alias for ${type} (${target})
+		alias chroot-steamos-brewmaster='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
+		EOF
+		
+	fi
+	
 	# exit chroot
 	echo -e "\nExiting chroot!\n"
 	echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 
-enter the chroot again.\n"
+enter the chroot again. You can also use the newly created alias listed below\n"
+
+	if [[ "$full_target" == "steamos_brewmaster"]]
+	
+		echo -e "chroot-steamos-brewmaster"
+	
+	fi
+	
 	exit
 	
 	sleep 2s

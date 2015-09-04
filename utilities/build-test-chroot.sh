@@ -23,6 +23,8 @@
 # -------------------------------------------------------------------------------
 
 # set $USER since we run as root/sudo
+# The reason for running sudo is do to the post install commands being inside the chroot
+# Rather than run into issues adding user(s) to /etc/sudoers, we will run elevated.
 USER="$SUDO_USER"
 #echo "user test: $USER"
 #exit 1

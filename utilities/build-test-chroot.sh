@@ -189,14 +189,14 @@ funct_create_chroot()
 	fi
 	
 	# create our chroot folder
-	if [[ -d "$HOME/chroots/${type}-${release}" ]]; then
+	if [[ -d "/home/$USER/chroots/${type}-${release}" ]]; then
 	
 		# remove DIR
-		rm -rf "$HOME/chroots/${type}-${release}"
+		rm -rf "/home/$USER/chroots/${type}-${release}"
 		
 	else
 	
-		mkdir -p "$HOME/chroots/${type}-${release}"
+		mkdir -p "/home/$USER/chroots/${type}-${release}"
 		
 	fi
 	

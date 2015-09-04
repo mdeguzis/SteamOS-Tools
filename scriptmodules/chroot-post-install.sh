@@ -62,6 +62,12 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 		exit
 	fi
 	
+	# Add groups not included in Debian base
+	groupadd bluetooth -g 115
+	groupadd pulse-access -g 121
+	groupadd desktop
+	groupadd steam
+	
 	# User configurations
 	useradd -s /bin/bash -m -d /home/desktop -c "Steam Desktop" -g desktop desktop
 	useradd -s /bin/bash -m -d /home/steam -c "Steam Desktop" -g steam steam
@@ -74,14 +80,23 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	# TODO
 	
 	# setup steam user
-	su - steam
-	passwd
+	#su - steam
+	echo "###########################"
+	echo "Set steam user password"
+	echo "###########################"
+	passwd steam
 	echo -e "steam\nsteam\nsteam\n"
 	
 	# setup desktop user
-	su - desktop
-	passwd
+	#su - desktop
+	echo "#############################"
+	echo "Set desktop user password"
+	echo "#############################"
+	passwd desktop
 	echo -e "dekstop\ndesktop\ndesktop\n"
+	
+	# Change to root chroot folder
+	cd /
 	
 	###########################################
 	# TO DO MORE HERE. NEEDS CONFIG FILES
@@ -116,7 +131,7 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	
 	# create dpkg policy for daemons
 	cat <<-EOF > ${policy}
-	!/bin/sh
+	#!/bin/sh
 	exit 101
 	EOF
 	
@@ -134,11 +149,30 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 		ln -s /bin/true /usr/bin/ischroot
 	fi
 	
-	# "bind" /dev/pts
-	mount --bind /dev/pts /home/desktop/${target}-chroot/dev/pts
+	# Enable Debian jessie repository
+	cat <<-EOF > /etc/apt/sources.list.d/jessie.list
+	deb http://http.debian.net/debian/ jessie main
+	EOF
+	
+	# Enable pinning for SteamOS repo
+	cat <<-EOF > /etc/apt/preferences.d/steamos
+	Package: *
+	Pin: release l=SteamOS
+	Pin-Priority: 900
+	EOF
+	
+	# Enable pinning for Debian repo
+	cat <<-EOF > /etc/apt/preferences.d/debian
+	Package: *
+	Pin: release l=Debian
+	Pin-Priority: 10
+	EOF
+	
+	# Update apt
+	apt-get update -y
 	
 	# eliminate unecessary packages
-	apt-get -t wheezy install deborphan
+	apt-get -t jessie install deborphan
 	deborphan -a
 	
 	# exit chroot
@@ -147,7 +181,7 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	
 	sleep 2s
 	
-elif [[ "$tmp_target" == "wheezy" ]]; then
+elif [[ "$tmp_target" == "debian" ]]; then
 
 	# do nothing for now
 	echo "" > /dev/null

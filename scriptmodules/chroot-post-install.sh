@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	chroot-post-install.sh
-# Script Ver:	0.2.8
+# Script Ver:	0.3.5
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A
@@ -225,7 +225,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	deborphan -a
 	
 	# create alias file that .bashrc automatically will source
-	if [[ -f "$HOME/.bash_aliases" ]]; then
+	if [[ -f "/home/$USER/.bash_aliases" ]]; then
 	
 		# do nothing
 		echo -e "Bash alias file found, skipping creation."
@@ -233,7 +233,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 		echo -e "Bash alias file not found, creating."
 		# create file
-		touch "$HOME/.bash_aliases"
+		touch "/home/$USER/.bash_aliases"
 
 	fi
 	

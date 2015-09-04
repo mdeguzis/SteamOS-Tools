@@ -224,6 +224,8 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 	# create alias for easy use of command
 	alias_check_steamos_brew=$(cat "$HOME/.bashrc" | grep chroot-steamos-brewmaster)
+	alias_check_debian_wheezy=$(cat "$HOME/.bashrc" | grep chroot-debian-wheezy)
+	alias_check_debian_jessie=$(cat "$HOME/.bashrc" | grep chroot-debian-jessie)
 	
 	if [[ "$alias_check_steamos_brew" == "" ]]; then
 	
@@ -233,6 +235,22 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		alias chroot-steamos-brewmaster='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
 		EOF
 		
+	elif [[ "$alias_check_debian_wheezy" == "" ]]; then
+	
+		cat <<-EOF >> "$HOME/.bashrc"
+		
+		# chroot alias for ${type} (${target})
+		alias chroot-debian-wheezy='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
+		EOF
+		
+	elif [[ "$alias_check_debian_jessie" == "" ]]; then
+	
+		cat <<-EOF >> "$HOME/.bashrc"
+		
+		# chroot alias for ${type} (${target})
+		alias chroot-debian-jessie='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
+		EOF
+		
 	fi
 	
 	# exit chroot
@@ -240,10 +258,18 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 
 enter the chroot again. You can also use the newly created alias listed below\n"
 
-	if [[ "$full_target" == "steamos_brewmaster"]]
+	if [[ "$full_target" == "steamos_brewmaster"]]; then
 	
 		echo -e "chroot-steamos-brewmaster"
 	
+	elif [[ "$full_target" == "debian_wheezy"]]; then
+	
+		echo -e "chroot-debian-wheezyr"
+		
+	elif [[ "$full_target" == "steamos_brewmaster"]]; then
+	
+		echo -e "chroot-steamos-wheezy"
+		
 	fi
 	
 	exit

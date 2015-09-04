@@ -213,6 +213,7 @@ funct_create_chroot()
 	
 	# copy over post install script for execution
 	# cp -v scriptmodules/chroot-post-install.sh /home/desktop/chroots/${target}/tmp/
+	echo -e "\n==> Copying post install script to tmp directory\n"
 	cp -v ../scriptmodules/chroot-post-install.sh /home/desktop/chroots/${target}/tmp/
 	
 	# mark executable

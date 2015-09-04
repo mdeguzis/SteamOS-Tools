@@ -180,7 +180,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		deb http://http.debian.net/debian/ jessie main
 		EOF
 	
-	elif [[ "$relese" == "brewmaster" ]]; then
+	elif [[ "$release" == "brewmaster" ]]; then
 	
 		# brewmaster chroot has deb line, but not deb-src, add it
 		# Also src line from pool is not complete, missing contrib/non-free

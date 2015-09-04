@@ -229,7 +229,13 @@ funct_create_chroot()
 	sed -i "s|"tmp_release"|${release}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# enter chroot to test
+	cat <<-EOF
+	------------------------------------------------------------
+	Summary
+	------------------------------------------------------------
 	
+	EOF
+
 	echo -e "\nYou will now be placed into the chroot. Press [ENTER].
 If you wish  to leave out any post operations and remain with a 'stock' chroot, type 'stock',
 then [ENTER] instead. A stock chroot is only intended and suggested for the Debian chroot type."

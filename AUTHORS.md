@@ -4,20 +4,20 @@
 # Contributions from awesome people
 I couldn't have done some of the things here without some help from a lot of great folks
 
-##### X window code for Chrome "web apps"
-- Dubigrasu of the Steamm Universe community forum
-- Sharkwouter of the Steamm Universe community forum
-- Ryochan7 of the Steamm Universe community forum
-
-#### Installation Guides
-- psppwner300 (Steam Community) - SteamOS standard installation guide
-
 #### General code fixes
 * Sharkwouter of the Steamm Universe community forum
 * Ryochan7 of the Steamm Universe community forum
+
+#### Installation Guides
+- psppwner300 (Steam Community) - SteamOS standard installation guide
 
 ### Test chroot fixes and contributions
 * Ryochan7
 
 #### UE4 script fixes
 * Ryochan7 of the Steamm Universe community forum
+
+#### X window code for Chrome "web apps"
+- Dubigrasu of the Steamm Universe community forum
+- Sharkwouter of the Steamm Universe community forum
+- Ryochan7 of the Steamm Universe community forum

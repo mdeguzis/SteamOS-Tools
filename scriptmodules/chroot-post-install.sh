@@ -240,9 +240,6 @@ enter the chroot again. You can also use the newly created alias listed below\n"
 		
 	fi
 	
-	# correct owner on home directory files/folders due to usage of sudo
-	chown -R $USER:$USER "/home/$USER"
-	
 	sleep 2s
 	exit
 	

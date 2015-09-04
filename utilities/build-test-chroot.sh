@@ -24,6 +24,9 @@
 
 # set $USER since we run as root/sudo
 USER="$SUDO_USER"
+echo "user test: $USER"
+exit 1
+
 
 # remove old custom files
 rm -f "log.txt"

@@ -6,13 +6,14 @@
 # Scipt Name:	build-test-chroot.sh
 # Script Ver:	0.3.9
 # Description:	Builds a Debian / SteamOS chroot for testing 
-#		purposes. SteamOS targets allow brewmaster/alchemist release types.
+#		purposes. SteamOS targets allow only brewmaster release types.
+#		based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
 #
 # Usage:	sudo ./build-test-chroot.sh [type] [release]
 # Options:	types: [debian|steamos] 
 #		releases debian:  [wheezy|jessie]
-#		releases steamos: [alchemist|brewmaster]]
+#		releases steamos: [brewmaster]
 #		
 # Help:		sudo ./build-test-chroot.sh --help for help
 #
@@ -41,10 +42,10 @@ show_help()
 	sudo ./build-test-chroot.sh [type] [release]
 	Types: [debian|steamos|steamos-beta] 
 	Releases (Debian):       [wheezy|jessie]
-	Releases (SteamOS/Beta): [alchemist|brewmaster]
+	Releases (SteamOS/Beta): [brewmaster]
 	
 	Plese note that the types wheezy and jessie belong to Debian,
-	and that alchemist and brewmaster belong to SteamOS.
+	and that brewmaster belong to SteamOS.
 
 	EOF
 	exit
@@ -163,7 +164,7 @@ function gpg_import()
 funct_create_chroot()
 {
 
-	if [[ "$target" == "steamos" ]]; then
+	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 		if [[ "$release" == "brewmaster" ]]; then
 			

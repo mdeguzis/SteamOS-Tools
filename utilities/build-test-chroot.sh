@@ -62,6 +62,9 @@ fi
 funct_prereqs()
 {
 	
+	echo -e "\n==> Installing prerequisite packages\n"
+	sleep 1s
+	
 	# Install the required packages 
 	apt-get install binutils debootstrap debian-archive-keyring -y
 	
@@ -103,6 +106,7 @@ function gpg_import()
 	# helper script accepts $1 as the key
 	
 	echo -e "\n==> Importing Debian GPG keys"
+	sleep 1s
 	
 	# Key Desc: Debian Archive Automatic Signing Key
 	# Key ID: 8ABDDD96
@@ -145,7 +149,7 @@ funct_create_chroot()
 	fi
 	
 	# build the environment
-	echo -e "\nBuilding chroot environment...\n"
+	echo -e "\n==> Building chroot environment...\n"
 	sleep 1s
 	
 	#debootstrap for SteamOS
@@ -191,12 +195,12 @@ instead...\n"
 	if [[ "$stock_choice" == "" ]]; then
 		# Captured carriage return / blank line only, continue on as normal
 		# Modify target based on opts
-		sed -i "s|"stock_tmp"|"no"|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
+		sed -i "s|"stock_tmp"|"no"|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 		#printf "zero length detected..."
 		
 	elif [[ "$stock_choice" == "stock" ]]; then
 		# Modify target based on opts
-		sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
+		sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/chroots/${target}tmp/chroot-post-install.sh"
 		
 	elif [[ "$stock_choice" != "stock" ]]; then
 		# user entered something arbitrary, exit
@@ -205,14 +209,14 @@ instead...\n"
 	fi
 	
 	# "bind" /dev/pts
-	mount --bind /dev/pts /home/desktop/${target}-chroot/dev/pts
+	mount --bind /dev/pts /home/desktop/chroots/${target}/dev/pts
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
-	/usr/sbin/chroot "/home/desktop/${target}-chroot" /bin/bash -c "/tmp/chroot-post-install.sh"
+	/usr/sbin/chroot "/home/desktop/chroots/${target}" /bin/bash -c "/tmp/chroot-post-install.sh"
 	
 	# Unmount /dev/pts
-	umount /home/desktop/${target}-chroot/dev/pts
+	umount /home/desktop/chroots/${target}/dev/pts
 }
 
 main()

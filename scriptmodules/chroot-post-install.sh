@@ -258,15 +258,15 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 
 enter the chroot again. You can also use the newly created alias listed below\n"
 
-	if [[ "$full_target" == "steamos_brewmaster"]]; then
+	if [[ "$full_target" == "steamos_brewmaster" ]]; then
 	
 		echo -e "chroot-steamos-brewmaster"
 	
-	elif [[ "$full_target" == "debian_wheezy"]]; then
+	elif [[ "$full_target" == "debian_wheezy" ]]; then
 	
 		echo -e "chroot-debian-wheezyr"
 		
-	elif [[ "$full_target" == "steamos_brewmaster"]]; then
+	elif [[ "$full_target" == "steamos_brewmaster" ]]; then
 	
 		echo -e "chroot-steamos-wheezy"
 		

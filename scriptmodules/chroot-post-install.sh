@@ -173,10 +173,12 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 	echo -e "\n==> Configuring repository sources"
 	
-	if [[ "$relese" == "alchemist" ]]; then
+	if [[ "$release" == "alchemist" ]]; then
 	
-		# do nothing for now.
-		:
+		# Enable Debian wheezy repository
+		cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
+		deb http://http.debian.net/debian/ jessie main
+		EOF
 	
 	elif [[ "$relese" == "brewmaster" ]]; then
 	
@@ -186,21 +188,10 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		deb http://repo.steampowered.com/steamos brewmaster main contrib non-free
 		deb-src http://repo.steampowered.com/steamos brewmaster main contrib non-free
 		EOF
-	
-	fi
-	
-	if [[ "$relese" == "wheezy" ]]; then
-	
+		
 		# Enable Debian jessie repository
 		cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
 		deb http://http.debian.net/debian/ wheezy main
-		EOF
-	
-	elif [[ "$relese" == "jessie" ]]; then
-	
-		# Enable Debian jessie repository
-		cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
-		deb http://http.debian.net/debian/ jessie main
 		EOF
 	
 	fi

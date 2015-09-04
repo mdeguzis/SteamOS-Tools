@@ -92,7 +92,7 @@ if [[ "$tmp_type" == "steamos" || "$tmp_type" == "steamos-beta" ]]; then
 	#su - steam
 	echo "\n###########################"
 	echo "Set steam user password"
-	echo "###########################"
+	echo "###########################\n"
 	passwd steam
 	echo -e "steam\nsteam\nsteam\n"
 	
@@ -100,7 +100,7 @@ if [[ "$tmp_type" == "steamos" || "$tmp_type" == "steamos-beta" ]]; then
 	#su - desktop
 	echo "\n#############################"
 	echo "Set desktop user password"
-	echo "#############################"
+	echo "#############################\n"
 	passwd desktop
 	echo -e "dekstop\ndesktop\ndesktop\n"
 	

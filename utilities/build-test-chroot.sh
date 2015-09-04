@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.5.1
+# Script Ver:	0.5.3
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. SteamOS targets allow only brewmaster release types.
 #		based on repo.steamstatic.com
@@ -152,12 +152,14 @@ function gpg_import()
 	# Key ID: 8ABDDD96
 	# Full Key ID: 7DEEB7438ABDDD96
 	gpg_key_check=$(gpg --list-keys 8ABDDD96)
+	
+	# check for key
 	if [[ "$gpg_key_check" != "" ]]; then
 		echo -e "\nDebian Archive Automatic Signing Key [OK]\n"
 		sleep 1s
 	else
 		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now...\n"
-		$scriptdir/utilities/gpg_import.sh 7DEEB7438ABDDD96
+		gpg_import.sh 7DEEB7438ABDDD96
 	fi
 
 }

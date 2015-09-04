@@ -224,7 +224,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	# exit chroot
 	echo -e "\nExiting chroot!\n"
 	echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 
-enter the chroot again."
+enter the chroot again.\n"
 	exit
 	
 	sleep 2s

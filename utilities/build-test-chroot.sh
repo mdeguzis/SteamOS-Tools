@@ -54,6 +54,8 @@ show_help()
 # Warn user script must be run as root
 if [ "$(id -u)" -ne 0 ]; then
 
+	clear
+	
 	cat <<-EOF
 	==ERROR==
 	Script must be run as root! Try:

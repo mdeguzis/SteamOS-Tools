@@ -15,9 +15,6 @@
 #		TODO: checkout Steam's post install script from the installer
 # -------------------------------------------------------------------------------
 
-# set $USER since we run as root/sudo
-USER="$SUDO_USER"
-
 # This post-isntall scripts needs A LOT OF WORK!!!!
 # The end goal is to replicate the setup of SteamOS as
 # closely as possible
@@ -228,10 +225,10 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	if [[ -f "/home/$USER/.bash_aliases" ]]; then
 	
 		# do nothing
-		echo -e "Bash alias file found, skipping creation."
+		echo -e "\nBash alias file found, skipping creation."
 	else
 	
-		echo -e "Bash alias file not found, creating."
+		echo -e "\nBash alias file not found, creating."
 		# create file
 		touch "/home/$USER/.bash_aliases"
 
@@ -255,7 +252,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		cat <<-EOF >> "/home/$USER/.bash_aliases"
 		
 		# chroot alias for ${type} (${target})
-		alias chroot-debian-wheezy='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
+		alias chroot-debian-wheezy='sudo /usr/sbin/chroot /home/$USER/chroots/${target}'
 		EOF
 		
 	elif [[ "$alias_check_debian_jessie" == "" ]]; then
@@ -263,7 +260,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		cat <<-EOF >> "/home/$USER/.bash_aliases"
 		
 		# chroot alias for ${type} (${target})
-		alias chroot-debian-jessie='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
+		alias chroot-debian-jessie='sudo /usr/sbin/chroot /home/$USER/chroots/${target}'
 		EOF
 		
 	fi

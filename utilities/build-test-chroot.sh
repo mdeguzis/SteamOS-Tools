@@ -283,7 +283,12 @@ funct_create_chroot()
 	
 	# source bashrc to update.
 	# bashrc should source $HOME/.bash_aliases
-	source "/home/$USER/.bashrc"
+	
+	# can't source form .bashrc, since they use ~ instead of $HOME
+	# source from /home/$USER/.bash_aliases instead
+	
+	#source "/home/$USER/.bashrc"
+	source "/home/$USER/.bash_aliases"
 	
 	# enter chroot to test
 	cat <<-EOF

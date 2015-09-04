@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	chroot-post-install.sh
-# Script Ver:	0.2.5
+# Script Ver:	0.2.7
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A
@@ -149,7 +149,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		
 	fi
 	
-	echo -e "\n==> Creating package policy"
+	echo -e "\n==> Creating package policy\n"
 	
 	# create dpkg policy for daemons
 	cat <<-EOF > ${policy}

@@ -4,7 +4,7 @@
 # Author:     	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	ue4-from-source.sh
-# Script Ver:	0.1.1
+# Script Ver:	0.1.4
 # Description:	script to install ue4 using Linux binary.
 #
 # See:          https://forums.unrealtournament.com/showthread.php?14240-How-to-run-UT4-Alpha-build
@@ -50,7 +50,7 @@ m_install_ue4()
 		
 		# sourced from https://aur.archlinux.org/packages/ut4/
 		
-		echo -e "\n==> Acquiring files...please wait"
+		echo -e "\n==> Acquiring files...please wait\n"
 		sleep 2
 		
 		wget "https://s3.amazonaws.com/unrealtournament/UnrealTournament-Client-XAN-2665501-Linux.zip"

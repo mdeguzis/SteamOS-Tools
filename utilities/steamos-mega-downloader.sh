@@ -2,7 +2,7 @@
 # -------------------------------------------------------------------------------
 # Author:    	  	Michael DeGuzis
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		1.2.2
+# Script Ver:		1.2.4
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #			to specified directory and run SHA512 checks against them.
 #			Installs to a USB drive. 
@@ -789,7 +789,7 @@ main()
 	
 	cat <<-EOF
 	------------------------------------------------------------
-	SteamOS Mega Downloader |     Distro: $distribution ($codename)
+	SteamOS Mega Downloader  |  Distro: $distribution ($codename)
 	------------------------------------------------------------
 	For more information, see the wiki at: 
 	github.com/ValveSoftware/SteamOS/wiki

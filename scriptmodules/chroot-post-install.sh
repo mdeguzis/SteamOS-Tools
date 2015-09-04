@@ -27,7 +27,7 @@ policy="./usr/sbin/policy-rc.d"
 # These options are set set in the build-chroot script
 # options set for failure notice in evaluation below
 type="tmp_type"
-beta_opt_in="tmp_type"
+beta_opt_in="tmp_beta"
 stock_opt="tmp_stock"
 release="tmp_release"
 

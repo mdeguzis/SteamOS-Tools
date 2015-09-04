@@ -179,14 +179,14 @@ funct_create_chroot()
 	fi
 	
 	# create our chroot folder
-	if [[ -d "/home/desktop/chroots/${target}" ]]; then
+	if [[ -d "$HOME/chroots/${target}" ]]; then
 	
 		# remove DIR
-		rm -rf "/home/desktop/chroots/${target}"
+		rm -rf "$HOME/chroots/${target}"
 		
 	else
 	
-		mkdir -p "/home/desktop/chroots/${target}"
+		mkdir -p "$HOME/chroots/${target}"
 		
 	fi
 	
@@ -198,12 +198,12 @@ funct_create_chroot()
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
-		--arch i386 ${release} /home/desktop/chroots/${target} ${target_URL}
+		--arch i386 ${release} $HOME/chroots/${target} ${target_URL}
 		
 	else
 	
 		# handle Debian instead
-		/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/chroots/${target} ${target_URL}
+		/usr/sbin/debootstrap --arch i386 ${release} $HOME/chroots/${target} ${target_URL}
 		
 	fi
 	
@@ -212,21 +212,21 @@ funct_create_chroot()
 	cd $script_dir
 	
 	# copy over post install script for execution
-	# cp -v scriptmodules/chroot-post-install.sh /home/desktop/chroots/${target}/tmp/
+	# cp -v scriptmodules/chroot-post-install.sh $HOME/chroots/${target}/tmp/
 	echo -e "\n==> Copying post install script to tmp directory\n"
-	cp -v ../scriptmodules/chroot-post-install.sh /home/desktop/chroots/${target}/tmp/
+	cp -v ../scriptmodules/chroot-post-install.sh $HOME/chroots/${target}/tmp/
 	
 	# mark executable
-	chmod +x /home/desktop/chroots/${target}/tmp/chroot-post-install.sh
+	chmod +x $HOME/chroots/${target}/tmp/chroot-post-install.sh
 
 	# Modify type based on opts
-	sed -i "s|"tmp_type"|${type}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_type"|${type}|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# Change opt-in based on opts
-	sed -i "s|"tmp_beta"|${beta_flag}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_beta"|${beta_flag}|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# modify release_tmp for Debian Wheezy / Jessie in post-install script
-	sed -i "s|"tmp_release"|${release}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_release"|${release}|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# enter chroot to test
 	cat <<-EOF
@@ -240,7 +240,7 @@ funct_create_chroot()
 If you wish  to leave out any post operations and remain with a 'stock' chroot, type 'stock',
 then [ENTER] instead. A stock chroot is only intended and suggested for the Debian chroot type."
 	
-	echo -e "\nYou may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to manually 
+	echo -e "\nYou may use '/usr/sbin/chroot $HOME/chroots/${target}' to manually 
 enter the chroot."
 	
 	# Capture input
@@ -250,13 +250,13 @@ enter the chroot."
 	
 		# Captured carriage return / blank line only, continue on as normal
 		# Modify target based on opts
-		sed -i "s|"tmp_stock"|"no"|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+		sed -i "s|"tmp_stock"|"no"|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
 		#printf "zero length detected..."
 		
 	elif [[ "$stock_choice" == "stock" ]]; then
 	
 		# Modify target based on opts
-		sed -i "s|"tmp_stock"|"yes"|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+		sed -i "s|"tmp_stock"|"yes"|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
 		
 	elif [[ "$stock_choice" != "stock" ]]; then
 	
@@ -266,14 +266,14 @@ enter the chroot."
 	fi
 	
 	# "bind" /dev/pts
-	mount --bind /dev/pts /home/desktop/chroots/${target}/dev/pts
+	mount --bind /dev/pts $HOME/chroots/${target}/dev/pts
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
-	/usr/sbin/chroot "/home/desktop/chroots/${target}" /bin/bash -c "/tmp/chroot-post-install.sh"
+	/usr/sbin/chroot "$HOME/chroots/${target}" /bin/bash -c "/tmp/chroot-post-install.sh"
 	
 	# Unmount /dev/pts
-	umount /home/desktop/chroots/${target}/dev/pts
+	umount $HOME/chroots/${target}/dev/pts
 }
 
 main()

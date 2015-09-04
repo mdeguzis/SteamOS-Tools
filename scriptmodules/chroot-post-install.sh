@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	chroot-post-install.sh
-# Script Ver:	0.2.1
+# Script Ver:	0.2.5
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A
@@ -191,7 +191,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		
 		# Enable Debian jessie repository
 		cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
-		deb http://http.debian.net/debian/ wheezy main
+		deb http://http.debian.net/debian/ jessie main
 		EOF
 	
 	fi
@@ -218,7 +218,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	echo -e "\n==> Cleaning up packages"
 	
 	# eliminate unecessary packages
-	apt-get -t jessie install deborphan
+	apt-get install deborphan
 	deborphan -a
 	
 	# exit chroot

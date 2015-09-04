@@ -37,7 +37,7 @@ rm -f "log.txt"
 # set arguments / defaults
 type="$1"
 release="$2"
-target="${release}-${type}"
+target="${type}-${release}"
 stock_choice=""
 full_target="${type}_${release}"
 

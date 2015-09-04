@@ -57,7 +57,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	# temp test for chroot (output should be something other than 2)
 	ischroot=$(ls -di /)
 	
-	echo "Checking for chroot..."
+	echo -e "\nChecking for chroot..."
 	
 	if [[ "$ischroot" != "2" ]]; then
 	
@@ -222,6 +222,19 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	apt-get install deborphan
 	deborphan -a
 	
+	# create alias file that .bashrc automatically will source
+	if [[ -f "$HOME/.bash_aliases" ]]; then
+	
+		# do nothing
+		:
+	else
+	
+		# create file
+		touch "$HOME/.bash_aliases"
+		# change owner due to sudo usage
+		corret_perms
+	fi
+	
 	# create alias for easy use of command
 	alias_check_steamos_brew=$(cat "$HOME/.bashrc" | grep chroot-steamos-brewmaster)
 	alias_check_debian_wheezy=$(cat "$HOME/.bashrc" | grep chroot-debian-wheezy)
@@ -276,10 +289,13 @@ enter the chroot again. You can also use the newly created alias listed below\n"
 		
 	fi
 	
-	exit
+	# correct owner on home directory files/folders due to usage of sudo
+	chown -R $USER:$USER $HOME
 	
 	sleep 2s
+	exit
 	
+
 elif [[ "$tmp_type" == "debian" ]]; then
 
 	# do nothing for now

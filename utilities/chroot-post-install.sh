@@ -217,8 +217,10 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 	echo -e "\n==> Cleaning up packages\n"
 	
+	# install some basic packages
+	apt-get install -y vim sudo
+	
 	# eliminate unecessary packages
-	apt-get install deborphan
 	deborphan -a
 	
 	# exit chroot

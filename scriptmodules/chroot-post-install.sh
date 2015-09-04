@@ -69,6 +69,8 @@ if [[ "$tmp_type" == "steamos" || "$tmp_type" == "steamos-beta" ]]; then
 		exit
 	fi
 	
+	echo -e "\n==> Configuring users and groups"
+	
 	# Add groups not included in Debian base
 	groupadd bluetooth -g 115
 	groupadd pulse-access -g 121
@@ -88,7 +90,7 @@ if [[ "$tmp_type" == "steamos" || "$tmp_type" == "steamos-beta" ]]; then
 	
 	# setup steam user
 	#su - steam
-	echo "###########################"
+	echo "\n###########################"
 	echo "Set steam user password"
 	echo "###########################"
 	passwd steam
@@ -96,7 +98,7 @@ if [[ "$tmp_type" == "steamos" || "$tmp_type" == "steamos-beta" ]]; then
 	
 	# setup desktop user
 	#su - desktop
-	echo "#############################"
+	echo "\n#############################"
 	echo "Set desktop user password"
 	echo "#############################"
 	passwd desktop
@@ -128,13 +130,19 @@ if [[ "$tmp_type" == "steamos" || "$tmp_type" == "steamos-beta" ]]; then
 		apt-get upgrade -y
 		  
 	elif [[ "$beta_opt_in" == "no" ]]; then
+	
 		# do nothing
 		echo -e "\nOpt into beta? [NO]\n"
+		
 	else
+	
 		# failure to detect var
 		echo -e "\nFailed to detect beta opt in! Exiting..."
 		exit
+		
 	fi
+	
+	echo -e "\n==> Creating package policy"
 	
 	# create dpkg policy for daemons
 	cat <<-EOF > ${policy}
@@ -156,6 +164,8 @@ if [[ "$tmp_type" == "steamos" || "$tmp_type" == "steamos-beta" ]]; then
 		ln -s /bin/true /usr/bin/ischroot
 	fi
 	
+	echo -e "\n==> Configuring repository sources"
+	
 	# Enable Debian jessie repository
 	cat <<-EOF > /etc/apt/sources.list.d/jessie.list
 	deb http://http.debian.net/debian/ jessie main
@@ -172,15 +182,28 @@ if [[ "$tmp_type" == "steamos" || "$tmp_type" == "steamos-beta" ]]; then
 	cat <<-EOF > /etc/apt/preferences.d/debian
 	Package: *
 	Pin: release l=Debian
-	Pin-Priority: 10
+	Pin-Priority: 100
 	EOF
+	
+	echo -e "\n==> Updating system"
 	
 	# Update apt
 	apt-get update -y
 	
+	echo -e "\n==> Cleaning up packages"
+	
 	# eliminate unecessary packages
-	apt-get -t jessie install deborphan
-	deborphan -a
+	if [[ "$release" == "alchemist" ]]; then
+	
+		apt-get -t wheezy install deborphan
+		deborphan -a
+	
+	elif [[ "$release" == "brewmaster" ]]; then
+	
+		apt-get -t jessie install deborphan
+		deborphan -a
+	
+	fi
 	
 	# exit chroot
 	echo -e "\nExiting chroot!\n"
@@ -192,4 +215,5 @@ elif [[ "$tmp_type" == "debian" ]]; then
 
 	# do nothing for now
 	echo "" > /dev/null
+	
 fi

@@ -229,7 +229,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 	if [[ "$alias_check_steamos_brew" == "" ]]; then
 	
-		cat <<-EOF >> "$HOME/.bashrc"
+		cat <<-EOF >> "$HOME/.bash_aliases"
 		
 		# chroot alias for ${type} (${target})
 		alias chroot-steamos-brewmaster='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
@@ -237,7 +237,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		
 	elif [[ "$alias_check_debian_wheezy" == "" ]]; then
 	
-		cat <<-EOF >> "$HOME/.bashrc"
+		cat <<-EOF >> "$HOME/.bash_aliases"
 		
 		# chroot alias for ${type} (${target})
 		alias chroot-debian-wheezy='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
@@ -245,13 +245,17 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		
 	elif [[ "$alias_check_debian_jessie" == "" ]]; then
 	
-		cat <<-EOF >> "$HOME/.bashrc"
+		cat <<-EOF >> "$HOME/.bash_aliases"
 		
 		# chroot alias for ${type} (${target})
 		alias chroot-debian-jessie='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
 		EOF
 		
 	fi
+	
+	# source bashrc to update.
+	# bashrc should source $HOME/.bash_aliases
+	source "$HOME/.bashrc"
 	
 	# exit chroot
 	echo -e "\nExiting chroot!\n"
@@ -260,15 +264,15 @@ enter the chroot again. You can also use the newly created alias listed below\n"
 
 	if [[ "$full_target" == "steamos_brewmaster" ]]; then
 	
-		echo -e "\tchroot-steamos-brewmaster"
+		echo -e "\tchroot-steamos-brewmaster\n"
 	
 	elif [[ "$full_target" == "debian_wheezy" ]]; then
 	
-		echo -e "\tchroot-debian-wheezyr"
+		echo -e "\tchroot-debian-wheezyr\n"
 		
 	elif [[ "$full_target" == "steamos_brewmaster" ]]; then
 	
-		echo -e "\tchroot-steamos-wheezy"
+		echo -e "\tchroot-steamos-wheezy\n"
 		
 	fi
 	

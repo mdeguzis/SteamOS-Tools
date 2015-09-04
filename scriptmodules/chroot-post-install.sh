@@ -210,7 +210,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	Pin-Priority: 100
 	EOF
 	
-	echo -e "\n==> Updating system"
+	echo -e "\n==> Updating system\n"
 	
 	# Update apt
 	apt-get update -y

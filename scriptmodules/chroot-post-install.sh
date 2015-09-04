@@ -20,11 +20,6 @@
 # The end goal is to replicate the setup of SteamOS as
 # closely as possible
 
-# set $USER since we run as root/sudo
-USER="$SUDO_USER"
-echo $USER
-exit 1
-
 # set vars
 policy="./usr/sbin/policy-rc.d"
 

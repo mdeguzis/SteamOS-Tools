@@ -53,12 +53,19 @@ show_help()
 
 # Warn user script must be run as root
 if [ "$(id -u)" -ne 0 ]; then
-	clear
-	printf "\nScript must be run as root! Try:\n\n"
-	printf "'sudo $0 install'\n\n"
-	printf "OR\n"
-	printf "\n'sudo $0 uninstall'\n\n"
+
+	cat <<-EOF
+	==ERROR==
+	Script must be run as root! Try:
+	
+	sudo $0 [type] [release]
+	-OR-
+	sudo $0 [type] [release]
+	
+	EOF
+	
 	exit 1
+	
 fi
 
 funct_prereqs()

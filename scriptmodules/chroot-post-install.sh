@@ -167,6 +167,22 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 	echo -e "\n==> Configuring repository sources"
 	
+	if [[ "$relese" == "alchemist" ]]; then
+	
+		# do nothing for now.
+		:
+	
+	elif [[ "$relese" == "brewmaster" ]]; then
+	
+		# brewmaster chroot has deb line, but not deb-src, add it
+		# Also src line from pool is not complete, missing contrib/non-free
+		cat <<-EOF > /etc/apt/sources.list
+		deb http://repo.steampowered.com/steamos brewmaster main contrib non-free
+		deb-src http://repo.steampowered.com/steamos brewmaster main contrib non-free
+		EOF
+	
+	fi
+	
 	if [[ "$relese" == "wheezy" ]]; then
 	
 		# Enable Debian jessie repository

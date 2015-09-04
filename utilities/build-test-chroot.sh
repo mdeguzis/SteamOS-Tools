@@ -32,14 +32,14 @@ show_help()
 {
 	
 	clear
-	cat <<-EOF
 	Warning: usage of this script is at your own risk!
 	
 	Usage
 	---------------------------------------------------------------
 	sudo ./build-test-chroot.sh [type] [release]
-	Types: [debian|steamos] 
-	Releases: [wheezy|jessie|alchemist|brewmaster]
+	Types: [debian|steamos|steamos-beta] 
+	Releases (Debian):       [wheezy|jessie]
+	Releases (SteamOS/Beta): [alchemist|brewmaster]
 	
 	Plese note that the types wheezy and jessie belong to Debian,
 	and that alchemist and brewmaster belong to SteamOS.
@@ -72,29 +72,27 @@ funct_set_target()
 	
 	if [[ "$type" == "debian" ]]; then
 	
-		target="debian"
-		release="jessie"
+		target="debian-${release}"
 		target_URL="http://http.debian.net/debian"
 		beta_flag="no"
 	
 	elif [[ "$type" == "steamos" ]]; then
 		
-		target="steamos"
-		release="brewmaster"
+		target="steamos-${release}"
 		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="no"
 	
 	elif [[ "$type" == "steamos-beta" ]]; then
 	
-		target="steamos-beta"
-		release="brewmaster"
+		target="steamos-beta-${release}"
 		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="yes"
 	
 	elif [[ "$type" == "--help" ]]; then
 		
 		show_help
-		fi
+	
+	fi
 
 }
 
@@ -124,51 +122,67 @@ funct_create_chroot()
 {
 
 	if [[ "$target" == "steamos" ]]; then
+	
 		if [[ "$release" == "brewmaster" ]]; then
-		# import GPG key
-		gpg_import
+			
+			# import GPG key
+			gpg_import
+			
 		fi
+		
 	fi
 	
 	# create our chroot folder
-	if [[ -d "/home/desktop/${target}-chroot" ]]; then
+	if [[ -d "/home/desktop/chroots/${target}" ]]; then
+	
 		# remove DIR
-		rm -rf "/home/desktop/${target}-chroot"
+		rm -rf "/home/desktop/chroots/${target}"
+		
 	else
-		mkdir -p "/home/desktop/${target}-chroot"
+	
+		mkdir -p "/home/desktop/chroots/${target}"
+		
 	fi
 	
 	# build the environment
 	echo -e "\nBuilding chroot environment...\n"
 	sleep 1s
-	if [[ "$target" == "steamos" || "$target" == "steamos-beta" ]]; then
+	
+	#debootstrap for SteamOS
+	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
+	
 		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
 		--arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
+		
 	else
+	
+		# handle Debian instead
 		/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
+		
 	fi
 	
+	# set script dir and enter
 	script_dir=$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)
 	cd $script_dir
 	
 	# copy over post install script for execution
-	# cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
-	cp -v ../scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
+	# cp -v scriptmodules/chroot-post-install.sh /home/desktop/chroots/${target}/tmp/
+	cp -v ../scriptmodules/chroot-post-install.sh /home/desktop/chroots/${target}/tmp/
 	
 	# mark executable
-	chmod +x /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
+	chmod +x /home/desktop/chroots/${target}/tmp/chroot-post-install.sh
 
 	# Modify target based on opts
-	sed -i "s|"target_tmp"|${target}|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
+	sed -i "s|"target_tmp"|${type}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# Change opt-in based on opts
-	sed -i "s|"beta_tmp"|${beta_flag}|g" "/home/desktop/${target}-chroot/tmp/chroot-post-install.sh"
+	sed -i "s|"beta_tmp"|${beta_flag}|g" "/home/desktop/chroots/${target}tmp/chroot-post-install.sh"
 	
 	# enter chroot to test
 	echo -e "\nYou will now be placed into the chroot. Press [ENTER]. If you wish to \
 leave out any post operations and remain with a 'stock' chroot, type 'stock' and [ENTER] \
 instead...\n"
-	echo -e "You may use '/usr/sbin/chroot /home/desktop/${target}-chroot' to manually"
+	echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to manually"
 	echo -e "enter the chroot.\n"
 	
 	# Capture input

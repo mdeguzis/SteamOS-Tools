@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	chroot-post-install.sh
-# Script Ver:	0.1.3
+# Script Ver:	0.1.5
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A
@@ -25,20 +25,25 @@
 policy="./usr/sbin/policy-rc.d"
 
 # set targets / defaults
+# These options are set set in the build-chroot script
+# options set for failure notice in evaluation below
 tmp_target="target_tmp"
 beta_opt_in="beta_tmp"
 stock_opt="stock_tmp"
 
 # bail out if strock opt was changed to yes in ./build-test-chroot
 if [[ "$stock_opt" == "yes" ]]; then
+
 	# exit post install
 	echo -e "User requested no post-install configuration. Exiting...\n"
 	exit
 	
 elif [[ "$stock_opt" == "no" ]]; then
+
 	echo -e "The intended target is: ${tmp_target}"
 	echo -e "Running post install commands now..."
 	sleep 2s
+	
 else
 	echo -e "Failture to obtain stock status, exiting"
 	exit
@@ -54,10 +59,13 @@ if [[ "$tmp_target" == "steamos" || "$tmp_target" == "steamos-beta" ]]; then
 	echo "Checking for chroot..."
 	
 	if [[ "$ischroot" != "2" ]]; then
+	
 		echo "We are chrooted!"
 		sleep 2s
+		
 	else
-	echo -e "\nchroot entry failed. Exiting...\n"
+	
+		echo -e "\nchroot entry failed. Exiting...\n"
 		sleep 2s
 		exit
 	fi

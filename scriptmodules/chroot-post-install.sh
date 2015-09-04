@@ -15,7 +15,9 @@
 #		TODO: checkout Steam's post install script from the installer
 # -------------------------------------------------------------------------------
 
-# 
+# set $USER since we run as root/sudo
+USER="$SUDO_USER"
+
 # This post-isntall scripts needs A LOT OF WORK!!!!
 # The end goal is to replicate the setup of SteamOS as
 # closely as possible
@@ -236,13 +238,13 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	fi
 	
 	# create alias for easy use of command
-	alias_check_steamos_brew=$(cat "$HOME/.bashrc" | grep chroot-steamos-brewmaster)
-	alias_check_debian_wheezy=$(cat "$HOME/.bashrc" | grep chroot-debian-wheezy)
-	alias_check_debian_jessie=$(cat "$HOME/.bashrc" | grep chroot-debian-jessie)
+	alias_check_steamos_brew=$(cat "/home/$USER/.bash_aliases" | grep chroot-steamos-brewmaster)
+	alias_check_debian_wheezy=$(cat "/home/$USER/.bash_aliases" | grep chroot-debian-wheezy)
+	alias_check_debian_jessie=$(cat "/home/$USER/.bash_aliases" | grep chroot-debian-jessie)
 	
 	if [[ "$alias_check_steamos_brew" == "" ]]; then
 	
-		cat <<-EOF >> "$HOME/.bash_aliases"
+		cat <<-EOF >> "/home/$USER/.bash_aliases"
 		
 		# chroot alias for ${type} (${target})
 		alias chroot-steamos-brewmaster='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
@@ -250,7 +252,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		
 	elif [[ "$alias_check_debian_wheezy" == "" ]]; then
 	
-		cat <<-EOF >> "$HOME/.bash_aliases"
+		cat <<-EOF >> "/home/$USER/.bash_aliases"
 		
 		# chroot alias for ${type} (${target})
 		alias chroot-debian-wheezy='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
@@ -258,7 +260,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		
 	elif [[ "$alias_check_debian_jessie" == "" ]]; then
 	
-		cat <<-EOF >> "$HOME/.bash_aliases"
+		cat <<-EOF >> "/home/$USER/.bash_aliases"
 		
 		# chroot alias for ${type} (${target})
 		alias chroot-debian-jessie='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
@@ -268,7 +270,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 	# source bashrc to update.
 	# bashrc should source $HOME/.bash_aliases
-	source "$HOME/.bashrc"
+	source "/home/$USER/.bashrc"
 	
 	# exit chroot
 	echo -e "\nExiting chroot!\n"
@@ -290,7 +292,7 @@ enter the chroot again. You can also use the newly created alias listed below\n"
 	fi
 	
 	# correct owner on home directory files/folders due to usage of sudo
-	chown -R $USER:$USER $HOME
+	chown -R $USER:$USER "/home/$USER"
 	
 	sleep 2s
 	exit

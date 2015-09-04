@@ -36,7 +36,13 @@ show_help()
 	
 	Usage
 	---------------------------------------------------------------
-	'sudo ./build-test-chroot.sh -type [debian|steamos]'
+	sudo ./build-test-chroot.sh [type] [release]
+	Types: [debian|steamos] 
+	Releases: [wheezy|jessie|alchemist|brewmaster]
+	
+	Plese note that the types wheezy and jessie belong to Debian,
+	and that alchemist and brewmaster belong to SteamOS.
+
 	EOF
 	exit
 	

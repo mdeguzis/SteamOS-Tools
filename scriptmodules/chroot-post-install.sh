@@ -221,54 +221,6 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	apt-get install deborphan
 	deborphan -a
 	
-	# create alias file that .bashrc automatically will source
-	if [[ -f "/home/$USER/.bash_aliases" ]]; then
-	
-		# do nothing
-		echo -e "\nBash alias file found, skipping creation."
-	else
-	
-		echo -e "\nBash alias file not found, creating."
-		# create file
-		touch "/home/$USER/.bash_aliases"
-
-	fi
-	
-	# create alias for easy use of command
-	alias_check_steamos_brew=$(cat "/home/$USER/.bash_aliases" | grep chroot-steamos-brewmaster)
-	alias_check_debian_wheezy=$(cat "/home/$USER/.bash_aliases" | grep chroot-debian-wheezy)
-	alias_check_debian_jessie=$(cat "/home/$USER/.bash_aliases" | grep chroot-debian-jessie)
-	
-	if [[ "$alias_check_steamos_brew" == "" ]]; then
-	
-		cat <<-EOF >> "/home/$USER/.bash_aliases"
-		
-		# chroot alias for ${type} (${target})
-		alias chroot-steamos-brewmaster='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
-		EOF
-		
-	elif [[ "$alias_check_debian_wheezy" == "" ]]; then
-	
-		cat <<-EOF >> "/home/$USER/.bash_aliases"
-		
-		# chroot alias for ${type} (${target})
-		alias chroot-debian-wheezy='sudo /usr/sbin/chroot /home/$USER/chroots/${target}'
-		EOF
-		
-	elif [[ "$alias_check_debian_jessie" == "" ]]; then
-	
-		cat <<-EOF >> "/home/$USER/.bash_aliases"
-		
-		# chroot alias for ${type} (${target})
-		alias chroot-debian-jessie='sudo /usr/sbin/chroot /home/$USER/chroots/${target}'
-		EOF
-		
-	fi
-	
-	# source bashrc to update.
-	# bashrc should source $HOME/.bash_aliases
-	source "/home/$USER/.bashrc"
-	
 	# exit chroot
 	echo -e "\nExiting chroot!\n"
 	echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 

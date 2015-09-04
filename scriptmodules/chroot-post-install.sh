@@ -178,7 +178,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 		# Enable Debian jessie repository
 		cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
-		deb http://http.debian.net/debian/ wheezy main
+		deb http://http.debian.net/debian/ jessie main
 		EOF
 	
 	fi

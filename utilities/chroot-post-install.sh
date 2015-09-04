@@ -139,7 +139,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	elif [[ "$beta_opt_in" == "no" ]]; then
 	
 		# do nothing
-		echo -e "\nOpt into beta? [NO]\n"
+		echo -e "\nOpt into beta? [NO]"
 		
 	else
 	

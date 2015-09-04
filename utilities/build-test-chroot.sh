@@ -22,6 +22,9 @@
 # See Also:	https://wiki.debian.org/chroot
 # -------------------------------------------------------------------------------
 
+# set $USER since we run as root/sudo
+USER="$SUDO_USER"
+
 # remove old custom files
 rm -f "log.txt"
 

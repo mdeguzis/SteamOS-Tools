@@ -15,6 +15,10 @@
 #		TODO: checkout Steam's post install script from the installer
 # -------------------------------------------------------------------------------
 
+echo $USER
+echo $HOME
+echo $SUDO_USER
+
 # This post-isntall scripts needs A LOT OF WORK!!!!
 # The end goal is to replicate the setup of SteamOS as
 # closely as possible

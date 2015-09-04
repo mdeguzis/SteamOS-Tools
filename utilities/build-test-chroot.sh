@@ -37,6 +37,7 @@ rm -f "log.txt"
 # set arguments / defaults
 type="$1"
 release="$2"
+target="${release}-${type}"
 stock_choice=""
 full_target="${type}_${release}"
 
@@ -123,21 +124,19 @@ funct_prereqs()
 funct_set_target()
 {
 	
+	# setup targets for appropriate details
 	if [[ "$type" == "debian" ]]; then
 	
-		target="debian-${release}"
 		target_URL="http://http.debian.net/debian"
 		beta_flag="no"
 	
 	elif [[ "$type" == "steamos" ]]; then
 		
-		target="steamos-${release}"
 		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="no"
 	
 	elif [[ "$type" == "steamos-beta" ]]; then
 	
-		target="steamos-beta-${release}"
 		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="yes"
 	
@@ -189,14 +188,14 @@ funct_create_chroot()
 	fi
 	
 	# create our chroot folder
-	if [[ -d "/home/$USER/chroots/${type}-${release}" ]]; then
+	if [[ -d "/home/$USER/chroots/${target}" ]]; then
 	
 		# remove DIR
-		rm -rf "/home/$USER/chroots/${type}-${release}"
+		rm -rf "/home/$USER/chroots/${target}"
 		
 	else
 	
-		mkdir -p "/home/$USER/chroots/${type}-${release}"
+		mkdir -p "/home/$USER/chroots/${target}"
 		
 	fi
 	
@@ -208,12 +207,12 @@ funct_create_chroot()
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
-		--arch i386 ${release} /home/$USER/chroots/${target}-${release} ${target_URL}
+		--arch i386 ${release} /home/$USER/chroots/${target} ${target_URL}
 		
 	else
 	
 		# handle Debian instead
-		/usr/sbin/debootstrap --arch i386 ${release} /home/$USER/chroots/${target}-${release} ${target_URL}
+		/usr/sbin/debootstrap --arch i386 ${release} /home/$USER/chroots/${target} ${target_URL}
 		
 	fi
 	
@@ -224,19 +223,19 @@ funct_create_chroot()
 	# copy over post install script for execution
 	# cp -v scriptmodules/chroot-post-install.sh $HOME/chroots/${target}/tmp/
 	echo -e "\n==> Copying post install script to tmp directory\n"
-	cp -v ../scriptmodules/chroot-post-install.sh $HOME/chroots/${target}-${release}/tmp/
+	cp -v ../scriptmodules/chroot-post-install.sh "/home/$USER/chroots/${target}/tmp/"
 	
 	# mark executable
-	chmod +x "/home/$USER/chroots/${target}-${release}/tmp/chroot-post-install.sh"
+	chmod +x "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
 
 	# Modify type based on opts
-	sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}-${release}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# Change opt-in based on opts
-	sed -i "s|"tmp_beta"|${beta_flag}|g" "/home/$USER/chroots/${target}-${release}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_beta"|${beta_flag}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# modify release_tmp for Debian Wheezy / Jessie in post-install script
-	sed -i "s|"tmp_release"|${release}|g" "$HOME/chroots/${target}-${release}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_release"|${release}|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# create alias file that .bashrc automatically will source
 	if [[ -f "/home/$USER/.bash_aliases" ]]; then
@@ -327,13 +326,13 @@ enter the chroot again. You can also use the newly created alias listed below\n"
 	
 		# Captured carriage return / blank line only, continue on as normal
 		# Modify target based on opts
-		sed -i "s|"tmp_stock"|"no"|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
+		sed -i "s|"tmp_stock"|"no"|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
 		#printf "zero length detected..."
 		
 	elif [[ "$stock_choice" == "stock" ]]; then
 	
 		# Modify target based on opts
-		sed -i "s|"tmp_stock"|"yes"|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
+		sed -i "s|"tmp_stock"|"yes"|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
 		
 	elif [[ "$stock_choice" != "stock" ]]; then
 	

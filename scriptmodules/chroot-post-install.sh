@@ -91,17 +91,17 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 	# setup steam user
 	#su - steam
-	echo "\n###########################"
-	echo "Set steam user password"
-	echo "###########################\n"
+	echo -e "\n###########################"
+	echo -e "Set steam user password"
+	echo -e "###########################\n"
 	passwd steam
 	echo -e "steam\nsteam\nsteam\n"
 	
 	# setup desktop user
 	#su - desktop
-	echo "\n#############################"
-	echo "Set desktop user password"
-	echo "#############################\n"
+	echo -e "\n#############################"
+	echo -e "Set desktop user password"
+	echo -e "#############################\n"
 	passwd desktop
 	echo -e "dekstop\ndesktop\ndesktop\n"
 	

@@ -16,5 +16,8 @@ I couldn't have done some of the things here without some help from a lot of gre
 * Sharkwouter of the Steamm Universe community forum
 * Ryochan7 of the Steamm Universe community forum
 
+### Test chroot fixes and contributions
+* Ryochan7
+
 #### UE4 script fixes
 * Ryochan7 of the Steamm Universe community forum

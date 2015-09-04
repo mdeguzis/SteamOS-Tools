@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	chroot-post-install.sh
-# Script Ver:	0.2.7
+# Script Ver:	0.2.8
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A
@@ -103,9 +103,9 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 	# setup desktop user
 	#su - desktop
-	echo -e "\n#############################"
+	echo -e "\n###########################"
 	echo -e "Set desktop user password"
-	echo -e "#############################\n"
+	echo -e "###########################\n"
 	passwd desktop
 	
 	# Above, we allow users to choose their own password.
@@ -216,7 +216,7 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	# Update apt
 	apt-get update -y
 	
-	echo -e "\n==> Cleaning up packages"
+	echo -e "\n==> Cleaning up packages\n"
 	
 	# eliminate unecessary packages
 	apt-get install deborphan
@@ -260,15 +260,15 @@ enter the chroot again. You can also use the newly created alias listed below\n"
 
 	if [[ "$full_target" == "steamos_brewmaster" ]]; then
 	
-		echo -e "chroot-steamos-brewmaster"
+		echo -e "\tchroot-steamos-brewmaster"
 	
 	elif [[ "$full_target" == "debian_wheezy" ]]; then
 	
-		echo -e "chroot-debian-wheezyr"
+		echo -e "\tchroot-debian-wheezyr"
 		
 	elif [[ "$full_target" == "steamos_brewmaster" ]]; then
 	
-		echo -e "chroot-steamos-wheezy"
+		echo -e "\tchroot-steamos-wheezy"
 		
 	fi
 	

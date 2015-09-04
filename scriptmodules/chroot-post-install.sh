@@ -226,13 +226,13 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	if [[ -f "$HOME/.bash_aliases" ]]; then
 	
 		# do nothing
-		:
+		echo -e "Bash alias file found, skipping creation."
 	else
 	
+		echo -e "Bash alias file not found, creating."
 		# create file
 		touch "$HOME/.bash_aliases"
-		# change owner due to sudo usage
-		corret_perms
+
 	fi
 	
 	# create alias for easy use of command

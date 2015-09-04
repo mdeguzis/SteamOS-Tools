@@ -165,10 +165,10 @@ function gpg_import()
 	
 	# check for key
 	if [[ "$gpg_key_check" != "" ]]; then
-		echo -e "\nDebian Archive Automatic Signing Key [OK]\n"
+		echo -e "\nDebian Archive Automatic Signing Key [OK]"
 		sleep 1s
 	else
-		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now...\n"
+		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now..."
 		./gpg_import.sh 7DEEB7438ABDDD96
 	fi
 
@@ -208,12 +208,12 @@ funct_create_chroot()
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
-		--arch i386 ${release} $HOME/chroots/${target} ${target_URL}
+		--arch i386 ${release} /home/$USER/chroots/${target}-${release} ${target_URL}
 		
 	else
 	
 		# handle Debian instead
-		/usr/sbin/debootstrap --arch i386 ${release} $HOME/chroots/${target} ${target_URL}
+		/usr/sbin/debootstrap --arch i386 ${release} /home/$USER/chroots/${target}-${release} ${target_URL}
 		
 	fi
 	
@@ -224,19 +224,19 @@ funct_create_chroot()
 	# copy over post install script for execution
 	# cp -v scriptmodules/chroot-post-install.sh $HOME/chroots/${target}/tmp/
 	echo -e "\n==> Copying post install script to tmp directory\n"
-	cp -v ../scriptmodules/chroot-post-install.sh $HOME/chroots/${target}/tmp/
+	cp -v ../scriptmodules/chroot-post-install.sh $HOME/chroots/${target}-${release}/tmp/
 	
 	# mark executable
-	chmod +x $HOME/chroots/${target}/tmp/chroot-post-install.sh
+	chmod +x "/home/$USER/chroots/${target}-${release}/tmp/chroot-post-install.sh"
 
 	# Modify type based on opts
-	sed -i "s|"tmp_type"|${type}|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}-${release}/tmp/chroot-post-install.sh"
 	
 	# Change opt-in based on opts
-	sed -i "s|"tmp_beta"|${beta_flag}|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_beta"|${beta_flag}|g" "/home/$USER/chroots/${target}-${release}/tmp/chroot-post-install.sh"
 	
 	# modify release_tmp for Debian Wheezy / Jessie in post-install script
-	sed -i "s|"tmp_release"|${release}|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_release"|${release}|g" "$HOME/chroots/${target}-${release}/tmp/chroot-post-install.sh"
 	
 	# create alias file that .bashrc automatically will source
 	if [[ -f "/home/$USER/.bash_aliases" ]]; then
@@ -347,7 +347,7 @@ enter the chroot again. You can also use the newly created alias listed below\n"
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
-	/usr/sbin/chroot "$HOME/chroots/${target}" /bin/bash -c "/tmp/chroot-post-install.sh"
+	/usr/sbin/chroot "/home/$USER/chroots/${target}" /bin/bash -c "/tmp/chroot-post-install.sh"
 	
 	# Unmount /dev/pts
 	umount $HOME/chroots/${target}/dev/pts

@@ -5,7 +5,7 @@
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
 # Script Ver:	0.1.3
-# Description:	Builds a Debian wheezy / SteamOS chroot for testing 
+# Description:	Builds a Debian jessie / SteamOS chroot for testing 
 #		purposes
 #               See: https://wiki.debian.org/chroot
 # Usage:	sudo ./build-test-chroot.sh -type [debian|steamos]
@@ -61,24 +61,24 @@ funct_set_target()
 {
 
 	if [[ "$opt1" == "-type" ]]; then
-	  if [[ "$opt2" == "wheezy" ]]; then
+	  if [[ "$opt2" == "debian" ]]; then
 	  
 	  	target="debian"
-	  	release="wheezy"
+	  	release="jessie"
 	  	target_URL="http://http.debian.net/debian"
 	  	beta_flag="no"
 	  	
 	  elif [[ "$opt2" == "steamos" ]]; then
 		
 		target="steamos"
-		release="alchemist"
+		release="brewmaster"
 		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="no"
 	    
 	  elif [[ "$opt2" == "steamos-beta" ]]; then
 		
 		target="steamos-beta"
-		release="alchemist"
+		release="brewmaster"
 		target_URL="http://repo.steampowered.com/steamos"
 		beta_flag="yes"
 	    
@@ -116,7 +116,7 @@ funct_create_chroot()
 {
 
 	if [[ "$target" == "steamos" ]]; then
-		if [[ "$release" == "alchemist" ]]; then
+		if [[ "$release" == "brewmaster" ]]; then
 		# import GPG key
 		gpg_import
 		fi
@@ -133,11 +133,19 @@ funct_create_chroot()
 	# build the environment
 	echo -e "\nBuilding chroot environment...\n"
 	sleep 1s
-	/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
+	if [[ "$target" == "steamos" || "$target" == "steamos-beta" ]]; then
+		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
+		--arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
+	else
+		/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
+	fi
+	
+	script_dir=$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)
+	cd $script_dir
 	
 	# copy over post install script for execution
 	# cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
-	cp -v scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
+	cp -v ../scriptmodules/chroot-post-install.sh /home/desktop/${target}-chroot/tmp/
 	
 	# mark executable
 	chmod +x /home/desktop/${target}-chroot/tmp/chroot-post-install.sh
@@ -174,10 +182,15 @@ instead...\n"
 		exit
 	fi
 	
+	# "bind" /dev/pts
+	mount --bind /dev/pts /home/desktop/${target}-chroot/dev/pts
+	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
-	/usr/sbin/chroot "/home/desktop/${target}-chroot" /bin/bash -c "su - -c /tmp/chroot-post-install.sh"
-
+	/usr/sbin/chroot "/home/desktop/${target}-chroot" /bin/bash -c "/tmp/chroot-post-install.sh"
+	
+	# Unmount /dev/pts
+	umount /home/desktop/${target}-chroot/dev/pts
 }
 
 main()

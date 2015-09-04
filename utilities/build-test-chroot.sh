@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.3.5
+# Script Ver:	0.3.7
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. SteamOS targets allow brewmaster/alchemist release types.
 #               See: https://wiki.debian.org/chroot
@@ -78,19 +78,19 @@ funct_set_target()
 	if [[ "$type" == "debian" ]]; then
 	
 		target="debian-${release}"
-		target_URL="http://http.debian.net/debian"
+		target_URL="http://http.debian.net/debian/${release}"
 		beta_flag="no"
 	
 	elif [[ "$type" == "steamos" ]]; then
 		
 		target="steamos-${release}"
-		target_URL="http://repo.steampowered.com/steamos"
+		target_URL="http://repo.steampowered.com/${release}"
 		beta_flag="no"
 	
 	elif [[ "$type" == "steamos-beta" ]]; then
 	
 		target="steamos-beta-${release}"
-		target_URL="http://repo.steampowered.com/steamos"
+		target_URL="http://repo.steampowered.com/${release}"
 		beta_flag="yes"
 	
 	elif [[ "$type" == "--help" ]]; then

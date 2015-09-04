@@ -40,7 +40,7 @@ if [[ "$stock_opt" == "yes" ]]; then
 	
 elif [[ "$stock_opt" == "no" ]]; then
 
-	echo -e "The intended target is: ${tmp_type}"
+	echo -e "The intended target is: ${type}"
 	echo -e "Running post install commands now..."
 	sleep 2s
 	

@@ -30,7 +30,7 @@ USER="$SUDO_USER"
 #exit 1
 
 #test file creation
-echo "Creating "/home/$USER/.bash_aliases"
+echo "Creating /home/$USER/.bash_aliases"
 touch "/home/$USER/.bash_aliases"
 exit 1
 

@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	chroot-post-install.sh
-# Script Ver:	0.1.7
+# Script Ver:	0.1.9
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A
@@ -26,9 +26,10 @@ policy="./usr/sbin/policy-rc.d"
 # set targets / defaults
 # These options are set set in the build-chroot script
 # options set for failure notice in evaluation below
-tmp_type="type_tmp"
-beta_opt_in="beta_tmp"
-stock_opt="stock_tmp"
+type="tmp_type"
+beta_opt_in="tmp_type"
+stock_opt="tmp_stock"
+release="tmp_release"
 
 # bail out if strock opt was changed to yes in ./build-test-chroot
 if [[ "$stock_opt" == "yes" ]]; then
@@ -49,7 +50,7 @@ else
 	
 fi
 
-if [[ "$tmp_type" == "steamos" || "$tmp_type" == "steamos-beta" ]]; then
+if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 	# pass to ensure we are in the chroot 
 	# temp test for chroot (output should be something other than 2)
@@ -166,10 +167,21 @@ if [[ "$tmp_type" == "steamos" || "$tmp_type" == "steamos-beta" ]]; then
 	
 	echo -e "\n==> Configuring repository sources"
 	
-	# Enable Debian jessie repository
-	cat <<-EOF > /etc/apt/sources.list.d/jessie.list
-	deb http://http.debian.net/debian/ jessie main
-	EOF
+	if [[ "$relese" == "wheezy" ]]; then
+	
+		# Enable Debian jessie repository
+		cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
+		deb http://http.debian.net/debian/ wheezy main
+		EOF
+	
+	elif [[ "$relese" == "jessie" ]]; then
+	
+		# Enable Debian jessie repository
+		cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
+		deb http://http.debian.net/debian/ wheezy main
+		EOF
+	
+	fi
 	
 	# Enable pinning for SteamOS repo
 	cat <<-EOF > /etc/apt/preferences.d/steamos

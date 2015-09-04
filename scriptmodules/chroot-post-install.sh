@@ -95,7 +95,10 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	echo -e "Set steam user password"
 	echo -e "###########################\n"
 	passwd steam
-	echo -e "steam\nsteam\nsteam\n"
+	
+	# Above, we allow users to choose their own password.
+	# Below, we could echo the default passwords for them, if desired
+	# echo -e "steam\nsteam\n" | passwd steam 
 	
 	# setup desktop user
 	#su - desktop
@@ -103,7 +106,10 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	echo -e "Set desktop user password"
 	echo -e "#############################\n"
 	passwd desktop
-	echo -e "dekstop\ndesktop\ndesktop\n"
+	
+	# Above, we allow users to choose their own password.
+	# Below, we could echo the default passwords for them, if desired
+	# echo -e "steam\nsteam\n" | passwd desktop 
 	
 	# Change to root chroot folder
 	cd /

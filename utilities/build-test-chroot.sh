@@ -237,47 +237,7 @@ funct_create_chroot()
 	# modify release_tmp for Debian Wheezy / Jessie in post-install script
 	sed -i "s|"tmp_release"|${release}|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
 	
-	# enter chroot to test
-	cat <<-EOF
-	
-	------------------------------------------------------------
-	Summary
-	------------------------------------------------------------
-	EOF
-
-	echo -e "\nYou will now be placed into the chroot. Press [ENTER].
-If you wish  to leave out any post operations and remain with a 'stock' chroot, type 'stock',
-then [ENTER] instead. A stock chroot is only intended and suggested for the Debian chroot type."
-	
-	echo -e "\nYou may use '/usr/sbin/chroot $HOME/chroots/${target}' to manually 
-enter the chroot."
-	
-	# Capture input
-	read stock_choice
-	
-	if [[ "$stock_choice" == "" ]]; then
-	
-		# Captured carriage return / blank line only, continue on as normal
-		# Modify target based on opts
-		sed -i "s|"tmp_stock"|"no"|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
-		#printf "zero length detected..."
-		
-	elif [[ "$stock_choice" == "stock" ]]; then
-	
-		# Modify target based on opts
-		sed -i "s|"tmp_stock"|"yes"|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
-		
-	elif [[ "$stock_choice" != "stock" ]]; then
-	
-		# user entered something arbitrary, exit
-		echo -e "\nSomething other than [blank]/[ENTER] or 'stock' was entered, exiting.\n"
-		exit
-	fi
-	
-	# "bind" /dev/pts
-	mount --bind /dev/pts $HOME/chroots/${target}/dev/pts
-	
-		# create alias file that .bashrc automatically will source
+	# create alias file that .bashrc automatically will source
 	if [[ -f "/home/$USER/.bash_aliases" ]]; then
 	
 		# do nothing
@@ -324,6 +284,46 @@ enter the chroot."
 	# source bashrc to update.
 	# bashrc should source $HOME/.bash_aliases
 	source "/home/$USER/.bashrc"
+	
+	# enter chroot to test
+	cat <<-EOF
+	
+	------------------------------------------------------------
+	Summary
+	------------------------------------------------------------
+	EOF
+
+	echo -e "\nYou will now be placed into the chroot. Press [ENTER].
+If you wish  to leave out any post operations and remain with a 'stock' chroot, type 'stock',
+then [ENTER] instead. A stock chroot is only intended and suggested for the Debian chroot type."
+	
+	echo -e "\nYou may use '/usr/sbin/chroot $HOME/chroots/${target}' to manually 
+enter the chroot."
+	
+	# Capture input
+	read stock_choice
+	
+	if [[ "$stock_choice" == "" ]]; then
+	
+		# Captured carriage return / blank line only, continue on as normal
+		# Modify target based on opts
+		sed -i "s|"tmp_stock"|"no"|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
+		#printf "zero length detected..."
+		
+	elif [[ "$stock_choice" == "stock" ]]; then
+	
+		# Modify target based on opts
+		sed -i "s|"tmp_stock"|"yes"|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
+		
+	elif [[ "$stock_choice" != "stock" ]]; then
+	
+		# user entered something arbitrary, exit
+		echo -e "\nSomething other than [blank]/[ENTER] or 'stock' was entered, exiting.\n"
+		exit
+	fi
+	
+	# "bind" /dev/pts
+	mount --bind /dev/pts $HOME/chroots/${target}/dev/pts
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"

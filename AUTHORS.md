@@ -11,3 +11,10 @@ I couldn't have done some of the things here without some help from a lot of gre
 
 #### Installation Guides
 - psppwner300 (Steam Community) - SteamOS standard installation guide
+
+#### General code fixes
+* Sharkwouter of the Steamm Universe community forum
+* Ryochan7 of the Steamm Universe community forum
+
+#### UE4 script fixes
+* Ryochan7 of the Steamm Universe community forum

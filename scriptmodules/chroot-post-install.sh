@@ -18,6 +18,7 @@
 echo $USER
 echo $HOME
 echo $SUDO_USER
+exit 1
 
 # This post-isntall scripts needs A LOT OF WORK!!!!
 # The end goal is to replicate the setup of SteamOS as

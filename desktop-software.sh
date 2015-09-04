@@ -580,78 +580,80 @@ install_software()
 	echo -e "\n==> Validating packages...\n"
 	sleep 2s
 	
-	for i in `cat $software_list`; do
-	
-		# set fail default
-		pkg_fail="no"
-	
-		if [[ "$i" =~ "!broken!" ]]; then
-			skipflag="yes"
-			echo -e "skipping broken package: $i ..."
-			sleep 0.3s
-		else
-	
-			# check for packages already installed first
-			# Force if statement to run if unininstalled is specified for exiting software
-			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+	if [ -n "$software_list" ]; then
+		for i in `cat $software_list`; do
+		
+			# set fail default
+			pkg_fail="no"
 			
-			# report package current status
-			if [ "$PKG_OK" != "" ]; then
-				echo -e "$i package status: [OK]"
+			if [[ "$i" =~ "!broken!" ]]; then
+				skipflag="yes"
+				echo -e "skipping broken package: $i ..."
 				sleep 0.3s
 			else
-				echo -e "\n$i package status: [Not found]"
-				sleep 0.3s
-			fi			
-	
-			# setup firstcheck var for first run through
-			firstcheck="yes"
 		
-			# Assess pacakge requests
-			if [ "$PKG_OK" == "" ] && [ "$apt_mode" == "install" ]; then
-			
-				echo -e "\n==> Attempting $i automatic package installation...\n"
-				sudo apt-get $cache_tmp $apt_mode $i
-				sleep 1s
-					
-			elif [ "$apt_mode" == "remove" ]; then
+				# check for packages already installed first
+				# Force if statement to run if unininstalled is specified for exiting software
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 				
-				echo -e "\n==> Removal requested for package: $i \n"
-				
-				if [ "$PKG_OK" == "" ]; then
-					
-					echo -e "==ERROR==\nPackage is not on this system! Removal skipped\n"
-					sleep 2s
+				# report package current status
+				if [ "$PKG_OK" != "" ]; then
+					echo -e "$i package status: [OK]"
+					sleep 0.3s
+				else
+					echo -e "\n$i package status: [Not found]"
+					sleep 0.3s
 				fi
-				
-				sudo apt-get $cache_tmp $apt_mode $i
-				
-				###########################################################
-				# Fail out if any pkg installs fail (-z = zero length)
-				###########################################################
+		
+				# setup firstcheck var for first run through
+				firstcheck="yes"
 			
-				if [[ $? != '0' ]]; then
+				# Assess pacakge requests
+				if [ "$PKG_OK" == "" ] && [ "$apt_mode" == "install" ]; then
+				
+					echo -e "\n==> Attempting $i automatic package installation...\n"
+					sudo apt-get $cache_tmp $apt_mode $i
+					sleep 1s
+						
+				elif [ "$apt_mode" == "remove" ]; then
 					
-					# attempt to resolve missing
-					sudo apt-get $cache_tmp $apt_mode -f
+					echo -e "\n==> Removal requested for package: $i \n"
 					
-					echo -e "\n==> Could not install or remove ALL packages from the"
-					echo -e "brewmaster repositories, jessie sources, or alternative"
-					echo -e "source lists you have configured.\n"
-					echo -e "Please check log.txt in the directory you ran this from.\n"
-					echo -e "Failure occurred on package: ${i}\n"
-					pkg_fail="yes"
-					exit
+					if [ "$PKG_OK" == "" ]; then
+						
+						echo -e "==ERROR==\nPackage is not on this system! Removal skipped\n"
+						sleep 2s
+					fi
+					
+					sudo apt-get $cache_tmp $apt_mode $i
+					
+					###########################################################
+					# Fail out if any pkg installs fail (-z = zero length)
+					###########################################################
+				
+					if [[ $? != '0' ]]; then
+						
+						# attempt to resolve missing
+						sudo apt-get $cache_tmp $apt_mode -f
+						
+						echo -e "\n==> Could not install or remove ALL packages from the"
+						echo -e "brewmaster repositories, jessie sources, or alternative"
+						echo -e "source lists you have configured.\n"
+						echo -e "Please check log.txt in the directory you ran this from.\n"
+						echo -e "Failure occurred on package: ${i}\n"
+						pkg_fail="yes"
+						exit
+					fi
+				
+				# end PKG OK/FAIL test loop if/fi
 				fi
-			
-			# end PKG OK/FAIL test loop if/fi
-			fi
 
-		# end broken PKG test loop if/fi
-		fi
-		
-	# end PKG OK test loop itself
-	done
+			# end broken PKG test loop if/fi
+			fi
+			
+		# end PKG OK test loop itself
+		done
+	fi
 	
 	###########################################################
 	# Cleanup
@@ -745,26 +747,28 @@ manual_software_check()
 	
 	echo -e "==> Validating packages already installed...\n"
 	
-	for i in `cat $software_list`; do
-	
-		if [[ "$i" =~ "!broken!" ]]; then
-			skipflag="yes"
-			echo -e "skipping broken package: $i ..."
-			sleep 0.3s
-		else
+	if [ -n "$software_list" ]; then
+		for i in `cat $software_list`; do
 		
-			PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-			if [ "$PKG_OK" == "" ]; then
-				# dpkg outputs it's own line that can't be supressed
-				echo -e "Package $i [Not Found]" > /dev/null
+			if [[ "$i" =~ "!broken!" ]]; then
+				skipflag="yes"
+				echo -e "skipping broken package: $i ..."
 				sleep 0.3s
 			else
-				echo -e "Packge $i [OK]"
-				sleep 0.3s
+			
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				if [ "$PKG_OK" == "" ]; then
+					# dpkg outputs it's own line that can't be supressed
+					echo -e "Package $i [Not Found]" > /dev/null
+					sleep 0.3s
+				else
+					echo -e "Packge $i [OK]"
+					sleep 0.3s
+				fi
 			fi
-		fi
 
-	done
+		done
+	fi
 	echo ""
 	exit 1	
 

@@ -219,7 +219,7 @@ funct_create_chroot()
 	# mark executable
 	chmod +x /home/desktop/chroots/${target}/tmp/chroot-post-install.sh
 
-	# Modify target based on opts
+	# Modify type based on opts
 	sed -i "s|"tmp_type"|${type}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# Change opt-in based on opts

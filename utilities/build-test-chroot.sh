@@ -221,6 +221,9 @@ funct_create_chroot()
 	# Change opt-in based on opts
 	sed -i "s|"beta_tmp"|${beta_flag}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 	
+	# modify release_tmp for Debian Wheezy / Jessie in post-install script
+	sed -i "s|"release_tmp"|${release}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+	
 	# enter chroot to test
 	
 	echo -e "\nYou will now be placed into the chroot. Press [ENTER].

@@ -234,8 +234,6 @@ then [ENTER] instead. A stock chroot is only intended and suggested for the Debi
 	echo -e "\nYou may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to manually 
 enter the chroot."
 	
-	EOF
-	
 	# Capture input
 	read stock_choice
 	

@@ -452,37 +452,38 @@ get_software_type()
 	elif [[ "$type" == "lutris" ]]; then
                 # add web app via chrome from helper script
                 ep_install_lutris
-                exit
+                exit 1
 	elif [[ "$type" == "chrome" ]]; then
                 # install plex from helper script
                 ep_install_chrome
-                exit
+                exit 1
         elif [[ "$type" == "gameplay-recording" ]]; then
                 # install plex from helper script
                 ep_install_gameplay_recording
-                exit
+                exit 1
         elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script
                 ep_install_kodi
-                exit
+                exit 1
 	elif [[ "$type" == "plex" ]]; then
                 # install plex from helper script
                 ep_install_plex
-                exit
+                exit 1
 	elif [[ "$type" == "ue4" ]]; then
-		# install plex from helper script
+		# install ue4 from helper script
 		m_install_ue4
+		exit 1
         elif [[ "$type" == "ue4-src" ]]; then
                 # install plex from helper script
                 software_list="$scriptdir/cfgs/software-lists/ue4.txt"
 	elif [[ "$type" == "webapp" ]]; then
                 # add web app via chrome from helper script
                 add_web_app_chrome
-                exit
+                exit 1
         elif [[ "$type" == "xb360-bindings" ]]; then
                 # install plex from helper script
                 ep_install_xb360_bindings
-                exit
+                exit 1
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"

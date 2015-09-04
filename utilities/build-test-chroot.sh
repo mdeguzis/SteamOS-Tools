@@ -51,6 +51,33 @@ show_help()
 	
 }
 
+check_sources()
+{
+	
+	# Debian sources are required to install xorriso for Stephenson's Rocket
+	sources_check1=$(sudo find /etc/apt -type f -name "jessie*.list")
+	sources_check2=$(sudo find /etc/apt -type f -name "wheezy*.list")
+	
+	if [[ "$sources_check1" == "" && "$sources_check2" == "" ]]; then
+	
+		echo -e "\n==WARNING==\nDebian sources are needed for building chroots, add now? (y/n)"
+		read -erp "Choice: " sources_choice
+	
+		if [[ "$sources_choice" == "y" ]]; then
+	
+			../add-debian-repos.sh
+			
+		elif [[ "$sources_choice" == "n" ]]; then
+		
+			echo -e "Sources addition skipped"
+		
+		fi
+		
+	fi
+	
+	
+}
+
 # Warn user script must be run as root
 if [ "$(id -u)" -ne 0 ]; then
 
@@ -243,6 +270,7 @@ funct_create_chroot()
 main()
 {
 	clear
+	check_sources
 	funct_prereqs
 	funct_set_target
 	funct_create_chroot

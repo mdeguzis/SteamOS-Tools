@@ -235,7 +235,7 @@ funct_create_chroot()
 	sed -i "s|"tmp_beta"|${beta_flag}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# modify release_tmp for Debian Wheezy / Jessie in post-install script
-	sed -i "s|"tmp_release"|${release}|g" "$HOME/chroots/${target}/tmp/chroot-post-install.sh"
+	sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# create alias file that .bashrc automatically will source
 	if [[ -f "/home/$USER/.bash_aliases" ]]; then

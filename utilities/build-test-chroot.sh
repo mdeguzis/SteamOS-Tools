@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.3.3
+# Script Ver:	0.3.5
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. SteamOS targets allow brewmaster/alchemist release types.
 #               See: https://wiki.debian.org/chroot
@@ -32,6 +32,8 @@ show_help()
 {
 	
 	clear
+	
+	cat <<-EOF
 	Warning: usage of this script is at your own risk!
 	
 	Usage
@@ -156,12 +158,12 @@ funct_create_chroot()
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
-		--arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
+		--arch i386 ${release} /home/desktop/chroots/${target} ${target_URL}
 		
 	else
 	
 		# handle Debian instead
-		/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/${target}-chroot ${target_URL}
+		/usr/sbin/debootstrap --arch i386 ${release} /home/desktop/chroots/${target} ${target_URL}
 		
 	fi
 	
@@ -177,32 +179,42 @@ funct_create_chroot()
 	chmod +x /home/desktop/chroots/${target}/tmp/chroot-post-install.sh
 
 	# Modify target based on opts
-	sed -i "s|"target_tmp"|${type}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
+	sed -i "s|"type_tmp"|${type}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# Change opt-in based on opts
-	sed -i "s|"beta_tmp"|${beta_flag}|g" "/home/desktop/chroots/${target}tmp/chroot-post-install.sh"
+	sed -i "s|"beta_tmp"|${beta_flag}|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# enter chroot to test
-	echo -e "\nYou will now be placed into the chroot. Press [ENTER]. If you wish to \
-leave out any post operations and remain with a 'stock' chroot, type 'stock' and [ENTER] \
-instead...\n"
-	echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to manually"
-	echo -e "enter the chroot.\n"
+	
+	cat <<- EOF
+	
+	You will now be placed into the chroot. Press [ENTER]. If you wish to
+	leave out any post operations and remain with a 'stock' chroot, type 'stock', 
+	then [ENTER] instead. A stock chroot is only intended and suggested for the
+	Debian chroot type.
+	
+	You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to manually
+	enter the chroot.
+	
+	EOF
 	
 	# Capture input
 	read stock_choice
 	
 	if [[ "$stock_choice" == "" ]]; then
+	
 		# Captured carriage return / blank line only, continue on as normal
 		# Modify target based on opts
 		sed -i "s|"stock_tmp"|"no"|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 		#printf "zero length detected..."
 		
 	elif [[ "$stock_choice" == "stock" ]]; then
+	
 		# Modify target based on opts
-		sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/chroots/${target}tmp/chroot-post-install.sh"
+		sed -i "s|"stock_tmp"|"yes"|g" "/home/desktop/chroots/${target}/tmp/chroot-post-install.sh"
 		
 	elif [[ "$stock_choice" != "stock" ]]; then
+	
 		# user entered something arbitrary, exit
 		echo -e "\nSomething other than [blank]/[ENTER] or 'stock' was entered, exiting.\n"
 		exit

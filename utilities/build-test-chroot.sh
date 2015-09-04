@@ -230,10 +230,10 @@ funct_create_chroot()
 	
 	# enter chroot to test
 	cat <<-EOF
+	
 	------------------------------------------------------------
 	Summary
 	------------------------------------------------------------
-	
 	EOF
 
 	echo -e "\nYou will now be placed into the chroot. Press [ENTER].

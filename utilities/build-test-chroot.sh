@@ -221,7 +221,7 @@ funct_create_chroot()
 	cd $script_dir
 	
 	# copy over post install script for execution
-	# cp -v scriptmodules/chroot-post-install.sh $HOME/chroots/${target}/tmp/
+	# cp -v scriptmodules/chroot-post-install.sh /home/$USER/chroots/${target}/tmp/
 	echo -e "\n==> Copying post install script to tmp directory\n"
 	cp -v "chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
 	
@@ -282,7 +282,7 @@ funct_create_chroot()
 	fi
 	
 	# source bashrc to update.
-	# bashrc should source $HOME/.bash_aliases
+	# bashrc should source /home/$USER/.bash_aliases
 	
 	# can't source form .bashrc, since they use ~ instead of $HOME
 	# source from /home/$USER/.bash_aliases instead
@@ -342,14 +342,14 @@ enter the chroot again. You can also use the newly created alias listed below\n"
 	fi
 	
 	# "bind" /dev/pts
-	mount --bind /dev/pts $HOME/chroots/${target}/dev/pts
+	mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
 	/usr/sbin/chroot "/home/$USER/chroots/${target}" /bin/bash -c "/tmp/chroot-post-install.sh"
 	
 	# Unmount /dev/pts
-	umount $HOME/chroots/${target}/dev/pts
+	umount /home/$USER/chroots/${target}/dev/pts
 	
 	# correct owner on home directory files/folders due to usage of sudo
 	chown -R $USER:$USER "/home/$USER"

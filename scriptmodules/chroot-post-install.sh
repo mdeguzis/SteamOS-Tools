@@ -79,8 +79,8 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	groupadd steam
 	
 	# User configurations
-	useradd -s /bin/bash -m -d /home/desktop -c "Steam Desktop" -g desktop desktop
-	useradd -s /bin/bash -m -d /home/steam -c "Steam Desktop" -g steam steam
+	useradd -s /bin/bash -m -d /home/desktop -c "Desktop user" -g desktop desktop
+	useradd -s /bin/bash -m -d /home/steam -c "Steam user" -g steam steam
 	
 	# add additional groups
 	usermod -a -G cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,pulse-access desktop

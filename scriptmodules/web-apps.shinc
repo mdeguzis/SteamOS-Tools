@@ -2,7 +2,7 @@
 # Author: 	    	Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.0.1
+# Script Ver:	  	1.4.1
 # Description:		Module for isntalling web-apps .
 #	
 # Usage:	      	n/a , module
@@ -44,6 +44,19 @@ web_app_youtube()
 	TARGET_NAME="Youtube"
 	SHORTCUT="Youtube.desktop"
 	LAUNCHER="/usr/bin/Youtube-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Youtube.png"
+
+}
+
+web_app_youtube_tv()
+{
+
+	# Youtube
+	NAME="YoutubeTV"
+	WEB_URL="www.youtube.com/tv"
+	TARGET_NAME="Youtube"
+	SHORTCUT="YoutubeTV.desktop"
+	LAUNCHER="/usr/bin/Youtube-Launch-TV.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Youtube.png"
 
 }
@@ -188,7 +201,7 @@ add_web_app_chrome()
 	# Start web app addition loop
 	###################################
 	
-	while [[ "$web_app_choice" != "8" || "$web_app_choice" != "done" ]];
+	while [[ "$web_app_choice" != "9" || "$web_app_choice" != "done" ]];
 	do	
 		echo -e "\n#############################################################"
 		echo -e "Web application installation (via Chrome kiosk mode)"
@@ -202,8 +215,9 @@ add_web_app_chrome()
 		echo "(4) SoundCloud"
 		echo "(5) Twitch"
 		echo "(6) Youtube"
-		echo "(7) Custom"
-		echo "(8) Done"
+		echo "(7) Youtube TV"
+		echo "(8) Custom"
+		echo "(9) Done"
 		echo ""
 		
 		# the prompt sometimes likes to jump above sleep
@@ -242,13 +256,18 @@ add_web_app_chrome()
 		        web_app_youtube
 		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
-		         
+		        
 		        7)
+		        web_app_youtube_tv
+		        kiosk_opt="/usr/bin/$LAUNCHER"
+		        ;;
+		         
+		        8)
 		        custom_url="yes"
 		        # kiosk_opt handled in custom url sequence below
 		        ;;
 		         
-		        8|done)
+		        9|done)
 		        # do nothing
 		        echo -e "\n==> Exiting script\n"
 		        exit 1

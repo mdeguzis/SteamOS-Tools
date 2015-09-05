@@ -132,7 +132,8 @@ funct_set_target()
 	
 	elif [[ "$type" == "steamos" ]]; then
 		
-		target_URL="http://repo.steampowered.com/steamos"
+		#target_URL="http://repo.steampowered.com/steamos"
+		target_URL="http://repo.steamstatic.com/steamos/dists/brewmaster/"
 		beta_flag="no"
 	
 	elif [[ "$type" == "steamos-beta" ]]; then

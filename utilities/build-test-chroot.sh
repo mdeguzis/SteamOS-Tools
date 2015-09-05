@@ -132,8 +132,8 @@ funct_set_target()
 	
 	elif [[ "$type" == "steamos" ]]; then
 		
-		#target_URL="http://repo.steampowered.com/steamos"
-		target_URL="http://repo.steamstatic.com/steamos/dists/brewmaster/"
+		target_URL="http://repo.steampowered.com/steamos"
+		#target_URL="http://repo.steamstatic.com/steamos/dists/brewmaster/"
 		beta_flag="no"
 	
 	elif [[ "$type" == "steamos-beta" ]]; then
@@ -207,6 +207,7 @@ funct_create_chroot()
 	#debootstrap for SteamOS
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
+		# handle SteamOS
 		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
 		--arch i386 ${release} /home/$USER/chroots/${target} ${target_URL}
 		

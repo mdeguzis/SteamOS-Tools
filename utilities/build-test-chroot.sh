@@ -264,7 +264,6 @@ funct_create_chroot()
 	
 	# source bashrc to update.
 	# bashrc should source /home/$USER/.bash_aliases
-	
 	# can't source form .bashrc, since they use ~ instead of $HOME
 	# source from /home/$USER/.bash_aliases instead
 	

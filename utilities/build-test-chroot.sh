@@ -12,7 +12,7 @@
 # Usage:	sudo ./build-test-chroot.sh [type] [release]
 # Options:	types: [debian|steamos] 
 #		releases debian:  [wheezy|jessie]
-#		releases steamos: [alchemist|alchemist_beta|brewmaster|brewmaster_beta]
+#		releases steamos: [alchemist|alchemist-beta|brewmaster|brewmaster-beta]
 #		
 # Help:		sudo ./build-test-chroot.sh --help for help
 #
@@ -54,7 +54,7 @@ show_help()
 	sudo ./build-test-chroot.sh [type] [release]
 	Types: [debian|steamos] 
 	Releases (Debian):  [wheezy|jessie]
-	Releases (SteamOS): [alchemist|alchemist_beta|brewmaster|brewmaster_beta]
+	Releases (SteamOS): [alchemist|alchemist-beta|brewmaster|brewmaster-beta]
 	
 	Plese note that the types wheezy and jessie belong to Debian,
 	and that brewmaster belong to SteamOS.

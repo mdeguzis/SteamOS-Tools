@@ -174,6 +174,19 @@ function gpg_import()
 funct_create_chroot()
 {
 	
+	echo -e "\n==> Importing GPG keys...\n"
+	
+	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
+
+		if [[ "$release" == "brewmaster" ]]; then
+		
+			# import GPG key
+			gpg_import
+		
+		fi
+		
+	fi
+	
 	# create our chroot folder
 	if [[ -d "/home/$USER/chroots/${target}" ]]; then
 	
@@ -185,9 +198,6 @@ funct_create_chroot()
 		mkdir -p "/home/$USER/chroots/${target}"
 		
 	fi
-	
-	echo -e "\n==> Importing GPG keys...\n"
-	gpg_import
 	
 	# build the environment
 	echo -e "\n==> Building chroot environment...\n"

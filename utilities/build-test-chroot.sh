@@ -207,9 +207,20 @@ funct_create_chroot()
 		
 	fi
 	
-	#Mount proc and dev filesystem
-	mount -o bind /dev /home/$USER/chroots/${target}/dev
-	mount -o bind /proc /home/$USER/chroots/${target}proc
+	
+	# add to fstab
+	# TODO
+	fstab_check=$(cat /etc/fstab | grep ${target})
+	if [[ "$fstab_check" == "" ]]; then
+	
+		# Mount proc and dev filesystem (add to **host** fstab)
+		# chroot steamos-beta-brewmaster
+	#	/dev/pts /home/$USER/chroots/${target}/dev/pts none bind 0 4
+	#	proc     /home/$USER/chroots/${target}/proc    proc defaults 0 4
+	#	sysfs    /home/$USER/chroots/${target}/sys     sysfs defaults 0 4
+		:
+		
+	fi
 	
 	# set script dir and enter
 	script_dir=$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)

@@ -286,17 +286,17 @@ echo -e "\n==> Instaling some basic packages\n"
 # run as root so they are installed correctly
 pkgs="vim sudo deborphan"
 for pkgs in ${pkgs}; do
-	pkg_chk=$(dpkg-query -s ${dep})
+	pkg_chk=$(dpkg-query -s ${pkgs})
 	if [[ "$pkg_chk" == "" ]]; then
-		sudo apt-get install ${dep}
+		sudo apt-get install ${pkgs}
 		
 		if [[ $? = 100 ]]; then
-			echo -e "Cannot install ${dep}. Please install this manually \n"
+			echo -e "Cannot install ${pkgs}. Please install this manually \n"
 			exit 1
 		fi
 		
 	else
-		echo "package ${dep} [OK]"
+		echo "package ${pkgs} [OK]"
 		sleep .3s
 	fi
 done

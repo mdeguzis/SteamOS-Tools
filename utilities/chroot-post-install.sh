@@ -117,8 +117,8 @@ passwd desktop
 # echo -e "steam\nsteam\n" | passwd desktop 
 
 # Change to root to handle configurations
-echo -e "\n==> Changing to root for system setup\n"
-su - root
+# echo -e "\n==> Changing to root for system setup\n"
+# su - root
 
 # Change to root chroot folder
 cd /
@@ -277,13 +277,15 @@ apt-get update
 
 echo -e "\n==> Instaling some basic packages\n"
 
-# install some basic packages
-apt-get install vim sudo deborphan
+# install some basic package
+# run as root so they are installed correctly
+runuser -l root -c 'apt-get install vim sudo deborphan'
 
 echo -e "\n==> Cleaning up packages\n"
 
 # eliminate unecessary packages
-deborphan -a
+# disable for further testing
+# deborphan -a
 
 # setup sudo / fix perms for uid0 (root)
 #chown root:root /usr/lib/sudo/sudoers.so

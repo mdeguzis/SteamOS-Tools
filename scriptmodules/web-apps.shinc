@@ -57,7 +57,7 @@ web_app_youtube_tv()
 	TARGET_NAME="Youtube"
 	SHORTCUT="YoutubeTV.desktop"
 	LAUNCHER="/usr/bin/Youtube-Launch-TV.sh"
-	BANNER_IMG="$scriptdir/artwork/banners/Youtube.png"
+	BANNER_IMG="$scriptdir/artwork/banners/YoutubeTV.png"
 
 }
 

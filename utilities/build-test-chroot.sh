@@ -215,10 +215,9 @@ funct_create_chroot()
 	
 		# Mount proc and dev filesystem (add to **host** fstab)
 		# chroot steamos-beta-brewmaster
-	#	/dev/pts /home/$USER/chroots/${target}/dev/pts none bind 0 4
-	#	proc     /home/$USER/chroots/${target}/proc    proc defaults 0 4
-	#	sysfs    /home/$USER/chroots/${target}/sys     sysfs defaults 0 4
-		:
+		sudo su -c "echo '/dev/pts /home/$USER/chroots/${target}/dev/pts none bind 0 4' >> /etc/fstab"
+		sudo su -c "echo 'proc     /home/$USER/chroots/${target}/proc    proc defaults 0 4' >> /etc/fstab"
+		sudo su -c "echo 'sysfs    /home/$USER/chroots/${target}/sys     sysfs defaults 0 4' >> /etc/fstab"
 		
 	fi
 	

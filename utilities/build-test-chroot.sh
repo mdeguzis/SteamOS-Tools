@@ -186,6 +186,9 @@ funct_create_chroot()
 		
 	fi
 	
+	echo -e "\n==> Importing GPG keys...\n"
+	gpg_import
+	
 	# build the environment
 	echo -e "\n==> Building chroot environment...\n"
 	sleep 1s

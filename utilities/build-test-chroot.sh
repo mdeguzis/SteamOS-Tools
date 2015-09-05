@@ -193,7 +193,7 @@ funct_create_chroot()
 	echo -e "\n==> Building chroot environment...\n"
 	sleep 1s
 	
-	# debootstrap for SteamOS
+	# debootstrap
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 		# handle SteamOS
@@ -206,6 +206,10 @@ funct_create_chroot()
 		/usr/sbin/debootstrap --arch i386 ${release} /home/$USER/chroots/${target} ${target_URL}
 		
 	fi
+	
+	#Mount proc and dev filesystem
+	mount -o bind /dev /home/$USER/chroots/${target}/dev
+	mount -o bind /proc /home/$USER/chroots/${target}proc
 	
 	# set script dir and enter
 	script_dir=$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)

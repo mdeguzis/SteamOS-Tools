@@ -275,11 +275,11 @@ echo -e "\n==> Cleaning up packages\n"
 deborphan -a
 
 # setup sudo / fix perms for uid0 (root)
-chown root:root /usr/bin/sudo
 chown root:root /usr/lib/sudo/sudoers.so
 chown root:root /etc/sudoers
 chown root:root /etc/sudoers.d/
-chmod +s /usr/bin/sudo
+chown root:root /usr/bin/sudo
+chmod 4755 /usr/bin/sudo
 chmod 440 /etc/sudoers
 
 # exit chroot

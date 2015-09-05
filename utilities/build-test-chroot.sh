@@ -39,7 +39,6 @@ type="$1"
 release="$2"
 target="${type}-${release}"
 stock_choice=""
-full_target="${type}_${release}"
 
 show_help()
 {
@@ -313,19 +312,7 @@ then [ENTER] instead. A stock chroot is only intended and suggested for the Debi
 	echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 
 enter the chroot again. You can also use the newly created alias listed below\n"
 
-	if [[ "$full_target" == "steamos_brewmaster" ]]; then
-	
-		echo -e "\tchroot-steamos-brewmaster\n"
-	
-	elif [[ "$full_target" == "debian_wheezy" ]]; then
-	
-		echo -e "\tchroot-debian-wheezyr\n"
-		
-	elif [[ "$full_target" == "steamos_brewmaster" ]]; then
-	
-		echo -e "\tchroot-steamos-wheezy\n"
-		
-	fi
+	echo -e "\tchroot-${target}\n"
 	
 	# Capture input
 	read stock_choice

@@ -154,7 +154,7 @@ if [[ "$release" == "alchemist" ]]; then
 	deb http://http.debian.net/debian/ jessie main
 	EOF
 	
-elif [[ "$release" == "alchemist-beta" && "$type" == "steamos-beta" ]]; then
+elif [[ "$release" == "alchemist" && "$type" == "steamos-beta" ]]; then
 
 	# BETA OPT IN
 
@@ -192,7 +192,7 @@ elif [[ "$release" == "brewmaster" ]]; then
 	deb http://http.debian.net/debian/ jessie main
 	EOF
 	
-elif [[ "$release" == "brewmaster-beta" && "$type" == "steamos-beta" ]]; then
+elif [[ "$release" == "brewmaster" && "$type" == "steamos-beta" ]]; then
 
 	# BETA OPT IN
 

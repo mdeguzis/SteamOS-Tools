@@ -284,7 +284,22 @@ echo -e "\n==> Instaling some basic packages\n"
 
 # install some basic package
 # run as root so they are installed correctly
-apt-get install vim sudo deborphan
+pkgs="vim sudo deborphan"
+for pkgs in ${pkgs}; do
+	pkg_chk=$(dpkg-query -s ${dep})
+	if [[ "$pkg_chk" == "" ]]; then
+		sudo apt-get install ${dep}
+		
+		if [[ $? = 100 ]]; then
+			echo -e "Cannot install ${dep}. Please install this manually \n"
+			exit 1
+		fi
+		
+	else
+		echo "package ${dep} [OK]"
+		sleep .3s
+	fi
+done
 
 echo -e "\n==> Cleaning up packages\n"
 

@@ -29,7 +29,7 @@ policy="./usr/sbin/policy-rc.d"
 type="tmp_type"
 stock_opt="tmp_stock"
 release="tmp_release"
-full_target="${type}_${release}"
+target="${type}-${release}"
 
 # bail out if strock opt was changed to yes in ./build-test-chroot
 if [[ "$stock_opt" == "yes" ]]; then
@@ -285,21 +285,7 @@ echo -e "\nExiting chroot!\n"
 echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 
 enter the chroot again. You can also use the newly created alias listed below\n"
 
-if [[ "$full_target" == "steamos_brewmaster" ]]; then
-
-	echo -e "\tchroot-steamos-brewmaster\n"
-
-if [[ "$full_target" == "steamos_alchemist" ]]; then
-
-	echo -e "\tchroot-steamos-alchemist\n"
-
-elif [[ "$full_target" == "debian_wheezy" ]]; then
-
-	echo -e "\tchroot-debian-wheezyr\n"
-	
-elif [[ "$full_target" == "steamos_brewmaster" ]]; then
-
-	echo -e "\tchroot-steamos-wheezy\n"
+echo -e "\tchroot-${target}\n"
 	
 fi
 

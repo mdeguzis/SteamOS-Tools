@@ -562,7 +562,7 @@ ep_install_plex()
 		sleep 1s
 	else
 		echo -e "\nDebian Multimedia Key [FAIL]. Adding now...\n"
-		"$scriptdir/extra/gpg_import.sh" 5C808C2B65558117
+		"$scriptdir/utilities/gpg_import.sh" 5C808C2B65558117
 	fi
 	
 	###############################

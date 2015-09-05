@@ -12,7 +12,7 @@
 # Usage:	sudo ./build-test-chroot.sh [type] [release]
 # Options:	types: [debian|steamos] 
 #		releases debian:  [wheezy|jessie]
-#		releases steamos: [brewmaster]
+#		releases steamos: [alchemist|alchemist_beta|brewmaster|brewmaster_beta]
 #		
 # Help:		sudo ./build-test-chroot.sh --help for help
 #
@@ -52,9 +52,9 @@ show_help()
 	Usage
 	---------------------------------------------------------------
 	sudo ./build-test-chroot.sh [type] [release]
-	Types: [debian|steamos|steamos-beta] 
-	Releases (Debian):       [wheezy|jessie]
-	Releases (SteamOS/Beta): [brewmaster]
+	Types: [debian|steamos] 
+	Releases (Debian):  [wheezy|jessie]
+	Releases (SteamOS): [alchemist|alchemist_beta|brewmaster|brewmaster_beta]
 	
 	Plese note that the types wheezy and jessie belong to Debian,
 	and that brewmaster belong to SteamOS.
@@ -128,18 +128,15 @@ funct_set_target()
 	if [[ "$type" == "debian" ]]; then
 	
 		target_URL="http://http.debian.net/debian"
-		beta_flag="no"
 	
 	elif [[ "$type" == "steamos" ]]; then
 		
 		target_URL="http://repo.steampowered.com/steamos"
 		#target_URL="http://repo.steamstatic.com/steamos/dists/brewmaster/"
-		beta_flag="no"
 	
 	elif [[ "$type" == "steamos-beta" ]]; then
 	
 		target_URL="http://repo.steampowered.com/steamos"
-		beta_flag="yes"
 	
 	elif [[ "$type" == "--help" ]]; then
 		
@@ -176,17 +173,6 @@ function gpg_import()
 
 funct_create_chroot()
 {
-
-	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
-	
-		if [[ "$release" == "brewmaster" ]]; then
-			
-			# import GPG key
-			gpg_import
-			
-		fi
-		
-	fi
 	
 	# create our chroot folder
 	if [[ -d "/home/$USER/chroots/${target}" ]]; then
@@ -205,7 +191,7 @@ funct_create_chroot()
 	sleep 1s
 	
 	#debootstrap for SteamOS
-	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
+	if [[ "$type" == "steamos" ]]; then
 	
 		# handle SteamOS
 		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
@@ -234,7 +220,7 @@ funct_create_chroot()
 	sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# Change opt-in based on opts
-	sed -i "s|"tmp_beta"|${beta_flag}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
+	# sed -i "s|"tmp_beta"|${beta_flag}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# modify release_tmp for Debian Wheezy / Jessie in post-install script
 	sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"

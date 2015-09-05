@@ -264,10 +264,15 @@ echo -e "\n==> Updating system\n"
 # Update apt
 apt-get update
 
-echo -e "\n==> Cleaning up packages\n"
+echo -e "\n==> Instaling some basic packages\n"
 
 # install some basic packages
 apt-get install vim sudo deborphan
+
+echo -e "\n==> Cleaning up packages\n"
+
+# eliminate unecessary packages
+deborphan -a
 
 # setup sudo / fix perms for uid0 (root)
 chown root:root /usr/bin/sudo
@@ -276,9 +281,6 @@ chown root:root /etc/sudoers
 chown root:root /etc/sudoers.d/
 chmod +s /usr/bin/sudo
 chmod 440 /etc/sudoers
-
-# eliminate unecessary packages
-deborphan -a
 
 # exit chroot
 echo -e "\nExiting chroot!\n"

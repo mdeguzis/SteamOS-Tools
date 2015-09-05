@@ -213,10 +213,11 @@ funct_create_chroot()
 	script_dir=$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)
 	cd $script_dir
 	
-	# copy over post install script for execution
-	# cp -v scriptmodules/chroot-post-install.sh /home/$USER/chroots/${target}/tmp/
-	echo -e "\n==> Copying post install script to tmp directory\n"
+	# copy over post install scripts for execution
+	echo -e "\n==> Copying post install scripts to tmp directory\n"
+	
 	cp -v "chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
+	cp -v "gpg_import.sh" "/home/$USER/chroots/${target}/tmp/"
 	
 	# mark executable
 	chmod +x "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"

@@ -282,7 +282,7 @@ deborphan -a
 
 # exit chroot
 echo -e "\nExiting chroot!\n"
-echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 
+echo -e "You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
 enter the chroot again. You can also use the newly created alias listed below\n"
 
 echo -e "\tchroot-${target}\n"

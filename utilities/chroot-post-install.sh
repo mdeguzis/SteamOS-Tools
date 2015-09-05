@@ -89,8 +89,10 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	# setup sudo / fix perms for uid0 (root)
 	chown root:root /usr/bin/sudo
 	chown root:root /usr/lib/sudo/sudoers.so
-	chmod 4755 /usr/bin/sudo
 	chown root:root /etc/sudoers
+	chown -R root:root /etc/sudoers.d/
+	chmod 4755 /usr/bin/sudo
+	chmod 440 /etc/sudoers
 	
 	# setup steam user
 	#su - steam

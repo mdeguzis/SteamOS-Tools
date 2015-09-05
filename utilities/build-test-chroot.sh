@@ -332,8 +332,6 @@ enter the chroot again. You can also use the newly created alias listed below\n"
 	# Unmount /dev/pts
 	umount /home/$USER/chroots/${target}/dev/pts
 	
-	# correct owner on home directory files/folders due to usage of sudo
-	chown -R $USER:$USER "/home/$USER"
 }
 
 main()

@@ -146,6 +146,10 @@ add_web_app_chrome()
 	
 	echo -e "\n==> Assessing pre-requisite software"
 	sleep 1s
+	
+	# There is still a conflict with overwriting the changelog of libattr1:i386
+	# because of this there is a workaround removal below
+	sudo rm -f "/usr/share/doc/libattr1/changelog.Debian.gz"
 
 	pkg_test=$(which google-chrome-stable)
 

@@ -177,13 +177,9 @@ funct_create_chroot()
 	echo -e "\n==> Importing GPG keys...\n"
 	
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
-
-		if [[ "$release" == "brewmaster" ]]; then
 		
-			# import GPG key
-			gpg_import
-		
-		fi
+		# import GPG key
+		gpg_import
 		
 	fi
 	

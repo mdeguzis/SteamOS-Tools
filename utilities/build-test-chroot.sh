@@ -117,7 +117,7 @@ funct_prereqs()
 	sleep 1s
 	
 	# Install the required packages 
-	apt-get install binutils debootstrap debian-archive-keyring -y
+	apt-get install binutils debootstrap debian-archive-keyring
 	
 }
 
@@ -152,9 +152,6 @@ function gpg_import()
 	# some keys do not load in automatically, import now
 	# helper script accepts $1 as the key
 	
-	echo -e "\n==> Importing Debian GPG keys"
-	sleep 1s
-	
 	# Key Desc: Debian Archive Automatic Signing Key
 	# Key ID: 8ABDDD96
 	# Full Key ID: 7DEEB7438ABDDD96
@@ -173,8 +170,8 @@ function gpg_import()
 
 funct_create_chroot()
 {
-	
-	echo -e "\n==> Importing GPG keys...\n"
+	echo -e "\n==> Importing GPG keys"
+	sleep 1s
 	
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		

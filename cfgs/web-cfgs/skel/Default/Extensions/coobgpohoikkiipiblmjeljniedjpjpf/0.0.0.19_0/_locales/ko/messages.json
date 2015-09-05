@@ -1,0 +1,10 @@
+{
+   "appDesc": {
+      "description": "The description of the application, displayed in the web store.",
+      "message": "인터넷을 가장 빠르게 서핑하는 방법"
+   },
+   "appName": {
+      "description": "The title of the application, displayed in the web store.",
+      "message": "Google 검색"
+   }
+}

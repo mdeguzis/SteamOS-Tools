@@ -138,20 +138,6 @@ else
 	ln -s /bin/true /usr/bin/ischroot
 fi
 
-echo -e "\n==> Importing GPG keys"
-
-# Key Desc: Valve SteamOS Release Key <steamos@steampowered.com>
-# Key ID: 8ABDDD96
-# Full Key ID: 7DEEB7438ABDDD96
-gpg_key_check=$(gpg --list-keys 8ABDDD96)
-if [[ "$gpg_key_check" != "" ]]; then
-	echo -e "\nDebian Archive Automatic Signing Key [OK]"
-	sleep 0.3s
-else
-	echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now..."
-	$scriptdir/utilities/gpg_import.sh 7DEEB7438ABDDD96
-fi
-
 echo -e "\n==> Configuring repository sources"
 
 if [[ "$release" == "alchemist" ]]; then
@@ -244,6 +230,32 @@ Package: *
 Pin: release l=Debian
 Pin-Priority: 100
 EOF
+
+echo -e "\n==> Importing GPG keys"
+
+# Key Desc: Valve SteamOS Release Key <steamos@steampowered.com>
+# Key ID: 8ABDDD96
+# Full Key ID: 7DEEB7438ABDDD96
+gpg_key_check=$(gpg --list-keys 8ABDDD96)
+if [[ "$gpg_key_check" != "" ]]; then
+	echo -e "\nValve SteamOS Release Key [OK]"
+	sleep 0.3s
+else
+	echo -e "\nValve SteamOS Release Key [FAIL]. Adding now..."
+	$scriptdir/utilities/gpg_import.sh 7DEEB7438ABDDD96
+fi
+
+# Key Desc: Debian Archive Automatic Signing Key (8/jessie) <ftpmaster@debian.org>
+# Key ID: 2B90D010
+# Full Key ID: 7638D0442B90D010
+gpg_key_check=$(gpg --list-keys 2B90D010)
+if [[ "$gpg_key_check" != "" ]]; then
+	echo -e "Valve builder achive signing key [OK]"
+	sleep 0.3s
+else
+	echo -e "Valve builder achive signing key [FAIL]. Adding now..."
+	$scriptdir/utilities/gpg_import.sh 7638D0442B90D010
+fi
 
 echo -e "\n==> Updating system\n"
 

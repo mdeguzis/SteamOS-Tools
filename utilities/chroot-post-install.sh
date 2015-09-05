@@ -6,11 +6,12 @@
 # Script Ver:	0.5.5
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
-# Usage:	N/A
+# Usage:	N/A - called by build-test-chroot
 #
 # Warning:	This post-isntall scripts needs A LOT* OF WORK!!!!
 # 		The end goal is to replicate the setup of SteamOS as
-# 		closely as possible.
+# 		closely as possible in a chroot container. If Bob
+#		the builder can do it, so can we :)
 #
 #		TODO: checkout Steam's post install script from the installer
 # -------------------------------------------------------------------------------

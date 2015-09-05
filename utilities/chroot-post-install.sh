@@ -267,7 +267,7 @@ apt-get update
 echo -e "\n==> Cleaning up packages\n"
 
 # install some basic packages
-apt-get install vim sudo
+apt-get install vim sudo deborphan
 
 # setup sudo / fix perms for uid0 (root)
 chown root:root /usr/bin/sudo

@@ -9,11 +9,11 @@ main ()
 	/usr/bin/Xephyr :15 -ac -screen $WIN_RES -fullscreen -host-cursor -once & XEPHYR_PID=$!
 
 	# start antimicro mouse control
-        #antimicro_tmp
-        
-        # For some reason, the Xephyr window never gets populated with a value for the 
-        # STEAM_GAME atom. It is possible to set the property manually though
-        WINDOW_ID=$(xwininfo -root -children | grep "Xephyr" | awk '{print $1}')
+	#antimicro_tmp
+	
+	# For some reason, the Xephyr window never gets populated with a value for the 
+	# STEAM_GAME atom. It is possible to set the property manually though
+	WINDOW_ID=$(xwininfo -root -children | grep "Xephyr" | awk '{print $1}')
 	xprop -id $WINDOW_ID -f "STEAM_GAME" 32c -set "STEAM_GAME" 8000
 
 	export DISPLAY=:15

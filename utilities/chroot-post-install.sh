@@ -21,7 +21,7 @@
 # closely as possible
 
 # test user
-current_user=$(who am i)
+current_user=$(whoami)
 echo -e "The current user is: $current_user"
 sleep 1s
 

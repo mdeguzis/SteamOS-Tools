@@ -231,7 +231,7 @@ Pin: release l=Debian
 Pin-Priority: 100
 EOF
 
-echo -e "\n==> Importing GPG keys"
+echo -e "\n==> Importing GPG keys\n"
 
 # Key Desc: Valve SteamOS Release Key <steamos@steampowered.com>
 # Key ID: 8ABDDD96

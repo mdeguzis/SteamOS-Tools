@@ -124,9 +124,10 @@ add_web_app_chrome()
 	
 	if [[ -d "/home/steam/.config/google-chrome/Default/" ]]; then
 		# directory exists
-		echo "" > /dev/null
+		echo -e "Chrome config directory found. Skipping default setup"
 	else
 		# create DIR
+		echo -e "Chrome config directory not found, creating"
 		sudo mkdir -p "/home/steam/.config/google-chrome/Default"
 	fi
 	
@@ -278,9 +279,9 @@ add_web_app_chrome()
 	
         if [[ "$chrome_dir_check" != "" ]]; then
                 # do nothing
-                echo -e "\nChrome Default DIR exists. Skipping..."
+                echo -e "\nChrome Default config DIR exists. Skipping..."
         else
-                echo -e "\nChrome Default DIR does not exist. Adding..."
+                echo -e "\nChrome Default config DIR does not exist. Adding..."
                 sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/."  "/home/steam/.config/google-chrome/Default/"
         fi
 

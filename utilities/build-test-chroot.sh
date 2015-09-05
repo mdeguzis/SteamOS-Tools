@@ -240,6 +240,7 @@ funct_create_chroot()
 	
 	# create alias for easy use of command
 	alias_check_steamos_brew=$(cat "/home/$USER/.bash_aliases" | grep chroot-steamos-brewmaster)
+	alias_check_steamos_alch=$(cat "/home/$USER/.bash_aliases" | grep chroot-steamos-alchemist)
 	alias_check_debian_wheezy=$(cat "/home/$USER/.bash_aliases" | grep chroot-debian-wheezy)
 	alias_check_debian_jessie=$(cat "/home/$USER/.bash_aliases" | grep chroot-debian-jessie)
 	
@@ -249,6 +250,14 @@ funct_create_chroot()
 		
 		# chroot alias for ${type} (${target})
 		alias chroot-steamos-brewmaster='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
+		EOF
+		
+	elif [[ "$alias_check_steamos_alch" == "" ]]; then
+	
+		cat <<-EOF >> "/home/$USER/.bash_aliases"
+		
+		# chroot alias for ${type} (${target})
+		alias chroot-steamos-alchemist='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
 		EOF
 		
 	elif [[ "$alias_check_debian_wheezy" == "" ]]; then

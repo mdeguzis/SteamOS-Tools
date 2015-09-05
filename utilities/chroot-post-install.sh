@@ -20,6 +20,12 @@
 # The end goal is to replicate the setup of SteamOS as
 # closely as possible
 
+# test user
+whoami
+who am i
+
+sleep 3s
+
 # set vars
 policy="./usr/sbin/policy-rc.d"
 

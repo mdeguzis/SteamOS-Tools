@@ -242,7 +242,7 @@ if [[ "$gpg_key_check" != "" ]]; then
 	sleep 0.3s
 else
 	echo -e "\nValve SteamOS Release Key [FAIL]. Adding now..."
-	$scriptdir/utilities/gpg_import.sh 7DEEB7438ABDDD96
+	gpg_import.sh 7DEEB7438ABDDD96
 fi
 
 # Key Desc: Debian Archive Automatic Signing Key (8/jessie) <ftpmaster@debian.org>
@@ -254,7 +254,7 @@ if [[ "$gpg_key_check" != "" ]]; then
 	sleep 0.3s
 else
 	echo -e "Valve builder achive signing key [FAIL]. Adding now..."
-	$scriptdir/utilities/gpg_import.sh 7638D0442B90D010
+	gpg_import.sh 7638D0442B90D010
 fi
 
 echo -e "\n==> Updating system\n"

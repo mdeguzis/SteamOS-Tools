@@ -149,22 +149,72 @@ if [[ "$type" == "steamos" ]]; then
 	
 	if [[ "$release" == "alchemist" ]]; then
 	
+		# chroot has deb line, but not deb-src, add it
+		# Also src line from pool is not complete, missing contrib/non-free
+		cat <<-EOF > /etc/apt/sources.list
+		deb http://repo.steampowered.com/steamos alchemist main contrib non-free
+		deb-src http://repo.steampowered.com/steamos alchemist main contrib non-free
+		EOF
+	
 		# Enable Debian wheezy repository
 		cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
 		deb http://http.debian.net/debian/ jessie main
 		EOF
+		
+	elif [[ "$release" == "alchemist_beta" ]]; then
+	
+		# chroot has deb line, but not deb-src, add it
+		# Also src line from pool is not complete, missing contrib/non-free
+		
+		cat <<-EOF > "/etc/apt/sources.list"
+		deb http://repo.steampowered.com/steamos alchemist main contrib non-free
+		deb-src http://repo.steampowered.com/steamos alchemist main contrib non-free
+		EOF
+		
+		# beta repo
+		cat <<-EOF > "/etc/apt/sources.list.d/steamos-beta-repo.list"
+		# SteamOS repo for alchemist_beta public beta test repository
+		deb http://repo.steampowered.com/steamos alchemist_beta main contrib non-free
+		EOF
+	
+		# Enable Debian wheezy repository
+		cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
+		deb http://http.debian.net/debian/ jessie main
+		EOF	
 	
 	elif [[ "$release" == "brewmaster" ]]; then
 	
-		# brewmaster chroot has deb line, but not deb-src, add it
+		# chroot has deb line, but not deb-src, add it
 		# Also src line from pool is not complete, missing contrib/non-free
-		cat <<-EOF > /etc/apt/sources.list
+		
+		cat <<-EOF > "/etc/apt/sources.list"
 		deb http://repo.steampowered.com/steamos brewmaster main contrib non-free
 		deb-src http://repo.steampowered.com/steamos brewmaster main contrib non-free
 		EOF
 		
 		# Enable Debian jessie repository
-		cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
+		cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
+		deb http://http.debian.net/debian/ jessie main
+		EOF
+		
+	elif [[ "$release" == "brewmaster_beta" ]]; then
+	
+		# chroot has deb line, but not deb-src, add it
+		# Also src line from pool is not complete, missing contrib/non-free
+		
+		cat <<-EOF > "/etc/apt/sources.list"
+		deb http://repo.steampowered.com/steamos brewmaster main contrib non-free
+		deb-src http://repo.steampowered.com/steamos brewmaster main contrib non-free
+		EOF
+		
+		# beta repo
+		cat <<-EOF > "/etc/apt/sources.list.d/steamos-beta-repo.list"
+		# SteamOS repo for brewmaster_beta public beta test repository
+		deb http://repo.steampowered.com/steamos brewmaster_beta main contrib non-free
+		EOF
+	
+		# Enable Debian wheezy repository
+		cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
 		deb http://http.debian.net/debian/ jessie main
 		EOF
 	

@@ -87,14 +87,6 @@ useradd -s /bin/bash -m -d /home/steam -c "Steam user" -g steam steam
 usermod -a -G cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,pulse-access desktop
 usermod -a -G audio,dip,video,plugdev,netdev,bluetooth,pulse-access steam
 
-# setup sudo / fix perms for uid0 (root)
-chown root:root /usr/bin/sudo
-chown root:root /usr/lib/sudo/sudoers.so
-chown root:root /etc/sudoers
-chown -R root:root /etc/sudoers.d/
-chmod 4755 /usr/bin/sudo
-chmod 440 /etc/sudoers
-
 # setup steam user
 #su - steam
 echo -e "\n###########################"
@@ -262,6 +254,14 @@ echo -e "\n==> Cleaning up packages\n"
 
 # install some basic packages
 apt-get install vim sudo
+
+# setup sudo / fix perms for uid0 (root)
+chown root:root /usr/bin/sudo
+chown root:root /usr/lib/sudo/sudoers.so
+chown root:root /etc/sudoers
+chown -R root:root /etc/sudoers.d/
+chmod 4755 /usr/bin/sudo
+chmod 440 /etc/sudoers
 
 # eliminate unecessary packages
 deborphan -a

@@ -177,7 +177,9 @@ if [[ "$type" == "steamos" ]]; then
 		deb http://http.debian.net/debian/ jessie main
 		EOF
 		
-	elif [[ "$release" == "alchemist_beta" ]]; then
+	elif [[ "$release" == "alchemist-beta" && "$type" == "steamos-beta" ]]; then
+	
+		# BETA OPT IN
 	
 		# chroot has deb line, but not deb-src, add it
 		# Also src line from pool is not complete, missing contrib/non-free
@@ -213,7 +215,9 @@ if [[ "$type" == "steamos" ]]; then
 		deb http://http.debian.net/debian/ jessie main
 		EOF
 		
-	elif [[ "$release" == "brewmaster_beta" ]]; then
+	elif [[ "$release" == "brewmaster-beta" && "$type" == "steamos-beta" ]]; then
+	
+		# BETA OPT IN
 	
 		# chroot has deb line, but not deb-src, add it
 		# Also src line from pool is not complete, missing contrib/non-free

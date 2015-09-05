@@ -569,7 +569,7 @@ ep_install_plex()
 	# update and pre-reqs
 	###############################
 	
-	echo -e "==> Installing prerequisite software\n"
+	echo -e "\n==> Installing prerequisite software\n"
 	sleep 1s
 	
 	# Plex

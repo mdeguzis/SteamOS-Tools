@@ -86,8 +86,11 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	usermod -a -G cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,pulse-access desktop
 	usermod -a -G audio,dip,video,plugdev,netdev,bluetooth,pulse-access steam
 	
-	# setup sudo file
-	# TODO
+	# setup sudo / fix perms for uid0 (root)
+	chown root:root /usr/bin/sudo
+	chown root:root /usr/lib/sudo/sudoers.so
+	chmod 4755 /usr/bin/sudo
+	chown root:root /etc/sudoers
 	
 	# setup steam user
 	#su - steam

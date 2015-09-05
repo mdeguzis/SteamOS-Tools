@@ -5,8 +5,7 @@
 # Scipt Name:	build-test-chroot.sh
 # Script Ver:	0.5.5
 # Description:	Builds a Debian / SteamOS chroot for testing 
-#		purposes. SteamOS targets allow only brewmaster release types.
-#		based on repo.steamstatic.com
+#		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
 #
 # Usage:	sudo ./build-test-chroot.sh [type] [release]

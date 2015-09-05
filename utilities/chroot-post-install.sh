@@ -279,7 +279,7 @@ echo -e "\n==> Instaling some basic packages\n"
 
 # install some basic package
 # run as root so they are installed correctly
-runuser -l root -c 'apt-get install vim sudo deborphan'
+apt-get install vim sudo deborphan
 
 echo -e "\n==> Cleaning up packages\n"
 
@@ -288,12 +288,12 @@ echo -e "\n==> Cleaning up packages\n"
 # deborphan -a
 
 # setup sudo / fix perms for uid0 (root)
-#chown root:root /usr/lib/sudo/sudoers.so
-#chown root:root /etc/sudoers
-#chown root:root /etc/sudoers.d/
-#chown root:root /usr/bin/sudo
-#chmod 4755 /usr/bin/sudo
-#chmod 440 /etc/sudoers
+chown root:root /usr/lib/sudo/sudoers.so
+chown root:root /etc/sudoers
+chown root:root /etc/sudoers.d/
+chown root:root /usr/bin/sudo
+chmod 4755 /usr/bin/sudo
+chmod 440 /etc/sudoers
 
 # exit chroot
 echo -e "\nExiting chroot!\n"

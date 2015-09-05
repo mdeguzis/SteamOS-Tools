@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.5.3
+# Script Ver:	0.5.5
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. SteamOS targets allow only brewmaster release types.
 #		based on repo.steamstatic.com
@@ -249,43 +249,17 @@ funct_create_chroot()
 	fi
 	
 	# create alias for easy use of command
-	alias_check_steamos_brew=$(cat "/home/$USER/.bash_aliases" | grep chroot-steamos-brewmaster)
-	alias_check_steamos_alch=$(cat "/home/$USER/.bash_aliases" | grep chroot-steamos-alchemist)
-	alias_check_debian_wheezy=$(cat "/home/$USER/.bash_aliases" | grep chroot-debian-wheezy)
-	alias_check_debian_jessie=$(cat "/home/$USER/.bash_aliases" | grep chroot-debian-jessie)
+	alias_check=$(cat "/home/$USER/.bash_aliases" | grep chroot-${target})
+
 	
-	if [[ "$alias_check_steamos_brew" == "" ]]; then
+	if [[ "$alias_check" == "" ]]; then
 	
 		cat <<-EOF >> "/home/$USER/.bash_aliases"
 		
 		# chroot alias for ${type} (${target})
-		alias chroot-steamos-brewmaster='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
+		alias chroot-${target}='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
 		EOF
-		
-	elif [[ "$alias_check_steamos_alch" == "" ]]; then
 	
-		cat <<-EOF >> "/home/$USER/.bash_aliases"
-		
-		# chroot alias for ${type} (${target})
-		alias chroot-steamos-alchemist='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
-		EOF
-		
-	elif [[ "$alias_check_debian_wheezy" == "" ]]; then
-	
-		cat <<-EOF >> "/home/$USER/.bash_aliases"
-		
-		# chroot alias for ${type} (${target})
-		alias chroot-debian-wheezy='sudo /usr/sbin/chroot /home/$USER/chroots/${target}'
-		EOF
-		
-	elif [[ "$alias_check_debian_jessie" == "" ]]; then
-	
-		cat <<-EOF >> "/home/$USER/.bash_aliases"
-		
-		# chroot alias for ${type} (${target})
-		alias chroot-debian-jessie='sudo /usr/sbin/chroot /home/$USER/chroots/${target}'
-		EOF
-		
 	fi
 	
 	# source bashrc to update.
@@ -309,7 +283,7 @@ funct_create_chroot()
 If you wish  to leave out any post operations and remain with a 'stock' chroot, type 'stock',
 then [ENTER] instead. A stock chroot is only intended and suggested for the Debian chroot type."
 	
-	echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 
+	echo -e "You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
 enter the chroot again. You can also use the newly created alias listed below\n"
 
 	echo -e "\tchroot-${target}\n"

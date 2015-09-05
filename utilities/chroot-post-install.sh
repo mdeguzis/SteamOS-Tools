@@ -237,12 +237,12 @@ if [[ "$type" == "steamos" ]]; then
 	echo -e "\n==> Updating system\n"
 	
 	# Update apt
-	apt-get update -y
+	apt-get update
 	
 	echo -e "\n==> Cleaning up packages\n"
 	
 	# install some basic packages
-	apt-get install -y vim sudo
+	apt-get install vim sudo
 	
 	# eliminate unecessary packages
 	deborphan -a

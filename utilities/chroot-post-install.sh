@@ -27,7 +27,6 @@ policy="./usr/sbin/policy-rc.d"
 # These options are set set in the build-chroot script
 # options set for failure notice in evaluation below
 type="tmp_type"
-beta_opt_in="tmp_beta"
 stock_opt="tmp_stock"
 release="tmp_release"
 full_target="${type}_${release}"
@@ -51,7 +50,7 @@ else
 	
 fi
 
-if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
+if [[ "$type" == "steamos" ]]; then
 	
 	# pass to ensure we are in the chroot 
 	# temp test for chroot (output should be something other than 2)
@@ -123,37 +122,6 @@ if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	###########################################
 	# TO DO MORE HERE. NEEDS CONFIG FILES
 	###########################################
-	
-	# opt into beta in chroot if flag is thrown
-	
-	if [[ "$beta_opt_in" == "yes" ]]; then
-	# add beta repo and update
-		
-		echo -e "Opt into beta? [YES]\n"
-	
-		# import GPG key
-		cd /home/desktop
-		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --recv-keys 7DEEB7438ABDDD96
-		exit
-		
-		# update and upgrade
-		apt-key update
-		apt-get update -y
-		apt-get install steamos-beta-repo -y
-		apt-get upgrade -y
-		  
-	elif [[ "$beta_opt_in" == "no" ]]; then
-	
-		# do nothing
-		echo -e "\nOpt into beta? [NO]"
-		
-	else
-	
-		# failure to detect var
-		echo -e "\nFailed to detect beta opt in! Exiting..."
-		exit
-		
-	fi
 	
 	echo -e "\n==> Creating package policy\n"
 	

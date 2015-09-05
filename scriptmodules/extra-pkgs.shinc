@@ -652,7 +652,7 @@ ep_install_plex()
 	# resolve outstanding deps
 	###############################
 	
-	echo -e "\n==> Resolving missing Debian packages"
+	echo -e "\n==> Resolving missing Debian packages\n"
 	sleep 1s
 	
 	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/Plex/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"

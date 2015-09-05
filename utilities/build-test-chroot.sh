@@ -225,7 +225,7 @@ funct_create_chroot()
 
 	# modify gpg_import.sh with sudo removed, as it won't be configured and we
 	# don't need it to be there
-	sed -i "s|"sudo "||g" "/home/$USER/chroots/${target}/tmp/gpg_import.sh"
+	sed -i "s|sudo ||g" "/home/$USER/chroots/${target}/tmp/gpg_import.sh"
 
 	# Modify type based on opts
 	sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"

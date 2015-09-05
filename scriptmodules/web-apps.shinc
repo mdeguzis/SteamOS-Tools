@@ -487,7 +487,6 @@ add_web_app_chrome()
 	###################################
 	# fix ownership if need be
 	
-	sudo chown -R steam:steam "/home/steam/"
 	sudo chmod -R 755 "/home/steam/antimicro"
 	
 	###################################

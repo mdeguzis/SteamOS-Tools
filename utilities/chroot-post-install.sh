@@ -69,234 +69,233 @@ if [[ "$type" == "steamos" ]]; then
 		sleep 2s
 		exit
 	fi
+fi
 	
-	echo -e "\n==> Configuring users and groups"
-	
-	# Add groups not included in Debian base
-	groupadd bluetooth -g 115
-	groupadd pulse-access -g 121
-	groupadd desktop
-	groupadd steam
-	
-	# User configurations
-	useradd -s /bin/bash -m -d /home/desktop -c "Desktop user" -g desktop desktop
-	useradd -s /bin/bash -m -d /home/steam -c "Steam user" -g steam steam
-	
-	# add additional groups
-	usermod -a -G cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,pulse-access desktop
-	usermod -a -G audio,dip,video,plugdev,netdev,bluetooth,pulse-access steam
-	
-	# setup sudo / fix perms for uid0 (root)
-	chown root:root /usr/bin/sudo
-	chown root:root /usr/lib/sudo/sudoers.so
-	chown root:root /etc/sudoers
-	chown -R root:root /etc/sudoers.d/
-	chmod 4755 /usr/bin/sudo
-	chmod 440 /etc/sudoers
-	
-	# setup steam user
-	#su - steam
-	echo -e "\n###########################"
-	echo -e "Set steam user password"
-	echo -e "###########################\n"
-	passwd steam
-	
-	# Above, we allow users to choose their own password.
-	# Below, we could echo the default passwords for them, if desired
-	# echo -e "steam\nsteam\n" | passwd steam 
-	
-	# setup desktop user
-	#su - desktop
-	echo -e "\n###########################"
-	echo -e "Set desktop user password"
-	echo -e "###########################\n"
-	passwd desktop
-	
-	# Above, we allow users to choose their own password.
-	# Below, we could echo the default passwords for them, if desired
-	# echo -e "steam\nsteam\n" | passwd desktop 
-	
-	# Change to root chroot folder
-	cd /
-	
-	###########################################
-	# TO DO MORE HERE. NEEDS CONFIG FILES
-	###########################################
-	
-	echo -e "\n==> Creating package policy\n"
-	
-	# create dpkg policy for daemons
-	cat <<-EOF > ${policy}
-	#!/bin/sh
-	exit 101
+echo -e "\n==> Configuring users and groups"
+
+# Add groups not included in Debian base
+groupadd bluetooth -g 115
+groupadd pulse-access -g 121
+groupadd desktop
+groupadd steam
+
+# User configurations
+useradd -s /bin/bash -m -d /home/desktop -c "Desktop user" -g desktop desktop
+useradd -s /bin/bash -m -d /home/steam -c "Steam user" -g steam steam
+
+# add additional groups
+usermod -a -G cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,pulse-access desktop
+usermod -a -G audio,dip,video,plugdev,netdev,bluetooth,pulse-access steam
+
+# setup sudo / fix perms for uid0 (root)
+chown root:root /usr/bin/sudo
+chown root:root /usr/lib/sudo/sudoers.so
+chown root:root /etc/sudoers
+chown -R root:root /etc/sudoers.d/
+chmod 4755 /usr/bin/sudo
+chmod 440 /etc/sudoers
+
+# setup steam user
+#su - steam
+echo -e "\n###########################"
+echo -e "Set steam user password"
+echo -e "###########################\n"
+passwd steam
+
+# Above, we allow users to choose their own password.
+# Below, we could echo the default passwords for them, if desired
+# echo -e "steam\nsteam\n" | passwd steam 
+
+# setup desktop user
+#su - desktop
+echo -e "\n###########################"
+echo -e "Set desktop user password"
+echo -e "###########################\n"
+passwd desktop
+
+# Above, we allow users to choose their own password.
+# Below, we could echo the default passwords for them, if desired
+# echo -e "steam\nsteam\n" | passwd desktop 
+
+# Change to root chroot folder
+cd /
+
+###########################################
+# TO DO MORE HERE. NEEDS CONFIG FILES
+###########################################
+
+echo -e "\n==> Creating package policy\n"
+
+# create dpkg policy for daemons
+cat <<-EOF > ${policy}
+#!/bin/sh
+exit 101
+EOF
+
+# mark policy executable
+chmod a+x ./usr/sbin/policy-rc.d
+
+# Several packages depend upon ischroot for determining correct 
+# behavior in a chroot and will operate incorrectly during upgrades if it is not fixed.
+dpkg-divert --divert /usr/bin/ischroot.debianutils --rename /usr/bin/ischroot
+
+if [[ -f "/usr/bin/ischroot" ]]; then
+	# remove link
+	/usr/bin/ischroot
+else
+	ln -s /bin/true /usr/bin/ischroot
+fi
+
+echo -e "\n==> Importing GPG keys"
+
+# Key Desc: Valve SteamOS Release Key <steamos@steampowered.com>
+# Key ID: 8ABDDD96
+# Full Key ID: 7DEEB7438ABDDD96
+gpg_key_check=$(gpg --list-keys 8ABDDD96)
+if [[ "$gpg_key_check" != "" ]]; then
+	echo -e "\nDebian Archive Automatic Signing Key [OK]"
+	sleep 0.3s
+else
+	echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now..."
+	$scriptdir/utilities/gpg_import.sh 7DEEB7438ABDDD96
+fi
+
+echo -e "\n==> Configuring repository sources"
+
+if [[ "$release" == "alchemist" ]]; then
+
+	# chroot has deb line, but not deb-src, add it
+	# Also src line from pool is not complete, missing contrib/non-free
+	cat <<-EOF > /etc/apt/sources.list
+	deb http://repo.steampowered.com/steamos alchemist main contrib non-free
+	deb-src http://repo.steampowered.com/steamos alchemist main contrib non-free
+	EOF
+
+	# Enable Debian wheezy repository
+	cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
+	deb http://http.debian.net/debian/ jessie main
 	EOF
 	
-	# mark policy executable
-	chmod a+x ./usr/sbin/policy-rc.d
+elif [[ "$release" == "alchemist-beta" && "$type" == "steamos-beta" ]]; then
+
+	# BETA OPT IN
+
+	# chroot has deb line, but not deb-src, add it
+	# Also src line from pool is not complete, missing contrib/non-free
 	
-	# Several packages depend upon ischroot for determining correct 
-	# behavior in a chroot and will operate incorrectly during upgrades if it is not fixed.
-	dpkg-divert --divert /usr/bin/ischroot.debianutils --rename /usr/bin/ischroot
-	
-	if [[ -f "/usr/bin/ischroot" ]]; then
-		# remove link
-		/usr/bin/ischroot
-	else
-		ln -s /bin/true /usr/bin/ischroot
-	fi
-	
-	echo -e "\n==> Importing GPG keys"
-	
-	# Key Desc: Valve SteamOS Release Key <steamos@steampowered.com>
-	# Key ID: 8ABDDD96
-	# Full Key ID: 7DEEB7438ABDDD96
-	gpg_key_check=$(gpg --list-keys 8ABDDD96)
-	if [[ "$gpg_key_check" != "" ]]; then
-		echo -e "\nDebian Archive Automatic Signing Key [OK]"
-		sleep 0.3s
-	else
-		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now..."
-		$scriptdir/utilities/gpg_import.sh 7DEEB7438ABDDD96
-	fi
-	
-	
-	
-	echo -e "\n==> Configuring repository sources"
-	
-	if [[ "$release" == "alchemist" ]]; then
-	
-		# chroot has deb line, but not deb-src, add it
-		# Also src line from pool is not complete, missing contrib/non-free
-		cat <<-EOF > /etc/apt/sources.list
-		deb http://repo.steampowered.com/steamos alchemist main contrib non-free
-		deb-src http://repo.steampowered.com/steamos alchemist main contrib non-free
-		EOF
-	
-		# Enable Debian wheezy repository
-		cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
-		deb http://http.debian.net/debian/ jessie main
-		EOF
-		
-	elif [[ "$release" == "alchemist-beta" && "$type" == "steamos-beta" ]]; then
-	
-		# BETA OPT IN
-	
-		# chroot has deb line, but not deb-src, add it
-		# Also src line from pool is not complete, missing contrib/non-free
-		
-		cat <<-EOF > "/etc/apt/sources.list"
-		deb http://repo.steampowered.com/steamos alchemist main contrib non-free
-		deb-src http://repo.steampowered.com/steamos alchemist main contrib non-free
-		EOF
-		
-		# beta repo
-		cat <<-EOF > "/etc/apt/sources.list.d/steamos-beta-repo.list"
-		# SteamOS repo for alchemist_beta public beta test repository
-		deb http://repo.steampowered.com/steamos alchemist_beta main contrib non-free
-		EOF
-	
-		# Enable Debian wheezy repository
-		cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
-		deb http://http.debian.net/debian/ jessie main
-		EOF	
-	
-	elif [[ "$release" == "brewmaster" ]]; then
-	
-		# chroot has deb line, but not deb-src, add it
-		# Also src line from pool is not complete, missing contrib/non-free
-		
-		cat <<-EOF > "/etc/apt/sources.list"
-		deb http://repo.steampowered.com/steamos brewmaster main contrib non-free
-		deb-src http://repo.steampowered.com/steamos brewmaster main contrib non-free
-		EOF
-		
-		# Enable Debian jessie repository
-		cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
-		deb http://http.debian.net/debian/ jessie main
-		EOF
-		
-	elif [[ "$release" == "brewmaster-beta" && "$type" == "steamos-beta" ]]; then
-	
-		# BETA OPT IN
-	
-		# chroot has deb line, but not deb-src, add it
-		# Also src line from pool is not complete, missing contrib/non-free
-		
-		cat <<-EOF > "/etc/apt/sources.list"
-		deb http://repo.steampowered.com/steamos brewmaster main contrib non-free
-		deb-src http://repo.steampowered.com/steamos brewmaster main contrib non-free
-		EOF
-		
-		# beta repo
-		cat <<-EOF > "/etc/apt/sources.list.d/steamos-beta-repo.list"
-		# SteamOS repo for brewmaster_beta public beta test repository
-		deb http://repo.steampowered.com/steamos brewmaster_beta main contrib non-free
-		EOF
-	
-		# Enable Debian wheezy repository
-		cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
-		deb http://http.debian.net/debian/ jessie main
-		EOF
-	
-	fi
-	
-	# Enable pinning for SteamOS repo
-	cat <<-EOF > /etc/apt/preferences.d/steamos
-	Package: *
-	Pin: release l=SteamOS
-	Pin-Priority: 900
+	cat <<-EOF > "/etc/apt/sources.list"
+	deb http://repo.steampowered.com/steamos alchemist main contrib non-free
+	deb-src http://repo.steampowered.com/steamos alchemist main contrib non-free
 	EOF
 	
-	# Enable pinning for Debian repo
-	cat <<-EOF > /etc/apt/preferences.d/debian
-	Package: *
-	Pin: release l=Debian
-	Pin-Priority: 100
+	# beta repo
+	cat <<-EOF > "/etc/apt/sources.list.d/steamos-beta-repo.list"
+	# SteamOS repo for alchemist_beta public beta test repository
+	deb http://repo.steampowered.com/steamos alchemist_beta main contrib non-free
+	EOF
+
+	# Enable Debian wheezy repository
+	cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
+	deb http://http.debian.net/debian/ jessie main
+	EOF	
+
+elif [[ "$release" == "brewmaster" ]]; then
+
+	# chroot has deb line, but not deb-src, add it
+	# Also src line from pool is not complete, missing contrib/non-free
+	
+	cat <<-EOF > "/etc/apt/sources.list"
+	deb http://repo.steampowered.com/steamos brewmaster main contrib non-free
+	deb-src http://repo.steampowered.com/steamos brewmaster main contrib non-free
 	EOF
 	
-	echo -e "\n==> Updating system\n"
+	# Enable Debian jessie repository
+	cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
+	deb http://http.debian.net/debian/ jessie main
+	EOF
 	
-	# Update apt
-	apt-get update
+elif [[ "$release" == "brewmaster-beta" && "$type" == "steamos-beta" ]]; then
+
+	# BETA OPT IN
+
+	# chroot has deb line, but not deb-src, add it
+	# Also src line from pool is not complete, missing contrib/non-free
 	
-	echo -e "\n==> Cleaning up packages\n"
+	cat <<-EOF > "/etc/apt/sources.list"
+	deb http://repo.steampowered.com/steamos brewmaster main contrib non-free
+	deb-src http://repo.steampowered.com/steamos brewmaster main contrib non-free
+	EOF
 	
-	# install some basic packages
-	apt-get install vim sudo
-	
-	# eliminate unecessary packages
-	deborphan -a
-	
-	# exit chroot
-	echo -e "\nExiting chroot!\n"
-	echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 
+	# beta repo
+	cat <<-EOF > "/etc/apt/sources.list.d/steamos-beta-repo.list"
+	# SteamOS repo for brewmaster_beta public beta test repository
+	deb http://repo.steampowered.com/steamos brewmaster_beta main contrib non-free
+	EOF
+
+	# Enable Debian wheezy repository
+	cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
+	deb http://http.debian.net/debian/ jessie main
+	EOF
+
+fi
+
+# Enable pinning for SteamOS repo
+cat <<-EOF > /etc/apt/preferences.d/steamos
+Package: *
+Pin: release l=SteamOS
+Pin-Priority: 900
+EOF
+
+# Enable pinning for Debian repo
+cat <<-EOF > /etc/apt/preferences.d/debian
+Package: *
+Pin: release l=Debian
+Pin-Priority: 100
+EOF
+
+echo -e "\n==> Updating system\n"
+
+# Update apt
+apt-get update
+
+echo -e "\n==> Cleaning up packages\n"
+
+# install some basic packages
+apt-get install vim sudo
+
+# eliminate unecessary packages
+deborphan -a
+
+# exit chroot
+echo -e "\nExiting chroot!\n"
+echo -e "You may use '/usr/sbin/chroot /home/desktop/chroots/${target}' to 
 enter the chroot again. You can also use the newly created alias listed below\n"
 
-	if [[ "$full_target" == "steamos_brewmaster" ]]; then
+if [[ "$full_target" == "steamos_brewmaster" ]]; then
+
+	echo -e "\tchroot-steamos-brewmaster\n"
+
+if [[ "$full_target" == "steamos_alchemist" ]]; then
+
+	echo -e "\tchroot-steamos-alchemist\n"
+
+elif [[ "$full_target" == "debian_wheezy" ]]; then
+
+	echo -e "\tchroot-debian-wheezyr\n"
 	
-		echo -e "\tchroot-steamos-brewmaster\n"
+elif [[ "$full_target" == "steamos_brewmaster" ]]; then
+
+	echo -e "\tchroot-steamos-wheezy\n"
 	
-	if [[ "$full_target" == "steamos_alchemist" ]]; then
-	
-		echo -e "\tchroot-steamos-alchemist\n"
-	
-	elif [[ "$full_target" == "debian_wheezy" ]]; then
-	
-		echo -e "\tchroot-debian-wheezyr\n"
-		
-	elif [[ "$full_target" == "steamos_brewmaster" ]]; then
-	
-		echo -e "\tchroot-steamos-wheezy\n"
-		
-	fi
-	
-	sleep 2s
-	exit
-	
+fi
+
+sleep 2s
+exit
+
 
 elif [[ "$tmp_type" == "debian" ]]; then
 
 	# do nothing for now
 	echo "" > /dev/null
-	
+
 fi

@@ -116,6 +116,10 @@ passwd desktop
 # Below, we could echo the default passwords for them, if desired
 # echo -e "steam\nsteam\n" | passwd desktop 
 
+# Change to root to handle configurations
+echo -e "\n==> Changing to root for system setup\n"
+su - root
+
 # Change to root chroot folder
 cd /
 

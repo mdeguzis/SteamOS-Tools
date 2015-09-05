@@ -1,0 +1,10 @@
+{
+   "appDesc": {
+      "description": "The description of the application, displayed in the web store.",
+      "message": "Найшвидший спосіб пошуку в Інтернеті."
+   },
+   "appName": {
+      "description": "The title of the application, displayed in the web store.",
+      "message": "Пошук Google"
+   }
+}

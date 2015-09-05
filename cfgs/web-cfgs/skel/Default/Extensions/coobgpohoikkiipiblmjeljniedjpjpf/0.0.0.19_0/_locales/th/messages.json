@@ -1,0 +1,10 @@
+{
+   "appDesc": {
+      "description": "The description of the application, displayed in the web store.",
+      "message": "วิธีท่องเว็บที่เร็วที่สุด"
+   },
+   "appName": {
+      "description": "The title of the application, displayed in the web store.",
+      "message": "ค้นหาโดย Google"
+   }
+}

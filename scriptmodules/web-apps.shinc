@@ -467,7 +467,7 @@ add_web_app_chrome()
 		if [[ "$custom_url" == "no" ]]; then
 		
 			# remove kiosk mode from normal launher
-			sudo sed -i "s|--kiosk ||g" "$kiosk_opt"
+			sudo sed -i "s|--kiosk ||g" "/usr/bin/${TARGET_NAME}-Launch.sh"
 			
 		elif [[ "$custom_url" == "yes" ]]; then
 		

@@ -21,10 +21,9 @@
 # closely as possible
 
 # test user
-whoami
-who am i
-
-sleep 3s
+current_user=$(who am i)
+echo -e "The current user is: $current_user"
+sleep 1s
 
 # set vars
 policy="./usr/sbin/policy-rc.d"

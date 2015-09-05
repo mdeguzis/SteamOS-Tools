@@ -87,6 +87,13 @@ useradd -s /bin/bash -m -d /home/steam -c "Steam user" -g steam steam
 usermod -a -G cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,pulse-access desktop
 usermod -a -G audio,dip,video,plugdev,netdev,bluetooth,pulse-access steam
 
+# setup desktop user
+#su - desktop
+echo -e "\n###########################"
+echo -e "Set root user password"
+echo -e "###########################\n"
+passwd root
+
 # setup steam user
 #su - steam
 echo -e "\n###########################"
@@ -275,12 +282,12 @@ echo -e "\n==> Cleaning up packages\n"
 deborphan -a
 
 # setup sudo / fix perms for uid0 (root)
-chown root:root /usr/lib/sudo/sudoers.so
-chown root:root /etc/sudoers
-chown root:root /etc/sudoers.d/
-chown root:root /usr/bin/sudo
-chmod 4755 /usr/bin/sudo
-chmod 440 /etc/sudoers
+#chown root:root /usr/lib/sudo/sudoers.so
+#chown root:root /etc/sudoers
+#chown root:root /etc/sudoers.d/
+#chown root:root /usr/bin/sudo
+#chmod 4755 /usr/bin/sudo
+#chmod 440 /etc/sudoers
 
 # exit chroot
 echo -e "\nExiting chroot!\n"

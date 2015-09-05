@@ -286,8 +286,6 @@ echo -e "You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to
 enter the chroot again. You can also use the newly created alias listed below\n"
 
 echo -e "\tchroot-${target}\n"
-	
-fi
 
 sleep 2s
 exit

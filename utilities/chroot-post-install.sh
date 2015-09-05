@@ -273,8 +273,8 @@ apt-get install vim sudo deborphan
 chown root:root /usr/bin/sudo
 chown root:root /usr/lib/sudo/sudoers.so
 chown root:root /etc/sudoers
-chown -R root:root /etc/sudoers.d/
-chmod 4755 /usr/bin/sudo
+chown root:root /etc/sudoers.d/
+chmod +s /usr/bin/sudo
 chmod 440 /etc/sudoers
 
 # eliminate unecessary packages

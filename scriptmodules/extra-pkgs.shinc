@@ -764,7 +764,7 @@ ep_install_xb360_bindings()
 ep_install_eval_pkg()
 {
 
-	echo -e "\n==> Installing $PKG via external script\n"
+	#echo -e "\n==> Installing $PKG via external script\n"
 
 	#####################################################
 	# Binary package eval routine using dpkg or gdebi

@@ -291,7 +291,7 @@ deps="apt-utils vim sudo deborphan git wget p7zip-full unzip"
 for dep in ${deps}; do
 	pkg_chk=$(dpkg-query -s ${dep})
 	if [[ "$pkg_chk" == "" ]]; then
-		sudo apt-get install ${dep}
+		apt-get install ${dep}
 		
 		if [[ $? = 100 ]]; then
 			echo -e "Cannot install ${dep}. Please install this manually \n"

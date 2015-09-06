@@ -276,16 +276,19 @@ else
 fi
 
 echo -e "\n==> Updating system\n"
+sleep 1s
 
 # Update apt
 apt-get update
 
 echo -e "\n==> Instaling some basic packages\n"
+sleep 1s
 
 # install some basic package
-apt-get install vim sudo deborphan
+apt-get install vim sudo deborphan git
 
-echo -e "\n==> Cleaning up packages\n"
+#echo -e "\n==> Cleaning up packages\n"
+#sleep 1s
 
 # eliminate unecessary packages
 # disable for further testing

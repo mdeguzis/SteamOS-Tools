@@ -160,14 +160,15 @@ function gpg_import()
 		sleep 1s
 	else
 		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now..."
-		./gpg_import.sh 7DEEB7438ABDDD96
+		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
+		--recv-keys 7DEEB7438ABDDD96
 	fi
 
 }
 
 funct_create_chroot()
 {
-	echo -e "\n==> Importing GPG keys"
+	echo -e "\n==> Importing GPG keys\n"
 	sleep 1s
 	
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
@@ -216,8 +217,8 @@ funct_create_chroot()
 		# Mount proc and dev filesystem (add to **host** fstab)
 		sudo su -c "echo '#chroot ${target}' >> /etc/fstab"
 		sudo su -c "echo '/dev/pts /home/$USER/chroots/${target}/dev/pts none bind 0 4' >> /etc/fstab"
-		sudo su -c "echo 'proc     /home/$USER/chroots/${target}/proc    proc defaults 0 4' >> /etc/fstab"
-		sudo su -c "echo 'sysfs    /home/$USER/chroots/${target}/sys     sysfs defaults 0 4' >> /etc/fstab"
+		sudo su -c "echo 'proc /home/$USER/chroots/${target}/proc proc defaults 0 4' >> /etc/fstab"
+		sudo su -c "echo 'sysfs /home/$USER/chroots/${target}/sys sysfs defaults 0 4' >> /etc/fstab"
 		
 	fi
 	

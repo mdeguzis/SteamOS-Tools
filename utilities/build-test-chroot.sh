@@ -371,7 +371,7 @@ if [[ "$type" == "" || "$release" == "" ]]; then
 
 	clear
 	echo -e "==ERROR==\nType or release not specified! Dying...\n"
-	exit1
+	exit 1
 fi
 
 # Start main script if above checks clear

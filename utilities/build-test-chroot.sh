@@ -357,8 +357,6 @@ if [ "$(id -u)" -ne 0 ]; then
 	Script must be run as root! Try:
 	
 	sudo $0 [type] [release]
-	-OR-
-	sudo $0 [type] [release]
 	
 	EOF
 	

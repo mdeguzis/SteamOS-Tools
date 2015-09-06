@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	chroot-post-install.sh
-# Script Ver:	0.5.5
+# Script Ver:	0.5.7
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A - called by build-test-chroot
@@ -291,6 +291,9 @@ deps="apt-utils vim sudo deborphan git wget p7zip-full unzip"
 for dep in ${deps}; do
 	pkg_chk=$(dpkg-query -s ${dep})
 	if [[ "$pkg_chk" == "" ]]; then
+	
+		echo -e "\nInstalling package: ${dep}"
+		sleep 1s
 		apt-get install ${dep}
 		
 		if [[ $? = 100 ]]; then
@@ -300,6 +303,7 @@ for dep in ${deps}; do
 		
 	else
 		echo "package ${dep} [OK]"
+		sleep .3s
 	fi
 done
 

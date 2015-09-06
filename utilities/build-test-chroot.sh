@@ -206,6 +206,8 @@ funct_create_chroot()
 		
 	fi
 	
+	echo -e "\n==> Configuring"
+	sleep 1s
 	
 	# add to fstab
 	# TODO

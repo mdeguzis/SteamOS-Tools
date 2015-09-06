@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.5.5
+# Script Ver:	0.5.6
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -89,24 +89,6 @@ check_sources()
 	
 }
 
-# Warn user script must be run as root
-if [ "$(id -u)" -ne 0 ]; then
-
-	clear
-	
-	cat <<-EOF
-	==ERROR==
-	Script must be run as root! Try:
-	
-	sudo $0 [type] [release]
-	-OR-
-	sudo $0 [type] [release]
-	
-	EOF
-	
-	exit 1
-	
-fi
 
 funct_prereqs()
 {
@@ -364,6 +346,35 @@ main()
 #####################################################
 # Main
 #####################################################
+
+# Warn user script must be run as root
+if [ "$(id -u)" -ne 0 ]; then
+
+	clear
+	
+	cat <<-EOF
+	==ERROR==
+	Script must be run as root! Try:
+	
+	sudo $0 [type] [release]
+	-OR-
+	sudo $0 [type] [release]
+	
+	EOF
+	
+	exit 1
+	
+fi
+
+# shutdown script if type or release is blank
+if [[ "$type" == "" || "$release" == "" ]]; then
+
+	clear
+	echo -e "==ERROR==\nType or release not specified! Dying...\n"
+	exit1
+fi
+
+# Start main script if above checks clear
 main | tee log_temp.txt
 
 #####################################################

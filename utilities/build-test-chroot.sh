@@ -150,9 +150,9 @@ function gpg_import()
 	# helper script accepts $1 as the key
 	
 	# Key Desc: Debian Archive Automatic Signing Key
-	# Key ID: 8ABDDD96
-	# Full Key ID: 7DEEB7438ABDDD96
-	gpg_key_check=$(gpg --list-keys 8ABDDD96)
+	# Key ID: 2B90D010
+	# Full Key ID: 7638D0442B90D010
+	gpg_key_check=$(gpg --list-keys 2B90D010)
 	
 	# check for key
 	if [[ "$gpg_key_check" != "" ]]; then
@@ -161,7 +161,22 @@ function gpg_import()
 	else
 		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now..."
 		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
-		--recv-keys 7DEEB7438ABDDD96
+		--recv-keys 7638D0442B90D010
+	fi
+	
+	# Key Desc: Valve SteamOS Release Key <steamos@steampowered.com>
+	# Key ID: 8ABDDD96
+	# Full Key ID: F28029BB103C02AE
+	gpg_key_check=$(gpg --list-keys 8ABDDD96)
+	
+	# check for key
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "\nValve SteamOS Release Key [OK]"
+		sleep 1s
+	else
+		echo -e "\nValve SteamOS Release Key [FAIL]. Adding now..."
+		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
+		--recv-keys F28029BB103C02AE
 	fi
 
 }

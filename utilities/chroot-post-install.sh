@@ -307,14 +307,6 @@ echo -e "\n==> Cleaning up packages\n"
 # disable for further testing
 # deborphan -a
 
-# setup sudo / fix perms for uid0 (root)
-chown root:root /usr/lib/sudo/sudoers.so
-chown root:root /etc/sudoers
-chown root:root /etc/sudoers.d/
-chown root:root /usr/bin/sudo
-chmod 4755 /usr/bin/sudo
-chmod 440 /etc/sudoers
-
 # exit chroot
 echo -e "\nExiting chroot!\n"
 echo -e "You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 

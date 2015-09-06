@@ -167,7 +167,7 @@ if [[ "$release" == "alchemist" ]]; then
 
 	# Enable Debian wheezy repository
 	cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
-	deb http://http.debian.net/debian/ jessie main
+	deb http://http.debian.net/debian/ wheezy main
 	EOF
 	
 elif [[ "$release" == "alchemist" && "$type" == "steamos-beta" ]]; then
@@ -190,8 +190,8 @@ elif [[ "$release" == "alchemist" && "$type" == "steamos-beta" ]]; then
 
 	# Enable Debian wheezy repository
 	cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
-	deb http://http.debian.net/debian/ jessie main
-	EOF	
+	deb http://http.debian.net/debian/ wheezy main
+	EOF
 
 elif [[ "$release" == "brewmaster" ]]; then
 
@@ -204,7 +204,7 @@ elif [[ "$release" == "brewmaster" ]]; then
 	EOF
 	
 	# Enable Debian jessie repository
-	cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
+	cat <<-EOF > "/etc/apt/sources.list.d/jessie.list"
 	deb http://http.debian.net/debian/ jessie main
 	EOF
 	
@@ -227,7 +227,7 @@ elif [[ "$release" == "brewmaster" && "$type" == "steamos-beta" ]]; then
 	EOF
 
 	# Enable Debian wheezy repository
-	cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
+	cat <<-EOF > "/etc/apt/sources.list.d/jessie.list"
 	deb http://http.debian.net/debian/ jessie main
 	EOF
 

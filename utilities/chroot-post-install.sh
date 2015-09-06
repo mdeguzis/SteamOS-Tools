@@ -292,7 +292,7 @@ for dep in ${deps}; do
 	pkg_chk=$(dpkg-query -s ${dep})
 	if [[ "$pkg_chk" == "" ]]; then
 	
-		echo -e "\nInstalling package: ${dep}"
+		echo -e "\n==INFO==\nInstalling package: ${dep}\n"
 		sleep 1s
 		apt-get install ${dep}
 		

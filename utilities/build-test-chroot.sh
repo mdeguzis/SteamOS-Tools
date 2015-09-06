@@ -183,13 +183,14 @@ function gpg_import()
 
 funct_create_chroot()
 {
-	echo -e "\n==> Importing GPG keys\n"
-	sleep 1s
+	#echo -e "\n==> Importing GPG keys\n"
+	#sleep 1s
 	
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		
 		# import GPG key
-		gpg_import
+		# gpg_import
+		:
 		
 	fi
 	

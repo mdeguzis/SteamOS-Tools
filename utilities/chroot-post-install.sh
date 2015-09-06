@@ -285,7 +285,23 @@ echo -e "\n==> Instaling some basic packages\n"
 sleep 1s
 
 # install some basic package
-apt-get install vim sudo deborphan git
+#apt-get install vim sudo deborphan git
+
+deps="apt-utils vim sudo deborphan git wget p7zip-full unzip"
+for dep in ${deps}; do
+	pkg_chk=$(dpkg-query -s ${dep})
+	if [[ "$pkg_chk" == "" ]]; then
+		sudo apt-get install ${dep}
+		
+		if [[ $? = 100 ]]; then
+			echo -e "Cannot install ${dep}. Please install this manually \n"
+			exit 1
+		fi
+		
+	else
+		echo "package ${dep} [OK]"
+	fi
+done
 
 #echo -e "\n==> Cleaning up packages\n"
 #sleep 1s

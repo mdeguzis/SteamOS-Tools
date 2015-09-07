@@ -471,7 +471,7 @@ get_software_type()
                 exit 1
 	elif [[ "$type" == "ue4" ]]; then
 		# install ue4 from helper script
-		m_install_ue4
+		egi_install_ue4(
 		exit 1
         elif [[ "$type" == "ue4-src" ]]; then
                 # install plex from helper script

@@ -110,9 +110,14 @@ egi_install_ue4()
 		
 		clear
 		cat <<-EOF
+		-----------------------------------------------------------------------
+		Summary
+		-----------------------------------------------------------------------
+
 		Installation is finished. You can either run 'ue4-alpha' from
 		the command line, or start 'UE4 aplha' from you applications directory.
 		The launcher should show up as a non-Steam game as well in SteamOS BPM.
+		
 		EOF
 	
 	

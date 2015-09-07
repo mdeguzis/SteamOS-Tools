@@ -21,9 +21,9 @@ time_stamp_start=(`date +"%T"`)
 egi_install_ue4()
 {
 	current_dir=$(pwd)
-	ut4_dir="/home/desktop/ut4-linux"
+	ut4_dir="/home/desktop/ut4-linux/LinuxNoEditor"
 	ut4_bin_dir="$ut4_dir/LinuxNoEditor/Engine/Binaries/Linux/"
-	ut4_exe="$ut4_bin_dir/UE4-Linux-Test UnrealTournament"
+	ut4_exe="./UE4-Linux-Test UnrealTournament -SaveToUserDir"
 	
 	ue4_shortcut_tmp="/home/desktop/ue4-alpha.desktop"
 	ue4_cli_tmp="/home/desktop/ue4-alpha"
@@ -77,7 +77,7 @@ egi_install_ue4()
 		#!/bin/bash
 		# execute ue4 alpha
 		cd $ut4_bin_dir
-		./UE4-Linux-Test
+		$ut4_exe
 		EOF
 		
 		cat <<-EOF> ${ue4_shortcut_tmp}

@@ -25,7 +25,7 @@ egi_install_ue4()
 	ut4_bin_dir="$ut4_dir/LinuxNoEditor/Engine/Binaries/Linux/"
 	ut4_exe="$ut4_bin_dir/UE4-Linux-Test UnrealTournament"
 	
-	ue4_shortcut_tmp="/home/desktop/ue4-alpha.deskop"
+	ue4_shortcut_tmp="/home/desktop/ue4-alpha.desktop"
 	ue4_cli_tmp="/home/desktop/ue4-alpha"
 	
 	# start apt mode if check
@@ -132,7 +132,7 @@ egi_install_ue4()
 		sleep 2s
 		
 		# remove directories
-		sudo rm -rf "/usr/share/applications/ue4-alpha.deskop" "/usr/bin/ue4-alpha" \
+		sudo rm -rf "/usr/share/applications/ue4-alpha.desktop" "/usr/bin/ue4-alpha" \
 		"$ut4_dir"
 		
 		# end apt mode if check  

@@ -71,7 +71,7 @@ egi_install_ue4()
 		echo -e "\n==> Creating executable and desktop launcher"
 		
 		# copy ue4.png into Steam Pictures dir
-		sudo cp "$scriptdir/artwork/games/ue4.png" "/home/steam/Pictures"
+		sudo cp "$scriptdir/artwork/games/ue4-alpha.png" "/home/steam/Pictures"
 		
 		cat <<-EOF> ${ue4_cli_tmp}
 		#!/bin/bash
@@ -85,7 +85,7 @@ egi_install_ue4()
 		Name=UE4 alpha
 		Comment=Launcher for UE4 Tournament alpha
 		Exec=/usr/bin/ue4-alpha
-		Icon=/home/steam/Pictures/ue4.png
+		Icon=/home/steam/Pictures/ue4-alpha.png
 		Terminal=false
 		Type=Application
 		Categories=Game;

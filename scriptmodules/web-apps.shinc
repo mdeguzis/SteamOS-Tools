@@ -2,25 +2,24 @@
 # Author: 	    	Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.4.2
+# Script Ver:	  	1.4.7
 # Description:		Module for isntalling web-apps .
 #	
 # Usage:	      	n/a , module
 # -----------------------------------------------------------------------
 
-web_app_netflix()
+web_app_chrome_exts()
 {
 
-	# Netflix
-	NAME="Netflix"
-	WEB_URL="www.netflix.com"
-	TARGET_NAME="Netflix"
-	SHORTCUT="Netflix.desktop"
-	LAUNCHER="/usr/bin/Netflix-Launch.sh"
-	BANNER_IMG="$scriptdir/artwork/banners/Netflix.png"
-
+	# Chrome-Extensions
+	NAME="Chrome Extensions"
+	WEB_URL="https://chrome.google.com/webstore/category/extensions"
+	TARGET_NAME="Chrome-Extensions"
+	SHORTCUT="Chrome-Extensions.desktop"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Chrome-Extensions.png"
+	
 }
-
 
 web_app_hulu()
 {
@@ -30,9 +29,35 @@ web_app_hulu()
 	WEB_URL="www.hulu.com"
 	TARGET_NAME="Hulu"
 	SHORTCUT="Hulu.desktop"
-	LAUNCHER="/usr/bin/Hulu-Launch.sh"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Hulu.png"
 
+}
+
+web_app_netflix()
+{
+
+	# Netflix
+	NAME="Netflix"
+	WEB_URL="www.netflix.com"
+	TARGET_NAME="Netflix"
+	SHORTCUT="Netflix.desktop"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Netflix.png"
+
+}
+
+web_app_prime_movies()
+{
+
+	# Amazon Prime Movies
+	NAME="Amazon Prime Movies"
+	WEB_URL="http://www.amazon.com/Prime-Instant-Video/b?node=2676882011"
+	TARGET_NAME="Amazon-Prime-Movies"
+	SHORTCUT="Amazon-Prime-Movies.desktop"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Amazon-Prime-Movies.png"
+	
 }
 
 web_app_youtube()
@@ -43,7 +68,7 @@ web_app_youtube()
 	WEB_URL="www.youtube.com"
 	TARGET_NAME="Youtube"
 	SHORTCUT="Youtube.desktop"
-	LAUNCHER="/usr/bin/Youtube-Launch.sh"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Youtube.png"
 
 }
@@ -69,35 +94,9 @@ web_app_soundcloud()
 	WEB_URL="www.soundcloud.com"
 	TARGET_NAME="Soundcloud"
 	SHORTCUT="Soundcloud.desktop"
-	LAUNCHER="/usr/bin/Soundcloud-Launch.sh"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Soundcloud.png"
 
-}
-
-web_app_prime_movies()
-{
-
-	# Amazon Prime Movies
-	NAME="Amazon Prime Movies"
-	WEB_URL="http://www.amazon.com/Prime-Instant-Video/b?node=2676882011"
-	TARGET_NAME="Amazon-Prime-Movies"
-	SHORTCUT="Amazon-Prime-Movies.desktop"
-	LAUNCHER="/usr/bin/Amazon-Prime-Movies-Launch.sh"
-	BANNER_IMG="$scriptdir/artwork/banners/Amazon-Prime-Movies.png"
-	
-}
-
-web_app_chrome_exts()
-{
-
-	# Chrome-Extensions
-	NAME="Chrome Extensions"
-	WEB_URL="https://chrome.google.com/webstore/category/extensions"
-	TARGET_NAME="Chrome-Extensions"
-	SHORTCUT="Chrome-Extensions.desktop"
-	LAUNCHER="/usr/bin/Chrome-Extensions-Launch.sh"
-	BANNER_IMG="$scriptdir/artwork/banners/Chrome-Extensions.png"
-	
 }
 
 web_app_twitch()
@@ -108,7 +107,7 @@ web_app_twitch()
 	WEB_URL="www.twitch.tv"
 	TARGET_NAME="Twitch"
 	SHORTCUT="Twitch.desktop"
-	LAUNCHER="/usr/bin/Twitch-Launch.sh"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Twitch.png"
 
 }

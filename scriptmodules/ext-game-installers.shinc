@@ -18,7 +18,7 @@
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
-m_install_ue4()
+g_install_ue4()
 {
 	current_dir=$(pwd)
 	ut4_dir="/home/desktop/ut4-linux"

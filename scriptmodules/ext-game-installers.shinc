@@ -77,7 +77,7 @@ egi_install_ue4()
 		#!/bin/bash
 		# execute ue4 alpha
 		cd $ut4_bin_dir
-		UE4-Linux-Test UnrealTournament
+		./UE4-Linux-Test
 		EOF
 		
 		cat <<-EOF> ${ue4_shortcut_tmp}

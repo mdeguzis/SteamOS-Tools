@@ -2,7 +2,7 @@
 # Author: 	    	Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.4.1
+# Script Ver:	  	1.4.2
 # Description:		Module for isntalling web-apps .
 #	
 # Usage:	      	n/a , module
@@ -54,7 +54,7 @@ web_app_youtube_tv()
 	# Youtube
 	NAME="YoutubeTV"
 	WEB_URL="www.youtube.com/tv"
-	TARGET_NAME="Youtube"
+	TARGET_NAME="YoutubeTV"
 	SHORTCUT="YoutubeTV.desktop"
 	LAUNCHER="/usr/bin/Youtube-Launch-TV.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/YoutubeTV.png"

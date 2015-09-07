@@ -5,7 +5,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	pair-ps3-bluetooth.sh
-# Script Ver:	0.2.8
+# Script Ver:	0.2.0
 # Description:	Pairs PS3 Bluetooth controller on SteamOS
 # Usage:	./pair-ps3-bluetooth.sh
 #
@@ -46,6 +46,7 @@ main()
 	echo -e "\n==> Downloading sixad...\n"
 	sleep 1s
 	# These are Debian rebuilt packages from the ppa:falk-t-j/qtsixa PPA
+	# Or.. compile from https://github.com/aaronp24/QtSixA/blob/master/INSTALL
 	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/utilities/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
 	
 	# Install

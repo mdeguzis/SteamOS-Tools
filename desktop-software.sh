@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.9.4
+# Script Ver:	1.9.9.5
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -276,7 +276,7 @@ show_help()
 	Options: 	[install|uninstall|list|check|test] 
 	Types: 		[basic|extra|emulators|retroarch-src|emulation-src-deps]
 	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[kodi|lutris|plex|webapp]
+	Extra types: 	[kodi|kodi-src|lutris|plex|webapp]
 	Functions: 	[xb360-bindings|gameplay-recording]
 	
 	Install with:
@@ -461,6 +461,10 @@ get_software_type()
         elif [[ "$type" == "gameplay-recording" ]]; then
                 # install plex from helper script
                 ep_install_gameplay_recording
+                exit 1
+        elif [[ "$type" == "kodi-src" ]]; then
+                # install plex from helper script
+                "$scriptdir/utilities/.build-kodi-src.sh"
                 exit 1
         elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script

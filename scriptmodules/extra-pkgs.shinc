@@ -494,7 +494,7 @@ ep_install_plex()
 	
 	# set vars
 	pkg_type="deb"
-	PKG="ubuntu-font-family"
+	PKG="ttf-ubuntu-font-family"
 	PKG_FILENAME="ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
 	BASE_URL="http://libregeek.org/SteamOS-Extra/multimedia/plex/"
 	BIN_LOC=""
@@ -502,6 +502,13 @@ ep_install_plex()
 	
 	# set multiflag
 	multi="n"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
 	
 	# install package
 	ep_install_eval_pkg
@@ -520,6 +527,13 @@ ep_install_plex()
 	
 	# set multiflag
 	multi="n"
+	
+	# test if user requests it
+	if [[ "$options" == "test" ]]; then
+		# go to test function
+		ep_test_deb
+		exit
+	fi
 	
 	# install package
 	ep_install_eval_pkg

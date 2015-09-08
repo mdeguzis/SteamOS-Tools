@@ -518,6 +518,12 @@ ep_install_plex()
 	BIN_LOC=""
 	PKG_DIR=""
 	
+	# The default banner for BPM is ugly, use the correctly size 460x215 banner
+	# in /usr/share/pixmaps/plex-steamtile_460x215.png
+	
+	sed 's|Icon=plexhometheater|Icon=/usr/share/pixmaps/plex-steamtile_460x215.png|g' \
+	"/usr/share/applications/plexhometheater.desktop"  
+	
 	# set multiflag
 	multi="n"
 	

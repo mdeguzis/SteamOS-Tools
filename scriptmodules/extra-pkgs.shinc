@@ -503,13 +503,6 @@ ep_install_plex()
 	# set multiflag
 	multi="n"
 	
-	# test if user requests it
-	if [[ "$options" == "test" ]]; then
-		# go to test function
-		ep_test_deb
-		exit
-	fi
-	
 	# install package
 	ep_install_eval_pkg
 	
@@ -527,13 +520,6 @@ ep_install_plex()
 	
 	# set multiflag
 	multi="n"
-	
-	# test if user requests it
-	if [[ "$options" == "test" ]]; then
-		# go to test function
-		ep_test_deb
-		exit
-	fi
 	
 	# install package
 	ep_install_eval_pkg

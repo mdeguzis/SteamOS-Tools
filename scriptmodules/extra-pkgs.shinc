@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.3.5
+# Script Ver:	  	1.3.6
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian jessie repositories directly.
 #	
@@ -514,7 +514,7 @@ ep_install_plex()
 	pkg_type="deb"
 	PKG="plexhometheater"
 	PKG_FILENAME="plexhometheater_1.4.1.469-20150513git-SteamOS-2.deb"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/plex/"
 	BIN_LOC=""
 	PKG_DIR=""
 	

@@ -53,7 +53,7 @@ install_prereqs()
 	libfribidi-dev libgif-dev libglu1-mesa-dev \
 	libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev liblzo2-dev libmicrohttpd-dev \
 	libmodplug-dev libmpcdec-dev libmpeg2-4-dev libmysqlclient-dev libnfs-dev libogg-dev \
-	libpcre3-dev libplist-dev libpng12-dev libpng-dev libpulse-dev librtmp-devlibsdl2-dev \
+	libpcre3-dev libplist-dev libpng12-dev libpng-dev libpulse-dev librtmp-dev libsdl2-dev \
 	libshairplay-dev libsmbclient-dev libsqlite3-dev libssh-dev libssl-dev libswscale-dev \
 	libtag1-dev libtiff-dev libtinyxml-dev libtool libudev-dev \
 	libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev \

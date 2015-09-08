@@ -44,7 +44,17 @@ install_prereqs()
 	# Reminder: libshairplay-dev is only available in deb-multimedia
 	
 	# Swaps: (libcurl3 for libcurl-dev), (dcadec-dev, build from git)
-
+	
+	# build dcadec (could not find available for debian)
+	cd
+	rm -f dcadec
+	git clone https://github.com/foo86/dcadec
+	cd dcadec
+	make
+	sudo make install
+	
+	# main packages available in Debian Jessie and SteamOS repos:
+	
 	sudo apt-get install autoconf automake autopoint autotools-dev cmake curl \
 	default-jre gawk gperf libao-dev libasound2-dev \
 	libass-dev libavahi-client-dev libavahi-common-dev libbluetooth-dev \

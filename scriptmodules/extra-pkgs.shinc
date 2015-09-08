@@ -479,204 +479,32 @@ ep_install_plex()
 	echo -e "\n==> Installing Plex Home Theater from automated script..."
 	sleep 2s
 	
-	###############################
-	#  vars
-	###############################
+	# Jettison deb-multimedia method, build more up to date ppa package for Ubuntu
+	# Last commit this was used in: 44dc9a5
 	
-	pkg_type=""
+	# Package sourced from: 
+	# https://launchpad.net/~plexapp/+archive/ubuntu/plexht?field.series_filter=trusty
 	
-	echo -e "\n==> Configuring sources"
-	sleep 1s
-	
-	# source lists
-	reponame_plex="plex"
-	reponame_deb_multi="deb-multimedia"
-	
-	sourcelist_plex_tmp="${reponame_plex}.list"
-	sourcelist_deb_multi_tmp="${reponame_deb_multi}.list"
-	sourcelist_plex="/etc/apt/sources.list.d/${reponame_plex}.list"
-	sourcelist_deb_multi="/etc/apt/sources.list.d/${reponame_deb_multi}.list"
-	
-	prefer_plex_tmp="${reponame_plex}"
-	prefer_deb_multi_tmp="${reponame_deb_multi}"
-	prefer_plex="/etc/apt/preferences.d/${reponame_plex}"
-	prefer_deb_multi="/etc/apt/preferences.d/${reponame_deb_multi}"
-	
-	# set external Deb repo required flag
-	export deb_repo_name="jessie.list"
-	export deb_repo_req="no"
-	# Eval requirements
-	"$scriptdir/utilities/check_repo_req.sh"
-	
-	###############################
-	# backup
-	###############################
-
-	
-	# Check for existance of /etc/apt/preferences.d/{prefer_plex} file
-	if [[ -f ${prefer_plex} ]]; then
-		# backup preferences file
-		echo -e "\n==> Backing up ${prefer_plex} to ${prefer_plex}.bak"
-		sudo mv ${prefer_plex} ${prefer_plex}.bak
-		sleep 1s
-	fi
-	
-	# Check for existance of /etc/apt/preferences.d/{prefer_deb_multi} file
-	if [[ -f ${prefer_deb_multi} ]]; then
-		# backup preferences file
-		echo -e "\n==> Backing up ${prefer_deb_multi} to ${prefer_deb_multi}.bak"
-		sudo mv ${prefer_deb_multi} ${prefer_deb_multi}.bak
-		sleep 1s
-	fi
-	
-	# check for existance of plex source list
-	if [[ -f ${sourcelist_plex} ]]; then
-		# backup sources list file
-		echo -e "\n==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak"
-		sudo mv ${sourcelist_plex} ${sourcelist_plex}.bak
-		sleep 1s
-	fi
-	
-	# check for existance of deb_multi source list
-	if [[ -f ${sourcelist_deb_multi} ]]; then
-		# backup sources list file
-		echo -e "\n==> Backing up ${sourcelist_deb_multi} to ${sourcelist_deb_multi}.bak"
-		sudo mv ${sourcelist_deb_multi} ${sourcelist_deb_multi}.bak
-		sleep 1s
-	fi
-
-	###############################
-	# add GPG keys
-	###############################
-	
-	echo -e "\n==> Adding GPG key(s)"
-	sleep 1s
-	
-	# Key Desc: Debian Multimedia
-	# Key ID: 65558117
-	# Full Key ID: 5C808C2B65558117
-	gpg_key_check=$(gpg --list-keys 65558117)
-	
-	if [[ "$gpg_key_check" != "" ]]; then
-		echo -e "\nDebian Multimedia Key [OK]\n"
-		sleep 1s
-	else
-		echo -e "\nDebian Multimedia Key [FAIL]. Adding now...\n"
-		"$scriptdir/utilities/gpg_import.sh" 5C808C2B65558117
-	fi
-	
-	###############################
-	# update and pre-reqs
-	###############################
-	
-	echo -e "\n==> Installing prerequisite software\n"
-	sleep 1s
-	
+	#######################################
 	# Plex
-	sleep 1s
+	#######################################
 	
-	# Plex
-	sleep 1s
+	# set vars
+	pkg_type="deb"
+	PKG="plexhometheater"
+	PKG_FILENAME="plexhometheater_1.4.1.469-20150513git-SteamOS-2.deb"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/"
+	BIN_LOC=""
+	PKG_DIR=""
 	
-	# Plex
-	sudo curl http://shell.ninthgate.se/packages/shell-ninthgate-se-keyring.key | sudo apt-key add -
-	sudo apt-get update
+	# set multiflag
+	multi="n"
 	
-	# deb-multimedia-keyring
-	sudo apt-get install deb-multimedia-keyring
-
-	###############################	
-	# Add prefs
-	###############################
+	# install package
+	ep_install_eval_pkg
 	
-	echo -e "\n==> Adding /etc/apt configurations"
-	sleep 1s
-	
-	# Create and add required text to preferences file
-	# Verified policy with apt-cache policy
-	# sudo temp file list, then move because of perms
-	
-	cat <<-EOF > ${prefer_plex_tmp}
-	Package: *
-	Pin: origin ""
-	Pin-Priority:110
-	
-	Package: *
-	Pin: release n=jessie
-	Pin-Priority:110
-	EOF
-
-	cat <<-EOF > ${prefer_deb_multi_tmp}
-	Package: *
-	Pin: origin ""
-	Pin-Priority:110
-	
-	Package: *
-	Pin: release l=Unofficial Multimedia Packages
-	Pin-Priority:110
-	EOF
-	
-	# move tmp lists in 2 easy actions
-	sudo mv ${prefer_plex_tmp} ${prefer_plex}
-	sudo mv ${prefer_deb_multi_tmp} ${prefer_deb_multi}
-	
-	###############################	
-	# Add sources
-	###############################
-	
-	# Deb multimedia
-	# add to tmp file, then move
-	
-	cat <<-EOF > ${sourcelist_plex_tmp}
-	# Plex team repo
-	deb http://shell.ninthgate.se/packages/debian jessie main
-	EOF
-
-	cat <<-EOF > ${sourcelist_deb_multi_tmp}
-	# Deb multimedia repo
-	deb http://www.deb-multimedia.org jessie main non-free
-	EOF
-
-	# move lists
-	sudo mv -v ${sourcelist_plex_tmp} ${sourcelist_plex}
-	sudo mv -v ${sourcelist_deb_multi_tmp} ${sourcelist_deb_multi}
-
-	###############################	
-	# update system and sources
-	###############################
-
-	sudo apt-key update
-	sudo apt-get update
-
-	###############################	
-	# resolve outstanding deps
-	###############################
-	
-	echo -e "\n==> Resolving missing Debian packages\n"
-	sleep 1s
-	
-	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/Plex/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
-	cd /tmp
-	sudo gdebi ttf-ubuntu-font-family*.deb
-	
-	###############################
-	# Install actions
-	###############################
-
-	echo -e "\n==> Installing Plex Home Theater"
-	sleep 1s
-	# install Plex Home Theater
-	sudo apt-get -t jessie install plexhometheater -y
-	
-	###############################
 	# cleanup
-	###############################
-	
-	rm -rf /tmp/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb
 	ep_pkg_cleanup
-	
-	# cleanup any old apt packages
-	sudo apt-get autoremove
   
 }
 

@@ -227,7 +227,7 @@ main()
 
 		# move tmp var files into target locations
 		sudo mv  ${sourcelist_tmp} ${sourcelist}
-		#sudo mv  ${multimedia_sourcelist_tmp} ${multimedia_sourcelist}
+		sudo mv  ${multimedia_sourcelist_tmp} ${multimedia_sourcelist}
 		sudo mv  ${backports_sourcelist_tmp} ${backports_sourcelist}
 		
 		# Update system

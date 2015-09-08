@@ -50,13 +50,13 @@ install_prereqs()
 	
 	# build dcadec (could not find available for debian)
 	cd
-	rm -f dcadec
+	rm -rf dcadec
 	git clone https://github.com/foo86/dcadec
 	cd dcadec
 	make
 	sudo make install
 	
-	cho -e "\nInstalling the rest of packages found in Debian repositories\n"
+	echo -e "\nInstalling the rest of packages found in Debian repositories\n"
 	sleep 1s
 	
 	# main packages available in Debian Jessie and SteamOS repos:

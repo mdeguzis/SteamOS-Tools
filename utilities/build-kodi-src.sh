@@ -4,7 +4,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.1.9
+# Script Ver:		0.3.1
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -163,7 +163,6 @@ main()
 	sudo rm -f "/tmp/crossbuild.deb"
 
   	# create the Kodi executable manually perform these steps:
-
 	./bootstrap
 
 	# ./configure <option1> <option2> PREFIX=<system prefix>... 
@@ -180,8 +179,8 @@ main()
 	# make -j4
 	make -j2
 
-	# since we are building a deb pkg, we will not use 'make install'
-	# make install
+	# Install Kodi
+	make install
 
 	# From v14 with commit 4090a5f a new API for binary addons is available. 
 	# Not used for now ...
@@ -192,38 +191,17 @@ main()
 	# (Optional) build Kodi test suite
 	####################################
 
-	# make check
+	#make check
 
 	# compile the test suite without running it
 
-	# make testsuite
+	#make testsuite
 
 	# The test suite program can be run manually as well.
 	# The name of the test suite program is 'kodi-test' and will build in the Kodi source tree.
 	# To bring up the 'help' notes for the program, type the following:
 
-	# ./kodi-test --gtest_help
-
-	############################
-	# DEB build pre-reqs
-	############################
-
-	# create needed directories
-	sudo mkdir -p "/usr/local/share/doc"
-	sudo mkdir -p "/usr/local/share/icons"
-
-	############################
-	# proceed to DEB BUILD
-	############################
-
-	echo -e "\n==> Building Debian package from source"
-	sleep 2s
-
-	# build deb package
-	sudo checkinstall
-
-	# Alternate method
-	# dpkg-buildpackage -us -uc -nc
+	#./kodi-test --gtest_help
 
 	#################################################
 	# Post install configuration

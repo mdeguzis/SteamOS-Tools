@@ -59,7 +59,7 @@ install_prereqs()
 	libtinyxml-dev libtool libudev-dev libusb-dev libva-dev libvdpau-dev libvorbis-dev \
 	libxinerama-dev libxml2-dev libxmu-dev libxrandr-dev libxslt1-dev libxt-dev \
 	libyajl-dev lsb-release nasm python-dev python-imaging python-support swig unzip \
-	uuid-dev yasm zip zlib1g-dev gdebi
+	uuid-dev yasm zip zlib1g-dev gdebi bc
 
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache
@@ -209,7 +209,9 @@ main()
 	# Post install configuration
 	#################################################
 
-	# TODO
+	# add desktop file for SteamOS/BPM
+	sudo cp ../cfgs/desktop-files/kodi.desktop "/usr/share/applications"
+	sudo cp ../artwork/banners/kodi.png "/home/steam/Pictures"
 
 	#################################################
 	# Cleanup
@@ -227,19 +229,6 @@ main()
 	echo -e "Time started: ${time_stamp_end}"
 	echo -e "Total Runtime (minutes): $runtime\n"
 
-
-	# assign value to build folder for exit warning below
-	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
-
-	# inform user of packages
-	echo -e "\n############################################################"
-	echo -e "If package was built without errors you will see it below."
-	echo -e "If you don't, please check build dependcy errors listed above."
-	echo -e "############################################################\n"
-
-	echo -e "Showing contents of: $build_dir:"
-	ls "$build_dir"
-	echo ""
 
 }
 

@@ -38,7 +38,7 @@ time_stamp_start=(`date +"%T"`)
 install_prereqs()
 {
 	clear
-	echo -e "==> Assessing prerequisites for building...\n"
+	echo -e "==> Assessing prerequisites for building"
 	sleep 1s
 
 	# Reminder: libshairplay-dev is only available in deb-multimedia

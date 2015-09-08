@@ -41,7 +41,9 @@ install_prereqs()
 	echo -e "==> Assessing prerequisites for building...\n"
 	sleep 1s
 
-	# install needed packages for building kodi
+	# Reminder: libshairplay-dev is only available in deb-multimedia
+	
+	# available from Debian Jessie:
 
 	sudo apt-get install autoconf automake autopoint autotools-dev cmake curl \
 	debhelper default-jre gawk gperf libao-dev libasound2-dev \
@@ -52,7 +54,7 @@ install_prereqs()
 	libgl1-mesa-dev libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev \
 	liblzo2-dev libmicrohttpd-dev libmodplug-dev libmpcdec-dev libmpeg2-4-dev \
 	libmysqlclient-dev libnfs-dev libogg-dev libpcre3-dev libplist-dev libpng12-dev \
-	libpulse-dev librtmp-dev libsdl2-dev libshairplay-dev libsmbclient-dev \
+	libpulse-dev librtmp-dev libsdl2-dev libsmbclient-dev libshairplay-dev \
 	libsqlite3-dev libssh-dev libssl-dev libswscale-dev libtag1-dev libtiff5-dev \
 	libtinyxml-dev libtool libudev-dev libusb-dev libva-dev libvdpau-dev libvorbis-dev \
 	libxinerama-dev libxml2-dev libxmu-dev libxrandr-dev libxslt1-dev libxt-dev \

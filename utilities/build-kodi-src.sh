@@ -164,6 +164,14 @@ main()
 	sudo gdebi "/tmp/crossbuild.deb"
 	sudo rm -f "/tmp/crossbuild.deb"
 
+	# libtag
+	make -C lib/taglib
+	make -C lib/taglib install
+
+	# libnfs
+	make -C lib/libnfs
+	make -C lib/libnfs install
+
   	# create the Kodi executable manually perform these steps:
 	./bootstrap
 

@@ -45,21 +45,22 @@ install_prereqs()
 	
 	# available from Debian Jessie:
 
-	sudo apt-get install autoconf automake autopoint autotools-dev cmake curl \
-	debhelper default-jre gawk gperf libao-dev libasound2-dev \
+	sudo apt-get install autoconf, automake autopoint autotools-dev cmake curl \
+	dcadec-dev default-jre gawk gperf libao-dev libasound2-dev \
 	libass-dev libavahi-client-dev libavahi-common-dev libbluetooth-dev \
 	libbluray-dev libboost-dev libboost-thread-dev libbz2-dev libcap-dev libcdio-dev \
-	libcec-dev libcurl4-openssl-dev libcwiid-dev libdbus-1-dev libfontconfig1-dev \
-	libfreetype6-dev libfribidi-dev libgif-dev libgl1-mesa-dev libglew-dev \
-	libgl1-mesa-dev libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev \
-	liblzo2-dev libmicrohttpd-dev libmodplug-dev libmpcdec-dev libmpeg2-4-dev \
-	libmysqlclient-dev libnfs-dev libogg-dev libpcre3-dev libplist-dev libpng12-dev \
-	libpulse-dev librtmp-dev libsdl2-dev libsmbclient-dev libshairplay-dev \
-	libsqlite3-dev libssh-dev libssl-dev libswscale-dev libtag1-dev libtiff5-dev \
-	libtinyxml-dev libtool libudev-dev libusb-dev libva-dev libvdpau-dev libvorbis-dev \
-	libxinerama-dev libxml2-dev libxmu-dev libxrandr-dev libxslt1-dev libxt-dev \
-	libyajl-dev lsb-release nasm python-dev python-imaging python-support swig unzip \
-	uuid-dev yasm zip zlib1g-dev gdebi bc
+	libcec-dev libcurl4-openssl-dev | libcurl4-gnutls-dev | libcurl-dev libcwiid-dev \
+	libdbus-1-dev libfontconfig-dev libfreetype6-dev libfribidi-dev \
+	libgif-dev libgl1-mesa-dev | libgl-dev libglew-dev libglu1-mesa-dev | libglu-dev \
+	libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev liblzo2-dev libmicrohttpd-dev \
+	libmodplug-dev libmpcdec-dev libmpeg2-4-dev libmysqlclient-dev libnfs-dev libogg-dev \
+	libpcre3-dev libplist-dev libpng12-dev libpng-dev libpulse-dev librtmp-devlibsdl2-dev \
+	libshairplay-dev libsmbclient-dev libsqlite3-dev libssh-dev libssl-dev libswscale-dev \
+	libtag1-dev libtiff-dev libtinyxml-dev libtool libudev-dev \
+	libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev \
+	libxmu-dev libxrandr-dev libxslt1-dev libxt-dev libyajl-dev lsb-release \
+	nasm python-dev python-imaging python-support swig unzip uuid-dev yasm \
+	zip zlib1g-dev
 
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache
@@ -164,13 +165,16 @@ main()
 	sudo gdebi "/tmp/crossbuild.deb"
 	sudo rm -f "/tmp/crossbuild.deb"
 
+	# libdcadec
+	
+
 	# libtag
-	make -C lib/taglib
-	make -C lib/taglib install
+	#make -C lib/taglib
+	#make -C lib/taglib install
 
 	# libnfs
-	make -C lib/libnfs
-	make -C lib/libnfs install
+	#make -C lib/libnfs
+	#make -C lib/libnfs install
 
   	# create the Kodi executable manually perform these steps:
 	./bootstrap

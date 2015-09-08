@@ -486,6 +486,27 @@ ep_install_plex()
 	# https://launchpad.net/~plexapp/+archive/ubuntu/plexht?field.series_filter=trusty
 	
 	#######################################
+	# Ubuntu font family
+	#######################################
+	
+	echo -e "\n==> Resolving missing prerequisite packages\n"
+	sleep 1s
+	
+	# set vars
+	pkg_type="deb"
+	PKG="ubuntu-font-family"
+	PKG_FILENAME="ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
+	BASE_URL="http://libregeek.org/SteamOS-Extra/multimedia/plex/"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag
+	multi="n"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	#######################################
 	# Plex
 	#######################################
 	

@@ -43,14 +43,14 @@ install_prereqs()
 
 	# Reminder: libshairplay-dev is only available in deb-multimedia
 	
-	# available from Debian Jessie:
+	# Swaps: (libcurl3 for libcurl-dev), (dcadec-dev, build from git)
 
-	sudo apt-get install autoconf, automake autopoint autotools-dev cmake curl \
-	dcadec-dev default-jre gawk gperf libao-dev libasound2-dev \
+	sudo apt-get install autoconf automake autopoint autotools-dev cmake curl \
+	default-jre gawk gperf libao-dev libasound2-dev \
 	libass-dev libavahi-client-dev libavahi-common-dev libbluetooth-dev \
 	libbluray-dev libboost-dev libboost-thread-dev libbz2-dev libcap-dev libcdio-dev \
-	libcec-dev libcurl-dev libcwiid-dev libdbus-1-dev libfontconfig-dev libfreetype6-dev \
-	libfribidi-dev libgif-dev libglu1-mesa-dev | libglu-dev \
+	libcec-dev libcurl3 libcwiid-dev libdbus-1-dev libfontconfig-dev libfreetype6-dev \
+	libfribidi-dev libgif-dev libglu1-mesa-dev \
 	libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev liblzo2-dev libmicrohttpd-dev \
 	libmodplug-dev libmpcdec-dev libmpeg2-4-dev libmysqlclient-dev libnfs-dev libogg-dev \
 	libpcre3-dev libplist-dev libpng12-dev libpng-dev libpulse-dev librtmp-devlibsdl2-dev \

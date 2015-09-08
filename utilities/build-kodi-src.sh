@@ -45,6 +45,9 @@ install_prereqs()
 	
 	# Swaps: (libcurl3 for libcurl-dev), (dcadec-dev, build from git)
 	
+	echo -e "\nBuilding missing package dcadec not found in Debian repositories\n"
+	sleep 1s
+	
 	# build dcadec (could not find available for debian)
 	cd
 	rm -f dcadec
@@ -52,6 +55,9 @@ install_prereqs()
 	cd dcadec
 	make
 	sudo make install
+	
+	cho -e "\nInstalling the rest of packages found in Debian repositories\n"
+	sleep 1s
 	
 	# main packages available in Debian Jessie and SteamOS repos:
 	

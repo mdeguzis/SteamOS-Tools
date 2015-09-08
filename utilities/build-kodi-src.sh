@@ -237,8 +237,9 @@ main()
 	#################################################
 
 	# add desktop file for SteamOS/BPM
-	sudo cp ../cfgs/desktop-files/kodi.desktop "/usr/share/applications"
-	sudo cp ../artwork/banners/kodi.png "/home/steam/Pictures"
+	cd $scriptdir
+	sudo cp "cfgs/desktop-files/kodi.desktop" "/usr/share/applications"
+	sudo cp "artwork/banners/kodi.png" "/home/steam/Pictures"
 
 	#################################################
 	# Cleanup

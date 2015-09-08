@@ -464,7 +464,7 @@ get_software_type()
                 exit 1
         elif [[ "$type" == "kodi-src" ]]; then
                 # install plex from helper script
-                "$scriptdir/utilities/.build-kodi-src.sh"
+                "$scriptdir/utilities/build-kodi-src.sh"
                 exit 1
         elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script

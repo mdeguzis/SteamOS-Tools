@@ -45,7 +45,7 @@ install_prereqs()
 	
 	# Swaps: (libcurl3 for libcurl-dev), (dcadec-dev, build from git)
 	
-	echo -e "\nBuilding missing package dcadec not found in Debian repositories\n"
+	echo -e "\n==INFO==\nBuilding missing package dcadec not found in Debian repositories\n"
 	sleep 1s
 	
 	# build dcadec (could not find available for debian)
@@ -56,7 +56,7 @@ install_prereqs()
 	make
 	sudo make install
 	
-	echo -e "\nInstalling the rest of packages found in Debian repositories\n"
+	echo -e "\n==INFO==\nInstalling the rest of packages found in Debian repositories\n"
 	sleep 1s
 	
 	# main packages available in Debian Jessie and SteamOS repos:
@@ -155,6 +155,8 @@ main()
 	# Build Kodi
 	#################################################
 
+	echo -e "==> Building Kodi"
+
   	# Note (needed?):
   	# When listing the application depends, reference https://packages.debian.org/sid/kodi
   	# for an idea of what packages are needed.
@@ -209,7 +211,7 @@ main()
 	make -j2
 
 	# Install Kodi
-	make install
+	sudo make install
 
 	# From v14 with commit 4090a5f a new API for binary addons is available. 
 	# Not used for now ...
@@ -236,10 +238,12 @@ main()
 	# Post install configuration
 	#################################################
 
+	echo -e "\n==> Adding desktop file and artwork"
+
 	# add desktop file for SteamOS/BPM
 	cd $scriptdir
 	sudo cp "cfgs/desktop-files/kodi.desktop" "/usr/share/applications"
-	sudo cp "artwork/banners/kodi.png" "/home/steam/Pictures"
+	sudo cp "artwork/banners/Kodi.png" "/home/steam/Pictures"
 
 	#################################################
 	# Cleanup

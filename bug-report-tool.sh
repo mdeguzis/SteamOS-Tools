@@ -27,15 +27,18 @@ timestamp=$(date +%Y%m%d-%H:%M:%S)
 bug_report_file="${bug_dir}/bug_report_${timestamp})"
 
 # lspci test
-cat lspci -v > ${bug_report_file}
+cat lspci -v > $bug_report_file
 
 # create gist using REST API
 
-echo -n '{"description":"","public":"false","files":{"file1.txt":{"content":"'
-sed 's:":\\":g' ${bug_report_file}
-echo '"}}' | curl -v -d '@-' https://api.github.com/gists
+function msg() {
+  echo -n '{"description":"","public":"false","files":{"file1.txt":{"content":"'
+  sed 's:":\\":g' "$bug_report_file"
+  echo '"}}'
+}
 
-msg "$1" | curl -v -d '@-' https://api.github.com/gists
+msg "$bug_report_file" | curl -v -d '@-' https://api.github.com/gists
+
 
 #gist_url=$(curl -sX POST --data-binary '{"files": {"file1.txt": {"content": "lspci -v"}}}' \
 #https://api.github.com/gists| grep "gist.github" | grep html_url | cut -c 16-59)

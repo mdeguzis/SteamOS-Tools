@@ -7,9 +7,12 @@
 # Description:	Captures important system information in a semi-readible format
 #               to attach to a SteamOS bug report at github.com/ValveSoftware/SteamOS/issues
 #
-# Usage:	      bug-report-tool.sh
-#
+# Usage:	      ./bug-report-tool.sh
+#               ./bug-report-tool.sh --test
 # -------------------------------------------------------------------------------
+
+# Set test flag if output is just to be reviewed
+test_opt="$1"
 
 #############################################
 # pre-reqs
@@ -97,8 +100,17 @@ https://github.com/ValveSoftware/SteamOS/issues
 
 EOF
 
-# create gist
-./gistcli -f bug.txt
+if [[ $"test_opt" == "--test" ]]; then
+
+  # create gist
+  less bug.txt
+  
+elif [[ $"test_opt" == "" ]]; then
+
+  # create gist
+  ./gistcli -f bug.txt
+  
+fi
 
 #gist_url=$(curl -sX POST --data-binary '{"files": {"file1.txt": {"content": "lspci -v"}}}' \
 #https://api.github.com/gists| grep "gist.github" | grep html_url | cut -c 16-59)

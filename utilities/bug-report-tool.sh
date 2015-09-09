@@ -40,8 +40,9 @@ GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 24-30)
 AUDIO_1=$(lspci -v | grep -m 1 "Audio" | cut -c 23-80)
 AUDIO_1_DRIVER=$(lspci -v | grep -m 1 -A 6 "Audio" | grep "Kernel" | cut -c 24-30)
 
-AUDIO_2=$(lspci -v | grep -m 2 "Audio" | cut -c 23-80)
-AUDIO_2_DRIVER=$(lspci -v | grep -m 2 -A 6 "Audio" | grep "Kernel" | cut -c 24-30)
+# for some reason, the VGA audio was the 3rd occurence here
+AUDIO_2=$(lspci -v | grep -m 3 "Audio" | cut -c 23-80)
+AUDIO_2_DRIVER=$(lspci -v | grep -m 3 -A 6 "Audio" | grep "Kernel" | cut -c 24-30)
 
 PCI_FULL=$(lspci -v)
 UNAME_FULL=$(uname -a)
@@ -113,6 +114,8 @@ Driver          : $AUDIO_2_DRIVER
 -------------------------------------------------------
 Full System and PCI Info:
 -------------------------------------------------------
+$OS_INFO
+
 $UNAME_FULL
 
 $PCI_FULL

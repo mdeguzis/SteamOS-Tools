@@ -44,11 +44,14 @@ cd "$HOME/gist-cli"
 # Some basic info
 echo "-------------------------------------------------------" > bug.txt
 echo "CPU Info" >> bug.txt
-echo "-------------------------------------------------------" > bug.txt
+echo "-------------------------------------------------------" >> bug.txt
 cat /proc/cpuinfo | grep -m3 -E 'model name|cpu cores|MHz' >> bug.txt
 echo ""
 
 # hardware info
+echo "-------------------------------------------------------" > bug.txt
+echo "Full PCI info" >> bug.txt
+echo "-------------------------------------------------------" >> bug.txt
 lspci -v >> bug.txt
 
 clear

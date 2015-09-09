@@ -44,17 +44,18 @@ cd "$HOME/gist-cli"
 # lspci test
 lspci -v > bug.txt
 
+clear
+cat <<- EOF
+-----------------------------------------------------------------
+Summary
+-----------------------------------------------------------------
+Please paste the below URL into your SteamOS issues ticket at\n"
+https://github.com/ValveSoftware/SteamOS/issues
+
+EOF
+
 # create gist
 ./gistcli -f bug.txt
-
-#cat <<- EOF
-#-----------------------------------------------------------------
-#Summary
-#-----------------------------------------------------------------
-#Please paste the below URL into your SteamOS issues ticket at\n"
-#https://github.com/ValveSoftware/SteamOS/issues
-
-#EOF
 
 #gist_url=$(curl -sX POST --data-binary '{"files": {"file1.txt": {"content": "lspci -v"}}}' \
 #https://api.github.com/gists| grep "gist.github" | grep html_url | cut -c 16-59)

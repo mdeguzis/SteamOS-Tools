@@ -35,7 +35,7 @@ cat lspci -v > $bug_report_file
 
 cd
 git clone https://github.com/pranavk/gist-cli
-cd gist cli
+cd gist-cli
 chmod +x gistcli
 
 # create gist

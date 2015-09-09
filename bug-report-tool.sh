@@ -29,13 +29,23 @@ timestamp=$(date +%Y%m%d-%H:%M:%S)
 # Create bug report file
 #bug_report_file="${bug_dir}/bug_report_${timestamp})"
 
-# lspci test
-lspci -v > $bug_dir/bug.txt
+if [[ ! -d "$HOME/gist-cli" ]]; then
+  cd
+  git clone https://github.com/pranavk/gist-cli
+  cd ~/gist-cli
+  chmod +x gistcli
+fi
 
-cd
-git clone https://github.com/pranavk/gist-cli
-cd ~/gist-cli
-chmod +x gistcli
+# enter git dir
+cd "$HOME/gist-cli"
+
+# some basic output to test:
+
+# lspci test
+lspci -v > bug.txt
+
+# create gist
+./gistcli -f bug.txt
 
 #cat <<- EOF
 #-----------------------------------------------------------------
@@ -45,9 +55,6 @@ chmod +x gistcli
 #https://github.com/ValveSoftware/SteamOS/issues
 
 #EOF
-
-# create gist
-./gistcli -f $bug_dir/bug.txt
 
 #gist_url=$(curl -sX POST --data-binary '{"files": {"file1.txt": {"content": "lspci -v"}}}' \
 #https://api.github.com/gists| grep "gist.github" | grep html_url | cut -c 16-59)

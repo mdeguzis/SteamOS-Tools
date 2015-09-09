@@ -27,5 +27,23 @@ function msg() {
 [ "$#" -ne 1 ] && echo "Syntax: gist.sh filename" && exit 1
 [ ! -r "$1" ] && echo "Error: unable to read $1" && exit 2
 
-# lspci
-msg "lspci -v" | curl -v -d '@-' https://api.github.com/gists
+# set bug report dir
+bug_dir="/home/desktop/bug-reports"
+
+# create temp bug report file
+if [[ ! -d "$bug_dir" ]]
+  # create DIR
+  mkdir -p "$bug_dir"
+fi
+
+# get timestamp
+timestamp=$(date +%Y%m%d-%H:%M:%S)
+
+# Create bug report file
+bug_report_file="${bug_dir}/bug_report_${timestamp})"
+
+# lspci test
+cat 'lspci -v' > ${bug_report_file}
+
+# create gist
+msg ${bug_report_file} | curl -v -d '@-' https://api.github.com/gists

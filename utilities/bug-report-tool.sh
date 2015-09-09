@@ -33,13 +33,13 @@ CPU_MODEL_SPEED=$(cat /proc/cpuinfo | grep -m 1 "model name" | cut -c 45-80)
 CPU_CORES=$(cat /proc/cpuinfo | grep -m 1 "cpu cores")
 
 GPU=$(lspci -v | grep "VGA" | cut -c 36-92)
-GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 20-30)
+GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 24-30)
 
-AUDIO_1=$(lspci -v | grep -m 1 "Audio")
-AUDIO_DRIVER_1=$(lspci -v | grep -m 1 -A 6 "Audio" | grep "Kernel" | cut -c 2-30)
+AUDIO_1=$(lspci -v | grep -m 1 "Audio" | cut -c 45-80)
+AUDIO_DRIVER_1=$(lspci -v | grep -m 1 -A 6 "Audio" | grep "Kernel" | cut -c 24-30)
 
-AUDIO_2=$(lspci -v | grep -m 2 "Audio")
-AUDIO_DRIVER_2=$(lspci -v | grep -m 2 -A 6 "Audio" | grep "Kernel" | cut -c 2-30)
+AUDIO_2=$(lspci -v | grep -m 2 "Audio" | cut -c 45-80)
+AUDIO_DRIVER_2=$(lspci -v | grep -m 2 -A 6 "Audio" | grep "Kernel" | cut -c 24-30)
 
 PCI_FULL=$(lspci -v)
 
@@ -95,8 +95,11 @@ Driver          : $GPU_DRIVER
 -------------------------------------------------------
 Audio Info:
 -------------------------------------------------------
-$AUDIO_1
-$AUDIO_1_DRIVER
+Device 1        : $AUDIO_1
+Driver          : $AUDIO_1_DRIVER
+
+Device 2        : $AUDIO_2
+Driver          : $AUDIO_2_DRIVER
 
 -------------------------------------------------------
 Full PCI Info:

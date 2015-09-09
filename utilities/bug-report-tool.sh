@@ -3,7 +3,7 @@
 # Author: 	    Michael DeGuzis
 # Git:          https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  bug-report-tool.sh
-# Script Ver:	  0.1.1
+# Script Ver:	  0.3.1
 # Description:	Captures important system information in a semi-readible format
 #               to attach to a SteamOS bug report at github.com/ValveSoftware/SteamOS/issues
 #
@@ -126,7 +126,7 @@ EOF
 
 if [[ "$test_opt" == "--test" ]]; then
 
-  # create gist
+  # review only
   less bug.txt
   
 elif [[ "$test_opt" == "" ]]; then

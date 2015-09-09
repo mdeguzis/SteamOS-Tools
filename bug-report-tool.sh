@@ -28,7 +28,7 @@ function msg() {
 bug_dir="/home/desktop/bug-reports"
 
 # create temp bug report file
-if [[ ! -d "$bug_dir" ]]
+if [[ ! -d "$bug_dir" ]]; then
   # create DIR
   mkdir -p "$bug_dir"
 fi

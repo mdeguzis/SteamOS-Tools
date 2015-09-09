@@ -79,8 +79,8 @@ cat <<- EOF > bug.txt
 -------------------------------------------------------
 CPU Info:
 -------------------------------------------------------
-Manufacturer:      $CPU
-Mode:   $CPU_MODEL_SPEED
+Manufacturer:    : $CPU
+Mode:            : $CPU_MODEL_SPEED
 $CPU_CORES
 
 -------------------------------------------------------

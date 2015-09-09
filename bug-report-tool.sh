@@ -15,7 +15,8 @@
 
 sudo apt-get install git
 
-# test gist
+# function to paste to gist
+# sourced from Stack exchange
 
 function msg() {
   echo -n '{"description":"","public":"false","files":{"file1.txt":{"content":"'
@@ -26,4 +27,5 @@ function msg() {
 [ "$#" -ne 1 ] && echo "Syntax: gist.sh filename" && exit 1
 [ ! -r "$1" ] && echo "Error: unable to read $1" && exit 2
 
-msg "$1" | curl -v -d '@-' https://api.github.com/gists
+# lspci
+msg "lspci -v" | curl -v -d '@-' https://api.github.com/gists

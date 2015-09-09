@@ -37,12 +37,7 @@ CPU_CORES=$(cat /proc/cpuinfo | grep -m 1 "cpu cores")
 GPU=$(lspci -v | grep "VGA" | cut -c 36-92)
 GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 24-30)
 
-AUDIO_1=$(lspci -v | grep -m 1 "Audio" | cut -c 23-80)
-AUDIO_1_DRIVER=$(lspci -v | grep -m 1 -A 6 "Audio" | grep "Kernel" | cut -c 24-30)
-
-# for some reason, the VGA audio was the 3rd occurence here
-AUDIO_2=$(lspci -v | grep -m 3 "Audio" | cut -c 23-80)
-AUDIO_2_DRIVER=$(lspci -v | grep -m 3 -A 6 "Audio" | grep "Kernel" | cut -c 24-30)
+AUDIO=$(lspci -v | grep -A 6 "Audio"
 
 PCI_FULL=$(lspci -v)
 UNAME_FULL=$(uname -a)
@@ -105,11 +100,7 @@ Driver          : $GPU_DRIVER
 -------------------------------------------------------
 Audio Info:
 -------------------------------------------------------
-Device 1        : $AUDIO_1
-Driver          : $AUDIO_1_DRIVER
-
-Device 2        : $AUDIO_2
-Driver          : $AUDIO_2_DRIVER
+$AUDIO
 
 -------------------------------------------------------
 Full System and PCI Info:

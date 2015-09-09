@@ -30,24 +30,24 @@ timestamp=$(date +%Y%m%d-%H:%M:%S)
 bug_report_file="${bug_dir}/bug_report_${timestamp})"
 
 # lspci test
-cat lspci -v > ${bug_report_file}
+lspci -v > ${bug_report_file}
 
 cd
 git clone https://github.com/pranavk/gist-cli
-cd gist-cli
+cd ~/gist-cli
 chmod +x gistcli
 
-cat <<- EOF
------------------------------------------------------------------
-Summary
------------------------------------------------------------------
-Please paste the below URL into your SteamOS issues ticket at\n"
-https://github.com/ValveSoftware/SteamOS/issues
+#cat <<- EOF
+#-----------------------------------------------------------------
+#Summary
+#-----------------------------------------------------------------
+#Please paste the below URL into your SteamOS issues ticket at\n"
+#https://github.com/ValveSoftware/SteamOS/issues
 
-EOF
+#EOF
 
 # create gist
-./gistcli -f $bug_report_file
+./gistcli -f ${bug_report_file}
 
 #gist_url=$(curl -sX POST --data-binary '{"files": {"file1.txt": {"content": "lspci -v"}}}' \
 #https://api.github.com/gists| grep "gist.github" | grep html_url | cut -c 16-59)

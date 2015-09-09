@@ -95,17 +95,17 @@ cat <<- EOF
 -----------------------------------------------------------------
 Summary
 -----------------------------------------------------------------
-Please paste the below URL into your SteamOS issues ticket at\n"
+Please paste the below URL into your SteamOS issues ticket at
 https://github.com/ValveSoftware/SteamOS/issues
 
 EOF
 
-if [[ $"test_opt" == "--test" ]]; then
+if [[ "$test_opt" == "--test" ]]; then
 
   # create gist
   less bug.txt
   
-elif [[ $"test_opt" == "" ]]; then
+elif [[ "$test_opt" == "" ]]; then
 
   # create gist
   ./gistcli -f bug.txt

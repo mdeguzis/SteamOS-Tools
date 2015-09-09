@@ -23,10 +23,12 @@ sudo apt-get install git lib32gcc1
 # Steam CMD
 #############################################
 
-
 #############################################
 # set vars
 #############################################
+
+OS_INFO=$(lsb_release -a)
+OS_KERNEL=$(uname -r)
 
 CPU=$(cat /proc/cpuinfo | grep -m 1 "model name" | cut -c 14-44)
 CPU_MODEL_SPEED=$(cat /proc/cpuinfo | grep -m 1 "model name" | cut -c 45-80)
@@ -42,6 +44,7 @@ AUDIO_2=$(lspci -v | grep -m 2 "Audio" | cut -c 23-80)
 AUDIO_2_DRIVER=$(lspci -v | grep -m 2 -A 6 "Audio" | grep "Kernel" | cut -c 24-30)
 
 PCI_FULL=$(lspci -v)
+UNAME_FULL=$(uname -a)
 
 # Steam-specific
 # There is a bug in the current steamcmd version that outputs a 
@@ -80,6 +83,12 @@ cd "$HOME/gist-cli"
 
 cat <<- EOF > bug.txt
 -------------------------------------------------------
+SteamOS Info:
+-------------------------------------------------------
+$OS_INFO
+Kernel:    $OS_KERNEL
+
+-------------------------------------------------------
 CPU Info:
 -------------------------------------------------------
 Manufacturer:   : $CPU
@@ -102,8 +111,10 @@ Device 2        : $AUDIO_2
 Driver          : $AUDIO_2_DRIVER
 
 -------------------------------------------------------
-Full PCI Info:
+Full System and PCI Info:
 -------------------------------------------------------
+$UNAME_FULL
+
 $PCI_FULL
 
 EOF

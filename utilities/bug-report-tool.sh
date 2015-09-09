@@ -37,7 +37,7 @@ CPU_CORES=$(cat /proc/cpuinfo | grep -m 1 "cpu cores")
 GPU=$(lspci -v | grep "VGA" | cut -c 36-92)
 GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 24-30)
 
-AUDIO=$(lspci -v | grep -A 6 "Audio"
+AUDIO=$(lspci -v | grep -A 6 "Audio")
 
 PCI_FULL=$(lspci -v)
 UNAME_FULL=$(uname -a)

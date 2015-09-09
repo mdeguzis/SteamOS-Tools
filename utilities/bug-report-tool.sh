@@ -32,7 +32,7 @@ CPU=$(cat /proc/cpuinfo | grep -m 1 "model name" | cut -c 14-44)
 CPU_MODEL_SPEED=$(cat /proc/cpuinfo | grep -m 1 "model name" | cut -c 45-80)
 CPU_CORES=$(cat /proc/cpuinfo | grep -m 1 "cpu cores")
 
-GPU=$(lspci -v | grep "VGA")
+GPU=$(lspci -v | grep "VGA" | cut -c 36-92)
 GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 2-30)
 
 AUDIO=$(lspci -v | grep -m 1 "Audio")
@@ -79,14 +79,14 @@ cat <<- EOF > bug.txt
 -------------------------------------------------------
 CPU Info:
 -------------------------------------------------------
-Manufacturer:    : $CPU
-Mode:            : $CPU_MODEL_SPEED
+Manufacturer:   : $CPU
+Mode:          : $CPU_MODEL_SPEED
 $CPU_CORES
 
 -------------------------------------------------------
 GPU Info:
 -------------------------------------------------------
-$GPU
+GPU Model:      $GPU
 $GPU_DRIVER
 
 -------------------------------------------------------

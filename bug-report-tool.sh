@@ -41,15 +41,21 @@ cd "$HOME/gist-cli"
 
 # some basic output to test:
 
-# Some basic info
+# CPU
 echo "-------------------------------------------------------" > bug.txt
 echo "CPU Info" >> bug.txt
 echo "-------------------------------------------------------" >> bug.txt
 cat /proc/cpuinfo | grep -m3 -E 'model name|cpu cores|MHz' >> bug.txt
 echo ""
 
+#GPU
+echo -e "\n-------------------------------------------------------" > bug.txt
+echo "GPU Info" >> bug.txt
+echo "-------------------------------------------------------" >> bug.txt
+lspci -v | grep -A 10 VGA | grep -E 'VGA|Kernel' >> bug.txt
+
 # hardware info
-echo "-------------------------------------------------------" > bug.txt
+echo -e "\n-------------------------------------------------------" >> bug.txt
 echo "Full PCI info" >> bug.txt
 echo "-------------------------------------------------------" >> bug.txt
 lspci -v >> bug.txt

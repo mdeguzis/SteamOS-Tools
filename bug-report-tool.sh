@@ -27,10 +27,10 @@ fi
 timestamp=$(date +%Y%m%d-%H:%M:%S)
 
 # Create bug report file
-bug_report_file="${bug_dir}/bug_report_${timestamp})"
+#bug_report_file="${bug_dir}/bug_report_${timestamp})"
 
 # lspci test
-lspci -v > ${bug_report_file}
+lspci -v > $bug_dir/bug.txt
 
 cd
 git clone https://github.com/pranavk/gist-cli
@@ -47,7 +47,7 @@ chmod +x gistcli
 #EOF
 
 # create gist
-./gistcli -f ${bug_report_file}
+./gistcli -f $bug_dir/bug.txt
 
 #gist_url=$(curl -sX POST --data-binary '{"files": {"file1.txt": {"content": "lspci -v"}}}' \
 #https://api.github.com/gists| grep "gist.github" | grep html_url | cut -c 16-59)

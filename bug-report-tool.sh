@@ -41,8 +41,15 @@ cd "$HOME/gist-cli"
 
 # some basic output to test:
 
-# lspci test
-lspci -v > bug.txt
+# Some basic info
+echo "-------------------------------------------------------" > bug.txt
+echo "CPU Info" >> bug.txt
+echo "-------------------------------------------------------" > bug.txt
+cat /proc/cpuinfo | grep -m3 -E 'model name|cpu cores|MHz' >> bug.txt
+echo ""
+
+# hardware info
+lspci -v >> bug.txt
 
 clear
 cat <<- EOF

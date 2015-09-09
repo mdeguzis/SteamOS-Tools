@@ -28,7 +28,7 @@ sudo apt-get install git lib32gcc1
 # set vars
 #############################################
 
-CPU=$(cat /proc/cpuinfo | grep -m 1 "model name" | cut -c 1-44)
+CPU=$(cat /proc/cpuinfo | grep -m 1 "model name" | cut -c 14-44)
 CPU_MODEL_SPEED=$(cat /proc/cpuinfo | grep -m 1 "model name" | cut -c 45-80)
 CPU_CORES=$(cat /proc/cpuinfo | grep -m 1 "cpu cores")
 
@@ -79,8 +79,8 @@ cat <<- EOF > bug.txt
 -------------------------------------------------------
 CPU Info:
 -------------------------------------------------------
-$CPU
-$CPU_MODEL_SPEED
+Manufacturer:      $CPU
+Mode:   $CPU_MODEL_SPEED
 $CPU_CORES
 
 -------------------------------------------------------

@@ -35,10 +35,10 @@ CPU_CORES=$(cat /proc/cpuinfo | grep -m 1 "cpu cores")
 GPU=$(lspci -v | grep "VGA" | cut -c 36-92)
 GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 24-30)
 
-AUDIO_1=$(lspci -v | grep -m 1 "Audio" | cut -c 35-80)
+AUDIO_1=$(lspci -v | grep -m 1 "Audio" | cut -c 23-80)
 AUDIO_DRIVER_1=$(lspci -v | grep -m 1 -A 6 "Audio" | grep "Kernel" | cut -c 24-30)
 
-AUDIO_2=$(lspci -v | grep -m 2 "Audio" | cut -c 35-80)
+AUDIO_2=$(lspci -v | grep -m 2 "Audio" | cut -c 23-80)
 AUDIO_DRIVER_2=$(lspci -v | grep -m 2 -A 6 "Audio" | grep "Kernel" | cut -c 24-30)
 
 PCI_FULL=$(lspci -v)

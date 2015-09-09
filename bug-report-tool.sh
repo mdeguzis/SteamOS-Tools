@@ -43,7 +43,7 @@ timestamp=$(date +%Y%m%d-%H:%M:%S)
 bug_report_file="${bug_dir}/bug_report_${timestamp})"
 
 # lspci test
-cat 'lspci -v' > ${bug_report_file}
+cat lspci -v > ${bug_report_file}
 
 # create gist
-msg ${bug_report_file} | curl -v -d '@-' https://api.github.com/gists
+msg  ${bug_report_file} | curl -v -d '@-' https://api.github.com/gists

@@ -82,7 +82,13 @@ echo ""
 echo -e "\n-------------------------------------------------------" >> bug.txt
 echo "GPU Info" >> bug.txt
 echo "-------------------------------------------------------" >> bug.txt
-lspci -v | grep -A 10 VGA | grep -E 'VGA|Kernel' >> bug.txt
+lspci -v | grep -A 10 -E 'VGA|Kernel' >> bug.txt
+
+#GPU
+echo -e "\n-------------------------------------------------------" >> bug.txt
+echo "GPU Info" >> bug.txt
+echo "-------------------------------------------------------" >> bug.txt
+lspci -v | grep -A 10 -E 'VGA|Kernel' >> bug.txt
 
 # hardware info
 echo -e "\n-------------------------------------------------------" >> bug.txt

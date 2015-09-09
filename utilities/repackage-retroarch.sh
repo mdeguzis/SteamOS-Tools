@@ -60,7 +60,7 @@ main()
 	cd "$build_dir"
 	
 	# set source
-	repo_src="$deb-src http://ppa.launchpad.net/libretro/stable/ubuntu trusty main"
+	repo_src="deb-src http://ppa.launchpad.net/libretro/stable/ubuntu trusty main"
 
   # GPG key
 	gpg_pub_key="ECA3745F"
@@ -101,12 +101,12 @@ main()
 	
   	# Attempt to build target
   	echo -e "\n==> Attempting to build ${pkg}:\n"
-  	#sleep 2s
-  	#apt-get source --build ${target}
+  	sleep 2s
+  	apt-get source --build ${pkg}
   	
   	# test only
-  	echo ${pkg}
-  	sleep 1s
+  	#echo ${pkg}
+  	#sleep 1s
 
 	done
 	exit 1

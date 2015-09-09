@@ -35,10 +35,13 @@ CPU_CORES=$(cat /proc/cpuinfo | grep -m 1 "cpu cores")
 GPU=$(lspci -v | grep "VGA" | cut -c 36-92)
 GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 2-30)
 
-AUDIO=$(lspci -v | grep -m 1 "Audio")
-AUDIO_KERNEL=$(lspci -v | grep -m 1 -A 9 "Audio" | grep "Kernel" | cut -c 2-30)
+AUDIO_1=$(lspci -v | grep -m 1 "Audio")
+AUDIO_DRIVER_1=$(lspci -v | grep -m 1 -A 6 "Audio" | grep "Kernel" | cut -c 2-30)
 
-PCI_FULL=$(lcpci -v)
+AUDIO_2=$(lspci -v | grep -m 2 "Audio")
+AUDIO_DRIVER_2=$(lspci -v | grep -m 2 -A 6 "Audio" | grep "Kernel" | cut -c 2-30)
+
+PCI_FULL=$(lspci -v)
 
 # Steam-specific
 # There is a bug in the current steamcmd version that outputs a 
@@ -80,7 +83,7 @@ cat <<- EOF > bug.txt
 CPU Info:
 -------------------------------------------------------
 Manufacturer:   : $CPU
-Mode:          : $CPU_MODEL_SPEED
+Model:          : $CPU_MODEL_SPEED
 $CPU_CORES
 
 -------------------------------------------------------
@@ -92,8 +95,8 @@ $GPU_DRIVER
 -------------------------------------------------------
 Audio Info:
 -------------------------------------------------------
-$AUDIO
-$AUDIO_DRIVER
+$AUDIO_1
+$AUDIO_1_DRIVER
 
 -------------------------------------------------------
 Full PCI Info:

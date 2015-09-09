@@ -49,7 +49,7 @@ cat /proc/cpuinfo | grep -m3 -E 'model name|cpu cores|MHz' >> bug.txt
 echo ""
 
 #GPU
-echo -e "\n-------------------------------------------------------" > bug.txt
+echo -e "\n-------------------------------------------------------" >> bug.txt
 echo "GPU Info" >> bug.txt
 echo "-------------------------------------------------------" >> bug.txt
 lspci -v | grep -A 10 VGA | grep -E 'VGA|Kernel' >> bug.txt

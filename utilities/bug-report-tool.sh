@@ -28,7 +28,9 @@ sudo apt-get install git lib32gcc1
 # set vars
 #############################################
 
-CPU=$(cat /proc/cpuinfo | grep -m3 -E 'model name|cpu cores|MHz')
+CPU=$(cat /proc/cpuinfo | grep -m 1 "model name" | cut -c 1-44)
+CPU_MODEL_SPEED=$(cat /proc/cpuinfo | grep -m 1 "model name" | cut -c 45-80)
+CPU_CORES=$(cat /proc/cpuinfo | grep -m 1 "cpu cores")
 
 GPU=$(lspci -v | grep "VGA")
 GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 2-30)
@@ -78,6 +80,8 @@ cat <<- EOF > bug.txt
 CPU Info:
 -------------------------------------------------------
 $CPU
+$CPU_MODE_SPEED
+$CPU_CORES
 
 -------------------------------------------------------
 GPU Info:

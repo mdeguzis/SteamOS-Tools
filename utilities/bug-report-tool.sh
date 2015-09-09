@@ -86,7 +86,7 @@ cat <<- EOF > bug.txt
 SteamOS Info:
 -------------------------------------------------------
 $OS_INFO
-Kernel          : $OS_KERNEL
+Kernel        $OS_KERNEL
 
 -------------------------------------------------------
 CPU Info:

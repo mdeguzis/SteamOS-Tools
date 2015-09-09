@@ -1,0 +1,190 @@
+00:00.0 Host bridge: Intel Corporation 4 Series Chipset DRAM Controller (rev 03)
+	Subsystem: Dell Device 027f
+	Flags: bus master, fast devsel, latency 0
+	Capabilities: <access denied>
+
+00:01.0 PCI bridge: Intel Corporation 4 Series Chipset PCI Express Root Port (rev 03) (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0
+	Bus: primary=00, secondary=01, subordinate=01, sec-latency=0
+	I/O behind bridge: 0000d000-0000dfff
+	Memory behind bridge: fc000000-fdefffff
+	Prefetchable memory behind bridge: 00000000f0000000-00000000f9ffffff
+	Capabilities: <access denied>
+	Kernel driver in use: pcieport
+
+00:03.0 Communication controller: Intel Corporation 4 Series Chipset HECI Controller (rev 03)
+	Subsystem: Dell Device 027f
+	Flags: bus master, fast devsel, latency 0, IRQ 33
+	Memory at fa400000 (64-bit, non-prefetchable) [size=16]
+	Capabilities: <access denied>
+	Kernel driver in use: mei_me
+
+00:03.2 IDE interface: Intel Corporation 4 Series Chipset PT IDER Controller (rev 03) (prog-if 85 [Master SecO PriO])
+	Subsystem: Dell Device 027f
+	Flags: bus master, 66MHz, fast devsel, latency 0, IRQ 18
+	I/O ports at fe80 [size=8]
+	I/O ports at fe90 [size=4]
+	I/O ports at fea0 [size=8]
+	I/O ports at feb0 [size=4]
+	I/O ports at fef0 [size=16]
+	Capabilities: <access denied>
+	Kernel driver in use: ata_generic
+
+00:03.3 Serial controller: Intel Corporation 4 Series Chipset Serial KT Controller (rev 03) (prog-if 02 [16550])
+	Subsystem: Dell Device 027f
+	Flags: bus master, 66MHz, fast devsel, latency 0, IRQ 17
+	I/O ports at ec98 [size=8]
+	Memory at fdfd8000 (32-bit, non-prefetchable) [size=4K]
+	Capabilities: <access denied>
+	Kernel driver in use: serial
+
+00:19.0 Ethernet controller: Intel Corporation 82567LM-3 Gigabit Network Connection (rev 02)
+	Subsystem: Dell Device 027f
+	Flags: bus master, fast devsel, latency 0, IRQ 32
+	Memory at fdfe0000 (32-bit, non-prefetchable) [size=128K]
+	Memory at fdfd9000 (32-bit, non-prefetchable) [size=4K]
+	I/O ports at ecc0 [size=32]
+	Capabilities: <access denied>
+	Kernel driver in use: e1000e
+
+00:1a.0 USB controller: Intel Corporation 82801JD/DO (ICH10 Family) USB UHCI Controller #4 (rev 02) (prog-if 00 [UHCI])
+	Subsystem: Dell Device 027f
+	Flags: bus master, medium devsel, latency 0, IRQ 16
+	I/O ports at ff20 [size=32]
+	Capabilities: <access denied>
+	Kernel driver in use: uhci_hcd
+
+00:1a.1 USB controller: Intel Corporation 82801JD/DO (ICH10 Family) USB UHCI Controller #5 (rev 02) (prog-if 00 [UHCI])
+	Subsystem: Dell Device 027f
+	Flags: bus master, medium devsel, latency 0, IRQ 17
+	I/O ports at ff00 [size=32]
+	Capabilities: <access denied>
+	Kernel driver in use: uhci_hcd
+
+00:1a.2 USB controller: Intel Corporation 82801JD/DO (ICH10 Family) USB UHCI Controller #6 (rev 02) (prog-if 00 [UHCI])
+	Subsystem: Dell Device 027f
+	Flags: bus master, medium devsel, latency 0, IRQ 22
+	I/O ports at fc00 [size=32]
+	Capabilities: <access denied>
+	Kernel driver in use: uhci_hcd
+
+00:1a.7 USB controller: Intel Corporation 82801JD/DO (ICH10 Family) USB2 EHCI Controller #2 (rev 02) (prog-if 20 [EHCI])
+	Subsystem: Dell Device 027f
+	Flags: bus master, medium devsel, latency 0, IRQ 22
+	Memory at fdfda000 (32-bit, non-prefetchable) [size=1K]
+	Capabilities: <access denied>
+	Kernel driver in use: ehci-pci
+
+00:1b.0 Audio device: Intel Corporation 82801JD/DO (ICH10 Family) HD Audio Controller (rev 02)
+	Subsystem: Dell Device 027f
+	Flags: bus master, fast devsel, latency 0, IRQ 34
+	Memory at fdfdc000 (64-bit, non-prefetchable) [size=16K]
+	Capabilities: <access denied>
+	Kernel driver in use: snd_hda_intel
+
+00:1c.0 PCI bridge: Intel Corporation 82801JD/DO (ICH10 Family) PCI Express Port 1 (rev 02) (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0
+	Bus: primary=00, secondary=02, subordinate=02, sec-latency=0
+	I/O behind bridge: 00001000-00001fff
+	Memory behind bridge: fbf00000-fbffffff
+	Prefetchable memory behind bridge: 00000000fa000000-00000000fa1fffff
+	Capabilities: <access denied>
+	Kernel driver in use: pcieport
+
+00:1c.1 PCI bridge: Intel Corporation 82801JD/DO (ICH10 Family) PCI Express Port 2 (rev 02) (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0
+	Bus: primary=00, secondary=03, subordinate=03, sec-latency=0
+	I/O behind bridge: 00002000-00002fff
+	Memory behind bridge: fbe00000-fbefffff
+	Prefetchable memory behind bridge: 00000000fa200000-00000000fa3fffff
+	Capabilities: <access denied>
+	Kernel driver in use: pcieport
+
+00:1d.0 USB controller: Intel Corporation 82801JD/DO (ICH10 Family) USB UHCI Controller #1 (rev 02) (prog-if 00 [UHCI])
+	Subsystem: Dell Device 027f
+	Flags: bus master, medium devsel, latency 0, IRQ 23
+	I/O ports at ff80 [size=32]
+	Capabilities: <access denied>
+	Kernel driver in use: uhci_hcd
+
+00:1d.1 USB controller: Intel Corporation 82801JD/DO (ICH10 Family) USB UHCI Controller #2 (rev 02) (prog-if 00 [UHCI])
+	Subsystem: Dell Device 027f
+	Flags: bus master, medium devsel, latency 0, IRQ 17
+	I/O ports at ff60 [size=32]
+	Capabilities: <access denied>
+	Kernel driver in use: uhci_hcd
+
+00:1d.2 USB controller: Intel Corporation 82801JD/DO (ICH10 Family) USB UHCI Controller #3 (rev 02) (prog-if 00 [UHCI])
+	Subsystem: Dell Device 027f
+	Flags: bus master, medium devsel, latency 0, IRQ 18
+	I/O ports at ff40 [size=32]
+	Capabilities: <access denied>
+	Kernel driver in use: uhci_hcd
+
+00:1d.7 USB controller: Intel Corporation 82801JD/DO (ICH10 Family) USB2 EHCI Controller #1 (rev 02) (prog-if 20 [EHCI])
+	Subsystem: Dell Device 027f
+	Flags: bus master, medium devsel, latency 0, IRQ 23
+	Memory at ff980000 (32-bit, non-prefetchable) [size=1K]
+	Capabilities: <access denied>
+	Kernel driver in use: ehci-pci
+
+00:1e.0 PCI bridge: Intel Corporation 82801 PCI Bridge (rev a2) (prog-if 01 [Subtractive decode])
+	Flags: bus master, fast devsel, latency 0
+	Bus: primary=00, secondary=04, subordinate=04, sec-latency=32
+	Capabilities: <access denied>
+
+00:1f.0 ISA bridge: Intel Corporation 82801JD (ICH10D) LPC Interface Controller (rev 02)
+	Subsystem: Dell Device 027f
+	Flags: bus master, medium devsel, latency 0
+	Capabilities: <access denied>
+	Kernel driver in use: lpc_ich
+
+00:1f.2 IDE interface: Intel Corporation 82801JD/DO (ICH10 Family) 4-port SATA IDE Controller (rev 02) (prog-if 8f [Master SecP SecO PriP PriO])
+	Subsystem: Dell Device 027f
+	Flags: bus master, 66MHz, medium devsel, latency 0, IRQ 18
+	I/O ports at fe00 [size=8]
+	I/O ports at fe10 [size=4]
+	I/O ports at fe20 [size=8]
+	I/O ports at fe30 [size=4]
+	I/O ports at fec0 [size=16]
+	I/O ports at eca0 [size=16]
+	Capabilities: <access denied>
+	Kernel driver in use: ata_piix
+
+00:1f.3 SMBus: Intel Corporation 82801JD/DO (ICH10 Family) SMBus Controller (rev 02)
+	Subsystem: Dell Device 027f
+	Flags: medium devsel, IRQ 18
+	Memory at fdfdb000 (64-bit, non-prefetchable) [size=256]
+	I/O ports at ece0 [size=32]
+	Kernel driver in use: i801_smbus
+
+00:1f.5 IDE interface: Intel Corporation 82801JD/DO (ICH10 Family) 2-port SATA IDE Controller (rev 02) (prog-if 85 [Master SecO PriO])
+	Subsystem: Dell Device 027f
+	Flags: bus master, 66MHz, medium devsel, latency 0, IRQ 18
+	I/O ports at fe40 [size=8]
+	I/O ports at fe50 [size=4]
+	I/O ports at fe60 [size=8]
+	I/O ports at fe70 [size=4]
+	I/O ports at fed0 [size=16]
+	I/O ports at ecb0 [size=16]
+	Capabilities: <access denied>
+	Kernel driver in use: ata_piix
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GK208 [GeForce GT 640 Rev. 2] (rev a1) (prog-if 00 [VGA controller])
+	Subsystem: ZOTAC International (MCO) Ltd. Device 1324
+	Flags: bus master, fast devsel, latency 0, IRQ 35
+	Memory at fc000000 (32-bit, non-prefetchable) [size=16M]
+	Memory at f0000000 (64-bit, prefetchable) [size=128M]
+	Memory at f8000000 (64-bit, prefetchable) [size=32M]
+	I/O ports at dc80 [size=128]
+	[virtual] Expansion ROM at fde00000 [disabled] [size=512K]
+	Capabilities: <access denied>
+	Kernel driver in use: nvidia
+
+01:00.1 Audio device: NVIDIA Corporation Device 0e0f (rev a1)
+	Subsystem: ZOTAC International (MCO) Ltd. Device 1324
+	Flags: bus master, fast devsel, latency 0, IRQ 17
+	Memory at fddfc000 (32-bit, non-prefetchable) [size=16K]
+	Capabilities: <access denied>
+	Kernel driver in use: snd_hda_intel
+

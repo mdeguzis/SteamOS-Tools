@@ -33,7 +33,7 @@ CPU_MODEL_SPEED=$(cat /proc/cpuinfo | grep -m 1 "model name" | cut -c 45-80)
 CPU_CORES=$(cat /proc/cpuinfo | grep -m 1 "cpu cores")
 
 GPU=$(lspci -v | grep "VGA" | cut -c 36-92)
-GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 2-30)
+GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 20-30)
 
 AUDIO_1=$(lspci -v | grep -m 1 "Audio")
 AUDIO_DRIVER_1=$(lspci -v | grep -m 1 -A 6 "Audio" | grep "Kernel" | cut -c 2-30)
@@ -89,8 +89,8 @@ $CPU_CORES
 -------------------------------------------------------
 GPU Info:
 -------------------------------------------------------
-GPU Model:      $GPU
-$GPU_DRIVER
+GPU Model       : $GPU
+Driver          : $GPU_DRIVER
 
 -------------------------------------------------------
 Audio Info:

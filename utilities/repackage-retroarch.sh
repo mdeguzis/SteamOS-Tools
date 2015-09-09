@@ -164,8 +164,15 @@ main()
 	
 	if [[ "$upload_choice" == "y" ]]; then
 	
-		# cut files
-		"$scriptdir/extra/upload-pkg-to-libregeek.sh"
+		# set vars for upload
+		sourcedir="$build_dir"
+		user="thelinu2"
+		host='libregeek.org'
+		destdir="/home2/thelinu2/public_html/SteamOS-Extra/build-tmp"
+		
+		# perform upload
+		scp -r $sourcedir $user@$host:$destdir
+		
 		echo -e "\n"
 		
 	elif [[ "$upload_choice" == "n" ]]; then

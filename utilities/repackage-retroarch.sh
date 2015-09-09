@@ -104,12 +104,26 @@ main()
   	sleep 2s
   	apt-get source --build ${pkg}
   	
+  	# since this is building a large amount of packages, remove
+  	# directories and unecessary files as we go.
+  	
+	# cut files so we just have our deb pkg
+	rm -f $build_dir/*.tar.gz
+	rm -f $build_dir/*.dsc
+	rm -f $build_dir/*.changes
+	rm -f $build_dir/*-dbg
+	rm -f $build_dir/*-dev
+	rm -f $build_dir/*-compat
+	
+	# remove source directory that was made
+	find $build_dir -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \;
+  	
   	# test only
   	#echo ${pkg}
   	#sleep 1s
 
-	done
-	exit 1
+done
+
 	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
@@ -119,42 +133,6 @@ main()
 		cd "$scriptdir"
 	else
 		cd "$HOME"
-	fi
-	
-# inform user of packages
-	echo -e "\n###################################################################"
-	echo -e "If package was built without errors you will see it below."
-	echo -e "If you do not, please check build dependcy errors listed above."
-	echo -e "You could also try manually building outside of this script with"
-	echo -e "the following commands (at your own risk!)\n"
-	echo -e "cd $build_dir"
-	echo -e "cd $build_folder"
-	echo -e "sudo dpkg-buildpackage -b -d -uc"
-	echo -e "###################################################################\n"
-	
-	ls "/home/desktop/build-retroarch-temp"
-	
-	echo -e "\n==> Would you like to trim out the tar.gz and dsc files for uploading? [y/n]"
-	sleep 0.5s
-	# capture command
-	read -ep "Choice: " trim_choice
-	
-	if [[ "$trim_choice" == "y" ]]; then
-		
-		# cut files so we just have our deb pkg
-		rm -f $build_dir/*.tar.gz
-		rm -f $build_dir/*.dsc
-		rm -f $build_dir/*.changes
-		rm -f $build_dir/*-dbg
-		rm -f $build_dir/*-dev
-		rm -f $build_dir/*-compat
-		
-		# remove directories from builds so we only are left with deb pkgs
-		find $build_dir -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \;
-		
-	elif [[ "$trim_choice" == "n" ]]; then
-	
-		echo -e "File trim not requested"
 	fi
 
 	echo -e "\n==> Would you like to upload any packages that were built? [y/n]"

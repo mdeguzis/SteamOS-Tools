@@ -20,37 +20,6 @@ sudo apt-get install git lib32gcc1
 # Steam CMD
 #############################################
 
-echo -e "==> Installing SteamCMD"
-sleep 2s
-
-# check for SteamCMD's existance in /home/desktop
-if [[ ! -f "/home/desktop/steamcmd/steamcmd.sh" ]]; then
-	echo -e "\nsteamcmd not found\n"
-	echo -e "Attempting to install this now.\n"
-	sleep 1s
-	# if directory exists, remove it so we have a clean slate
-	if [[ ! -d "/home/desktop/steamcmd" ]]; then
-		rm -rf "/home/desktop/steamcmd"
-		mkdir ~/steamcmd
-	fi
-
-	# Download and unpack steamcmd directory
-	cd ~/steamcmd
-	wget "http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
-	tar -xvzf steamcmd_linux.tar.gz
-
-	if [ $? == '0' ]; then
-		echo "Successfully installed 'steamcmd'"
-		sleep 2s
-	else
-		echo "Could not install 'steamcmd'. Exiting..."
-		sleep 2s
-		exit 1
-	fi
-else
-	echo "Checking for 'steamcmd' [Ok]"
-	sleep 0.2s
-fi
 
 #############################################
 # set vars

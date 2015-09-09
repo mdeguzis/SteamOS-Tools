@@ -39,7 +39,7 @@ cd gist cli
 chmod +x gistcli
 
 # create gist
-gistcli -f $bug_report_file
+./gistcli -f $bug_report_file
 
 #gist_url=$(curl -sX POST --data-binary '{"files": {"file1.txt": {"content": "lspci -v"}}}' \
 #https://api.github.com/gists| grep "gist.github" | grep html_url | cut -c 16-59)

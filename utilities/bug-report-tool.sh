@@ -28,6 +28,16 @@ sudo apt-get install git lib32gcc1
 # set vars
 #############################################
 
+CPU=$(cat /proc/cpuinfo | grep -m3 -E 'model name|cpu cores|MHz')
+
+GPU=$(lspci -v | grep "VGA")
+GPU_DRIVER=$(lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 2-30)
+
+AUDIO=$(lspci -v | grep -m 1 "Audio")
+AUDIO_KERNEL=$(lspci -v | grep -m 1 -A 9 "Audio" | grep "Kernel" | cut -c 2-30)
+
+PCI_FULL=$(lcpci -v)
+
 # Steam-specific
 # There is a bug in the current steamcmd version that outputs a 
 # Danish "o" in "version"
@@ -63,45 +73,31 @@ fi
 # enter git dir
 cd "$HOME/gist-cli"
 
-# some basic output to test:
-# CPU
-echo "-------------------------------------------------------" > bug.txt
-echo "Steam Info" >> bug.txt
-echo "-------------------------------------------------------" >> bug.txt
-echo $steam_ver >> bug.txt
-echo $steam_api >> bug.txt
+cat <<- EOF > bug.txt
+-------------------------------------------------------
+CPU Info:
+-------------------------------------------------------
+$CPU
 
-# CPU
-echo -e "\n-------------------------------------------------------" >> bug.txt
-echo "CPU Info" >> bug.txt
-echo "-------------------------------------------------------" >> bug.txt
-cat /proc/cpuinfo | grep -m3 -E 'model name|cpu cores|MHz' >> bug.txt
-echo ""
+-------------------------------------------------------
+GPU Info:
+-------------------------------------------------------
+$GPU
+$GPU_DRIVER
 
-#GPU
-echo -e "\n-------------------------------------------------------" >> bug.txt
-echo "GPU Info" >> bug.txt
-echo "-------------------------------------------------------" >> bug.txt
-lspci -v | grep "VGA" >> bug.txt
-lspci -v | grep -A 9 "VGA" | grep "Kernel" | cut -c 2-30 >> bug.txt
+-------------------------------------------------------
+Audio Info:
+-------------------------------------------------------
+$AUDIO
+$AUDIO_DRIVER
 
+-------------------------------------------------------
+Full PCI Info:
+-------------------------------------------------------
+$PCI_FULL
 
-#Audio
-echo -e "\n-------------------------------------------------------" >> bug.txt
-echo "GPU Info" >> bug.txt
-echo "-------------------------------------------------------" >> bug.txt
-lspci -v | grep -m 1 "Audio" >> bug.txt
-lspci -v | grep -m 1 -A 9 "Audio" | grep "Kernel" | cut -c 2-30 >> bug.txt
-echo "" >> bug.txt
+EOF
 
-lspci -v | grep -m 2 "Audio" >> bug.txt
-lspci -v | grep -m 2 -A 9 "Audio" | grep "Kernel" | cut -c 2-30 >> bug.txt
-
-# hardware info
-echo -e "\n-------------------------------------------------------" >> bug.txt
-echo "Full PCI info" >> bug.txt
-echo "-------------------------------------------------------" >> bug.txt
-lspci -v >> bug.txt
 
 clear
 cat <<- EOF

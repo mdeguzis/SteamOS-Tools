@@ -24,9 +24,6 @@ function msg() {
   echo '"}}'
 }
 
-[ "$#" -ne 1 ] && echo "Syntax: gist.sh filename" && exit 1
-[ ! -r "$1" ] && echo "Error: unable to read $1" && exit 2
-
 # set bug report dir
 bug_dir="/home/desktop/bug-reports"
 

@@ -92,9 +92,12 @@ echo "GPU Info" >> bug.txt
 echo "-------------------------------------------------------" >> bug.txt
 lspci -v | grep -m 1 "Audio" >> bug.txt
 lspci -v | grep -m 1 -A 9 "Audio" | grep "Kernel" | cut -c 2-30 >> bug.txt
-
+echo ""
 lspci -v | grep -m 2 "Audio" >> bug.txt
 lspci -v | grep -m 2 -A 9 "Audio" | grep "Kernel" | cut -c 2-30 >> bug.txt
+echo ""
+lspci -v | grep -m 3 "Audio" >> bug.txt
+lspci -v | grep -m 3 -A 9 "Audio" | grep "Kernel" | cut -c 2-30 >> bug.txt
 
 # hardware info
 echo -e "\n-------------------------------------------------------" >> bug.txt

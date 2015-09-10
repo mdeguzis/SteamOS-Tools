@@ -1,1 +1,2 @@
+libsdl2-dev
 libboost-filesystem-dev

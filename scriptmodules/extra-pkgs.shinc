@@ -569,14 +569,39 @@ ep_install_retroarch()
 	ep_install_eval_pkg
 	
 	#######################################
-	# Libretro cores
+	# Libretro cores stage 1
 	#######################################
+	# These are cores that stage 2 cores depend 
+	# upon to be installed first
+	
 	
 	# set vars
 	pkg_type="deb"
 	PKG="libretro cores"
 	PKG_FILENAME=""
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro/""
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage1"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag
+	multi="y"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	# cleanup
+	ep_pkg_cleanup
+	
+	#######################################
+	# Libretro cores stage 2
+	#######################################
+	# These are cores that can be installed freely
+	
+	# set vars
+	pkg_type="deb"
+	PKG="libretro cores"
+	PKG_FILENAME=""
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage2""
 	BIN_LOC=""
 	PKG_DIR=""
 	

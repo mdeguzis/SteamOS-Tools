@@ -552,7 +552,7 @@ ep_install_retroarch()
 	#######################################
 	
 	echo -e "\n==> Installing core packages for Retroarch\n"
-	sleep 1s
+	sleep 2s
 	
 	######################
 	# Retroarch assets
@@ -606,7 +606,7 @@ ep_install_retroarch()
 	# upon to be installed first
 	
 	echo -e "\n==> Installing libretro cores\n"
-	sleep 1s
+	sleep 2s
 	
 	# set vars
 	pkg_type="deb"
@@ -629,7 +629,7 @@ ep_install_retroarch()
 	
 	# set vars
 	pkg_type="deb"
-	PKG="libretro cores"
+	PKG="libretro-cores"
 	PKG_FILENAME=""
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage2/"
 	BIN_LOC=""
@@ -648,7 +648,7 @@ ep_install_retroarch()
 	
 	# set vars
 	pkg_type="deb"
-	PKG="libretro cores"
+	PKG="libretro-cores"
 	PKG_FILENAME=""
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage3/"
 	BIN_LOC=""

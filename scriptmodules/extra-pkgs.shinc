@@ -574,7 +574,7 @@ ep_install_retroarch()
 	######################
 	# set vars
 	pkg_type="deb"
-	PKG="retroarch-assets"
+	PKG="retroarch-joypad-autoconfig"
 	PKG_FILENAME="retroarch-joypad-autoconfig_0.1+r207~2~ubuntu14.04.1_all.deb"
 	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
 	
@@ -589,7 +589,7 @@ ep_install_retroarch()
 	######################
 	# set vars
 	pkg_type="deb"
-	PKG="retroarch-assets"
+	PKG="retroarch"
 	PKG_FILENAME="retroarch_1.2.2+r211~11~ubuntu14.04.1_amd64.deb"
 	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
 	
@@ -607,7 +607,7 @@ ep_install_retroarch()
 	
 	# set vars
 	pkg_type="deb"
-	PKG="libretro cores"
+	PKG="libretro-cores"
 	PKG_FILENAME=""
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage1"
 	BIN_LOC=""

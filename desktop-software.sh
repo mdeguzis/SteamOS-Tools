@@ -816,8 +816,8 @@ main()
 	if [[ "$type" == "basic" ||
 	      "$type" == "extra" ||
 	      "$type" == "emulation-src-deps" ||
-	      "$type" == "retroarch-src"
-	      "$type" == "retroarch-type"
+	      "$type" == "retroarch-src" ||
+	      "$type" == "retroarch-type" ||
 	      "$type" == "$type" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then

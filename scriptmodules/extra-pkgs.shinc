@@ -609,7 +609,7 @@ ep_install_retroarch()
 	pkg_type="deb"
 	PKG="libretro-cores"
 	PKG_FILENAME=""
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage1"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage1/"
 	BIN_LOC=""
 	PKG_DIR=""
 	
@@ -631,7 +631,7 @@ ep_install_retroarch()
 	pkg_type="deb"
 	PKG="libretro cores"
 	PKG_FILENAME=""
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage2"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage2/"
 	BIN_LOC=""
 	PKG_DIR=""
 	

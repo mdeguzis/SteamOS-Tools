@@ -219,7 +219,7 @@ if [[ "$apt_mode" == "install" ]]; then
 	sudo sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
 	# create desktop application link 
-	sudo cp "$scriptdir/cfgs/retroarch/retroarch-src.desktop" "/usr/share/applications"
+	sudo cp "$scriptdir/cfgs/desktop-files/retroarch-src.desktop" "/usr/share/applications"
 	
 	# copy banner image
 	cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_desktop"

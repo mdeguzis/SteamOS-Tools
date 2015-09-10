@@ -781,20 +781,17 @@ ep_install_eval_pkg()
 
 
 	# prcess only packages that are specifed by themselves	
-	elif [[ "$multi" == "n" ]]; then
-		
-		# assess pacakge
-		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed" 2> /dev/null)
-		if [ "" == "$PKG_OK" ]; then
-			echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
-			sleep 2s
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed" 2> /dev/null)
 	
-			# download target singluar deb
-			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
-			# process install
-			sudo gdebi "/tmp/$PKG_FILENAME"
-			
-		fi
+	elif [[ "$multi" == "n" && "" == "$PKG_OK" ]]; then
+		
+		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
+		sleep 2s
+
+		# download target singluar deb
+		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+		# process install
+		sudo gdebi "/tmp/$PKG_FILENAME"
 
 		# cleanup
 		rm -f "/tmp/$PKG_FILENAME"

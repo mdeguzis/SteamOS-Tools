@@ -674,24 +674,6 @@ install_software()
 	# If software type was for emulation, continue building
 	# emulators from source (DISABLE FOR NOW)
 	
-	###########################################################
-	# Kick off emulation install scripts (if specified)
-	###########################################################
-	
-        if [[ "$type" == "emulation" ]]; then
-                # call external build script
-                # DISABLE FOR NOW
-                # install_emus
-                echo "" > /dev/null
-        elif [[ "$type" == "retroarch-src" ]]; then
-                # call external build script
-                clear
-                echo -e "==> Proceeding to install emulator pkgs from source..."
-                sleep 2s
-                retroarch_src_main
-                rpc_configure_retroarch
-	fi
-	
 }
 
 show_warning()
@@ -859,14 +841,20 @@ main()
         if [[ "$type" == "emulation" ]]; then
 
 		# kick off extra modules for buld debs
-		echo -e "\n==> Proceeding to supplemental emulation package routine\n"
 		sleep 2s
 		m_emulation_install_main
+		
+	elif [[ "$type" == "retroarch-src" ]]; then
+	
+                # call external build script for Retroarch
+                clear
+                sleep 2s
+                retroarch_src_main
+                rpc_configure_retroarch
 		
 	elif [[ "$type" == "retroarch-test" ]]; then
 		
 		# kick off extra modules for buld debs
-		echo -e "\n==> Proceeding to supplemental emulation package routine\n"
 		sleep 2s
 		ep_install_retroarch
 		

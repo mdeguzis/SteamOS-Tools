@@ -750,7 +750,10 @@ ep_install_eval_pkg()
 			
 			# Download files recursively form base URL folder, skip index.html
 			# See: http://stackoverflow.com/a/5335576
-			wget -r -nH -A.deb --cut-dirs=3 --no-parent "$BASE_URL"
+			
+			# Accept only deb, no host DIRs, cut extra DIRs, do not ascend to parent DIR
+			# and also avoid rebots.txt
+			wget -A deb -r -nH --cut-dirs=3 --no-parent -e robots=off  "$BASE_URL"
 			
 			# process install in loop for each package
 			FILES="*.deb"
@@ -903,7 +906,10 @@ ep_test_deb()
 		
 			# Download files recursively form base URL folder, skip index.html
 			# See: http://stackoverflow.com/a/5335576
-			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
+			
+			# Accept only deb, no host DIRs, cut extra DIRs, do not ascend to parent DIR
+			# and also avoid rebots.txt
+			wget -A deb -r -nH --cut-dirs=3 --no-parent -e robots=off  "$BASE_URL"
 			
 		elif [[ "$multi" == "n" ]]; then
 		

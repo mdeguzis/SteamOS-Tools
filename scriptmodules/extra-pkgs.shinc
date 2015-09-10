@@ -554,16 +554,47 @@ ep_install_retroarch()
 	echo -e "\n==> Installing core packages for Retroarch\n"
 	sleep 1s
 	
+	######################
+	# Retroarch assets
+	######################
 	# set vars
 	pkg_type="deb"
-	PKG="Retroarch core packages"
-	PKG_FILENAME=""
+	PKG="retroarch-assets"
+	PKG_FILENAME="retroarch-assets_0.1+r71~2~ubuntu14.04.1_all.deb"
 	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
-	BIN_LOC=""
-	PKG_DIR=""
 	
 	# set multiflag
-	multi="y"
+	multi="n"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	######################
+	# Retroarch Joypad
+	######################
+	# set vars
+	pkg_type="deb"
+	PKG="retroarch-assets"
+	PKG_FILENAME="retroarch-joypad-autoconfig_0.1+r207~2~ubuntu14.04.1_all.deb"
+	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
+	
+	# set multiflag
+	multi="n"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	######################
+	# Retroarch client
+	######################
+	# set vars
+	pkg_type="deb"
+	PKG="retroarch-assets"
+	PKG_FILENAME="retroarch_1.2.2+r211~11~ubuntu14.04.1_amd64.deb"
+	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
+	
+	# set multiflag
+	multi="n"
 	
 	# install package
 	ep_install_eval_pkg
@@ -573,7 +604,6 @@ ep_install_retroarch()
 	#######################################
 	# These are cores that stage 2 cores depend 
 	# upon to be installed first
-	
 	
 	# set vars
 	pkg_type="deb"

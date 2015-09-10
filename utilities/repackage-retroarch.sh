@@ -40,7 +40,8 @@ install_prereqs()
 	sleep 1s
 	# install needed packages
 	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring cmake
+	debian-keyring debian-archive-keyring cmake libv4l-dev libusb-1.0-0-dev \
+	libopenal-dev libjack-jackd2-dev libgbm-dev python3-dev
 
 }
 

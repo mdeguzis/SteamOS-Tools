@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.3.6
+# Script Ver:	  	1.3.7
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian jessie repositories directly.
 #	
@@ -535,6 +535,62 @@ ep_install_plex()
   
 }
 
+ep_install_retroarch()
+{
+
+	echo -e "\n==> Installing Retroarch and its associated libretro cores Home from automated script"
+	sleep 2s
+	
+	# Jettison deb-multimedia method, build more up to date ppa package for Ubuntu
+	# Last commit this was used in: 44dc9a5
+	
+	# Package sourced from: 
+	# https://launchpad.net/~libretro/+archive/ubuntu/stable?field.series_filter=trusty
+	
+	#######################################
+	# Retroarch
+	#######################################
+	
+	echo -e "\n==> Installing core packages for Retroarch\n"
+	sleep 1s
+	
+	# set vars
+	pkg_type="deb"
+	PKG="Retroarch core packages"
+	PKG_FILENAME=""
+	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag
+	multi="y"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	#######################################
+	# Libretro cores
+	#######################################
+	
+	# set vars
+	pkg_type="deb"
+	PKG="libretro cores"
+	PKG_FILENAME=""
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro/""
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag
+	multi="y"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	# cleanup
+	ep_pkg_cleanup
+  
+}
+
 ep_install_xb360_bindings()
 {
 	
@@ -633,15 +689,26 @@ ep_install_eval_pkg()
 		# check for multiple debs for install
 		if [[ "$multi" == "y" ]]; then
 		
-			cd /tmp
+			# create and change to tmp install dir
+			mkdir -p "/tmp/deb-install-tmp"	
+			cd "/tmp/deb-install-tmp"
+			
 			# Download files recursively form base URL folder, skip index.html
 			# See: http://stackoverflow.com/a/5335576
 			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
 			
-			# process install in loop for each package in our software list
-			for x in `cat $software_list`; do
+			# process install in loop for each package
+			FILES="*.deb"
+			
+			# process files
+			for x in $FILES
+			do
 				sudo gdebi -i "$x"
 			done
+
+			# remove temp install directory
+			rm -rf "/tmp/deb-install-tmp"
+
 			
 		elif [[ "$multi" == "n" ]]; then
 		
@@ -649,6 +716,7 @@ ep_install_eval_pkg()
 			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
 			# process install
 			sudo gdebi "/tmp/$PKG_FILENAME"
+			
 		fi
 
 		# cleanup

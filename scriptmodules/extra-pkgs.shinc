@@ -602,7 +602,7 @@ ep_install_retroarch()
 	#######################################
 	# Libretro cores stage 1
 	#######################################
-	# These are cores that stage 2 cores depend 
+	# These are packages that all cores depend upon
 	# upon to be installed first
 	
 	# set vars
@@ -619,19 +619,35 @@ ep_install_retroarch()
 	# install package
 	ep_install_eval_pkg
 	
-	# cleanup
-	ep_pkg_cleanup
-	
 	#######################################
 	# Libretro cores stage 2
 	#######################################
-	# These are cores that can be installed freely
+	# These are cores that stage 3 cores depend upon
 	
 	# set vars
 	pkg_type="deb"
 	PKG="libretro cores"
 	PKG_FILENAME=""
 	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage2/"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag
+	multi="y"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	#######################################
+	# Libretro cores stage 3
+	#######################################
+	# These are cores that can be installed freely in any order
+	
+	# set vars
+	pkg_type="deb"
+	PKG="libretro cores"
+	PKG_FILENAME=""
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage3/"
 	BIN_LOC=""
 	PKG_DIR=""
 	
@@ -733,43 +749,46 @@ ep_install_eval_pkg()
 	#echo -e "\n==> Installing $PKG via external script\n"
 
 	#####################################################
-	# Binary package eval routine using dpkg or gdebi
+	# package eval routine using dpkg or gdebi
 	#####################################################
 	
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed" 2> /dev/null)
-	if [ "" == "$PKG_OK" ]; then
-		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
-		sleep 2s
+	
+	# check and process for multiple debs
+	if [[ "$multi" == "y" ]]; then
+	
+		# create and change to tmp install dir
+		mkdir -p "/tmp/deb-install-tmp"	
+		cd "/tmp/deb-install-tmp"
 		
-		# check for multiple debs for install
-		if [[ "$multi" == "y" ]]; then
+		# Download files recursively form base URL folder, skip index.html
+		# See: http://stackoverflow.com/a/5335576
 		
-			# create and change to tmp install dir
-			mkdir -p "/tmp/deb-install-tmp"	
-			cd "/tmp/deb-install-tmp"
-			
-			# Download files recursively form base URL folder, skip index.html
-			# See: http://stackoverflow.com/a/5335576
-			
-			# Accept only deb, no host DIRs, cut extra DIRs, do not ascend to parent DIR
-			# and also avoid rebots.txt
-			wget -A deb -r -nH --cut-dirs=3 --no-parent -e robots=off  "$BASE_URL"
-			
-			# process install in loop for each package
-			FILES="*.deb"
-			
-			# process files
-			for x in $FILES
-			do
-				echo "y" | sudo dpkg -i "$x" | tee "$HOME/retro-log.txt"
-			done
+		# Accept only deb, no host DIRs, cut extra DIRs, do not ascend to parent DIR
+		# and also avoid rebots.txt
+		wget -A deb -r -nH --cut-dirs=3 --no-parent -e robots=off  "$BASE_URL"
+		
+		# process install in loop for each package
+		FILES="*.deb"
+		
+		# process files
+		for x in $FILES
+		do
+			echo "y" | sudo dpkg -i "$x" | tee "$HOME/retro-log.txt"
+		done
 
-			# remove temp install directory
-			rm -rf "/tmp/deb-install-tmp"
+		# remove temp install directory
+		rm -rf "/tmp/deb-install-tmp"
 
-			
-		elif [[ "$multi" == "n" ]]; then
+
+	# prcess only packages that are specifed by themselves	
+	elif [[ "$multi" == "n" ]]; then
 		
+		# assess pacakge
+		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed" 2> /dev/null)
+		if [ "" == "$PKG_OK" ]; then
+			echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
+			sleep 2s
+	
 			# download target singluar deb
 			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
 			# process install

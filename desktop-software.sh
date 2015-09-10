@@ -425,6 +425,10 @@ get_software_type()
         elif [[ "$type" == "retroarch-src" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/retroarch-src.txt"
+        elif [[ "$type" == "retroarch-test" ]]; then
+                # add emulation softare to temp list
+                ep_install_retroarch
+                exit 1
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/emulation-src-deps.txt"

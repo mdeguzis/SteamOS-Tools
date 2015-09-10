@@ -443,7 +443,6 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/software-lists/pcsx2-src-deps.txt"
-                m_install_pcsx2_src
         elif [[ "$type" == "upnp-dlna" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
@@ -871,6 +870,10 @@ main()
 		# kick off helper script
 		install_mobile_upnp_dlna
 		
+	elif [[ "$type" == "pcsx2-testing" ]]; then
+	
+		# Ensure that Build-Depends are installed prior
+		m_install_pcsx2_src
 	fi
 	
 	# cleanup package leftovers

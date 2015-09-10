@@ -31,7 +31,7 @@ show_warning()
 source_compiler_flags()
 {
 	
-if [[ $ARCH == i686 ]]; then
+if [[ $ARCH == "i386" ]]; then
     cmake .. \
       -DCMAKE_BUILD_TYPE='Release' \
       -DCMAKE_INSTALL_PREFIX='/usr' \
@@ -147,7 +147,7 @@ fi
   ############################
 
   # git dir evail check
-  PKG_check=$(ls "$git_dir" 2> /dev/null)
+  PKG_check=$(ls "$git_dir/build" 2> /dev/null)
   
   ############################
   # Begin $PKG build eval
@@ -177,15 +177,14 @@ fi
   		sleep 2s
   		
   		# build $PKG
-	  	if [[ -d build_dir ]]; then
-			rm -rf build_dir
-			mkdir build_dir
-		else
-			mkdir build_dir
-			cd build_dir 
+	  	if [[ -d build ]]; then
+			rm -rf build
 		fi
 		
+		mkdir build
+		
 		# set compiler flags and run cmake
+		#cd build
 	  	#source_compiler_flags
 	  	
 	  	# try simple build
@@ -209,15 +208,14 @@ fi
   	sleep 2s
   	
   	# build $PKG
-  	if [[ -d build_dir ]]; then
-		rm -rf build_dir
-		mkdir build_dir
-	else
-		mkdir build_dir
-		cd build_dir 
+  	if [[ -d build ]]; then
+		rm -rf build
 	fi
-
+	
+	mkdir build
+	
 	# set compiler flags and run cmake
+	#cd build
   	#source_compiler_flags
   	
   	# try simple build

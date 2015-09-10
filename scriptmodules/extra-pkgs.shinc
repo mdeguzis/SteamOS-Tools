@@ -663,6 +663,16 @@ ep_install_retroarch()
 	# cleanup
 	ep_pkg_cleanup
   
+	#######################################
+	# Post configuration
+	#######################################
+  
+  	# this will be handled in a restructed existing script
+  	# TODO
+  	
+  	# Run post configuration
+  	#rpc_configure_retroarch
+  
 }
 
 ep_install_xb360_bindings()

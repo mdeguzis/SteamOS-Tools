@@ -4,3 +4,8 @@ libboost-filesystem-dev
 fonts-dejavu-core
 python3
 nvidia-cg-toolkit
+nvidia-cg-dev
+libcg
+libcggl
+freeglut3
+libxss1

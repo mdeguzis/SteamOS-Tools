@@ -427,8 +427,7 @@ get_software_type()
                 software_list="$scriptdir/cfgs/software-lists/retroarch-src.txt"
         elif [[ "$type" == "retroarch-test" ]]; then
                 # add emulation softare to temp list
-                ep_install_retroarch
-                exit 1
+                software_list="$scriptdir/cfgs/software-lists/retroarch.txt"
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/emulation-src-deps.txt"
@@ -809,12 +808,16 @@ main()
         
 	# Assess software types and fire of installation routines if need be.
 	# The first section will be basic checks, then specific use cases will be
-	# assessed
+	# assessed.
+	
+	# Only specify lists in the first section if they require software lists
+	# to be checked and installed as prerequisites
 	
 	if [[ "$type" == "basic" ||
 	      "$type" == "extra" ||
-	      "$type" == "emulation-src" ||
 	      "$type" == "emulation-src-deps" ||
+	      "$type" == "retroarch-src"
+	      "$type" == "retroarch-type"
 	      "$type" == "$type" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then
@@ -850,12 +853,22 @@ main()
         # Supplemental installs / modules
         #############################################
         
+        # If an outside script needs called to install the softwarew type,
+        # do it below.
+        
         if [[ "$type" == "emulation" ]]; then
 
 		# kick off extra modules for buld debs
 		echo -e "\n==> Proceeding to supplemental emulation package routine\n"
 		sleep 2s
 		m_emulation_install_main
+		
+	elif [[ "$type" == "retroarch-test" ]]; then
+		
+		# kick off extra modules for buld debs
+		echo -e "\n==> Proceeding to supplemental emulation package routine\n"
+		sleep 2s
+		ep_install_retroarch
 		
 	elif [[ "$type" == "ue4-src" ]]; then
 

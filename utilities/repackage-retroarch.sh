@@ -170,12 +170,28 @@ main()
 	if [[ "$purge_choice" == "y" ]]; then
 	
 		# remove list
+		echo -e "\n"
 		sudo rm -f /etc/apt/sources.list.d/${target}.list
 		sudo apt-get update
 		
 	elif [[ "$purge_choice" == "n" ]]; then
 	
-		echo -e "Purge not requested\n"
+		echo -e "\n==INFO==\nPurge not requested\n"
+	fi
+	
+	echo -e "\n==> Remove local built packages? [y/n]"
+	sleep 0.5s
+	# capture command
+	read -ep "Choice: " remove_choice
+	
+	if [[ "$remove_choice" == "y" ]]; then
+	
+		# remove list
+		rm -rf "$build_dir"
+		
+	elif [[ "$remove_choice" == "n" ]]; then
+	
+		echo -e "\n==INFO==\nRemoval not requested\n"
 	fi
 	
 }

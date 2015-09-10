@@ -44,11 +44,26 @@ install_prereqs()
 
 }
 
-main()
+set_vars()
 {
 	
 	# build dir
 	build_dir="/home/desktop/build-retroarch-temp"
+	
+	# set source
+	repo_src="deb-src http://ppa.launchpad.net/libretro/stable/ubuntu trusty main"
+
+	# GPG key
+	gpg_pub_key="ECA3745F"
+	
+	# set target
+	target="libretro-stable"
+	
+	
+}
+
+main()
+{
 	
 	# remove previous dirs if they exist
 	if [[ -d "$build_dir" ]]; then
@@ -58,15 +73,6 @@ main()
 	# create build dir and enter it
 	mkdir -p "$build_dir"
 	cd "$build_dir"
-	
-	# set source
-	repo_src="deb-src http://ppa.launchpad.net/libretro/stable/ubuntu trusty main"
-
-  # GPG key
-	gpg_pub_key="ECA3745F"
-	
-	# set target
-	target="libretro-stable"
 	
 	# prechecks
 	echo -e "\n==> Attempting to add source list"
@@ -93,37 +99,36 @@ main()
 	sudo apt-get update
 	
 	# Get listing of PPA packages
-  pkg_list=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/ppa.launchpad.net_libretro*)
+  	pkg_list=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/ppa.launchpad.net_libretro*)
   
-  # Rebuild all items in pkg_list
-  for pkg in ${pkg_list}; 
-  do
+	# Rebuild all items in pkg_list
+	for pkg in ${pkg_list}; 
+	do
 	
-  	# Attempt to build target
-  	echo -e "\n==> Attempting to build ${pkg}:\n"
-  	sleep 2s
-  	apt-get source --build ${pkg}
-  	
-  	# since this is building a large amount of packages, remove
-  	# directories and unecessary files as we go.
-  	
-	# cut files so we just have our deb pkg
-	rm -f $build_dir/*.tar.gz
-	rm -f $build_dir/*.dsc
-	rm -f $build_dir/*.changes
-	rm -f $build_dir/*-dbg
-	rm -f $build_dir/*-dev
-	rm -f $build_dir/*-compat
-	
-	# remove source directory that was made
-	find $build_dir -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \;
-  	
-  	# test only
-  	#echo ${pkg}
-  	#sleep 1s
+		# Attempt to build target
+		echo -e "\n==> Attempting to build ${pkg}:\n"
+		sleep 2s
+		apt-get source --build ${pkg}
+		
+		# since this is building a large amount of packages, remove
+		# directories and unecessary files as we go.
+		
+		# cut files so we just have our deb pkg
+		rm -f $build_dir/*.tar.gz
+		rm -f $build_dir/*.dsc
+		rm -f $build_dir/*.changes
+		rm -f $build_dir/*-dbg
+		rm -f $build_dir/*-dev
+		rm -f $build_dir/*-compat
+		
+		# remove source directory that was made
+		find $build_dir -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \;
+		
+		# test only
+		#echo ${pkg}
+		#sleep 1s
 
-done
-
+	done
 	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
@@ -177,6 +182,9 @@ done
 
 #prereqs
 install_prereqs
+
+# set vars
+set_vars
 
 # start main
 main

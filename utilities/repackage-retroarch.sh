@@ -2,7 +2,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name: 	repackage-retroarch.sh
-# Script Ver:	0.1.5
+# Script Ver:	0.3.5
 # Description:	Overall goal of script is to automate rebuilding pkgs from
 #               https://launchpad.net/~libretro/+archive/ubuntu/stable?field.series_filter=trusty
 #
@@ -140,7 +140,7 @@ main()
 		cd "$HOME"
 	fi
 
-	echo -e "\n==> Would you like to upload any packages that were built? [y/n]"
+	echo -e "\n==> Would you like to upload the packages that were built? [y/n]"
 	sleep 0.5s
 	# capture command
 	read -ep "Choice: " upload_choice
@@ -153,10 +153,10 @@ main()
 		host='libregeek.org'
 		destdir="/home2/thelinu2/public_html/SteamOS-Extra/build-tmp"
 		
+		echo -e "\n"
+		
 		# perform upload
 		scp -r $sourcedir $user@$host:$destdir
-		
-		echo -e "\n"
 		
 	elif [[ "$upload_choice" == "n" ]]; then
 		echo -e "Upload not requested\n"

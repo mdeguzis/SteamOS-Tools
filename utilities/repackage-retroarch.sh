@@ -151,7 +151,7 @@ main()
 		sourcedir="$build_dir"
 		user="thelinu2"
 		host='libregeek.org'
-		destdir="/home2/thelinu2/public_html/SteamOS-Extra/build-tmp"
+		destdir="/home2/thelinu2/public_html/SteamOS-Extra/build-tmp/"
 		
 		echo -e "\n"
 		

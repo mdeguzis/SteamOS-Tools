@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.3.7
+# Script Ver:	  	1.7.7
 # Description:		Module for isntalling useful pacakges otherwise not 
 #			found in The Debian jessie repositories directly.
 #	
@@ -604,6 +604,9 @@ ep_install_retroarch()
 	#######################################
 	# These are packages that all cores depend upon
 	# upon to be installed first
+	
+	echo -e "\n==> Installing libretro cores\n"
+	sleep 1s
 	
 	# set vars
 	pkg_type="deb"

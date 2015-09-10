@@ -1,3 +1,6 @@
 libsdl2-dev
 libsdl2-2.0-0
 libboost-filesystem-dev
+fonts-dejavu-core
+python3
+nvidia-cg-toolkit

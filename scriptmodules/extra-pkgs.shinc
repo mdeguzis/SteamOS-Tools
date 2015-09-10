@@ -720,7 +720,7 @@ ep_install_eval_pkg()
 			
 			# Download files recursively form base URL folder, skip index.html
 			# See: http://stackoverflow.com/a/5335576
-			wget -r -nH --cut-dirs=3 --no-parent -A.deb "$BASE_URL"
+			wget -r -nH -A.deb --cut-dirs=3 --no-parent "$BASE_URL"
 			
 			# process install in loop for each package
 			FILES="*.deb"

@@ -703,7 +703,7 @@ ep_install_eval_pkg()
 			# process files
 			for x in $FILES
 			do
-				sudo gdebi -i "$x"
+				echo "y" | sudo gdebi "$x"
 			done
 
 			# remove temp install directory

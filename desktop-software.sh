@@ -274,8 +274,8 @@ show_help()
 	'./desktop-software list [type]'
 	
 	Options: 	[install|uninstall|list|check|test] 
-	Types: 		[basic|extra|emulators|retroarch-src|emulation-src-deps]
-	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
+	Types: 		[basic|extra|emulators|retroarch-src|reetroarch]
+	Types Cont.	[emulation-src-deps|upnp-dlna|gaming-tools|games-pkg<pkg_name>]
 	Extra types: 	[kodi|kodi-src|lutris|plex|webapp]
 	Functions: 	[xb360-bindings|gameplay-recording]
 	
@@ -425,7 +425,7 @@ get_software_type()
         elif [[ "$type" == "retroarch-src" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/retroarch-src.txt"
-        elif [[ "$type" == "retroarch-test" ]]; then
+        elif [[ "$type" == "retroarch" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/retroarch.txt"
         elif [[ "$type" == "emulation-src-deps" ]]; then
@@ -851,7 +851,7 @@ main()
                 retroarch_src_main
                 rpc_configure_retroarch
 		
-	elif [[ "$type" == "retroarch-test" ]]; then
+	elif [[ "$type" == "retroarch" ]]; then
 		
 		# kick off extra modules for buld debs
 		sleep 2s

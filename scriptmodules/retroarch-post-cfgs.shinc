@@ -379,10 +379,10 @@ rpc_configure_src()
 		find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_steam" 2> /dev/null
 		
 		# fix/correct permissions to our extra directories for the source build
-		sudo chown -R desktop:destkop "$retroarch_base_desktop"
-		sudo chown -R desktop:destkop "$retroarch_filters_desktop"
-		sudo chown -R desktop:destkop "$retroarch_shaders_desktop"
-		sudo chown -R desktop:destkop "$hist_loc_desktop"
+		sudo chown -R desktop:desktop "$retroarch_base_desktop"
+		sudo chown -R desktop:desktop "$retroarch_filters_desktop"
+		sudo chown -R desktop:desktop "$retroarch_shaders_desktop"
+		sudo chown -R desktop:desktop "$hist_loc_desktop"
 		
 		sudo chown -R steam:steam "$retroarch_base_steam"
 		sudo chown -R steam:steam "$hist_loc_steam"

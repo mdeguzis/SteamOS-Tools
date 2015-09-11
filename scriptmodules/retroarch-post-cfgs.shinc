@@ -124,8 +124,20 @@ rpc_configure_common()
 		
 		# Symlink the desktop ROMs directory to /home/steam/ROMs 
 		# so Retroarch can see it easily
-		sudo ln -s "$roms_dir_desktop" "$roms_dir_steam"
 		
+
+		# reset or creatw symbolic link
+		if [[ -L "$roms_dir_steam" ]]; then
+
+			#remove existing link and recreate
+			sudo rm -f "$roms_dir_steam"
+			sudo ln -s "$roms_dir_desktop" "$roms_dir_steam"
+
+		elif [[ -d "$roms_dir_steam" ]]; then
+
+			echo -e "\n==ERROR==\nTarget symlink location taken. Failed to link to desktop ROMs directory!"
+
+		fi
 		#################################################
 		# Application parameters 
 		#################################################

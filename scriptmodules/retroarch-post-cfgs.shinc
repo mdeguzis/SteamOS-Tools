@@ -175,9 +175,15 @@ rpc_configure_common()
 			
 		fi
 		
-		# copy banner image
-		cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_desktop"
-		sudo cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_steam"
+		# copy banner images
+		
+		# Regular Retroarch
+		cp "$scriptdir/artwork/banners/retro-arch-logo.png" "$banner_dir_desktop"
+		sudo cp "$scriptdir/artwork/banners/retro-arch-logo.png" "$banner_dir_steam"
+		
+		# Retroarch built from source
+		#cp "$scriptdir/artwork/banners/retro-arch-src-logo.png" "$banner_dir_desktop"
+		#sudo cp "$scriptdir/artwork/banners/retro-arch-src-logo.png" "$banner_dir_steam"
 		
 		#################################################
 		# Cleanup

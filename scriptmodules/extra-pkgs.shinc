@@ -666,12 +666,9 @@ ep_install_retroarch()
 	#######################################
 	# Post configuration
 	#######################################
-  
-  	# this will be handled in a restructed existing script
-  	# TODO
   	
-  	# Run post configuration
-  	#rpc_configure_retroarch
+  	# Run post configuration for common configuration
+  	rpc_configure_common
   
 }
 

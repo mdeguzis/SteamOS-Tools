@@ -9,6 +9,51 @@
 #
 # -------------------------------------------------------------------------------
 
+rpc_unload_retroarch
+{
+
+	echo -e "\n==> Removing related files for retroach post-install configs"
+	sleep 2s
+	
+	# confirm with user
+	echo -e "\nDo you wish to remove configuration files related to Retroarch? [y/n]"
+
+	# the prompt sometimes likes to jump above sleep 
+	sleep 0.5s 
+
+	# evaluate
+	read -ep "Choice: " remove_confirm_config
+
+	if [[ "$remove_confirm_config" == "n" ]]; then
+		echo -e "\nKeeping configurtion files for Retroarch by user request."
+	elif [[ "$remove_confirm_config" == "y" ]]; then
+		# remove related files
+		sudo rm -f "$retroarch_cfg_loc_steam" "$retroarch_cfg_loc_desktop"
+	fi
+	
+	############################################################################
+	#Remove ROM save files, etc if uninstall is specified by user
+	############################################################################
+	
+	# confirm with user
+	echo -e "\nDo youyou wish to remove your ROM save files related to Retroarch? [y/n]"
+
+	# the prompt sometimes likes to jump above sleep 
+	sleep 0.5s 
+
+	# evaluate
+	read -ep "Choice: " remove_confirm_saves
+
+	if [[ "$remove_confirm_saves" == "n" ]]; then
+		echo -e "\nKeeping ROM save files for Retroarch by user request."
+	elif [[ "$remove_confirm_saves" == "y" ]]; then
+		# remove related files
+		sudo rm -f "$save_loc_desktop" "$save_loc_steam"
+		sudo rm -f "$save_loc_desktop" "$save_loc_steam"
+	fi
+	
+}
+
 rpc_configure_common()
 {
 
@@ -187,8 +232,9 @@ rpc_configure_common()
 
 	elif [[ "$apt_mode" == "remove" ]]; then
 	
-		# TODO
-		:
+		#Remove directories, build files, etc if uninstall is specified by user
+		# fire off common removal function
+		rpc_unload_retroarch
 	
 	fi
 
@@ -327,52 +373,12 @@ rpc_configure_src()
 		echo -e "Please see $scriptdir/docs/Retroarch-info.md for"
 		echo -e "more information"
 		sleep 1s
-		
-		############################################################################
-		#Remove directories, build files, etc if uninstall is specified by user
-		############################################################################
 	
 	elif [[ "$apt_mode" == "remove" ]]; then
 		
-		echo -e "\n==> Removing related files for retroach post-install configs"
-		sleep 2s
-		
-		# confirm with user
-		echo -e "\nDo you wish to remove configuration files related to Retroarch? [y/n]"
-	
-		# the prompt sometimes likes to jump above sleep 
-		sleep 0.5s 
-	
-		# evaluate
-		read -ep "Choice: " remove_confirm_config
-	
-		if [[ "$remove_confirm_config" == "n" ]]; then
-			echo -e "\nKeeping configurtion files for Retroarch by user request."
-		elif [[ "$remove_confirm_config" == "y" ]]; then
-			# remove related files
-			sudo rm -f "$retroarch_cfg_loc_steam" "$retroarch_cfg_loc_desktop"
-		fi
-		
-		############################################################################
-		#Remove ROM save files, etc if uninstall is specified by user
-		############################################################################
-		
-		# confirm with user
-		echo -e "\nDo youyou wish to remove your ROM save files related to Retroarch? [y/n]"
-	
-		# the prompt sometimes likes to jump above sleep 
-		sleep 0.5s 
-	
-		# evaluate
-		read -ep "Choice: " remove_confirm_saves
-	
-		if [[ "$remove_confirm_saves" == "n" ]]; then
-			echo -e "\nKeeping ROM save files for Retroarch by user request."
-		elif [[ "$remove_confirm_saves" == "y" ]]; then
-			# remove related files
-			sudo rm -f "$save_loc_desktop" "$save_loc_steam"
-			sudo rm -f "$save_loc_desktop" "$save_loc_steam"
-		fi
+		#Remove directories, build files, etc if uninstall is specified by user
+		# fire off common removal function
+		rpc_unload_retroarch
 		
 	fi
 }

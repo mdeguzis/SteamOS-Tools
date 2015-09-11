@@ -848,7 +848,7 @@ main()
                 # call external build script for Retroarch
                 clear
                 sleep 2s
-                retroarch_src_main
+                rfs_retroarch_src_main
                 rpc_configure_retroarch
 		
 	elif [[ "$type" == "retroarch" ]]; then
@@ -856,6 +856,7 @@ main()
 		# kick off extra modules for buld debs
 		sleep 2s
 		ep_install_retroarch
+		rpc_configure_common
 		
 	elif [[ "$type" == "ue4-src" ]]; then
 

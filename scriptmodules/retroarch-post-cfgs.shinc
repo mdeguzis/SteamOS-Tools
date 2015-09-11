@@ -142,6 +142,48 @@ rpc_configure_common()
 			
 		esac
 		
+		# Swap home_temp out for each user DIR path
+		
+		# We will use the desktop user here so that there are no permission struggles when
+		# Adding ROMs with the normal desktop user, and the Steam user should be able to see/read
+		# The ROMs
+		sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
+		sudo sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
+		
+		# copy shortcut based on the software type used
+		if [[ "$type" == "retroarch-src" ]]; then
+			
+			# create desktop application link 
+			sudo cp "$scriptdir/cfgs/desktop-files/retroarch-src.desktop" "/usr/share/applications"
+
+		elif [[ "$type" == "retroarch" ]]; then
+			
+			# create desktop application link 
+			sudo cp "$scriptdir/cfgs/desktop-files/retroarch.desktop" "/usr/share/applications"
+			
+		fi
+		
+		# copy banner image
+		cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_desktop"
+		sudo cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_steam"
+		
+		#################################################
+		# Cleanup
+		#################################################
+		
+		echo -e "\n==> Correcting owners and permissions"
+		
+		# correct recursively to touch all our directories
+		sudo chmod -R 755 "$retroarch_base_desktop"
+		sudo chmod -R 755 "$retroarch_base_steam"
+		sudo chmod -R 755 "$retroarch_cfg_loc_desktop"
+		sudo chmod -R 755 "$retroarch_cfg_loc_steam"
+		
+		# other non specific DIRs
+		sudo chmod -R 755 "$banner_dir_desktop"
+		sudo chmod -R 755 "$banner_dir_steam"
+		sudo chmod -R 755 "$roms_dir_desktop"
+		sudo chmod -R 755 "$roms_dir_steam"
 
 	elif [[ "$apt_mode" == "remove" ]]; then
 	
@@ -224,28 +266,14 @@ rpc_configure_src()
 		
 		# base directories
 		pathlist+=("$retroarch_base_desktop")
-		pathlist+=("$steam_home")
-		pathlist+=("$desktop_home")
 		pathlist+=("$core_loc")
 		pathlist+=("$core_info_dir")
-		pathlist+=("$retroarch_base_desktop")
-		pathlist+=("$retroarch_base_steam")
-		pathlist+=("$save_loc_desktop")
-		pathlist+=("$save_loc_steam")
 		pathlist+=("$retroarch_filters_desktop")
 		pathlist+=("$retroarch_filters_steam")
 		pathlist+=("$retroarch_shaders_desktop")
 		pathlist+=("$retroarch_shaders_steam")
 		pathlist+=("$hist_loc_desktop")
 		pathlist+=("$hist_loc_steam")
-		pathlist+=("$retroarch_cfg_loc_steam")
-		pathlist+=("$retroarch_cfg_loc_desktop")
-		
-		# other directories	
-		pathlist+=("$roms_dir_desktop")
-		pathlist+=("$roms_dir_steam")
-		pathlist+=("$banner_dir_desktop")
-		pathlist+=("$banner_dir_steam")
 		
 		# quotes needed on entry to preven globbing on directory creation!
 		# Permissions will be corrected later on below.
@@ -257,29 +285,8 @@ rpc_configure_src()
 			fi
 		done
 		
-		# Should not be needed anymore, too destructive
-		
-		# correct owners for base folders
-		# sudo chown -R steam:steam $steam_home
-		# sudo chown -R desktop:desktop $desktop_home
-		
-		# Swap home_temp out for each user DIR path
-		
-		# We will use the desktop user here so that there are no permission struggles when
-		# Adding ROMs with the normal desktop user, and the Steam user should be able to see/read
-		# The ROMs
-		sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-		sudo sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
-		
-		# create desktop application link 
-		sudo cp "$scriptdir/cfgs/desktop-files/retroarch-src.desktop" "/usr/share/applications"
-		
-		# copy banner image
-		cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_desktop"
-		sudo cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_steam"
-		
 		# download and extract shaders
-		
+	
 		echo -e "\n==> Fetchng shaders from Libretro (Git)\n"
 		wget -P /tmp "https://github.com/libretro/common-shaders/archive/master.zip"
 		# extract
@@ -304,44 +311,6 @@ rpc_configure_src()
 		# copy filter info from source build DIR
 		find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_desktop" 2> /dev/null
 		find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_steam" 2> /dev/null
-		
-		#################################################
-		# Extra
-		#################################################
-		
-		# add icon/thumbnail
-		sudo cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "/home/steam/Pictures"
-		
-		#################################################
-		# Cleanup
-		#################################################
-		
-		echo -e "\n==> Correcting owners and permissions"
-		
-		#####################################
-		# ensure folders have correct owners
-		#####################################
-		# This should not be needed now that ROMs are in /home/desktop
-		
-		# home paths, which includes the ROMs DIR, saves, configs
-		# sudo chown -R steam:steam "$steam_home"
-		# sudo chown -R desktop:desktop "$desktop_home"
-		
-		#####################################
-		# Correct Permissions 
-		#####################################
-		
-		# correct recursively to touch all our directories
-		sudo chmod -R 755 "$retroarch_base_desktop"
-		sudo chmod -R 755 "$retroarch_base_steam"
-		sudo chmod -R 755 "$retroarch_cfg_loc_desktop"
-		sudo chmod -R 755 "$retroarch_cfg_loc_steam"
-		
-		# other non specific DIRs
-		sudo chmod -R 755 "$banner_dir_desktop"
-		sudo chmod -R 755 "$banner_dir_steam"
-		sudo chmod -R 755 "$roms_dir_desktop"
-		sudo chmod -R 755 "$roms_dir_steam"
 		
 		#################################################
 		# Automatically add Retroarch program into Steam?

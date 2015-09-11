@@ -7,7 +7,7 @@ Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/Ste
 
 ## Wiki
 
-Please refer to the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki). located to your right in this repository for all supplemental information.
+Please refer to the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki), located to your right in this repository for all supplemental information and instructions.
 
 ## Usage
 

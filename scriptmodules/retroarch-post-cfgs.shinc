@@ -107,6 +107,7 @@ rpc_configure_common()
 		pathlist+=("$retroarch_cfg_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_desktop")
 		pathlist+=("$roms_dir_desktop")
+		pathlist+=("$roms_dir_steam")
 		pathlist+=("$banner_dir_desktop")
 		pathlist+=("$banner_dir_steam")
 		
@@ -239,8 +240,6 @@ rpc_configure_common()
 		sleep 2s
 		
 		# correct recursively to touch all our directories
-		sudo chmod -R 755 "$retroarch_base_desktop"
-		sudo chmod -R 755 "$retroarch_base_steam"
 		sudo chmod -R 755 "$retroarch_cfg_loc_desktop"
 		sudo chmod -R 755 "$retroarch_cfg_loc_steam"
 		
@@ -378,6 +377,10 @@ rpc_configure_src()
 		# copy filter info from source build DIR
 		find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_desktop" 2> /dev/null
 		find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_steam" 2> /dev/null
+		
+		# fix/correct permissions to our extra directories for the source build
+		sudo chmod -R 755 "$retroarch_base_desktop"
+		sudo chmod -R 755 "$retroarch_base_steam"
 		
 		#################################################
 		# Automatically add Retroarch program into Steam?

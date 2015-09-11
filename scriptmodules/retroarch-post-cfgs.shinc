@@ -107,7 +107,8 @@ rpc_configure_common()
 		pathlist+=("$retroarch_cfg_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_desktop")
 		pathlist+=("$roms_dir_desktop")
-		pathlist+=("$roms_dir_steam")
+		# This below path will be symlinked to the desktop ROMs DIR
+		# pathlist+=("$roms_dir_steam")
 		pathlist+=("$banner_dir_desktop")
 		pathlist+=("$banner_dir_steam")
 		
@@ -120,6 +121,10 @@ rpc_configure_common()
 				sudo mkdir -p "$entry" 
 			fi
 		done
+		
+		# Symlink the desktop ROMs directory to /home/steam/ROMs 
+		# so Retroarch can see it easily
+		sudo ln -s "$roms_dir_desktop" "$roms_dir_steam"
 		
 		#################################################
 		# Application parameters 

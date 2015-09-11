@@ -497,38 +497,6 @@ get_software_type()
         fi
 }
 
-add_repos()
-{
-
-	# set software type
-        if [[ "$type" == "basic" ]]; then
-                # non-required for now
-                echo "" > /dev/null
-        elif [[ "$type" == "extra" ]]; then
-                # non-required for now
-                echo "" > /dev/null
-        elif [[ "$type" == "emulators" ]]; then
-                # retroarch
-                echo "" > /dev/null
-        elif [[ "$type" == "retroarch-src" ]]; then
-                # retroarch-src
-                echo "" > /dev/null
-        elif [[ "$type" == "emulation-src-deps" ]]; then
-                # retroarch-src-deps
-                echo "" > /dev/null
-        elif [[ "$type" == "$type" ]]; then
-                # non-required for now
-                echo "" > /dev/null
-        elif [[ "$type" == "upnp-dlna" ]]; then
-                # non-required for now
-                echo "" > /dev/null
-        elif [[ "$type" == "games" ]]; then
-                # non-required for now
-                echo "" > /dev/null
-        fi
-	
-}
-
 install_software()
 {
 	# For a list of Debian software pacakges, please see:

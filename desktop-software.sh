@@ -792,7 +792,6 @@ main()
 		# gpg_import
 		set_multiarch
 		pre_req_checks
-		add_repos
 
 		# kick off install function
 		install_software

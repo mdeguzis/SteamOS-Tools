@@ -322,6 +322,9 @@ if [[ "$apt_mode" == "install" ]]; then
 	echo -n "1" && sleep 1s
 	echo ""
 	
+	# jump to post congifuration
+	rpc_configure_src
+	
 elif [[ "$apt_mode" == "remove" ]]; then
 	
 	#Remove directories, build files, etc if uninstall is specified by user

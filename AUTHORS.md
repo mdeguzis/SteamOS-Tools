@@ -1,23 +1,32 @@
 # Main script code, readme docs, and more
+***
 - ProfessorKaos64
 
 # Contributions from awesome people
-I couldn't have done some of the things here without some help from a lot of great folks
+***
+I couldn't have done some of the things here without some help from a lot of great folks, including:
+* [Sharkwouter](https://github.com/sharkwouter)
+* [Ryochan7](https://github.com/Ryochan7)
+* Dubigrasu of the Steamm Universe community forum
+* [psppwner300](https://github.com/psppwner300)
+
+# List of contributions
+***
 
 #### General code fixes
-* Sharkwouter of the Steamm Universe community forum
-* Ryochan7 of the Steamm Universe community forum
+* Sharkwouter
+* Ryochan7
 
 #### Installation Guides
-- psppwner300 (Steam Community) - SteamOS standard installation guide
+* psppwner300
 
 ### Test chroot fixes and contributions
 * Ryochan7
 
 #### UE4 script fixes
-* Ryochan7 of the Steamm Universe community forum
+* Ryochan7
 
 #### X window code for Chrome "web apps"
-- Dubigrasu of the Steamm Universe community forum
-- Sharkwouter of the Steamm Universe community forum
-- Ryochan7 of the Steamm Universe community forum
+* Dubigrasu
+* Sharkwouter
+* Ryochan7]

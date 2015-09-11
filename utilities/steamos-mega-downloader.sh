@@ -813,7 +813,6 @@ main()
 	(6) Stephensons Rocket (Brewmaster repsin)
 	(7) VaporOS (Alchemist, Legacy ISO)
 	(8) VaporOS (Alchemist, Stephenson's Rocket Mod)
-	(9) VaporOS (Brewmaster, Stephenson's Rocket Mod)
 
 	EOF
   	
@@ -906,22 +905,6 @@ main()
 		distro="vaporos-mod"
 		base_url="https://github.com/sharkwouter/vaporos-mod.git"
 		release="alchemist"
-		file="vaporos.iso"
-		git="yes"
-		gitdir="stephensons-rocket"
-		gitdir_alt="stephensons-rocket/vaporos-mod"
-		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
-		giturl_fallback="--depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release"
-		giturl_alt="https://github.com/sharkwouter/vaporos-mod.git"
-		md5file="vaporos.iso.md5"
-		shafile="none"
-		# set github default action
-		pull="no"
-		;;
-		
-		9)
-		distro="vaporos-mod"
-		release="brewmaster"
 		file="vaporos.iso"
 		git="yes"
 		gitdir="stephensons-rocket"

@@ -151,6 +151,9 @@ rpc_configure_common()
 		
 		read -ep "Choice: " gp_choice
 		
+		# Configure joypad
+		# Please note: The non-source build version has joypad autoconfiguration
+		# Adding this to the source build version is being looked into.
 		case "$gp_choice" in
 		
 		        1)

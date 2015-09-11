@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
-Name=Retroarch-Src
+Name=Retroarch
 GenericName=Retroarch
 Comment=Retroarch-Src launcher
-Exec=retroarch-launch.sh
+Exec=retroarch
 Icon=/home/steam/Pictures/retro-arch-logo.png
 Terminal=false
 Type=Application

@@ -2,25 +2,24 @@
 # Author: 	    	Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.0.1
+# Script Ver:	  	1.4.7
 # Description:		Module for isntalling web-apps .
 #	
 # Usage:	      	n/a , module
 # -----------------------------------------------------------------------
 
-web_app_netflix()
+web_app_chrome_exts()
 {
 
-	# Netflix
-	NAME="Netflix"
-	WEB_URL="www.netflix.com"
-	TARGET_NAME="Netflix"
-	SHORTCUT="Netflix.desktop"
-	LAUNCHER="/usr/bin/Netflix-Launch.sh"
-	BANNER_IMG="$scriptdir/artwork/banners/Netflix.png"
-
+	# Chrome-Extensions
+	NAME="Chrome Extensions"
+	WEB_URL="https://chrome.google.com/webstore/category/extensions"
+	TARGET_NAME="Chrome-Extensions"
+	SHORTCUT="Chrome-Extensions.desktop"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Chrome-Extensions.png"
+	
 }
-
 
 web_app_hulu()
 {
@@ -30,34 +29,21 @@ web_app_hulu()
 	WEB_URL="www.hulu.com"
 	TARGET_NAME="Hulu"
 	SHORTCUT="Hulu.desktop"
-	LAUNCHER="/usr/bin/Hulu-Launch.sh"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Hulu.png"
 
 }
 
-web_app_youtube()
+web_app_netflix()
 {
 
-	# Youtube
-	NAME="Youtube"
-	WEB_URL="www.youtube.com"
-	TARGET_NAME="Youtube"
-	SHORTCUT="Youtube.desktop"
-	LAUNCHER="/usr/bin/Youtube-Launch.sh"
-	BANNER_IMG="$scriptdir/artwork/banners/Youtube.png"
-
-}
-
-web_app_soundcloud()
-{
-
-	# Soundcloud
-	NAME="Soundcloud"
-	WEB_URL="www.soundcloud.com"
-	TARGET_NAME="Soundcloud"
-	SHORTCUT="Soundcloud.desktop"
-	LAUNCHER="/usr/bin/Soundcloud-Launch.sh"
-	BANNER_IMG="$scriptdir/artwork/banners/Soundcloud.png"
+	# Netflix
+	NAME="Netflix"
+	WEB_URL="www.netflix.com"
+	TARGET_NAME="Netflix"
+	SHORTCUT="Netflix.desktop"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Netflix.png"
 
 }
 
@@ -69,22 +55,48 @@ web_app_prime_movies()
 	WEB_URL="http://www.amazon.com/Prime-Instant-Video/b?node=2676882011"
 	TARGET_NAME="Amazon-Prime-Movies"
 	SHORTCUT="Amazon-Prime-Movies.desktop"
-	LAUNCHER="/usr/bin/Amazon-Prime-Movies-Launch.sh"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Amazon-Prime-Movies.png"
 	
 }
 
-web_app_chrome_exts()
+web_app_youtube()
 {
 
-	# Chrome-Extensions
-	NAME="Chrome Extensions"
-	WEB_URL="https://chrome.google.com/webstore/category/extensions"
-	TARGET_NAME="Chrome-Extensions"
-	SHORTCUT="Chrome-Extensions.desktop"
-	LAUNCHER="/usr/bin/Chrome-Extensions-Launch.sh"
-	BANNER_IMG="$scriptdir/artwork/banners/Chrome-Extensions.png"
-	
+	# Youtube
+	NAME="Youtube"
+	WEB_URL="www.youtube.com"
+	TARGET_NAME="Youtube"
+	SHORTCUT="Youtube.desktop"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Youtube.png"
+
+}
+
+web_app_youtube_tv()
+{
+
+	# Youtube
+	NAME="YoutubeTV"
+	WEB_URL="www.youtube.com/tv"
+	TARGET_NAME="YoutubeTV"
+	SHORTCUT="YoutubeTV.desktop"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/YoutubeTV.png"
+
+}
+
+web_app_soundcloud()
+{
+
+	# Soundcloud
+	NAME="Soundcloud"
+	WEB_URL="www.soundcloud.com"
+	TARGET_NAME="Soundcloud"
+	SHORTCUT="Soundcloud.desktop"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Soundcloud.png"
+
 }
 
 web_app_twitch()
@@ -95,7 +107,7 @@ web_app_twitch()
 	WEB_URL="www.twitch.tv"
 	TARGET_NAME="Twitch"
 	SHORTCUT="Twitch.desktop"
-	LAUNCHER="/usr/bin/Twitch-Launch.sh"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Twitch.png"
 
 }
@@ -124,9 +136,10 @@ add_web_app_chrome()
 	
 	if [[ -d "/home/steam/.config/google-chrome/Default/" ]]; then
 		# directory exists
-		echo "" > /dev/null
+		echo -e "Chrome config directory found. Skipping default setup"
 	else
 		# create DIR
+		echo -e "Chrome config directory not found, creating"
 		sudo mkdir -p "/home/steam/.config/google-chrome/Default"
 	fi
 	
@@ -146,6 +159,10 @@ add_web_app_chrome()
 	
 	echo -e "\n==> Assessing pre-requisite software"
 	sleep 1s
+	
+	# There is still a conflict with overwriting the changelog of libattr1:i386
+	# because of this there is a workaround removal below
+	sudo rm -f "/usr/share/doc/libattr1/changelog.Debian.gz"
 
 	pkg_test=$(which google-chrome-stable)
 
@@ -183,7 +200,7 @@ add_web_app_chrome()
 	# Start web app addition loop
 	###################################
 	
-	while [[ "$web_app_choice" != "8" || "$web_app_choice" != "done" ]];
+	while [[ "$web_app_choice" != "9" || "$web_app_choice" != "done" ]];
 	do	
 		echo -e "\n#############################################################"
 		echo -e "Web application installation (via Chrome kiosk mode)"
@@ -197,8 +214,9 @@ add_web_app_chrome()
 		echo "(4) SoundCloud"
 		echo "(5) Twitch"
 		echo "(6) Youtube"
-		echo "(7) Custom"
-		echo "(8) Done"
+		echo "(7) Youtube TV"
+		echo "(8) Custom"
+		echo "(9) Done"
 		echo ""
 		
 		# the prompt sometimes likes to jump above sleep
@@ -237,13 +255,18 @@ add_web_app_chrome()
 		        web_app_youtube
 		        kiosk_opt="/usr/bin/$LAUNCHER"
 		        ;;
-		         
+		        
 		        7)
+		        web_app_youtube_tv
+		        kiosk_opt="/usr/bin/$LAUNCHER"
+		        ;;
+		         
+		        8)
 		        custom_url="yes"
 		        # kiosk_opt handled in custom url sequence below
 		        ;;
 		         
-		        8|done)
+		        9|done)
 		        # do nothing
 		        echo -e "\n==> Exiting script\n"
 		        exit 1
@@ -274,9 +297,9 @@ add_web_app_chrome()
 	
         if [[ "$chrome_dir_check" != "" ]]; then
                 # do nothing
-                echo -e "\nChrome Default DIR exists. Skipping..."
+                echo -e "\nChrome Default config DIR exists. Skipping..."
         else
-                echo -e "\nChrome Default DIR does not exist. Adding..."
+                echo -e "\nChrome Default config DIR does not exist. Adding..."
                 sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/."  "/home/steam/.config/google-chrome/Default/"
         fi
 
@@ -361,7 +384,6 @@ add_web_app_chrome()
 	# Mouse support with cursor is fine
 	# Currently working on some kind of xboxdrv swap out
 	# to allow arrow keys
-	
 	
 	#######################################
 	# Antimicro gamepad controls
@@ -463,7 +485,7 @@ add_web_app_chrome()
 		if [[ "$custom_url" == "no" ]]; then
 		
 			# remove kiosk mode from normal launher
-			sudo sed -i "s|--kiosk ||g" "$kiosk_opt"
+			sudo sed -i "s|--kiosk ||g" "/usr/bin/${TARGET_NAME}-Launch.sh"
 			
 		elif [[ "$custom_url" == "yes" ]]; then
 		
@@ -483,7 +505,6 @@ add_web_app_chrome()
 	###################################
 	# fix ownership if need be
 	
-	sudo chown -R steam:steam "/home/steam/"
 	sudo chmod -R 755 "/home/steam/antimicro"
 	
 	###################################

@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.5.5
+# Script Ver:	0.5.6
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -89,24 +89,6 @@ check_sources()
 	
 }
 
-# Warn user script must be run as root
-if [ "$(id -u)" -ne 0 ]; then
-
-	clear
-	
-	cat <<-EOF
-	==ERROR==
-	Script must be run as root! Try:
-	
-	sudo $0 [type] [release]
-	-OR-
-	sudo $0 [type] [release]
-	
-	EOF
-	
-	exit 1
-	
-fi
 
 funct_prereqs()
 {
@@ -150,9 +132,9 @@ function gpg_import()
 	# helper script accepts $1 as the key
 	
 	# Key Desc: Debian Archive Automatic Signing Key
-	# Key ID: 8ABDDD96
-	# Full Key ID: 7DEEB7438ABDDD96
-	gpg_key_check=$(gpg --list-keys 8ABDDD96)
+	# Key ID: 2B90D010
+	# Full Key ID: 7638D0442B90D010
+	gpg_key_check=$(gpg --list-keys 2B90D010)
 	
 	# check for key
 	if [[ "$gpg_key_check" != "" ]]; then
@@ -160,20 +142,37 @@ function gpg_import()
 		sleep 1s
 	else
 		echo -e "\nDebian Archive Automatic Signing Key [FAIL]. Adding now..."
-		./gpg_import.sh 7DEEB7438ABDDD96
+		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
+		--recv-keys 7638D0442B90D010
+	fi
+	
+	# Key Desc: Valve SteamOS Release Key <steamos@steampowered.com>
+	# Key ID: 8ABDDD96
+	# Full Key ID: F28029BB103C02AE
+	gpg_key_check=$(gpg --list-keys 8ABDDD96)
+	
+	# check for key
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "\nValve SteamOS Release Key [OK]"
+		sleep 1s
+	else
+		echo -e "\nValve SteamOS Release Key [FAIL]. Adding now..."
+		gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
+		--recv-keys F28029BB103C02AE
 	fi
 
 }
 
 funct_create_chroot()
 {
-	echo -e "\n==> Importing GPG keys"
-	sleep 1s
+	#echo -e "\n==> Importing GPG keys\n"
+	#sleep 1s
 	
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 		
 		# import GPG key
-		gpg_import
+		# gpg_import
+		:
 		
 	fi
 	
@@ -207,6 +206,8 @@ funct_create_chroot()
 		
 	fi
 	
+	echo -e "\n==> Configuring"
+	sleep 1s
 	
 	# add to fstab
 	# TODO
@@ -216,8 +217,8 @@ funct_create_chroot()
 		# Mount proc and dev filesystem (add to **host** fstab)
 		sudo su -c "echo '#chroot ${target}' >> /etc/fstab"
 		sudo su -c "echo '/dev/pts /home/$USER/chroots/${target}/dev/pts none bind 0 4' >> /etc/fstab"
-		sudo su -c "echo 'proc     /home/$USER/chroots/${target}/proc    proc defaults 0 4' >> /etc/fstab"
-		sudo su -c "echo 'sysfs    /home/$USER/chroots/${target}/sys     sysfs defaults 0 4' >> /etc/fstab"
+		sudo su -c "echo 'proc /home/$USER/chroots/${target}/proc proc defaults 0 4' >> /etc/fstab"
+		sudo su -c "echo 'sysfs /home/$USER/chroots/${target}/sys sysfs defaults 0 4' >> /etc/fstab"
 		
 	fi
 	
@@ -347,6 +348,33 @@ main()
 #####################################################
 # Main
 #####################################################
+
+# Warn user script must be run as root
+if [ "$(id -u)" -ne 0 ]; then
+
+	clear
+	
+	cat <<-EOF
+	==ERROR==
+	Script must be run as root! Try:
+	
+	sudo $0 [type] [release]
+	
+	EOF
+	
+	exit 1
+	
+fi
+
+# shutdown script if type or release is blank
+if [[ "$type" == "" || "$release" == "" ]]; then
+
+	clear
+	echo -e "==ERROR==\nType or release not specified! Dying...\n"
+	exit 1
+fi
+
+# Start main script if above checks clear
 main | tee log_temp.txt
 
 #####################################################

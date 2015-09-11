@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.9.1
+# Script Ver:	1.9.9.5
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -65,6 +65,7 @@ sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" "custom-pkg.txt"
 sed -i "s|[ |]| |g" "custom-pkg.txt"
 sed -i "s|  | |g" "custom-pkg.txt"
 sed -i "s|(<<| |g" "custom-pkg.txt"
+sed -i "s|(>= [0-9].[0-9])||g" "custom-pkg.txt"
 
 # set custom flag for use later on if line count
 # of testing custom pkg test errorssoftware-lists/custom-pkg.txt exceeds 1
@@ -273,9 +274,9 @@ show_help()
 	'./desktop-software list [type]'
 	
 	Options: 	[install|uninstall|list|check|test] 
-	Types: 		[basic|extra|emulators|retroarch-src|emulation-src-deps]
-	Types Cont.	[<pkg_name>|upnp-dlna|gaming-tools|games-pkg]
-	Extra types: 	[kodi|lutris|plex|webapp]
+	Types: 		[basic|extra|emulators|retroarch-src|reetroarch]
+	Types Cont.	[emulation-src-deps|upnp-dlna|gaming-tools|games-pkg<pkg_name>]
+	Extra types: 	[kodi|kodi-src|lutris|plex|webapp]
 	Functions: 	[xb360-bindings|gameplay-recording]
 	
 	Install with:
@@ -424,6 +425,9 @@ get_software_type()
         elif [[ "$type" == "retroarch-src" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/retroarch-src.txt"
+        elif [[ "$type" == "retroarch" ]]; then
+                # add emulation softare to temp list
+                software_list="$scriptdir/cfgs/software-lists/retroarch.txt"
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/emulation-src-deps.txt"
@@ -439,7 +443,6 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/software-lists/pcsx2-src-deps.txt"
-                m_install_pcsx2_src
         elif [[ "$type" == "upnp-dlna" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
@@ -461,6 +464,10 @@ get_software_type()
                 # install plex from helper script
                 ep_install_gameplay_recording
                 exit 1
+        elif [[ "$type" == "kodi-src" ]]; then
+                # install plex from helper script
+                "$scriptdir/utilities/build-kodi-src.sh"
+                exit 1
         elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script
                 ep_install_kodi
@@ -471,7 +478,7 @@ get_software_type()
                 exit 1
 	elif [[ "$type" == "ue4" ]]; then
 		# install ue4 from helper script
-		m_install_ue4
+		egi_install_ue4
 		exit 1
         elif [[ "$type" == "ue4-src" ]]; then
                 # install plex from helper script
@@ -666,24 +673,6 @@ install_software()
 	# If software type was for emulation, continue building
 	# emulators from source (DISABLE FOR NOW)
 	
-	###########################################################
-	# Kick off emulation install scripts (if specified)
-	###########################################################
-	
-        if [[ "$type" == "emulation" ]]; then
-                # call external build script
-                # DISABLE FOR NOW
-                # install_emus
-                echo "" > /dev/null
-        elif [[ "$type" == "retroarch-src" ]]; then
-                # call external build script
-                clear
-                echo -e "==> Proceeding to install emulator pkgs from source..."
-                sleep 2s
-                retroarch_src_main
-                rpc_configure_retroarch
-	fi
-	
 }
 
 show_warning()
@@ -788,8 +777,7 @@ main()
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/retroarch-from-src"
-	import "$scriptdir/scriptmodules/ue4-from-src"
-	import "$scriptdir/scriptmodules/ue4"
+	import "$scriptdir/scriptmodules/ext-game-installers"
 	import "$scriptdir/scriptmodules/web-apps"
 
         # generate software listing based on type or skip to auto script
@@ -801,12 +789,16 @@ main()
         
 	# Assess software types and fire of installation routines if need be.
 	# The first section will be basic checks, then specific use cases will be
-	# assessed
+	# assessed.
+	
+	# Only specify lists in the first section if they require software lists
+	# to be checked and installed as prerequisites
 	
 	if [[ "$type" == "basic" ||
 	      "$type" == "extra" ||
-	      "$type" == "emulation-src" ||
 	      "$type" == "emulation-src-deps" ||
+	      "$type" == "retroarch-src" ||
+	      "$type" == "retroarch-type" ||
 	      "$type" == "$type" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then
@@ -842,12 +834,28 @@ main()
         # Supplemental installs / modules
         #############################################
         
+        # If an outside script needs called to install the softwarew type,
+        # do it below.
+        
         if [[ "$type" == "emulation" ]]; then
 
 		# kick off extra modules for buld debs
-		echo -e "\n==> Proceeding to supplemental emulation package routine\n"
 		sleep 2s
 		m_emulation_install_main
+		
+	elif [[ "$type" == "retroarch-src" ]]; then
+	
+                # call external build script for Retroarch
+                clear
+                sleep 2s
+                retroarch_src_main
+                rpc_configure_retroarch
+		
+	elif [[ "$type" == "retroarch" ]]; then
+		
+		# kick off extra modules for buld debs
+		sleep 2s
+		ep_install_retroarch
 		
 	elif [[ "$type" == "ue4-src" ]]; then
 
@@ -862,6 +870,10 @@ main()
 		# kick off helper script
 		install_mobile_upnp_dlna
 		
+	elif [[ "$type" == "pcsx2-testing" ]]; then
+	
+		# Ensure that Build-Depends are installed prior
+		m_install_pcsx2_src
 	fi
 	
 	# cleanup package leftovers

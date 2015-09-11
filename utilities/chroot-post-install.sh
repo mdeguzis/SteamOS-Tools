@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	chroot-post-install.sh
-# Script Ver:	0.5.5
+# Script Ver:	0.5.7
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A - called by build-test-chroot
@@ -167,7 +167,7 @@ if [[ "$release" == "alchemist" ]]; then
 
 	# Enable Debian wheezy repository
 	cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
-	deb http://http.debian.net/debian/ jessie main
+	deb http://http.debian.net/debian/ wheezy main
 	EOF
 	
 elif [[ "$release" == "alchemist" && "$type" == "steamos-beta" ]]; then
@@ -190,8 +190,8 @@ elif [[ "$release" == "alchemist" && "$type" == "steamos-beta" ]]; then
 
 	# Enable Debian wheezy repository
 	cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
-	deb http://http.debian.net/debian/ jessie main
-	EOF	
+	deb http://http.debian.net/debian/ wheezy main
+	EOF
 
 elif [[ "$release" == "brewmaster" ]]; then
 
@@ -204,7 +204,7 @@ elif [[ "$release" == "brewmaster" ]]; then
 	EOF
 	
 	# Enable Debian jessie repository
-	cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
+	cat <<-EOF > "/etc/apt/sources.list.d/jessie.list"
 	deb http://http.debian.net/debian/ jessie main
 	EOF
 	
@@ -227,7 +227,7 @@ elif [[ "$release" == "brewmaster" && "$type" == "steamos-beta" ]]; then
 	EOF
 
 	# Enable Debian wheezy repository
-	cat <<-EOF > "/etc/apt/sources.list.d/wheezy.list"
+	cat <<-EOF > "/etc/apt/sources.list.d/jessie.list"
 	deb http://http.debian.net/debian/ jessie main
 	EOF
 
@@ -276,19 +276,25 @@ else
 fi
 
 echo -e "\n==> Updating system\n"
+sleep 1s
 
 # Update apt
 apt-get update
 
 echo -e "\n==> Instaling some basic packages\n"
+sleep 1s
 
 # install some basic package
-# run as root so they are installed correctly
-pkgs="vim sudo deborphan"
-for pkgs in ${pkgs}; do
+#apt-get install vim sudo deborphan git
+
+deps="apt-utils vim sudo deborphan git wget p7zip-full unzip"
+for dep in ${deps}; do
 	pkg_chk=$(dpkg-query -s ${dep})
 	if [[ "$pkg_chk" == "" ]]; then
-		sudo apt-get install ${dep}
+	
+		echo -e "\n==INFO==\nInstalling package: ${dep}\n"
+		sleep 1s
+		apt-get install ${dep}
 		
 		if [[ $? = 100 ]]; then
 			echo -e "Cannot install ${dep}. Please install this manually \n"
@@ -301,19 +307,12 @@ for pkgs in ${pkgs}; do
 	fi
 done
 
-echo -e "\n==> Cleaning up packages\n"
+#echo -e "\n==> Cleaning up packages\n"
+#sleep 1s
 
 # eliminate unecessary packages
 # disable for further testing
 # deborphan -a
-
-# setup sudo / fix perms for uid0 (root)
-chown root:root /usr/lib/sudo/sudoers.so
-chown root:root /etc/sudoers
-chown root:root /etc/sudoers.d/
-chown root:root /usr/bin/sudo
-chmod 4755 /usr/bin/sudo
-chmod 440 /etc/sudoers
 
 # exit chroot
 echo -e "\nExiting chroot!\n"

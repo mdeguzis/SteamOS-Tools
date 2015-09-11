@@ -3,8 +3,8 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.3.5
-# Description:		Module for isntalling useful pacakges otherwise not 
+# Script Ver:	  	1.7.7
+# Description:		Module for installing useful pacakges otherwise not 
 #			found in The Debian jessie repositories directly.
 #	
 # Usage:	      	n/a , module
@@ -118,9 +118,9 @@ ep_install_chrome()
 	
 	# create and enter build dir
 	if [[ -d "$install_dir" ]]; then
-		echo -e "\n==INFO==\nChrome DIR found"
+		echo -e "\n==INFO==\nChrome download DIR found"
 	else
-		echo -e "\n==INFO==\nChrome DIR not found, creating...\n"
+		echo -e "\n==INFO==\nChrome download DIR not found, creating...\n"
 		sleep 1s
 		mkdir -p "$install_dir"
 	fi
@@ -479,204 +479,199 @@ ep_install_plex()
 	echo -e "\n==> Installing Plex Home Theater from automated script..."
 	sleep 2s
 	
-	###############################
-	#  vars
-	###############################
+	# Jettison deb-multimedia method, build more up to date ppa package for Ubuntu
+	# Last commit this was used in: 44dc9a5
 	
-	pkg_type=""
+	# Package sourced from: 
+	# https://launchpad.net/~plexapp/+archive/ubuntu/plexht?field.series_filter=trusty
 	
-	echo -e "\n==> Configuring sources"
+	#######################################
+	# Ubuntu font family
+	#######################################
+	
+	echo -e "\n==> Resolving missing prerequisite packages\n"
 	sleep 1s
 	
-	# source lists
-	reponame_plex="plex"
-	reponame_deb_multi="deb-multimedia"
+	# set vars
+	pkg_type="deb"
+	PKG="ttf-ubuntu-font-family"
+	PKG_FILENAME="ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
+	BASE_URL="http://libregeek.org/SteamOS-Extra/multimedia/plex/"
+	BIN_LOC=""
+	PKG_DIR=""
 	
-	sourcelist_plex_tmp="${reponame_plex}.list"
-	sourcelist_deb_multi_tmp="${reponame_deb_multi}.list"
-	sourcelist_plex="/etc/apt/sources.list.d/${reponame_plex}.list"
-	sourcelist_deb_multi="/etc/apt/sources.list.d/${reponame_deb_multi}.list"
+	# set multiflag
+	multi="n"
 	
-	prefer_plex_tmp="${reponame_plex}"
-	prefer_deb_multi_tmp="${reponame_deb_multi}"
-	prefer_plex="/etc/apt/preferences.d/${reponame_plex}"
-	prefer_deb_multi="/etc/apt/preferences.d/${reponame_deb_multi}"
+	# install package
+	ep_install_eval_pkg
 	
-	# set external Deb repo required flag
-	export deb_repo_name="jessie.list"
-	export deb_repo_req="no"
-	# Eval requirements
-	"$scriptdir/utilities/check_repo_req.sh"
-	
-	###############################
-	# backup
-	###############################
-
-	
-	# Check for existance of /etc/apt/preferences.d/{prefer_plex} file
-	if [[ -f ${prefer_plex} ]]; then
-		# backup preferences file
-		echo -e "\n==> Backing up ${prefer_plex} to ${prefer_plex}.bak"
-		sudo mv ${prefer_plex} ${prefer_plex}.bak
-		sleep 1s
-	fi
-	
-	# Check for existance of /etc/apt/preferences.d/{prefer_deb_multi} file
-	if [[ -f ${prefer_deb_multi} ]]; then
-		# backup preferences file
-		echo -e "\n==> Backing up ${prefer_deb_multi} to ${prefer_deb_multi}.bak"
-		sudo mv ${prefer_deb_multi} ${prefer_deb_multi}.bak
-		sleep 1s
-	fi
-	
-	# check for existance of plex source list
-	if [[ -f ${sourcelist_plex} ]]; then
-		# backup sources list file
-		echo -e "\n==> Backing up ${sourcelist_plex} to ${sourcelist_plex}.bak"
-		sudo mv ${sourcelist_plex} ${sourcelist_plex}.bak
-		sleep 1s
-	fi
-	
-	# check for existance of deb_multi source list
-	if [[ -f ${sourcelist_deb_multi} ]]; then
-		# backup sources list file
-		echo -e "\n==> Backing up ${sourcelist_deb_multi} to ${sourcelist_deb_multi}.bak"
-		sudo mv ${sourcelist_deb_multi} ${sourcelist_deb_multi}.bak
-		sleep 1s
-	fi
-
-	###############################
-	# add GPG keys
-	###############################
-	
-	echo -e "\n==> Adding GPG key(s)"
-	sleep 1s
-	
-	# Key Desc: Debian Multimedia
-	# Key ID: 65558117
-	# Full Key ID: 5C808C2B65558117
-	gpg_key_check=$(gpg --list-keys 65558117)
-	
-	if [[ "$gpg_key_check" != "" ]]; then
-		echo -e "\nDebian Multimedia Key [OK]\n"
-		sleep 1s
-	else
-		echo -e "\nDebian Multimedia Key [FAIL]. Adding now...\n"
-		"$scriptdir/extra/gpg_import.sh" 5C808C2B65558117
-	fi
-	
-	###############################
-	# update and pre-reqs
-	###############################
-	
-	echo -e "==> Installing prerequisite software\n"
-	sleep 1s
-	
+	#######################################
 	# Plex
-	sleep 1s
+	#######################################
 	
-	# Plex
-	sleep 1s
+	# set vars
+	pkg_type="deb"
+	PKG="plexhometheater"
+	PKG_FILENAME="plexhometheater_1.4.1.469-20150513git-SteamOS-2.deb"
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/plex/"
+	BIN_LOC=""
+	PKG_DIR=""
 	
-	# Plex
-	sudo curl http://shell.ninthgate.se/packages/shell-ninthgate-se-keyring.key | sudo apt-key add -
-	sudo apt-get update
+	# The default banner for BPM is ugly, use the correctly size 460x215 banner
+	# in /usr/share/pixmaps/plex-steamtile_460x215.png
 	
-	# deb-multimedia-keyring
-	sudo apt-get install deb-multimedia-keyring
-
-	###############################	
-	# Add prefs
-	###############################
+	sed 's|Icon=plexhometheater|Icon=/usr/share/pixmaps/plex-steamtile_460x215.png|g' \
+	"/usr/share/applications/plexhometheater.desktop"  
 	
-	echo -e "\n==> Adding /etc/apt configurations"
-	sleep 1s
+	# set multiflag
+	multi="n"
 	
-	# Create and add required text to preferences file
-	# Verified policy with apt-cache policy
-	# sudo temp file list, then move because of perms
+	# install package
+	ep_install_eval_pkg
 	
-	cat <<-EOF > ${prefer_plex_tmp}
-	Package: *
-	Pin: origin ""
-	Pin-Priority:110
-	
-	Package: *
-	Pin: release n=jessie
-	Pin-Priority:110
-	EOF
-
-	cat <<-EOF > ${prefer_deb_multi_tmp}
-	Package: *
-	Pin: origin ""
-	Pin-Priority:110
-	
-	Package: *
-	Pin: release l=Unofficial Multimedia Packages
-	Pin-Priority:110
-	EOF
-	
-	# move tmp lists in 2 easy actions
-	sudo mv ${prefer_plex_tmp} ${prefer_plex}
-	sudo mv ${prefer_deb_multi_tmp} ${prefer_deb_multi}
-	
-	###############################	
-	# Add sources
-	###############################
-	
-	# Deb multimedia
-	# add to tmp file, then move
-	
-	cat <<-EOF > ${sourcelist_plex_tmp}
-	# Plex team repo
-	deb http://shell.ninthgate.se/packages/debian jessie main
-	EOF
-
-	cat <<-EOF > ${sourcelist_deb_multi_tmp}
-	# Deb multimedia repo
-	deb http://www.deb-multimedia.org jessie main non-free
-	EOF
-
-	# move lists
-	sudo mv -v ${sourcelist_plex_tmp} ${sourcelist_plex}
-	sudo mv -v ${sourcelist_deb_multi_tmp} ${sourcelist_deb_multi}
-
-	###############################	
-	# update system and sources
-	###############################
-
-	sudo apt-key update
-	sudo apt-get update
-
-	###############################	
-	# resolve outstanding deps
-	###############################
-	
-	echo -e "\n==> Resolving missing Debian packages"
-	sleep 1s
-	
-	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/Plex/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
-	cd /tmp
-	sudo gdebi ttf-ubuntu-font-family*.deb
-	
-	###############################
-	# Install actions
-	###############################
-
-	echo -e "\n==> Installing Plex Home Theater"
-	sleep 1s
-	# install Plex Home Theater
-	sudo apt-get -t jessie install plexhometheater -y
-	
-	###############################
 	# cleanup
-	###############################
-	
-	rm -rf /tmp/ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb
 	ep_pkg_cleanup
+  
+}
+
+ep_install_retroarch()
+{
+
+	echo -e "\n==> Installing Retroarch and its associated libretro cores Home from automated script"
+	sleep 2s
 	
-	# cleanup any old apt packages
-	sudo apt-get autoremove
+	# Jettison deb-multimedia method, build more up to date ppa package for Ubuntu
+	# Last commit this was used in: 44dc9a5
+	
+	# Package sourced from: 
+	# https://launchpad.net/~libretro/+archive/ubuntu/stable?field.series_filter=trusty
+	
+	#######################################
+	# Retroarch
+	#######################################
+	
+	echo -e "\n==> Installing core packages for Retroarch\n"
+	sleep 2s
+	
+	######################
+	# Retroarch assets
+	######################
+	# set vars
+	pkg_type="deb"
+	PKG="retroarch-assets"
+	PKG_FILENAME="retroarch-assets_0.1+r71~2~ubuntu14.04.1_all.deb"
+	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
+	
+	# set multiflag
+	multi="n"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	######################
+	# Retroarch Joypad
+	######################
+	# set vars
+	pkg_type="deb"
+	PKG="retroarch-joypad-autoconfig"
+	PKG_FILENAME="retroarch-joypad-autoconfig_0.1+r207~2~ubuntu14.04.1_all.deb"
+	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
+	
+	# set multiflag
+	multi="n"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	######################
+	# Retroarch client
+	######################
+	# set vars
+	pkg_type="deb"
+	PKG="retroarch"
+	PKG_FILENAME="retroarch_1.2.2+r211~11~ubuntu14.04.1_amd64.deb"
+	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
+	
+	# set multiflag
+	multi="n"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	#######################################
+	# Libretro cores stage 1
+	#######################################
+	# These are packages that all cores depend upon
+	# upon to be installed first
+	
+	echo -e "\n==> Installing libretro cores\n"
+	sleep 2s
+	
+	# set vars
+	pkg_type="deb"
+	PKG="libretro-cores"
+	PKG_FILENAME=""
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage1/"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag
+	multi="y"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	#######################################
+	# Libretro cores stage 2
+	#######################################
+	# These are cores that stage 3 cores depend upon
+	
+	# set vars
+	pkg_type="deb"
+	PKG="libretro-cores"
+	PKG_FILENAME=""
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage2/"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag
+	multi="y"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	#######################################
+	# Libretro cores stage 3
+	#######################################
+	# These are cores that can be installed freely in any order
+	
+	# set vars
+	pkg_type="deb"
+	PKG="libretro-cores"
+	PKG_FILENAME=""
+	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage3/"
+	BIN_LOC=""
+	PKG_DIR=""
+	
+	# set multiflag
+	multi="y"
+	
+	# install package
+	ep_install_eval_pkg
+	
+	# cleanup
+	ep_pkg_cleanup
+  
+	#######################################
+	# Post configuration
+	#######################################
+  
+  	# this will be handled in a restructed existing script
+  	# TODO
+  	
+  	# Run post configuration
+  	#rpc_configure_retroarch
   
 }
 
@@ -764,37 +759,52 @@ ep_install_xb360_bindings()
 ep_install_eval_pkg()
 {
 
-	echo -e "\n==> Installing $PKG via external script\n"
+	#echo -e "\n==> Installing $PKG via external script\n"
 
 	#####################################################
-	# Binary package eval routine using dpkg or gdebi
+	# package eval routine using dpkg or gdebi
 	#####################################################
 	
+	
+	# check and process for multiple debs
+	if [[ "$multi" == "y" ]]; then
+	
+		# create and change to tmp install dir
+		mkdir -p "/tmp/deb-install-tmp"	
+		cd "/tmp/deb-install-tmp"
+		
+		# Download files recursively form base URL folder, skip index.html
+		# See: http://stackoverflow.com/a/5335576
+		
+		# Accept only deb, no host DIRs, cut extra DIRs, do not ascend to parent DIR
+		# and also avoid rebots.txt
+		wget -A deb -r -nH --cut-dirs=3 --no-parent -e robots=off  "$BASE_URL"
+		
+		# process install in loop for each package
+		FILES="*.deb"
+		
+		# process files
+		for x in $FILES
+		do
+			echo "y" | sudo dpkg -i "$x" | tee "$HOME/retro-log.txt"
+		done
+
+		# remove temp install directory
+		rm -rf "/tmp/deb-install-tmp"
+
+
+	# prcess only packages that are specifed by themselves	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed" 2> /dev/null)
-	if [ "" == "$PKG_OK" ]; then
+	
+	elif [[ "$multi" == "n" && "" == "$PKG_OK" ]]; then
+		
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
-		
-		# check for multiple debs for install
-		if [[ "$multi" == "y" ]]; then
-		
-			cd /tmp
-			# Download files recursively form base URL folder, skip index.html
-			# See: http://stackoverflow.com/a/5335576
-			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
-			
-			# process install in loop for each package in our software list
-			for x in `cat $software_list`; do
-				sudo gdebi -i "$x"
-			done
-			
-		elif [[ "$multi" == "n" ]]; then
-		
-			# download target singluar deb
-			wget -P /tmp "$BASE_URL/$PKG_FILENAME"
-			# process install
-			sudo gdebi "/tmp/$PKG_FILENAME"
-		fi
+
+		# download target singluar deb
+		wget -P /tmp "$BASE_URL/$PKG_FILENAME"
+		# process install
+		sudo gdebi "/tmp/$PKG_FILENAME"
 
 		# cleanup
 		rm -f "/tmp/$PKG_FILENAME"
@@ -925,7 +935,10 @@ ep_test_deb()
 		
 			# Download files recursively form base URL folder, skip index.html
 			# See: http://stackoverflow.com/a/5335576
-			wget -r -nH --cut-dirs=3 --no-parent --reject="index.html" "$BASE_URL"
+			
+			# Accept only deb, no host DIRs, cut extra DIRs, do not ascend to parent DIR
+			# and also avoid rebots.txt
+			wget -A deb -r -nH --cut-dirs=3 --no-parent -e robots=off  "$BASE_URL"
 			
 		elif [[ "$multi" == "n" ]]; then
 		

@@ -7,7 +7,7 @@ https://www.dropbox.com/s/o5u7x6e3k4pxq8p/game0a.sav?dl=0
 This save game has the tutorial completed, so it won't show you the opening story screen anymore. 
 You can still play the tutorial again from the level select screen.
 
-Install it into ~/.steam/steam/userdata/<yoursteamusernumber>/250110/remote/
+Install it into ~/.steam/steam/userdata<yoursteamusernumber>/250110/remote/
 replace <yoursteamusernumber> with your unique steam user number. If you don't know it, 
 just browse to the 'userdata' directory, if it's a single user install of Steam, it will 
 be the only sub-directory there.

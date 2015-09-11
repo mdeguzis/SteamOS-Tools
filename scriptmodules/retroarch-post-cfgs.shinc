@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  	0.3.7
+# Script Ver:	  	0.3.8
 # Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
@@ -210,12 +210,16 @@ if [[ "$apt_mode" == "install" ]]; then
 		;;
 	esac
 	
-	# swap home_temp out for each user DIR path
+	# Swap home_temp out for each user DIR path
+	
+	# We will use the desktop user here so that there are no permission struggles when
+	# Adding ROMs with the normal desktop user, and the Steam user should be able to see/read
+	# The ROMs
 	sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 	sudo sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
 	
 	# create desktop application link 
-	sudo cp "$scriptdir/cfgs/retroarch/retroarch.desktop" "/usr/share/applications"
+	sudo cp "$scriptdir/cfgs/desktop-files/retroarch-src.desktop" "/usr/share/applications"
 	
 	# copy banner image
 	cp "$scriptdir/extra/retroarch/retro-arch-logo.png" "$banner_dir_desktop"
@@ -264,10 +268,11 @@ if [[ "$apt_mode" == "install" ]]; then
 	#####################################
 	# ensure folders have correct owners
 	#####################################
+	# This should not be needed now that ROMs are in /home/desktop
 	
 	# home paths, which includes the ROMs DIR, saves, configs
-	sudo chown -R steam:steam "$steam_home"
-	sudo chown -R desktop:desktop "$desktop_home"
+	# sudo chown -R steam:steam "$steam_home"
+	# sudo chown -R desktop:desktop "$desktop_home"
 	
 	#####################################
 	# Correct Permissions 

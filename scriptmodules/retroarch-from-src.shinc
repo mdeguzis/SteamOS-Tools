@@ -172,6 +172,8 @@ if [[ "$apt_mode" == "install" ]]; then
 	############################
 	# disabled games:
 	############################
+	
+	# 20150909 - pk64 - below needs revaluated.
 
 	sed -i -e '/libretro_build_core tyrquake/d' "$git_dir/libretro-build.sh"
 	sed -i -e '/libretro_build_core prboom/d' "$git_dir/libretro-build.sh"

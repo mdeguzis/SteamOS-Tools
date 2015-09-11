@@ -4,7 +4,7 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.3.3
+# Script Ver:	0.3.5
 # Description:	Attempts to build a deb package from a PPA
 #
 # See:		If you are building from Ubuntu main, check the website
@@ -219,6 +219,9 @@ main()
 		rm -f $build_dir/*-dbg
 		rm -f $build_dir/*-dev
 		rm -f $build_dir/*-compat
+		
+		# remove source directory that was made
+		find $build_dir -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \;
 		
 	elif [[ "$trim_choice" == "n" ]]; then
 	

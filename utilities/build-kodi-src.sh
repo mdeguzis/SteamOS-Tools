@@ -4,7 +4,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.1.9
+# Script Ver:		0.3.1
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -38,26 +38,44 @@ time_stamp_start=(`date +"%T"`)
 install_prereqs()
 {
 	clear
-	echo -e "==> Assessing prerequisites for building...\n"
+	echo -e "==> Assessing prerequisites for building"
 	sleep 1s
 
-	# install needed packages for building kodi
-
+	# Reminder: libshairplay-dev is only available in deb-multimedia
+	
+	# Swaps: (libcurl3 for libcurl-dev), (dcadec-dev, build from git)
+	
+	echo -e "\n==INFO==\nBuilding missing package dcadec not found in Debian repositories\n"
+	sleep 1s
+	
+	# build dcadec (could not find available for debian)
+	cd
+	rm -rf dcadec
+	git clone https://github.com/foo86/dcadec
+	cd dcadec
+	make
+	sudo make install
+	
+	echo -e "\n==INFO==\nInstalling the rest of packages found in Debian repositories\n"
+	sleep 1s
+	
+	# main packages available in Debian Jessie and SteamOS repos:
+	
 	sudo apt-get install autoconf automake autopoint autotools-dev cmake curl \
-	debhelper default-jre gawk gperf libao-dev libasound2-dev \
+	default-jre gawk gperf libao-dev libasound2-dev \
 	libass-dev libavahi-client-dev libavahi-common-dev libbluetooth-dev \
 	libbluray-dev libboost-dev libboost-thread-dev libbz2-dev libcap-dev libcdio-dev \
-	libcec-dev libcurl4-openssl-dev libcwiid-dev libdbus-1-dev libfontconfig1-dev \
-	libfreetype6-dev libfribidi-dev libgif-dev libgl1-mesa-dev libglew-dev \
-	libgl1-mesa-dev libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev \
-	liblzo2-dev libmicrohttpd-dev libmodplug-dev libmpcdec-dev libmpeg2-4-dev \
-	libmysqlclient-dev libnfs-dev libogg-dev libpcre3-dev libplist-dev libpng12-dev \
-	libpulse-dev librtmp-dev libsdl2-dev libshairplay-dev libsmbclient-dev \
-	libsqlite3-dev libssh-dev libssl-dev libswscale-dev libtag1-dev libtiff5-dev \
-	libtinyxml-dev libtool libudev-dev libusb-dev libva-dev libvdpau-dev libvorbis-dev \
-	libxinerama-dev libxml2-dev libxmu-dev libxrandr-dev libxslt1-dev libxt-dev \
-	libyajl-dev lsb-release nasm python-dev python-imaging python-support swig unzip \
-	uuid-dev yasm zip zlib1g-dev gdebi
+	libcec-dev libcurl3 libcwiid-dev libdbus-1-dev libfontconfig-dev libfreetype6-dev \
+	libfribidi-dev libgif-dev libglu1-mesa-dev \
+	libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev liblzo2-dev libmicrohttpd-dev \
+	libmodplug-dev libmpcdec-dev libmpeg2-4-dev libmysqlclient-dev libnfs-dev libogg-dev \
+	libpcre3-dev libplist-dev libpng12-dev libpng-dev libpulse-dev librtmp-dev libsdl2-dev \
+	libshairplay-dev libsmbclient-dev libsqlite3-dev libssh-dev libssl-dev libswscale-dev \
+	libtag1-dev libtiff-dev libtinyxml-dev libtool libudev-dev \
+	libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev \
+	libxmu-dev libxrandr-dev libxslt1-dev libxt-dev libyajl-dev lsb-release \
+	nasm python-dev python-imaging python-support swig unzip uuid-dev yasm \
+	zip zlib1g-dev
 
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache
@@ -137,6 +155,8 @@ main()
 	# Build Kodi
 	#################################################
 
+	echo -e "==> Building Kodi"
+
   	# Note (needed?):
   	# When listing the application depends, reference https://packages.debian.org/sid/kodi
   	# for an idea of what packages are needed.
@@ -162,8 +182,18 @@ main()
 	sudo gdebi "/tmp/crossbuild.deb"
 	sudo rm -f "/tmp/crossbuild.deb"
 
-  	# create the Kodi executable manually perform these steps:
+	# libdcadec
+	
 
+	# libtag
+	#make -C lib/taglib
+	#make -C lib/taglib install
+
+	# libnfs
+	#make -C lib/libnfs
+	#make -C lib/libnfs install
+
+  	# create the Kodi executable manually perform these steps:
 	./bootstrap
 
 	# ./configure <option1> <option2> PREFIX=<system prefix>... 
@@ -180,8 +210,8 @@ main()
 	# make -j4
 	make -j2
 
-	# since we are building a deb pkg, we will not use 'make install'
-	# make install
+	# Install Kodi
+	sudo make install
 
 	# From v14 with commit 4090a5f a new API for binary addons is available. 
 	# Not used for now ...
@@ -192,44 +222,28 @@ main()
 	# (Optional) build Kodi test suite
 	####################################
 
-	# make check
+	#make check
 
 	# compile the test suite without running it
 
-	# make testsuite
+	#make testsuite
 
 	# The test suite program can be run manually as well.
 	# The name of the test suite program is 'kodi-test' and will build in the Kodi source tree.
 	# To bring up the 'help' notes for the program, type the following:
 
-	# ./kodi-test --gtest_help
-
-	############################
-	# DEB build pre-reqs
-	############################
-
-	# create needed directories
-	sudo mkdir -p "/usr/local/share/doc"
-	sudo mkdir -p "/usr/local/share/icons"
-
-	############################
-	# proceed to DEB BUILD
-	############################
-
-	echo -e "\n==> Building Debian package from source"
-	sleep 2s
-
-	# build deb package
-	sudo checkinstall
-
-	# Alternate method
-	# dpkg-buildpackage -us -uc -nc
+	#./kodi-test --gtest_help
 
 	#################################################
 	# Post install configuration
 	#################################################
 
-	# TODO
+	echo -e "\n==> Adding desktop file and artwork"
+
+	# add desktop file for SteamOS/BPM
+	cd $scriptdir
+	sudo cp "cfgs/desktop-files/kodi.desktop" "/usr/share/applications"
+	sudo cp "artwork/banners/Kodi.png" "/home/steam/Pictures"
 
 	#################################################
 	# Cleanup
@@ -247,19 +261,6 @@ main()
 	echo -e "Time started: ${time_stamp_end}"
 	echo -e "Total Runtime (minutes): $runtime\n"
 
-
-	# assign value to build folder for exit warning below
-	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
-
-	# inform user of packages
-	echo -e "\n############################################################"
-	echo -e "If package was built without errors you will see it below."
-	echo -e "If you don't, please check build dependcy errors listed above."
-	echo -e "############################################################\n"
-
-	echo -e "Showing contents of: $build_dir:"
-	ls "$build_dir"
-	echo ""
 
 }
 

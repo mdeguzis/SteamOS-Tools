@@ -22,7 +22,7 @@ rpc_summary()
 	
 }
 
-rpc_unload_retroarch
+rpc_unload_retroarch()
 {
 
 	echo -e "\n==> Removing related files for retroach post-install configs"

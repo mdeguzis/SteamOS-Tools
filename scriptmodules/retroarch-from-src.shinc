@@ -19,7 +19,7 @@
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
-retroarch_src_main()
+rfs_retroarch_src_main()
 {
 
 if [[ "$apt_mode" == "install" ]]; then

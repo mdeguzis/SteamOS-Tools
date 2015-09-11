@@ -139,6 +139,7 @@ rpc_configure_common()
 		
 		# send notice that gamepads are now autoconfigured
 		cat <<- EOF
+		
 		==INFO==
 		Notice: Gamepad configurations are automatic via the 'retroarch-joypad-autoconfig'
 		or sourced directly from the below link for source builds of Retroarch.
@@ -325,7 +326,7 @@ rpc_configure_src()
 		# extract
 		unzip -o "/tmp/master.zip" -d "/tmp"
 		# distribute shaders
-		cp -r "/tmp/retroarch-joypad-autoconfig-master/udev/." "$retroarch_input_dir"
+		sudo cp -r "/tmp/retroarch-joypad-autoconfig-master/udev/." "$retroarch_input_dir"
 		# remove tmp file
 		rm -f "/tmp/master.zip"
 		

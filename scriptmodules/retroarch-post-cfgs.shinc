@@ -240,14 +240,14 @@ rpc_configure_common()
 		sleep 2s
 		
 		# correct recursively to touch all our directories
-		sudo chmod -R 755 "$retroarch_cfg_loc_desktop"
-		sudo chmod -R 755 "$retroarch_cfg_loc_steam"
+		sudo chown -R desktop:desktop "$retroarch_cfg_loc_desktop"
+		sudo chown -R steam:steam "$retroarch_cfg_loc_steam"
 		
 		# other non specific DIRs
-		sudo chmod -R 755 "$banner_dir_desktop"
-		sudo chmod -R 755 "$banner_dir_steam"
-		sudo chmod -R 755 "$roms_dir_desktop"
-		sudo chmod -R 755 "$roms_dir_steam"
+		sudo chown -R desktop:desktop "$banner_dir_desktop"
+		sudo chown -R steam:steam "$banner_dir_steam"
+		sudo chown -R desktop:desktop "$roms_dir_desktop"
+		sudo chown -R steam:steam "$roms_dir_steam"
 
 	elif [[ "$apt_mode" == "remove" ]]; then
 	
@@ -379,8 +379,15 @@ rpc_configure_src()
 		find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_steam" 2> /dev/null
 		
 		# fix/correct permissions to our extra directories for the source build
-		sudo chmod -R 755 "$retroarch_base_desktop"
-		sudo chmod -R 755 "$retroarch_base_steam"
+		sudo chown -R desktop:destkop "$retroarch_base_desktop"
+		sudo chown -R desktop:destkop "$retroarch_filters_desktop"
+		sudo chown -R desktop:destkop "$retroarch_shaders_desktop"
+		sudo chown -R desktop:destkop "$hist_loc_desktop"
+		
+		sudo chown -R steam:steam "$retroarch_base_steam"
+		sudo chown -R steam:steam "$hist_loc_steam"
+		sudo chown -R steam:steam "$retroarch_shaders_steam"
+		sudo chown -R steam:steam "$retroarch_filters_steam"
 		
 		#################################################
 		# Automatically add Retroarch program into Steam?

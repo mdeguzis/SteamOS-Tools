@@ -4,7 +4,7 @@
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
 # Script Ver:	  	1.7.7
-# Description:		Module for isntalling useful pacakges otherwise not 
+# Description:		Module for installing useful pacakges otherwise not 
 #			found in The Debian jessie repositories directly.
 #	
 # Usage:	      	n/a , module

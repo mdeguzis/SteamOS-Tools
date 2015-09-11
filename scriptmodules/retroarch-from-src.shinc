@@ -22,248 +22,200 @@ time_stamp_start=(`date +"%T"`)
 rfs_retroarch_src_main()
 {
 
-if [[ "$apt_mode" == "install" ]]; then
-	
-	#################################################
-	# Initial setup
-	#################################################
-	
-	# Warn user this will take some time
-	echo -e "\nBuilding Retroarch and its associated cores will take some time."
-	echo -e "Please wait or press CTRL+C now. This is largely dependant on your"
-	echo -e "CPU, HDD Speed, and RAM configuration."
-	echo -e "\nPress Enter to continue\n"
-	
-	read -n 1 
-	printf "\nContinuing...\n" 
-	clear 
-
-	# set vars
-	export install_dir="/home/desktop/retroarch-src"
-	export git_dir="/home/desktop/retroarch-src/libretro-super"
-	export git_url="https://github.com/libretro/libretro-super"
-	export symlink_target="/usr/bin/retroarch-src"
-	export binary_loc="$git_dir/retroarch/retroarch"
-	export core_loc="/usr/lib/libretro"
-	
-	###########################################################################
-	# optional backup Git fork if there is a regression in Retroarch
-	###########################################################################
-	# Updated and tested roughly once a week to ensure some kind of stability
-	# https://github.com/ProfessorKaos64/RetroArch
-	
-	# export git_url="https://github.com/ProfessorKaos64/libretro-super"
-	###########################################################################
-	
-	# If git folder libretro-super exists, evaluate it
-	# Avoiding a large download again is much desired.
-	# If the DIR is already there, the fetch info should be intact
-	if [[ -d "$git_dir" ]]; then
+	if [[ "$apt_mode" == "install" ]]; then
 		
-		echo -e "==INFO==\nGit folder already exists! Attempting git pull...\n"
-		sleep 1s
-		# attempt to pull the latest source first
-		cd $git_dir
-		# eval git status
-		output=$(git pull $git_url)
-
-		# evaluate git pull. Remove, create, and clone if it fails
-		if [[ "$output" != "Already up-to-date." ]]; then
-			echo -e "\n==ERROR==\nGit directory pull failed. Removing and cloning...\n"
+		#################################################
+		# Initial setup
+		#################################################
+		
+		# Warn user this will take some time
+		echo -e "\nBuilding Retroarch and its associated cores will take some time."
+		echo -e "Please wait or press CTRL+C now. This is largely dependant on your"
+		echo -e "CPU, HDD Speed, and RAM configuration."
+		echo -e "\nPress Enter to continue\n"
+		
+		read -n 1 
+		printf "\nContinuing...\n" 
+		clear 
+	
+		# set vars
+		export install_dir="/home/desktop/retroarch-src"
+		export git_dir="/home/desktop/retroarch-src/libretro-super"
+		export git_url="https://github.com/libretro/libretro-super"
+		export symlink_target="/usr/bin/retroarch-src"
+		export binary_loc="$git_dir/retroarch/retroarch"
+		export core_loc="/usr/lib/libretro"
+		
+		###########################################################################
+		# optional backup Git fork if there is a regression in Retroarch
+		###########################################################################
+		# Updated and tested roughly once a week to ensure some kind of stability
+		# https://github.com/ProfessorKaos64/RetroArch
+		
+		# export git_url="https://github.com/ProfessorKaos64/libretro-super"
+		###########################################################################
+		
+		# If git folder libretro-super exists, evaluate it
+		# Avoiding a large download again is much desired.
+		# If the DIR is already there, the fetch info should be intact
+		if [[ -d "$git_dir" ]]; then
+			
+			echo -e "==INFO==\nGit folder already exists! Attempting git pull...\n"
+			sleep 1s
+			# attempt to pull the latest source first
+			cd $git_dir
+			# eval git status
+			output=$(git pull $git_url)
+	
+			# evaluate git pull. Remove, create, and clone if it fails
+			if [[ "$output" != "Already up-to-date." ]]; then
+				echo -e "\n==ERROR==\nGit directory pull failed. Removing and cloning...\n"
+				sleep 2s
+				cd
+				rm -rf "$git_dir"
+				mkdir -p "$install_dir"
+				cd "$install_dir"
+				# clone and fetch super build (evaluating currently)
+				git clone "$git_url"
+			fi
+		else
+			echo -e "\n==INFO==\nGit directory does not exist. cloning now...\n"
 			sleep 2s
-			cd
-			rm -rf "$git_dir"
+			# create and clone
 			mkdir -p "$install_dir"
 			cd "$install_dir"
 			# clone and fetch super build (evaluating currently)
 			git clone "$git_url"
 		fi
-	else
-		echo -e "\n==INFO==\nGit directory does not exist. cloning now...\n"
+		
+		# enter git dir if we are not already
+		cd $git_dir
+		
+		#################################################
+		# fetch information
+		#################################################
+		# See: https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91
+		
+		echo -e "\n==> Fetching sources...please wait\n"
 		sleep 2s
-		# create and clone
-		mkdir -p "$install_dir"
-		cd "$install_dir"
-		# clone and fetch super build (evaluating currently)
-		git clone "$git_url"
-	fi
-	
-	# enter git dir if we are not already
-	cd $git_dir
-	
-	#################################################
-	# fetch information
-	#################################################
-	# See: https://github.com/libretro/libretro-super/blob/master/libretro-build.sh#L91
-	
-	echo -e "\n==> Fetching sources...please wait\n"
-	sleep 2s
-	
-	############################
-	# disabled fetches (cores):
-	############################
-	
-	sed -i -e 's|register_core "bsnes"|#register_core "bsnes"|g' "$git_dir/rules.d/core-rules.sh"
-	
-	############################
-	# disabled fetches (games):
-	############################
-	
-	sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
-	sed -i -e 's|register_core "tyrquake"|#register_core "tyrquake"|g' "$git_dir/rules.d/core-rules.sh"
-	sed -i -e 's|register_core "prboom"|#register_core "prboom"|g' "$git_dir/rules.d/core-rules.sh"
-	sed -i -e 's|register_core "dinothawr"|#register_core "dinothawr"|g' "$git_dir/rules.d/core-rules.sh"
-	sed -i -e 's|register_core "nxengine"|#register_core "nxengine"|g' "$git_dir/rules.d/core-rules.sh"
-	sed -i -e 's|register_core "2048"|#register_core "2048"|g' "$git_dir/rules.d/core-rules.sh"
-	sed -i -e 's|register_core "stonesoup"|#register_core "stonesoup"|g' "$git_dir/rules.d/core-rules.sh"
-
-	############################
-	# disabled fetches (extra):
-	############################
-	# These mostly include extras that fail to build
-	
-	sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
-	
-	############################
-	# proceed to global fetch:
-	############################
-	
-	##################################################
-	# Asses if all cores are to be built or just one
-	##################################################
-	
-	# no options specifed in './desktop-software install retroarch-src' cmd
-	# if not core was specified, $extra_opts will be the pkg type
-	if [[ "$extra_opts" == "retroarch-src" ]]; then
-	
-		# fetch cores
-		./libretro-fetch.sh 
 		
-	elif [[ "$extra_opts" != "retroarch-src" ]]; then
+		############################
+		# disabled fetches (cores):
+		############################
 		
-		echo -e "\n==> Attempting to fetch core $extra_opts now...\n"
-		./libretro-fetch.sh retroarch
-		./libretro-fetch.sh $extra_opts
-	fi
-	
-	#################################################
-	# Build player and cores
-	#################################################
-	
-	echo -e "\n==> Building sources...please wait"
-	sleep 2s
-	
-	# Remove untested, broken, standalone games, or extra cores
-	# Uncomment the below sed lines to build ALL cores
-	
-	############################
-	# disabled cores:
-	############################
-	# These mostly include cores that fail to build
-	
-	sed -i -e '/build_libretro_test/d' "$git_dir/libretro-build.sh"
-
-	############################
-	# disabled extra:
-	############################
-
-	sed -i -e '/libretro_build_core ffmpeg/d' "$git_dir/libretro-build.sh"
-	
-	############################
-	# disabled games:
-	############################
-	
-	# 20150909 - pk64 - below needs revaluated.
-
-	sed -i -e '/libretro_build_core tyrquake/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/libretro_build_core prboom/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/libretro_build_core dinothawr/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/libretro_build_core nxengine/d' "$git_dir/libretro-build.sh"
-	sed -i -e '/libretro_build_core 2048/d' "$git_dir/libretro-build.sh"
-	
-	############################
-	# proceed to global build:
-	############################
-	
-	# perform directory check for *.so (libretro cores) in
-	# /usr/bin/libretro. These will be present if this module was
-	# already ran before
-	
-	core_check=$(ls "/usr/lib/libretro" 2> /dev/null)
-	retroarch_check=$(ls "$git_dir/retroarch")
-	
-	############################
-	# Begin retroarch build eval
-	############################
-	
-	if [[ "$retroarch_check" != "" ]]; then
+		sed -i -e 's|register_core "bsnes"|#register_core "bsnes"|g' "$git_dir/rules.d/core-rules.sh"
 		
-		echo -e "\n==INFO=="
-		echo -e "It seems Retorarch is already built in $git_dir/retroarch"
-		echo -e "Would you like to rebuild [y], or [n]?\n"
+		############################
+		# disabled fetches (games):
+		############################
 		
-		# the prompt sometimes likes to jump above sleep
-		sleep 0.5s
+		sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
+		sed -i -e 's|register_core "tyrquake"|#register_core "tyrquake"|g' "$git_dir/rules.d/core-rules.sh"
+		sed -i -e 's|register_core "prboom"|#register_core "prboom"|g' "$git_dir/rules.d/core-rules.sh"
+		sed -i -e 's|register_core "dinothawr"|#register_core "dinothawr"|g' "$git_dir/rules.d/core-rules.sh"
+		sed -i -e 's|register_core "nxengine"|#register_core "nxengine"|g' "$git_dir/rules.d/core-rules.sh"
+		sed -i -e 's|register_core "2048"|#register_core "2048"|g' "$git_dir/rules.d/core-rules.sh"
+		sed -i -e 's|register_core "stonesoup"|#register_core "stonesoup"|g' "$git_dir/rules.d/core-rules.sh"
+	
+		############################
+		# disabled fetches (extra):
+		############################
+		# These mostly include extras that fail to build
 		
-		# gather user input
-		read -ep "Choice: " user_input_retro
+		sed -i -e 's|register_core "ffmpeg"|#register_core "ffmpeg"|g' "$git_dir/rules.d/core-rules.sh"
 		
-		if [[ "$user_input_retro" == "n" ]]; then
-			echo -e "\n==> Skipping Retroarch build...\n"
-			sleep 2s
-		elif [[ "$user_input_retro" == "y" ]]; then
-			echo -e "\n==> Rebuilding Retroarch...\n"
-			sleep 2s
-			# build Retroarch
-			./retroarch-build.sh
-		else
-			echo -e "\n==ERROR=="
-			echo -e "Invalid input, exiting...\n"
-			sleep 2s
-			exit
+		############################
+		# proceed to global fetch:
+		############################
+		
+		##################################################
+		# Asses if all cores are to be built or just one
+		##################################################
+		
+		# no options specifed in './desktop-software install retroarch-src' cmd
+		# if not core was specified, $extra_opts will be the pkg type
+		if [[ "$extra_opts" == "retroarch-src" ]]; then
+		
+			# fetch cores
+			./libretro-fetch.sh 
+			
+		elif [[ "$extra_opts" != "retroarch-src" ]]; then
+			
+			echo -e "\n==> Attempting to fetch core $extra_opts now...\n"
+			./libretro-fetch.sh retroarch
+			./libretro-fetch.sh $extra_opts
 		fi
-	else	
-		echo -e "\n==INFO==\nRetroarch does not appear to be built."
-		echo -e "Building now...\n"
+		
+		#################################################
+		# Build player and cores
+		#################################################
+		
+		echo -e "\n==> Building sources...please wait"
 		sleep 2s
-		# build Retroarch
-		./retroarch-build.sh
-
-	# end retroarch build eval
-	fi
-
-	##################################################
-	# Asses if all cores are to be built or just one
-	##################################################
+		
+		# Remove untested, broken, standalone games, or extra cores
+		# Uncomment the below sed lines to build ALL cores
+		
+		############################
+		# disabled cores:
+		############################
+		# These mostly include cores that fail to build
+		
+		sed -i -e '/build_libretro_test/d' "$git_dir/libretro-build.sh"
 	
-	# no options specifed in './desktop-software install retroarch-src' cmd
-	# if not core was specified, $extra_opts will be the pkg type
-	if [[ "$extra_opts" == "retroarch-src" ]]; then
+		############################
+		# disabled extra:
+		############################
+	
+		sed -i -e '/libretro_build_core ffmpeg/d' "$git_dir/libretro-build.sh"
 		
-		######################################
-		# Begin core build eval for all cores
-		#####################################
+		############################
+		# disabled games:
+		############################
 		
-		if [[ "$core_check" != "" ]]; then
+		# 20150909 - pk64 - below needs revaluated.
+	
+		sed -i -e '/libretro_build_core tyrquake/d' "$git_dir/libretro-build.sh"
+		sed -i -e '/libretro_build_core prboom/d' "$git_dir/libretro-build.sh"
+		sed -i -e '/libretro_build_core dinothawr/d' "$git_dir/libretro-build.sh"
+		sed -i -e '/libretro_build_core nxengine/d' "$git_dir/libretro-build.sh"
+		sed -i -e '/libretro_build_core 2048/d' "$git_dir/libretro-build.sh"
+		
+		############################
+		# proceed to global build:
+		############################
+		
+		# perform directory check for *.so (libretro cores) in
+		# /usr/bin/libretro. These will be present if this module was
+		# already ran before
+		
+		core_check=$(ls "/usr/lib/libretro" 2> /dev/null)
+		retroarch_check=$(ls "$git_dir/retroarch")
+		
+		############################
+		# Begin retroarch build eval
+		############################
+		
+		if [[ "$retroarch_check" != "" ]]; then
 			
 			echo -e "\n==INFO=="
-			echo -e "It seems the libretro cores are already built to $core_loc"
+			echo -e "It seems Retorarch is already built in $git_dir/retroarch"
 			echo -e "Would you like to rebuild [y], or [n]?\n"
 			
 			# the prompt sometimes likes to jump above sleep
 			sleep 0.5s
 			
 			# gather user input
-			read -ep "Choice: " user_input_core
+			read -ep "Choice: " user_input_retro
 			
-			if [[ "$user_input_core" == "n" ]]; then
-				echo -e "\n==> Skipping core builds...\n"
+			if [[ "$user_input_retro" == "n" ]]; then
+				echo -e "\n==> Skipping Retroarch build...\n"
 				sleep 2s
-			elif [[ "$user_input_core" == "y" ]]; then
-				echo -e "\n==> Rebuilding Libretro cores...\n"
+			elif [[ "$user_input_retro" == "y" ]]; then
+				echo -e "\n==> Rebuilding Retroarch...\n"
 				sleep 2s
-				# build cores
-				./libretro-build.sh
+				# build Retroarch
+				./retroarch-build.sh
 			else
 				echo -e "\n==ERROR=="
 				echo -e "Invalid input, exiting...\n"
@@ -271,81 +223,129 @@ if [[ "$apt_mode" == "install" ]]; then
 				exit
 			fi
 		else	
-			echo -e "\n==INFO==\nLibretro cores do not appear to be built."
-			echo -e "Building now..."
+			echo -e "\n==INFO==\nRetroarch does not appear to be built."
+			echo -e "Building now...\n"
 			sleep 2s
-			./libretro-build.sh
-			
+			# build Retroarch
+			./retroarch-build.sh
+	
 		# end retroarch build eval
 		fi
 	
-	elif [[ "$extra_opts" != "retroarch-src" ]]; then
+		##################################################
+		# Asses if all cores are to be built or just one
+		##################################################
+		
+		# no options specifed in './desktop-software install retroarch-src' cmd
+		# if not core was specified, $extra_opts will be the pkg type
+		if [[ "$extra_opts" == "retroarch-src" ]]; then
+			
+			######################################
+			# Begin core build eval for all cores
+			#####################################
+			
+			if [[ "$core_check" != "" ]]; then
+				
+				echo -e "\n==INFO=="
+				echo -e "It seems the libretro cores are already built to $core_loc"
+				echo -e "Would you like to rebuild [y], or [n]?\n"
+				
+				# the prompt sometimes likes to jump above sleep
+				sleep 0.5s
+				
+				# gather user input
+				read -ep "Choice: " user_input_core
+				
+				if [[ "$user_input_core" == "n" ]]; then
+					echo -e "\n==> Skipping core builds...\n"
+					sleep 2s
+				elif [[ "$user_input_core" == "y" ]]; then
+					echo -e "\n==> Rebuilding Libretro cores...\n"
+					sleep 2s
+					# build cores
+					./libretro-build.sh
+				else
+					echo -e "\n==ERROR=="
+					echo -e "Invalid input, exiting...\n"
+					sleep 2s
+					exit
+				fi
+			else	
+				echo -e "\n==INFO==\nLibretro cores do not appear to be built."
+				echo -e "Building now..."
+				sleep 2s
+				./libretro-build.sh
+				
+			# end retroarch build eval
+			fi
+		
+		elif [[ "$extra_opts" != "retroarch-src" ]]; then
+		
+			sleep 2s
+			echo -e "\n==> Building $extra_opts from user request\n"
+			sleep 2s
+			./libretro-build.sh $extra_opts
+		
+		# end specific build request check
+		fi
+		
+		#################################################
+		# Post install configuration
+		#################################################
+		
+		# handled after this script exits in
+		# SteamOS-Tools/desktop-software.sh 
+		# See: rpc_configure_retroarch
 	
-		sleep 2s
-		echo -e "\n==> Building $extra_opts from user request\n"
-		sleep 2s
-		./libretro-build.sh $extra_opts
+		#################################################
+		# Cleanup
+		#################################################
+		
+		# clean up dirs
+		
+		# note time ended
+		time_end=$(date +%s)
+		time_stamp_end=(`date +"%T"`)
+	    	runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
+		
+		# output finish
+		echo -e "\nTime started: ${time_stamp_start}"
+		echo -e "Time stopped: ${time_stamp_end}"
+		echo -e "Total Runtime (minutes): $runtime\n"
 	
-	# end specific build request check
+		echo -e "\nProceeding to Retroarch/Libretro post-install configuration in...\n"
+		# pause for a moment to allow user to see above stats
+		echo -n "5 " && sleep 1s
+		echo -n "4 " && sleep 1s
+		echo -n "3 " && sleep 1s
+		echo -n "2 " && sleep 1s
+		echo -n "1" && sleep 1s
+		echo ""
+		
+		# jump to post congifuration
+		rpc_configure_src
+		
+	elif [[ "$apt_mode" == "remove" ]]; then
+		
+		#Remove directories, build files, etc if uninstall is specified by user
+		echo -e "\n==> Removing related files for retroarch-src routine"
+		sleep 2s
+		
+		# remove directories
+		sudo rm -rf "$install_dir" "$git_dir" "$symlink_target" "$core_loc"
+	
+		echo -e "\nProceeding to Retroarch/Libretro post-install configuration in...\n"
+		# pause for a moment to allow user to see above stats
+		echo -n "5 " && sleep 1s
+		echo -n "4 " && sleep 1s
+		echo -n "3 " && sleep 1s
+		echo -n "2 " && sleep 1s
+		echo -n "1" && sleep 1s
+		echo ""
+		
+		# jump to post congifuration
+		rpc_configure_src
+		
 	fi
-	
-	#################################################
-	# Post install configuration
-	#################################################
-	
-	# handled after this script exits in
-	# SteamOS-Tools/desktop-software.sh 
-	# See: rpc_configure_retroarch
-
-	#################################################
-	# Cleanup
-	#################################################
-	
-	# clean up dirs
-	
-	# note time ended
-	time_end=$(date +%s)
-	time_stamp_end=(`date +"%T"`)
-    	runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
-	
-	# output finish
-	echo -e "\nTime started: ${time_stamp_start}"
-	echo -e "Time stopped: ${time_stamp_end}"
-	echo -e "Total Runtime (minutes): $runtime\n"
-
-	echo -e "\nProceeding to Retroarch/Libretro post-install configuration in...\n"
-	# pause for a moment to allow user to see above stats
-	echo -n "5 " && sleep 1s
-	echo -n "4 " && sleep 1s
-	echo -n "3 " && sleep 1s
-	echo -n "2 " && sleep 1s
-	echo -n "1" && sleep 1s
-	echo ""
-	
-	# jump to post congifuration
-	rpc_configure_src
-	
-elif [[ "$apt_mode" == "remove" ]]; then
-	
-	#Remove directories, build files, etc if uninstall is specified by user
-	echo -e "\n==> Removing related files for retroarch-src routine"
-	sleep 2s
-	
-	# remove directories
-	sudo rm -rf "$install_dir" "$git_dir" "$symlink_target" "$core_loc"
-
-	echo -e "\nProceeding to Retroarch/Libretro post-install configuration in...\n"
-	# pause for a moment to allow user to see above stats
-	echo -n "5 " && sleep 1s
-	echo -n "4 " && sleep 1s
-	echo -n "3 " && sleep 1s
-	echo -n "2 " && sleep 1s
-	echo -n "1" && sleep 1s
-	echo ""
-	
-	# jump to post congifuration
-	rpc_configure_src
-	
-fi
 
 }

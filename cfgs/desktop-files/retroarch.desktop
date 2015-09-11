@@ -2,7 +2,7 @@
 Version=1.0
 Name=Retroarch
 GenericName=Retroarch
-Comment=Retroarch-Src launcher
+Comment=Retroarch built from repacked PPA packages at ppa:libretro/stable
 Exec=retroarch
 Icon=/home/steam/Pictures/retro-arch-logo.png
 Terminal=false

@@ -4,10 +4,23 @@
 # Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  	0.5.5
+# Script Ver:	  	0.7.5
 # Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
+
+rpc_summary()
+{
+	
+	echo -e "\n==> Completing post-install actions..."
+	
+	echo -e "\nPost install routine is now complete. Please add $shortcut"
+	echo -e "as a non-Steam game in Big Picture Mode.\n"
+	echo -e "Please see $scriptdir/docs/Retroarch-info.md for"
+	echo -e "more information\n"
+	sleep 1s
+	
+}
 
 rpc_unload_retroarch
 {
@@ -112,7 +125,7 @@ rpc_configure_common()
 		#################################################
 		
 		echo -e "\n==> Configuring Retorarch parameters..."
-		sleep 1s
+		sleep 2s
 		
 		# copy skel file for use if need be later
 		cp "$scriptdir/cfgs/retroarch/retroarch-skel.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
@@ -190,8 +203,8 @@ rpc_configure_common()
 		# Swap home_temp out for each user DIR path
 		
 		# We will use the desktop user here so that there are no permission struggles when
-		# Adding ROMs with the normal desktop user, and the Steam user should be able to see/read
-		# The ROMs
+		# Adding ROMs with the normal desktop user, and the Steam user should be able to see/read the ROMs
+
 		sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 		sudo sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_steam/retroarch.cfg"
 		
@@ -200,11 +213,17 @@ rpc_configure_common()
 			
 			# create desktop application link 
 			sudo cp "$scriptdir/cfgs/desktop-files/retroarch-src.desktop" "/usr/share/applications"
+			
+			# set shortcut name for end summary
+			shortcut="retroarch-src"
 
 		elif [[ "$type" == "retroarch" ]]; then
 			
 			# create desktop application link 
 			sudo cp "$scriptdir/cfgs/desktop-files/retroarch.desktop" "/usr/share/applications"
+			
+			# set shortcut name for end summary
+			shortcut="retroarch"
 			
 		fi
 		
@@ -217,6 +236,7 @@ rpc_configure_common()
 		#################################################
 		
 		echo -e "\n==> Correcting owners and permissions"
+		sleep 2s
 		
 		# correct recursively to touch all our directories
 		sudo chmod -R 755 "$retroarch_base_desktop"
@@ -258,7 +278,7 @@ rpc_configure_src()
 		#################################################
 		
 		echo -e "\n==> Linking Retroarch to /usr/bin/retroarch"
-		sleep 1s
+		sleep 2s
 		
 		# Run common configuration
 		# This is a piece that both the source build and the package
@@ -312,6 +332,7 @@ rpc_configure_src()
 		
 		# base directories
 		pathlist+=("$retroarch_base_desktop")
+		pathlist+=("$retroarch_base_steam")
 		pathlist+=("$core_loc")
 		pathlist+=("$core_info_dir")
 		pathlist+=("$retroarch_filters_desktop")
@@ -332,8 +353,8 @@ rpc_configure_src()
 		done
 		
 		# download and extract shaders
-	
 		echo -e "\n==> Fetchng shaders from Libretro (Git)\n"
+		
 		wget -P /tmp "https://github.com/libretro/common-shaders/archive/master.zip"
 		# extract
 		unzip -o "/tmp/master.zip" -d "/tmp"
@@ -366,13 +387,8 @@ rpc_configure_src()
 		# If not, generate notice to user to add as "non-Steam game"
 		# <<TODO>>
 	
-		echo -e "\n==> Completing post-install actions..."
-	
-		echo -e "\nPost install routine is now complete. Please add 'Retroarch-Src'"
-		echo -e "as a non-Steam game in Big Picture Mode.\n"
-		echo -e "Please see $scriptdir/docs/Retroarch-info.md for"
-		echo -e "more information"
-		sleep 1s
+		# go to summary
+		rpc_summary
 	
 	elif [[ "$apt_mode" == "remove" ]]; then
 		

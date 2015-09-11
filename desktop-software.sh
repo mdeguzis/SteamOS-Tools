@@ -849,14 +849,12 @@ main()
                 clear
                 sleep 2s
                 rfs_retroarch_src_main
-                rpc_configure_retroarch
 		
 	elif [[ "$type" == "retroarch" ]]; then
 		
 		# kick off extra modules for buld debs
 		sleep 2s
 		ep_install_retroarch
-		rpc_configure_common
 		
 	elif [[ "$type" == "ue4-src" ]]; then
 

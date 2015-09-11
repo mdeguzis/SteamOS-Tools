@@ -1,7 +1,9 @@
 # Main script code, readme docs, and more
+***
 - ProfessorKaos64
 
 # Contributions from awesome people
+***
 I couldn't have done some of the things here without some help from a lot of great folks, including:
 * [Sharkwouter](https://github.com/sharkwouter)
 * [Ryochan7](https://github.com/Ryochan7)
@@ -9,6 +11,7 @@ I couldn't have done some of the things here without some help from a lot of gre
 * [psppwner300](https://github.com/psppwner300)
 
 # List of contributions
+***
 
 #### General code fixes
 * Sharkwouter

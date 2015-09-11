@@ -137,77 +137,15 @@ rpc_configure_common()
 		cp "$scriptdir/cfgs/retroarch/retroarch-skel.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
 		sudo cp "$scriptdir/cfgs/retroarch/retroarch-skel.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 		
-		# prompt user if they would like to load a controller config
-		echo -e "\nPlease choose a gamepad profile (4 player preset): \n"
-		echo "(1) Xbox 360 gamepad (wired)"
-		echo "(2) Xbox 360 gamepad (Wireless)"
-		echo "(3) Sony PS3 (wired) gamepad"
-		echo "(4) Sony PS3 (bluetooth) gamepad"
-		echo "(5) None"
-		echo ""
+		# send notice that gamepads are now autoconfigured
+		cat <<- EOF
+		==INFO==
+		Notice: Gamepad configurations are automatic via the 'retroarch-joypad-autoconfig'
+		or sourced directly from the below link for source builds of Retroarch.
+		https://github.com/libretro/retroarch-joypad-autoconfig/tree/master/udev
 		
-		# the prompt sometimes likes to jump above sleep
-		sleep 0.5s
-		
-		read -ep "Choice: " gp_choice
-		
-		# Configure joypad
-		# Please note: The non-source build version has joypad autoconfiguration
-		# Adding this to the source build version is being looked into.
-		case "$gp_choice" in
-		
-		        1)
-		        # copy modified retroarch.cfg to user DIRs without gamepad config
-			cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-			sudo cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wired.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
-		        ;;
-		        
-		        2)
-		        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
-			cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wireless.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-			sudo cp "$scriptdir/cfgs/retroarch/retroarch-xbox360-wireless.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
-		        ;;
-		         
-		        3)
-		        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
-			cp "$scriptdir/cfgs/retroarch/retroarch-ps3-wired.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-			sudo cp "$scriptdir/cfgs/retroarch/retroarch-ps3-wired.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
-		        ;;
-		         
-		        4)
-		        # kick off pairing process first if user wants to
-		        echo -e "\nDo you wish to pair  your PS3 Controller now? [y/n]: \n"
-		        # the prompt sometimes likes to jump above sleep
-			sleep 0.5s
-		        
-		        read -ep "Choice: " bt_choice
-		        
-		        if [[ "$bt_choice" == "y" ]]; then
-		                "$scriptdir/utilities/pair-ps3-bluetooth.sh"
-		        else
-		        	echo -e "\nSkipping PS3 Bluetooth setup..."
-		        	sleep 1s
-		        fi
-		        
-		        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
-			cp "$scriptdir/cfgs/retroarch/retroarch-ps3-bluetooth.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-			sudo cp "$scriptdir/cfgs/retroarch/retroarch-ps3-bluetooth.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
-		        ;;
-		        
-		        5)
-		        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
-			cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-			sudo cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
-			;;
-		         
-		        *)
-			echo "Invalid Input, continuing without gamepad config choice."
-		        # copy "default" modified retroarch.cfg to user DIRs without gamepad config
-			cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-			sudo cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
-			;;
-			
-		esac
+		EOF
+		sleep 3s
 		
 		# Swap home_temp out for each user DIR path
 		
@@ -316,6 +254,9 @@ rpc_configure_src()
 		retroarch_base_desktop="/home/desktop/retroarch"
 		retroarch_base_steam="/home/steam/retroarch"
 		
+		# input
+		retroarch_input_dir="/usr/share/libretro/autoconfig"
+		
 		# filters
 		retroarch_filters_desktop="/home/desktop/retroarch/filters"
 		retroarch_filters_steam="/home/steam/retroarch/filters"
@@ -359,8 +300,11 @@ rpc_configure_src()
 			fi
 		done
 		
+		##################################
 		# download and extract shaders
+		##################################
 		echo -e "\n==> Fetchng shaders from Libretro (Git)\n"
+		sleep 1s
 		
 		wget -P /tmp "https://github.com/libretro/common-shaders/archive/master.zip"
 		# extract
@@ -368,6 +312,20 @@ rpc_configure_src()
 		# distribute shaders
 		cp -r "/tmp/common-shaders-master/." "$retroarch_shaders_desktop"
 		sudo cp -r "/tmp/common-shaders-master/." "$retroarch_shaders_steam"
+		# remove tmp file
+		rm -f "/tmp/master.zip"
+		
+		####################################################################
+		# download and extract joypad auto configuration files from git
+		####################################################################
+		echo -e "\n==> Fetchng joypad profiles from libretro/retroarch-joypad-autoconfig (Git)\n"
+		sleep 1s
+		
+		wget -P /tmp "https://github.com/libretro/retroarch-joypad-autoconfig/archive/master.zip"
+		# extract
+		unzip -o "/tmp/master.zip" -d "/tmp"
+		# distribute shaders
+		cp -r "/tmp/retroarch-joypad-autoconfig-master/udev/." "$retroarch_input_dir"
 		# remove tmp file
 		rm -f "/tmp/master.zip"
 		

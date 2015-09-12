@@ -341,7 +341,7 @@ add_web_app_chrome()
 		
 		# To take care of names with spaces, we will set TARGET_NAME
 		# change spaces to dashes
-		TARGET_NAME=$(echo $custom_name | sed "s| |-|")
+		TARGET_NAME=$(echo $custom_name | sed "s| |-|g")
 		
 		echo -e "\nPlease enter path to image banner (best: 460x215)"
 		echo -e "Leave this blank if you wish to use the default\n"

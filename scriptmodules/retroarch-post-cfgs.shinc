@@ -101,8 +101,6 @@ rpc_configure_common()
 		
 		# Create all our base directories set above
 		pathlist+=("$save_loc_desktop")
-		pathlist+=("$desktop_home")
-		pathlist+=("$save_loc_desktop")
 		pathlist+=("$save_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_desktop")
@@ -152,7 +150,7 @@ rpc_configure_common()
 		Notice: Gamepad configurations are automatic via the 'retroarch-joypad-autoconfig'
 		or sourced directly from the below link for source builds of Retroarch.
 		https://github.com/libretro/retroarch-joypad-autoconfig/tree/master/udev
-		
+
 		EOF
 		sleep 3s
 		
@@ -305,6 +303,7 @@ rpc_configure_src()
 		pathlist+=("$retroarch_shaders")
 		pathlist+=("$hist_loc_desktop")
 		pathlist+=("$hist_loc_steam")
+		pathlist+=("$retroarch_input_dir")
 		
 		# quotes needed on entry to preven globbing on directory creation!
 		# Permissions will be corrected later on below.
@@ -361,15 +360,14 @@ rpc_configure_src()
 		find "/home/desktop/retroarch-src/libretro-super" -name *.filters | xargs sudo cp -t "$retroarch_filters_steam" 2> /dev/null
 		
 		# fix/correct permissions to our extra directories for the source build
+		sudo chown -R desktop:desktop "$retroarch_filters"
+		sudo chown -R steam:steam "$retroarch_shaders"
+		
 		sudo chown -R desktop:desktop "$retroarch_base_desktop"
-		sudo chown -R desktop:desktop "$retroarch_filters_desktop"
-		sudo chown -R desktop:desktop "$retroarch_shaders_desktop"
 		sudo chown -R desktop:desktop "$hist_loc_desktop"
 		
 		sudo chown -R steam:steam "$retroarch_base_steam"
 		sudo chown -R steam:steam "$hist_loc_steam"
-		sudo chown -R steam:steam "$retroarch_shaders_steam"
-		sudo chown -R steam:steam "$retroarch_filters_steam"
 		
 		#################################################
 		# Automatically add Retroarch program into Steam?

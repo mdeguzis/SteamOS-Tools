@@ -145,10 +145,6 @@ rpc_configure_common()
 		echo -e "\n==> Configuring Retorarch parameters..."
 		sleep 2s
 		
-		# copy skel file for use if need be later
-		cp "$scriptdir/cfgs/retroarch/retroarch-skel.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-		sudo cp "$scriptdir/cfgs/retroarch/retroarch-skel.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
-		
 		# send notice that gamepads are now autoconfigured
 		cat <<- EOF
 		
@@ -272,7 +268,7 @@ rpc_configure_src()
 		
 		# cores
 		core_loc="/usr/lib/libretro"
-		core_info_dir="/usr/lib/libretro/info"
+		core_info_dir="/usr/share/libretro/info/"
 		
 		# base Retorach home dir
 		retroarch_base_desktop="/home/desktop/retroarch"
@@ -282,12 +278,10 @@ rpc_configure_src()
 		retroarch_input_dir="/usr/share/libretro/autoconfig"
 		
 		# filters
-		retroarch_filters_desktop="/home/desktop/retroarch/filters"
-		retroarch_filters_steam="/home/steam/retroarch/filters"
+		retroarch_filters="/usr/lib/retroarch/filters/video/"
 		
 		# shaders
-		retroarch_shaders_desktop="/home/desktop/retroarch/shaders"
-		retroarch_shaders_steam="/home/steam/retroarch/shaders"
+		retroarch_shaders_="/usr/share/libretro/shaders/"
 		
 		# game history
 		hist_loc_desktop="/home/desktop/retroarch/history"

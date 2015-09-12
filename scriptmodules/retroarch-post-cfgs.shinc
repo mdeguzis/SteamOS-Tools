@@ -325,8 +325,7 @@ rpc_configure_src()
 		# extract
 		unzip -o "/tmp/master.zip" -d "/tmp"
 		# distribute shaders
-		cp -r "/tmp/common-shaders-master/." "$retroarch_shaders_desktop"
-		sudo cp -r "/tmp/common-shaders-master/." "$retroarch_shaders_steam"
+		sudo cp -r "/tmp/common-shaders-master/." "$retroarch_shaders"
 		# remove tmp file
 		rm -f "/tmp/master.zip"
 		

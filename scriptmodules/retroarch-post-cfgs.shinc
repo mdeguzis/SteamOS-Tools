@@ -169,7 +169,7 @@ rpc_configure_common()
 		
 		# the only specific setting that should be set is the save dir
 		sed -i "s|home_save_temp|$desktop_home|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-		sudo sed -i "s|home_save_temp|$desktop_home|g" "$retroarch_cfg_loc_steam/retroarch.cfg
+		sudo sed -i "s|home_save_temp|$steam_home|g" "$retroarch_cfg_loc_steam/retroarch.cfg
 		
 		# copy shortcut based on the software type used
 		if [[ "$type" == "retroarch-src" ]]; then

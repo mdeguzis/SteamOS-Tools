@@ -320,6 +320,7 @@ rfs_retroarch_src_main()
 		echo -n "3 " && sleep 1s
 		echo -n "2 " && sleep 1s
 		echo -n "1" && sleep 1s
+		echo ""
 		
 		# jump to post congifuration
 		rpc_configure_src

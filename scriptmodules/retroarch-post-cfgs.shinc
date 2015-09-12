@@ -17,7 +17,7 @@ rpc_summary()
 	echo -e "\nPost install routine is now complete. Please add $shortcut"
 	echo -e "as a non-Steam game in Big Picture Mode.\n"
 	echo -e "Please see $scriptdir/docs/Retroarch-info.md for"
-	echo -e "more information\n"
+	echo -e "more information"
 	sleep 1s
 	
 }

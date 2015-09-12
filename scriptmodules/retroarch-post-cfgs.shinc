@@ -209,12 +209,13 @@ rpc_configure_common()
 		
 		# correct recursively to touch all our directories
 		sudo chown -R desktop:desktop "$retroarch_cfg_loc_desktop"
-		sudo chown -R steam:steam "$retroarch_cfg_loc_steam"
-		
-		# other non specific DIRs
+		sudo chown -R desktop:desktop "$save_loc_desktop"
 		sudo chown -R desktop:desktop "$banner_dir_desktop"
-		sudo chown -R steam:steam "$banner_dir_steam"
 		sudo chown -R desktop:desktop "$roms_dir_desktop"
+		
+		sudo chown -R steam:steam "$retroarch_cfg_loc_steam"
+		sudo chown -R steam:steam "$save_loc_steam"
+		sudo chown -R steam:steam "$banner_dir_steam"
 		sudo chown -R steam:steam "$roms_dir_steam"
 
 	elif [[ "$apt_mode" == "remove" ]]; then

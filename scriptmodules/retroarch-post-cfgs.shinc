@@ -279,7 +279,7 @@ rpc_configure_src()
 		retroarch_filters="/usr/lib/retroarch/filters/video/"
 		
 		# shaders
-		retroarch_shaders_="/usr/share/libretro/shaders/"
+		retroarch_shaders="/usr/share/libretro/shaders/"
 		
 		# game history
 		hist_loc_desktop="/home/desktop/retroarch/history"

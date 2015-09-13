@@ -40,7 +40,18 @@ install_prereqs()
 	sudo apt-get install git devscripts build-essential checkinstall \
 	debian-keyring debian-archive-keyring cmake libv4l-dev autotools-dev \
 	dh-autoreconf pkg-kde-tools doxygen graphviz gsfonts-x11
+	
+	echo -e "\n== Checking for extra standalone prequisite packages for batch building"
+	
+	# libplatform is needed to do batch rebuild of the PPA
+	pkg_check=$(dpkg -s libplatform1)
+	if [[ "$pkg_check" == "" ]]
+	
+		# bail out
+		echo -e "\n==ERROR==\nlibplatform must be installed for batch rebuild of PPA!"
+		echo -e "Please install this seperately"
 
+	fi
 }
 
 set_vars()

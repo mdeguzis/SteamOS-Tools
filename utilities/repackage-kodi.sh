@@ -38,8 +38,8 @@ install_prereqs()
 	sleep 1s
 	# install needed packages
 	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring cmake libv4l-dev libusb-1.0-0-dev \
-	libopenal-dev libjack-jackd2-dev libgbm-dev python3-dev
+	debian-keyring debian-archive-keyring cmake libv4l-dev autotools-dev \
+	dh-autoreconf pkg-kde-tools doxygen graphviz gsfonts-x11
 
 }
 
@@ -107,7 +107,14 @@ main()
 		# Attempt to build target
 		echo -e "\n==> Attempting to build ${pkg}:\n"
 		sleep 2s
-		apt-get source --build ${pkg}
+		
+		build=$(apt-get source --build ${pkg} | grep "Unmet build dependencies")
+		
+		# bow out if build contains unment build deps
+		if [[ "$build" != "" ]]; then
+			echo -e "FAILURE TO BUILD"		
+			exit 1
+		fi
 		
 		# since this is building a large amount of packages, remove
 		# directories and unecessary files as we go.

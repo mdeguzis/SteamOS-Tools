@@ -8,37 +8,56 @@
 #			Please note, this is only necessary for Brewmaster,
 #			As vaporos-binds works via gamepad on Alchemist
 #
-# Usage:		[FIRST RUN]: ./show-fps.sh
-#			[SUBSEQUENT RUNS]: sudo runuser -l steam -c 'show-fps'
+# Usage:		./show-fps.sh
 #
 # -----------------------------------------------------------------------------
 
 # copy script to /usr/bin and exit for first run
-if [[ ! -f "/usr/bin/show-fps" ]]; then
 
-	# copy in script
-	clear
-	sudo cp ./show-fps.sh /usr/bin/show-fps	
-	echo -e "==INFO==\nScript copied to  /usr/bin. Please rerun with: sudo runuser -l steam -c 'show-fps'"
-	exit 1
-fi
+check_exist()
+{
+	if [[ ! -f "/usr/bin/show-fps" ]]; then
 
-# Set variables
-WM="steamcompmgr"
-DEBUGOPT="-v"
-export DISPLAY=:0.0
+		# copy in script
+		clear
+		sudo cp ./show-fps.sh /usr/bin/show-fps	
+	fi
+}
 
-# Set the command used to restart steamcompmgr with fps display
-DEBUGCMD="$WM -d $DISPLAY $DEBUGOPT"
+show_fps()
+{
 
-# Get the command used to start steamcompmgr
-RUNNING=$(ps ax|grep ${WM}|head -1|cut -d":" -f2-|cut -d" " -f2-)
+	# Set variables
+	WM="steamcompmgr"
+	DEBUGOPT="-v"
+	export DISPLAY=:0.0
 
-# Check if debug mode is on
-if [[ ! "$RUNNING" == "$DEBUGCMD" ]]; then
-        killall ${WM}
-        ${DEBUGCMD} &
-else
-        killall ${WM}
-        ${WM} -d ${DISPLAY} &
-fi
+	# Set the command used to restart steamcompmgr with fps display
+	DEBUGCMD="$WM -d $DISPLAY $DEBUGOPT"
+
+	# Get the command used to start steamcompmgr
+	RUNNING=$(ps ax|grep ${WM}|head -1|cut -d":" -f2-|cut -d" " -f2-)
+
+	# Check if debug mode is on
+	if [[ ! "$RUNNING" == "$DEBUGCMD" ]]; then
+        	killall ${WM}
+        	${DEBUGCMD} &
+	else
+        	killall ${WM}
+        	${WM} -d ${DISPLAY} &
+	fi
+}
+
+
+main()
+{
+
+	# check for script
+	check_exist
+
+	# run script
+	sudo runuser -l steam -c  '/usr/bin/show-fps'
+}
+
+# script flow
+main

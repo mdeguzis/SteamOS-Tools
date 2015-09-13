@@ -8,9 +8,20 @@
 #			Please note, this is only necessary for Brewmaster,
 #			As vaporos-binds works via gamepad on Alchemist
 #
-# Usage:		./show-fps
+# Usage:		[FIRST RUN]: ./show-fps.sh
+#			[SUBSEQUENT RUNS]: sudo runuser -l steam -c 'show-fps'
 #
 # -----------------------------------------------------------------------------
+
+# copy script to /usr/bin and exit for first run
+if [[ ! -f "/usr/bin/show-fps" ]]; then
+
+	# copy in script
+	clear
+	sudo cp ./show-fps.sh /usr/bin/show-fps	
+	echo -e "==INFO==\nScript copied to  /usr/bin. Please rerun with: sudo runuser -l steam -c 'show-fps'"
+	exit 1
+fi
 
 # Set variables
 WM="steamcompmgr"

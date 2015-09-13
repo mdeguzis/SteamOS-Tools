@@ -1,18 +1,16 @@
 # -------------------------------------------------------------------------------
-# Author:	      Michael DeGuzis
-# Git:	      	https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	  repackage-kodi.sh
-# Script Ver:	  0.1.1
+# Author:	Michael DeGuzis
+# Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	repackage-kodi.sh
+# Script Ver:	0.1.1
 # Description:	Overall goal of script is to automate rebuilding pkgs from
-#	              https://launchpad.net/~team-xbmc/+archive/ubuntu/ppa?field.series_filter=trusty
+#		https://launchpad.net/~team-xbmc/+archive/ubuntu/ppa?field.series_filter=trusty
 #
-# Usage:	      ./repackage-kodi.sh
+# Usage:	./repackage-kodi.sh
 #
-# Warning:	    You MUST have the Debian repos added properly for
-#	              installation of the pre-requisite packages.
+# Warning:	You MUST have the Debian repos added properly for
+#		installation of the pre-requisite packages.
 # -------------------------------------------------------------------------------
-
-# Should be able to make use of utilities/build-deb-from-ppa.sh
 
 install_prereqs()
 {

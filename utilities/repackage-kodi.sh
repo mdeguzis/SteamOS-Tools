@@ -41,7 +41,7 @@ install_prereqs()
 	debian-keyring debian-archive-keyring cmake libv4l-dev autotools-dev \
 	dh-autoreconf pkg-kde-tools doxygen graphviz gsfonts-x11
 	
-	echo -e "\n== Checking for extra standalone prequisite packages for batch building"
+	echo -e "\n== Checking for extra standalone prequisite packages for batch building\n"
 	
 	# libplatform is needed to do batch rebuild of the PPA
 	PKG="libplatform1"
@@ -104,7 +104,7 @@ main()
 	echo ${repo_src} > "${target}.list.tmp"
 	sudo mv "${target}.list.tmp" "/etc/apt/sources.list.d/${target}.list"
 	
-	echo -e "\n==> Adding GPG key:\n"
+	echo -e "\n==> Adding GPG key\n"
 	sleep 2s
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $gpg_pub_key
 	#"$scriptdir/utilities.sh ${gpg_pub_key}"

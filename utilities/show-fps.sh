@@ -18,8 +18,9 @@ check_exist()
 {
 	if [[ ! -f "/usr/bin/show-fps" ]]; then
 
-		# copy in script
+		# remove then copy in latest script
 		clear
+		sudo rm -f /usr/bin/show-fps
 		sudo cp ./show-fps.sh /usr/bin/show-fps	
 	fi
 }

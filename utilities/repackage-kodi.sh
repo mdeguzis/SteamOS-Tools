@@ -125,7 +125,7 @@ main()
 		echo -e "\n==> Attempting to build ${pkg}:\n"
 		sleep 2s
 		
-		build=$(apt-get source --build ${pkg} | grep "Unmet build dependencies")
+		build=$(apt-get source --build ${pkg} | grep "E: Child process failed")
 		
 		# bow out if build contains unment build deps
 		if [[ "$build" != "" ]]; then

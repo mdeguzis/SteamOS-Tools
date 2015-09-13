@@ -175,7 +175,7 @@ funct_pre_req_checks()
 		sleep 2s
 		
 		# set external Deb repo required flag 
-		export deb_repo_name="wheezy.list" 
+		export deb_repo_name="jessie.list" 
 		export deb_repo_req="yes" 
 		# Eval requirements 
 		"$scriptdir/utilities/check_repo_req.sh" 

@@ -2,7 +2,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	repackage-kodi.sh
-# Script Ver:	0.1.1
+# Script Ver:	0.1.3
 # Description:	Overall goal of script is to automate rebuilding pkgs from
 #		https://launchpad.net/~team-xbmc/+archive/ubuntu/ppa?field.series_filter=trusty
 #
@@ -37,10 +37,41 @@ install_prereqs()
 	
 	sleep 1s
 	# install needed packages
-	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring cmake libv4l-dev libusb-1.0-0-dev \
-	libopenal-dev libjack-jackd2-dev libgbm-dev python3-dev
+	sudo apt-get install autopoint bison build-essential ccache cmake curl \
+	cvs default-jre fp-compiler gawk gdc gettext git-core gperf libasound2-dev \
+	libass-dev libavcodec-dev libavfilter-dev libavformat-dev libavutil-dev \
+	libbluetooth-dev libbluray-dev libbluray1 libboost-dev libboost-thread-dev \
+	libbz2-dev libcap-dev libcdio-dev libcec-dev libcec1 libcrystalhd-dev libcrystalhd3 \
+	libcurl3 libcurl4-gnutls-dev libcwiid-dev libcwiid1 libdbus-1-dev libenca-dev \
+	libflac-dev libfontconfig-dev libfreetype6-dev libfribidi-dev libglew-dev \
+	libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev liblzo2-dev libmad0-dev \
+	libmicrohttpd-dev libmodplug-dev libmp3lame-dev libmpeg2-4-dev libmpeg3-dev \
+	libmysqlclient-dev libnfs-dev libogg-dev libpcre3-dev libplist-dev libpng-dev \
+	libpostproc-dev libpulse-dev libsamplerate-dev libsdl-dev libsdl-gfx1.2-dev \
+	libsdl-image1.2-dev libsdl-mixer1.2-dev libshairport-dev libsmbclient-dev \
+	libsqlite3-dev libssh-dev libssl-dev libswscale-dev libtiff-dev libtinyxml-dev \
+	libtool libudev-dev libusb-dev libva-dev libva-egl1 libva-tpi1 libvdpau-dev \
+	libvorbisenc2 libxml2-dev libxmu-dev libxrandr-dev libxrender-dev libxslt1-dev \
+	libxt-dev libyajl-dev mesa-utils nasm pmount python-dev python-imaging python-sqlite \
+	swig unzip yasm zip zlib1g-dev
+	
+	echo -e "\n== Checking for extra standalone prequisite packages for batch building\n"
+	
+	# libplatform is needed to do batch rebuild of the PPA
+	PKG="libplatform1"
+	PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	if [[ "$PKG_OK_DPKG" == "" ]]; then
+	
+		# bail out
+		echo -e "\n==ERROR==\nlibplatform must be installed for batch rebuild of PPA!"
+		echo -e "Please install this seperately"
+		
+	else 
+	
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
 
+	fi
 }
 
 set_vars()
@@ -87,7 +118,7 @@ main()
 	echo ${repo_src} > "${target}.list.tmp"
 	sudo mv "${target}.list.tmp" "/etc/apt/sources.list.d/${target}.list"
 	
-	echo -e "\n==> Adding GPG key:\n"
+	echo -e "\n==> Adding GPG key\n"
 	sleep 2s
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $gpg_pub_key
 	#"$scriptdir/utilities.sh ${gpg_pub_key}"
@@ -98,7 +129,7 @@ main()
 	sudo apt-get update
 	
 	# Get listing of PPA packages
-  	pkg_list=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/ppa.launchpad.net_libretro*)
+  	pkg_list=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/ppa.launchpad.net_team-xbmc*)
   
 	# Rebuild all items in pkg_list
 	for pkg in ${pkg_list}; 
@@ -107,7 +138,14 @@ main()
 		# Attempt to build target
 		echo -e "\n==> Attempting to build ${pkg}:\n"
 		sleep 2s
-		apt-get source --build ${pkg}
+		
+		build=$(apt-get source --build ${pkg} | grep "E: Child process failed")
+		
+		# bow out if build contains unment build deps
+		if [[ "$build" != "" ]]; then
+			echo -e "FAILURE TO BUILD"		
+			exit 1
+		fi
 		
 		# since this is building a large amount of packages, remove
 		# directories and unecessary files as we go.

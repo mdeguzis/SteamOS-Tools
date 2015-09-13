@@ -44,7 +44,7 @@ install_prereqs()
 	echo -e "\n== Checking for extra standalone prequisite packages for batch building"
 	
 	# libplatform is needed to do batch rebuild of the PPA
-	pkg="libplatform1"
+	PKG="libplatform1"
 	PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	if [[ "$PKG_OK_DPKG" == "" ]]; then
 	

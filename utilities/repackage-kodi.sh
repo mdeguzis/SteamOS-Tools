@@ -44,12 +44,18 @@ install_prereqs()
 	echo -e "\n== Checking for extra standalone prequisite packages for batch building"
 	
 	# libplatform is needed to do batch rebuild of the PPA
-	pkg_check=$(dpkg -s libplatform1)
-	if [[ "$pkg_check" == "" ]]; then
+	pkg="libplatform1"
+	PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+	if [[ "$PKG_OK_DPKG" == "" ]]; then
 	
 		# bail out
 		echo -e "\n==ERROR==\nlibplatform must be installed for batch rebuild of PPA!"
 		echo -e "Please install this seperately"
+		
+	else 
+	
+		echo "Checking for $PKG [OK]"
+		sleep 0.5s
 
 	fi
 }

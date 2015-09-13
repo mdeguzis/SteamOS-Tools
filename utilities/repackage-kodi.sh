@@ -2,7 +2,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	repackage-kodi.sh
-# Script Ver:	0.1.1
+# Script Ver:	0.1.3
 # Description:	Overall goal of script is to automate rebuilding pkgs from
 #		https://launchpad.net/~team-xbmc/+archive/ubuntu/ppa?field.series_filter=trusty
 #
@@ -98,7 +98,7 @@ main()
 	sudo apt-get update
 	
 	# Get listing of PPA packages
-  	pkg_list=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/ppa.launchpad.net_libretro*)
+  	pkg_list=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/ppa.launchpad.net_team-xbmc*)
   
 	# Rebuild all items in pkg_list
 	for pkg in ${pkg_list}; 

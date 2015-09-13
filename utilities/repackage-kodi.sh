@@ -45,7 +45,7 @@ install_prereqs()
 	
 	# libplatform is needed to do batch rebuild of the PPA
 	pkg_check=$(dpkg -s libplatform1)
-	if [[ "$pkg_check" == "" ]]
+	if [[ "$pkg_check" == "" ]]; then
 	
 		# bail out
 		echo -e "\n==ERROR==\nlibplatform must be installed for batch rebuild of PPA!"

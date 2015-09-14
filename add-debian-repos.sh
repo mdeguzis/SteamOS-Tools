@@ -32,12 +32,6 @@ funct_set_vars()
 	backports_reponame="jessie-backports"
 	multimedia_reponame="deb-multimedia"
 	
-	####### TO DO #######
-	security_reponame=""
-	
-	#deb http://security.debian.org/ jessie/updates main
-	#deb-src http://security.debian.org/ jessie/updates main
-	
 	# tmp vars
 	sourcelist_tmp="${reponame}.list"
 	backports_sourcelist_tmp="${backports_reponame}.list"

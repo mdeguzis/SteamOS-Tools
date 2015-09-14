@@ -20,20 +20,21 @@ check_exist()
 
 		# copy in latest script
 		clear
-		sudo cp ./show-fps.sh /usr/bin/show-fps	
+		copy_script_content
 		
 	else
 		
 		# remove and add the latest script
 		sudo rm -f /usr/bin/show-fps
-		sudo cp ./show-fps.sh /usr/bin/show-fps	
+		copy_script_content	
 	fi
 }
 
-show_fps()
+copy_script_content()
 {
 
 	# Set variables
+	cat <<- EOF > "stats-temp.sh"
 	WM="steamcompmgr"
 	DEBUGOPT="-v"
 	export DISPLAY=:0.0
@@ -52,6 +53,10 @@ show_fps()
         	killall ${WM}
         	${WM} -d ${DISPLAY} &
 	fi
+	EOF
+	
+	# move script
+	sudo mv stats-temp.sh /usr/bin/show-fps
 }
 
 

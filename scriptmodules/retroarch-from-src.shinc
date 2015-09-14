@@ -209,7 +209,7 @@ rfs_retroarch_src_main()
 			read -ep "Choice: " user_input_retro
 			
 			if [[ "$user_input_retro" == "n" ]]; then
-				echo -e "\n==> Skipping Retroarch build...\n"
+				echo -e "\n==> Skipping Retroarch build..."
 				sleep 2s
 			elif [[ "$user_input_retro" == "y" ]]; then
 				echo -e "\n==> Rebuilding Retroarch...\n"
@@ -311,7 +311,7 @@ rfs_retroarch_src_main()
 		# output finish
 		echo -e "\nTime started: ${time_stamp_start}"
 		echo -e "Time stopped: ${time_stamp_end}"
-		echo -e "Total Runtime (minutes): $runtime\n"
+		echo -e "Total Runtime (minutes): $runtime"
 	
 		echo -e "\nProceeding to Retroarch/Libretro post-install configuration in...\n"
 		# pause for a moment to allow user to see above stats

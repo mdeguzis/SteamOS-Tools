@@ -765,6 +765,12 @@ ep_install_eval_pkg()
 	# package eval routine using dpkg or gdebi
 	#####################################################
 	
+	# Reset any currently set value
+	PKG_OK=""
+	if [[ "$multi" == "n" ]]; then
+		# prcess only packages that are specifed by themselves
+		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed" 2> /dev/null)
+	fi
 	
 	# check and process for multiple debs
 	if [[ "$multi" == "y" ]]; then
@@ -791,10 +797,6 @@ ep_install_eval_pkg()
 
 		# remove temp install directory
 		rm -rf "/tmp/deb-install-tmp"
-
-
-	# prcess only packages that are specifed by themselves	
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed" 2> /dev/null)
 	
 	elif [[ "$multi" == "n" && "" == "$PKG_OK" ]]; then
 		

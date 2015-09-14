@@ -20,43 +20,14 @@ check_exist()
 
 		# copy in latest script
 		clear
-		copy_script_content
+		sudo cp fps.sh /usr/bin/show-fps
 		
 	else
 		
 		# remove and add the latest script
 		sudo rm -f /usr/bin/show-fps
-		copy_script_content	
+		sudo cp fps.sh /usr/bin/show-fps
 	fi
-}
-
-copy_script_content()
-{
-
-	# Set variables
-	cat <<- EOF > "stats-temp.sh"
-	WM="steamcompmgr"
-	DEBUGOPT="-v"
-	export DISPLAY=:0.0
-
-	# Set the command used to restart steamcompmgr with fps display
-	DEBUGCMD="$WM -d $DISPLAY $DEBUGOPT"
-
-	# Get the command used to start steamcompmgr
-	RUNNING=$(ps ax|grep ${WM}|head -1|cut -d":" -f2-|cut -d" " -f2-)
-
-	# Check if debug mode is on
-	if [[ ! "$RUNNING" == "$DEBUGCMD" ]]; then
-        	killall ${WM}
-        	${DEBUGCMD} &
-	else
-        	killall ${WM}
-        	${WM} -d ${DISPLAY} &
-	fi
-	EOF
-	
-	# move script
-	sudo mv stats-temp.sh /usr/bin/show-fps
 }
 
 

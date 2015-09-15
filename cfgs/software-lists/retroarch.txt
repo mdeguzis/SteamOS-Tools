@@ -9,3 +9,5 @@ libcg
 libcggl
 freeglut3
 libxss1
+samba
+samba-client

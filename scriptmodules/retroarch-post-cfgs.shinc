@@ -180,8 +180,8 @@ rpc_configure_common()
 		cat <<- EOF
 		
 		==INFO==
-		Notice: Gamepad configurations are automatic via the 'retroarch-joypad-autoconfig'
-		or sourced directly from the below link for source builds of Retroarch.
+		Gamepad configurations are automatic via the 'retroarch-joypad-autoconfig'
+		package, or sourced directly from the below link for source builds of RetroArch.
 		https://github.com/libretro/retroarch-joypad-autoconfig/tree/master/udev
 		EOF
 		sleep 3s
@@ -192,8 +192,7 @@ rpc_configure_common()
 		sudo cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 		
 		# Swap home_temp out for each user DIR path
-		
-		# We will use the desktop user here so that there are no permission struggles when
+		# The steam user's ROM and BIOS directory will be symlinked to the desktop user
 		# Adding ROMs with the normal desktop user, and the Steam user should be able to see/read the ROMs
 
 		sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
@@ -221,7 +220,6 @@ rpc_configure_common()
 			shortcut="retroarch"
 			
 		fi
-		
 		
 		#################################################
 		# Banners and artwork

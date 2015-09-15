@@ -93,13 +93,13 @@ rpc_configure_common()
 		
 		# other directories
 		roms_dir_desktop="/home/desktop/ROMs"
-		bios_dir_desktop="/home/desktop/retroarch/bios"
+		bios_dir_desktop="/home/desktop/retroarch/BIOS"
 		banner_dir_desktop="/home/desktop/Pictures"
 		banner_dir_steam="/home/steam/Pictures"
 		
 		# paths set but only referenced
 		roms_dir_steam="/home/steam/ROMs"
-		bios_dir_steam="/home/steam/retroarch/bios"
+		bios_dir_steam="/home/steam/retroarch/BIOS"
 		
 		#################################################
 		# Directories and paths

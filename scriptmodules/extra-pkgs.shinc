@@ -82,7 +82,7 @@ ep_install_antimicro()
 	# This will need added as a dependency into the
 	# .deb pkg if confirmed
 	
-	sudo apt-get install libsdl2-2.0-0 libsdl2-2.0-0:i386  
+	# Handled in cfgs/software-lists/retroarch.txt 
 	
 	###############################	
 	# install

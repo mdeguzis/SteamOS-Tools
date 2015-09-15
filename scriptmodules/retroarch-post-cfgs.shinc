@@ -93,7 +93,6 @@ rpc_configure_common()
 		
 		# other directories
 		roms_dir_desktop="/home/desktop/ROMs"
-		roms_dir_steam="/home/steam/ROMs"
 		banner_dir_desktop="/home/desktop/Pictures"
 		banner_dir_steam="/home/steam/Pictures"
 		
@@ -104,9 +103,9 @@ rpc_configure_common()
 		pathlist+=("$save_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_desktop")
-		pathlist+=("$roms_dir_desktop")
 		# This below path will be symlinked to the desktop ROMs DIR
 		# pathlist+=("$roms_dir_steam")
+		pathlist+=("$roms_dir_desktop")
 		pathlist+=("$banner_dir_desktop")
 		pathlist+=("$banner_dir_steam")
 		
@@ -212,7 +211,7 @@ rpc_configure_common()
 		# Cleanup
 		#################################################
 		
-		echo -e "\n==> Correcting owners and permissions"
+		echo -e "\n==> Correcting owners and permissions for Steam user directories"
 		sleep 2s
 		
 		sudo chown -R steam:steam "$retroarch_cfg_loc_steam"

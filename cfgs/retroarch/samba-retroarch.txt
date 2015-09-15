@@ -1,0 +1,17 @@
+[RetroArch_ROMs]
+    comment = Public Retroarch ROMs share
+    path = /home/desktop/ROMs
+    public = yes
+    read only = no
+    writeable = yes
+    browseable = yes
+    guest ok = yes
+    
+[RetroArch_BIOS]
+    comment = Public Retroarch BIOS share
+    path = /home/desktop/retroarch/BIOS
+    public = yes
+    read only = no
+    writeable = yes
+    browseable = yes
+    guest ok = yes

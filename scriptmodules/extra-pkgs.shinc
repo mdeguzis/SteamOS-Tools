@@ -551,7 +551,7 @@ ep_install_retroarch()
 	# Retroarch
 	#######################################
 	
-	echo -e "\n==> Installing core packages for Retroarch\n"
+	echo -e "\n==> Installing core packages for Retroarch"
 	sleep 2s
 	
 	######################

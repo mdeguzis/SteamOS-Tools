@@ -45,7 +45,7 @@ rpc_unload_retroarch()
 	fi
 	
 	############################################################################
-	#Remove ROM save files, etc if uninstall is specified by user
+	# Remove ROM save files, etc if uninstall is specified by user
 	############################################################################
 	
 	# confirm with user
@@ -73,7 +73,7 @@ rpc_configure_common()
 	if [[ "$apt_mode" == "install" ]]; then
 
 		#################################################
-		# Set paths and VARs
+		# VARs
 		#################################################
 		echo -e "\n==> Configuring common paths"
 		sleep 1s
@@ -95,6 +95,10 @@ rpc_configure_common()
 		roms_dir_desktop="/home/desktop/ROMs"
 		banner_dir_desktop="/home/desktop/Pictures"
 		banner_dir_steam="/home/steam/Pictures"
+		
+		#################################################
+		# Directories and paths
+		#################################################
 		
 		pathlist=()
 		
@@ -119,6 +123,10 @@ rpc_configure_common()
 			fi
 		done
 		
+		#################################################
+		# Cleanup
+		#################################################
+		
 		# Correct permissions on desktop user directories now, before
 		# all file copy operations below.
 
@@ -130,7 +138,6 @@ rpc_configure_common()
 		# Symlink the desktop ROMs directory to /home/steam/ROMs 
 		# so Retroarch can see it easily
 		
-
 		# reset or creatw symbolic link
 		if [[ -L "$roms_dir_steam" ]]; then
 
@@ -147,7 +154,7 @@ rpc_configure_common()
 		# Application parameters 
 		#################################################
 		
-		echo -e "\n==> Configuring Retorarch parameters..."
+		echo -e "\n==> Configuring Retorarch parameters...\n"
 		sleep 2s
 		
 		# send notice that gamepads are now autoconfigured
@@ -214,14 +221,16 @@ rpc_configure_common()
 		echo -e "\n==> Correcting owners and permissions for Steam user directories"
 		sleep 2s
 		
+		# Steam user only here, desktop corrected upon DIR creation
+		# sudo used to create directories for Steam user, so it must be corrected
+		# from the root user owner.
 		sudo chown -R steam:steam "$retroarch_cfg_loc_steam"
 		sudo chown -R steam:steam "$save_loc_steam"
 		sudo chown -R steam:steam "$banner_dir_steam"
-		sudo chown -R steam:steam "$roms_dir_steam"
 
 	elif [[ "$apt_mode" == "remove" ]]; then
 	
-		#Remove directories, build files, etc if uninstall is specified by user
+		# Remove directories, build files, etc if uninstall is specified by user
 		# fire off common removal function
 		rpc_unload_retroarch
 	

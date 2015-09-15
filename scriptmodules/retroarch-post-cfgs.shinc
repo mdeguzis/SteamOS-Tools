@@ -120,6 +120,14 @@ rpc_configure_common()
 			fi
 		done
 		
+		# Correct permissions on desktop user directories now, before
+		# all file copy operations below.
+
+		sudo chown -R desktop:desktop "$retroarch_cfg_loc_desktop"
+		sudo chown -R desktop:desktop "$save_loc_desktop"
+		sudo chown -R desktop:desktop "$banner_dir_desktop"
+		sudo chown -R desktop:desktop "$roms_dir_desktop"
+		
 		# Symlink the desktop ROMs directory to /home/steam/ROMs 
 		# so Retroarch can see it easily
 		
@@ -206,12 +214,6 @@ rpc_configure_common()
 		
 		echo -e "\n==> Correcting owners and permissions"
 		sleep 2s
-		
-		# correct recursively to touch all our directories
-		sudo chown -R desktop:desktop "$retroarch_cfg_loc_desktop"
-		sudo chown -R desktop:desktop "$save_loc_desktop"
-		sudo chown -R desktop:desktop "$banner_dir_desktop"
-		sudo chown -R desktop:desktop "$roms_dir_desktop"
 		
 		sudo chown -R steam:steam "$retroarch_cfg_loc_steam"
 		sudo chown -R steam:steam "$save_loc_steam"

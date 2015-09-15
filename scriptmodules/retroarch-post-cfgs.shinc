@@ -157,7 +157,7 @@ rpc_configure_common()
 			sudo rm -f "$roms_dir_steam"
 			sudo ln -s "$roms_dir_desktop" "$roms_dir_steam"
 			
-		if [[ -L "$bios_dir_steam" ]]; then
+		elif [[ -L "$bios_dir_steam" ]]; then
 
 			#remove existing link and recreate
 			sudo rm -f "$bios_dir_steam"

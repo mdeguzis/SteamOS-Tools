@@ -18,4 +18,4 @@ bc
 libasound2-dev
 unzip
 samba
-samba-client
+smbclient

@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  	0.7.6
+# Script Ver:	  	0.7.7
 # Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
@@ -93,8 +93,13 @@ rpc_configure_common()
 		
 		# other directories
 		roms_dir_desktop="/home/desktop/ROMs"
+		bios_dir_desktop="/home/desktop/retroarch/bios"
 		banner_dir_desktop="/home/desktop/Pictures"
 		banner_dir_steam="/home/steam/Pictures"
+		
+		# paths set but only referenced
+		roms_dir_steam="/home/steam/ROMs"
+		bios_dir_steam="/home/steam/retroarch/bios"
 		
 		#################################################
 		# Directories and paths
@@ -107,9 +112,9 @@ rpc_configure_common()
 		pathlist+=("$save_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_desktop")
-		# This below path will be symlinked to the desktop ROMs DIR
-		# pathlist+=("$roms_dir_steam")
+		# Steam user ROM and BIOS symlinked desktop DIRa
 		pathlist+=("$roms_dir_desktop")
+		pathlist+=("$bios_dir_desktop")
 		pathlist+=("$banner_dir_desktop")
 		pathlist+=("$banner_dir_steam")
 		
@@ -124,7 +129,7 @@ rpc_configure_common()
 		done
 		
 		#################################################
-		# Cleanup
+		# Desktop owner DIR fixes
 		#################################################
 		
 		# Correct permissions on desktop user directories now, before
@@ -134,22 +139,36 @@ rpc_configure_common()
 		sudo chown -R desktop:desktop "$save_loc_desktop"
 		sudo chown -R desktop:desktop "$banner_dir_desktop"
 		sudo chown -R desktop:desktop "$roms_dir_desktop"
+		sudo chown -R desktop:desktop "$bios_dir_desktop"
 		
-		# Symlink the desktop ROMs directory to /home/steam/ROMs 
-		# so Retroarch can see it easily
+		#################################################
+		# Linking
+		#################################################
+		
+		# Symlink the steam ROMs directory to /home/esktop/ROMs 
+		# Symlink the steam retroarch/BIOS directory to /home/dekstop/retroarch/bios
+		# so Retroarch can see it easily.
+		# There is no reason to dump ROMs or BIOS files into two locations
 		
 		# reset or creatw symbolic link
 		if [[ -L "$roms_dir_steam" ]]; then
 
 			#remove existing link and recreate
 			sudo rm -f "$roms_dir_steam"
+			sudo rm -f "$bios_dir_steam"
 			sudo ln -s "$roms_dir_desktop" "$roms_dir_steam"
+			sudo ln -s "$bios_dir_desktop" "$bios_dir_steam"
 
 		elif [[ -d "$roms_dir_steam" ]]; then
 
 			echo -e "\n==ERROR==\nTarget symlink location taken. Failed to link to desktop ROMs directory!"
+		
+		elif [[ -d "$bios_dir_steam" ]]; then
 
+			echo -e "\n==ERROR==\nTarget symlink location taken. Failed to link to desktop BIOS directory!"
+			
 		fi
+		
 		#################################################
 		# Application parameters 
 		#################################################
@@ -217,7 +236,7 @@ rpc_configure_common()
 		sudo cp "$scriptdir/artwork/banners/retro-arch-src-logo.png" "$banner_dir_steam"
 		
 		#################################################
-		# Cleanup
+		# Steam DIR owner fixes
 		#################################################
 		
 		echo -e "\n==> Correcting owners and permissions for Steam user directories"

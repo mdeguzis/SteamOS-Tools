@@ -17,3 +17,5 @@ nvidia-cg-dev
 bc
 libasound2-dev
 unzip
+samba
+samba-client

@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  	0.7.5
+# Script Ver:	  	0.7.7
 # Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ rpc_unload_retroarch()
 	fi
 	
 	############################################################################
-	#Remove ROM save files, etc if uninstall is specified by user
+	# Remove ROM save files, etc if uninstall is specified by user
 	############################################################################
 	
 	# confirm with user
@@ -73,7 +73,7 @@ rpc_configure_common()
 	if [[ "$apt_mode" == "install" ]]; then
 
 		#################################################
-		# Set paths and VARs
+		# VARs
 		#################################################
 		echo -e "\n==> Configuring common paths"
 		sleep 1s
@@ -93,9 +93,17 @@ rpc_configure_common()
 		
 		# other directories
 		roms_dir_desktop="/home/desktop/ROMs"
-		roms_dir_steam="/home/steam/ROMs"
+		bios_dir_desktop="/home/desktop/retroarch/bios"
 		banner_dir_desktop="/home/desktop/Pictures"
 		banner_dir_steam="/home/steam/Pictures"
+		
+		# paths set but only referenced
+		roms_dir_steam="/home/steam/ROMs"
+		bios_dir_steam="/home/steam/retroarch/bios"
+		
+		#################################################
+		# Directories and paths
+		#################################################
 		
 		pathlist=()
 		
@@ -104,9 +112,9 @@ rpc_configure_common()
 		pathlist+=("$save_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_desktop")
+		# Steam user ROM and BIOS symlinked desktop DIRa
 		pathlist+=("$roms_dir_desktop")
-		# This below path will be symlinked to the desktop ROMs DIR
-		# pathlist+=("$roms_dir_steam")
+		pathlist+=("$bios_dir_desktop")
 		pathlist+=("$banner_dir_desktop")
 		pathlist+=("$banner_dir_steam")
 		
@@ -120,37 +128,61 @@ rpc_configure_common()
 			fi
 		done
 		
-		# Symlink the desktop ROMs directory to /home/steam/ROMs 
-		# so Retroarch can see it easily
+		#################################################
+		# Desktop owner DIR fixes
+		#################################################
 		
+		# Correct permissions on desktop user directories now, before
+		# all file copy operations below.
 
+		sudo chown -R desktop:desktop "$retroarch_cfg_loc_desktop"
+		sudo chown -R desktop:desktop "$save_loc_desktop"
+		sudo chown -R desktop:desktop "$banner_dir_desktop"
+		sudo chown -R desktop:desktop "$roms_dir_desktop"
+		sudo chown -R desktop:desktop "$bios_dir_desktop"
+		
+		#################################################
+		# Linking
+		#################################################
+		
+		# Symlink the steam ROMs directory to /home/esktop/ROMs 
+		# Symlink the steam retroarch/BIOS directory to /home/dekstop/retroarch/bios
+		# so Retroarch can see it easily.
+		# There is no reason to dump ROMs or BIOS files into two locations
+		
 		# reset or creatw symbolic link
 		if [[ -L "$roms_dir_steam" ]]; then
 
 			#remove existing link and recreate
 			sudo rm -f "$roms_dir_steam"
+			sudo rm -f "$bios_dir_steam"
 			sudo ln -s "$roms_dir_desktop" "$roms_dir_steam"
+			sudo ln -s "$bios_dir_desktop" "$bios_dir_steam"
 
 		elif [[ -d "$roms_dir_steam" ]]; then
 
 			echo -e "\n==ERROR==\nTarget symlink location taken. Failed to link to desktop ROMs directory!"
+		
+		elif [[ -d "$bios_dir_steam" ]]; then
 
+			echo -e "\n==ERROR==\nTarget symlink location taken. Failed to link to desktop BIOS directory!"
+			
 		fi
+		
 		#################################################
 		# Application parameters 
 		#################################################
 		
-		echo -e "\n==> Configuring Retorarch parameters..."
+		echo -e "\n==> Configuring Retorarch parameters"
 		sleep 2s
 		
 		# send notice that gamepads are now autoconfigured
 		cat <<- EOF
 		
 		==INFO==
-		Notice: Gamepad configurations are automatic via the 'retroarch-joypad-autoconfig'
-		or sourced directly from the below link for source builds of Retroarch.
+		Gamepad configurations are automatic via the 'retroarch-joypad-autoconfig'
+		package, or sourced directly from the below link for source builds of RetroArch.
 		https://github.com/libretro/retroarch-joypad-autoconfig/tree/master/udev
-
 		EOF
 		sleep 3s
 		
@@ -160,8 +192,7 @@ rpc_configure_common()
 		sudo cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
 		
 		# Swap home_temp out for each user DIR path
-		
-		# We will use the desktop user here so that there are no permission struggles when
+		# The steam user's ROM and BIOS directory will be symlinked to the desktop user
 		# Adding ROMs with the normal desktop user, and the Steam user should be able to see/read the ROMs
 
 		sed -i "s|home_temp|$desktop_home|g" "$retroarch_cfg_loc_desktop/retroarch.cfg"
@@ -190,7 +221,9 @@ rpc_configure_common()
 			
 		fi
 		
-		# copy banner images
+		#################################################
+		# Banners and artwork
+		#################################################
 		
 		# Regular Retroarch
 		cp "$scriptdir/artwork/banners/retro-arch-logo.png" "$banner_dir_desktop"
@@ -201,26 +234,22 @@ rpc_configure_common()
 		sudo cp "$scriptdir/artwork/banners/retro-arch-src-logo.png" "$banner_dir_steam"
 		
 		#################################################
-		# Cleanup
+		# Steam DIR owner fixes
 		#################################################
 		
-		echo -e "\n==> Correcting owners and permissions"
+		echo -e "\n==> Correcting owners and permissions for Steam user directories"
 		sleep 2s
 		
-		# correct recursively to touch all our directories
-		sudo chown -R desktop:desktop "$retroarch_cfg_loc_desktop"
-		sudo chown -R desktop:desktop "$save_loc_desktop"
-		sudo chown -R desktop:desktop "$banner_dir_desktop"
-		sudo chown -R desktop:desktop "$roms_dir_desktop"
-		
+		# Steam user only here, desktop corrected upon DIR creation
+		# sudo used to create directories for Steam user, so it must be corrected
+		# from the root user owner.
 		sudo chown -R steam:steam "$retroarch_cfg_loc_steam"
 		sudo chown -R steam:steam "$save_loc_steam"
 		sudo chown -R steam:steam "$banner_dir_steam"
-		sudo chown -R steam:steam "$roms_dir_steam"
 
 	elif [[ "$apt_mode" == "remove" ]]; then
 	
-		#Remove directories, build files, etc if uninstall is specified by user
+		# Remove directories, build files, etc if uninstall is specified by user
 		# fire off common removal function
 		rpc_unload_retroarch
 	

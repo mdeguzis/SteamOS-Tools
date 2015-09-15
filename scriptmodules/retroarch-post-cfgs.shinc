@@ -221,6 +221,27 @@ rpc_configure_common()
 			
 		fi
 		
+		
+		#################################################
+		# Samba Shares
+		#################################################
+		
+		echo -e "Configuring samba shares for remote access"
+		
+		# append config files
+		shares_check=$(grep -e 'RetroArch_ROMs|RetroArch_BIOS' "/etc/samba/smb.conf")
+		
+		# add shares to samba if they do not exist
+		if [[ "$shares_check" == "" ]]; then
+		
+			# append config
+			sudo cat "$scriptdir/cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"
+			
+		fi
+		
+		# restart services
+		sudo systemctl restart samba
+		
 		#################################################
 		# Banners and artwork
 		#################################################

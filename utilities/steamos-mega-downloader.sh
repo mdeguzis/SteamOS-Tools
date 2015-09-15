@@ -696,7 +696,7 @@ download_stephensons()
 	# set fallback if there is an issue upstream (will use professorkaos64 fork below)
 	# Fallback set: 20150901
 	# See: https://github.com/steamos-community/stephensons-rocket/pull/111
-	fallback="true"
+	fallback="false"
 	
 	# eval repo status for Stephenson's Rocket
 	eval_git_repo

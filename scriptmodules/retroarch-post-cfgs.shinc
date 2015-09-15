@@ -235,7 +235,7 @@ rpc_configure_common()
 		# Samba Shares
 		#################################################
 		
-		echo -e "Configuring samba shares for remote access"
+		echo -e "\n==> Configuring samba shares for remote access"
 		
 		# append config files
 		shares_check=$(grep -e 'RetroArch_ROMs|RetroArch_BIOS' "/etc/samba/smb.conf")
@@ -246,6 +246,12 @@ rpc_configure_common()
 			# append config
 			sudo bash -c 'cat "./cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'
 			
+		
+		else
+		
+			# output ok
+			echo -e "\nSamba shares [OK]"
+		
 		fi
 		
 		# restart services smbd and nmbd, not samba

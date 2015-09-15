@@ -203,7 +203,10 @@ rpc_configure_common()
 			
 		fi
 		
-		# copy banner images
+		
+		#################################################
+		# Banners and artwork
+		#################################################
 		
 		# Regular Retroarch
 		cp "$scriptdir/artwork/banners/retro-arch-logo.png" "$banner_dir_desktop"

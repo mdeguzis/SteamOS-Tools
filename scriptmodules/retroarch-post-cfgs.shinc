@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  	0.7.7
+# Script Ver:	  	0.7.9
 # Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
@@ -244,7 +244,7 @@ rpc_configure_common()
 		if [[ "$shares_check" == "" ]]; then
 		
 			# append config
-			sudo -s 'cat "$scriptdir/cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'
+			sudo bash -c 'cat "./cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'
 			
 		fi
 		

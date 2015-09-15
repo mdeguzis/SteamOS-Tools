@@ -170,7 +170,12 @@ rpc_configure_common()
 		elif [[ -d "$bios_dir_steam" ]]; then
 
 			echo -e "\n==ERROR==\nTarget symlink location taken. Failed to link to desktop BIOS directory!"
-			
+		
+		else
+			# DIRs are free and target links are free, create
+			sudo ln -s "$roms_dir_desktop" "$roms_dir_steam"
+			sudo ln -s "$bios_dir_desktop" "$bios_dir_steam"
+		
 		fi
 		
 		#################################################
@@ -239,12 +244,14 @@ rpc_configure_common()
 		if [[ "$shares_check" == "" ]]; then
 		
 			# append config
-			sudo cat "$scriptdir/cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"
+			sudo -s 'cat "$scriptdir/cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'
 			
 		fi
 		
-		# restart services
-		sudo systemctl restart samba
+		# restart services smbd and nmbd, not samba
+		# Debian bug: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=769714
+		sudo systemctl restart smbd
+		sudo systemctl restart nmbd
 		
 		#################################################
 		# Banners and artwork

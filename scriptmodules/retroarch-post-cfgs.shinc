@@ -4,7 +4,7 @@
 # Author:     		Michael DeGuzis
 # Git:		    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:		retroarch_post_cfgs.shinc
-# Script Ver:	  	0.7.5
+# Script Ver:	  	0.7.6
 # Description:		Performs post install cfgs of Retroarch
 #
 # -------------------------------------------------------------------------------
@@ -154,7 +154,7 @@ rpc_configure_common()
 		# Application parameters 
 		#################################################
 		
-		echo -e "\n==> Configuring Retorarch parameters...\n"
+		echo -e "\n==> Configuring Retorarch parameters"
 		sleep 2s
 		
 		# send notice that gamepads are now autoconfigured
@@ -164,7 +164,6 @@ rpc_configure_common()
 		Notice: Gamepad configurations are automatic via the 'retroarch-joypad-autoconfig'
 		or sourced directly from the below link for source builds of Retroarch.
 		https://github.com/libretro/retroarch-joypad-autoconfig/tree/master/udev
-
 		EOF
 		sleep 3s
 		

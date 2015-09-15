@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	add-debian-repos.sh
-# Script Ver:	0.2.0
+# Script Ver:	0.2.1
 # Description:	This script automatically enables debian repositories
 #
 #		See: https://wiki.debian.org/AptPreferences#Pinning

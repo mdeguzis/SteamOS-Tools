@@ -1,3 +1,5 @@
+# START RetroArch Shares
+
 [RetroArch_ROMs]
     workgroup = WORKGROUP
     comment = Public Retroarch ROMs share
@@ -17,3 +19,5 @@
     writeable = yes
     browseable = yes
     guest ok = yes
+
+# END RetroArch Shares

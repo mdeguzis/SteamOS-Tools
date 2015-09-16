@@ -249,7 +249,7 @@ rpc_configure_common()
 		# This keeps the share itself updated from whatever the repo is, of course provided
 		# the tags are kept (note to self)
 		
-		# See: http://stackoverflow.com/a/6287940
+		# See: http://serverfault.com/a/137848
 		sudo sed -i '\:# START RetroArch shares:,\:# END RetroArch shares:d' "/etc/samba/smb.conf"
 		
 		# append config for shares
@@ -260,7 +260,8 @@ rpc_configure_common()
 		
 		if [[ "$guest_check" == "" ]]; then
 		
-			sudo sed -i '/map to guest = bad user/a guest account = nobody' "/etc/samba/smb.conf"
+			sudo sed -i '/map to guest = bad user/ \a
+			guest account = nobody' "/etc/samba/smb.conf"
 		fi
 
 		

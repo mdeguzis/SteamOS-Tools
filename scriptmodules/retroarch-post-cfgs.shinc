@@ -248,7 +248,9 @@ rpc_configure_common()
 		# This will only remove the tagged block of text
 		# This keeps the share itself updated from whatever the repo is, of course provided
 		# the tags are kept (note to self)
-		sed -i '\:# START RetroArch shares:,\:# END RetroArch shares:d' "/etc/samba/smb.conf"
+		
+		# See: http://stackoverflow.com/a/6287940
+		sudo sed -i '\:# START RetroArch shares:,\:# END RetroArch shares:d' "/etc/samba/smb.conf"
 		
 		# append config for shares
 		sudo bash -c 'cat "./cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'

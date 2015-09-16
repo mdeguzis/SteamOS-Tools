@@ -1,4 +1,5 @@
 [RetroArch_ROMs]
+    workgroup = WORKGROUP
     comment = Public Retroarch ROMs share
     path = /home/desktop/ROMs
     public = yes
@@ -8,6 +9,7 @@
     guest ok = yes
     
 [RetroArch_BIOS]
+    workgroup = WORKGROUP
     comment = Public Retroarch BIOS share
     path = /home/desktop/retroarch/BIOS
     public = yes

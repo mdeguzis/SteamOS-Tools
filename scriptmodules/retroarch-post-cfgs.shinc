@@ -256,7 +256,7 @@ rpc_configure_common()
 		sudo bash -c 'cat "./cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'
 		
 		# correct for guest access to share
-		guest_check=(grep "guest account = nobody")
+		guest_check=$(grep "guest account = nobody")
 		
 		if [[ "$guest_check" == "" ]]; then
 		
@@ -415,6 +415,7 @@ rpc_configure_src()
 		####################################################################
 		# download and extract joypad auto configuration files from git
 		####################################################################
+		
 		echo -e "\n==> Fetchng joypad profiles from libretro/retroarch-joypad-autoconfig (Git)\n"
 		sleep 1s
 		

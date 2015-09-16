@@ -260,8 +260,9 @@ rpc_configure_common()
 		
 		if [[ "$guest_check" == "" ]]; then
 		
-			sudo sed -i '/map to guest = bad user/ \a
-			guest account = nobody' "/etc/samba/smb.conf"
+			sudo sed -i '/map to guest = bad user/a\
+			guest account = nobody' 
+			/etc/samba/smb.conf
 		fi
 
 		

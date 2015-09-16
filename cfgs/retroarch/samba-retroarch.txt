@@ -1,4 +1,4 @@
-# START RetroArch Shares
+# START RetroArch shares
 
 [RetroArch_ROMs]
     workgroup = WORKGROUP
@@ -20,4 +20,4 @@
     browseable = yes
     guest ok = yes
 
-# END RetroArch Shares
+# END RetroArch shares

@@ -256,12 +256,12 @@ rpc_configure_common()
 		sudo bash -c 'cat "./cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'
 		
 		# correct for guest access to share
-		guest_check=$(grep "guest account = nobody")
+		guest_check=$(grep "guest account = nobody" "/etc/samba/smb.conf")
 		
 		if [[ "$guest_check" == "" ]]; then
 		
 			# sed '/PATTERN/ a NEW LINE TEXT' FILE
-			sudo sed -i '/map to guest = bad user/ a guest account = nobody' /etc/samba/smb.conf
+			sudo sed -i '/map to guest = bad user/ a guest account = nobody' "/etc/samba/smb.conf"
 		fi
 
 		

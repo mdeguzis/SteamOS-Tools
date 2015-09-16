@@ -9,7 +9,6 @@
     writeable = yes
     browseable = yes
     guest ok = yes
-    # TEST
     
 [RetroArch_BIOS]
     workgroup = WORKGROUP

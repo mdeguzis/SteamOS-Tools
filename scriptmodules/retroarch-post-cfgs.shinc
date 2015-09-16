@@ -234,6 +234,7 @@ rpc_configure_common()
 		#################################################
 		# Samba Shares
 		#################################################
+		# https://wiki.archlinux.org/index.php/Samba/Tips_and_tricks#Share_files_without_a_username_and_password
 		
 		echo -e "\n==> Configuring samba shares for remote access"
 
@@ -251,14 +252,23 @@ rpc_configure_common()
 		sudo bash -c 'cat "./cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'
 		
 		# correct for guest access to share
-		guest_check=$(grep "guest account = nobody" "/etc/samba/smb.conf")
+		nobody_check=$(grep "guest account = nobody" "/etc/samba/smb.conf")
+		security_check=$(grep "guest account = nobody" "/etc/samba/smb.conf")
 		
-		if [[ "$guest_check" == "" ]]; then
+		# add lines for public access
+		if [[ "$security_check" == "" ]]; then
 		
 			# sed '/PATTERN/ a NEW LINE TEXT' FILE
-			sudo sed -i '/map to guest = bad user/ a guest account = nobody' "/etc/samba/smb.conf"
+			#sudo sed -i '/map to guest = bad user/ a guest account = nobody' "/etc/samba/smb.conf"
+			:
 		fi
 
+		if [[ "$nobody_check" == "" ]]; then
+		
+			# sed '/PATTERN/ a NEW LINE TEXT' FILE
+			#sudo sed -i '/map to guest = bad user/ a guest account = nobody' "/etc/samba/smb.conf"
+			:
+		fi
 		
 		# restart services smbd and nmbd, not samba
 		# Debian bug: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=769714

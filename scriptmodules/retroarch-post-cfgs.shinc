@@ -238,7 +238,7 @@ rpc_configure_common()
 		echo -e "\n==> Configuring samba shares for remote access"
 		
 		# append config files
-		shares_check=$(grep -e 'RetroArch_ROMs|RetroArch_BIOS' "/etc/samba/smb.conf")
+		shares_check=$(grep -E 'RetroArch_ROMs|RetroArch_BIOS' "/etc/samba/smb.conf")
 		
 		# add shares to samba if they do not exist
 		if [[ "$shares_check" == "" ]]; then

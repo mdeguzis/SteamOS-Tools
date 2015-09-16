@@ -238,21 +238,29 @@ rpc_configure_common()
 		echo -e "\n==> Configuring samba shares for remote access"
 		
 		# append config files
-		shares_check=$(grep -E 'RetroArch_ROMs|RetroArch_BIOS' "/etc/samba/smb.conf")
+		#shares_check=$(grep -E 'RetroArch_ROMs|RetroArch_BIOS' "/etc/samba/smb.conf")
 		
 		# add shares to samba if they do not exist
-		if [[ "$shares_check" == "" ]]; then
+
+		# remove old shares
 		
-			# append config
-			sudo bash -c 'cat "./cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'
-			
+		# For saftely, a start/end method is used here to only kill the lines we added
+		# This will only remove the tagged block of text
+		# This keeps the share itself updated from whatever the repo is, of course provided
+		# the tags are kept (note to self)
+		sed -i '\:# START RetroArch shares:,\:# END RetroArch shares:d' "/etc/samba/smb.conf"
 		
-		else
+		# append config for shares
+		sudo bash -c 'cat "./cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'
 		
-			# output ok
-			echo -e "\nSamba shares [OK]"
+		# correct for guest access to share
+		guest_check=(grep "guest account = nobody")
 		
+		if [[ "$guest_check" == "" ]]; then
+		
+			sudo sed -i '/map to guest = bad user/a guest account = nobody' "/etc/samba/smb.conf"
 		fi
+
 		
 		# restart services smbd and nmbd, not samba
 		# Debian bug: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=769714

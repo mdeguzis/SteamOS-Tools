@@ -804,7 +804,7 @@ main()
 		# load functions necessary for software actions
 		# GPG import should not be needed under brewmaster/Jessie
 		
-		# gpg_import
+		gpg_import
 		set_multiarch
 		pre_req_checks
 

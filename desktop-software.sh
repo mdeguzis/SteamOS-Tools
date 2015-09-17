@@ -379,7 +379,7 @@ function gpg_import()
 	# When installing from jessie and jessie backports,
 	# some keys do not load in automatically, import now
 	# helper script accepts $1 as the key
-	echo -e "\n==> Importing Debian GPG keys"
+	echo -e "\n==> Importing Debian GPG keys\n"
 	sleep 1s
 
 	# Key Desc: Libregeek Signing Key

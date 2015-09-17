@@ -5,19 +5,57 @@
 # Scipt Name:	  download-deb.sh
 # Script Ver:	  0.1.1
 # Description:	Download deb file only to $1 pool, and $2 pool for $3 pkg
-#               Meant for internal use only.
+#               Meant for internal use only. Relies on source being available
+#               for download of package.
 #
-# Usage:	      ./download-deb.sh [dir] [pkg]
+# Usage:	      ./download-deb.sh [pkg]
 
 # -------------------------------------------------------------------------------
 
 # vars
-dir="$1"
-pool="$2"
+pkg="$2"
 
 # cd to pool for easier TAB autocomplete
 # Remaining structure: pool/main/<LETTER>
 cd $HOME/packaging/SteamOS-Tools
 
+# get source dir from prompt
+read -ep "Pool dir to download to? [letter only]: " letter
+sleep 0.3s
+
+sourcedir="$HOME/packaging/SteamOS-Tools/pool/main/$letter"
+
+# created pool dir if it does not exist
+if [[ ! -d "$sourcedir" ]]; then
+
+  # create dir
+  mkdir -p $sourcedir
+  
+fi
+
 # download pkg
-sudo apt-get -o dir::cache::archives="$dir" -d install $pkg
+sudo apt-get -o dir::cache::archives="$sourcedir" -d install $pkg
+
+# upload to libregeek target pool
+scp $sourcedir/$PKG thelinu2@libregeek.org:/home2/thelinu2/public_html/packages/SteamOS-Tools/pool/main/$
+
+# ask to sync pool
+# get source dir from prompt
+read -ep "Sync pool to remote server? [y/n]" sync
+sleep 0.3s
+
+if [[ "$sync" == "y" ]]; then
+
+  # sync
+  $HOME/packaging/SteamOS-Tools/sync-pool.sh
+  
+elif [[ "$sync" == "n" ]]; then
+
+  # do not sync
+  echo -e "\nSync skipped"
+  
+else
+  
+  # error
+  echo -e "\nERROR"
+fi

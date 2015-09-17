@@ -31,26 +31,31 @@ funct_set_vars()
 	reponame="jessie"
 	backports_reponame="jessie-backports"
 	multimedia_reponame="deb-multimedia"
+	steamos_tools_reponame="steamos-tools"
 	
 	# tmp vars
 	sourcelist_tmp="${reponame}.list"
 	backports_sourcelist_tmp="${backports_reponame}.list"
 	multimedia_sourcelist_tmp="${multimedia_reponame}.list"
+	steamos_tools_sourcelist_tmp="${steamos_tools_reponame}.list"
 	
 	prefer_tmp="${reponame}"
 	backports_prefer_tmp="${backports_reponame}"
 	multimedia_prefer_tmp="${multimedia_reponame}"
 	steamos_prefer_tmp="steamos"
+	steamos_tools_prefer_tmp="${steamos_tools_reponame}"
 	
 	# target vars
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
 	backports_sourcelist="/etc/apt/sources.list.d/${backports_reponame}.list"
 	multimedia_sourcelist="/etc/apt/sources.list.d/${multimedia_reponame}.list"
+	steamos_tools_sourcelist="/etc/apt/sources.list.d/${steamos_tools_reponame}.list"
 	
 	prefer="/etc/apt/preferences.d/${reponame}"
 	backports_prefer="/etc/apt/preferences.d/${backports_reponame}"
 	multimedia_prefer="/etc/apt/preferences.d/${multimedia_reponame}"
 	steamos_prefer="/etc/apt/preferences.d/steamos"
+	steamos_tools_prefer="/etc/apt/preferences.d/${steamos_tools_reponame}"
 }
 
 show_help()
@@ -88,7 +93,8 @@ main()
 		clear
 		
 		cat <<-EOF
-		==> Adding Debian ${reponame}, ${backports_reponame}, and ${multimedia_reponame} repositories
+		==> Adding Debian ${reponame}, ${backports_reponame}, ${steamos_tools_reponame} 
+		and ${multimedia_reponame} repositories
 		    
 		EOF
 		sleep 1s
@@ -132,6 +138,15 @@ main()
 			sudo mv ${multimedia_prefer} ${multimedia_prefer}.bak
 			sleep 1s
 		fi
+		
+		# Check for existance of /etc/apt/preferences.d/{steamos_tools_prefer} file
+		if [[ -f ${steamos_tools_prefer} ]]; then
+			# backup preferences file
+			echo -e "==> Backing up ${steamos_tools_prefer} to ${steamos_tools_prefer}.bak\n"
+			sudo mv ${steamos_tools_prefer} ${steamos_tools_prefer}.bak
+			sleep 1s
+		fi
+		
 	
 		# Create and add required text to preferences file
 		# Verified policy with apt-cache policy
@@ -171,11 +186,18 @@ main()
 		Pin-Priority: 900
 		EOF
 		
+		cat <<-EOF > ${steamos_tools_prefer_tmp}
+		Package: *
+		Pin: origin "steamos-tools"
+		Pin-Priority:150
+		EOF
+		
 		# move tmp var files into target locations
 		sudo mv  ${prefer_tmp}  ${prefer}
 		sudo mv  ${backports_prefer_tmp}  ${backports_prefer}
 		sudo mv  ${multimedia_prefer_tmp}  ${multimedia_prefer}
 		sudo mv  ${steamos_prefer_tmp}  ${steamos_prefer}
+		sudo mv  ${steamos_tools_prefer_tmp}  ${steamos_tools_prefer}
 		
 		#####################################################
 		# Check for lists in repos.d
@@ -203,7 +225,14 @@ main()
 	        	sudo mv ${multimedia_sourcelist} ${multimedia_sourcelist}.bak
 	        	sleep 1s
 		fi
-	
+		
+		if [[ -f ${steamos_tools_sourcelist} ]]; then
+	        	# backup sources list file
+	        	echo -e "==> Backing up ${steamos_tools_sourcelist} to ${steamos_tools_sourcelist}.bak\n"
+	        	sudo mv ${steamos_tools_sourcelist} ${steamos_tools_sourcelist}.bak
+	        	sleep 1s
+		fi
+
 		#####################################################
 		# Create and add required text to jessie.list
 		#####################################################
@@ -224,11 +253,18 @@ main()
 		cat <<-EOF > ${multimedia_sourcelist_tmp}
 		deb http://www.deb-multimedia.org jessie main non-free
 		EOF
+		
+		# packages.libregeek.org
+		cat <<-EOF > ${steamos_tools_sourcelist_tmp}
+		deb http://packages.libregeek.org/SteamOS-Tools/ jessie main
+		deb-src http://packages.libregeek.org/SteamOS-Tools/ jessie main
+		EOF
 
 		# move tmp var files into target locations
 		sudo mv  ${sourcelist_tmp} ${sourcelist}
 		sudo mv  ${multimedia_sourcelist_tmp} ${multimedia_sourcelist}
 		sudo mv  ${backports_sourcelist_tmp} ${backports_sourcelist}
+		sudo mv  ${steamos_tools_sourcelist_tmp} ${steamos_tools_sourcelist}
 		
 		# Update system
 		echo -e "\n==> Updating index of packages...\n"
@@ -254,7 +290,7 @@ main()
 		but also from the Debian repository with either:
 		
 		'sudo apt-get install <package_name>'
-		'sudo apt-get -t [jessie|jessie-backports] install <package_name>'
+		'sudo apt-get -t [jessie|jessie-backports|steamos-tools] install <package_name>'
 		
 		Warning: If the apt package manager seems to want to remove a lot
 		"of packages you have already installed, be very careful about proceeding.
@@ -272,6 +308,7 @@ main()
 		sudo rm -f ${multimedia_sourcelist}
 		sudo rm -f ${prefer}
 		sudo rm -f ${steamosprefer}
+		sudo rm -f ${steamos_tools_prefer}
 		
 		# backups
 		sudo rm -f ${sourcelist}.bak
@@ -279,6 +316,7 @@ main()
 		sudo rm -f ${multimedia_sourcelist}.bak
 		sudo rm -f ${prefer}.bak
 		sudo rm -f ${steamosprefer}.bak
+		sudo rm -f ${steamos_tools_prefer}.bak
 		
 		sleep 2s
 		sudo apt-get update

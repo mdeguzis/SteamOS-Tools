@@ -274,7 +274,7 @@ show_help()
 	'./desktop-software list [type]'
 	
 	Options: 	[install|uninstall|list|check|test] 
-	Types package:	[retroarch|libretro*]
+	Packages:	[retroarch|libretro-*|lutris]
 	Types: 		[basic|extra|emulators|retroarch-src]
 	Types Cont.	[emulation-src-deps|upnp-dlna|gaming-tools|games-pkg<pkg_name>]
 	Extra types: 	[kodi|kodi-src|lutris|plex|webapp]

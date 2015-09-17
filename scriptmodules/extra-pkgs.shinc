@@ -541,127 +541,16 @@ ep_install_retroarch()
 	echo -e "\n==> Installing Retroarch and its associated libretro cores Home from automated script"
 	sleep 2s
 	
-	# Jettison deb-multimedia method, build more up to date ppa package for Ubuntu
-	# Last commit this was used in: 44dc9a5
+	############################
+	# Install packages
+	############################
 	
-	# Package sourced from: 
-	# https://launchpad.net/~libretro/+archive/ubuntu/stable?field.series_filter=trusty
+	# packaged now at packages.libregeek.org
+	# A user could install these out of the script and forgoe this post install configuration
 	
-	#######################################
-	# Retroarch
-	#######################################
+	sudo apt-get install retroarch libretro-*
 	
-	echo -e "\n==> Installing core packages for Retroarch\n"
-	sleep 2s
-	
-	######################
-	# Retroarch assets
-	######################
-	# set vars
-	pkg_type="deb"
-	PKG="retroarch-assets"
-	PKG_FILENAME="retroarch-assets_0.1+r71~2~ubuntu14.04.1_all.deb"
-	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
-	
-	# set multiflag
-	multi="n"
-	
-	# install package
-	ep_install_eval_pkg
-	
-	######################
-	# Retroarch Joypad
-	######################
-	# set vars
-	pkg_type="deb"
-	PKG="retroarch-joypad-autoconfig"
-	PKG_FILENAME="retroarch-joypad-autoconfig_0.1+r207~2~ubuntu14.04.1_all.deb"
-	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
-	
-	# set multiflag
-	multi="n"
-	
-	# install package
-	ep_install_eval_pkg
-	
-	######################
-	# Retroarch client
-	######################
-	# set vars
-	pkg_type="deb"
-	PKG="retroarch"
-	PKG_FILENAME="retroarch_1.2.2+r211~11~ubuntu14.04.1_amd64.deb"
-	BASE_URL="http://libregeek.org/SteamOS-Extra/emulation/retroarch/"
-	
-	# set multiflag
-	multi="n"
-	
-	# install package
-	ep_install_eval_pkg
-	
-	#######################################
-	# Libretro cores stage 1
-	#######################################
-	# These are packages that all cores depend upon
-	# upon to be installed first
-	
-	echo -e "\n==> Installing libretro cores\n"
-	sleep 2s
-	
-	# set vars
-	pkg_type="deb"
-	PKG="libretro-cores"
-	PKG_FILENAME=""
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage1/"
-	BIN_LOC=""
-	PKG_DIR=""
-	
-	# set multiflag
-	multi="y"
-	
-	# install package
-	ep_install_eval_pkg
-	
-	#######################################
-	# Libretro cores stage 2
-	#######################################
-	# These are cores that stage 3 cores depend upon
-	
-	# set vars
-	pkg_type="deb"
-	PKG="libretro-cores"
-	PKG_FILENAME=""
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage2/"
-	BIN_LOC=""
-	PKG_DIR=""
-	
-	# set multiflag
-	multi="y"
-	
-	# install package
-	ep_install_eval_pkg
-	
-	#######################################
-	# Libretro cores stage 3
-	#######################################
-	# These are cores that can be installed freely in any order
-	
-	# set vars
-	pkg_type="deb"
-	PKG="libretro-cores"
-	PKG_FILENAME=""
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation/libretro-core-stage3/"
-	BIN_LOC=""
-	PKG_DIR=""
-	
-	# set multiflag
-	multi="y"
-	
-	# install package
-	ep_install_eval_pkg
-	
-	# cleanup
-	ep_pkg_cleanup
+	# only post install configuration is needed
   
 	#######################################
 	# Post configuration
@@ -672,6 +561,9 @@ ep_install_retroarch()
   	
   	# Run post configuration for common configuration
   	rpc_configure_common
+  	
+  	# cleanup
+	ep_pkg_cleanup
   
 }
 

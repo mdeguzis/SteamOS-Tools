@@ -137,7 +137,7 @@ function add_libregeek_repo()
 	cat <<-EOF > ${prefer_tmp}
 	Package: *
 	Pin: origin ""
-	Pin-Priority:110
+	Pin-Priority:150
 	EOF
 	
 	# If sourcelist does not exist, create it
@@ -151,9 +151,12 @@ function add_libregeek_repo()
 	# SteamOS-Tools source list
 	cat <<-EOF > ${sourcelist_tmp}
 	# SteamOS-Tools source list
-	deb http://http://packages.libregeek.org/SteamOS-Tools/ jessie main
+	deb http://packages.libregeek.org/SteamOS-Tools/ jessie main
 	EOF
 	
+	# move tmp var files into target locations
+	sudo mv  ${sourcelist_tmp} ${sourcelist}
+	sudo mv  ${prefer_tmp}  ${prefer}
 }
 
 function import() 

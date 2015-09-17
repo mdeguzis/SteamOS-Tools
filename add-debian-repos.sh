@@ -94,7 +94,7 @@ main()
 		
 		cat <<-EOF
 		==> Adding Debian ${reponame}, ${backports_reponame}, ${steamos_tools_reponame} 
-		and ${multimedia_reponame} repositories
+		    and ${multimedia_reponame} repositories
 		    
 		EOF
 		sleep 1s

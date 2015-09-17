@@ -290,7 +290,9 @@ main()
 		but also from the Debian repository with either:
 		
 		'sudo apt-get install <package_name>'
-		'sudo apt-get -t [jessie|jessie-backports|steamos-tools] install <package_name>'
+		'sudo apt-get -t [release] install <package_name>'
+		
+		Releases: [jessie|jessie-backports|steamos-tools]
 		
 		Warning: If the apt package manager seems to want to remove a lot
 		"of packages you have already installed, be very careful about proceeding.
@@ -302,20 +304,28 @@ main()
 		echo -e "\n==> Removing debian repositories...\n"
 		sleep 2s
 		
-		# original files
+		# sourcelists (original)
 		sudo rm -f ${sourcelist}
 		sudo rm -f ${backports_sourcelist}
 		sudo rm -f ${multimedia_sourcelist}
+		sudo rm -f ${steamos_tools_sourcelist}
+		
+		# preference files (original)
 		sudo rm -f ${prefer}
 		sudo rm -f ${steamosprefer}
+		sudo rm -f ${mulitmedia_prefer}
 		sudo rm -f ${steamos_tools_prefer}
 		
-		# backups
+		# sourcelist backups
 		sudo rm -f ${sourcelist}.bak
 		sudo rm -f ${backports_sourcelist}.bak
 		sudo rm -f ${multimedia_sourcelist}.bak
+		sudo rm -f ${steamos_tools_sourcelist}.bak
+		
+		# prefer backups
 		sudo rm -f ${prefer}.bak
 		sudo rm -f ${steamosprefer}.bak
+		sudo rm -f ${mulitmedia_prefer}.bak
 		sudo rm -f ${steamos_tools_prefer}.bak
 		
 		sleep 2s

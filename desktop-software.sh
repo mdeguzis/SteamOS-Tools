@@ -111,54 +111,6 @@ function getScriptAbsoluteDir()
     fi
 }
 
-function add_libregeek_repo()
-{
-	
-	# adds the packages.libregeek.org repository
-	
-	# vars
-	reponame="steamos-tools"
-	sourcelist_tmp="${reponame}.list"
-	prefer_tmp="${reponame}"
-	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
-	prefer="/etc/apt/preferences.d/${reponame}"
-
-	# Check for existance of /etc/apt/preferences.d/{prefer} file
-	if [[ -f ${prefer} ]]; then
-		# backup preferences file
-		echo -e "\n==> Backing up ${prefer} to ${prefer}.bak\n"
-		sudo mv ${prefer} ${prefer}.bak
-		sleep 1s
-	fi
-	
-	# Create and add required text to preferences file
-	
-	# Verified policy with apt-cache policy
-	cat <<-EOF > ${prefer_tmp}
-	Package: *
-	Pin: origin "steamos-tools"
-	Pin-Priority:150
-	EOF
-	
-	# If sourcelist does not exist, create it
-	if [[ -f ${sourcelist} ]]; then
-        	# backup sources list file
-        	echo -e "\n==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
-        	sudo mv ${sourcelist} ${sourcelist}.bak
-        	sleep 1s
-	fi
-	
-	# SteamOS-Tools source list
-	cat <<-EOF > ${sourcelist_tmp}
-	# SteamOS-Tools source list
-	deb http://packages.libregeek.org/SteamOS-Tools/ jessie main
-	EOF
-	
-	# move tmp var files into target locations
-	sudo mv  ${sourcelist_tmp} ${sourcelist}
-	sudo mv  ${prefer_tmp}  ${prefer}
-}
-
 function import() 
 {
     
@@ -698,18 +650,19 @@ show_warning()
 {
 	# do a small check for existing jessie/jessie-backports lists
 	echo ""
-        sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")
+        sources_check_jessie=$(sudo find /etc/apt -type f -name "jessie*.list")
+        sources_check_steamos_tools=$(sudo find /etc/apt -type f -name "steamos-tools.list")
         
         clear
         echo "##########################################################"
         echo "Warning: usage of this script is at your own risk!"
         echo "##########################################################"
         echo -e "\nIn order to install most software, you MUST have had"
-        echo -e "enabled the Debian repositories! Otherwise, you may"
-        echo -e -n "break the stability of your system packages! "
+        echo -e "enabled the Debian and Libregeek repositories! Otherwise,"
+        echo -e "you may break the stability of your system packages! "
         
-        if [[ "$sources_check" == "" ]]; then
-                echo -e " Those \nsources do *NOT* appear to be added at first glance."
+        if [[ "$sources_check_jessie" == "" || "$sources_check_steamos_tools" == "" ]]; then
+                echo -e " Those \nsources do *NOT* appear to be added at first glance!"
         else
                 echo -e " On \ninitial check, those sources appear to be added."
         fi

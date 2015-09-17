@@ -256,8 +256,8 @@ main()
 		
 		# packages.libregeek.org
 		cat <<-EOF > ${steamos_tools_sourcelist_tmp}
-		deb http://packages.libregeek.org/SteamOS-Tools/ jessie main
-		deb-src http://packages.libregeek.org/SteamOS-Tools/ jessie main
+		deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
+		deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
 		EOF
 
 		# move tmp var files into target locations

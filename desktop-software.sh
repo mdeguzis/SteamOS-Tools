@@ -903,13 +903,14 @@ main()
 # handle prerequisite actions for script
 #####################################################
 
-source_modules
-show_warning
+#source_modules
+#show_warning
 
 #####################################################
 # MAIN
 #####################################################
-main | tee log_temp.txt
+#main | tee log_temp.txt
+add_libregeek_repo
 
 #####################################################
 # cleanup

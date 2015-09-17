@@ -536,7 +536,7 @@ ep_install_plex()
 ep_install_retroarch()
 {
 
-	echo -e "\n==> Installing Retroarch and its associated libretro cores Home from automated script"
+	echo -e "\n==> Installing Retroarch and its associated libretro cores Home from automated script\n"
 	sleep 2s
 	
 	############################

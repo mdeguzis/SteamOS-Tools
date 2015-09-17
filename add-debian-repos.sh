@@ -301,7 +301,7 @@ main()
 	
 	elif [[ "$install" == "no" ]]; then
 		clear
-		echo -e "\n==> Removing debian repositories...\n"
+		echo -e "==> Removing debian repositories...\n"
 		sleep 2s
 		
 		# sourcelists (original)

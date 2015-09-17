@@ -322,7 +322,8 @@ show_help()
 	'./desktop-software list [type]'
 	
 	Options: 	[install|uninstall|list|check|test] 
-	Types: 		[basic|extra|emulators|retroarch-src|reetroarch]
+	Types package:	[retroarch|libretro*]
+	Types: 		[basic|extra|emulators|retroarch-src]
 	Types Cont.	[emulation-src-deps|upnp-dlna|gaming-tools|games-pkg<pkg_name>]
 	Extra types: 	[kodi|kodi-src|lutris|plex|webapp]
 	Functions: 	[xb360-bindings|gameplay-recording]
@@ -473,9 +474,6 @@ get_software_type()
         elif [[ "$type" == "retroarch-src" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/retroarch-src.txt"
-        elif [[ "$type" == "retroarch" ]]; then
-                # add emulation softare to temp list
-                software_list="$scriptdir/cfgs/software-lists/retroarch.txt"
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/emulation-src-deps.txt"
@@ -817,7 +815,6 @@ main()
 	      "$type" == "extra" ||
 	      "$type" == "emulation-src-deps" ||
 	      "$type" == "retroarch-src" ||
-	      "$type" == "retroarch-type" ||
 	      "$type" == "$type" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then
@@ -868,12 +865,6 @@ main()
                 sleep 2s
                 rfs_retroarch_src_main
 		
-	elif [[ "$type" == "retroarch" ]]; then
-		
-		# kick off extra modules for buld debs
-		sleep 2s
-		ep_install_retroarch
-		
 	elif [[ "$type" == "ue4-src" ]]; then
 
 		# kick off ue4 script
@@ -903,14 +894,13 @@ main()
 # handle prerequisite actions for script
 #####################################################
 
-#source_modules
-#show_warning
+source_modules
+show_warning
 
 #####################################################
 # MAIN
 #####################################################
-#main | tee log_temp.txt
-add_libregeek_repo
+main | tee log_temp.txt
 
 #####################################################
 # cleanup

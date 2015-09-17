@@ -69,6 +69,14 @@ rpc_unload_retroarch()
 
 rpc_configure_common()
 {
+	
+	# if scriptdir is empty, set to pwd
+	if [[ "$scriptdir" == "" ]]; then
+		
+		scriptdir=$(pwd)
+		
+	fi
+	
 	# allow apt-mode none to manually source
 	if [[ "$apt_mode" == "install" || "$apt_mode" == "" ]]; then
 

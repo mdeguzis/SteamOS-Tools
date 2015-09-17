@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.9.6
+# Script Ver:	1.9.9.7
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -109,6 +109,54 @@ function getScriptAbsoluteDir()
     else
 	RESULT=$(dirname "$cwd/$script_invoke_path")
     fi
+}
+
+function add_libregeek_repo()
+{
+	
+	# adds the packages.libregeek.org repository
+	
+	# vars
+	reponame="steamos-tools"
+	sourcelist_tmp="${reponame}.list"
+	prefer_tmp="${reponame}"
+	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
+	prefer="/etc/apt/preferences.d/${reponame}"
+
+	# Check for existance of /etc/apt/preferences.d/{prefer} file
+	if [[ -f ${prefer} ]]; then
+		# backup preferences file
+		echo -e "\n==> Backing up ${prefer} to ${prefer}.bak\n"
+		sudo mv ${prefer} ${prefer}.bak
+		sleep 1s
+	fi
+	
+	# Create and add required text to preferences file
+	
+	# Verified policy with apt-cache policy
+	cat <<-EOF > ${prefer_tmp}
+	Package: *
+	Pin: origin "steamos-tools"
+	Pin-Priority:150
+	EOF
+	
+	# If sourcelist does not exist, create it
+	if [[ -f ${sourcelist} ]]; then
+        	# backup sources list file
+        	echo -e "\n==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
+        	sudo mv ${sourcelist} ${sourcelist}.bak
+        	sleep 1s
+	fi
+	
+	# SteamOS-Tools source list
+	cat <<-EOF > ${sourcelist_tmp}
+	# SteamOS-Tools source list
+	deb http://packages.libregeek.org/SteamOS-Tools/ jessie main
+	EOF
+	
+	# move tmp var files into target locations
+	sudo mv  ${sourcelist_tmp} ${sourcelist}
+	sudo mv  ${prefer_tmp}  ${prefer}
 }
 
 function import() 
@@ -274,7 +322,8 @@ show_help()
 	'./desktop-software list [type]'
 	
 	Options: 	[install|uninstall|list|check|test] 
-	Types: 		[basic|extra|emulators|retroarch-src|reetroarch]
+	Types package:	[retroarch|libretro*]
+	Types: 		[basic|extra|emulators|retroarch-src]
 	Types Cont.	[emulation-src-deps|upnp-dlna|gaming-tools|games-pkg<pkg_name>]
 	Extra types: 	[kodi|kodi-src|lutris|plex|webapp]
 	Functions: 	[xb360-bindings|gameplay-recording]
@@ -425,9 +474,6 @@ get_software_type()
         elif [[ "$type" == "retroarch-src" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/retroarch-src.txt"
-        elif [[ "$type" == "retroarch" ]]; then
-                # add emulation softare to temp list
-                software_list="$scriptdir/cfgs/software-lists/retroarch.txt"
         elif [[ "$type" == "emulation-src-deps" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/emulation-src-deps.txt"
@@ -447,10 +493,11 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/software-lists/upnp-dlna.txt"
-            
+         
 	####################################################
 	# popular software / custom specification
 	####################################################
+	# This includes newly packages software from packages.libregeek.org
 
 	elif [[ "$type" == "lutris" ]]; then
                 # add web app via chrome from helper script
@@ -475,6 +522,10 @@ get_software_type()
 	elif [[ "$type" == "plex" ]]; then
                 # install plex from helper script
                 ep_install_plex
+                exit 1
+        elif [[ "$type" == "retroarch" ]]; then
+                # add emulation softare to temp list
+                ep_install_retroarch
                 exit 1
 	elif [[ "$type" == "ue4" ]]; then
 		# install ue4 from helper script
@@ -751,6 +802,9 @@ main()
         # generate software listing based on type or skip to auto script
         get_software_type
         
+        # add packages.libregeek.org repository
+        add_libregeek_repo
+        
         #############################################
         # Main install functionality
         #############################################
@@ -766,7 +820,6 @@ main()
 	      "$type" == "extra" ||
 	      "$type" == "emulation-src-deps" ||
 	      "$type" == "retroarch-src" ||
-	      "$type" == "retroarch-type" ||
 	      "$type" == "$type" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then
@@ -801,7 +854,7 @@ main()
         # Supplemental installs / modules
         #############################################
         
-        # If an outside script needs called to install the softwarew type,
+        # If an outside script needs called to install the software type,
         # do it below.
         
         if [[ "$type" == "emulation" ]]; then
@@ -816,12 +869,6 @@ main()
                 clear
                 sleep 2s
                 rfs_retroarch_src_main
-		
-	elif [[ "$type" == "retroarch" ]]; then
-		
-		# kick off extra modules for buld debs
-		sleep 2s
-		ep_install_retroarch
 		
 	elif [[ "$type" == "ue4-src" ]]; then
 

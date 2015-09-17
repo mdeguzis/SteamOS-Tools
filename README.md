@@ -9,6 +9,12 @@ Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/Ste
 
 Please refer to the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki), located to your right in this repository for all supplemental information and instructions. A direct link to the FAQ is [here](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/FAQ)
 
+## Hosted packages
+
+There is now a Debian personal repository hosted at packages.libregeek.org. Be sure to check out the "hosted packages" section below! The wiki entry also contains repository information if you should wish to add the repository manually.
+
+[SteamoS-Tools Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository)
+
 ## Usage
 
 To clone this repository to your local computer, you will need the `git` software package. After this is installed, clone SteamOS-Tools with:
@@ -40,15 +46,6 @@ Normal script execution, sans arguments, goes a little bit like:
 * game-fixes - a location to store some small deployable fixes for games.
 * scriptmodules/ - plugable bash modules / routines for any of the below scripts. Scripts for packages and more (including Netflix!)
 * utilities/ - various scripts to handle small parts of the SteamOS-Tools repository (plugable objects) and standalone tools for use.
-  * build-deb-from-ppa.sh - attempts to build a Debian package from a PPA repository.
-  * build-deb-from-src.sh - attempts to build a Debian package from a git source tree.
-  * build-test-chroot.sh - build a Debian or SteamOS jail for testing **[in progress]**
-  * buld-test-docker.sh - create a docker container for testing.
-  * gpg_import.sh - import GPG keys (used internally).
-  * pair-ps3-bluetooth.sh - pairs your PS3 blueooth controllers to a supported receiver.
-  * ssh-rom-transfer.sh - transfer ROMs over SSH to a remote computer.
-  * steamos-stats.sh - displays useful stats while gaming over SSH from another device.
-  * steamos-mega-downloader.sh - Download any release of SteamOS, validate the installer, and image to a USB drive
 * README.md - This file.
 * add-debian-repos.sh - adds debian repositories for installing Debian software.
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages, as well as special additional packages/utilities, such as gameplay recording, "web apps," and more. Please see the readme file in docs/ for the full listing of options.

@@ -652,7 +652,7 @@ show_warning()
         if [[ "$sources_check_jessie" == "" || "$sources_check_steamos_tools" == "" ]]; then
                 echo -e " Those \nsources do *NOT* appear to be added at first glance!"
         else
-                echo -e " On \ninitial check, those sources appear to be added."
+                echo -e "\nOn initial check, those sources appear to be added."
         fi
                 
         echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."

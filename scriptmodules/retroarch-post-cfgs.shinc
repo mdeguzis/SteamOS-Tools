@@ -234,25 +234,22 @@ rpc_configure_common()
 		#################################################
 		# Samba Shares
 		#################################################
+		# https://wiki.archlinux.org/index.php/Samba/Tips_and_tricks#Share_files_without_a_username_and_password
 		
 		echo -e "\n==> Configuring samba shares for remote access"
+
+		# remove old shares
 		
-		# append config files
-		shares_check=$(grep -e 'RetroArch_ROMs|RetroArch_BIOS' "/etc/samba/smb.conf")
+		# For saftely, a start/end method is used here to only kill the lines we added
+		# This will only remove the tagged block of text
+		# This keeps the share itself updated from whatever the repo is, of course provided
+		# the tags are kept (note to self)
 		
-		# add shares to samba if they do not exist
-		if [[ "$shares_check" == "" ]]; then
+		# See: http://serverfault.com/a/137848
+		sudo sed -i '\:# START RetroArch shares:,\:# END RetroArch shares:d' "/etc/samba/smb.conf"
 		
-			# append config
-			sudo bash -c 'cat "./cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'
-			
-		
-		else
-		
-			# output ok
-			echo -e "\nSamba shares [OK]"
-		
-		fi
+		# append config for shares
+		sudo bash -c 'cat "./cfgs/retroarch/samba-retroarch.txt" >> "/etc/samba/smb.conf"'
 		
 		# restart services smbd and nmbd, not samba
 		# Debian bug: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=769714
@@ -404,6 +401,7 @@ rpc_configure_src()
 		####################################################################
 		# download and extract joypad auto configuration files from git
 		####################################################################
+		
 		echo -e "\n==> Fetchng joypad profiles from libretro/retroarch-joypad-autoconfig (Git)\n"
 		sleep 1s
 		

@@ -1,17 +1,23 @@
+# START RetroArch shares
+
 [RetroArch_ROMs]
     comment = Public Retroarch ROMs share
     path = /home/desktop/ROMs
-    public = yes
-    read only = no
-    writeable = yes
-    browseable = yes
-    guest ok = yes
+    browseable = Yes
+    guest ok = Yes
+    create mask = 0644
+    directory mask = 0755
+    writable = yes
+    force user = desktop
     
 [RetroArch_BIOS]
     comment = Public Retroarch BIOS share
     path = /home/desktop/retroarch/BIOS
-    public = yes
-    read only = no
-    writeable = yes
-    browseable = yes
-    guest ok = yes
+    browseable = Yes
+    guest ok = Yes
+    create mask = 0644
+    directory mask = 0755
+    writable = yes
+    force user = desktop
+
+# END RetroArch shares

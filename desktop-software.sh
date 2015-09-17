@@ -111,7 +111,7 @@ function getScriptAbsoluteDir()
     fi
 }
 
-function add_repo()
+function add_libregeek_repo()
 {
 	
 	# adds the packages.libregeek.org repository
@@ -795,6 +795,9 @@ main()
 
         # generate software listing based on type or skip to auto script
         get_software_type
+        
+        # add packages.libregeek.org repository
+        add_libregeek_repo
         
         #############################################
         # Main install functionality

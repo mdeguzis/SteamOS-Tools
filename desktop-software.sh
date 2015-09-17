@@ -493,10 +493,11 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/software-lists/upnp-dlna.txt"
-            
+         
 	####################################################
 	# popular software / custom specification
 	####################################################
+	# This includes newly packages software from packages.libregeek.org
 
 	elif [[ "$type" == "lutris" ]]; then
                 # add web app via chrome from helper script
@@ -521,6 +522,10 @@ get_software_type()
 	elif [[ "$type" == "plex" ]]; then
                 # install plex from helper script
                 ep_install_plex
+                exit 1
+        elif [[ "$type" == "retroarch" ]]; then
+                # add emulation softare to temp list
+                ep_install_retroarch
                 exit 1
 	elif [[ "$type" == "ue4" ]]; then
 		# install ue4 from helper script
@@ -849,7 +854,7 @@ main()
         # Supplemental installs / modules
         #############################################
         
-        # If an outside script needs called to install the softwarew type,
+        # If an outside script needs called to install the software type,
         # do it below.
         
         if [[ "$type" == "emulation" ]]; then

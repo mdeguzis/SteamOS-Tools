@@ -126,7 +126,7 @@ function add_libregeek_repo()
 	# Check for existance of /etc/apt/preferences.d/{prefer} file
 	if [[ -f ${prefer} ]]; then
 		# backup preferences file
-		echo -e "==> Backing up ${prefer} to ${prefer}.bak\n"
+		echo -e "\n==> Backing up ${prefer} to ${prefer}.bak\n"
 		sudo mv ${prefer} ${prefer}.bak
 		sleep 1s
 	fi
@@ -143,7 +143,7 @@ function add_libregeek_repo()
 	# If sourcelist does not exist, create it
 	if [[ -f ${sourcelist} ]]; then
         	# backup sources list file
-        	echo -e "==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
+        	echo -e "\n==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
         	sudo mv ${sourcelist} ${sourcelist}.bak
         	sleep 1s
 	fi

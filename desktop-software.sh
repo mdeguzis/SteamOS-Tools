@@ -136,7 +136,7 @@ function add_libregeek_repo()
 	# Verified policy with apt-cache policy
 	cat <<-EOF > ${prefer_tmp}
 	Package: *
-	Pin: origin ""
+	Pin: origin "steamos-tools"
 	Pin-Priority:150
 	EOF
 	

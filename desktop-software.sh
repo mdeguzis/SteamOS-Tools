@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.9.6
+# Script Ver:	1.9.9.7
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -109,6 +109,51 @@ function getScriptAbsoluteDir()
     else
 	RESULT=$(dirname "$cwd/$script_invoke_path")
     fi
+}
+
+function add_repo()
+{
+	
+	# adds the packages.libregeek.org repository
+	
+	# vars
+	reponame="steamos-tools"
+	sourcelist_tmp="${reponame}.list"
+	prefer_tmp="${reponame}"
+	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
+	prefer="/etc/apt/preferences.d/${reponame}"
+
+	# Check for existance of /etc/apt/preferences.d/{prefer} file
+	if [[ -f ${prefer} ]]; then
+		# backup preferences file
+		echo -e "==> Backing up ${prefer} to ${prefer}.bak\n"
+		sudo mv ${prefer} ${prefer}.bak
+		sleep 1s
+	fi
+	
+	# Create and add required text to preferences file
+	
+	# Verified policy with apt-cache policy
+	cat <<-EOF > ${prefer_tmp}
+	Package: *
+	Pin: origin ""
+	Pin-Priority:110
+	EOF
+	
+	# If sourcelist does not exist, create it
+	if [[ -f ${sourcelist} ]]; then
+        	# backup sources list file
+        	echo -e "==> Backing up ${sourcelist} to ${sourcelist}.bak\n"
+        	sudo mv ${sourcelist} ${sourcelist}.bak
+        	sleep 1s
+	fi
+	
+	# SteamOS-Tools source list
+	cat <<-EOF > ${sourcelist_tmp}
+	# SteamOS-Tools source list
+	deb http://http://packages.libregeek.org/SteamOS-Tools/ jessie main
+	EOF
+	
 }
 
 function import() 

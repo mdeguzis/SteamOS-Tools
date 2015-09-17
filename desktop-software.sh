@@ -767,9 +767,6 @@ main()
         # generate software listing based on type or skip to auto script
         get_software_type
         
-        # add packages.libregeek.org repository
-        add_libregeek_repo
-        
         #############################################
         # Main install functionality
         #############################################

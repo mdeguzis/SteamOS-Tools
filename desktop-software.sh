@@ -406,6 +406,18 @@ function gpg_import()
 		$scriptdir/utilities/gpg_import.sh 5C808C2B65558117
 	fi
 
+	# Key Desc: Libregeek Signing Key
+	# Key ID: 34C589A7
+	# Full Key ID: 8106E72834C589A7
+	gpg_key_check=$(gpg --list-keys 34C589A7)
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "Libregeek Pacakge Signing Key [OK]"
+		sleep 0.3s
+	else
+		echo -e "Libregeek Pacakge Signing Key [FAIL]. Adding now..."
+		$scriptdir/utilities/gpg_import.sh 8106E72834C589A7
+	fi
+
 }
 
 get_software_type()

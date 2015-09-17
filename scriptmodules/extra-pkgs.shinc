@@ -82,8 +82,6 @@ ep_install_antimicro()
 	# This will need added as a dependency into the
 	# .deb pkg if confirmed
 	
-	# Handled in cfgs/software-lists/retroarch.txt 
-	
 	###############################	
 	# install
 	###############################
@@ -548,7 +546,7 @@ ep_install_retroarch()
 	# packaged now at packages.libregeek.org
 	# A user could install these out of the script and forgoe this post install configuration
 	
-	sudo apt-get install retroarch libretro-*
+	sudo apt-get install samba retroarch libretro-* 
 	
 	# only post install configuration is needed
   

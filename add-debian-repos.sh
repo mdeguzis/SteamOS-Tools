@@ -25,6 +25,28 @@ elif [[ "$1" == "uninstall" ]]; then
     	install="no"
 fi
 
+check_gpg()
+{
+	if [[ "$scriptdir" == "" ]]
+	
+		# to to pwd
+		scriptdir=$(pwd)
+		
+	fi
+
+	# Key Desc: Libregeek Signing Key
+	# Key ID: 34C589A7
+	# Full Key ID: 8106E72834C589A7
+	# Siliently add gpg key here:
+	gpg_key_check=$(gpg --list-keys 34C589A7)
+	if [[ "$gpg_key_check" != "" ]]; then
+		:
+	else
+		$scriptdir/utilities/gpg_import.sh 8106E72834C589A7 2> /dev/null
+	fi
+	
+}
+
 funct_set_vars()
 {
 	# Set default user options
@@ -88,6 +110,9 @@ main()
 	#####################################################
 	# Install/Uninstall process
 	#####################################################
+	
+	# Check/add gpg key for libregeek
+	check_gpg
 	
 	if [[ "$install" == "yes" ]]; then
 		clear

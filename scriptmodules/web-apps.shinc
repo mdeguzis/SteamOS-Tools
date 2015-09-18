@@ -2,7 +2,7 @@
 # Author: 	    	Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.4.7
+# Script Ver:	  	1.4.8
 # Description:		Module for isntalling web-apps .
 #	
 # Usage:	      	n/a , module
@@ -185,9 +185,8 @@ add_web_app_chrome()
 	if [[ "$pkg_test" == "" ]]; then
 	
 		echo -e "\n==INFO==\nantimicro not found! Installing now..."
-		# install antimicro from script
-		sleep 2s
-		ep_install_antimicro
+		# install antimicro 
+		sudo apt-get install antimicro
 		
 	else
 		

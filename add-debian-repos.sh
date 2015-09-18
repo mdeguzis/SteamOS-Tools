@@ -40,7 +40,7 @@ check_gpg()
 	# Key Desc: Libregeek Signing Key
 	# Key ID: 34C589A7
 	# Full Key ID: 8106E72834C589A7
-	gpg_key_check=$(gpg --list-keys 34C589A7)
+	gpg_key_check=$(gpg --list-keys 34C589A7) 
 	if [[ "$gpg_key_check" != "" ]]; then
 		echo -e "Libregeek Pacakge Signing Key [OK]"
 		sleep 0.3s
@@ -51,8 +51,8 @@ check_gpg()
 	fi
 	
 	# Key Desc: Debian Multimedia
-	# Key ID: 34C589A7
-	# Full Key ID: 8106E72834C589A7
+	# Key ID: 65558117 
+	# Full Key ID: 5C808C2B65558117 
 	gpg_key_check=$(gpg --list-keys 65558117)
 	if [[ "$gpg_key_check" != "" ]]; then
 		echo -e "Deb Mulitmedia [OK]\n"

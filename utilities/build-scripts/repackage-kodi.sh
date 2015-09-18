@@ -36,7 +36,7 @@ install_prereqs()
 	echo -e "\n==> Installing pre-requisites for building...\n"
 	sleep 1s
 	
-	# install needed packages
+	# Install needed packages
 	
 	sudo apt-get install autopoint bison build-essential ccache cmake curl \
 	cvs default-jre fp-compiler gawk gdc gettext git-core gperf libasound2-dev \
@@ -54,7 +54,9 @@ install_prereqs()
 	libtool libudev-dev libusb-dev libva-dev libva-egl1 libva-tpi1 libvdpau-dev \
 	libvorbisenc2 libxml2-dev libxmu-dev libxrandr-dev libxrender-dev libxslt1-dev \
 	libxt-dev libyajl-dev mesa-utils nasm pmount python-dev python-imaging python-sqlite \
-	swig unzip yasm zip zlib1g-dev pkg-kde-tools doxygen graphviz gsfonts-x11
+	swig unzip yasm zip zlib1g-dev pkg-kde-tools doxygen graphviz gsfonts-x11 \
+	fpc libgif-dev libcec-dev libcec-utils libgif-dev libguntls-dev \
+	librtmp-dev libsdl2-dev libtag1-dev
 	
 }
 
@@ -65,18 +67,24 @@ set_vars()
 	build_dir="/home/desktop/build-kodi-temp"
 	
 	# set source and prefences
-	repo_src="deb-src http://ppa.launchpad.net/team-xbmc/ppa/ubuntu trusty main "
+	kodi_repo_src="deb-src http://ppa.launchpad.net/team-xbmc/ppa/ubuntu trusty main "
+	ubuntu_repo_src="deb-src http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse"
 
-	# GPG key
-	gpg_pub_key="91E7EE5E ("
+	# gpg keys
+	kodi_gpg="91E7EE5E"
+	ubuntu_trusty1_gpg="437D05B5"
+	ubuntu_trusty1_gpg="C0B21F32"
 	
 	# set target
 	target="kodi"
+	ubuntu_target="ubuntu-trusty"
 	
 	# set preferences file
 	kodi_prefer_tmp="${target}"
 	kodi_prefer="/etc/apt/preferences.d/${target}"
 	
+	ubuntu_prefer_tmp="${ubuntu_target}"
+	ubuntu_prefer="/etc/apt/preferences.d/${ubuntu_target}"
 }
 
 main()
@@ -102,8 +110,11 @@ main()
 	fi
 	
 	# add source to sources.list.d/
-	echo ${repo_src} > "${target}.list.tmp"
+	echo ${kodi_repo_src} > "${target}.list.tmp"
 	sudo mv "${target}.list.tmp" "/etc/apt/sources.list.d/${target}.list"
+	
+	echo ${ubuntu_repo_src} > "${ubuntu_target}.list.tmp"
+	sudo mv "${ubuntu_target}.list.tmp" "/etc/apt/sources.list.d/${ubuntu_target}.list"
 	
 	# add preference file so availabe SteamOS packages are used for deps
 	# Example: libpostproc53 depends on libavutil-dev available in brewmaster
@@ -114,8 +125,15 @@ main()
 	Pin-Priority:120
 	EOF
 	
+	cat <<-EOF > ${ubuntu_prefer_tmp}
+	Package: *
+	Pin: origin ""
+	Pin-Priority:120
+	EOF
+	
 	# move tmp var files into target locations
 	sudo mv  ${kodi_prefer_tmp}  ${kodi_prefer}
+	sudo mv  ${ubuntu_prefer_tmp}  ${ubuntu_prefer}
 	
 	# Should not be needed 
 	
@@ -125,7 +143,9 @@ main()
 	
 	echo -e "\n==> Adding GPG key\n"
 	sleep 2s
-	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $gpg_pub_key
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $kodi_gpg
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $ubuntu_trusty1_gpg
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $ubuntu_trusty2_gpg
 	
 	# Get listing of PPA packages
   	pkg_list=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/ppa.launchpad.net_team-xbmc*)
@@ -146,6 +166,9 @@ main()
   	# libshairplay
   	apt-get source --build shairplay
   	sudo dpkg -i $build_dir libshairplay*.deb
+  
+  	echo -e "==> Continuing on to main builds\n"
+  	sleep 2s
   
 	# Rebuild all items in pkg_list
 	for pkg in ${pkg_list}; 

@@ -183,7 +183,7 @@ main()
 	# GPG checks
 	##############################################
 	
-	echo -e "\n==> Adding GPG key\n"
+	echo -e "\n==> Adding GPG keys\n"
 	sleep 2s
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $kodi_gpg
 	#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $ubuntu_trusty1_gpg

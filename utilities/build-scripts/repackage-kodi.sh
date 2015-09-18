@@ -218,25 +218,25 @@ main()
   	echo -e "\n==Building platform==\n" && sleep 2s
   	apt-get source --build platform
   	echo -e "\n==Installing libplatform==\n" && sleep 2s
-  	sudo dpkg -i $build_dir/libplatform*.deb
+  	sudo dpkg -i libplatform*.deb
   	
   	# libshairplay
   	echo -e "\n==Building shairplay==\n" && sleep 2s
   	apt-get source --build shairplay
   	echo -e "\n==Installing libshairplay==\n" && sleep 2s
-  	sudo dpkg -i $build_dir/libshairplay*.deb
+  	sudo dpkg -i libshairplay*.deb
   	
   	# libafpclient-dev
   	echo -e "\n==Building afpfs-ng==\n" && sleep 2s
   	apt-get source --build afpfs-ng
   	echo -e "\n==Installing libafpclient==\n" && sleep 2s
-  	sudo dpkg -i $build_dir/libafpclient*.deb
+  	sudo dpkg -i libafpclient*.deb
   	
   	# libcec
   	echo -e "\n==Building libcec==\n" && sleep 2s
   	apt-get source --build libcec
   	echo -e "\n==Installing libcec==\n" && sleep 2s
-  	sudo dpkg -i $build_dir/libcec*.deb
+  	sudo dpkg -i libcec*.deb
   	
   	#####################################
 	# Main builds

@@ -236,7 +236,7 @@ main()
 		
 		cat <<-EOF > ${steamos_tools_prefer_tmp}
 		Package: *
-		Pin: release l=brewmaster
+		Pin: origin "packages.libregeek.org"
 		Pin-Priority:150
 
 		EOF

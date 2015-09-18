@@ -250,7 +250,15 @@ main()
 	do
 	
 		# Attempt to build target
-		# Note: let the above pre-reqs rebuild, or remove them out of the list?
+		
+		# remove the items we built ahead of time
+		awk '$1 == "Package:" { print $2 }' \
+		/var/lib/apt/lists/ppa.launchpad.net_team-xbmc_ppa_ubuntu_dists_vivid_main_source_Sources \
+		> temp.txt && sed -i -e '/platform/d' -i -e '/shairplay/d' -i -e '/afpfs-ng/d'  temp.txt 
+		
+		# set new pkg list and cleanup
+		pkg_list=$(cat temp.txt)
+		rm temp.txt
 		
 		echo -e "\n==> Attempting to build ${pkg}:\n"
 		sleep 2s

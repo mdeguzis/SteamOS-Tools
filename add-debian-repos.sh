@@ -236,8 +236,9 @@ main()
 		
 		cat <<-EOF > ${steamos_tools_prefer_tmp}
 		Package: *
-		Pin: origin "steamos-tools"
+		Pin: release l=brewmaster
 		Pin-Priority:150
+
 		EOF
 		
 		# move tmp var files into target locations

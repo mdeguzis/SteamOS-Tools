@@ -21,7 +21,9 @@ install_prereqs()
 	
 	echo -e "==> Checking for Debian sources..."
 	
-	# check for repos
+	#############################################
+	# Repo checks
+	##############################################
 	sources_check=$(sudo find /etc/apt -type f -name "jessie*.list")
 	
 	if [[ "$sources_check" == "" ]]; then
@@ -33,7 +35,11 @@ install_prereqs()
                 sleep 2s
         fi
 	
-	echo -e "\n==> Installing pre-requisites for building...\n"
+	#############################################
+	# Install readily available software
+	##############################################
+	
+	echo -e "\n==> Installing main pre-requisites for building...\n"
 	sleep 1s
 	
 	# Install needed packages
@@ -62,6 +68,10 @@ install_prereqs()
 
 set_vars()
 {
+	
+	#############################################
+	# Vars
+	##############################################
 	
 	# build dir
 	build_dir="/home/desktop/build-kodi-temp"
@@ -98,6 +108,10 @@ main()
 	# create build dir and enter it
 	mkdir -p "$build_dir"
 	cd "$build_dir"
+	
+	#############################################
+	# Source lists and pref files
+	##############################################
 	
 	# prechecks
 	echo -e "\n==> Attempting to add source list"
@@ -141,11 +155,19 @@ main()
 	#sleep 2s
 	#sudo apt-get update
 	
+	#############################################
+	# GPG checks
+	##############################################
+	
 	echo -e "\n==> Adding GPG key\n"
 	sleep 2s
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $kodi_gpg
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $ubuntu_trusty1_gpg
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $ubuntu_trusty2_gpg
+	
+	#############################################
+	# Build packages
+	##############################################
 	
 	# Get listing of PPA packages
   	pkg_list=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/ppa.launchpad.net_team-xbmc*)
@@ -158,6 +180,18 @@ main()
   	
   	echo -e "==> Building and install pacakges from PPA, required by other builds\n"
   	sleep 2s
+  	
+  	#####################################
+	# Pre-req PPA Packages - Ubuntu
+	#####################################
+  	
+  	# libafpclient-dev
+  	apt-get source --build libafpclient-dev
+  	sudo dpkg -i $build_dir libplatform*.deb
+  	
+  	#####################################
+	# Pre-req PPA Packages - kodi/stable
+	#####################################
   	
   	# libplatform1
   	apt-get source --build platform

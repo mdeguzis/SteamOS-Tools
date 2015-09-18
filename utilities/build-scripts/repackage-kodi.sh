@@ -80,7 +80,7 @@ set_vars()
 	# build dir
 	build_dir="/home/desktop/build-kodi-temp"
 	
-	# set source
+	# set source and prefences
 	repo_src="deb-src http://ppa.launchpad.net/team-xbmc/ppa/ubuntu trusty main "
 
 	# GPG key
@@ -89,6 +89,9 @@ set_vars()
 	# set target
 	target="kodi"
 	
+	# set preferences file
+	kodi_prefer_tmp="${target}"
+	kodi_prefer="/etc/apt/preferences.d/${target}"
 	
 }
 
@@ -117,6 +120,18 @@ main()
 	# add source to sources.list.d/
 	echo ${repo_src} > "${target}.list.tmp"
 	sudo mv "${target}.list.tmp" "/etc/apt/sources.list.d/${target}.list"
+	
+	# add preference file so availabe SteamOS packages are used for deps
+	# Example: libpostproc53 depends on libavutil-dev available in brewmaster
+
+	cat <<-EOF > ${kodi_prefer_tmp}
+	Package: *
+	Pin: origin ""
+	Pin-Priority:120
+	EOF
+	
+	# move tmp var files into target locations
+	sudo mv  ${kodi_prefer_tmp}  ${kodi_prefer}
 	
 	echo -e "\n==> Adding GPG key\n"
 	sleep 2s

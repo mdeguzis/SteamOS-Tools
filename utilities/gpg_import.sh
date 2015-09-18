@@ -17,5 +17,5 @@ keyserver="pgp.mit.edu"
 
 # import gpg key
 gpg --keyserver $keyserver --recv-keys $key
-gpg -a --export $key | sudo apt-key add -
+gpg -a --export $key | sudo apt-key add - > 2>&1 >/dev/null
 sudo apt-key update

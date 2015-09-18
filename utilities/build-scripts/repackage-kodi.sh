@@ -40,7 +40,7 @@ install_prereqs()
 	##############################################
 	
 	echo -e "\n==> Installing main pre-requisites for building...\n"
-	sleep 1s
+	sleep 2s
 	
 	# Install needed packages from available repos (NON PPA ONLY HERE!)
 	# We do not want to pull pre-reqs from our repo, they will be built
@@ -213,25 +213,25 @@ main()
   	
   	# libplatform1
   	apt-get source --build platform
-  	sudo dpkg -i $build_dir libplatform*.deb
+  	sudo dpkg -i $build_dir/libplatform*.deb
   	
   	# libshairplay
   	apt-get source --build shairplay
-  	sudo dpkg -i $build_dir libshairplay*.deb
+  	sudo dpkg -i $build_dir/libshairplay*.deb
   	
   	# libafpclient-dev
   	apt-get source --build afpfs-ng
-  	sudo dpkg -i $build_dir libafpclient*.deb
+  	sudo dpkg -i $build_dir/libafpclient*.deb
   	
   	# libplatform1
   	apt-get source --build libcec
-  	sudo dpkg -i $build_dir libcec*.deb
+  	sudo dpkg -i $build_dir/libcec*.deb
   	
   	#####################################
 	# Main builds
 	#####################################
   
-  	echo -e "==> Continuing on to main builds\n"
+  	echo -e "\n==> Continuing on to main builds\n"
   	sleep 2s
   
 	# Rebuild all items in pkg_list

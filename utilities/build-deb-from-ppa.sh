@@ -211,14 +211,12 @@ main()
 		# download source 
 		apt-get source ${target}
 		
-		# Fix for 
-		
 		# identify folder
 		cd $build_dir
 		build_source_dir=$(ls -d */)
 	
 		# build using typicaly commands + override option
-		cd ${build_source_dir} && dpkg-buildpackage -us -uc -d
+		cd ${build_source_dir} && dpkg-buildpackage -b -rfakeroot -us -uc -d
 	
 	fi
 	

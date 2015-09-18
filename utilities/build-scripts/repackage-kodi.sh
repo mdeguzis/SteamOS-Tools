@@ -133,15 +133,13 @@ main()
 	# move tmp var files into target locations
 	sudo mv  ${kodi_prefer_tmp}  ${kodi_prefer}
 	
+	echo -e "\nUpdating list of packages\n"
+	sleep 2s
+	sudo apt-get update
+	
 	echo -e "\n==> Adding GPG key\n"
 	sleep 2s
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $gpg_pub_key
-	#"$scriptdir/utilities.sh ${gpg_pub_key}"
-	
-	echo -e "\n==> Updating system package listings...\n"
-	sleep 2s
-	sudo apt-key update
-	sudo apt-get update
 	
 	# Get listing of PPA packages
   	pkg_list=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/ppa.launchpad.net_team-xbmc*)

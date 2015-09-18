@@ -414,8 +414,6 @@ ep_install_lutris()
 ep_install_plex()
 {
 
-	echo -e "\n==> Installing Plex Home Theater from automated script..."
-	sleep 2s
 	
 	# Jettison deb-multimedia method, build more up to date ppa package for Ubuntu
 	# Last commit this was used in: 44dc9a5
@@ -423,54 +421,10 @@ ep_install_plex()
 	# Package sourced from: 
 	# https://launchpad.net/~plexapp/+archive/ubuntu/plexht?field.series_filter=trusty
 	
-	#######################################
-	# Ubuntu font family
-	#######################################
-	
-	echo -e "\n==> Resolving missing prerequisite packages\n"
-	sleep 1s
-	
-	# set vars
-	pkg_type="deb"
-	PKG="ttf-ubuntu-font-family"
-	PKG_FILENAME="ttf-ubuntu-font-family_0.80-0ubuntu6_all.deb"
-	BASE_URL="http://libregeek.org/SteamOS-Extra/multimedia/plex/"
-	BIN_LOC=""
-	PKG_DIR=""
-	
-	# set multiflag
-	multi="n"
-	
-	# install package
-	ep_install_eval_pkg
-	
-	#######################################
-	# Plex
-	#######################################
-	
-	# set vars
-	pkg_type="deb"
-	PKG="plexhometheater"
-	PKG_FILENAME="plexhometheater_1.4.1.469-20150513git-SteamOS-2.deb"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/plex/"
-	BIN_LOC=""
-	PKG_DIR=""
-	
-	# The default banner for BPM is ugly, use the correctly size 460x215 banner
-	# in /usr/share/pixmaps/plex-steamtile_460x215.png
-	
-	sed 's|Icon=plexhometheater|Icon=/usr/share/pixmaps/plex-steamtile_460x215.png|g' \
-	"/usr/share/applications/plexhometheater.desktop"  
-	
-	# set multiflag
-	multi="n"
-	
-	# install package
-	ep_install_eval_pkg
-	
-	# cleanup
-	ep_pkg_cleanup
-  
+	# package set moved to packages.libregeek.org
+	# TODO setup wiki page with sourced locations then remove this
+	:
+
 }
 
 ep_install_retroarch()

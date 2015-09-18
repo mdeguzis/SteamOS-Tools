@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	add-debian-repos.sh
-# Script Ver:	0.2.1
+# Script Ver:	0.2.6
 # Description:	This script automatically enables debian repositories
 #
 #		See: https://wiki.debian.org/AptPreferences#Pinning
@@ -314,12 +314,12 @@ main()
 		sleep 2s
 		sudo apt-get update
 		
-		echo -e "\n==> Adding keyring package for deb-multimedia"
+		echo -e "\n==> Adding keyring package for deb-multimedia\n"
 		sleep 2s
+		
 		# update keyring for deb-multimedia
 		sudo apt-get install deb-multimedia-keyring
-		#sudo apt-get update
-	
+
 		#####################################################
 		# Remind user how to install
 		#####################################################

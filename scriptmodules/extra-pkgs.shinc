@@ -33,66 +33,6 @@ ep_pkg_cleanup()
 	rm -f /tmp/*.Release.key*
 }
 
-ep_install_antimicro()
-{
-
-	echo -e "\n==> Installing Antimicro from automated script..."
-	sleep 2s
-
-	#####################################################
-	# Antimicro
-	#####################################################
-	# Name: Antimicro
-	# Desc: command line tool for google drive.
-	# Type: PPA rebuild
-	# Source: https://launchpad.net/~ryochan7/+archive/ubuntu/antimicro
-
-	###############################	
-	# set vars
-	###############################
-	
-	pkg_type="deb"
-	PKG=antimicro
-	PKG_FILENAME="antimicro_2.14+git20150602-SteamOS-1_amd64.deb"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/utilities"
-	BIN_LOC="/usr/local/bin/antimicro"
-	
-	# set external Deb repo required flag
-	export deb_repo_name="jessie.list"
-	export deb_repo_req="no"
-	# Eval requirements
-	"$scriptdir/utilities/check_repo_req.sh"
-	
-	# set multiflag
-	multi="n"
-	
-	# test if user requests it
-	if [[ "$options" == "test" ]]; then
-		# go to test function
-		ep_test_deb
-		exit
-	fi
-	
-	#######################################
-	# Pre-reqs
-	#######################################
-	
-	# required to display program on clean install
-	# recently discovered by user, see issue #53 
-	# This will need added as a dependency into the
-	# .deb pkg if confirmed
-	
-	###############################	
-	# install
-	###############################
-	
-	# install antimicro
-	ep_install_eval_pkg
-	
-	# cleanup
-	ep_pkg_cleanup
-}
-
 ep_install_chrome()
 {
 

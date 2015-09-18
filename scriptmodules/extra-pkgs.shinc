@@ -1,4 +1,3 @@
-
 # -----------------------------------------------------------------------
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
@@ -233,57 +232,6 @@ ep_install_gameplay_recording()
 		echo "" > /dev/null
 	fi
 	
-}
-
-ep_install_gdrive()
-{
-
-	echo -e "\n==> Installing Gdrive from automated script..."
-	sleep 2s
-
-	echo ""
-	#####################################################
-	# Gdrive (cli) 
-	#####################################################
-	# Name: Gdrive
-	# Desc: command line tool for google drive.
-	# Source: https://github.com/prasmussen/gdrive
-
-	###############################	
-	# set vars
-	###############################
-	
-	pkg_type="deb"
-	PKG=gdrive
-	PKG_FILENAME="TODO"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra"
-	BIN_LOC="/usr/bin/gdrive"
-	
-	# set external Deb repo required flag
-	export deb_repo_name="jessie.list"
-	export deb_repo_req="no"
-	# Eval requirements
-	"$scriptdir/utilities/check_repo_req.sh"
-	
-	# set multiflag
-	multi="n"
-	
-	# test if user requests it
-	if [[ "$options" == "test" ]]; then
-		# go to test function
-		ep_test_deb
-		exit
-	fi
-	
-	###############################	
-	# install
-	###############################
-	
-	# ep_install_eval_pkg
-	ep_install_eval_binary
-	
-	# cleanup
-	ep_pkg_cleanup
 }
 
 ep_install_kodi()

@@ -50,7 +50,7 @@ install_prereqs()
 	cvs default-jre fp-compiler gawk gdc gettext git-core gperf libasound2-dev \
 	libass-dev libavcodec-dev libavfilter-dev libavformat-dev libavutil-dev \
 	libbluetooth-dev libbluray-dev libbluray1 libboost-dev libboost-thread-dev \
-	libbz2-dev libcap-dev libcdio-dev libcec-dev libcec1 libcrystalhd-dev libcrystalhd3 \
+	libbz2-dev libcap-dev libcdio-dev libcrystalhd-dev libcrystalhd3 \
 	libcurl3 libcurl4-gnutls-dev libcwiid-dev libcwiid1 libdbus-1-dev libenca-dev \
 	libflac-dev libfontconfig1-dev libfreetype6-dev libfribidi-dev libglew-dev \
 	libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev liblzo2-dev libmad0-dev \
@@ -65,6 +65,9 @@ install_prereqs()
 	swig unzip yasm zip zlib1g-dev pkg-kde-tools doxygen graphviz gsfonts-x11 \
 	fpc libgif-dev libgif-dev librtmp-dev libsdl2-dev libtag1-dev libfuse-dev \
 	libreadline-dev libncurses5-dev liblockdev1-dev
+	
+	# ensure libcec2 is not present
+	sudo apt-get remove libcec2 libcec libcec2:amd64 libcec-dev cec-utils
 	
 }
 
@@ -199,7 +202,7 @@ main()
   	# There are a few pacakges that must be built and installed first, otherwise
   	# many of the builids will fail
   	
-  	echo -e "\n==> Building and install pacakges from PPA, required by other builds\n"
+  	echo -e "\n==> Building and installing pacakges from PPA, required by other builds"
   	sleep 2s
   	
   	#####################################
@@ -226,7 +229,7 @@ main()
   	# libafpclient-dev
   	echo -e "\n==Building afpfs-ng==\n" && sleep 2s
   	apt-get source --build afpfs-ng
-  	echo -e "\n==BuInstallingilding libafpclient==\n" && sleep 2s
+  	echo -e "\n==Installing libafpclient==\n" && sleep 2s
   	sudo dpkg -i $build_dir/libafpclient*.deb
   	
   	# libcec

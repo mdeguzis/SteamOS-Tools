@@ -206,16 +206,19 @@ main()
 	elif [[ "$ignore_deps" == "yes" ]]; then
 	
 		echo -e "\n==INFO==\nIgnoring depedencies for build\n"
-	
+		sleep 2s
+		
 		# download source 
 		apt-get source ${target}
+		
+		# Fix for 
 		
 		# identify folder
 		cd $build_dir
 		build_source_dir=$(ls -d */)
 	
 		# build using typicaly commands + override option
-		cd ${build_source_dir} && dpkg-buildpackage -d -uc -d
+		cd ${build_source_dir} && dpkg-buildpackage -us -uc -d
 	
 	fi
 	

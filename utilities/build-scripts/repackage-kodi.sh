@@ -57,7 +57,7 @@ install_prereqs()
 	libtool libudev-dev libusb-dev libva-dev libva-egl1 libva-tpi1 libvdpau-dev \
 	libvorbisenc2 libxml2-dev libxmu-dev libxrandr-dev libxrender-dev libxslt1-dev \
 	libxt-dev libyajl-dev mesa-utils nasm pmount python-dev python-imaging python-sqlite \
-	swig unzip yasm zip zlib1g-dev
+	swig unzip yasm zip zlib1g-dev pkg-kde-tools doxygen graphviz gsfonts-x11
 	
 }
 
@@ -120,9 +120,11 @@ main()
 	# move tmp var files into target locations
 	sudo mv  ${kodi_prefer_tmp}  ${kodi_prefer}
 	
-	echo -e "\nUpdating list of packages\n"
-	sleep 2s
-	sudo apt-get update
+	# Should not be needed 
+	
+	#echo -e "\nUpdating list of packages\n"
+	#sleep 2s
+	#sudo apt-get update
 	
 	echo -e "\n==> Adding GPG key\n"
 	sleep 2s

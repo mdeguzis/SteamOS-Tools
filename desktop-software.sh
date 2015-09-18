@@ -4,7 +4,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.9.7
+# Script Ver:	1.9.9.8
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -274,10 +274,10 @@ show_help()
 	'./desktop-software list [type]'
 	
 	Options: 	[install|uninstall|list|check|test] 
-	Packages:	[retroarch|libretro-*|lutris]
+	Packages:	[retroarch|libretro-*|lutris|plexhometheater]
 	Types: 		[basic|extra|emulators|retroarch-src]
 	Types Cont.	[emulation-src-deps|upnp-dlna|gaming-tools|games-pkg<pkg_name>]
-	Extra types: 	[kodi|kodi-src|lutris|plex|webapp]
+	Extra types: 	[kodi|kodi-src|lutris|webapp]
 	Functions: 	[xb360-bindings|gameplay-recording]
 	
 	Install with:
@@ -440,12 +440,8 @@ get_software_type()
 	####################################################
 	# This includes newly packages software from packages.libregeek.org
 
-	elif [[ "$type" == "lutris" ]]; then
-                # add web app via chrome from helper script
-                ep_install_lutris
-                exit 1
 	elif [[ "$type" == "chrome" ]]; then
-                # install plex from helper script
+                # install chrome from helper script
                 ep_install_chrome
                 exit 1
         elif [[ "$type" == "gameplay-recording" ]]; then
@@ -459,10 +455,6 @@ get_software_type()
         elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script
                 ep_install_kodi
-                exit 1
-	elif [[ "$type" == "plex" ]]; then
-                # install plex from helper script
-                ep_install_plex
                 exit 1
         elif [[ "$type" == "retroarch" ]]; then
                 # add emulation softare to temp list

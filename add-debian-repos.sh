@@ -34,7 +34,7 @@ check_gpg()
 		
 	fi
 
-	echo -e "\n==> Importing GPG keys"
+	echo -e "==> Importing GPG keys\n"
 	sleep 1s
 
 	# Key Desc: Libregeek Signing Key
@@ -48,6 +48,19 @@ check_gpg()
 		echo -e "Libregeek Pacakge Signing Key [FAIL]. Adding now...\n"
 		sleep .5s
 		$scriptdir/utilities/gpg_import.sh 8106E72834C589A7 2> /dev/null
+	fi
+	
+	# Key Desc: Debian Multimedia
+	# Key ID: 34C589A7
+	# Full Key ID: 8106E72834C589A7
+	gpg_key_check=$(gpg --list-keys 6558117)
+	if [[ "$gpg_key_check" != "" ]]; then
+		echo -e "Deb Mulitmedia [OK]\n"
+		sleep 0.3s
+	else
+		echo -e "Deb Mulitmedia [FAIL]. Adding now...\n"
+		sleep .5s
+		$scriptdir/utilities/gpg_import.sh C808C2B6558117 2> /dev/null
 	fi
 	
 }
@@ -301,11 +314,11 @@ main()
 		sleep 2s
 		sudo apt-get update
 		
-		echo -e "\n==> Updating keyring for deb-multimedia and updating lists [again]...\n"
+		echo -e "\n==> Adding keyring package for deb-multimedia"
 		sleep 2s
 		# update keyring for deb-multimedia
 		sudo apt-get install deb-multimedia-keyring
-		sudo apt-get update
+		#sudo apt-get update
 	
 		#####################################################
 		# Remind user how to install

@@ -64,7 +64,8 @@ install_prereqs()
 	libxt-dev libyajl-dev mesa-utils nasm pmount python-dev python-imaging python-sqlite \
 	swig unzip yasm zip zlib1g-dev pkg-kde-tools doxygen graphviz gsfonts-x11 \
 	fpc libgif-dev libgif-dev librtmp-dev libsdl2-dev libtag1-dev libfuse-dev \
-	libreadline-dev libncurses5-dev liblockdev1-dev autoconf automake
+	libreadline-dev libncurses5-dev liblockdev1-dev autoconf automake libgcrypt11-dev \
+	dh-autoreconf
 	
 	# ensure libcec2 is not present
 	sudo apt-get remove libcec2 libcec libcec2:amd64 libcec-dev cec-utils
@@ -232,10 +233,13 @@ main()
   	sudo dpkg -i libafpclient*.deb
   	
   	# libcec
-  	echo -e "\n==Building libcec==\n" && sleep 2s
-  	apt-get source --build libcec
-  	echo -e "\n==Installing libcec==\n" && sleep 2s
-  	sudo dpkg -i libcec*.deb
+  	# NOTICE - 20150918 - DID build earlier today, but even on a 
+  	# fresh install, this is no longer the case. Backup debs were installed
+  	
+  	#echo -e "\n==Building libcec==\n" && sleep 2s
+  	#apt-get source --build libcec
+  	#echo -e "\n==Installing libcec==\n" && sleep 2s
+  	#sudo dpkg -i libcec*.deb
   	
   	#####################################
 	# Main builds

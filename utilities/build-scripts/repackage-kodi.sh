@@ -233,10 +233,10 @@ main()
   	# NOTICE - 20150918 - DID build earlier today, but even on a 
   	# fresh install, this is no longer the case. Backup debs were installed
   	
-  	#echo -e "\n==Building libcec==\n" && sleep 2s
-  	#apt-get source --build libcec
-  	#echo -e "\n==Installing libcec==\n" && sleep 2s
-  	#sudo dpkg -i libcec*.deb
+  	echo -e "\n==Building libcec==\n" && sleep 2s
+  	apt-get source --build libcec
+  	echo -e "\n==Installing libcec==\n" && sleep 2s
+  	sudo dpkg -i libcec*.deb
   	
   	#####################################
 	# Main builds
@@ -267,7 +267,7 @@ main()
 		apt-get source --build ${pkg}
 		
 		# bow out if build contains unment build deps or errors
-		if [[ $? == '0' ]]; then
+		if [[ $? != '0' ]]; then
 
 			echo -e "FAILURE TO BUILD"		
 			exit 1

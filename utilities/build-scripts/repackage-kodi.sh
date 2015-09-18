@@ -64,7 +64,7 @@ install_prereqs()
 	libxt-dev libyajl-dev mesa-utils nasm pmount python-dev python-imaging python-sqlite \
 	swig unzip yasm zip zlib1g-dev pkg-kde-tools doxygen graphviz gsfonts-x11 \
 	fpc libgif-dev libgif-dev librtmp-dev libsdl2-dev libtag1-dev libfuse-dev \
-	libreadline-dev libncurses5-dev liblockdev1-dev
+	libreadline-dev libncurses5-dev liblockdev1-dev autoconf automake
 	
 	# ensure libcec2 is not present
 	sudo apt-get remove libcec2 libcec libcec2:amd64 libcec-dev cec-utils

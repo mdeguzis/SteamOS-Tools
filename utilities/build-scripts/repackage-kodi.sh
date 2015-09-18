@@ -116,12 +116,34 @@ main()
 	echo -e "\n==> Attempting to add source list"
 	sleep 2s
 	
-	# check for existance of target, backup if it exists
+	# check for existance of kodi target, backup if it exists
 	if [[ -f /etc/apt/sources.list.d/${target}.list ]]; then
 		echo -e "\n==> Backing up ${target}.list to ${target}.list.bak"
 		sudo mv "/etc/apt/sources.list.d/${target}.list" "/etc/apt/sources.list.d/${target}.list.bak"
 	fi
 	
+	# check for existance of ubuntu target, backup if it exists
+	if [[ -f /etc/apt/sources.list.d/${ubuntu_target}.list ]]; then
+		echo -e "\n==> Backing up ${ubuntu_target}.list to ${ubuntu_target}.list.bak"
+		sudo mv "/etc/apt/sources.list.d/${ubuntu_target}.list" "/etc/apt/sources.list.d/${ubuntu_target}.list.bak"
+	fi
+	
+	# Check for existance of ${kodi_prefer} file
+	if [[ -f ${kodi_prefer} ]]; then
+		# backup preferences file
+		echo -e "==> Backing up ${kodi_prefer} to ${kodi_prefer}.bak\n"
+		sudo mv ${kodi_prefer} ${kodi_prefer}.bak
+		sleep 1s
+	fi
+	
+	# Check for existance of ${ubuntu_prefer} file
+	if [[ -f ${ubuntu_prefer} ]]; then
+		# backup preferences file
+		echo -e "==> Backing up ${ubuntu_prefer} to ${ubuntu_prefer}.bak\n"
+		sudo mv ${ubuntu_prefer} ${ubuntu_prefer}.bak
+		sleep 1s
+	fi
+
 	# add source to sources.list.d/
 	echo ${kodi_repo_src} > "${target}.list.tmp"
 	sudo mv "${target}.list.tmp" "/etc/apt/sources.list.d/${target}.list"

@@ -278,7 +278,7 @@ main()
 	if [[ "$transfer_choice" == "y" ]]; then
 	
 		# cut files
-		scp $build_dir/*.deb mikey@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
+		scp $build_dir/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
 		echo -e "\n"
 		
 	elif [[ "$transfer_choice" == "n" ]]; then

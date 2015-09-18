@@ -80,23 +80,23 @@ set_vars()
 	
 	# set source and prefences
 	kodi_repo_src="deb-src http://ppa.launchpad.net/team-xbmc/ppa/ubuntu vivid main "
-	ubuntu_repo_src="deb-src http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse"
+	#ubuntu_repo_src="deb-src http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse"
 
 	# gpg keys
 	kodi_gpg="91E7EE5E"
-	ubuntu_trusty1_gpg="437D05B5"
-	ubuntu_trusty1_gpg="C0B21F32"
+	#ubuntu_trusty1_gpg="437D05B5"
+	#ubuntu_trusty1_gpg="C0B21F32"
 	
 	# set target
 	target="kodi"
-	ubuntu_target="ubuntu-trusty"
+	#ubuntu_target="ubuntu-trusty"
 	
 	# set preferences file
 	kodi_prefer_tmp="${target}"
 	kodi_prefer="/etc/apt/preferences.d/${target}"
 	
-	ubuntu_prefer_tmp="${ubuntu_target}"
-	ubuntu_prefer="/etc/apt/preferences.d/${ubuntu_target}"
+	#ubuntu_prefer_tmp="${ubuntu_target}"
+	#ubuntu_prefer="/etc/apt/preferences.d/${ubuntu_target}"
 }
 
 main()
@@ -126,10 +126,10 @@ main()
 	fi
 	
 	# check for existance of ubuntu target, backup if it exists
-	if [[ -f /etc/apt/sources.list.d/${ubuntu_target}.list ]]; then
-		echo -e "\n==> Backing up ${ubuntu_target}.list to ${ubuntu_target}.list.bak"
-		sudo mv "/etc/apt/sources.list.d/${ubuntu_target}.list" "/etc/apt/sources.list.d/${ubuntu_target}.list.bak"
-	fi
+	#if [[ -f /etc/apt/sources.list.d/${ubuntu_target}.list ]]; then
+	#	echo -e "\n==> Backing up ${ubuntu_target}.list to ${ubuntu_target}.list.bak"
+	#	sudo mv "/etc/apt/sources.list.d/${ubuntu_target}.list" "/etc/apt/sources.list.d/${ubuntu_target}.list.bak"
+	#fi
 	
 	# Check for existance of ${kodi_prefer} file
 	if [[ -f ${kodi_prefer} ]]; then
@@ -140,19 +140,19 @@ main()
 	fi
 	
 	# Check for existance of ${ubuntu_prefer} file
-	if [[ -f ${ubuntu_prefer} ]]; then
-		# backup preferences file
-		echo -e "==> Backing up ${ubuntu_prefer} to ${ubuntu_prefer}.bak\n"
-		sudo mv ${ubuntu_prefer} ${ubuntu_prefer}.bak
-		sleep 1s
-	fi
+	#if [[ -f ${ubuntu_prefer} ]]; then
+	#	# backup preferences file
+	#	echo -e "==> Backing up ${ubuntu_prefer} to ${ubuntu_prefer}.bak\n"
+	#	sudo mv ${ubuntu_prefer} ${ubuntu_prefer}.bak
+	#	sleep 1s
+	#fi
 
 	# add source to sources.list.d/
 	echo ${kodi_repo_src} > "${target}.list.tmp"
 	sudo mv "${target}.list.tmp" "/etc/apt/sources.list.d/${target}.list"
 	
-	echo ${ubuntu_repo_src} > "${ubuntu_target}.list.tmp"
-	sudo mv "${ubuntu_target}.list.tmp" "/etc/apt/sources.list.d/${ubuntu_target}.list"
+	#echo ${ubuntu_repo_src} > "${ubuntu_target}.list.tmp"
+	#sudo mv "${ubuntu_target}.list.tmp" "/etc/apt/sources.list.d/${ubuntu_target}.list"
 	
 	# add preference file so availabe SteamOS packages are used for deps
 	# Example: libpostproc53 depends on libavutil-dev available in brewmaster
@@ -163,11 +163,11 @@ main()
 	Pin-Priority:120
 	EOF
 	
-	cat <<-EOF > ${ubuntu_prefer_tmp}
-	Package: *
-	Pin: origin ""
-	Pin-Priority:120
-	EOF
+	#cat <<-EOF > ${ubuntu_prefer_tmp}
+	#Package: *
+	#Pin: origin ""
+	#Pin-Priority:120
+	#EOF
 	
 	# move tmp var files into target locations
 	sudo mv  ${kodi_prefer_tmp}  ${kodi_prefer}
@@ -180,8 +180,8 @@ main()
 	echo -e "\n==> Adding GPG key\n"
 	sleep 2s
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $kodi_gpg
-	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $ubuntu_trusty1_gpg
-	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $ubuntu_trusty2_gpg
+	#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $ubuntu_trusty1_gpg
+	#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $ubuntu_trusty2_gpg
 	
 	#############################################
 	# Build packages

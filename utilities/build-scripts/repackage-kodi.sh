@@ -2,7 +2,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	repackage-kodi.sh
-# Script Ver:	0.1.3
+# Script Ver:	0.2.5
 # Description:	Overall goal of script is to automate rebuilding pkgs from
 #		https://launchpad.net/~team-xbmc/+archive/ubuntu/ppa?field.series_filter=trusty
 #
@@ -63,7 +63,7 @@ install_prereqs()
 	libvorbisenc2 libxml2-dev libxmu-dev libxrandr-dev libxrender-dev libxslt1-dev \
 	libxt-dev libyajl-dev mesa-utils nasm pmount python-dev python-imaging python-sqlite \
 	swig unzip yasm zip zlib1g-dev pkg-kde-tools doxygen graphviz gsfonts-x11 \
-	fpc libgif-dev libcec-dev libgif-dev librtmp-dev libsdl2-dev libtag1-dev libfuse-dev \
+	fpc libgif-dev libgif-dev librtmp-dev libsdl2-dev libtag1-dev libfuse-dev \
 	libreadline-dev libnurses-dev
 	
 }
@@ -79,7 +79,7 @@ set_vars()
 	build_dir="/home/desktop/build-kodi-temp"
 	
 	# set source and prefences
-	kodi_repo_src="deb-src http://ppa.launchpad.net/team-xbmc/ppa/ubuntu trusty main "
+	kodi_repo_src="deb-src http://ppa.launchpad.net/team-xbmc/ppa/ubuntu vivid main "
 	ubuntu_repo_src="deb-src http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse"
 
 	# gpg keys
@@ -200,16 +200,12 @@ main()
   	sleep 2s
   	
   	#####################################
-	# Pre-req PPA Packages - Ubuntu
+	# Pre-req PPA builds - Ubuntu
 	#####################################
-  	
-  	# libafpclient-dev
-  	# http://launchpadlibrarian.net/160562794/afpfs-ng_0.8.1-5ubuntu1_source.changes
-  	apt-get source --build afpfs
-  	sudo dpkg -i $build_dir libafpclient*.deb
+  	# Search page: https://launchpad.net/ubuntu
   	
   	#####################################
-	# Pre-req PPA Packages - kodi/stable
+	# Pre-req PPA builds - kodi/stable
 	#####################################
   	
   	# libplatform1
@@ -219,6 +215,18 @@ main()
   	# libshairplay
   	apt-get source --build shairplay
   	sudo dpkg -i $build_dir libshairplay*.deb
+  	
+  	# libafpclient-dev
+  	apt-get source --build afpfs
+  	sudo dpkg -i $build_dir libafpclient*.deb
+  	
+  	# libplatform1
+  	apt-get source --build libcec
+  	sudo dpkg -i $build_dir libcec*.deb
+  	
+  	#####################################
+	# Main builds
+	#####################################
   
   	echo -e "==> Continuing on to main builds\n"
   	sleep 2s

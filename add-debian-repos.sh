@@ -42,7 +42,7 @@ check_gpg()
 	# Full Key ID: 8106E72834C589A7
 	gpg_key_check=$(gpg --list-keys 34C589A7)
 	if [[ "$gpg_key_check" != "" ]]; then
-		echo -e "Libregeek Pacakge Signing Key [OK]\n"
+		echo -e "Libregeek Pacakge Signing Key [OK]"
 		sleep 0.3s
 	else
 		echo -e "Libregeek Pacakge Signing Key [FAIL]. Adding now...\n"

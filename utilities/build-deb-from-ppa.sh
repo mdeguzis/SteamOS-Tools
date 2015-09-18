@@ -14,8 +14,9 @@
 #		Command 'rmadison' from devscripts to see arch's
 #		Command 'apt-cache madison <PKG>'
 #
-# Usage:	sudo ./build-deb-from-PPA.sh
+# Usage:	./build-deb-from-PPA.sh
 #		source ./build-deb-from-PPA.sh
+#		./build-deb-from-PPA.sh --ignore-deps
 # -------------------------------------------------------------------------------
 
 arg1="$1"
@@ -31,13 +32,14 @@ show_help()
 	####################################################
 	./build-deb-from-PPA.sh
 	./build-deb-from-PPA.sh --help
+	./build-deb-from-PPA.sh --ignore-deps
 	source ./build-deb-from-PPA.sh
 	
-	The third option, preeceded by 'source' will 
+	The fourth option, preeceded by 'source' will 
 	execute the script in the context of the calling 
 	shell and preserve vars for the next run.
 	
-	IF you the message:
+	IF you see the message:
 	WARNING: The following packages cannot be authenticated!...
 	Look above in the output for apt-get update. You will see a
 	line for 'NO_PUBKEY 3B4FE6ACC0B21F32'. Import this key string
@@ -50,7 +52,6 @@ if [[ "$arg1" == "--help" ]]; then
 	
 	#show help
 	show_help
-	exit 1
 	
 elif [[ "$arg1" == "--ignore-deps" ]]; then
 

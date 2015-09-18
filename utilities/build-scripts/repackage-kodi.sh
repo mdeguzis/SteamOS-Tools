@@ -4,7 +4,7 @@
 # Scipt Name:	repackage-kodi.sh
 # Script Ver:	0.2.5
 # Description:	Overall goal of script is to automate rebuilding pkgs from
-#		https://launchpad.net/~team-xbmc/+archive/ubuntu/ppa?field.series_filter=trusty
+#		https://launchpad.net/~team-xbmc/+archive/ubuntu/
 #
 # Usage:	./repackage-kodi.sh
 #

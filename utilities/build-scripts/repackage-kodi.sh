@@ -186,7 +186,7 @@ main()
 	
 	echo -e "\n==> Adding GPG keys\n"
 	sleep 2s
-	$scriptdir/utilties/gpg_import.sh $kodi_gpg
+	$scriptdir/utilities/gpg_import.sh $kodi_gpg
 	
 	#############################################
 	# Build packages

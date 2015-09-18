@@ -34,14 +34,11 @@ install_prereqs()
         fi
 	
 	echo -e "\n==> Installing pre-requisites for building...\n"
-	
 	sleep 1s
 	
 	# install needed packages
-	# Install libplatform mustbe installed from libregeek, as it's only available in the PPA
-	# and a pre-req of building from the source code of the PPA packages.
 	
-	sudo apt-get install libplatform1 autopoint bison build-essential ccache cmake curl \
+	sudo apt-get install autopoint bison build-essential ccache cmake curl \
 	cvs default-jre fp-compiler gawk gdc gettext git-core gperf libasound2-dev \
 	libass-dev libavcodec-dev libavfilter-dev libavformat-dev libavutil-dev \
 	libbluetooth-dev libbluray-dev libbluray1 libboost-dev libboost-thread-dev \
@@ -133,11 +130,30 @@ main()
 	# Get listing of PPA packages
   	pkg_list=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/ppa.launchpad.net_team-xbmc*)
   
+  	# remove packages we build outside of the loop down below - TODO
+  	# cat file1.txt | sed -e "$line"'d' > file2.txt
+  	
+  	# There are a few pacakges that must be built and installed first, otherwise
+  	# many of the builids will fail
+  	
+  	echo -e "==> Building and install pacakges from PPA, required by other builds\n"
+  	sleep 2s
+  	
+  	# libplatform1
+  	apt-get source --build platform
+  	sudo dpkg -i $build_dir libplatform*.deb
+  	
+  	# libshairplay
+  	apt-get source --build shairplay
+  	sudo dpkg -i $build_dir libshairplay*.deb
+  
 	# Rebuild all items in pkg_list
 	for pkg in ${pkg_list}; 
 	do
 	
 		# Attempt to build target
+		# Note: let the above pre-reqs rebuild, or remove them out of the list?
+		
 		echo -e "\n==> Attempting to build ${pkg}:\n"
 		sleep 2s
 		

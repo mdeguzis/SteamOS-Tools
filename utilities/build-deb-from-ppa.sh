@@ -75,9 +75,10 @@ install_prereqs()
 	echo -e "\n==> Installing pre-requisites for building...\n"
 	
 	sleep 1s
-	# install needed packages
+	# install needed packages for building various pacakges
 	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring cmake
+	debian-keyring debian-archive-keyring cmake dh-autoreconf \
+	libglib2.0-dev libpopt-dev
 
 }
 

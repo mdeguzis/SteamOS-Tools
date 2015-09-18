@@ -36,8 +36,12 @@ install_prereqs()
 	echo -e "\n==> Installing pre-requisites for building...\n"
 	
 	sleep 1s
+	
 	# install needed packages
-	sudo apt-get install autopoint bison build-essential ccache cmake curl \
+	# Install libplatform mustbe installed from libregeek, as it's only available in the PPA
+	# and a pre-req of building from the source code of the PPA packages.
+	
+	sudo apt-get install platform autopoint bison build-essential ccache cmake curl \
 	cvs default-jre fp-compiler gawk gdc gettext git-core gperf libasound2-dev \
 	libass-dev libavcodec-dev libavfilter-dev libavformat-dev libavutil-dev \
 	libbluetooth-dev libbluray-dev libbluray1 libboost-dev libboost-thread-dev \
@@ -55,23 +59,6 @@ install_prereqs()
 	libxt-dev libyajl-dev mesa-utils nasm pmount python-dev python-imaging python-sqlite \
 	swig unzip yasm zip zlib1g-dev
 	
-	echo -e "\n== Checking for extra standalone prequisite packages for batch building\n"
-	
-	# libplatform is needed to do batch rebuild of the PPA
-	PKG="libplatform1"
-	PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-	if [[ "$PKG_OK_DPKG" == "" ]]; then
-	
-		# bail out
-		echo -e "\n==ERROR==\nlibplatform must be installed for batch rebuild of PPA!"
-		echo -e "Please install this seperately"
-		
-	else 
-	
-		echo "Checking for $PKG [OK]"
-		sleep 0.5s
-
-	fi
 }
 
 set_vars()
@@ -190,26 +177,19 @@ main()
 		cd "$HOME"
 	fi
 
-	echo -e "\n==> Would you like to upload the packages that were built? [y/n]"
+	echo -e "\n==> Would you like to transfer any packages that were built? [y/n]"
 	sleep 0.5s
 	# capture command
-	read -ep "Choice: " upload_choice
+	read -ep "Choice: " transfer_choice
 	
-	if [[ "$upload_choice" == "y" ]]; then
+	if [[ "$transfer_choice" == "y" ]]; then
 	
-		# set vars for upload
-		sourcedir="$build_dir"
-		user="thelinu2"
-		host='libregeek.org'
-		destdir="/home2/thelinu2/public_html/SteamOS-Extra/build-tmp/"
-		
+		# cut files
+		scp $build_dir/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
 		echo -e "\n"
 		
-		# perform upload
-		scp -r $sourcedir $user@$host:$destdir
-		
-	elif [[ "$upload_choice" == "n" ]]; then
-		echo -e "Upload not requested\n"
+	elif [[ "$transfer_choice" == "n" ]]; then
+		echo -e "Transfer not requested\n"
 	fi
 	
 	echo -e "\n==> Would you like to purge this source list addition? [y/n]"

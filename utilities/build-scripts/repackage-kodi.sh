@@ -245,7 +245,8 @@ main()
   	# remove the items we built ahead of time
 	awk '$1 == "Package:" { print $2 }' \
 	/var/lib/apt/lists/ppa.launchpad.net_team-xbmc_ppa_ubuntu_dists_vivid_main_source_Sources \
-	> temp.txt && sed -i -e '/platform/d' -i -e '/shairplay/d' -i -e '/afpfs-ng/d'  temp.txt 
+	> temp.txt && sed -i -e '/platform/d' -i -e '/shairplay/d' -i -e '/afpfs-ng/d'  \
+	sed -i -e '/libcec/d' temp.txt 
 	
 	# set new pkg list and cleanup
 	pkg_list=$(cat temp.txt)
@@ -263,12 +264,14 @@ main()
 		echo -e "\n==> Attempting to build ${pkg}:\n"
 		sleep 2s
 		
-		build=$(apt-get source --build ${pkg} | grep "E: Child process failed")
+		apt-get source --build ${pkg}
 		
-		# bow out if build contains unment build deps
-		if [[ "$build" != "" ]]; then
+		# bow out if build contains unment build deps or errors
+		if [[ $? == '0' ]]; then
+
 			echo -e "FAILURE TO BUILD"		
 			exit 1
+			
 		fi
 		
 		# since this is building a large amount of packages, remove

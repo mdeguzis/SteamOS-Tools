@@ -20,6 +20,7 @@
 
 arg1="$1"
 scriptdir=$(pwd)
+extra_opts=""
 
 show_help()
 {
@@ -49,6 +50,11 @@ if [[ "$arg1" == "--help" ]]; then
 	#show help
 	show_help
 	exit
+elif [[ "$arg1" == "--ignore-deps" ]]; then
+
+	# There are times when another package provides what we want in Debian
+	extra_opts="-d"
+
 fi
 
 install_prereqs()
@@ -181,7 +187,7 @@ main()
 	# Attempt to build target
 	echo -e "\n==> Attempting to build ${target}:\n"
 	sleep 2s
-	apt-get source --build ${target}
+	apt-get source --build ${target} ${extra_opts}
 	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)

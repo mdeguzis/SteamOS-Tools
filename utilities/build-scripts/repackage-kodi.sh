@@ -67,9 +67,6 @@ install_prereqs()
 	libreadline-dev libncurses5-dev liblockdev1-dev autoconf automake libgcrypt11-dev \
 	dh-autoreconf
 	
-	# ensure libcec2 is not present
-	sudo apt-get remove libcec2 libcec libcec2:amd64 libcec-dev cec-utils
-	
 }
 
 set_vars()

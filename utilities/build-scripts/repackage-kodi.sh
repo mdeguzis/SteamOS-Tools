@@ -42,7 +42,9 @@ install_prereqs()
 	echo -e "\n==> Installing main pre-requisites for building...\n"
 	sleep 1s
 	
-	# Install needed packages
+	# Install needed packages from available repos (NON PPA ONLY HERE!)
+	# We do not want to pull pre-reqs from our repo, they will be built
+	# from apt-get source later below.
 	
 	sudo apt-get install autopoint bison build-essential ccache cmake curl \
 	cvs default-jre fp-compiler gawk gdc gettext git-core gperf libasound2-dev \
@@ -61,7 +63,8 @@ install_prereqs()
 	libvorbisenc2 libxml2-dev libxmu-dev libxrandr-dev libxrender-dev libxslt1-dev \
 	libxt-dev libyajl-dev mesa-utils nasm pmount python-dev python-imaging python-sqlite \
 	swig unzip yasm zip zlib1g-dev pkg-kde-tools doxygen graphviz gsfonts-x11 \
-	fpc libgif-dev libcec-dev libgif-dev librtmp-dev libsdl2-dev libtag1-dev
+	fpc libgif-dev libcec-dev libgif-dev librtmp-dev libsdl2-dev libtag1-dev libfuse-dev \
+	libreadline-dev libnurses-dev
 	
 }
 
@@ -170,12 +173,6 @@ main()
 	sudo mv  ${kodi_prefer_tmp}  ${kodi_prefer}
 	sudo mv  ${ubuntu_prefer_tmp}  ${ubuntu_prefer}
 	
-	# Should not be needed 
-	
-	#echo -e "\nUpdating list of packages\n"
-	#sleep 2s
-	#sudo apt-get update
-	
 	#############################################
 	# GPG checks
 	##############################################
@@ -199,7 +196,7 @@ main()
   	# There are a few pacakges that must be built and installed first, otherwise
   	# many of the builids will fail
   	
-  	echo -e "==> Building and install pacakges from PPA, required by other builds\n"
+  	echo -e "\n==> Building and install pacakges from PPA, required by other builds\n"
   	sleep 2s
   	
   	#####################################
@@ -207,8 +204,9 @@ main()
 	#####################################
   	
   	# libafpclient-dev
-  	apt-get source --build libafpclient-dev
-  	sudo dpkg -i $build_dir libplatform*.deb
+  	# http://launchpadlibrarian.net/160562794/afpfs-ng_0.8.1-5ubuntu1_source.changes
+  	apt-get source --build afpfs
+  	sudo dpkg -i $build_dir libafpclient*.deb
   	
   	#####################################
 	# Pre-req PPA Packages - kodi/stable

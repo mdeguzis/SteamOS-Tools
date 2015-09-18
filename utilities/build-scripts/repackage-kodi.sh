@@ -186,9 +186,7 @@ main()
 	
 	echo -e "\n==> Adding GPG keys\n"
 	sleep 2s
-	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $kodi_gpg
-	#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $ubuntu_trusty1_gpg
-	#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $ubuntu_trusty2_gpg
+	$scriptdir/utilties/gpg_import.sh $kodi_gpg
 	
 	#############################################
 	# Build packages

@@ -90,6 +90,7 @@ set_vars()
 	#ubuntu_trusty1_gpg="437D05B5"
 	#ubuntu_trusty1_gpg="C0B21F32"
 	
+	
 	# set target
 	target="kodi"
 	#ubuntu_target="ubuntu-trusty"
@@ -119,7 +120,7 @@ main()
 	##############################################
 	
 	# prechecks
-	echo -e "\n==> Attempting to add source list"
+	echo -e "\n==> Attempting to add source list\n"
 	sleep 2s
 	
 	# check for existance of kodi target, backup if it exists

@@ -173,7 +173,10 @@ main()
 	sudo mv  ${kodi_prefer_tmp}  ${kodi_prefer}
 	#sudo mv  ${ubuntu_prefer_tmp}  ${ubuntu_prefer}
 	
-	#############################################
+	# update package lists
+	sudo apt-get update
+	
+	##############################################
 	# GPG checks
 	##############################################
 	

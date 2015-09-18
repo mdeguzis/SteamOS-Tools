@@ -217,6 +217,11 @@ main()
 		Package: *
 		Pin: origin ""
 		Pin-Priority:100
+		
+		Package: *
+		Pin: release o=Unofficial Multimedia Packages
+		Pin-Priority: 100
+		
 		EOF
 	
 		cat <<-EOF > ${steamos_prefer_tmp}

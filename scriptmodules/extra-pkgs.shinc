@@ -359,22 +359,6 @@ ep_install_lutris()
 	
 }
 
-ep_install_plex()
-{
-
-	
-	# Jettison deb-multimedia method, build more up to date ppa package for Ubuntu
-	# Last commit this was used in: 44dc9a5
-	
-	# Package sourced from: 
-	# https://launchpad.net/~plexapp/+archive/ubuntu/plexht?field.series_filter=trusty
-	
-	# package set moved to packages.libregeek.org
-	# TODO setup wiki page with sourced locations then remove this
-	:
-
-}
-
 ep_install_retroarch()
 {
 

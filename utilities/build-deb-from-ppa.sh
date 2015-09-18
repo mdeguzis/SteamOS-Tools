@@ -21,7 +21,7 @@
 
 arg1="$1"
 scriptdir=$(pwd)
-extra_opts=""
+ignore_deps="no"
 
 show_help()
 {
@@ -58,7 +58,7 @@ if [[ "$arg1" == "--help" ]]; then
 elif [[ "$arg1" == "--ignore-deps" ]]; then
 
 	# There are times when another package provides what we want in Debian
-	extra_opts="-d"
+	ignore_deps="yes"
 
 fi
 
@@ -192,10 +192,22 @@ main()
 	# Attempt to build target
 	echo -e "\n==> Attempting to build ${target}:\n"
 	sleep 2s
-	apt-get source --build ${target} ${extra_opts}
 	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
+	
+	# assess if depdencies should be ignored
+	if [[ "$ignore_deps" == "no" ]]; then
+	
+		# build normally using apt-get source
+		apt-get source --build ${target}
+	
+	elif [[ "$ignore_deps" == "yes" ]]; then
+	
+		# build using typicaly commands + override option
+		cd ${builddir} && dpkg-buildpackage -d -uc -d
+	
+	fi
 	
 	# back out of build temp to script dir if called from git clone
 	if [[ "$scriptdir" != "" ]]; then

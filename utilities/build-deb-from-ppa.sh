@@ -47,9 +47,11 @@ show_help()
 }
 
 if [[ "$arg1" == "--help" ]]; then
+	
 	#show help
 	show_help
-	exit
+	exit 1
+	
 elif [[ "$arg1" == "--ignore-deps" ]]; then
 
 	# There are times when another package provides what we want in Debian

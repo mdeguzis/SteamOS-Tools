@@ -116,11 +116,11 @@ main()
 	# Install/Uninstall process
 	#####################################################
 	
-	# Check/add gpg key for libregeek
-	check_gpg
-	
 	if [[ "$install" == "yes" ]]; then
 		clear
+		
+		# Check/add gpg key for libregeek
+		check_gpg
 		
 		cat <<-EOF
 		==> Adding Debian ${reponame}, ${backports_reponame}, ${steamos_tools_reponame} 

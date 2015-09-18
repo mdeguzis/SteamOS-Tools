@@ -4,7 +4,7 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.3.5
+# Script Ver:	0.3.7
 # Description:	Attempts to build a deb package from a PPA
 #
 # See:		If you are building from Ubuntu main, check the website
@@ -46,12 +46,14 @@ show_help()
 	by issuing 'gpg_import.sh <key>' from the extra DIR of this repo.
 	
 	EOF
+	
 }
 
 if [[ "$arg1" == "--help" ]]; then
 	
 	#show help
 	show_help
+	exit 1
 	
 elif [[ "$arg1" == "--ignore-deps" ]]; then
 

@@ -54,7 +54,7 @@ install_prereqs()
 	libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev liblzo2-dev libmad0-dev \
 	libmicrohttpd-dev libmodplug-dev libmp3lame-dev libmpeg2-4-dev libmpeg3-dev \
 	libmysqlclient-dev libnfs-dev libogg-dev libpcre3-dev libplist-dev libpng12-dev \
-	libpostproc-dev libpulse-dev libsamplerate0-dev libsdl.2-dev libsdl-gfx1.2-dev \
+	libpostproc-dev libpulse-dev libsamplerate0-dev libsdl1.2-dev libsdl-gfx1.2-dev \
 	libsdl-image1.2-dev libsdl-mixer1.2-dev libshairport-dev libsmbclient-dev \
 	libsqlite3-dev libssh-dev libssl-dev libswscale-dev libtiff5-dev libtinyxml-dev \
 	libtool libudev-dev libusb-dev libva-dev libva-egl1 libva-tpi1 libvdpau-dev \

@@ -205,7 +205,14 @@ main()
 	
 	elif [[ "$ignore_deps" == "yes" ]]; then
 	
-		echo -e "\n==INFO==\nIgnoring depedencies for build\n"
+		# There are times when specific packages are specific in the depends lines
+		# of Ubuntu control files are satisfied by other packages.
+		
+		# One example is libstdc++6.4.4-dev, which seems to be satisfiable by 
+		# libstdc6 in Jessie, where only higher ver. dbg packages are available
+		# Ex. https://packages.debian.org/search?suite=jessie&searchon=names&keywords=libstdc%2B%2B6
+	
+		echo -e "==INFO==\nIgnoring depedencies for build\n"
 		sleep 2s
 		
 		# download source 
@@ -240,7 +247,7 @@ main()
 	
 	ls "/home/desktop/build-deb-temp"
 	
-	echo -e "\n==> Would you like to trim out the tar.gz and dsc files for uploading? [y/n]"
+	echo -e "\n==> Would you like to trim tar.gz, dsc files, and folders for uploading? [y/n]"
 	sleep 0.5s
 	# capture command
 	read -ep "Choice: " trim_choice
@@ -263,18 +270,18 @@ main()
 		echo -e "File trim not requested"
 	fi
 
-	echo -e "\n==> Would you like to upload any packages that were built? [y/n]"
+	echo -e "\n==> Would you like to transfer any packages that were built? [y/n]"
 	sleep 0.5s
 	# capture command
-	read -ep "Choice: " upload_choice
+	read -ep "Choice: " transfer_choice
 	
-	if [[ "$upload_choice" == "y" ]]; then
+	if [[ "$transfer_choice" == "y" ]]; then
 	
 		# cut files
-		"$scriptdir/extra/upload-pkg-to-libregeek.sh"
+		scp $build_dir/*.deb mikey@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
 		echo -e "\n"
 		
-	elif [[ "$upload_choice" == "n" ]]; then
+	elif [[ "$transfer_choice" == "n" ]]; then
 		echo -e "Upload not requested\n"
 	fi
 	

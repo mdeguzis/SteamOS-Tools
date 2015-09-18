@@ -41,7 +41,7 @@ install_prereqs()
 	# Install libplatform mustbe installed from libregeek, as it's only available in the PPA
 	# and a pre-req of building from the source code of the PPA packages.
 	
-	sudo apt-get install platform autopoint bison build-essential ccache cmake curl \
+	sudo apt-get install libplatform1 autopoint bison build-essential ccache cmake curl \
 	cvs default-jre fp-compiler gawk gdc gettext git-core gperf libasound2-dev \
 	libass-dev libavcodec-dev libavfilter-dev libavformat-dev libavutil-dev \
 	libbluetooth-dev libbluray-dev libbluray1 libboost-dev libboost-thread-dev \

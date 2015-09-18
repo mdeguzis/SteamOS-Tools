@@ -22,6 +22,7 @@
 arg1="$1"
 scriptdir=$(pwd)
 ignore_deps="no"
+build_source_dir="Not applicable"
 
 show_help()
 {
@@ -204,8 +205,15 @@ main()
 	
 	elif [[ "$ignore_deps" == "yes" ]]; then
 	
+		# download source 
+		apt-get source  ${target}
+		
+		# identify folder
+		cd $build_dir
+		build_source_dir=$(ls -d */)
+	
 		# build using typicaly commands + override option
-		cd ${builddir} && dpkg-buildpackage -d -uc -d
+		cd ${build_source_dir} && dpkg-buildpackage -d -uc -d
 	
 	fi
 	

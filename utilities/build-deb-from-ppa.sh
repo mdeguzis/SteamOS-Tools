@@ -205,8 +205,10 @@ main()
 	
 	elif [[ "$ignore_deps" == "yes" ]]; then
 	
+		echo -e "\n==INFO==\nIgnoring depedencies for build\n"
+	
 		# download source 
-		apt-get source  ${target}
+		apt-get source ${target}
 		
 		# identify folder
 		cd $build_dir

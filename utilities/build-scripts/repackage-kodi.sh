@@ -2,7 +2,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	repackage-kodi.sh
-# Script Ver:	0.2.5
+# Script Ver:	0.2.7
 # Description:	Overall goal of script is to automate rebuilding pkgs from
 #		https://launchpad.net/~team-xbmc/+archive/ubuntu/
 #
@@ -64,7 +64,7 @@ install_prereqs()
 	libxt-dev libyajl-dev mesa-utils nasm pmount python-dev python-imaging python-sqlite \
 	swig unzip yasm zip zlib1g-dev pkg-kde-tools doxygen graphviz gsfonts-x11 \
 	fpc libgif-dev libgif-dev librtmp-dev libsdl2-dev libtag1-dev libfuse-dev \
-	libreadline-dev libnurses-dev
+	libreadline-dev libncurses5-dev
 	
 }
 
@@ -171,7 +171,7 @@ main()
 	
 	# move tmp var files into target locations
 	sudo mv  ${kodi_prefer_tmp}  ${kodi_prefer}
-	sudo mv  ${ubuntu_prefer_tmp}  ${ubuntu_prefer}
+	#sudo mv  ${ubuntu_prefer_tmp}  ${ubuntu_prefer}
 	
 	#############################################
 	# GPG checks

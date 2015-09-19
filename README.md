@@ -71,9 +71,9 @@ Normal script execution, sans arguments, goes a little bit like:
 There are three main branches at the moment
 
 `alchemist`  
-Default branch - "stable" work that gets PRs, fixes, priority over all other branches.  
+Alchemist branch. Due to Brewamster being usable now, this branch is not as up to date.  
 `brewmaster`  
-Now that Jessie is stable, evaluation of the Brewmaster SteamOS release and packages is underway. **Not** recommended for use.  
+Brewmaster branch. Default branch for repository.  
 `testing-a`  
 Branch where new scripts are made, larger alterations to existing ones implemented, and more for alchemist
 `testing-b`    

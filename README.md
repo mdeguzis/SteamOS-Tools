@@ -1,4 +1,4 @@
-<img src="ttps://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/SteamOS-Tools.png"/>
+<img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/SteamOS-Tools.png" width=100%/>
 
 ## SteamOS-Tools
 

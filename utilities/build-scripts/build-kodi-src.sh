@@ -75,7 +75,7 @@ install_prereqs()
 	libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev \
 	libxmu-dev libxrandr-dev libxslt1-dev libxt-dev libyajl-dev lsb-release \
 	nasm python-dev python-imaging python-support swig unzip uuid-dev yasm \
-	zip zlib1g-dev
+	zip zlib1g-dev libglew-dev
 
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache
@@ -84,7 +84,7 @@ install_prereqs()
 
 main()
 {
-	build_dir="/home/desktop/kodi/"
+	build_dir="$HOME/kodi/"
 
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
@@ -202,6 +202,9 @@ main()
      	# concurrent jobs will be used. So for quad-core the command is:
 
 	# make -j4
+	
+	# however, we will assume here that most people at least have a dual-core
+	# processor
 	make -j2
 
 	# Install Kodi
@@ -234,10 +237,20 @@ main()
 
 	echo -e "\n==> Adding desktop file and artwork"
 
-	# add desktop file for SteamOS/BPM
-	cd $scriptdir
-	sudo cp "cfgs/desktop-files/kodi.desktop" "/usr/share/applications"
-	sudo cp "artwork/banners/Kodi.png" "/home/steam/Pictures"
+	# If called standalone change copy paths
+	if [[ "$scriptdir" == "" ]]; then
+
+		
+		# copy files based of pwd
+		sudo cp ../../cfgs/desktop-files/kodi.desktop "/usr/share/applications"
+		sudo cp ../../artwork/banners/Kodi.png "/home/steam/Pictures"
+	else
+
+		# add desktop file for SteamOS/BPM
+		sudo cp "$scriptdir/cfgs/desktop-files/kodi.desktop" "/usr/share/applications"
+		sudo cp "$scriptdir/artwork/banners/Kodi.png" "/home/steam/Pictures"
+		
+	fi
 
 	#################################################
 	# Cleanup

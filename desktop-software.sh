@@ -219,7 +219,7 @@ source_modules()
 	script_name=$(basename "$0")
 	getScriptAbsoluteDir "$script_invoke_path"
 	script_absolute_dir=$RESULT
-	scriptdir=`dirname "$script_absolute_dir"`
+	export scriptdir=`dirname "$script_absolute_dir"`
 
 }
 

@@ -71,13 +71,13 @@ Normal script execution, sans arguments, goes a little bit like:
 There are three main branches at the moment
 
 `alchemist`  
-Alchemist branch. Due to Brewamster being usable now, this branch is not as up to date.  
+Alchemist branch. Due to Brewmaster being usable now, this branch is not as up to date.  
 `brewmaster`  
 Brewmaster branch. Default branch for repository.  
 `testing-a`  
-Branch where new scripts are made, larger alterations to existing ones implemented, and more for alchemist
+Branch where new scripts are made, larger alterations to existing ones implemented, and more for alchemist.  
 `testing-b`    
-Branch where new scripts are made, larger alterations to existing ones implemented, and more for brewmaster
+Branch where new scripts are made, larger alterations to existing ones implemented, and more for brewmaster.  
 
 ## Pull requests / suggestions
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page

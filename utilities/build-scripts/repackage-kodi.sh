@@ -190,12 +190,6 @@ main()
 	# Build packages
 	##############################################
 	
-	# Get listing of PPA packages
-  	pkg_list=$(awk '$1 == "Package:" { print $2 }' /var/lib/apt/lists/ppa.launchpad.net_team-xbmc*)
-  
-  	# remove packages we build outside of the loop down below - TODO
-  	# cat file1.txt | sed -e "$line"'d' > file2.txt
-  	
   	# There are a few pacakges that must be built and installed first, otherwise
   	# many of the builids will fail
   	

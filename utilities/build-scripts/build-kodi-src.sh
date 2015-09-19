@@ -4,7 +4,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.3.3
+# Script Ver:		0.3.5
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -45,18 +45,8 @@ install_prereqs()
 	
 	# Swaps: (libcurl3 for libcurl-dev), (dcadec-dev, build from git)
 	
-	echo -e "\n==INFO==\nBuilding missing package dcadec not found in Debian repositories\n"
-	sleep 1s
 	
-	# build dcadec (could not find available for debian)
-	cd
-	rm -rf dcadec
-	git clone https://github.com/foo86/dcadec
-	cd dcadec
-	make
-	sudo make install
-	
-	echo -e "\n==INFO==\nInstalling the rest of packages found in Debian repositories\n"
+	echo -e "\n==INFO==\nInstalling packages found in Debian repositories\n"
 	sleep 1s
 	
 	# main packages available in Debian Jessie and SteamOS repos:
@@ -79,6 +69,14 @@ install_prereqs()
 
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache
+	
+	echo -e "\n==> Installing other Kodi build dependencies\n"
+	sleep 2s
+	
+	# origin: https://launchpad.net/~team-xbmc/+archive/ubuntu/xbmc-ppa-build-depends
+	# packages are now in the packages.libregeek.org pool
+	
+	sudo apt-get install libcrossguid1 libcrossguid-dev dcadec1 dcadec-dev
 
 }
 
@@ -171,11 +169,6 @@ main()
 	# This above method has issues with using the suggested prefix /usr/local
 	# use our package rebuilt from https://launchpad.net/~team-xbmc nightly
 	# This package is not hosted at packages.libregeek.org
-
-	echo -e "\n==> Installing crossbuild dependency\n"
-	sleep 2s
-
-	sudo apt-get install libcrossguid1 libcrossguid-dev
 
 	# libdcadec
 	

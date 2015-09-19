@@ -11,13 +11,30 @@
 #               	amount of steps to build kodi, it was decided to have it's own 
 #               	script. A deb package is built from this script. 
 #
-# Usage:      		./build-kodi-src.sh
+# Usage:      		./build-kodi-src.sh [cpu cores]
 # See Also:		https://packages.debian.org/sid/kodi
 # -------------------------------------------------------------------------------
 
 scriptdir=$(pwd)
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
+
+###################
+# global vars
+###################
+
+# set default concurrent jobs if called standalone
+# set concurrent jobs to 
+if [[ $scriptdir == "" ]]; then
+
+	cores="$arg1"
+	
+else
+
+	# default to 2 cores if called from desktop-software.sh
+	cores="2"
+	
+fi
 
 ##################################
 # Informational
@@ -70,7 +87,7 @@ install_prereqs()
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache
 	
-	echo -e "\n==> Installing other Kodi build dependencies\n"
+	echo -e "\n==> Installing Kodi build dependencies sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
 	sleep 2s
 	
 	# origin: https://launchpad.net/~team-xbmc/+archive/ubuntu/xbmc-ppa-build-depends
@@ -198,7 +215,7 @@ main()
 	
 	# however, we will assume here that most people at least have a dual-core
 	# processor
-	make -j2
+	make -j${$cores}
 
 	# Install Kodi
 	sudo make install

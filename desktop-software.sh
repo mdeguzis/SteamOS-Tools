@@ -25,6 +25,8 @@
 #################################
 options="$1"
 type="$2"
+build_opts="$3"
+
 # Specify a final arg for any extra options to build in later
 # The command being echo'd will contain the last arg used.
 # See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/

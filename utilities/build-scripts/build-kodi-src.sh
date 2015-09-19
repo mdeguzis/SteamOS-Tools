@@ -15,7 +15,6 @@
 # See Also:		https://packages.debian.org/sid/kodi
 # -------------------------------------------------------------------------------
 
-scriptdir=$(pwd)
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
@@ -90,7 +89,7 @@ install_prereqs()
 	libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev \
 	libxmu-dev libxrandr-dev libxslt1-dev libxt-dev libyajl-dev lsb-release \
 	nasm python-dev python-imaging python-support swig unzip uuid-dev yasm \
-	zip zlib1g-dev libglew-dev
+	zip zlib1g-dev libglew-dev bc
 
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache

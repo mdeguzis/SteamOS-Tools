@@ -279,7 +279,7 @@ show_help()
 	Packages:	[retroarch|libretro-*|lutris|plexhometheater]
 	Types: 		[basic|extra|emulators|retroarch-src]
 	Types Cont.	[emulation-src-deps|upnp-dlna|gaming-tools|games-pkg<pkg_name>]
-	Extra types: 	[kodi|kodi-src|lutris|webapp]
+	Extra types: 	[kodi-src|lutris|webapp]
 	Functions: 	[xb360-bindings|gameplay-recording]
 	
 	Install with:
@@ -465,7 +465,7 @@ get_software_type()
                 exit 1
         elif [[ "$type" == "kodi-src" ]]; then
                 # install plex from helper script
-                "$scriptdir/utilities/build-kodi-src.sh"
+                "$scriptdir/utilities/build-scripts/build-kodi-src.sh"
                 exit 1
         elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script

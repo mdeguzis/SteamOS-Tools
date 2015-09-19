@@ -170,7 +170,7 @@ main()
 	# Build Kodi
 	#################################################
 
-	echo -e "\n==> Building Kodi"
+	echo -e "\n==> Building Kodi in $build_dir\n"
 
   	# Note (needed?):
   	# When listing the application depends, reference https://packages.debian.org/sid/kodi
@@ -215,7 +215,7 @@ main()
 	
 	# however, we will assume here that most people at least have a dual-core
 	# processor
-	make -j${$cores}
+	make -j${cores}
 
 	# Install Kodi
 	sudo make install

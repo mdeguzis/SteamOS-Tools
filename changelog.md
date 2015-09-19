@@ -1,3 +1,9 @@
+SteamOS-Tools 1.5.2
+  * Fixed package version conflict for libcrossguid1, libcrossguid-dev in libregeek repository
+  * augment version number (see above) for small changes
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 19 September 2015 13:09:00 -5000
+
 SteamOS-Tools 1.5
   * Fixed utilities/build-scripts/build-kodi-from-src
   * Attempt to package this will follow soon

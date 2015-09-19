@@ -284,7 +284,7 @@ main()
 	else
 
 		# add desktop file for SteamOS/BPM
-		sudo cp "$scriptdir/cfgs/desktop-files/kodi.desktop" "/usr/share/applications"
+		sudo cp "$scriptdir/cfgs/desktop-files/kodi-src.desktop" "/usr/share/applications"
 		sudo cp "$scriptdir/artwork/banners/Kodi.png" "/home/steam/Pictures"
 		
 	fi
@@ -299,13 +299,22 @@ main()
 	time_end=$(date +%s)
 	time_stamp_end=(`date +"%T"`)
 	runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
+	
+	cat <<-EOF
+	
+	----------------------------------------------------------------
+	Summary
+	----------------------------------------------------------------
+	Time started: ${time_stamp_start}
+	Time started: ${time_stamp_end}
+	Total Runtime (minutes): $runtime
 
-	# output finish
-	echo -e "\nTime started: ${time_stamp_start}"
-	echo -e "Time started: ${time_stamp_end}"
-	echo -e "Total Runtime (minutes): $runtime\n"
-
-
+	You should now be able to add Kodi as a non-Steam game in Big
+	Picture Mode. Please see see the wiki for more information
+	
+	EOF
+	sleep 2s
+	
 }
 
 # start main

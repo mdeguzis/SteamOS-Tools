@@ -5,6 +5,7 @@ dir="$HOME/github_repos/SteamOS-Tools.wiki"
 # update TOC for a given wiki page
 # hard-coded to local DIR on workstation
 
+clear
 cd $dir
 git pull 
 ls

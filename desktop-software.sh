@@ -219,7 +219,7 @@ source_modules()
 	script_name=$(basename "$0")
 	getScriptAbsoluteDir "$script_invoke_path"
 	script_absolute_dir=$RESULT
-	scriptdir=`dirname "$script_absolute_dir"`
+	export scriptdir=`dirname "$script_absolute_dir"`
 
 }
 
@@ -658,7 +658,7 @@ show_warning()
         echo -e "you may break the stability of your system packages! "
         
         if [[ "$sources_check_jessie" == "" || "$sources_check_steamos_tools" == "" ]]; then
-                echo -e " Those \nsources do *NOT* appear to be added at first glance!"
+                echo -e " \nThose sources do *NOT* appear to be added!"
         else
                 echo -e "\nOn initial check, those sources appear to be added."
         fi

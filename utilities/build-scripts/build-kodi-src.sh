@@ -4,7 +4,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.3.1
+# Script Ver:		0.3.3
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -155,7 +155,7 @@ main()
 	# Build Kodi
 	#################################################
 
-	echo -e "==> Building Kodi"
+	echo -e "\n==> Building Kodi"
 
   	# Note (needed?):
   	# When listing the application depends, reference https://packages.debian.org/sid/kodi
@@ -170,21 +170,15 @@ main()
 
 	# This above method has issues with using the suggested prefix /usr/local
 	# use our package rebuilt from https://launchpad.net/~team-xbmc nightly
+	# This package is not hosted at packages.libregeek.org
 
 	echo -e "\n==> Installing crossbuild dependency\n"
 	sleep 2s
 
-	wget -O "/tmp/libcrossguid1.deb" "http://www.libregeek.org/SteamOS-Extra/utilities/libcrossguid1_0.1~git20150807.8f399e8_amd64.deb"
-        sudo gdebi "/tmp/libcrossguid1.deb"
-        sudo rm -f "/tmp/libcrossguid1.deb"
-
-	wget -O "/tmp/crossbuild.deb" "http://www.libregeek.org/SteamOS-Extra/utilities/libcrossguid-dev_0.1~git20150807.8f399e8_amd64.deb"
-	sudo gdebi "/tmp/crossbuild.deb"
-	sudo rm -f "/tmp/crossbuild.deb"
+	sudo apt-get install libcrossguid1 libcrossguid-dev
 
 	# libdcadec
 	
-
 	# libtag
 	#make -C lib/taglib
 	#make -C lib/taglib install

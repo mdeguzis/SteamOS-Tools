@@ -12,6 +12,7 @@
 #               	script. A deb package is built from this script. 
 #
 # Usage:      		./build-kodi-src.sh --cores [cpu cores]
+#			./build-kodi-src.sh --package-deb
 # See Also:		https://packages.debian.org/sid/kodi
 # -------------------------------------------------------------------------------
 
@@ -21,6 +22,9 @@ time_stamp_start=(`date +"%T"`)
 ###################
 # global vars
 ###################
+
+# default for packaging attempts
+package="no"
 
 # set default concurrent jobs if called standalone or
 # called with extra_opts during 'dekstop-software install kodi-src --cores $n'
@@ -35,6 +39,11 @@ elif [[ "$arg1" == "--cores" ]]; then
 
 	# set cores to $arg2 when called standalone
 	cores="$arg2"
+	
+if [[ "$build_opts" == "--package-deb" || "$arg1" == "--package-deb" ]]; then
+
+	# set package to yes if deb generation is requested
+	package_deb="yes"
 	
 else
 
@@ -89,7 +98,7 @@ install_prereqs()
 	libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev \
 	libxmu-dev libxrandr-dev libxslt1-dev libxt-dev libyajl-dev lsb-release \
 	nasm python-dev python-imaging python-support swig unzip uuid-dev yasm \
-	zip zlib1g-dev libglew-dev bc
+	zip zlib1g-dev libglew-dev bc checkinstall
 
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache
@@ -224,8 +233,19 @@ main()
 	# processor
 	make -j${cores}
 
-	# Install Kodi
-	sudo make install
+	# Install Kodi if package generation is not called
+	
+	if [[ "$package_deb" == "no" ]]; then
+	
+		# install source build
+		sudo make install
+		
+	elif [[ "$package_deb" == "yes" ]]; then
+	
+		# attempt to build package
+		sudo checkinstall
+		
+	fi
 
 	# From v14 with commit 4090a5f a new API for binary addons is available. 
 	# Not used for now ...

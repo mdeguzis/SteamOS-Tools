@@ -14,7 +14,7 @@ clear
 # show wiki dir
 ls
 
-echo -e "Update which wiki page?\n"
+echo -e "\nUpdate which wiki page?\n"
 sleep 1s
 read -ep "Choice: " wiki_page
 

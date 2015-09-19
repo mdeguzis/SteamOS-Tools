@@ -68,7 +68,7 @@ Normal script execution, sans arguments, goes a little bit like:
 * Coming soon
 
 ## Branches
-There are three main branches at the moment
+There are four main branches at the moment
 
 `alchemist`  
 Alchemist branch. Due to Brewmaster being usable now, this branch is not as up to date.  

@@ -261,6 +261,7 @@ main()
 		# copy files based of pwd
 		sudo cp ../../cfgs/desktop-files/kodi.desktop "/usr/share/applications"
 		sudo cp ../../artwork/banners/Kodi.png "/home/steam/Pictures"
+		
 	else
 
 		# add desktop file for SteamOS/BPM

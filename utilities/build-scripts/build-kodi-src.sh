@@ -229,8 +229,7 @@ main()
 
 	# make -j4
 	
-	# however, we will assume here that most people at least have a dual-core
-	# processor
+	# Default core number is 2 if '--core' argument is not specified
 	make -j${cores}
 
 	# Install Kodi if package generation is not called

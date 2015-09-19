@@ -23,15 +23,23 @@ time_stamp_start=(`date +"%T"`)
 # global vars
 ###################
 
-# set default concurrent jobs if called standalone
-# set concurrent jobs to 
-if [[ $scriptdir == "" && "$arg1" == "--cores" ]]; then
+# set default concurrent jobs if called standalone or
+# called with extra_opts during 'dekstop-software install kodi-src --cores $n'
 
+# loosely match --cores so it picks up the entire '--cores $n' string
+if [[ "$build_opts" == "--cores" ]]; then
+
+	# build_opts used from desktop-sofware.sh, set to extra_opts $n
+	cores="$extra_opts"
+	
+elif [[ "$arg1" == "--cores" ]]; then
+
+	# set cores to $arg2 when called standalone
 	cores="$arg2"
 	
 else
 
-	# default to 2 cores if called from desktop-software.sh
+	# default to 2 cores as fallback
 	cores="2"
 	
 fi

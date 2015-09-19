@@ -11,7 +11,7 @@
 #               	amount of steps to build kodi, it was decided to have it's own 
 #               	script. A deb package is built from this script. 
 #
-# Usage:      		./build-kodi-src.sh [cpu cores]
+# Usage:      		./build-kodi-src.sh --cores [cpu cores]
 # See Also:		https://packages.debian.org/sid/kodi
 # -------------------------------------------------------------------------------
 
@@ -25,9 +25,9 @@ time_stamp_start=(`date +"%T"`)
 
 # set default concurrent jobs if called standalone
 # set concurrent jobs to 
-if [[ $scriptdir == "" ]]; then
+if [[ $scriptdir == "" && "$arg1" == "--cores" ]]; then
 
-	cores="$arg1"
+	cores="$arg2"
 	
 else
 

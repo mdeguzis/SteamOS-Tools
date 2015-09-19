@@ -5,9 +5,13 @@ dir="$HOME/github_repos/SteamOS-Tools.wiki"
 # update TOC for a given wiki page
 # hard-coded to local DIR on workstation
 
-clear
+# update
 cd $dir
 git pull 
+
+clear
+
+# show wiki dir
 ls
 
 echo -e "Update which wiki page?\n"

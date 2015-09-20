@@ -104,7 +104,8 @@ install_prereqs()
 	sudo apt-get install ccache
 	
 	# required for building kodi
-	sudo apt-get install build-essential fakeroot devscripts checkinstall
+	sudo apt-get install build-essential fakeroot devscripts checkinstall \
+	cowbuilder pbuilder debootstrap
 	
 	echo -e "\n==> Installing Kodi build dependencies sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
 	sleep 2s
@@ -247,14 +248,22 @@ main()
 		echo -e "\n==> Attempting to package Kodi\n"
 		sleep 3s
 	
-		# attempt to build package
+		# Attempt to build package
+		
 		# Debian link: https://wiki.debian.org/BuildingTutorial
+		# XBMC/Kodi readme: https://github.com/xbmc/xbmc/blob/master/tools/Linux/packaging/README.debian
 		
-		# Debian debuild method (rebuild, no changes):
-		sudo debuild -b -uc -us
+		rm -rf "/home/$USER/xbmc-packaging/pbuilder"
+		mkdir -p "/home/$USER/xbmc-packaging/pbuilder"
 		
-		# Ubuntu checkinstall method:
-		# sudo checkinstall
+		RELEASEV=16 \
+		DISTS=-"unstable" \
+		ARCHS="i386 amd64" \
+		BUILDER="pdebuild" \
+		PDEBUILD_OPTS="--debbuildopts \"-j4\"" \
+		PBUILDER_BASE="/home/$USER/xbmc-packaging/pbuilder" \
+		DPUT_TARGET="local" \
+		./mk-debian-package.sh
 		
 	fi
 

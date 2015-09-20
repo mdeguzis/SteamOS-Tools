@@ -98,10 +98,13 @@ install_prereqs()
 	libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev \
 	libxmu-dev libxrandr-dev libxslt1-dev libxt-dev libyajl-dev lsb-release \
 	nasm python-dev python-imaging python-support swig unzip uuid-dev yasm \
-	zip zlib1g-dev libglew-dev bc checkinstall
+	zip zlib1g-dev libglew-dev bc
 
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache
+	
+	# required for building kodi
+	build-essential fakeroot devscripts checkinstall
 	
 	echo -e "\n==> Installing Kodi build dependencies sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
 	sleep 2s
@@ -242,7 +245,13 @@ main()
 	elif [[ "$package_deb" == "yes" ]]; then
 	
 		# attempt to build package
-		sudo checkinstall
+		# Debian link: https://wiki.debian.org/BuildingTutorial
+		
+		# Debian debuild method (rebuild, no changes):
+		debuild -b -uc -us
+		
+		# Ubuntu checkinstall method:
+		# sudo checkinstall
 		
 	fi
 

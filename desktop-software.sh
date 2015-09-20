@@ -661,8 +661,7 @@ show_warning()
         fi
                 
         echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
-        echo -e "\ntype './desktop-software --help' (without quotes) for help.\n"
-        echo -e "See log.txt in this direcotry after any attempt for details"
+        echo -e "\ntype './desktop-software --help' (without quotes) for help."
         echo -e "If you need to add the Debian repos, please add them now\n"
         echo -e "Please read the disclaimer.md now or in the main GitHub root folder!\n"
         

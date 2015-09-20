@@ -146,6 +146,7 @@ main()
 				sleep 2s
 				rm -rf "$build_dir"
 				# create and clone to $HOME/kodi
+				mkdir -p "$build_dir"
 				cd
 				git clone git://github.com/xbmc/xbmc.git kodi
 				# enter build dir
@@ -157,6 +158,7 @@ main()
 			sleep 2s
 			sudo rm -rf "$build_dir"
 			# create and clone to $HOME/kodi
+			mkdir -p "$build_dir"
 			cd
 			git clone git://github.com/xbmc/xbmc.git kodi
 			# enter build dir

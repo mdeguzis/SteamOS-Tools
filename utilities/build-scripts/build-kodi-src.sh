@@ -135,7 +135,6 @@ main()
 			# attempt to pull the latest source first
 			echo -e "\n==> Attempting git pull..."
 			sleep 2s
-			cd "$build_dir"
 			# eval git status
 			output=$(git pull 2> /dev/null)
 
@@ -146,11 +145,8 @@ main()
 				sleep 2s
 				rm -rf "$build_dir"
 				# create and clone to $HOME/kodi
-				mkdir -p "$build_dir"
 				cd
 				git clone git://github.com/xbmc/xbmc.git kodi
-				# enter build dir
-				cd "$build_dir"
 			fi
 
 		elif [[ "$git_choice" == "r" ]]; then
@@ -158,11 +154,9 @@ main()
 			sleep 2s
 			sudo rm -rf "$build_dir"
 			# create and clone to $HOME/kodi
-			mkdir -p "$build_dir"
 			cd
 			git clone git://github.com/xbmc/xbmc.git kodi
-			# enter build dir
-			cd "$build_dir"
+
 		else
 
 			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
@@ -170,8 +164,6 @@ main()
 			# create and clone to $HOME/kodi
 			cd
 			git clone git://github.com/xbmc/xbmc.git kodi
-			# enter build dir
-			cd "$build_dir"
 
 		fi
 
@@ -180,11 +172,10 @@ main()
 			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
 			sleep 2s
 			# create DIRS
-			mkdir -p "$build_dir"
+			cd
 			# create and clone to current dir
 			git clone git://github.com/xbmc/xbmc.git kodi
-			# enter build dir
-			cd "$build_dir"
+
 	fi
 
 
@@ -193,6 +184,9 @@ main()
 	#################################################
 
 	echo -e "\n==> Building Kodi in $build_dir\n"
+
+	# enter build dir
+	cd "$build_dir"
 
   	# Note (needed?):
   	# When listing the application depends, reference https://packages.debian.org/sid/kodi

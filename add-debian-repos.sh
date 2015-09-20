@@ -136,6 +136,7 @@ main()
 		check_gpg
 		
 		cat <<-EOF
+		
 		==> Adding Debian ${reponame}, ${backports_reponame}, ${steamos_tools_reponame} 
 		    and ${multimedia_reponame} repositories
 		    

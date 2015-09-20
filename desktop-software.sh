@@ -649,7 +649,7 @@ show_warning()
         clear
         
         # loop until selection is not the disclaimer.
-        while [ "$user_choice != "d" || "$user_choice" != "D" ]
+        while [ "$user_choice" != "d" || "$user_choice" != "D" ]
 	do
 	        echo "##########################################################"
 	        echo "Warning: usage of this script is at your own risk!"

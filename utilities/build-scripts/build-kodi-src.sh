@@ -248,22 +248,36 @@ main()
 		echo -e "\n==> Attempting to package Kodi\n"
 		sleep 3s
 	
-		# Attempt to build package
+		# Attempt to build package, confirm first since buiding takes some time
+		# get user choice
+		echo -e "Attemp to package Kodi? [y/n]"
+		sleep 0.3s
 		
-		# Debian link: https://wiki.debian.org/BuildingTutorial
-		# XBMC/Kodi readme: https://github.com/xbmc/xbmc/blob/master/tools/Linux/packaging/README.debian
+		read -erp "Choice: " build_choice
 		
-		rm -rf "/home/$USER/xbmc-packaging/pbuilder"
-		mkdir -p "/home/$USER/xbmc-packaging/pbuilder"
+		if [[ "$build_choice" == "y" ]]; then
 		
-		RELEASEV=16 \
-		DISTS=-"unstable" \
-		ARCHS="i386 amd64" \
-		BUILDER="pdebuild" \
-		PDEBUILD_OPTS="--debbuildopts \"-j4\"" \
-		PBUILDER_BASE="/home/$USER/xbmc-packaging/pbuilder" \
-		DPUT_TARGET="local" \
-		./mk-debian-package.sh
+			# Debian link: https://wiki.debian.org/BuildingTutorial
+			# XBMC/Kodi readme: https://github.com/xbmc/xbmc/blob/master/tools/Linux/packaging/README.debian
+			
+			rm -rf "/home/$USER/xbmc-packaging/pbuilder"
+			mkdir -p "/home/$USER/xbmc-packaging/pbuilder"
+			
+			RELEASEV=16 \
+			DISTS=-"unstable" \
+			ARCHS="i386 amd64" \
+			BUILDER="pdebuild" \
+			PDEBUILD_OPTS="--debbuildopts \"-j4\"" \
+			PBUILDER_BASE="/home/$USER/xbmc-packaging/pbuilder" \
+			DPUT_TARGET="local" \
+			./mk-debian-package.sh
+			
+		elif [[ "$build_choice" == "n" ]]; then
+		
+			echo -e "\nEXITING"
+			exit 1
+			
+		fi
 		
 	fi
 

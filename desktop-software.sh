@@ -27,20 +27,22 @@ export options="$1"
 export type="$2"
 export build_opts="$3"
 
+#################################
+# Catch user not specifying opts
+#################################
+
+if [[ "$options" == "" ]]; then
+
+	# show help and exit
+	show_help
+	exit 1
+	
+fi
+
 # Specify a final arg for any extra options to build in later
 # The command being echo'd will contain the last arg used.
 # See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
 export extra_opts=$(echo "${@: -1}")
-
-#############################################
-# Test arguments (1st pass) here:
-#############################################
-#echo -e "\nOptions 1: $options"
-#echo "Software type 1: $type"
-#echo "Extra opts 1: $extra_opts"
-#echo -e "Availble custom pkg list 1: \n"
-#cat software-lists/custom-pkg.txt
-#sleep 50s
 
 # remove old custom files
 rm -f "custom-pkg.txt"

@@ -103,7 +103,7 @@ main()
 			output=$(git pull 2> /dev/null)
 		
 			# evaluate git pull. Remove, create, and clone if it fails
-			if [[ "$output" != "Already up-to-date." ]]; then
+			if [[ "$output" != "Already up-to-date" || "$output" != "Fast-forward ]]; then
 	
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
 				sleep 2s

@@ -2,6 +2,8 @@
 # COPY TO ~/.pbuilderrc after installation of pbuilder
 ####################################################################
 
+# FOR THE REST, SEE: https://wiki.debian.org/PbuilderTricks#How_to_build_for_different_distributions
+
 # Codenames for Debian suites according to their alias. Update these when
 # needed.
 UNSTABLE_CODENAME="sid"

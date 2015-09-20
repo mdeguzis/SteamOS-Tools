@@ -139,7 +139,7 @@ main()
 			output=$(git pull 2> /dev/null)
 
 			# evaluate git pull. Remove, create, and clone if it fails
-			if [[ "$output" != "Already up-to-date." ]]; then
+			if [[ "$output" != "Already up-to-date" || "$output" != "Fast-forward ]]; then
 
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
 				sleep 2s
@@ -147,6 +147,7 @@ main()
 				# create and clone to $HOME/kodi
 				cd
 				git clone git://github.com/xbmc/xbmc.git kodi
+				
 			fi
 
 		elif [[ "$git_choice" == "r" ]]; then

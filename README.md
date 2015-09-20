@@ -1,6 +1,6 @@
 <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/SteamOS-Tools.png" width=100%/>
 
-## SteamOS-Tools
+# SteamOS-Tools
 
 Version 1.5.2
 
@@ -10,21 +10,21 @@ All operations are tested against official Valve releases only.
 
 For the latest change details, please see the commits page, orchangelog.md for overall change details.
 
-## Warning
+# Warning
 
 Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/alchemist/disclaimer.md).
 
-## Wiki and FAQ
+# Wiki and FAQ
 
 Please refer to the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki), located to your right in this repository for all supplemental information and instructions. A direct link to the FAQ is [here](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/FAQ)
 
-## Hosted packages
+# Hosted packages
 
 There is now a Debian personal repository hosted at packages.libregeek.org. Be sure to check out the "hosted packages" section below! The wiki entry also contains repository information if you should wish to add the repository manually.
 
 [SteamoS-Tools Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository)
 
-## Usage
+# Usage / Installation
 
 Please make sue you have enabled desktop mode (Settings > Interface > Enable access to the Linux desktop), and aset your password for the dekstop user with `passwd`.
 
@@ -62,14 +62,14 @@ Normal script execution, sans arguments, goes a little bit like:
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages, as well as special additional packages/utilities, such as gameplay recording, "web apps," and more. Please see the readme file in docs/ for the full listing of options.
 * disclaimer.md - safety warnings for this repository.
 
-## Wiki
+# Wiki
 - In time I hope to maintain a colletion of useful articles or links to Steamcommunity Guides that still work, currate them and other such things*.
 
-## Video demonstrations / tutorials
+# Video demonstrations / tutorials
 
 * Coming soon
 
-## Branches
+# Branches
 There are four main branches at the moment
 
 `alchemist`  
@@ -81,9 +81,9 @@ Branch where new scripts are made, larger alterations to existing ones implement
 `testing-b`    
 Branch where new scripts are made, larger alterations to existing ones implemented, and more for brewmaster.  
 
-## Pull requests / suggestions
+# Pull requests / suggestions
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page
 or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the contributing.md file. 
 
-## Troubleshooting
+# Troubleshooting
 Most scripts in the main folder of the repository write stdout and stderr to `log.txt` in the current directory after completion. Please check this file before submitting any issues or pull requests.

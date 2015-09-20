@@ -29,7 +29,7 @@ check_gpg()
 {
 	if [[ "$scriptdir" == "" ]]; then
 	
-		# to to pwd
+		# set to pwd
 		scriptdir=$(pwd)
 		
 	fi

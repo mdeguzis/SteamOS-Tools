@@ -68,7 +68,7 @@ Normal script execution, sans arguments, goes a little bit like:
 
 # Video demonstrations / tutorials
 
-* [SteamOS-Tools introductory video](https://www.youtube.com/watch?v=zKDh72qkW54&feature=youtu.be)
+* [SteamOS-Tools introductory video](https://youtu.be/h-gdPWjZlb4)
 
 # Branches
 There are four main branches at the moment

@@ -648,66 +648,60 @@ show_warning()
         
         clear
         
-        # set default user_choice
-        user_choice="d"
+
+        echo "##########################################################"
+        echo "Warning: usage of this script is at your own risk!"
+        echo "##########################################################"
+        echo -e "\nIn order to install most software, you MUST have had"
+        echo -e "enabled the Debian and Libregeek repositories! Otherwise,"
+        echo -e "you may break the stability of your system packages! "
         
-        # loop until selection is not the disclaimer.
-        while [ "$user_choice" != "d" || "$user_choice" != "D" ]
-	do
-	        echo "##########################################################"
-	        echo "Warning: usage of this script is at your own risk!"
-	        echo "##########################################################"
-	        echo -e "\nIn order to install most software, you MUST have had"
-	        echo -e "enabled the Debian and Libregeek repositories! Otherwise,"
-	        echo -e "you may break the stability of your system packages! "
-	        
-	        if [[ "$sources_check_jessie" == "" || "$sources_check_steamos_tools" == "" ]]; then
-	                echo -e " \nThose sources do *NOT* appear to be added!"
-	        else
-	                echo -e "\nOn initial check, those sources appear to be added."
-	        fi
-	                
-	        echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
-	        echo -e "\ntype './desktop-software --help' (without quotes) for help."
-	        echo -e "If you need to add the Debian repos, please add them now\n"
-	        echo -e "Please read the disclaimer.md now or in the main GitHub root folder!\n"
-	        
-	        echo -e "[c]ontinue, [a]dd Debian sources, [d] disclaimer [e]xit"
+        if [[ "$sources_check_jessie" == "" || "$sources_check_steamos_tools" == "" ]]; then
+                echo -e " \nThose sources do *NOT* appear to be added!"
+        else
+                echo -e "\nOn initial check, those sources appear to be added."
+        fi
+                
+        echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
+        echo -e "\ntype './desktop-software --help' (without quotes) for help."
+        echo -e "If you need to add the Debian repos, please add them now\n"
+        echo -e "Please read the disclaimer.md now or in the main GitHub root folder!\n"
+        
+        echo -e "[c]ontinue, [a]dd Debian sources, [d] disclaimer [e]xit"
+
+	# get user choice
+	read -erp "Choice: " user_choice
+
 	
-		# get user choice
-		read -erp "Choice: " user_choice
-	
-		
-		case "$user_choice" in
-		        c|C)
-			echo -e "\nContinuing..."
-		        ;;
-		        
-		        a|A)
-			echo -e "\nProceeding to add-debian-repos.sh"
-			"$scriptdir/add-debian-repos.sh"
-		        ;;
-		        
-	  	        d|D)
-			less disclaimer.md
-			return
-		        ;;
-		         
-		        e|e)
-			echo -e "\nExiting script...\n"
-			exit 1
-		        ;;
-		        
-		         
-		        *)
-			echo -e "\nInvalid Input, Exiting script.\n"
-			exit
-			;;
-		esac
-	
-	        sleep 2s
+	case "$user_choice" in
+	        c|C)
+		echo -e "\nContinuing..."
+	        ;;
 	        
-	done
+	        a|A)
+		echo -e "\nProceeding to add-debian-repos.sh"
+		"$scriptdir/add-debian-repos.sh"
+	        ;;
+	        
+  	        d|D)
+		less disclaimer.md
+		return
+	        ;;
+	         
+	        e|e)
+		echo -e "\nExiting script...\n"
+		exit 1
+	        ;;
+	        
+	         
+	        *)
+		echo -e "\nInvalid Input, Exiting script.\n"
+		exit
+		;;
+	esac
+
+        sleep 2s
+
 }
 
 manual_software_check()

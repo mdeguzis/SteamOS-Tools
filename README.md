@@ -26,6 +26,8 @@ There is now a Debian personal repository hosted at packages.libregeek.org. Be s
 
 ## Usage
 
+Please make sue you have enabled desktop mode (Settings > Interface > Enable access to the Linux desktop), and aset your password for the dekstop user with `passwd`.
+
 To clone this repository to your local computer, you will need the `git` software package. After this is installed, clone SteamOS-Tools with:
 ```
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools

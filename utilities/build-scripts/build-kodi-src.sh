@@ -244,14 +244,17 @@ main()
 		
 	elif [[ "$package_deb" == "yes" ]]; then
 	
+		echo -e "\n==> Attempting to package Kodi\n"
+		sleep 3s
+	
 		# attempt to build package
 		# Debian link: https://wiki.debian.org/BuildingTutorial
 		
 		# Debian debuild method (rebuild, no changes):
-		debuild -b -uc -us
+		# sudo debuild -b -uc -us
 		
 		# Ubuntu checkinstall method:
-		# sudo checkinstall
+		sudo checkinstall
 		
 	fi
 

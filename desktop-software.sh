@@ -648,6 +648,9 @@ show_warning()
         
         clear
         
+        # set default user_choice
+        user_choice="d"
+        
         # loop until selection is not the disclaimer.
         while [ "$user_choice" != "d" || "$user_choice" != "D" ]
 	do

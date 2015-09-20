@@ -79,7 +79,7 @@ install_prereqs()
 	# Swaps: (libcurl3 for libcurl-dev), (dcadec-dev, build from git)
 	
 	
-	echo -e "\n==>Installing packages found in Debian repositories\n"
+	echo -e "\n==> Installing packages found in Debian repositories\n"
 	sleep 2s
 	
 	# main packages available in Debian Jessie and SteamOS repos:
@@ -251,10 +251,10 @@ main()
 		# Debian link: https://wiki.debian.org/BuildingTutorial
 		
 		# Debian debuild method (rebuild, no changes):
-		# sudo debuild -b -uc -us
+		sudo debuild -b -uc -us
 		
 		# Ubuntu checkinstall method:
-		sudo checkinstall
+		# sudo checkinstall
 		
 	fi
 

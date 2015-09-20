@@ -47,7 +47,7 @@ check_gpg()
 	else
 		echo -e "Libregeek Pacakge Signing Key [FAIL]. Adding now...\n"
 		sleep .5s
-		$scriptdir/utilities/gpg_import.sh 8106E72834C589A7
+		$scriptdir/utilities/gpg_import.sh 8106E72834C589A7 2> /dev/null
 	fi
 	
 	# Key Desc: Debian Multimedia
@@ -60,7 +60,7 @@ check_gpg()
 	else
 		echo -e "Deb Mulitmedia [FAIL]. Adding now...\n"
 		sleep .5s
-		$scriptdir/utilities/gpg_import.sh 5C808C2B65558117
+		$scriptdir/utilities/gpg_import.sh 5C808C2B65558117 2> /dev/null
 	fi
 	
 }

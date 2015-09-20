@@ -40,7 +40,7 @@ elif [[ "$arg1" == "--cores" ]]; then
 	# set cores to $arg2 when called standalone
 	cores="$arg2"
 	
-elif [[ "$build_opts" == "--package-deb" || "$arg1" == "--package-deb" ]]; then
+elif [[ "$extra_opts" == "--package-deb" || "$arg1" == "--package-deb" ]]; then
 
 	# set package to yes if deb generation is requested
 	package_deb="yes"

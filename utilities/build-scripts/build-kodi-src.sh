@@ -79,8 +79,8 @@ install_prereqs()
 	# Swaps: (libcurl3 for libcurl-dev), (dcadec-dev, build from git)
 	
 	
-	echo -e "\n==INFO==\nInstalling packages found in Debian repositories\n"
-	sleep 1s
+	echo -e "\n==>Installing packages found in Debian repositories\n"
+	sleep 2s
 	
 	# main packages available in Debian Jessie and SteamOS repos:
 	
@@ -104,7 +104,7 @@ install_prereqs()
 	sudo apt-get install ccache
 	
 	# required for building kodi
-	build-essential fakeroot devscripts checkinstall
+	sudo apt-get install build-essential fakeroot devscripts checkinstall
 	
 	echo -e "\n==> Installing Kodi build dependencies sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
 	sleep 2s

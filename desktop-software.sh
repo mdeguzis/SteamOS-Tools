@@ -270,20 +270,17 @@ show_help()
 
 	---------------------------------------------------------------
 	Any package you wish to specify yourself. brewmaster repos will be
-	used first, followed by Debian jessie.
+	used first, followed by Debian Jessie and the Libregeek repos.
 	
 	For a complete list, type:
 	'./desktop-software list [type]'
 	
-	Options: 	[install|uninstall|list|check|test] 
-	Packages:	[retroarch|libretro-*|lutris|plexhometheater]
-	Types: 		[basic|extra|emulators|retroarch-src]
-	Types Cont.	[emulation-src-deps|upnp-dlna|gaming-tools|games-pkg<pkg_name>]
-	Extra types: 	[kodi-src|lutris|webapp]
-	Functions: 	[xb360-bindings|gameplay-recording]
+	Please see the wiki entry for 'Desktop Software' for package
+	listings and full instructions on what is available.
 	
-	Install with:
+	Install software with:
 	'sudo ./desktop-software [option] [type]'
+	'sudo apt-get install [hosted_package]
 	
 	Large package lists:
 	If you are pasting a build-depends post with symbols, please enclose the
@@ -666,10 +663,10 @@ show_warning()
         echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
         echo -e "\ntype './desktop-software --help' (without quotes) for help.\n"
         echo -e "See log.txt in this direcotry after any attempt for details"
-        echo -e "If you need to add the Debian repos, please use the"
-        echo -e "desktop-software.sh script in the main repository folder..\n"
+        echo -e "If you need to add the Debian repos, please add them now\n"
+        echo -e "Please read the disclaimer.md now or in the main GitHub root folder!\n"
         
-        echo -e "[c]ontinue, [a]dd Debian sources, [e]xit"
+        echo -e "[c]ontinue, [a]dd Debian sources, [d] disclaimer [e]xit"
 
 	# get user choice
 	read -erp "Choice: " user_choice
@@ -683,6 +680,11 @@ show_warning()
 	        a|A)
 		echo -e "\nProceeding to add-debian-repos.sh"
 		"$scriptdir/add-debian-repos.sh"
+	        ;;
+	        
+  	        d|D)
+		less disclaimer.md
+		return
 	        ;;
 	         
 	        e|e)

@@ -28,16 +28,12 @@ show_help()
 	#####################################################
 	Warning: usage of this script is at your own risk!
 	#####################################################
-	
 	Please see the desktop-software-readme.md file in the 
 	docs/ directory for full details.
 
 	---------------------------------------------------------------
 	Any package you wish to specify yourself. brewmaster repos will be
 	used first, followed by Debian Jessie and the Libregeek repos.
-	
-	For a complete list, type:
-	'./desktop-software list [type]'
 	
 	Please see the wiki entry for 'Desktop Software' for package
 	listings and full instructions on what is available.

@@ -124,7 +124,7 @@ kodi_prereqs()
 		echo -e "\n==> Installing build dependencies for packaging\n"
 	
 		sudo apt-get install build-essential fakeroot devscripts checkinstall \
-		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev libgnutls-dev \
+		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev \
 		libsamplerate0-dev libgnutls28-dev 
 	
 	fi

@@ -138,8 +138,9 @@ main()
 			git pull
 
 			# Check that command completed sucessfully. Remove, create, and clone if it fails
-			if [[ $? != '1' || $? != '0' ]]; then
-
+			# See: 
+			if git pull; then
+			
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
 				sleep 2s
 				rm -rf "$build_dir"

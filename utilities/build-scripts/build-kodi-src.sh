@@ -108,7 +108,7 @@ kodi_prereqs()
 	libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev liblzo2-dev libmicrohttpd-dev \
 	libmodplug-dev libmpcdec-dev libmpeg2-4-dev libmysqlclient-dev libnfs-dev libogg-dev \
 	libpcre3-dev libplist-dev libpng12-dev libpng-dev libpulse-dev librtmp-dev libsdl2-dev \
-	libshairplay-dev libsmbclient-dev libsqlite3-dev libssh-dev libssl-dev libswscale-dev \
+l	ibsmbclient-dev libsqlite3-dev libssh-dev libssl-dev libswscale-dev \
 	libtag1-dev libtiff-dev libtinyxml-dev libtool libudev-dev \
 	libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev \
 	libxmu-dev libxrandr-dev libxslt1-dev libxt-dev libyajl-dev lsb-release \
@@ -135,7 +135,7 @@ kodi_prereqs()
 		# packages are now in the packages.libregeek.org pool
 
 		sudo apt-get install libcrossguid1 libcrossguid-dev dcadec1 dcadec-dev \
-		libcec3 libcec-dev libafpclient-dev libgif-dev libmp3lame-dev
+		libcec3 libcec-dev libafpclient-dev libgif-dev libmp3lame-dev libshairplay-dev
 	
 	fi
 	

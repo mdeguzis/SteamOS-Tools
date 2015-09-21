@@ -33,7 +33,8 @@ skip_to_build="no"
 # global vars
 ###################
 
-# loosely match --cores so it picks up the entire '--cores $n' string
+# Assess build_opts from desktop-software.sh
+# Allow more concurrent threads to be specified
 if [[ "$build_opts" == "--cores" ]]; then
 
 	# build_opts used from desktop-sofware.sh, set to extra_opts $n
@@ -44,7 +45,15 @@ elif [[ "$arg1" == "--cores" ]]; then
 	# set cores to $arg2 when called standalone
 	cores="$arg2"
 	
-elif [[ "$extra_opts" == "--package-deb" || "$arg1" == "--package-deb" ]]; then
+else
+
+	# default to 2 cores as fallback
+	cores="2"
+fi
+	
+
+# assess extra opts from dekstop-software.sh
+if [[ "$extra_opts" == "--package-deb" || "$arg1" == "--package-deb" ]]; then
 
 	# set package to yes if deb generation is requested
 	package_deb="yes"
@@ -54,11 +63,6 @@ elif [[ "$extra_opts" == "--skip-build" || "$arg1" == "--skip-build" ]]; then
 	# If Kodi is confirmed by user to be built already, allow build
 	# to be skipped and packaging to be attempted directly
 	skip_build="yes"
-	
-else
-
-	# default to 2 cores as fallback
-	cores="2"
 	
 fi
 

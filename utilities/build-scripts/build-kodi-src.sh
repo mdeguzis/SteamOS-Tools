@@ -126,7 +126,7 @@ main()
 
 	if [[ -d "$build_dir" ]]; then
 
-		echo -e "\n==Info==\nGit folder already exists! Rebuild [r] or pull [p]?\n"
+		echo -e "\n==Info==\nGit folder already exists! Reclone [r] or pull [p]?\n"
 		sleep 1s
 		read -ep "Choice: " git_choice
 

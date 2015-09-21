@@ -20,6 +20,45 @@
 #		Installation of the pre-requisite packages.
 # -------------------------------------------------------------------------------
 
+show_help()
+{
+	
+	clear
+	cat <<-EOF
+	#####################################################
+	Warning: usage of this script is at your own risk!
+	#####################################################
+	
+	Please see the desktop-software-readme.md file in the 
+	docs/ directory for full details.
+
+	---------------------------------------------------------------
+	Any package you wish to specify yourself. brewmaster repos will be
+	used first, followed by Debian Jessie and the Libregeek repos.
+	
+	For a complete list, type:
+	'./desktop-software list [type]'
+	
+	Please see the wiki entry for 'Desktop Software' for package
+	listings and full instructions on what is available.
+	
+	Install software with:
+	'sudo ./desktop-software [option] [type]'
+	'sudo apt-get install [hosted_package]
+	
+	Large package lists:
+	If you are pasting a build-depends post with symbols, please enclose the
+	package list in quotes and it will be filterd appropriately.
+
+	Press enter to continue...
+	EOF
+	
+	read -r -n 1
+	echo -e "\nContinuing...\n"
+	clear
+
+}
+
 #################################
 # Set launch vars
 #################################
@@ -28,10 +67,10 @@ export type="$2"
 export build_opts="$3"
 
 #################################
-# Catch user not specifying opts
+# Initial traps for help/errors
 #################################
 
-if [[ "$options" == "" ]]; then
+if [[ "$options" == "" || "$options" == "--help" ]]; then
 
 	# show help and exit
 	show_help
@@ -257,52 +296,6 @@ set_multiarch()
 	fi
 	
 }
-
-show_help()
-{
-	
-	clear
-	cat <<-EOF
-	#####################################################
-	Warning: usage of this script is at your own risk!
-	#####################################################
-	
-	Please see the desktop-software-readme.md file in the 
-	docs/ directory for full details.
-
-	---------------------------------------------------------------
-	Any package you wish to specify yourself. brewmaster repos will be
-	used first, followed by Debian Jessie and the Libregeek repos.
-	
-	For a complete list, type:
-	'./desktop-software list [type]'
-	
-	Please see the wiki entry for 'Desktop Software' for package
-	listings and full instructions on what is available.
-	
-	Install software with:
-	'sudo ./desktop-software [option] [type]'
-	'sudo apt-get install [hosted_package]
-	
-	Large package lists:
-	If you are pasting a build-depends post with symbols, please enclose the
-	package list in quotes and it will be filterd appropriately.
-
-	Press enter to continue...
-	EOF
-	
-	read -r -n 1
-	echo -e "\nContinuing...\n"
-	clear
-
-}
-
-# Show help if requested
-
-if [[ "$1" == "--help" ]]; then
-        show_help
-	exit 0
-fi
 
 pre_req_checks()
 {

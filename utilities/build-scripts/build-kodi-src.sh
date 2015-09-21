@@ -137,11 +137,26 @@ kodi_package_deb()
 	# Debian link: https://wiki.debian.org/BuildingTutorial
 	# XBMC/Kodi readme: https://github.com/xbmc/xbmc/blob/master/tools/Linux/packaging/README.debian
 	
+	# copy pbuilder template
+	# If called standalone change copy paths
+	if [[ "$scriptdir" == "" ]]; then
+
+		
+		# copy files based of pwd
+		sudo cp ../pbuilder-helper.txt "~/.pbuilderrc"
+		
+	else
+
+		# add desktop file for SteamOS/BPM
+		sudo cp "$scriptdir/utilities/pbuilder-helper.txt" "~/.pbuilderrc"
+		
+	fi
+	
 	rm -rf "/home/$USER/xbmc-packaging/pbuilder"
 	mkdir -p "/home/$USER/xbmc-packaging/pbuilder"
 	
 	RELEASEV=16 \
-	DISTS=-"unstable" \
+	DISTS=-"stable" \
 	ARCHS="i386 amd64" \
 	BUILDER="pdebuild" \
 	PDEBUILD_OPTS="--debbuildopts \"-j4\"" \
@@ -168,6 +183,7 @@ kodi_clone()
 		sleep 2s
 		cd "$build_dir"
 		kodi_package_deb
+		exit 1
 		
 	fi
 

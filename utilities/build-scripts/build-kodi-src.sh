@@ -3,7 +3,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.3.7
+# Script Ver:		0.3.9
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -245,7 +245,7 @@ main()
 	
 		# Attempt to build package, confirm first since buiding takes some time
 		# get user choice
-		echo -e "Attemp to package Kodi? [y/n]"
+		echo -e "Attempt to package Kodi? [y/n]"
 		sleep 0.3s
 		
 		read -erp "Choice: " build_choice
@@ -265,7 +265,7 @@ main()
 			PDEBUILD_OPTS="--debbuildopts \"-j4\"" \
 			PBUILDER_BASE="/home/$USER/xbmc-packaging/pbuilder" \
 			DPUT_TARGET="local" \
-			./mk-debian-package.sh
+			tools/Linux/packaging/mk-debian-package.sh
 			
 		elif [[ "$build_choice" == "n" ]]; then
 		

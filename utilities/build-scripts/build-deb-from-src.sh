@@ -99,12 +99,15 @@ main()
 			echo -e "\n==> Attempting git pull..."
 			sleep 2s
 			cd "$git_dir"
-			# eval git status
-			output=$(git pull 2> /dev/null)
 		
 			# evaluate git pull. Remove, create, and clone if it fails
-			if [[ "$output" != "Already up-to-date" || "$output" != "Fast-forward ]]; then
-	
+			if git pull; then
+			
+				# do nothing, success
+			
+			else
+				
+				# failure
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
 				sleep 2s
 				rm -rf "$git_dir"

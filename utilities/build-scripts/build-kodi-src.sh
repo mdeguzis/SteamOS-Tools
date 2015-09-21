@@ -154,11 +154,16 @@ kodi_package_deb()
 		
 	fi
 	
+	# setup dist
+	# https://wiki.ubuntu.com/PbuilderHowto
+	sudo DIST=brewmaster pbuilder create
+	
+	# Clean xbmc pbuilder dir
 	rm -rf "/home/$USER/xbmc-packaging/pbuilder"
 	mkdir -p "/home/$USER/xbmc-packaging/pbuilder"
 	
 	RELEASEV=16 \
-	DISTS="stable" \
+	DISTS="brewmaster" \
 	ARCHS="i386 amd64" \
 	BUILDER="pdebuild" \
 	PDEBUILD_OPTS="--debbuildopts \"-j4\"" \

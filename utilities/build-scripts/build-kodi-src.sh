@@ -158,12 +158,12 @@ kodi_package_deb()
 	sleep 0.2s
 	read -erp "Choice: " build_choice
 
-	if [[ "$build_choice" == "host" ]]
+	if [[ "$build_choice" == "host" ]]; then
 	
 		# build of the main debian build script ONLY
 		tools/Linux/packaging/mk-debian-package.sh
 		
-	elif [[ "$build_choice" == "target" ]]
+	elif [[ "$build_choice" == "target" ]]; then
 		
 		# ask for DIST target
 		echo -e "\nEnter DIST to build for (see utilities/pbuilder-helper.txt)"

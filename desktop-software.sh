@@ -26,7 +26,7 @@ show_help()
 	clear
 	cat <<-EOF
 	#####################################################
-	Warning: usage of this script is at your own risk!
+	Help File
 	#####################################################
 	Please see the desktop-software-readme.md file in the 
 	docs/ directory for full details.

@@ -117,9 +117,12 @@ kodi_prereqs()
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache
 	
-	# required for building kodi
+	# required for building kodi debs
 	sudo apt-get install build-essential fakeroot devscripts checkinstall \
-	cowbuilder pbuilder debootstrap
+	cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev libgnutls-dev libsamplerate0-dev
+	
+	# Build deps that must be repackaged and are not available in Debian Jessie:
+	# liafpclient-dev libcec libcec-dev (>=3), libgif-dev (>= 5.0.5), libplatform-dev
 	
 	echo -e "\n==> Installing Kodi build dependencies sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
 	sleep 2s
@@ -152,7 +155,7 @@ kodi_package_deb()
 	# Assess if we are to build for host/ARCH we have or target
 	############################################################
 	
-	echo -e "\nBuild Kodi for our host/ARCH or for all? [host|target]"
+	echo -e "Build Kodi for our host/ARCH or for all? [host|target]"
 	
 	# get user choice
 	sleep 0.2s

@@ -134,13 +134,11 @@ main()
 			# attempt to pull the latest source first
 			echo -e "\n==> Attempting git pull..."
 			sleep 2s
-			# attempt git pull
-			git pull
 
-			# Check that command completed sucessfully. Remove, create, and clone if it fails
-			# See: 
-			if git pull; then
-			
+			# attempt git pull, if it doesn't complete reclone
+			if ! git pull; then
+				
+				# command failure
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
 				sleep 2s
 				rm -rf "$build_dir"

@@ -82,7 +82,7 @@ fi
 # Current checkinstall config:
 # cfgs/source-builds/kodi-checkinstall.txt
 
-install_prereqs()
+kodi_prereqs()
 {
 	clear
 	echo -e "==> Assessing prerequisites for building"
@@ -131,7 +131,7 @@ install_prereqs()
 
 }
 
-package_kodi_deb()
+kodi_package_deb()
 {
 	
 	# Debian link: https://wiki.debian.org/BuildingTutorial
@@ -151,8 +151,9 @@ package_kodi_deb()
 
 }
 
-main()
+kodi_clone()
 {
+	# set build dir
 	build_dir="$HOME/kodi/"
 
 	# If git folder exists, evaluate it
@@ -166,7 +167,7 @@ main()
 		echo -e "\n==> Skipping build. Attempting to package existing files in ${build_dir}\n"
 		sleep 2s
 		cd "$build_dir"
-		package_kodi_deb
+		kodi_package_deb
 		
 	fi
 
@@ -223,7 +224,10 @@ main()
 
 	fi
 
+}
 
+kodi_build()
+{
 	#################################################
 	# Build Kodi
 	#################################################
@@ -298,7 +302,7 @@ main()
 		
 		if [[ "$build_choice" == "y" ]]; then
 		
-			package_kodi_deb
+			kodi_package_deb
 			
 		elif [[ "$build_choice" == "n" ]]; then
 		
@@ -334,6 +338,11 @@ main()
 	# Post install configuration
 	#################################################
 
+}
+
+kodi_post_cfgs()
+{
+	
 	echo -e "\n==> Adding desktop file and artwork"
 
 	# If called standalone change copy paths
@@ -380,7 +389,11 @@ main()
 	
 }
 
-# start main
-install_prereqs
-main
-
+####################################################
+# Script sequence
+####################################################
+# Main order of operations
+kodi_prereqs
+kodi_clone
+kodi_build
+kodi_post_cfgs

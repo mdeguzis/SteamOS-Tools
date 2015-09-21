@@ -200,6 +200,9 @@ main()
 	# assess if depdencies should be ignored
 	if [[ "$ignore_deps" == "no" ]]; then
 	
+		# attempt to get build deps
+		sudo apt-get build-dep ${target}
+	
 		# build normally using apt-get source
 		apt-get source --build ${target}
 	

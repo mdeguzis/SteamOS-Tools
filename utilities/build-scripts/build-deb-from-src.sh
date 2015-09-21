@@ -100,12 +100,8 @@ main()
 			sleep 2s
 			cd "$git_dir"
 		
-			# evaluate git pull. Remove, create, and clone if it fails
-			if git pull; then
-			
-				# do nothing, success
-			
-			else
+			# attempt git pull, if it doesn't complete reclone
+			if ! git pull; then
 				
 				# failure
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
@@ -115,6 +111,7 @@ main()
 				cd "$git_dir"
 				# clone to current DIR
 				git clone "$git_url" .
+				
 			fi
 			
 		elif [[ "$git_choice" == "r" ]]; then

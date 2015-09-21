@@ -215,6 +215,9 @@ main()
 		echo -e "==INFO==\nIgnoring depedencies for build\n"
 		sleep 2s
 		
+		# Try to install build-deps for source pacakge
+		apt-get build-dep ${target}
+		
 		# download source 
 		apt-get source ${target}
 		

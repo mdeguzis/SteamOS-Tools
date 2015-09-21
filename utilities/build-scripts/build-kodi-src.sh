@@ -134,8 +134,16 @@ kodi_prereqs()
 kodi_package_deb()
 {
 	
-	# Debian link: https://wiki.debian.org/BuildingTutorial
+	# Debian link: 	    https://wiki.debian.org/BuildingTutorial
+	# Ubuntu link: 	    https://wiki.ubuntu.com/PbuilderHowto
 	# XBMC/Kodi readme: https://github.com/xbmc/xbmc/blob/master/tools/Linux/packaging/README.debian
+	
+	# Maybe use sudo "bash -c 'cat "TEXT" >> "/etc/sudoers'""
+	# These next 3 lines will need added to /etc/sudoers, if not added already
+	
+	# Defaults env_reset,env_keep="DIST ARCH CONCURRENCY_LEVEL"
+	# Cmnd_Alias PBUILDER = /usr/sbin/pbuilder, /usr/bin/pdebuild, /usr/bin/debuild-pbuilder
+	# Desktop ALL=(ALL) PBUILDER
 	
 	# copy pbuilder template
 	# If called standalone change copy paths
@@ -158,8 +166,7 @@ kodi_package_deb()
 		
 	fi
 	
-	# setup dist
-	# https://wiki.ubuntu.com/PbuilderHowto
+	# setup dist base
 	if 'sudo DIST=brewmaster pbuilder create'; then
 	
 		echo -e "\nBrewmaster environment created successfully!"

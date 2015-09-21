@@ -163,6 +163,8 @@ main()
 	if [[ "$skip_build" == "yes" ]]; then
 	
 		# fire off deb packaging attempt
+		echo -e "\n==> Skipping build. Attempting to package existing files in ${build_dir}\n"
+		sleep 2s
 		cd "$build_dir"
 		package_kodi_deb
 		

@@ -90,7 +90,7 @@ install_prereqs()
 	# install needed packages for building various pacakges
 	sudo apt-get install git devscripts build-essential checkinstall \
 	debian-keyring debian-archive-keyring cmake dh-autoreconf \
-	libglib2.0-dev libpopt-dev
+	libglib2.0-dev libpopt-dev libreadline-dev libfuse-dev
 
 }
 

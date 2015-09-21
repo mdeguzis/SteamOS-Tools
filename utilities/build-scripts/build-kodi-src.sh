@@ -63,6 +63,7 @@ elif [[ "$extra_opts" == "--skip-build" || "$arg1" == "--skip-build" ]]; then
 	# If Kodi is confirmed by user to be built already, allow build
 	# to be skipped and packaging to be attempted directly
 	skip_build="yes"
+	package_deb="yes"
 	
 fi
 
@@ -120,9 +121,11 @@ kodi_prereqs()
 	# required for building kodi debs
 	if [[ "$package_deb" == "yes" ]]; then
 	
+		echo -e "\n==> Installing build dependencies for packaging\n"
+	
 		sudo apt-get install build-essential fakeroot devscripts checkinstall \
 		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev libgnutls-dev \
-		libsamplerate0-dev libgnutls28-dev
+		libsamplerate0-dev libgnutls28-dev 
 	
 	fi
 	

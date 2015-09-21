@@ -113,7 +113,7 @@ main()
 	echo -e "    [Press ENTER to use last: $repo_src]\n"
 	
 	# Of course, main Ubuntu packages are not "PPA's" so example deb-src lines are:
-	# deb-src http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
+	# deb-src http://archive.ubuntu.com/ubuntu vivid main restricted universe multiverse
 	# GPG-key(s): 437D05B5, C0B21F32
 	
 	# set tmp var for last run, if exists

@@ -159,7 +159,7 @@ main()
 	# Avoiding a large download again is much desired.
 	# If the DIR is already there, the fetch info should be intact
 
-	# skip to build attemp if requested
+	# Skip to build attempt if requested
 	if [[ "$skip_build" == "yes" ]]; then
 	
 		# fire off deb packaging attempt

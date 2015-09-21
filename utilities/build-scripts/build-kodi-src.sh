@@ -108,7 +108,7 @@ install_prereqs()
 	libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev \
 	libxmu-dev libxrandr-dev libxslt1-dev libxt-dev libyajl-dev lsb-release \
 	nasm python-dev python-imaging python-support swig unzip uuid-dev yasm \
-	zip zlib1g-dev libglew-dev bc
+	zip zlib1g-dev libglew-dev bc doxygen
 
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache

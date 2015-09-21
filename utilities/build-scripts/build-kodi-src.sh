@@ -158,7 +158,7 @@ main()
 	# skip to build attemp if requested
 	if [[ "$skip_build" == "yes" ]]; then
 	
-		# fire off build
+		# fire off deb packaging attempt
 		cd "$build_dir"
 		package_kodi_deb
 		

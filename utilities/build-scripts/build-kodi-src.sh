@@ -24,9 +24,14 @@ time_stamp_start=(`date +"%T"`)
 
 # default for packaging attempts
 package="no"
+skip_to_build="no"
 
 # set default concurrent jobs if called standalone or
 # called with extra_opts during 'dekstop-software install kodi-src --cores $n'
+
+###################
+# global vars
+###################
 
 # loosely match --cores so it picks up the entire '--cores $n' string
 if [[ "$build_opts" == "--cores" ]]; then
@@ -43,6 +48,12 @@ elif [[ "$extra_opts" == "--package-deb" || "$arg1" == "--package-deb" ]]; then
 
 	# set package to yes if deb generation is requested
 	package_deb="yes"
+	
+elif [[ "$extra_opts" == "--skip-build" || "$arg1" == "--skip-build" ]]; then
+
+	# If Kodi is confirmed by user to be built already, allow build
+	# to be skipped and packaging to be attempted directly
+	skip_build="yes"
 	
 else
 
@@ -116,6 +127,26 @@ install_prereqs()
 
 }
 
+package_kodi_deb()
+{
+	
+	# Debian link: https://wiki.debian.org/BuildingTutorial
+	# XBMC/Kodi readme: https://github.com/xbmc/xbmc/blob/master/tools/Linux/packaging/README.debian
+	
+	rm -rf "/home/$USER/xbmc-packaging/pbuilder"
+	mkdir -p "/home/$USER/xbmc-packaging/pbuilder"
+	
+	RELEASEV=16 \
+	DISTS=-"unstable" \
+	ARCHS="i386 amd64" \
+	BUILDER="pdebuild" \
+	PDEBUILD_OPTS="--debbuildopts \"-j4\"" \
+	PBUILDER_BASE="/home/$USER/xbmc-packaging/pbuilder" \
+	DPUT_TARGET="local" \
+	tools/Linux/packaging/mk-debian-package.sh
+
+}
+
 main()
 {
 	build_dir="$HOME/kodi/"
@@ -123,6 +154,15 @@ main()
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
 	# If the DIR is already there, the fetch info should be intact
+
+	# skip to build attemp if requested
+	if [[ "$skip_build" == "yes" ]]; then
+	
+		# fire off build
+		cd "$build_dir"
+		package_kodi_deb
+		
+	fi
 
 	if [[ -d "$build_dir" ]]; then
 
@@ -252,20 +292,7 @@ main()
 		
 		if [[ "$build_choice" == "y" ]]; then
 		
-			# Debian link: https://wiki.debian.org/BuildingTutorial
-			# XBMC/Kodi readme: https://github.com/xbmc/xbmc/blob/master/tools/Linux/packaging/README.debian
-			
-			rm -rf "/home/$USER/xbmc-packaging/pbuilder"
-			mkdir -p "/home/$USER/xbmc-packaging/pbuilder"
-			
-			RELEASEV=16 \
-			DISTS=-"unstable" \
-			ARCHS="i386 amd64" \
-			BUILDER="pdebuild" \
-			PDEBUILD_OPTS="--debbuildopts \"-j4\"" \
-			PBUILDER_BASE="/home/$USER/xbmc-packaging/pbuilder" \
-			DPUT_TARGET="local" \
-			tools/Linux/packaging/mk-debian-package.sh
+			package_kodi_deb
 			
 		elif [[ "$build_choice" == "n" ]]; then
 		

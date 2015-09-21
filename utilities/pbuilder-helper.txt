@@ -2,7 +2,6 @@
 # COPY TO ~/.pbuilderrc after installation of pbuilder
 ####################################################################
 
-# FOR THE REST, SEE: https://wiki.debian.org/PbuilderTricks#How_to_build_for_different_distributions
 
 # Codenames for Debian suites according to their alias. Update these when
 # needed.
@@ -86,7 +85,7 @@ elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
 elif $(echo ${STEAMOS_SUITES[@]} | grep -q $DIST); then
     
     # SteamOS configuration
-    MIRRORSITE="http://repo.steam.powered.com"
+    MIRRORSITE="http://repo.steampowered.com"
     COMPONENTS="main contrib non-free"
     
 else

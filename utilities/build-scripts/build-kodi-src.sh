@@ -145,16 +145,16 @@ kodi_package_deb()
 		# copy files based of pwd
 		touch "$HOME/.pbuilderrc"
 		sudo touch "/root/.pbuilderrc"
-		cp /pbuilder-helper.txt "$HOME/.pbuilderrc"
-		sudo  cp /pbuilder-helper.txt "/root/.pbuilderrc"
+		cp ../pbuilder-helper.txt "$HOME/.pbuilderrc"
+		sudo cp ../pbuilder-helper.txt "/root/.pbuilderrc"
 		
 	else
 
 		# add desktop file for SteamOS/BPM
 		touch "$HOME/.pbuilderrc"
 		sudo touch "/root/.pbuilderrc"
-		cp "$scriptdir/utilities/pbuilder-helper.txt" > "$HOME/.pbuilderrc"
-		sudo cp "$scriptdir/utilities/pbuilder-helper.txt" > "/root/.pbuilderrc"
+		cp "$scriptdir/utilities/pbuilder-helper.txt" "$HOME/.pbuilderrc"
+		sudo cp "$scriptdir/utilities/pbuilder-helper.txt" "/root/.pbuilderrc"
 		
 	fi
 	

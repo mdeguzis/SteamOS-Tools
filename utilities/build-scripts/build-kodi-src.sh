@@ -1,10 +1,9 @@
 #!/bin/bash
-
 # -------------------------------------------------------------------------------
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.3.5
+# Script Ver:		0.3.7
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -136,10 +135,10 @@ main()
 			echo -e "\n==> Attempting git pull..."
 			sleep 2s
 			# eval git status
-			output=$(git pull 2> /dev/null)
+			output=$(git pull | grep -E 'Already|Forward')
 
 			# evaluate git pull. Remove, create, and clone if it fails
-			if [[ "$output" != "Already up-to-date" || "$output" != "Fast-forward" ]]; then
+			if [[ "$output" == "" ]]; then
 
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
 				sleep 2s

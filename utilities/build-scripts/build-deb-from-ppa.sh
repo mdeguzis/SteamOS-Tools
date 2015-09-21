@@ -229,7 +229,7 @@ main()
 	
 	# back out of build temp to script dir if called from git clone
 	if [[ "$scriptdir" != "" ]]; then
-		cd "$scriptdir"
+		cd "$scriptdir/utilities/build-scripts"
 	else
 		cd "$HOME"
 	fi

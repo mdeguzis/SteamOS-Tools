@@ -158,7 +158,7 @@ kodi_package_deb()
 	mkdir -p "/home/$USER/xbmc-packaging/pbuilder"
 	
 	RELEASEV=16 \
-	DISTS=-"stable" \
+	DISTS="stable" \
 	ARCHS="i386 amd64" \
 	BUILDER="pdebuild" \
 	PDEBUILD_OPTS="--debbuildopts \"-j4\"" \

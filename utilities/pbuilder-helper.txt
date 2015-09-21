@@ -18,9 +18,13 @@ DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME $STABLE_BAC
 # List of Ubuntu suites. Update these when needed.
 UBUNTU_SUITES=("vivid" "utopic" "trusty" "saucy" "raring" "quantal" "precise" "oneiric" "natty" "lucid" "hardy")
 
+# List of SteamOS suites. Update these when needed.
+STEAMOS_SUITES=("alchemsit" "alchemsit_beta" "brewmaster" "brewmaster_beta")
+
 # Mirrors to use. Update these to your preferred mirror.
 DEBIAN_MIRROR="ftp.us.debian.org"
 UBUNTU_MIRROR="mirrors.kernel.org"
+STEAMOS_MIRROR="repo.steampowered.com"
 
 # Optionally use the changelog of a package to determine the suite to use if
 # none set.
@@ -65,16 +69,26 @@ APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
 BUILDPLACE="/var/cache/pbuilder/build/"
 
 if $(echo ${DEBIAN_SUITES[@]} | grep -q $DIST); then
+    
     # Debian configuration
     MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
     COMPONENTS="main contrib non-free"
     if $(echo "$STABLE_CODENAME stable" | grep -q $DIST); then
         OTHERMIRROR="$OTHERMIRROR | deb $MIRRORSITE $STABLE_BACKPORTS_SUITE $COMPONENTS"
     fi
+    
 elif $(echo ${UBUNTU_SUITES[@]} | grep -q $DIST); then
+   
     # Ubuntu configuration
     MIRRORSITE="http://$UBUNTU_MIRROR/ubuntu/"
     COMPONENTS="main restricted universe multiverse"
+    
+elif $(echo ${STEAMOS_SUITES[@]} | grep -q $DIST); then
+    
+    # SteamOS configuration
+    MIRRORSITE="http://repo.steam.powered.com"
+    COMPONENTS="main contrib non-free"
+    
 else
     echo "Unknown distribution: $DIST"
     exit 1

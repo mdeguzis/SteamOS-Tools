@@ -5,9 +5,9 @@
 
 # Codenames for Debian suites according to their alias. Update these when
 # needed.
-UNSTABLE_CODENAME="sid"
-TESTING_CODENAME="stretch"
-STABLE_CODENAME="jessie"
+UNSTABLE_CODENAME="brewmaster"
+TESTING_CODENAME="brewmaster_beta"
+STABLE_CODENAME="alchemist"
 STABLE_BACKPORTS_SUITE="$STABLE_CODENAME-backports"
 
 # List of Debian suites.

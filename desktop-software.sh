@@ -116,8 +116,10 @@ else
 fi
 
 if [[ $LINECOUNT -gt 1 ]]; then
-   echo "Custom PKG set detected!"
-   custom_pkg_set="yes"
+	
+	# echo "Custom PKG set detected!"
+	custom_pkg_set="yes"
+	
 fi
 
 #############################################

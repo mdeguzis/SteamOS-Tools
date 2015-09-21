@@ -118,8 +118,13 @@ kodi_prereqs()
 	sudo apt-get install ccache
 	
 	# required for building kodi debs
-	sudo apt-get install build-essential fakeroot devscripts checkinstall \
-	cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev libgnutls-dev libsamplerate0-dev
+	if [[ "$package_deb" == "yes" ]]; then
+	
+		sudo apt-get install build-essential fakeroot devscripts checkinstall \
+		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev libgnutls-dev \
+		libsamplerate0-dev libgnutls28-dev
+	
+	fi
 	
 	# Build deps that must be repackaged and are not available in Debian Jessie:
 	# liafpclient-dev libcec libcec-dev (>=3), libgif-dev (>= 5.0.5), libplatform-dev

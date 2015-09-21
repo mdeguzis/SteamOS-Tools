@@ -134,11 +134,11 @@ main()
 			# attempt to pull the latest source first
 			echo -e "\n==> Attempting git pull..."
 			sleep 2s
-			# eval git status
-			output=$(git pull | grep -E 'Already|Forward')
+			# attempt git pull
+			git pull
 
-			# evaluate git pull. Remove, create, and clone if it fails
-			if [[ "$output" == "" ]]; then
+			# Check that command completed sucessfully. Remove, create, and clone if it fails
+			if [[ $? != '1' || $? != '0' ]]; then
 
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
 				sleep 2s

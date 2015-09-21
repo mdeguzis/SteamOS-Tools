@@ -167,7 +167,7 @@ kodi_package_deb()
 	fi
 	
 	# setup dist base
-	if 'sudo DIST=brewmaster pbuilder create'; then
+	if sudo DIST=brewmaster pbuilder create; then
 	
 		echo -e "\nBrewmaster environment created successfully!"
 		

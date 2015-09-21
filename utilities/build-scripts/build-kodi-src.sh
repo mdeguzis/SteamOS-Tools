@@ -160,7 +160,17 @@ kodi_package_deb()
 	
 	# setup dist
 	# https://wiki.ubuntu.com/PbuilderHowto
-	sudo DIST=brewmaster pbuilder create
+	if 'sudo DIST=brewmaster pbuilder create'; then
+	
+		echo -e "\nBrewmaster environment created successfully!"
+		
+	else 
+	
+		echo -e "\nBrewmaster environment creationFAILED!\nPress CTRL+C to exit"
+		# sleep for now until this function is ironed-out. Over SSH on mobile
+		# exit will cut the sesesion.
+		sleep 50s
+	fi
 	
 	# Clean xbmc pbuilder dir
 	rm -rf "/home/$USER/xbmc-packaging/pbuilder"

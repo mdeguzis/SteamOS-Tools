@@ -143,12 +143,12 @@ kodi_package_deb()
 
 		
 		# copy files based of pwd
-		sudo cp ../pbuilder-helper.txt "~/.pbuilderrc"
+		cat ../pbuilder-helper.txt "~/.pbuilderrc"
 		
 	else
 
 		# add desktop file for SteamOS/BPM
-		sudo cp "$scriptdir/utilities/pbuilder-helper.txt" "~/.pbuilderrc"
+		cat "$scriptdir/utilities/pbuilder-helper.txt" > "~/.pbuilderrc"
 		
 	fi
 	

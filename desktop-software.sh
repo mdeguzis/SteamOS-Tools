@@ -640,33 +640,27 @@ show_warning()
         
         clear
         
-	cat<<- EOF
-        ##########################################################
-        Warning: usage of this script is at your own risk!
-        ##########################################################
-        In order to install most software, you MUST have had
-        enabled the Debian and Libregeek repositories! Otherwise,
-        you may break the stability of your system packages!
+
+        echo "##########################################################"
+        echo "Warning: usage of this script is at your own risk!"
+        echo "##########################################################"
+        echo -e "\nIn order to install most software, you MUST have had"
+        echo -e "enabled the Debian and Libregeek repositories! Otherwise,"
+        echo -e "you may break the stability of your system packages! "
         
         if [[ "$sources_check_jessie" == "" || "$sources_check_steamos_tools" == "" ]]; then
                 echo -e " \nThose sources do *NOT* appear to be added!"
         else
-                echo -e "\nOn initial check, those sources appear to be added.
+                echo -e "\nOn initial check, those sources appear to be added."
         fi
                 
-	If you wish to exit, please press CTRL+C now. Otherwise
-	press [ENTER] to continue."
-	
-        Type './desktop-software --help' (without quotes) for help.
-        If you need to add the Debian repos, please add them now
+        echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
+        echo -e "\ntype './desktop-software --help' (without quotes) for help."
+        echo -e "If you need to add the Debian repos, please add them now\n"
+        echo -e "Please read the disclaimer.md now or in the main GitHub root folder!\n"
         
-        Please read the disclaimer.md now or in the main GitHub root
-        folder!
-        
-        [c]ontinue, [a]dd Debian sources, [d]isclaimer [e]xit"
-        
-	EOF
-	
+        echo -e "[c]ontinue, [a]dd Debian sources, [d]isclaimer [e]xit"
+
 	# get user choice
 	read -erp "Choice: " user_choice
 

@@ -173,10 +173,8 @@ kodi_package_deb()
 		
 	else 
 	
-		echo -e "\nBrewmaster environment creationFAILED!\nPress CTRL+C to exit"
-		# sleep for now until this function is ironed-out. Over SSH on mobile
-		# exit will cut the sesesion.
-		sleep 50s
+		echo -e "\nBrewmaster environment creation FAILED!"
+		exit 1
 	fi
 	
 	# Clean xbmc pbuilder dir

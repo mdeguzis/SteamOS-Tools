@@ -23,7 +23,7 @@ time_stamp_start=(`date +"%T"`)
 ###################
 
 # default for packaging attempts
-package="no"
+packag_debe="no"
 skip_to_build="no"
 
 # set default concurrent jobs if called standalone or
@@ -94,10 +94,10 @@ kodi_prereqs()
 	# Swaps: (libcurl3 for libcurl-dev), (dcadec-dev, build from git)
 	
 	
-	echo -e "\n==> Installing packages found in Debian repositories\n"
+	echo -e "\n==> Installing needed build packages found in Debian repositories\n"
 	sleep 2s
 	
-	# main packages available in Debian Jessie and SteamOS repos:
+	# main packages available in Debian Jessie, Libregeek, and SteamOS repos:
 	
 	sudo apt-get install autoconf automake autopoint autotools-dev cmake curl \
 	default-jre gawk gperf libao-dev libasound2-dev \
@@ -121,24 +121,27 @@ kodi_prereqs()
 	# required for building kodi debs
 	if [[ "$package_deb" == "yes" ]]; then
 	
-		echo -e "\n==> Installing build dependencies for packaging\n"
+		echo -e "\n==> Installing build deps for packaging\n"
+		sleep 2s
 	
 		sudo apt-get install build-essential fakeroot devscripts checkinstall \
 		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev \
-		libsamplerate0-dev libgnutls28-dev 
+		libsamplerate0-dev libgnutls28-dev
+	
+		echo -e "\n==> Installing build deps sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
+		sleep 2s
+
+		# origin: https://launchpad.net/~team-xbmc/+archive/ubuntu/xbmc-ppa-build-depends
+		# packages are now in the packages.libregeek.org pool
+
+		sudo apt-get install libcrossguid1 libcrossguid-dev dcadec1 dcadec-dev \
+		libcec3 libcec-dev libafpclient-dev libgif-dev libmp3lame-dev
 	
 	fi
 	
 	# Build deps that must be repackaged and are not available in Debian Jessie:
 	# liafpclient-dev libcec libcec-dev (>=3), libgif-dev (>= 5.0.5), libplatform-dev
 	
-	echo -e "\n==> Installing Kodi build dependencies sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
-	sleep 2s
-	
-	# origin: https://launchpad.net/~team-xbmc/+archive/ubuntu/xbmc-ppa-build-depends
-	# packages are now in the packages.libregeek.org pool
-	
-	sudo apt-get install libcrossguid1 libcrossguid-dev dcadec1 dcadec-dev
 
 }
 

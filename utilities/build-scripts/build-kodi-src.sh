@@ -147,48 +147,80 @@ kodi_package_deb()
 	
 	# copy pbuilder template
 	# If called standalone change copy paths
-	if [[ "$scriptdir" == "" ]]; then
+	
+	############################################################
+	# Assess if we are to build for host/ARCH we have or target
+	############################################################
+	
+	echo -e "\nBuild Kodi for our host/ARCH or for all? [host|target]"
+	
+	# get user choice
+	sleep 0.2s
+	read -erp "Choice: " build_choice
 
+	if [[ "$build_choice" == "host" ]]
+	
+		# build of the main debian build script ONLY
+		tools/Linux/packaging/mk-debian-package.sh
 		
-		# copy files based of pwd
-		touch "$HOME/.pbuilderrc"
-		sudo touch "/root/.pbuilderrc"
-		cp ../pbuilder-helper.txt "$HOME/.pbuilderrc"
-		sudo cp ../pbuilder-helper.txt "/root/.pbuilderrc"
+	elif [[ "$build_choice" == "target" ]]
 		
-	else
+		# ask for DIST target
+		echo -e "\nEnter DIST to build for (see utilities/pbuilder-helper.txt)"
+		
+		# get user choice
+		sleep 0.2s
+		read -erp "Choice: " dist_choice
+		
+		if [[ "$scriptdir" == "" ]]; then
+	
+			
+			# copy files based of pwd
+			touch "$HOME/.pbuilderrc"
+			sudo touch "/root/.pbuilderrc"
+			cp ../pbuilder-helper.txt "$HOME/.pbuilderrc"
+			sudo cp ../pbuilder-helper.txt "/root/.pbuilderrc"
+			
+		else
+	
+			# add desktop file for SteamOS/BPM
+			touch "$HOME/.pbuilderrc"
+			sudo touch "/root/.pbuilderrc"
+			cp "$scriptdir/utilities/pbuilder-helper.txt" "$HOME/.pbuilderrc"
+			sudo cp "$scriptdir/utilities/pbuilder-helper.txt" "/root/.pbuilderrc"
+			
+		fi
+		
+		# setup dist base
+		if sudo DIST=brewmaster pbuilder create; then
+		
+			echo -e "\nBrewmaster environment created successfully!"
+			
+		else 
+		
+			echo -e "\nBrewmaster environment creation FAILED!"
+			exit 1
+		fi
+	
+	
+		# Clean xbmc pbuilder dir
+		rm -rf "/home/$USER/xbmc-packaging/pbuilder"
+		mkdir -p "/home/$USER/xbmc-packaging/pbuilder"
+		
+		# create directory for dependencies
+		mkdir -p "/home/$USER/xbmc-packaging/deps"
+		
+		RELEASEV=16 \
+		DISTS="$dist_choice" \
+		ARCHS="amd64" \
+		BUILDER="pdebuild" \
+		PDEBUILD_OPTS="--debbuildopts \"-j4\"" \
+		PBUILDER_BASE="/home/$USER/xbmc-packaging/pbuilder" \
+		DPUT_TARGET="local" \
+		tools/Linux/packaging/mk-debian-package.sh
 
-		# add desktop file for SteamOS/BPM
-		touch "$HOME/.pbuilderrc"
-		sudo touch "/root/.pbuilderrc"
-		cp "$scriptdir/utilities/pbuilder-helper.txt" "$HOME/.pbuilderrc"
-		sudo cp "$scriptdir/utilities/pbuilder-helper.txt" "/root/.pbuilderrc"
-		
+	# end building
 	fi
-	
-	# setup dist base
-	if sudo DIST=brewmaster pbuilder create; then
-	
-		echo -e "\nBrewmaster environment created successfully!"
-		
-	else 
-	
-		echo -e "\nBrewmaster environment creation FAILED!"
-		exit 1
-	fi
-	
-	# Clean xbmc pbuilder dir
-	rm -rf "/home/$USER/xbmc-packaging/pbuilder"
-	mkdir -p "/home/$USER/xbmc-packaging/pbuilder"
-	
-	RELEASEV=16 \
-	DISTS="brewmaster" \
-	ARCHS="i386 amd64" \
-	BUILDER="pdebuild" \
-	PDEBUILD_OPTS="--debbuildopts \"-j4\"" \
-	PBUILDER_BASE="/home/$USER/xbmc-packaging/pbuilder" \
-	DPUT_TARGET="local" \
-	tools/Linux/packaging/mk-debian-package.sh
 
 }
 

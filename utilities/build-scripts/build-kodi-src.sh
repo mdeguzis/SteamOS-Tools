@@ -100,20 +100,22 @@ kodi_prereqs()
 	# main packages available in Debian Jessie, Libregeek, and SteamOS repos:
 	
 	sudo apt-get install autoconf automake autopoint autotools-dev cmake curl \
-	default-jre gawk gperf libao-dev libasound2-dev \
-	libass-dev libavahi-client-dev libavahi-common-dev libbluetooth-dev \
-	libbluray-dev libboost-dev libboost-thread-dev libbz2-dev libcap-dev libcdio-dev \
-	libcec-dev libcurl3 libcurl4-gnutls-dev libcwiid-dev libdbus-1-dev libfontconfig-dev \
-	libfreetype6-dev libfribidi-dev libgif-dev libglu1-mesa-dev \
-	libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev liblzo2-dev libmicrohttpd-dev \
-	libmodplug-dev libmpcdec-dev libmpeg2-4-dev libmysqlclient-dev libnfs-dev libogg-dev \
-	libpcre3-dev libplist-dev libpng12-dev libpng-dev libpulse-dev librtmp-dev libsdl2-dev \
-	libsmbclient-dev libsqlite3-dev libssh-dev libssl-dev libswscale-dev \
-	libtag1-dev libtiff-dev libtinyxml-dev libtool libudev-dev \
-	libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev \
-	libxmu-dev libxrandr-dev libxslt1-dev libxt-dev libyajl-dev lsb-release \
-	nasm python-dev python-imaging python-support swig unzip uuid-dev yasm \
-	zip zlib1g-dev libglew-dev bc doxygen
+	default-jre gawk gperf libao-dev libasound2-dev libass-dev libavahi-client-dev \
+	libavahi-common-dev libbluetooth-dev libbluray-dev libboost-dev libboost-thread-dev \
+	libbz2-dev libcap-dev libcdio-dev libcec-dev libcurl3 libcurl4-gnutls-dev \
+	libcwiid-dev libdbus-1-dev libfontconfig-dev libfreetype6-dev libfribidi-dev \
+	libgif-dev libglu1-mesa-dev libiso9660-dev libjasper-dev libjpeg-dev libltdl-dev \
+	liblzo2-dev libmicrohttpd-dev libmodplug-dev libmpcdec-dev libmpeg2-4-dev \
+	libmysqlclient-dev libnfs-dev libogg-dev libpcre3-dev libplist-dev libpng12-dev \
+	libpng-dev libpulse-dev librtmp-dev libsdl2-dev libsmbclient-dev libsqlite3-dev \
+	libssh-dev libssl-dev libswscale-dev libtag1-dev libtiff-dev libtinyxml-dev \
+	libtool libudev-dev libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev \
+	libxml2-dev libxmu-dev libxrandr-dev libxslt1-dev libxt-dev libyajl-dev lsb-release \
+	nasm python-dev python-imaging python-support swig unzip uuid-dev yasm zip zlib1g-dev \
+	libglew-dev bc doxygen g++ libcrossguid1 libcrossguid-dev
+	
+	# these pacakges were rebuild and available inthe libregeek repos
+	sudo apt-get install dcadec1 dcadec-dev
 
 	# When compiling frequently, it is recommended to use ccache
 	sudo apt-get install ccache
@@ -134,8 +136,8 @@ kodi_prereqs()
 		# origin: https://launchpad.net/~team-xbmc/+archive/ubuntu/xbmc-ppa-build-depends
 		# packages are now in the packages.libregeek.org pool
 
-		sudo apt-get install libcrossguid1 libcrossguid-dev dcadec1 dcadec-dev \
-		libcec3 libcec-dev libafpclient-dev libgif-dev libmp3lame-dev libshairplay-dev
+		sudo apt-get install libcec3 libcec-dev libafpclient-dev libgif-dev \
+		libmp3lame-dev libshairplay-dev
 	
 	fi
 	

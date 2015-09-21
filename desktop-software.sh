@@ -654,10 +654,12 @@ show_warning()
                 echo -e "\nOn initial check, those sources appear to be added."
         fi
                 
-        echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,\npress [ENTER] to continue."
+        echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,"
+        echo -e "press [ENTER] to continue."
         echo -e "\ntype './desktop-software --help' (without quotes) for help."
         echo -e "If you need to add the Debian repos, please add them now\n"
-        echo -e "Please read the disclaimer.md now or in the main GitHub root folder!\n"
+        echo -e "Please read the disclaimer.md now or in the main GitHub"
+        echo -e "root folder!\n"
         
         echo -e "[c]ontinue, [a]dd Debian sources, [d]isclaimer [e]xit"
 

@@ -30,7 +30,6 @@ show_help()
 	#####################################################
 	Please see the desktop-software-readme.md file in the 
 	docs/ directory for full details.
-
 	---------------------------------------------------------------
 	Any package you wish to specify yourself. brewmaster repos will be
 	used first, followed by Debian Jessie and the Libregeek repos.
@@ -660,7 +659,7 @@ show_warning()
         echo -e "If you need to add the Debian repos, please add them now\n"
         echo -e "Please read the disclaimer.md now or in the main GitHub root folder!\n"
         
-        echo -e "[c]ontinue, [a]dd Debian sources, [d] disclaimer [e]xit"
+        echo -e "[c]ontinue, [a]dd Debian sources, [d]isclaimer [e]xit"
 
 	# get user choice
 	read -erp "Choice: " user_choice

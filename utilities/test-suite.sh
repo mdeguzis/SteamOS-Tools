@@ -42,7 +42,7 @@ sleep 3s
 reset_state()
 {
   
-  echo -e "\n==> Resetting state"
+  echo -e "==> Resetting state"
   sleep 2s
   
   # Remove packages
@@ -55,9 +55,6 @@ reset_state()
 
 run_test()
 {
-  
-  # change to command directory
-  cd_cmd_dir
   
   # TEST
   if "$command"; then
@@ -84,9 +81,10 @@ run_basic_tests()
   # desktop-software.sh tests
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
-  cd_cmd_dir=$(cd ..)
   command="./desktop-software.sh install ${pkg}"
   run_test
+  # change to directory for test
+  cd ..
   
 }
 

@@ -14,7 +14,8 @@ utlitity_dir=$(pwd)
 
 # testing 
 echo "testing..."
-{ for i in {1..10}; do sleep 1; echo "$RANDOM $RANDOM $RANDOM"; done; } | while IFS= read -r line; do printf '%-80.80s\r' "$line"; done ; echo
+up=$(tput cuu1) old=""; echo; for i in {1..10}; do sleep 1; echo "$RANDOM $RANDOM $RANDOM"; done | while IFS= read -r new; do printf '%s\r%-80.80s\n\r%-80.80s' "$up" "$old" "$new"; old=$new; done
+echo -n $up
 
 sleep 50s
 

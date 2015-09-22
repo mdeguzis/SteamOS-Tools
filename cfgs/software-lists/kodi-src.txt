@@ -49,7 +49,6 @@ libnfs-dev libogg-dev
 libpcre3-dev
 libplist-dev
 libpng12-dev
-libpng-dev
 libpulse-dev
 librtmp-dev
 libsdl2-dev
@@ -59,7 +58,7 @@ libssh-dev
 libssl-dev
 libswscale-dev
 libtag1-dev
-libtiff-dev
+libtiff5-dev
 libtinyxml-dev
 libtool
 libudev-dev

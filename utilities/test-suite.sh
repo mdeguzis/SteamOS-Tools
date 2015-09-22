@@ -57,6 +57,9 @@ reset_state()
 run_test()
 {
   
+  echo -e "==> Running test $test"
+  sleep 2s
+  
   # TEST
   if "$command"; then
   

@@ -11,6 +11,7 @@
 # -------------------------------------------------------------------------------
 
 type="$1"
+utility_dir=$(pwd)
 
 show_summary()
 {
@@ -86,10 +87,10 @@ run_basic_tests()
   #######################################################
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
-  command="echo c | ../desktop-software.sh install ${pkg}"
+  command="cd .. && echo c | ./desktop-software.sh install ${pkg}"
   run_test
   # return to scriptdir 
-  cd -
+  cd "$utility_dir
   
 }
 

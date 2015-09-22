@@ -57,7 +57,7 @@ reset_state()
 run_test()
 {
   
-  echo -e "==> Running test $test"
+  echo -e "==> Running test $test, please wait."
   sleep 2s
   
   # TEST
@@ -87,7 +87,7 @@ run_basic_tests()
   #######################################################
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
-  command="../desktop-software.sh install ${pkg}"
+  command="echo c | ../desktop-software.sh install ${pkg} &> /dev/null"
   run_test
   # return to scriptdir 
   cd "$scriptdir"

@@ -33,7 +33,7 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh install gedit"
   
   cd ..
-  echo "[Running $test] Please wait..." 
+  echo "\n[Running $test] Please wait..." 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "$test [PASS]"

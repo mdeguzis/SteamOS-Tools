@@ -10,6 +10,7 @@
 # Usage:	      test-suite.sh [type]
 # -------------------------------------------------------------------------------
 
+clear
 cat<<- EOF
 ----------------------------------------------------------------
 SteamOS-Tools test suite
@@ -24,7 +25,6 @@ read -erp "Choice: " choice
 
 if [[ "$choice" == "c" ]]; then
 
-  clear
   ####################################################
   # desktop-software.sh - install Debian software
   ####################################################
@@ -52,6 +52,8 @@ if [[ "$choice" == "c" ]]; then
   else
     echo "$test [PASS]"
   fi
+  
+  echo ""
   
   ####################################################
   # desktop-software.sh - install Libregeek software

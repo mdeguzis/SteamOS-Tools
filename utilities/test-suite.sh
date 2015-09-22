@@ -10,16 +10,27 @@
 # Usage:	      test-suite.sh [type]
 # -------------------------------------------------------------------------------
 
-##########################################
-# desktop-software.sh
-##########################################
+###############################################
+# desktop-software.sh 
+###############################################
 
 pkg="gedit"
+test="[desktop-software.sh] Install gedit"
 
 cd ..
-if echo c | ./desktop-software.sh install ${pkg}; then
-  echo "desktop-software.sh install ${pkg} [PASS]"
+if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
+  echo "$test [PASS]"
 else
-  echo "desktop-software.sh install ${pkg} [FAIL]"
+  echo "$test [PASS]"
+fi
+
+pkg="lutris"
+test="[desktop-software.sh] Install lutris"
+
+cd ..
+if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
+  echo "$test [PASS]"
+else
+  echo "$test [PASS]"
 fi
  

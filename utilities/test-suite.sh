@@ -10,92 +10,16 @@
 # Usage:	      test-suite.sh [type]
 # -------------------------------------------------------------------------------
 
-# !!! WORK IN PROGRESS !!!
+##########################################
+# desktop-software.sh
+##########################################
 
-type="$1"
-utility_dir=$(pwd)
+pkg="gedit"
 
-show_summary()
-{
-  
-cat <<-EOF
-----------------------------------------
-Test suite $test Passed
-----------------------------------------
-EOF
-sleep 3s
-
-}
-
-show_failure()
-
-{
-  
-cat <<-EOF
-----------------------------------------
-Test suite $test FAILED!
-----------------------------------------
-EOF
-
-exit 1
-sleep 3s
-
-}
-
-reset_state()
-{
-  
-  echo -e "==> Resetting state"
-  sleep 2s
-  
-  # Remove packages
-  sudo apt-get remove remove gedit -y &> /dev/null
-  
-  # Purge archive package
-  sudo rm -f "/var/cache/apt/archive/gedit*"
-  
-}
-
-run_basic_tests()
-{
-  
-  # reset test package states
-  reset_state
-  
-  #######################################################
-  # desktop-software.sh tests
-  #######################################################
-  test="desktop-software.sh [Debian Package]"
-  pkg="gedit"
-  
-  # run test
-  cd..
-  if echo c | ./desktop-software.sh install ${pkg}; then
-  
-    echo -e "Test $test [PASS]"
-    
-  else
-  
-    echo -e "Test $test [FAIL]"
-    
-  fi
-  
-  # return to scriptdir 
-  cd "$utility_dir"
-  
-}
-
-main()
-{
-  if [[ "$type" == "basic" ]]; then
-
-   # run basic
-    run_basic_tests
-  
-  fi
-  
-}
-
-# MAIN script
-clear
-main
+cd..
+if echo c | ./desktop-software.sh install ${pkg}; then
+  echo "desktop-software.sh install ${pkg} [PASS]"
+else
+  echo "desktop-software.sh install ${pkg} [FAIL]"
+fi
+ 

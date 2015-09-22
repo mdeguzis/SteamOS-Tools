@@ -579,16 +579,17 @@ install_software()
 				if [ "$PKG_OK" == "" ] && [ "$apt_mode" == "install" ]; then
 				
 					echo -e "\n==> Attempting $i automatic package installation...\n"
+					sleep 2s
 					
 					if sudo apt-get $cache_tmp $apt_mode $i -y; then
 						
-						echo -e "Successfully installed package $i"
-						sleep 1s
+						echo -e "\n==INFO==\nSuccessfully installed package $i\n"
+						sleep 2s
 						
 					else
 						
-						echo -e "Failed to install package $i\n"
-						sleep 1s
+						echo -e "\n==ERROR==\nFailed to install package $i\n"
+						sleep 2s
 						exit 1
 						
 					fi

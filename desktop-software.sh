@@ -349,7 +349,7 @@ main_install_eval_pkg()
 		sleep 2s
 		
 		# use validation to make sure commands complete with if/fi
-		if sudo apt-get $cache_tmp ${source_type}install $PKG; then
+		if sudo apt-get $cache_tmp ${source_type}install $PKG -y; then
 		
 			echo "Successfully installed $PKG"
 			sleep 2s
@@ -361,6 +361,8 @@ main_install_eval_pkg()
 		fi
 		
 	else
+		
+		# package is already installed and OK
 		echo "Checking for $PKG [OK]"
 		sleep 0.5s
 

@@ -33,9 +33,9 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh install gedit"
   
   cd ..
-  echo "\n[Running $test] Please wait..." 
+  echo -e "\n[Running Test] $test Please wait..." 
   
-  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
+  if echo c | ./desktop-software.sh install ${pkg}; then
     echo "[PASS]"
   else
     echo "[FAIL]"
@@ -49,12 +49,12 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh remove gedit"
   
   cd ..
-  echo "[Running $test] Please wait..." 
+  echo -e "\n[Running Test] $test Please wait..." 
   
-  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
+  if echo c | ./desktop-software.sh install ${pkg}; then
     echo "[PASS]"
   else
-    echo "[PASS]"
+    echo "[FAIL]"
   fi
   
   echo ""
@@ -67,12 +67,12 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh Install lutris"
   
   cd ..
-  echo "[Running $test] Please wait..." 
+  echo -e "\n[Running Test] $test Please wait..." 
   
-  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
+  if echo c | ./desktop-software.sh install ${pkg}; then
     echo "[PASS]"
   else
-    echo "[PASS]"
+    echo "[FAIL]"
   fi
   
   ####################################################
@@ -83,12 +83,12 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh remove lutris"
   
   cd ..
-  echo "[Running $test] Please wait..." 
+  echo -e "\n[Running Test] $test Please wait..." 
   
-  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
+  if echo c | ./desktop-software.sh install ${pkg}; then
     echo "[PASS]"
   else
-    echo "[PASS]"
+    echo "[FAIL]"
   fi
   
 elif [[ "$choice" == "e" ]]; then

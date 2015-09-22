@@ -54,7 +54,7 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh remove gedit"
   
   cd ..
-  echo -e "\n[Running Test] $test Please wait..." 
+  echo -e "[Running Test] $test " 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"
@@ -73,7 +73,7 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh Install lutris"
   
   cd ..
-  echo -e "\n[Running Test] $test Please wait..." 
+  echo -e "[Running Test] $test " 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"
@@ -92,7 +92,7 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh remove lutris"
   
   cd ..
-  echo -e "\n[Running Test] $test Please wait..." 
+  echo -e "[Running Test] $test " 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"

@@ -347,16 +347,19 @@ main_install_eval_pkg()
 	if [[ "$PKG_OK_DPKG" == "" && "$PKG_OK_WHICH" == "" ]]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
-		sudo apt-get $cache_tmp ${source_type}install $PKG
 		
-		if [ $? == '0' ]; then
+		# use validation to make sure commands complete with if/fi
+		if sudo apt-get $cache_tmp ${source_type}install $PKG; then
+		
 			echo "Successfully installed $PKG"
 			sleep 2s
+			
 		else
 			echo "Could not install $PKG. Exiting..."
 			sleep 3s
 			exit 1
 		fi
+		
 	else
 		echo "Checking for $PKG [OK]"
 		sleep 0.5s

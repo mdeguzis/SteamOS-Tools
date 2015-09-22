@@ -249,17 +249,16 @@ set_multiarch()
 	
 	if [[ "$multi_arch_status" != "i386" ]]; then
 		
-		echo -e "Multi-arch support [FAIL]"
+		echo -e "Multi-arch support [Not Found]"
 		# add 32 bit support
-		sudo dpkg --add-architecture i386
-		
-		if [[ $? == '0' ]]; then
-				
-			echo -e "Multi-arch support [Addition FAILED!]"
+		if sudo dpkg --add-architecture i386; then
+
+			echo -e "Multi-arch support [Added]"
 			sleep 1s
+			
 		else
 			
-			echo -e "Multi-arch support [Now added]"
+			echo -e "Multi-arch support [FAILED]"
 			sleep 1s
 		fi
 	
@@ -363,7 +362,7 @@ function gpg_import()
 		echo -e "Libregeek Pacakge Signing Key [OK]"
 		sleep 0.3s
 	else
-		echo -e "Libregeek Pacakge Signing Key [FAIL]. Adding now...\n"
+		echo -e "Libregeek Pacakge Signing Key [Not Found]. Adding now...\n"
 		sleep .5s
 		$scriptdir/utilities/gpg-import.sh 8106E72834C589A7 &> /dev/null
 	fi
@@ -375,7 +374,7 @@ function gpg_import()
 		echo -e "Deb Mulitmedia [OK]"
 		sleep 0.3s
 	else
-		echo -e "Deb Mulitmedia [FAIL]. Adding now...\n"
+		echo -e "Deb Mulitmedia [Not Found]. Adding now...\n"
 		sleep .5s
 		$scriptdir/utilities/gpg-import.sh 5C808C2B65558117 &> /dev/null
 	fi

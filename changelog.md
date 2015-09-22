@@ -1,3 +1,12 @@
+SteamOS-Tools 1.7.2
+  * Restructure kodi-src script
+   * Push software list through desktop-software.sh to validate packages
+   * validate packages that needed installed through multiple VM test runs
+  * correct GPG key checks in desktop-software.sh
+  * Started to assess fixing up bad codding in scipts via shellecheck.net
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Mon, 21 September 2015 21:28:00 -5000
+
 SteamOS-Tools 1.5.2
   * Fixed package version conflict for libcrossguid1, libcrossguid-dev in libregeek repository
   * augment version number (see above) for small changes

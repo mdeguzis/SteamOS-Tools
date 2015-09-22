@@ -3,6 +3,7 @@ automake
 autopoint
 autotools-dev
 bc
+ccache
 cmake
 curl
 dcadec1

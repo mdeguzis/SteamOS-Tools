@@ -363,6 +363,7 @@ main_install_eval_pkg()
 		
 		# package is already installed and OK
 		echo "Checking for $PKG [OK]"
+		sleep .1s
 
 	fi
 
@@ -565,9 +566,11 @@ install_software()
 				if [ "$PKG_OK" != "" ]; then
 				
 					echo -e "$i package status: [OK]"
+					sleep .1s
 				
 				else
 					echo -e "$i package status: [Not found]"
+					sleep .1s
 					
 				fi
 		
@@ -711,9 +714,11 @@ manual_software_check()
 		for i in `cat $software_list`; do
 		
 			if [[ "$i" =~ "!broken!" ]]; then
+			
 				skipflag="yes"
 				echo -e "skipping broken package: $i ..."
 				sleep 0.3s
+				
 			else
 			
 				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
@@ -721,10 +726,12 @@ manual_software_check()
 				
 					# dpkg outputs it's own line that can't be supressed
 					echo -e "Package $i [Not Found]" > /dev/null
+					sleep .1s
 					
 				else
 				
 					echo -e "Packge $i [OK]"
+					sleep .1s
 					
 				fi
 			fi

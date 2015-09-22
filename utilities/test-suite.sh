@@ -88,7 +88,7 @@ run_basic_tests()
 
 main()
 {
-  if [[ "$type" == "basic ]]; then
+  if [[ "$type" == "basic" ]]; then
 
    # run basic
     run_basic_tests
@@ -98,4 +98,5 @@ main()
 }
 
 # MAIN script
+clear
 main

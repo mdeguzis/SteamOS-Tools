@@ -76,7 +76,7 @@ run_basic_tests()
     
   else
   
-    echo -e "Test $test [FAIL]""
+    echo -e "Test $test [FAIL]"
     
   fi
   

@@ -61,7 +61,7 @@ run_test()
   sleep 2s
   
   # TEST
-  if "$command"; then
+  if basc -c "$command"; then
   
     # show summary
     show_summary
@@ -87,10 +87,7 @@ run_basic_tests()
   #######################################################
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
-  # change to directory for test
-  cd ..
-  # set command and run test
-  command=$(bash -c './desktop-software.sh install "$pkg"')
+  command="../desktop-software.sh install ${pkg}"
   run_test
   # return to scriptdir 
   cd "$scriptdir"

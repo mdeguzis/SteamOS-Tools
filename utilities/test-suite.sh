@@ -11,7 +11,6 @@
 # -------------------------------------------------------------------------------
 
 type="$1"
-scriptdir=$(pwd)
 
 show_summary()
 {
@@ -90,7 +89,7 @@ run_basic_tests()
   command="echo c | ../desktop-software.sh install ${pkg}"
   run_test
   # return to scriptdir 
-  cd "$scriptdir"
+  cd -
   
 }
 

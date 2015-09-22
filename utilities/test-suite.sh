@@ -16,7 +16,7 @@
 
 pkg="gedit"
 
-cd..
+cd ..
 if echo c | ./desktop-software.sh install ${pkg}; then
   echo "desktop-software.sh install ${pkg} [PASS]"
 else

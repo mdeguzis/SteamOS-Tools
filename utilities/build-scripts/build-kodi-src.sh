@@ -406,6 +406,25 @@ kodi_build()
 
 }
 
+show_summary()
+{
+
+	cat <<-EOF
+	----------------------------------------------------------------
+	Summary
+	----------------------------------------------------------------
+	Time started: ${time_stamp_start}
+	Time started: ${time_stamp_end}
+	Total Runtime (minutes): $runtime
+
+	You should now be able to add Kodi as a non-Steam game in Big
+	Picture Mode. Please see see the wiki for more information
+	
+	EOF
+	sleep 2s
+	
+}
+
 kodi_post_cfgs()
 {
 	
@@ -438,20 +457,17 @@ kodi_post_cfgs()
 	time_stamp_end=(`date +"%T"`)
 	runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
 	
-	cat <<-EOF
+	# check if Kodi really installed
+	if [[ -f "/usr/bin/kodi" ]]; then
 	
-	----------------------------------------------------------------
-	Summary
-	----------------------------------------------------------------
-	Time started: ${time_stamp_start}
-	Time started: ${time_stamp_end}
-	Total Runtime (minutes): $runtime
-
-	You should now be able to add Kodi as a non-Steam game in Big
-	Picture Mode. Please see see the wiki for more information
+		echo -e "\nKodi was installed successfully."
+		
+	else 
 	
-	EOF
-	sleep 2s
+		echo -e "Kodi install unsucessfull"
+	
+	fi
+	
 	
 }
 

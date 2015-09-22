@@ -36,9 +36,9 @@ if [[ "$choice" == "c" ]]; then
   echo "\n[Running $test] Please wait..." 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
-    echo "$test [PASS]"
+    echo "[PASS]"
   else
-    echo "$test [PASS]"
+    echo "[FAIL]"
   fi
   
   ####################################################
@@ -52,9 +52,9 @@ if [[ "$choice" == "c" ]]; then
   echo "[Running $test] Please wait..." 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
-    echo "$test [PASS]"
+    echo "[PASS]"
   else
-    echo "$test [PASS]"
+    echo "[PASS]"
   fi
   
   echo ""
@@ -70,9 +70,9 @@ if [[ "$choice" == "c" ]]; then
   echo "[Running $test] Please wait..." 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
-    echo "$test [PASS]"
+    echo "[PASS]"
   else
-    echo "$test [PASS]"
+    echo "[PASS]"
   fi
   
   ####################################################
@@ -86,9 +86,9 @@ if [[ "$choice" == "c" ]]; then
   echo "[Running $test] Please wait..." 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
-    echo "$test [PASS]"
+    echo "[PASS]"
   else
-    echo "$test [PASS]"
+    echo "[PASS]"
   fi
   
 elif [[ "$choice" == "e" ]]; then

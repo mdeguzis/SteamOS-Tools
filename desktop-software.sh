@@ -363,7 +363,6 @@ main_install_eval_pkg()
 		
 		# package is already installed and OK
 		echo "Checking for $PKG [OK]"
-		sleep 0.5s
 
 	fi
 
@@ -564,11 +563,12 @@ install_software()
 				
 				# report package current status
 				if [ "$PKG_OK" != "" ]; then
+				
 					echo -e "$i package status: [OK]"
-					sleep 0.3s
+				
 				else
 					echo -e "$i package status: [Not found]"
-					sleep 0.3s
+					
 				fi
 		
 				# setup firstcheck var for first run through
@@ -718,12 +718,14 @@ manual_software_check()
 			
 				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 				if [ "$PKG_OK" == "" ]; then
+				
 					# dpkg outputs it's own line that can't be supressed
 					echo -e "Package $i [Not Found]" > /dev/null
-					sleep 0.3s
+					
 				else
+				
 					echo -e "Packge $i [OK]"
-					sleep 0.3s
+					
 				fi
 			fi
 

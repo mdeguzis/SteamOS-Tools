@@ -13,7 +13,6 @@
 type="$1"
 
 show_summary()
-
 {
   
 cat <<-EOF
@@ -47,7 +46,7 @@ reset_state()
   sleep 2s
   
   # Remove packages
-  sudo apt-get get remove gedit
+  sudo apt-get remove remove gedit
   
   # Purge archive package
   sudo rm -f "/var/cache/apt/archive/gedit*"
@@ -81,7 +80,7 @@ run_basic_tests()
   # desktop-software.sh tests
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
-  command="../desktop-software.sh install ${pkg}"
+  command="cd && ./desktop-software.sh install ${pkg}"
   run_test
   
 }

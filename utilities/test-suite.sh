@@ -30,7 +30,7 @@ if [[ "$choice" == "c" ]]; then
   ####################################################
   
   pkg="gedit"
-  test="[desktop-software.sh] install gedit"
+  test="desktop-software.sh install gedit"
   
   cd ..
   echo "[Running $test] Please wait..." 
@@ -46,7 +46,7 @@ if [[ "$choice" == "c" ]]; then
   ####################################################
   
   pkg="gedit"
-  test="[desktop-software.sh] remove gedit"
+  test="desktop-software.sh remove gedit"
   
   cd ..
   echo "[Running $test] Please wait..." 
@@ -64,7 +64,7 @@ if [[ "$choice" == "c" ]]; then
   ####################################################
   
   pkg="lutris"
-  test="[desktop-software.sh] Install lutris"
+  test="desktop-software.sh Install lutris"
   
   cd ..
   echo "[Running $test] Please wait..." 
@@ -80,7 +80,7 @@ if [[ "$choice" == "c" ]]; then
   ####################################################
   
   pkg="lutris"
-  test="[desktop-software.sh] remove lutris"
+  test="desktop-software.sh remove lutris"
   
   cd ..
   echo "[Running $test] Please wait..." 

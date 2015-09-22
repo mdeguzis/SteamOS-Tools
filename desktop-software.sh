@@ -389,7 +389,7 @@ function gpg_import()
 	else
 		echo -e "Libregeek Pacakge Signing Key [FAIL]. Adding now...\n"
 		sleep .5s
-		$scriptdir/utilities/gpg_import.sh 34C589A7 2> /dev/null
+		$scriptdir/utilities/gpg-import.sh 34C589A7 2> /dev/null
 	fi
 	
 	# Key Desc: Debian Multimedia
@@ -402,7 +402,7 @@ function gpg_import()
 	else
 		echo -e "Deb Mulitmedia [FAIL]. Adding now...\n"
 		sleep .5s
-		$scriptdir/utilities/gpg_import.sh 65558117 2> /dev/null
+		$scriptdir/utilities/gpg-import.sh 65558117 2> /dev/null
 	fi
 
 }
@@ -803,7 +803,7 @@ main()
 		# load functions necessary for software actions
 		# GPG import should not be needed under brewmaster/Jessie
 		
-		gpg_import
+		gpg-import
 		set_multiarch
 		pre_req_checks
 

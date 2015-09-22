@@ -70,7 +70,7 @@ run_basic_tests()
   
   # run test
   cd..
-  if 'echo c | ./desktop-software.sh install ${pkg}'; then
+  if echo c | ./desktop-software.sh install ${pkg}; then
   
     echo -e "Test $test [PASS]"
     

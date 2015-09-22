@@ -288,7 +288,7 @@ set_multiarch()
 	
 	else
 	
-		echo -e "Multi-arch support [OK]"	
+		echo -e "\nMulti-arch support [OK]"	
 		
 	fi
 	
@@ -396,7 +396,7 @@ function gpg_import()
 	# Full Key ID: 5C808C2B65558117
 	gpg_key_check=$(gpg --list-keys 65558117)
 	if [[ "$gpg_key_check" != "" ]]; then
-		echo -e "Deb Mulitmedia [OK]\n"
+		echo -e "Deb Mulitmedia [OK]"
 		sleep 0.3s
 	else
 		echo -e "Deb Mulitmedia [FAIL]. Adding now...\n"

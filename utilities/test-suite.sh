@@ -41,7 +41,8 @@ if [[ "$choice" == "c" ]]; then
   echo -e "\n[Running Test] $test" 
   
   if echo c | ./desktop-software.sh install ${pkg} \
-  | while IFS= read -r line; do printf '%-80.80s\r' "$line"; done; then
+  | sed 1d | while read line
+  do echo $line done; then
     echo "[PASS]"
   else
     echo "[FAIL]"

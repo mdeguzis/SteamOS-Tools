@@ -10,6 +10,8 @@
 # Usage:	      test-suite.sh [type]
 # -------------------------------------------------------------------------------
 
+utlitity_dir=$(pwd)
+
 clear
 cat<<- EOF
 ----------------------------------------------------------------
@@ -35,11 +37,14 @@ if [[ "$choice" == "c" ]]; then
   cd ..
   echo -e "\n[Running Test] $test Please wait..." 
   
-  if echo c | ./desktop-software.sh install ${pkg}; then
+  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"
   else
     echo "[FAIL]"
   fi
+  
+  # return to script dir
+  #cd "$utlitity_dir"
   
   ####################################################
   # desktop-software.sh - Remove Debian software
@@ -51,13 +56,14 @@ if [[ "$choice" == "c" ]]; then
   cd ..
   echo -e "\n[Running Test] $test Please wait..." 
   
-  if echo c | ./desktop-software.sh install ${pkg}; then
+  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"
   else
     echo "[FAIL]"
   fi
   
-  echo ""
+  # return to script dir
+  #cd "$utlitity_dir"
   
   ####################################################
   # desktop-software.sh - install Libregeek software
@@ -69,11 +75,14 @@ if [[ "$choice" == "c" ]]; then
   cd ..
   echo -e "\n[Running Test] $test Please wait..." 
   
-  if echo c | ./desktop-software.sh install ${pkg}; then
+  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"
   else
     echo "[FAIL]"
   fi
+  
+  # return to script dir
+  #cd "$utlitity_dir"
   
   ####################################################
   # desktop-software.sh - remove Libregeek software
@@ -85,11 +94,14 @@ if [[ "$choice" == "c" ]]; then
   cd ..
   echo -e "\n[Running Test] $test Please wait..." 
   
-  if echo c | ./desktop-software.sh install ${pkg}; then
+  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"
   else
     echo "[FAIL]"
   fi
+  
+  # return to script dir
+  #cd "$utlitity_dir"
   
 elif [[ "$choice" == "e" ]]; then
 

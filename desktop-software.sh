@@ -387,16 +387,16 @@ function gpg_import()
 	fi
 	
 	# Key Desc: Debian Multimedia
-	# Key ID: 34C589A7
-	# Full Key ID: 8106E72834C589A7
-	gpg_key_check=$(gpg --list-keys 6558117)
+	# Key ID: 65558117
+	# Full Key ID: 5C808C2B65558117
+	gpg_key_check=$(gpg --list-keys 65558117)
 	if [[ "$gpg_key_check" != "" ]]; then
 		echo -e "Deb Mulitmedia [OK]\n"
 		sleep 0.3s
 	else
 		echo -e "Deb Mulitmedia [FAIL]. Adding now...\n"
 		sleep .5s
-		$scriptdir/utilities/gpg_import.sh 6558117 2> /dev/null
+		$scriptdir/utilities/gpg_import.sh 65558117 2> /dev/null
 	fi
 
 }

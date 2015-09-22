@@ -90,7 +90,7 @@ run_basic_tests()
   # change to directory for test
   cd ..
   # set command and run test
-  command=$(./desktop-software.sh install "$pkg")
+  command=$(bash -c './desktop-software.sh install "$pkg"')
   run_test
   # return to scriptdir 
   cd "$scriptdir"

@@ -354,8 +354,8 @@ main_install_eval_pkg()
 			echo "Successfully installed $PKG"
 			
 		else
-			echo "\n==ERROR==\nCould not install $PKG. Exiting..."
-			echo "Did you remember to add the Debian sources?\n"
+			echo -e "\n==ERROR==\nCould not install $PKG. Exiting..."
+			echo -e "Did you remember to add the Debian sources?\n"
 			
 			sleep 3s
 			exit 1
@@ -592,7 +592,7 @@ install_software()
 					else
 						
 						echo -e "\n==ERROR==\nFailed to install package $i"
-						echo "Did you remember to add the Debian sources?\n"
+						echo -e "Did you remember to add the Debian sources?\n"
 						sleep 3s
 						exit 1
 						

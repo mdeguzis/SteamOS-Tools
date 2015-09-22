@@ -579,8 +579,19 @@ install_software()
 				if [ "$PKG_OK" == "" ] && [ "$apt_mode" == "install" ]; then
 				
 					echo -e "\n==> Attempting $i automatic package installation...\n"
-					sudo apt-get $cache_tmp $apt_mode $i
-					sleep 1s
+					
+					if sudo apt-get $cache_tmp $apt_mode $i -y; then
+						
+						echo -e "Successfully installed package $i"
+						sleep 1s
+						
+					else
+						
+						echo -e "Failed to install package $i\n"
+						sleep 1s
+						exit 1
+						
+					fi
 						
 				elif [ "$apt_mode" == "remove" ]; then
 					

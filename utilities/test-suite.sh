@@ -90,7 +90,7 @@ run_basic_tests()
   command="cd .. && echo c | ./desktop-software.sh install ${pkg}"
   run_test
   # return to scriptdir 
-  cd "$utility_dir
+  cd "$utility_dir"
   
 }
 

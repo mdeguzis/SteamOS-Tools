@@ -23,7 +23,7 @@ time_stamp_start=(`date +"%T"`)
 ###################
 
 # default for packaging attempts
-packag_deb="no"
+package_deb="no"
 skip_to_build="no"
 
 # set default concurrent jobs if called standalone or
@@ -433,13 +433,13 @@ kodi_post_cfgs()
 	runtime=$(echo "scale=2; ($time_end-$time_start) / 60 " | bc)
 	
 	# check if Kodi really installed
-	if [[ -f "/usr/bin/kodi" ]]; then
+	if [[ -f "/usr/local/bin/kodi" ]]; then
 	
-		echo -e "\nKodi was installed successfully."
+		echo -e "\n==INFO==\nKodi was installed successfully."
 		
 	else 
 	
-		echo -e "Kodi install unsucessfull"
+		echo -e "\n==INFO==\nKodi install unsucessfull\n"
 	
 	fi
 	

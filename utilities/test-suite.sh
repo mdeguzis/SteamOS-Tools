@@ -10,27 +10,80 @@
 # Usage:	      test-suite.sh [type]
 # -------------------------------------------------------------------------------
 
-###############################################
-# desktop-software.sh 
-###############################################
+cat<<- EOF
+----------------------------------------------------------------
+SteamOS-Tools test suite
+----------------------------------------------------------------
+This script only* tests functionality, syntax errors. If a 
+command fails you will see it below as TEST_NAME [FAIL]
 
-pkg="gedit"
-test="[desktop-software.sh] Install gedit"
+[c] to continue or [e] to exit
+EOF
 
-cd ..
-if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
-  echo "$test [PASS]"
-else
-  echo "$test [PASS]"
+read -erp "Choice: " choice
+
+if [[ "$choice" == "c" ]]; then
+
+  clear
+  ####################################################
+  # desktop-software.sh - install Debian software
+  ####################################################
+  
+  pkg="gedit"
+  test="[desktop-software.sh] install gedit"
+  
+  cd ..
+  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
+    echo "$test [PASS]"
+  else
+    echo "$test [PASS]"
+  fi
+  
+  ####################################################
+  # desktop-software.sh - Remove Debian software
+  ####################################################
+  
+  pkg="gedit"
+  test="[desktop-software.sh] remove gedit"
+  
+  cd ..
+  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
+    echo "$test [PASS]"
+  else
+    echo "$test [PASS]"
+  fi
+  
+  ####################################################
+  # desktop-software.sh - install Libregeek software
+  ####################################################
+  
+  pkg="lutris"
+  test="[desktop-software.sh] Install lutris"
+  
+  cd ..
+  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
+    echo "$test [PASS]"
+  else
+    echo "$test [PASS]"
+  fi
+  
+  ####################################################
+  # desktop-software.sh - remove Libregeek software
+  ####################################################
+  
+  pkg="lutris"
+  test="[desktop-software.sh] remove lutris"
+  
+  cd ..
+  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
+    echo "$test [PASS]"
+  else
+    echo "$test [PASS]"
+  fi
+  
+elif [[ "$choice" == "e" ]]; then
+
+  exit 1
+
 fi
-
-pkg="lutris"
-test="[desktop-software.sh] Install lutris"
-
-cd ..
-if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
-  echo "$test [PASS]"
-else
-  echo "$test [PASS]"
-fi
- 
+   

@@ -539,7 +539,7 @@ install_software()
 	# as a last ditch effort
 	
 	# let user know checks in progress
-	echo -e "\n==> Validating packages..."
+	echo -e "\n==> Validating packages...\n"
 	sleep 2s
 	
 	if [ -n "$software_list" ]; then
@@ -563,7 +563,7 @@ install_software()
 					echo -e "$i package status: [OK]"
 					sleep 0.3s
 				else
-					echo -e "\n$i package status: [Not found]"
+					echo -e "$i package status: [Not found]"
 					sleep 0.3s
 				fi
 		

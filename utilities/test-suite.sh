@@ -61,15 +61,15 @@ run_test()
   sleep 2s
   
   # TEST
-  if basc -c "$command"; then
+  if bash -c "$command"; then
   
     # show summary
-    show_summary
+    echo -e "\n\tTest $test [PASSED]"
     
   else
     
     # show failure
-    show_failure
+    echo -e "\n\tTest $test [FAILED]"
   
   fi
   

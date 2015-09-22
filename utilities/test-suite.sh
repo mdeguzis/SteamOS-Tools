@@ -11,6 +11,7 @@
 # -------------------------------------------------------------------------------
 
 type="$1"
+scriptdir=$(pwd)
 
 show_summary()
 {
@@ -81,10 +82,13 @@ run_basic_tests()
   # desktop-software.sh tests
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
-  command="./desktop-software.sh install ${pkg}"
-  run_test
   # change to directory for test
   cd ..
+  # set command and run test
+  command="./desktop-software.sh install ${pkg}"
+  run_test
+  # return to scriptdir 
+  cd "$scriptdir"
   
 }
 

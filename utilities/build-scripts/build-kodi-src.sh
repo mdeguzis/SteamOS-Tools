@@ -86,6 +86,14 @@ fi
 kodi_prereqs()
 {
 	clear
+	
+	cat <<-EOF
+	-----------------------------------------------------------
+	Kodi-src build script
+	-----------------------------------------------------------
+	
+	EOF
+	
 	# Main build dependencies are installed via desktop-software.sh
 	# from the software list cfgs/software-lists/kodi-src.txt
 	
@@ -207,6 +215,9 @@ kodi_package_deb()
 
 kodi_clone()
 {
+	
+	echo -e "==> Cloning the Kodi team repository"
+	
 	# set build dir
 	build_dir="$HOME/kodi/"
 

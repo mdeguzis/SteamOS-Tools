@@ -37,6 +37,7 @@ libfribidi-dev
 libgif-dev
 libglew-dev
 libglu1-mesa-dev libiso9660-dev
+libgnutls28-dev
 libjasper-dev
 libjpeg-dev libltdl-dev
 liblzo2-dev

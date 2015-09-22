@@ -40,9 +40,7 @@ if [[ "$choice" == "c" ]]; then
   cd ..
   echo -e "\n[Running Test] $test" 
   
-  if echo c | ./desktop-software.sh install ${pkg} \
-  | sed 1d | while read line
-  do echo $line done; then
+  if echo c | ./desktop-software.sh install ${pkg}; tail -n 5 /etc/profile) | tail -n 6; then
     echo "[PASS]"
   else
     echo "[FAIL]"

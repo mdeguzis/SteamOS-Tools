@@ -56,28 +56,6 @@ reset_state()
   
 }
 
-run_test()
-{
-  
-  echo -e "==> Running test $test, please wait."
-  sleep 2s
-  
-  # TEST
-  if $command; then
-  
-    # show summary
-    echo -e "Test $test [PASSED]"
-    
-  else
-    
-    # show failure
-    echo -e "Test $test [FAILED]"
-  
-  fi
-  
-}
-
-
 run_basic_tests()
 {
   
@@ -91,6 +69,19 @@ run_basic_tests()
   pkg="gedit"
   command="cd .. && echo c | ./desktop-software.sh install ${pkg}"
   run_test
+  
+  # run test
+  cd..
+  if 'echo c | ./desktop-software.sh install ${pkg}'; then
+  
+    echo -e "Test $test [PASS]"
+    
+  else
+  
+    echo -e "Test $test [FAIL]""
+    
+  fi
+  
   # return to scriptdir 
   cd "$utility_dir"
   

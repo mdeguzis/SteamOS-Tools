@@ -352,7 +352,6 @@ main_install_eval_pkg()
 		if sudo apt-get $cache_tmp ${source_type}install $PKG -y; then
 		
 			echo "Successfully installed $PKG"
-			sleep 2s
 			
 		else
 			echo "Could not install $PKG. Exiting..."
@@ -584,12 +583,11 @@ install_software()
 					if sudo apt-get $cache_tmp $apt_mode $i -y; then
 						
 						echo -e "\n==INFO==\nSuccessfully installed package $i\n"
-						sleep 2s
 						
 					else
 						
 						echo -e "\n==ERROR==\nFailed to install package $i\n"
-						sleep 2s
+						sleep 3s
 						exit 1
 						
 					fi
@@ -604,25 +602,16 @@ install_software()
 						sleep 2s
 					fi
 					
-					sudo apt-get $cache_tmp $apt_mode $i
+					if sudo apt-get $cache_tmp $apt_mode $i; then
 					
-					###########################################################
-					# Fail out if any pkg installs fail (-z = zero length)
-					###########################################################
-				
-					if [[ $? != '0' ]]; then
+						echo -e "\n==INFO==\nRemoval succeeded\n"
 						
-						# attempt to resolve missing
-						sudo apt-get $cache_tmp $apt_mode -f
+					else 
+					
+						echo -e "\n==INFO==\nRemoval FAILED!\n"
 						
-						echo -e "\n==> Could not install or remove ALL packages from the"
-						echo -e "brewmaster repositories, jessie sources, or alternative"
-						echo -e "source lists you have configured.\n"
-						echo -e "Please check log.txt in the directory you ran this from.\n"
-						echo -e "Failure occurred on package: ${i}\n"
-						pkg_fail="yes"
-						exit
 					fi
+					
 				
 				# end PKG OK/FAIL test loop if/fi
 				fi

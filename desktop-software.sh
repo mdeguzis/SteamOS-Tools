@@ -539,7 +539,7 @@ install_software()
 	# as a last ditch effort
 	
 	# let user know checks in progress
-	echo -e "\n==> Validating packages...\n"
+	echo -e "\n==> Validating packages..."
 	sleep 2s
 	
 	if [ -n "$software_list" ]; then

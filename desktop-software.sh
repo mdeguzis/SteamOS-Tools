@@ -508,9 +508,9 @@ install_software()
 	# create alternate cache dir in /home/desktop due to the 
 	# limited size of the default /var/cache/apt/archives size
 	
-	mkdir -p "/home/desktop/cache_temp"
+	mkdir -p "/home/desktop/steamos-tools-aptcache"
 	# create cache command
-	cache_tmp=$(echo "-o dir::cache::archives="/home/desktop/cache_temp"")
+	cache_tmp=$(echo "-o dir::cache::archives="/home/desktop/steamos-tools-aptcache"")
 	
 	###########################################################
 	# Installation routine (brewmaster/main)
@@ -833,6 +833,10 @@ main()
 	# cleanup package leftovers
 	echo -e "\n==> Cleaning up unused packages\n"
 	sudo apt-get autoremove
+	
+	# Also, clear out our cache folder
+	sudo apt-get -o dir::cache::archives="/home/desktop/steamos-tools-aptcache" clean
+	
 	echo ""
 }
 

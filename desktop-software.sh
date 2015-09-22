@@ -264,7 +264,7 @@ source_modules()
 set_multiarch()
 {
 	
-	echo -e "\n==> Checking for multi-arch support\n"
+	echo -e "\n==> Checking for multi-arch support"
 	sleep 1s
 	
 	# add 32 bit support

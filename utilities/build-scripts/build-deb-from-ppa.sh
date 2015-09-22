@@ -201,7 +201,16 @@ main()
 	if [[ "$ignore_deps" == "no" ]]; then
 	
 		# attempt to get build deps
-		sudo apt-get build-dep ${target}
+		if sudo apt-get build-dep ${target}; then
+		
+			echo "\n==INFO==\nSource package dependencies successfully installed."
+			
+		else
+			
+			echo "\n==ERROR==\nSource package dependencies coud not be installed!"
+			exit 1
+			
+		fi
 	
 		# build normally using apt-get source
 		apt-get source --build ${target}
@@ -217,9 +226,6 @@ main()
 	
 		echo -e "==INFO==\nIgnoring depedencies for build\n"
 		sleep 2s
-		
-		# Try to install build-deps for source pacakge
-		apt-get build-dep ${target}
 		
 		# download source 
 		apt-get source ${target}

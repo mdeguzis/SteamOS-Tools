@@ -321,11 +321,11 @@ main()
 		sleep 2s
 		sudo apt-get update
 		
-		echo -e "\n==> Adding keyring package for deb-multimedia\n"
+		echo -e "\n==> Adding keyring packages for deb-multimedia\n"
 		sleep 2s
 		
 		# update keyring for deb-multimedia
-		sudo apt-get install deb-multimedia-keyring
+		sudo apt-get install deb-multimedia-keyring debian-keyring
 
 		#####################################################
 		# Remind user how to install

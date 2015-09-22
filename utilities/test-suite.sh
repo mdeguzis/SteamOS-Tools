@@ -61,7 +61,7 @@ run_test()
   sleep 2s
   
   # TEST
-  if bash -c "$command" && wait; then
+  if bash -c "$command"; then
   
     # show summary
     echo -e "Test $test [PASSED]"
@@ -87,7 +87,7 @@ run_basic_tests()
   #######################################################
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
-  command="echo c | ../desktop-software.sh install ${pkg} &> /dev/null"
+  command="echo c | ../desktop-software.sh install ${pkg}"
   run_test
   # return to scriptdir 
   cd "$scriptdir"

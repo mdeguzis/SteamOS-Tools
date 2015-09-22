@@ -3,7 +3,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.3.9
+# Script Ver:		0.5.9
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -23,7 +23,7 @@ time_stamp_start=(`date +"%T"`)
 ###################
 
 # default for packaging attempts
-packag_debe="no"
+packag_deb="no"
 skip_to_build="no"
 
 # set default concurrent jobs if called standalone or
@@ -302,31 +302,6 @@ kodi_build()
 
 	# enter build dir
 	cd "$build_dir"
-
-  	# Note (needed?):
-  	# When listing the application depends, reference https://packages.debian.org/sid/kodi
-  	# for an idea of what packages are needed.
-
-	#[NOTICE] crossguid / libcrossguid-dev all Linux destributions.
-        #Kodi now requires crossguid which is not available in Ubuntu
-        # repositories at this time. We supply a Makefile in tools/depends/target/crossguid
-        # to make it easy to install into /usr/local.
-
-	# make -C tools/depends/target/crossguid PREFIX=/usr/local/crossguid
-
-	# This above method has issues with using the suggested prefix /usr/local
-	# use our package rebuilt from https://launchpad.net/~team-xbmc nightly
-	# This package is not hosted at packages.libregeek.org
-
-	# libdcadec
-	
-	# libtag
-	#make -C lib/taglib
-	#make -C lib/taglib install
-
-	# libnfs
-	#make -C lib/libnfs
-	#make -C lib/libnfs install
 
   	# create the Kodi executable manually perform these steps:
 	./bootstrap

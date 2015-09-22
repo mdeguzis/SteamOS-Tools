@@ -5,6 +5,8 @@ autotools-dev
 bc
 cmake
 curl
+dcadec1
+dcadec-dev
 doxygen
 default-jre
 gawk

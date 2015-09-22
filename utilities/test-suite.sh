@@ -67,8 +67,6 @@ run_basic_tests()
   #######################################################
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
-  command="cd .. && echo c | ./desktop-software.sh install ${pkg}"
-  run_test
   
   # run test
   cd..

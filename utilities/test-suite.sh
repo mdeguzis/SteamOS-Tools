@@ -61,7 +61,7 @@ run_test()
   sleep 2s
   
   # TEST
-  if "$command"; then
+  if $command; then
   
     # show summary
     echo -e "Test $test [PASSED]"

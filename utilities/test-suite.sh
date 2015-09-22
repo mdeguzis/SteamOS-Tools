@@ -12,6 +12,12 @@
 
 utlitity_dir=$(pwd)
 
+# testing 
+echo "testing..."
+{ for i in {1..10}; do sleep 1; echo "$RANDOM $RANDOM $RANDOM"; done; } | while IFS= read -r line; do printf '%-80.80s\r' "$line"; done ; echo
+
+sleep 50s
+
 clear
 cat<<- EOF
 ----------------------------------------------------------------
@@ -40,7 +46,7 @@ if [[ "$choice" == "c" ]]; then
   cd ..
   echo -e "\n[Running Test] $test" 
   
-  if echo c | ./desktop-software.sh install ${pkg} | while read -r line; do echo -n $'\r'"$line"; done; then
+  if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"
   else
     echo "[FAIL]"

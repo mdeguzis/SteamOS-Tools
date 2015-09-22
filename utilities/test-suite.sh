@@ -61,15 +61,15 @@ run_test()
   sleep 2s
   
   # TEST
-  if bash -c "$command"; then
+  if bash -c "$command" && wait; then
   
     # show summary
-    echo -e "\n\tTest $test [PASSED]"
+    echo -e "Test $test [PASSED]"
     
   else
     
     # show failure
-    echo -e "\n\tTest $test [FAILED]"
+    echo -e "Test $test [FAILED]"
   
   fi
   

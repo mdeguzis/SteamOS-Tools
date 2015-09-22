@@ -453,7 +453,7 @@ get_software_type()
                 ep_install_gameplay_recording
                 exit 1
         elif [[ "$type" == "kodi-src" ]]; then
-        	software_list="$scriptdir/cfgs/software-lists/kodi-srctxt"
+        	software_list="$scriptdir/cfgs/software-lists/kodi-src.txt"
         elif [[ "$type" == "kodi" ]]; then
                 # install plex from helper script
                 ep_install_kodi

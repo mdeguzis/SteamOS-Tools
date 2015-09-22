@@ -79,13 +79,15 @@ run_basic_tests()
   # reset test package states
   reset_state
   
+  #######################################################
   # desktop-software.sh tests
+  #######################################################
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
   # change to directory for test
   cd ..
   # set command and run test
-  command="./desktop-software.sh install ${pkg}"
+  command=$(./desktop-software.sh install "$pkg")
   run_test
   # return to scriptdir 
   cd "$scriptdir"

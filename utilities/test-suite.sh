@@ -3,7 +3,7 @@
 # Author: 	    Michael DeGuzis
 # Git:	      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name: 	test-suite.sh
-# Script Ver:	  0.1.1
+# Script Ver:	  0.3.1
 # Description:	Runs some tests to make sure package installs and functions on a
 #               basic level work
 #
@@ -11,6 +11,7 @@
 # -------------------------------------------------------------------------------
 
 type="$1"
+scriptdir="$OLDPWD"
 
 show_summary()
 {
@@ -46,7 +47,7 @@ reset_state()
   sleep 2s
   
   # Remove packages
-  sudo apt-get remove remove gedit
+  sudo apt-get remove remove gedit -y &> /dev/null
   
   # Purge archive package
   sudo rm -f "/var/cache/apt/archive/gedit*"
@@ -80,7 +81,7 @@ run_basic_tests()
   # desktop-software.sh tests
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
-  command="cd && ./desktop-software.sh install ${pkg}"
+  command="cd "$scriptdir" && ./desktop-software.sh install ${pkg}"
   run_test
   
 }

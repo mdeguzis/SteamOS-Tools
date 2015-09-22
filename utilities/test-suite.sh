@@ -18,7 +18,7 @@ cat<<- EOF
 SteamOS-Tools test suite
 ----------------------------------------------------------------
 This script only* tests functionality, syntax errors. If a 
-command fails you will see it below as TEST_NAME [FAIL]
+command fails you will see it below as [FAIL] beneath the test.
 
 Some tests take some time to complete, so please let the test
 finish.

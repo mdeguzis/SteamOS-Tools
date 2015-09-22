@@ -56,7 +56,11 @@ reset_state()
 run_test()
 {
   
-  if "${command}"; then
+  # change to command directory
+  cd_cmd_dir
+  
+  # TEST
+  if "$command"; then
   
     # show summary
     show_summary
@@ -80,7 +84,8 @@ run_basic_tests()
   # desktop-software.sh tests
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
-  command="cd .. && ./desktop-software.sh install ${pkg}"
+  cd_cmd_dir=$(cd ..)
+  command="./desktop-software.sh install ${pkg}"
   run_test
   
 }

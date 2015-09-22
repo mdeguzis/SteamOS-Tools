@@ -92,19 +92,6 @@ while [ "$2" != "" ]; do
 	shift
 done
 
-# Strip symbols from large pkg pastes from build-depends
-sed -i "s|(>= [0-9].[0-9].[0-9])||g" "custom-pkg.txt"
-sed -i "s|(<< [0-9].[0-9].[0-9])||g" "custom-pkg.txt"
-sed -i "s|(>= [0-9].[0-9][0-9])||g" "custom-pkg.txt"
-sed -i "s|(>= [0-9])||g" "custom-pkg.txt"
-sed -i "s|(>= [0-9].[0-9][0-9])||g" "custom-pkg.txt"
-sed -i "s|(>= [0-9]:[0-9].[0-9].[0-9].[0-9])||g" "custom-pkg.txt"
-sed -i "s|(>= [0-9]:[0-9].[0-9][0-9])||g" "custom-pkg.txt"
-sed -i "s|[ |]| |g" "custom-pkg.txt"
-sed -i "s|  | |g" "custom-pkg.txt"
-sed -i "s|(<<| |g" "custom-pkg.txt"
-sed -i "s|(>= [0-9].[0-9])||g" "custom-pkg.txt"
-
 # set custom flag for use later on if line count
 # of testing custom pkg test errorssoftware-lists/custom-pkg.txt exceeds 1
 if [ -f "custom-pkg.txt" ]; then
@@ -120,16 +107,6 @@ if [[ $LINECOUNT -gt 1 ]]; then
 	custom_pkg_set="yes"
 	
 fi
-
-#############################################
-# Test arguments (2nd pass) here:
-#############################################
-#echo -e "\noptions 2: $options"
-#echo "Software type 2: $type"
-#echo "Extra opts 2: $extra_opts"
-#echo -e "Availble custom pkg list 2: \n"
-#cat software-lists/custom-pkg.txt
-#sleep 10s
 
 apt_mode="install"
 uninstall="no"

@@ -20,6 +20,9 @@ SteamOS-Tools test suite
 This script only* tests functionality, syntax errors. If a 
 command fails you will see it below as TEST_NAME [FAIL]
 
+Some tests take some time to complete, so please let the test
+finish.
+
 [c] to continue or [e] to exit
 EOF
 
@@ -35,7 +38,7 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh install gedit"
   
   cd ..
-  echo -e "\n[Running Test] $test Please wait..." 
+  echo -e "\n[Running Test] $test" 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"
@@ -44,7 +47,7 @@ if [[ "$choice" == "c" ]]; then
   fi
   
   # return to script dir
-  #cd "$utlitity_dir"
+  cd "$utlitity_dir"
   
   ####################################################
   # desktop-software.sh - Remove Debian software
@@ -54,7 +57,7 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh remove gedit"
   
   cd ..
-  echo -e "[Running Test] $test " 
+  echo -e "\n[Running Test] $test " 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"
@@ -63,7 +66,7 @@ if [[ "$choice" == "c" ]]; then
   fi
   
   # return to script dir
-  #cd "$utlitity_dir"
+  cd "$utlitity_dir"
   
   ####################################################
   # desktop-software.sh - install Libregeek software
@@ -73,7 +76,7 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh Install lutris"
   
   cd ..
-  echo -e "[Running Test] $test " 
+  echo -e "\n[Running Test] $test " 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"
@@ -82,7 +85,7 @@ if [[ "$choice" == "c" ]]; then
   fi
   
   # return to script dir
-  #cd "$utlitity_dir"
+  cd "$utlitity_dir"
   
   ####################################################
   # desktop-software.sh - remove Libregeek software
@@ -92,7 +95,7 @@ if [[ "$choice" == "c" ]]; then
   test="desktop-software.sh remove lutris"
   
   cd ..
-  echo -e "[Running Test] $test " 
+  echo -e "\n[Running Test] $test " 
   
   if echo c | ./desktop-software.sh install ${pkg} &> /dev/null; then
     echo "[PASS]"
@@ -101,7 +104,7 @@ if [[ "$choice" == "c" ]]; then
   fi
   
   # return to script dir
-  #cd "$utlitity_dir"
+  cd "$utlitity_dir"
   
 elif [[ "$choice" == "e" ]]; then
 

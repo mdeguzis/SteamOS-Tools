@@ -11,7 +11,6 @@
 # -------------------------------------------------------------------------------
 
 type="$1"
-scriptdir="$OLDPWD"
 
 show_summary()
 {
@@ -81,7 +80,7 @@ run_basic_tests()
   # desktop-software.sh tests
   test="desktop-software.sh [Debian Package]"
   pkg="gedit"
-  command="cd "$scriptdir" && ./desktop-software.sh install ${pkg}"
+  command="cd .. && ./desktop-software.sh install ${pkg}"
   run_test
   
 }

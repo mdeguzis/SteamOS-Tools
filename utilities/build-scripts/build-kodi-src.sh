@@ -334,6 +334,13 @@ kodi_build()
 	# (See --help for available options). For now, use the default PREFIX
         # A full listing of supported options can be viewed by typing './configure --help'.
 	# Default install path is:
+	
+	# FOR PACKAGING DEB ONLY (TESTING)
+	# It may seem that per "http://forum.kodi.tv/showthread.php?tid=80754", we need to
+	# export package config. 
+	
+	# export PKG_CONFIG_PATH=/usr/lib/pkgconfig
+	# ./configure  --enable-libbluray
 
 	./configure
 

@@ -156,7 +156,7 @@ kodi_package_deb()
 	# Testing...use our fork to fix the Debian dependency on libgnutls-dev
 	# Debian Jessie's package seems named libgnutls28-dev. PRT submitted to XBMC team
 	
-	echo "\nTESTING SED REPLACE\n"
+	echo -e "\nTESTING SED REPLACE\n"
 	
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
 	old_url="https://github.com/xbmc/xbmc-packaging/archive/master.tar.gz"

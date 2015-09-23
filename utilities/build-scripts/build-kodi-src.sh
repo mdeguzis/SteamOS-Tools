@@ -219,8 +219,12 @@ clone_git()
 	# Use our fork. There is a depdency on libgnutls-dev, but the debian package
 	# is named libgnutls28-dev, version 3.3.8-6. 
 	
-	#git clone git://github.com/xbmc/xbmc.git kodi
-	git clone https://github.com/ProfessorKaos64/xbmc.git kodi
+	# See: PR: https://github.com/xbmc/xbmc-packaging/pull/23
+	
+	git_url="git://github.com/ProfessorKaos64/xbmc.git kodi"
+	#git_url="git://github.com/xbmc/xbmc.git kodi"
+
+	git clone $git_url
 	
 }
 

@@ -159,9 +159,10 @@ kodi_package_deb()
 	echo -e "\nTESTING SED REPLACE\n"
 	
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
-	old_url="https://github.com/xbmc/xbmc-packaging/archive/master.tar.gz"
-	new_url="https://github.com/ProfessorKaos64/xbmc-packaging/archive/master.tar.gz"
-	sed -i 's|${old_url}|${new_url}|g' "$build_dir/tools/Linux/packaging/mk-debian-package.sh"
+	old_url="xbmc/xbmc-packaging/archive/master.tar.gz"
+	new_url="ProfessorKaos64/xbmc-packaging/archive/master.tar.gz"
+	sed 's|xbmc/xbmc-packaging/archive/master.tar.gz|ProfessorKaos64/xbmc-packaging/archive/master.tar.gz|g' \
+	"tools/Linux/packaging/mk-debian-package.sh" | less
 	
 	sleep 20s
 	
@@ -238,7 +239,7 @@ kodi_package_deb()
 kodi_clone()
 {
 	
-	echo -e "==> Cloning the Kodi repository:"
+	echo -e "\n==> Cloning the Kodi repository:"
 	echo -e "    $git_url"
 	
 

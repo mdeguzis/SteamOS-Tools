@@ -23,6 +23,8 @@ time_stamp_start=(`date +"%T"`)
 ###################
 
 # default for packaging attempts
+# set build dir
+build_dir="$HOME/kodi/"
 package_deb="no"
 skip_to_build="no"
 git_url="git://github.com/ProfessorKaos64/xbmc.git kodi"
@@ -145,6 +147,9 @@ kodi_package_deb()
 	
 	echo -e "Build Kodi for our host/ARCH or for all? [host|target]"
 	
+	# Ensure we are in the proper DIR
+	cd "$build_dir"
+	
 	# get user choice
 	sleep 0.2s
 	read -erp "Choice: " build_choice
@@ -221,8 +226,6 @@ kodi_clone()
 	echo -e "==> Cloning the Kodi repository:"
 	echo -e "    $git_url"
 	
-	# set build dir
-	build_dir="$HOME/kodi/"
 
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
@@ -236,6 +239,9 @@ kodi_clone()
 		sleep 2s
 		cd "$build_dir"
 		kodi_package_deb
+		# When testing this over SSH, give some time since it will close the connection on exit1
+		echo -e "\nExiting script in 20 seconds..."
+		sleep 20s
 		exit 1
 		
 	fi

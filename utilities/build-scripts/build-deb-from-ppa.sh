@@ -200,6 +200,8 @@ main()
 	# assess if depdencies should be ignored
 	if [[ "$ignore_deps" == "no" ]]; then
 	
+		echo -e "\n==> Attempting to auto-install build dependencies\n"
+	
 		# attempt to get build deps
 		if sudo apt-get build-dep ${target}; then
 		
@@ -208,13 +210,22 @@ main()
 		else
 			
 			echo -e "\n==ERROR==\nSource package dependencies coud not be installed!"
-			echo -e "Press CTRL+C to exit now."
-			sleep 10s
+			echo -e "Press CTRL+C to exit now. Exiting in 15 seconds."
+			sleep 15s
+			exit 1
 			
 		fi
 	
 		# build normally using apt-get source
-		apt-get source --build ${target}
+		if apt-get source --build ${target}; then
+			
+			echo -e "\n==INFO==\nBuild successfull"
+			
+		else
+		
+			echo -e "\n==INFO==\nBuild FAILED"
+			
+		fi
 	
 	elif [[ "$ignore_deps" == "yes" ]]; then
 	

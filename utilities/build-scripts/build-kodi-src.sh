@@ -340,7 +340,7 @@ kodi_build()
 	# export package config. 
 	
 	# export PKG_CONFIG_PATH=/usr/lib/pkgconfig
-	# ./configure  --enable-libbluray
+	# ./configure --prefix=/usr --enable-libbluray
 
 	./configure
 

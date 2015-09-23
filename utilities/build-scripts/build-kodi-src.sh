@@ -339,8 +339,10 @@ kodi_build()
 	# It may seem that per "http://forum.kodi.tv/showthread.php?tid=80754", we need to
 	# export package config. 
 	
-	export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
-	./configure --prefix=/usr --enable-libbluray
+	# Mv pkgconfig 
+	
+	export PKG_CONFIG_PATH=/usr/lib/pkgconfig
+	./configure --enable-libbluray
 
 	# make the package
 	# By adding -j<number> to the make command, you describe how many
@@ -500,7 +502,7 @@ main | tee log_temp.txt
 #####################################################
 
 # convert log file to Unix compatible ASCII
-strings log_temp.txt > log.txt
+strings log_temp.txt > kodi-build-log.txt
 
 # strings does catch all characters that I could 
 # work with, final cleanup

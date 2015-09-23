@@ -13,7 +13,8 @@ key="$1"
 # Choose keyserver to use
 
 #keyserver="hkp://subkeys.pgp.net"
-keyserver="pgp.mit.edu"
+keyserver="https://sks-keyservers.net"
+#keyserver="pgp.mit.edu"
 
 # import gpg key
 gpg --keyserver $keyserver --recv-keys $key

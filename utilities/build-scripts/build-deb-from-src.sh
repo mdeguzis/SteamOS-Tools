@@ -115,7 +115,7 @@ main()
 			fi
 			
 		elif [[ "$git_choice" == "r" ]]; then
-			echo -e "\n==> Removing and cloning repository again..."
+			echo -e "\n==> Removing and cloning repository again...\n"
 			sleep 2s
 			# remove, clone, enter
 			rm -rf "$git_dir"

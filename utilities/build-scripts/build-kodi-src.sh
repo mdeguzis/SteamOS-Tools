@@ -339,10 +339,8 @@ kodi_build()
 	# It may seem that per "http://forum.kodi.tv/showthread.php?tid=80754", we need to
 	# export package config. 
 	
-	# export PKG_CONFIG_PATH=/usr/lib/pkgconfig
-	# ./configure --prefix=/usr --enable-libbluray
-
-	./configure
+	export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+	./configure --prefix=/usr --enable-libbluray
 
 	# make the package
 	# By adding -j<number> to the make command, you describe how many

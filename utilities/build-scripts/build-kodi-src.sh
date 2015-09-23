@@ -213,6 +213,17 @@ kodi_package_deb()
 
 }
 
+clone_git()
+{
+	
+	# Use our fork. There is a depdency on libgnutls-dev, but the debian package
+	# is named libgnutls28-dev, version 3.3.8-6. 
+	
+	#git clone git://github.com/xbmc/xbmc.git kodi
+	git clone https://github.com/ProfessorKaos64/xbmc.git kodi
+	
+}
+
 kodi_clone()
 {
 	
@@ -257,7 +268,8 @@ kodi_clone()
 				rm -rf "$build_dir"
 				# create and clone to $HOME/kodi
 				cd
-				git clone git://github.com/xbmc/xbmc.git kodi
+				clone_git
+				
 				
 			fi
 
@@ -267,7 +279,7 @@ kodi_clone()
 			sudo rm -rf "$build_dir"
 			# create and clone to $HOME/kodi
 			cd
-			git clone git://github.com/xbmc/xbmc.git kodi
+			clone_git
 
 		else
 
@@ -275,7 +287,7 @@ kodi_clone()
 			sleep 2s
 			# create and clone to $HOME/kodi
 			cd
-			git clone git://github.com/xbmc/xbmc.git kodi
+			clone_git
 
 		fi
 
@@ -286,7 +298,7 @@ kodi_clone()
 			# create DIRS
 			cd
 			# create and clone to current dir
-			git clone git://github.com/xbmc/xbmc.git kodi
+			clone_git
 
 	fi
 

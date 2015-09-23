@@ -52,7 +52,7 @@ check_gpg()
 	# Key Desc: Debian Multimedia
 	# Key ID: 65558117 
 	# Full Key ID: 5C808C2B65558117
-	if gpg --batch --quiet --edit-key 8106E72834C589A7 check clean save quit > /dev/null 2>&1; then
+	if gpg --batch --quiet --edit-key 5C808C2B65558117 check clean save quit > /dev/null 2>&1; then
 		echo -e "Deb Mulitmedia [OK]\n"
 		sleep 0.3s
 	else

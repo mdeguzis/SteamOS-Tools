@@ -218,8 +218,8 @@ kodi_package_deb()
 kodi_clone()
 {
 	
-	echo -e "==> Cloning the Kodi team repository"
-	echo -e "   $git_url"
+	echo -e "==> Cloning the Kodi repository:"
+	echo -e "    $git_url"
 	
 	# set build dir
 	build_dir="$HOME/kodi/"

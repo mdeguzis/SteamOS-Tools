@@ -534,7 +534,7 @@ install_software()
 				
 				else
 					echo -e "$i package status: [Not found]"
-					sleep 2s
+					sleep 1s
 					
 				fi
 		
@@ -691,7 +691,7 @@ manual_software_check()
 				
 					# dpkg outputs it's own line that can't be supressed
 					echo -e "Package $i [Not Found]" > /dev/null
-					sleep 2s
+					sleep 1s
 					
 				else
 				

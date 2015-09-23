@@ -3,7 +3,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.5.9
+# Script Ver:		0.6.3
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -18,13 +18,20 @@
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
+# remove old log
+rm -f "kodi-build-log.txt"
+
 ###################
 # global vars
 ###################
 
 # default for packaging attempts
+# set build dir
+build_dir="$HOME/kodi/"
 package_deb="no"
 skip_to_build="no"
+#git_url="git://github.com/ProfessorKaos64/xbmc.git kodi"
+git_url="git://github.com/xbmc/xbmc.git kodi"
 
 # set default concurrent jobs if called standalone or
 # called with extra_opts during 'dekstop-software install kodi-src --cores $n'
@@ -103,7 +110,7 @@ kodi_prereqs()
 		echo -e "\n==> Installing build deps for packaging\n"
 		sleep 2s
 	
-		sudo apt-get install build-essential fakeroot devscripts checkinstall \
+		sudo apt-get install -y build-essential fakeroot devscripts checkinstall \
 		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev \
 		libsamplerate0-dev libgnutls28-dev
 	
@@ -113,7 +120,7 @@ kodi_prereqs()
 		# origin: https://launchpad.net/~team-xbmc/+archive/ubuntu/xbmc-ppa-build-depends
 		# packages are now in the packages.libregeek.org pool
 
-		sudo apt-get install libcec3 libcec-dev libafpclient-dev libgif-dev \
+		sudo apt-get install -y libcec3 libcec-dev libafpclient-dev libgif-dev \
 		libmp3lame-dev libshairplay-dev
 	
 	fi
@@ -142,6 +149,16 @@ kodi_package_deb()
 	############################################################
 	
 	echo -e "Build Kodi for our host/ARCH or for all? [host|target]"
+	
+	# Ensure we are in the proper DIR
+	cd "$build_dir"
+	
+	# Testing...use our fork to fix the Debian dependency on libgnutls-dev
+	# Debian Jessie's package seems named libgnutls28-dev. PRT submitted to XBMC team
+	
+	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
+	sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz|ProfessorKaos64/xbmc-packaging/archive/master.tar.gz|g' \
+	"tools/Linux/packaging/mk-debian-package.sh" | less
 	
 	# get user choice
 	sleep 0.2s
@@ -216,10 +233,9 @@ kodi_package_deb()
 kodi_clone()
 {
 	
-	echo -e "==> Cloning the Kodi team repository"
+	echo -e "\n==> Cloning the Kodi repository:"
+	echo -e "    $git_url"
 	
-	# set build dir
-	build_dir="$HOME/kodi/"
 
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
@@ -233,6 +249,9 @@ kodi_clone()
 		sleep 2s
 		cd "$build_dir"
 		kodi_package_deb
+		# When testing this over SSH, give some time since it will close the connection on exit1
+		echo -e "\nExiting script in 20 seconds..."
+		sleep 20s
 		exit 1
 		
 	fi
@@ -252,41 +271,46 @@ kodi_clone()
 			if ! git pull; then
 				
 				# command failure
-				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
+				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+				echo -e "    $git_url\n"
 				sleep 2s
 				rm -rf "$build_dir"
 				# create and clone to $HOME/kodi
 				cd
-				git clone git://github.com/xbmc/xbmc.git kodi
+				git clone $git_url
+				
 				
 			fi
 
 		elif [[ "$git_choice" == "r" ]]; then
-			echo -e "\n==> Removing and cloning repository again...\n"
+			echo -e "\n==> Removing and cloning repository again..."
+			echo -e "    $git_url\n"
 			sleep 2s
 			sudo rm -rf "$build_dir"
 			# create and clone to $HOME/kodi
 			cd
-			git clone git://github.com/xbmc/xbmc.git kodi
+			git clone $git_url
 
 		else
 
-			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
+			echo -e "\n==> Git directory does not exist. cloning now..."
+			echo -e "    $git_url\n"
 			sleep 2s
 			# create and clone to $HOME/kodi
 			cd
-			git clone git://github.com/xbmc/xbmc.git kodi
+			git clone $git_url
 
 		fi
 
 	else
 
-			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
+			echo -e "\n==> Git directory does not exist. cloning now..."
+			echo -e "    $git_url\n"
 			sleep 2s
 			# create DIRS
 			cd
 			# create and clone to current dir
-			git clone git://github.com/xbmc/xbmc.git kodi
+			git clone $git_url
 
 	fi
 
@@ -310,8 +334,15 @@ kodi_build()
 	# (See --help for available options). For now, use the default PREFIX
         # A full listing of supported options can be viewed by typing './configure --help'.
 	# Default install path is:
-
-	./configure
+	
+	# FOR PACKAGING DEB ONLY (TESTING)
+	# It may seem that per "http://forum.kodi.tv/showthread.php?tid=80754", we need to
+	# export package config. 
+	
+	# Mv pkgconfig 
+	
+	export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+	./configure --enable-libbluray
 
 	# make the package
 	# By adding -j<number> to the make command, you describe how many
@@ -336,7 +367,7 @@ kodi_build()
 	
 		# Attempt to build package, confirm first since buiding takes some time
 		# get user choice
-		echo -e "Attempt to package Kodi? [y/n]"
+		echo -e "Attempt to package Kodi? [y/n]\n"
 		sleep 0.3s
 		
 		read -erp "Choice: " build_choice
@@ -446,11 +477,36 @@ kodi_post_cfgs()
 	
 }
 
+
+
 ####################################################
 # Script sequence
 ####################################################
 # Main order of operations
-kodi_prereqs
-kodi_clone
-kodi_build
-kodi_post_cfgs
+main()
+{
+	kodi_prereqs
+	kodi_clone
+	kodi_build
+	kodi_post_cfgs
+	
+}
+
+#####################################################
+# MAIN
+#####################################################
+main | tee log_temp.txt
+
+#####################################################
+# cleanup
+#####################################################
+
+# convert log file to Unix compatible ASCII
+strings log_temp.txt > kodi-build-log.txt
+
+# strings does catch all characters that I could 
+# work with, final cleanup
+sed -i 's|\[J||g' kodi-build-log.txt
+
+# remove file not needed anymore
+rm -f "log_temp.txt"

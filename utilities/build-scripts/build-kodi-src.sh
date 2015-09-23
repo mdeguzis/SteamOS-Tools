@@ -359,7 +359,7 @@ kodi_build()
 	
 		# Attempt to build package, confirm first since buiding takes some time
 		# get user choice
-		echo -e "Attempt to package Kodi? [y/n]"
+		echo -e "Attempt to package Kodi? [y/n]\n"
 		sleep 0.3s
 		
 		read -erp "Choice: " build_choice

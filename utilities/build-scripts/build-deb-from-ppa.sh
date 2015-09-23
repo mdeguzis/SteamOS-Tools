@@ -208,7 +208,8 @@ main()
 		else
 			
 			echo -e "\n==ERROR==\nSource package dependencies coud not be installed!"
-			exit 1
+			echo -e "Press CTRL+C to exit now."
+			sleep 10s
 			
 		fi
 	

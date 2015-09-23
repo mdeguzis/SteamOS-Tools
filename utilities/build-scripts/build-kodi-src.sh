@@ -159,12 +159,8 @@ kodi_package_deb()
 	echo -e "\nTESTING SED REPLACE\n"
 	
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
-	old_url="xbmc/xbmc-packaging/archive/master.tar.gz"
-	new_url="ProfessorKaos64/xbmc-packaging/archive/master.tar.gz"
-	sed 's|xbmc/xbmc-packaging/archive/master.tar.gz|ProfessorKaos64/xbmc-packaging/archive/master.tar.gz|g' \
+	sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz|ProfessorKaos64/xbmc-packaging/archive/master.tar.gz|g' \
 	"tools/Linux/packaging/mk-debian-package.sh" | less
-	
-	sleep 20s
 	
 	# get user choice
 	sleep 0.2s

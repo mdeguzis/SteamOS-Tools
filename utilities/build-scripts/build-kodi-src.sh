@@ -161,7 +161,7 @@ kodi_package_deb()
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
 	old_url="https://github.com/xbmc/xbmc-packaging/archive/master.tar.gz"
 	new_url="https://github.com/ProfessorKaos64/xbmc-packaging/archive/master.tar.gz"
-	sed 's|$old_url|$new_url|g' "tools/Linux/packaging/mk-debian-package.sh"
+	sed -i 's|${old_url}|${new_url}|g' "$build_dir/tools/Linux/packaging/mk-debian-package.sh"
 	
 	sleep 20s
 	

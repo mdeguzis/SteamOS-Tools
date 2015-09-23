@@ -27,8 +27,8 @@ time_stamp_start=(`date +"%T"`)
 build_dir="$HOME/kodi/"
 package_deb="no"
 skip_to_build="no"
-git_url="git://github.com/ProfessorKaos64/xbmc.git kodi"
-#git_url="git://github.com/xbmc/xbmc.git kodi"
+#git_url="git://github.com/ProfessorKaos64/xbmc.git kodi"
+git_url="git://github.com/xbmc/xbmc.git kodi"
 
 # set default concurrent jobs if called standalone or
 # called with extra_opts during 'dekstop-software install kodi-src --cores $n'

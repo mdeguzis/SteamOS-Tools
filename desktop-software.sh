@@ -1,10 +1,9 @@
 #!/bin/bash
-
 # -------------------------------------------------------------------------------
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.9.8
+# Script Ver:	1.9.9.9
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -535,7 +534,7 @@ install_software()
 				
 				else
 					echo -e "$i package status: [Not found]"
-					sleep .1s
+					sleep 2s
 					
 				fi
 		
@@ -692,7 +691,7 @@ manual_software_check()
 				
 					# dpkg outputs it's own line that can't be supressed
 					echo -e "Package $i [Not Found]" > /dev/null
-					sleep .1s
+					sleep 2s
 					
 				else
 				

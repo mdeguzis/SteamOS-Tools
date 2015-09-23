@@ -293,7 +293,7 @@ kodi_clone()
 
 		else
 
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+			echo -e "\n==> Git directory does not exist. cloning now..."
 			echo -e "    $git_url\n"
 			sleep 2s
 			# create and clone to $HOME/kodi
@@ -304,7 +304,7 @@ kodi_clone()
 
 	else
 
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+			echo -e "\n==> Git directory does not exist. cloning now..."
 			echo -e "    $git_url\n"
 			sleep 2s
 			# create DIRS

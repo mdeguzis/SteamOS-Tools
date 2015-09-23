@@ -150,6 +150,15 @@ kodi_package_deb()
 	# Ensure we are in the proper DIR
 	cd "$build_dir"
 	
+	
+	# Testing...use our fork to fix the Debian dependency on libgnutls-dev
+	# Debian Jessie's package seems named libgnutls28-dev. PRT submitted to XBMC team
+	
+	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
+	old_url="https://github.com/xbmc/xbmc-packaging/archive/master.tar.gz"
+	new_url="https://github.com/ProfessorKaos64/xbmc-packaging/archive/master.tar.gz"
+	sed -i 's|$old_url|$new_url|g' tools/Linux/packaging/mk-debian-package.sh
+	
 	# get user choice
 	sleep 0.2s
 	read -erp "Choice: " build_choice

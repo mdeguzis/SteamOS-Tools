@@ -40,11 +40,13 @@ check_gpg()
 	# Key Desc: Libregeek Signing Key
 	# Key ID: 34C589A7
 	# Full Key ID: 8106E72834C589A7
+	echo -ne "Adding Libregeek public signing key: " && \
 	$scriptdir/utilities/gpg-import.sh 8106E72834C589A7 2> /dev/null
 	
 	# Key Desc: Debian Multimedia
 	# Key ID: 65558117 
 	# Full Key ID: 5C808C2B65558117
+	echo -ne "Adding Deb-Multimedia public signing key: " && \
 	$scriptdir/utilities/gpg-import.sh 5C808C2B65558117 2> /dev/null
 	
 }

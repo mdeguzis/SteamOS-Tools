@@ -232,6 +232,7 @@ kodi_clone()
 {
 	
 	echo -e "==> Cloning the Kodi team repository"
+	echo -e "   $git_url"
 	
 	# set build dir
 	build_dir="$HOME/kodi/"

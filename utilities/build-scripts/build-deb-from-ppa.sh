@@ -203,11 +203,11 @@ main()
 		# attempt to get build deps
 		if sudo apt-get build-dep ${target}; then
 		
-			echo "\n==INFO==\nSource package dependencies successfully installed."
+			echo -e "\n==INFO==\nSource package dependencies successfully installed."
 			
 		else
 			
-			echo "\n==ERROR==\nSource package dependencies coud not be installed!"
+			echo -e "\n==ERROR==\nSource package dependencies coud not be installed!"
 			exit 1
 			
 		fi

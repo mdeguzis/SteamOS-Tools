@@ -18,6 +18,9 @@
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
+# remove old log
+rm -f "kodi-build-log.txt"
+
 ###################
 # global vars
 ###################
@@ -469,11 +472,36 @@ kodi_post_cfgs()
 	
 }
 
+
+
 ####################################################
 # Script sequence
 ####################################################
 # Main order of operations
-kodi_prereqs
-kodi_clone
-kodi_build
-kodi_post_cfgs
+main()
+{
+	kodi_prereqs
+	kodi_clone
+	kodi_build
+	kodi_post_cfgs
+	
+}
+
+#####################################################
+# MAIN
+#####################################################
+main | tee log_temp.txt
+
+#####################################################
+# cleanup
+#####################################################
+
+# convert log file to Unix compatible ASCII
+strings log_temp.txt > log.txt
+
+# strings does catch all characters that I could 
+# work with, final cleanup
+sed -i 's|\[J||g' kodi-build-log.txt
+
+# remove file not needed anymore
+rm -f "log_temp.txt"

@@ -190,9 +190,6 @@ main()
 	sudo apt-key update
 	sudo apt-get update
 	
-	# Attempt to build target
-	echo -e "\n==> Attempting to build ${target}:\n"
-	sleep 2s
 	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
@@ -215,6 +212,10 @@ main()
 			exit 1
 			
 		fi
+	
+		# Attempt to build target
+		echo -e "\n==> Attempting to build ${target}:\n"
+		sleep 2s
 	
 		# build normally using apt-get source
 		if apt-get source --build ${target}; then

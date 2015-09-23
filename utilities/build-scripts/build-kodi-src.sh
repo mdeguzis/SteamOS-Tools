@@ -3,7 +3,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.5.9
+# Script Ver:		0.6.1
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -103,7 +103,7 @@ kodi_prereqs()
 		echo -e "\n==> Installing build deps for packaging\n"
 		sleep 2s
 	
-		sudo apt-get install build-essential fakeroot devscripts checkinstall \
+		sudo apt-get install -y build-essential fakeroot devscripts checkinstall \
 		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev \
 		libsamplerate0-dev libgnutls28-dev
 	
@@ -113,7 +113,7 @@ kodi_prereqs()
 		# origin: https://launchpad.net/~team-xbmc/+archive/ubuntu/xbmc-ppa-build-depends
 		# packages are now in the packages.libregeek.org pool
 
-		sudo apt-get install libcec3 libcec-dev libafpclient-dev libgif-dev \
+		sudo apt-get install -y libcec3 libcec-dev libafpclient-dev libgif-dev \
 		libmp3lame-dev libshairplay-dev
 	
 	fi

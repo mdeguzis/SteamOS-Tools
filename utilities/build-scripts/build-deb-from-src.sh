@@ -245,12 +245,12 @@ main()
 	if [[ "$trim_choice" == "y" ]]; then
 		
 		# cut files so we just have our deb pkg
-		rm -f $build_dir/*.tar.gz
-		rm -f $build_dir/*.dsc
-		rm -f $build_dir/*.changes
-		rm -f $build_dir/*-dbg
-		rm -f $build_dir/*-dev
-		rm -f $build_dir/*-compat
+		sudo rm -f $git_dir/*.tar.gz
+		sudo rm -f $git_dir/*.dsc
+		sudo rm -f $git_dir/*.changes
+		sudo rm -f $git_dir/*-dbg
+		sudo rm -f $git_dir/*-dev
+		sudo rm -f $git_dirs/*-compat
 		
 		# remove source directory that was made
 		find $build_dir -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \;
@@ -268,7 +268,10 @@ main()
 	if [[ "$transfer_choice" == "y" ]]; then
 	
 		# cut files
-		scp $git_dir/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
+		if -d $git_dir/ build; then
+			scp $git_dir/build/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
+
+		fi
 		
 	elif [[ "$transfer_choice" == "n" ]]; then
 		echo -e "Upload not requested\n"

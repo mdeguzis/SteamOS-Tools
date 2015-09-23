@@ -25,6 +25,8 @@ time_stamp_start=(`date +"%T"`)
 # default for packaging attempts
 package_deb="no"
 skip_to_build="no"
+git_url="git://github.com/ProfessorKaos64/xbmc.git kodi"
+#git_url="git://github.com/xbmc/xbmc.git kodi"
 
 # set default concurrent jobs if called standalone or
 # called with extra_opts during 'dekstop-software install kodi-src --cores $n'
@@ -213,21 +215,6 @@ kodi_package_deb()
 
 }
 
-clone_git()
-{
-	
-	# Use our fork. There is a depdency on libgnutls-dev, but the debian package
-	# is named libgnutls28-dev, version 3.3.8-6. 
-	
-	# See: PR: https://github.com/xbmc/xbmc-packaging/pull/23
-	
-	git_url="git://github.com/ProfessorKaos64/xbmc.git kodi"
-	#git_url="git://github.com/xbmc/xbmc.git kodi"
-
-	git clone $git_url
-	
-}
-
 kodi_clone()
 {
 	
@@ -273,7 +260,7 @@ kodi_clone()
 				rm -rf "$build_dir"
 				# create and clone to $HOME/kodi
 				cd
-				clone_git
+				git clone $git_url
 				
 				
 			fi
@@ -284,7 +271,7 @@ kodi_clone()
 			sudo rm -rf "$build_dir"
 			# create and clone to $HOME/kodi
 			cd
-			clone_git
+			git clone $git_url
 
 		else
 
@@ -292,7 +279,7 @@ kodi_clone()
 			sleep 2s
 			# create and clone to $HOME/kodi
 			cd
-			clone_git
+			git clone $git_url
 
 		fi
 
@@ -303,7 +290,7 @@ kodi_clone()
 			# create DIRS
 			cd
 			# create and clone to current dir
-			clone_git
+			git clone $git_url
 
 	fi
 

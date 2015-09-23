@@ -52,6 +52,7 @@ libplist-dev
 libpng12-dev
 libpulse-dev
 librtmp-dev
+libsdl1.2-dev
 libsdl2-dev
 libsmbclient-dev
 libsqlite3-dev

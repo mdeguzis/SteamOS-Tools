@@ -126,8 +126,8 @@ kodi_prereqs()
 		
 		# Linking
 		
-		# Libshairplay is in a different location, symblink it
-		/usr/lib/x86_64-linux-gnu/libshairplay.so.0
+		# Libshairplay is in a different location, symblink it? Try prefix below first
+		# /usr/lib/x86_64-linux-gnu/libshairplay.so.0
 
 	
 	fi

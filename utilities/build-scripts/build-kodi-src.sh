@@ -369,7 +369,7 @@ kodi_build()
 
 	# make -j4
 	
-	# Default core number is 2 if '--core' argument is not specified
+	# Default core number is 2 if '--cores $n' argument is not specified
 	make -j${cores}
 
 	# Install Kodi if package generation is not called
@@ -386,22 +386,10 @@ kodi_build()
 	
 		# Attempt to build package, confirm first since buiding takes some time
 		# get user choice
-		echo -e "Attempt to package Kodi? [y/n]"
+		echo -e "Attempting to package Kodi"
 		sleep 0.3s
 		
-		read -erp "Choice: " build_choice
-		
-		if [[ "$build_choice" == "y" ]]; then
-		
-			echo ""
-			kodi_package_deb
-			
-		elif [[ "$build_choice" == "n" ]]; then
-		
-			echo -e "\nEXITING"
-			exit 1
-			
-		fi
+		kodi_package_deb
 		
 	fi
 

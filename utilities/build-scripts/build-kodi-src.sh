@@ -123,6 +123,12 @@ kodi_prereqs()
 		sudo apt-get install -y libcec3 libcec-dev libafpclient-dev libgif-dev \
 		libmp3lame-dev libshairplay-dev shairplay libgif-dev libplatform-dev \
 		libshairport-dev
+		
+		# Linking
+		
+		# Libshairplay is in a different location, symblink it
+		/usr/lib/x86_64-linux-gnu/libshairplay.so.0
+
 	
 	fi
 
@@ -341,7 +347,7 @@ kodi_build()
 	# export package config. 
 	
 	# Configure with bluray support
-	./configure --enable-libbluray
+	./configure --prefix=/usr --enable-libbluray
 
 	# make the package
 	# By adding -j<number> to the make command, you describe how many

@@ -60,6 +60,7 @@ show_help()
 export options="$1"
 export type="$2"
 export build_opts="$3"
+export build_opts_arg="$4"
 
 #################################
 # Initial traps for help/errors

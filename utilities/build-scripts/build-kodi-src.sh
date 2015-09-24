@@ -178,9 +178,9 @@ kodi_package_deb()
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
 	# 20150924 - professkorkaos64 - Should be fixed now in master xbmc/xbmc-packaging
 	
-	#sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz \
-	#|ProfessorKaos64/xbmc-packaging/archive/package-test.tar.gz|g' \
-	#"tools/Linux/packaging/mk-debian-package.sh" | less
+	sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz \
+	|ProfessorKaos64/xbmc-packaging/archive/debian-packaging.tar.gz|g' \
+	"tools/Linux/packaging/mk-debian-package.sh" | less
 	
 	# get user choice
 	sleep 0.2s

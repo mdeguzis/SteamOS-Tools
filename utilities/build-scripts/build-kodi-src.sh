@@ -176,9 +176,11 @@ kodi_package_deb()
 	# Debian Jessie's package seems named libgnutls28-dev. PRT submitted to XBMC team
 	
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
-	sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz \
-	|ProfessorKaos64/xbmc-packaging/archive/package-test.tar.gz|g' \
-	"tools/Linux/packaging/mk-debian-package.sh" | less
+	# 20150924 - professkorkaos64 - Should be fixed now in master xbmc/xbmc-packaging
+	
+	#sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz \
+	#|ProfessorKaos64/xbmc-packaging/archive/package-test.tar.gz|g' \
+	#"tools/Linux/packaging/mk-debian-package.sh" | less
 	
 	# get user choice
 	sleep 0.2s

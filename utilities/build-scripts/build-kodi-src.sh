@@ -339,9 +339,7 @@ kodi_build()
 	# It may seem that per "http://forum.kodi.tv/showthread.php?tid=80754", we need to
 	# export package config. 
 	
-	# Mv pkgconfig 
-	
-	export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+	# Configure with bluray support
 	./configure --enable-libbluray
 
 	# make the package

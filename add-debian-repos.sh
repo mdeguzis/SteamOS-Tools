@@ -62,18 +62,6 @@ check_gpg()
 		$scriptdir/utilities/gpg-import.sh 8106E72834C589A7 2> /dev/null
 	fi
 	
-	# Key Desc: Debian Multimedia
-	# Key ID: 65558117 
-	# Full Key ID: 5C808C2B65558117
-	if gpg --batch --quiet --edit-key 8106E72834C589A7 check clean save quit > /dev/null 2>&1; then
-		echo -e "Deb Mulitmedia [OK]\n"
-		sleep 0.3s
-	else
-		echo -e "Deb Mulitmedia [FAIL]. Adding now...\n"
-		sleep .5s
-		$scriptdir/utilities/gpg-import.sh 5C808C2B65558117 2> /dev/null
-	fi
-	
 }
 
 funct_set_vars()
@@ -148,8 +136,7 @@ main()
 		
 		cat <<-EOF
 		
-		==> Adding Debian ${reponame}, ${backports_reponame}, ${steamos_tools_reponame} 
-		    and ${multimedia_reponame} repositories
+		==> Adding Debian ${reponame}, ${backports_reponame}, and ${steamos_tools_reponame} 
 		    
 		EOF
 		sleep 1s

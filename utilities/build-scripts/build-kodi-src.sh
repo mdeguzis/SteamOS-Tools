@@ -359,8 +359,9 @@ kodi_build()
 	# export package config. 
 	
 	# Configure with bluray support
+	# Rmove --disable-airplay --disable-airtunes, not working right now
 	export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
-	./configure --prefix=/usr --enable-libbluray
+	./configure --prefix=/usr --enable-libbluray --disable-airplay --disable-airtunes
 
 	# make the package
 	# By adding -j<number> to the make command, you describe how many
@@ -385,13 +386,14 @@ kodi_build()
 	
 		# Attempt to build package, confirm first since buiding takes some time
 		# get user choice
-		echo -e "Attempt to package Kodi? [y/n]\n"
+		echo -e "Attempt to package Kodi? [y/n]"
 		sleep 0.3s
 		
 		read -erp "Choice: " build_choice
 		
 		if [[ "$build_choice" == "y" ]]; then
 		
+			echo ""
 			kodi_package_deb
 			
 		elif [[ "$build_choice" == "n" ]]; then

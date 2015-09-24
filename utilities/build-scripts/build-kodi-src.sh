@@ -45,7 +45,7 @@ git_url="git://github.com/xbmc/xbmc.git kodi"
 if [[ "$build_opts" == "--cores" ]]; then
 
 	# build_opts used from desktop-sofware.sh, set to extra_opts $n
-	cores="$extra_opts"
+	cores="$build_opts_arg"
 	
 elif [[ "$arg1" == "--cores" ]]; then
 

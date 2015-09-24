@@ -53,14 +53,8 @@ check_gpg()
 	# Key Desc: Libregeek Signing Key
 	# Key ID: 34C589A7
 	# Full Key ID: 8106E72834C589A7
-	if gpg --batch --quiet --edit-key 8106E72834C589A7 check clean save quit > /dev/null 2>&1; then
-		echo -e "Libregeek Pacakge Signing Key [OK]"
-		sleep 0.3s
-	else
-		echo -e "Libregeek Pacakge Signing Key [FAIL]. Adding now...\n"
-		sleep .5s
-		$scriptdir/utilities/gpg-import.sh 8106E72834C589A7 2> /dev/null
-	fi
+	echo -ne "Adding Libregeek public signing key: " && \
+	$scriptdir/utilities/gpg-import.sh 8106E72834C589A7 2> /dev/null
 	
 }
 

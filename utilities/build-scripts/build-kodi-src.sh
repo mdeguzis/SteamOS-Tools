@@ -361,7 +361,7 @@ kodi_build()
 	# Configure with bluray support
 	# Rmove --disable-airplay --disable-airtunes, not working right now
 	export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
-	./configure --prefix=/usr --enable-libbluray --disable-airplay --disable-airtunes
+	./configure --prefix=/usr --enable-libbluray
 
 	# make the package
 	# By adding -j<number> to the make command, you describe how many

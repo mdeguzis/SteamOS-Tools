@@ -112,7 +112,7 @@ kodi_prereqs()
 	
 		sudo apt-get install -y build-essential fakeroot devscripts checkinstall \
 		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev \
-		libsamplerate0-dev libgnutls28-dev libshairport2 libshairport-dev
+		libsamplerate0-dev libgnutls28-dev
 	
 		echo -e "\n==> Installing build deps sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
 		sleep 2s
@@ -121,7 +121,8 @@ kodi_prereqs()
 		# packages are now in the packages.libregeek.org pool
 
 		sudo apt-get install -y libcec3 libcec-dev libafpclient-dev libgif-dev \
-		libmp3lame-dev libshairplay-dev shairplay libgif-dev libplatform-dev
+		libmp3lame-dev libshairplay-dev shairplay libgif-dev libplatform-dev \
+		libshairport-dev
 	
 	fi
 

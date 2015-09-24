@@ -186,14 +186,6 @@ main()
 			sleep 1s
 		fi
 		
-		# Check for existance of /etc/apt/preferences.d/{multimedia_prefer} file
-		if [[ -f ${multimedia_prefer} ]]; then
-			# backup preferences file
-			echo -e "==> Backing up ${multimedia_prefer} to ${multimedia_prefer}.bak\n"
-			sudo mv ${multimedia_prefer} ${multimedia_prefer}.bak
-			sleep 1s
-		fi
-		
 		# Check for existance of /etc/apt/preferences.d/{steamos_tools_prefer} file
 		if [[ -f ${steamos_tools_prefer} ]]; then
 			# backup preferences file
@@ -224,17 +216,6 @@ main()
 		Pin: release o=Debian 
 		Pin-Priority:110
 		EOF
-		
-		cat <<-EOF > ${multimedia_prefer_tmp}
-		Package: *
-		Pin: origin ""
-		Pin-Priority:100
-		
-		Package: *
-		Pin: release o=Unofficial Multimedia Packages
-		Pin-Priority: 100
-		
-		EOF
 	
 		cat <<-EOF > ${steamos_prefer_tmp}
 		Package: *
@@ -256,7 +237,6 @@ main()
 		# move tmp var files into target locations
 		sudo mv  ${prefer_tmp}  ${prefer}
 		sudo mv  ${backports_prefer_tmp}  ${backports_prefer}
-		sudo mv  ${multimedia_prefer_tmp}  ${multimedia_prefer}
 		sudo mv  ${steamos_prefer_tmp}  ${steamos_prefer}
 		sudo mv  ${steamos_tools_prefer_tmp}  ${steamos_tools_prefer}
 		
@@ -277,13 +257,6 @@ main()
 	        	# backup sources list file
 	        	echo -e "==> Backing up ${backports_sourcelist} to ${backports_sourcelist}.bak\n"
 	        	sudo mv ${backports_sourcelist} ${backports_sourcelist}.bak
-	        	sleep 1s
-		fi
-	
-		if [[ -f ${multimedia_sourcelist} ]]; then
-	        	# backup sources list file
-	        	echo -e "==> Backing up ${multimedia_sourcelist} to ${multimedia_sourcelist}.bak\n"
-	        	sudo mv ${multimedia_sourcelist} ${multimedia_sourcelist}.bak
 	        	sleep 1s
 		fi
 		
@@ -310,15 +283,11 @@ main()
 		deb http://http.debian.net/debian jessie-backports main
 		EOF
 		
-		# Debian-multimedia
-		cat <<-EOF > ${multimedia_sourcelist_tmp}
-		deb http://www.deb-multimedia.org jessie main non-free
-		EOF
-		
 		# packages.libregeek.org
 		if [[ "$test_repo" == "no" ]];then
 		
 			cat <<-EOF > ${steamos_tools_sourcelist_tmp}
+			# packages.libregeek.org Debian repository
 			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
 			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
 			EOF
@@ -326,8 +295,11 @@ main()
 		elif [[ "$test_repo" == "yes" ]];then
 		
 			cat <<-EOF > ${steamos_tools_sourcelist_tmp}
+			# packages.libregeek.org Debian repository
 			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
 			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
+			
+			# packages.libregeek.org Debian testingrepository
 			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster_testing main
 			EOF
 			
@@ -335,7 +307,6 @@ main()
 
 		# move tmp var files into target locations
 		sudo mv  ${sourcelist_tmp} ${sourcelist}
-		sudo mv  ${multimedia_sourcelist_tmp} ${multimedia_sourcelist}
 		sudo mv  ${backports_sourcelist_tmp} ${backports_sourcelist}
 		sudo mv  ${steamos_tools_sourcelist_tmp} ${steamos_tools_sourcelist}
 		
@@ -343,12 +314,6 @@ main()
 		echo -e "\n==> Updating index of packages...\n"
 		sleep 2s
 		sudo apt-get update
-		
-		echo -e "\n==> Adding keyring packages for deb-multimedia\n"
-		sleep 2s
-		
-		# update keyring for deb-multimedia
-		sudo apt-get install deb-multimedia-keyring debian-keyring
 
 		#####################################################
 		# Remind user how to install
@@ -356,16 +321,14 @@ main()
 		
 		clear
 		cat <<-EOF
-		###########################################################"
+		#################################################################"
 		How to use"
-		###########################################################"
+		#################################################################"
 		You can now not only install package from the SteamOS repository,
-		but also from the Debian repository with either:
+		but also from the Debian and Libregeek repositories with either:
 		
 		'sudo apt-get install <package_name>'
 		'sudo apt-get -t [release] install <package_name>'
-		
-		Releases: [jessie|jessie-backports|steamos-tools]
 		
 		Warning: If the apt package manager seems to want to remove a lot
 		"of packages you have already installed, be very careful about proceeding.

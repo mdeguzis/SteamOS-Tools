@@ -10,10 +10,16 @@
 #		See: https://wiki.debian.org/AptPreferences#Pinning
 #
 # Usage:	./add-debian-repos [install|uninstall|--help]
+# Extra args:	--enable-test-repo
 # ------------------------------------------------------------------------
 
 # remove old custom files
 rm -f "log.txt"
+
+ Specify a final arg for any extra options to build in later
+# The command being echo'd will contain the last arg used.
+# See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
+export final_opts=$(echo "${@: -1}")
 
 # set default action if no args are specified
 install="yes"
@@ -23,6 +29,13 @@ if [[ "$1" == "install" ]]; then
 	install="yes"
 elif [[ "$1" == "uninstall" ]]; then
     	install="no"
+fi
+
+# enable test repo if desired
+if [[ "$final_opts" == "-enable-test-repo" ]]; then
+	test_rep="yes"
+elif [[ "$final_opts" != "--enable-test-repo" ]]; then
+    	test_repo="no"
 fi
 
 check_gpg()
@@ -303,10 +316,22 @@ main()
 		EOF
 		
 		# packages.libregeek.org
-		cat <<-EOF > ${steamos_tools_sourcelist_tmp}
-		deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
-		deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
-		EOF
+		if [[ "$test_repo" == "no" ]];then
+		
+			cat <<-EOF > ${steamos_tools_sourcelist_tmp}
+			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
+			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
+			EOF
+			
+		elif [[ "$test_repo" == "yes" ]];then
+		
+			cat <<-EOF > ${steamos_tools_sourcelist_tmp}
+			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
+			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
+			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster_testing main
+			EOF
+			
+		fi
 
 		# move tmp var files into target locations
 		sudo mv  ${sourcelist_tmp} ${sourcelist}

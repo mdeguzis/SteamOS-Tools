@@ -54,6 +54,7 @@ libpng12-dev
 libpulse-dev
 librtmp-dev
 libsdl2-dev
+libshairport-dev
 libsmbclient-dev
 libsqlite3-dev
 libssh-dev

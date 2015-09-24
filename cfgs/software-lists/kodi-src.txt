@@ -20,6 +20,7 @@ libavahi-client-dev
 libavahi-common-dev
 libbluetooth-dev
 libbluray-dev
+libbluray1
 libboost-dev
 libboost-thread-dev
 libbz2-dev

@@ -107,6 +107,10 @@ kodi_prereqs()
 	# required for building kodi debs
 	if [[ "$package_deb" == "yes" ]]; then
 	
+		#####################################
+		# Dependencies
+		#####################################
+	
 		echo -e "==> Installing build deps for packaging\n"
 		sleep 2s
 	
@@ -124,12 +128,20 @@ kodi_prereqs()
 		libmp3lame-dev libshairplay-dev shairplay libgif-dev libplatform-dev \
 		libshairport-dev
 		
+		#####################################
 		# Linking
+		#####################################
 		
-		# Libshairplay is in a different location, symblink it? Try prefix below first
-		# /usr/lib/x86_64-linux-gnu/libshairplay.so.0
+		# Libshairplay is in a different location, symlink it. 
+		# See: http://forum.kodi.tv/showthread.php?tid=197422&pid=2114265#pid2114265
+		
+		# sudo ln -s "/usr/lib/x86_64-linux-gnu/libshairplay.so.0" "/usr/lib/libshairplay.so.0"
+		
+		# libshairport is in a different location, symlink it. 
+		# See: http://forum.kodi.tv/showthread.php?tid=197422&pid=2114265#pid2114265
 
-	
+		# sudo ln -s /usr/lib/x86_64-linux-gnu/libshairport.so /usr/lib/libshairport.so
+
 	fi
 
 }
@@ -347,6 +359,7 @@ kodi_build()
 	# export package config. 
 	
 	# Configure with bluray support
+	export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
 	./configure --prefix=/usr --enable-libbluray
 
 	# make the package

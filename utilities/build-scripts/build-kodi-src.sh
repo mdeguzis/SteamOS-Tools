@@ -175,8 +175,7 @@ kodi_package_deb()
 	# Debian Jessie's package seems named libgnutls28-dev. PRT submitted to XBMC team
 	
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
-	sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz|\
-	ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz|g'\
+	sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz|ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz|'\
 	"tools/Linux/packaging/mk-debian-package.sh"
 	
 	# get user choice

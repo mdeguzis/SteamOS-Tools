@@ -187,7 +187,7 @@ kodi_package_deb()
 	# Testing...use our fork with a different changelog setup
 	
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
-	sed -i 's|^xbmc-packaging/archive/master.tar.gz$|^ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz$|g' "tools/Linux/packaging/mk-debian-package.sh"
+	sed -ri 's|^xbmc-packaging/archive/master.tar.gz$|^ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz$|g' "tools/Linux/packaging/mk-debian-package.sh"
 	
 	# get user choice
 	sleep 0.2s
@@ -195,7 +195,7 @@ kodi_package_deb()
 
 	if [[ "$build_choice" == "host" ]]; then
 	
-		# build of the main debian build script ONLY
+		# build for host type / ARCH ONLY
 		tools/Linux/packaging/mk-debian-package.sh
 		
 	elif [[ "$build_choice" == "target" ]]; then
@@ -269,22 +269,7 @@ kodi_clone()
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
 	# If the DIR is already there, the fetch info should be intact
-
-	# Skip to build attempt if requested
-	if [[ "$skip_build" == "yes" ]]; then
 	
-		# fire off deb packaging attempt
-		echo -e "\n==> Skipping build. Attempting to package existing files in ${build_dir}\n"
-		sleep 2s
-		cd "$build_dir"
-		kodi_package_deb
-		# When testing this over SSH, give some time since it will close the connection on exit1
-		echo -e "\nExiting script in 20 seconds..."
-		sleep 20s
-		exit 1
-		
-	fi
-
 	if [[ -d "$build_dir" ]]; then
 
 		echo -e "\n==Info==\nGit folder already exists! Reclone [r] or pull [p]?\n"
@@ -347,6 +332,17 @@ kodi_build()
 	# Build Kodi
 	#################################################
 
+	# Skip to debian packaging, if requested
+	if [[ "$skip_build" == "yes" || "$package_deb" == "yes"]]; then
+	
+		# fire off deb packaging attempt
+		echo -e "\n==> Attempting to package existing files in ${build_dir}\n"
+		sleep 2s
+		cd "$build_dir"
+		kodi_package_deb
+		
+	fi
+
 	echo -e "\n==> Building Kodi in $build_dir\n"
 
 	# enter build dir
@@ -408,26 +404,8 @@ kodi_build()
 		
 	fi
 
-	# Install Kodi if package generation is not called
-	
-	if [[ "$package_deb" == "no" ]]; then
-	
-		# install source build
-		sudo make install
-		
-	elif [[ "$package_deb" == "yes" ]]; then
-	
-		echo -e "\n==> Attempting to package Kodi\n"
-		sleep 3s
-	
-		# Attempt to build package, confirm first since buiding takes some time
-		# get user choice
-		echo -e "Attempting to package Kodi"
-		sleep 0.3s
-		
-		kodi_package_deb
-		
-	fi
+	# install source build
+	sudo make install
 
 	# From v14 with commit 4090a5f a new API for binary addons is available. 
 	# Not used for now ...

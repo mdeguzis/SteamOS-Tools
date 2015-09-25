@@ -171,12 +171,10 @@ kodi_package_deb()
 	# Ensure we are in the proper DIR
 	cd "$build_dir"
 	
-	# Testing...use our fork to fix the Debian dependency on libgnutls-dev
-	# Debian Jessie's package seems named libgnutls28-dev. PRT submitted to XBMC team
+	# Testing...use our fork with a different changelog setup
 	
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
-	sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz|ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz|'\
-	"tools/Linux/packaging/mk-debian-package.sh"
+	sed -i 's|https://github.com/xbmc/xbmc-packaging/archive/master.tar.gz|https://github.com/ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz|' "tools/Linux/packaging/mk-debian-package.sh"
 	
 	# get user choice
 	sleep 0.2s

@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # -----------------------------------------------------------------------
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
@@ -10,13 +9,13 @@
 #		See: https://wiki.debian.org/AptPreferences#Pinning
 #
 # Usage:	./add-debian-repos [install|uninstall|--help]
-# Extra args:	--enable-test-repo
+# Extra args:	--enable-testing
 # ------------------------------------------------------------------------
 
 # remove old custom files
 rm -f "log.txt"
 
- Specify a final arg for any extra options to build in later
+# Specify a final arg for any extra options to build in later
 # The command being echo'd will contain the last arg used.
 # See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
 export final_opts=$(echo "${@: -1}")

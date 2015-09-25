@@ -50,7 +50,7 @@ install_prereqs()
 	# install needed packages
 	sudo apt-get install git devscripts build-essential checkinstall \
 	debian-keyring debian-archive-keyring cmake g++ libqt4-dev libqt4-dev \
-	libxi-dev libxtst-dev libX11-dev
+	libxi-dev libxtst-dev libX11-dev bc libsdl2-dev
 
 }
 
@@ -115,7 +115,7 @@ main()
 			fi
 			
 		elif [[ "$git_choice" == "r" ]]; then
-			echo -e "\n==> Removing and cloning repository again..."
+			echo -e "\n==> Removing and cloning repository again...\n"
 			sleep 2s
 			# remove, clone, enter
 			rm -rf "$git_dir"
@@ -174,7 +174,6 @@ main()
 		else
 			# Execute src cmd
 			$src_cmd
-			echo ""
 		fi
 		
 		# capture command
@@ -233,14 +232,50 @@ main()
 	echo -e "\n############################################################"
 	echo -e "If package was built without errors you will see it below."
 	echo -e "If you don't, please check build dependcy errors listed above."
-	echo -e "cd $build_dir"
-	echo -e "cd $build_folder"
 	echo -e "############################################################\n"
 	
-	echo -e "Showing contents of: $build_dir:"
-	ls "$build_dir" 
-	echo ""
+	echo -e "Showing contents of: $git_dir: \n"
 	ls "$git_dir"
+
+	echo -e "\n==> Would you like to trim tar.gz, dsc files, and folders for uploading? [y/n]"
+	sleep 0.5s
+	# capture command
+	read -ep "Choice: " trim_choice
+	
+	if [[ "$trim_choice" == "y" ]]; then
+		
+		# cut files so we just have our deb pkg
+		sudo rm -f $git_dir/*.tar.gz
+		sudo rm -f $git_dir/*.dsc
+		sudo rm -f $git_dir/*.changes
+		sudo rm -f $git_dir/*-dbg
+		sudo rm -f $git_dir/*-dev
+		sudo rm -f $git_dirs/*-compat
+		
+		# remove source directory that was made
+		find $build_dir -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \;
+		
+	elif [[ "$trim_choice" == "n" ]]; then
+	
+		echo -e "File trim not requested"
+	fi
+
+	echo -e "\n==> Would you like to transfer any packages that were built? [y/n]"
+	sleep 0.5s
+	# capture command
+	read -ep "Choice: " transfer_choice
+	
+	if [[ "$transfer_choice" == "y" ]]; then
+	
+		# cut files
+		if -d $git_dir/ build; then
+			scp $git_dir/build/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
+
+		fi
+		
+	elif [[ "$transfer_choice" == "n" ]]; then
+		echo -e "Upload not requested\n"
+	fi
 
 }
 

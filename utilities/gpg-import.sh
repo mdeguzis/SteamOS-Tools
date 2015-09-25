@@ -11,9 +11,14 @@
 key="$1"
 
 # Choose keyserver to use
+# Keep a good list here so that we have backups if certain ones are not functioning
 
 #keyserver="hkp://subkeys.pgp.net"
-keyserver="pgp.mit.edu"
+keyserver="pool.sks-keyservers.net"
+#keyserver="na.pool.sks-keyservers.net"
+#keyserver="pgp.mit.edu"
+#keyserver="http://keyserver.ubuntu.com"
+#keyserver="keys.gnupg.net"
 
 # import gpg key
 gpg --keyserver $keyserver --recv-keys $key

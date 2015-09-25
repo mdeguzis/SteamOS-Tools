@@ -190,9 +190,6 @@ main()
 	sudo apt-key update
 	sudo apt-get update
 	
-	# Attempt to build target
-	echo -e "\n==> Attempting to build ${target}:\n"
-	sleep 2s
 	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
@@ -200,20 +197,36 @@ main()
 	# assess if depdencies should be ignored
 	if [[ "$ignore_deps" == "no" ]]; then
 	
+		echo -e "\n==> Attempting to auto-install build dependencies\n"
+	
 		# attempt to get build deps
-		if sudo apt-get build-dep ${target}; then
+		if sudo apt-get build-dep ${target} -y; then
 		
-			echo "\n==INFO==\nSource package dependencies successfully installed."
+			echo -e "\n==INFO==\nSource package dependencies successfully installed."
 			
 		else
 			
-			echo "\n==ERROR==\nSource package dependencies coud not be installed!"
+			echo -e "\n==ERROR==\nSource package dependencies coud not be installed!"
+			echo -e "Press CTRL+C to exit now. Exiting in 15 seconds."
+			sleep 15s
 			exit 1
 			
 		fi
 	
+		# Attempt to build target
+		echo -e "\n==> Attempting to build ${target}:\n"
+		sleep 2s
+	
 		# build normally using apt-get source
-		apt-get source --build ${target}
+		if apt-get source --build ${target}; then
+			
+			echo -e "\n==INFO==\nBuild successfull"
+			
+		else
+		
+			echo -e "\n==INFO==\nBuild FAILED"
+			
+		fi
 	
 	elif [[ "$ignore_deps" == "yes" ]]; then
 	

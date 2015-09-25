@@ -31,7 +31,7 @@ skip_to_build="no"
 
 # Set git URL
 repo_target="ProfessorKaos64"
-git_url="git://github.com/{repo_target}/xbmc.git kodi"
+git_url="git://github.com/${repo_target}/xbmc.git kodi"
 #git_url="git://github.com/xbmc/xbmc.git kodi"
 
 # Set buld dir based on repo target to avoid recloning for different targets
@@ -357,7 +357,7 @@ kodi_build()
 		
 	else
 	
-		echo -e "\nBoostrap failed. Exiting in 10 seconds.\n"
+		echo -e "\nBoostrap failed. Exiting in 10 seconds."
 		sleep 10s
 		exit 1
 		
@@ -381,7 +381,7 @@ kodi_build()
 		
 	else
 	
-		echo -e "\nConfigure failed. Exiting in 10 seconds.\n"
+		echo -e "\nConfigure failed. Exiting in 10 seconds."
 		sleep 10s
 		exit 1
 		
@@ -400,7 +400,7 @@ kodi_build()
 		
 	else
 	
-		echo -e "\nBuild failed. Exiting in 10 seconds.\n"
+		echo -e "\nBuild failed. Exiting in 10 seconds."
 		sleep 10s
 		exit 1
 		

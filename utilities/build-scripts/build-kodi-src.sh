@@ -3,7 +3,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.6.5
+# Script Ver:		0.6.7
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -187,7 +187,9 @@ kodi_package_deb()
 	# Testing...use our fork with a different changelog setup
 	
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
-	# sed -i 's|xbmc-packaging/archive/master.tar.gz|ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz|' "tools/Linux/packaging/mk-debian-package.sh"
+	sed -i 's|xbmc-packaging/archive/master.tar.gz|\
+	ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz|' \
+	"tools/Linux/packaging/mk-debian-package.sh"
 	
 	# get user choice
 	sleep 0.2s
@@ -233,7 +235,8 @@ kodi_package_deb()
 			
 		else 
 		
-			echo -e "\nBrewmaster environment creation FAILED!"
+			echo -e "\nBrewmaster environment creation FAILED! Exiting in 10 seconds"
+			sleep 10s
 			exit 1
 		fi
 	

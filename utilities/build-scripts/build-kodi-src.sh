@@ -133,7 +133,7 @@ kodi_prereqs()
 		
 		# Origin: ppa:team-xbmc/xbmc-nightly
 		# It seems shairplay, libshairplay* are too old in the stable ppa
-		sudo apt-get install libshairport-dev libshairplay-dev shairplay
+		sudo apt-get install -y libshairport-dev libshairplay-dev shairplay
 		
 		#####################################
 		# Linking

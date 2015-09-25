@@ -128,14 +128,15 @@ main()
 		check_gpg
 		
 		cat <<-EOF
-		
+
 		==> Adding Debian ${reponame}, ${backports_reponame}, and ${steamos_tools_reponame} 
-		
 		EOF
 		
 		if [[ "$test_repo" == "yes" ]]; then
 			echo -ne "==SteamOS-Tools testing enabled==\n"
 		fi
+		
+		echo ""
 		
 		sleep 1s
 		

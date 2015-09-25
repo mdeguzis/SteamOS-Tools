@@ -142,7 +142,6 @@ kodi_prereqs()
 		# Not needed at the moment
 
 	fi
-
 }
 
 kodi_package_deb()
@@ -340,7 +339,17 @@ kodi_build()
 	cd "$build_dir"
 
   	# create the Kodi executable manually perform these steps:
-	./bootstrap
+	if ./bootstrap; then
+	
+		echo -e "\nBootstrap successful\n"
+		
+	else
+	
+		echo -e "\nBoostrap failed. Exiting in 10 seconds.\n"
+		sleep 10s
+		exit 1
+		
+	fi
 
 	# ./configure <option1> <option2> PREFIX=<system prefix>... 
 	# (See --help for available options). For now, use the default PREFIX
@@ -353,7 +362,18 @@ kodi_build()
 	
 	# Configure with bluray support
 	# Rmove --disable-airplay --disable-airtunes, not working right now
-	./configure --prefix=/usr --enable-libbluray --enable-airport
+	
+	if ./configure --prefix=/usr --enable-libbluray --enable-airport; then
+	
+		echo -e "\nConfigured successfuly\n"
+		
+	else
+	
+		echo -e "\nConfigure failed. Exiting in 10 seconds.\n"
+		sleep 10s
+		exit 1
+		
+	fi
 
 	# make the package
 	# By adding -j<number> to the make command, you describe how many
@@ -362,7 +382,17 @@ kodi_build()
 	# make -j4
 	
 	# Default core number is 2 if '--cores $n' argument is not specified
-	make -j${cores}
+	if make -j${cores}; then
+	
+		echo -e "\nKodi built successfuly\n"
+		
+	else
+	
+		echo -e "\nBuild failed. Exiting in 10 seconds.\n"
+		sleep 10s
+		exit 1
+		
+	fi
 
 	# Install Kodi if package generation is not called
 	

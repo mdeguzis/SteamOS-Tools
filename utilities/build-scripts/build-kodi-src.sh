@@ -98,7 +98,6 @@ kodi_prereqs()
 	-----------------------------------------------------------
 	Kodi-src build script
 	-----------------------------------------------------------
-	
 	EOF
 	
 	# Main build dependencies are installed via desktop-software.sh

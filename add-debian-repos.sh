@@ -130,10 +130,11 @@ main()
 		cat <<-EOF
 		
 		==> Adding Debian ${reponame}, ${backports_reponame}, and ${steamos_tools_reponame} 
+		
 		EOF
 		
 		if [[ "$test_repo" == "yes" ]]; then
-			echo -e "==SteamOS-Tools testing enabled==\n"
+			echo -ne "==SteamOS-Tools testing enabled==\n"
 		fi
 		
 		sleep 1s
@@ -141,7 +142,7 @@ main()
 		# Check for existance of /etc/apt/preferences file (deprecated, see below)
 		if [[ -f "/etc/apt/preferences" ]]; then
 			# backup preferences file
-			echo -e "\n==> Backing up /etc/apt/preferences to /etc/apt/preferences.bak\n"
+			echo -e "==> Backing up /etc/apt/preferences to /etc/apt/preferences.bak\n"
 			sudo mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
 			sleep 1s
 		fi
@@ -149,7 +150,7 @@ main()
 		# Check for existance of /etc/apt/preferences.d/{steamos_prefe} file
 		if [[ -f ${steamos_prefer} ]]; then
 			# backup preferences file
-			echo -e "\n==> Backing up ${steamos_prefer} to ${steamos_prefer}.bak\n"
+			echo -e "==> Backing up ${steamos_prefer} to ${steamos_prefer}.bak\n"
 			sudo mv ${steamos_prefer} ${steamos_prefer}.bak
 			sleep 1s
 		fi

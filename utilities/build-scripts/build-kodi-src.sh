@@ -187,7 +187,7 @@ kodi_package_deb()
 	# Testing...use our fork with a different changelog setup
 	
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
-	sed -ri 's|^xbmc-packaging/archive/master.tar.gz$|^ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz$|g' "tools/Linux/packaging/mk-debian-package.sh"
+	sed -i 's|^xbmc-packaging/archive/master.tar.gz$|^ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz$|g' "tools/Linux/packaging/mk-debian-package.sh"
 	
 	# get user choice
 	sleep 0.2s

@@ -278,7 +278,7 @@ main()
 		if [[ "$test_repo" == "no" ]];then
 		
 			cat <<-EOF > ${steamos_tools_sourcelist_tmp}
-			# packages.libregeek.org Debian repository
+			# Libregeek Debian repository
 			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
 			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
 			EOF
@@ -286,7 +286,7 @@ main()
 		elif [[ "$test_repo" == "yes" ]];then
 		
 			cat <<-EOF > ${steamos_tools_sourcelist_tmp}
-			# Llibregeek Debian repository
+			# Libregeek Debian repository
 			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
 			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
 			

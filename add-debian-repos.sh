@@ -133,7 +133,7 @@ main()
 		EOF
 		
 		if [[ "$test_repo" == "yes" ]]; then
-			echo -ne "==SteamOS-Tools testing enabled==\n"
+			echo -ne "     [SteamOS-Tools testing enabled]\n"
 		fi
 		
 		echo ""

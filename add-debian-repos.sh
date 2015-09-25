@@ -32,9 +32,14 @@ fi
 
 # enable test repo if desired
 if [[ "$final_opts" == "--enable-testing" ]]; then
+	
 	test_repo="yes"
+	
 elif [[ "$final_opts" != "--enable-testing" ]]; then
+    	
     	test_repo="no"
+    	# ensure testing repo is removed
+    	sudo sed -ei '/Libregeek Debian testing repository/,+1d' "/etc/apt/sources.list.d/steamos-tools.list"
 fi
 
 check_gpg()
@@ -281,11 +286,11 @@ main()
 		elif [[ "$test_repo" == "yes" ]];then
 		
 			cat <<-EOF > ${steamos_tools_sourcelist_tmp}
-			# packages.libregeek.org Debian repository
+			# Llibregeek Debian repository
 			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
 			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
 			
-			# packages.libregeek.org Debian testingrepository
+			# Libregeek Debian testing repository
 			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster_testing main
 			EOF
 			

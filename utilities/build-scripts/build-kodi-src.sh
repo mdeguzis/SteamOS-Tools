@@ -108,7 +108,7 @@ kodi_prereqs()
 	if [[ "$package_deb" == "yes" ]]; then
 	
 		#####################################
-		# Dependencies
+		# Dependencies - Debian sourced
 		#####################################
 	
 		echo -e "==> Installing build deps for packaging\n"
@@ -121,26 +121,26 @@ kodi_prereqs()
 		echo -e "\n==> Installing build deps sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
 		sleep 2s
 
-		# origin: https://launchpad.net/~team-xbmc/+archive/ubuntu/xbmc-ppa-build-depends
-		# packages are now in the packages.libregeek.org pool
+		#####################################
+		# Dependencies - ppa:xbmc sourced
+		#####################################
 
+		# Info: packages are rebuilt on SteamOS brewmaster, and hosted at 
+		# packages.libregeek.org
+		
+		# Origin: ppa:team-xbmc/ppa 
 		sudo apt-get install -y libcec3 libcec-dev libafpclient-dev libgif-dev \
-		libmp3lame-dev libshairplay-dev shairplay libgif-dev libplatform-dev \
-		libshairport-dev
+		libmp3lame-dev libgif-dev libplatform-dev
+		
+		# Origin: ppa:team-xbmc/xbmc-nightly
+		# It seems shairplay, libshairplay* are too old in the stable ppa
+		sudo apt-get install libshairport-dev libshairplay-dev shairplay
 		
 		#####################################
 		# Linking
 		#####################################
 		
-		# Libshairplay is in a different location, symlink it. 
-		# See: http://forum.kodi.tv/showthread.php?tid=197422&pid=2114265#pid2114265
-		
-		# sudo ln -s "/usr/lib/x86_64-linux-gnu/libshairplay.so.0" "/usr/lib/libshairplay.so.0"
-		
-		# libshairport is in a different location, symlink it. 
-		# See: http://forum.kodi.tv/showthread.php?tid=197422&pid=2114265#pid2114265
-
-		# sudo ln -s /usr/lib/x86_64-linux-gnu/libshairport.so /usr/lib/libshairport.so
+		# Not needed at the moment
 
 	fi
 
@@ -171,16 +171,6 @@ kodi_package_deb()
 	
 	# Ensure we are in the proper DIR
 	cd "$build_dir"
-	
-	# Testing...use our fork to fix the Debian dependency on libgnutls-dev
-	# Debian Jessie's package seems named libgnutls28-dev. PRT submitted to XBMC team
-	
-	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
-	# 20150924 - professkorkaos64 - Should be fixed now in master xbmc/xbmc-packaging
-	
-	# sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz \
-	# |ProfessorKaos64/xbmc-packaging/archive/debian-packaging.tar.gz|g' \
-	# "tools/Linux/packaging/mk-debian-package.sh" | less
 	
 	# get user choice
 	sleep 0.2s
@@ -363,8 +353,7 @@ kodi_build()
 	
 	# Configure with bluray support
 	# Rmove --disable-airplay --disable-airtunes, not working right now
-	export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
-	./configure --prefix=/usr --enable-libbluray
+	./configure --prefix=/usr --enable-libbluray --enable-airport
 
 	# make the package
 	# By adding -j<number> to the make command, you describe how many

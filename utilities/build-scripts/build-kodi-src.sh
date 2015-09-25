@@ -26,12 +26,24 @@ rm -f "kodi-build-log.txt"
 ###################
 
 # default for packaging attempts
-# set build dir
-build_dir="$HOME/kodi/"
 package_deb="no"
 skip_to_build="no"
-git_url="git://github.com/ProfessorKaos64/xbmc.git kodi"
+
+# Set git URL
+repo_target="ProfessorKaos64"
+git_url="git://github.com/{repo_target}/xbmc.git kodi"
 #git_url="git://github.com/xbmc/xbmc.git kodi"
+
+# Set buld dir based on repo target to avoid recloning for different targets
+if [[ "$repo_target" != "xbmc" ]]; then
+
+	# set build dir to alternate
+	build_dir="$HOME/kodi-${repo_target}"
+else
+	# set build dir to default
+	build_dir="$HOME/kodi/"
+
+fi
 
 # set default concurrent jobs if called standalone or
 # called with extra_opts during 'dekstop-software install kodi-src --cores $n'

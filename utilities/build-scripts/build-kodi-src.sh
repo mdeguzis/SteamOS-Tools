@@ -29,10 +29,8 @@ rm -f "kodi-build-log.txt"
 package_deb="no"
 skip_to_build="no"
 
-# Set git URL
+# Set target
 repo_target="ProfessorKaos64"
-git_url="git://github.com/${repo_target}/xbmc.git kodi"
-#git_url="git://github.com/xbmc/xbmc.git kodi"
 
 # Set buld dir based on repo target to avoid recloning for different targets
 if [[ "$repo_target" != "xbmc" ]]; then
@@ -44,6 +42,10 @@ else
 	build_dir="$HOME/kodi/"
 
 fi
+
+# Set Git URL
+git_url="git://github.com/${repo_target}/xbmc.git ${build_dir}"
+#git_url="git://github.com/xbmc/xbmc.git ${build_dir}"
 
 # set default concurrent jobs if called standalone or
 # called with extra_opts during 'dekstop-software install kodi-src --cores $n'

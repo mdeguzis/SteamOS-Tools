@@ -32,7 +32,7 @@ fi
 
 # enable test repo if desired
 if [[ "$final_opts" == "--enable-testing" ]]; then
-	test_rep="yes"
+	test_repo="yes"
 elif [[ "$final_opts" != "--enable-testing" ]]; then
     	test_repo="no"
 fi
@@ -149,7 +149,7 @@ main()
 		# Check for existance of /etc/apt/preferences.d/{steamos_prefe} file
 		if [[ -f ${steamos_prefer} ]]; then
 			# backup preferences file
-			echo -e "==> Backing up ${steamos_prefer} to ${steamos_prefer}.bak\n"
+			echo -e "\n==> Backing up ${steamos_prefer} to ${steamos_prefer}.bak\n"
 			sudo mv ${steamos_prefer} ${steamos_prefer}.bak
 			sleep 1s
 		fi

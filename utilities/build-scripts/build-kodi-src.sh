@@ -30,7 +30,7 @@ package_deb="no"
 skip_to_build="no"
 
 # Set target
-repo_target="ProfessorKaos64"
+repo_target="xbmc"
 
 # Set buld dir based on repo target to avoid recloning for different targets
 if [[ "$repo_target" != "xbmc" ]]; then

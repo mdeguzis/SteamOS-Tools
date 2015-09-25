@@ -21,9 +21,9 @@ time_stamp_start=(`date +"%T"`)
 # remove old log
 rm -f "kodi-build-log.txt"
 
-###################
+###################################
 # global vars
-###################
+###################################
 
 # default for packaging attempts
 package_deb="no"
@@ -44,8 +44,8 @@ else
 fi
 
 # Set Git URL
-git_url="git://github.com/${repo_target}/xbmc.git ${build_dir}"
-#git_url="git://github.com/xbmc/xbmc.git ${build_dir}"
+git_url="git://github.com/${repo_target}/xbmc.git"
+#git_url="git://github.com/xbmc/xbmc.git"
 
 # set default concurrent jobs if called standalone or
 # called with extra_opts during 'dekstop-software install kodi-src --cores $n'
@@ -264,7 +264,6 @@ kodi_clone()
 	
 	echo -e "\n==> Cloning the Kodi repository:"
 	echo -e "    $git_url"
-	
 
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
@@ -300,31 +299,31 @@ kodi_clone()
 			if ! git pull; then
 				
 				# command failure
-				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
 				sleep 2s
 				rm -rf "$build_dir"
 				# create and clone to $HOME/kodi
 				cd
-				git clone $git_url
+				git clone $git_url ${build_dir}
 				
 				
 			fi
 
 		elif [[ "$git_choice" == "r" ]]; then
-			echo -e "\n==> Removing and cloning repository again..."
+			echo -e "\n==> Removing and cloning repository again...\n"
 			sleep 2s
 			sudo rm -rf "$build_dir"
 			# create and clone to $HOME/kodi
 			cd
-			git clone $git_url
+			git clone $git_url  ${build_dir}
 
 		else
 
-			echo -e "\n==> Git directory does not exist. cloning now..."
+			echo -e "\n==> Git directory does not exist. cloning now...\n"
 			sleep 2s
 			# create and clone to $HOME/kodi
 			cd
-			git clone $git_url
+			git clone $git_url ${build_dir}
 
 		fi
 
@@ -335,7 +334,7 @@ kodi_clone()
 			# create DIRS
 			cd
 			# create and clone to current dir
-			git clone $git_url
+			git clone $git_url ${build_dir}
 
 	fi
 

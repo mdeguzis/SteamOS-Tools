@@ -3,7 +3,11 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
+<<<<<<< HEAD
 # Script Ver:		0.6.7
+=======
+# Script Ver:		0.6.1
+>>>>>>> brewmaster
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -21,13 +25,21 @@ time_stamp_start=(`date +"%T"`)
 # remove old log
 rm -f "kodi-build-log.txt"
 
+<<<<<<< HEAD
 ###################################
+=======
+###################
+>>>>>>> brewmaster
 # global vars
 ###################################
 
 # default for packaging attempts
+# set build dir
+build_dir="$HOME/kodi/"
 package_deb="no"
 skip_to_build="no"
+#git_url="git://github.com/ProfessorKaos64/xbmc.git kodi"
+git_url="git://github.com/xbmc/xbmc.git kodi"
 
 # Set target
 repo_target="xbmc"
@@ -138,6 +150,7 @@ kodi_prereqs()
 		# Dependencies - ppa:xbmc sourced
 		#####################################
 
+<<<<<<< HEAD
 		# Info: packages are rebuilt on SteamOS brewmaster, and hosted at 
 		# packages.libregeek.org
 		
@@ -154,6 +167,12 @@ kodi_prereqs()
 		#####################################
 		
 		# Not needed at the moment
+=======
+		sudo apt-get install -y libcec3 libcec-dev libafpclient-dev libgif-dev \
+		libmp3lame-dev libshairplay-dev
+	
+	fi
+>>>>>>> brewmaster
 
 	fi
 }
@@ -189,6 +208,16 @@ kodi_package_deb()
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
 	# See: http://unix.stackexchange.com/a/16274
 	sed -i 's|\bxbmc/xbmc-packaging/archive/master.tar.gz\b|ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz|g' "tools/Linux/packaging/mk-debian-package.sh"
+	
+	# Ensure we are in the proper DIR
+	cd "$build_dir"
+	
+	# Testing...use our fork to fix the Debian dependency on libgnutls-dev
+	# Debian Jessie's package seems named libgnutls28-dev. PRT submitted to XBMC team
+	
+	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
+	sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz|ProfessorKaos64/xbmc-packaging/archive/master.tar.gz|g' \
+	"tools/Linux/packaging/mk-debian-package.sh" | less
 	
 	# get user choice
 	sleep 0.2s
@@ -266,11 +295,30 @@ kodi_clone()
 	
 	echo -e "\n==> Cloning the Kodi repository:"
 	echo -e "    $git_url"
+<<<<<<< HEAD
+=======
+	
+>>>>>>> brewmaster
 
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
 	# If the DIR is already there, the fetch info should be intact
 	
+<<<<<<< HEAD
+=======
+		# fire off deb packaging attempt
+		echo -e "\n==> Skipping build. Attempting to package existing files in ${build_dir}\n"
+		sleep 2s
+		cd "$build_dir"
+		kodi_package_deb
+		# When testing this over SSH, give some time since it will close the connection on exit1
+		echo -e "\nExiting script in 20 seconds..."
+		sleep 20s
+		exit 1
+		
+	fi
+
+>>>>>>> brewmaster
 	if [[ -d "$build_dir" ]]; then
 
 		echo -e "\n==Info==\nGit folder already exists! Reclone [r] or pull [p]?\n"
@@ -286,22 +334,29 @@ kodi_clone()
 			if ! git pull; then
 				
 				# command failure
-				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
+				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+				echo -e "    $git_url\n"
 				sleep 2s
 				rm -rf "$build_dir"
 				# create and clone to $HOME/kodi
 				cd
+<<<<<<< HEAD
 				git clone $git_url ${build_dir}
+=======
+				git clone $git_url
+>>>>>>> brewmaster
 				
 				
 			fi
 
 		elif [[ "$git_choice" == "r" ]]; then
-			echo -e "\n==> Removing and cloning repository again...\n"
+			echo -e "\n==> Removing and cloning repository again..."
+			echo -e "    $git_url\n"
 			sleep 2s
 			sudo rm -rf "$build_dir"
 			# create and clone to $HOME/kodi
 			cd
+<<<<<<< HEAD
 			git clone $git_url  ${build_dir}
 
 		else
@@ -311,17 +366,37 @@ kodi_clone()
 			# create and clone to $HOME/kodi
 			cd
 			git clone $git_url ${build_dir}
+=======
+			git clone $git_url
+
+		else
+
+			echo -e "\n==> Git directory does not exist. cloning now..."
+			echo -e "    $git_url\n"
+			sleep 2s
+			# create and clone to $HOME/kodi
+			cd
+			git clone $git_url
+>>>>>>> brewmaster
 
 		fi
 
 	else
 
 			echo -e "\n==> Git directory does not exist. cloning now..."
+<<<<<<< HEAD
+=======
+			echo -e "    $git_url\n"
+>>>>>>> brewmaster
 			sleep 2s
 			# create DIRS
 			cd
 			# create and clone to current dir
+<<<<<<< HEAD
 			git clone $git_url ${build_dir}
+=======
+			git clone $git_url
+>>>>>>> brewmaster
 
 	fi
 
@@ -374,6 +449,7 @@ kodi_build()
 	# It may seem that per "http://forum.kodi.tv/showthread.php?tid=80754", we need to
 	# export package config. 
 	
+<<<<<<< HEAD
 	# Configure with bluray support
 	# Rmove --disable-airplay --disable-airtunes, not working right now
 	
@@ -388,6 +464,9 @@ kodi_build()
 		exit 1
 		
 	fi
+=======
+	./configure 
+>>>>>>> brewmaster
 
 	# make the package
 	# By adding -j<number> to the make command, you describe how many
@@ -402,9 +481,29 @@ kodi_build()
 		
 	else
 	
+<<<<<<< HEAD
 		echo -e "\nBuild failed. Exiting in 10 seconds."
 		sleep 10s
 		exit 1
+=======
+		# Attempt to build package, confirm first since buiding takes some time
+		# get user choice
+		echo -e "Attempt to package Kodi? [y/n]\n"
+		sleep 0.3s
+		
+		read -erp "Choice: " build_choice
+		
+		if [[ "$build_choice" == "y" ]]; then
+		
+			kodi_package_deb
+			
+		elif [[ "$build_choice" == "n" ]]; then
+		
+			echo -e "\nEXITING"
+			exit 1
+			
+		fi
+>>>>>>> brewmaster
 		
 	fi
 
@@ -528,7 +627,11 @@ main | tee log_temp.txt
 #####################################################
 
 # convert log file to Unix compatible ASCII
+<<<<<<< HEAD
 strings log_temp.txt > kodi-build-log.txt &> /dev/null
+=======
+strings log_temp.txt > kodi-build-log.txt
+>>>>>>> brewmaster
 
 # strings does catch all characters that I could 
 # work with, final cleanup

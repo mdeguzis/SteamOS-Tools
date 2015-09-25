@@ -288,7 +288,6 @@ kodi_clone()
 				
 				# command failure
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
-				echo -e "    $git_url\n"
 				sleep 2s
 				rm -rf "$build_dir"
 				# create and clone to $HOME/kodi
@@ -300,7 +299,6 @@ kodi_clone()
 
 		elif [[ "$git_choice" == "r" ]]; then
 			echo -e "\n==> Removing and cloning repository again..."
-			echo -e "    $git_url\n"
 			sleep 2s
 			sudo rm -rf "$build_dir"
 			# create and clone to $HOME/kodi
@@ -310,7 +308,6 @@ kodi_clone()
 		else
 
 			echo -e "\n==> Git directory does not exist. cloning now..."
-			echo -e "    $git_url\n"
 			sleep 2s
 			# create and clone to $HOME/kodi
 			cd
@@ -321,7 +318,6 @@ kodi_clone()
 	else
 
 			echo -e "\n==> Git directory does not exist. cloning now..."
-			echo -e "    $git_url\n"
 			sleep 2s
 			# create DIRS
 			cd

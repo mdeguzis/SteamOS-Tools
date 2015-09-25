@@ -545,7 +545,7 @@ main | tee log_temp.txt
 #####################################################
 
 # convert log file to Unix compatible ASCII
-strings log_temp.txt > kodi-build-log.txt
+strings log_temp.txt > kodi-build-log.txt &> /dev/null
 
 # strings does catch all characters that I could 
 # work with, final cleanup

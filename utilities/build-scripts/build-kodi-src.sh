@@ -333,7 +333,7 @@ kodi_build()
 	#################################################
 
 	# Skip to debian packaging, if requested
-	if [[ "$skip_build" == "yes" || "$package_deb" == "yes"]]; then
+	if [[ "$skip_build" == "yes" || "$package_deb" == "yes" ]]; then
 	
 		# fire off deb packaging attempt
 		echo -e "\n==> Attempting to package existing files in ${build_dir}\n"

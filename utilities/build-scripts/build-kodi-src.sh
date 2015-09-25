@@ -342,6 +342,9 @@ kodi_build()
 		cd "$build_dir"
 		kodi_package_deb
 		
+		echo -e "\nPlease review above output. Exiting script in 15 seconds."
+		exit 1
+		
 	fi
 
 	echo -e "\n==> Building Kodi in $build_dir\n"

@@ -1,3 +1,12 @@
+SteamOS-Tools 2.5.5
+  * Added Kodi (packaged) to Libregeek brewmaster_testing
+  * Fixed up build-kodi-src with Bluray and Airtunes support
+  * Code cleanup
+  * Code fixes
+  * Added option to enabled testing Libregeek repo in add-debian-repos.sh
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 22 September 2015 09:02:00 -5000
+
 SteamOS-Tools 1.8.5
   * Fix GPG function not correctly verifying keys
    * Public key verification would skip if a restore was done via grub for SteamOS

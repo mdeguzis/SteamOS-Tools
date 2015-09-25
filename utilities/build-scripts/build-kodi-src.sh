@@ -167,10 +167,18 @@ kodi_package_deb()
 	# Assess if we are to build for host/ARCH we have or target
 	############################################################
 	
-	echo -e "Build Kodi for our host/ARCH or for all? [host|target]"
+	echo -e "Build Kodi for our host/ARCH or for target? [host|target]"
 	
 	# Ensure we are in the proper DIR
 	cd "$build_dir"
+	
+	# Testing...use our fork to fix the Debian dependency on libgnutls-dev
+	# Debian Jessie's package seems named libgnutls28-dev. PRT submitted to XBMC team
+	
+	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
+	sed -i 's|xbmc/xbmc-packaging/archive/master.tar.gz|\
+	ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz|g'\
+	"tools/Linux/packaging/mk-debian-package.sh"
 	
 	# get user choice
 	sleep 0.2s

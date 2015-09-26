@@ -3,7 +3,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.6.7
+# Script Ver:		0.6.9
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -25,9 +25,10 @@ rm -f "kodi-build-log.txt"
 # global vars
 ###################################
 
-# default for packaging attempts
+# defaults for packaging attempts
 package_deb="no"
 skip_to_build="no"
+kodi_release="Isengard"
 
 # Set target
 repo_target="xbmc"
@@ -179,16 +180,29 @@ kodi_package_deb()
 	# Assess if we are to build for host/ARCH we have or target
 	############################################################
 	
-	echo -e "Build Kodi for our host/ARCH or for target? [host|target]"
-	
 	# Ensure we are in the proper directory
 	cd "$build_dir"
+	
+	echo -e "Which Kodi release do you wish to build for:"
+	
+	# show branches
+	git branch --all
+	echo ""
+	
+	# get user choice
+	sleep 0.2s
+	read -erp "Choice: " kodi_release
+	
+	# checkout proper release
+	git checkout "$kodi_release"
 	
 	# Testing...use our fork with a different changelog setup
 	
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
 	# See: http://unix.stackexchange.com/a/16274
-	sed -i 's|\bxbmc/xbmc-packaging/archive/master.tar.gz\b|ProfessorKaos64/xbmc-packaging/archive/steamos-brewmaster.tar.gz|g' "tools/Linux/packaging/mk-debian-package.sh"
+	sed -i 's|\bxbmc/xbmc-packaging/archive/master.tar.gz\b|ProfessorKaos64/xbmc-packaging/archive/${kodi_release}.tar.gz|g' "tools/Linux/packaging/mk-debian-package.sh"
+	
+	echo -e "\nBuild Kodi for our host/ARCH or for target? [host|target]"
 	
 	# get user choice
 	sleep 0.2s
@@ -339,7 +353,8 @@ kodi_build()
 		# fire off deb packaging attempt
 		echo -e "\n==> Attempting to package existing files in ${build_dir}\n"
 		sleep 2s
-		cd "$build_dir"
+		
+		# attempt deb package
 		kodi_package_deb
 		
 		echo -e "\nPlease review above output. Exiting script in 15 seconds."
@@ -351,6 +366,9 @@ kodi_build()
 
 	# enter build dir
 	cd "$build_dir"
+	
+	# checkout target release
+	git checkout "$kodi_release"
 
   	# create the Kodi executable manually perform these steps:
 	if ./bootstrap; then

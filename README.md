@@ -12,7 +12,7 @@ For the latest change details, please see the commits page, orchangelog.md for o
 
 # Warning
 
-Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/alchemist/disclaimer.md).
+Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/alchemist/disclaimer.md). Please also understand the default branch of this GitHub repository is for **SteamOS Brewmaster**.
 
 # Wiki and FAQ
 

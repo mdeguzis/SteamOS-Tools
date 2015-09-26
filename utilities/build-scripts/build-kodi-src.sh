@@ -3,7 +3,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.6.9
+# Script Ver:		0.7.1
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -37,19 +37,16 @@ repo_target="xbmc"
 if [[ "$repo_target" != "xbmc" ]]; then
 
 	# set build dir to alternate
-	build_dir="$HOME/kodi-${repo_target}"
+	build_dir="$HOME/kodi/kodi-${repo_target}"
 else
 	# set build dir to default
-	build_dir="$HOME/kodi/"
+	build_dir="$HOME/kodi/kodi-source"
 
 fi
 
 # Set Git URL
 git_url="git://github.com/${repo_target}/xbmc.git"
 #git_url="git://github.com/xbmc/xbmc.git"
-
-# set default concurrent jobs if called standalone or
-# called with extra_opts during 'dekstop-software install kodi-src --cores $n'
 
 ###################
 # global vars

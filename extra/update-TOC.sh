@@ -1,6 +1,14 @@
 #!/bin/bash
 
-dir="$HOME/github_repos/SteamOS-Tools.wiki"
+if [[ -d "$HOME/github_repos/SteamOS-Tools.wiki" ]]; then
+
+	dir="$HOME/github_repos/SteamOS-Tools.wiki"
+
+elif [[ -d "$HOME/SteamOS-Tools.wiki" ]]; then
+
+	dir="$HOME/SteamOS-Tools.wiki"
+
+fi
 
 # update TOC for a given wiki page
 # hard-coded to local DIR on workstation

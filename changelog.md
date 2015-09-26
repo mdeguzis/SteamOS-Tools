@@ -1,3 +1,8 @@
+SteamOS-Tools 2.5.7
+  * Added Kodi 15 "Isengard" (packaged) to Libregeek brewmaster repository
+  * Many wiki additions
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 22 September 2015 09:02:00 -5000
 SteamOS-Tools 2.5.5
   * Added Kodi (packaged) to Libregeek brewmaster_testing
   * Fixed up build-kodi-src with Bluray and Airtunes support

@@ -6,8 +6,18 @@ pkg_check=$(which doctoc)
 
 if [[ "$pkg_check" == "" ]]; then
 
-	sudo apt-get install npm
+	# install base pacakges
+	sudo apt-get install npm node
 	sudo npm install -g doctoc
+
+	# node does not get installed into the "right" place doctoc wants
+	# we need to symblink it
+
+	if [[ ! -f "/usr/bin/node" ]]; then
+
+		sudo ln -s "/usr/bin/nodejs" "/usr/bin/node"
+
+	fi
 
 fi
 

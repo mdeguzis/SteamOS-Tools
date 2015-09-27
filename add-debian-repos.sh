@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	add-debian-repos.sh
-# Script Ver:	0.2.6
+# Script Ver:	0.2.9
 # Description:	This script automatically enables debian repositories
 #
 #		See: https://wiki.debian.org/AptPreferences#Pinning
@@ -279,16 +279,16 @@ main()
 		
 			cat <<-EOF > ${steamos_tools_sourcelist_tmp}
 			# Libregeek Debian repository
-			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
-			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
+			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main games
+			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main games
 			EOF
 			
 		elif [[ "$test_repo" == "yes" ]];then
 		
 			cat <<-EOF > ${steamos_tools_sourcelist_tmp}
 			# Libregeek Debian repository
-			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
-			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main
+			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster main games
+			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main games
 			
 			# Libregeek Debian testing repository
 			deb http://packages.libregeek.org/SteamOS-Tools/ brewmaster_testing main

@@ -164,7 +164,7 @@ main()
 		sourcedir="$build_dir"
 		user="mikeyd"
 		host='archboxmtd'
-		destdir="/home/mikeyd/packaging/SteamOS-Tools/pool/games"
+		destdir="/home/mikeyd/packaging/SteamOS-Tools/incoming/games"
 		
 		echo -e "\n"
 		

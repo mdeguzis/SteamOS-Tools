@@ -83,14 +83,6 @@ install_prereqs()
                 echo -e "\n==INFO==\nJessie sources appear to be added."
                 sleep 2s
         fi
-	
-	echo -e "\n==> Installing pre-requisites for building...\n"
-	
-	sleep 1s
-	# install needed packages for building various pacakges
-	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring cmake dh-autoreconf \
-	libglib2.0-dev libpopt-dev libreadline-dev libfuse-dev
 
 }
 

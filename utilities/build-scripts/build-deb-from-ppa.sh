@@ -190,7 +190,6 @@ main()
 	sudo apt-key update
 	sudo apt-get update
 	
-	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
 	
@@ -207,7 +206,7 @@ main()
 		else
 			
 			echo -e "\n==ERROR==\nSource package dependencies coud not be installed!"
-			echo -e "Press CTRL+C to exit now. Exiting in 15 seconds."
+			echo -e "Please review log.txt. Exiting in 15 seconds."
 			sleep 15s
 			exit 1
 			
@@ -331,5 +330,22 @@ main()
 #prereqs
 install_prereqs
 
-# start main
-main
+#####################################################
+# MAIN
+#####################################################
+main | tee log_temp.txt
+
+#####################################################
+# cleanup
+#####################################################
+
+# convert log file to Unix compatible ASCII
+strings log_temp.txt > log.txt
+
+# strings does catch all characters that I could 
+# work with, final cleanup
+sed -i 's|\[J||g' log.txt
+
+# remove file not needed anymore
+rm -f "custom-pkg.txt"
+rm -f "log_temp.txt"

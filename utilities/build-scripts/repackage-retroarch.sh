@@ -105,6 +105,19 @@ main()
 	# Rebuild all items in pkg_list
 	for pkg in ${pkg_list}; 
 	do
+		# attempt to auto get build deps
+		if sudo apt-get build-dep ${pkg}; then
+		
+			"\n==INFO==\nPackage ${PKG} build deps installed successfully\n"
+			sleep 2s
+			
+		else
+		
+			"\n==ERROR==\nPackage ${PKG} build deps installation FAILED, exiting in 15 seconds\n"
+			sleep 15s
+			exit 1
+			
+		fi
 	
 		# Attempt to build target
 		echo -e "\n==> Attempting to build ${pkg}:\n"

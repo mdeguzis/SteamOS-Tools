@@ -110,6 +110,14 @@ ep_install_chrome()
 
 }
 
+ep_install_chromium_dev()
+{
+
+	# TODO with widevine support
+	:
+	
+}
+
 ep_install_gameplay_recording()
 {
 

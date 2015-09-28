@@ -154,19 +154,6 @@ main()
 		# remove source directory that was made
 		find $build_dir -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \;
 		
-		# output failed lines from log?
-		failed_pkgs=$(grep "FAILED" log.txt)
-		if [[ "$failed_pkgs"  != "" ]]; then
-		
-			echo -e "\nFailed core builds, depedences:"
-			echo "$failed_pkgs"
-		
-		fi
-		
-		# test only
-		#echo ${pkg}
-		#sleep 1s
-
 	done
 	
 	# assign value to build folder for exit warning below
@@ -232,6 +219,23 @@ main()
 	
 		echo -e "\n==INFO==\nRemoval not requested\n"
 	fi
+	
+	echo -e "\n==> Outputing notice of any failed packages"
+	
+	# output failed lines from log?
+	failed_pkgs=$(grep "FAILED" log.txt)
+	if [[ "$failed_pkgs"  != "" ]]; then
+	
+		echo -e "\nFailed core builds, depedences:"
+		echo "$failed_pkgs"
+		
+	else
+	
+		echo -e "\nAll packages rebult successfully!"
+	
+	fi
+	
+
 	
 }
 

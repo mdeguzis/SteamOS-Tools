@@ -118,7 +118,8 @@ main()
 		else
 		
 			echo -e "\n==ERROR==\nPackage ${PKG} build deps installation FAILED, plese check log.txt\n"
-			sleep 2s
+			echo -e "Continuing in 15 seconds"
+			sleep 15s
 			
 		fi
 	
@@ -134,7 +135,8 @@ main()
 		else
 		
 			"\n==ERROR==\nPackage ${PKG} build FAILED, please check log.txt\n"
-			sleep 2s
+			echo -e "Continuing in 15 seconds"
+			sleep 15s
 			
 		fi
 		

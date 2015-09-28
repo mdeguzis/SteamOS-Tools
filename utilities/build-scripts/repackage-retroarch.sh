@@ -141,7 +141,7 @@ main()
 		cd "$HOME"
 	fi
 
-	echo -e "\n==> Would you like to upload the packages that were built? [y/n]"
+	echo -e "\n==> Would you like to transfer the packages that were built? [y/n]"
 	sleep 0.5s
 	# capture command
 	read -ep "Choice: " upload_choice
@@ -150,9 +150,9 @@ main()
 	
 		# set vars for upload
 		sourcedir="$build_dir"
-		user="thelinu2"
-		host='libregeek.org'
-		destdir="/home2/thelinu2/public_html/SteamOS-Extra/build-tmp/"
+		user="mikeyd"
+		host='archboxmtd'
+		destdir="/home/mikeyd/packaging/SteamOS-Tools/pool/games"
 		
 		echo -e "\n"
 		

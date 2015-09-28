@@ -111,6 +111,7 @@ main()
 	# Ask user for repos / vars
 	echo -e "\n==> Please enter or paste the deb-src URL now:"
 	echo -e "    [Press ENTER to use last: $repo_src]\n"
+	sleep .2s
 	
 	# Of course, main Ubuntu packages are not "PPA's" so example deb-src lines are:
 	# deb-src http://archive.ubuntu.com/ubuntu vivid main restricted universe multiverse
@@ -134,6 +135,8 @@ main()
 	
 	echo -e "\n==> Please enter or paste the GPG key for this repo now:"
 	echo -e "    [Press ENTER to use last: $gpg_pub_key]\n"
+	sleep .2s
+	
 	gpg_pub_key_tmp="$gpg_pub_key"
 	if [[ "$gpg_pub_key" == "" ]]; then
 		# var blank this run, get input
@@ -151,6 +154,8 @@ main()
 	
 	echo -e "\n==> Please enter or paste the desired package name now:"
 	echo -e "    [Press ENTER to use last: $target]\n"
+	sleep .2s
+	
 	target_tmp="$target"
 	if [[ "$target" == "" ]]; then
 		# var blank this run, get input

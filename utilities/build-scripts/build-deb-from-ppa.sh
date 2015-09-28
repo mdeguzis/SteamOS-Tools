@@ -114,14 +114,17 @@ main()
 	if [[ "$repo_src" == "" ]]; then
 		# var blank this run, get input
 		read -ep "deb-src URL: " repo_src
+		export repo_src
 	else
 		read -ep "deb-src URL: " repo_src
 		# user chose to keep var value from last
 		if [[ "$repo_src" == "" ]]; then
 			repo_src="$repo_src_tmp"
+			export repo_src_tmp
 		else
 			# keep user choice
 			repo_src="$repo_src"
+			export repo_src_tmp
 		fi
 	fi
 	
@@ -133,14 +136,17 @@ main()
 	if [[ "$gpg_pub_key" == "" ]]; then
 		# var blank this run, get input
 		read -ep "GPG Public Key: " gpg_pub_key
+		export gpg_pub_key
 	else
 		read -ep "GPG Public Key: " gpg_pub_key
 		# user chose to keep var value from last
 		if [[ "$gpg_pub_key" == "" ]]; then
 			gpg_pub_key="$gpg_pub_key_tmp"
+			export gpg_pub_key_tmp
 		else
 			# keep user choice
 			gpg_pub_key="$gpg_pub_key"
+			export gpg_pub_key_tmp
 		fi
 	fi
 	
@@ -152,14 +158,17 @@ main()
 	if [[ "$target" == "" ]]; then
 		# var blank this run, get input
 		read -ep "Package Name: " target
+		export target
 	else
 		read -ep "Package Name: " target
 		# user chose to keep var value from last
 		if [[ "$target" == "" ]]; then
 			target="$target_tmp"
+			export target_tmp
 		else
 			# keep user choice
 			target="$target"
+			export target_tmp
 		fi
 	fi
 	

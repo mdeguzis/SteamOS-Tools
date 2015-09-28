@@ -129,7 +129,7 @@ main()
 		
 		if apt-get source --build ${pkg}; then
 		
-			"\n==INFO==\nPackage ${PKG} build successfully\n"
+			echo -e "\n==INFO==\nPackage ${PKG} build successfully\n"
 			sleep 2s
 			
 		else

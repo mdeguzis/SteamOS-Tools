@@ -117,7 +117,7 @@ main()
 			
 		else
 		
-			"\n==ERROR==\nPackage ${PKG} build deps installation FAILED, exiting in 15 seconds\n"
+			echo -e "\n==ERROR==\nPackage ${PKG} build deps installation FAILED, exiting in 15 seconds\n"
 			sleep 15s
 			exit 1
 			
@@ -232,5 +232,22 @@ install_prereqs
 # set vars
 set_vars
 
-# start main
-main
+#####################################################
+# MAIN
+#####################################################
+main | tee log_temp.txt
+
+#####################################################
+# cleanup
+#####################################################
+
+# convert log file to Unix compatible ASCII
+strings log_temp.txt > log.txt
+
+# strings does catch all characters that I could 
+# work with, final cleanup
+sed -i 's|\[J||g' log.txt
+
+# remove file not needed anymore
+rm -f "custom-pkg.txt"
+rm -f "log_temp.txt"

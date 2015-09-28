@@ -109,7 +109,18 @@ main()
 		# Attempt to build target
 		echo -e "\n==> Attempting to build ${pkg}:\n"
 		sleep 2s
-		apt-get source --build ${pkg}
+		
+		if apt-get source --build ${pkg}; then
+		
+			"\n==INFO==\nPackage ${PKG} build successfully\n"
+			
+		else
+		
+			"\n==ERROR==\nPackage ${PKG} build FAILED, exiting in 15 seconds\n"
+			sleep 15s
+			exit 1
+			
+		fi
 		
 		# since this is building a large amount of packages, remove
 		# directories and unecessary files as we go.

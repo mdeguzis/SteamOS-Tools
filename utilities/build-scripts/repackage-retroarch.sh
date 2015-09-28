@@ -105,10 +105,14 @@ main()
 	# Rebuild all items in pkg_list
 	for pkg in ${pkg_list}; 
 	do
+	
+		echo -e "\n==> Attempting to acquire build-deps for ${pkg}:\n"
+		sleep 2s
+	
 		# attempt to auto get build deps
 		if sudo apt-get build-dep ${pkg}; then
 		
-			"\n==INFO==\nPackage ${PKG} build deps installed successfully\n"
+			echo -e "\n==INFO==\nPackage ${PKG} build deps installed successfully\n"
 			sleep 2s
 			
 		else

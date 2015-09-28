@@ -52,7 +52,7 @@ set_vars()
 	build_dir="/home/desktop/build-retroarch-temp"
 	
 	# set source
-	repo_src="deb-src http://ppa.launchpad.net/libretro/stable/ubuntu trusty main"
+	repo_src="deb-src http://ppa.launchpad.net/libretro/stable/ubuntu vivid main"
 
 	# GPG key
 	gpg_pub_key="ECA3745F"

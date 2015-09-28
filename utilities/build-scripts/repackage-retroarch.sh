@@ -117,12 +117,12 @@ main()
 		# attempt to auto get build deps
 		if sudo apt-get build-dep ${pkg} -y; then
 		
-			echo -e "\n==INFO==\nPackage ${pkg} build deps installed successfully"
+			echo -e "\n==INFO==\nPackage ${pkg} build dependencies installed successfully"
 			sleep 2s
 			
 		else
 		
-			echo -e "\n==ERROR==\nPackage ${pkg} build deps installation FAILED, plese check log.txt\n"
+			echo -e "\n==ERROR==\nPackage ${pkg} build dependencies installation FAILED, plese check log.txt\n"
 			echo -e "Continuing in 15 seconds"
 			sleep 15s
 			
@@ -134,7 +134,7 @@ main()
 		
 		if apt-get source --build ${pkg}; then
 		
-			echo -e "\n==INFO==\nPackage ${pkg} build successfully\n"
+			echo -e "\n==INFO==\nPackage ${pkg} built successfully\n"
 			sleep 2s
 			
 		else

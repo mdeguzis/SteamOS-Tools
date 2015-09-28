@@ -114,6 +114,7 @@ ep_install_chromium_dev()
 {
 
 	# TODO with widevine support
+	# See: https://launchpad.net/~saiarcot895/+archive/ubuntu/chromium-dev
 	:
 	
 }

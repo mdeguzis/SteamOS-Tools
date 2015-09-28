@@ -103,7 +103,6 @@ main()
 	# Ask user for repos / vars
 	echo -e "\n==> Please enter or paste the deb-src URL now:"
 	echo -e "    [Press ENTER to use last: $repo_src]\n"
-	sleep .2s
 	
 	# Of course, main Ubuntu packages are not "PPA's" so example deb-src lines are:
 	# deb-src http://archive.ubuntu.com/ubuntu vivid main restricted universe multiverse
@@ -114,61 +113,48 @@ main()
 	if [[ "$repo_src" == "" ]]; then
 		# var blank this run, get input
 		read -ep "deb-src URL: " repo_src
-		export repo_src
 	else
 		read -ep "deb-src URL: " repo_src
 		# user chose to keep var value from last
 		if [[ "$repo_src" == "" ]]; then
 			repo_src="$repo_src_tmp"
-			export repo_src_tmp
 		else
 			# keep user choice
 			repo_src="$repo_src"
-			export repo_src_tmp
 		fi
 	fi
 	
 	echo -e "\n==> Please enter or paste the GPG key for this repo now:"
 	echo -e "    [Press ENTER to use last: $gpg_pub_key]\n"
-	sleep .2s
-	
 	gpg_pub_key_tmp="$gpg_pub_key"
 	if [[ "$gpg_pub_key" == "" ]]; then
 		# var blank this run, get input
 		read -ep "GPG Public Key: " gpg_pub_key
-		export gpg_pub_key
 	else
 		read -ep "GPG Public Key: " gpg_pub_key
 		# user chose to keep var value from last
 		if [[ "$gpg_pub_key" == "" ]]; then
 			gpg_pub_key="$gpg_pub_key_tmp"
-			export gpg_pub_key_tmp
 		else
 			# keep user choice
 			gpg_pub_key="$gpg_pub_key"
-			export gpg_pub_key_tmp
 		fi
 	fi
 	
 	echo -e "\n==> Please enter or paste the desired package name now:"
 	echo -e "    [Press ENTER to use last: $target]\n"
-	sleep .2s
-	
 	target_tmp="$target"
 	if [[ "$target" == "" ]]; then
 		# var blank this run, get input
 		read -ep "Package Name: " target
-		export target
 	else
 		read -ep "Package Name: " target
 		# user chose to keep var value from last
 		if [[ "$target" == "" ]]; then
 			target="$target_tmp"
-			export target_tmp
 		else
 			# keep user choice
 			target="$target"
-			export target_tmp
 		fi
 	fi
 	
@@ -196,6 +182,7 @@ main()
 	sudo apt-key update
 	sudo apt-get update
 	
+	
 	# assign value to build folder for exit warning below
 	build_folder=$(ls -l | grep "^d" | cut -d ' ' -f12)
 	
@@ -212,7 +199,7 @@ main()
 		else
 			
 			echo -e "\n==ERROR==\nSource package dependencies coud not be installed!"
-			echo -e "Please review log.txt. Exiting in 15 seconds."
+			echo -e "Press CTRL+C to exit now. Exiting in 15 seconds."
 			sleep 15s
 			exit 1
 			
@@ -336,22 +323,5 @@ main()
 #prereqs
 install_prereqs
 
-#####################################################
-# MAIN
-#####################################################
-main | tee log_temp.txt
-
-#####################################################
-# cleanup
-#####################################################
-
-# convert log file to Unix compatible ASCII
-strings log_temp.txt > log.txt
-
-# strings does catch all characters that I could 
-# work with, final cleanup
-sed -i 's|\[J||g' log.txt
-
-# remove file not needed anymore
-rm -f "custom-pkg.txt"
-rm -f "log_temp.txt"
+# start main
+main

@@ -50,7 +50,7 @@ install_prereqs()
 	# install needed packages
 	sudo apt-get install git devscripts build-essential checkinstall \
 	debian-keyring debian-archive-keyring cmake g++ libqt4-dev libqt4-dev \
-	libxi-dev libxtst-dev libX11-dev bc libsdl2-dev
+	libxi-dev libxtst-dev libX11-dev bc libsdl2-dev gcc gcc-multilib
 
 }
 

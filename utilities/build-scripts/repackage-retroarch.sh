@@ -71,6 +71,11 @@ main()
 		sudo rm -rf "$build_dir"
 	fi
 	
+	# remove previous log if it exists
+	if [[ -f "log.txt" ]]; then
+		rm -f "log.txt"
+	fi
+	
 	# create build dir and enter it
 	mkdir -p "$build_dir"
 	cd "$build_dir"

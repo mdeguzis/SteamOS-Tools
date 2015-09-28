@@ -187,9 +187,10 @@ main()
 		echo -e "\n"
 		
 		# perform upload
-		scp -r $sourcedir $user@$host:$destdir
+		scp -rv $sourcedir/*.deb $user@$host:$destdir
 		
 	elif [[ "$upload_choice" == "n" ]]; then
+	
 		echo -e "Upload not requested\n"
 	fi
 	

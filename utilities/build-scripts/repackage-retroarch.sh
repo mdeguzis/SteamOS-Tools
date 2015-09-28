@@ -110,7 +110,7 @@ main()
 		sleep 2s
 	
 		# attempt to auto get build deps
-		if sudo apt-get build-dep ${pkg}; then
+		if sudo apt-get build-dep ${pkg} -y; then
 		
 			echo -e "\n==INFO==\nPackage ${PKG} build deps installed successfully\n"
 			sleep 2s

@@ -2,10 +2,12 @@
 # Build Script for steamos-xpad-dkms
 #======================================================================== 
 #
-# Author:  Michael DeGuzis, 
-# Date:    20150929
-# Version: 0.1
-# 
+# Author:       Michael DeGuzis, 
+# Date:         20150929
+# Version:      0.3
+# Description:  steamos-xpad-dkms build script for packaging.
+#               This build script is meant for PPA uploads.
+#
 # ========================================================================
 
 # Upstream vars from Valve's repo
@@ -22,19 +24,16 @@ pkgrel="$xpadsteamoscommit_short"
 # Define release
 REL="vivid"
 
-#define branch
+# Define branch
 BRANCH="master"
 
-#define upload target
+# Define upload target
 LAUNCHPAD_PPA="ppa:mdeguzis/steamos-tools"
 
-#define uploader for changelog
+# Define uploader for changelog
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
 
-#define manpage program author
-manpage_author="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
-
-#define package maintainer for dsc and $pkgname-$pkgver-$pkgrel file 
+# Define package maintainer for dsc and $pkgname-$pkgver-$pkgrel file 
 pkgmaintainer="SteamOS-Tools Team <mdeguzis@gmail.com>"
 
 clear
@@ -141,8 +140,13 @@ cp $xpad_source_file .
 cd debian/
 
 echo "changelog"
+# Change version, uploader, insert change log comments
 sed -i "s|version_placeholder|$pkgname_$pkgver-$pkgrel|g" debian/changelog
 sed -i "s|uploader|$uploader|g" debian/changelog
+
+echo -e "\nOpening change log for details to be added...\n"
+sleep 5s
+nano debian/changelog
 
 echo "control"
 sed -i "s|pkgmaintainer|$pkgmaintainer|g" debian/control

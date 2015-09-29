@@ -22,3 +22,4 @@ gnumeric
 brasero
 chromium
 openjdk-7-jre
+screen

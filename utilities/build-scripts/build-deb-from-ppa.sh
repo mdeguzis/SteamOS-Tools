@@ -7,9 +7,6 @@
 # Script Ver:	0.3.7
 # Description:	Attempts to build a deb package from a PPA
 #
-# See:		If you are building from Ubuntu main, check the website
-#		http://www.debianadmin.com/adding-ubuntu-repositories.html
-#
 # See also:	Generate a source list: http://repogen.simplylinux.ch/
 #		Command 'rmadison' from devscripts to see arch's
 #		Command 'apt-cache madison <PKG>'

@@ -4,27 +4,24 @@
 #
 # Author:  Michael DeGuzis, 
 # Date:    20150929
-# Version: 1.1
+# Version: 0.1
 # 
 # ========================================================================
 
 
 # define base version
-PRE=0
-BASE=1.1
+PRE="valve-git"
+BASE="9ce95a1"
 
 # Upstream vars from Valve's repo
 steamos_kernel_url='https://github.com/ValveSoftware/steamos_kernel'
 xpadsteamoscommit='f5f73eb889cac32cbabfc40362fe5635a2255836'
 
-# define patch level
-PL=0
-
 # Define release
 REL="vivid"
 
 #define branch
-BRANCH=steamos-xpad-dkms
+BRANCH="master"
 
 #define upload target
 LAUNCHPAD_PPA="ppa:mdeguzis/steamos-tools"
@@ -103,12 +100,13 @@ echo "Setup package base files"
 echo "##########################################"
 
 echo "dsc file"
-cp ~/SteamOS-Tools/utilities/build-scripts/steamos-xpad-dkms/steamos-xpad-dkms.dsc steamos-xpad-dkms-$PRE:$BASE.$PL$REL.dsc
+cp ~/SteamOS-Tools/utilities/build-scripts/steamos-xpad-dkms/steamos-xpad-dkms.dsc steamos-xpad-dkms-$PRE-$BASE-$REL.dsc
 sed -i "s|version_placeholder|$PRE:$BASE.$PL$REL|g" "steamos-xpad-dkms-$PRE:$BASE.$PL$REL.dsc"
 sed -i "s|pkgmaintainer|$pkgmaintainer|g" "steamos-xpad-dkms-$PRE:$BASE.$PL$REL.dsc"
+sed -i "s|email|$maintainer_email|g" "steamos-xpad-dkms-$PRE:$BASE.$PL$REL.dsc"
 
 echo "original tarball"
-git clone -b steamos-xpad-dkms https://github.com/ProfessorKaos64/SteamOS-Tools
+git clone https://github.com/ProfessorKaos64/steamos-xpad-dkms
 
 # sanity check
 file steamos-xpad-dkms/
@@ -130,7 +128,7 @@ rm -rf .git .gitignore .hgeol .hgignore
 # Create archive
 cd ..
 tar cfj steamos-xpad-dkms.orig.tar.bz2 steamos-xpad-dkms
-mv steamos-xpad-dkms.orig.tar.bz2 steamos-xpad-dkms_$BASE.$PL$REL.orig.tar.bz2
+mv steamos-xpad-dkms.orig.tar.bz2 steamos-xpad-dkms_$PRE-$BASE-$REL.orig.tar.bz2
 
 echo ""
 echo "##########################################"
@@ -144,28 +142,14 @@ cd steamos-xpad-dkms
 cd steamos-xpad-dkms
 
 echo "changelog"
-cp ~/SteamOS-Tools/utilities/build-scripts/steamos-xpad-dkms/debian/changelog debian/
 sed -i "s|version_placeholder|$PRE:$BASE.$PL$REL|g" debian/changelog
 sed -i "s|uploader|$uploader|g" debian/changelog
 
 echo "copyright"
-cp ~/SteamOS-Tools/utilities/build-scripts/steamos-xpad-dkms/debian/copyright debian/
 sed -i "s|pkgmaintainer|$pkgmaintainer|g" debian/copyright
 
 echo "control"
-cp ~/SteamOS-Tools/utilities/build-scripts/steamos-xpad-dkms/debian/control debian/
 sed -i "s|pkgmaintainer|$pkgmaintainer|g" debian/control
-
-echo "rules"
-cp ~/SteamOS-Tools/utilities/build-scripts/steamos-xpad-dkms/debian/rules debian/
-
-echo "format"
-cp ~/SteamOS-Tools/utilities/build-scripts/steamos-xpad-dkms/debian/source/format debian/source/
-
-echo "manpage"
-cp ~/SteamOS-Tools/utilities/build-scripts/steamos-xpad-dkms/debian/steamos-xpad-dkms.7 debian/
-cp ~/SteamOS-Tools/utilities/build-scripts/steamos-xpad-dkms/debian/steamos-xpad-dkms.manpages debian/
-sed -i "s|author_temp|$manpage_author|g" debian/steamos-xpad-dkms.7
 
 if [[ -n "$1" ]]; then
   arg0=$1
@@ -209,8 +193,6 @@ case "$arg0" in
       echo "Building source package"
       echo "##########################################"
       echo ""
-      echo ""
-      echo ""
       echo "****** please copy your gpg passphrase into the clipboard ******"
       echo ""
       sleep 10
@@ -223,7 +205,7 @@ case "$arg0" in
         ls -lah ~/pkg-build-tmp/steamos-xpad-dkms
         echo ""
         echo ""
-        echo "you can upload the package with dput ppa:mdeguzis/retrorig-es ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/steamos-xpad-dkms_$BASE.$PL$REL""_source.changes"
+        echo "you can upload the package with dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/steamos-xpad-dkms_$PRE-$BASE""_source.changes"
         echo "all good"
         echo ""
         echo ""
@@ -231,7 +213,7 @@ case "$arg0" in
         while true; do
             read -p "Do you wish to upload the source package?    " yn
             case $yn in
-                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/steamos-xpad-dkms_$BASE.$PL$REL""_source.changes; break;;
+                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/steamos-xpad-dkms_$PRE-$BASE-$REL""_source.changes; break;;
                 [Nn]* ) break;;
                 * ) echo "Please answer yes or no.";;
             esac

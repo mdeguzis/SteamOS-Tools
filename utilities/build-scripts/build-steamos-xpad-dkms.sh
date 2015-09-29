@@ -22,7 +22,7 @@ pkgver="valve-git"
 pkgrel="$xpadsteamoscommit_short"
 
 # Define release
-REL="vivid"
+dist_rel="trusty"
 
 # Define branch
 BRANCH="master"
@@ -143,6 +143,7 @@ echo "changelog"
 # Change version, uploader, insert change log comments
 sed -i "s|version_placeholder|$pkgname_$pkgver-$pkgrel|g" debian/changelog
 sed -i "s|uploader|$uploader|g" debian/changelog
+sed -i "s|dist_rel|$dist_rel|g" debian/changelog
 
 echo -e "\nOpening change log for details to be added...\n"
 sleep 5s

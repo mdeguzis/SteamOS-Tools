@@ -13,6 +13,10 @@
 PRE=0
 BASE=1.1
 
+# Upstream vars from Valve's repo
+steamos_kernel_url='https://github.com/ValveSoftware/steamos_kernel'
+xpadsteamoscommit='f5f73eb889cac32cbabfc40362fe5635a2255836'
+
 # define patch level
 PL=0
 

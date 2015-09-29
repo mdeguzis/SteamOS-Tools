@@ -8,7 +8,6 @@
 # 
 # ========================================================================
 
-
 # define base version
 pkgname='steamos-xpad-dkms'
 pkgver='valve-git'
@@ -101,10 +100,6 @@ echo "##########################################"
 echo "Setup package base files"
 echo "##########################################"
 
-echo "dsc file"
-sed -i "s|version_placeholder|$pkgname-$pkgver-$pkgrel|g" "steamos-xpad-dkms-$pkgname-$pkgver-$pkgrel.dsc"
-sed -i "s|pkgmaintainer|$pkgmaintainer|g" "steamos-xpad-dkms-$pkgname-$pkgver-$pkgrel.dsc"
-
 echo "original tarball"
 git clone https://github.com/ProfessorKaos64/steamos-xpad-dkms
 
@@ -143,7 +138,7 @@ cd steamos-xpad-dkms
 cd debian/
 
 echo "changelog"
-sed -i "s|version_placeholder|$pkgname-$pkgver-$pkgrel|g" debian/changelog
+sed -i "s|version_placeholder|$pkgname_$pkgver-$pkgrel|g" debian/changelog
 sed -i "s|uploader|$uploader|g" debian/changelog
 
 echo "control"
@@ -215,7 +210,7 @@ case "$arg0" in
         while true; do
             read -p "Do you wish to upload the source package?    " yn
             case $yn in
-                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/$pkgname_$pkgver-$pkgrel""_source.changes; break;;
+                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/$pkgname_*.$PL"""_source.changes; break;;
                 [Nn]* ) break;;
                 * ) echo "Please answer yes or no.";;
             esac

@@ -8,15 +8,16 @@
 # 
 # ========================================================================
 
-# define base version
-pkgname='steamos-xpad-dkms'
-pkgver='valve-git'
-pkgrel='9ce95a1'
-
 # Upstream vars from Valve's repo
 steamos_kernel_url='https://github.com/ValveSoftware/steamos_kernel'
 xpadsteamoscommit='9ce95a199ff868f76b059338ee8d5760aa33a064'
 xpadsteamoscommit_short='9ce95a1'
+xpad_source_file="https://raw.github.com/ValveSoftware/steamos_kernel/${xpadsteamoscommit}/drivers/input/joystick/xpad.c"
+
+# define base version
+pkgname="steamos-xpad-dkms"
+pkgver="valve-git"
+pkgrel="$xpadsteamoscommit_short"
 
 # Define release
 REL="vivid"
@@ -35,7 +36,6 @@ manpage_author="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
 
 #define package maintainer for dsc and $pkgname-$pkgver-$pkgrel file 
 pkgmaintainer="SteamOS-Tools Team <mdeguzis@gmail.com>"
-
 
 clear
 echo "#####################################################################"
@@ -133,6 +133,9 @@ echo ""
 
 # enter github repository
 cd steamos-xpad-dkms
+
+# copy in xpad.c over top the existing file from the desired commit
+cp $xpad_source_file .
 
 # enter debian build folder
 cd debian/

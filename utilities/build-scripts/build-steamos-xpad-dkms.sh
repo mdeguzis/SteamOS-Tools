@@ -25,7 +25,7 @@ revision="1"
 build_dir="${HOME}/${pkgname}_${pkgver}"
 
 # Define release
-dist_rel="Trusty"
+dist_rel="trusty"
 
 # Define branch
 BRANCH="master"
@@ -220,7 +220,7 @@ EOF
       if [ $? -eq 0 ]; then
         echo ""
         echo ""
-        ls -lah ~/pkg-build-tmp/steamos-xpad-dkms
+        ls -lah "$build_dir"
         echo ""
         echo ""
         echo "you can upload the package with dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/${pkgname}_${pkgver}_source.changes"
@@ -231,7 +231,7 @@ EOF
         while true; do
             read -rp "Do you wish to upload the source package?    " yn
             case $yn in
-                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/${pkname}_${pkgver}/${pkgname}_${pkgver}_source.changes; break;;
+                [Yy]* ) dput ppa:mdeguzis/steamos-tools ${build_dir}/${pkgname}_${pkgver}/${pkgname}_${pkgver}_source.changes; break;;
                 [Nn]* ) break;;
                 * ) echo "Please answer yes or no.";;
             esac

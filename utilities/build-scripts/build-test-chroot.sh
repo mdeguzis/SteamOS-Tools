@@ -8,7 +8,7 @@
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
 #
-# Usage:	sudo ./build-test-chroot.sh [type] [release]
+# Usage:	sudo ./build-test-chroot.sh [type] [release] [arch]
 # Options:	types: [debian|steamos] 
 #		releases debian:  [wheezy|jessie]
 #		releases steamos: [alchemist|alchemist-beta|brewmaster|brewmaster-beta]
@@ -36,6 +36,7 @@ rm -f "log.txt"
 # set arguments / defaults
 type="$1"
 release="$2"
+arch="$3"
 target="${type}-${release}"
 stock_choice=""
 
@@ -202,7 +203,7 @@ funct_create_chroot()
 	else
 	
 		# handle Debian instead
-		/usr/sbin/debootstrap --arch i386 ${release} /home/$USER/chroots/${target} ${target_URL}
+		/usr/sbin/debootstrap --arch ${arch} ${release} /home/$USER/chroots/${target} ${target_URL}
 		
 	fi
 	

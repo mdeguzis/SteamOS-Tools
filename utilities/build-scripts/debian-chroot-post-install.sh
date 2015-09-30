@@ -46,6 +46,9 @@ fi
 
 echo -e "\n==> Configuring users and groups"
 
+# Add groups
+groupadd users
+
 # User configurations
 useradd -s /bin/bash -m -d /home/desktop -c "Desktop user" -g user users
 

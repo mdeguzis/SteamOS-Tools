@@ -231,7 +231,7 @@ EOF
         while true; do
             read -rp "Do you wish to upload the source package?    " yn
             case $yn in
-                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/${pkgname}_${pkgver}_source.changes; break;;
+                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/${pkname}_${pkgver}/${pkgname}_${pkgver}_source.changes; break;;
                 [Nn]* ) break;;
                 * ) echo "Please answer yes or no.";;
             esac

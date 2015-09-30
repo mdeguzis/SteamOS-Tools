@@ -170,13 +170,13 @@ funct_create_chroot()
 	elif [[ "$type" == "debian" ]]; then
 	
 		# handle Debian
-		/usr/sbin/debootstrap --arch ${arch} ${release} --components=main,contrib,non-free \
+		/usr/sbin/debootstrap --components=main,contrib,non-free --arch ${arch} ${release} \
 		/home/$USER/chroots/${target} ${target_URL}
 		
 	elif [[ "$type" == "ubuntu" ]]; then
 	
 		# handle Ubuntu
-		/usr/sbin/debootstrap --arch ${arch} ${release} --components=main,multiverse,restricted,universe \
+		/usr/sbin/debootstrap --components=main,multiverse,restricted,universe --arch ${arch} ${release} \
 		/home/$USER/chroots/${target} ${target_URL}
 		
 	fi

@@ -143,8 +143,9 @@ EOF
 # enter github repository
 cd steamos-xpad-dkms
 
-# copy in xpad.c over top the existing file from the desired commit
-wget -O xpad.c $xpad_source_file
+# (NOTICE: updated xpad.c when necessary)
+# copy xpad.c over top the existing file on Github for updating
+# Store this in the upstream git, rather than download here, or dpkg-source will complain 
 
 echo -e "\n==> changelog"
 # Change version, uploader, insert change log comments

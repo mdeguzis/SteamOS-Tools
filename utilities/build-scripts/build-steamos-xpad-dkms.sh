@@ -84,7 +84,7 @@ echo "##########################################"
 echo "Setup build directory"
 echo "##########################################"
 echo ""
-echo "~/pkg-build-tmp/steamos-xpad-dkms"
+echo "$build_dir"
 # start in $HOME
 cd
 

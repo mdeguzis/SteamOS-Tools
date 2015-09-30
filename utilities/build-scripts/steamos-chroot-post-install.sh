@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	steamos-chroot-post-install.sh
-# Script Ver:	0.5.9
+# Script Ver:	0.6.3
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A - called by build-test-chroot
@@ -52,6 +52,30 @@ else
 	echo -e "\nchroot entry failed. Exiting...\n"
 	sleep 2s
 	exit
+fi
+
+cat<<- EOF
+==> Generating locale...
+    You will now be shown a listing of the available locales.
+    Please enter your select in the format "aa_AA".
+    
+EOF
+
+# show locales
+less /usr/share/i18n/locales
+
+# get user choice
+read -erp "Desired locale: " locale
+
+# generation locale with choice, fall back to en_US if none-specified
+if [[ "$locale" != "" ]]; then
+	
+	# generate based on choice
+	locale-gen "${locale}.UTF-8"
+	
+else
+	# fallback to english, US
+	locale-gen "en_US.UTF-8"
 fi
 
 echo -e "\n==> Configuring users and groups"

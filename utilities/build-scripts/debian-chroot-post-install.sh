@@ -125,7 +125,7 @@ for dep in ${deps}; do
 		
 		if [[ $? = 100 ]]; then
 			echo -e "Cannot install ${dep}. Please install this manually \n"
-			exit 1
+			sleep 5s
 		fi
 		
 	else

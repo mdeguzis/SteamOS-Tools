@@ -43,7 +43,13 @@ if [[ "$stock_opt" == "yes" ]]; then
 	echo -e "User requested no post-install configuration. Exiting...\n"
 	exit
 	
-elif [[ "$stock_opt" == "no" ]]; then
+elif [[ "$stock_opt" == "no" && "$type" == "steamos" ]]; then
+
+	echo -e "The intended target is: ${type} (${release})"
+	echo -e "Running post install commands now..."
+	sleep 2s
+	
+elif [[ "$stock_opt" == "no" && "$type" == "steamos-beta" ]]; then
 
 	echo -e "The intended target is: ${type} (${release})"
 	echo -e "Running post install commands now..."

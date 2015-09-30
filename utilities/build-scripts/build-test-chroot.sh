@@ -9,9 +9,10 @@
 #               See: https://wiki.debian.org/chroot
 #
 # Usage:	sudo ./build-test-chroot.sh [type] [release] [arch]
-# Options:	types: [debian|steamos] 
+# Options:	types: [debian|steamos|ubuntu] 
 #		releases debian:  [wheezy|jessie]
 #		releases steamos: [alchemist|alchemist-beta|brewmaster|brewmaster-beta]
+#		releases ubuntu:  [trusty|vivid]
 #		
 # Help:		sudo ./build-test-chroot.sh --help for help
 #
@@ -117,6 +118,10 @@ funct_set_target()
 	elif [[ "$type" == "steamos-beta" ]]; then
 	
 		target_URL="http://repo.steampowered.com/steamos"
+		
+	elif [[ "$type" == "ubuntu" ]]; then
+
+		target_URL="http://mirrors.mit.edu/ubuntu/"
 	
 	elif [[ "$type" == "--help" ]]; then
 		
@@ -200,7 +205,12 @@ funct_create_chroot()
 		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
 		--arch i386 ${release} /home/$USER/chroots/${target} ${target_URL}
 		
-	else
+	elif [[ "$type" == "debian" ]];then
+	
+		# handle Debian instead
+		/usr/sbin/debootstrap --arch ${arch} ${release} /home/$USER/chroots/${target} ${target_URL}
+		
+	elif [[ "$type" == "ubuntu" ]];then
 	
 		# handle Debian instead
 		/usr/sbin/debootstrap --arch ${arch} ${release} /home/$USER/chroots/${target} ${target_URL}
@@ -286,54 +296,61 @@ funct_create_chroot()
 	source "/home/$USER/.bash_aliases"
 	
 	# enter chroot to test
-	cat <<-EOF
+	# only offer to remain a standard chroot for SteamOS, since it is the only
+	# chroot that currently offers post-creation steps
 	
-	------------------------------------------------------------
-	Summary
-	------------------------------------------------------------
-	EOF
-
-	echo -e "\nYou will now be placed into the chroot. Press [ENTER].
-If you wish  to leave out any post operations and remain with a 'stock' chroot, type 'stock',
-then [ENTER] instead. A stock chroot is only intended and suggested for the Debian chroot type."
+	if [[ "$type" != "debian" || "$type" != "ubuntu" ]]; then
 	
-	echo -e "You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
-enter the chroot again. You can also use the newly created alias listed below\n"
-
-	echo -e "\tchroot-${target}\n"
-	
-	# Capture input
-	read stock_choice
-	
-	if [[ "$stock_choice" == "" ]]; then
-	
-		# Captured carriage return / blank line only, continue on as normal
-		# Modify target based on opts
-		sed -i "s|"tmp_stock"|"no"|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
-		#printf "zero length detected..."
+		cat <<-EOF
 		
-	elif [[ "$stock_choice" == "stock" ]]; then
-	
-		# Modify target based on opts
-		sed -i "s|"tmp_stock"|"yes"|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
+		------------------------------------------------------------
+		Summary
+		------------------------------------------------------------
 		
-	elif [[ "$stock_choice" != "stock" ]]; then
+		echo -e "\nYou will now be placed into the chroot. Press [ENTER].
+		If you wish  to leave out any post operations and remain with a 'stock' chroot, type 'stock',
+		then [ENTER] instead. A stock chroot is only intended and suggested for the Debian chroot type."
+		
+		You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
+		enter the chroot again. You can also use the newly created alias listed below\n"
+		
+		EOF
 	
-		# user entered something arbitrary, exit
-		echo -e "\nSomething other than [blank]/[ENTER] or 'stock' was entered, exiting.\n"
-		exit
+		echo -e "\tchroot-${target}\n"
+		
+		# Capture input
+		read stock_choice
+		
+		if [[ "$stock_choice" == "" ]]; then
+		
+			# Captured carriage return / blank line only, continue on as normal
+			# Modify target based on opts
+			sed -i "s|"tmp_stock"|"no"|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
+			#printf "zero length detected..."
+			
+		elif [[ "$stock_choice" == "stock" ]]; then
+		
+			# Modify target based on opts
+			sed -i "s|"tmp_stock"|"yes"|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
+			
+		elif [[ "$stock_choice" != "stock" ]]; then
+		
+			# user entered something arbitrary, exit
+			echo -e "\nSomething other than [blank]/[ENTER] or 'stock' was entered, exiting.\n"
+			exit
+		fi
+		
+		# "bind" /dev/pts
+		mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"
+		
+		# run script inside chroot with:
+		# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
+		/usr/sbin/chroot "/home/$USER/chroots/${target}" /bin/bash -c "/tmp/chroot-post-install.sh"
+		
+		# Unmount /dev/pts
+		umount /home/$USER/chroots/${target}/dev/pts
+	
 	fi
-	
-	# "bind" /dev/pts
-	mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"
-	
-	# run script inside chroot with:
-	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
-	/usr/sbin/chroot "/home/$USER/chroots/${target}" /bin/bash -c "/tmp/chroot-post-install.sh"
-	
-	# Unmount /dev/pts
-	umount /home/$USER/chroots/${target}/dev/pts
-	
 }
 
 main()

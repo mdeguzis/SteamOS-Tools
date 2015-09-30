@@ -18,8 +18,8 @@ xpad_source_file="https://github.com/ValveSoftware/steamos_kernel/raw/9ce95a199f
 
 # define base version
 pkgname="steamos-xpad-dkms"
-pkgver="valve-git"
-pkgrel="$xpadsteamoscommit_short"
+pkgver="20150930+git"
+pkgrel="1"
 
 # Define release
 dist_rel="trusty"

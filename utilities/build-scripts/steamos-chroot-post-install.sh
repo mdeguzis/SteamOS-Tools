@@ -2,7 +2,7 @@
 # -------------------------------------------------------------------------------
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	chroot-post-install.sh
+# Scipt Name:	steamos-chroot-post-install.sh
 # Script Ver:	0.5.7
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
@@ -35,53 +35,25 @@ type="tmp_type"
 stock_opt="tmp_stock"
 release="tmp_release"
 target="${type}-${release}"
-
-# bail out if strock opt was changed to yes in ./build-test-chroot
-if [[ "$stock_opt" == "yes" ]]; then
-
-	# exit post install
-	echo -e "User requested no post-install configuration. Exiting...\n"
-	exit
 	
-elif [[ "$stock_opt" == "no" && "$type" == "steamos" ]]; then
+# pass to ensure we are in the chroot 
+# temp test for chroot (output should be something other than 2)
+ischroot=$(ls -di /)
 
-	echo -e "The intended target is: ${type} (${release})"
-	echo -e "Running post install commands now..."
-	sleep 2s
-	
-elif [[ "$stock_opt" == "no" && "$type" == "steamos-beta" ]]; then
+echo -e "\nChecking for chroot..."
 
-	echo -e "The intended target is: ${type} (${release})"
-	echo -e "Running post install commands now..."
+if [[ "$ischroot" != "2" ]]; then
+
+	echo "We are chrooted!"
 	sleep 2s
 	
 else
-	echo -e "Failture to obtain stock status, exiting"
+
+	echo -e "\nchroot entry failed. Exiting...\n"
+	sleep 2s
 	exit
-	
 fi
 
-if [[ "$type" == "steamos" ]]; then
-	
-	# pass to ensure we are in the chroot 
-	# temp test for chroot (output should be something other than 2)
-	ischroot=$(ls -di /)
-	
-	echo -e "\nChecking for chroot..."
-	
-	if [[ "$ischroot" != "2" ]]; then
-	
-		echo "We are chrooted!"
-		sleep 2s
-		
-	else
-	
-		echo -e "\nchroot entry failed. Exiting...\n"
-		sleep 2s
-		exit
-	fi
-fi
-	
 echo -e "\n==> Configuring users and groups"
 
 # Add groups not included in Debian base

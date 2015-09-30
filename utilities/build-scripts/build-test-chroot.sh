@@ -103,7 +103,7 @@ funct_prereqs()
 	
 	# update for keyrings
 	
-	echo -e "\n==> Updating system for newly added keyrings"
+	echo -e "\n==> Updating system for newly added keyrings\n"
 	sleep 2s
 	sudo apt-key update
 	sudo apt-get update
@@ -113,7 +113,9 @@ funct_prereqs()
 funct_set_target()
 {
 	
-	# setup targets for appropriate details
+	# Setup targets for appropriate details
+	# Note: in the future, possibly allow users to specify localized mirrors
+	
 	if [[ "$type" == "debian" ]]; then
 	
 		target_URL="http://http.debian.net/debian"
@@ -260,10 +262,35 @@ funct_create_chroot()
 	
 	if [[ "$type" == "ubuntu" || "$type" == "debian" ]]; then
 	
-		echo -e "\nNo post configuration scripts exist currently for this chroot type."
+		# copy over post install scripts for execution on the SteamOS chroot
+		echo -e "\n==> Copying post install scripts to tmp directory\n"
 		
-		# Enter chroot
-		/usr/sbin/chroot "/home/$USER/chroots/${target}"
+		cp -v "debian-chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
+		cp -v ../gpg_import.sh "/home/$USER/chroots/${target}/tmp/"
+		
+		# mark executable
+		chmod +x "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh.sh"
+		chmod +x "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh.sh"
+	
+		# modify gpg_import.sh with sudo removed, as it won't be configured and we
+		# don't need it to be there
+		sed -i "s|sudo ||g" "/home/$USER/chroots/${target}/tmp/gpg_import.sh"
+	
+		# Modify type based on opts
+		sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh.sh"
+		
+		# modify release_tmp for Debian Wheezy / Jessie in post-install script
+		sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh"
+		
+		# "bind" /dev/pts
+		mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"
+		
+		# run script inside chroot with:
+		# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
+		/usr/sbin/chroot "/home/$USER/chroots/${target}" /bin/bash -c "/tmp/debian-chroot-post-install.sh"
+		
+		# Unmount /dev/pts
+		umount /home/$USER/chroots/${target}/dev/pts
 		
 	elif [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	

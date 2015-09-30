@@ -78,13 +78,13 @@ EOF
 
 echo "$build_dir"
 # start in $HOME
-cd
+cd || exit
 
 # setup build directory
 if [[ -d "$build_dir" ]]; then
 
   # reset dir
-  rm -rf "$buid_dir"
+  rm -rf "$build_dir"
   
 else
 
@@ -114,7 +114,7 @@ else
 fi 
 
 # change to source folder
-cd steamos-xpad-dkms
+cd steamos-xpad-dkms || exit
 git pull
 git checkout $BRANCH
 # remove git files
@@ -122,7 +122,7 @@ rm -rf .git .gitignore .hgeol .hgignore
 
 # Create archive
 echo -e "\n==> Creating archive"
-cd ..
+cd .. || exit
 tar cfj steamos-xpad-dkms.orig.tar.bz2 steamos-xpad-dkms
 mv "steamos-xpad-dkms.orig.tar.bz2" "${pkgname}_${pkgver}.orig.tar.bz2"
 
@@ -165,12 +165,12 @@ fi
 
 case "$arg0" in
   compile)
-    cat <<-EOF
-    echo ##########################################
-    echo Building binary package now
-    echo ##########################################
-    
-    EOF
+  cat <<-EOF
+  echo ##########################################
+  echo Building binary package now
+  echo ##########################################
+  
+EOF
 
     #build binary package
     debuild -us -uc
@@ -181,7 +181,7 @@ case "$arg0" in
         Building finished
         ##########################################
         
-        EOF
+EOF
         
         ls -lah ~/pkg-build-tmp/steamos-xpad-dkms
          exit 0
@@ -200,10 +200,11 @@ case "$arg0" in
       ##########################################
       Building source package
       ##########################################
-      EOF
+      
+EOF
     
       sleep 3s
-      debuild -S -sa -k$gpgkey
+      debuild -S -sa -k${gpgkey}
 
       if [ $? -eq 0 ]; then
         echo ""
@@ -217,7 +218,7 @@ case "$arg0" in
         echo ""
 
         while true; do
-            read -p "Do you wish to upload the source package?    " yn
+            read -rp "Do you wish to upload the source package?    " yn
             case $yn in
                 [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/${pkgname}_${pkgver}_source.changes; break;;
                 [Nn]* ) break;;

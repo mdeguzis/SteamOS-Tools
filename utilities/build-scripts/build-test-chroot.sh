@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.5.6
+# Script Ver:	0.7.6
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -87,7 +87,6 @@ check_sources()
 		fi
 		
 	fi
-	
 	
 }
 
@@ -247,8 +246,8 @@ funct_create_chroot()
 	------------------------------------------------------------
 	
 	You will now be placed into the chroot. Press [ENTER].
-	If your chroot type is for steamos, or steamos-beta, post install operations will now take place.
-	then [ENTER] instead. A stock chroot is only intended and suggested for the Debian/Ubuntu chroot types.
+	Any available post install scritps will now launch to configure a basic setup or 
+	more advanced optoins (e.g. SteamOS). Please hit [ENTER] now. 
 	
 	You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
 	enter the chroot again. You can also use the newly created alias listed below
@@ -266,21 +265,21 @@ funct_create_chroot()
 		echo -e "\n==> Copying post install scripts to tmp directory\n"
 		
 		cp -v "debian-chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
-		cp -v ../gpg_import.sh "/home/$USER/chroots/${target}/tmp/"
+		cp -v ../gpg-import.sh "/home/$USER/chroots/${target}/tmp/"
 		
 		# mark executable
-		chmod +x "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh.sh"
-		chmod +x "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh.sh"
+		chmod +x "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh"
+		chmod +x "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh"
 	
-		# modify gpg_import.sh with sudo removed, as it won't be configured and we
+		# modify gpg-import.sh with sudo removed, as it won't be configured and we
 		# don't need it to be there
-		sed -i "s|sudo ||g" "/home/$USER/chroots/${target}/tmp/gpg_import.sh"
+		sed -i "s|sudo ||g" "/home/$USER/chroots/${target}/tmp/gpg-import.sh"
 	
 		# Modify type based on opts
-		sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh.sh"
+		sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh"
 		
 		# modify release_tmp for Debian Wheezy / Jessie in post-install script
-		sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh"
+		sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install"
 		
 		# "bind" /dev/pts
 		mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"
@@ -298,15 +297,15 @@ funct_create_chroot()
 		echo -e "\n==> Copying post install scripts to tmp directory\n"
 		
 		cp -v "steamos-chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
-		cp -v ../gpg_import.sh "/home/$USER/chroots/${target}/tmp/"
+		cp -v ../gpg-import.sh "/home/$USER/chroots/${target}/tmp/"
 		
 		# mark executable
 		chmod +x "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh.sh"
 		chmod +x "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh.sh"
 	
-		# modify gpg_import.sh with sudo removed, as it won't be configured and we
+		# modify gpg-import.sh with sudo removed, as it won't be configured and we
 		# don't need it to be there
-		sed -i "s|sudo ||g" "/home/$USER/chroots/${target}/tmp/gpg_import.sh"
+		sed -i "s|sudo ||g" "/home/$USER/chroots/${target}/tmp/gpg-import.sh"
 	
 		# Modify type based on opts
 		sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh.sh"

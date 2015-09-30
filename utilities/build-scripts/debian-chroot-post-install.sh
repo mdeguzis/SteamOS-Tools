@@ -12,7 +12,7 @@
 
 # test user
 current_user=$(whoami)
-echo -e "The current user is: $current_user"
+echo -e "\nThe current user is: $current_user"
 sleep 1s
 
 # set vars

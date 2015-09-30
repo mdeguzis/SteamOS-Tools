@@ -60,14 +60,14 @@ usermod -a -G cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,pulse-a
 
 # setup desktop user
 echo -e "\n###########################"
-echo -e "Set root user password"
+echo -e "Set root password"
 echo -e "###########################\n"
 passwd root
 
 # setup steam user
 #su - steam
 echo -e "\n###########################"
-echo -e "Set user user password"
+echo -e "Set user  password"
 echo -e "###########################\n"
 passwd user
 
@@ -121,7 +121,7 @@ for dep in ${deps}; do
 	
 		echo -e "\n==INFO==\nInstalling package: ${dep}\n"
 		sleep 1s
-		apt-get install ${dep}
+		apt-get install ${dep} -y
 		
 		if [[ $? = 100 ]]; then
 			echo -e "Cannot install ${dep}. Please install this manually \n"

@@ -182,7 +182,6 @@ funct_create_chroot()
 	sleep 1s
 	
 	# add to fstab
-	# TODO
 	fstab_check=$(cat /etc/fstab | grep ${target})
 	if [[ "$fstab_check" == "" ]]; then
 	
@@ -197,29 +196,6 @@ funct_create_chroot()
 	# set script dir and enter
 	script_dir=$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)
 	cd $script_dir
-	
-	# copy over post install scripts for execution
-	echo -e "\n==> Copying post install scripts to tmp directory\n"
-	
-	cp -v "chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
-	cp -v "gpg_import.sh" "/home/$USER/chroots/${target}/tmp/"
-	
-	# mark executable
-	chmod +x "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
-	chmod +x "/home/$USER/chroots/${target}/tmp/gpg_import.sh"
-
-	# modify gpg_import.sh with sudo removed, as it won't be configured and we
-	# don't need it to be there
-	sed -i "s|sudo ||g" "/home/$USER/chroots/${target}/tmp/gpg_import.sh"
-
-	# Modify type based on opts
-	sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
-	
-	# Change opt-in based on opts
-	# sed -i "s|"tmp_beta"|${beta_flag}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
-	
-	# modify release_tmp for Debian Wheezy / Jessie in post-install script
-	sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
 	
 	# create alias file that .bashrc automatically will source
 	if [[ -f "/home/$USER/.bash_aliases" ]]; then
@@ -260,46 +236,56 @@ funct_create_chroot()
 	# only offer to remain a standard chroot for SteamOS, since it is the only
 	# chroot that currently offers post-creation steps
 	
-	if [[ "$type" != "debian" || "$type" != "ubuntu" ]]; then
+
+	# output summary
+	cat <<-EOF
 	
-		cat <<-EOF
-		
-		------------------------------------------------------------
-		Summary
-		------------------------------------------------------------
-		
-		echo -e "\nYou will now be placed into the chroot. Press [ENTER].
-		If you wish  to leave out any post operations and remain with a 'stock' chroot, type 'stock',
-		then [ENTER] instead. A stock chroot is only intended and suggested for the Debian chroot type."
-		
-		You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
-		enter the chroot again. You can also use the newly created alias listed below\n"
-		
-		EOF
+	------------------------------------------------------------
+	Summary
+	------------------------------------------------------------
 	
-		echo -e "\tchroot-${target}\n"
+	You will now be placed into the chroot. Press [ENTER].
+	If your chroot type is for steamos, or steamos-beta, post install operations will now take place.
+	then [ENTER] instead. A stock chroot is only intended and suggested for the Debian/Ubuntu chroot types.
+	
+	You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
+	enter the chroot again. You can also use the newly created alias listed below
+	
+	EOF
+
+	echo -e "\tchroot-${target}\n"
+	
+	# Capture input for enter
+	read ENTER_KEY
+	
+	if [[ "$type" == "ubuntu" || "$type" == "debian" ]]; then
+	
+		echo -e "\nNo post configuration scripts exist currently for this chroot type."
 		
-		# Capture input
-		read stock_choice
+		# Enter chroot
+		/usr/sbin/chroot "/home/$USER/chroots/${target}"
 		
-		if [[ "$stock_choice" == "" ]]; then
+	elif [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
+	
+		# copy over post install scripts for execution on the SteamOS chroot
+		echo -e "\n==> Copying post install scripts to tmp directory\n"
 		
-			# Captured carriage return / blank line only, continue on as normal
-			# Modify target based on opts
-			sed -i "s|"tmp_stock"|"no"|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
-			#printf "zero length detected..."
-			
-		elif [[ "$stock_choice" == "stock" ]]; then
+		cp -v "steamos-chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
+		cp -v ../gpg_import.sh "/home/$USER/chroots/${target}/tmp/"
 		
-			# Modify target based on opts
-			sed -i "s|"tmp_stock"|"yes"|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
-			
-		elif [[ "$stock_choice" != "stock" ]]; then
+		# mark executable
+		chmod +x "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh.sh"
+		chmod +x "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh.sh"
+	
+		# modify gpg_import.sh with sudo removed, as it won't be configured and we
+		# don't need it to be there
+		sed -i "s|sudo ||g" "/home/$USER/chroots/${target}/tmp/gpg_import.sh"
+	
+		# Modify type based on opts
+		sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh.sh"
 		
-			# user entered something arbitrary, exit
-			echo -e "\nSomething other than [blank]/[ENTER] or 'stock' was entered, exiting.\n"
-			exit
-		fi
+		# modify release_tmp for Debian Wheezy / Jessie in post-install script
+		sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
 		
 		# "bind" /dev/pts
 		mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"
@@ -310,12 +296,14 @@ funct_create_chroot()
 		
 		# Unmount /dev/pts
 		umount /home/$USER/chroots/${target}/dev/pts
-	
+		
 	fi
+
 }
 
 main()
 {
+	
 	clear
 	check_sources
 	funct_prereqs

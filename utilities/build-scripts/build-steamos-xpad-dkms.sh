@@ -120,6 +120,7 @@ git checkout $BRANCH
 rm -rf .git .gitignore .hgeol .hgignore
 
 # Create archive
+echo -e "\n==> Creating archive"
 cd ..
 tar cfj steamos-xpad-dkms.orig.tar.bz2 steamos-xpad-dkms
 mv steamos-xpad-dkms.orig.tar.bz2 $pkgname_$pkgver-$pkgrel.orig.tar.bz2

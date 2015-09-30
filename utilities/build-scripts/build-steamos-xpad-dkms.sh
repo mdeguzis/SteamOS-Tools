@@ -19,10 +19,9 @@ xpad_source_file="https://github.com/ValveSoftware/steamos_kernel/raw/9ce95a199f
 # define base version
 pkgname="steamos-xpad-dkms"
 pkgver="20150930+git"
-pkgrel="1"
 
 # build_dir
-build_dir="${pkgname}_${pkgver}-${pkgrel}"
+build_dir="${pkgname}_${pkgver}"
 
 # Define release
 dist_rel="trusty"
@@ -146,7 +145,7 @@ wget -O xpad.c $xpad_source_file
 
 echo -e "\n==> changelog"
 # Change version, uploader, insert change log comments
-sed -i "s|version_placeholder|$pkgname_$pkgver-$pkgrel|g" debian/changelog
+sed -i "s|version_placeholder|$pkgname_$pkgver|g" debian/changelog
 sed -i "s|uploader|$uploader|g" debian/changelog
 sed -i "s|dist_rel|$dist_rel|g" debian/changelog
 
@@ -215,7 +214,7 @@ case "$arg0" in
         ls -lah ~/pkg-build-tmp/steamos-xpad-dkms
         echo ""
         echo ""
-        echo "you can upload the package with dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/$pkgname_$pkgver-$pkgrel""_source.changes"
+        echo "you can upload the package with dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/${pkgname}_${pkgver}_source.changes"
         echo "all good"
         echo ""
         echo ""
@@ -223,7 +222,7 @@ case "$arg0" in
         while true; do
             read -p "Do you wish to upload the source package?    " yn
             case $yn in
-                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/${pkgname}_*.${PL}""_source.changes; break;;
+                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/${pkgname}_${pkgver}_source.changes; break;;
                 [Nn]* ) break;;
                 * ) echo "Please answer yes or no.";;
             esac

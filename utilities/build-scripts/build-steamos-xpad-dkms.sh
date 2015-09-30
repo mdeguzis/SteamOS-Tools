@@ -187,7 +187,7 @@ case "$arg0" in
     ;;
   source)
     #get secret key
-    gpgkey=`gpg --list-secret-keys|grep "sec   "|cut -f 2 -d '/'|cut -f 1 -d ' '`
+    gpgkey=$(gpg --list-secret-keys|grep "sec   "|cut -f 2 -d '/'|cut -f 1 -d ' ')
 
     if [[ -n "$gpgkey" ]]; then
 

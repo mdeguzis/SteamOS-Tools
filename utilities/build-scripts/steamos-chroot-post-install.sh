@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	steamos-chroot-post-install.sh
-# Script Ver:	0.5.7
+# Script Ver:	0.5.9
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A - called by build-test-chroot
@@ -134,6 +134,9 @@ fi
 
 echo -e "\n==> Configuring repository sources"
 
+# configure the repository sources below, as it doesn't seem debootstrap
+# can assign deb-src lines
+
 if [[ "$release" == "alchemist" ]]; then
 
 	# chroot has deb line, but not deb-src, add it
@@ -225,47 +228,25 @@ Pin: release l=Debian
 Pin-Priority: 100
 EOF
 
-echo -e "\n==> Importing GPG keys\n"
+echo -e "\n==> Adding keyrings\n"
+sleep 1s
 
-# Key Desc: Valve SteamOS Release Key <steamos@steampowered.com>
-# Key ID: 8ABDDD96
-# Full Key ID: 7DEEB7438ABDDD96
-gpg_key_check=$(gpg --list-keys 8ABDDD96)
-if [[ "$gpg_key_check" != "" ]]; then
-	echo -e "\nValve SteamOS Release Key [OK]"
-	sleep 0.3s
-else
-	echo -e "\nValve SteamOS Release Key [FAIL]. Adding now..."
-	gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
-	--recv-keys 7DEEB7438ABDDD9
-fi
-
-# Key Desc: Debian Archive Automatic Signing Key (8/jessie) <ftpmaster@debian.org>
-# Key ID: 2B90D010
-# Full Key ID: 7638D0442B90D010
-gpg_key_check=$(gpg --list-keys 2B90D010)
-if [[ "$gpg_key_check" != "" ]]; then
-	echo -e "Valve builder achive signing key [OK]"
-	sleep 0.3s
-else
-	echo -e "Valve builder achive signing key [FAIL]. Adding now..."
-	gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
-	--recv-keys 7638D0442B90D010
-fi
+apt-get install debian-archive-keyring -y
 
 echo -e "\n==> Updating system\n"
 sleep 1s
 
 # Update apt
 apt-get update
+apt-key update
 
-echo -e "\n==> Instaling some basic packages\n"
+echo -e "\n==> Instaling packages for testing and building\n"
 sleep 1s
 
-# install some basic package
-#apt-get install vim sudo deborphan git
+deps="git devscripts build-essential checkinstall debian-keyring \
+debian-archive-keyring cmake g++ g++-multilib libqt4-dev libqt4-dev \
+libxi-dev libxtst-dev libX11-dev bc libsdl2-dev gcc gcc-multilib"
 
-deps="apt-utils vim sudo deborphan git wget p7zip-full unzip"
 for dep in ${deps}; do
 	pkg_chk=$(dpkg-query -s ${dep})
 	if [[ "$pkg_chk" == "" ]]; then

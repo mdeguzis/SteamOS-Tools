@@ -57,29 +57,17 @@ fi
 
 sleep 2s
 
-# Fetch build pkgs
-if [[ -n "$2" ]]; then
+echo ""
+echo "##########################################"
+echo "Fetching necessary packages for build"
+echo "##########################################"
+echo ""
 
-  echo ""
-  echo "##########################################"
-  echo "Fetching necessary packages for build"
-  echo "##########################################"
-  echo ""
-
-  echo -e "==> Assessing prerequisites for building...\n"
-	sleep 1s
-	
-	# install needed packages
-	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring cmake g++ g++-multilib \
-	libqt4-dev libqt4-dev libxi-dev libxtst-dev libX11-dev bc libsdl2-dev \
-	gcc gcc-multilib
-
-else
-  echo ""
-  echo "skipping installation of build packages, use arbitrary second argument to get those packages"
-  echo ""
-fi
+# install needed packages
+sudo apt-get install git devscripts build-essential checkinstall \
+debian-keyring debian-archive-keyring cmake g++ g++-multilib \
+libqt4-dev libqt4-dev libxi-dev libxtst-dev libX11-dev bc libsdl2-dev \
+gcc gcc-multilib
 
 echo ""
 echo "##########################################"

@@ -14,7 +14,7 @@
 steamos_kernel_url='https://github.com/ValveSoftware/steamos_kernel'
 xpadsteamoscommit='9ce95a199ff868f76b059338ee8d5760aa33a064'
 xpadsteamoscommit_short='9ce95a1'
-xpad_source_file="https://raw.github.com/ValveSoftware/steamos_kernel/${xpadsteamoscommit}/drivers/input/joystick/xpad.c"
+xpad_source_file="https://github.com/ValveSoftware/steamos_kernel/raw/9ce95a199ff868f76b059338ee8d5760aa33a064/drivers/input/joystick/xpad.c"
 
 # define base version
 pkgname="steamos-xpad-dkms"
@@ -44,12 +44,12 @@ echo ""
 if [[ -n "$1" ]]; then
 
   echo ""
-  echo "build target is $1"
+  echo -e "==INFO==\nbuild target is $1"
   echo ""
 
 else
   echo ""
-  echo "build target is source"
+  echo -e "==INFO==\nbuild target is source"
   echo ""
 fi
 
@@ -134,12 +134,9 @@ echo ""
 cd steamos-xpad-dkms
 
 # copy in xpad.c over top the existing file from the desired commit
-cp $xpad_source_file .
+wget -O xpad.c $xpad_source_file
 
-# enter debian build folder
-cd debian/
-
-echo "changelog"
+echo -e "\n==> changelog"
 # Change version, uploader, insert change log comments
 sed -i "s|version_placeholder|$pkgname_$pkgver-$pkgrel|g" debian/changelog
 sed -i "s|uploader|$uploader|g" debian/changelog
@@ -149,10 +146,10 @@ echo -e "\nOpening change log for details to be added...\n"
 sleep 5s
 nano debian/changelog
 
-echo "control"
+echo -e "\n==> control"
 sed -i "s|pkgmaintainer|$pkgmaintainer|g" debian/control
 
-echo "rules"
+echo -e "\n==> rules"
 sed -i "s|pkgver|$pkgver|g" debian/rules
 sed -i "s|pkgrel|$pkgrel|g" debian/rules
 
@@ -218,7 +215,7 @@ case "$arg0" in
         while true; do
             read -p "Do you wish to upload the source package?    " yn
             case $yn in
-                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/$pkgname_*.$PL"""_source.changes; break;;
+                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/$pkgname_*.$PL""_source.changes; break;;
                 [Nn]* ) break;;
                 * ) echo "Please answer yes or no.";;
             esac

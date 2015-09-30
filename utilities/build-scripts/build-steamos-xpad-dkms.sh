@@ -21,6 +21,9 @@ pkgname="steamos-xpad-dkms"
 pkgver="20150930+git"
 pkgrel="1"
 
+# build_dir
+build_dir="${pkgname}_${pkgver}-${pkgrel}"
+
 # Define release
 dist_rel="trusty"
 
@@ -85,14 +88,18 @@ echo "~/pkg-build-tmp/steamos-xpad-dkms"
 # start in $HOME
 cd
 
-# remove old build directory
-rm -rf ~/pkg-build-tmp/steamos-xpad-dkms
+# setup build directory
+if [[ -d "$build_dir" ]]; then
 
-#create build directory
-mkdir -p ~/pkg-build-tmp/steamos-xpad-dkms
+  # reset dir
+  rm -rf "$buid_dir"
+  
+else
 
-#change to build directory
-cd ~/pkg-build-tmp/steamos-xpad-dkms
+  # setup build dir
+  mkdir -p "$build_dir"
+  
+fi
 
 echo ""
 echo "##########################################"

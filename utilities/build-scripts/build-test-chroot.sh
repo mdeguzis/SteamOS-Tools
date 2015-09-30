@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.7.6
+# Script Ver:	0.7.7
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -251,6 +251,7 @@ funct_create_chroot()
 	
 	You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
 	enter the chroot again. You can also use the newly created alias listed below
+	
 	EOF
 
 	echo -e "\tchroot-${target}\n"

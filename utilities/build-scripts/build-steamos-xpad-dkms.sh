@@ -24,7 +24,7 @@ pkgver="20150930+git"
 build_dir="${pkgname}_${pkgver}"
 
 # Define release
-dist_rel="trusty"
+dist_rel="Trusty"
 
 # Define branch
 BRANCH="master"
@@ -36,7 +36,7 @@ LAUNCHPAD_PPA="ppa:mdeguzis/steamos-tools"
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
 
 # Define package maintainer for dsc and $pkgname-$pkgver-$pkgrel file 
-pkgmaintainer="SteamOS-Tools Team <mdeguzis@gmail.com>"
+pkgmaintainer="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
 
 clear
 echo "#####################################################################"
@@ -69,11 +69,13 @@ debian-keyring debian-archive-keyring cmake g++ g++-multilib \
 libqt4-dev libqt4-dev libxi-dev libxtst-dev libX11-dev bc libsdl2-dev \
 gcc gcc-multilib
 
-echo ""
-echo "##########################################"
-echo "Setup build directory"
-echo "##########################################"
-echo ""
+cat <<-EOF
+##########################################
+Setup build directory
+##########################################
+
+EOF
+
 echo "$build_dir"
 # start in $HOME
 cd
@@ -91,10 +93,12 @@ else
   
 fi
 
-echo ""
-echo "##########################################"
-echo "Setup package base files"
-echo "##########################################"
+cat <<-EOF
+##########################################
+Setup package base files
+##########################################
+
+EOF
 
 echo "original tarball"
 git clone https://github.com/ProfessorKaos64/steamos-xpad-dkms
@@ -122,11 +126,12 @@ cd ..
 tar cfj steamos-xpad-dkms.orig.tar.bz2 steamos-xpad-dkms
 mv "steamos-xpad-dkms.orig.tar.bz2" "${pkgname}_${pkgver}.orig.tar.bz2"
 
-echo ""
-echo "##########################################"
-echo "Unpacking debian files"
-echo "##########################################"
-echo ""
+cat <<-EOF
+##########################################
+Unpacking debian files
+##########################################
+
+EOF
 
 # enter github repository
 cd steamos-xpad-dkms
@@ -160,21 +165,24 @@ fi
 
 case "$arg0" in
   compile)
-    echo ""
-    echo "##########################################"
-    echo "Building binary package now"
-    echo "##########################################"
-    echo ""
+    cat <<-EOF
+    echo ##########################################
+    echo Building binary package now
+    echo ##########################################
+    
+    EOF
 
     #build binary package
     debuild -us -uc
 
     if [ $? -eq 0 ]; then  
-        echo ""
-        echo "##########################################"
-        echo "Building finished"
-        echo "##########################################"
-        echo ""
+        cat <<-EOF
+        ##########################################
+        Building finished
+        ##########################################
+        
+        EOF
+        
         ls -lah ~/pkg-build-tmp/steamos-xpad-dkms
          exit 0
     else  
@@ -188,15 +196,13 @@ case "$arg0" in
 
     if [[ -n "$gpgkey" ]]; then
 
-      echo ""
-      echo "##########################################"
-      echo "Building source package"
-      echo "##########################################"
-      echo ""
-      echo "****** please copy your gpg passphrase into the clipboard ******"
-      echo ""
-      sleep 10
-
+      cat <<-EOF
+      ##########################################
+      Building source package
+      ##########################################
+      EOF
+    
+      sleep 3s
       debuild -S -sa -k$gpgkey
 
       if [ $? -eq 0 ]; then

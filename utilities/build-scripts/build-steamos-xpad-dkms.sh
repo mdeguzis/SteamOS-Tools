@@ -19,6 +19,7 @@ xpad_source_file="https://github.com/ValveSoftware/steamos_kernel/raw/9ce95a199f
 # define base version
 pkgname="steamos-xpad-dkms"
 pkgver="20150930+git"
+revision="1"
 
 # build_dir
 build_dir="${HOME}/${pkgname}_${pkgver}"
@@ -147,7 +148,7 @@ wget -O xpad.c $xpad_source_file
 
 echo -e "\n==> changelog"
 # Change version, uploader, insert change log comments
-sed -i "s|version_placeholder|$pkgname_$pkgver|g" debian/changelog
+sed -i "s|version_placeholder|$pkgname_$pkgver-$revision|g" debian/changelog
 sed -i "s|uploader|$uploader|g" debian/changelog
 sed -i "s|dist_rel|$dist_rel|g" debian/changelog
 
@@ -171,10 +172,11 @@ fi
 
 case "$arg0" in
   compile)
-  cat <<-EOF
-  echo ##########################################
-  echo Building binary package now
-  echo ##########################################
+  
+cat <<-EOF
+echo ##########################################
+echo Building binary package now
+echo ##########################################
   
 EOF
 
@@ -182,10 +184,11 @@ EOF
     debuild -us -uc
 
     if [ $? -eq 0 ]; then  
-        cat <<-EOF
-        ##########################################
-        Building finished
-        ##########################################
+    
+cat <<-EOF
+##########################################
+Building finished
+##########################################
         
 EOF
         
@@ -202,10 +205,10 @@ EOF
 
     if [[ -n "$gpgkey" ]]; then
 
-      cat <<-EOF
-      ##########################################
-      Building source package
-      ##########################################
+cat <<-EOF
+##########################################
+Building source package
+##########################################
       
 EOF
     

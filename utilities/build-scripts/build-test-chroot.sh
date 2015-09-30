@@ -165,17 +165,19 @@ funct_create_chroot()
 	
 		# handle SteamOS
 		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
-		--arch i386 ${release} /home/$USER/chroots/${target} ${target_URL}
+		--arch i386 ${release} /home/$USER/chroots/${target} ${target_URL} 
 		
-	elif [[ "$type" == "debian" ]];then
+	elif [[ "$type" == "debian" ]]; then
 	
-		# handle Debian instead
-		/usr/sbin/debootstrap --arch ${arch} ${release} /home/$USER/chroots/${target} ${target_URL}
+		# handle Debian
+		/usr/sbin/debootstrap --arch ${arch} ${release} --components=main,contrib,non-free \
+		/home/$USER/chroots/${target} ${target_URL}
 		
-	elif [[ "$type" == "ubuntu" ]];then
+	elif [[ "$type" == "ubuntu" ]]; then
 	
-		# handle Debian instead
-		/usr/sbin/debootstrap --arch ${arch} ${release} /home/$USER/chroots/${target} ${target_URL}
+		# handle Ubuntu
+		/usr/sbin/debootstrap --arch ${arch} ${release} --components=main,multiverse,restricted,universe \
+		/home/$USER/chroots/${target} ${target_URL}
 		
 	fi
 	

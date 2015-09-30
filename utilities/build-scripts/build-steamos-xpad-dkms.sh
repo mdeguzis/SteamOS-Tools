@@ -130,7 +130,7 @@ rm -rf .git .gitignore .hgeol .hgignore
 echo -e "\n==> Creating archive"
 cd ..
 tar cfj steamos-xpad-dkms.orig.tar.bz2 steamos-xpad-dkms
-mv "steamos-xpad-dkms.orig.tar.bz2" "${pkgname}_${pkgver}-${pkgrel}.orig.tar.bz2"
+mv "steamos-xpad-dkms.orig.tar.bz2" "${pkgname}_${pkgver}.orig.tar.bz2"
 
 echo ""
 echo "##########################################"

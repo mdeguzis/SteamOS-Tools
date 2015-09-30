@@ -46,17 +46,18 @@ fi
 
 echo -e "\n==> Configuring users and groups"
 
-# Add groups
-groupadd users
+# Add groups that we need created
+# group 'users' should already exist.
+
+# groupadd <GROUP>
 
 # User configurations
-useradd -s /bin/bash -m -d /home/desktop -c "Desktop user" -g user users
+useradd -s /bin/bash -m -d /home/desktop -c "Desktop user" -g users user
 
 # add additional groups
 usermod -a -G cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,pulse-access user
 
 # setup desktop user
-#su - desktop
 echo -e "\n###########################"
 echo -e "Set root user password"
 echo -e "###########################\n"

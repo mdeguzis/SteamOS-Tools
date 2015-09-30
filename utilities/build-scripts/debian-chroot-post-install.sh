@@ -49,7 +49,8 @@ echo -e "\n==> Configuring users and groups"
 # Add groups that we need created
 # group 'users' should already exist.
 
-# groupadd <GROUP>
+groupadd bluetooth
+groupadd pulse-access
 
 # User configurations
 useradd -s /bin/bash -m -d /home/desktop -c "Desktop user" -g users user

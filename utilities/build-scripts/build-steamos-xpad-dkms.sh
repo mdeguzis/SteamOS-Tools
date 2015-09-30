@@ -123,7 +123,7 @@ rm -rf .git .gitignore .hgeol .hgignore
 echo -e "\n==> Creating archive"
 cd ..
 tar cfj steamos-xpad-dkms.orig.tar.bz2 steamos-xpad-dkms
-mv "steamos-xpad-dkms.orig.tar.bz2" "$pkgname_$pkgver-$pkgrel.orig.tar.bz2"
+mv "steamos-xpad-dkms.orig.tar.bz2" "${pkgname}_${pkgver}-${pkgrel}.orig.tar.bz2"
 
 echo ""
 echo "##########################################"
@@ -216,7 +216,7 @@ case "$arg0" in
         while true; do
             read -p "Do you wish to upload the source package?    " yn
             case $yn in
-                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/$pkgname_*.$PL""_source.changes; break;;
+                [Yy]* ) dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/${pkgname}_*.${PL}""_source.changes; break;;
                 [Nn]* ) break;;
                 * ) echo "Please answer yes or no.";;
             esac

@@ -66,11 +66,14 @@ if [[ -n "$2" ]]; then
   echo "##########################################"
   echo ""
 
-  #apt-get install packages
-  sudo apt-get install -y build-essential fakeroot devscripts automake autoconf autotools-dev
-
-  #get build dependencies
-  sudo apt-get -y install debhelper cmake gcc
+  echo -e "==> Assessing prerequisites for building...\n"
+	sleep 1s
+	
+	# install needed packages
+	sudo apt-get install git devscripts build-essential checkinstall \
+	debian-keyring debian-archive-keyring cmake g++ g++-multilib \
+	libqt4-dev libqt4-dev libxi-dev libxtst-dev libX11-dev bc libsdl2-dev \
+	gcc gcc-multilib
 
 else
   echo ""

@@ -58,11 +58,15 @@ cat<<- EOF
 ==> Generating locale...
     You will now be shown a listing of the available locales.
     Please enter your select in the format "aa_AA".
+    Please press a key to continue
     
 EOF
 
+# dummy key press
+read ENTER_KEY
+
 # show locales
-less /usr/share/i18n/locales
+ls /usr/share/i18n/locales | less
 
 # get user choice
 read -erp "Desired locale: " locale

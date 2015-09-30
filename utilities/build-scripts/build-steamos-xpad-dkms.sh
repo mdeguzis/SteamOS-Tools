@@ -21,7 +21,7 @@ pkgname="steamos-xpad-dkms"
 pkgver="20150930+git"
 
 # build_dir
-build_dir="${pkgname}_${pkgver}"
+build_dir="${HOME}/${pkgname}_${pkgver}"
 
 # Define release
 dist_rel="Trusty"
@@ -39,10 +39,14 @@ uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
 pkgmaintainer="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
 
 clear
-echo "#####################################################################"
-echo "Building steamos-xpad-dkms (patch level $PL)"
-echo "#####################################################################"
-echo ""
+
+cat<<- EOF
+#####################################################################
+Building steamos-xpad-dkms (patch level $PL)
+#####################################################################
+
+EOF
+
 if [[ -n "$1" ]]; then
 
   echo ""
@@ -57,11 +61,12 @@ fi
 
 sleep 2s
 
-echo ""
-echo "##########################################"
-echo "Fetching necessary packages for build"
-echo "##########################################"
-echo ""
+cat<<- EOF
+##########################################
+Fetching necessary packages for build
+##########################################
+
+EOF
 
 # install needed packages
 sudo apt-get install git devscripts build-essential checkinstall \
@@ -77,19 +82,20 @@ Setup build directory
 EOF
 
 echo "$build_dir"
-# start in $HOME
-cd || exit
 
 # setup build directory
 if [[ -d "$build_dir" ]]; then
 
   # reset dir
   rm -rf "$build_dir"
+  mkdir -p "$build_dir"
+  cd "$build_dir"
   
 else
 
   # setup build dir
   mkdir -p "$build_dir"
+  cd "$build_dir"
   
 fi
 

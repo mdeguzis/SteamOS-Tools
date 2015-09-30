@@ -175,6 +175,7 @@ case "$arg0" in
   compile)
   
 cat <<-EOF
+
 echo ##########################################
 echo Building binary package now
 echo ##########################################

@@ -251,7 +251,6 @@ funct_create_chroot()
 	
 	You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
 	enter the chroot again. You can also use the newly created alias listed below
-	
 	EOF
 
 	echo -e "\tchroot-${target}\n"
@@ -262,7 +261,7 @@ funct_create_chroot()
 	if [[ "$type" == "ubuntu" || "$type" == "debian" ]]; then
 	
 		# copy over post install scripts for execution on the SteamOS chroot
-		echo -e "\n==> Copying post install scripts to tmp directory\n"
+		echo -e "==> Copying post install scripts to tmp directory\n"
 		
 		cp -v "debian-chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
 		cp -v ../gpg-import.sh "/home/$USER/chroots/${target}/tmp/"
@@ -279,7 +278,7 @@ funct_create_chroot()
 		sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh"
 		
 		# modify release_tmp for Debian Wheezy / Jessie in post-install script
-		sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install"
+		sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh"
 		
 		# "bind" /dev/pts
 		mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"
@@ -294,7 +293,7 @@ funct_create_chroot()
 	elif [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 		# copy over post install scripts for execution on the SteamOS chroot
-		echo -e "\n==> Copying post install scripts to tmp directory\n"
+		echo -e "==> Copying post install scripts to tmp directory\n"
 		
 		cp -v "steamos-chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
 		cp -v ../gpg-import.sh "/home/$USER/chroots/${target}/tmp/"

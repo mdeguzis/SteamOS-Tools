@@ -310,17 +310,17 @@ funct_create_chroot()
 		sed -i "s|sudo ||g" "/home/$USER/chroots/${target}/tmp/gpg-import.sh"
 	
 		# Modify type based on opts
-		sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh.sh"
+		sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh"
 		
 		# modify release_tmp for Debian Wheezy / Jessie in post-install script
-		sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/chroot-post-install.sh"
+		sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh"
 		
 		# "bind" /dev/pts
 		mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"
 		
 		# run script inside chroot with:
 		# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
-		/usr/sbin/chroot "/home/$USER/chroots/${target}" /bin/bash -c "/tmp/chroot-post-install.sh"
+		/usr/sbin/chroot "/home/$USER/chroots/${target}" /bin/bash -c "/tmp/steamos-chroot-post-install.sh"
 		
 		# Unmount /dev/pts
 		umount /home/$USER/chroots/${target}/dev/pts

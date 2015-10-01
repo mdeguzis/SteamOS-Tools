@@ -16,6 +16,16 @@
 #		./build-deb-from-PPA.sh --ignore-deps
 # -------------------------------------------------------------------------------
 
+####################################################
+# Notes regarding some sources
+####################################################
+
+# Ubuntu packages are not "PPA's" so example deb-src lines are:
+# deb-src http://archive.ubuntu.com/ubuntu vivid main restricted universe multiverse
+# GPG-key(s): 437D05B5, C0B21F32
+
+
+
 arg1="$1"
 scriptdir=$(pwd)
 ignore_deps="no"
@@ -101,10 +111,6 @@ main()
 	echo -e "\n==> Please enter or paste the deb-src URL now:"
 	echo -e "    [Press ENTER to use last: $repo_src]\n"
 	
-	# Of course, main Ubuntu packages are not "PPA's" so example deb-src lines are:
-	# deb-src http://archive.ubuntu.com/ubuntu vivid main restricted universe multiverse
-	# GPG-key(s): 437D05B5, C0B21F32
-	
 	# set tmp var for last run, if exists
 	repo_src_tmp="$repo_src"
 	if [[ "$repo_src" == "" ]]; then
@@ -121,7 +127,8 @@ main()
 		fi
 	fi
 	
-	echo -e "\n==> Use a public key string or URL to public key file [s/u]?\n"
+	echo -e "\n==> Use a public key string or URL to public key file [s/u]?"
+	echo -e "    [Press ENTER to use string (default)\n"
 	sleep .2s
 	read -erp "Type: " gpg_type
 	
@@ -185,6 +192,11 @@ main()
 	
 		# add key by specifying URL to public.key equivalent file
 		wget -q -O- $gpg_pub_key | sudo apt-key add -
+		
+	else
+	
+		# add gpg key by string from keyserver (fallback default)
+		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $gpg_pub_key
 		
 	fi
 	

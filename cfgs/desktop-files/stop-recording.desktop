@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Stop Recording
+GenericName=Stop Recording
+Comment=Start FFMPEG Gameplay Recording
+Exec=/usr/local/bin/recording-stop.sh &
+Icon=
+Terminal=true
+Type=Utility
+Categories=Utils
+Actions=Fullscreen;Standalone;

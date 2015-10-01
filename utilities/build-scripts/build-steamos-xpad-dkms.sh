@@ -19,7 +19,7 @@ xpad_source_file="https://github.com/ValveSoftware/steamos_kernel/raw/9ce95a199f
 # define base version
 pkgname="steamos-xpad-dkms"
 pkgver="20150930+git"
-revision="1"
+rev="1"
 
 # build_dir
 build_dir="${HOME}/${pkgname}_${pkgver}"
@@ -149,7 +149,7 @@ cd steamos-xpad-dkms
 
 echo -e "\n==> changelog"
 # Change version, uploader, insert change log comments
-sed -i "s|version_placeholder|$pkgname_$pkgver-$revision|g" debian/changelog
+sed -i "s|version_placeholder|$pkgname_$pkgver-$rev|g" debian/changelog
 sed -i "s|uploader|$uploader|g" debian/changelog
 sed -i "s|dist_rel|$dist_rel|g" debian/changelog
 
@@ -219,19 +219,16 @@ EOF
 
       if [ $? -eq 0 ]; then
         echo ""
-        echo ""
         ls -lah "$build_dir"
-        echo ""
         echo ""
         echo "you can upload the package with dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/${pkgname}_${pkgver}_source.changes"
         echo "all good"
-        echo ""
         echo ""
 
         while true; do
             read -rp "Do you wish to upload the source package?    " yn
             case $yn in
-                [Yy]* ) dput ppa:mdeguzis/steamos-tools ${build_dir}/${pkgname}_${pkgver}/${pkgname}_${pkgver}_source.changes; break;;
+                [Yy]* ) dput ppa:mdeguzis/steamos-tools ${build_dir}/${pkgname}_${pkgver}-${rev}_source.changes; break;;
                 [Nn]* ) break;;
                 * ) echo "Please answer yes or no.";;
             esac

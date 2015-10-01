@@ -18,9 +18,9 @@ xpad_source_file="https://github.com/ValveSoftware/steamos_kernel/raw/9ce95a199f
 
 # define base version
 pkgname="steamos-xpad-dkms"
-pkgver="20150930+git"
+pkgver="20151001+git2"
 pkgrev="1"
-pkgrel="vivid"
+pkgrel="wily"
 
 # build_dirs
 build_dir="${HOME}/pkg-build-dir"

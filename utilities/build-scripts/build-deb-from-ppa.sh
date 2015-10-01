@@ -4,7 +4,7 @@
 # Author:    	Michael DeGuzis
 # Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.3.7
+# Script Ver:	0.4.5
 # Description:	Attempts to build a deb package from a PPA
 #
 # See also:	Generate a source list: http://repogen.simplylinux.ch/
@@ -121,7 +121,11 @@ main()
 		fi
 	fi
 	
-	echo -e "\n==> Please enter or paste the GPG key for this repo now:"
+	echo -e "\n==> Use a public key string or URL to public key file [s/u]?"
+	sleep .2s
+	reap -erp "Type: " gpg_type
+	
+	echo -e "\n==> Please enter or paste the GPG key/url for this repo now:"
 	echo -e "    [Press ENTER to use last: $gpg_pub_key]\n"
 	gpg_pub_key_tmp="$gpg_pub_key"
 	if [[ "$gpg_pub_key" == "" ]]; then
@@ -171,8 +175,18 @@ main()
 	
 	echo -e "\n==> Adding GPG key:\n"
 	sleep 2s
-	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $gpg_pub_key
-	#"$scriptdir/utilities.sh ${gpg_pub_key}"
+	
+	if [[ "$gpg_type" == "s" ]]; then
+	
+		# add gpg key by string from keyserver
+		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $gpg_pub_key
+		
+	elif [[ "$gpg_type" == "u" ]]; then
+	
+		# add key by specifying URL to public.key equivalent file
+		wget -q -O- $gpg_pub_key | sudo apt-key add -
+		
+	fi
 	
 	echo -e "\n==> Updating system package listings...\n"
 	sleep 2s

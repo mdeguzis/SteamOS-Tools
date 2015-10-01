@@ -121,7 +121,7 @@ main()
 		fi
 	fi
 	
-	echo -e "\n==> Use a public key string or URL to public key file [s/u]?"
+	echo -e "\n==> Use a public key string or URL to public key file [s/u]?\n"
 	sleep .2s
 	read -erp "Type: " gpg_type
 	

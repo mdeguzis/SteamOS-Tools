@@ -1,8 +1,8 @@
 #========================================================================
 # Build Script for steamos-xpad-dkms
-#======================================================================== 
+#========================================================================
 #
-# Author:       Michael DeGuzis, 
+# Author:       Michael DeGuzis,
 # Date:         20150929
 # Version:      0.3
 # Description:  steamos-xpad-dkms build script for packaging.
@@ -19,13 +19,12 @@ xpad_source_file="https://github.com/ValveSoftware/steamos_kernel/raw/9ce95a199f
 # define base version
 pkgname="steamos-xpad-dkms"
 pkgver="20150930+git"
-rev="1"
+pkgrev="1"
+pkgrel="vivid"
 
-# build_dir
-build_dir="${HOME}/${pkgname}_${pkgver}"
-
-# Define release
-dist_rel="trusty"
+# build_dirs
+build_dir="${HOME}/pkg-build-dir"
+pkg_folder="${pkgname}_${pkgver}-${pkgrev}~${pkgrel}"
 
 # Define branch
 BRANCH="master"
@@ -43,7 +42,7 @@ clear
 
 cat<<- EOF
 #####################################################################
-Building steamos-xpad-dkms (patch level $PL)
+Building ${pkgname}_${pkgver}-${pkgrev}~${pkgrel}
 #####################################################################
 
 EOF
@@ -55,7 +54,6 @@ if [[ -n "$1" ]]; then
   echo ""
 
 else
-  echo ""
   echo -e "==INFO==\nbuild target is source"
   echo ""
 fi
@@ -82,7 +80,7 @@ Setup build directory
 
 EOF
 
-echo "$build_dir"
+echo -e "\n==> Setup $build_dir\n"
 
 # setup build directory
 if [[ -d "$build_dir" ]]; then
@@ -91,13 +89,13 @@ if [[ -d "$build_dir" ]]; then
   rm -rf "$build_dir"
   mkdir -p "$build_dir"
   cd "$build_dir"
-  
+
 else
 
   # setup build dir
   mkdir -p "$build_dir"
   cd "$build_dir"
-  
+
 fi
 
 cat <<-EOF
@@ -107,30 +105,34 @@ Setup package base files
 
 EOF
 
-echo "original tarball"
+echo -e "\n==> original tarball\n"
 git clone https://github.com/ProfessorKaos64/steamos-xpad-dkms
 
 # sanity check
 file steamos-xpad-dkms/
 
-if [ $? -eq 0 ]; then  
+if [ $? -eq 0 ]; then
     echo "successfully cloned/copied"
-else  
+else
     echo "git clone/copy failed, aborting"
     exit
-fi 
+fi
+
+# Change git folder to match pkg version format
+mv steamos-xpad-dkms "$pkg_folder"
 
 # change to source folder
-cd steamos-xpad-dkms || exit
+cd "$pkg_folder" || exit
 git pull
 git checkout $BRANCH
 # remove git files
 rm -rf .git .gitignore .hgeol .hgignore
 
 # Create archive
-echo -e "\n==> Creating archive"
+echo -e "\n==> Creating archive\n"
 cd .. || exit
-tar cfj steamos-xpad-dkms.orig.tar.bz2 steamos-xpad-dkms
+tar cfj steamos-xpad-dkms.orig.tar.bz2 "$pkg_folder"
+# The original tarball should not have the revision and release tacked on
 mv "steamos-xpad-dkms.orig.tar.bz2" "${pkgname}_${pkgver}.orig.tar.bz2"
 
 cat <<-EOF
@@ -140,8 +142,8 @@ Unpacking debian files
 
 EOF
 
-# enter github repository
-cd steamos-xpad-dkms
+# enter new package folder to work with Debian files
+cd "$pkg_folder"
 
 # (NOTICE: updated xpad.c when necessary)
 # copy xpad.c over top the existing file on Github for updating
@@ -149,18 +151,18 @@ cd steamos-xpad-dkms
 
 echo -e "\n==> changelog"
 # Change version, uploader, insert change log comments
-sed -i "s|version_placeholder|$pkgname_$pkgver-$rev|g" debian/changelog
+sed -i "s|version_placeholder|$pkgname_$pkgver-$pkgrev~$pkgrel|g" debian/changelog
 sed -i "s|uploader|$uploader|g" debian/changelog
-sed -i "s|dist_rel|$dist_rel|g" debian/changelog
+sed -i "s|dist_rel|$pkgrel|g" debian/changelog
 
 echo -e "\nOpening change log for details to be added...\n"
-sleep 5s
+sleep 3s
 nano debian/changelog
 
 echo -e "\n==> control"
 sed -i "s|pkgmaintainer|$pkgmaintainer|g" debian/control
 
-echo -e "\n==> rules"
+echo -e "\n==> rules\n"
 sed -i "s|pkgver|$pkgver|g" debian/rules
 sed -i "s|pkgrel|$pkgrel|g" debian/rules
 
@@ -173,30 +175,30 @@ fi
 
 case "$arg0" in
   compile)
-  
+
 cat <<-EOF
 
 echo ##########################################
 echo Building binary package now
 echo ##########################################
-  
+
 EOF
 
     #build binary package
     debuild -us -uc
 
-    if [ $? -eq 0 ]; then  
-    
+    if [ $? -eq 0 ]; then
+
 cat <<-EOF
 ##########################################
 Building finished
 ##########################################
-        
+
 EOF
-        
-        ls -lah ~/pkg-build-tmp/steamos-xpad-dkms
+
+        ls  "$pkg_folder"
          exit 0
-    else  
+    else
         echo "debuild failed to generate the binary package, aborting"
         exit 1
     fi 
@@ -211,9 +213,9 @@ cat <<-EOF
 ##########################################
 Building source package
 ##########################################
-      
+
 EOF
-    
+
       sleep 3s
       debuild -S -sa -k${gpgkey}
 
@@ -221,21 +223,20 @@ EOF
         echo ""
         ls -lah "$build_dir"
         echo ""
-        echo "you can upload the package with dput ppa:mdeguzis/steamos-tools ~/pkg-build-tmp/steamos-xpad-dkms/steamos-xpad-dkms/${pkgname}_${pkgver}_source.changes"
         echo "all good"
         echo ""
 
         while true; do
             read -rp "Do you wish to upload the source package?    " yn
             case $yn in
-                [Yy]* ) dput ppa:mdeguzis/steamos-tools ${build_dir}/${pkgname}_${pkgver}-${rev}_source.changes; break;;
+                [Yy]* ) dput ppa:mdeguzis/steamos-tools ${build_dir}/${pkgname}_${pkgver}-${pkgrev}~${pkgrel}_source.changes; break;;
                 [Nn]* ) break;;
                 * ) echo "Please answer yes or no.";;
             esac
         done
 
         exit 0
-      else	
+      else
         echo "debuild failed to generate the source package, aborting"
         exit 1
       fi

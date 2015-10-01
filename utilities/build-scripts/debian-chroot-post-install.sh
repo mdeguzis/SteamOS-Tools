@@ -141,7 +141,7 @@ sleep 1s
 
 deps="git devscripts build-essential checkinstall debian-keyring \
 debian-archive-keyring cmake g++ g++-multilib libqt4-dev libqt4-dev \
-libxi-dev libxtst-dev libX11-dev bc libsdl2-dev gcc gcc-multilib"
+libxi-dev libxtst-dev libX11-dev bc libsdl2-dev gcc gcc-multilib sudo"
 
 for dep in ${deps}; do
 	pkg_chk=$(dpkg-query -s ${dep})
@@ -161,6 +161,9 @@ for dep in ${deps}; do
 		sleep .3s
 	fi
 done
+
+# change sudo timeout
+echo -e "\nDefaults:user timestamp_timeout=10" >> /etc/sudoers
 
 #echo -e "\n==> Cleaning up packages\n"
 #sleep 1s

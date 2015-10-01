@@ -26,7 +26,7 @@
 # The reason for running sudo is do to the post install commands being inside the chroot
 # Rather than run into issues adding user(s) to /etc/sudoers, we will run elevated.
 
-export USER="$SUDO_USER"
+export user="$SUDO_USER"
 #echo "user test: $USER"
 #exit 1
 
@@ -233,7 +233,7 @@ funct_create_chroot()
 	# source from /home/$USER/.bash_aliases instead
 	
 	#source "/home/$USER/.bashrc"
-	source "/home/$USER/.bash_aliases"
+	source "/home/$user/.bash_aliases"
 	
 	# enter chroot to test
 	# only offer to remain a standard chroot for SteamOS, since it is the only

@@ -167,51 +167,12 @@ ep_install_gameplay_recording()
 
 	sudo cp "$scriptdir/cfgs/recording/recording-start.sh" "/usr/local/bin"
 	sudo cp "$scriptdir/cfgs/recording/recording-stop.sh" "/usr/local/bin"
-	sudo cp "$scriptdir/cfgs/recording/99-actkbd-controller.rules" "/etc/udev/rules.d"
 	
-	# we want to append this to the controller file as to not upset an existing
-	# setup, such as a previously added xb360 bindings.
-	# Ask user anyway to confirm
+	# Desktop files to use in BPM
+	# TODO: create helpder script to recognize recording is in progress, with start/stop on 1 script, not 2
+	sudo cp "$scriptdir/cfgs/desktop-files/start-recording.desktop" "/usr/share/applications"
+	sudo cp "$scriptdir/cfgs/desktop-files/stop-recording.desktop" "/usr/share/applications"
 	
-	if [[ -f "/etc/actkbd-steamos-controller.conf" ]]; then
-		
-		echo -e "\n==WARNING==\nExiting custom controller assignments already found!"
-		echo -e "Showing the existing file...\n"
-		less "/etc/actkbd-steamos-controller.conf"
-		echo -e "\n(r)eplace or (a)append our changes?"
-	
-		# get user input
-		sleep 0.3s
-		read -ep "Choice: " mapping_choice
-		
-		if [[ "$mapping_choice" == "r" ]]; then
-			
-			# copy over file that exists
-			sudo cp "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
-			"/etc/actkbd-steamos-controller.conf"
-		
-		elif [[ "$mapping_choice" == "a" ]]; then
-		
-			# append instead
-			cat "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
-			| sudo tee --append "/etc/actkbd-steamos-controller.conf"
-		
-		else
-		
-			# default is to keep
-			echo -e "Invalid input detected, keeping existing file and appending!"
-			cat "$scriptdir/cfgs/recording/actkbd-steamos-controller.conf" \
-			| sudo tee --append "/etc/actkbd-steamos-controller.conf"
-		
-		fi
-		
-	else
-	
-		# controller custom mappings not found
-		echo "" > /dev/null
-		
-	fi
-
 	############################################
 	# Configure
 	############################################
@@ -231,32 +192,12 @@ ep_install_gameplay_recording()
 	# Usage
 	#####################################################
 	
-	Now you can start recording with LB+RB+A and stop the 
-	recording with LB+RB+X on your Xbox 360 controller. 
-	You can find the recordings in /home/steam/Videos/.
+	Now you can start recording with the 'Start Recording' and 
+	'Stop Recording' shortcuts in Big Picture mode on SteamOS.
+	Videos will be saved in $HOME/Videos, which likely will be
+	the /home/steam folder.
 	
-	Please reboot your PC to complete the installation
 	EOF
-	
-	# ask for reboot
-	echo -e "\nWould you like to reboot now? [y/n]"
-	
-	read -ep "Choice: " reboot_choice
-
-	if [[ "$reboot_choice" == "n" ]]; then
-		# user declined reboot request
-		echo "" > /dev/null
-	elif [[ "$reboot_choice" == "y" ]]; then
-		# user accepted reboot request
-		echo -e "\nRebooting in " 
-		echo -n "5 " && sleep 1 && echo -n "4 " && sleep 1 && \
-		echo -n "3 " && sleep 1 && echo -n "2 " && sleep 1  && echo -n "1"
-		sudo reboot
-	else
-		# do not reboot if incorrect selection is made
-		echo -e "\nIncorrect selection! Reboot cancelled."
-		echo "" > /dev/null
-	fi
 	
 }
 

@@ -252,7 +252,7 @@ main()
 		# libstdc6 in Jessie, where only higher ver. dbg packages are available
 		# Ex. https://packages.debian.org/search?suite=jessie&searchon=names&keywords=libstdc%2B%2B6
 	
-		echo -e "==INFO==\nIgnoring depedencies for build\n"
+		echo -e "\n==INFO==\nIgnoring depedencies for build\n"
 		sleep 2s
 		
 		# download source 

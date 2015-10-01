@@ -302,8 +302,8 @@ funct_create_chroot()
 		cp -v ../gpg-import.sh "/home/$USER/chroots/${target}/tmp/"
 		
 		# mark executable
-		chmod +x "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh.sh"
-		chmod +x "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh.sh"
+		chmod +x "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh"
+		chmod +x "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh"
 	
 		# modify gpg-import.sh with sudo removed, as it won't be configured and we
 		# don't need it to be there

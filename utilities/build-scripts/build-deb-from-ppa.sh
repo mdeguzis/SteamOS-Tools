@@ -123,7 +123,7 @@ main()
 	
 	echo -e "\n==> Use a public key string or URL to public key file [s/u]?"
 	sleep .2s
-	reap -erp "Type: " gpg_type
+	read -erp "Type: " gpg_type
 	
 	echo -e "\n==> Please enter or paste the GPG key/url for this repo now:"
 	echo -e "    [Press ENTER to use last: $gpg_pub_key]\n"

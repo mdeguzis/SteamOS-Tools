@@ -1,0 +1,16 @@
+Source: steamos-xpad-dkms
+Section: contrib/kernel
+Priority: extra
+Maintainer: pkgmaintainer
+Build-Depends: debhelper (>= 8), dkms
+Standards-Version: 3.9.2
+
+Package: steamos-xpad-dkms
+Architecture: all
+Depends: ${misc:Depends}, dkms
+Description: kernel module for SteamOS Contoller
+ This is the xpad kernel driver specially modified to work with the SteamOS
+ controller.
+ .
+ This package contains the dkms sources. When installed, it will build
+ the module for your kernel.

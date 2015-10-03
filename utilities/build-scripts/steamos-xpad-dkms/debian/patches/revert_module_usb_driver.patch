@@ -1,0 +1,28 @@
+Description: revert switch to module_usb_driver macro to be compatible with
+ precise kernel
+Author: Marc Deslauriers <marc.deslauriers@canonical.com>
+
+Index: steamos-xpad-dkms-0.3/xpad.c
+===================================================================
+--- steamos-xpad-dkms-0.3.orig/xpad.c	2014-09-19 16:31:46.469570459 -0400
++++ steamos-xpad-dkms-0.3/xpad.c	2014-09-19 16:31:46.465570459 -0400
+@@ -1367,7 +1367,18 @@
+ 	.id_table	= xpad_table,
+ };
+ 
+-module_usb_driver(xpad_driver);
++static int __init usb_xpad_init(void)
++{
++       return usb_register(&xpad_driver);
++}
++
++static void __exit usb_xpad_exit(void)
++{
++       usb_deregister(&xpad_driver);
++}
++
++module_init(usb_xpad_init);
++module_exit(usb_xpad_exit);
+ 
+ MODULE_AUTHOR(DRIVER_AUTHOR);
+ MODULE_DESCRIPTION(DRIVER_DESC);

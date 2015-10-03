@@ -30,6 +30,9 @@ ep_pkg_cleanup()
 	# GPG key files
 	rm -f ./*.Release.key*
 	rm -f /tmp/*.Release.key*
+	
+	# autoremove unecessary packages
+	sudo apt-get autoremove
 }
 
 ep_install_chrome()
@@ -164,14 +167,11 @@ ep_install_gameplay_recording()
 	sleep 0.5s
 	
 	# Pull in files for recording from cfgs/recording
-
-	sudo cp "$scriptdir/cfgs/recording/recording-start.sh" "/usr/local/bin"
-	sudo cp "$scriptdir/cfgs/recording/recording-stop.sh" "/usr/local/bin"
+	sudo cp "$scriptdir/cfgs/recording/steamos-recording.desktop" "/usr/local/bin"
 	
 	# Desktop files to use in BPM
 	# TODO: create helpder script to recognize recording is in progress, with start/stop on 1 script, not 2
-	sudo cp "$scriptdir/cfgs/desktop-files/start-recording.desktop" "/usr/share/applications"
-	sudo cp "$scriptdir/cfgs/desktop-files/stop-recording.desktop" "/usr/share/applications"
+	sudo cp "$scriptdir/cfgs/desktop-files/steamos-recording.sh" "/usr/share/applications"
 	
 	############################################
 	# Configure

@@ -9,6 +9,8 @@
 #
 # Usage:	sudo ./build-deb-from-src.sh
 #		source ./build-deb-from-src.sh
+#
+# See:		https://wiki.debian.org/CheckInstall
 # -------------------------------------------------------------------------------
 
 arg1="$1"

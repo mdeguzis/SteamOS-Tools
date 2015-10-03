@@ -121,7 +121,7 @@ ep_install_chromium_dev()
 	sudo apt-get install chromium-browser
 	
 	# Apply widevine libraries for Netflix support
-	sudo cp "http://libregeek.org/SteamOS-Extra/browsers/chromium-supplemental/libwidevinecdmadapter.so "/usr/lib/chromium-browser/"
+	sudo cp "http://libregeek.org/SteamOS-Extra/browsers/chromium-supplemental/libwidevinecdmadapter.so" "/usr/lib/chromium-browser/"
 	sudo cp "http://libregeek.org/SteamOS-Extra/browsers/chromium-supplemental/libwidevinecdm.so" "/usr/lib/chromium-browser/"
 	
 	# Advise user how to configure

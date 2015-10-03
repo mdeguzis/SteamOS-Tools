@@ -85,8 +85,11 @@ main()
 	sh "create_built_tarball.sh"
 	rm "create_built_tarball.sh"
 	
-	# enter build dir
-	cd "$git_dir"
+	# unpack tarball
+	tar -xf pcsx2*.tar.xz
+	
+	# enter source dir
+	cd pcsx2*
 	
 	# create the debian folder from the exiting debian-packager
 	cp -r debian-packager debian

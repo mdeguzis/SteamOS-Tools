@@ -20,7 +20,7 @@ src_cmd=""
 
 # vars for package
 pkgname="pcsx2.snapshot"
-pkgver="20151003+git"
+#pkgver="20151003+git"
 pkgrev="1"
 dist_rel="brewmaster"
 
@@ -137,8 +137,11 @@ main()
 	echo -e "\n==> Creating original tarball\n"
 	sleep 2s
 	
-	# create the tarball
-	tar cfj ${pkgname}_${pkgver}.orig.tar.bz2 "$git_dir"
+	# create the tarball from latest tarball creation script
+	# use latest revision designated at the top of this script
+	wget "https://github.com/PCSX2/pcsx2/raw/master/debian-packager/create_built_tarball.sh"
+	sh "create_built_tarball.sh"
+	rm "create_built_tarball.sh"
 	
 	# enter build dir
 	cd "$git_dir"
@@ -148,6 +151,9 @@ main()
 	
 	# copy debian shell changelog from SteamOS-Tools
 	cp "$scriptdir/$pkgname/debian/changelog" "debian/changelog"
+	
+	# actively get pkg ver from created tarball
+	pkg_ver=$(find . -name *.orig.tar.xz | cut -c 18-40)
 	
 	# Change version, uploader, insert change log comments
 	sed -i "s|version_placeholder|$pkgname_$pkgver-$pkgrev|g" debian/changelog

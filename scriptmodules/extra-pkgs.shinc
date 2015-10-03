@@ -201,80 +201,6 @@ ep_install_gameplay_recording()
 	
 }
 
-ep_install_kodi()
-{
-	# The previous team-Kodi install method by WSNIPEX can be found in
-	# the scriptmodules/archive folder. This method is currently broken.
-	
-	# Package sourced from: 
-	# https://github.com/sharkwouter/vaporos-mod/tree/master/pool/main/k/kodi
-  
-  	echo "This package is currently broken. Please check back later"
-  	exit 1
-  
-	echo -e "\n==> Installing Kodi from automated script..."
-	sleep 2s
-	
-	#######################################
-	# Prerequisite packages
-	#######################################
-	
-	echo -e "\n==> Checking for prerequisite packages\n"
-	sleep 1s
-	
-	sudo apt-get install libgcrypt11-dev samba samba-client
-	
-	#######################################
-	# general
-	#######################################
-	
-	# set external Deb repo required flag
-	export deb_repo_name="jessie.list"
-	export deb_repo_req="yes"
-
-	# Eval requirements
-	"$scriptdir/utilities/check_repo_req.sh"
-	
-	#######################################
-	# kodi-bin
-	#######################################
-	
-	# set vars
-	pkg_type="deb"
-	PKG="kodi-bin"
-	PKG_FILENAME="kodi-bin_14.1~git20150131.1014-38e4046-0_amd64.deb"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/kodi/"
-	BIN_LOC=""
-	PKG_DIR=""
-	
-	# set multiflag
-	multi="n"
-	
-	# install package
-	ep_install_eval_pkg
-	
-	#######################################
-	# kodi
-	#######################################
-	
-	# set vars
-	pkg_type="deb"
-	PKG="kodi"
-	PKG_FILENAME="kodi_14.1~git20150131.1014-38e4046-0_all.deb"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/multimedia/kodi/"
-	BIN_LOC=""
-	PKG_DIR=""
-	
-	# set multiflag
-	multi="n"
-	
-	# install package
-	ep_install_eval_pkg
-	
-	# cleanup
-	ep_pkg_cleanup
-}
-
 ep_install_lutris()
 {
 	
@@ -691,5 +617,3 @@ ep_test_opts()
 	sleep 50s
 	exit
 }
-
-

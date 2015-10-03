@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
-Name=Stop Recording
-GenericName=Stop Recording
+Name=Record gameplay
+GenericName=Gameplay Recording
 Comment=Start FFMPEG Gameplay Recording
-Exec=/usr/local/bin/recording-stop.sh &
+Exec=/usr/bin/steamos-recording.sh
 Icon=
 Terminal=true
 Type=Utility

@@ -21,7 +21,7 @@ src_cmd=""
 # vars for package
 pkgname="pcsx2.snapshot"
 pkgver="20151002+git"
-pkgrel="1"
+pkgrev="1"
 dist_rel="brewmaster"
 
 # build dirs
@@ -84,14 +84,14 @@ main()
 		
 		if [[ "$git_choice" == "p" ]]; then
 			# attempt to pull the latest source first
-			echo -e "\n==> Attempting git pull..."
+			echo -e "\n==> Attempting git pull...\n"
 			sleep 2s
 		
 			# attempt git pull, if it doesn't complete reclone
 			if ! git pull; then
 				
 				# failure
-				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
 				sleep 2s
 				rm -rf "$git_dir"
 				mkdir -p "$git_dir"
@@ -110,7 +110,7 @@ main()
 			git clone "$git_url"
 		else
 		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
 			sleep 2s
 			# create DIRS
 			mkdir -p "$git_dir"
@@ -121,7 +121,7 @@ main()
 	
 	else
 		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
 			sleep 2s
 			# create DIRS
 			mkdir -p "$git_dir"

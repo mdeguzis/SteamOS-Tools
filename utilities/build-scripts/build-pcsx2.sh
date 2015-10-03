@@ -96,7 +96,7 @@ main()
 				rm -rf "$git_dir"
 				mkdir -p "$git_dir"
 				# clone to current DIR
-				git clone "$git_url" .
+				git clone "$git_url"
 				
 			fi
 			
@@ -107,7 +107,7 @@ main()
 			rm -rf "$git_dir"
 			cd "$build_dir"
 			mkdir -p "$git_dir"
-			git clone "$git_url" .
+			git clone "$git_url"
 		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
@@ -115,7 +115,7 @@ main()
 			# create DIRS
 			mkdir -p "$git_dir"
 			# create and clone to current dir
-			git clone "$git_url" .
+			git clone "$git_url"
 		
 		fi
 	
@@ -126,7 +126,7 @@ main()
 			# create DIRS
 			mkdir -p "$git_dir"
 			# create and clone to current dir
-			git clone "$git_url" .	
+			git clone "$git_url"
 	fi
 	
  

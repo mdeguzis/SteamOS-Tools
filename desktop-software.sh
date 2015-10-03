@@ -21,7 +21,7 @@
 
 show_help()
 {
-	
+
 	clear
 	cat <<-EOF
 	#####################################################
@@ -70,7 +70,7 @@ if [[ "$options" == "" || "$options" == "--help" ]]; then
 	# show help and exit
 	show_help
 	exit 1
-	
+
 fi
 
 # Specify a final arg for any extra options to build in later
@@ -102,18 +102,18 @@ else
 fi
 
 if [[ $LINECOUNT -gt 1 ]]; then
-	
+
 	# echo "Custom PKG set detected!"
 	custom_pkg_set="yes"
-	
+
 fi
 
 apt_mode="install"
 uninstall="no"
 
-function getScriptAbsoluteDir() 
+function getScriptAbsoluteDir()
 {
-	
+
     # @description used to get the script path
     # @param $1 the script $0 parameter
     local script_invoke_path="$1"
@@ -128,9 +128,9 @@ function getScriptAbsoluteDir()
     fi
 }
 
-function import() 
+function import()
 {
-    
+
     # @description importer routine to get external functionality.
     # @description the first location searched is the script directory.
     # @description if not found, search the module in the paths contained in $SHELL_LIBRARY_PATH environment variable
@@ -216,20 +216,20 @@ function setDesktopEnvironment()
   target=`echo $setDir| cut -f 2 -d "="| sed s,'$home',$home,`
 
   checkValid=`echo $setDir|grep $xdg_dir=\"|grep home/`
- 
+
   if [ -n "$checkValid" ]; then
     eval "$setDir"
 
   else
 
     echo "local desktop setting" $XDG_DIR "not found"
- 
+
   fi
 }
 
 source_modules()
 {
-	
+
 	script_invoke_path="$0"
 	script_name=$(basename "$0")
 	getScriptAbsoluteDir "$script_invoke_path"
@@ -240,42 +240,42 @@ source_modules()
 
 set_multiarch()
 {
-	
+
 	echo -e "\n==> Checking for multi-arch support"
 	sleep 1s
-	
+
 	# add 32 bit support
 	multi_arch_status=$(dpkg --print-foreign-architectures)
-	
+
 	if [[ "$multi_arch_status" != "i386" ]]; then
-		
+
 		echo -e "Multi-arch support [Not Found]"
 		# add 32 bit support
 		if sudo dpkg --add-architecture i386; then
 
 			echo -e "Multi-arch support [Added]"
 			sleep 1s
-			
+
 		else
-			
+
 			echo -e "Multi-arch support [FAILED]"
 			sleep 1s
 		fi
-	
+
 	else
-	
+
 		echo -e "\nMulti-arch support [OK]"	
-		
+
 	fi
-	
+
 }
 
 pre_req_checks()
 {
-	
+
 	echo -e "\n==> Checking for prerequisite software...\n"
 	sleep 2s
-	
+
 	#################################
 	# debian-keyring
 	#################################
@@ -283,9 +283,9 @@ pre_req_checks()
 	PKG="debian-keyring"
 	# prepend a space for a source type
 	source_type=""
-	
+
 	main_install_eval_pkg
-	
+
 	#################################
 	# gdebi
 	#################################
@@ -293,9 +293,9 @@ pre_req_checks()
 	PKG="gdebi-core"
 	# prepend a space for a source type
 	source_type=""
-	
+
 	main_install_eval_pkg
-	
+
 	#################################
 	# python-software-properties
 	#################################
@@ -303,9 +303,9 @@ pre_req_checks()
 	PKG="python-software-properties"
 	# prepend a space for a source type
 	source_type=""
-	
+
 	main_install_eval_pkg
-	
+
 }
 
 
@@ -315,30 +315,30 @@ main_install_eval_pkg()
 	#####################################################
 	# Package eval routine
 	#####################################################
-	
+
 	# assess via dpkg OR traditional 'which'
 	PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	PKG_OK_WHICH=$(which $PKG)
-	
+
 	if [[ "$PKG_OK_DPKG" == "" && "$PKG_OK_WHICH" == "" ]]; then
 		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
 		sleep 2s
-		
+
 		# use validation to make sure commands complete with if/fi
 		if sudo apt-get $cache_tmp ${source_type}install $PKG -y; then
-		
+
 			echo "Successfully installed $PKG"
-			
+
 		else
 			echo -e "\n==ERROR==\nCould not install $PKG. Exiting..."
 			echo -e "Did you remember to add the Debian sources?\n"
-			
+
 			sleep 3s
 			exit 1
 		fi
-		
+
 	else
-		
+
 		# package is already installed and OK
 		echo "Checking for $PKG [OK]"
 		sleep .1s
@@ -368,8 +368,8 @@ get_software_type()
 {
 	####################################################
 	# Software packs
-	####################################################	
-	
+	####################################################
+
         if [[ "$type" == "basic" ]]; then
                 # add basic software to temp list
                 software_list="$scriptdir/cfgs/software-lists/basic-software.txt"
@@ -397,7 +397,7 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/software-lists/upnp-dlna.txt"
-         
+ 
 	####################################################
 	# popular software / custom specification
 	####################################################
@@ -446,32 +446,33 @@ install_software()
 	###########################################################
 	# Pre-checks and setup
 	###########################################################
-	
+
 	# Set mode and proceed based on main() choice
         if [[ "$options" == "install" ]]; then
-                
+
                 apt_mode="install"
-                
+
 	elif [[ "$options" == "uninstall" ]]; then
-               
+
                 apt_mode="remove"
                 # only tee output
-                
+
 	elif [[ "$options" == "test" ]]; then
-		
+
 		apt_mode="--dry-run install"
 		# grap Inst and Conf lines only
-		
+
 	elif [[ "$options" == "check" ]]; then
-	
+
+
 		# do nothing
 		echo "" > /dev/null
 
         fi
-        
+
         # Update keys and system first, skip if removing software
         # or if we are just checking packages
-        
+ 
 	if [[ "$options" != "uninstall" && "$options" != "check" ]]; then
 	        echo -e "\n==> Updating system, please wait...\n"
 		sleep 1s
@@ -481,59 +482,59 @@ install_software()
 
 	# create alternate cache dir in /home/desktop due to the 
 	# limited size of the default /var/cache/apt/archives size
-	
+
 	mkdir -p "/home/desktop/steamos-tools-aptcache"
 	# create cache command
 	cache_tmp=$(echo "-o dir::cache::archives="/home/desktop/steamos-tools-aptcache"")
-	
+
 	###########################################################
 	# Installation routine (brewmaster/main)
 	###########################################################
-	
+
 	# Install from brewmaster first, jessie as backup, jessie-backports 
 	# as a last ditch effort
-	
+
 	# let user know checks in progress
 	echo -e "\n==> Validating packages...\n"
 	sleep 2s
-	
+
 	if [ -n "$software_list" ]; then
 		for i in `cat $software_list`; do
-		
+
 			# set fail default
 			pkg_fail="no"
-			
+
 			if [[ "$i" =~ "!broken!" ]]; then
 				skipflag="yes"
 				echo -e "skipping broken package: $i ..."
 				sleep 0.3s
 			else
-		
+
 				# check for packages already installed first
 				# Force if statement to run if unininstalled is specified for exiting software
 				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
-				
+
 				# report package current status
 				if [ "$PKG_OK" != "" ]; then
-				
+
 					echo -e "$i package status: [OK]"
 					sleep .1s
-				
+
 				else
 					echo -e "$i package status: [Not found]"
 					sleep 1s
-					
+
 				fi
-		
+
 				# setup firstcheck var for first run through
 				firstcheck="yes"
-			
+
 				# Assess pacakge requests
 				if [ "$PKG_OK" == "" ] && [ "$apt_mode" == "install" ]; then
-				
+
 					echo -e "\n==> Attempting $i automatic package installation...\n"
 					sleep 2s
-					
+
 					if sudo apt-get $cache_tmp $apt_mode $i -y; then
 						
 						echo -e "\n==INFO==\nSuccessfully installed package $i\n"
@@ -561,33 +562,33 @@ install_software()
 					
 						echo -e "\n==INFO==\nRemoval succeeded\n"
 						
-					else 
-					
+					else
+
 						echo -e "\n==INFO==\nRemoval FAILED!\n"
-						
+
 					fi
-					
-				
+
+
 				# end PKG OK/FAIL test loop if/fi
 				fi
 
 			# end broken PKG test loop if/fi
 			fi
-			
+
 		# end PKG OK test loop itself
 		done
 	fi
-	
+
 	###########################################################
 	# Cleanup
 	###########################################################
-	
+
 	# Remove custom package list
 	rm -f custom-pkg.txt
-	
+
 	# If software type was for emulation, continue building
 	# emulators from source (DISABLE FOR NOW)
-	
+
 }
 
 show_warning()
@@ -596,9 +597,9 @@ show_warning()
 	echo ""
         sources_check_jessie=$(sudo find /etc/apt -type f -name "jessie*.list")
         sources_check_steamos_tools=$(sudo find /etc/apt -type f -name "steamos-tools.list")
-        
+
         clear
-        
+
 
         echo "##########################################################"
         echo "Warning: usage of this script is at your own risk!"
@@ -606,47 +607,47 @@ show_warning()
         echo -e "\nIn order to install most software, you MUST have had"
         echo -e "enabled the Debian and Libregeek repositories! Otherwise,"
         echo -e "you may break the stability of your system packages! "
-        
+
         if [[ "$sources_check_jessie" == "" || "$sources_check_steamos_tools" == "" ]]; then
                 echo -e " \nThose sources do *NOT* appear to be added!"
         else
                 echo -e "\nOn initial check, those sources appear to be added."
         fi
-                
+
         echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,"
         echo -e "press [ENTER] to continue."
         echo -e "\ntype './desktop-software --help' (without quotes) for help."
         echo -e "If you need to add the Debian repos, please add them now\n"
         echo -e "Please read the disclaimer.md now or in the main GitHub"
         echo -e "root folder!\n"
-        
+
         echo -e "[c]ontinue, [a]dd Debian sources, [d]isclaimer [e]xit"
 
 	# get user choice
 	read -erp "Choice: " user_choice
 
-	
+
 	case "$user_choice" in
 	        c|C)
 		echo -e "\nContinuing..."
 	        ;;
-	        
+
 	        a|A)
 		echo -e "\nProceeding to add-debian-repos.sh"
 		"$scriptdir/add-debian-repos.sh"
 	        ;;
-	        
+
   	        d|D)
 		less disclaimer.md
 		return
 	        ;;
-	         
+
 	        e|e)
 		echo -e "\nExiting script...\n"
 		exit 1
 	        ;;
-	        
-	         
+
+
 	        *)
 		echo -e "\nInvalid Input, Exiting script.\n"
 		exit
@@ -659,46 +660,46 @@ show_warning()
 
 manual_software_check()
 {
-	
+
 	echo -e "==> Validating packages already installed...\n"
-	
+
 	if [ -n "$software_list" ]; then
 		for i in `cat $software_list`; do
-		
+
 			if [[ "$i" =~ "!broken!" ]]; then
-			
+
 				skipflag="yes"
 				echo -e "skipping broken package: $i ..."
 				sleep 0.3s
-				
+
 			else
-			
+
 				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
 				if [ "$PKG_OK" == "" ]; then
-				
+
 					# dpkg outputs it's own line that can't be supressed
 					echo -e "Package $i [Not Found]" > /dev/null
 					sleep 1s
-					
+
 				else
-				
+
 					echo -e "Packge $i [OK]"
 					sleep .1s
-					
+
 				fi
 			fi
 
 		done
 	fi
 	echo ""
-	exit 1	
+	exit 1
 
 }
 
 main()
 {
 	clear
-	
+
 	# load script modules
 	echo "#####################################################"
 	echo "Loading script modules"
@@ -740,18 +741,18 @@ main()
                         clear
                         less $software_list
                         exit 1
-			
+
 		elif [[ "$options" == "check" ]]; then
-                        
+
                         clear
                         # loop over packages and check
 			manual_software_check
 			exit 1
 		fi
-		
+
 		# load functions necessary for software actions
 		# GPG import should not be needed under brewmaster/Jessie
-		
+
 		gpg_import
 		set_multiarch
 		pre_req_checks
@@ -763,54 +764,54 @@ main()
         #############################################
         # Supplemental installs / modules
         #############################################
-        
+
         # If an outside script needs called to install the software type,
         # do it below.
-        
+
         if [[ "$type" == "emulation" ]]; then
 
 		# kick off extra modules for buld debs
 		sleep 2s
 		m_emulation_install_main
-		
+
 	elif [[ "$type" == "retroarch-src" ]]; then
-	
+
                 # call external build script for Retroarch
                 clear
                 sleep 2s
                 rfs_retroarch_src_main
-        
+
         elif [[ "$type" == "kodi-src" ]]; then
-	
+
                 # call external build script for Kodi-src
                 "$scriptdir/utilities/build-scripts/build-kodi-src.sh"
-		
+
 	elif [[ "$type" == "ue4-src" ]]; then
 
 		# kick off ue4 script
 		# m_install_ue4_src
-		
+
 		# Use binary built for Linux instead for brewmaster
 		m_install_ue4
-		
+
 	elif [[ "$type" == "upnp-dlna" ]]; then
 
 		# kick off helper script
 		install_mobile_upnp_dlna
-		
+
 	elif [[ "$type" == "pcsx2-testing" ]]; then
-	
+
 		# Ensure that Build-Depends are installed prior
 		m_install_pcsx2_src
 	fi
-	
+
 	# cleanup package leftovers
 	echo -e "\n==> Cleaning up unused packages\n"
 	sudo apt-get autoremove
-	
+
 	# Also, clear out our cache folder
 	sudo apt-get -o dir::cache::archives="/home/desktop/steamos-tools-aptcache" clean
-	
+
 	echo ""
 }
 

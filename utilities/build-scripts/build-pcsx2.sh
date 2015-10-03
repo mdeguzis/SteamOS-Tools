@@ -5,9 +5,10 @@
 # Git:	    	  https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  build-pcsx2.sh
 # Script Ver:	  0.1.1
-# Description:	Attempts to build a deb package from PCSX2 git source
+# Description:	  Attempts to build a deb package from PCSX2 git source
 #
-# Usage:	      ./build-pcsx2.sh
+# See:		  https://code.google.com/p/pcsx2/wiki/CompilationGuideForLinux
+# Usage:	  ./build-pcsx2.sh
 # -------------------------------------------------------------------------------
 
 arg1="$1"
@@ -17,49 +18,55 @@ time_stamp_start=(`date +"%T"`)
 # reset source command for while loop
 src_cmd=""
 
+# vars for package
+pkgname="pcsx2.snapshot"
+pkgver="20151002+git"
+pkgrel="1"
+dist_rel="brewmaster"
+
 install_prereqs()
 {
 	clear
-	echo -e "==> Assessing prerequisites for building...\n"
-	sleep 1s
+	echo -e "==> Installing prerequisites for building...\n"
+	sleep 2s
 	# install needed packages
 	sudo apt-get install git devscripts build-essential checkinstall \
 	debian-keyring debian-archive-keyring cmake g++ g++-multilib \
 	libqt4-dev libqt4-dev libxi-dev libxtst-dev libX11-dev bc libsdl2-dev \
-	gcc gcc-multilib
+	gcc gcc-multilib nano
+	
+	echo -e "==> Installing pcsx2 build dependencies...\n"
+	sleep 2s
+	
+	sudo apt-get install libaio-dev libpng++-dev libsoundtouch-dev \
+	libwxbase3.0-dev libwxgtk3.0-dev portaudio19-dev
 
 }
 
 main()
 {
-	build_dir="/home/desktop/build-deb-temp"
-	git_dir="$build_dir/git-temp"
+	build_dir="/home/desktop/build-pcsx2-temp"
+	git_dir="$build_dir/pcsx2"
+	git_url="https://github.com/PCSX2/pcsx2"
 	
-	clear
-	# create build dir and git dir, enter it
-	# mkdir -p "$git_dir"
-	# cd "$git_dir"
+	# create and enter build_dir
 	
-	# Ask user for repos / vars
-	echo -e "==> Please enter or paste the git URL now:"
-	echo -e "[ENTER to use last: $git_url]\n"
+	if [[ ! -d "$build_dir" ]]; then
 	
-	# set tmp var for last run, if exists
-	git_url_tmp="$git_url"
-	if [[ "$git_url" == "" ]]; then
-		# var blank this run, get input
-		read -ep "Git source URL: " git_url
+		mkdir -p "$build_dir"
+		
 	else
-		read -ep "Git source URL: " git_url
-		# user chose to keep var value from last
-		if [[ "$git_url" == "" ]]; then
-			git_url="$git_url_tmp"
-		else
-			# keep user choice
-			git_url="$git_url"
-		fi
+	
+		rm -rf "$build_dir"
+		mkdir -p "$build_dir"
+		
 	fi
 	
+	# Enter build dir
+	cd "$build_dir"
+	
+	clear
+
 	# If git folder exists, evaluate it
 	# Avoiding a large download again is much desired.
 	# If the DIR is already there, the fetch info should be intact
@@ -127,49 +134,45 @@ main()
 	# Build PKG
 	#################################################
 	
-	# Output readme via less to review build notes first
-	echo -e "\n==> Opening any available README.md to review build notes..."
-	sleep 2s
+	# enter source dir debian directory
+	cd "$git_dir/debian-packager"
 	
-	readme_file=$(find . -maxdepth 1 -type f \( -name "readme" -o -name "README" -o -name "README.md" -o -name "readme.md" \))
+	# create the tarbal
+	sh create_built_tarball.sh
 	
-	less "$readme_file"
+	# unpack the source tarball
+	tar -xf pcsx2.snapshot*
 	
-	# Ask user to enter build commands until "done" is received
-	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
-	echo -e "When finished, please enter the word 'done' without quotes\n\n"
-	sleep 1s
+	# enter build dir
+	cd pcsx2.snapshot*
 	
-	while [[ "$src_cmd" != "done" ]];
-	do
+	# create the debian folder from the exiting debian-packager
+	cp -r debian-packager debian
 	
-		# ignore executing src_cmd if "done"
-		if [[ "$src_cmd" == "done" ]]; then
-			# do nothing
-			echo "" > /dev/null
-		else
-			# Execute src cmd
-			$src_cmd
-		fi
-		
-		# capture command
-		read -ep "Build CMD >> " src_cmd
-		
-	done
-  
+	# copy debian shell changelog from SteamOS-Tools
+	cp "$scriptdir/pcsx2/debian/changelog" "debian/changelog"
+	
+	# Change version, uploader, insert change log comments
+	sed -i "s|version_placeholder|$pkgname_$pkgver-$pkgrev|g" debian/changelog
+	sed -i "s|uploader|$uploader|g" debian/changelog
+	sed -i "s|dist_rel|$pkgrel|g" debian/changelog
+	
+	# open debian/changelog and update
+	echo -e "\n==> Opening changelog for build"
+	sleep 3s
+	nano debian/changelog
+
 	############################
 	# proceed to DEB BUILD
 	############################
 	
 	echo -e "\n==> Building Debian package from source"
-	echo -e "When finished, please enter the word 'done' without quotes"
 	sleep 2s
-	
-	# build deb package
-	# sudo checkinstall
 
-	# Alternate method
-	dpkg-buildpackage -us -uc -nc
+	# Build with dpkg-buildpackage
+	
+	#dpkg-buildpackage -us -uc -nc
+	dpkg-buildpackage -rfakeroot -us -uc
 
 	#################################################
 	# Post install configuration

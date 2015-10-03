@@ -154,7 +154,7 @@ ep_install_gameplay_recording()
 	echo -e "\n==> Checking for prerequisite packages\n"
 	sleep 0.5s
 	
-	sudo apt-get install libav-tools libx264-123
+	sudo apt-get install libav-tools libx264-dev
 	
 	############################################
 	# Required files

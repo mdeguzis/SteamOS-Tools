@@ -134,17 +134,11 @@ main()
 	# Build PKG
 	#################################################
 	
-	# enter source dir debian directory
-	cd "$git_dir/debian-packager"
-	
-	# create the tarbal
-	sh create_built_tarball.sh
-	
-	# unpack the source tarball
-	tar -xf pcsx2.snapshot*
+	# create the tarball
+	tar cfj ${pkg_name}_${pkg_ver}.orig.tar.bz2 "$git_dir"
 	
 	# enter build dir
-	cd pcsx2.snapshot*
+	cd "$git_dir"
 	
 	# create the debian folder from the exiting debian-packager
 	cp -r debian-packager debian

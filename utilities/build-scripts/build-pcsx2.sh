@@ -195,7 +195,7 @@ main()
 	if [[ "$transfer_choice" == "y" ]]; then
 	
 		# cut files
-		if -d "$build_dir"; then
+		if [[ -d "$build_dir" ]]; then
 			scp $build_dir/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
 
 		fi

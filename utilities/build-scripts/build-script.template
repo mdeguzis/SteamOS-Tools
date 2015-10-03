@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # -------------------------------------------------------------------------------
-# Author:    	Michael DeGuzis
-# Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	build-deb-from-PPA.sh
-# Script Ver:	0.1.7
-# Description:	Attempts to build a deb package from a git src
+# Author:    	  Michael DeGuzis
+# Git:	    	  https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	  TEMPLATE_FILE_FOR_PACKAGING
+# Script Ver:	  0.1.1
+# Description:	  Attempts to build a deb package from <package> git source
 #
-# Usage:	sudo ./build-deb-from-src.sh
-#		source ./build-deb-from-src.sh
+# See:		 
+# Usage:
 # -------------------------------------------------------------------------------
 
 arg1="$1"
@@ -18,76 +18,47 @@ time_stamp_start=(`date +"%T"`)
 # reset source command for while loop
 src_cmd=""
 
-show_help()
-{
-	clear
-	cat <<-EOF
-	####################################################
-	Usage:	
-	####################################################
-	./build-deb-from-src.sh
-	./build-deb-from-src.sh --help
-	source ./build-deb-from-src.sh
-	
-	The third option, preeceded by 'source' will 
-	execute the script in the context of the calling 
-	shell and preserve vars for the next run.
-	
-	EOF
-}
+# vars for package
+pkgname="PACKAGE"
+#pkgver="20151003+git"
+pkgrev="1"
+dist_rel="brewmaster"
 
-if [[ "$arg" == "--help" ]]; then
-	#show help
-	show_help
-	exit
-fi
+# build dirs
+build_dir="/home/desktop/build-$(pkgname}-temp"
+git_dir="${build_dir}/${pkgname}"
+
+# upstream URL
+git_url="https://github.com/PCSX2/pcsx2"
+tarball_url="URL-TO-TARBALL"
+tarball_file="TARBALL-FILE"
+
+# package vars
+uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
 
 install_prereqs()
 {
 	clear
-	echo -e "==> Assessing prerequisites for building...\n"
-	sleep 1s
+	echo -e "==> Installing prerequisites for building...\n"
+	sleep 2s
 	# install needed packages
 	sudo apt-get install git devscripts build-essential checkinstall \
 	debian-keyring debian-archive-keyring cmake g++ g++-multilib \
 	libqt4-dev libqt4-dev libxi-dev libxtst-dev libX11-dev bc libsdl2-dev \
-	gcc gcc-multilib
+	gcc gcc-multilib nano
+	
+	echo -e "\n==> Installing $pkgname build dependencies...\n"
+	sleep 2s
+	
+	### REPLACE THESE WITH PACKAGES SPECIFIED BY UPSTREAM SOURCE ###
+	
+	sudo apt-get install libaio-dev libpng++-dev libsoundtouch-dev \
+	libwxbase3.0-dev libwxgtk3.0-dev portaudio19-dev
 
 }
 
-main()
+function_clone_git()
 {
-	build_dir="/home/desktop/build-deb-temp"
-	git_dir="$build_dir/git-temp"
-	
-	clear
-	# create build dir and git dir, enter it
-	# mkdir -p "$git_dir"
-	# cd "$git_dir"
-	
-	# Ask user for repos / vars
-	echo -e "==> Please enter or paste the git URL now:"
-	echo -e "[ENTER to use last: $git_url]\n"
-	
-	# set tmp var for last run, if exists
-	git_url_tmp="$git_url"
-	if [[ "$git_url" == "" ]]; then
-		# var blank this run, get input
-		read -ep "Git source URL: " git_url
-	else
-		read -ep "Git source URL: " git_url
-		# user chose to keep var value from last
-		if [[ "$git_url" == "" ]]; then
-			git_url="$git_url_tmp"
-		else
-			# keep user choice
-			git_url="$git_url"
-		fi
-	fi
-	
-	# If git folder exists, evaluate it
-	# Avoiding a large download again is much desired.
-	# If the DIR is already there, the fetch info should be intact
 	
 	if [[ -d "$git_dir" ]]; then
 	
@@ -99,7 +70,6 @@ main()
 			# attempt to pull the latest source first
 			echo -e "\n==> Attempting git pull..."
 			sleep 2s
-			cd "$git_dir"
 		
 			# attempt git pull, if it doesn't complete reclone
 			if ! git pull; then
@@ -109,9 +79,8 @@ main()
 				sleep 2s
 				rm -rf "$git_dir"
 				mkdir -p "$git_dir"
-				cd "$git_dir"
 				# clone to current DIR
-				git clone "$git_url" .
+				git clone "$git_url"
 				
 			fi
 			
@@ -122,17 +91,15 @@ main()
 			rm -rf "$git_dir"
 			cd "$build_dir"
 			mkdir -p "$git_dir"
-			cd "$git_dir"
-			git clone "$git_url" .
+			git clone "$git_url"
 		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
 			# create DIRS
 			mkdir -p "$git_dir"
-			cd "$git_dir"
 			# create and clone to current dir
-			git clone "$git_url" .
+			git clone "$git_url"
 		
 		fi
 	
@@ -142,59 +109,121 @@ main()
 			sleep 2s
 			# create DIRS
 			mkdir -p "$git_dir"
-			cd "$git_dir"
 			# create and clone to current dir
-			git clone "$git_url" .	
+			git clone "$git_url"
 	fi
 	
+}
+
+main()
+{
+	
+	# create and enter build_dir
+	
+	if [[ ! -d "$build_dir" ]]; then
+	
+		mkdir -p "$build_dir"
+		
+	else
+	
+		rm -rf "$build_dir"
+		mkdir -p "$build_dir"
+		
+	fi
+	
+	# Enter build dir
+	cd "$build_dir"
+	
+	clear
  
 	#################################################
 	# Build PKG
 	#################################################
 	
-	# Output readme via less to review build notes first
-	echo -e "\n==> Opening any available README.md to review build notes..."
+	echo -e "\n==> Creating original tarball\n"
 	sleep 2s
 	
-	readme_file=$(find . -maxdepth 1 -type f \( -name "readme" -o -name "README" -o -name "README.md" -o -name "readme.md" \))
+	echo -e "Use upstream tarball or git source? [tar/git]"
+	sleep 0.2s
 	
-	less "$readme_file"
+	read -erp "Choice: " upstream_choice
 	
-	# Ask user to enter build commands until "done" is received
-	echo -e "\nPlease enter your build commands, pressing [ENTER] after each one."
-	echo -e "When finished, please enter the word 'done' without quotes\n\n"
-	sleep 1s
+	if [[ "$upstream_source" == "tar" ]]
 	
-	while [[ "$src_cmd" != "done" ]];
-	do
-	
-		# ignore executing src_cmd if "done"
-		if [[ "$src_cmd" == "done" ]]; then
-			# do nothing
-			echo "" > /dev/null
-		else
-			# Execute src cmd
-			$src_cmd
-		fi
+		# create the tarball from latest tarball creation script
+		# use latest revision designated at the top of this script
+		wget "${tarball_url}/${tarball_file}"
 		
-		# capture command
-		read -ep "Build CMD >> " src_cmd
+		# unpack tarball
+		tar -xf ${pkgname}*.tar.xz
 		
-	done
-  
+		# actively get pkg ver from created tarball
+		pkgver=$(find . -name *.orig.tar.xz | cut -c 18-41)
+		
+	elif [[ "$upstream_source" == "git" ]]
+	
+		# clone git
+		function_clone_git
+	
+	else
+	
+		echo -e "\nInvalid input, exiting in 15 seconds"
+		sleep 15s
+		exit 1
+	
+	fi
+	
+	# enter source dir
+	cd ${pkgname}*
+	
+	# Create the debian folder from the exiting debian-packager
+	# if debian folder exists in upacked tarball or git source
+	if [[ -d "debian" ]]; then
+	
+		# copy debian shell changelog from SteamOS-Tools
+		cp "$scriptdir/$pkgname/debian/changelog" "debian/changelog"
+		
+		# Change version, uploader, insert change log comments
+		sed -i "s|version_placeholder|$pkgver-$pkgrev|g" debian/changelog
+		sed -i "s|uploader|$uploader|g" debian/changelog
+		sed -i "s|dist_rel|$dist_rel|g" debian/changelog
+		
+		# open debian/changelog and update
+		echo -e "\n==> Opening changelog for build. Please ensure there is a revision number"
+		sleep 3s
+		nano debian/changelog	
+		
+		# set build type
+		build_type="dpkg"
+		
+	else
+	
+		# no debian folder, use checkinstall
+		# set build type
+		build_type="checkinstall"
+		
+	fi
+
 	############################
 	# proceed to DEB BUILD
 	############################
 	
-	echo -e "\n==> Building Debian package from source"
-	echo -e "When finished, please enter the word 'done' without quotes"
+	echo -e "\n==> Building Debian package from source\n"
 	sleep 2s
-	
-	# build deb package
-	sudo checkinstall
 
-	# Alternate method
-	# dpkg-buildpackage -us -uc -nc
+	if [[ "$build_type" == "dpkg" ]]; then
+
+		# Build with dpkg-buildpackage
+		
+		#dpkg-buildpackage -us -uc -nc
+		dpkg-buildpackage -rfakeroot -us -uc
+		
+	elif [[ "$build_type" == "checkinstall" ]]; then
+	
+		# use checkinstall
+		sudo checkinstall
+		
+	fi
 
 	#################################################
 	# Post install configuration
@@ -235,8 +264,8 @@ main()
 	echo -e "If you don't, please check build dependcy errors listed above."
 	echo -e "############################################################\n"
 	
-	echo -e "Showing contents of: $git_dir: \n"
-	ls "$git_dir"
+	echo -e "Showing contents of: $build_dir: \n"
+	ls "$build_dir"
 
 	echo -e "\n==> Would you like to trim tar.gz, dsc files, and folders for uploading? [y/n]"
 	sleep 0.5s
@@ -269,8 +298,8 @@ main()
 	if [[ "$transfer_choice" == "y" ]]; then
 	
 		# cut files
-		if -d $git_dir/ build; then
-			scp $git_dir/build/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
+		if -d "$build_dir"; then
+			scp $build_dir/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
 
 		fi
 		
@@ -283,4 +312,3 @@ main()
 # start main
 install_prereqs
 main
-

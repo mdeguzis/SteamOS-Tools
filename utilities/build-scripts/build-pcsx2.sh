@@ -89,7 +89,7 @@ main()
 	tar -xf pcsx2*.tar.xz
 	
 	# actively get pkg ver from created tarball
-	pkgver=$(find . -name *.orig.tar.xz | cut -c 18-40)
+	pkgver=$(find . -name *.orig.tar.xz | cut -c 18-41)
 	
 	# enter source dir
 	cd pcsx2*

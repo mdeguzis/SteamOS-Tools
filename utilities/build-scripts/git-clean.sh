@@ -21,7 +21,7 @@
 #set -x 
 
 #change directory
-cd $HOME/github_repos/SteamOS-Tools
+cd $HOME/SteamOS-Tools
 
 # Shows you the largest objects in your repo's pack file.
 # Written for osx.

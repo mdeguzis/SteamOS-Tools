@@ -24,6 +24,14 @@ pkgver="20151002+git"
 pkgrel="1"
 dist_rel="brewmaster"
 
+# build dirs
+build_dir="/home/desktop/build-pcsx2-temp"
+git_dir="$build_dir/pcsx2"
+git_url="https://github.com/PCSX2/pcsx2"
+
+# package vars
+uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
+
 install_prereqs()
 {
 	clear
@@ -35,7 +43,7 @@ install_prereqs()
 	libqt4-dev libqt4-dev libxi-dev libxtst-dev libX11-dev bc libsdl2-dev \
 	gcc gcc-multilib nano
 	
-	echo -e "==> Installing pcsx2 build dependencies...\n"
+	echo -e "\n==> Installing pcsx2 build dependencies...\n"
 	sleep 2s
 	
 	sudo apt-get install libaio-dev libpng++-dev libsoundtouch-dev \
@@ -45,9 +53,6 @@ install_prereqs()
 
 main()
 {
-	build_dir="/home/desktop/build-pcsx2-temp"
-	git_dir="$build_dir/pcsx2"
-	git_url="https://github.com/PCSX2/pcsx2"
 	
 	# create and enter build_dir
 	
@@ -81,7 +86,6 @@ main()
 			# attempt to pull the latest source first
 			echo -e "\n==> Attempting git pull..."
 			sleep 2s
-			cd "$git_dir"
 		
 			# attempt git pull, if it doesn't complete reclone
 			if ! git pull; then
@@ -91,7 +95,6 @@ main()
 				sleep 2s
 				rm -rf "$git_dir"
 				mkdir -p "$git_dir"
-				cd "$git_dir"
 				# clone to current DIR
 				git clone "$git_url" .
 				
@@ -104,7 +107,6 @@ main()
 			rm -rf "$git_dir"
 			cd "$build_dir"
 			mkdir -p "$git_dir"
-			cd "$git_dir"
 			git clone "$git_url" .
 		else
 		
@@ -112,7 +114,6 @@ main()
 			sleep 2s
 			# create DIRS
 			mkdir -p "$git_dir"
-			cd "$git_dir"
 			# create and clone to current dir
 			git clone "$git_url" .
 		
@@ -124,7 +125,6 @@ main()
 			sleep 2s
 			# create DIRS
 			mkdir -p "$git_dir"
-			cd "$git_dir"
 			# create and clone to current dir
 			git clone "$git_url" .	
 	fi
@@ -134,8 +134,11 @@ main()
 	# Build PKG
 	#################################################
 	
+	echo -e "\n==> Creating original tarball\n"
+	sleep 2s
+	
 	# create the tarball
-	tar cfj ${pkg_name}_${pkg_ver}.orig.tar.bz2 "$git_dir"
+	tar cfj ${pkgname}_${pkgver}.orig.tar.bz2 "$git_dir"
 	
 	# enter build dir
 	cd "$git_dir"
@@ -144,15 +147,15 @@ main()
 	cp -r debian-packager debian
 	
 	# copy debian shell changelog from SteamOS-Tools
-	cp "$scriptdir/pcsx2/debian/changelog" "debian/changelog"
+	cp "$scriptdir/$pkgname/debian/changelog" "debian/changelog"
 	
 	# Change version, uploader, insert change log comments
 	sed -i "s|version_placeholder|$pkgname_$pkgver-$pkgrev|g" debian/changelog
 	sed -i "s|uploader|$uploader|g" debian/changelog
-	sed -i "s|dist_rel|$pkgrel|g" debian/changelog
+	sed -i "s|dist_rel|$dist_rel|g" debian/changelog
 	
 	# open debian/changelog and update
-	echo -e "\n==> Opening changelog for build"
+	echo -e "\n==> Opening changelog for build. Please include a revision number"
 	sleep 3s
 	nano debian/changelog
 
@@ -160,7 +163,7 @@ main()
 	# proceed to DEB BUILD
 	############################
 	
-	echo -e "\n==> Building Debian package from source"
+	echo -e "\n==> Building Debian package from source\n"
 	sleep 2s
 
 	# Build with dpkg-buildpackage

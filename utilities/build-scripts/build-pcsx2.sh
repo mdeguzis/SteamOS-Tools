@@ -20,7 +20,7 @@ src_cmd=""
 
 # vars for package
 pkgname="pcsx2.snapshot"
-pkgver="20151003+git"
+#pkgver="20151003+git"
 pkgrev="1"
 dist_rel="brewmaster"
 
@@ -71,64 +71,6 @@ main()
 	cd "$build_dir"
 	
 	clear
-
-	# If git folder exists, evaluate it
-	# Avoiding a large download again is much desired.
-	# If the DIR is already there, the fetch info should be intact
-	
-	if [[ -d "$git_dir" ]]; then
-	
-		echo -e "\n==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
-		sleep 1s
-		read -ep "Choice: " git_choice
-		
-		if [[ "$git_choice" == "p" ]]; then
-			# attempt to pull the latest source first
-			echo -e "\n==> Attempting git pull...\n"
-			sleep 2s
-		
-			# attempt git pull, if it doesn't complete reclone
-			if ! git pull; then
-				
-				# failure
-				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning...\n"
-				sleep 2s
-				rm -rf "$git_dir"
-				mkdir -p "$git_dir"
-				# clone to current DIR
-				git clone "$git_url"
-				
-			fi
-			
-		elif [[ "$git_choice" == "r" ]]; then
-			echo -e "\n==> Removing and cloning repository again...\n"
-			sleep 2s
-			# remove, clone, enter
-			rm -rf "$git_dir"
-			cd "$build_dir"
-			mkdir -p "$git_dir"
-			git clone "$git_url"
-		else
-		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
-			sleep 2s
-			# create DIRS
-			mkdir -p "$git_dir"
-			# create and clone to current dir
-			git clone "$git_url"
-		
-		fi
-	
-	else
-		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now...\n"
-			sleep 2s
-			# create DIRS
-			mkdir -p "$git_dir"
-			# create and clone to current dir
-			git clone "$git_url"
-	fi
-	
  
 	#################################################
 	# Build PKG
@@ -137,8 +79,11 @@ main()
 	echo -e "\n==> Creating original tarball\n"
 	sleep 2s
 	
-	# create the tarball
-	tar cfj ${pkgname}_${pkgver}.orig.tar.bz2 "$git_dir"
+	# create the tarball from latest tarball creation script
+	# use latest revision designated at the top of this script
+	wget "https://github.com/PCSX2/pcsx2/raw/master/debian-packager/create_built_tarball.sh"
+	sh "create_built_tarball.sh"
+	rm "create_built_tarball.sh"
 	
 	# enter build dir
 	cd "$git_dir"
@@ -148,6 +93,9 @@ main()
 	
 	# copy debian shell changelog from SteamOS-Tools
 	cp "$scriptdir/$pkgname/debian/changelog" "debian/changelog"
+	
+	# actively get pkg ver from created tarball
+	pkg_ver=$(find . -name *.orig.tar.xz | cut -c 18-40)
 	
 	# Change version, uploader, insert change log comments
 	sed -i "s|version_placeholder|$pkgname_$pkgver-$pkgrev|g" debian/changelog

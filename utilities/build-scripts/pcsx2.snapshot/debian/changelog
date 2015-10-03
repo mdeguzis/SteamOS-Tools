@@ -1,5 +1,7 @@
 pcsx2.snapshot (version_placeholder) dist_rel; urgency=low
 
-  * Change log message
+  * Packaged deb for SteamOS-Tools
+  * See: packages.libregeek.org
+  * Upstream authors and source: https://github.com/PCSX2/pcsx2
 
- -- uploader  Tue, 29 Sep 2015 12:58:00 -0500
+ -- uploader  Sat, 03 Oct 2015 10:17:00 -0500

@@ -393,10 +393,6 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/software-lists/games-pkg.txt"
-        elif [[ "$type" == "pcsx2-testing" ]]; then
-                # add emulation softare to temp list
-                # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/software-lists/pcsx2-src-deps.txt"
         elif [[ "$type" == "upnp-dlna" ]]; then
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
@@ -413,32 +409,28 @@ get_software_type()
                 exit 1
         elif [[ "$type" == "gameplay-recording" ]]; then
                 # install plex from helper script
-                ep_install_gameplay_recording
+		ep_install_gameplay_recording
                 exit 1
         elif [[ "$type" == "kodi-src" ]]; then
         	software_list="$scriptdir/cfgs/software-lists/kodi-src.txt"
-        elif [[ "$type" == "kodi" ]]; then
-                # install plex from helper script
-                ep_install_kodi
-                exit 1
         elif [[ "$type" == "retroarch" ]]; then
                 # add emulation softare to temp list
                 ep_install_retroarch
                 exit 1
 	elif [[ "$type" == "ue4" ]]; then
 		# install ue4 from helper script
-		egi_install_ue4
+		ep_install_ue4
 		exit 1
         elif [[ "$type" == "ue4-src" ]]; then
                 # install plex from helper script
                 software_list="$scriptdir/cfgs/software-lists/ue4.txt"
 	elif [[ "$type" == "webapp" ]]; then
                 # add web app via chrome from helper script
-                add_web_app_chrome
+		add_web_app_chrome
                 exit 1
         elif [[ "$type" == "xb360-bindings" ]]; then
                 # install plex from helper script
-                ep_install_xb360_bindings
+		ep_install_xb360_bindings
                 exit 1
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
@@ -737,7 +729,7 @@ main()
 	      "$type" == "extra" ||
 	      "$type" == "emulation-src-deps" ||
 	      "$type" == "retroarch-src" ||
-	      "$type" == "kod-src" ||
+	      "$type" == "kodi-src" ||
 	      "$type" == "$type" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then

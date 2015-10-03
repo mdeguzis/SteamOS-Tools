@@ -1,8 +1,14 @@
+SteamOS-Tools 2.5.8
+  * Sytax corrections
+  * Several new packages added to repository (check the wiki)
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 03 Oct 2015 19:49:00 -5000
+
 SteamOS-Tools 2.5.7
   * Added Kodi 15 "Isengard" (packaged) to Libregeek brewmaster repository
   * Many wiki additions
 
--- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 26 September 2015 17:42:00 -5000
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 26 Sep 2015 17:42:00 -5000
 
 SteamOS-Tools 2.5.5
   * Added Kodi (packaged) to Libregeek brewmaster_testing
@@ -11,7 +17,7 @@ SteamOS-Tools 2.5.5
   * Code fixes
   * Added option to enabled testing Libregeek repo in add-debian-repos.sh
 
--- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 22 September 2015 09:02:00 -5000
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 22 Sep 2015 09:02:00 -5000
 
 SteamOS-Tools 1.8.5
   * Fix GPG function not correctly verifying keys
@@ -24,7 +30,7 @@ SteamOS-Tools 1.8.5
    * syntax error corrections
    * verified routine several times then from base-VM snapshot of brewmaster
 
--- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 22 September 2015 09:02:00 -5000
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 22 Sep 2015 09:02:00 -5000
 
 SteamOS-Tools 1.7.2
   * Restructure kodi-src script
@@ -33,19 +39,19 @@ SteamOS-Tools 1.7.2
   * correct GPG key checks in desktop-software.sh
   * Started to assess fixing up bad codding in scipts via shellecheck.net
 
--- ProfessorKaos64 <mdeguzis@gmail.com>  Mon, 21 September 2015 21:28:00 -5000
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Mon, 21 Sep 2015 21:28:00 -5000
 
 SteamOS-Tools 1.5.2
   * Fixed package version conflict for libcrossguid1, libcrossguid-dev in libregeek repository
   * augment version number (see above) for small changes
 
--- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 19 September 2015 13:09:00 -5000
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 19 Sep 2015 13:09:00 -5000
 
 SteamOS-Tools 1.5
   * Fixed utilities/build-scripts/build-kodi-from-src
   * Attempt to package this will follow soon
 
--- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 19 September 2015 11:06:00 -5000
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 19 Sep 2015 11:06:00 -5000
 
 SteamOS-Tools 1.2
   * Added new packages to brewmaster_testing
@@ -54,4 +60,4 @@ SteamOS-Tools 1.2
  * shaped up code [see commits]
  * Updated many wiki documents
 
--- ProfessorKaos64 <mdeguzis@gmail.com>  Fri, 18 September 2015 10:06:00 -5000
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Fri, 18 Sep 2015 10:06:00 -5000

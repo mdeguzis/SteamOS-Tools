@@ -89,7 +89,7 @@ main()
 	tar -xf pcsx2*.tar.xz
 	
 	# actively get pkg ver from created tarball
-	pkg_ver=$(find . -name *.orig.tar.xz | cut -c 18-40)
+	pkgver=$(find . -name *.orig.tar.xz | cut -c 18-40)
 	
 	# enter source dir
 	cd pcsx2*
@@ -99,7 +99,6 @@ main()
 	
 	# copy debian shell changelog from SteamOS-Tools
 	cp "$scriptdir/$pkgname/debian/changelog" "debian/changelog"
-	
 	
 	# Change version, uploader, insert change log comments
 	sed -i "s|version_placeholder|$pkgver-$pkgrev|g" debian/changelog

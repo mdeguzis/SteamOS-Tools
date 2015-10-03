@@ -20,7 +20,7 @@ src_cmd=""
 
 # vars for package
 pkgname="pcsx2.snapshot"
-pkgver="20151002+git"
+pkgver="20151003+git"
 pkgrev="1"
 dist_rel="brewmaster"
 

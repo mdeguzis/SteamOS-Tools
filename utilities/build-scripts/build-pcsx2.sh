@@ -106,7 +106,7 @@ main()
 	sed -i "s|dist_rel|$dist_rel|g" debian/changelog
 	
 	# open debian/changelog and update
-	echo -e "\n==> Opening changelog for build. Please include a revision number"
+	echo -e "\n==> Opening changelog for build. Please ensure there is a revision number"
 	sleep 3s
 	nano debian/changelog
 

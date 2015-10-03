@@ -210,8 +210,8 @@ main()
 	echo -e "If you don't, please check build dependcy errors listed above."
 	echo -e "############################################################\n"
 	
-	echo -e "Showing contents of: $git_dir: \n"
-	ls "$git_dir"
+	echo -e "Showing contents of: $build_dir: \n"
+	ls "$build_dir"
 
 	echo -e "\n==> Would you like to trim tar.gz, dsc files, and folders for uploading? [y/n]"
 	sleep 0.5s
@@ -244,8 +244,8 @@ main()
 	if [[ "$transfer_choice" == "y" ]]; then
 	
 		# cut files
-		if -d $git_dir/ build; then
-			scp $git_dir/build/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
+		if -d "$build_dir"; then
+			scp $build_dir/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
 
 		fi
 		

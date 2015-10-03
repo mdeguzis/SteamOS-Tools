@@ -405,7 +405,7 @@ get_software_type()
 
 	elif [[ "$type" == "chrome" ]]; then
                 # install chrome from helper script
-                ep_install_chrome
+		ep_install_chrome
                 exit 1
         elif [[ "$type" == "gameplay-recording" ]]; then
                 # install plex from helper script
@@ -414,7 +414,7 @@ get_software_type()
         elif [[ "$type" == "kodi-src" ]]; then
         	software_list="$scriptdir/cfgs/software-lists/kodi-src.txt"
         elif [[ "$type" == "retroarch" ]]; then
-                # add emulation softare to temp list
+                # add emulation software Retroarch
                 ep_install_retroarch
                 exit 1
 	elif [[ "$type" == "ue4" ]]; then

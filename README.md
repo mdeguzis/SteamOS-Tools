@@ -69,7 +69,7 @@ Normal script execution, sans arguments, goes a little bit like:
 # Video demonstrations / tutorials
 
 * [SteamOS-Tools introductory video](https://youtu.be/h-gdPWjZlb4)
-* [Retroarch demonstration video (courtesy of Ryochan7)](https://www.youtube.com/watch?v=4wcIWG-WsXY)
+* For all other videos and tutorials, please see the [Videos and Tutorials](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Videos-and-Tutorials) wiki page
 
 # Branches
 There are four main branches at the moment

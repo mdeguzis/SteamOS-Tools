@@ -167,11 +167,11 @@ ep_install_gameplay_recording()
 	sleep 0.5s
 	
 	# Pull in files for recording from cfgs/recording
-	sudo cp "$scriptdir/cfgs/recording/steamos-recording.desktop" "/usr/local/bin"
+	sudo cp "$scriptdir/cfgs/recording/steamos-recording.sh" "/usr/local/bin"
 	
 	# Desktop files to use in BPM
 	# TODO: create helpder script to recognize recording is in progress, with start/stop on 1 script, not 2
-	sudo cp "$scriptdir/cfgs/desktop-files/steamos-recording.sh" "/usr/share/applications"
+	sudo cp "$scriptdir/cfgs/desktop-files/steamos-recording.desktop" "/usr/share/applications"
 	
 	############################################
 	# Configure

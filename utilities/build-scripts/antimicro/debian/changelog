@@ -1,0 +1,7 @@
+antimicro (version_placeholder) dist_rel; urgency=low
+
+  * Packaged deb for SteamOS-Tools
+  * See: packages.libregeek.org
+  * Upstream authors and source: hhttps://github.com/Ryochan7/antimicro
+
+ -- uploader  Sat, 03 Oct 2015 10:17:00 -0500

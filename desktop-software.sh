@@ -798,11 +798,7 @@ main()
 
 		# kick off helper script
 		install_mobile_upnp_dlna
-
-	elif [[ "$type" == "pcsx2-testing" ]]; then
-
-		# Ensure that Build-Depends are installed prior
-		m_install_pcsx2_src
+		
 	fi
 
 	# cleanup package leftovers

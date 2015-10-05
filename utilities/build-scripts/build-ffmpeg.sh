@@ -75,7 +75,7 @@ main()
 	#################################################
 
 	echo -e "\n==> Bulding libfdk-aac\n"
-	sleep 2s
+	sleep 3s
 
 	wget -O fdk-aac.tar.gz https://github.com/mstorsjo/fdk-aac/tarball/master
 	tar xzvf fdk-aac.tar.gz
@@ -106,7 +106,7 @@ main()
 	#################################################
 	
 	echo -e "\n==> Bulding libvpx\n"
-	sleep 2s
+	sleep 3s
   
 	wget http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.4.0.tar.bz2
 	tar xjvf libvpx-1.4.0.tar.bz2
@@ -133,8 +133,40 @@ main()
 	make clean
 	
 	#################################################
+	# Build lix265
+	#################################################
+	
+	echo -e "\n==> Bulding lix265\n"
+	sleep 3s
+  	
+  	git clone https://github.com/videolan/x265
+	cd x265/build/linux
+	PATH="$HOME/bin:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" -DENABLE_SHARED:bool=off ../../source
+
+	if make; then
+	
+		echo -e "\n==INFO==\nlix265 build successful"
+		sleep 2s
+		
+	else 
+	
+		echo -e "\n==ERROR==\nlix265 build FAILED. Exiting in 15 seconds"
+		sleep 15s
+		exit 1
+		
+	fi
+	
+	# Install build and clean
+	# Must be installed in order to buld ffmpeg properly
+	make install
+	make distclean
+	
+	#################################################
 	# Build fmpeg
 	#################################################
+	
+	echo -e "\n==> Bulding ffmpeg\n"
+	sleep 3s
 	
 	wget http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
 	tar xjvf ffmpeg-snapshot.tar.bz2

@@ -1,15 +1,14 @@
 #!/bin/bash
 
 # -------------------------------------------------------------------------------
-# Author:    	  Michael DeGuzis
-# Git:	    	  https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	  build-obs-studio.sh
-# Script Ver:	  0.1.1
+# Author:	Michael DeGuzis
+# Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	build-obs-studio.sh
+# Script Ver:	0.1.1
 # Description:	Attempts to build a deb package from obs-studio git source
-#               IN PROGRESS, DO NOT* USE!
 #
-# See:		      https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
-# Usage:
+# See:		https://github.com/jp9000/obs-studio/wiki/Install-Instructions
+# Usage:	build-obs-studio.sh
 # -------------------------------------------------------------------------------
 
 arg1="$1"
@@ -21,13 +20,11 @@ src_cmd=""
 
 # vars for package
 pkgname="obs-studio"
-#pkgver="20151005"
-pkgrev="1"
+pkgver="20151005"
 dist_rel="brewmaster"
 
 # build dirs
 build_dir="/home/desktop/build-$(pkgname}-temp"
-git_dir="${build_dir}/${pkgname}"
 
 # upstream URL
 git_url="https://github.com/jp9000/obs-studio"
@@ -42,9 +39,9 @@ install_prereqs()
 	sleep 2s
 	# install basic build packages
 	sudo apt-get install libx11-dev libgl1-mesa-dev libpulse-dev libxcomposite-dev \
-  libxinerama-dev libv4l-dev libudev-dev libfreetype6-dev \
-  libfontconfig-dev qtbase5-dev libqt5x11extras5-dev libx264-dev \
-  libxcb-xinerama0-dev libxcb-shm0-dev libjack-jackd2-dev libcurl4-openssl-dev
+	libxinerama-dev libv4l-dev libudev-dev libfreetype6-dev \
+	libfontconfig-dev qtbase5-dev libqt5x11extras5-dev libx264-dev \
+	libxcb-xinerama0-dev libxcb-shm0-dev libjack-jackd2-dev libcurl4-openssl-dev
 	
 	echo -e "\n==> Installing $pkgname build dependencies...\n"
 	sleep 2s
@@ -54,15 +51,15 @@ install_prereqs()
 	
 	if sudo apt-get ffmpeg; then
 	
-	  echo -e "\nChecking for FFMPEG packages [OK]\n"
+		echo -e "\nChecking for FFMPEG packages [OK]\n"
 	  
-  else
+	else
   
-    echo -e "\nChecking for FFMPEG packages [FAIL]. Exiting in 15 seconds\n"
-    sleep 15s
-    exit 1
+		echo -e "\nChecking for FFMPEG packages [FAIL]. Exiting in 15 seconds\n"
+		sleep 15s
+		exit 1
     
-  fi
+	fi
 }
 
 main()
@@ -84,16 +81,73 @@ main()
 	cd "$build_dir"
 	
 	clear
-  
-  #################################################
+	
+	#################################################
+	# Clone upstream source
+	#################################################
+	
+	if [[ -d "$git_dir" ]]; then
+	
+	echo -e "\n==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
+	sleep 1s
+	read -ep "Choice: " git_choice
+	
+	if [[ "$git_choice" == "p" ]]; then
+		# attempt to pull the latest source first
+		echo -e "\n==> Attempting git pull..."
+		sleep 2s
+	
+		# attempt git pull, if it doesn't complete reclone
+		if ! git pull; then
+			
+			# failure
+			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+			sleep 2s
+			rm -rf "$git_dir"
+			mkdir -p "$git_dir"
+			# clone to current DIR
+			git clone "$git_url" .
+			
+		fi
+		
+	elif [[ "$git_choice" == "r" ]]; then
+		echo -e "\n==> Removing and cloning repository again...\n"
+		sleep 2s
+		# remove, clone, enter
+		rm -rf "$git_dir"
+		cd "$build_dir"
+		mkdir -p "$git_dir"
+		git clone "$git_url" .
+	else
+	
+		echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+		sleep 2s
+		# create DIRS
+		mkdir -p "$git_dir"
+		# create and clone to current dir
+		git clone "$git_url" .
+	
+	fi
+	
+	else
+	
+		echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+		sleep 2s
+		# create DIRS
+		mkdir -p "$git_dir"
+		# create and clone to current dir
+		git clone "$git_url" .
+	fi
+
+	#################################################
 	# Build obs-studio (uses cmake)
 	#################################################
   
-  mkdir build && cd build
-  cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr ..
-  make -j4
-  sudo checkinstall --pkgname=obs-studio --fstrans=no --backup=no \
-  --pkgversion="$(date +%Y%m%d)-git" --deldoc=yes
+	mkdir build && cd build
+	cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr ..
+	make -j4
+	sudo checkinstall --pkgname=obs-studio --fstrans=no --backup=no \
+	--pkgversion="$(date +%Y%m%d)-git" --deldoc=yes
  
 	#################################################
 	# Build Debian package

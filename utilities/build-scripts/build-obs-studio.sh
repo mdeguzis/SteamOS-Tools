@@ -23,6 +23,7 @@ git_url="https://github.com/jp9000/obs-studio"
 
 # package vars
 pkgname="obs-studio"
+pkgsummary="OBS-Studio (Git) for SteamOS Brewmaster"
 pkgrel="1"
 dist_rel="brewmaster"
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
@@ -30,6 +31,7 @@ maintainer="ProfessorKaos64"
 provides="obs-studio"
 pkggroup="utils"
 requires=""
+replaces="obs-studio"
 
 # build dirs
 build_dir="/home/desktop/build-${pkgname}-temp"
@@ -159,9 +161,9 @@ main()
 	sleep 2s
 
 	sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
-	--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" \
-	--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --pkggroup="$pkggroup" \
-	--requires="$requires"
+	--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" --summary="$pkgsummary"
+	--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --replaces="$replaces" \
+	--pkggroup="$pkggroup"--requires="$requires"
 
 	#################################################
 	# Post install configuration

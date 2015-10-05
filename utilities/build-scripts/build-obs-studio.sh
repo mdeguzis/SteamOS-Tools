@@ -202,7 +202,7 @@ main()
 	echo -e "############################################################\n"
 	
 	echo -e "Showing contents of: ${git_dir}/build: \n"
-	ls "${git_dir}/build" | grep *.deb
+	ls "${git_dir}/build" | grep -E *.deb
 
 	echo -e "\n==> Would you like to transfer any packages that were built? [y/n]"
 	sleep 0.5s
@@ -212,7 +212,7 @@ main()
 	if [[ "$transfer_choice" == "y" ]]; then
 	
 		# cut files
-		if -d "$build_dir"; then
+		if [[ -d "${git_dir}/build" ]]; then
 			scp ${git_dir}/build/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
 
 		fi

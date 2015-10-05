@@ -219,7 +219,7 @@ main()
 		EOF
 		
 		# modify pinning based on setup for testing or not
-		if [[ "$test_repo" == "no" ]];then
+		if [[ "$test_repo" == "no" ]]; then
 			
 			cat <<-EOF > ${steamos_tools_prefer_tmp}
 			Package: *
@@ -227,7 +227,7 @@ main()
 			Pin-Priority:150
 			EOF
 		
-		if [[ "$test_repo" == "yes" ]];then
+		if [[ "$test_repo" == "yes" ]]; then
 		
 			cat <<-EOF > ${steamos_tools_prefer_tmp}
 			Package: *
@@ -238,6 +238,7 @@ main()
 			Pin: release n=brewmaster_testing
 			Pin-Priority:150
 			EOF
+			
 		fi
 		
 		# move tmp var files into target locations

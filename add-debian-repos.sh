@@ -138,7 +138,9 @@ main()
 		EOF
 		
 		if [[ "$test_repo" == "yes" ]]; then
+		
 			echo -ne "    [SteamOS-Tools testing enabled]\n"
+			
 		fi
 		
 		echo ""
@@ -227,7 +229,7 @@ main()
 			Pin-Priority:150
 			EOF
 		
-		if [[ "$test_repo" == "yes" ]]; then
+		elif [[ "$test_repo" == "yes" ]]; then
 		
 			cat <<-EOF > ${steamos_tools_prefer_tmp}
 			Package: *

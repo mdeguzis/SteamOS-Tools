@@ -18,10 +18,6 @@ time_stamp_start=(`date +"%T"`)
 # reset source command for while loop
 src_cmd=""
 
-# build dirs
-build_dir="/home/desktop/build-${pkgname}-temp"
-git_dir="${build_dir}/${pkgname}"
-
 # upstream URL
 git_url="https://github.com/jp9000/obs-studio"
 
@@ -34,6 +30,10 @@ maintainer="ProfessorKaos64"
 provides="obs-studio"
 pkggroup="utils"
 requires=""
+
+# build dirs
+build_dir="/home/desktop/build-${pkgname}-temp"
+git_dir="${build_dir}/${pkgname}"
 
 install_prereqs()
 {
@@ -56,7 +56,7 @@ install_prereqs()
 	libavformat-ffmpeg-dev libavresample-ffmpeg-dev libavutil-ffmpeg-dev libpostproc-ffmpeg-dev \
 	libswresample-ffmpeg-dev libswscale-ffmpeg-dev; then
 	
-		echo -e "\nChecking for FFMPEG packages [OK]\n"
+		echo -e "\nFFMPEG package checcks [PASS]"
 		sleep 2s
 	  
 	else

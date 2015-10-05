@@ -95,6 +95,11 @@ main()
 		exit 1
 		
 	fi
+	
+	# Install build and clean
+	# Must be installed in order to buld ffmpeg properly
+	make install
+	make clean
   
 	#################################################
 	# Build libvpx
@@ -121,6 +126,11 @@ main()
 		exit 1
 		
 	fi
+	
+	# Install build and clean
+	# Must be installed in order to buld ffmpeg properly
+	make install
+	make clean
 	
 	#################################################
 	# Build fmpeg

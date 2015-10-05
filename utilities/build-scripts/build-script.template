@@ -4,7 +4,7 @@
 # Author:    	  Michael DeGuzis
 # Git:	    	  https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  TEMPLATE_FILE_FOR_PACKAGING
-# Script Ver:	  0.1.1
+# Script Ver:	  0.7.7
 # Description:	  Attempts to build a deb package from <package> git source
 #
 # See:		 
@@ -40,6 +40,7 @@ maintainer="ProfessorKaos64"
 provides="PROVIDES"
 pkggroup="GROUP"
 requires=""
+replaces=""
 
 install_prereqs()
 {
@@ -226,8 +227,8 @@ main()
 		# use checkinstall
 		sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
 		--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" \
-		--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --pkggroup="$pkggroup" \
-		--requires="$requires"
+		--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --replaces="$replaces" \
+		--pkggroup="$pkggroup" --requires="$requires" --exclude="/home"
 		
 	fi
 

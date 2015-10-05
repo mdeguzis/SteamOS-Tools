@@ -179,7 +179,10 @@ main()
 	echo -e "\n==> Building Debian package $pkgname from source\n"
 	sleep 2s
 
-	sudo checkinstall
+	sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
+	--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" \
+	--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --replaces="$replaces" \
+	--pkggroup="$pkggroup" --requires="$requires" --exclude="/home"
 
 	#################################################
 	# Post install configuration

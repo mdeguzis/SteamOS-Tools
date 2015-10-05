@@ -139,6 +139,16 @@ funct_set_target()
 
 }
 
+funct_set_arch()
+{
+	# fallback to 64bit if no arch is specified
+	if [[ "$arch" == "" ]]; then
+	
+		arch="amd64"
+	
+	fi
+}
+
 funct_create_chroot()
 {
 	#echo -e "\n==> Importing GPG keys\n"
@@ -165,7 +175,7 @@ funct_create_chroot()
 	
 		# handle SteamOS
 		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
-		--arch i386 ${release} /home/$USER/chroots/${target} ${target_URL} 
+		--arch ${arch} ${release} /home/$USER/chroots/${target} ${target_URL} 
 		
 	elif [[ "$type" == "debian" ]]; then
 	
@@ -336,6 +346,7 @@ main()
 	check_sources
 	funct_prereqs
 	funct_set_target
+	funct_set_arch
 	funct_create_chroot
 	
 }

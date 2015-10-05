@@ -161,7 +161,7 @@ main()
 	sleep 2s
 
 	sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
-	--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" --summary="$pkgsummary"
+	--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" --summary="$pkgsummary" \
 	--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --replaces="$replaces" \
 	--pkggroup="$pkggroup"--requires="$requires"
 

@@ -162,7 +162,7 @@ main()
 	sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
 	--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" \
 	--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --replaces="$replaces" \
-	--pkggroup="$pkggroup"--requires="$requires"
+	--pkggroup="$pkggroup" --requires="$requires"
 
 	#################################################
 	# Post install configuration

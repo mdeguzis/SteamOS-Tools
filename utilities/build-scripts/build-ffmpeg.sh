@@ -74,7 +74,7 @@ main()
 	fi
 	
 	# Enter build dir
-	cd "$build_dir"
+	cd "$build_dir" || exit
  
  	#################################################
 	# Build libfdk-aac
@@ -85,7 +85,7 @@ main()
 
 	wget -O fdk-aac.tar.gz https://github.com/mstorsjo/fdk-aac/tarball/master
 	tar xzvf fdk-aac.tar.gz
-	cd mstorsjo-fdk-aac*
+	cd mstorsjo-fdk-aac* || exit
 	autoreconf -fiv
 	./configure --prefix="$HOME/ffmpeg_build" --disable-shared
 	
@@ -116,7 +116,7 @@ main()
   
 	wget http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.4.0.tar.bz2
 	tar xjvf libvpx-1.4.0.tar.bz2
-	cd libvpx-1.4.0
+	cd libvpx-1.4.0  || exit
 	PATH="$HOME/bin:$PATH" ./configure --prefix="$HOME/ffmpeg_build" --disable-examples --disable-unit-tests
 	PATH="$HOME/bin:$PATH"
 	
@@ -146,7 +146,7 @@ main()
 	sleep 3s
   	
   	git clone https://github.com/videolan/x265
-	cd x265/build/linux
+	cd x265/build/linux  || exit
 	PATH="$HOME/bin:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" -DENABLE_SHARED:bool=off ../../source
 
 	if make; then
@@ -176,7 +176,7 @@ main()
 	
 	wget http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
 	tar xjvf ffmpeg-snapshot.tar.bz2
-	cd ffmpeg
+	cd ffmpeg  || exit
 	PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
 	  --prefix="$HOME/ffmpeg_build" \
 	  --pkg-config-flags="--static" \
@@ -258,9 +258,9 @@ main()
 	
 	# back out of build temp to script dir if called from git clone
 	if [[ "$scriptdir" != "" ]]; then
-		cd "$scriptdir"
+		cd "$scriptdir" || exit
 	else
-		cd "$HOME"
+		cd "$HOME" || exit
 	fi
 	
 	# inform user of packages

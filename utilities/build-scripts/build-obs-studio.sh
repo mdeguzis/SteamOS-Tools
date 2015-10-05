@@ -49,13 +49,16 @@ install_prereqs()
 	# Until the ffmpeg build script is finished, install ffmpeg from rebuilt PPA source
 	# hosted in the Libregeek repositories. Exit if not installed correctly.
 	
-	if sudo apt-get install -y ffmpeg; then
+	if sudo apt-get install -y ffmpeg libavcodec-ffmpeg-dev libavdevice-ffmpeg-dev libavfilter-ffmpeg-dev \
+	libavformat-ffmpeg-dev libavresample-ffmpeg-dev libavutil-ffmpeg-dev libpostproc-ffmpeg-dev \
+	libswresample-ffmpeg-dev libswscale-ffmpeg-dev; then
 	
 		echo -e "\nChecking for FFMPEG packages [OK]\n"
+		sleep 2s
 	  
 	else
   
-		echo -e "\nChecking for FFMPEG packages [FAIL]. Exiting in 15 seconds\n"
+		echo -e "\nFFMPEG packages assessment [FAIL]. Exiting in 15 seconds\n"
 		sleep 15s
 		exit 1
     
@@ -79,8 +82,6 @@ main()
 	
 	# Enter build dir
 	cd "$build_dir"
-	
-	clear
 	
 	#################################################
 	# Clone upstream source
@@ -143,12 +144,13 @@ main()
 	# Build obs-studio (uses cmake)
 	#################################################
   
-	mkdir build && cd build
+  	echo -e "\n==> Creating $pkgname build files\n"
+	sleep 2s
+  
+	mkdir build && cd build || exit
 	cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr ..
 	make -j4
-	sudo checkinstall --pkgname=obs-studio --fstrans=no --backup=no \
-	--pkgversion="$(date +%Y%m%d)-git" --deldoc=yes
- 
+
 	#################################################
 	# Build Debian package
 	#################################################
@@ -156,7 +158,8 @@ main()
 	echo -e "\n==> Building $pkgname Debian package from source\n"
 	sleep 2s
 
-	sudo checkinstall
+	sudo checkinstall --pkgname=obs-studio --fstrans=no --backup=no \
+	--pkgversion="$(date +%Y%m%d)-git" --deldoc=yes
 
 	#################################################
 	# Post install configuration

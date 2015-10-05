@@ -76,22 +76,53 @@ main()
 	# Build libfdk-aac
 	#################################################
 
+	echo -e "\n==> Bulding libfdk-aac\n"
+	sleep 2s
+
 	wget -O fdk-aac.tar.gz https://github.com/mstorsjo/fdk-aac/tarball/master
 	tar xzvf fdk-aac.tar.gz
 	cd mstorsjo-fdk-aac*
 	autoreconf -fiv
 	./configure --prefix="$HOME/ffmpeg_build" --disable-shared
-	make
+	
+	if make; then
+
+	echo -e "\n==INFO==\nlibfdk-aac build successful"
+	sleep 2s
+		
+	else 
+	
+		echo -e "\n==ERROR==\nlibfdk-aac build FAILED. Exiting in 15 seconds"
+		sleep 15s
+		exit 1
+		
+	fi
   
 	#################################################
 	# Build libvpx
 	#################################################
+	
+	echo -e "\n==> Bulding libvpx\n"
+	sleep 2s
   
 	wget http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.4.0.tar.bz2
 	tar xjvf libvpx-1.4.0.tar.bz2
 	cd libvpx-1.4.0
 	PATH="$HOME/bin:$PATH" ./configure --prefix="$HOME/ffmpeg_build" --disable-examples --disable-unit-tests
-	PATH="$HOME/bin:$PATH" make
+	PATH="$HOME/bin:$PATH"
+	
+	if make; then
+	
+		echo -e "\n==INFO==\nlibvpx build successful"
+		sleep 2s
+		
+	else 
+	
+		echo -e "\n==ERROR==\nlibvpx build FAILED. Exiting in 15 seconds"
+		sleep 15s
+		exit 1
+		
+	fi
 	
 	#################################################
 	# Build fmpeg
@@ -118,7 +149,20 @@ main()
 	--enable-libx264 \
 	--enable-libx265 \
 	--enable-nonfree
-	PATH="/usr/bin:$PATH" make
+	PATH="/usr/bin:$PATH"
+	
+	if make; then
+
+	echo -e "\n==INFO==\nffmpeg build successful"
+	sleep 2s
+		
+	else 
+	
+		echo -e "\n==ERROR==\nffmpeg build FAILED. Exiting in 15 seconds"
+		sleep 15s
+		exit 1
+		
+	fi
  
 	#################################################
 	# Build Debian package

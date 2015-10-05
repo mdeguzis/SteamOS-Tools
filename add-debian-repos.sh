@@ -218,12 +218,27 @@ main()
 		Pin-Priority: 900
 		EOF
 		
-		cat <<-EOF > ${steamos_tools_prefer_tmp}
-		Package: *
-		Pin: origin "packages.libregeek.org"
-		Pin-Priority:150
-
-		EOF
+		# modify pinning based on setup for testing or not
+		if [[ "$test_repo" == "no" ]];then
+			
+			cat <<-EOF > ${steamos_tools_prefer_tmp}
+			Package: *
+			Pin: release n=brewmaster
+			Pin-Priority:150
+			EOF
+		
+		if [[ "$test_repo" == "yes" ]];then
+		
+			cat <<-EOF > ${steamos_tools_prefer_tmp}
+			Package: *
+			Pin: release n=brewmaster
+			Pin-Priority:150
+			
+			Package: *
+			Pin: release n=brewmaster_testing
+			Pin-Priority:150
+			EOF
+		fi
 		
 		# move tmp var files into target locations
 		sudo mv  ${prefer_tmp}  ${prefer}

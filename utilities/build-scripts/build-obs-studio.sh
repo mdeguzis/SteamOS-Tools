@@ -162,7 +162,7 @@ main()
 	sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
 	--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" \
 	--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --replaces="$replaces" \
-	--pkggroup="$pkggroup" --requires="$requires"
+	--pkggroup="$pkggroup" --requires="$requires" --exclude="/home"
 
 	#################################################
 	# Post install configuration
@@ -202,7 +202,7 @@ main()
 	echo -e "############################################################\n"
 	
 	echo -e "Showing contents of: $build_dir: \n"
-	ls "$build_dir"
+	ls "${git_dir}/build"
 
 	echo -e "\n==> Would you like to trim tar.gz, dsc files, and folders for uploading? [y/n]"
 	sleep 0.5s
@@ -236,7 +236,7 @@ main()
 	
 		# cut files
 		if -d "$build_dir"; then
-			scp $build_dir/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
+			scp ${git_dir}/build/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
 
 		fi
 		

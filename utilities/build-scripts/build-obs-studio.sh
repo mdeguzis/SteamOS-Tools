@@ -18,11 +18,6 @@ time_stamp_start=(`date +"%T"`)
 # reset source command for while loop
 src_cmd=""
 
-# vars for package
-pkgname="obs-studio"
-pkgver="20151005"
-dist_rel="brewmaster"
-
 # build dirs
 build_dir="/home/desktop/build-${pkgname}-temp"
 git_dir="${build_dir}/${pkgname}"
@@ -31,7 +26,14 @@ git_dir="${build_dir}/${pkgname}"
 git_url="https://github.com/jp9000/obs-studio"
 
 # package vars
+pkgname="obs-studio"
+pkgrel="1"
+dist_rel="brewmaster"
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
+maintainer="ProfessorKaos64"
+provides="obs-studio"
+pkggroup="utils"
+requires=""
 
 install_prereqs()
 {
@@ -156,8 +158,10 @@ main()
 	echo -e "\n==> Building $pkgname Debian package from source\n"
 	sleep 2s
 
-	sudo checkinstall --pkgname=obs-studio --fstrans=no --backup=no \
-	--pkgversion="$(date +%Y%m%d)-git" --deldoc=yes
+	sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
+	--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" \
+	--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --pkggroup="$pkggroup" \
+	--requires="$requires"
 
 	#################################################
 	# Post install configuration

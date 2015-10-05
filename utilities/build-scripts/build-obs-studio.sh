@@ -201,7 +201,7 @@ main()
 	echo -e "If you don't, please check build dependcy errors listed above."
 	echo -e "############################################################\n"
 	
-	echo -e "Showing contents of: $build_dir: \n"
+	echo -e "Showing contents of: ${git_dir}/build: \n"
 	ls "${git_dir}/build"
 
 	echo -e "\n==> Would you like to trim tar.gz, dsc files, and folders for uploading? [y/n]"

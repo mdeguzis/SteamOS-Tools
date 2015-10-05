@@ -44,13 +44,13 @@ install_prereqs()
 	# install basic build packages
 	sudo apt-get -y install autoconf automake build-essential libass-dev libfreetype6-dev \
 	libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev \
-	libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev
+	libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev bc checkinstall
 	
 	echo -e "\n==> Installing $pkgname build dependencies...\n"
 	sleep 2s
 	
 	### REPLACE THESE WITH PACKAGES SPECIFIED BY UPSTREAM SOURCE ###
-	sudo apt-get install yasm libx264-dev cmake mercurial libmp3lame-dev \
+	sudo apt-get -y install yasm libx264-dev cmake mercurial libmp3lame-dev \
 	libopus-dev
 
 }
@@ -264,29 +264,6 @@ main()
 	
 	echo -e "Showing contents of: $build_dir: \n"
 	ls "$build_dir"
-
-	echo -e "\n==> Would you like to trim tar.gz, dsc files, and folders for uploading? [y/n]"
-	sleep 0.5s
-	# capture command
-	read -ep "Choice: " trim_choice
-	
-	if [[ "$trim_choice" == "y" ]]; then
-		
-		# cut files so we just have our deb pkg
-		sudo rm -f $git_dir/*.tar.gz
-		sudo rm -f $git_dir/*.dsc
-		sudo rm -f $git_dir/*.changes
-		sudo rm -f $git_dir/*-dbg
-		sudo rm -f $git_dir/*-dev
-		sudo rm -f $git_dirs/*-compat
-		
-		# remove source directory that was made
-		find $build_dir -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \;
-		
-	elif [[ "$trim_choice" == "n" ]]; then
-	
-		echo -e "File trim not requested"
-	fi
 
 	echo -e "\n==> Would you like to transfer any packages that were built? [y/n]"
 	sleep 0.5s

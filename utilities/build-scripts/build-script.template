@@ -297,7 +297,7 @@ main()
 		sudo rm -f $git_dir/*.changes
 		sudo rm -f $git_dir/*-dbg
 		sudo rm -f $git_dir/*-dev
-		sudo rm -f $git_dirs/*-compat
+		sudo rm -f $git_dir/*-compat
 		
 		# remove source directory that was made
 		

@@ -38,7 +38,7 @@ rm -f "log.txt"
 type="$1"
 release="$2"
 arch="$3"
-target="${type}-${release}"
+target="${type}-${release}-${arch}"
 stock_choice=""
 
 show_help()
@@ -98,7 +98,7 @@ funct_prereqs()
 	sleep 1s
 	
 	# Install the required packages 
-	apt-get install binutils debootstrap debian-archive-keyring ubuntu-archive-keyring
+	apt-get install -y binutils debootstrap debian-archive-keyring ubuntu-archive-keyring
 	
 	# update for keyrings
 	

@@ -24,7 +24,7 @@ pkgver="20151005"
 dist_rel="brewmaster"
 
 # build dirs
-build_dir="/home/desktop/build-$(pkgname}-temp"
+build_dir="/home/desktop/build-${pkgname}-temp"
 
 # upstream URL
 git_url="https://github.com/jp9000/obs-studio"

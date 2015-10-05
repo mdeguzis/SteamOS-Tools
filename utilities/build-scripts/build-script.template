@@ -11,6 +11,10 @@
 # Usage:
 # -------------------------------------------------------------------------------
 
+#################################################
+# VARS
+#################################################
+
 arg1="$1"
 scriptdir=$(pwd)
 time_start=$(date +%s)
@@ -18,23 +22,24 @@ time_stamp_start=(`date +"%T"`)
 # reset source command for while loop
 src_cmd=""
 
-# vars for package
-pkgname="PACKAGE"
-#pkgver="20151003+git"
-pkgrev="1"
-dist_rel="brewmaster"
-
 # build dirs
 build_dir="/home/desktop/build-${pkgname}-temp"
 git_dir="${build_dir}/${pkgname}"
 
 # upstream URL
-git_url="https://github.com/PCSX2/pcsx2"
+git_url="https://github.com/AUTHOR/REPOSITORY"
 tarball_url="URL-TO-TARBALL"
 tarball_file="TARBALL-FILE"
 
 # package vars
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
+pkgname="PKGNAME"
+pkgrel="RELEASE_NUM"
+dist_rel="DISTRELEASE"
+maintainer="ProfessorKaos64"
+provides="PROVIDES"
+pkggroup="GROUP"
+requires=""
 
 install_prereqs()
 {
@@ -78,9 +83,8 @@ function_clone_git()
 				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
 				sleep 2s
 				rm -rf "$git_dir"
-				mkdir -p "$git_dir"
-				# clone to current DIR
-				git clone "$git_url"
+				# clone to git DIR
+				git clone "$git_url" "$git_dir"
 				
 			fi
 			
@@ -90,16 +94,14 @@ function_clone_git()
 			# remove, clone, enter
 			rm -rf "$git_dir"
 			cd "$build_dir"
-			mkdir -p "$git_dir"
-			git clone "$git_url"
+			# create and clone to git dir
+			git clone "$git_url" "$git_dir"
 		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
-			# create DIRS
-			mkdir -p "$git_dir"
-			# create and clone to current dir
-			git clone "$git_url"
+			# create and clone to git dir
+			git clone "$git_url" "$git_dir"
 		
 		fi
 	
@@ -107,10 +109,8 @@ function_clone_git()
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
-			# create DIRS
-			mkdir -p "$git_dir"
 			# create and clone to current dir
-			git clone "$git_url"
+			git clone "$git_url" "$git_dir"
 	fi
 	
 }
@@ -164,6 +164,9 @@ main()
 	
 		# clone git
 		function_clone_git
+		
+		# enter git dir
+		cd "$git_dir"
 	
 	else
 	
@@ -221,7 +224,10 @@ main()
 	elif [[ "$build_type" == "checkinstall" ]]; then
 	
 		# use checkinstall
-		sudo checkinstall
+		sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
+		--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" \
+		--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --pkggroup="$pkggroup" \
+		--requires="$requires"
 		
 	fi
 

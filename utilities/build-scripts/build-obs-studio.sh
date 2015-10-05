@@ -4,7 +4,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-obs-studio.sh
-# Script Ver:	0.1.1
+# Script Ver:	0.5.5
 # Description:	Attempts to build a deb package from obs-studio git source
 #
 # See:		https://github.com/jp9000/obs-studio/wiki/Install-Instructions
@@ -25,6 +25,7 @@ dist_rel="brewmaster"
 
 # build dirs
 build_dir="/home/desktop/build-${pkgname}-temp"
+git_dir="${build_dir}/${pkgname}"
 
 # upstream URL
 git_url="https://github.com/jp9000/obs-studio"
@@ -105,9 +106,8 @@ main()
 			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
 			sleep 2s
 			rm -rf "$git_dir"
-			mkdir -p "$git_dir"
-			# clone to current DIR
-			git clone "$git_url" .
+			# clone to git DIR
+			git clone "$git_url" "$git_dir"
 			
 		fi
 		
@@ -117,16 +117,13 @@ main()
 		# remove, clone, enter
 		rm -rf "$git_dir"
 		cd "$build_dir"
-		mkdir -p "$git_dir"
-		git clone "$git_url" .
+		git clone "$git_url" "$git_dir"
 	else
 	
 		echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 		sleep 2s
-		# create DIRS
-		mkdir -p "$git_dir"
-		# create and clone to current dir
-		git clone "$git_url" .
+		# create and clone to git dir
+		git clone "$git_url" "$git_dir"
 	
 	fi
 	
@@ -134,10 +131,8 @@ main()
 	
 		echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 		sleep 2s
-		# create DIRS
-		mkdir -p "$git_dir"
-		# create and clone to current dir
-		git clone "$git_url" .
+		# create and clone to git dir
+		git clone "$git_url" "$git_dir"
 	fi
 
 	#################################################
@@ -146,6 +141,9 @@ main()
   
   	echo -e "\n==> Creating $pkgname build files\n"
 	sleep 2s
+
+	# enter source
+	cd "$git_dir"
   
 	mkdir build && cd build || exit
 	cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr ..

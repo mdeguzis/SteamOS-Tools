@@ -19,23 +19,19 @@ time_stamp_start=(`date +"%T"`)
 # reset source command for while loop
 src_cmd=""
 
-# vars for package
-pkgname="ffmpeg"
-#pkgver="20151005"
-pkgrev="1"
-dist_rel="brewmaster"
-
-# build dirs
-build_dir="/home/desktop/build-$(pkgname}-temp"
-git_dir="${build_dir}/${pkgname}"
-
 # upstream URL
-git_url="https://github.com/PCSX2/pcsx2"
-tarball_url="URL-TO-TARBALL"
-tarball_file="TARBALL-FILE"
+git_url="https://github.com/FFmpeg/FFmpeg"
 
 # package vars
+pkgname="ffmpeg"
+pkgrel="1"
+dist_rel="brewmaster"
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
+maintainer="ProfessorKaos64"
+provides="ffmpeg"
+pkggroup="video"
+requires=""
+replaces="ffmpeg"
 
 install_prereqs()
 {
@@ -44,8 +40,8 @@ install_prereqs()
 	sleep 2s
 	# install basic build packages
 	sudo apt-get -y install autoconf automake build-essential libass-dev libfreetype6-dev \
-  libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev \
-  libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev
+	libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev \
+	libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev
 	
 	echo -e "\n==> Installing $pkgname build dependencies...\n"
 	sleep 2s
@@ -80,55 +76,55 @@ main()
 	# Build libfdk-aac
 	#################################################
 
-  wget -O fdk-aac.tar.gz https://github.com/mstorsjo/fdk-aac/tarball/master
-  tar xzvf fdk-aac.tar.gz
-  cd mstorsjo-fdk-aac*
-  autoreconf -fiv
-  ./configure --prefix="$HOME/ffmpeg_build" --disable-shared
-  make
+	wget -O fdk-aac.tar.gz https://github.com/mstorsjo/fdk-aac/tarball/master
+	tar xzvf fdk-aac.tar.gz
+	cd mstorsjo-fdk-aac*
+	autoreconf -fiv
+	./configure --prefix="$HOME/ffmpeg_build" --disable-shared
+	make
   
-  #################################################
+	#################################################
 	# Build libvpx
 	#################################################
   
-  wget http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.4.0.tar.bz2
-  tar xjvf libvpx-1.4.0.tar.bz2
-  cd libvpx-1.4.0
-  PATH="$HOME/bin:$PATH" ./configure --prefix="$HOME/ffmpeg_build" --disable-examples --disable-unit-tests
-  PATH="$HOME/bin:$PATH" make
-  
-  #################################################
+	wget http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.4.0.tar.bz2
+	tar xjvf libvpx-1.4.0.tar.bz2
+	cd libvpx-1.4.0
+	PATH="$HOME/bin:$PATH" ./configure --prefix="$HOME/ffmpeg_build" --disable-examples --disable-unit-tests
+	PATH="$HOME/bin:$PATH" make
+	
+	#################################################
 	# Build fmpeg
 	#################################################
-  
-  wget http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
-  tar xjvf ffmpeg-snapshot.tar.bz2
-  cd ffmpeg
-  PATH="/usr/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
-    --prefix="$HOME/ffmpeg_build" \
-    --pkg-config-flags="--static" \
-    --extra-cflags="-I$HOME/ffmpeg_build/include" \
-    --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
-    --bindir="/usr/bin" \
-    --enable-gpl \
-    --enable-libass \
-    --enable-libfdk-aac \
-    --enable-libfreetype \
-    --enable-libmp3lame \
-    --enable-libopus \
-    --enable-libtheora \
-    --enable-libvorbis \
-    --enable-libvpx \
-    --enable-libx264 \
-    --enable-libx265 \
-    --enable-nonfree
-  PATH="/usr/bin:$PATH" make
+	
+	wget http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
+	tar xjvf ffmpeg-snapshot.tar.bz2
+	cd ffmpeg
+	PATH="/usr/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
+	--prefix="$HOME/ffmpeg_build" \
+	--pkg-config-flags="--static" \
+	--extra-cflags="-I$HOME/ffmpeg_build/include" \
+	--extra-ldflags="-L$HOME/ffmpeg_build/lib" \
+	--bindir="/usr/bin" \
+	--enable-gpl \
+	--enable-libass \
+	--enable-libfdk-aac \
+	--enable-libfreetype \
+	--enable-libmp3lame \
+	--enable-libopus \
+	--enable-libtheora \
+	--enable-libvorbis \
+	--enable-libvpx \
+	--enable-libx264 \
+	--enable-libx265 \
+	--enable-nonfree
+	PATH="/usr/bin:$PATH" make
  
 	#################################################
 	# Build Debian package
 	#################################################
 
-	echo -e "\n==> Building Debian package from source\n"
+	echo -e "\n==> Building Debian package $pkgname from source\n"
 	sleep 2s
 
 	sudo checkinstall

@@ -1,15 +1,14 @@
 #!/bin/bash
-
 # -------------------------------------------------------------------------------
-# Author:    	  Michael DeGuzis
-# Git:	    	  https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	  build-ffmpeg.sh
-# Script Ver:	  0.1.1
+# Author:	Michael DeGuzis
+# Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	build-ffmpeg.sh
+# Script Ver:	0.7.7
 # Description:	Attempts to build a deb package from ffmpeg git source
-#               IN PROGRESS, DO NOT* USE!
 #
-# See:		      https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
-# Usage:
+# See:		https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+#		http://archive.ubuntu.com/ubuntu/pool/universe/f/ffmpeg/ffmpeg_2.5.8-0ubuntu0.15.04.1.dsc
+# Usage:	build-ffmpeg.sh
 # -------------------------------------------------------------------------------
 
 arg1="$1"
@@ -28,7 +27,11 @@ pkgrel="1"
 dist_rel="brewmaster"
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
 maintainer="ProfessorKaos64"
-provides="ffmpeg"
+provides="ffmpeg, qt-faststart, ffmpeg-dbg, ffmpeg-doc, libavcodec-ffmpeg56, libavcodec-ffmpeg-dev, \
+libavdevice-ffmpeg56, libavdevice-ffmpeg-dev, libavfilter-ffmpeg5, libavfilter-ffmpeg-dev, \
+libavformat-ffmpeg56, libavformat-ffmpeg-dev, libavresample-ffmpeg2, libavresample-ffmpeg-dev, \
+libavutil-ffmpeg54, libavutil-ffmpeg-dev, libpostproc-ffmpeg53, libpostproc-ffmpeg-dev, libswresample-ffmpeg1, \
+libswresample-ffmpeg-dev, libswscale-ffmpeg3, libswscale-ffmpeg-dev"
 pkggroup="video"
 requires=""
 replaces="ffmpeg"
@@ -136,7 +139,7 @@ main()
 	# Build lix265
 	#################################################
 	
-	echo -e "\n==> Bulding lix265\n"
+	echo -e "\n==> Bulding libx265\n"
 	sleep 3s
   	
   	git clone https://github.com/videolan/x265

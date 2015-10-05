@@ -1,3 +1,12 @@
+SteamOS-Tools 2.6.3
+  * Sytax corrections
+  * Added obs-studio, ffmpeg, pcsx2, stepmania, dolphin-emu to brewmaster dist release
+  * Added speedtest-cli, simplescreenrecorder, skype, spotify-client  to brewmaster dist release
+  * Added obs-studio (git), ffmpeg (git), pcsx2-unstable (git) to brewmaster_testing dist release
+  * Please check the wiki for supplemental information
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 05 Oct 2015 07:00:00 -5000
+
 SteamOS-Tools 2.5.8
   * Sytax corrections
   * Several new packages added to repository (check the wiki)

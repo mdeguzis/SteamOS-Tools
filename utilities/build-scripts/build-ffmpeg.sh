@@ -69,8 +69,6 @@ main()
 	
 	# Enter build dir
 	cd "$build_dir"
-	
-	clear
  
  	#################################################
 	# Build libfdk-aac

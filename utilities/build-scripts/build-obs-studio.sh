@@ -202,30 +202,7 @@ main()
 	echo -e "############################################################\n"
 	
 	echo -e "Showing contents of: ${git_dir}/build: \n"
-	ls "${git_dir}/build"
-
-	echo -e "\n==> Would you like to trim tar.gz, dsc files, and folders for uploading? [y/n]"
-	sleep 0.5s
-	# capture command
-	read -ep "Choice: " trim_choice
-	
-	if [[ "$trim_choice" == "y" ]]; then
-		
-		# cut files so we just have our deb pkg
-		sudo rm -f $git_dir/*.tar.gz
-		sudo rm -f $git_dir/*.dsc
-		sudo rm -f $git_dir/*.changes
-		sudo rm -f $git_dir/*-dbg
-		sudo rm -f $git_dir/*-dev
-		sudo rm -f $git_dirs/*-compat
-		
-		# remove source directory that was made
-		find $build_dir -mindepth 1 -maxdepth 1 -type d -exec rm -r {} \;
-		
-	elif [[ "$trim_choice" == "n" ]]; then
-	
-		echo -e "File trim not requested"
-	fi
+	ls "${git_dir}/build" | grep *.deb
 
 	echo -e "\n==> Would you like to transfer any packages that were built? [y/n]"
 	sleep 0.5s

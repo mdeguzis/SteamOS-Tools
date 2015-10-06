@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.7.9
+# Script Ver:	0.8.1
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -26,7 +26,7 @@
 # Vars
 #####################################################
 
-# set $USER since we run as root/sudo
+# set $user since we run as root/sudo
 # The reason for running sudo is do to the post install commands being inside the chroot
 # Rather than run into issues adding user(s) to /etc/sudoers, we will run elevated.
 export user="$SUDO_USER"
@@ -193,14 +193,14 @@ funct_create_chroot()
 	#sleep 1s
 	
 	# create our chroot folder
-	if [[ -d "/home/$USER/chroots/${target}" ]]; then
+	if [[ -d "/home/$user/chroots/${target}" ]]; then
 	
 		# remove DIR
-		rm -rf "/home/$USER/chroots/${target}"
+		rm -rf "/home/$user/chroots/${target}"
 		
 	else
 	
-		mkdir -p "/home/$USER/chroots/${target}"
+		mkdir -p "/home/$user/chroots/${target}"
 		
 	fi
 	
@@ -213,19 +213,19 @@ funct_create_chroot()
 	
 		# handle SteamOS
 		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
-		--arch ${arch} ${release} /home/$USER/chroots/${target} ${target_URL} 
+		--arch ${arch} ${release} /home/$user/chroots/${target} ${target_URL} 
 		
 	elif [[ "$type" == "debian" ]]; then
 	
 		# handle Debian
 		/usr/sbin/debootstrap --components=main,contrib,non-free --arch ${arch} ${release} \
-		/home/$USER/chroots/${target} ${target_URL}
+		/home/$user/chroots/${target} ${target_URL}
 		
 	elif [[ "$type" == "ubuntu" ]]; then
 	
 		# handle Ubuntu
 		/usr/sbin/debootstrap --components=main,multiverse,restricted,universe --arch ${arch} ${release} \
-		/home/$USER/chroots/${target} ${target_URL}
+		/home/$user/chroots/${target} ${target_URL}
 		
 	fi
 	
@@ -238,9 +238,9 @@ funct_create_chroot()
 	
 		# Mount proc and dev filesystem (add to **host** fstab)
 		sudo su -c "echo '#chroot ${target}' >> /etc/fstab"
-		sudo su -c "echo '/dev/pts /home/$USER/chroots/${target}/dev/pts none bind 0 4' >> /etc/fstab"
-		sudo su -c "echo 'proc /home/$USER/chroots/${target}/proc proc defaults 0 4' >> /etc/fstab"
-		sudo su -c "echo 'sysfs /home/$USER/chroots/${target}/sys sysfs defaults 0 4' >> /etc/fstab"
+		sudo su -c "echo '/dev/pts /home/$user/chroots/${target}/dev/pts none bind 0 4' >> /etc/fstab"
+		sudo su -c "echo 'proc /home/$user/chroots/${target}/proc proc defaults 0 4' >> /etc/fstab"
+		sudo su -c "echo 'sysfs /home/$user/chroots/${target}/sys sysfs defaults 0 4' >> /etc/fstab"
 		
 	fi
 	
@@ -249,7 +249,7 @@ funct_create_chroot()
 	cd $script_dir
 	
 	# create alias file that .bashrc automatically will source
-	if [[ -f "/home/$USER/.bash_aliases" ]]; then
+	if [[ -f "/home/$user/.bash_aliases" ]]; then
 	
 		# do nothing
 		echo -e "\nBash alias file found, skipping creation."
@@ -257,17 +257,17 @@ funct_create_chroot()
 	
 		echo -e "\nBash alias file not found, creating."
 		# create file
-		touch "/home/$USER/.bash_aliases"
+		touch "/home/$user/.bash_aliases"
 
 	fi
 	
 	# create alias for easy use of command
-	alias_check=$(cat "/home/$USER/.bash_aliases" | grep chroot-${target})
+	alias_check=$(cat "/home/$user/.bash_aliases" | grep chroot-${target})
 
 	
 	if [[ "$alias_check" == "" ]]; then
 	
-		cat <<-EOF >> "/home/$USER/.bash_aliases"
+		cat <<-EOF >> "/home/$user/.bash_aliases"
 		
 		# chroot alias for ${type} (${target})
 		alias chroot-${target}='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
@@ -276,11 +276,11 @@ funct_create_chroot()
 	fi
 	
 	# source bashrc to update.
-	# bashrc should source /home/$USER/.bash_aliases
+	# bashrc should source /home/$user/.bash_aliases
 	# can't source form .bashrc, since they use ~ instead of $HOME
-	# source from /home/$USER/.bash_aliases instead
+	# source from /home/$user/.bash_aliases instead
 	
-	#source "/home/$USER/.bashrc"
+	#source "/home/$user/.bashrc"
 	source "/home/$user/.bash_aliases"
 	
 	# enter chroot to test
@@ -312,35 +312,35 @@ funct_create_chroot()
 	# copy over post install scripts for execution on the SteamOS chroot
 	echo -e "==> Copying post install scripts to tmp directory\n"
 	
-	cp "debian-chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
-	cp ../gpg-import.sh "/home/$USER/chroots/${target}/tmp/"
+	cp "debian-chroot-post-install.sh" "/home/$user/chroots/${target}/tmp/"
+	cp ../gpg-import.sh "/home/$user/chroots/${target}/tmp/"
 	
 	# mark executable
-	chmod +x "/home/$USER/chroots/${target}/tmp/${type}-chroot-post-install.sh"
-	chmod +x "/home/$USER/chroots/${target}/tmp/${type}-chroot-post-install.sh"
+	chmod +x "/home/$user/chroots/${target}/tmp/${type}-chroot-post-install.sh"
+	chmod +x "/home/$user/chroots/${target}/tmp/${type}-chroot-post-install.sh"
 	
 	# modify gpg-import.sh with sudo removed, as it won't be configured and we
 	# don't need it to be there
-	sed -i "s|sudo ||g" "/home/$USER/chroots/${target}/tmp/gpg-import.sh"
+	sed -i "s|sudo ||g" "/home/$user/chroots/${target}/tmp/gpg-import.sh"
 	
 	# Modify type based on opts
-	sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/${type}-chroot-post-install.sh"
+	sed -i "s|"tmp_type"|${type}|g" "/home/$user/chroots/${target}/tmp/${type}-chroot-post-install.sh"
 	
 	# modify release_tmp for Debian Wheezy / Jessie in post-install script
-	sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/${type}-chroot-post-install.sh"
+	sed -i "s|"tmp_release"|${release}|g" "/home/$user/chroots/${target}/tmp/${type}-chroot-post-install.sh"
 	
 	# modify arch_tmp in post-install script
-	sed -i "s|"tmp_arch"|${arch}|g" "/home/$USER/chroots/${target}/tmp/${type}-chroot-post-install.sh"
+	sed -i "s|"tmp_arch"|${arch}|g" "/home/$user/chroots/${target}/tmp/${type}-chroot-post-install.sh"
 	
 	# "bind" /dev/pts
-	mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"
+	mount --bind /dev/pts "/home/$user/chroots/${target}/dev/pts"
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
-	/usr/sbin/chroot "/home/$USER/chroots/${target}" /bin/bash -c "/tmp/${type}-chroot-post-install.sh"
+	/usr/sbin/chroot "/home/$user/chroots/${target}" /bin/bash -c "/tmp/${type}-chroot-post-install.sh"
 	
 	# Unmount /dev/pts
-	umount /home/$USER/chroots/${target}/dev/pts
+	umount /home/$user/chroots/${target}/dev/pts
 }
 
 main()

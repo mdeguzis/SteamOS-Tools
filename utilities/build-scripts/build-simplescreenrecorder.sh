@@ -44,7 +44,7 @@ install_prereqs()
 	sudo apt-get install -y --force-yes build-essential pkg-config qt4-qmake libqt4-dev libavformat-dev \
 	libavcodec-dev libavutil-dev libswscale-dev libasound2-dev libpulse-dev libjack-jackd2-dev \
 	libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxfixes-dev libxext-dev libxi-dev g++-multilib \
-	libx11-6 libxext6 libxext-dev libxfixes3 libxfixes3:i386 libglu1-mesa:i386 ffmpeg
+	libx11-6 libxext6 libxext-dev libxfixes3 libxfixes3:i386 libglu1-mesa:i386 ffmpeg checkinstall bc
 	
 	# some libraries are not foudn with the current build script
 	# Per the readme file, symlink these

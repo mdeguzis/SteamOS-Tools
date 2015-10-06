@@ -33,6 +33,7 @@ replaces="antimicro"
 
 # set build_dir
 build_dir="$HOME/build-${pkgname}-temp"
+git_dir="${build_dir}/${pkgname}"
 
 install_prereqs()
 {
@@ -82,16 +83,15 @@ function_clone_git()
 		elif [[ "$git_choice" == "r" ]]; then
 			echo -e "\n==> Removing and cloning repository again...\n"
 			sleep 2s
-			# remove, clone, enter
+			# remove, clone
 			rm -rf "$git_dir"
-			cd "$build_dir"
-			# create and clone to git dir
+			# clone to git DIR
 			git clone "$git_url" "$git_dir"
 		else
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
-			# create and clone to git dir
+			# clone to git DIR
 			git clone "$git_url" "$git_dir"
 		
 		fi
@@ -100,7 +100,7 @@ function_clone_git()
 		
 			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
 			sleep 2s
-			# create and clone to current dir
+			# clone to git DIR
 			git clone "$git_url" "$git_dir"
 	fi
 	
@@ -121,8 +121,8 @@ main()
 		
 	fi
 	
-	# Enter build dir
-	cd "$build_dir" || exit
+	# Enter git dir for build
+	cd "$git_dir" || exit
  
 	#################################################
 	# Build antimicro
@@ -204,7 +204,7 @@ main()
 	echo -e "\n==> Would you like to transfer any packages that were built? [y/n]"
 	sleep 0.5s
 	# capture command
-	read -ep "Choice: " transfer_choice
+	read -erp "Choice: " transfer_choice
 	
 	if [[ "$transfer_choice" == "y" ]]; then
 	

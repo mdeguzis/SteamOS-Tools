@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.7.7
+# Script Ver:	0.7.9
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -25,11 +25,7 @@
 # set $USER since we run as root/sudo
 # The reason for running sudo is do to the post install commands being inside the chroot
 # Rather than run into issues adding user(s) to /etc/sudoers, we will run elevated.
-
 export user="$SUDO_USER"
-#echo "user test: $USER"
-#exit 1
-
 
 # remove old custom files
 rm -f "log.txt"
@@ -349,7 +345,7 @@ elif [[ "$type" != "steamos" ||
 	"$type" != "debian" ||
 	"$type" != "ubuntu" ]]; then
 	
-	echo -e "Distribution target not supported. Dying."
+	echo -e "\nType detected was $type. Distribution target not supported. Dying."
 	sleep 3s
 	exit 1
 	

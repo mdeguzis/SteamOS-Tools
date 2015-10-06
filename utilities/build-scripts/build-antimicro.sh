@@ -47,7 +47,8 @@ install_prereqs()
 	sleep 2s
 	
 	### REPLACE THESE WITH PACKAGES SPECIFIED BY UPSTREAM SOURCE ###
-	sudo apt-get install -y g++ cmake libqt4-dev libsdl1.2-dev libxi-dev libxtst-dev libX11-dev
+	sudo apt-get install -y g++ cmake libqt4-dev libsdl1.2-dev libxi-dev libxtst-dev \
+	libsdl2-dev libX11-dev
 
 }
 

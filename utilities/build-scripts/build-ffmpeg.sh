@@ -27,11 +27,7 @@ pkgrel="1"
 dist_rel="brewmaster"
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
 maintainer="ProfessorKaos64"
-provides="ffmpeg, qt-faststart, ffmpeg-dbg, ffmpeg-doc, libavcodec-ffmpeg56, libavcodec-ffmpeg-dev, \
-libavdevice-ffmpeg56, libavdevice-ffmpeg-dev, libavfilter-ffmpeg5, libavfilter-ffmpeg-dev, \
-libavformat-ffmpeg56, libavformat-ffmpeg-dev, libavresample-ffmpeg2, libavresample-ffmpeg-dev, \
-libavutil-ffmpeg54, libavutil-ffmpeg-dev, libpostproc-ffmpeg53, libpostproc-ffmpeg-dev, libswresample-ffmpeg1, \
-libswresample-ffmpeg-dev, libswscale-ffmpeg3, libswscale-ffmpeg-dev"
+provides="ffmpeg"
 pkggroup="video"
 requires=""
 replaces="ffmpeg"

@@ -251,28 +251,29 @@ funct_create_chroot()
 	script_dir=$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)
 	cd $script_dir
 	
-	# create ${chroot_dir} file that .bashrc automatically will source
-	if [[ -f "/home/$user/.bash_${chroot_dir}es" ]]; then
+	# create alias file that .bashrc automatically will source
+	if [[ -f "${alias_file}" ]]; then
 	
 		# do nothing
-		echo -e "\nBash ${chroot_dir} file found, skipping creation."
+		echo -e "\nBash alias file found, skipping creation."
 	else
 	
-		echo -e "\nBash ${chroot_dir} file not found, creating."
+		echo -e "\nBash alias file not found, creating."
 		# create file
-		touch "/home/$user/.bash_${chroot_dir}es"
+		touch "${alias_file}"
 
 	fi
 	
-	# create ${chroot_dir} for easy use of command
-	${chroot_dir}_check=$(cat "$${chroot_dir}_file" | grep chroot-${target})
+	# create alias for easy use of command
+	alias_check=$(cat "${alias_file}" | grep chroot-${target})
 
-	if [[ "$${chroot_dir}_check" == "" ]]; then
 	
-		cat <<-EOF >> "/home/$user/.bash_${chroot_dir}es"
+	if [[ "$alias_check" == "" ]]; then
+	
+		cat <<-EOF >> "${alias_file}"
 		
-		# chroot ${chroot_dir} for ${type} (${target})
-		${chroot_dir} chroot-${target}='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
+		# chroot alias for ${target}
+		alias chroot-${target}='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
 		EOF
 	
 	fi
@@ -283,7 +284,7 @@ funct_create_chroot()
 	# source from /home/$user/.bash_${chroot_dir}es instead
 	
 	#source "/home/$user/.bashrc"
-	source "/home/$user/.bash_${chroot_dir}es"
+	source "${alias_file}"
 	
 	# enter chroot to test
 	# only offer to remain a standard chroot for SteamOS, since it is the only

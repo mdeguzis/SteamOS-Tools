@@ -276,8 +276,8 @@ funct_create_chroot()
 		# copy over post install scripts for execution on the SteamOS chroot
 		echo -e "==> Copying post install scripts to tmp directory\n"
 		
-		cp -v "debian-chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
-		cp -v ../gpg-import.sh "/home/$USER/chroots/${target}/tmp/"
+		cp "debian-chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
+		cp ../gpg-import.sh "/home/$USER/chroots/${target}/tmp/"
 		
 		# mark executable
 		chmod +x "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh"
@@ -312,8 +312,8 @@ funct_create_chroot()
 		# copy over post install scripts for execution on the SteamOS chroot
 		echo -e "==> Copying post install scripts to tmp directory\n"
 		
-		cp -v "steamos-chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
-		cp -v ../gpg-import.sh "/home/$USER/chroots/${target}/tmp/"
+		cp "steamos-chroot-post-install.sh" "/home/$USER/chroots/${target}/tmp/"
+		cp ../gpg-import.sh "/home/$USER/chroots/${target}/tmp/"
 		
 		# mark executable
 		chmod +x "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh"

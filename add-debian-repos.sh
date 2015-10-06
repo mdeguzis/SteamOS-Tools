@@ -57,13 +57,8 @@ check_gpg()
 	# Key Desc: Libregeek Signing Key
 	# Key ID: 34C589A7
 	# Full Key ID: 8106E72834C589A7
-	echo -e "Adding Libregeek public signing key"
-	
-	# import Libregeek public key from repository
-	wget -q "http://packages.libregeek.org/SteamOS-Tools/public.key"
-	gpg --import public.key 2> /dev/null
-	sudo apt-key update 2> /dev/null
-	rm -f public.key
+	echo -ne "Adding Libregeek public signing key: " && \
+	$scriptdir/utilities/gpg-import.sh 8106E72834C589A7 2> /dev/null
 	
 }
 

@@ -89,10 +89,11 @@ show_help()
 	
 	Usage
 	---------------------------------------------------------------
-	sudo ./build-test-chroot.sh [type] [release]
+	sudo ./build-test-chroot.sh [type] [release] [arch]
 	Types: [debian|steamos] 
 	Releases (Debian):  [wheezy|jessie]
 	Releases (SteamOS): [alchemist|alchemist-beta|brewmaster|brewmaster-beta]
+	arch: [i386|amd64]
 	
 	Plese note that the types wheezy and jessie belong to Debian,
 	and that brewmaster belong to SteamOS.
@@ -312,7 +313,7 @@ funct_create_chroot()
 	# copy over post install scripts for execution on the SteamOS chroot
 	echo -e "==> Copying post install scripts to tmp directory\n"
 	
-	cp "debian-chroot-post-install.sh" "/home/$user/chroots/${target}/tmp/"
+	cp "${target}-chroot-post-install.sh" "/home/$user/chroots/${target}/tmp/"
 	cp ../gpg-import.sh "/home/$user/chroots/${target}/tmp/"
 	
 	# mark executable

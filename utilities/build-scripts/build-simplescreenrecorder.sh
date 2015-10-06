@@ -41,7 +41,7 @@ install_prereqs()
 	echo -e "==> Installing prerequisites for building...\n"
 	sleep 2s
 	# install basic build packages
-	sudo apt-get install -y build-essential pkg-config qt4-qmake libqt4-dev libavformat-dev \
+	sudo apt-get install -y --force-yes build-essential pkg-config qt4-qmake libqt4-dev libavformat-dev \
 	libavcodec-dev libavutil-dev libswscale-dev libasound2-dev libpulse-dev libjack-jackd2-dev \
 	libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxfixes-dev libxext-dev libxi-dev g++-multilib \
 	libx11-6 libxext6 libxext-dev libxfixes3 libxfixes3:i386 libglu1-mesa:i386 ffmpeg

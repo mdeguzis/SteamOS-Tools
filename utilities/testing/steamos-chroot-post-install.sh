@@ -34,6 +34,7 @@ policy="./usr/sbin/policy-rc.d"
 type="tmp_type"
 stock_opt="tmp_stock"
 release="tmp_release"
+arch="tmp_arch"
 target="${type}-${release}-${arch}"
 	
 # pass to ensure we are in the chroot 

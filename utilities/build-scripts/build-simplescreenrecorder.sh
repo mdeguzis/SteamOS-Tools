@@ -48,61 +48,6 @@ install_prereqs()
 
 }
 
-function_clone_git()
-{
-	
-	echo -e "\n==> Cloning upstream git source"
-	sleep 2s
-	
-	if [[ -d "$git_dir" ]]; then
-	
-		echo -e "\n==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
-		sleep 1s
-		read -ep "Choice: " git_choice
-		
-		if [[ "$git_choice" == "p" ]]; then
-			# attempt to pull the latest source first
-			echo -e "\n==> Attempting git pull..."
-			sleep 2s
-		
-			# attempt git pull, if it doesn't complete reclone
-			if ! git pull; then
-				
-				# failure
-				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
-				sleep 2s
-				rm -rf "$git_dir"
-				# clone to git DIR
-				git clone "$git_url" "$git_dir"
-				
-			fi
-			
-		elif [[ "$git_choice" == "r" ]]; then
-			echo -e "\n==> Removing and cloning repository again...\n"
-			sleep 2s
-			# remove, clone
-			rm -rf "$git_dir"
-			# clone to git DIR
-			git clone "$git_url" "$git_dir"
-		else
-		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
-			sleep 2s
-			# clone to git DIR
-			git clone "$git_url" "$git_dir"
-		
-		fi
-	
-	else
-		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
-			sleep 2s
-			# clone to git DIR
-			git clone "$git_url" "$git_dir"
-	fi
-	
-}
-
 main()
 {
 	
@@ -122,7 +67,7 @@ main()
 	install_prereqs
 	
 	# Clone upstream source code
-	function_clone_git
+	git clone "$git_url" "$git_dir"
 	
 	# Enter git dir for build
 	cd "$git_dir" || exit

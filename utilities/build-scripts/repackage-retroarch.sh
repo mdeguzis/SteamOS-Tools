@@ -39,7 +39,7 @@ install_prereqs()
 	
 	sleep 1s
 	# install needed packages
-	sudo apt-get install git devscripts build-essential checkinstall \
+	sudo apt-get install -y --force-yes git devscripts build-essential checkinstall \
 	debian-keyring debian-archive-keyring cmake libv4l-dev libusb-1.0-0-dev \
 	libopenal-dev libjack-jackd2-dev libgbm-dev python3-dev
 
@@ -115,7 +115,7 @@ main()
 		sleep 2s
 	
 		# attempt to auto get build deps
-		if sudo apt-get build-dep ${pkg} -y; then
+		if sudo apt-get build-dep ${pkg} -y --force-yes; then
 		
 			echo -e "\n==INFO==\nPackage ${pkg} build dependencies installed successfully"
 			sleep 2s

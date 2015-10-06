@@ -41,13 +41,13 @@ install_prereqs()
 	echo -e "==> Installing prerequisites for building...\n"
 	sleep 2s
 	# install basic build packages
-	sudo apt-get -y install autoconf automake build-essential pkg-config bc checkinstall
+	sudo apt-get -y --force-yes install autoconf automake build-essential pkg-config bc checkinstall
 	
 	echo -e "\n==> Installing $pkgname build dependencies...\n"
 	sleep 2s
 	
 	### REPLACE THESE WITH PACKAGES SPECIFIED BY UPSTREAM SOURCE ###
-	sudo apt-get install -y g++ cmake libqt4-dev libsdl1.2-dev libxi-dev libxtst-dev \
+	sudo apt-get install -y --force-yes g++ cmake libqt4-dev libsdl1.2-dev libxi-dev libxtst-dev \
 	libsdl2-dev libX11-dev
 
 }

@@ -133,13 +133,9 @@ main()
 	
 	echo -e "\n==> Bulding ${pkgname}\n"
 	sleep 3s
-	
-	# Creaste build files
-	mkdir build && cd build
-	cmake ..
   	
-	# make package, fail out if incomplete
-	if make; then
+	# Upstream Git source uses script to build and install package
+	if bash simple-build-and-install; then
 
   	echo -e "\n==INFO==\n${pkgname} build successful"
   	sleep 2s
@@ -167,6 +163,24 @@ main()
 	#################################################
 	# Post install configuration
 	#################################################
+	
+	# Due to the custom build script installing the application,
+	# uninstall it after the deb package is produced so system is clean again
+	
+	echo -e "\n==> Removing local install left over from build script\n"
+	
+	if bash simple-uninstall; then
+
+  	echo -e "\n==INFO==\n${pkgname} removal successful"
+  	sleep 2s
+		
+	else 
+	
+		echo -e "\n==ERROR==\n${pkgname}removal FAILED. Exiting in 15 seconds"
+		sleep 15s
+		exit 1
+		
+	fi
 	
 	#################################################
 	# Cleanup

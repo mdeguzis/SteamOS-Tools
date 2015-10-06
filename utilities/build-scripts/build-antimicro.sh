@@ -1,13 +1,13 @@
 #!/bin/bash
 # -------------------------------------------------------------------------------
-# Author:	      Michael DeGuzis
-# Git:		      https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	  build-ffmpeg.sh
-# Script Ver:	  0.1.1
+# Author:	Michael DeGuzis
+# Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	build-antimicro.sh
+# Script Ver:	0.3.1
 # Description:	Attempts to build a deb package from antimicro git source
 #
-# See:		      https://launchpadlibrarian.net/219136562/antimicro_2.19.3-1~vivid1.dsc
-# Usage:	      build-antimicro.sh
+# See:		https://launchpadlibrarian.net/219136562/antimicro_2.19.3-1~vivid1.dsc
+# Usage:	build-antimicro.sh
 # -------------------------------------------------------------------------------
 
 arg1="$1"
@@ -121,6 +121,12 @@ main()
 		
 	fi
 	
+	# install prereqs for build
+	install_prereqs
+	
+	# Clone upstream source code
+	function_clone_git
+	
 	# Enter git dir for build
 	cd "$git_dir" || exit
  
@@ -221,6 +227,4 @@ main()
 }
 
 # start main
-install_prereqs
-function_clone_git
 main

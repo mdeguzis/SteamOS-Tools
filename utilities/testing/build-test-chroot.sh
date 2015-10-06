@@ -293,6 +293,10 @@ funct_create_chroot()
 		# modify release_tmp for Debian Wheezy / Jessie in post-install script
 		sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh"
 		
+		# modify target_tmp in post-install script
+		sed -i "s|"tmp_target"|${target}|g" "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh"
+		${type}-${release}-${arch}
+		
 		# "bind" /dev/pts
 		mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"
 		
@@ -322,8 +326,12 @@ funct_create_chroot()
 		# Modify type based on opts
 		sed -i "s|"tmp_type"|${type}|g" "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh"
 		
-		# modify release_tmp for Debian Wheezy / Jessie in post-install script
+		# modify release_tmp in post-install script
 		sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh"
+		
+		# modify target_tmp in post-install script
+		sed -i "s|"tmp_target"|${target}|g" "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh"
+		${type}-${release}-${arch}
 		
 		# "bind" /dev/pts
 		mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"

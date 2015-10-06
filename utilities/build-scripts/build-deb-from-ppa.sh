@@ -215,7 +215,7 @@ main()
 		echo -e "\n==> Attempting to auto-install build dependencies\n"
 	
 		# attempt to get build deps
-		if sudo apt-get build-dep ${target} -y; then
+		if sudo apt-get build-dep ${target} -y --force-yes; then
 		
 			echo -e "\n==INFO==\nSource package dependencies successfully installed."
 			

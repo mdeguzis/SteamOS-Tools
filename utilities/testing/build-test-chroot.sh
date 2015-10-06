@@ -22,6 +22,10 @@
 # See Also:	https://wiki.debian.org/chroot
 # -------------------------------------------------------------------------------
 
+#####################################################
+# Vars
+#####################################################
+
 # set $USER since we run as root/sudo
 # The reason for running sudo is do to the post install commands being inside the chroot
 # Rather than run into issues adding user(s) to /etc/sudoers, we will run elevated.
@@ -36,6 +40,44 @@ release="$2"
 arch="$3"
 target="${type}-${release}-${arch}"
 stock_choice=""
+
+#####################################################
+# Pre-flight checks
+#####################################################
+
+# Warn user script must be run as root
+if [ "$(id -u)" -ne 0 ]; then
+
+	clear
+	
+	cat <<-EOF
+	==ERROR==
+	Script must be run as root! Try:
+	
+	sudo $0 [type] [release]
+	
+	EOF
+	
+	exit 1
+	
+fi
+
+# shutdown script if type or release is blank or note supported
+if [[ "$type" == "" || "$release" == "" ]]; then
+
+	clear
+	echo -e "==ERROR==\nType or release not specified! Dying...\n"
+	exit 1
+	
+elif [[ "$type" != "steamos" || 
+	"$type" != "debian" ||
+	"$type" != "ubuntu" ]]; then
+	
+	echo -e "\nType detected was $type. Distribution target not supported. Dying."
+	sleep 3s
+	exit 1
+	
+fi
 
 show_help()
 {
@@ -316,40 +358,6 @@ main()
 #####################################################
 # Main
 #####################################################
-
-# Warn user script must be run as root
-if [ "$(id -u)" -ne 0 ]; then
-
-	clear
-	
-	cat <<-EOF
-	==ERROR==
-	Script must be run as root! Try:
-	
-	sudo $0 [type] [release]
-	
-	EOF
-	
-	exit 1
-	
-fi
-
-# shutdown script if type or release is blank or note supported
-if [[ "$type" == "" || "$release" == "" ]]; then
-
-	clear
-	echo -e "==ERROR==\nType or release not specified! Dying...\n"
-	exit 1
-	
-elif [[ "$type" != "steamos" || 
-	"$type" != "debian" ||
-	"$type" != "ubuntu" ]]; then
-	
-	echo -e "\nType detected was $type. Distribution target not supported. Dying."
-	sleep 3s
-	exit 1
-	
-fi
 
 # Start main script if above checks clear
 main | tee log_temp.txt

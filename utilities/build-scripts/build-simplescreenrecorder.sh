@@ -65,21 +65,15 @@ main()
 	# create and enter build_dir
 	if [[ -d "$build_dir" ]]; then
 	
-		rm -rf "$build_dir"
+		sudo rm -rf "$build_dir"
 		mkdir -p "$build_dir"
-		
-		echo "build dir found and recreated"
 		
 	else
 		
 		mkdir -p "$build_dir"
 		
-		echo "build dir not found. created"
-		
 	fi
-	
-	sleep 55s
-	
+
 	# install prereqs for build
 	install_prereqs
 	

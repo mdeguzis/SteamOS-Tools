@@ -362,7 +362,7 @@ function gpg_import()
 	
 	# import Libregeek public key from repository
 	wget -q "http://packages.libregeek.org/SteamOS-Tools/public.key"
-	gpg --import public.key
+	gpg --import public.key 2> /dev/null
 	sudo apt-key update 2> /dev/null
 	rm -f public.key
 

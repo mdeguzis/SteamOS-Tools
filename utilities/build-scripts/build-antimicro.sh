@@ -46,7 +46,7 @@ install_prereqs()
 	sleep 2s
 	
 	### REPLACE THESE WITH PACKAGES SPECIFIED BY UPSTREAM SOURCE ###
-	sudo apt-get install -y debhelper, cmake, gettext, itstool, libqt4-dev, libsdl2-dev, libxtst-dev
+	sudo apt-get install -y g++ cmake libqt4-dev libsdl1.2-dev libxi-dev ibxtst-dev libX11-dev
 
 }
 

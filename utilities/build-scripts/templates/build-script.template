@@ -1,10 +1,9 @@
 #!/bin/bash
-
 # -------------------------------------------------------------------------------
 # Author:    	  Michael DeGuzis
 # Git:	    	  https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  TEMPLATE_FILE_FOR_PACKAGING
-# Script Ver:	  0.7.7
+# Script Ver:	  0.7.8
 # Description:	  Attempts to build a deb package from <package> git source
 #
 # See:		 
@@ -121,13 +120,13 @@ main()
 	
 	# create and enter build_dir
 	
-	if [[ ! -d "$build_dir" ]]; then
+	if [[ -d "$build_dir" ]]; then
 	
+		sudo rm -rf "$build_dir"
 		mkdir -p "$build_dir"
 		
 	else
-	
-		rm -rf "$build_dir"
+
 		mkdir -p "$build_dir"
 		
 	fi
@@ -164,7 +163,7 @@ main()
 	elif [[ "$upstream_source" == "git" ]]
 	
 		# clone git
-		function_clone_git
+		git clone "$git_url" "$git_dir"
 		
 		# enter git dir
 		cd "$git_dir"

@@ -46,8 +46,10 @@ check_gpg()
 {
 	if [[ "$scriptdir" == "" ]]; then
 	
-		# set to pwd
-		scriptdir=$(pwd)
+		#  Find where the user cloned SteamOS-Tools to
+		echo -e "\nadd-debian-repos.sh was run from a foreign directory!"
+		echo -e "Assessing location of SteamoS-Tools, please wait."
+		scriptdir=$(find / -name "SteamOS-Tools" 2> /dev/null)
 		
 	fi
 

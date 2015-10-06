@@ -59,6 +59,7 @@ fi
 apt-get install locales
 
 cat<<- EOF
+
 ==> Generating locale...
     You will now be shown a listing of the available locales.
     Please enter your select in the format "aa_AA".

@@ -46,8 +46,64 @@ install_prereqs()
 	sleep 2s
 	
 	### REPLACE THESE WITH PACKAGES SPECIFIED BY UPSTREAM SOURCE ###
-	sudo apt-get -y debhelper, cmake, gettext, itstool, libqt4-dev, libsdl2-dev, libxtst-dev
+	sudo apt-get install -y debhelper, cmake, gettext, itstool, libqt4-dev, libsdl2-dev, libxtst-dev
 
+}
+
+function_clone_git()
+{
+	
+	echo -e "\n==> Cloning upstream git source"
+	sleep 2s
+	
+	if [[ -d "$git_dir" ]]; then
+	
+		echo -e "\n==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
+		sleep 1s
+		read -ep "Choice: " git_choice
+		
+		if [[ "$git_choice" == "p" ]]; then
+			# attempt to pull the latest source first
+			echo -e "\n==> Attempting git pull..."
+			sleep 2s
+		
+			# attempt git pull, if it doesn't complete reclone
+			if ! git pull; then
+				
+				# failure
+				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
+				sleep 2s
+				rm -rf "$git_dir"
+				# clone to git DIR
+				git clone "$git_url" "$git_dir"
+				
+			fi
+			
+		elif [[ "$git_choice" == "r" ]]; then
+			echo -e "\n==> Removing and cloning repository again...\n"
+			sleep 2s
+			# remove, clone, enter
+			rm -rf "$git_dir"
+			cd "$build_dir"
+			# create and clone to git dir
+			git clone "$git_url" "$git_dir"
+		else
+		
+			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+			sleep 2s
+			# create and clone to git dir
+			git clone "$git_url" "$git_dir"
+		
+		fi
+	
+	else
+		
+			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
+			sleep 2s
+			# create and clone to current dir
+			git clone "$git_url" "$git_dir"
+	fi
+	
 }
 
 main()
@@ -76,10 +132,10 @@ main()
 	sleep 3s
 	
 	# Creaste build files
-  mkdir build && cd build
-  cmake ..
+	mkdir build && cd build
+	cmake ..
   	
-  # make package, fail out if incomplete
+	# make package, fail out if incomplete
 	if make; then
 
   	echo -e "\n==INFO==\n${pkgname} build successful"
@@ -166,4 +222,5 @@ main()
 
 # start main
 install_prereqs
+function_clone_git
 main

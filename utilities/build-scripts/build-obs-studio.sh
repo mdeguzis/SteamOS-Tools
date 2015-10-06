@@ -42,7 +42,7 @@ install_prereqs()
 	echo -e "==> Installing prerequisites for building...\n"
 	sleep 2s
 	# install basic build packages
-	sudo apt-get install -y libx11-dev libgl1-mesa-dev libpulse-dev libxcomposite-dev \
+	sudo apt-get install -y --force-yes libx11-dev libgl1-mesa-dev libpulse-dev libxcomposite-dev \
 	libxinerama-dev libv4l-dev libudev-dev libfreetype6-dev \
 	libfontconfig-dev qtbase5-dev libqt5x11extras5-dev libx264-dev \
 	libxcb-xinerama0-dev libxcb-shm0-dev libjack-jackd2-dev libcurl4-openssl-dev
@@ -53,7 +53,7 @@ install_prereqs()
 	# Until the ffmpeg build script is finished, install ffmpeg from rebuilt PPA source
 	# hosted in the Libregeek repositories. Exit if not installed correctly.
 	
-	if sudo apt-get install -y ffmpeg libavcodec-ffmpeg-dev libavdevice-ffmpeg-dev libavfilter-ffmpeg-dev \
+	if sudo apt-get install -y --force-yes ffmpeg libavcodec-ffmpeg-dev libavdevice-ffmpeg-dev libavfilter-ffmpeg-dev \
 	libavformat-ffmpeg-dev libavresample-ffmpeg-dev libavutil-ffmpeg-dev libpostproc-ffmpeg-dev \
 	libswresample-ffmpeg-dev libswscale-ffmpeg-dev; then
 	

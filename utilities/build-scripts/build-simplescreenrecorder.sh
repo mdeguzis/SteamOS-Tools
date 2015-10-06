@@ -68,11 +68,17 @@ main()
 		rm -rf "$build_dir"
 		mkdir -p "$build_dir"
 		
+		echo "build dir found and recreated"
+		
 	else
 		
 		mkdir -p "$build_dir"
 		
+		echo "build dir not found. created"
+		
 	fi
+	
+	sleep 55s
 	
 	# install prereqs for build
 	install_prereqs

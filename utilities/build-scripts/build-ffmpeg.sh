@@ -41,7 +41,7 @@ install_prereqs()
 	echo -e "==> Installing prerequisites for building...\n"
 	sleep 2s
 	# install basic build packages
-	sudo apt-get -y install autoconf automake build-essential libass-dev libfreetype6-dev \
+	sudo apt-get -y --force-yes install autoconf automake build-essential libass-dev libfreetype6-dev \
 	libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev \
 	libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev bc checkinstall
 	
@@ -49,7 +49,7 @@ install_prereqs()
 	sleep 2s
 	
 	### REPLACE THESE WITH PACKAGES SPECIFIED BY UPSTREAM SOURCE ###
-	sudo apt-get -y install yasm libx264-dev cmake mercurial libmp3lame-dev \
+	sudo apt-get -y --force-yes install yasm libx264-dev cmake mercurial libmp3lame-dev \
 	libopus-dev
 
 }

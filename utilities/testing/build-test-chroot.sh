@@ -294,7 +294,7 @@ funct_create_chroot()
 		sed -i "s|"tmp_release"|${release}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh"
 		
 		# modify target_tmp in post-install script
-		sed -i "s|"tmp_target"|${target}|g" "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh"
+		sed -i "s|"tmp_target"|${target}|g" "/home/$USER/chroots/${target}/tmp/debian-chroot-post-install.sh"
 		${type}-${release}-${arch}
 		
 		# "bind" /dev/pts
@@ -331,7 +331,6 @@ funct_create_chroot()
 		
 		# modify target_tmp in post-install script
 		sed -i "s|"tmp_target"|${target}|g" "/home/$USER/chroots/${target}/tmp/steamos-chroot-post-install.sh"
-		${type}-${release}-${arch}
 		
 		# "bind" /dev/pts
 		mount --bind /dev/pts "/home/$USER/chroots/${target}/dev/pts"

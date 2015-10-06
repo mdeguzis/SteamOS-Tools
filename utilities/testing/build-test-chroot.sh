@@ -69,8 +69,8 @@ if [[ "$type" == "" || "$release" == "" ]]; then
 	echo -e "==ERROR==\nType or release not specified! Dying...\n"
 	exit 1
 	
-elif [[ "$type" != "steamos" || 
-	"$type" != "debian" ||
+elif [[ "$type" != "steamos" && 
+	"$type" != "debian" &&
 	"$type" != "ubuntu" ]]; then
 	
 	echo -e "\nType detected was $type. Distribution target not supported. Dying."

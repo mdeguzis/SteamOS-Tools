@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	steamos-chroot-post-install.sh
-# Script Ver:	0.6.3
+# Script Ver:	0.6.5
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A - called by build-test-chroot
@@ -54,6 +54,9 @@ else
 	sleep 2s
 	exit
 fi
+
+# steamos chroot seems to be missing locales, ensure it is installed
+apt-get install locales
 
 cat<<- EOF
 ==> Generating locale...

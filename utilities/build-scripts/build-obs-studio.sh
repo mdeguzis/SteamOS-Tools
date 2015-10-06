@@ -73,13 +73,13 @@ main()
 {
 	
 	# create and enter build_dir
-	if [[ ! -d "$build_dir" ]]; then
+	if [[ -d "$build_dir" ]]; then
 	
+		sudo rm -rf "$build_dir"
 		mkdir -p "$build_dir"
 		
 	else
 	
-		rm -rf "$build_dir"
 		mkdir -p "$build_dir"
 		
 	fi

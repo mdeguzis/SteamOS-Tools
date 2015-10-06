@@ -34,7 +34,7 @@ policy="./usr/sbin/policy-rc.d"
 type="tmp_type"
 stock_opt="tmp_stock"
 release="tmp_release"
-target="tmp_target"
+target="${type}-${release}-${arch}"
 	
 # pass to ensure we are in the chroot 
 # temp test for chroot (output should be something other than 2)
@@ -308,7 +308,7 @@ echo -e "\nExiting chroot!\n"
 echo -e "You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
 enter the chroot again. You can also use the newly created alias listed below\n"
 
-echo -e "\tchroot-${target}-${arch}\n"
+echo -e "\tchroot-${target}\n"
 
 sleep 2s
 exit

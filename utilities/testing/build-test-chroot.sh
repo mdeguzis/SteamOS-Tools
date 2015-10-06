@@ -347,7 +347,7 @@ if [[ "$type" == "" || "$release" == "" ]]; then
 	
 elif [[ "$type" != "steamos" || 
 	"$type" != "debian" ||
-	"$type" != "ubuntu" ]];
+	"$type" != "ubuntu" ]]; then
 	
 	echo -e "Distribution target not supported. Dying."
 	sleep 3s

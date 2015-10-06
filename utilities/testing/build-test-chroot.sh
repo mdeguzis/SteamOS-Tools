@@ -90,7 +90,7 @@ show_help()
 	Usage
 	---------------------------------------------------------------
 	sudo ./build-test-chroot.sh [type] [release] [arch]
-	Types: [debian|steamos] 
+	Types: [debian|steamos|ubuntu] 
 	Releases (Debian):  [wheezy|jessie]
 	Releases (SteamOS): [alchemist|alchemist-beta|brewmaster|brewmaster-beta]
 	arch: [i386|amd64]
@@ -324,10 +324,10 @@ funct_create_chroot()
 	# don't need it to be there
 	sed -i "s|sudo ||g" "/home/$user/chroots/${target}/tmp/gpg-import.sh"
 	
-	# Modify type based on opts
+	# Modify type based on opts in post-install script
 	sed -i "s|"tmp_type"|${type}|g" "/home/$user/chroots/${target}/tmp/${type}-chroot-post-install.sh"
 	
-	# modify release_tmp for Debian Wheezy / Jessie in post-install script
+	# modify release_tmp in post-install script
 	sed -i "s|"tmp_release"|${release}|g" "/home/$user/chroots/${target}/tmp/${type}-chroot-post-install.sh"
 	
 	# modify arch_tmp in post-install script

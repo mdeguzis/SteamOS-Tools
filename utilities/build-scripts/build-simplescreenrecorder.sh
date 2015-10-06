@@ -62,7 +62,7 @@ install_prereqs()
 main()
 {
 	
-	# create and enter build_dir
+	# create build_dir
 	if [[ -d "$build_dir" ]]; then
 	
 		sudo rm -rf "$build_dir"
@@ -110,6 +110,9 @@ main()
 
 	echo -e "\n==> Building Debian package ${pkgname} from source\n"
 	sleep 2s
+	
+	# for checkinstall to build the source, we need to be in the build dir
+	cd "${git_dir}/build"
 
 	sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
 	--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" \

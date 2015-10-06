@@ -125,7 +125,7 @@ kodi_prereqs()
 		echo -e "==> Installing build deps for packaging\n"
 		sleep 2s
 	
-		sudo apt-get install -y build-essential fakeroot devscripts checkinstall \
+		sudo apt-get install -y --force-yes build-essential fakeroot devscripts checkinstall \
 		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev \
 		libsamplerate0-dev libgnutls28-dev
 	
@@ -140,12 +140,12 @@ kodi_prereqs()
 		# packages.libregeek.org
 		
 		# Origin: ppa:team-xbmc/ppa 
-		sudo apt-get install -y libcec3 libcec-dev libafpclient-dev libgif-dev \
+		sudo apt-get install -y --force-yes libcec3 libcec-dev libafpclient-dev libgif-dev \
 		libmp3lame-dev libgif-dev libplatform-dev
 		
 		# Origin: ppa:team-xbmc/xbmc-nightly
 		# It seems shairplay, libshairplay* are too old in the stable ppa
-		sudo apt-get install -y libshairport-dev libshairplay-dev shairplay
+		sudo apt-get install -y --force-yes libshairport-dev libshairplay-dev shairplay
 		
 		#####################################
 		# Linking

@@ -38,7 +38,7 @@ install_prereqs()
 	echo -e "==> Installing prerequisites for building...\n"
 	sleep 2s
 	# install needed packages
-	sudo apt-get install git devscripts build-essential checkinstall \
+	sudo apt-get install -y --force-yes git devscripts build-essential checkinstall \
 	debian-keyring debian-archive-keyring cmake g++ g++-multilib \
 	libqt4-dev libqt4-dev libxi-dev libxtst-dev libX11-dev bc libsdl2-dev \
 	gcc gcc-multilib nano
@@ -46,7 +46,7 @@ install_prereqs()
 	echo -e "\n==> Installing pcsx2 build dependencies...\n"
 	sleep 2s
 	
-	sudo apt-get install libaio-dev libpng++-dev libsoundtouch-dev \
+	sudo apt-get install -y --force-yes libaio-dev libpng++-dev libsoundtouch-dev \
 	libwxbase3.0-dev libwxgtk3.0-dev portaudio19-dev
 
 }

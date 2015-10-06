@@ -3,7 +3,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-antimicro.sh
-# Script Ver:	0.3.1
+# Script Ver:	1.0.0
 # Description:	Attempts to build a deb package from antimicro git source
 #
 # See:		https://launchpadlibrarian.net/219136562/antimicro_2.19.3-1~vivid1.dsc
@@ -206,7 +206,7 @@ main()
 	echo -e "############################################################\n"
 	
 	echo -e "Showing contents of: ${build_dir}/build: \n"
-	ls ${build_dir}/build | grep -E *.deb
+	ls ${git_dir}/build | grep -E *.deb
 
 	echo -e "\n==> Would you like to transfer any packages that were built? [y/n]"
 	sleep 0.5s
@@ -216,8 +216,8 @@ main()
 	if [[ "$transfer_choice" == "y" ]]; then
 	
 		# cut files
-		if -d ${build_dir}/build; then
-			scp ${build_dir}/build/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
+		if -d ${git_dir}/build; then
+			scp ${git_dir}/build/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
 
 		fi
 		

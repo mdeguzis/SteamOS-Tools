@@ -258,7 +258,7 @@ EOF
 echo -e "\n==> Adding keyrings\n"
 sleep 1s
 
-apt-get install debian-archive-keyring -y
+apt-get install -y debian-archive-keyring
 
 echo -e "\n==> Updating system\n"
 sleep 1s
@@ -280,7 +280,7 @@ for dep in ${deps}; do
 	
 		echo -e "\n==INFO==\nInstalling package: ${dep}\n"
 		sleep 1s
-		apt-get install ${dep} -y
+		apt-get install -y ${dep}
 		
 		if [[ $? = 100 ]]; then
 			echo -e "Cannot install ${dep}. Please install this manually \n"
@@ -308,7 +308,7 @@ echo -e "\nExiting chroot!\n"
 echo -e "You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
 enter the chroot again. You can also use the newly created alias listed below\n"
 
-echo -e "\tchroot-${target}\n"
+echo -e "\tchroot-${target}-${arch}\n"
 
 sleep 2s
 exit

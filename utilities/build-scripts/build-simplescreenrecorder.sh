@@ -110,9 +110,6 @@ main()
 
 	echo -e "\n==> Building Debian package ${pkgname} from source\n"
 	sleep 2s
-	
-	# for checkinstall to build the source, we need to be in the build dir
-	cd "${git_dir}/build"
 
 	sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
 	--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" \

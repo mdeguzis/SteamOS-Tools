@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.8.1
+# Script Ver:	0.8.2
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -40,7 +40,7 @@ release="$2"
 arch="$3"
 target="${type}-${release}-${arch}"
 stock_choice=""
-alias_file="/home/$user/.bash_${chroot_dir}es"
+alias_file="/home/$user/.bash_aliases"
 chroot_dir="/home/$user/chroots/${target}"
 
 #####################################################
@@ -349,7 +349,6 @@ funct_create_chroot()
 	#####################################################
 	
 	#Correct permissions since we are running with sudo
-	sudo chown -R $user:$user "${target}"
 	sudo chown -R $user:$user "${chroot_dir}"
 	sudo chown $user:$user "${alias_file}"
 }

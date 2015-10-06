@@ -313,7 +313,7 @@ funct_create_chroot()
 	# copy over post install scripts for execution on the SteamOS chroot
 	echo -e "==> Copying post install scripts to tmp directory\n"
 	
-	cp "${target}-chroot-post-install.sh" "/home/$user/chroots/${target}/tmp/"
+	cp "${type}-chroot-post-install.sh" "/home/$user/chroots/${target}/tmp/"
 	cp ../gpg-import.sh "/home/$user/chroots/${target}/tmp/"
 	
 	# mark executable

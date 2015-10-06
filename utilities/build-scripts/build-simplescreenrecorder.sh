@@ -3,7 +3,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-simplescreenrecorder.sh
-# Script Ver:	0.1.1
+# Script Ver:	0.7.7
 # Description:	Attempts to build a deb package from simplescreenrecorder git source
 #
 # See:		https://launchpadlibrarian.net/219136562/simplescreenrecorder_2.19.3-1~vivid1.dsc
@@ -44,7 +44,7 @@ install_prereqs()
 	sudo apt-get install -y build-essential pkg-config qt4-qmake libqt4-dev libavformat-dev \
 	libavcodec-dev libavutil-dev libswscale-dev libasound2-dev libpulse-dev libjack-jackd2-dev \
 	libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxfixes-dev libxext-dev libxi-dev g++-multilib \
-	libx11-6 libxext6 libxfixes3 libxfixes3:i386 libglu1-mesa:i386 ffmpeg
+	libx11-6 libxext6 libxext-dev libxfixes3 libxfixes3:i386 libglu1-mesa:i386 ffmpeg
 
 }
 

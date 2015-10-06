@@ -48,12 +48,13 @@ install_prereqs()
 	
 	# some libraries are not foudn with the current build script
 	# Per the readme file, symlink these
+	# Suppress warnings if the link exists
 	cd /usr/lib/i386-linux-gnu
-	sudo ln -s libGL.so.1 libGL.so
-	sudo ln -s libGLU.so.1 libGLU.so
-	sudo ln -s libX11.so.6 libX11.so
-	sudo ln -s libXext.so.6 libXext.so
-	sudo ln -s libXfixes.so.3 libXfixes.so
+	sudo ln -s libGL.so.1 libGL.so 2> /dev/null
+	sudo ln -s libGLU.so.1 libGLU.so 2> /dev/null
+	sudo ln -s libX11.so.6 libX11.so 2> /dev/null
+	sudo ln -s libXext.so.6 libXext.so 2> /dev/null
+	sudo ln -s libXfixes.so.3 libXfixes.so 2> /dev/null
 	sudo ldconfig
 
 }
@@ -62,13 +63,13 @@ main()
 {
 	
 	# create and enter build_dir
-	if [[ ! -d "$build_dir" ]]; then
+	if [[ -d "$build_dir" ]]; then
 	
+		rm -rf "$build_dir"
 		mkdir -p "$build_dir"
 		
 	else
-	
-		rm -rf "$build_dir"
+		
 		mkdir -p "$build_dir"
 		
 	fi

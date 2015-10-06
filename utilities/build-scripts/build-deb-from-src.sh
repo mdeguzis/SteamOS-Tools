@@ -87,69 +87,9 @@ main()
 		fi
 	fi
 	
-	# If git folder exists, evaluate it
-	# Avoiding a large download again is much desired.
-	# If the DIR is already there, the fetch info should be intact
+	# Clone git upstream source
+	git clone "$git_url" "$git_dir"	
 	
-	if [[ -d "$git_dir" ]]; then
-	
-		echo -e "\n==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
-		sleep 1s
-		read -ep "Choice: " git_choice
-		
-		if [[ "$git_choice" == "p" ]]; then
-			# attempt to pull the latest source first
-			echo -e "\n==> Attempting git pull..."
-			sleep 2s
-			cd "$git_dir"
-		
-			# attempt git pull, if it doesn't complete reclone
-			if ! git pull; then
-				
-				# failure
-				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
-				sleep 2s
-				rm -rf "$git_dir"
-				mkdir -p "$git_dir"
-				cd "$git_dir"
-				# clone to current DIR
-				git clone "$git_url" .
-				
-			fi
-			
-		elif [[ "$git_choice" == "r" ]]; then
-			echo -e "\n==> Removing and cloning repository again...\n"
-			sleep 2s
-			# remove, clone, enter
-			rm -rf "$git_dir"
-			cd "$build_dir"
-			mkdir -p "$git_dir"
-			cd "$git_dir"
-			git clone "$git_url" .
-		else
-		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
-			sleep 2s
-			# create DIRS
-			mkdir -p "$git_dir"
-			cd "$git_dir"
-			# create and clone to current dir
-			git clone "$git_url" .
-		
-		fi
-	
-	else
-		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
-			sleep 2s
-			# create DIRS
-			mkdir -p "$git_dir"
-			cd "$git_dir"
-			# create and clone to current dir
-			git clone "$git_url" .	
-	fi
-	
- 
 	#################################################
 	# Build PKG
 	#################################################
@@ -250,7 +190,7 @@ main()
 	
 		# cut files
 		if -d $git_dir/ build; then
-			scp $git_dir/build/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
+			scp $git_dir/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
 
 		fi
 		

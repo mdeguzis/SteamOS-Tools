@@ -119,7 +119,7 @@ check_sources()
 	
 		if [[ "$sources_choice" == "y" ]]; then
 	
-			../add-debian-repos.sh
+			../../add-debian-repos.sh
 			
 		elif [[ "$sources_choice" == "n" ]]; then
 		

@@ -1,4 +1,4 @@
-speetest-cli (version_placeholder) dist_rel; urgency=low
+speedtest-cli (version_placeholder) dist_rel; urgency=low
 
   * Packaged deb for SteamOS-Tools
   * See: packages.libregeek.org

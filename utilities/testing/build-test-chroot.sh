@@ -350,7 +350,6 @@ funct_create_chroot()
 	#####################################################
 	
 	#Correct permissions since we are running with sudo
-	sudo chown -R $user:$user "${chroot_dir}"
 	sudo chown $user:$user "${alias_file}"
 }
 

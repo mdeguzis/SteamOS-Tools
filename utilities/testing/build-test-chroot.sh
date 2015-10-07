@@ -199,19 +199,19 @@ funct_create_chroot()
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
 	
 		# handle SteamOS
-		/usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
+		sudo /usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
 		--arch ${arch} ${release} ${chroot_dir} ${target_URL} 
 		
 	elif [[ "$type" == "debian" ]]; then
 	
 		# handle Debian
-		/usr/sbin/debootstrap --components=main,contrib,non-free --arch ${arch} ${release} \
+		sudo /usr/sbin/debootstrap --components=main,contrib,non-free --arch ${arch} ${release} \
 		${chroot_dir} ${target_URL}
 		
 	elif [[ "$type" == "ubuntu" ]]; then
 	
 		# handle Ubuntu
-		/usr/sbin/debootstrap --components=main,multiverse,restricted,universe --arch ${arch} ${release} \
+		sudo /usr/sbin/debootstrap --components=main,multiverse,restricted,universe --arch ${arch} ${release} \
 		${chroot_dir} ${target_URL}
 		
 	fi

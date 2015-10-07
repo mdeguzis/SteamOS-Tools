@@ -3,7 +3,7 @@
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.7.1
+# Script Ver:		0.7.4
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -26,9 +26,11 @@ rm -f "kodi-build-log.txt"
 ###################################
 
 # defaults for packaging attempts
+# use "latest release" tagged release
 package_deb="no"
 skip_to_build="no"
 kodi_release="Isengard"
+kodi_tag="15.1-Isengard"
 
 # Set target
 repo_target="xbmc"
@@ -182,22 +184,22 @@ kodi_package_deb()
 	
 	echo -e "Which Kodi release do you wish to build for:"
 	
-	# show branches
-	git branch --all
+	# show tags instead of branches
+	git tag -l --column
 	echo ""
 	
 	# get user choice
 	sleep 0.2s
-	read -erp "Choice: " kodi_release
+	read -erp "Choice: " kodi_tag
 	
 	# checkout proper release
-	git checkout "$kodi_release"
+	git checkout "tags/${kodi_tag}"
 	
 	# Testing...use our fork with a different changelog setup
 	
-	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh
+	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh 
 	# See: http://unix.stackexchange.com/a/16274
-	sed -i "s|\bxbmc/xbmc-packaging/archive/master.tar.gz\b|ProfessorKaos64/xbmc-packaging/archive/${kodi_release}.tar.gz|g" "tools/Linux/packaging/mk-debian-package.sh"
+	sed -i "s|\bxbmc/xbmc-packaging/archive/master.tar.gz\b|ProfessorKaos64/xbmc-packaging/archive/${kodi_tag}.tar.gz|g" "tools/Linux/packaging/mk-debian-package.sh"
 	
 	echo -e "\nBuild Kodi for our host/ARCH or for target? [host|target]"
 	
@@ -302,7 +304,7 @@ kodi_clone()
 				rm -rf "$build_dir"
 				# create and clone to $HOME/kodi
 				cd
-				git clone $git_url ${build_dir}
+				git clone ${git_url} ${build_dir}
 				
 				
 			fi
@@ -313,7 +315,7 @@ kodi_clone()
 			sudo rm -rf "$build_dir"
 			# create and clone to $HOME/kodi
 			cd
-			git clone $git_url  ${build_dir}
+			git clone ${git_url} ${build_dir}
 
 		else
 
@@ -321,7 +323,7 @@ kodi_clone()
 			sleep 2s
 			# create and clone to $HOME/kodi
 			cd
-			git clone $git_url ${build_dir}
+			git clone ${git_url} ${build_dir}
 
 		fi
 
@@ -332,7 +334,7 @@ kodi_clone()
 			# create DIRS
 			cd
 			# create and clone to current dir
-			git clone $git_url ${build_dir}
+			git clone ${git_url} ${build_dir}
 
 	fi
 
@@ -365,7 +367,7 @@ kodi_build()
 	cd "$build_dir"
 	
 	# checkout target release
-	git checkout "$kodi_release"
+	checkout "tags/${kodi_tag}"
 
   	# create the Kodi executable manually perform these steps:
 	if ./bootstrap; then

@@ -21,7 +21,7 @@ git_url="https://github.com/sivel/speedtest-cli"
 # package vars
 pkgname="speedtest-cli"
 pkgver="20151006+git"
-pkgrel="1"
+pkgrev="1"
 dist_rel="brewmaster"
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
 maintainer="ProfessorKaos64"
@@ -93,7 +93,7 @@ main()
 	cp "$scriptdir/$pkgname/debian/changelog" "debian/changelog"
 	
 	# Change version, uploader, insert change log comments
-	sed -i "s|version_placeholder|$pkgver-$pkgrev-$pkgrel|g" debian/changelog
+	sed -i "s|version_placeholder|$pkgver-$pkgrev-$pkgrev|g" debian/changelog
 	sed -i "s|uploader|$uploader|g" debian/changelog
 	sed -i "s|dist_rel|$dist_rel|g" debian/changelog
 	

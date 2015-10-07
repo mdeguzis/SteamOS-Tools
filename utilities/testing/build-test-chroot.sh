@@ -178,7 +178,16 @@ funct_create_chroot()
 	if [[ -d "${chroot_dir}" ]]; then
 	
 		# remove DIR
-		sudo rm -rf "${chroot_dir}"
+		# Fail out if unsuccessful
+		if ! sudo rm -rf "${chroot_dir}"; then
+		
+			echo -e "\nRemoval of old directory failed!"
+			echo -e "Please reboot to unmount these protected mounts\n"
+			sleep 3s
+			exit 1
+		
+		fi
+		
 		
 	else
 	

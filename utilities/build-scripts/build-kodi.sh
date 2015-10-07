@@ -10,8 +10,8 @@
 #               	amount of steps to build kodi, it was decided to have it's own 
 #               	script. A deb package is built from this script. 
 #
-# Usage:      		./build-kodi-src.sh --cores [cpu cores]
-#			./build-kodi-src.sh --package-deb
+# Usage:      		./build-kodi.sh --cores [cpu cores]
+#			./build-kodi.sh --package-deb
 # See Also:		https://packages.debian.org/sid/kodi
 # -------------------------------------------------------------------------------
 
@@ -329,7 +329,7 @@ kodi_clone()
 
 	else
 
-			echo -e "\n==> Git directory does not exist. cloning now..."
+			echo -e "\n==> Git directory does not exist. cloning now...\n"
 			sleep 2s
 			# create DIRS
 			cd
@@ -367,7 +367,7 @@ kodi_build()
 	cd "$build_dir"
 	
 	# checkout target release
-	checkout "tags/${kodi_tag}"
+	git checkout "tags/${kodi_tag}"
 
   	# create the Kodi executable manually perform these steps:
 	if ./bootstrap; then

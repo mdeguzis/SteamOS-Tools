@@ -77,14 +77,12 @@ main()
 	
 	# create the tarball from latest tarball creation script
 	# use latest revision designated at the top of this script
-	wget "https://github.com/sivel/speedtest-cli/archive/master.tar.gz"
-	mv "master.tar.gz" "${pgkname}-${pkgver}"
 	
-	# unpack tarball
-	tar -xf "${pgkname}-${pkgver}.tar.xz"
+	# create source tarball
+	tar -cvzf "${pkgname}_${pkgver}.orig.tar.gz" "${pkgname}"
 	
 	# emter source dir
-	cd "${pgkname}-${pkgver}"
+	cd "${pkgname}"
   	
 	# copy in debian folder/files
 	mkdir debian

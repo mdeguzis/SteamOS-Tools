@@ -128,8 +128,7 @@ kodi_prereqs()
 		sleep 2s
 	
 		sudo apt-get install -y --force-yes build-essential fakeroot devscripts checkinstall \
-		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev \
-		libsamplerate0-dev libgnutls28-dev
+		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev libsamplerate0-dev libgnutls28-dev
 	
 		echo -e "\n==> Installing build deps sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
 		sleep 2s

@@ -308,22 +308,22 @@ main_install_eval_pkg()
 				echo -e "\n${PKG} installed successfully\n"
 				sleep 1s
 
-		else
+			else
 		
-			echo -e "\n==ERROR==\nCould not install $PKG. Exiting..."
-			echo -e "Did you remember to add the Debian sources?\n"
+				echo -e "\n==ERROR==\nCould not install $PKG. Exiting..."
+				echo -e "Did you remember to add the Debian sources?\n"
+				sleep 3s
+				exit 1
+				
+			fi
 
-			sleep 3s
-			exit 1
+		else
+
+			# package is already installed and OK
+			echo "Checking for $PKG [OK]"
+			sleep .1s
+
 		fi
-
-	else
-
-		# package is already installed and OK
-		echo "Checking for $PKG [OK]"
-		sleep .1s
-
-	fi
 
 }
 

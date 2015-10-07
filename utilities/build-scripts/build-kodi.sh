@@ -188,7 +188,7 @@ kodi_prereqs()
 		# install dependencies / packages
 		function_install_pkgs
 	
-		echo -e "\n==> Installing build deps sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
+		echo -e "\n==> Installing build deps sourced from ppa:team-xbmc/xbmc-ppa-build-depends"
 		sleep 2s
 
 		#####################################
@@ -255,7 +255,7 @@ kodi_package_deb()
 	
 	# change address in xbmc/tools/Linux/packaging/mk-debian-package.sh 
 	# See: http://unix.stackexchange.com/a/16274
-	sed -i "s|\bxbmc/xbmc-packaging/archive/master.tar.gz\b|ProfessorKaos64/xbmc-packaging/archive/${kodi_tag}.tar.gz|g" "tools/Linux/packaging/mk-debian-package.sh"
+	sed -i "s|\bxbmc/xbmc-packaging/archive/master.tar.gz\b|ProfessorKaos64/xbmc-packaging/archive/${kodi_release}.tar.gz|g" "tools/Linux/packaging/mk-debian-package.sh"
 	
 	echo -e "\nBuild Kodi for our host/ARCH or for target? [host|target]"
 	

@@ -292,7 +292,8 @@ main_install_eval_pkg()
 	# Package eval routine
 	#####################################################
 
-	for PKG in ${PKGS}; do
+	for PKG in ${PKGS}; 
+	do
 	
 		# assess via dpkg OR traditional 'which'
 		PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
@@ -324,6 +325,8 @@ main_install_eval_pkg()
 			sleep .1s
 
 		fi
+		
+	done
 
 }
 

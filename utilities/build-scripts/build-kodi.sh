@@ -468,8 +468,26 @@ kodi_build()
 		
 	fi
 
-	# install source build
-	sudo make install
+	# install source build if requested
+	echo -e "\n==> Do you wish to install the built source code? [y/n]"
+	
+	# get user choice
+	sleep 0.2s
+	read -erp "Choice: " install_choice
+	
+	if [[ "$install_choice" == "y" ]]; then
+	
+		sudo make install
+		
+	elif [[ "$install_choice" == "n" ]]; then
+	
+		echo -e "\nInstallation skipped"
+		
+	else
+	
+		echo -e "\nInvalid response, skipping installation"
+
+	fi
 
 	# From v14 with commit 4090a5f a new API for binary addons is available. 
 	# Not used for now ...
@@ -522,14 +540,13 @@ kodi_post_cfgs()
 	
 	echo -e "\n==> Adding desktop file and artwork"
 
-		
 	# copy files based of pwd
-	sudo cp ""../../cfgs/desktop-files/kodi.desktop" "/usr/share/applications"
-	sudo cp ""../../artwork/banners/Kodi.png" "/home/steam/Pictures"
+	sudo cp "../../cfgs/desktop-files/kodi.desktop" "/usr/share/applications"
+	sudo cp "../../artwork/banners/Kodi.png" "/home/steam/Pictures"
 
 	#################################################
 	# Cleanup
-	#################################################
+	#################################################t
 
 	# clean up dirs
 

@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.8.2
+# Script Ver:	0.8.3
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -281,9 +281,9 @@ funct_create_chroot()
 	# source bashrc to update.
 	# bashrc should source /home/$user/.bash_${chroot_dir}es
 	# can't source form .bashrc, since they use ~ instead of $HOME
-	# source from /home/$user/.bash_${chroot_dir}es instead
+	# source from /home/$user/.bash_aliases instead
 	
-	#source "/home/$user/.bashrc"
+	# source "/home/$user/.bashrc"
 	source "${alias_file}"
 	
 	# enter chroot to test

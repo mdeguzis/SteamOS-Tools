@@ -81,7 +81,7 @@ main()
 	sleep 3s
   	
 	# Upstream Git source uses script to build and install package
-	if python setup.py install; then
+	if sudo python setup.py install; then
 
   	echo -e "\n==INFO==\n${pkgname} build successful"
   	sleep 2s

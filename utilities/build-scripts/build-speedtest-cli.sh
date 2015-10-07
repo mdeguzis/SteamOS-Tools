@@ -93,7 +93,7 @@ main()
 	cp "$scriptdir/$pkgname/debian/changelog" "debian/changelog"
 	
 	# Change version, uploader, insert change log comments
-	sed -i "s|version_placeholder|$pkgver-$pkgrev" debian/changelog
+	sed -i "s|version_placeholder|$pkgver-$pkgrev|g" debian/changelog
 	sed -i "s|uploader|$uploader|g" debian/changelog
 	sed -i "s|dist_rel|$dist_rel|g" debian/changelog
 	

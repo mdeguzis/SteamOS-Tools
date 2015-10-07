@@ -64,6 +64,9 @@ main()
 	install_prereqs
 	
 	# Clone upstream source code
+	
+	echo -e "==> Obtaining upstream source code\n"
+	
 	git clone "$git_url" "$git_dir"
 	
 	# Enter git dir for build
@@ -77,7 +80,7 @@ main()
 	sleep 3s
   	
 	# Upstream Git source uses script to build and install package
-	if python speedtest-cli/setup.py install; then
+	if python setup.py install; then
 
   	echo -e "\n==INFO==\n${pkgname} build successful"
   	sleep 2s

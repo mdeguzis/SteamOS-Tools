@@ -35,8 +35,8 @@ release="$2"
 arch="$3"
 target="${type}-${release}-${arch}"
 stock_choice=""
-alias_file="/$HOME/.bash_aliases"
-chroot_dir="/$HOME/chroots/${target}"
+alias_file="$HOME/.bash_aliases"
+chroot_dir="$HOME/chroots/${target}"
 
 #####################################################
 # Pre-flight checks
@@ -178,13 +178,13 @@ funct_create_chroot()
 	if [[ -d "${chroot_dir}" ]]; then
 	
 		# umount and remove old /etc/fstab entries
-		sudo umount "${chroot_dir}/proc"
-		sudo umount "${chroot_dir}/dev/pts"
-		sudo umount "${chroot_dir}/sys"
-		sudo umount "${chroot_dir}/sys"
+		sudo umount "${chroot_dir}/proc" &> /dev/null
+		sudo umount "${chroot_dir}/dev/pts" &> /dev/null
+		sudo umount "${chroot_dir}/sys" &> /dev/null
+		sudo umount "${chroot_dir}/sys" &> /dev/null
 		
 		# remove old /etc/fstab entries
-		sudo sed -ie "/#chroot ${chroot_dir}/,+3d" "/etc/fstab"
+		sudo sed -ie "\:#chroot ${target}:,+3d" "/etc/fstab"
 	
 		# remove DIR
 		# Fail out if unsuccessful

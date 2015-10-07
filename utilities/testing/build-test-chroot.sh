@@ -26,11 +26,6 @@
 # Vars
 #####################################################
 
-# set $user since we run as root/sudo
-# The reason for running sudo is do to the post install commands being inside the chroot
-# Rather than run into issues adding user(s) to /etc/sudoers, we will run elevated.
-export user="$SUDO_USER"
-
 # remove old custom files
 rm -f "log.txt"
 
@@ -40,8 +35,8 @@ release="$2"
 arch="$3"
 target="${type}-${release}-${arch}"
 stock_choice=""
-alias_file="/home/$user/.bash_aliases"
-chroot_dir="/home/$user/chroots/${target}"
+alias_file="/$HOME/.bash_aliases"
+chroot_dir="/$HOME/chroots/${target}"
 
 #####################################################
 # Pre-flight checks
@@ -263,11 +258,11 @@ funct_create_chroot()
 	fi
 	
 	# source bashrc to update.
-	# bashrc should source /home/$user/.bash_${chroot_dir}es
+	# bashrc should source /$HOME/.bash_${chroot_dir}es
 	# can't source form .bashrc, since they use ~ instead of $HOME
-	# source from /home/$user/.bash_aliases instead
+	# source from /$HOME/.bash_aliases instead
 	
-	# source "/home/$user/.bashrc" as desktop user
+	# source "/$HOME/.bashrc" as desktop user
 	source ${alias_file}
 	
 	# enter chroot to test

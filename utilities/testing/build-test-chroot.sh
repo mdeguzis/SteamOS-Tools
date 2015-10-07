@@ -283,8 +283,8 @@ funct_create_chroot()
 	# can't source form .bashrc, since they use ~ instead of $HOME
 	# source from /home/$user/.bash_aliases instead
 	
-	# source "/home/$user/.bashrc"
-	source "${alias_file}"
+	# source "/home/$user/.bashrc" as desktop user
+	sudo /sbin/runuser -l  $user -c source "${alias_file}"
 	
 	# enter chroot to test
 	# only offer to remain a standard chroot for SteamOS, since it is the only

@@ -284,7 +284,7 @@ funct_create_chroot()
 	# source from /home/$user/.bash_aliases instead
 	
 	# source "/home/$user/.bashrc" as desktop user
-	sudo /sbin/runuser -l  $user -c source "${alias_file}"
+	sudo /sbin/runuser -l  $user -c 'source ${alias_file}'
 	
 	# enter chroot to test
 	# only offer to remain a standard chroot for SteamOS, since it is the only
@@ -310,7 +310,7 @@ funct_create_chroot()
 	echo -e "\tchroot-${target}\n"
 	
 	# Capture input for enter
-	read ENTER_KEY
+	read -r ENTER_KEY
 
 	# copy over post install scripts for execution on the SteamOS chroot
 	echo -e "==> Copying post install scripts to tmp directory\n"

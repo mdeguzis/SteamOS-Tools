@@ -18,7 +18,7 @@ time_stamp_start=(`date +"%T"`)
 src_cmd=""
 
 # upstream URL
-git_url="https://github.com/MaartenBaert/ssr"
+git_url="https://github.com/sivel/speedtest-cli"
 
 # package vars
 pkgname="speedtest-cli"
@@ -65,7 +65,7 @@ main()
 	
 	# Clone upstream source code
 	
-	echo -e "==> Obtaining upstream source code\n"
+	echo -e "\n==> Obtaining upstream source code\n"
 	
 	git clone "$git_url" "$git_dir"
 	

@@ -47,23 +47,6 @@ chroot_dir="/home/$user/chroots/${target}"
 # Pre-flight checks
 #####################################################
 
-# Warn user script must be run as root
-if [ "$(id -u)" -ne 0 ]; then
-
-	clear
-	
-	cat <<-EOF
-	==ERROR==
-	Script must be run as root! Try:
-	
-	sudo $0 [type] [release]
-	
-	EOF
-	
-	exit 1
-	
-fi
-
 # shutdown script if type or release is blank or note supported
 if [[ "$type" == "" || "$release" == "" ]]; then
 
@@ -139,7 +122,8 @@ funct_prereqs()
 	sleep 1s
 	
 	# Install the required packages 
-	apt-get install -y binutils debootstrap debian-archive-keyring ubuntu-archive-keyring
+	sudo apt-get install -y --force-yes binutils debootstrap debian-archive-keyring \
+	ubuntu-archive-keyring
 	
 	# update for keyrings
 	
@@ -199,7 +183,7 @@ funct_create_chroot()
 	if [[ -d "${chroot_dir}" ]]; then
 	
 		# remove DIR
-		rm -rf "${chroot_dir}"
+		sudo rm -rf "${chroot_dir}"
 		
 	else
 	
@@ -284,7 +268,7 @@ funct_create_chroot()
 	# source from /home/$user/.bash_aliases instead
 	
 	# source "/home/$user/.bashrc" as desktop user
-	sudo /sbin/runuser -l  $user -c 'source ${alias_file}'
+	source ${alias_file}
 	
 	# enter chroot to test
 	# only offer to remain a standard chroot for SteamOS, since it is the only

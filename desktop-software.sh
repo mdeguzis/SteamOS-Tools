@@ -784,7 +784,7 @@ main()
         elif [[ "$type" == "kodi-src" ]]; then
 
                 # call external build script for Kodi-src
-                "$scriptdir/utilities/build-scripts/build-kodi-src.sh"
+                "$scriptdir/utilities/build-scripts/build-kodi.sh"
 
 	elif [[ "$type" == "ue4-src" ]]; then
 

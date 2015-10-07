@@ -276,34 +276,10 @@ pre_req_checks()
 	echo -e "\n==> Checking for prerequisite software...\n"
 	sleep 2s
 
-	#################################
-	# debian-keyring
-	#################################
-	# set vars
-	PKG="debian-keyring"
-	# prepend a space for a source type
-	source_type=""
+	# set pkg list
+	PKGS="debian-keyring gdebi-core python-software-properties screen"
 
-	main_install_eval_pkg
-
-	#################################
-	# gdebi
-	#################################
-	# set vars
-	PKG="gdebi-core"
-	# prepend a space for a source type
-	source_type=""
-
-	main_install_eval_pkg
-
-	#################################
-	# python-software-properties
-	#################################
-	# set vars
-	PKG="python-software-properties"
-	# prepend a space for a source type
-	source_type=""
-
+	# install packages
 	main_install_eval_pkg
 
 }
@@ -316,20 +292,24 @@ main_install_eval_pkg()
 	# Package eval routine
 	#####################################################
 
-	# assess via dpkg OR traditional 'which'
-	PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-	PKG_OK_WHICH=$(which $PKG)
-
-	if [[ "$PKG_OK_DPKG" == "" && "$PKG_OK_WHICH" == "" ]]; then
-		echo -e "\n==INFO==\n$PKG not found. Installing now...\n"
-		sleep 2s
-
-		# use validation to make sure commands complete with if/fi
-		if sudo apt-get $cache_tmp ${source_type}install $PKG -y; then
-
-			echo "Successfully installed $PKG"
+	for PKG in ${PKGS}; do
+	
+		# assess via dpkg OR traditional 'which'
+		PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+		PKG_OK_WHICH=$(which $PKG)
+		
+		if [[ "$PKG_OK_DPKG" == "" && "$PKG_OK_WHICH" == "" ]]; then
+		
+			echo -e "\n==INFO==\nInstalling package: ${PKG}\n"
+			sleep 1s
+			
+			if sudo apt-get install ${PKG} -y --force-yes; then
+			
+				echo -e "\n${PKG} installed successfully\n"
+				sleep 1s
 
 		else
+		
 			echo -e "\n==ERROR==\nCould not install $PKG. Exiting..."
 			echo -e "Did you remember to add the Debian sources?\n"
 

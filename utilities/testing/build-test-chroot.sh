@@ -295,9 +295,10 @@ funct_create_chroot()
 	Summary
 	------------------------------------------------------------
 	
-	You will now be placed into the chroot. Press [ENTER].
-	Any available post install scritps will now launch to configure a basic setup or 
-	more advanced optoins (e.g. SteamOS). Please hit [ENTER] now. 
+	You will now be placed into the chroot. Press [ENTER]. Any 
+	available post install scritps will now launch to configure 
+	a basic setup or more advanced optoins (e.g. SteamOS). 
+	Please hit [ENTER] now. 
 	
 	You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
 	enter the chroot again. You can also use the newly created ${chroot_dir} listed below
@@ -333,14 +334,14 @@ funct_create_chroot()
 	sed -i "s|"tmp_arch"|${arch}|g" "${chroot_dir}/tmp/${type}-chroot-post-install.sh"
 	
 	# "bind" /dev/pts
-	mount --bind /dev/pts "${chroot_dir}/dev/pts"
+	sudo mount --bind /dev/pts "${chroot_dir}/dev/pts"
 	
 	# run script inside chroot with:
 	# chroot /chroot_dir /bin/bash -c "su - -c /tmp/test.sh"
-	/usr/sbin/chroot "${chroot_dir}" /bin/bash -c "/tmp/${type}-chroot-post-install.sh"
+	sudo /usr/sbin/chroot "${chroot_dir}" /bin/bash -c "/tmp/${type}-chroot-post-install.sh"
 	
 	# Unmount /dev/pts
-	umount ${chroot_dir}/dev/pts
+	sudo umount ${chroot_dir}/dev/pts
 	
 	#####################################################
 	# Permissions

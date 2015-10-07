@@ -55,8 +55,8 @@ else
 	exit
 fi
 
-# steamos chroot seems to be missing locales, ensure it is installed
-apt-get install locales
+# steamos chroot seems to be missing 'locales' and 'less', ensure they are installed
+apt-get install locales less
 
 cat<<- EOF
 
@@ -265,6 +265,18 @@ sleep 1s
 
 apt-get install -y debian-archive-keyring
 
+echo -e "\n==> Adding gpg keys\n"
+
+# Alchemist needs GPG keys imported
+if [[ "$release" == "alchemist" ]]; then
+
+	# import Alchemist gpg key
+	/tmp/gpg-import.sh 7DEEB7438ABDDD96 2> /dev/null 
+	# import Alchemist gpg key
+	/tmp/gpg-import.sh 7638D0442B90D010 2> /dev/null
+	
+fi
+
 echo -e "\n==> Updating system\n"
 sleep 1s
 
@@ -312,7 +324,6 @@ echo -e "\nDefaults:desktop timestamp_timeout=10" >> /etc/sudoers
 echo -e "\nExiting chroot!\n"
 echo -e "You may use 'sudo /usr/sbin/chroot /home/desktop/chroots/${target}' to 
 enter the chroot again. You can also use the newly created alias listed below\n"
-
 echo -e "\tchroot-${target}\n"
 
 sleep 2s

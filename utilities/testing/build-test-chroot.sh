@@ -177,12 +177,21 @@ funct_create_chroot()
 	# create our chroot folder
 	if [[ -d "${chroot_dir}" ]]; then
 	
+		# umount and remove old /etc/fstab entries
+		sudo umount "${chroot_dir}/proc"
+		sudo umount "${chroot_dir}/dev/pts"
+		sudo umount "${chroot_dir}/sys"
+		sudo umount "${chroot_dir}/sys"
+		
+		# remove old /etc/fstab entries
+		sudo sed -ie "/#chroot ${chroot_dir}/,+3d" "/etc/fstab"
+	
 		# remove DIR
 		# Fail out if unsuccessful
 		if ! sudo rm -rf "${chroot_dir}"; then
 		
 			echo -e "\nRemoval of old directory failed!"
-			echo -e "Please reboot to unmount these protected mounts\n"
+			echo -e "Please reboot / unmount protected mounts left in /etc/fstab\n"
 			sleep 3s
 			exit 1
 		

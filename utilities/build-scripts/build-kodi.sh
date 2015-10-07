@@ -112,7 +112,8 @@ function_install_pkgs()
 	
 	# cycle through packages defined
 	
-	for PKG in ${PKGS}; do
+	for PKG in ${PKGS}; 
+	do
 	
 		# assess via dpkg OR traditional 'which'
 		PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")

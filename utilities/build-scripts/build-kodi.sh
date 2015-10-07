@@ -2,8 +2,8 @@
 # -------------------------------------------------------------------------------
 # Author:    		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	  	build-kodi-src.sh
-# Script Ver:		0.7.4
+# Scipt Name:	  	build-kodi.sh
+# Script Ver:		0.9.5
 # Description:		Attempts to build a deb package from kodi-src
 #               	https://github.com/xbmc/xbmc/blob/master/docs/README.linux
 #               	This is a fork of the build-deb-from-src.sh script. Due to the 
@@ -21,9 +21,18 @@ time_stamp_start=(`date +"%T"`)
 # remove old log
 rm -f "kodi-build-log.txt"
 
+# Specify a final arg for any extra options to build in later
+# The command being echo'd will contain the last arg used.
+# See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
+export extra_opts=$(echo "${@: -1}")
+
 ###################################
 # global vars
 ###################################
+
+# source args
+$build_opts "$1"
+cores_num="$2"
 
 # defaults for packaging attempts
 # use "latest release" tagged release
@@ -54,17 +63,11 @@ git_url="git://github.com/${repo_target}/xbmc.git"
 # global vars
 ###################
 
-# Assess build_opts from desktop-software.sh
 # Allow more concurrent threads to be specified
 if [[ "$build_opts" == "--cores" ]]; then
 
-	# build_opts used from desktop-sofware.sh, set to extra_opts $n
-	cores="$build_opts_arg"
-	
-elif [[ "$arg1" == "--cores" ]]; then
-
-	# set cores to $arg2 when called standalone
-	cores="$arg2"
+	# set cores
+	cores="$core_num"
 	
 else
 
@@ -104,6 +107,33 @@ fi
 # Current checkinstall config:
 # cfgs/source-builds/kodi-checkinstall.txt
 
+function_install_pkgs()
+{
+	
+	# cycle through packages defined
+	
+	for dep in ${deps}; do
+	pkg_chk=$(dpkg-query -s ${dep})
+	if [[ "$pkg_chk" == "" ]]; then
+	
+		echo -e "\n==INFO==\nInstalling package: ${dep}\n"
+		sleep 1s
+		
+		if apt-get install ${dep} -y --force-yes; then
+		
+			echo -e "\n${dep} installed successfully\n"
+			sleep 1s
+		
+	else
+			echo -e "Cannot install ${dep}. Exiting in 15s. \n"
+			sleep 15s
+			exit 1
+	fi
+	
+	done
+	
+}
+
 kodi_prereqs()
 {
 	clear
@@ -117,6 +147,24 @@ kodi_prereqs()
 	# Main build dependencies are installed via desktop-software.sh
 	# from the software list cfgs/software-lists/kodi-src.txt
 	
+	echo -e "==> Installing main deps for building\n"
+	
+	deps="autoconf automake autopoint autotools-dev bc ccache cmake curl dcadec1 dcadec-dev \
+	doxygen default-jre gawk gperf g++ libao-dev libasound2-dev libass-dev libavahi-client-dev \
+	libavahi-common-dev libbluetooth-dev libbluray-dev libbluray1 libboost-dev libboost-thread-dev \
+	libbz2-dev libcap-dev libcdio-dev libcec-dev libcrossguid1 libcrossguid-dev libcurl3 libcurl4-gnutls-dev \
+	libcwiid-dev libdbus-1-dev libfontconfig1-dev libfreetype6-dev libfribidi-dev libgif-dev libglew-dev \
+	libglu1-mesa-dev libiso9660-dev libgnutls28-dev libjasper-dev libjpeg-dev libltdl-dev liblzo2-dev \
+	libmicrohttpd-dev libmodplug-dev libmpcdec-dev libmpeg2-4-dev libmysqlclient-dev libnfs-dev libogg-dev \
+	libpcre3-dev libplist-dev libpng12-dev libpulse-dev librtmp-dev libsdl1.2-dev libsdl2-dev libshairport-dev \
+	libsmbclient-dev libsqlite3-dev libssh-dev libssl-dev libswscale-dev libtag1-dev libtiff5-dev libtinyxml-dev \
+	libtool libudev-dev libusb-dev libva-dev libvdpau-dev libvorbis-dev libxinerama-dev libxml2-dev libxmu-dev \
+	libxrandr-dev libxslt1-dev libxt-dev libyajl-dev lsb-release nasm python-dev python-imaging python-support \
+	swig unzip uuid-dev yasm zip zlib1g-dev"
+	
+	# install dependencies / packages
+	function_install_pkgs
+
 	# required for building kodi debs
 	if [[ "$package_deb" == "yes" ]]; then
 	
@@ -127,8 +175,11 @@ kodi_prereqs()
 		echo -e "==> Installing build deps for packaging\n"
 		sleep 2s
 	
-		sudo apt-get install -y --force-yes build-essential fakeroot devscripts checkinstall \
-		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev libsamplerate0-dev libgnutls28-dev
+		deps="build-essential fakeroot devscripts checkinstall \
+		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev libsamplerate0-dev libgnutls28-dev"
+		
+		# install dependencies / packages
+		function_install_pkgs
 	
 		echo -e "\n==> Installing build deps sourced from ppa:team-xbmc/xbmc-ppa-build-depends\n"
 		sleep 2s
@@ -141,18 +192,17 @@ kodi_prereqs()
 		# packages.libregeek.org
 		
 		# Origin: ppa:team-xbmc/ppa 
-		sudo apt-get install -y --force-yes libcec3 libcec-dev libafpclient-dev libgif-dev \
-		libmp3lame-dev libgif-dev libplatform-dev
+		deps="libcec3 libcec-dev libafpclient-dev libgif-dev libmp3lame-dev libgif-dev libplatform-dev"
+		
+		# install dependencies / packages
+		function_install_pkgs
 		
 		# Origin: ppa:team-xbmc/xbmc-nightly
 		# It seems shairplay, libshairplay* are too old in the stable ppa
-		sudo apt-get install -y --force-yes libshairport-dev libshairplay-dev shairplay
+		deps="libshairport-dev libshairplay-dev shairplay"
 		
-		#####################################
-		# Linking
-		#####################################
-		
-		# Not needed at the moment
+		# install dependencies / packages
+		function_install_pkgs
 
 	fi
 }
@@ -220,25 +270,12 @@ kodi_package_deb()
 		sleep 0.2s
 		read -erp "Choice: " dist_choice
 		
-		if [[ "$scriptdir" == "" ]]; then
-	
-			
-			# copy files based of pwd
-			touch "$HOME/.pbuilderrc"
-			sudo touch "/root/.pbuilderrc"
-			cp ../pbuilder-helper.txt "$HOME/.pbuilderrc"
-			sudo cp ../pbuilder-helper.txt "/root/.pbuilderrc"
-			
-		else
-	
-			# add desktop file for SteamOS/BPM
-			touch "$HOME/.pbuilderrc"
-			sudo touch "/root/.pbuilderrc"
-			cp "$scriptdir/utilities/pbuilder-helper.txt" "$HOME/.pbuilderrc"
-			sudo cp "$scriptdir/utilities/pbuilder-helper.txt" "/root/.pbuilderrc"
-			
-		fi
-		
+		# add desktop file for SteamOS/BPM
+		touch "$HOME/.pbuilderrc"
+		sudo touch "/root/.pbuilderrc"
+		cp ../testing/pbuilder-helper.txt "$HOME/.pbuilderrc"
+		sudo cp "../utilities/pbuilder-helper.txt" "/root/.pbuilderrc"
+
 		# setup dist base
 		if sudo DIST=brewmaster pbuilder create; then
 		
@@ -478,21 +515,10 @@ kodi_post_cfgs()
 	
 	echo -e "\n==> Adding desktop file and artwork"
 
-	# If called standalone change copy paths
-	if [[ "$scriptdir" == "" ]]; then
-
 		
-		# copy files based of pwd
-		sudo cp ../../cfgs/desktop-files/kodi.desktop "/usr/share/applications"
-		sudo cp ../../artwork/banners/Kodi.png "/home/steam/Pictures"
-		
-	else
-
-		# add desktop file for SteamOS/BPM
-		sudo cp "$scriptdir/cfgs/desktop-files/kodi-src.desktop" "/usr/share/applications"
-		sudo cp "$scriptdir/artwork/banners/Kodi.png" "/home/steam/Pictures"
-		
-	fi
+	# copy files based of pwd
+	sudo cp ""../../cfgs/desktop-files/kodi.desktop" "/usr/share/applications"
+	sudo cp ""../../artwork/banners/Kodi.png" "/home/steam/Pictures"
 
 	#################################################
 	# Cleanup

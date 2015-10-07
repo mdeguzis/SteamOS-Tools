@@ -289,7 +289,7 @@ sleep 1s
 
 deps="git devscripts build-essential checkinstall debian-keyring \
 debian-archive-keyring cmake g++ g++-multilib libqt4-dev libqt4-dev \
-libxi-dev libxtst-dev libX11-dev bc libsdl2-dev gcc gcc-multilib sudo"
+libxi-dev libxtst-dev libX11-dev bc gcc gcc-multilib sudo"
 
 for dep in ${deps}; do
 	pkg_chk=$(dpkg-query -s ${dep})
@@ -301,7 +301,7 @@ for dep in ${deps}; do
 		
 		if [[ $? = 100 ]]; then
 			echo -e "Cannot install ${dep}. Please install this manually \n"
-			exit 1
+			sleep 3s
 		fi
 		
 	else

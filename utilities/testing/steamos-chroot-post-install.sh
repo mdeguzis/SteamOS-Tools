@@ -95,6 +95,13 @@ groupadd pulse-access -g 121
 groupadd desktop
 groupadd steam
 
+if [[ "$release" == "alchemist" ]]; then
+
+	# missing groups in Alchemist release
+	groupadd netdev
+	
+fi
+
 # User configurations
 useradd -s /bin/bash -m -d /home/desktop -c "Desktop user" -g desktop desktop
 useradd -s /bin/bash -m -d /home/steam -c "Steam user" -g steam steam

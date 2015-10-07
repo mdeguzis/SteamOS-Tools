@@ -238,15 +238,14 @@ kodi_package_deb()
 	# Ensure we are in the proper directory
 	cd "$build_dir"
 	
-	echo -e "Which Kodi release do you wish to build for:"
-	
 	# show tags instead of branches
 	git tag -l --column
-	echo ""
+	
+	echo -e "\nWhich Kodi release do you wish to build for:"
 	
 	# get user choice
 	sleep 0.2s
-	read -erp "Choice: " kodi_tag
+	read -erp "Release Choice: " kodi_tag
 	
 	# checkout proper release
 	git checkout "tags/${kodi_tag}"

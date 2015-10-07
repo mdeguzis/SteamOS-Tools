@@ -113,22 +113,26 @@ function_install_pkgs()
 	# cycle through packages defined
 	
 	for dep in ${deps}; do
-	pkg_chk=$(dpkg-query -s ${dep})
-	if [[ "$pkg_chk" == "" ]]; then
 	
-		echo -e "\n==INFO==\nInstalling package: ${dep}\n"
-		sleep 1s
+		pkg_chk=$(dpkg-query -s ${dep})
 		
-		if apt-get install ${dep} -y --force-yes; then
+		if [[ "$pkg_chk" == "" ]]; then
 		
-			echo -e "\n${dep} installed successfully\n"
+			echo -e "\n==INFO==\nInstalling package: ${dep}\n"
 			sleep 1s
-		
-	else
-			echo -e "Cannot install ${dep}. Exiting in 15s. \n"
-			sleep 15s
-			exit 1
-	fi
+			
+			if apt-get install ${dep} -y --force-yes; then
+			
+				echo -e "\n${dep} installed successfully\n"
+				sleep 1s
+			
+		else
+				echo -e "Cannot install ${dep}. Exiting in 15s. \n"
+				sleep 15s
+				exit 1
+			fi
+			
+		fi
 	
 	done
 	

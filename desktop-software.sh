@@ -411,8 +411,6 @@ get_software_type()
                 # install plex from helper script
 		ep_install_gameplay_recording
                 exit 1
-        elif [[ "$type" == "kodi-src" ]]; then
-        	software_list="$scriptdir/cfgs/software-lists/kodi-src.txt"
         elif [[ "$type" == "retroarch" ]]; then
                 # add emulation software Retroarch
                 ep_install_retroarch
@@ -730,7 +728,6 @@ main()
 	      "$type" == "extra" ||
 	      "$type" == "emulation-src-deps" ||
 	      "$type" == "retroarch-src" ||
-	      "$type" == "kodi-src" ||
 	      "$type" == "$type" ]]; then
 
 		if [[ "$options" == "uninstall" ]]; then
@@ -780,11 +777,6 @@ main()
                 clear
                 sleep 2s
                 rfs_retroarch_src_main
-
-        elif [[ "$type" == "kodi-src" ]]; then
-
-                # call external build script for Kodi-src
-                "$scriptdir/utilities/build-scripts/build-kodi.sh"
 
 	elif [[ "$type" == "ue4-src" ]]; then
 

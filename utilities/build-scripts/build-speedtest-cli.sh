@@ -64,9 +64,6 @@ main()
 	echo -e "\n==> Obtaining upstream source code\n"
 	
 	git clone "$git_url" "$git_dir"
-	
-	# Enter git dir for build
-	cd "$git_dir" || exit
  
 	#################################################
 	# Build speedtest-cli

@@ -55,6 +55,9 @@ main()
 		mkdir -p "$build_dir"
 		
 	fi
+	
+	# enter build dir
+	cd "$build_dir" || exit
 
 	# install prereqs for build
 	install_prereqs
@@ -71,6 +74,7 @@ main()
 	
 	echo -e "\n==> Creating original tarball\n"
 	sleep 2s
+
 	
 	# create the tarball from latest tarball creation script
 	# use latest revision designated at the top of this script

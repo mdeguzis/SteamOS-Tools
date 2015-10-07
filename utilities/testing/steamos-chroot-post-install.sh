@@ -56,7 +56,7 @@ else
 fi
 
 # steamos chroot seems to be missing 'locales' and 'less', ensure they are installed
-apt-get install locales less
+apt-get install -y --force-yes locales less
 
 cat<<- EOF
 

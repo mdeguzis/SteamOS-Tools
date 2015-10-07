@@ -112,22 +112,24 @@ function_install_pkgs()
 	
 	# cycle through packages defined
 	
-	for dep in ${deps}; do
+	for PKG in ${$PKGS}; do
 	
-		pkg_chk=$(dpkg-query -s ${dep})
+		# assess via dpkg OR traditional 'which'
+		PKG_OK_DPKG=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
+		PKG_OK_WHICH=$(which $PKG)
 		
-		if [[ "$pkg_chk" == "" ]]; then
+		if [[ "$PKG_OK_DPKG" == "" && "$PKG_OK_WHICH" == "" ]]; then
 		
-			echo -e "\n==INFO==\nInstalling package: ${dep}\n"
+			echo -e "\n==INFO==\nInstalling package: ${PKG}\n"
 			sleep 1s
 			
-			if apt-get install ${dep} -y --force-yes; then
+			if sudo apt-get install ${PKG} -y --force-yes; then
 			
-				echo -e "\n${dep} installed successfully\n"
+				echo -e "\n${PKG} installed successfully\n"
 				sleep 1s
 			
 		else
-				echo -e "Cannot install ${dep}. Exiting in 15s. \n"
+				echo -e "Cannot install ${PKG}. Exiting in 15s. \n"
 				sleep 15s
 				exit 1
 			fi
@@ -146,6 +148,7 @@ kodi_prereqs()
 	-----------------------------------------------------------
 	Kodi-src build script
 	-----------------------------------------------------------
+	
 	EOF
 	
 	# Main build dependencies are installed via desktop-software.sh
@@ -153,7 +156,7 @@ kodi_prereqs()
 	
 	echo -e "==> Installing main deps for building\n"
 	
-	deps="autoconf automake autopoint autotools-dev bc ccache cmake curl dcadec1 dcadec-dev \
+	PKGS="autoconf automake autopoint autotools-dev bc ccache cmake curl dcadec1 dcadec-dev \
 	doxygen default-jre gawk gperf g++ libao-dev libasound2-dev libass-dev libavahi-client-dev \
 	libavahi-common-dev libbluetooth-dev libbluray-dev libbluray1 libboost-dev libboost-thread-dev \
 	libbz2-dev libcap-dev libcdio-dev libcec-dev libcrossguid1 libcrossguid-dev libcurl3 libcurl4-gnutls-dev \
@@ -179,7 +182,7 @@ kodi_prereqs()
 		echo -e "==> Installing build deps for packaging\n"
 		sleep 2s
 	
-		deps="build-essential fakeroot devscripts checkinstall \
+		PKGS="build-essential fakeroot devscripts checkinstall \
 		cowbuilder pbuilder debootstrap cvs fpc gdc libflac-dev libsamplerate0-dev libgnutls28-dev"
 		
 		# install dependencies / packages
@@ -196,14 +199,14 @@ kodi_prereqs()
 		# packages.libregeek.org
 		
 		# Origin: ppa:team-xbmc/ppa 
-		deps="libcec3 libcec-dev libafpclient-dev libgif-dev libmp3lame-dev libgif-dev libplatform-dev"
+		PKGS="libcec3 libcec-dev libafpclient-dev libgif-dev libmp3lame-dev libgif-dev libplatform-dev"
 		
 		# install dependencies / packages
 		function_install_pkgs
 		
 		# Origin: ppa:team-xbmc/xbmc-nightly
 		# It seems shairplay, libshairplay* are too old in the stable ppa
-		deps="libshairport-dev libshairplay-dev shairplay"
+		PKGS="libshairport-dev libshairplay-dev shairplay"
 		
 		# install dependencies / packages
 		function_install_pkgs

@@ -21,7 +21,8 @@ time_stamp_start=(`date +"%T"`)
 ep_install_ue4()
 {
 	current_dir=$(pwd)
-	ue4_zip="https://s3.amazonaws.com/unrealtournament/UnrealTournament-Client-XAN-2710036-Linux.zip"
+	URL="https://s3.amazonaws.com/unrealtournament/"
+	ue4_zip="UnrealTournament-Client-XAN-2710036-Linux.zip"
 	ut4_dir="/home/desktop/ut4-linux/LinuxNoEditor"
 	ut4_bin_dir="$ut4_dir/LinuxNoEditor/Engine/Binaries/Linux/"
 	ut4_exe="./UE4-Linux-Test UnrealTournament -SaveToUserDir"
@@ -55,14 +56,14 @@ ep_install_ue4()
 		
 		sleep 2
 		
-		echo -e "\n${ue4_zip}"
-		curl "${ue4_zip}" -o nul -#
+		echo -e "${ue4_zip}"
+		curl "${URL}/${ue4_zip}" -o nul -#
 		
 		#################################################
 		# Setup
 		#################################################
 
-		unzip -o "UnrealTournament-Client-XAN-2710036-Linux.zip"
+		unzip -o "${ue4_zip}"
 		
 		# Mark main binary as executable
 		chmod +x "$ut4_bin_dir/UE4-Linux-Test"

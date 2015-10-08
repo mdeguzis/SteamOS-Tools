@@ -21,7 +21,7 @@ time_stamp_start=(`date +"%T"`)
 ep_install_ue4()
 {
 	current_dir=$(pwd)
-	URL="https://s3.amazonaws.com/unrealtournament/"
+	URL="https://s3.amazonaws.com/unrealtournament"
 	ue4_zip="UnrealTournament-Client-XAN-2710036-Linux.zip"
 	ut4_dir="/home/desktop/ut4-linux/LinuxNoEditor"
 	ut4_bin_dir="$ut4_dir/LinuxNoEditor/Engine/Binaries/Linux/"

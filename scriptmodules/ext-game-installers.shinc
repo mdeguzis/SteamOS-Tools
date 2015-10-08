@@ -57,7 +57,7 @@ ep_install_ue4()
 		sleep 2
 		
 		echo -e "${ue4_zip}"
-		wget "${URL}/${ue4_zip}"
+		wget -O "${ue4_zip}" "${URL}/${ue4_zip}"
 		
 		#################################################
 		# Setup

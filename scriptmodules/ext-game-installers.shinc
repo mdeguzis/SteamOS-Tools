@@ -21,6 +21,7 @@ time_stamp_start=(`date +"%T"`)
 ep_install_ue4()
 {
 	current_dir=$(pwd)
+	ue4_zip="https://s3.amazonaws.com/unrealtournament/UnrealTournament-Client-XAN-2710036-Linux.zip"
 	ut4_dir="/home/desktop/ut4-linux/LinuxNoEditor"
 	ut4_bin_dir="$ut4_dir/LinuxNoEditor/Engine/Binaries/Linux/"
 	ut4_exe="./UE4-Linux-Test UnrealTournament -SaveToUserDir"
@@ -38,7 +39,7 @@ ep_install_ue4()
 			mkdir -p "$ut4_dir"
 		fi
 		
-		cd "$ut4_dir"
+		cd "$ut4_dir" || exit
 	
 		#################################################
 		# Prerequisites
@@ -51,9 +52,11 @@ ep_install_ue4()
 		# sourced from https://aur.archlinux.org/packages/ut4/
 		
 		echo -e "\n==> Acquiring files...please wait\n"
+		
 		sleep 2
 		
-		wget "https://s3.amazonaws.com/unrealtournament/UnrealTournament-Client-XAN-2710036-Linux.zip"
+		echo -e "\n${ue4_zip}"
+		curl "${ue4_zip}" -o nul -#
 		
 		#################################################
 		# Setup
@@ -106,7 +109,7 @@ ep_install_ue4()
 		# clean up dirs
 		
 		# return to previous dir
-		cd $current_dir
+		cd $current_dir || exit
 		
 		clear
 		cat <<-EOF

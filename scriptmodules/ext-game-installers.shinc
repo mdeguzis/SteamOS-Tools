@@ -53,13 +53,13 @@ egi_install_ue4()
 		echo -e "\n==> Acquiring files...please wait\n"
 		sleep 2
 		
-		wget "https://s3.amazonaws.com/unrealtournament/UnrealTournament-Client-XAN-2665501-Linux.zip"
+		wget "https://s3.amazonaws.com/unrealtournament/UnrealTournament-Client-XAN-2710036-Linux.zip"
 		
 		#################################################
 		# Setup
 		#################################################
 
-		unzip -o "UnrealTournament-Client-XAN-2665501-Linux.zip"
+		unzip -o "UnrealTournament-Client-XAN-2710036-Linux.zip"
 		
 		# Mark main binary as executable
 		chmod +x "$ut4_bin_dir/UE4-Linux-Test"

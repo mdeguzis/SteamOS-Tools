@@ -332,9 +332,9 @@ main()
 		
 		clear
 		cat <<-EOF
-		#################################################################"
-		How to use"
-		#################################################################"
+		#################################################################
+		How to use
+		#################################################################
 		You can now not only install package from the SteamOS repository,
 		but also from the Debian and Libregeek repositories with either:
 		
@@ -342,7 +342,7 @@ main()
 		'sudo apt-get -t [release] install <package_name>'
 		
 		Warning: If the apt package manager seems to want to remove a lot
-		"of packages you have already installed, be very careful about proceeding.
+		of packages you have already installed, be very careful about proceeding.
 		
 		EOF
 	

@@ -167,7 +167,7 @@ ep_install_gameplay_recording()
 	sleep 0.5s
 	
 	# Pull in files for recording from cfgs/recording
-	sudo cp "$scriptdir/cfgs/recording/steamos-recording.sh" "/usr/bin"
+	sudo cp "$scriptdir/cfgs/recording/steamos-recording.sh" "/usr/local/bin/steamos-recording"
 	
 	# Desktop files to use in BPM
 	sudo cp "$scriptdir/cfgs/desktop-files/steamos-recording.desktop" "/usr/share/applications"
@@ -179,23 +179,7 @@ ep_install_gameplay_recording()
 	echo -e "\n==> Configuring\n"
 	sleep 0.5s
 	
-	sudo chmod +x "/usr/bin/steamos-recording.sh"
-	
-	############################################
-	# Advise user
-	############################################
-
-	cat <<-EOF
-	#####################################################
-	# Usage
-	#####################################################
-	
-	Now you can start recording with the 'Start Recording' and 
-	'Stop Recording' shortcuts in Big Picture mode on SteamOS.
-	Videos will be saved in $HOME/Videos, which likely will be
-	the /home/steam folder.
-	
-	EOF
+	sudo chmod +x "/usr/local/bin/steamos-recording"
 	
 }
 

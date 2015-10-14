@@ -1,8 +1,8 @@
 #! /bin/bash
 
 # ask user for some vars
-echo -e "\nFPS to record in? (30/60)"
-read -erp "Choice: " FPS
+echo -e "\nFPS to record in? (ENTER for 30 FPS default)"
+read -erp "Choice: " FRAMERATE
 
 echo -e "\nPrefix for recording? (ENTER for default)"
 read -erp "Choice: " NAME_CUSTOM
@@ -13,10 +13,9 @@ rm -f /tmp/pulse.wav
 #set variables
 RECORDER="avconv"
 DIR="$HOME/Videos"
-FRAMERATE="$FPS"
 FORMAT="avi"
 LOG="/tmp/dumps/${RECORDER}-recording.log"
-export DISPLAY=:0.0
+export DISPLAY=":0.0"
 
 # Set NAME
 if [[ "$NAME_CUSTOM" == "" ]]; then
@@ -28,6 +27,19 @@ else
 
         # set to choice
         STARTNAME="$NAME_CUSTOM"
+
+fi
+
+# Set FPS
+if [[ "$FRAMERATE" == "" ]]; then
+
+        # set to default
+        FRAMERATE="30"
+
+else
+
+        # set to choice
+        FRAMERATE="$FRAMERATE"
 
 fi
 
@@ -63,7 +75,7 @@ done
 NAME=${STARTNAME}-${NUMBER}${DATE}
 
 # start the recording
-${RECORDER} -f pulse -i default /tmp/pulse.wav -f x11grab -r ${FRAMERATE} -s ${RES} -i ${DISPLAY} -acodec pcm_s16le -vcodec libx264 -preset ultrafast -crf 0 -threads 0 ${DIR}/${NAME}.avi
+${RECORDER} -f pulse -i default /tmp/pulse.wav -f x11grab -r ${FRAMERATE} -s ${RES} -i $DISPLAY -acodec pcm_s16le -vcodec libx264 -preset ultrafast -crf 0 -threads 0 ${DIR}/${NAME}.avi
 
 # In case the recording does finish/crash
 rm /tmp/pulse.wav

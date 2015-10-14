@@ -30,7 +30,7 @@ RES=$(xdpyinfo|grep dimensions|awk '{print $2}')
 # make recording directories if they don't exist yet
 if [[ ! -d ${DIR} ]]; then
 
-	mkdir ${DIR}
+	mkdir -p ${DIR}
 	
 fi
 

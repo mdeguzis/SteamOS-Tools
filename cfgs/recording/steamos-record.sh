@@ -1,4 +1,15 @@
 #! /bin/bash
+# -------------------------------------------------------------------------------
+# Author:    	Sharkwouter, Michael DeGuzis
+# Git:	    	https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	steamos-record.sh
+# Script Ver:	1.0.0
+# Description:	Records gameplay and audio on target machine.
+#               You must SSH into your SteamOS machine, and change user
+#               to 'steam'
+#
+# Usage:	steamos-record.sh
+# -------------------------------------------------------------------------------
 
 # ask user for some vars
 echo -e "\nFPS to record in? (ENTER for 30 FPS default)"

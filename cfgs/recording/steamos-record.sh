@@ -40,7 +40,7 @@ while [ -f $DIR/${STARTNAME}${NUMBER}_${DATE}.$FORMAT ]
 do
         NUMBER=$((${NUMBER}+1))
 done
-NAME=${STARTNAME}${NUMBER}_${DATE}
+NAME=${STARTNAME}${NUMBER}${DATE}
 
 # start the recording
 avconv -f pulse -i default /tmp/pulse.wav -f x11grab -r ${FRAMERATE} -s $RES -i $DISPLAY -acodec pcm_s16le -vcodec libx264 -preset ultrafast -crf 0 -threads 0 $DIR/$NAME.avi

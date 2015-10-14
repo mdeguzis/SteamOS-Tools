@@ -27,7 +27,6 @@ ep_pkg_cleanup()
 	rm -rf /tmp/*.deb*
 	rm -f "$temp_file"
 	
-	# GPG key files
 	rm -f ./*.Release.key*
 	rm -f /tmp/*.Release.key*
 	
@@ -168,7 +167,7 @@ ep_install_gameplay_recording()
 	
 	# Pull in files for recording from cfgs/recording
 
-	sudo cp "$scriptdir/cfgs/recording/steamos-record.sh" "/usr/local/bin"
+	sudo cp "$scriptdir/utilities/steamos-record.sh" "/usr/local/bin"
 
 	############################################
 	# Configure

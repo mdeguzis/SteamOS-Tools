@@ -1,16 +1,35 @@
 #! /bin/bash
 
+# ask user for some vars
+echo -e "\nFPS to record in? (30/60)"
+read -erp "Choice: " FPS
+
+echo -e "\nPrefix for recording? (ENTER for default)"
+read -erp "Choice: " NAME_CUSTOM
+
 # ensure pulse is gone
 rm -f /tmp/pulse.wav
 
 #set variables
 RECORDER="avconv"
 DIR="$HOME/Videos"
-FRAMERATE="30"
-STARTNAME="recording"
+FRAMERATE="$FPS"
 FORMAT="avi"
 LOG="/tmp/dumps/${RECORDER}-recording.log"
 export DISPLAY=:0.0
+
+# Set NAME
+if [[ "$NAME_CUSTOM" == "" ]]; then
+
+        # set to default
+        STARTNAME="recording"
+
+else
+
+        # set to choice
+        STARTNAME="$NAME_CUSTOM"
+
+fi
 
 # log errors
 exec | tee ${LOG}
@@ -37,11 +56,11 @@ fi
 # set name of the recording
 DATE=$(date +"_%Y%m%d")
 NUMBER=1
-while [ -f $DIR/${STARTNAME}${NUMBER}${DATE}.$FORMAT ]
+while [ -f $DIR/${STARTNAME}-${NUMBER}${DATE}.$FORMAT ]
 do
         NUMBER=$((${NUMBER}+1))
 done
-NAME=${STARTNAME}${NUMBER}${DATE}
+NAME=${STARTNAME}-${NUMBER}${DATE}
 
 # start the recording
 ${RECORDER} -f pulse -i default /tmp/pulse.wav -f x11grab -r ${FRAMERATE} -s ${RES} -i ${DISPLAY} -acodec pcm_s16le -vcodec libx264 -preset ultrafast -crf 0 -threads 0 ${DIR}/${NAME}.avi

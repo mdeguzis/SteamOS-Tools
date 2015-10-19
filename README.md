@@ -69,6 +69,7 @@ Normal script execution, sans arguments, goes a little bit like:
 # Video demonstrations / tutorials
 
 * [SteamOS-Tools introductory video](https://youtu.be/h-gdPWjZlb4)
+* [Libregeek on Youtube](https://www.youtube.com/channel/UCkAs7k_xDG0pBD82T1YiD6g)
 * For all other videos and tutorials, please see the [Videos and Tutorials](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Videos-and-Tutorials) wiki page
 
 # Branches

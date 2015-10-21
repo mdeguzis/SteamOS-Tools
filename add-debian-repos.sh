@@ -47,7 +47,7 @@ fi
 
 check_gpg()
 {
-	if [[ "$scriptdir" == "" || "$current_dir" = "SteamOS-Tools" ]]; then
+	if [[ "$scriptdir" == "" && "$current_dir" != "SteamOS-Tools" ]]; then
 	
 		#  Find where the user cloned SteamOS-Tools to
 		echo -e "==INFO==\nadd-debian-repos.sh was run from a foreign directory!"

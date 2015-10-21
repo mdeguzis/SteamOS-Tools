@@ -24,7 +24,7 @@ export final_opts=$(echo "${@: -1}")
 install="yes"
 
 # get top level current dir
-current_dir=${basename "$PWD"} 
+current_dir=$(basename "$PWD") 
 
 # check for and set install status
 if [[ "$1" == "install" ]]; then
@@ -47,7 +47,7 @@ fi
 
 check_gpg()
 {
-	if [[ "$scriptdir" == "" || "$current_dir" != "SteamOS-Tools" ]]; then
+	if [[ "$scriptdir" == "" && "$current_dir" != "SteamOS-Tools" ]]; then
 	
 		#  Find where the user cloned SteamOS-Tools to
 		echo -e "==INFO==\nadd-debian-repos.sh was run from a foreign directory!"

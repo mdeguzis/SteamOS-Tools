@@ -3,7 +3,7 @@
 # Author:    	  Michael DeGuzis
 # Git:	    	  https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  build-plex-media-player.sh
-# Script Ver:	  0.1.1-beta
+# Script Ver:	  0.1.3-beta
 # Description:  Attempts to build a deb package from Plex Media Player git source
 #               PLEASE NOTE THIS SCRIPT IS NOT YET COMPLETE!
 # See:		 
@@ -168,39 +168,15 @@ main()
 	
 	# enter source dir
 	cd ${pkgname}*
-	
-	# Create the debian folder from the exiting debian-packager
-	# if debian folder exists in upacked tarball or git source
-	if [[ -d "debian" ]]; then
-	
-		# copy debian shell changelog from SteamOS-Tools
-		cp "$scriptdir/$pkgname/debian/changelog" "debian/changelog"
-		
-		# Change version, uploader, insert change log comments
-		sed -i "s|version_placeholder|$pkgver-$pkgrev|g" debian/changelog
-		sed -i "s|uploader|$uploader|g" debian/changelog
-		sed -i "s|dist_rel|$dist_rel|g" debian/changelog
-		
-		# open debian/changelog and update
-		echo -e "\n==> Opening changelog for build. Please ensure there is a revision number"
-		sleep 3s
-		nano debian/changelog	
-		
-		# set build type
-		build_type="dpkg"
-		
-	else
-	
-		# no debian folder, use checkinstall
-		# set build type
-		build_type="checkinstall"
-		
-	fi
-	
+
+	# grab pre-requisite package binaries due to Qt 5.6 alpha being needed
+	scripts/fetch-binaries.py
+
 	# build the package
-	mkdir build
-	cd build || exit
-	cmake -GNinja -DCMAKE_BUILD_TYPE=Debug -DQTROOT=/path/to/qt -DCMAKE_INSTALL_PREFIX=output 
+	ninja
+	
+	# create the redistributable
+	ninja build
 
 	############################
 	# proceed to DEB BUILD
@@ -209,20 +185,11 @@ main()
 	echo -e "\n==> Building Debian package from source\n"
 	sleep 2s
 
-	if [[ "$build_type" == "dpkg" ]]; then
-
-		# Build with dpkg-buildpackage
-		
-		#dpkg-buildpackage -us -uc -nc
-		dpkg-buildpackage -rfakeroot -us -uc
-		
-	elif [[ "$build_type" == "checkinstall" ]]; then
-	
-		# use checkinstall
-		sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
-		--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" \
-		--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --replaces="$replaces" \
-		--pkggroup="$pkggroup" --requires="$requires" --exclude="/home"
+	# use checkinstall
+	sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
+	--pkgversion="$(date +%Y%m%d)+git" --pkgrelease="$pkgrel" \
+	--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --replaces="$replaces" \
+	--pkggroup="$pkggroup" --requires="$requires" --exclude="/home"
 		
 	fi
 

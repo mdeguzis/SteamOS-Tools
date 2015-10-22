@@ -144,7 +144,6 @@ main()
 		check_gpg
 		
 		cat <<-EOF
-
 		==> Adding Debian ${reponame}, ${backports_reponame}, and ${steamos_tools_reponame} 
 		EOF
 		

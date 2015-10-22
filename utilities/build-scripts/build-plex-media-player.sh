@@ -196,6 +196,11 @@ main()
 		build_type="checkinstall"
 		
 	fi
+	
+	# build the package
+	mkdir build
+	cd build || exit
+	cmake -GNinja -DCMAKE_BUILD_TYPE=Debug -DQTROOT=/path/to/qt -DCMAKE_INSTALL_PREFIX=output 
 
 	############################
 	# proceed to DEB BUILD

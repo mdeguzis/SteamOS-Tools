@@ -4,8 +4,8 @@
 # Git:	    	  https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  build-plex-media-player.sh
 # Script Ver:	  0.1.3-beta
-# Description:  Attempts to build a deb package from Plex Media Player git source
-#               PLEASE NOTE THIS SCRIPT IS NOT YET COMPLETE!
+# Description:	  Attempts to build a deb package from Plex Media Player git source
+#                 PLEASE NOTE THIS SCRIPT IS NOT YET COMPLETE!
 # See:		 
 # Usage:
 # -------------------------------------------------------------------------------
@@ -27,8 +27,8 @@ git_dir="${build_dir}/${pkgname}"
 
 # upstream URL
 git_url="https://github.com/plexinc/plex-media-player"
-tarball_url="https://github.com/plexinc/plex-media-player/archive/v1.0.0.5-53192cb0.tar.gz"
-tarball_file=v1.0.0.5-53192cb0.tar.gz"
+tarball_url=""
+tarball_file=""
 
 # package vars
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
@@ -52,64 +52,15 @@ install_prereqs()
 
 }
 
-function_clone_git()
-{
-	
-	if [[ -d "$git_dir" ]]; then
-	
-		echo -e "\n==Info==\nGit folder already exists! Rebuild [r] or [p] pull?\n"
-		sleep 1s
-		read -ep "Choice: " git_choice
-		
-		if [[ "$git_choice" == "p" ]]; then
-			# attempt to pull the latest source first
-			echo -e "\n==> Attempting git pull..."
-			sleep 2s
-		
-			# attempt git pull, if it doesn't complete reclone
-			if ! git pull; then
-				
-				# failure
-				echo -e "\n==Info==\nGit directory pull failed. Removing and cloning..."
-				sleep 2s
-				rm -rf "$git_dir"
-				# clone to git DIR
-				git clone "$git_url" "$git_dir"
-				
-			fi
-			
-		elif [[ "$git_choice" == "r" ]]; then
-			echo -e "\n==> Removing and cloning repository again...\n"
-			sleep 2s
-			# remove, clone, enter
-			rm -rf "$git_dir"
-			cd "$build_dir"
-			# create and clone to git dir
-			git clone "$git_url" "$git_dir"
-		else
-		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
-			sleep 2s
-			# create and clone to git dir
-			git clone "$git_url" "$git_dir"
-		
-		fi
-	
-	else
-		
-			echo -e "\n==Info==\nGit directory does not exist. cloning now..."
-			sleep 2s
-			# create and clone to current dir
-			git clone "$git_url" "$git_dir"
-	fi
-	
-}
-
 main()
 {
+	clear
+	
+	#################################################
+	# Fetch source
+	#################################################
 	
 	# create and enter build_dir
-	
 	if [[ -d "$build_dir" ]]; then
 	
 		sudo rm -rf "$build_dir"
@@ -124,53 +75,18 @@ main()
 	# Enter build dir
 	cd "$build_dir"
 	
-	clear
- 
-	#################################################
-	# Build PKG
-	#################################################
-	
-	echo -e "\n==> Creating original tarball\n"
-	sleep 2s
-	
-	echo -e "Use upstream tarball or git source? [tar/git]"
-	sleep 0.2s
-	
-	read -erp "Choice: " upstream_choice
-	
-	if [[ "$upstream_source" == "tar" ]]
-	
-		# create the tarball from latest tarball creation script
-		# use latest revision designated at the top of this script
-		wget "${tarball_url}/${tarball_file}"
+	# Get upstream source
+	git clone "$git_url" "$git_dir"
 		
-		# unpack tarball
-		tar -xf ${pkgname}*.tar.xz
-		
-		# actively get pkg ver from created tarball
-		pkgver=$(find . -name *.orig.tar.xz | cut -c 18-41)
-		
-	elif [[ "$upstream_source" == "git" ]]
-	
-		# clone git
-		git clone "$git_url" "$git_dir"
-		
-		# enter git dir
-		cd "$git_dir"
-	
-	else
-	
-		echo -e "\nInvalid input, exiting in 15 seconds"
-		sleep 15s
-		exit 1
-	
-	fi
-	
-	# enter source dir
-	cd ${pkgname}*
+	# enter git dir
+	cd "$git_dir"
 
 	# grab pre-requisite package binaries due to Qt 5.6 alpha being needed
 	scripts/fetch-binaries.py
+
+	#################################################
+	# Build source
+	#################################################
 
 	# build the package
 	ninja
@@ -178,9 +94,9 @@ main()
 	# create the redistributable
 	ninja build
 
-	############################
-	# proceed to DEB BUILD
-	############################
+	#################################################
+	# Build Debian package
+	#################################################
 	
 	echo -e "\n==> Building Debian package from source\n"
 	sleep 2s

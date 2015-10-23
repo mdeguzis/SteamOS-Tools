@@ -48,7 +48,7 @@ install_prereqs()
 	sleep 2s
 	# install needed packages
 	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring cmake qt4-dev-tools ninja
+	debian-keyring debian-archive-keyring cmake ninja
 
 }
 
@@ -82,14 +82,40 @@ main()
 	cd "$git_dir"
 
 	# grab pre-requisite package binaries due to Qt 5.6 alpha being needed
-	scripts/fetch-binaries.py
+	scripts/fetch-binaries.py -p darwin-x86_64
 
 	#################################################
-	# Build source
+	# Build QT 5.6 alpha source
+	#################################################
+
+	# install qt-5.6 alpha if it is not found
+	# See: http://doc.qt.io/qt-5/build-sources.html
+	qt_loc=""
+	
+	if [[ ! -f "$qt_loc" ]]; then
+	
+		# install deb, requires libregeek testing repo
+		if sudo apt-get install qt-everywhere-oss; then
+		
+			echo -e "\nQT 5.6-Alpha installed successfully"
+			
+		else
+		
+			echo -e "\nQT 5.6-Alpha installation FAILED. "
+			echo -e "Did you you remember to add the Libregeek testing repositories?"
+			sleep 5s
+			exit 1
+			
+		fi
+		
+	fi
+
+	#################################################
+	# Build PMP source
 	#################################################
 
 	# build the package
-	ninja
+	sudo ninja
 	
 	# create the redistributable
 	ninja build

@@ -30,14 +30,16 @@ maintainer="ProfessorKaos64"
 provides="mpv"
 pkggroup="video"
 requires=""
-replaces="
+replaces=""
 
 # build dirs
 build_dir="/home/desktop/build-${pkgname}-temp"
 
-# source
-git_url="https://github.com/mpv-player/mpv"
-git_dir="$build_dir/$pkgname"
+# deps
+# Use the build-wrapper instead of the main mpv source
+# See: https://github.com/mpv-player/mpv/blob/master/README.md
+git_url="https://github.com/mpv-player/mpv-build"
+git_dir="mpv-build"
 
 install_prereqs()
 {
@@ -46,7 +48,8 @@ install_prereqs()
 	sleep 2s
 	
 	# dependencies
-	sudo apt-get install -y --force-yes build-essential
+	sudo apt-get install -y --force-yes build-essential git pkg-config samba-dev \
+	luajit devscripts equivs
 }
 
 main()
@@ -72,39 +75,30 @@ main()
 	# Enter build dir
 	cd "$build_dir"
 
-  # clone
-  git clone "$git_url" "git_dir"
-
 	#################################################
-	# Build mpv
+	# Build mpv-build deps pkg and install
 	#################################################
 
-  cd $git_dir
-  ./bootstrap.py
-  ./waf configure --enable-libmpv-shared
-  ./waf build
-  sudo ./waf install
-
-	#################################################
-	# Build Debian package
-	#################################################
+	# clone
+	git clone "$git_url" "$git_dir"
+	cd "$git_dir"
+	
+	# check for updates
+	./update
+	
+	# Install the dependencies 
+	rm -f mpv-build-deps_*_*.deb
+	sudo mk-build-deps
 	
 	echo -e "\n==> Building Debian package from source\n"
 	sleep 2s
-
-	# use checkinstall
-	sudo checkinstall --pkgname="$pkgname" --fstrans="no" --backup="no" \
-	--pkgversion="$pkgver" --pkgrelease="$pkgrel" \
-	--deldoc="yes" --maintainer="$maintainer" --provides="$provides" --replaces="$replaces" \
-	--pkggroup="$pkggroup" --requires="$requires" --exclude="/home"
-		
-	fi
-
-	#################################################
-	# Post install configuration
-	#################################################
 	
-	# TODO
+	# build debian package
+	dpkg-buildpackage -uc -us -b -j4
+	
+	# move build-dep package to build dir
+	# the mpv player package itself will be in the build dir
+	mv mpv-build-deps*.deb ..
 	
 	#################################################
 	# Cleanup
@@ -139,15 +133,10 @@ main()
 	echo -e "If you don't, please check build dependcy errors listed above."
 	echo -e "############################################################\n"
 	
-	if [[ -d "$git_dir/build" ]]; then
-	
-		echo -e "Showing contents of: $git_dir/build: \n"
-		ls "$git_dir/build" | grep -E *.deb
-	
-	elif [[ -d "$build_dir" ]]; then
+	if [[ -d "$build_dir" ]]; then
 	
 		echo -e "Showing contents of: $build_dir: \n"
-		ls "${git_dir}/build" | grep -E *.deb
+		ls "$build_dir" | grep -E *.deb
 
 	fi
 
@@ -158,16 +147,9 @@ main()
 	
 	if [[ "$transfer_choice" == "y" ]]; then
 	
-		# transfer files
-		if [[ -d "$git_dir/build" ]]; then
-		
-			scp ${git_dir}/build/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
-		
-		elif [[ -d "$build_dir" ]]; then
-		
-			scp $build_dir/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
+		scp $build_dir/*.deb mikeyd@archboxmtd:/home/mikeyd/packaging/SteamOS-Tools/incoming
 
-		fi
+	fi
 		
 	elif [[ "$transfer_choice" == "n" ]]; then
 		echo -e "Upload not requested\n"

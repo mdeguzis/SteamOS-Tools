@@ -21,10 +21,6 @@ time_stamp_start=(`date +"%T"`)
 # reset source command for while loop
 src_cmd=""
 
-# build dirs
-build_dir="/home/desktop/build-${pkgname}-temp"
-git_dir="${build_dir}/${pkgname}"
-
 # upstream URL
 git_url="https://github.com/AUTHOR/REPOSITORY"
 tarball_url="URL-TO-TARBALL"
@@ -40,6 +36,10 @@ provides="PROVIDES"
 pkggroup="GROUP"
 requires=""
 replaces=""
+
+# build dirs
+build_dir="/home/desktop/build-${pkgname}-temp"
+git_dir="${build_dir}/${pkgname}"
 
 install_prereqs()
 {

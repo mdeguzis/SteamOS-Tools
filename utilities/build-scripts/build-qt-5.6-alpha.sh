@@ -20,8 +20,10 @@ time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 # reset source command for while loop
 
-# build dirs
-build_dir="/home/desktop/build-${pkgname}-temp"
+# files
+qt_src_url="http://download.qt.io/development_releases/qt/"
+qt_rel="5.6/5.6.0-alpha/single/"
+qt_src_file="qt-everywhere-opensource-src-5.6.0-alpha.tar.gz"
 
 # package vars
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
@@ -34,6 +36,9 @@ provides="qt-everywhere-oss"
 pkggroup="utils"
 requires=""
 replaces=""
+
+# build dirs
+build_dir="/home/desktop/build-${pkgname}-temp"
 
 install_prereqs()
 {
@@ -83,17 +88,27 @@ main()
 	# install qt-5.6 alpha
 	# See: http://doc.qt.io/qt-5/build-sources.html
 	
-  # obtain source
-	wget "http://download.qt.io/development_releases/qt/5.6/5.6.0-alpha/single/qt-everywhere-opensource-src-5.6.0-alpha.tar.gz"
-	cd "qt-everywhere-opensource-src-5.6.0-alpha.tar.gz" || exit
+ 	# obtain source
+	wget "${qt_src_url}/${qt_rel}"
+	tar -xzvf "$qt_src_file"
+	cd "qt-everywhere-opensource-src*" || exit
 	
 	# configure opensource version, auto-accept yes
-	echo -e "o\nyes" | ./configure 
+	./configure -confirm-license -opensource
 	
 	# Generate build
 	make
 	
 	# install build
+	sudo make install
+	
+	#################################################
+	# Build QT 5.6 alpha source (web engine)
+	#################################################
+	
+	cd qtwebengine
+	qmake
+	make
 	sudo make install
 
 	#################################################

@@ -1,13 +1,15 @@
 #!/bin/bash
 # -------------------------------------------------------------------------------
-# Author:    	  Michael DeGuzis
-# Git:	    	  https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	  build-qt-5.6-alpha.sh
-# Script Ver:	  0.1.1
+# Author:	Michael DeGuzis
+# Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	build-qt-5.6-alpha.sh
+# Script Ver:	0.1.3
 # Description:	Builds QT 5.6-alpha for specific use in building PlexMediaPlayer
 #
-# See:		 
-# Usage:        ./build-qt-5.6-alpha.sh
+# See:		http://doc.qt.io/qt-5/linux-requirements.html
+#		http://wiki.qt.io/Building-Qt-5-from-Git
+#
+# Usage:	./build-qt-5.6-alpha.sh
 # -------------------------------------------------------------------------------
 
 #################################################
@@ -54,12 +56,13 @@ install_prereqs()
 	# Needed if not passing -qt-xcb
 	sudo apt-get install -y --force-yes libxcb-keysyms1-dev libxcb-image0-dev \
 	libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync0-dev libxcb-xfixes0-dev libxcb-shape0-dev \
-	libxcb-randr0-dev libxcb-render-util0-dev
+	libxcb-randr0-dev libxcb-render-util0-dev libgl1-mesa-dev
 	
 	# Needed for qtwebengine building
 	sudo apt-get install -y --force-yes libcap-dev libegl1-mesa-dev x11-xserver-utils \
 	libxrandr-dev libxss-dev libxcursor-dev libxtst-dev libpci-dev libdbus-1-dev \
-	libatk1.0-dev libnss3-dev re2c gperf
+	libatk1.0-dev libnss3-dev re2c gperf flex bison libicu-dev libxslt-dev ruby \
+	libssl-doc x11proto-composite-dev
 
 }
 
@@ -99,10 +102,11 @@ main()
 	cd "qt-everywhere-opensource-src*" || exit
 	
 	# configure opensource version, auto-accept yes
+	# To test configure, run "./configure -confirm-license -prefix $PWD/qtbase -opensource -nomake tests"
 	./configure -confirm-license -opensource
 	
 	# Generate build
-	make
+	make -j4
 	
 	# install build
 	sudo make install

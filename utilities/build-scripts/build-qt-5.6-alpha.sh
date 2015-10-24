@@ -87,7 +87,7 @@ main()
 	cd "$build_dir"
 
 	#################################################
-	# Build QT 5.6 alpha source (main)
+	# Build QT 5.6 alpha source
 	#################################################
 
 	# install qt-5.6 alpha
@@ -107,17 +107,6 @@ main()
 	# install build
 	sudo make install
 	
-	#################################################
-	# Build QT 5.6 alpha source (web engine)
-	#################################################
-	
-	cd qtwebengine
-	# Don't use the qmake from the qt4-qmake package, use the qmake of the built Qt, use the full path to it.
-	# See: https://forum.qt.io/topic/49031/solved-maps-and-android/4
-	../qtbase/bin/qmake
-	make
-	sudo make install
-
 	#################################################
 	# Build Debian package
 	#################################################

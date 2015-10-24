@@ -59,7 +59,7 @@ install_prereqs()
 	# Needed for qtwebengine building
 	sudo apt-get install -y --force-yes libcap-dev libegl1-mesa-dev x11-xserver-utils \
 	libxrandr-dev libxss-dev libxcursor-dev libxtst-dev libpci-dev libdbus-1-dev \
-	libatk1.0-dev libnss3-dev
+	libatk1.0-dev libnss3-dev re2c gperf
 
 }
 

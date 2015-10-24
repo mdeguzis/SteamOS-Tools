@@ -55,6 +55,11 @@ install_prereqs()
 	sudo apt-get install -y --force-yes libxcb-keysyms1-dev libxcb-image0-dev \
 	libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync0-dev libxcb-xfixes0-dev libxcb-shape0-dev \
 	libxcb-randr0-dev libxcb-render-util0-dev
+	
+	# Needed for qtwebengine building
+	sudo apt-get install -y --force-yes libcap-dev libegl1-mesa-dev x11-xserver-utils \
+	libxrandr-dev libxss-dev libxcursor-dev libxtst-dev libpci-dev libdbus-1-dev \
+	libatk1.0-dev libnss3-dev
 
 }
 
@@ -82,7 +87,7 @@ main()
 	cd "$build_dir"
 
 	#################################################
-	# Build QT 5.6 alpha source
+	# Build QT 5.6 alpha source (main)
 	#################################################
 
 	# install qt-5.6 alpha
@@ -107,7 +112,9 @@ main()
 	#################################################
 	
 	cd qtwebengine
-	qmake
+	# Don't use the qmake from the qt4-qmake package, use the qmake of the built Qt, use the full path to it.
+	# See: https://forum.qt.io/topic/49031/solved-maps-and-android/4
+	../qtbase/bin/qmake
 	make
 	sudo make install
 

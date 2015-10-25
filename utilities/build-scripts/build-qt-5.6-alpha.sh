@@ -62,7 +62,7 @@ install_prereqs()
 	sudo apt-get install -y --force-yes libcap-dev libegl1-mesa-dev x11-xserver-utils \
 	libxrandr-dev libxss-dev libxcursor-dev libxtst-dev libpci-dev libdbus-1-dev \
 	libatk1.0-dev libnss3-dev re2c gperf flex bison libicu-dev libxslt-dev ruby \
-	libssl-doc x11proto-composite-dev
+	libssl-doc x11proto-composite-dev libasound2-dev libxcomposite-dev
 
 }
 
@@ -97,19 +97,33 @@ main()
 	# See: http://doc.qt.io/qt-5/build-sources.html
 	
  	# obtain source
-	wget "${qt_src_url}/${qt_rel}"
+	wget ${qt_src_url}/${qt_rel}
 	tar -xzvf "$qt_src_file"
 	cd "qt-everywhere-opensource-src*" || exit
 	
 	# configure opensource version, auto-accept yes
-	# To test configure, run "./configure -confirm-license -prefix $PWD/qtbase -opensource -nomake tests"
-	./configure -confirm-license -opensource
+	./configure -confirm-license -prefix $PWD/qtbase -opensource -nomake tests
 	
 	# Generate build
 	make -j4
 	
 	# install build
-	sudo make install
+	# sudo make install
+	
+	#################################################
+	# Build QT 5.6 alpha source (web engine)
+	################################################
+	# Ensure liQt5WebEngine.so exists after install
+	
+	cd qtwebengine
+	qmake
+	# Don't use the qmake from the qt4-qmake package, use the qmake of the built Qt, use the full path to it.
+	# See: https://forum.qt.io/topic/49031/solved-maps-and-android/4
+	
+	../qtbase/bin/qmake
+ 	make
+ 	#sudo make install
+
 	
 	#################################################
 	# Build Debian package

@@ -47,7 +47,7 @@ install_prereqs()
 	sleep 2s
 	# install needed packages
 	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring
+	debian-keyring debian-archive-keyring openssl libssl-dev
 
 }
 
@@ -79,9 +79,9 @@ main()
 		
 	# enter git dir
 	cd "$git_dir"
-
+	-DOPENSSL_ROOT_DIR=/usr/bin/openssl \
 	#################################################
-	# Build PMP source
+	# Build cmake source
 	#################################################
 
 	# get desired version
@@ -89,7 +89,9 @@ main()
 	
 	# configure cmake with SSL support
 	# For a listing of options, you'd need to run 'cmake -LAH' and check CMakeCache.txt
-	./configure -- -DCMAKE_USE_OPENSSL=ON
+	#  qmake is only used if you are building cmake-gui with Qt4 support
+	./configure -- -DCMAKE_USE_OPENSSL=ON \
+	-DQT_QMAKE_EXECUTABLE=/usr/local/Qt-5.6.0/bin/qmake
   
 	# build the package
 	make

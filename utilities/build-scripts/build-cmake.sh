@@ -2,10 +2,10 @@
 # -------------------------------------------------------------------------------
 # Author:    	  Michael DeGuzis
 # Git:	    	  https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	  build-cmakeer.sh
-# Script Ver:	  0.1.3-beta
+# Scipt Name:	  build-cmake.sh
+# Script Ver:	  0.5.5
 # Description:	  Attempts to build a deb package from Plex Media Player git source
-#                 PLEASE NOTE THIS SCRIPT IS NOT YET COMPLETE!
+#                 Installs cmake to '/usr/local/bin/cmake'
 # See:		 
 # Usage:
 # -------------------------------------------------------------------------------
@@ -27,6 +27,7 @@ git_dir="${build_dir}/${pkgname}"
 
 # upstream URL
 git_url="https://cmake.org/cmake.git"
+target_ver="3.3.2"
 
 # package vars
 uploader="SteamOS-Tools Signing Key <mdeguzis@gmail.com>"
@@ -84,10 +85,11 @@ main()
 	#################################################
 
 	# get desired version
-	git checkout v3.1.3
+	git checkout v${target_ver}
 	
-	# configure cmake
-	./configure
+	# configure cmake with SSL support
+	# For a listing of options, you'd need to run 'cmake -LAH' and check CMakeCache.txt
+	./configure -- -DCMAKE_USE_OPENSSL=ON
   
 	# build the package
 	make

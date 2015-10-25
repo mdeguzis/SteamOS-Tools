@@ -83,8 +83,11 @@ main()
 	# Build PMP source
 	#################################################
 
-  # configure cmake
-  ./configure
+	# get desired version
+	git checkout v3.1.3
+	
+	# configure cmake
+	./configure
   
 	# build the package
 	make

@@ -46,9 +46,13 @@ install_prereqs()
 	clear
 	echo -e "==> Installing prerequisites for building...\n"
 	sleep 2s
-	# install needed packages
-	sudo apt-get install git devscripts build-essential checkinstall \
-	debian-keyring debian-archive-keyring cmake ninja
+	# install needed packages from Debian repos
+	sudo apt-get install -y --force-yes git devscripts build-essential checkinstall \
+	debian-keyring debian-archive-keyring ninja-build mesa-common-dev python-pkgconfig \
+	mpv libmpv-dev libsdl2-dev libcec-dev
+	
+	# built for Libregeek
+	sudo apt-get install -y --force-yes qt-everywhere-oss
 
 }
 
@@ -81,9 +85,6 @@ main()
 	# enter git dir
 	cd "$git_dir"
 
-	# grab pre-requisite package binaries due to Qt 5.6 alpha being needed
-	scripts/fetch-binaries.py -p darwin-x86_64
-
 	#################################################
 	# Build QT 5.6 alpha source
 	#################################################
@@ -113,13 +114,32 @@ main()
 	#################################################
 	# Build PMP source
 	#################################################
-
-	# build the package
-	sudo ninja
 	
-	# create the redistributable
-	ninja build
+	# the qt directory in /usr/local is owned by staff, correct t hat
+	sudo chown -R root:root 
+	
+	mkdir build
+	cd build
 
+	# Cmake must be 3.1 or higher, install Libregeek version if it does not exist
+	cmake_chk=$(/usr/local/bin/cmake --version | grep "cmake version")
+	
+	if [[ "$cmake_chk" != "cmake version 3.3.2" ]]; then
+	
+		# install Libregeek cmake
+		# WARNING: package will replace existing cmake!
+		wget "http://packages.libregeek.org/SteamOS-Tools/pool/main/c/cmake/cmake_20151025+git+SteamOS2-1_amd64.deb"
+		sudo gdebi "cmake_20151025+git+SteamOS2-1_amd64.deb"
+		rm -f "cmake_20151025+git+SteamOS2-1_amd64.deb"
+		
+	fi
+	
+	/usr/local/bin/cmake -GNinja -DCMAKE_BUILD_TYPE=Debug \
+	-DQTROOT=/usr/local/Qt-5.6.0 \
+	-DCMAKE_INSTALL_PREFIX=output ..
+
+	ninja-build
+	
 	#################################################
 	# Build Debian package
 	#################################################

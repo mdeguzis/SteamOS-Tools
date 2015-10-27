@@ -538,7 +538,7 @@ add_web_app_chrome()
 		
 		fi
 		
-		echo -e "Antimicro was installed/required by web apps, remove? [y/n]"
+		echo -e "\nAntimicro was installed/required by web apps, remove? [y/n]"
 		sleep 0.3s
 		
 		read -ep "Choice: " antimicro_choice

@@ -532,8 +532,38 @@ add_web_app_chrome()
 	
 	if [[ "$install" == "no" ]]; then
 	
-		# TODO
-		:
+		echo -e "Google Chrome was installed/required by web apps, remove? [y/n]"
+		sleep 0.3s
+		
+		read -ep "Choice: " chrome_choice
+		
+		if [[ "$chrome_choice" == "y" ]]; then
+		
+			sudo apt-get -y remove google-chrome-stable
+		
+		fi
+
+		echo -e "\nRemove created shortcuts from applications directory?"
+		echo -e "Please note this will NOT remove custom URL shortcuts"
+		sleep 0.3s
+		
+		read -ep "Choice: " app_choice
+		
+		if [[ "$app_choice" == "y" ]]; then
+		
+			sudo rm -f "/usr/share/applications/Chrome-Extensions.desktop"
+			sudo rm -f "/usr/share/applications/Hulu.desktop"
+			sudo rm -f "/usr/share/applications/Netflix.desktop"
+			sudo rm -f "/usr/share/applications/Amazon-Prime-Movies.desktop"
+			sudo rm -f "/usr/share/applications/Youtube.desktop"
+			sudo rm -f "/usr/share/applications/YoutubeTV.desktop"
+			sudo rm -f "/usr/share/applications/Soundcloud.desktop"
+			sudo rm -f "/usr/share/applications/Twitch.desktop"
+		
+		fi
+		
+		echo -e "\nRemoval complete. Please manually remove the shortcuts in Big Picture Mode\n"
+		sleep 3s
 		
 	fi
 }

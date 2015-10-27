@@ -530,7 +530,7 @@ add_web_app_chrome()
 		ep_pkg_cleanup
 	
 	
-	if [[ "$install" == "no" ]]; then
+	elif [[ "$install" == "no" ]]; then
 	
 		echo -e "Google Chrome was installed/required by web apps, remove? [y/n]"
 		sleep 0.3s

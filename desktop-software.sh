@@ -431,16 +431,16 @@ install_software()
 	# Set mode and proceed based on main() choice
         if [[ "$options" == "install" ]]; then
 
-                apt_mode="install"
+                export apt_mode="install"
 
 	elif [[ "$options" == "uninstall" ]]; then
 
-                apt_mode="remove"
+                export apt_mode="remove"
                 # only tee output
 
 	elif [[ "$options" == "test" ]]; then
 
-		apt_mode="--dry-run install"
+		export apt_mode="--dry-run install"
 		# grap Inst and Conf lines only
 
 	elif [[ "$options" == "check" ]]; then

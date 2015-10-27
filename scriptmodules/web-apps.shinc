@@ -532,7 +532,11 @@ add_web_app_chrome()
 	
 	elif [[ "$install" == "no" ]]; then
 	
-		echo -e "Google Chrome was installed/required by web apps, remove? [y/n]"
+		clear
+		echo -e "==> Uninstalling web app functionality"
+		sleep 3s
+	
+		echo -e "\nGoogle Chrome was installed/required by web apps, remove? [y/n]"
 		sleep 0.3s
 		
 		read -ep "Choice: " chrome_choice

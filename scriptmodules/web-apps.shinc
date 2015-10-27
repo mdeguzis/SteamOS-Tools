@@ -8,15 +8,6 @@
 # Usage:	      	n/a , module
 # -----------------------------------------------------------------------
 
-
-# check for and set install status set by desktop-software.sh
-
-if [[ "$apt_mode" == "install" ]]; then
-	install="yes"
-elif [[ "$apt_mode" == "remove" ]]; then
-    	install="no"
-fi
-
 web_app_chrome_exts()
 {
 
@@ -124,7 +115,7 @@ web_app_twitch()
 add_web_app_chrome()
 {
 
-	if [[ "$install" == "yes" ]]; then
+	if [[ "$options" == "install" ]]; then
 
 		#######################################
 		# Set vars
@@ -530,7 +521,7 @@ add_web_app_chrome()
 		ep_pkg_cleanup
 	
 	
-	elif [[ "$install" == "no" ]]; then
+	elif [[ "$uninstall" == "no" ]]; then
 	
 		clear
 		echo -e "==> Uninstalling web app functionality"

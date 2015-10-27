@@ -436,17 +436,13 @@ install_software()
 	elif [[ "$options" == "uninstall" ]]; then
 
                 export apt_mode="remove"
-                # only tee output
 
 	elif [[ "$options" == "test" ]]; then
 
 		export apt_mode="--dry-run install"
-		# grap Inst and Conf lines only
 
 	elif [[ "$options" == "check" ]]; then
 
-
-		# do nothing
 		echo "" > /dev/null
 
         fi

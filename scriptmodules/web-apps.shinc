@@ -542,6 +542,17 @@ add_web_app_chrome()
 			sudo apt-get -y remove google-chrome-stable
 		
 		fi
+		
+		echo -e "Antimicro was installed/required by web apps, remove? [y/n]"
+		sleep 0.3s
+		
+		read -ep "Choice: " antimicro_choice
+		
+		if [[ "$antimicrochoice" == "y" ]]; then
+		
+			sudo apt-get -y remove antimicro
+		
+		fi
 
 		echo -e "\nRemove created shortcuts from applications directory?"
 		echo -e "Please note this will NOT remove custom URL shortcuts"

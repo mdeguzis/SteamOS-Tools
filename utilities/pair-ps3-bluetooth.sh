@@ -43,34 +43,20 @@ main()
 {
   
   	clear
-	echo -e "\n==> Downloading sixad...\n"
+	echo -e "\n==> Downloading qtsixa/sixad...\n"
 	sleep 1s
-	# These are Debian rebuilt packages from the ppa:falk-t-j/qtsixa PPA
-	# Or.. compile from https://github.com/aaronp24/QtSixA/blob/master/INSTALL
-	wget -P /tmp "http://www.libregeek.org/SteamOS-Extra/utilities/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
 	
-	# Install
-	echo -e "==> Installing sixad...\n"
-	sleep 1s
-	sudo dpkg -i "/tmp/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
-	
-	echo -e "\n==> Downloading sixpair...\n"
-	sleep 1s
-	# These are Debian rebuilt packages from the ppa:falk-t-j/qtsixa PPA
-	wget -P /tmp "http://www.pabr.org/sixlinux/sixpair.c"
-	
-	echo -e "==> Building and installing sixpair...\n"
-	gcc -o "/tmp/sixpair" "/tmp/sixpair.c" -lusb
-	
-	# move sixpair binary to /usr/bin to execuate in any location in $PATH
-	sudo mv "/tmp/sixpair" "/usr/bin"
+	sudo apt-get install -y qtsixa
 		
 	#configure and start sixad daemon.
 	echo -e "==> Configuring sixad...\n"
 	sleep 2s
-	sudo update-rc.d sixad defaults
-	sudo /etc/init.d/sixad enable
-	sudo /etc/init.d/sixad start
+	sudo systemctl enable sixad
+	sudo systemctl start sixad
+	
+	# correct bluetooth udev rules
+	bt_udev_chk=$()
+	/lib/udev/rules.d/50-bluetooth-hci-auto-poweron.rules
   
   	echo -e "\c==> Configuring controller(s)...\n"
   	

@@ -5,7 +5,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	pair-ps3-bluetooth.sh
-# Script Ver:	0.8.1
+# Script Ver:	0.8.5
 # Description:	Pairs PS3 Bluetooth controller on SteamOS
 # Usage:	./pair-ps3-bluetooth.sh
 #
@@ -47,12 +47,16 @@ main()
 	sudo systemctl enable sixad
 	sudo systemctl start sixad
 	
+	echo -e "==> Fixing bluetoothd...\n"
+	sleep 2s
+	
 	# for some reason, the permissions for /usr/lib/bluetooth/bluetoothd get destroyed by
 	# starting sixad (maybe old SysV-style code clashing?)
 	sudo chmod +x "/usr/lib/bluetooth/bluetoothd"
 	sudo systemctl restart bluetooth
   
   	echo -e "\c==> Configuring controller(s)...\n"
+  	sleep 1s
   	
   	echo -e "\n##############################################"
 	echo -e "Please select the number of PS3 controllers"

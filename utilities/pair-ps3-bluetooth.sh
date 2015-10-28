@@ -5,7 +5,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	pair-ps3-bluetooth.sh
-# Script Ver:	0.2.0
+# Script Ver:	0.8.1
 # Description:	Pairs PS3 Bluetooth controller on SteamOS
 # Usage:	./pair-ps3-bluetooth.sh
 #

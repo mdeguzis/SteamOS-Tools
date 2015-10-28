@@ -26,14 +26,17 @@ install_prereqs()
 	# Libregeek packages
 	sudo apt-get -y install qtsixa
 	
+	# for some reason, /usr/lib/bluetooth/bluetoothd does not have execution set
+	sudo chmod +x "/usr/lib/bluetooth/bluetoothd"
 }
 
 clean_install()
 {
 	echo -e "\n==> Stopping sixad service"
+	
 	# stop  sixad init service if present
 	if [[ -f "/etc/init.d/sixad" ]]; then
-		sudo service sixad stop
+		sudo systemctl sixad stop
 	fi
 	sleep 1s
 }
@@ -46,6 +49,7 @@ main()
 	# configure and start sixad daemon.
 	echo -e "==> Configuring sixad...\n"
 	sleep 2s
+	
 	sudo systemctl enable sixad
 	sudo systemctl start sixad
   
@@ -145,9 +149,6 @@ main()
 	# start the service at boot time
 	sixad --boot-yes
 	
-	# Alternatively:
-	# sudo update-rc.d sixad defaults
-	
 }
 	
 ps3_pair_blu()
@@ -210,14 +211,6 @@ install_prereqs
 # MAIN 
 ##################################################### 
 main | tee log_temp.txt 
-
-#################################################### 
-# cleanup 
-##################################################### 
-
-# cleanup deb packages and leftovers
-rm -f "/tmp/sixad_1.5.1+git20130130-SteamOS_amd64.deb"
-rm -f "/tmp/sixpair.c"
 
 # apt cleanup
 sudo apt-get autoremove

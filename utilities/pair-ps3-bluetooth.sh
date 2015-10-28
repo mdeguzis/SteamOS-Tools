@@ -19,12 +19,12 @@ install_prereqs()
 	echo -e "\n==> Installing prerequisite software\n"
 	sleep 1s
 
-	# Fetch what has to be installed from Alchemist (conflicting version)
-	sudo apt-get install libbluetooth-dev libusb-dev
-
-	# Fetch what has to be installed from wheezy
-	sudo apt-get -t wheezy install bluez-utils bluez-compat bluez-hcidump \
-	checkinstall joystick pyqt4-dev-tools
+	# Fetch what has to be installed from the Debian / Valve repositories
+	sudo apt-get -y install libbluetooth-dev libusb-dev bluez-utils bluez-compat \
+	bluez-hcidump checkinstall joystick pyqt4-dev-tools 
+	
+	# Libregeek packages
+	sudo apt-get -y install qtsixa
 	
 	
 }
@@ -43,20 +43,12 @@ main()
 {
   
   	clear
-	echo -e "\n==> Downloading qtsixa/sixad...\n"
-	sleep 1s
-	
-	sudo apt-get install -y qtsixa
 		
-	#configure and start sixad daemon.
+	# configure and start sixad daemon.
 	echo -e "==> Configuring sixad...\n"
 	sleep 2s
 	sudo systemctl enable sixad
 	sudo systemctl start sixad
-	
-	# correct bluetooth udev rules
-	bt_udev_chk=$()
-	/lib/udev/rules.d/50-bluetooth-hci-auto-poweron.rules
   
   	echo -e "\c==> Configuring controller(s)...\n"
   	

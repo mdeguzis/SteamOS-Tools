@@ -18,16 +18,10 @@ install_prereqs()
 
 	echo -e "\n==> Installing prerequisite software\n"
 	sleep 1s
-
-	# Fetch what has to be installed from the Debian / Valve repositories
-	sudo apt-get -y install libbluetooth-dev libusb-dev bluez-tools bluez-firmware \
-	bluez-hcidump checkinstall joystick pyqt4-dev-tools
 	
 	# Libregeek packages
 	sudo apt-get -y install qtsixa
 	
-	# for some reason, /usr/lib/bluetooth/bluetoothd does not have execution set
-	sudo chmod +x "/usr/lib/bluetooth/bluetoothd"
 }
 
 clean_install()
@@ -52,6 +46,11 @@ main()
 	
 	sudo systemctl enable sixad
 	sudo systemctl start sixad
+	
+	# for some reason, the permissions for /usr/lib/bluetooth/bluetoothd get destroyed by
+	# starting sixad (maybe old SysV-style code clashing?)
+	sudo chmod +x "/usr/lib/bluetooth/bluetoothd"
+	sudo systemctl restart bluetooth
   
   	echo -e "\c==> Configuring controller(s)...\n"
   	
@@ -145,9 +144,6 @@ main()
 	###########################################################
 	# End controller pairing process
 	###########################################################
-	
-	# start the service at boot time
-	sixad --boot-yes
 	
 }
 	

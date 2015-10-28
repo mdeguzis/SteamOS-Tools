@@ -20,18 +20,17 @@ install_prereqs()
 	sleep 1s
 
 	# Fetch what has to be installed from the Debian / Valve repositories
-	sudo apt-get -y install libbluetooth-dev libusb-dev bluez-utils bluez-compat \
-	bluez-hcidump checkinstall joystick pyqt4-dev-tools 
+	sudo apt-get -y install libbluetooth-dev libusb-dev bluez-tools bluez-firmware \
+	bluez-hcidump checkinstall joystick pyqt4-dev-tools
 	
 	# Libregeek packages
 	sudo apt-get -y install qtsixa
-	
 	
 }
 
 clean_install()
 {
-	echo -e "\n==> Stopping sixad service\n"
+	echo -e "\n==> Stopping sixad service"
 	# stop  sixad init service if present
 	if [[ -f "/etc/init.d/sixad" ]]; then
 		sudo service sixad stop

@@ -39,7 +39,7 @@ cores_num="$2"
 package_deb="no"
 skip_to_build="no"
 kodi_release="Isengard"
-kodi_tag="15.1-Isengard"
+kodi_tag="15.2-Isengard"
 
 # Set target
 repo_target="xbmc"

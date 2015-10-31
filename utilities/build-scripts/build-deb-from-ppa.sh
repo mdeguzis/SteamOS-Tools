@@ -90,6 +90,11 @@ install_prereqs()
                 echo -e "\n==INFO==\nJessie sources appear to be added."
                 sleep 2s
         fi
+        
+        echo -e "\n==> Installing build tools...\n"
+        sleep 2s
+        
+        sudo apt-get install -y --force-yes devscripts build-essential checkinstall
 
 }
 

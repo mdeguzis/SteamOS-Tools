@@ -8,7 +8,7 @@ Tools and scripts for SteamOS. Be sure to check out the [Upcoming features](http
 
 All operations are tested against official Valve releases only.
 
-For the latest change details, please see the commits page, orchangelog.md for overall change details.
+For the latest change details, please see the commits page and changelog.md file for overall change details.
 
 # Warning
 

@@ -1,3 +1,15 @@
+SteamOS-Tools 2.6.5
+
+  * Updated Kodi to Isengard 15.2 stable release
+  * Updated Retroarch from latest PPA stable release
+  * Updated Libretro cores from latest PPA stable releases
+  * Updated obs-studio from latest git upstream source version
+  * Updated qtsixa from latest git upstream source version
+  * Updated Dolphin emulator from latest PPA stable source
+  * Added dolphin-emu-master, stable variant of Dolphin Emulator
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 31 Oct 2015 14:58:00 -5000
+
 SteamOS-Tools 2.6.3
   * Sytax corrections
   * Added obs-studio, ffmpeg, pcsx2, stepmania, dolphin-emu to brewmaster dist release

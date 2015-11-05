@@ -3,7 +3,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-ds4drv.sh
-# Script Ver:	1.0.0
+# Script Ver:	1.1.3
 # Description:	Attempts to build a deb package from DS4DRV git source
 #
 # See:		Upstread Readme for all notes/tips/tricks
@@ -82,6 +82,16 @@ main()
 	
 	# Create build files
 	sudo python setup.py install
+	
+	# install service
+	sudo cp "systemd/ds4drv.service" "/lib/systemd/system/"
+	
+	# ds4drv's systemd service expects the binary file to be at /usr/bin
+	# this install places it at /usr/local/bin, move it
+	sudo mv "/usr/local/bin/ds4drv" "/usr/bin/"
+ 
+ 	# enable service
+ 	sudo systemctl enable ds4drv.service
  
 	#################################################
 	# Build Debian package

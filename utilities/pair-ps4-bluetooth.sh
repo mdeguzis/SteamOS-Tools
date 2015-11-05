@@ -23,10 +23,16 @@ install_prereqs()
         sources_check_steamos_tools=$(sudo find /etc/apt -type f -name "steamos-tools.list")
 
         if [[ "$sources_check_jessie" == "" || "$sources_check_steamos_tools" == "" ]]; then
-                echo -e "\nSteamOS-Tools / Debian repos do not appear to be added! Exiting in 10 seconds"
-                echo -e "Please use ./add-debian-repos.sh in the root directory."
+                
+                cat <<-EOF
+                SteamOS-Tools / Debian repos do not appear to be added!
+                echo -e Please use ./add-debian-repos.sh in the root directory.
                 sleep 10s
+                
+                Exiting in 10 seconds
+		EOF
                 exit 1
+                
         else
                 echo -e "\nRepository checks [OK]"
         fi

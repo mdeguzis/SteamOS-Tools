@@ -24,20 +24,18 @@ install_prereqs()
 
         if [[ "$sources_check_jessie" == "" || "$sources_check_steamos_tools" == "" ]]; then
                 
-                cat <<-EOF
-                SteamOS-Tools / Debian repos do not appear to be added!
-                echo -e Please use ./add-debian-repos.sh in the root directory.
+                echo -e "SteamOS-Tools / Debian repos do not appear to be added!"
+                echo -e "Please use ./add-debian-repos.sh in the root directory."
+                echo -e "Exiting in 10 seconds"
                 sleep 10s
-                
-                Exiting in 10 seconds
-		EOF
                 exit 1
                 
         else
-                echo -e "\nRepository checks [OK]"
+        	echo -e "Checking for Repositories..."
+                echo -e "Repository checks [OK]"
         fi
 	
-	echo -e "==> Installing prerequisites for building...\n"
+	echo -e "\n==> Installing prerequisites for building...\n"
 	sleep 2s
 	
 	# install basic build packages
@@ -53,6 +51,7 @@ show_summary()
 {
 
 	cat <<-EOF
+	
 	#####################################################
 	Summary
 	#####################################################
@@ -78,7 +77,7 @@ main()
 	git clone https://github.com/chrippa/ds4drv
 	cd ds4drv
 	
-	echo -e "\n==> Installing ds4drv"
+	echo -e "\n==> Post-install configurations\n"
 	
 	# Install dsrvdrv
 	

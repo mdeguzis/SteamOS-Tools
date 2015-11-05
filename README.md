@@ -50,16 +50,20 @@ Normal script execution, sans arguments, goes a little bit like:
 ```
 
 ## Contents
-* artwork - banners and various images/artwork for SteamOS.
+* artwork - Banners and various images/artwork for SteamOS.
 * cfgs/ - various configuration files, including package lists for Debian software installations.
-* docs/ - readme files for each script.
-* ext-game-installers/ - Game installers for games outside Steam (e.g. GZDoom)
-* extra/ - various extra scripts
-* game-fixes - a location to store some small deployable fixes for games.
-* scriptmodules/ - plugable bash modules / routines for any of the below scripts. Scripts for packages and more (including Netflix!)
-* utilities/ - various scripts to handle small parts of the SteamOS-Tools repository (plugable objects) and standalone tools for use.
+* docs/ - Various documentation. Previously hosted script documentation that is now on teh wiki.
+* ext-game-installers/ - Game installers for games outside Steam (e.g. GZDoom).
+* extra/ - Various extra scripts
+* game-fixes - A location to store some small deployable fixes for games.
+* scriptmodules/ - Plugable bash modules / routines for any of the below scripts. Scripts for packages and more.
+* utilities/ - various scripts to handle small parts of the SteamOS-Tools repository (plugable objects), build scripts, and standalone tools for use.
 * README.md - This file.
+* AUTHORS.md - Contributions, attributions, and more
+* LICENCE.md - License for this repository. Share all the things! ZOMGOMGBBQHELICOPTERZ
 * add-debian-repos.sh - adds debian repositories for installing Debian software.
+* changelog.md - Changes made to repository and tools
+* contributing.md - Guidelines for repository contributions
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages, as well as special additional packages/utilities, such as gameplay recording, "web apps," and more. Please see the readme file in docs/ for the full listing of options.
 * disclaimer.md - safety warnings for this repository.
 

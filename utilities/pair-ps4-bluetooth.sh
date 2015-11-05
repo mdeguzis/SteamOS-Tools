@@ -32,7 +32,7 @@ install_prereqs()
 show_summary()
 {
 
-  cat <<-EOF
+	cat <<-EOF
 	#####################################################
 	Summary
 	#####################################################
@@ -53,16 +53,16 @@ show_summary()
 main()
 {
   
-  echo -e "\n==> Cloning upstream source\n"
-  
-  git clone https://github.com/chrippa/ds4drv
-  cd ds4drv
-  
-  echo -e "\n==> Installing ds4drv"
-  
-  # Install dsrvdrv
-  
-  echo -e "\t--Installing base files"
+	echo -e "\n==> Cloning upstream source\n"
+	
+	git clone https://github.com/chrippa/ds4drv
+	cd ds4drv
+	
+	echo -e "\n==> Installing ds4drv"
+	
+	# Install dsrvdrv
+	
+	echo -e "\t--Installing base files"
 	sudo python setup.py install
 	
 	# install service
@@ -75,22 +75,19 @@ main()
 	
 	echo -e "\t--Correcting binary path"
 	sudo mv "/usr/local/bin/ds4drv" "/usr/bin/"
- 
- 	# enable service
- 	
- 	echo -e "\t--Enabling service ds4drv"
- 	sudo systemctl enable ds4drv.service
- 	
- 	echo -e "\t--Starting ervice ds4drv"
- 	sudo systemctl start ds4drv.service
- 	
- 	# Show summary
- 	sleep 3s
- 	show_summary
 	
-}
+	# enable service
 	
-
+	echo -e "\t--Enabling service ds4drv"
+	sudo systemctl enable ds4drv.service
+	
+	echo -e "\t--Starting ervice ds4drv"
+	sudo systemctl start ds4drv.service
+	
+	# Show summary
+	sleep 3s
+	show_summary
+	
 }
 
 ##################################################### 

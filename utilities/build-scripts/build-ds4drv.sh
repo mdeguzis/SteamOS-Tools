@@ -42,7 +42,10 @@ install_prereqs()
 	sleep 2s
 	# install basic build packages
 	sudo apt-get -y --force-yes install autoconf automake build-essential pkg-config bc checkinstall \
-	pip python python-setuptools pyudev python-evdev bluez-utils
+	python-pip python python-setuptools python-dev python-pyudev bluez-tools gcc
+	
+	# Install python-evdev using pip
+	sudo pip install evdev
 
 }
 

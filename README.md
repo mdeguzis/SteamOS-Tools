@@ -18,6 +18,8 @@ Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/Ste
 
 Please refer to the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki), located to your right in this repository for all supplemental information and instructions. A direct link to the FAQ is [here](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/FAQ). Information for installations, as well as much more, is located within. If there is a page missing, or information you wish me to add, please let me know via an issues ticket.
 
+For SteamOS-specific help (aside from SteamOS-Tools), I do ask you visit and review the community SteamOS wiki at [steamos.wikia.com](http://steamos.wikia.com) for all other topics. This is one area that I greatly appreciate help and support with. Please considering signing up or anonymously contributing to it. 
+
 # Hosted packages
 
 There is now a Debian personal repository hosted at packages.libregeek.org. Be sure to check out the "hosted packages" section below! The wiki entry also contains repository information if you should wish to add the repository manually.

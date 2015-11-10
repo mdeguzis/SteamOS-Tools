@@ -143,7 +143,7 @@ pre_reqs()
 		for dep in ${deps}; do
 			pkg_chk=$(dpkg-query -s ${dep})
 			if [[ "$pkg_chk" == "" ]]; then
-				sudo apt-get install ${dep}
+				sudo apt-get install -y --force-yes ${dep}
 				
 				if [[ $? = 100 ]]; then
 					echo -e "Cannot install ${dep}. Please install this manually \n"

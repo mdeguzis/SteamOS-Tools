@@ -319,8 +319,8 @@ create_usb_zip()
 	echo -e "\n==> Formatting drive\n"
 	
 	# mount, format, and mount again :P
-	sudo umount ${$drive_choice}*
-	$format_drive ${$drive_choice}
+	sudo umount ${drive_choice}*
+	$format_drive ${drive_choice}
 	
 	# create tmp dir and moutn drive
 	if [[ -d "/tmp/steamos-usb" ]]; then
@@ -346,7 +346,7 @@ create_usb_zip()
 	
 }
 
-install_image()
+apply_image()
 {
 	# check $file extension
 	# ask user if they wish to use a DVD/CD or USB drive for ISO images later below
@@ -608,10 +608,9 @@ eval_git_repo()
 	
 }
 
-download_valve_steamos()
+download_file()
 {
-	# Downloads singular file (mainly ISO images or Valve's installers)
-	# Also used for legacy VaporOS (ISO image)
+	# Downloads singular file
 	
 	# remove previous files if desired
 	if [[ "$HOME/downloads/$release/$file" ]]; then
@@ -627,7 +626,7 @@ download_valve_steamos()
 			rm -f "$HOME/downloads/$release/$md5file"
 			rm -f "$HOME/downloads/$release/$shafile"
 			echo ""
-			wget --no-clobber "$base_url/$release/$file"
+			wget --no-clobber "$base_url/$release_folder/$file"
 			
 		elif [[ "$rdl_choice" == "n" ]]; then
 		
@@ -642,61 +641,15 @@ download_valve_steamos()
 	else
 	
 		# file does not exist, download
-		wget --no-clobber "$base_url/$release/$file"
+		wget --no-clobber "$base_url/$release_folder/$file"
 		
 	fi
 	
 }
 
-download_vaporos_legacy()
+download_stephensons_git()
 {
-	# Downloads singular file (mainly ISO images or Valve's installers)
-	# Also used for legacy VaporOS (ISO image)
-	
-	# remove previous files if desired
-	if [[ "$HOME/downloads/$release/$file" ]]; then
-		
-		echo -e "\n$file exists, overwrite? (y/n)"
-		# get user choice
-		read -erp "Choice: " rdl_choice
-		
-		if [[ "$rdl_choice" == "y" ]]; then
-		
-			# remove and download
-			rm -f "$HOME/downloads/$release/$file"
-			rm -f "$HOME/downloads/$release/$md5file"
-			rm -f "$HOME/downloads/$release/$shafile"
-			echo ""
-			wget --no-clobber "$base_url/iso/$file"
-			
-		elif [[ "$rdl_choice" == "n" ]]; then
-		
-			# Do not overwrite files
-			# If checksum does not exist, it will be downloaded in the integrity check function
-			# If the checksum file exists, the --clobber flag will keep the existing checksum
-			# due to the filename matching the remote.
-			# If integrity check fails, users should overwrite on retry
-			echo "" > /dev/null
-	
-		fi
-	else
-	
-		# file does not exist, download
-		wget --no-clobber "$base_url/iso/$file"
-		
-	fi
-	
-}
-
-download_stephensons()
-{
-	# Downloads and builds iso/checksum for Stephenson's Rocket or
-	# VaporOS-Mod
-	
-	# set fallback if there is an issue upstream (will use professorkaos64 fork below)
-	# Fallback set: 20150901
-	# See: https://github.com/steamos-community/stephensons-rocket/pull/111
-	fallback="false"
+	# Downloads and builds iso/checksum for Stephenson's Rocket or VaporOS
 	
 	# eval repo status for Stephenson's Rocket
 	eval_git_repo
@@ -707,27 +660,23 @@ download_stephensons()
 	fi
 	
 	# Generate image andchecksum files
-	if [[ "$distro" == "vaporos-mod" ]]; then
+	if [[ "$distro" == "vaporos-git" ]]; then
 	
-		echo -e "\n==INFO==\nVaporOS-mod detected"
+		echo -e "\n==INFO==\nVaporOS detected"
 		sleep 2s
-		
-		# set new giturl and eval
-		giturl="$giturl_alt"
-		gitdir="$gitdir_alt"
-		# remove fallback for eval
-		fallback="false"
 		
 		# eval repo status
 		eval_git_repo
 		
-		cd ..
-		echo ""
-		./gen.sh -n "VaporOS" vaporos-mod
+		# clone vaporos branch
+		git clone --depth=1 $vaporos_git_url
+		
+		# generate image for VaproOS
+		./gen.sh -n "VaporOS $release" vaporos-${release}
 		
 	else
 	
-		# generate "stock" iso image
+		# generate "stock" iso image for Stephenson's Rocket
 		echo ""
 		./gen.sh
 		
@@ -755,21 +704,30 @@ download_release_main()
 	if [[ "$distro" == "valve-official" ]]; then
 	
 		download_valve_steamos
+		
+	# download requested file (VaporOS latest)	
+	elif [[ "$distro" == "vaporos-git" ]]; then
 	
-	# download requested file (VaporOS legacy)	
-	elif [[ "$distro" == "vaporos" ]]; then
+		# VaporOS latest is generated as a "mod" of Stephenson's Rocket
+		download_stephensons_git
+		
+	# download requested file (VaporOS stable)	
+	elif [[ "$distro" == "vaporos-stable" ]]; then
 	
-		download_vaporos_legacy
+		# Latest from http://download.vaporos.net/iso/
+		download_file
 
-	# download requested file (VaporOS legacy)	
-	elif [[ "$distro" == "vaporos-mod" ]]; then
+	# download requested file (Stephenson's Rocket latest)	
+	elif [[ "$distro" == "stephensons-rocket-git" ]]; then
 	
-		download_stephensons
+		# Built from github
+		download_stephensons_git
 		
-	# download requested file (Stephenson's Rocket variant)
-	elif [[ "$distro" == "stephensons-rocket" ]]; then 
+	# download requested file (Stephenson's Rocket stable)
+	elif [[ "$distro" == "stephensons-rocket-stable" ]]; then 
 		
-		download_stephensons
+		# Stored iso image from latest torrent file
+		download_file
 		
 	fi
 }
@@ -805,14 +763,12 @@ main()
 	Please choose a release to download.
 	Releases are checked for integrity
 	
-	(1) Alchemist (standard zip, UEFI only)
-	(2) Alchemist (legacy ISO, BIOS systems)
-	(3) Brewmaster (standard zip, UEFI only)
-	(4) Brewmaster (legacy ISO, BIOS systems)
-	(5) Stephensons Rocket (Alchemist repsin)
-	(6) Stephensons Rocket (Brewmaster repsin)
-	(7) VaporOS (Alchemist, Legacy ISO)
-	(8) VaporOS (Alchemist, Stephenson's Rocket Mod)
+	(1) Brewmaster (standard zip, UEFI only)
+	(2) Brewmaster (legacy ISO, BIOS systems)
+	(3) Stephensons Rocket (Stable, Brewmaster repsin) - coming soon
+	(4) Stephensons Rocket (Latest, Brewmaster repsin)
+	(5) VaporOS (Stable, Brewmaster respin)
+	(6) VaporOS (Latest, Brewmaster respin)
 
 	EOF
   	
@@ -822,11 +778,12 @@ main()
 	read -erp "Choice: " rel_choice
 	
 	case "$rel_choice" in
-	
+		
 		1)
 		distro="valve-official"
 		base_url="repo.steampowered.com/download"
-		release="alchemist"
+		release_folder="download/brewmaster"
+		release="brewmaster"
 		file="SteamOSInstaller.zip"
 		git="no"
 		md5file="MD5SUMS"
@@ -836,7 +793,8 @@ main()
 		2)
 		distro="valve-official"
 		base_url="repo.steampowered.com/download"
-		release="alchemist"
+		release_folder="download/brewmaster"
+		release="brewmaster"
 		file="SteamOSDVD.iso"
 		git="no"
 		md5file="MD5SUMS"
@@ -844,18 +802,11 @@ main()
 		;;
 		
 		3)
-		distro="valve-official"
-		base_url="repo.steampowered.com/download"
-		release="brewmaster"
-		file="SteamOSInstaller.zip"
-		git="no"
-		md5file="MD5SUMS"
-		shafile="SHA512SUMS"
-		;;
-		
-		4)
-		distro="valve-official"
-		base_url="repo.steampowered.com/download"
+		# Exit for now, need to store iso since only torrents are offered
+		exit 1
+		distro="stephensons-rocket-stable"
+		base_url="URL"
+		release_folder=""
 		release="brewmaster"
 		file="SteamOSDVD.iso"
 		git="no"
@@ -863,55 +814,39 @@ main()
 		shafile="SHA512SUMS"
 		;;
 		
-		5)
-		distro="stephensons-rocket"
-		release="alchemist"
-		file="rocket.iso"
-		git="yes"
-		gitdir="stephensons-rocket"
-		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
-		giturl_fallback="--depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release"
-		md5file="rocket.iso.md5"
-		shafile="none"
-		# set github default action
-		pull="no"
-		;;
-		
-		6)
-		distro="stephensons-rocket"
+		4)
+		distro="stephensons-rocket-git"
 		release="brewmaster"
 		file="rocket.iso"
 		git="yes"
 		gitdir="stephensons-rocket"
 		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
-		giturl_fallback="--depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release"
 		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action
 		pull="no"
 		;;
 		
-		7)
-		distro="vaporos"
-		base_url="http://trashcan-gaming.nl"
-		release="alchemist"
-		file="vaporos2.1.iso"
+		
+		5)
+		distro="vaporos-stable"
+		base_url="http://download.vaporos.net/"
+		release_folder="iso"
+		release="brewmaster"
+		file="vaporos-brewmaster-249.iso"
 		git="no"
-		md5file="vaporos2.1.iso.md5"
+		md5file="vaporos-brewmaster-249.iso.md5"
 		shafile="none"
 		;;
 		
-		8)
-		distro="vaporos-mod"
-		base_url="https://github.com/sharkwouter/vaporos-mod.git"
-		release="alchemist"
+		6)
+		distro="vaporos-git"
+		release="brewmaster"
 		file="vaporos.iso"
 		git="yes"
 		gitdir="stephensons-rocket"
-		gitdir_alt="stephensons-rocket/vaporos-mod"
-		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
-		giturl_fallback="--depth=1 https://github.com/professorkaos64/stephensons-rocket.git --branch $release"
-		giturl_alt="https://github.com/sharkwouter/vaporos-mod.git"
+		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git"
+		vapor_git_url="https://github.com/sharkwouter/vaporos-brewmaster.git"
 		md5file="vaporos.iso.md5"
 		shafile="none"
 		# set github default action
@@ -933,10 +868,11 @@ main()
  		
  	else
  		# Check for and download release
+ 		show_banner
  		pre_reqs
  		download_release_main
 		check_download_integrity
-		install_image
+		apply_image
 		
  	fi
  	

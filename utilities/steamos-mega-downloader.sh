@@ -2,7 +2,7 @@
 # -------------------------------------------------------------------------------
 # Author:    	  	Michael DeGuzis
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		1.2.4
+# Script Ver:		1.5.5
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #			to specified directory and run SHA512 checks against them.
 #			Installs to a USB drive. 
@@ -339,7 +339,7 @@ create_usb_zip()
 	
 	# unount drive 
 	echo -e "\nUmounting USB drive. Please do not reove until done"
-	sudo umount "$drive_choice" 
+	sudo umount ${drive_choice}
 	
 	# show user end summary
 	show_summary
@@ -506,14 +506,17 @@ check_download_integrity()
 		md5check=$(md5sum -c "$HOME/downloads/$release/$md5file" | grep "$file: OK")
 		
 		if [[ "$md5check" == "$file: OK" ]]; then
+		
 			# output check test
 			echo -e "$md5check"
 			
 		else
+		
 			# let user know check failed and to retry with overwrite
 			#clear
 			echo -e "\n==ERROR==\nmd5sum check failed.\nPlease rerun this script and choose to overwrite"
 			exit 1
+			
 		fi
 		
 	fi
@@ -554,6 +557,7 @@ eval_git_repo()
 	# set fallback if true
 	# Ths likely only is used in cases where simple bugs can be fixed in a
 	# local fork and used until upstream is fixed.
+	
 	if [[ "$fallback" == "true" ]]; then
 	
 		# set gitrul to fallback url
@@ -610,7 +614,8 @@ eval_git_repo()
 
 download_file()
 {
-	# Downloads singular file
+	# Downloads singular file, such as an ISO image
+	# Format: base url, relese folder, filename
 	
 	# remove previous files if desired
 	if [[ "$HOME/downloads/$release/$file" ]]; then

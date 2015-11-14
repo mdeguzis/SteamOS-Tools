@@ -1,7 +1,0 @@
-plexmediaplayer (version_placeholder) dist_rel; urgency=low
-
-  * Packaged deb for SteamOS-Tools
-  * See: packages.libregeek.org
-  * Upstream authors and source: https://github.com/plexinc/plex-media-player
-
- -- uploader  Thur, 22 Oct 2015 20:00:00 -0400

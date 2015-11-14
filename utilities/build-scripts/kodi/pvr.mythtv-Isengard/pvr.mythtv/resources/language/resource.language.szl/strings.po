@@ -1,0 +1,53 @@
+# Kodi Media Center language file
+# Addon Name: MythTV PVR Client
+# Addon id: pvr.mythtv
+# Addon Provider: Christian Fetzer, Jean-Luc Barrière
+msgid ""
+msgstr ""
+"Project-Id-Version: KODI Main\n"
+"Report-Msgid-Bugs-To: http://trac.kodi.tv/\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Silesian (http://www.transifex.com/projects/p/kodi-main/language/szl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: szl\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgctxt "#30019"
+msgid "General"
+msgstr "Głōwnŏ"
+
+msgctxt "#30050"
+msgid "Advanced"
+msgstr "Zaawansowane"
+
+msgctxt "#30055"
+msgid "Always"
+msgstr "zawdy"
+
+msgctxt "#30057"
+msgid "Never"
+msgstr "Nigdy"
+
+msgctxt "#30059"
+msgid "Always"
+msgstr "zawdy"
+
+msgctxt "#30061"
+msgid "Never"
+msgstr "Nigdy"
+
+msgctxt "#30305"
+msgid "Channel unavailable"
+msgstr "Kanał je niydostympny"
+
+msgctxt "#30310"
+msgid "Enabled"
+msgstr "Aktywny"
+
+msgctxt "#30311"
+msgid "Disabled"
+msgstr "Zastawiōny"

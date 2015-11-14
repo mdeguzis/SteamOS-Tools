@@ -1,0 +1,185 @@
+# Kodi Media Center language file
+# Addon Name: MythTV PVR Client
+# Addon id: pvr.mythtv
+# Addon Provider: Christian Fetzer, Jean-Luc Barrière
+msgid ""
+msgstr ""
+"Project-Id-Version: KODI Main\n"
+"Report-Msgid-Bugs-To: http://trac.kodi.tv/\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/kodi-main/language/zh_TW/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgctxt "#30000"
+msgid "MythTV Backend Hostname or IP"
+msgstr "MythTV的後端主機名稱或IP"
+
+msgctxt "#30001"
+msgid "MythTV Backend Port"
+msgstr "MythTV的後端端口"
+
+msgctxt "#30002"
+msgid "MythTV Database Username"
+msgstr "MythTV 資料庫使用者名稱"
+
+msgctxt "#30003"
+msgid "MythTV Database Password"
+msgstr "MythTV 資料庫密碼"
+
+msgctxt "#30004"
+msgid "MythTV Database Databasename"
+msgstr "MythTV 資料庫數據名稱"
+
+msgctxt "#30005"
+msgid "Include more debug information in the log file"
+msgstr "在日誌檔案中包含更多除錯資訊"
+
+msgctxt "#30006"
+msgid "Enable Live TV"
+msgstr "啟用電視直播"
+
+msgctxt "#30007"
+msgid "Allow Live TV to move scheduled shows"
+msgstr "允許電視直播移動已排程節目"
+
+msgctxt "#30008"
+msgid "Conflict handling"
+msgstr "衝突處理"
+
+msgctxt "#30009"
+msgid "Prefer Live TV when recording has later slot"
+msgstr "當錄影延遲時繼續直播電視"
+
+msgctxt "#30010"
+msgid "Prefer recording and stop Live TV"
+msgstr "停止直播電視以繼續錄影"
+
+msgctxt "#30011"
+msgid "Prefer Live TV and cancel conflicting recording"
+msgstr "取消衝突錄影以繼續直播電視"
+
+msgctxt "#30019"
+msgid "General"
+msgstr "一般設定"
+
+msgctxt "#30020"
+msgid "Template provider"
+msgstr "Template提供者"
+
+msgctxt "#30021"
+msgid "Internal"
+msgstr "內部的"
+
+msgctxt "#30022"
+msgid "MythTV"
+msgstr "MythTV"
+
+msgctxt "#30025"
+msgid "Internal template"
+msgstr "內部的template"
+
+msgctxt "#30026"
+msgid "Automatically Look Up Metadata"
+msgstr "自動查找數據資料"
+
+msgctxt "#30027"
+msgid "Commercial Flag new recordings"
+msgstr "對新錄影標示Commercial Flag"
+
+msgctxt "#30028"
+msgid "Transcode new recordings"
+msgstr "對新錄影進行轉碼"
+
+msgctxt "#30029"
+msgid "Run User Job #1"
+msgstr "執行 User Job #1"
+
+msgctxt "#30030"
+msgid "Run User Job #2"
+msgstr "執行 User Job #2"
+
+msgctxt "#30031"
+msgid "Run User Job #3"
+msgstr "執行 User Job #3"
+
+msgctxt "#30032"
+msgid "Run User Job #4"
+msgstr "執行 User Job #4"
+
+msgctxt "#30033"
+msgid "Transcoder"
+msgstr "轉碼器"
+
+msgctxt "#30034"
+msgid "Allow recordings to expire"
+msgstr "允許錄影到期"
+
+msgctxt "#30049"
+msgid "Recording template"
+msgstr "錄影範本"
+
+msgctxt "#30050"
+msgid "Advanced"
+msgstr "進階"
+
+msgctxt "#30055"
+msgid "Always"
+msgstr "總是"
+
+msgctxt "#30057"
+msgid "Never"
+msgstr "永不"
+
+msgctxt "#30059"
+msgid "Always"
+msgstr "總是"
+
+msgctxt "#30061"
+msgid "Never"
+msgstr "永不"
+
+msgctxt "#30100"
+msgid "Protocol version: %i - Database version: %i"
+msgstr "Protocol 版本: %i - 資料庫版本: %i"
+
+msgctxt "#30302"
+msgid "Connection to MythTV backend lost"
+msgstr "MythTV後端連線斷失"
+
+msgctxt "#30303"
+msgid "Connection to MythTV restored"
+msgstr "MythTV連線已恢復"
+
+msgctxt "#30304"
+msgid "No response from MythTV backend"
+msgstr "MythTV後端無回應"
+
+msgctxt "#30305"
+msgid "Channel unavailable"
+msgstr "找不到頻道"
+
+msgctxt "#30306"
+msgid "Recorder unavailable"
+msgstr "錄影無法取得"
+
+msgctxt "#30307"
+msgid "Canceling conflicting recording: %s"
+msgstr "取消衝突錄影：%s"
+
+msgctxt "#30308"
+msgid "Stopping Live TV due to conflicting recording: %s"
+msgstr "因衝突錄影而停止直播電視中：%s"
+
+msgctxt "#30310"
+msgid "Enabled"
+msgstr "啟用"
+
+msgctxt "#30311"
+msgid "Disabled"
+msgstr "關閉"

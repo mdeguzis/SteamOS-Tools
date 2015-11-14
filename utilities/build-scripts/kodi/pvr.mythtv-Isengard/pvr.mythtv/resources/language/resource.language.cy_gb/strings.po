@@ -1,0 +1,285 @@
+# Kodi Media Center language file
+# Addon Name: MythTV PVR Client
+# Addon id: pvr.mythtv
+# Addon Provider: Christian Fetzer, Jean-Luc Barrière
+msgid ""
+msgstr ""
+"Project-Id-Version: KODI Main\n"
+"Report-Msgid-Bugs-To: http://trac.kodi.tv/\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Welsh (United Kingdom) (http://www.transifex.com/projects/p/kodi-main/language/cy_GB/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: cy_GB\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;\n"
+
+msgctxt "#30000"
+msgid "MythTV Backend Hostname or IP"
+msgstr "Enw gwesteiwr cefn MythTV neu IP"
+
+msgctxt "#30001"
+msgid "MythTV Backend Port"
+msgstr "Porth Cefn MythTV"
+
+msgctxt "#30002"
+msgid "MythTV Database Username"
+msgstr "Enw Defnyddiwr Cronfa Ddata MythTV"
+
+msgctxt "#30003"
+msgid "MythTV Database Password"
+msgstr "Cyfrinair Cronfa Ddata MythTV"
+
+msgctxt "#30004"
+msgid "MythTV Database Databasename"
+msgstr "Enw Cronfa Ddata Cronfa Ddata MythTV"
+
+msgctxt "#30005"
+msgid "Include more debug information in the log file"
+msgstr "Cynnwys rhagor o wybodaeth dadfygio yn y ffeil cofnod"
+
+msgctxt "#30006"
+msgid "Enable Live TV"
+msgstr "Galluogi Teledu Byw"
+
+msgctxt "#30007"
+msgid "Allow Live TV to move scheduled shows"
+msgstr "Caniatáu i Deledu Byw symud sioeau wedi eu hamserlenni"
+
+msgctxt "#30008"
+msgid "Conflict handling"
+msgstr "Trin gwrthdaro"
+
+msgctxt "#30009"
+msgid "Prefer Live TV when recording has later slot"
+msgstr "Ffafrio Teledu Byw pan fod slot hwyrach gan recordiad"
+
+msgctxt "#30010"
+msgid "Prefer recording and stop Live TV"
+msgstr "Ffafrio recordio ac atal Teledu Byw"
+
+msgctxt "#30011"
+msgid "Prefer Live TV and cancel conflicting recording"
+msgstr "Ffafrio Teledu Byw a diddymu recordio sy'n gwrthdaro"
+
+msgctxt "#30012"
+msgid "MythTV Backend Ethernet address (WOL)"
+msgstr "Cyfeiriad ethernet Cefn MythTV (WOL)"
+
+msgctxt "#30013"
+msgid "MythTV Backend Port for API services"
+msgstr "Cefn MythTV ar gyfer gwasanaethau API"
+
+msgctxt "#30014"
+msgid "MythTV Security Pin for API services"
+msgstr "Pin Diogelwch MythTV ar gyfer gwasanaethau API"
+
+msgctxt "#30019"
+msgid "General"
+msgstr "Cyffredinol"
+
+msgctxt "#30020"
+msgid "Template provider"
+msgstr "Darparwr templed"
+
+msgctxt "#30021"
+msgid "Internal"
+msgstr "Mewnol"
+
+msgctxt "#30022"
+msgid "MythTV"
+msgstr "MythTV"
+
+msgctxt "#30025"
+msgid "Internal template"
+msgstr "Templed mewnol"
+
+msgctxt "#30026"
+msgid "Automatically Look Up Metadata"
+msgstr "Chwilio'r Metadata'n Awtomatig"
+
+msgctxt "#30027"
+msgid "Commercial Flag new recordings"
+msgstr "Baner Masnachol i recordiadau newydd"
+
+msgctxt "#30028"
+msgid "Transcode new recordings"
+msgstr "Trawscodio recordiadau newydd"
+
+msgctxt "#30029"
+msgid "Run User Job #1"
+msgstr "Rhedeg Gwaith Defnyddiwr #1"
+
+msgctxt "#30030"
+msgid "Run User Job #2"
+msgstr "Rhedeg Gwaith Defnyddiwr #2"
+
+msgctxt "#30031"
+msgid "Run User Job #3"
+msgstr "Rhedeg Gwaith Defnyddiwr #3"
+
+msgctxt "#30032"
+msgid "Run User Job #4"
+msgstr "Rhedeg Gwaith Defnyddiwr #4"
+
+msgctxt "#30033"
+msgid "Transcoder"
+msgstr "Trawscodydd"
+
+msgctxt "#30034"
+msgid "Allow recordings to expire"
+msgstr "Caniatáu i recordiadau ddod i ben"
+
+msgctxt "#30049"
+msgid "Recording template"
+msgstr "Templed recordio"
+
+msgctxt "#30050"
+msgid "Advanced"
+msgstr "Uwch"
+
+msgctxt "#30052"
+msgid "Enable demuxing MPEG-TS"
+msgstr "Galluogi demux MPEG-TS"
+
+msgctxt "#30053"
+msgid "Tuning delay (sec)"
+msgstr "Oedi tiwnio (eil)"
+
+msgctxt "#30054"
+msgid "Group recordings by title"
+msgstr "Crynhoi recordiadau yn ôl teitl"
+
+msgctxt "#30055"
+msgid "Always"
+msgstr "Bob tro"
+
+msgctxt "#30056"
+msgid "Only for series"
+msgstr "Dim ond am gyfres"
+
+msgctxt "#30057"
+msgid "Never"
+msgstr "Byth"
+
+msgctxt "#30058"
+msgid "Enable commercial skips (EDL)"
+msgstr "Galluogi hepgor hysbysebion (EDL)"
+
+msgctxt "#30059"
+msgid "Always"
+msgstr "Bob tro"
+
+msgctxt "#30060"
+msgid "Dialog"
+msgstr "Deialog"
+
+msgctxt "#30061"
+msgid "Never"
+msgstr "Byth"
+
+msgctxt "#30062"
+msgid "Block backend shutdown"
+msgstr "Rhwystro cau'r cefn"
+
+msgctxt "#30063"
+msgid "Enable channel icons"
+msgstr "Galluogi eiconau sianeli"
+
+msgctxt "#30064"
+msgid "Enable recording fanart/thumbnails"
+msgstr "Galluogi celf selogion/lluniau bach recordiadau"
+
+msgctxt "#30100"
+msgid "Protocol version: %i - Database version: %i"
+msgstr "Fersiwn protocol: %i - Fersiwn cronfa ddata: %i"
+
+msgctxt "#30110"
+msgid "Enabling EDL"
+msgstr "Galluogi EDL"
+
+msgctxt "#30111"
+msgid "A cut list or commercial skips have been found.\nDo you want to activate EDL functionality for this show ?"
+msgstr "Mae rhestr dorri neu hepgoriadau hysbysebion wedi eu canfod.\nHoffech chi weithredu swyddogaethau EDL ar gyfer y sioe yma"
+
+msgctxt "#30302"
+msgid "Connection to MythTV backend lost"
+msgstr "Cysylltiad wedi ei golli i gefn MythTV"
+
+msgctxt "#30303"
+msgid "Connection to MythTV restored"
+msgstr "Wedi adfer cysylltiad i MythTV"
+
+msgctxt "#30304"
+msgid "No response from MythTV backend"
+msgstr "Dim ymateb gan gefn MythTV"
+
+msgctxt "#30305"
+msgid "Channel unavailable"
+msgstr "Sianel ddim ar gael"
+
+msgctxt "#30306"
+msgid "Recorder unavailable"
+msgstr "Recordydd ddim ar gael"
+
+msgctxt "#30307"
+msgid "Canceling conflicting recording: %s"
+msgstr "Diddymu recordio sy'n gwrthdaro: %s"
+
+msgctxt "#30308"
+msgid "Stopping Live TV due to conflicting recording: %s"
+msgstr "Atal Teledu Byw oherwydd recordio sy'n gwrthdaro: %s"
+
+msgctxt "#30309"
+msgid "Not recording"
+msgstr "Ddim yn recordio"
+
+msgctxt "#30310"
+msgid "Enabled"
+msgstr "Galluogwyd"
+
+msgctxt "#30311"
+msgid "Disabled"
+msgstr "Analluogwyd"
+
+msgctxt "#30312"
+msgid "No broadcast found"
+msgstr "Heb ganfod darlledu"
+
+msgctxt "#30411"
+msgid "Delete and re-record"
+msgstr "Dileu ac ail recordio"
+
+msgctxt "#30412"
+msgid "Keep LiveTV recording"
+msgstr "Cadw recordiad LiveTV"
+
+msgctxt "#30421"
+msgid "Show/hide rules with status 'Not Recording'"
+msgstr "Dangos/cuddio rheolau gyda'r statws 'Nid yn Recordio'"
+
+msgctxt "#30422"
+msgid "Refresh cache for channel icons"
+msgstr "Ail-lwytho'r gelc ar gyfer eiconau sianeli"
+
+msgctxt "#30431"
+msgid "Record all showings (this channel)"
+msgstr "Recordio pob dangosiad (y sianel hon)"
+
+msgctxt "#30432"
+msgid "Record this showing every week"
+msgstr "Recordio'r dangosiad hwn bob wythnos"
+
+msgctxt "#30433"
+msgid "Record this showing every day"
+msgstr "Recordio'r dangosiad bob dydd"
+
+msgctxt "#30434"
+msgid "Record one showing (all channels)"
+msgstr "Recordio pob dangosiad (pob sianel)"
+
+msgctxt "#30435"
+msgid "Record all new episodes (this channel)"
+msgstr "Recordio pob rhifyn newydd (y sianel hon)"

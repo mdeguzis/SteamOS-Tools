@@ -1,0 +1,285 @@
+# Kodi Media Center language file
+# Addon Name: MythTV PVR Client
+# Addon id: pvr.mythtv
+# Addon Provider: Christian Fetzer, Jean-Luc Barrière
+msgid ""
+msgstr ""
+"Project-Id-Version: KODI Main\n"
+"Report-Msgid-Bugs-To: http://trac.kodi.tv/\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Korean (Korea) (http://www.transifex.com/projects/p/kodi-main/language/ko_KR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko_KR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgctxt "#30000"
+msgid "MythTV Backend Hostname or IP"
+msgstr "MythTV 백엔드 호스트네임 또는 IP 주소"
+
+msgctxt "#30001"
+msgid "MythTV Backend Port"
+msgstr "MythTV 백엔드 포트"
+
+msgctxt "#30002"
+msgid "MythTV Database Username"
+msgstr "MythTV 데이터베이스 사용자명"
+
+msgctxt "#30003"
+msgid "MythTV Database Password"
+msgstr "MythTV 데이터베이스 비밀번호"
+
+msgctxt "#30004"
+msgid "MythTV Database Databasename"
+msgstr "MythTV 데이터베이스 데이터베이스명"
+
+msgctxt "#30005"
+msgid "Include more debug information in the log file"
+msgstr "로그파일에 추가 디버그 정보 포함"
+
+msgctxt "#30006"
+msgid "Enable Live TV"
+msgstr "라이브 TV 사용"
+
+msgctxt "#30007"
+msgid "Allow Live TV to move scheduled shows"
+msgstr "라이브 TV가 예약된 프로그램을 이동하도록 허용"
+
+msgctxt "#30008"
+msgid "Conflict handling"
+msgstr "충돌 처리"
+
+msgctxt "#30009"
+msgid "Prefer Live TV when recording has later slot"
+msgstr "녹화시간이 더 늦는 경우 라이브 TV 우선"
+
+msgctxt "#30010"
+msgid "Prefer recording and stop Live TV"
+msgstr "라이브 TV를 멈추고 녹화 우선"
+
+msgctxt "#30011"
+msgid "Prefer Live TV and cancel conflicting recording"
+msgstr "충돌하는 녹화를 취소하고 라이브 TV 우선"
+
+msgctxt "#30012"
+msgid "MythTV Backend Ethernet address (WOL)"
+msgstr "MythTV 백엔드 이더넷 주소 (WOL)"
+
+msgctxt "#30013"
+msgid "MythTV Backend Port for API services"
+msgstr "MythTV 백엔드 포트 (API 서비스용)"
+
+msgctxt "#30014"
+msgid "MythTV Security Pin for API services"
+msgstr "API 서비스용 MythTV 보안 PIN"
+
+msgctxt "#30019"
+msgid "General"
+msgstr "일반"
+
+msgctxt "#30020"
+msgid "Template provider"
+msgstr "템플릿 제공자"
+
+msgctxt "#30021"
+msgid "Internal"
+msgstr "내부의"
+
+msgctxt "#30022"
+msgid "MythTV"
+msgstr "MythTV"
+
+msgctxt "#30025"
+msgid "Internal template"
+msgstr "내부 탬플릿"
+
+msgctxt "#30026"
+msgid "Automatically Look Up Metadata"
+msgstr "메타데이타 자동 조회"
+
+msgctxt "#30027"
+msgid "Commercial Flag new recordings"
+msgstr "새 녹화 광고 플래그"
+
+msgctxt "#30028"
+msgid "Transcode new recordings"
+msgstr "새 녹화 트랜스코드"
+
+msgctxt "#30029"
+msgid "Run User Job #1"
+msgstr "사용자 작업 #1 실행"
+
+msgctxt "#30030"
+msgid "Run User Job #2"
+msgstr "사용자 작업 #2 실행"
+
+msgctxt "#30031"
+msgid "Run User Job #3"
+msgstr "사용자 작업 #3 실행"
+
+msgctxt "#30032"
+msgid "Run User Job #4"
+msgstr "사용자 작업 #4 실행"
+
+msgctxt "#30033"
+msgid "Transcoder"
+msgstr "트랜스코더"
+
+msgctxt "#30034"
+msgid "Allow recordings to expire"
+msgstr "녹화 만료 허용"
+
+msgctxt "#30049"
+msgid "Recording template"
+msgstr "녹화 템플릿"
+
+msgctxt "#30050"
+msgid "Advanced"
+msgstr "고급"
+
+msgctxt "#30052"
+msgid "Enable demuxing MPEG-TS"
+msgstr "MPEG-TS 디먹싱 사용"
+
+msgctxt "#30053"
+msgid "Tuning delay (sec)"
+msgstr "튜닝 지연 (초)"
+
+msgctxt "#30054"
+msgid "Group recordings by title"
+msgstr "제목을 기준으로 그룹 녹화"
+
+msgctxt "#30055"
+msgid "Always"
+msgstr "항상"
+
+msgctxt "#30056"
+msgid "Only for series"
+msgstr "시리즈만"
+
+msgctxt "#30057"
+msgid "Never"
+msgstr "사용 안 함"
+
+msgctxt "#30058"
+msgid "Enable commercial skips (EDL)"
+msgstr "광고 건너뛰기 사용 (EDL)"
+
+msgctxt "#30059"
+msgid "Always"
+msgstr "항상"
+
+msgctxt "#30060"
+msgid "Dialog"
+msgstr "대화창"
+
+msgctxt "#30061"
+msgid "Never"
+msgstr "사용 안 함"
+
+msgctxt "#30062"
+msgid "Block backend shutdown"
+msgstr "백엔드 종료 방지"
+
+msgctxt "#30063"
+msgid "Enable channel icons"
+msgstr "채널 아이콘 사용"
+
+msgctxt "#30064"
+msgid "Enable recording fanart/thumbnails"
+msgstr "녹화 팬아트/썸네일 사용"
+
+msgctxt "#30100"
+msgid "Protocol version: %i - Database version: %i"
+msgstr "프로토콜 버전: %i - 데이터베이스 버전: %i"
+
+msgctxt "#30110"
+msgid "Enabling EDL"
+msgstr "EDL 사용"
+
+msgctxt "#30111"
+msgid "A cut list or commercial skips have been found.\nDo you want to activate EDL functionality for this show ?"
+msgstr "컷 목록 또는 광고 건너뛰기가 발견됐습니다.\n이 쇼에 대해 EDL 기능을 사용하겠습니까?"
+
+msgctxt "#30302"
+msgid "Connection to MythTV backend lost"
+msgstr "MythTV 백엔드 연결 끊김 "
+
+msgctxt "#30303"
+msgid "Connection to MythTV restored"
+msgstr "MythTV 재 연결 "
+
+msgctxt "#30304"
+msgid "No response from MythTV backend"
+msgstr "MythTV 백엔드로부터 응답 없음 "
+
+msgctxt "#30305"
+msgid "Channel unavailable"
+msgstr "채널 사용할 수 없음"
+
+msgctxt "#30306"
+msgid "Recorder unavailable"
+msgstr "녹화 할 수 없음 "
+
+msgctxt "#30307"
+msgid "Canceling conflicting recording: %s"
+msgstr "충돌하는 녹화를 취소: %s"
+
+msgctxt "#30308"
+msgid "Stopping Live TV due to conflicting recording: %s"
+msgstr "녹화와 충돌하므로 라이브 TV 중지: %s "
+
+msgctxt "#30309"
+msgid "Not recording"
+msgstr "녹화 중 아님"
+
+msgctxt "#30310"
+msgid "Enabled"
+msgstr "사용함"
+
+msgctxt "#30311"
+msgid "Disabled"
+msgstr "사용 안 함"
+
+msgctxt "#30312"
+msgid "No broadcast found"
+msgstr "방송 없음"
+
+msgctxt "#30411"
+msgid "Delete and re-record"
+msgstr "지우고 다시 녹화"
+
+msgctxt "#30412"
+msgid "Keep LiveTV recording"
+msgstr "라이브 TV 녹화 유지"
+
+msgctxt "#30421"
+msgid "Show/hide rules with status 'Not Recording'"
+msgstr "'녹화 중 아님' 상태 보이기/감추기"
+
+msgctxt "#30422"
+msgid "Refresh cache for channel icons"
+msgstr "채널 아이콘 캐시 새로 고침"
+
+msgctxt "#30431"
+msgid "Record all showings (this channel)"
+msgstr "모든 프로그램 녹화 (이 채널)"
+
+msgctxt "#30432"
+msgid "Record this showing every week"
+msgstr "이 프로그램 매 주 녹화"
+
+msgctxt "#30433"
+msgid "Record this showing every day"
+msgstr "이 프로그램 매일 녹화 "
+
+msgctxt "#30434"
+msgid "Record one showing (all channels)"
+msgstr "프로그램 한 개만 녹화 (모든 채널)"
+
+msgctxt "#30435"
+msgid "Record all new episodes (this channel)"
+msgstr "모든 새 에피소드 녹화 (이 채널)"

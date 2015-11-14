@@ -1,0 +1,285 @@
+# Kodi Media Center language file
+# Addon Name: MythTV PVR Client
+# Addon id: pvr.mythtv
+# Addon Provider: Christian Fetzer, Jean-Luc Barrière
+msgid ""
+msgstr ""
+"Project-Id-Version: KODI Main\n"
+"Report-Msgid-Bugs-To: http://trac.kodi.tv/\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Lithuanian (Lithuania) (http://www.transifex.com/projects/p/kodi-main/language/lt_LT/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lt_LT\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgctxt "#30000"
+msgid "MythTV Backend Hostname or IP"
+msgstr "MythTV galinės sąsajos serverio pavadinimas arba IP"
+
+msgctxt "#30001"
+msgid "MythTV Backend Port"
+msgstr "MythTV galinės sąsajos portas"
+
+msgctxt "#30002"
+msgid "MythTV Database Username"
+msgstr "MythTV galinės sąsajos naudotojo vardas"
+
+msgctxt "#30003"
+msgid "MythTV Database Password"
+msgstr "MythTV galinės sąsajos slaptažodis"
+
+msgctxt "#30004"
+msgid "MythTV Database Databasename"
+msgstr "MythTV galinės sąsajos duomenų bazės pavadinimas"
+
+msgctxt "#30005"
+msgid "Include more debug information in the log file"
+msgstr "Įtraukti derinimo informaciją žurnalo faile"
+
+msgctxt "#30006"
+msgid "Enable Live TV"
+msgstr "Įgalinti Live TV"
+
+msgctxt "#30007"
+msgid "Allow Live TV to move scheduled shows"
+msgstr "Leisti Live TV perkelti į oficialų sąrašą rodymui/naudojimui"
+
+msgctxt "#30008"
+msgid "Conflict handling"
+msgstr "Konfliktų valdymas"
+
+msgctxt "#30009"
+msgid "Prefer Live TV when recording has later slot"
+msgstr "Teikti pirmenybę TV transliacijai, kai yra vėliau suplanuotas įrašymas"
+
+msgctxt "#30010"
+msgid "Prefer recording and stop Live TV"
+msgstr "Teikti pirmenybę įrašymui ir stabdyti TV transliaciją"
+
+msgctxt "#30011"
+msgid "Prefer Live TV and cancel conflicting recording"
+msgstr "Teikti pirmenybę TV transliacijai ir atšaukti konfliktuojantį įrašą"
+
+msgctxt "#30012"
+msgid "MythTV Backend Ethernet address (WOL)"
+msgstr "MythTV posistemės laidinio tinklo adresas (WOL)"
+
+msgctxt "#30013"
+msgid "MythTV Backend Port for API services"
+msgstr "MythTV posistemės prievadas API paslaugoms"
+
+msgctxt "#30014"
+msgid "MythTV Security Pin for API services"
+msgstr "MythTV saugumo PIN kodas, skirtas API paslaugoms"
+
+msgctxt "#30019"
+msgid "General"
+msgstr "Pagrindinis"
+
+msgctxt "#30020"
+msgid "Template provider"
+msgstr "Šablono tiekėjas"
+
+msgctxt "#30021"
+msgid "Internal"
+msgstr "Vidinis"
+
+msgctxt "#30022"
+msgid "MythTV"
+msgstr "MythTV"
+
+msgctxt "#30025"
+msgid "Internal template"
+msgstr "Vidinis šablonas"
+
+msgctxt "#30026"
+msgid "Automatically Look Up Metadata"
+msgstr "Automatiškai ieškoti metaduomenų"
+
+msgctxt "#30027"
+msgid "Commercial Flag new recordings"
+msgstr "Reklamos žymė naujiems įrašams"
+
+msgctxt "#30028"
+msgid "Transcode new recordings"
+msgstr "Perkoduoti naujus įrašus"
+
+msgctxt "#30029"
+msgid "Run User Job #1"
+msgstr "Paleisti vartotojo darbą #1"
+
+msgctxt "#30030"
+msgid "Run User Job #2"
+msgstr "Paleisti vartotojo darbą #2"
+
+msgctxt "#30031"
+msgid "Run User Job #3"
+msgstr "Paleisti vartotojo darbą #3"
+
+msgctxt "#30032"
+msgid "Run User Job #4"
+msgstr "Paleisti vartotojo darbą #4"
+
+msgctxt "#30033"
+msgid "Transcoder"
+msgstr "Perkodavimas"
+
+msgctxt "#30034"
+msgid "Allow recordings to expire"
+msgstr "Leisti įrašymu galiojimo laiką"
+
+msgctxt "#30049"
+msgid "Recording template"
+msgstr "Įrašo šablonas"
+
+msgctxt "#30050"
+msgid "Advanced"
+msgstr "Pažangus"
+
+msgctxt "#30052"
+msgid "Enable demuxing MPEG-TS"
+msgstr "Įjungti MPEG-TS išskaidymą"
+
+msgctxt "#30053"
+msgid "Tuning delay (sec)"
+msgstr "Perjungimo uždelsimas (sek.)"
+
+msgctxt "#30054"
+msgid "Group recordings by title"
+msgstr "Grupuoti įrašymus pagal pavadinimą"
+
+msgctxt "#30055"
+msgid "Always"
+msgstr "Visada"
+
+msgctxt "#30056"
+msgid "Only for series"
+msgstr "Tik serialams"
+
+msgctxt "#30057"
+msgid "Never"
+msgstr "Niekada"
+
+msgctxt "#30058"
+msgid "Enable commercial skips (EDL)"
+msgstr "Įjungti reklamų praleidimą (EDL)"
+
+msgctxt "#30059"
+msgid "Always"
+msgstr "Visada"
+
+msgctxt "#30060"
+msgid "Dialog"
+msgstr "Dialogas"
+
+msgctxt "#30061"
+msgid "Never"
+msgstr "Niekada"
+
+msgctxt "#30062"
+msgid "Block backend shutdown"
+msgstr "Blokuoti posistemės išjungimą"
+
+msgctxt "#30063"
+msgid "Enable channel icons"
+msgstr "Įjungti kanalų piktogramas"
+
+msgctxt "#30064"
+msgid "Enable recording fanart/thumbnails"
+msgstr "Įjungti fanart/miniatiūrų įrašymą"
+
+msgctxt "#30100"
+msgid "Protocol version: %i - Database version: %i"
+msgstr "Protokolo versija: %i - Duomenų bazės versija: %i"
+
+msgctxt "#30110"
+msgid "Enabling EDL"
+msgstr "Įjungiamas EDL"
+
+msgctxt "#30111"
+msgid "A cut list or commercial skips have been found.\nDo you want to activate EDL functionality for this show ?"
+msgstr "Rastas iškarpymų sąrašas ar reklamų praleidimai.\nAr norite aktyvuoti EDL funkcionalumą šiai laidai?"
+
+msgctxt "#30302"
+msgid "Connection to MythTV backend lost"
+msgstr "Atsijungta nuo MythTV posistemės"
+
+msgctxt "#30303"
+msgid "Connection to MythTV restored"
+msgstr "Prisijungimas prie MythTV atkurtas"
+
+msgctxt "#30304"
+msgid "No response from MythTV backend"
+msgstr "Nėra atsako iš MythTV posistemės"
+
+msgctxt "#30305"
+msgid "Channel unavailable"
+msgstr "Kanalas nepasiekiamas"
+
+msgctxt "#30306"
+msgid "Recorder unavailable"
+msgstr "Įrašo įrenginys nepasiekiamas"
+
+msgctxt "#30307"
+msgid "Canceling conflicting recording: %s"
+msgstr "Atšaukiamas konfliktuojantis įrašymas: %s"
+
+msgctxt "#30308"
+msgid "Stopping Live TV due to conflicting recording: %s"
+msgstr "Stabdoma TV transliacija dėl konfliktuojančio įrašymo: %s"
+
+msgctxt "#30309"
+msgid "Not recording"
+msgstr "Neįrašoma"
+
+msgctxt "#30310"
+msgid "Enabled"
+msgstr "Įjungta"
+
+msgctxt "#30311"
+msgid "Disabled"
+msgstr "Atjungta"
+
+msgctxt "#30312"
+msgid "No broadcast found"
+msgstr "Nerasta transliacijų"
+
+msgctxt "#30411"
+msgid "Delete and re-record"
+msgstr "Ištrinti ir įrašyti iš naujo"
+
+msgctxt "#30412"
+msgid "Keep LiveTV recording"
+msgstr "Išlaikyti televizijos įrašą"
+
+msgctxt "#30421"
+msgid "Show/hide rules with status 'Not Recording'"
+msgstr "Rodyti/slėpti taisykles su būsena 'Neįrašoma'"
+
+msgctxt "#30422"
+msgid "Refresh cache for channel icons"
+msgstr "Atnaujinti kanalų piktogramų podėlį"
+
+msgctxt "#30431"
+msgid "Record all showings (this channel)"
+msgstr "Įrašyti visas laidas (šio kanalo)"
+
+msgctxt "#30432"
+msgid "Record this showing every week"
+msgstr "Įrašyti šią laidą kiekvieną savaitę"
+
+msgctxt "#30433"
+msgid "Record this showing every day"
+msgstr "Įrašyti šią laidą kiekvieną dieną"
+
+msgctxt "#30434"
+msgid "Record one showing (all channels)"
+msgstr "Įrašyti vieną transliaciją (visi kanalai)"
+
+msgctxt "#30435"
+msgid "Record all new episodes (this channel)"
+msgstr "Įrašyti visus naujus epizodus (šiame kanale)"

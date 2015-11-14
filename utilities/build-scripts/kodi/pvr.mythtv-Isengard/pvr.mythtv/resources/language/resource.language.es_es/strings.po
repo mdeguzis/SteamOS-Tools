@@ -1,0 +1,289 @@
+# Kodi Media Center language file
+# Addon Name: MythTV PVR Client
+# Addon id: pvr.mythtv
+# Addon Provider: Christian Fetzer, Jean-Luc Barrière
+msgid ""
+msgstr ""
+"Project-Id-Version: KODI Main\n"
+"Report-Msgid-Bugs-To: http://trac.kodi.tv/\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/projects/p/kodi-main/language/es_ES/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30000"
+msgid "MythTV Backend Hostname or IP"
+msgstr "Hostname o IP del Back-end the MythTV"
+
+msgctxt "#30001"
+msgid "MythTV Backend Port"
+msgstr "Puerto del Back-end de MythTV"
+
+msgctxt "#30002"
+msgid "MythTV Database Username"
+msgstr "Usuario de la Base de Datos de MythTV"
+
+msgctxt "#30003"
+msgid "MythTV Database Password"
+msgstr "Contraseña de la Base de Datos de MythTV"
+
+msgctxt "#30004"
+msgid "MythTV Database Databasename"
+msgstr "Nombre de la Base de Datos de MythTV"
+
+msgctxt "#30005"
+msgid "Include more debug information in the log file"
+msgstr "Incluir más información de depuración en el archivo de log"
+
+msgctxt "#30006"
+msgid "Enable Live TV"
+msgstr "Activar TV en Vivo"
+
+msgctxt "#30007"
+msgid "Allow Live TV to move scheduled shows"
+msgstr "Permitir a la TV en Vivo cambiar los eventos programados"
+
+msgctxt "#30008"
+msgid "Conflict handling"
+msgstr "Conflicto de manejo"
+
+msgctxt "#30009"
+msgid "Prefer Live TV when recording has later slot"
+msgstr "Prefiero TV en vivo y dejar la grabación para mas tarde"
+
+msgctxt "#30010"
+msgid "Prefer recording and stop Live TV"
+msgstr "Prefiero grabación y parar TV en vivo"
+
+msgctxt "#30011"
+msgid "Prefer Live TV and cancel conflicting recording"
+msgstr "Prefiero TV en vivo y cancelar la grabación en conflictivo"
+
+msgctxt "#30012"
+msgid "MythTV Backend Ethernet address (WOL)"
+msgstr "Dirección IP MythTV Backend (WOL)"
+
+msgctxt "#30013"
+msgid "MythTV Backend Port for API services"
+msgstr "Puerto del Backend de MythTV para los servicios API"
+
+msgctxt "#30014"
+msgid "MythTV Security Pin for API services"
+msgstr "Pin de Seguridad de MythTV para los servicios API"
+
+msgctxt "#30019"
+msgid "General"
+msgstr "General"
+
+msgctxt "#30020"
+msgid "Template provider"
+msgstr "Proveedor de plantilla"
+
+msgctxt "#30021"
+msgid "Internal"
+msgstr "Interna"
+
+msgctxt "#30022"
+msgid "MythTV"
+msgstr "MythTV"
+
+msgctxt "#30025"
+msgid "Internal template"
+msgstr "Plantilla interna"
+
+msgctxt "#30026"
+msgid "Automatically Look Up Metadata"
+msgstr "Buscar Metadatos automáticamente"
+
+msgctxt "#30027"
+msgid "Commercial Flag new recordings"
+msgstr "Indicador Comercial en nuevas grabaciones"
+
+msgctxt "#30028"
+msgid "Transcode new recordings"
+msgstr "Transcodificar nuevas grabaciones"
+
+msgctxt "#30029"
+msgid "Run User Job #1"
+msgstr "Ejecutar Trabajo de Usuario #1"
+
+msgctxt "#30030"
+msgid "Run User Job #2"
+msgstr "Ejecutar Trabajo de Usuario #2"
+
+msgctxt "#30031"
+msgid "Run User Job #3"
+msgstr "Ejecutar Trabajo de Usuario #3"
+
+msgctxt "#30032"
+msgid "Run User Job #4"
+msgstr "Ejecutar Trabajo de Usuario #4"
+
+msgctxt "#30033"
+msgid "Transcoder"
+msgstr "Transcodificador"
+
+msgctxt "#30034"
+msgid "Allow recordings to expire"
+msgstr "Permitir expirar a las grabaciones"
+
+msgctxt "#30049"
+msgid "Recording template"
+msgstr "Plantilla de grabación"
+
+msgctxt "#30050"
+msgid "Advanced"
+msgstr "Avanzado"
+
+msgctxt "#30052"
+msgid "Enable demuxing MPEG-TS"
+msgstr "Habilitar demux MPEG-TS"
+
+msgctxt "#30053"
+msgid "Tuning delay (sec)"
+msgstr "Retardo de Sintonizado (seg)"
+
+msgctxt "#30054"
+msgid "Group recordings by title"
+msgstr "Agrupar grabaciones por título"
+
+msgctxt "#30055"
+msgid "Always"
+msgstr "Siempre"
+
+msgctxt "#30056"
+msgid "Only for series"
+msgstr "Solo para series"
+
+msgctxt "#30057"
+msgid "Never"
+msgstr "Nunca"
+
+msgctxt "#30058"
+msgid "Enable commercial skips (EDL)"
+msgstr "Habilitar pasar anuncios (EDL)"
+
+msgctxt "#30059"
+msgid "Always"
+msgstr "Siempre"
+
+msgctxt "#30060"
+msgid "Dialog"
+msgstr "Diálogos"
+
+msgctxt "#30061"
+msgid "Never"
+msgstr "Nunca"
+
+msgctxt "#30062"
+msgid "Block backend shutdown"
+msgstr "Bloquear apagado de backend"
+
+msgctxt "#30063"
+msgid "Enable channel icons"
+msgstr "Habilitar iconos de canal"
+
+msgctxt "#30064"
+msgid "Enable recording fanart/thumbnails"
+msgstr "Habilitar guardado de fanart/miniaturas"
+
+msgctxt "#30065"
+msgid "Limit channel tuning attempts"
+msgstr "Limitar los intentos sintonizado"
+
+msgctxt "#30100"
+msgid "Protocol version: %i - Database version: %i"
+msgstr "Versión de protocolo: %i - Versión de base de datos: %i"
+
+msgctxt "#30110"
+msgid "Enabling EDL"
+msgstr "Habilitando EDL"
+
+msgctxt "#30111"
+msgid "A cut list or commercial skips have been found.\nDo you want to activate EDL functionality for this show ?"
+msgstr "Se ha encontrado una lista de corte o de pasar anuncios.\n¿Quiere activar la funcionalidad EDL para este programa?"
+
+msgctxt "#30302"
+msgid "Connection to MythTV backend lost"
+msgstr "Conexión con backend de MythTV perdida"
+
+msgctxt "#30303"
+msgid "Connection to MythTV restored"
+msgstr "Conexión con backend de MythTV restaurada"
+
+msgctxt "#30304"
+msgid "No response from MythTV backend"
+msgstr "No hay respuesta del backend de MythTV"
+
+msgctxt "#30305"
+msgid "Channel unavailable"
+msgstr "Canal no disponible"
+
+msgctxt "#30306"
+msgid "Recorder unavailable"
+msgstr "Grabador no disponible"
+
+msgctxt "#30307"
+msgid "Canceling conflicting recording: %s"
+msgstr "Cancelando grabación en conflicto: %s"
+
+msgctxt "#30308"
+msgid "Stopping Live TV due to conflicting recording: %s"
+msgstr "Detención de TV en vivo debido a la grabación en conflicto: %s"
+
+msgctxt "#30309"
+msgid "Not recording"
+msgstr "No se esta grabando"
+
+msgctxt "#30310"
+msgid "Enabled"
+msgstr "Activado"
+
+msgctxt "#30311"
+msgid "Disabled"
+msgstr "Deshabilitado"
+
+msgctxt "#30312"
+msgid "No broadcast found"
+msgstr "No se ha encontrado broadcast"
+
+msgctxt "#30411"
+msgid "Delete and re-record"
+msgstr "Borrar y volver a grabar"
+
+msgctxt "#30412"
+msgid "Keep LiveTV recording"
+msgstr "Mantener la grabación LiveTV"
+
+msgctxt "#30421"
+msgid "Show/hide rules with status 'Not Recording'"
+msgstr "Mostrar/Ocultar reglas 'No grabar'"
+
+msgctxt "#30422"
+msgid "Refresh cache for channel icons"
+msgstr "Refrescar cache de los iconos para los canales"
+
+msgctxt "#30431"
+msgid "Record all showings (this channel)"
+msgstr "Grabar todos los show (de este canal)"
+
+msgctxt "#30432"
+msgid "Record this showing every week"
+msgstr "Grabar este show todas las semanas"
+
+msgctxt "#30433"
+msgid "Record this showing every day"
+msgstr "Grabar este show todos los dias"
+
+msgctxt "#30434"
+msgid "Record one showing (all channels)"
+msgstr "Grabar un solo show (en todos los canales)"
+
+msgctxt "#30435"
+msgid "Record all new episodes (this channel)"
+msgstr "Grabar todos los nuevos episodios (de este canal)"

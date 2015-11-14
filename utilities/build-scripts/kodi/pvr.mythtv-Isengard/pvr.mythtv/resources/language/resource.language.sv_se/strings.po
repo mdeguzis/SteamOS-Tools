@@ -1,0 +1,285 @@
+# Kodi Media Center language file
+# Addon Name: MythTV PVR Client
+# Addon id: pvr.mythtv
+# Addon Provider: Christian Fetzer, Jean-Luc Barrière
+msgid ""
+msgstr ""
+"Project-Id-Version: KODI Main\n"
+"Report-Msgid-Bugs-To: http://trac.kodi.tv/\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Swedish (Sweden) (http://www.transifex.com/projects/p/kodi-main/language/sv_SE/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sv_SE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30000"
+msgid "MythTV Backend Hostname or IP"
+msgstr "MythTV backend värdnamn eller IP"
+
+msgctxt "#30001"
+msgid "MythTV Backend Port"
+msgstr "MythTV backend port"
+
+msgctxt "#30002"
+msgid "MythTV Database Username"
+msgstr "MythTV databasanvändarnamn"
+
+msgctxt "#30003"
+msgid "MythTV Database Password"
+msgstr "MythTV databaslösenord"
+
+msgctxt "#30004"
+msgid "MythTV Database Databasename"
+msgstr "MythTV databasnamn"
+
+msgctxt "#30005"
+msgid "Include more debug information in the log file"
+msgstr "Inkludera mer debugginformation i loggfilen"
+
+msgctxt "#30006"
+msgid "Enable Live TV"
+msgstr "Aktivera direktsänd TV"
+
+msgctxt "#30007"
+msgid "Allow Live TV to move scheduled shows"
+msgstr "Tillåt direktsänd TV att flytta schemalagda program"
+
+msgctxt "#30008"
+msgid "Conflict handling"
+msgstr "Konflikthantering"
+
+msgctxt "#30009"
+msgid "Prefer Live TV when recording has later slot"
+msgstr "Föredra direktsänd TV när inspelning har ett senare tillfälle"
+
+msgctxt "#30010"
+msgid "Prefer recording and stop Live TV"
+msgstr "Föredra inspelning och stoppa direktsänd TV"
+
+msgctxt "#30011"
+msgid "Prefer Live TV and cancel conflicting recording"
+msgstr "Föredra direktsänd TV och avbryt inspelning i konflikt"
+
+msgctxt "#30012"
+msgid "MythTV Backend Ethernet address (WOL)"
+msgstr "MythTV-backends lokala nätverksadress (WOL)"
+
+msgctxt "#30013"
+msgid "MythTV Backend Port for API services"
+msgstr "MythTV Backend-port för API-tjänster"
+
+msgctxt "#30014"
+msgid "MythTV Security Pin for API services"
+msgstr "MythTV Säkerhetspin för API-tjänster"
+
+msgctxt "#30019"
+msgid "General"
+msgstr "Allmänt"
+
+msgctxt "#30020"
+msgid "Template provider"
+msgstr "Mall-leverantör"
+
+msgctxt "#30021"
+msgid "Internal"
+msgstr "Intern"
+
+msgctxt "#30022"
+msgid "MythTV"
+msgstr "MythTV"
+
+msgctxt "#30025"
+msgid "Internal template"
+msgstr "Intern mall"
+
+msgctxt "#30026"
+msgid "Automatically Look Up Metadata"
+msgstr "Slå automatiskt upp metadata"
+
+msgctxt "#30027"
+msgid "Commercial Flag new recordings"
+msgstr "Raklamflagga nya inspelningar"
+
+msgctxt "#30028"
+msgid "Transcode new recordings"
+msgstr "Omkoda nya inspelningar"
+
+msgctxt "#30029"
+msgid "Run User Job #1"
+msgstr "Kör användarjobb #1"
+
+msgctxt "#30030"
+msgid "Run User Job #2"
+msgstr "Kör användarjobb #2"
+
+msgctxt "#30031"
+msgid "Run User Job #3"
+msgstr "Kör användarjobb #3"
+
+msgctxt "#30032"
+msgid "Run User Job #4"
+msgstr "Kör användarjobb #4"
+
+msgctxt "#30033"
+msgid "Transcoder"
+msgstr "Omkodning"
+
+msgctxt "#30034"
+msgid "Allow recordings to expire"
+msgstr "Tillåt inspelningar att gå ut"
+
+msgctxt "#30049"
+msgid "Recording template"
+msgstr "Inspelningsmall"
+
+msgctxt "#30050"
+msgid "Advanced"
+msgstr "Avancerad"
+
+msgctxt "#30052"
+msgid "Enable demuxing MPEG-TS"
+msgstr "Aktivera avmuxning av MPEG-TS"
+
+msgctxt "#30053"
+msgid "Tuning delay (sec)"
+msgstr "Tuningfördröjning (sek)"
+
+msgctxt "#30054"
+msgid "Group recordings by title"
+msgstr "Gruppera inspelningar efter titel"
+
+msgctxt "#30055"
+msgid "Always"
+msgstr "Alltid"
+
+msgctxt "#30056"
+msgid "Only for series"
+msgstr "Endast för serier"
+
+msgctxt "#30057"
+msgid "Never"
+msgstr "Aldrig"
+
+msgctxt "#30058"
+msgid "Enable commercial skips (EDL)"
+msgstr "Aktivera reklamhopp (EDL)"
+
+msgctxt "#30059"
+msgid "Always"
+msgstr "Alltid"
+
+msgctxt "#30060"
+msgid "Dialog"
+msgstr "Dialog"
+
+msgctxt "#30061"
+msgid "Never"
+msgstr "Aldrig"
+
+msgctxt "#30062"
+msgid "Block backend shutdown"
+msgstr "Inaktivera bakgrundsavstägning"
+
+msgctxt "#30063"
+msgid "Enable channel icons"
+msgstr "Aktivera kanalikoner"
+
+msgctxt "#30064"
+msgid "Enable recording fanart/thumbnails"
+msgstr "Aktivera inspelnings-fanart/tummnaglar"
+
+msgctxt "#30100"
+msgid "Protocol version: %i - Database version: %i"
+msgstr "Protokollversion: %i - Databasversion: %i"
+
+msgctxt "#30110"
+msgid "Enabling EDL"
+msgstr "Aktiverar EDL"
+
+msgctxt "#30111"
+msgid "A cut list or commercial skips have been found.\nDo you want to activate EDL functionality for this show ?"
+msgstr "Klipplista eller reklamhopp har hittats.\nVill du aktivera EDL-funktionalitet för denna visning?"
+
+msgctxt "#30302"
+msgid "Connection to MythTV backend lost"
+msgstr "Anslutning till MythTV backend förlorad"
+
+msgctxt "#30303"
+msgid "Connection to MythTV restored"
+msgstr "Anslutning till MythTV återställd"
+
+msgctxt "#30304"
+msgid "No response from MythTV backend"
+msgstr "Inget svar från MythTV backend"
+
+msgctxt "#30305"
+msgid "Channel unavailable"
+msgstr "Kanal otillgänglig"
+
+msgctxt "#30306"
+msgid "Recorder unavailable"
+msgstr "Inspelare inte tillgänglig"
+
+msgctxt "#30307"
+msgid "Canceling conflicting recording: %s"
+msgstr "Avbryter inspelning med konflikt: %s"
+
+msgctxt "#30308"
+msgid "Stopping Live TV due to conflicting recording: %s"
+msgstr "Stoppar direktsänd TV pga konflikt med inspelning: %s"
+
+msgctxt "#30309"
+msgid "Not recording"
+msgstr "Spelar inte in"
+
+msgctxt "#30310"
+msgid "Enabled"
+msgstr "Aktiverad"
+
+msgctxt "#30311"
+msgid "Disabled"
+msgstr "Inaktiverad"
+
+msgctxt "#30312"
+msgid "No broadcast found"
+msgstr "Ingen sändning hittades"
+
+msgctxt "#30411"
+msgid "Delete and re-record"
+msgstr "Ta bort och spela in på nytt"
+
+msgctxt "#30412"
+msgid "Keep LiveTV recording"
+msgstr "Fortsätt spela in direktsänd TV"
+
+msgctxt "#30421"
+msgid "Show/hide rules with status 'Not Recording'"
+msgstr "Visa/göm regler med status 'Ingen inspelning'"
+
+msgctxt "#30422"
+msgid "Refresh cache for channel icons"
+msgstr "Förnya cache för kanalikoner"
+
+msgctxt "#30431"
+msgid "Record all showings (this channel)"
+msgstr "Spela in alla sändningar (denna kanalen)"
+
+msgctxt "#30432"
+msgid "Record this showing every week"
+msgstr "Spela in denna sändning varje vecka"
+
+msgctxt "#30433"
+msgid "Record this showing every day"
+msgstr "Spela in denna sändning varje dag"
+
+msgctxt "#30434"
+msgid "Record one showing (all channels)"
+msgstr "Spela in en sändning (alla kanaler)"
+
+msgctxt "#30435"
+msgid "Record all new episodes (this channel)"
+msgstr "Spela in alla nya avsnitt (denna kanalen)"

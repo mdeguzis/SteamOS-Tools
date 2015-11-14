@@ -1,0 +1,330 @@
+# Kodi Media Center language file
+# Addon Name: MythTV PVR Client
+# Addon id: pvr.mythtv
+# Addon Provider: Christian Fetzer, Jean-Luc Barrière
+msgid ""
+msgstr ""
+"Project-Id-Version: KODI Main\n"
+"Report-Msgid-Bugs-To: http://trac.kodi.tv/\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/kodi-main/language/en_GB/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Settings labels
+msgctxt "#30000"
+msgid "MythTV Backend Hostname or IP"
+msgstr ""
+
+msgctxt "#30001"
+msgid "MythTV Backend Port"
+msgstr ""
+
+msgctxt "#30002"
+msgid "MythTV Database Username"
+msgstr ""
+
+msgctxt "#30003"
+msgid "MythTV Database Password"
+msgstr ""
+
+msgctxt "#30004"
+msgid "MythTV Database Databasename"
+msgstr ""
+
+msgctxt "#30005"
+msgid "Include more debug information in the log file"
+msgstr ""
+
+msgctxt "#30006"
+msgid "Enable Live TV"
+msgstr ""
+
+msgctxt "#30007"
+msgid "Allow Live TV to move scheduled shows"
+msgstr ""
+
+msgctxt "#30008"
+msgid "Conflict handling"
+msgstr ""
+
+msgctxt "#30009"
+msgid "Prefer Live TV when recording has later slot"
+msgstr ""
+
+msgctxt "#30010"
+msgid "Prefer recording and stop Live TV"
+msgstr ""
+
+msgctxt "#30011"
+msgid "Prefer Live TV and cancel conflicting recording"
+msgstr ""
+
+msgctxt "#30012"
+msgid "MythTV Backend Ethernet address (WOL)"
+msgstr ""
+
+msgctxt "#30013"
+msgid "MythTV Backend Port for API services"
+msgstr ""
+
+msgctxt "#30014"
+msgid "MythTV Security Pin for API services"
+msgstr ""
+
+# empty strings from id 30015 to 30018
+
+msgctxt "#30019"
+msgid "General"
+msgstr ""
+
+msgctxt "#30020"
+msgid "Template provider"
+msgstr ""
+
+msgctxt "#30021"
+msgid "Internal"
+msgstr ""
+
+msgctxt "#30022"
+msgid "MythTV"
+msgstr ""
+
+# empty strings from id 30023 to 30024
+
+msgctxt "#30025"
+msgid "Internal template"
+msgstr ""
+
+msgctxt "#30026"
+msgid "Automatically Look Up Metadata"
+msgstr ""
+
+msgctxt "#30027"
+msgid "Commercial Flag new recordings"
+msgstr ""
+
+msgctxt "#30028"
+msgid "Transcode new recordings"
+msgstr ""
+
+msgctxt "#30029"
+msgid "Run User Job #1"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Run User Job #2"
+msgstr ""
+
+msgctxt "#30031"
+msgid "Run User Job #3"
+msgstr ""
+
+msgctxt "#30032"
+msgid "Run User Job #4"
+msgstr ""
+
+msgctxt "#30033"
+msgid "Transcoder"
+msgstr ""
+
+msgctxt "#30034"
+msgid "Allow recordings to expire"
+msgstr ""
+
+# empty strings from id 30035 to 30048
+
+msgctxt "#30049"
+msgid "Recording template"
+msgstr ""
+
+msgctxt "#30050"
+msgid "Advanced"
+msgstr ""
+
+# empty string with id 30051
+
+msgctxt "#30052"
+msgid "Enable demuxing MPEG-TS"
+msgstr ""
+
+msgctxt "#30053"
+msgid "Tuning delay (sec)"
+msgstr ""
+
+msgctxt "#30054"
+msgid "Group recordings by title"
+msgstr ""
+
+msgctxt "#30055"
+msgid "Always"
+msgstr ""
+
+msgctxt "#30056"
+msgid "Only for series"
+msgstr ""
+
+msgctxt "#30057"
+msgid "Never"
+msgstr ""
+
+msgctxt "#30058"
+msgid "Enable commercial skips (EDL)"
+msgstr ""
+
+msgctxt "#30059"
+msgid "Always"
+msgstr ""
+
+msgctxt "#30060"
+msgid "Dialog"
+msgstr ""
+
+msgctxt "#30061"
+msgid "Never"
+msgstr ""
+
+msgctxt "#30062"
+msgid "Block backend shutdown"
+msgstr ""
+
+msgctxt "#30063"
+msgid "Enable channel icons"
+msgstr ""
+
+msgctxt "#30064"
+msgid "Enable recording fanart/thumbnails"
+msgstr ""
+
+msgctxt "#30065"
+msgid "Limit channel tuning attempts"
+msgstr ""
+
+# empty strings from id 30066 to 30099
+
+# Systeminformation labels
+msgctxt "#30100"
+msgid "Protocol version: %i - Database version: %i"
+msgstr ""
+
+# empty strings from id 30101 to 30109
+
+# Dialog labels
+msgctxt "#30110"
+msgid "Enabling EDL"
+msgstr ""
+
+msgctxt "#30111"
+msgid "A cut list or commercial skips have been found.\nDo you want to activate EDL functionality for this show ?"
+msgstr ""
+
+msgctxt "#30112"
+msgid "Connection failed"
+msgstr ""
+
+msgctxt "#30113"
+msgid "Do you want to retry ?"
+msgstr ""
+
+# empty strings from id 30114 to 30299
+
+# Notifications
+msgctxt "#30300"
+msgid "Failed to connect the MythTV backend with the known protocol versions. Please check the compatibility map of the addon and upgrade your backend to a supported version."
+msgstr ""
+
+msgctxt "#30301"
+msgid "Failed to connect the API services of MythTV backend. Please check your PIN code or backend setup. The PIN code has to be configured in your backend to allow connection."
+msgstr ""
+
+msgctxt "#30302"
+msgid "Connection to MythTV backend lost"
+msgstr ""
+
+msgctxt "#30303"
+msgid "Connection to MythTV restored"
+msgstr ""
+
+msgctxt "#30304"
+msgid "No response from MythTV backend"
+msgstr ""
+
+msgctxt "#30305"
+msgid "Channel unavailable"
+msgstr ""
+
+msgctxt "#30306"
+msgid "Recorder unavailable"
+msgstr ""
+
+msgctxt "#30307"
+msgid "Canceling conflicting recording: %s"
+msgstr ""
+
+msgctxt "#30308"
+msgid "Stopping Live TV due to conflicting recording: %s"
+msgstr ""
+
+msgctxt "#30309"
+msgid "Not recording"
+msgstr ""
+
+msgctxt "#30310"
+msgid "Enabled"
+msgstr ""
+
+msgctxt "#30311"
+msgid "Disabled"
+msgstr ""
+
+msgctxt "#30312"
+msgid "No broadcast found"
+msgstr ""
+
+# empty strings from id 30313 to 30410
+
+# Menu Hooks
+msgctxt "#30411"
+msgid "Delete and re-record"
+msgstr ""
+
+msgctxt "#30412"
+msgid "Keep LiveTV recording"
+msgstr ""
+
+# empty strings from id 30413 to 30420
+
+msgctxt "#30421"
+msgid "Show/hide rules with status 'Not Recording'"
+msgstr ""
+
+msgctxt "#30422"
+msgid "Refresh cache for channel icons"
+msgstr ""
+
+# empty strings from id 30423 to 30430
+
+msgctxt "#30431"
+msgid "Record all showings (this channel)"
+msgstr ""
+
+msgctxt "#30432"
+msgid "Record this showing every week"
+msgstr ""
+
+msgctxt "#30433"
+msgid "Record this showing every day"
+msgstr ""
+
+msgctxt "#30434"
+msgid "Record one showing (all channels)"
+msgstr ""
+
+msgctxt "#30435"
+msgid "Record all new episodes (this channel)"
+msgstr ""

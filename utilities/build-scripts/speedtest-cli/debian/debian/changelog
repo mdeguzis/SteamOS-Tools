@@ -1,7 +1,0 @@
-speetest-cli (version_placeholder) dist_rel; urgency=low
-
-  * Packaged deb for SteamOS-Tools
-  * See: packages.libregeek.org
-  * Upstream authors and source: https://github.com/sivel/speedtest-cli
-
- -- uploader  Mon, 06 Oct 2015 20:17:00 -0500

@@ -1,0 +1,285 @@
+# Kodi Media Center language file
+# Addon Name: MythTV PVR Client
+# Addon id: pvr.mythtv
+# Addon Provider: Christian Fetzer, Jean-Luc Barrière
+msgid ""
+msgstr ""
+"Project-Id-Version: KODI Main\n"
+"Report-Msgid-Bugs-To: http://trac.kodi.tv/\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Indonesian (Indonesia) (http://www.transifex.com/projects/p/kodi-main/language/id_ID/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: id_ID\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgctxt "#30000"
+msgid "MythTV Backend Hostname or IP"
+msgstr "Hostname atau IP Backend MythTV"
+
+msgctxt "#30001"
+msgid "MythTV Backend Port"
+msgstr "Port Backend MythTV"
+
+msgctxt "#30002"
+msgid "MythTV Database Username"
+msgstr "Nama pengguna Database MythTV"
+
+msgctxt "#30003"
+msgid "MythTV Database Password"
+msgstr "Kata Kunci Database MythTV"
+
+msgctxt "#30004"
+msgid "MythTV Database Databasename"
+msgstr "Nama Database MythTV"
+
+msgctxt "#30005"
+msgid "Include more debug information in the log file"
+msgstr "Sertakan informasi debug yang lebih banyak ke dalam berkas log"
+
+msgctxt "#30006"
+msgid "Enable Live TV"
+msgstr "Aktifkan Siaran TV Langsung"
+
+msgctxt "#30007"
+msgid "Allow Live TV to move scheduled shows"
+msgstr "Perbolehkan Siaran TV Langsung mengeser acara terjadwal"
+
+msgctxt "#30008"
+msgid "Conflict handling"
+msgstr "Penanganan Konflik"
+
+msgctxt "#30009"
+msgid "Prefer Live TV when recording has later slot"
+msgstr "Utamakan Siaran Langsung TV ketika perekaman mempunyai slot nanti."
+
+msgctxt "#30010"
+msgid "Prefer recording and stop Live TV"
+msgstr "Utamakan perekaman dan hentikan Siaran Langsung TV."
+
+msgctxt "#30011"
+msgid "Prefer Live TV and cancel conflicting recording"
+msgstr "Utamakan Siaran Langsung TV dan batalkan perekaman yang bertabrakan"
+
+msgctxt "#30012"
+msgid "MythTV Backend Ethernet address (WOL)"
+msgstr "Alamat Ethernet Backend MythTV (WOL)"
+
+msgctxt "#30013"
+msgid "MythTV Backend Port for API services"
+msgstr "Port Backend MythTV untuk layanan API"
+
+msgctxt "#30014"
+msgid "MythTV Security Pin for API services"
+msgstr "Pin Keamanan MythTV untuk layanan API"
+
+msgctxt "#30019"
+msgid "General"
+msgstr "Umum"
+
+msgctxt "#30020"
+msgid "Template provider"
+msgstr "Penyedia Templat"
+
+msgctxt "#30021"
+msgid "Internal"
+msgstr "Internal"
+
+msgctxt "#30022"
+msgid "MythTV"
+msgstr "MythTV"
+
+msgctxt "#30025"
+msgid "Internal template"
+msgstr "Templat Internal"
+
+msgctxt "#30026"
+msgid "Automatically Look Up Metadata"
+msgstr "Otomatis mencari metadata"
+
+msgctxt "#30027"
+msgid "Commercial Flag new recordings"
+msgstr "Deteksi iklan untuk rekaman baru"
+
+msgctxt "#30028"
+msgid "Transcode new recordings"
+msgstr "Transkode rekaman baru"
+
+msgctxt "#30029"
+msgid "Run User Job #1"
+msgstr "Jalankan pekerjaan pengguna #1"
+
+msgctxt "#30030"
+msgid "Run User Job #2"
+msgstr "Jalankan pekerjaan pengguna #2"
+
+msgctxt "#30031"
+msgid "Run User Job #3"
+msgstr "Jalankan pekerjaan pengguna #3"
+
+msgctxt "#30032"
+msgid "Run User Job #4"
+msgstr "Jalankan pekerjaan pengguna #4"
+
+msgctxt "#30033"
+msgid "Transcoder"
+msgstr "Transkoder"
+
+msgctxt "#30034"
+msgid "Allow recordings to expire"
+msgstr "Perbolehkan rekaman untuk kedaluwarsa"
+
+msgctxt "#30049"
+msgid "Recording template"
+msgstr "Templat Rekaman"
+
+msgctxt "#30050"
+msgid "Advanced"
+msgstr "Tingkat Lanjut"
+
+msgctxt "#30052"
+msgid "Enable demuxing MPEG-TS"
+msgstr "Aktifkan demuksing MPEG-TS"
+
+msgctxt "#30053"
+msgid "Tuning delay (sec)"
+msgstr "Penalaan tunda (detik)"
+
+msgctxt "#30054"
+msgid "Group recordings by title"
+msgstr "Kelompokan rekaman dengan judul"
+
+msgctxt "#30055"
+msgid "Always"
+msgstr "Selalu"
+
+msgctxt "#30056"
+msgid "Only for series"
+msgstr "Hanya untuk seri"
+
+msgctxt "#30057"
+msgid "Never"
+msgstr "Tidak Pernah"
+
+msgctxt "#30058"
+msgid "Enable commercial skips (EDL)"
+msgstr "Aktifkan lompatan komersial (EDL)"
+
+msgctxt "#30059"
+msgid "Always"
+msgstr "Selalu"
+
+msgctxt "#30060"
+msgid "Dialog"
+msgstr "dialog"
+
+msgctxt "#30061"
+msgid "Never"
+msgstr "Tidak Pernah"
+
+msgctxt "#30062"
+msgid "Block backend shutdown"
+msgstr "Blok penutupan backend"
+
+msgctxt "#30063"
+msgid "Enable channel icons"
+msgstr "Aktifkan ikon channel"
+
+msgctxt "#30064"
+msgid "Enable recording fanart/thumbnails"
+msgstr "Aktifkan fanart / gambar mini rekaman"
+
+msgctxt "#30100"
+msgid "Protocol version: %i - Database version: %i"
+msgstr "Versi Protokol: %i - Versi Database: %i"
+
+msgctxt "#30110"
+msgid "Enabling EDL"
+msgstr "Mengaktifkan EDL"
+
+msgctxt "#30111"
+msgid "A cut list or commercial skips have been found.\nDo you want to activate EDL functionality for this show ?"
+msgstr "Sebuah daftar potong atau lompatan komersial telah ditemukan.\nApakah anda ingin mengaktifkan fungsi EDL untuk acara ini ?"
+
+msgctxt "#30302"
+msgid "Connection to MythTV backend lost"
+msgstr "Koneksi ke backend MythTV terputus"
+
+msgctxt "#30303"
+msgid "Connection to MythTV restored"
+msgstr "Koneksi ke MythTV tersambung kembali"
+
+msgctxt "#30304"
+msgid "No response from MythTV backend"
+msgstr "Tidak ada respon dari backend MythTV"
+
+msgctxt "#30305"
+msgid "Channel unavailable"
+msgstr "Saluran tak tersedia"
+
+msgctxt "#30306"
+msgid "Recorder unavailable"
+msgstr "Perekam tidak tersedia"
+
+msgctxt "#30307"
+msgid "Canceling conflicting recording: %s"
+msgstr "Batalkan rekaman yang bertabrakan: %s"
+
+msgctxt "#30308"
+msgid "Stopping Live TV due to conflicting recording: %s"
+msgstr "Hentikan Siaran Langsung TV karena bertabrakan dengan perekaman: %s"
+
+msgctxt "#30309"
+msgid "Not recording"
+msgstr "Tidak merekam"
+
+msgctxt "#30310"
+msgid "Enabled"
+msgstr "Aktifkan"
+
+msgctxt "#30311"
+msgid "Disabled"
+msgstr "Non Aktif"
+
+msgctxt "#30312"
+msgid "No broadcast found"
+msgstr "Tidak ada siaran yang ditemukan"
+
+msgctxt "#30411"
+msgid "Delete and re-record"
+msgstr "Hapus dan rekam ulang"
+
+msgctxt "#30412"
+msgid "Keep LiveTV recording"
+msgstr "Pertahankan perekaman Siaran Langsung TV"
+
+msgctxt "#30421"
+msgid "Show/hide rules with status 'Not Recording'"
+msgstr "Tampilkan/Sembunyikan aturan dengan status \"Tidak merekam\""
+
+msgctxt "#30422"
+msgid "Refresh cache for channel icons"
+msgstr "Perbarui cache untuk ikon kanal"
+
+msgctxt "#30431"
+msgid "Record all showings (this channel)"
+msgstr "Rekam semua acara (kanal ini)"
+
+msgctxt "#30432"
+msgid "Record this showing every week"
+msgstr "Rekam acara ini tiap minggu"
+
+msgctxt "#30433"
+msgid "Record this showing every day"
+msgstr "Rekam acara ini setiap hari"
+
+msgctxt "#30434"
+msgid "Record one showing (all channels)"
+msgstr "Rekam satu acara (semua kanal)"
+
+msgctxt "#30435"
+msgid "Record all new episodes (this channel)"
+msgstr "Rekam semua episode baru (kanal ini)"

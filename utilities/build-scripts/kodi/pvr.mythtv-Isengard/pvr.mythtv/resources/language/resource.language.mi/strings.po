@@ -1,0 +1,53 @@
+# Kodi Media Center language file
+# Addon Name: MythTV PVR Client
+# Addon id: pvr.mythtv
+# Addon Provider: Christian Fetzer, Jean-Luc Barrière
+msgid ""
+msgstr ""
+"Project-Id-Version: KODI Main\n"
+"Report-Msgid-Bugs-To: http://trac.kodi.tv/\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Maori (http://www.transifex.com/projects/p/kodi-main/language/mi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: mi\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgctxt "#30019"
+msgid "General"
+msgstr "Āhuawhānui"
+
+msgctxt "#30050"
+msgid "Advanced"
+msgstr "Arā Atu Anō"
+
+msgctxt "#30055"
+msgid "Always"
+msgstr "Tonu"
+
+msgctxt "#30057"
+msgid "Never"
+msgstr "Kore rawa"
+
+msgctxt "#30059"
+msgid "Always"
+msgstr "Tonu"
+
+msgctxt "#30061"
+msgid "Never"
+msgstr "Kore rawa"
+
+msgctxt "#30305"
+msgid "Channel unavailable"
+msgstr "Kaore wātea te hongere"
+
+msgctxt "#30310"
+msgid "Enabled"
+msgstr "Kua whakahohe"
+
+msgctxt "#30311"
+msgid "Disabled"
+msgstr "Kua mono"

@@ -91,8 +91,8 @@ check_sources()
 	sources_check2=$(sudo find /etc/apt -type f -name "wheezy*.list")
 	sources_check2=$(cat /etc/apt/sources | grep -E 'jessie|wheezy')
 	
-	if [[ "$sources_check1" == "" && 
-	      "$sources_check2" == "" && 
+	if [[ "$sources_check1" == "" && \
+	      "$sources_check2" == "" && \
 	      "$sources_check3 " == ""]]; then
 	
 		echo -e "\n==WARNING==\nDebian sources are needed for building chroots, add now? (y/n)"

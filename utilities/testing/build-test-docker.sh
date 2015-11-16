@@ -85,14 +85,14 @@ install_docker_debian()
 	# See: https://docs.docker.com/engine/installation/debian/
 
 	# purge prior installs
-	apt-get purge lxc-docker*
-	apt-get purge docker.io*
+	sudo apt-get purge lxc-docker*
+	sudo apt-get purge docker.io*
 
 	# grab Linux headers if ubuntu is used
 	if [[ "$OS" == "ubuntu" ]]; then
 	
 		# get headers, see: https://docs.docker.com/engine/installation/ubuntulinux/
-		sudo apt-get install linux-image-extra-$(uname -r)
+		sudo apt-get install -y --force-yes linux-image-extra-$(uname -r)
 		
 	fi
 	
@@ -147,7 +147,6 @@ main()
 	# The below needs replaced with gpg_import tool line under $scriptdir/utilities
 	# once key is known from gpg --list-keys 
 	sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
-
 
 	OS=$(lsb_release -i | grep ID | cut -c 17-30)
 	CODENAME=$(lsb_release -c | cut -c 11-30)

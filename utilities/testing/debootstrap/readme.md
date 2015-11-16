@@ -1,8 +1,7 @@
 # Some Notes
 * IN-PROGRESS for chroots and docker work
 * Files in this folder tree are not complete!
-* Reference the gentoo scripts [here](https://github.com/tianon/gentoo-overlay/tree/master/dev-util/debootstrap-valve)
-* Debootstrap scripts mirrored from Tianon's [gentoo repository](https://github.com/tianon/gentoo-overlay/tree/master/dev-util/debootstrap-valve/files/scripts)
+* For examples see Tianon's [gentoo repository](https://github.com/tianon/gentoo-overlay/tree/master/dev-util/debootstrap-valve/files/scripts)
 * Once verfied, these scripts may be used to build a chroot/docker for SteamOS from a Debian system.
 
 # Key points

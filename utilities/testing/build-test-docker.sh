@@ -1,20 +1,21 @@
 #!/bin/bash
 
 # -------------------------------------------------------------------------------
-# Author: 	    Michael DeGuzis
-# Git:		      https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	  build-test-chroot.sh
-# Script Ver:	  0.1.3
-# Description:	Builds a test Docker contain, image, or Dockerfile
-#               See: http://bit.ly/1GPw9lb (Digital Ocean Wiki)
+# Author:		Michael DeGuzis
+# Git:			https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:		build-test-chroot.sh
+# Script Ver:		0.1.7
+# Description:		Builds a test Docker contain, image, or Dockerfile
+#			See: http://bit.ly/1GPw9lb (Digital Ocean Wiki)
 #
-# Usage:	      ./build-test-docker.sh [options] [application] 
-#		            ./build-test-docker.sh --help for help
+# Usage:		./build-test-docker.sh [OS] [release]
+#			./build-test-docker.sh --help for help
 #
-# Docker usage: sudo docker [option] [command] [arguments]
+# Docker usage: 	sudo docker [option] [command] [arguments]
+# Create images:	https://wiki.debian.org/Cloud/CreateDockerImage
 #
-# Warning:	    You MUST have the Debian repos added properly for
-#		            Installation of the pre-requisite packages.
+# Warning:		You MUST have the Debian repos added properly for
+#			Installation of the pre-requisite packages.
 #
 # -------------------------------------------------------------------------------
 
@@ -23,9 +24,20 @@
 # set dir we are
 scriptdir=$(pwd)
 
+# show help if requested or list of OS's supported
+if [[ "$1" == "--help" ]]; then
+
+	show_help
+	
+elif [[ "$1" == "--show-supported" ]]; then
+
+	show_supported
+	
+fi
+
 # set args
-opt1="$1"
-opt2="$2"
+os_target="$1"
+rel_target="$2"
 
 show_help()
 {
@@ -35,8 +47,12 @@ show_help()
 	Quick usage notes:
 	#####################################################
 	
-	To ask docker for a list of all available commands:
+	To create a container:
 	
+	./build-test-docker [OS] [TARGET]
+	./build-test-docker --list-supported
+	
+	To ask docker for a list of all available commands:
 	sudo docker
 	
 	For a quick demo of how it works, take a look here:
@@ -49,6 +65,20 @@ show_help()
 	#####################################################
 	EOF
 
+}
+
+show_supported()
+{
+	
+	cat <<-EOF
+	#####################################################
+	Supported OS targets and release targets:
+	#####################################################
+	
+	OS: steamos
+	Targets: alchemist, brewmaster
+	
+	EOF
 }
 
 main()
@@ -85,7 +115,7 @@ main()
 	sudo apt-get update
 	
 	# install
-	sudo apt-get install lxc-docker
+	sudo apt-get -y --force-yes install lxc-docker
 
 	echo -e "\n==> Post install commands\n"
 	# add user to docker group
@@ -119,5 +149,29 @@ main()
   
 }
 
+create_docker()
+{
+	
+	# create steamos docker
+	# See: https://hub.docker.com/search/?q=steamos&page=1&isAutomated=0&isOfficial=0&starCount=0&pullCount=0
+	
+	if [[ "$os_target" == "steamos" ]]; then
+	
+		if [[ "$rel_target" == "alchemist" ]]; then
+		
+			# latest steamos tag, using container from tianon/steamos/
+			# See: https://hub.docker.com/r/tianon/steamos/
+			sudo docker pull tianon/steamos
+			
+		elif [[ "$rel_target" == "brewmaster" ]]; then
+	
+			:
+
+	fi
+	
+}
+
+
 # start main
 main
+#create_docker

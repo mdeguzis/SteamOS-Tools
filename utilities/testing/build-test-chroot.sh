@@ -18,6 +18,7 @@
 #
 # Warning:	You MUST have the Debian repos added properly for
 #		Installation of the pre-requisite packages.
+#		Please* be aware this is for use on SteamOS installations ONLY
 #
 # See Also:	https://wiki.debian.org/chroot
 # -------------------------------------------------------------------------------
@@ -41,6 +42,17 @@ chroot_dir="$HOME/chroots/${target}"
 #####################################################
 # Pre-flight checks
 #####################################################
+
+# Due to release types only being for the base OS, reject if SteamOS is not found
+# Possibly might be able to grab the debootstrap script from a steamos install
+OS_check=$(lsb_release -a | grep ID | cut -c 17-30)
+if [[ "$OS_check" != "steamos" ]]; then
+	clear
+	echo -e "==ERROR==\nLinux host distribution not supported for building this chroot\n"
+	sleep 3s
+	exit 1
+
+fi
 
 # shutdown script if type or release is blank or note supported
 if [[ "$type" == "" || "$release" == "" ]]; then
@@ -89,7 +101,7 @@ check_sources()
 	# Debian sources are required to install xorriso for Stephenson's Rocket
 	sources_check1=$(sudo find /etc/apt -type f -name "jessie*.list")
 	sources_check2=$(sudo find /etc/apt -type f -name "wheezy*.list")
-	sources_check2=$(cat /etc/apt/sources | grep -E 'jessie|wheezy')
+	sources_check2=$(cat /etc/apt/sources.list | grep -E 'jessie|wheezy' 2> /dev/null)
 	
 	if [[ "$sources_check1" == "" && \
 	      "$sources_check2" == "" && \

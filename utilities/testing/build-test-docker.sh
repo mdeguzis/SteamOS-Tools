@@ -87,9 +87,17 @@ install_docker_debian()
 	# purge prior installs
 	apt-get purge lxc-docker*
 	apt-get purge docker.io*
+
+	# grab Linux headers if ubuntu is used
+	if [[ "$OS" == "ubuntu" ]]; then
+	
+		# get headers, see: https://docs.docker.com/engine/installation/ubuntulinux/
+		sudo apt-get install linux-image-extra-$(uname -r)
+		
+	fi
 	
 	# install docker using method docker wiki
-	echo 'echo " # Debian $CODENAME" > "/etc/apt/sources.list.d/docker.list"' | sudo -s
+	echo 'echo " # $OS $CODENAME" > "/etc/apt/sources.list.d/docker.list"' | sudo -s
 	echo 'echo "deb https://apt.dockerproject.org/repo ${OS}-${CODENAME} main" >> "/etc/apt/sources.list.d/docker.list"' | sudo -s
 	
 	echo -e "\n==> Updating system, please wait...\n"
@@ -151,6 +159,10 @@ main()
 		
 	elif [[ "$OS" == "debian" ]]; then
 
+		install_docker_debian
+		
+	elif [[ "$OS" == "ubuntu" ]]; then
+		
 		install_docker_debian
 		
 	else

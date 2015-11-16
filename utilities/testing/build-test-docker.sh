@@ -177,9 +177,6 @@ main()
 	# end docker install
 	fi
 	
-	# show quick help
-	show_help
-	
 	echo -e "\n==> Installation checks\n"
 	
 	# confirm docker is installed
@@ -187,7 +184,7 @@ main()
 	
 	echo -e "\nChecking binary"
 	if [[ "$install_check" == "/usr/bin/docker" ]]; then
-		echo -e "Docker successfully installed!\n"
+		echo -e "Docker successfully installed!"
 		sleep 2s
 	else
 		echo -e "Docker failed to install!\n"
@@ -195,18 +192,35 @@ main()
 		sleep 2s
 	fi
 	
-	echo -e "\nChecking docker functionality, please wait...\n"
-	if sudo docker run hello-world; then
 	
-		echo -e "Docker basic test [PASS]"
-  		sleep 2s
+	echo -e "\nRun basic Docker hello-world test? [y/n]"
+
+	# get user choice
+	read -erp "Choice: " user_choice
+
+	if [[ "$user_choice" == "y" ]]; then
+	
+		echo -e "\nChecking docker functionality, please wait...\n"
+		if sudo docker run hello-world; then
+		
+			echo -e "Docker basic test [PASS]"
+	  		sleep 2s
+	  	
+	  	else
+	  	
+	  		echo -e "Docker basic test [FAIL]"
+	  
+	  
+	  	fi
+	 
+	 else
+	 
+	 	echo -e "\nHello World Docker test skipped."
+	 
+	 fi
   	
-  	else
-  	
-  		echo -e "Docker basic test [FAIL]"
-  
-  
-  	fi
+  	# show quick help
+	show_help
 }
 
 create_docker()

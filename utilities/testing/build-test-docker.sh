@@ -112,8 +112,20 @@ install_docker_debian()
 	sudo apt-get -y --force-yes install docker-engine
 	
 	# start docker engine
-	sudo service docker start
+	systemd_check=$(pidof systemd && echo "systemd" || echo "other")
+	sysv_check=$(pidof systemd && echo "sysvinit" || echo "other")
 	
+	if [[ "$sysv_check" == "systemd" ]]; then
+	
+		# start with systemd
+		sudo systemctl start docker
+		
+	elif [[ "$systemd_check" == "sysvinit" ]]; then
+	
+		# start with sysV style
+		sudo service docker start
+	
+	fi
 }
 
 install_docker_steamos()

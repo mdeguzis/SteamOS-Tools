@@ -149,19 +149,19 @@ main()
 	sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
 
 
-	OS=$(lsb_release -a | grep ID | cut -c 17-30)
+	OS=$(lsb_release -i | grep ID | cut -c 17-30)
 	CODENAME=$(lsb_release -c | cut -c 11-30)
 	
 	# Perform installs
-	if [[ "$OS" == "steamos" ]]; then
+	if [[ "$OS" == "Steamos" ]]; then
 
 		install_docker_steamos
 		
-	elif [[ "$OS" == "debian" ]]; then
+	elif [[ "$OS" == "Debian" ]]; then
 
 		install_docker_debian
 		
-	elif [[ "$OS" == "ubuntu" ]]; then
+	elif [[ "$OS" == "Ubuntu" ]]; then
 		
 		install_docker_debian
 		

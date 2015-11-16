@@ -185,7 +185,7 @@ main()
 	# confirm docker is installed
 	install_check=$(which docker)
 	
-	echoe -e "\nChecking binary"
+	echo -e "\nChecking binary"
 	if [[ "$install_check" == "/usr/bin/docker" ]]; then
 		echo -e "Docker successfully installed!\n"
 		sleep 2s
@@ -195,7 +195,7 @@ main()
 		sleep 2s
 	fi
 	
-	echoe -e "\nChecking docker functionality\n"
+	echo -e "\nChecking docker functionality, please wait...\n"
 	if sudo docker run hello-world; then
 	
 		echo -e "Docker basic test [PASS]"

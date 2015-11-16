@@ -101,7 +101,7 @@ check_sources()
 	# Debian sources are required to install xorriso for Stephenson's Rocket
 	sources_check1=$(sudo find /etc/apt -type f -name "jessie*.list")
 	sources_check2=$(sudo find /etc/apt -type f -name "wheezy*.list")
-	sources_check2=$(cat /etc/apt/sources.list | grep -E 'jessie|wheezy' 2> /dev/null)
+	sources_check3=$(cat /etc/apt/sources.list | grep -E 'jessie|wheezy' 2> /dev/null)
 	
 	if [[ "$sources_check1" == "" && \
 	      "$sources_check2" == "" && \

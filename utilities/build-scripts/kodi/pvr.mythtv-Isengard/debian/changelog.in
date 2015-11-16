@@ -1,7 +1,0 @@
-kodi-pvr-mythtv (#PACKAGEVERSION#-#TAGREV#~#DIST#) #DIST#; urgency=low
-
-  [ kodi ]
-  * Intial upload
-
- -- SteamOS-Tools Signing Key <mdeguzis@gmail.com> Sat, 14 Nov 2015 13:00:00 -0500
-

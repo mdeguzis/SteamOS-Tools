@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.8.3
+# Script Ver:	0.8.5
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -89,8 +89,11 @@ check_sources()
 	# Debian sources are required to install xorriso for Stephenson's Rocket
 	sources_check1=$(sudo find /etc/apt -type f -name "jessie*.list")
 	sources_check2=$(sudo find /etc/apt -type f -name "wheezy*.list")
+	sources_check2=$(cat /etc/apt/sources | grep -E 'jessie|wheezy')
 	
-	if [[ "$sources_check1" == "" && "$sources_check2" == "" ]]; then
+	if [[ "$sources_check1" == "" && 
+	      "$sources_check2" == "" && 
+	      "$sources_check3 " == ""]]; then
 	
 		echo -e "\n==WARNING==\nDebian sources are needed for building chroots, add now? (y/n)"
 		read -erp "Choice: " sources_choice
@@ -101,7 +104,7 @@ check_sources()
 			
 		elif [[ "$sources_choice" == "n" ]]; then
 		
-			echo -e "Sources addition skipped"
+			echo -e "Sources addition skipped\n"
 		
 		fi
 		
@@ -210,6 +213,10 @@ funct_create_chroot()
 	
 	# debootstrap
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
+	
+		# obtain keyring
+		wget "http://repo.steampowered.com/steamos/pool/main/v/valve-archive-keyring/valve-archive-keyring_0.5+bsos1_all.deb"
+		sudo dpkg -i "valve-archive-keyring_0.5+bsos1_all.deb"
 	
 		# handle SteamOS
 		sudo /usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \

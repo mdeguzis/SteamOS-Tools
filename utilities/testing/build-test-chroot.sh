@@ -93,7 +93,7 @@ check_sources()
 	
 	if [[ "$sources_check1" == "" && \
 	      "$sources_check2" == "" && \
-	      "$sources_check3 " == ""]]; then
+	      "$sources_check3 " == "" ]]; then
 	
 		echo -e "\n==WARNING==\nDebian sources are needed for building chroots, add now? (y/n)"
 		read -erp "Choice: " sources_choice

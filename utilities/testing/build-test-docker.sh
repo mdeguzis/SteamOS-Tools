@@ -97,9 +97,13 @@ install_docker_debian()
 	fi
 	
 	# install docker using method docker wiki
-	echo 'echo " # $OS $CODENAME" > "/etc/apt/sources.list.d/docker.list"' | sudo -s
-	echo 'echo "deb https://apt.dockerproject.org/repo ${OS}-${CODENAME} main" >> "/etc/apt/sources.list.d/docker.list"' | sudo -s
+	if [[ "$OS" == "Debian" && "$CODENAME" == "jessie" ]]; then
+		
+		echo 'echo " # Debian Jessie" > "/etc/apt/sources.list.d/docker.list"' | sudo -s
+		echo 'echo "deb https://apt.dockerproject.org/repo debian-jessie main" >> "/etc/apt/sources.list.d/docker.list"' | sudo -s
 	
+	fi	
+		
 	echo -e "\n==> Updating system, please wait...\n"
 	sleep 2s
 	sudo apt-get update
@@ -142,7 +146,7 @@ install_docker_steamos()
 main()
 {
 	clear
-	echo -e "\n==> import verification keys\n"
+	echo -e "==> import verification keys\n"
 	
 	# The below needs replaced with gpg_import tool line under $scriptdir/utilities
 	# once key is known from gpg --list-keys 
@@ -199,7 +203,7 @@ main()
   	
   	else
   	
-  		echoe -e "Docker basic test [FAIL]"
+  		echo -e "Docker basic test [FAIL]"
   
   
   	fi

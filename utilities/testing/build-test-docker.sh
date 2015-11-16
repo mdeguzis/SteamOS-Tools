@@ -79,42 +79,43 @@ show_supported()
 	EOF
 }
 
-main()
+install_docker_debian()
 {
-	clear
-	echo -e "\n==> import verification keys\n"
 	
-	# The below needs replaced with gpg_import tool line under $scriptdir/utilities
-	# once key is known from gpg --list-keys 
-	sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
+	# See: https://docs.docker.com/engine/installation/debian/
+
+	# purge prior installs
+	apt-get purge lxc-docker*
+	apt-get purge docker.io*
 	
-	#############################################################################
-	# While this set of routines "works", it makes removal trickier later
-	#############################################################################
-	# curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh
-	#############################################################################
-
-	# Install via apt list
-
-	# Create and add required text to preferences file
-	echo -e "\n==> Set /etc/sources.list.d/docker.list"
-	
-	# remove list file if it exists, create if not
-	if [[ -f "/etc/apt/sources.list.d/docker.list" ]]; then
-		sudo rm -f "/etc/apt/sources.list.d/docker.list"
-	else
-		sudo touch "/etc/apt/sources.list.d/docker.list"
-	fi
-
-	echo 'echo "deb http://get.docker.io/ubuntu docker main" >> "/etc/apt/sources.list.d/docker.list"' | sudo -s
+	# install docker using method docker wiki
+	echo 'echo " # Debian $CODENAME" > "/etc/apt/sources.list.d/docker.list"' | sudo -s
+	echo 'echo "deb https://apt.dockerproject.org/repo ${OS}-${CODENAME} main" >> "/etc/apt/sources.list.d/docker.list"' | sudo -s
 	
 	echo -e "\n==> Updating system, please wait...\n"
 	sleep 2s
 	sudo apt-get update
 	
 	# install
-	sudo apt-get -y --force-yes install lxc-docker
+	sudo apt-get -y --force-yes install docker-engine
+	
+	# start docker engine
+	sudo service docker start
+	
+}
 
+install_docker_steamos()
+{
+
+	#############################################################################
+	# While this set of routines "works", it makes removal trickier later
+	#############################################################################
+	# curl -sSL https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh
+	#############################################################################
+
+	# install docker using method from Sharkwouter
+	curl -sSl https://get.docker.com/ | sed "s/|debian/|steamos|debian/g"|sh
+	
 	echo -e "\n==> Post install commands\n"
 	# add user to docker group
 	sudo usermod -aG docker desktop
@@ -128,14 +129,48 @@ main()
 		sudo docker -d &
 	fi
 	
+}
+
+main()
+{
+	clear
+	echo -e "\n==> import verification keys\n"
+	
+	# The below needs replaced with gpg_import tool line under $scriptdir/utilities
+	# once key is known from gpg --list-keys 
+	sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
+
+
+	OS=$(lsb_release -a | grep ID | cut -c 17-30)
+	CODENAME=$(lsb_release -c | cut -c 11-30)
+	
+	# Perform installs
+	if [[ "$OS" == "steamos" ]]; then
+
+		install_docker_steamos
+		
+	elif [[ "$OS" == "debian" ]]; then
+
+		install_docker_debian
+		
+	else
+	
+		echo -e "Distribution/Codename not currently supported. Exiting"
+		sleep 3s
+		exit 1
+		
+	# end docker install
+	fi
+	
 	# show quick help
 	show_help
 	
-	echo -e "\n==> Installation check\n"
+	echo -e "\n==> Installation checks\n"
 	
 	# confirm docker is installed
 	install_check=$(which docker)
 	
+	echoe -e "\nChecking binary"
 	if [[ "$install_check" == "/usr/bin/docker" ]]; then
 		echo -e "Docker successfully installed!\n"
 		sleep 2s
@@ -144,7 +179,19 @@ main()
 		exit
 		sleep 2s
 	fi
+	
+	echoe -e "\nChecking docker functionality\n"
+	if sudo docker run hello-world; then
+	
+		echo -e "Docker basic test [PASS]"
+  		sleep 2s
+  	
+  	else
+  	
+  		echoe -e "Docker basic test [FAIL]"
   
+  
+  	fi
 }
 
 create_docker()
@@ -152,6 +199,8 @@ create_docker()
 	
 	# create steamos docker
 	# See: https://hub.docker.com/search/?q=steamos&page=1&isAutomated=0&isOfficial=0&starCount=0&pullCount=0
+	# See: https://github.com/tianon/gentoo-overlay/blob/master/dev-util/debootstrap-valve/debootstrap-valve-0.0.2.ebuild
+	
 	
 	if [[ "$os_target" == "steamos" ]]; then
 	

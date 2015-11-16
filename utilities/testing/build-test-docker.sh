@@ -13,9 +13,7 @@
 #
 # Docker usage: 	sudo docker [option] [command] [arguments]
 # Create images:	https://wiki.debian.org/Cloud/CreateDockerImage
-#
-# Warning:		You MUST have the Debian repos added properly for
-#			Installation of the pre-requisite packages.
+#			https://docs.docker.com/engine/userguide/dockerimages/
 #
 # -------------------------------------------------------------------------------
 

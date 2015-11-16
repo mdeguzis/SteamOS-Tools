@@ -45,8 +45,8 @@ chroot_dir="$HOME/chroots/${target}"
 
 # Due to release types only being for the base OS, reject if SteamOS is not found
 # Possibly might be able to grab the debootstrap script from a steamos install
-OS_check=$(lsb_release -a | grep ID | cut -c 17-30)
-if [[ "$OS_check" != "steamos" ]]; then
+OS_check=$(lsb_release -i | cut -c 17-30)
+if [[ "$OS_check" != "SteamOS" && "$OS_check" != "Debian" ]]; then
 	clear
 	echo -e "==ERROR==\nLinux host distribution not supported for building this chroot\n"
 	sleep 3s
@@ -230,6 +230,32 @@ funct_create_chroot()
 		wget "http://repo.steampowered.com/steamos/pool/main/v/valve-archive-keyring/valve-archive-keyring_0.5+bsos1_all.deb"
 		sudo dpkg -i "valve-archive-keyring_0.5+bsos1_all.deb"
 	
+		# the bootstrap scripts under /usr/share/debootstrap/scripts are merely symlinks
+		# to their respectice releases. Create them if they do not exist
+		if [[ "$OS_check" == "Debian" ]]; then
+		
+			# set current dir
+			cwd=$(pwd)
+			
+			if [[ ! -L "/usr/share/debootstrap/scripts/alchemist" ]]; then
+			
+				cd "/usr/share/debootstrap/scripts/"
+				ln -s "wheezy" "/usr/share/debootstrap/scripts/alchemist" 
+				
+			fi
+			
+			if [[ ! -L "/usr/share/debootstrap/scripts/brewmaster" ]]; then
+			
+				cd "/usr/share/debootstrap/scripts/"
+				ln -s "jessie" "/usr/share/debootstrap/scripts/brewmaster" 
+
+			fi
+		
+			# return to previous dir
+			cd "$cwd"
+		fi
+		
+
 		# handle SteamOS
 		sudo /usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
 		--arch ${arch} ${release} ${chroot_dir} ${target_URL} 

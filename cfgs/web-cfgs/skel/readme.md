@@ -11,7 +11,4 @@ to search for specific grid images much easier.
 
 # Default user config folder
 
-The folder "Default" is fairly standard. The only option changed from a default set of options, is
-the option to keep Chrome open when it is killed/stopped. Since the only way for now to close
-Chrome is to hit the Guide/Center button on the controller and quit (CTRL+W for keyboards), we 
-have to uncheck this option to avoid the "Chrome shutdown unexpectedly" message.
+The folder "Default" is fairly standard. It merely uncludes some defaults for the script to work with, as well as set's default zoom levels.

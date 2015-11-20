@@ -118,6 +118,18 @@ add_web_app_chrome()
 	if [[ "$options" == "install" ]]; then
 
 		#######################################
+		Set browser/dirs
+		#######################################
+		# set vars so we can alternate between chrome/chromium for testing
+		# without changing a lot of code
+		
+		#browser="google-chrome-stable"
+		browser="chromium-browser"
+		
+		#browser_dir="/home/steam/.config/google-chrome/Default/"
+		browser_dir=""
+
+		#######################################
 		# Set vars
 		#######################################
 	
@@ -136,13 +148,13 @@ add_web_app_chrome()
 		
 		# create Google chrome dir if it does not exist to copy our cfgs in
 		
-		if [[ -d "/home/steam/.config/google-chrome/Default/" ]]; then
+		if [[ -d "$browser_dir" ]]; then
 			# directory exists
 			echo -e "Chrome config directory found. Skipping default setup"
 		else
 			# create DIR
 			echo -e "Chrome config directory not found, creating"
-			sudo mkdir -p "/home/steam/.config/google-chrome/Default"
+			sudo mkdir -p "$browser_dir"
 		fi
 		
 		#######################################
@@ -166,18 +178,27 @@ add_web_app_chrome()
 		# because of this there is a workaround removal below
 		sudo rm -f "/usr/share/doc/libattr1/changelog.Debian.gz"
 	
-		pkg_test=$(which google-chrome-stable)
+		pkg_test=$(which $browser)
 	
 		if [[ "$pkg_test" == "" ]]; then
 		
-			echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
-			# install chrome from script
-			sleep 2s
-			ep_install_chrome
+			if [[ "$browser" == "google-chrome-stable" ]]; then
+		
+				echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
+				# install browser from script
+				sleep 2s
+				ep_install_chrome
+			
+			elif [[ "$browser" == "chromium-browser ]]; then
+			
+				# install chromium-browser beta vesrion from libregeek
+				sudo apt-get install "$browser"
+				
+			fi
 			
 		else
 			
-			echo -e "\nPackage google-chrome-stable [OK]"
+			echo -e "\nPackage $browser [OK]"
 			sleep 0.5s
 			
 		fi
@@ -290,19 +311,26 @@ add_web_app_chrome()
 		# copy launcher to /usr/bin
 		# Eval based on custom url or not
 		
-		# copy default user files for Google chrome over
+		# copy default user files for browser over
 		# do not overwrite the Default folder if it exists already
 		
 		# Chrome default directory check
-		chrome_dir_check=$(sudo ls  "/home/steam/.config/google-chrome/Default")
+		browser_dir_check=$(sudo ls  "$browser_dir")
 		
-	        if [[ "$chrome_dir_check" != "" ]]; then
+	        if [[ "$browser_dir_check" != "" ]]; then
 	                # do nothing
-	                echo -e "\nChrome Default config DIR exists. Skipping..."
+	                echo -e "\n${browser} Default config DIR exists. Skipping..."
 	        else
-	                echo -e "\nChrome Default config DIR does not exist. Adding..."
-	                sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/."  "/home/steam/.config/google-chrome/Default/"
+	                echo -e "\n{browser} Default config DIR does not exist. Adding..."
+	                sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/${browser}/*.*"  "$browser_dir"
 	        fi
+
+		# add widevine support if we are using chromium-browser
+		
+			# add widebine libraries - TODO
+			:
+			
+		fi
 	
 		
 		# Evaluate custom url or not
@@ -375,6 +403,7 @@ add_web_app_chrome()
 			sudo sed -i "s|LAUNCHER_TMP|$launch_loc|g" "/usr/share/applications/${TARGET_NAME}.desktop"
 			sudo sed -i "s|NAME_TMP|$custom_name|g" "/usr/share/applications/${TARGET_NAME}.desktop"
 			sudo sed -i "s|WEB_URL_TMP|$custom_url|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+			sudo sed -i "s|BROWSER_TMP|$browser|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
 			
 			# mark launcher exec
 			sudo chmod +x "/usr/bin/${TARGET_NAME}-Launch.sh"

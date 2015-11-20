@@ -26,6 +26,8 @@ There is now a Debian personal repository hosted at packages.libregeek.org. Be s
 
 [SteamoS-Tools Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository)
 
+Most pacakge build scripts are hosted in a dedicatd GitHub repository, [SteamOS-Tools-Packaging](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging)
+
 # Usage / Installation
 
 Please make sue you have enabled desktop mode (Settings > Interface > Enable access to the Linux desktop), and aset your password for the dekstop user with `passwd`.

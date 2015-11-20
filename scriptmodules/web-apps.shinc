@@ -123,11 +123,11 @@ add_web_app_chrome()
 		# set vars so we can alternate between chrome/chromium for testing
 		# without changing a lot of code
 		
-		#browser="google-chrome-stable"
-		browser="chromium-browser"
+		browser="google-chrome-stable"
+		#browser="chromium-browser"
 		
-		#browser_dir="/home/steam/.config/google-chrome/Default/"
-		browser_dir="/home/steam/.config/chromium/Default/"
+		browser_dir="/home/steam/.config/google-chrome/Default/"
+		#browser_dir="/home/steam/.config/chromium/Default/"
 
 		#######################################
 		# Set vars

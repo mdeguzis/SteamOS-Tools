@@ -18,7 +18,7 @@ main ()
 	#antimicro_tmp
 
 	export DISPLAY=:15
-	LD_PRELOAD= google-chrome --kiosk WEB_URL_TMP --window-size=$COMMA_WIN_RES &&
+	LD_PRELOAD= BROWSER_TMP --kiosk WEB_URL_TMP --window-size=$COMMA_WIN_RES &&
 
 	sleep 1
 	killall chrome

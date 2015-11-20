@@ -2,7 +2,7 @@
 # Author: 	    	Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.4.8
+# Script Ver:	  	1.7.3
 # Description:		Module for isntalling web-apps .
 #	
 # Usage:	      	n/a , module
@@ -127,7 +127,7 @@ add_web_app_chrome()
 		browser="chromium-browser"
 		
 		#browser_dir="/home/steam/.config/google-chrome/Default/"
-		browser_dir=""
+		browser_dir="/home/steam/.config/chromium/Default/"
 
 		#######################################
 		# Set vars
@@ -332,8 +332,10 @@ add_web_app_chrome()
 			
 		fi
 	
+		#########################
+		# Evaluate custom url
+		#########################
 		
-		# Evaluate custom url or not
 		if [[ "$custom_url" == "no" ]]; then
 		
 			# copy default launcher, modify based on values pased from
@@ -434,7 +436,7 @@ add_web_app_chrome()
 		sudo cp -r "$scriptdir/cfgs/gamepad/web/." "$antimicro_dir"
 	
 		echo -e "\n#############################################################"
-		echo -e "Setting mouse control for available gamepads"
+		echo -e "Setting controls for desired supported gamepads"
 		echo -e "#############################################################"
 	
 		# prompt user For controller type if they wish to enable gp mouse control
@@ -533,7 +535,7 @@ add_web_app_chrome()
 		###################################
 		# correct permissions
 		###################################
-		# fix ownership if need be
+		# fix ownership
 		
 		sudo chmod -R 755 "/home/steam/antimicro"
 		
@@ -556,14 +558,14 @@ add_web_app_chrome()
 		echo -e "==> Uninstalling web app functionality"
 		sleep 3s
 	
-		echo -e "\nGoogle Chrome was installed/required by web apps, remove? [y/n]"
+		echo -e "\n${browser} was installed/required by web apps, remove? [y/n]"
 		sleep 0.3s
 		
 		read -ep "Choice: " chrome_choice
 		
 		if [[ "$chrome_choice" == "y" ]]; then
 		
-			sudo apt-get -y remove google-chrome-stable
+			sudo apt-get -y remove "$browser"
 		
 		fi
 		

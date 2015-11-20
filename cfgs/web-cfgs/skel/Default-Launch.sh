@@ -26,6 +26,3 @@ main ()
 	kill $XEPHYR_PID
 
 }
-
-# start main and log
-main &> /home/steam/web-chrome-log.txt

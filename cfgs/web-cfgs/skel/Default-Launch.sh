@@ -8,7 +8,7 @@ COMMA_WIN_RES=$(echo $WIN_RES | awk '{sub(/x/, ","); print}')
 # For some reason, the Xephyr window never gets populated with a value for the 
 # STEAM_GAME atom. It is possible to set the property manually though
 sleep 1s
-WINDOW_ID=$(xwininfo -root -children | grep "Xephyr" | awk '{print $1}')
+WINDOW_ID=$(xwininfo -root -children | grep "Xephyr" | awk '{print $4}')
 xprop -id $WINDOW_ID -f "STEAM_GAME" 32c -set "STEAM_GAME" 8000
 
 # start antimicro mouse control

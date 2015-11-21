@@ -253,7 +253,7 @@ ep_install_retroarch()
 	# packaged now at packages.libregeek.org
 	# A user could install these out of the script and forgoe this post install configuration
 	
-	sudo apt-get install samba retroarch retroarch-joypad-autoconfig libretro-* 
+	sudo apt-get install -y --force-yes samba retroarch retroarch-joypad-autoconfig libretro-* 
 	
 	# only post install configuration is needed
   

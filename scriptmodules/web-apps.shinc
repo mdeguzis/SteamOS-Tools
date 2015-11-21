@@ -326,6 +326,10 @@ add_web_app_chrome()
 	        fi
 
 		# add widevine support if we are using chromium-browser
+		# TODO
+		
+		
+		if [[ "$browser" == "chromium-browser" ]]; then
 		
 			# add widebine libraries - TODO
 			:

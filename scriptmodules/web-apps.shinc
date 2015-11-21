@@ -189,7 +189,7 @@ add_web_app_chrome()
 				sleep 2s
 				ep_install_chrome
 			
-			elif [[ "$browser" == "chromium-browser ]]; then
+			elif [[ "$browser" == "chromium-browser" ]]; then
 			
 				# install chromium-browser beta vesrion from libregeek
 				sudo apt-get install "$browser"

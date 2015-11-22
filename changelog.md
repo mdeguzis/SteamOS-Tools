@@ -1,3 +1,13 @@
+SteamOS-Tools 2.7.4
+
+  * Packaged python-evdev for packages.libregeek.org
+  * Packaged ds4drv for packages.libregeek.org
+  * Wiki updated for pairing DS4/PS4 controllers
+  * Began work on creating post-configure package for Retroarch
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 22 Oct 2015 16:32:00 -0500
+
 SteamOS-Tools 2.7.1
 
   * Updated Kodi to Isengard 15.2 latest git stable release

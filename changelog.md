@@ -2,6 +2,7 @@ SteamOS-Tools 2.7.4
 
   * Packaged python-evdev for packages.libregeek.org
   * Packaged ds4drv for packages.libregeek.org
+  * Updated OBS-Studio with proper debian packaging, release 0.12.2
   * Wiki updated for pairing DS4/PS4 controllers
   * Began work on creating post-configure package for Retroarch
   * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging

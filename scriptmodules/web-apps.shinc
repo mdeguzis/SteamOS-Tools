@@ -2,7 +2,7 @@
 # Author: 	    	Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.7.3
+# Script Ver:	  	1.7.5
 # Description:		Module for isntalling web-apps .
 #	
 # Usage:	      	n/a , module
@@ -360,6 +360,7 @@ add_web_app_chrome()
 			sudo sed -i "s|NAME_TMP|$NAME|g" "/usr/share/applications/${TARGET_NAME}.desktop"
 			sudo sed -i "s|IMG_TMP|$BANNER_IMG|g" "/usr/share/applications/${TARGET_NAME}.desktop"
 			sudo sed -i "s|WEB_URL_TMP|$WEB_URL|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+			sudo sed -i "s|BROWSER_TMP|$browser|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
 			
 		elif [[ "$custom_url" == "yes" ]]; then
 			

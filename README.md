@@ -6,7 +6,7 @@ Version 2.7.4
 
 Tools and scripts for SteamOS. Be sure to check out the [Upcoming features](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Development-and-Features#upcoming-planned-features) subsection on the wiki for the latest developments! For those of you that wish to contribute, suggest, or otherwise correct code, please first read the [Development and Feautres](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Development-and-Features) wiki page. Code corrections, additions, and all other suggestions can be made to the [issus](https://github.com/ProfessorKaos64/SteamOS-Tools/issues) tracker.
 
-All operations are tested against official Valve releases only.
+All operations are tested against official Valve releases _only_.
 
 For the latest change details, please see the commits page and changelog.md file for overall change details.
 
@@ -83,18 +83,14 @@ Normal script execution, sans arguments, goes a little bit like:
 # Branches
 There are four main branches at the moment
 
-`alchemist`  
-Alchemist branch. Due to Brewmaster being usable now, this branch is not as up to date.  
 `brewmaster`  
 Brewmaster branch. Default branch for repository.  
-`testing-a`  
-Branch where new scripts are made, larger alterations to existing ones implemented, and more for alchemist.  
 `testing-b`    
 Branch where new scripts are made, larger alterations to existing ones implemented, and more for brewmaster.  
 
-# Pull requests / suggestions
+# Pull requests / package requests / suggestions 
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page
-or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the contributing.md file. 
+or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the contributing.md file. I will also take requests for packages _not_ found within Debian Jessie, or those that require extra work to work/install.
 
 # Troubleshooting
 Most scripts in the main folder of the repository write stdout and stderr to `log.txt` in the current directory after completion. Please check this file before submitting any issues or pull requests.

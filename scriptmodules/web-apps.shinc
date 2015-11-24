@@ -209,7 +209,7 @@ add_web_app_chrome()
 		
 			echo -e "\n==INFO==\nantimicro not found! Installing now..."
 			# install antimicro 
-			sudo apt-get install antimicro
+			sudo apt-get install -y --force-yes antimicro
 			
 		else
 			

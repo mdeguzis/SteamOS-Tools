@@ -165,7 +165,7 @@ add_web_app_chrome()
 		# recently discovered, was libqt-dev for antimciro
 		# This will need added as s dependency into the .deb pkg
 		
-		sudo apt-get install xserver-xephyr libqt4-dev
+		sudo apt-get install -y --force-yes xserver-xephyr libqt4-dev
 	
 		#######################################
 		# Software function pre-req

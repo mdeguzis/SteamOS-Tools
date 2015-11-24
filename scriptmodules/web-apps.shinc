@@ -118,7 +118,7 @@ add_web_app_chrome()
 	if [[ "$options" == "install" ]]; then
 
 		#######################################
-		Set browser/dirs
+		# Set browser/dirs
 		#######################################
 		# set vars so we can alternate between chrome/chromium for testing
 		# without changing a lot of code

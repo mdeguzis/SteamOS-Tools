@@ -542,7 +542,8 @@ add_web_app_chrome()
 		###################################
 		# fix ownership
 		
-		sudo chmod -R 755 "/home/steam/antimicro"
+		sudo chown -R steam:steam "/home/steam/antimicro"
+		sudo chown -R steam:steam "$browser_dir"
 		
 		###################################
 		# end web app addition loop

@@ -9,6 +9,19 @@
 # Usage:
 # -----------------------------------------------------------------------
 
+# Ensure downloader tool from jessie is installed
+# The current stable Debian Jessie package has an issue with recaptcha prompts
+# Use gogdownloader built from source code. There is also a package in strech
+# backports which works as well.
+if ! which lgogdownloader &> /dev/null; then
+
+        echo "gog downloader not found, installing now."
+        sudo apt-get install lgogdownloader
+
+fi
+
+
+
 # check if password is set
 pw_set=$(passwd -S | cut -f2 -d " ")
 
@@ -48,6 +61,16 @@ if [[ "$pw_set" != "P" ]];then
 fi
 
 # login to GOG if not done yet
+# There is an issue with this, as GOG uses a recaptcha now, resulting in this message if you
+# Try to use the --login parameter or API:
+
+# Login form contains reCAPTCHA (https://www.google.com/recaptcha/)
+# Login with browser and export cookies to "/home/desktop/.config/lgogdownloader/cookies.txt"
+# HTTP: Login failed
+
+# Now, ask user to login to GOG.com, then close the browser if cookies.txt does not exist
+cookies="$HOME/.config/lgogdownloader/cookies.txt"
+
 if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
 
 	while [ ! -f ~/.config/lgogdownloader/config.cfg ];
@@ -61,11 +84,12 @@ if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
 		case $? in
          	0)
 
-	 		gog_user=$(echo $ENTRY | cut -d'|' -f1)
+	 		gog_email=$(echo $ENTRY | cut -d'|' -f1)
 	 		gog_pw=$(echo $ENTRY | cut -d'|' -f2)
 	 		
 	 		# TODO - use user/pw to login to downloader
-	 		# gnome-terminal -x /bin/bash -c "echo 'Log in to GOG:'; lgogdownloader --login;"
+	 		# As GOG.com uses recaptcha, we must use --login-api first to export the cookies
+	 		echo -e "${gog_email}\n${gog_pw}" | lgogdownloader --login-api
 	 		
 			;;
          	1)

@@ -69,40 +69,47 @@ fi
 # HTTP: Login failed
 
 # Now, ask user to login to GOG.com, then close the browser if cookies.txt does not exist
-cookies="$HOME/.config/lgogdownloader/cookies.txt"
+cookies="cookie string"
 
 if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
 
-	while [ ! -f ~/.config/lgogdownloader/config.cfg ];
-	do
+	# TODO. Without an extension, there is no easy way to export cookies
+	# in iceweasel. The cookies file is an SQL Lite DB:
+	# ~/.mozilla/firefox/*.default/cookies.sqlite
+	:
 
-		ENTRY=`zenity \
-		--title="Login to GOG.com" \
-		--text="Please login to your GOG.com account" \
-		--password --username`
+fi
 
-		case $? in
-         	0)
+while [ ! -f ~/.config/lgogdownloader/config.cfg ];
+do
 
-	 		gog_email=$(echo $ENTRY | cut -d'|' -f1)
-	 		gog_pw=$(echo $ENTRY | cut -d'|' -f2)
-	 		
-	 		# TODO - use user/pw to login to downloader
-	 		# As GOG.com uses recaptcha, we must use --login-api first to export the cookies
-	 		echo -e "${gog_email}\n${gog_pw}" | lgogdownloader --login-api 2> /dev/null
-	 		
-	 		# forget values
-	 		unset gog_email
-	 		unset gog_pw
-	 		
-			;;
-         	1)
-                	echo "Stop login.";;
-        	-1)
-                	echo "An unexpected error has occurred.";;
-		esac
+	ENTRY=`zenity \
+	--title="Login to GOG.com" \
+	--text="Please login to your GOG.com account" \
+	--password --username`
 
-        done
+	case $? in
+ 	0)
+
+ 		gog_email=$(echo $ENTRY | cut -d'|' -f1)
+ 		gog_pw=$(echo $ENTRY | cut -d'|' -f2)
+ 		
+ 		# TODO - use user/pw to login to downloader
+ 		# As GOG.com uses recaptcha, we must use --login-api first to export the cookies
+ 		echo -e "${gog_email}\n${gog_pw}" | lgogdownloader --login-api 2> /dev/null
+ 		
+ 		# forget values
+ 		unset gog_email
+ 		unset gog_pw
+ 		
+		;;
+ 	1)
+        	echo "Stop login.";;
+	-1)
+        	echo "An unexpected error has occurred.";;
+	esac
+
+done
 
 fi
 

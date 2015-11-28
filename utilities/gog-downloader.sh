@@ -82,43 +82,45 @@ Please loging to GOG.com and then close the browser when done. Opening browser n
 
 iceweasel www.gog.com
 
-while [ ! -f ~/.config/lgogdownloader/config.cfg ];
-do
+# grab credentials
+ENTRY=`zenity \
+--title="Login to GOG.com" \
+--text="Please login to your GOG.com account" \
+--password --username`
 
-	ENTRY=`zenity \
-	--title="Login to GOG.com" \
-	--text="Please login to your GOG.com account" \
-	--password --username`
+case $? in
+ 0)
 
-	case $? in
- 	0)
+ 	gog_email=$(echo $ENTRY | cut -d'|' -f1)
+ 	gog_pw=$(echo $ENTRY | cut -d'|' -f2)
+ 	
+ 	# TODO - use user/pw to login to downloader
+ 	# As GOG.com uses recaptcha, we must use --login-api first to export the cookies
+ 	#echo -e "${gog_email}\n${gog_pw}" | lgogdownloader --login-api 2> /dev/null
+ 	
+ 	# for some reason, you cannot echo your user/pw values
+ 	# see: https://github.com/Sude-/lgogdownloader/issues/72
+ 	# for now, login via prompt
+ 	while [ ! -f ~/.config/lgogdownloader/config.cfg ];do
+        	gnome-terminal -x /bin/bash -c "echo 'Log in to GOG:'; lgogdownloader --login;"
+	done
+ 	
+ 	# forget values
+ 	unset gog_email
+ 	unset gog_pw
+ 	
+	;;
+ 1)
+	echo "Stop login.";;
+-1)
+	echo "An unexpected error has occurred.";;
+esac
 
- 		gog_email=$(echo $ENTRY | cut -d'|' -f1)
- 		gog_pw=$(echo $ENTRY | cut -d'|' -f2)
- 		
- 		# TODO - use user/pw to login to downloader
- 		# As GOG.com uses recaptcha, we must use --login-api first to export the cookies
- 		echo -e "${gog_email}\n${gog_pw}" | lgogdownloader --login-api 2> /dev/null
- 		
- 		# forget values
- 		unset gog_email
- 		unset gog_pw
- 		
-		;;
- 	1)
-        	echo "Stop login.";;
-	-1)
-        	echo "An unexpected error has occurred.";;
-	esac
-
-done
-
-fi
 
 # select game to download
 game=$(zenity --list \
 --column=Games \
---text="Pick a game from your GOG library to install" `./lgogdownloader --list \
+--text="Pick a game from your GOG library to install" `./lgogdownloader --list 2> /dev/null \
 --platform=4`)
 
 # download game

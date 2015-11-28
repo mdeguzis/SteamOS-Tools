@@ -77,17 +77,10 @@ fi
 # Now, ask user to login to GOG.com, then close the browser if cookies.txt does not exist
 COOKIE_DB="${2:-$HOME/.mozilla/firefox/*.default/cookies.sqlite}"
 
-if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
+zenity --warning --title="Authentication" --text="GOG now uses recaptcha for authentication. \
+Please loging to GOG.com and then close the browser when done. Opening browser now..."
 
-	# TODO. Without an extension, there is no easy way to export cookies
-	# in iceweasel. The cookies file is an SQL Lite DB:
-	# ~/.mozilla/firefox/*.default/cookies.sqlite
-	sqlite3 -separator ' ' "$COOKIE_DB" \
-	"select name,value from moz_cookies WHERE host=\"$1\"" |
-	awk 'BEGIN{ ORS=";" } { print $1 "=" $2 }'
-
-
-fi
+iceweasel www.gog.com
 
 while [ ! -f ~/.config/lgogdownloader/config.cfg ];
 do

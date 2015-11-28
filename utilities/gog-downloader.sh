@@ -21,10 +21,10 @@ if ! which lgogdownloader &> /dev/null; then
 fi
 
 # sqlite3 need to export cookies
-if ! which lgogdownloader &> /dev/null; then
+if ! which gksu &> /dev/null; then
 
-        echo "\nsqlite3 downloader not found, installing now.\n"
-        sudo apt-get install sqlite3
+        echo "\nGKSU downloader not found, installing now.\n"
+        sudo apt-get install gksu
 
 fi
 

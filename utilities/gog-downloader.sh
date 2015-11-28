@@ -15,16 +15,16 @@
 # backports which works as well.
 if ! which lgogdownloader &> /dev/null; then
 
-        echo "gog downloader not found, installing now.\n"
-        sudo apt-get install lgogdownloader
+        echo -e "\ngog downloader not found, installing now...\n"
+        sudo apt-get install -y --force-yes lgogdownloader 2> /dev/null
 
 fi
 
 # sqlite3 need to export cookies
 if ! which gksu &> /dev/null; then
 
-        echo "\nGKSU downloader not found, installing now.\n"
-        sudo apt-get install gksu
+        echo -e "\nGKSU downloader not found, installing now....\n"
+        sudo apt-get install -y --force-yes gksu 2> /dev/null
 
 fi
 

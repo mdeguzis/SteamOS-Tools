@@ -16,7 +16,7 @@
 if ! which lgogdownloader &> /dev/null; then
 
         echo -e "\ngog downloader not found, installing now...\n"
-        sudo apt-get install -y --force-yes lgogdownloader 2> /dev/null
+        sudo apt-get install -y --force-yes lgogdownloader 1> /dev/null
 
 fi
 
@@ -24,7 +24,7 @@ fi
 if ! which gksu &> /dev/null; then
 
         echo -e "\nGKSU downloader not found, installing now....\n"
-        sudo apt-get install -y --force-yes gksu 2> /dev/null
+        sudo apt-get install -y --force-yes gksu 1> /dev/null
 
 fi
 

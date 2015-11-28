@@ -74,19 +74,21 @@ fi
 # Login with browser and export cookies to "/home/desktop/.config/lgogdownloader/cookies.txt"
 # HTTP: Login failed
 
-# Now, ask user to login to GOG.com, then close the browser if cookies.txt does not exist
+# grab credentials
+# This is not needed right now and DOES NOT WORK, due to GOG.com using recaptcha
+
+#ENTRY=`zenity \
+#--title="Login to GOG.com" \
+#--text="Please login to your GOG.com account" \
+#--password --username`
+
+# INSTEAD, ask user to login to GOG.com, then close the browser if cookies.txt does not exist
 COOKIE_DB="${2:-$HOME/.mozilla/firefox/*.default/cookies.sqlite}"
 
 zenity --warning --title="Authentication" --text="GOG now uses recaptcha for authentication. \
 Please loging to GOG.com and then close the browser when done. Opening browser now..."
 
 iceweasel www.gog.com
-
-# grab credentials
-ENTRY=`zenity \
---title="Login to GOG.com" \
---text="Please login to your GOG.com account" \
---password --username`
 
 case $? in
  0)

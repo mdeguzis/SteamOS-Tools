@@ -15,12 +15,18 @@
 # backports which works as well.
 if ! which lgogdownloader &> /dev/null; then
 
-        echo "gog downloader not found, installing now."
+        echo "gog downloader not found, installing now.\n"
         sudo apt-get install lgogdownloader
 
 fi
 
+# sqlite3 need to export cookies
+if ! which lgogdownloader &> /dev/null; then
 
+        echo "\nsqlite3 downloader not found, installing now.\n"
+        sudo apt-get install sqlite3
+
+fi
 
 # check if password is set
 pw_set=$(passwd -S | cut -f2 -d " ")
@@ -69,14 +75,17 @@ fi
 # HTTP: Login failed
 
 # Now, ask user to login to GOG.com, then close the browser if cookies.txt does not exist
-cookies="cookie string"
+COOKIE_DB="${2:-$HOME/.mozilla/firefox/*.default/cookies.sqlite}"
 
 if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
 
 	# TODO. Without an extension, there is no easy way to export cookies
 	# in iceweasel. The cookies file is an SQL Lite DB:
 	# ~/.mozilla/firefox/*.default/cookies.sqlite
-	:
+	sqlite3 -separator ' ' "$COOKIE_DB" \
+	"select name,value from moz_cookies WHERE host=\"$1\"" |
+	awk 'BEGIN{ ORS=";" } { print $1 "=" $2 }'
+
 
 fi
 

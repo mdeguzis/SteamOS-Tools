@@ -89,7 +89,7 @@ if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
 	 		
 	 		# TODO - use user/pw to login to downloader
 	 		# As GOG.com uses recaptcha, we must use --login-api first to export the cookies
-	 		echo -e "${gog_email}\n${gog_pw}" | lgogdownloader --login-api
+	 		echo -e "${gog_email}\n${gog_pw}" | lgogdownloader --login-api 2> /dev/null
 	 		
 	 		# forget values
 	 		unset gog_email

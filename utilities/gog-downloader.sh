@@ -63,6 +63,10 @@ if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
 
 	 		gog_user=$(echo $ENTRY | cut -d'|' -f1)
 	 		gog_pw=$(echo $ENTRY | cut -d'|' -f2)
+	 		
+	 		# TODO - use user/pw to login to downloader
+	 		# gnome-terminal -x /bin/bash -c "echo 'Log in to GOG:'; lgogdownloader --login;"
+	 		
 			;;
          	1)
                 	echo "Stop login.";;

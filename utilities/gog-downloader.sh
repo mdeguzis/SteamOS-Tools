@@ -14,7 +14,8 @@ pw_set=$(passwd -S | cut -f2 -d " ")
 
 if [[ "$pw_set" != "P" ]];then
 
-        pw_response=$(zenity --question --title="Set user password" --text="Admin password not set! Do you want to set it now?")
+        pw_response=$(zenity --question --title="Set user password" \
+        --text="Admin password not set! Do you want to set it now?")
 
 	if [[ "$pw_response" == "Yes" ]]; then
 
@@ -27,6 +28,9 @@ if [[ "$pw_set" != "P" ]];then
 	 		
 	 		# echo password to passwd
 	 		echo -e "${adminpw}\n${adminpw}" | passwd
+	 		
+	 		# unset the password to delete the value, we do not want to store it
+	 		unset adminpw
 	 		
 			;;
          	1)
@@ -49,7 +53,10 @@ if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
 	while [ ! -f ~/.config/lgogdownloader/config.cfg ];
 	do
 
-		ENTRY=`zenity --title="Login to GOG.com" --text="Please login to your GOG.com account" --password --username`
+		ENTRY=`zenity \
+		--title="Login to GOG.com" \
+		--text="Please login to your GOG.com account" \
+		--password --username`
 
 		case $? in
          	0)
@@ -68,10 +75,17 @@ if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
 fi
 
 # select game to download
-game=$(zenity --list --column=Games --text="Pick a game from your GOG library to install" `./lgogdownloader --list --platform=4`)
+game=$(zenity --list \
+--column=Games \
+--text="Pick a game from your GOG library to install" `./lgogdownloader --list \
+--platform=4`)
 
 # download game
-./lgogdownloader --download --platform=4 --include=1 --game ${game}|zenity --progress --pulsate --no-cancel --auto-close --text="Downloading Installer of ${game}" --title="Downloading Installer"
+./lgogdownloader --download \
+--platform=4 \
+--include=1 --game ${game}|zenity --progress --pulsate --no-cancel --auto-close \
+--text="Downloading Installer of ${game}" \
+--title="Downloading Installer"
 
 # run installer
 chmod +x ${game}/gog_${game}*.sh

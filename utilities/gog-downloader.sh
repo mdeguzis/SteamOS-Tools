@@ -124,7 +124,7 @@ game=$(zenity --list \
 --platform=4`)
 
 # download game
-./lgogdownloader --download \
+lgogdownloader --download \
 --platform=4 \
 --include=1 --game ${game}|zenity --progress --pulsate --no-cancel --auto-close \
 --text="Downloading Installer of ${game}" \

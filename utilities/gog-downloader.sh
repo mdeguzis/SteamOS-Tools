@@ -3,7 +3,7 @@
 # Author: 	Sharkwouter, Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	gog-downloader.sh
-# Script Ver:	0.1.3
+# Script Ver:	0.1.7
 # Description:	Downloads and install GOG games - IN PROGRESS!!!
 #
 # Usage:
@@ -18,12 +18,11 @@ if [[ "$pw_set" != "P" ]];then
 
 	if [[ "$pw_response" == "Yes" ]]; then
 
-        	ENTRY=`zenity --password --username`
+        	ENTRY=`zenity --password`
 
 		case $? in
          	0)
-	 		echo "User Name: `echo $ENTRY | cut -d'|' -f1`"
-	 		echo "Password : `echo $ENTRY | cut -d'|' -f2`"
+	 		adminpw=$(echo $ENTRY | cut -d'|' -f2)
 			;;
          	1)
                 	echo "Stop login.";;
@@ -49,8 +48,12 @@ if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
 
 		case $? in
          	0)
-	 		echo "User Name: `echo $ENTRY | cut -d'|' -f1`"
-	 		echo "Password : `echo $ENTRY | cut -d'|' -f2`"
+         		# IN TESTING
+	 		gog_user=$(echo $ENTRY | cut -d'|' -f1)
+	 		gog_pw=(echo $ENTRY | cut -d'|' -f2)
+	 		echo $gog_user
+	 		echo $gog_pw
+	 		exit 1
 			;;
          	1)
                 	echo "Stop login.";;

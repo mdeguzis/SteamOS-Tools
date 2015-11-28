@@ -91,6 +91,10 @@ if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
 	 		# As GOG.com uses recaptcha, we must use --login-api first to export the cookies
 	 		echo -e "${gog_email}\n${gog_pw}" | lgogdownloader --login-api
 	 		
+	 		# forget values
+	 		unset gog_email
+	 		unset gog_pw
+	 		
 			;;
          	1)
                 	echo "Stop login.";;

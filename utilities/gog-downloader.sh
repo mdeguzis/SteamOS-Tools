@@ -120,7 +120,7 @@ esac
 # select game to download
 game=$(zenity --list \
 --column=Games \
---text="Pick a game from your GOG library to install" `./lgogdownloader --list 2> /dev/null \
+--text="Pick a game from your GOG library to install" `lgogdownloader --list 2> /dev/null \
 --platform=4`)
 
 # download game

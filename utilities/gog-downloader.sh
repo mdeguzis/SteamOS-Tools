@@ -22,7 +22,12 @@ if [[ "$pw_set" != "P" ]];then
 
 		case $? in
          	0)
+         		# set value for pw
 	 		adminpw=$(echo $ENTRY | cut -d'|' -f2)
+	 		
+	 		# echo password to passwd
+	 		echo -e "${adminpw}\n${adminpw}" | passwd
+	 		
 			;;
          	1)
                 	echo "Stop login.";;

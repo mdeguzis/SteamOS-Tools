@@ -48,12 +48,9 @@ if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
 
 		case $? in
          	0)
-         		# IN TESTING
+
 	 		gog_user=$(echo $ENTRY | cut -d'|' -f1)
 	 		gog_pw=$(echo $ENTRY | cut -d'|' -f2)
-	 		echo $gog_user
-	 		echo $gog_pw
-	 		exit 1
 			;;
          	1)
                 	echo "Stop login.";;

@@ -50,7 +50,7 @@ if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
          	0)
          		# IN TESTING
 	 		gog_user=$(echo $ENTRY | cut -d'|' -f1)
-	 		gog_pw=(echo $ENTRY | cut -d'|' -f2)
+	 		gog_pw=$(echo $ENTRY | cut -d'|' -f2)
 	 		echo $gog_user
 	 		echo $gog_pw
 	 		exit 1

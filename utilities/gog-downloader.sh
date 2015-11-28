@@ -1,29 +1,65 @@
 #!/bin/bash
 # -----------------------------------------------------------------------
-# Author: 		    Sharkwouter, Michael DeGuzis
-# Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	  	gog-downloader.sh
-# Script Ver:	  	0.1.3
-# Description:	  Downloads and install GOG games - IN PROGRESS!!!
-#	
-# Usage:	      	
+# Author: 	Sharkwouter, Michael DeGuzis
+# Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	gog-downloader.sh
+# Script Ver:	0.1.3
+# Description:	Downloads and install GOG games - IN PROGRESS!!!
+#
+# Usage:
 # -----------------------------------------------------------------------
+
 # check if password is set
-passset=$(passwd -S|cut -f2 -d" ")
-if [ passset =! "P" ];then
-        if [ $(zenity --question --text="Admin password not set! Do you want to set it now?" && echo 1) ];then
-                gnome-terminal -x /bin/bash -c "echo 'Choose an admin password'; until passwd; do echo 'Try again'; done ;"
-        else
+pw_set=$(passwd -S | cut -f2 -d " ")
+
+if [[ "$pw_set" != "P" ]];then
+
+        pw_response=$(zenity --question --title="Set user password" --text="Admin password not set! Do you want to set it now?")
+
+	if [[ "$pw_response" == "Yes" ]]; then
+
+        	ENTRY=`zenity --password --username`
+
+		case $? in
+         	0)
+	 		echo "User Name: `echo $ENTRY | cut -d'|' -f1`"
+	 		echo "Password : `echo $ENTRY | cut -d'|' -f2`"
+			;;
+         	1)
+                	echo "Stop login.";;
+        	-1)
+                	echo "An unexpected error has occurred.";;
+		esac
+
+	else
+
                 zenity --error --text="Admin password has to be set to be able to install GOG games."
                 exit 1
+
         fi
 fi
 
 # login to GOG if not done yet
-if [ ! -f ~/.config/lgogdownloader/config.cfg ];then
-        while [ ! -f ~/.config/lgogdownloader/config.cfg ];do
-                gnome-terminal -x /bin/bash -c "echo 'Log in to GOG:'; lgogdownloader --login;"
+if [[ ! -f "$HOME/.config/lgogdownloader/config.cfg" ]]; then
+
+	while [ ! -f ~/.config/lgogdownloader/config.cfg ];
+	do
+
+		ENTRY=`zenity --title="Login to GOG.com" --text="Please login to your GOG.com account" --password --username`
+
+		case $? in
+         	0)
+	 		echo "User Name: `echo $ENTRY | cut -d'|' -f1`"
+	 		echo "Password : `echo $ENTRY | cut -d'|' -f2`"
+			;;
+         	1)
+                	echo "Stop login.";;
+        	-1)
+                	echo "An unexpected error has occurred.";;
+		esac
+
         done
+
 fi
 
 # select game to download

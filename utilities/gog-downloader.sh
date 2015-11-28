@@ -5,8 +5,8 @@
 # Scipt Name:	gog-downloader.sh
 # Script Ver:	0.1.7
 # Description:	Downloads and install GOG games - IN PROGRESS!!!
-#
-# Usage:
+#		
+# Usage:	For use called as script in SteamOS BPM
 # -----------------------------------------------------------------------
 
 # Ensure downloader tool from jessie is installed

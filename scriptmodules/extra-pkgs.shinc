@@ -94,7 +94,7 @@ ep_install_chrome()
 	"https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 	
 	# install
-	sudo gdebi google-chrome-stable_current_amd64.deb
+	echo "y" | sudo gdebi google-chrome-stable_current_amd64.deb
 
 	# back out of installdir
 	if [[ -d "$scriptdir" ]]; then

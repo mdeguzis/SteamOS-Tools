@@ -542,7 +542,7 @@ add_web_app_chrome()
 		###################################
 		# fix ownership
 		
-		sudo chown -R steam:steam "/home/steam/antimicro"
+		sudo chown -R steam:steam "$antimicro_dir"
 		sudo chown -R steam:steam "$browser_dir"
 		
 		###################################

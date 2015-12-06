@@ -146,7 +146,6 @@ main()
 		cat <<-EOF
 		
 		==> Adding Debian ${reponame}, ${backports_reponame}, and ${steamos_tools_reponame} 
-		
 		EOF
 		
 		if [[ "$test_repo" == "yes" ]]; then
@@ -168,7 +167,7 @@ main()
 		# Check for existance of /etc/apt/preferences.d/{steamos_prefe} file
 		if [[ -f ${steamos_prefer} ]]; then
 			# backup preferences file
-			echo -e "==> Backing up ${steamos_prefer} to ${steamos_prefer}.bak\n"
+			echo -e "\n==> Backing up ${steamos_prefer} to ${steamos_prefer}.bak\n"
 			sudo mv ${steamos_prefer} ${steamos_prefer}.bak
 			sleep 1s
 		fi

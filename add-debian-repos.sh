@@ -146,6 +146,7 @@ main()
 		cat <<-EOF
 		
 		==> Adding Debian ${reponame}, ${backports_reponame}, and ${steamos_tools_reponame} 
+		
 		EOF
 		
 		if [[ "$test_repo" == "yes" ]]; then
@@ -154,14 +155,12 @@ main()
 			
 		fi
 		
-		echo ""
-		
 		sleep 1s
 		
 		# Check for existance of /etc/apt/preferences file (deprecated, see below)
 		if [[ -f "/etc/apt/preferences" ]]; then
 			# backup preferences file
-			echo -e "==> Backing up /etc/apt/preferences to /etc/apt/preferences.bak\n"
+			echo -e "\n==> Backing up /etc/apt/preferences to /etc/apt/preferences.bak\n"
 			sudo mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
 			sleep 1s
 		fi
@@ -294,13 +293,13 @@ main()
 		# Debian jessie
 		cat <<-EOF > ${sourcelist_tmp}
 		# Debian-jessie repo
-		deb ftp://mirror.nl.leaseweb.net/debian/ jessie main contrib non-free
-		deb-src ftp://mirror.nl.leaseweb.net/debian/ jessie main contrib non-free
+		deb http://httpredir.debian.org/debian/ jessie main contrib non-free
+		deb-src http://httpredir.debian.org/debian/ jessie main contrib non-free
 		EOF
 		
 		# Debian jessie-backports
 		cat <<-EOF > ${backports_sourcelist_tmp}
-		deb http://http.debian.net/debian jessie-backports main
+		deb http://httpredir.debian.org/debian jessie-backports main
 		EOF
 		
 		# packages.libregeek.org

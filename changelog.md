@@ -1,3 +1,18 @@
+SteamOS-Tools 2.8.1
+
+  * Packaged OpenPHT (early testing) in brewmaster_testing
+  * Completed basic set of Debian traditional packaging for Kodi packages (including PVR)
+  * Completed basic set of Debian traditional packaging for Retroarch (early testing) 
+  * Completed basic set of Debian traditional packaging for Libretro cores (early testing) 
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * Fixed web apps
+  * Fixed debian repo additions to use http redirect servers (global)
+  * Begin work on GOG download tool (thanks to Sharkwouter)
+  * Updated packages (see full software hosting list on wikI)
+  * Investigated several ventures for fixes
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Mon, 07 Dec 2015 16:32:00 -0500
+
 SteamOS-Tools 2.7.4
 
   * Packaged python-evdev for packages.libregeek.org

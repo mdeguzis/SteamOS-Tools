@@ -173,10 +173,6 @@ add_web_app_chrome()
 		
 		echo -e "\n==> Assessing pre-requisite software"
 		sleep 1s
-		
-		# There is still a conflict with overwriting the changelog of libattr1:i386
-		# because of this there is a workaround removal below
-		sudo rm -f "/usr/share/doc/libattr1/changelog.Debian.gz"
 	
 		pkg_test=$(which $browser)
 	
@@ -319,10 +315,10 @@ add_web_app_chrome()
 		
 	        if [[ "$browser_dir_check" != "" ]]; then
 	                # do nothing
-	                echo -e "\n${browser} Default config DIR exists. Skipping..."
+	                echo -e "\n$browser Default config DIR exists. Skipping..."
 	        else
-	                echo -e "\n{browser} Default config DIR does not exist. Adding..."
-	                sudo cp -r "$scriptdir/cfgs/web-cfgs/skel/Default/${browser}/*.*"  "$browser_dir"
+	                echo -e "\n$browser Default config DIR does not exist. Adding..."
+	                sudo cp -r $scriptdir/cfgs/web-cfgs/skel/Default/${browser}/*.*  "$browser_dir"
 	        fi
 
 		# add widevine support if we are using chromium-browser

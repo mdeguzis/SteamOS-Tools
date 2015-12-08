@@ -126,8 +126,10 @@ add_web_app_chrome()
 		browser="google-chrome-stable"
 		#browser="chromium-browser"
 		
-		browser_dir="/home/steam/.config/google-chrome/Default/"
-		#browser_dir="/home/steam/.config/chromium/Default/"
+		browser_dir="/home/steam/.config/google-chrome"
+		#browser_dir="/home/steam/.config/chromium"
+
+		config_dir="${browser_dir}/Default/"
 
 		#######################################
 		# Set vars
@@ -148,13 +150,13 @@ add_web_app_chrome()
 		
 		# create Google chrome dir if it does not exist to copy our cfgs in
 		
-		if [[ -d "$browser_dir" ]]; then
+		if [[ -d "$config_dir" ]]; then
 			# directory exists
 			echo -e "Chrome config directory found. Skipping default setup"
 		else
 			# create DIR
 			echo -e "Chrome config directory not found, creating"
-			sudo mkdir -p "$browser_dir"
+			sudo mkdir -p "$config_dir"
 		fi
 		
 		#######################################
@@ -311,14 +313,14 @@ add_web_app_chrome()
 		# do not overwrite the Default folder if it exists already
 		
 		# Chrome default directory check
-		browser_dir_check=$(sudo ls  "$browser_dir")
+		config_dir_check=$(sudo ls  "$browser_dir")
 		
-	        if [[ "$browser_dir_check" != "" ]]; then
+	        if [[ "$config_dir_check" != "" ]]; then
 	                # do nothing
 	                echo -e "\n$browser Default config DIR exists. Skipping..."
 	        else
 	                echo -e "\n$browser Default config DIR does not exist. Adding..."
-	                sudo cp -r $scriptdir/cfgs/web-cfgs/skel/Default/${browser}/*.*  "$browser_dir"
+	                sudo cp -r $scriptdir/cfgs/web-cfgs/skel/Default/${browser}/.  "$config_dir"
 	        fi
 
 		# add widevine support if we are using chromium-browser
@@ -540,6 +542,7 @@ add_web_app_chrome()
 		
 		sudo chown -R steam:steam "$antimicro_dir"
 		sudo chown -R steam:steam "$browser_dir"
+		sudo chmod -R 755 "$browser_dir"
 		
 		###################################
 		# end web app addition loop

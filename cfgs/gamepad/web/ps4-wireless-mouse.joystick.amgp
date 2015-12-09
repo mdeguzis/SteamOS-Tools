@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <joystick configversion="19" appversion="2.20.2">
     <!--The SDL name for a joystick is included for informational purposes only.-->
-    <sdlname>PLAYSTATION(R)3 Controller (64:D4:BD:BD:24:60)</sdlname>
+    <sdlname>Wireless Controller</sdlname>
     <!--The GUID for a joystick is included for informational purposes only.-->
-    <guid>060000004c0500006802000000010000</guid>
+    <guid>050000004c050000c405000000010000</guid>
     <sets>
         <set index="1">
             <axis index="1">
@@ -73,6 +73,7 @@
                 </axisbutton>
             </axis>
             <axis index="4">
+                <throttle>positive</throttle>
                 <axisbutton index="1">
                     <mousespeedx>65</mousespeedx>
                     <mousespeedy>65</mousespeedy>
@@ -94,61 +95,123 @@
                     </slots>
                 </axisbutton>
             </axis>
-            <axis index="6">
+            <axis index="5">
                 <throttle>positive</throttle>
+            </axis>
+            <axis index="6">
+                <axisbutton index="1">
+                    <slots>
+                        <slot>
+                            <code>4</code>
+                            <mode>mousebutton</mode>
+                        </slot>
+                    </slots>
+                </axisbutton>
+                <axisbutton index="2">
+                    <slots>
+                        <slot>
+                            <code>5</code>
+                            <mode>mousebutton</mode>
+                        </slot>
+                    </slots>
+                </axisbutton>
             </axis>
             <axis index="7">
                 <throttle>positive</throttle>
             </axis>
+            <axis index="13">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="14">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="15">
+                <throttle>positive</throttle>
+            </axis>
+            <dpad index="1">
+                <dpadbutton index="1">
+                    <slots>
+                        <slot>
+                            <code>0x1000013</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
+                <dpadbutton index="2">
+                    <slots>
+                        <slot>
+                            <code>0x1000014</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
+                <dpadbutton index="4">
+                    <slots>
+                        <slot>
+                            <code>0x1000015</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
+                <dpadbutton index="8">
+                    <slots>
+                        <slot>
+                            <code>0x1000012</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
+            </dpad>
             <button index="1">
+                <toggle>true</toggle>
                 <slots>
                     <slot>
-                        <code>0x1000021</code>
+                        <code>0x20</code>
                         <mode>keyboard</mode>
                     </slot>
+                </slots>
+            </button>
+            <button index="2">
+                <slots>
                     <slot>
-                        <code>0x57</code>
-                        <mode>keyboard</mode>
+                        <code>1</code>
+                        <mode>mousebutton</mode>
                     </slot>
                 </slots>
             </button>
             <button index="3">
                 <slots>
                     <slot>
-                        <code>0x1000021</code>
+                        <code>3</code>
+                        <mode>mousebutton</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="4">
+                <slots>
+                    <slot>
+                        <code>0x1000000</code>
                         <mode>keyboard</mode>
                     </slot>
+                </slots>
+            </button>
+            <button index="5">
+                <slots>
                     <slot>
-                        <code>0x30</code>
-                        <mode>keyboard</mode>
+                        <code>3</code>
+                        <mode>mousebutton</mode>
                     </slot>
                 </slots>
             </button>
             <button index="6">
                 <slots>
                     <slot>
-                        <code>0x1000023</code>
-                        <mode>keyboard</mode>
-                    </slot>
-                    <slot>
-                        <code>0x1000014</code>
-                        <mode>keyboard</mode>
+                        <code>1</code>
+                        <mode>mousebutton</mode>
                     </slot>
                 </slots>
             </button>
-            <button index="8">
-                <slots>
-                    <slot>
-                        <code>0x1000023</code>
-                        <mode>keyboard</mode>
-                    </slot>
-                    <slot>
-                        <code>0x1000012</code>
-                        <mode>keyboard</mode>
-                    </slot>
-                </slots>
-            </button>
-            <button index="9">
+            <button index="7">
                 <slots>
                     <slot>
                         <code>0x1000021</code>
@@ -160,7 +223,7 @@
                     </slot>
                 </slots>
             </button>
-            <button index="10">
+            <button index="8">
                 <slots>
                     <slot>
                         <code>0x1000021</code>
@@ -168,6 +231,18 @@
                     </slot>
                     <slot>
                         <code>0x1000002b</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="9">
+                <slots>
+                    <slot>
+                        <code>0x1000021</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>0x57</code>
                         <mode>keyboard</mode>
                     </slot>
                 </slots>
@@ -183,8 +258,12 @@
             <button index="12">
                 <slots>
                     <slot>
-                        <code>1</code>
-                        <mode>mousebutton</mode>
+                        <code>0x1000021</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                    <slot>
+                        <code>0x30</code>
+                        <mode>keyboard</mode>
                     </slot>
                 </slots>
             </button>
@@ -204,76 +283,165 @@
                     </slot>
                 </slots>
             </button>
-            <button index="15">
-                <slots>
-                    <slot>
-                        <code>1</code>
-                        <mode>mousebutton</mode>
-                    </slot>
-                </slots>
-            </button>
-            <button index="16">
-                <slots>
-                    <slot>
-                        <code>0x20</code>
-                        <mode>keyboard</mode>
-                    </slot>
-                </slots>
-            </button>
         </set>
         <set index="2">
+            <axis index="4">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="5">
+                <throttle>positive</throttle>
+            </axis>
             <axis index="6">
                 <throttle>positive</throttle>
             </axis>
             <axis index="7">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="13">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="14">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="15">
                 <throttle>positive</throttle>
             </axis>
         </set>
         <set index="3">
+            <axis index="4">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="5">
+                <throttle>positive</throttle>
+            </axis>
             <axis index="6">
                 <throttle>positive</throttle>
             </axis>
             <axis index="7">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="13">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="14">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="15">
                 <throttle>positive</throttle>
             </axis>
         </set>
         <set index="4">
+            <axis index="4">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="5">
+                <throttle>positive</throttle>
+            </axis>
             <axis index="6">
                 <throttle>positive</throttle>
             </axis>
             <axis index="7">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="13">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="14">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="15">
                 <throttle>positive</throttle>
             </axis>
         </set>
         <set index="5">
+            <axis index="4">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="5">
+                <throttle>positive</throttle>
+            </axis>
             <axis index="6">
                 <throttle>positive</throttle>
             </axis>
             <axis index="7">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="13">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="14">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="15">
                 <throttle>positive</throttle>
             </axis>
         </set>
         <set index="6">
+            <axis index="4">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="5">
+                <throttle>positive</throttle>
+            </axis>
             <axis index="6">
                 <throttle>positive</throttle>
             </axis>
             <axis index="7">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="13">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="14">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="15">
                 <throttle>positive</throttle>
             </axis>
         </set>
         <set index="7">
+            <axis index="4">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="5">
+                <throttle>positive</throttle>
+            </axis>
             <axis index="6">
                 <throttle>positive</throttle>
             </axis>
             <axis index="7">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="13">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="14">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="15">
                 <throttle>positive</throttle>
             </axis>
         </set>
         <set index="8">
+            <axis index="4">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="5">
+                <throttle>positive</throttle>
+            </axis>
             <axis index="6">
                 <throttle>positive</throttle>
             </axis>
             <axis index="7">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="13">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="14">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="15">
                 <throttle>positive</throttle>
             </axis>
         </set>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gamecontroller configversion="17" appversion="2.14">
+<gamecontroller configversion="19" appversion="2.20.2">
     <!--The SDL name for a joystick is included for informational purposes only.-->
     <sdlname>X360 Controller</sdlname>
     <!--The GUID for a joystick is included for informational purposes only.-->
@@ -252,7 +252,7 @@
             <button index="10">
                 <slots>
                     <slot>
-                        <code>1</code>
+                        <code>3</code>
                         <mode>mousebutton</mode>
                     </slot>
                 </slots>
@@ -260,7 +260,7 @@
             <button index="11">
                 <slots>
                     <slot>
-                        <code>3</code>
+                        <code>1</code>
                         <mode>mousebutton</mode>
                     </slot>
                 </slots>

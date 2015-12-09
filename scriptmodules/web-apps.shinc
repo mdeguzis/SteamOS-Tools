@@ -448,7 +448,9 @@ add_web_app_chrome()
 		echo "(2) Xbox 360 (wireless)"
 		echo "(3) PS3 Sixaxis (wired)"
 		echo "(4) PS3 Sixaxis (bluetooth)"
-		echo "(5) None (skip)"
+		echo "(5) PS4 Sixaxis (wired)"
+		echo "(6) PS4 Sixaxis (bluetooth)"
+		echo "(7) None (skip)"
 		echo ""
 		
 		# the prompt sometimes likes to jump above sleep
@@ -473,8 +475,16 @@ add_web_app_chrome()
 			4)
 			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wireless-mouse.gamecontroller.amgp \&"
 			;;
-	
+			
 			5)
+			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps4-wired-mouse.gamecontroller.amgp \&"
+			;;
+			
+			6)
+			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps4-wireless-mouse.gamecontroller.amgp \&"
+			;;
+			
+			7)
 			gp_cmd="#mouse_control_disabled"
 			;;
 			 

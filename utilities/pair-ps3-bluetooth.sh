@@ -47,7 +47,7 @@ main()
 	sudo systemctl enable sixad
 	sudo systemctl start sixad
 	
-	echo -e "==> Fixing bluetoothd...\n"
+	echo -e "\n==> Fixing bluetoothd..."
 	sleep 2s
 	
 	# for some reason, the permissions for /usr/lib/bluetooth/bluetoothd get destroyed by

@@ -1,3 +1,9 @@
+# Patrons and support from great people such as:
+* Seth M. (Patron)
+* Justin M. (Patreon)
+	
+Thank you for your support!
+
 # Main script code, readme docs, and more
 ***
 - ProfessorKaos64

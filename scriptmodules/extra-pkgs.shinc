@@ -2,7 +2,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.7.7
+# Script Ver:	  	1.7.8
 # Description:		Module for installing useful pacakges otherwise not 
 #			found in The Debian jessie repositories directly.
 #	
@@ -274,6 +274,9 @@ ep_install_retroarch()
 
 ep_install_xb360_bindings()
 {
+
+	# NOTE!
+	# The information below is left for legacy information ONLY
 	
 	echo ""
 	#####################################################
@@ -304,54 +307,9 @@ ep_install_xb360_bindings()
 	
 	EOF
 	
-	read -ep "Choice: " user_choice
+	# Moved to package pool 20151212
+	# brewmaster|main|vaporos-binds-xbox360_1.0_all.deb
 	
-	if [[ "$user_choice" == "q" ]]; then
-		exit 1
-	else 
-		
-		echo -e "\nContinuing..."
-		sleep 1s
-	fi
-	
-	###############################
-	#  vars
-	###############################
-
-	pkg_type="deb"
-	PKG="vaporos-binds-xbox360"
-	PKG_FILENAME="vaporos-binds-xbox360_1.0_all.deb"
-	BASE_URL="https://github.com/sharkwouter/vaporos/raw/master/pool/main/v/vaporos-binds-xbox360/"
-	BIN_LOC="/usr/bin/gdrive"
-	PKG_DIR="/usr/share/doc/vaporos-binds-xbox360"
-	
-	# set multiflag so multiple debs are processed
-	multi="n"
-	
-	# set external Deb repo required flag
-	export deb_repo_name="jessie.list"
-	export deb_repo_req="no"
-	# Eval requirements
-	"$scriptdir/utilities/check_repo_req.sh"
-	
-	# test if user requests it
-	if [[ "$options" == "test" ]]; then
-		# go to test function
-		ep_test_deb
-		exit
-	fi
-
-	###############################
-	#  Install
-	###############################
-	
-	# proceed to install eval
-	ep_install_eval_pkg
-	
-	# cleanup
-	ep_pkg_cleanup
-	
-}
 
 ep_install_eval_pkg()
 {

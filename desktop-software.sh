@@ -28,7 +28,7 @@ show_help()
 	Help File
 	#####################################################
 	Please see the desktop-software-readme.md file in the 
-	docs/ directory for full details.
+	wiki page on GitHub for full details.
 	---------------------------------------------------------------
 	Any package you wish to specify yourself. brewmaster repos will be
 	used first, followed by Debian Jessie and the Libregeek repos.
@@ -408,10 +408,6 @@ get_software_type()
 	elif [[ "$type" == "webapp" ]]; then
                 # add web app via chrome from helper script
 		add_web_app_chrome
-                exit 1
-        elif [[ "$type" == "xb360-bindings" ]]; then
-                # install plex from helper script
-		ep_install_xb360_bindings
                 exit 1
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response

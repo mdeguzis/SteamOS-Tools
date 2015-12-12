@@ -2,7 +2,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.7.8
+# Script Ver:	  	1.7.9
 # Description:		Module for installing useful pacakges otherwise not 
 #			found in The Debian jessie repositories directly.
 #	
@@ -192,51 +192,14 @@ ep_install_gameplay_recording()
 ep_install_lutris()
 {
 	
-	#####################################################
-	# Lutris (Open Gaming Platform Frontend)
-	#####################################################
-
-	###############################
-	#  vars
-	###############################
-
-	pkg_type="deb"
-	PKG="lutris"
+	# NOTE!
+	# This package is now in the libregeek package pool
+	# The information below is for historical purposes only!
 	
 	echo -e "\n==> Determining latest release package from lutris.net\n"
 	# grab latest release intelligently (should result in lutris_x.x.x.x_all.deb)
 	PKG_FILENAME=$(curl https://lutris.net/downloads/ | awk '/deb/ {print $2}' | \
 	cut -d'/' -f 5 | grep lutris | sed "s|'>lutris_[0-9].[0-9].[0-9].[0-9]_all.deb<||g")
-	
-	BASE_URL="https://lutris.net/releases"
-	BIN_LOC=""
-	PKG_DIR=""
-	
-	# set multiflag so multiple debs are processed
-	multi="n"
-	
-	# set external Deb repo required flag
-	export deb_repo_name="jessie.list"
-	export deb_repo_req="yes"
-	# Eval requirements
-	"$scriptdir/utilities/check_repo_req.sh"
-	
-	# test if user requests it
-	if [[ "$options" == "test" ]]; then
-		# go to test function
-		ep_test_deb
-		exit
-	fi
-
-	###############################
-	#  Install
-	###############################
-	
-	# proceed to install eval
-	ep_install_eval_pkg
-	
-	# cleanup
-	ep_pkg_cleanup
 	
 }
 

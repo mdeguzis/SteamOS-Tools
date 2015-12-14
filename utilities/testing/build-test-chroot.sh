@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.8.5
+# Script Ver:	0.8.7
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -133,7 +133,7 @@ funct_prereqs()
 	
 	# Install the required packages 
 	sudo apt-get install -y --force-yes binutils debootstrap debian-archive-keyring \
-	ubuntu-archive-keyring
+	ubuntu-archive-keyring valve-archive-keyring
 	
 	# update for keyrings
 	
@@ -225,10 +225,6 @@ funct_create_chroot()
 	
 	# debootstrap
 	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
-	
-		# obtain keyring
-		wget "http://repo.steampowered.com/steamos/pool/main/v/valve-archive-keyring/valve-archive-keyring_0.5+bsos1_all.deb"
-		sudo dpkg -i "valve-archive-keyring_0.5+bsos1_all.deb"
 	
 		# the bootstrap scripts under /usr/share/debootstrap/scripts are merely symlinks
 		# to their respectice releases. Create them if they do not exist

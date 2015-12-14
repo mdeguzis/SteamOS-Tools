@@ -11,7 +11,10 @@ mv incoming/*.* ../incoming-old 2> /dev/null
 find ../incoming-old -mtime +90 -exec rm {} \;
 
 # sync remote
-rsync -avz --delete /home/mikeyd/packaging/SteamOS-Tools/ thelinu2@libregeek.org:/home2/thelinu2/public_html/packages/SteamOS-Tools
+read -erp "User: " USER
+read -erp "Server: " SERVER
+
+rsync -avz --delete /home/mikeyd/packaging/SteamOS-Tools/ ${USER}@${SERVER}:/home2/thelinu2/public_html/packages/SteamOS-Tools
 
 ###################
 # sync pools

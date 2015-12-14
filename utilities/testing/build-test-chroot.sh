@@ -34,10 +34,6 @@ rm -f "log.txt"
 type="$1"
 release="$2"
 arch="$3"
-target="${type}-${release}-${arch}"
-stock_choice=""
-alias_file="$HOME/.bash_aliases"
-chroot_dir="$HOME/chroots/${target}"
 
 #####################################################
 # Pre-flight checks
@@ -179,6 +175,13 @@ funct_set_target()
 		target="brewmaster"
 
 	fi
+	
+	# Set final targets
+	target="${type}-${release}-${arch}"
+	stock_choice=""
+	alias_file="$HOME/.bash_aliases"
+	chroot_dir="$HOME/chroots/${target}"
+	
 }
 
 funct_set_arch()

@@ -157,10 +157,6 @@ funct_set_target()
 	elif [[ "$type" == "steamos" ]]; then
 		
 		target_URL="http://repo.steampowered.com/steamos"
-	
-	elif [[ "$type" == "steamos-beta" ]]; then
-	
-		target_URL="http://repo.steampowered.com/steamos"
 		
 	elif [[ "$type" == "ubuntu" ]]; then
 
@@ -171,7 +167,18 @@ funct_set_target()
 		show_help
 	
 	fi
+	
+	# correct targets for beta releases to reflect root release
+	# The beta opt-in will be handled in the post install script
+	if [[ "$target" == "alchemist-beta" ]]; then
+	
+		target="alchemist"
+		
+	elif [[ "$target" == "brewmaster-beta" ]]; then
+	
+		target="brewmaster"
 
+	fi
 }
 
 funct_set_arch()
@@ -237,15 +244,13 @@ funct_create_chroot()
 			
 				cd "/usr/share/debootstrap/scripts/"
 				sudo ln -s "wheezy" "/usr/share/debootstrap/scripts/alchemist" 
-				sudo ln -s "wheezy" "/usr/share/debootstrap/scripts/alchemist-beta" 
-				
+
 			fi
 			
 			if [[ ! -L "/usr/share/debootstrap/scripts/brewmaster" ]]; then
 			
 				cd "/usr/share/debootstrap/scripts/"
 				sudo ln -s "jessie" "/usr/share/debootstrap/scripts/brewmaster"
-				sudo ln -s "jessie" "/usr/share/debootstrap/scripts/brewmaster-beta" 
 
 			fi
 		

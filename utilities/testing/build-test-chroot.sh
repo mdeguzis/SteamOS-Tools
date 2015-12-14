@@ -237,13 +237,15 @@ funct_create_chroot()
 			
 				cd "/usr/share/debootstrap/scripts/"
 				sudo ln -s "wheezy" "/usr/share/debootstrap/scripts/alchemist" 
+				sudo ln -s "wheezy" "/usr/share/debootstrap/scripts/alchemist-beta" 
 				
 			fi
 			
 			if [[ ! -L "/usr/share/debootstrap/scripts/brewmaster" ]]; then
 			
 				cd "/usr/share/debootstrap/scripts/"
-				sudo ln -s "jessie" "/usr/share/debootstrap/scripts/brewmaster" 
+				sudo ln -s "jessie" "/usr/share/debootstrap/scripts/brewmaster"
+				sudo ln -s "jessie" "/usr/share/debootstrap/scripts/brewmaster-beta" 
 
 			fi
 		

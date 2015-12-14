@@ -168,11 +168,11 @@ funct_set_target()
 	# The beta opt-in will be handled in the post install script
 	if [[ "$target" == "alchemist-beta" ]]; then
 	
-		target="alchemist"
+		release="alchemist"
 		
 	elif [[ "$target" == "brewmaster-beta" ]]; then
 	
-		target="brewmaster"
+		release="brewmaster"
 
 	fi
 	
@@ -234,7 +234,7 @@ funct_create_chroot()
 	sleep 1s
 	
 	# debootstrap
-	if [[ "$type" == "steamos" || "$type" == "steamos-beta" ]]; then
+	if [[ "$type" == "steamos" ]]; then
 	
 		# the bootstrap scripts under /usr/share/debootstrap/scripts are merely symlinks
 		# to their respectice releases. Create them if they do not exist

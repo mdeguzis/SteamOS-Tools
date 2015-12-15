@@ -18,7 +18,7 @@ Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/Ste
 
 Please refer to the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki), located to your right in this repository for all supplemental information and instructions. A direct link to the FAQ is [here](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/FAQ). Information for installations, as well as much more, is located within. If there is a page missing, or information you wish me to add, please let me know via an issues ticket.
 
-For SteamOS-specific help (aside from SteamOS-Tools), I do ask you visit and review the community SteamOS wiki at [steamos.wikia.com](http://steamos.wikia.com) for all other topics. This is one area that I greatly appreciate help and support with. Please considering signing up or anonymously contributing to it. 
+For SteamOS-specific help (aside from SteamOS-Tools), I do ask you visit and review the community SteamOS wiki at [Valve's GitHub page](https://github.com/ValveSoftware/SteamOS/wiki) for all other topics. This is one area that I greatly appreciate help and support with. Please considering signing up or anonymously contributing to it. 
 
 # Hosted packages
 
@@ -30,7 +30,7 @@ Most package build scripts are hosted in a dedicatd GitHub repository, [SteamOS-
 
 # Usage / Installation
 
-Please make sue you have enabled desktop mode (Settings > Interface > Enable access to the Linux desktop), and aset your password for the dekstop user with `passwd`.
+Please make sure you have enabled desktop mode (Settings > Interface > Enable access to the Linux desktop), and aset your password for the dekstop user with `passwd`.
 
 To clone this repository to your local computer, you will need the `git` software package to clone the repository. The command is included below in the first line below if you do not know it.
 ```
@@ -81,12 +81,16 @@ Normal script execution, sans arguments, goes a little bit like:
 * For all other videos and tutorials, please see the [Videos and Tutorials](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Videos-and-Tutorials) wiki page
 
 # Branches
-There are four main branches at the moment
+There are three main branches at the moment
+
+`alchemist`  
+Only contains a modified `add-debian-repos.sh`. Only intended for some legacy package testing right now.  
 
 `brewmaster`  
 Brewmaster branch. Default branch for repository.  
+
 `testing-b`    
-Branch where new scripts are made, larger alterations to existing ones implemented, and more for brewmaster.  
+Branch where some new scripts are made. Larger alterations to existing ones implemented, and more for brewmaster.  
 
 # Pull requests / package requests / suggestions 
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page

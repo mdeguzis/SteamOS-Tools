@@ -16,15 +16,6 @@ script_dir="$PWD"
 #Set defaults if user doesn't enter a TYPE
 sourcedir="/home/desktop/build-deb-temp/"
 
-funct_set_global_vars()
-{
-  
-  sourcedir="/home/desktop/build-deb-temp/"
-  user="thelinu2"
-  host="libregeek.org"
-  
-}
-
 funct_set_dir()
 {
   
@@ -39,6 +30,9 @@ funct_set_dir()
 	echo -e "(7) SteamOS-Extra/experimental"
 	echo -e "(8) SteamOS-Extra/build-tmp"a
 	echo -e "(9) Default Public HTML\n"
+	
+	# Set source dir
+	sourcedir="/home/desktop/build-deb-temp/"
 	
 	# the prompt sometimes likes to jump above sleep
 	sleep 0.5s
@@ -91,7 +85,7 @@ funct_transfer()
 {
 
   # transfer file
-  scp $sourcedir/$PKG $user@$host:$destdir
+  scp $sourcedir/$PKG ${USER}@${SERVER}:$destdir
 }
 
 main()
@@ -130,6 +124,10 @@ do
 		exit
 	fi
 	
+	# set user/server
+	read -erp "User: " USER
+	read -erp "Server: " SERVER
+	
 	# set dir and transfer
 	funct_set_dir
 	funct_transfer
@@ -141,6 +139,5 @@ done
 ##############################################
 # main start
 ##############################################
-funct_set_global_vars
 main
 

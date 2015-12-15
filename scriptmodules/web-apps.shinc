@@ -2,7 +2,7 @@
 # Author: 	    	Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.7.8
+# Script Ver:	  	1.7.9
 # Description:		Module for isntalling web-apps .
 #	
 # Usage:	      	n/a , module
@@ -109,6 +109,19 @@ web_app_twitch()
 	SHORTCUT="Twitch.desktop"
 	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
 	BANNER_IMG="$scriptdir/artwork/banners/Twitch.png"
+
+}
+
+web_app_vimeo_tv()
+{
+
+	# Video (couch mode)
+	NAME="Vimeo"
+	WEB_URL="http://vimeo.com/couchmode"
+	TARGET_NAME="Vimeo"
+	SHORTCUT="Vimeo.desktop"
+	LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
+	BANNER_IMG="$scriptdir/artwork/banners/Vimeo.png"
 
 }
 
@@ -235,8 +248,9 @@ add_web_app_chrome()
 			echo "(5) Twitch"
 			echo "(6) Youtube"
 			echo "(7) Youtube TV"
-			echo "(8) Custom"
-			echo "(9) Done"
+			echo "(8) Vimeo (couch mode)"
+			echo "(9) Custom"
+			echo "(10) Done"
 			echo ""
 			
 			# the prompt sometimes likes to jump above sleep
@@ -280,13 +294,18 @@ add_web_app_chrome()
 			        web_app_youtube_tv
 			        kiosk_opt="/usr/bin/$LAUNCHER"
 			        ;;
-			         
+			        
 			        8)
+			        web_app_vimeo_tv
+			        kiosk_opt="/usr/bin/$LAUNCHER"
+			        ;;
+			         
+			        9)
 			        custom_url="yes"
 			        # kiosk_opt handled in custom url sequence below
 			        ;;
 			         
-			        9|done)
+			        10|done)
 			        # do nothing
 			        echo -e "\n==> Exiting script\n"
 			        exit 1

@@ -1,4 +1,4 @@
-SteamOS-Tools Update Log #13
+# SteamOS-Tools Update Log #13
 
   * Please see commit logs for full detail
   * Change this file to a "what's new" format, blog style
@@ -8,7 +8,7 @@ SteamOS-Tools Update Log #13
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Thu, 17 Dec 2015 08:00:00 -0500
 
-SteamOS-Tools Update Log #12
+# SteamOS-Tools Update Log #12
 
   * Packaged OpenPHT (early testing) in brewmaster_testing
   * Completed basic set of Debian traditional packaging for Kodi packages (including PVR)
@@ -23,7 +23,7 @@ SteamOS-Tools Update Log #12
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Mon, 07 Dec 2015 16:32:00 -0500
 
-SteamOS-Tools Update Log #11
+# SteamOS-Tools Update Log #11
 
   * Packaged python-evdev for packages.libregeek.org
   * Packaged ds4drv for packages.libregeek.org
@@ -34,7 +34,7 @@ SteamOS-Tools Update Log #11
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 22 Oct 2015 16:32:00 -0500
 
-SteamOS-Tools Update Log #10
+# SteamOS-Tools Update Log #10
 
   * Updated Kodi to Isengard 15.2 latest git stable release
   * Built all available Kodi PVR addons to libregeek repository
@@ -43,7 +43,7 @@ SteamOS-Tools Update Log #10
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 15 Oct 2015 22:08:00 -0500
 
-SteamOS-Tools Update Log #9
+# SteamOS-Tools Update Log #9
 
   * Updated Kodi to Isengard 15.2 stable release
   * Updated Retroarch from latest PPA stable release
@@ -55,7 +55,7 @@ SteamOS-Tools Update Log #9
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 31 Oct 2015 14:58:00 -0500
 
-SteamOS-Tools Update Log #8
+# SteamOS-Tools Update Log #8
 
   * Sytax corrections
   * Added obs-studio, ffmpeg, pcsx2, stepmania, dolphin-emu to brewmaster dist release
@@ -65,21 +65,21 @@ SteamOS-Tools Update Log #8
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 05 Oct 2015 07:00:00 -0500
 
-SteamOS-Tools Update Log #7
+# SteamOS-Tools Update Log #7
 
   * Sytax corrections
   * Several new packages added to repository (check the wiki)
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 03 Oct 2015 19:49:00 -0500
 
-SteamOS-Tools Update Log #6
+# SteamOS-Tools Update Log #6
 
   * Added Kodi 15 "Isengard" (packaged) to Libregeek brewmaster repository
   * Many wiki additions
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 26 Sep 2015 17:42:00 -0500
 
-SteamOS-Tools Update Log #5
+# SteamOS-Tools Update Log #5
 
   * Added Kodi (packaged) to Libregeek brewmaster_testing
   * Fixed up build-kodi-src with Bluray and Airtunes support
@@ -89,7 +89,7 @@ SteamOS-Tools Update Log #5
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 22 Sep 2015 09:02:00 -0500
 
-SteamOS-Tools Update Log #5
+# SteamOS-Tools Update Log #5
 
   * Fix GPG function not correctly verifying keys
    * Public key verification would skip if a restore was done via grub for SteamOS
@@ -103,7 +103,7 @@ SteamOS-Tools Update Log #5
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 22 Sep 2015 09:02:00 -0500
 
-SteamOS-Tools Update Log #4
+# SteamOS-Tools Update Log #4
 
   * Restructure kodi-src script
    * Push software list through desktop-software.sh to validate packages
@@ -113,21 +113,21 @@ SteamOS-Tools Update Log #4
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Mon, 21 Sep 2015 21:28:00 -0500
 
-SteamOS-Tools Update Log #3
+# SteamOS-Tools Update Log #3
 
   * Fixed package version conflict for libcrossguid1, libcrossguid-dev in libregeek repository
   * augment version number (see above) for small changes
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 19 Sep 2015 13:09:00 -0500
 
-SteamOS-Tools Update Log #2
+# SteamOS-Tools Update Log #2
 
   * Fixed utilities/build-scripts/build-kodi-from-src
   * Attempt to package this will follow soon
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 19 Sep 2015 11:06:00 -0500
 
-SteamOS-Tools Update Log #1
+# SteamOS-Tools Update Log #1
 
   * Added new packages to brewmaster_testing
    * grive

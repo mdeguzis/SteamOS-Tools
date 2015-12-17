@@ -1,0 +1,24 @@
+##############################################################
+############## Just some pieces of reusable code##############
+##############################################################
+
+
+##############################################################
+# Checking for root privledge
+##############################################################
+
+funct_show_warning()
+{
+	# not called for now
+	# Warn user script must be run as root
+	if [ "$(id -u)" -ne 0 ]; then
+		clear
+		printf "\nScript must be run as root! Try:\n\n"
+		printf "'sudo $0 install'\n\n"
+		printf "OR\n"
+		printf "\n'sudo $0 uninstall'\n\n"
+		exit 1
+	fi
+}
+
+##############################################################

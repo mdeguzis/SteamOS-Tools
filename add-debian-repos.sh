@@ -3,13 +3,14 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	add-debian-repos.sh
-# Script Ver:	0.3.1
-# Description:	This script automatically enables debian repositories
+# Script Ver:	0.5.1
+# Description:	This script automatically enables Debian and/or Libregeek 
+#		repositories
 #
 #		See: https://wiki.debian.org/AptPreferences#Pinning
 #
 # Usage:	./add-debian-repos [install|uninstall|--help]
-# Extra args:	--enable-testing
+# Extra args:	--enable-testing --debian-only
 # ------------------------------------------------------------------------
 
 # remove old custom files
@@ -20,8 +21,10 @@ rm -f "log.txt"
 # See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
 export final_opts=$(echo "${@: -1}")
 
-# set default action if no args are specified
+# set default actions if no args are specified
 install="yes"
+test_repo="no"
+debian_only="no"
 
 # get top level current dir
 current_dir=$(basename "$PWD") 
@@ -34,7 +37,11 @@ elif [[ "$1" == "uninstall" ]]; then
 fi
 
 # enable test repo if desired
-if [[ "$final_opts" == "--enable-testing" ]]; then
+if [[ "$final_opts" == "--debian-only" ]]; then
+	
+	debian_only="yes"
+	
+elif [[ "$final_opts" == "--enable-testing" ]]; then
 	
 	test_repo="yes"
 	
@@ -43,6 +50,7 @@ elif [[ "$final_opts" != "--enable-testing" ]]; then
     	test_repo="no"
     	# ensure testing repo is removed
     	sudo sed -ei '/Libregeek Debian testing repository/,+1d' "/etc/apt/sources.list.d/steamos-tools.list"
+    	
 fi
 
 check_gpg()
@@ -78,57 +86,48 @@ funct_set_vars()
 	# Set default user options
 	reponame="jessie"
 	backports_reponame="jessie-backports"
-	multimedia_reponame="deb-multimedia"
 	steamos_tools_reponame="steamos-tools"
 	
 	# tmp vars
 	sourcelist_tmp="${reponame}.list"
 	backports_sourcelist_tmp="${backports_reponame}.list"
-	multimedia_sourcelist_tmp="${multimedia_reponame}.list"
 	steamos_tools_sourcelist_tmp="${steamos_tools_reponame}.list"
 	
 	prefer_tmp="${reponame}"
 	backports_prefer_tmp="${backports_reponame}"
-	multimedia_prefer_tmp="${multimedia_reponame}"
 	steamos_prefer_tmp="steamos"
 	steamos_tools_prefer_tmp="${steamos_tools_reponame}"
 	
 	# target vars
 	sourcelist="/etc/apt/sources.list.d/${reponame}.list"
 	backports_sourcelist="/etc/apt/sources.list.d/${backports_reponame}.list"
-	multimedia_sourcelist="/etc/apt/sources.list.d/${multimedia_reponame}.list"
 	steamos_tools_sourcelist="/etc/apt/sources.list.d/${steamos_tools_reponame}.list"
 	
 	prefer="/etc/apt/preferences.d/${reponame}"
 	backports_prefer="/etc/apt/preferences.d/${backports_reponame}"
-	multimedia_prefer="/etc/apt/preferences.d/${multimedia_reponame}"
 	steamos_prefer="/etc/apt/preferences.d/steamos"
 	steamos_tools_prefer="/etc/apt/preferences.d/${steamos_tools_reponame}"
 }
 
 show_help()
 {
-	clear
-	echo "###########################################################"
-	echo "Usage instructions"
-	echo "###########################################################"
-	echo -e "\nYou can run this script as such," 
-	echo -e "\n\n'sudo add-debian-repos.sh\n"
 	
-}
-
-funct_show_warning()
-{
-	# not called for now
-	# Warn user script must be run as root
-	if [ "$(id -u)" -ne 0 ]; then
-		clear
-		printf "\nScript must be run as root! Try:\n\n"
-		printf "'sudo $0 install'\n\n"
-		printf "OR\n"
-		printf "\n'sudo $0 uninstall'\n\n"
-		exit 1
-	fi
+	clear
+	cat<<- EOF
+	###########################################################
+	Usage instructions
+	###########################################################
+	You can run this script as such:
+	
+	./add-debian-repos [install|uninstall|--help]
+	
+	Additional arguments:
+	
+	"--enable-testing" (Add libregeek testing repos)
+	"--debian-only" (only add Debian sources)
+	
+	EOF
+	
 }
 
 main()
@@ -143,10 +142,17 @@ main()
 		# Check/add gpg key for libregeek
 		check_gpg
 		
-		cat <<-EOF
+		if [[ "$debian_only" == "no" ]]; then
 		
-		==> Adding Debian ${reponame}, ${backports_reponame}, and ${steamos_tools_reponame} 
-		EOF
+			echo -e "\n==> Adding Debian ${reponame}, ${backports_reponame}, and ${steamos_tools_reponame} sources"
+			EOF
+			
+		elif [[ "$debian_only" == "yes" ]]; then
+		
+			echo -e "\n==> Adding Debian ${reponame}, and ${backports_reponame} only"
+			EOF
+		
+		fi
 		
 		if [[ "$test_repo" == "yes" ]]; then
 		
@@ -230,7 +236,7 @@ main()
 		EOF
 		
 		# modify pinning based on setup for testing or not
-		if [[ "$test_repo" == "no" ]]; then
+		if [[ "$test_repo" == "no" && "$debian_repos" == "no" ]]; then
 			
 			cat <<-EOF > ${steamos_tools_prefer_tmp}
 			Package: *
@@ -238,7 +244,7 @@ main()
 			Pin-Priority:150
 			EOF
 		
-		elif [[ "$test_repo" == "yes" ]]; then
+		elif [[ "$test_repo" == "yes" && "$debian_repos" == "no" ]]; then
 		
 			cat <<-EOF > ${steamos_tools_prefer_tmp}
 			Package: *
@@ -256,7 +262,13 @@ main()
 		sudo mv  ${prefer_tmp}  ${prefer}
 		sudo mv  ${backports_prefer_tmp}  ${backports_prefer}
 		sudo mv  ${steamos_prefer_tmp}  ${steamos_prefer}
-		sudo mv  ${steamos_tools_prefer_tmp}  ${steamos_tools_prefer}
+		
+		# only move steamos tools if the file is actually going to be populated
+		if [[  "$debian_repos" == "no" ]]; then
+		
+			sudo mv  ${steamos_tools_prefer_tmp}  ${steamos_tools_prefer}
+			
+		fi
 		
 		#####################################################
 		# Check for lists in repos.d
@@ -302,7 +314,7 @@ main()
 		EOF
 		
 		# packages.libregeek.org
-		if [[ "$test_repo" == "no" ]];then
+		if [[ "$test_repo" == "no" && "$debian_only" == "no" ]]; then
 		
 			cat <<-EOF > ${steamos_tools_sourcelist_tmp}
 			# Libregeek Debian repository
@@ -310,7 +322,7 @@ main()
 			deb-src http://packages.libregeek.org/SteamOS-Tools/ brewmaster main games
 			EOF
 			
-		elif [[ "$test_repo" == "yes" ]];then
+		elif [[ "$test_repo" == "yes" && "$debian_only" == "no" ]];then
 		
 			cat <<-EOF > ${steamos_tools_sourcelist_tmp}
 			# Libregeek Debian repository
@@ -326,7 +338,13 @@ main()
 		# move tmp var files into target locations
 		sudo mv  ${sourcelist_tmp} ${sourcelist}
 		sudo mv  ${backports_sourcelist_tmp} ${backports_sourcelist}
-		sudo mv  ${steamos_tools_sourcelist_tmp} ${steamos_tools_sourcelist}
+		
+		# Only move file if populated above
+		if [[ "$debian_only" == "no" ]]; then
+		
+			sudo mv  ${steamos_tools_sourcelist_tmp} ${steamos_tools_sourcelist}
+			
+		fi
 		
 		# Update system
 		echo -e "\n==> Updating index of packages...\n"
@@ -396,13 +414,11 @@ fi
 #####################################################
 # handle prerequisite software
 #####################################################
-
 funct_set_vars
 
 #####################################################
 # MAIN
 #####################################################
-
 main | tee log_temp.txt
 
 #####################################################

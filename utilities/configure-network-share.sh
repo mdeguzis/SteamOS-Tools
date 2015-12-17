@@ -20,6 +20,7 @@ install_prereqs()
 
 main_menu()
 {
+	
 	while [[ "$configure_choice" != "4" || "$configure_choice" != "done" ]];
  	do
 
@@ -47,16 +48,107 @@ main_menu()
 		;;
 
 		2)
-	  	# attach_share_perm
+	  	#attach_share_type="perm"
+	  	#attach_share
   		;;
 
 		3)
-		# attach_share_temp
+		attach_share_type="temp"
+	  	attach_share
 		;;
 
   		esac
 	done
 
+}
+
+attach_share()
+{
+	
+	# set share path
+	SHARE_TMP_PATH="/tmp/remote_shares"
+	SHARE_PERM_PATH="/home/desktop/samba_shares"
+
+	# Attaches remote samba shares to the system
+
+	# gather data
+	read -erp "Remote servername: " SERVER
+	
+	# List samba shares visible for server
+	echo -e "\==Available network shares for $SERVER==\n"
+	smbclient -L $SERVER
+	
+	# Gather MOAR data :P
+	read -erp "Sharename desired: " SHARENAME
+	read -erp "Remote username: " USER
+
+	# attach based on type
+	if [[ "$attach_share_type" == "temp" ]]; then
+		
+		# create path if it does not exist
+		if [[ ! -d "$SHARE_TMP_PATH/$SHARENAME" ]]; then
+	
+			mkdir -p "$SHARE_TMP_PATH/$SHARENAME" 
+		
+		fi
+	
+		# attach
+		mount -t cifs //${SERVER}/${SHARENAME} ${SHARE_TMP_PATH}/${SHARENAME} \
+		-o username=$USER,domain=WORKGROUP
+		
+		# summary
+		cat<<- EOF
+		----------------------------------
+		Summary
+		----------------------------------
+		The share $SHARENAME should now be visble under the path:
+		${SHARE_TMP_PATH}/${SHARENAME}
+		
+		EOF
+			
+	elif [[ "$attach_share_type" == "perm" ]]; then
+	
+	
+		if [[ ! -d "$SHARE_PERM_PATH/$SHARENAME" ]]; then
+		
+			mkdir -p "$SHARE_PERM_PATH/$SHARENAME"
+		
+		fi
+	
+		###################################
+		# TODO for /etc/fstab
+		###################################
+		
+		# Remove old share that matches
+		# For saftely, a start/end method is used here to only kill the lines we added
+		# This will only remove the tagged block of text
+		# This keeps the share itself updated from whatever the repo is, of course provided
+		# the tags are kept (note to self)
+		
+		# See: http://serverfault.com/a/137848
+		sudo sed -i '\:## SHARE START $SHARE_PERM_PATH/$SHARENAME ##:,\:## SHARE END $SHARE_PERM_PATH/$SHARENAME ##:d' "/etc/samba/smb.conf"
+		
+		if [[ "$fstab_check" == "" ]]; then
+		
+			# sudo su -c "echo '## SHARE START $SHARE_PERM_PATH/$SHARENAME ##' >> /etc/fstab"
+			# sudo su -c "echo '//$SERVERNAME/$SHARENAME  $SHARE_TMP_PATH  cifs  guest,uid=1000,iocharset=utf8  0  0' >> /etc/fstab"
+			# sudo su -c "echo '## SHARE END $SHARE_PERM_PATH/$SHARENAME ##' >> /etc/fstab"
+			
+		fi
+		
+		# summary
+		cat<<- EOF
+		----------------------------------
+		Summary
+		----------------------------------
+		The share $SHARENAME will be visible upon restarting your system
+		${SHARE_PERM_PATH}/${SHARENAME}
+		
+		EOF
+		
+	fi
+	
+	
 }
 
 create_samba_share()

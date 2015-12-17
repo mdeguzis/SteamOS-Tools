@@ -2,6 +2,7 @@ SteamOS-Tools Update Log #13
 
   * Please see commit logs for full detail
   * Change this file to a "what's new" format, blog style
+  * Added abiliyt to 'add-debian-repos' to add just Debian sources, if desired
   * Started work on network share add/attach script
   * Updated SNIS from SteamOS-Tools fork, follow new "release" schedule
 

@@ -1,3 +1,13 @@
+# SteamOS-Tools Update Log #14
+
+  * Please see commit logs for full detail
+  * Add xwiimote/libxwiimote/libxwiimote2 packages to brewmaster pool
+  * See the wiki for full packaging details
+  * Upsteam: https://github.com/dvdhrm/xwiimote
+  * Fork (with packagin): https://github.com/BrainTech/xwiimote
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Fri, 18 Dec 2015 21:37:00 -0500
+
 # SteamOS-Tools Update Log #13
 
   * Please see commit logs for full detail

@@ -273,6 +273,7 @@ ep_install_xb360_bindings()
 	# Moved to package pool 20151212
 	# brewmaster|main|vaporos-binds-xbox360_1.0_all.deb
 	
+}
 
 ep_install_eval_pkg()
 {

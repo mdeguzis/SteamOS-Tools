@@ -81,10 +81,12 @@ if [[ "$locale" != "" ]]; then
 	
 	# generate based on choice
 	locale-gen "${locale}.UTF-8"
+	dpkg-reconfigure locales
 	
 else
 	# fallback to english, US
 	locale-gen "en_US.UTF-8"
+	dpkg-reconfigure locales
 fi
 
 echo -e "\n==> Configuring users and groups"

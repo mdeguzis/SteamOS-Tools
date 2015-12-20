@@ -2,7 +2,7 @@
 # Author: 		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
-# Script Ver:	  	1.7.9
+# Script Ver:	  	1.8.0
 # Description:		Module for installing useful pacakges otherwise not 
 #			found in The Debian jessie repositories directly.
 #	
@@ -216,7 +216,8 @@ ep_install_retroarch()
 	# packaged now at packages.libregeek.org
 	# A user could install these out of the script and forgoe this post install configuration
 	
-	sudo apt-get install -y --force-yes samba retroarch retroarch-joypad-autoconfig libretro-* 
+	sudo apt-get install -y --force-yes samba retroarch retroarch-assets \
+	retroarch-joypad-autoconfig libretro-* 
 	
 	# only post install configuration is needed
   

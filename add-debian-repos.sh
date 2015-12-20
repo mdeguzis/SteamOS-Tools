@@ -145,7 +145,6 @@ main()
 		if [[ "$debian_only" == "no" ]]; then
 		
 			echo -e "\n==> Adding Debian ${reponame}, ${backports_reponame}, and ${steamos_tools_reponame} sources"
-			EOF
 			
 		elif [[ "$debian_only" == "yes" ]]; then
 		
@@ -236,7 +235,7 @@ main()
 		EOF
 		
 		# modify pinning based on setup for testing or not
-		if [[ "$test_repo" == "no" && "$debian_repos" == "no" ]]; then
+		if [[ "$test_repo" == "no" && "$debian_only" == "no" ]]; then
 			
 			cat <<-EOF > ${steamos_tools_prefer_tmp}
 			Package: *
@@ -244,7 +243,7 @@ main()
 			Pin-Priority:150
 			EOF
 		
-		elif [[ "$test_repo" == "yes" && "$debian_repos" == "no" ]]; then
+		elif [[ "$test_repo" == "yes" && "$debian_only" == "no" ]]; then
 		
 			cat <<-EOF > ${steamos_tools_prefer_tmp}
 			Package: *
@@ -264,7 +263,7 @@ main()
 		sudo mv  ${steamos_prefer_tmp}  ${steamos_prefer}
 		
 		# only move steamos tools if the file is actually going to be populated
-		if [[  "$debian_repos" == "no" ]]; then
+		if [[  "$debian_only" == "no" ]]; then
 		
 			sudo mv  ${steamos_tools_prefer_tmp}  ${steamos_tools_prefer}
 			

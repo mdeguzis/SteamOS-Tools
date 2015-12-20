@@ -144,7 +144,7 @@ main()
 		
 		if [[ "$debian_only" == "no" ]]; then
 		
-			echo -e "\n==> Adding Debian ${reponame}, ${backports_reponame}, and ${steamos_tools_reponame} sources"
+			echo -e "\n==> Adding Debian ${reponame}, ${backports_reponame}, and ${steamos_tools_reponame} sources\n"
 			
 		elif [[ "$debian_only" == "yes" ]]; then
 		

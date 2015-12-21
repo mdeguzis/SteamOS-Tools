@@ -1,3 +1,12 @@
+# SteamOS-Tools Update Log #15
+
+  * Added fork of pastebinit (uses slexy as default PB)
+  * Began laborious restructure of package build scripts to adjust for full-soruce uploads using .changes file
+  * Completing this restrucutre will take some time over the next week or two (retroarch/kodi the largest).
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 20 Dec 2015 19:37:00 -0500
+
 # SteamOS-Tools Update Log #14
 
   * Please see commit logs for full detail

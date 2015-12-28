@@ -1,0 +1,4 @@
+[submodule "RetroRig-ES"]
+	path = RetroRig-ES
+	url = https://github.com/ProfessorKaos64/RetroRig-ES
+	branch = brewmaster

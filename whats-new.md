@@ -1,3 +1,14 @@
+# SteamOS-Tools Update Log #16
+
+  * Completed build scripts (source included) for all Retroarch / Libretro cores (a lot!)
+  * Please report any issues with all source-built Retroarch/Libretro packages to the issues tracker
+  * Finished modifying the vast majority of build scripts to inlucde full source in repository
+  * Updated Kodi builds to prepare for upcoming Jarvis release
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * Upcoming: Lutris updates, along with Lutris Kodi addon (thanks RobLoach!)
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 27 Dec 2015 21:03:00 -0500
+
 # SteamOS-Tools Update Log #15
 
   * Added fork of pastebinit (uses slexy as default PB)

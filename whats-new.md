@@ -1,5 +1,14 @@
 # SteamOS-Tools Update Log #16
 
+  * Started new brach of RetroRig-ES for use with SteamOS-Tools
+  * For now, this will be a git submodule
+  * I must stress this is WIP
+  * See: https://github.com/ProfessorKaos64/RetroRig-ES/blob/brewmaster
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Mon, 28 Dec 2015 18:03:00 -0500
+
+# SteamOS-Tools Update Log #16
+
   * Completed build scripts (source included) for all Retroarch / Libretro cores (a lot!)
   * Please report any issues with all source-built Retroarch/Libretro packages to the issues tracker
   * Finished modifying the vast majority of build scripts to inlucde full source in repository

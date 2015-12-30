@@ -2,6 +2,7 @@
 
   * Started Windows-Steam via Wine/POL implementation in testing-b branch
   * Updated Lutris to lutris_0.3.7.1 (inlcludes JSON support for Kodi addon)
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Lutris
  
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Wed, 30 Dec 2015 16:20:00 -0500  
 

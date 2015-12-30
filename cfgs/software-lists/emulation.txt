@@ -1,0 +1,17 @@
+dgen
+dosbox
+fceu
+gdebi-core
+gnuboy-sdl
+mednafen
+mupen64plus
+desmume
+scummvm
+mame
+mess
+pcsxr
+ppsspp
+stella
+visualboyadvance
+yabause
+zsnes

@@ -5,5 +5,8 @@
 * Write any post install scripts
 * Testing, testing, and more testing
 
+# Notes
+* Configurations / skeleton files will be properly located at cfgs/wine/*
+
 # Resources
 * [Issue #109](https://github.com/ProfessorKaos64/SteamOS-Tools/issues/109)

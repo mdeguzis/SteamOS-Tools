@@ -4,9 +4,9 @@
 # Author:     		Michael DeGuzis
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name: 		emulation.shinc
-# Script Ver:	  	0.6.5
+# Script Ver:	  	0.7.5
 # Description:		script to install emulation packages not found in the
-#                 	Debian repositories (e.g. PPSSPP). gdebi is now in use
+#                 	Debian repositories. gdebi is now in use
 #			in order to autoresolve deps from .deb pkgs.
 #
 # See:            	http://www.lgdb.org/emulators
@@ -14,44 +14,6 @@
 # Usage:		N/A, called from another script
 #
 # -------------------------------------------------------------------------------
-
-m_install_antimicro()
-{
-
-	#####################################################
-	# Antimicro
-	#####################################################
-	# Built from: source
-	
-	# VARs
-	PKG="antimicro"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
-	PKG_FILENAME="antimicro_2.5_SteamOS_amd64.deb"
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-	
-	# proceed to eval routine
-	m_pkg_routine_eval
-
-}
-
-m_install_emu_station()
-{
-
-	#####################################################
-	# Emulation Station
-	#####################################################
-	# Built from: ppa:emulationstation/ppa
-	
-	# VARs
-	PKG="emulationstation"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
-	PKG_FILENAME="emulationstation_2.0.1+SteamOS_amd64.deb"
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-	
-	# proceed to eval routine
-	m_pkg_routine_eval
-
-}
 
 m_install_gngeo()
 {
@@ -87,44 +49,6 @@ m_install_higan()
 	PKG_FILENAME="higan_094-SteamOS-amd64.deb"
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
 	
-	# proceed to eval routine
-	m_pkg_routine_eval
-
-}
-
-m_install_retroarch()
-{
-
-	#####################################################
-	# Retroarch - in progress - disable for now
-	#####################################################
-	# Built from: TBD
-	
-	# VARs
-	PKG="retroarch"
-	PKG_FILENAME=""
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-	
-	# proceed to eval routine
-	# m_pkg_routine_eval
-
-}
-
-m_install_ppsspp()
-{
-
-	#####################################################
-	# PPSSPP
-	#####################################################
-	# Built from: ppa:ppsspp/stable 
-	
-	# VARs
-	PKG="ppsspp-qt"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
-	PKG_FILENAME="ppsspp-qt_1.0.1_SteamOS_amd64.deb"
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-
 	# proceed to eval routine
 	m_pkg_routine_eval
 
@@ -222,10 +146,10 @@ m_emulation_install_main()
 	# kick off emulation installs here or comment them out 
 	# to disable them temporarily.
 	
-	# m_install_retroarch
-	m_install_antimicro
-	m_install_emu_station
-	m_install_ppsspp
+	# install front-ends and utilities
+	sudo apt-get install -y --force-yes antimicro emulationstation emulationstation-theme-simple
+	
+	# Install the rest ad-hoc for now, will be packaged
 	m_install_snes9x_gtk
 	m_install_vbam
 	m_install_higan

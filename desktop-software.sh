@@ -359,15 +359,12 @@ get_software_type()
         elif [[ "$type" == "extra" ]]; then
                 # add full softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/extra-software.txt"
-        elif [[ "$type" == "emulators.txt" ]]; then
+        elif [[ "$type" == "emulators" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/emulators.txt"
         elif [[ "$type" == "retroarch-src" ]]; then
                 # add emulation softare to temp list
                 software_list="$scriptdir/cfgs/software-lists/retroarch-src.txt"
-        elif [[ "$type" == "emulation-src-deps" ]]; then
-                # add emulation softare to temp list
-                software_list="$scriptdir/cfgs/software-lists/emulation-src-deps.txt"
         elif [[ "$type" == "gaming-tools" ]]; then
 	        # add emulation softare to temp list
 	        # remember to kick off script at the end of dep installs
@@ -559,9 +556,6 @@ install_software()
 	# Remove custom package list
 	rm -f custom-pkg.txt
 
-	# If software type was for emulation, continue building
-	# emulators from source (DISABLE FOR NOW)
-
 }
 
 show_warning()
@@ -677,7 +671,6 @@ main()
 	echo "#####################################################"
 	echo "Loading script modules"
 	echo "#####################################################"
-	import "$scriptdir/scriptmodules/emulators-from-src"
 	import "$scriptdir/scriptmodules/emulators"
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
@@ -741,11 +734,11 @@ main()
         # If an outside script needs called to install the software type,
         # do it below.
 
-        if [[ "$type" == "emulation" ]]; then
+        if [[ "$type" == "emulators" ]]; then
 
-		# kick off extra modules for buld debs
+		# kick off extra modules
 		sleep 2s
-		m_emulation_install_main
+		m_emulators_install_main
 
 	elif [[ "$type" == "retroarch-src" ]]; then
 

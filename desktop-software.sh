@@ -376,10 +376,6 @@ get_software_type()
                 # add emulation softare to temp list
                 # remember to kick off script at the end of dep installs
                 software_list="$scriptdir/cfgs/software-lists/games-pkg.txt"
-        elif [[ "$type" == "upnp-dlna" ]]; then
-                # add emulation softare to temp list
-                # remember to kick off script at the end of dep installs
-                software_list="$scriptdir/cfgs/software-lists/upnp-dlna.txt"
  
 	####################################################
 	# popular software / custom specification
@@ -398,16 +394,20 @@ get_software_type()
                 # add emulation software Retroarch
                 ep_install_retroarch
                 exit 1
-	elif [[ "$type" == "ue4" ]]; then
-		# install ue4 from helper script
-		ep_install_ue4
+	elif [[ "$type" == "ut4" ]]; then
+		# install ut4 from helper script
+		ep_install_ut4
 		exit 1
-        elif [[ "$type" == "ue4-src" ]]; then
-                # install plex from helper script
+        elif [[ "$type" == "ut4-src" ]]; then
+                # install UT4 from helper script
                 software_list="$scriptdir/cfgs/software-lists/ue4.txt"
 	elif [[ "$type" == "webapp" ]]; then
                 # add web app via chrome from helper script
 		add_web_app_chrome
+                exit 1
+        elif [[ "$type" == "wine-game" ]]; then
+                # add web app via chrome from helper script
+		wu_add_wine_game
                 exit 1
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
@@ -684,6 +684,7 @@ main()
 	import "$scriptdir/scriptmodules/retroarch-from-src"
 	import "$scriptdir/scriptmodules/ext-game-installers"
 	import "$scriptdir/scriptmodules/web-apps"
+	import "$scriptdir/scriptmodules/wine-utils"
 
         # generate software listing based on type or skip to auto script
         get_software_type

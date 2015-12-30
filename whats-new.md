@@ -1,3 +1,10 @@
+# SteamOS-Tools Update Log #17
+
+  * Started Windows-Steam via Wine/POL implementation in testing-b branch
+  * Updated Lutris to lutris_0.3.7.1 (inlcludes JSON support for Kodi addon)
+ 
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Wed, 30 Dec 2015 16:20:00 -0500  
+
 # SteamOS-Tools Update Log #16
 
   * Started new brach of RetroRig-ES for use with SteamOS-Tools

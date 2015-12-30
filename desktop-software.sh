@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	1.9.9.9
+# Script Ver:	2.0.1.1
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -396,7 +396,7 @@ get_software_type()
                 exit 1
 	elif [[ "$type" == "ut4" ]]; then
 		# install ut4 from helper script
-		ep_install_ut4
+		egi_install_ut4
 		exit 1
         elif [[ "$type" == "ut4-src" ]]; then
                 # install UT4 from helper script

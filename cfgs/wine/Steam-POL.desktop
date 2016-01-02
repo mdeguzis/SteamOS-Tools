@@ -1,0 +1,11 @@
+#!/bin/bash
+[Desktop Entry]
+Name=Steam-POL
+Comment=Runs Steam under the "steam" user
+exec=/usr/bin/Steam-POL
+Icon=steam
+Terminal=false
+Type=Application
+Categories=Network;FileTransfer;Game;
+MimeType=x-scheme-handler/steam;
+

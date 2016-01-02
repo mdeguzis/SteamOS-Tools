@@ -402,10 +402,6 @@ get_software_type()
                 # add web app via chrome from helper script
 		add_web_app_chrome
                 exit 1
-        elif [[ "$type" == "wine-game" ]]; then
-                # add web app via chrome from helper script
-		wu_add_wine_game
-                exit 1
         elif [[ "$type" == "$type" ]]; then
                 # install based on $type string response
 		software_list="custom-pkg.txt"
@@ -677,7 +673,6 @@ main()
 	import "$scriptdir/scriptmodules/retroarch-from-src"
 	import "$scriptdir/scriptmodules/ext-game-installers"
 	import "$scriptdir/scriptmodules/web-apps"
-	import "$scriptdir/scriptmodules/wine-utils"
 
         # generate software listing based on type or skip to auto script
         get_software_type

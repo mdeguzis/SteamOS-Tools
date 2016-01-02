@@ -9,22 +9,21 @@
 ##########################################
 #                                        #
 # User configurable variables for use in #
-# this script                            #
+# this script. Replaced by wine-utils    #
 #                                        #
 ##########################################
 
 # Define some Wine variables for use in the script.
-export WINEPREFIX="/home/steam/.PlayOnLinux/wineprefix/Steam"
+export WINEPREFIX="WINEPREFIX_TMP"
 export WINEDEBUG="-all"
-WINEVERSION="$HOME/.PlayOnLinux/wine/linux-x86/1.8"
+WINEVERSION="WINEVERSION_TMP"
 
 # Define Steam location and game location here.
 # NOTE: GAME_DIR is not used with current method. Possibly remove?
 STEAM_DIR="$WINEPREFIX/drive_c/Program Files/Steam"
-GAME_APPID="204340"
-GAME_DIR="steamapps/common/Serious Sam 2/Bin"
-GAME_EXE="Sam2.exe"
-
+GAME_APPID="GAME_ID"
+GAME_DIR="GAME_DIR"
+GAME_EXE="GAME_EXE"
 
 ###########################################
 #                                         #

@@ -17,7 +17,7 @@
 time_start=$(date +%s)
 time_stamp_start=(`date +"%T"`)
 
-ep_install_ut4()
+egi_install_ut4()
 {
 	
 	# See:	

@@ -14,7 +14,7 @@
 ##########################################
 
 # Define some Wine variables for use in the script.
-export WINEPREFIX="WINEPREFIX_TMP"
+export WINEPREFIX="/home/steam/.PlayOnLinux/wineprefix/Steam"
 export WINEDEBUG="-all"
 WINEVERSION="WINEVERSION_TMP"
 

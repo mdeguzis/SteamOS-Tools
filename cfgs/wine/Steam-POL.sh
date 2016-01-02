@@ -1,2 +1,2 @@
 #!/bin/bash
-gksu -w -u steam playonlinux
+gksu -u steam playonlinux

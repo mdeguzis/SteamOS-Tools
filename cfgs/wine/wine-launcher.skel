@@ -16,7 +16,7 @@
 # Define some Wine variables for use in the script.
 export WINEPREFIX="/home/steam/.PlayOnLinux/wineprefix/Steam"
 export WINEDEBUG="-all"
-WINEVERSION="WINEVERSION_TMP"
+WINEVERSION="$HOME/.PlayOnLinux/wine/linux-x86/VERSION_TMP"
 
 # Define Steam location and game location here.
 # NOTE: GAME_DIR is not used with current method. Possibly remove?

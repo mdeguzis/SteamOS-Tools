@@ -70,11 +70,6 @@ wineutils_prereqs()
           
   done
 
-  # Set POL paths
-  steamPOL="/home/steam/.PlayOnLinux"
-  sudo ln -s "$(realpath /home/desktop/.PlayOnLinux)" "$steamPOL"
-  sudo chown -R steam:steam "$steamPOL"
-
 }
 
 wineutils_add_game()

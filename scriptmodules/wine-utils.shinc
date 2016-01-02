@@ -9,20 +9,211 @@
 # Usage:        N/A, module
 # -------------------------------------------------------------------------------
 
-# See TODO.md for now
+# -----------------------------------------------------------------------
+# Author: 	    	Michael DeGuzis
+# Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	  	extra-pkgs.
+# Script Ver:	  	1.7.9
+# Description:		Module for isntalling web-apps .
+#	
+# Usage:	      	n/a , module
+# -----------------------------------------------------------------------
 
-wu_prereqs()
+wineutils_prereqs()
+{
+
+  # Add needed packages
+  echo -e "\nInstalling prerequisite packages\n"
+
+  deps="playonlinux x11-utils"
+
+  for dep in ${deps}; do
+  	pkg_chk=$(dpkg-query -s ${dep})
+  	if [[ "$pkg_chk" == "" ]]; then
+  	
+  		echo -e "\n==INFO==\nInstalling package: ${dep}\n"
+  		sleep 1s
+  		apt-get install ${dep} -y
+  		
+  		if [[ $? = 100 ]]; then
+  			echo -e "Cannot install ${dep}. Please install this manually \n"
+  			sleep 5s
+  		fi
+  		
+  	else
+  		echo "package ${dep} [OK]"
+  		sleep .3s
+  	fi
+  done
+  
+  # check for passwords on users
+  # check if password is set
+  desktop_pw_set=$(passwd -S desktop | cut -f2 -d " ")
+  steam_pw_set=$(sudo passwd -S steam | cut -f2 -d " ")
+  
+  echo -e "==> Setting user passwords\n"
+  sleep 2s
+  
+  while [[ "$desktop_pw_set" != "P" ]];
+  do
+
+    echo -e "\n desktop user admin password not set. Setting now"
+    passwd desktop
+          
+  done
+  
+  while [[ "$desktop_pw_set" != "P" ]];
+  do
+  
+    echo -e "\n steam user admin password not set. Setting now"
+    sudo passwd steam
+          
+  done
+
+  # Set POL paths
+  steamPOL="/home/steam/.PlayOnLinux"
+  sudo ln -s "$(realpath /home/desktop/.PlayOnLinux)" "$steamPOL"
+  sudo chown -R steam:steam "$steamPOL"
+
+}
+
+wineutils_add_game()
 {
   
-  # TODO
-  :
+  echo -e "\n==> Configuring"
+  sleep 1s
+  
+  # Verify steam under POL
+  if [[ ! -f "/home/steam/.PlayOnLinux/wineprefix/Steam" ]]; then
+
+    echo -e "Wine-utils for SteamOS-Tools will now start PlayOnLinux. Please install Steam to continue."
+    echo -e "If you have trouble seeing the OK/Cancel buttons, the first is OK, the second is cancel"
+    echo -e "Please LAUNCH YOUR GAME AT LEAST ONCE to ensure it functions properly!"
+    echo -e "Press enter to continue...\n"
+    read ENTER
+    sudo su - steam -c 'playonlinux'
+  
+  fi
+  
+  read -erp "Do you wish to open Steam (for Windows) to verify your game? [y/n]: " game_verify
+  
+  if [[ "$game_verify" == "y" ]]; then
+  
+    echo -e "Please close PlayOnLinux to continue the script"
+    sleep 3s
+    sudo su - steam -c 'playonlinux'
+  
+  fi
+  
+  ######################################
+  # Set game data
+  ######################################
+  
+  # Get app ID via browser
+  echo -e "\nA browser will now be launched once you enter your given game to search for below"
+  read -erp "Game to add?: " game_id_search
+  
+  iceweasel https://steamdb.info/search/?a=app&q=${game_id_search}
+  
+  read -erp "Which game ID will you add? " GAME_ID
+  read -erp "Name your launcher: " GAME_NAME
+  
+  ######################################
+  # Set launcher variables
+  ######################################
+  
+  # copy default launcher, modify based on values pased from
+  # web_app_{web_app_name}
+  sudo cp "$scriptdir/cfgs/wine/wine-launcher.skel" "/usr/bin/${GAME_NAME}-Launch"
+  sudo chmod +x "/usr/bin/${GAME_NAME}-Launch"
+  
+  # copy over desktop shortcut
+  sudo cp "$scriptdir/cfgs/wine/Default.desktop" "/usr/share/applications/${GAME_NAME}.desktop"
+  LAUNCHER="/usr/share/applications/${GAME_NAME}.desktop"
+  
+  ls "/home/desktop/wine-utils/.PlayOnLinux/wine/linux-x86/"
+  read -erp "\nWhich WINE version do you wish to use? (enter for blank)" WINEVERSION
+  
+  if [[ "$WINEVERSION" == "" ]]; then
+  
+    # set a default POL uses for the Steam script
+    WINEVERSION="/home/desktop/wine-utils/.PlayOnLinux/wine/linux-x86/1.7.53-steam_crossoverhack"
+    
+  fi
+
+  # perform sed replacements on skel files
+  sudo sed -i "s|LAUNCHER_TMP|$LAUNCHER|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+  sudo sed -i "s|GAME_NAME_TMP|$GAME_NAME|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+  sudo sed -i "s|WINEPREFIX_TMP|$WINEVERSION|g" "/usr/bin/${GAME_NAME}-Launch"
   
 }
 
-wu_add_wine_game()
+wineutils_main()
 {
-  
-  # TODO
-  :
-  
+
+		#######################################
+		# Set vars
+		#######################################
+	
+		# set external Deb repo required flag
+		export deb_repo_name="jessie.list"
+		export deb_repo_req="yes"
+		
+		# set custom url to no as a default
+		custom_url="no"
+		
+		# Eval requirements
+		"$scriptdir/utilities/check_repo_req.sh"
+		
+		echo -e "\n==> Adding Steam for Windows gane using automated script...\n"
+		sleep 2s
+		
+		# Pre-reqs
+    wineutils_prereqs
+		
+		###################################
+		# Start wine utils menu loop
+		###################################
+		
+		while [[ "$wineutils_menu_choice" != "2" || "$wineutils_menu_choice" != "done" ]];
+		do	
+		  
+		  cat <<-EOF
+			#############################################################
+			Wine-utils Menu
+			#############################################################
+	
+			Please choose which action you wish to perform. Choose Done when finished.
+			(1) Add Steam for Windows game
+			(2) Done
+			
+			EOF
+			
+			# the prompt sometimes likes to jump above sleep
+			sleep 0.5s
+			
+			read -ep "Choice: " web_app_choice
+			
+			case "$wineutils_menu_choice" in
+			        
+			        1)
+			        wineutils_add_game
+			        ;;
+     
+			        2|done)
+			        # do nothing
+			        echo -e "\n==> Exiting script\n"
+			        exit 1
+			        ;;
+			         
+			        *)
+			        echo -e "\n==ERROR==\nInvalid Selection!"
+			        sleep 1s
+			        continue
+				;;
+			esac
+
 }
+
+# Main
+wineutils_main

@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0
-Name=Itch.io
+Name=Itch.io strace debug
 GenericName=Game
 Type=Application
 Exec=/usr/bin/itchio-strace
-Icon=itch
+Icon=preferences-system
 Categories=Game;

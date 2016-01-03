@@ -1,2 +1,3 @@
 #!/bin/bash
-strace /usr/bin/itch &> /tmp/strace_itchio.log
+rm -f /tmp/strace_itchio.log
+strace -o /tmp/strace_itchio.log /usr/bin/itch

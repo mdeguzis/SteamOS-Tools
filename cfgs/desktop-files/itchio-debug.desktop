@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=Itch.io
+GenericName=Game
+Type=Application
+Exec=/usr/bin/itchio-strace
+Icon=itch
+Categories=Game;

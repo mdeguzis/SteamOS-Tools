@@ -5,6 +5,7 @@
   * See: https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Playing-Steam-for-Windows-Games-On-SteamOS
   * Cleaned up a few files/folders
   * More active work being done to get a native build script of the Itch.io client
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/itch.io
  
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 02 Jan 2016 22:00:00 -0500  
 

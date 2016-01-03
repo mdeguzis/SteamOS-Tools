@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	2.0.1.1
+# Script Ver:	2.0.3.1
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -384,11 +384,15 @@ get_software_type()
 		ep_install_chrome
                 exit 1
         elif [[ "$type" == "gameplay-recording" ]]; then
-                # install plex from helper script
+                # install program from helper script
 		ep_install_gameplay_recording
                 exit 1
+        elif [[ "$type" == "itchio" ]]; then
+                # install itchio from helper script
+		ep_install_itchio
+                exit 1        
         elif [[ "$type" == "retroarch" ]]; then
-                # add emulation software Retroarch
+                # add retroarch software Retroarch
                 ep_install_retroarch
                 exit 1
 	elif [[ "$type" == "ut4" ]]; then

@@ -1,3 +1,13 @@
+# SteamOS-Tools Update Log #18
+
+  * Added script function to desktop-software for itch.io client (needs tested)
+  * Added full wiki page for Steam under Wine (POL) and how to add games
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Playing-Steam-for-Windows-Games-On-SteamOS
+  * Cleaned up a few files/folders
+  * More active work being done to get a native build script of the Itch.io client
+ 
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sat, 02 Jan 2016 22:00:00 -0500  
+
 # SteamOS-Tools Update Log #17
 
   * Started Windows-Steam via Wine/POL implementation in testing-b branch

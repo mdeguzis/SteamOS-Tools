@@ -12,15 +12,11 @@ sleep 1s
 WINDOW_ID=$(xwininfo -root -children | grep "Xephyr" | awk '{print $1}')
 xprop -id $WINDOW_ID -f "STEAM_GAME" 32c -set "STEAM_GAME" 8000
 
-# start antimicro mouse control
-#antimicro_tmp
-
 export DISPLAY=:15
 LD_PRELOAD= /usr/bin/itch --window-size=$COMMA_WIN_RES &&
 
 sleep 1
-killall chrome
-killall antimicro
+kill itch
 kill $XEPHYR_PID
 
 

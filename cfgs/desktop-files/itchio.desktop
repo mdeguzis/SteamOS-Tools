@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=Itch.io
+GenericName=Game
+Type=Application
+Exec=/usr/bin/itchio-launcher
+Icon=itch
+Categories=Game;

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Retroarch-Debug
+GenericName=Retroarch
+Comment=Retroarch debug shortcut file
+Exec=/usr/bin/retroarch-debug
+Icon=/home/steam/Pictures/retro-arch-logo.png
+Terminal=false
+Type=Application
+Categories=Game
+Actions=Fullscreen;Standalone;

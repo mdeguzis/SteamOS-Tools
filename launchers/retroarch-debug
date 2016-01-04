@@ -1,0 +1,2 @@
+#!/bin/bash
+retroarch --menu --verbose >> $HOME/retroarch/log.txt 2>&1

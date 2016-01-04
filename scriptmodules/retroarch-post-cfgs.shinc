@@ -430,7 +430,7 @@ rpc_configure_src()
 		# add small launcher script
 		# this will acively swap out the current user (desktop or steam) so that the
 		# appropriate retroarch.cfg file will be user
-		sudo cp "$scriptdir/cfgs/retroarch/retroarch-launch.sh" "/usr/bin"
+		sudo cp "$scriptdir/launchers/retroarch-src" "/usr/bin"
 		
 		# copy cores from source build DIR
 		find "/home/desktop/retroarch-src/libretro-super/" -name *.so | xargs sudo cp -t "/usr/lib/libretro" 2> /dev/null

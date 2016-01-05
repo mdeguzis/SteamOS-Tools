@@ -25,6 +25,6 @@ main ()
 }
 
 # start and log
-rm -f /tmp/itchio_log.tx
-main | tee /tmp/itchio_log.tx
+rm -f /tmp/itchio_log.txt
+main | tee /tmp/itchio_log.txt
 

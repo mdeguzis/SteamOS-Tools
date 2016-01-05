@@ -2,7 +2,7 @@
 [Desktop Entry]
 Name=Steam-POL
 Comment=Runs Steam for Windows via POL, under the "steam" user
-exec=/usr/bin/Steam-POL
+Exec=/usr/bin/Steam-POL
 Icon=steam
 Terminal=false
 Type=Application

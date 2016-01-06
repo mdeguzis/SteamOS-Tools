@@ -1,6 +1,6 @@
 # SteamOS-Tools Update Log #20
 
-  * Added awstatus pulic usage statistics page for tracking popular packages and other items
+  * Added awstats pulic usage statistics page for tracking popular packages and other items
   * See: http://steamos-tools-stats.libregeek.org
   * See: http://stats.libregeek.org for global site statistics
   * Feedback is very welcome

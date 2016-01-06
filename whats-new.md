@@ -1,3 +1,15 @@
+# SteamOS-Tools Update Log #19
+
+  * Added gngeo package to package pool
+  * Started higan build
+  * After some reprepro mess, package pool is back fully up and running
+  * All retroarch/libretro package build scripts update and built over last 2 days
+  * Added some new wiki pages for how-to, as well as runnings Steam for Windows games on SteamOS
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Tutorials-and-How-To
+ 
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 05 Jan 2016 22:06:00 -0500  
+
 # SteamOS-Tools Update Log #18
 
   * Added script function to desktop-software for itch.io client (needs tested)

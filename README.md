@@ -24,7 +24,7 @@ There is now a Debian personal repository hosted at packages.libregeek.org. Be s
 
 * [SteamoS-Tools repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository)
 * [SteamOS-Tools-Packaging GitHub](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging)
-* [SteamOS-Tools site/package statistics](steamos-tools-stats.libregeek.org)
+* [SteamOS-Tools site/package statistics](http://steamos-tools-stats.libregeek.org)
 
 # Usage / Installation
 

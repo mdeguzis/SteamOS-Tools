@@ -1,3 +1,12 @@
+# SteamOS-Tools Update Log #20
+
+  * Added awstatus pulic usage statistics page for tracking popular packages and other items
+  * See: http://steamos-tools-stats.libregeek.org
+  * See: http://stats.libregeek.org for global site statistics
+  * Feedback is very welcome
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Wed, 06 Jan 2016 06:43:00 -0500  
+
 # SteamOS-Tools Update Log #19
 
   * Added gngeo package to package pool

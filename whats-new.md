@@ -1,9 +1,11 @@
 # SteamOS-Tools Update Log #20
 
   * Added awstats pulic usage statistics page for tracking popular packages and other items
+  * Results will be available starting in 24 hours from now on (will start from 0)
   * See: http://steamos-tools-stats.libregeek.org
   * See: http://stats.libregeek.org for global site statistics
   * Feedback is very welcome
+  * All of the statistical reports are updated every 24 hours.
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Wed, 06 Jan 2016 06:43:00 -0500  
 

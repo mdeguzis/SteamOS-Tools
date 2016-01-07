@@ -45,8 +45,9 @@ Normal script execution, sans arguments, goes a little bit like:
 ```
 
 # Updating
+Be aware that any pacakges installed via the Libregeek package repository will be upgraded during the silent unattended upgrades process in SteamOS (Settings > System) when a new version is available in the package pool. This updates, like Debian and Valve's upgrades, are processed on shutdown.
 
-_Please_ regulary check for updates to SteamOS-Tools. To update your local copy of files:
+_Please_ regulary check for updates to SteamOS-Tools. To update your local copy of files for this repository:
 ```
 cd SteamOS-Tools/
 git pull

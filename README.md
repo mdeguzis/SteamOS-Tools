@@ -95,7 +95,7 @@ Branch where some new scripts are made. Larger alterations to existing ones impl
 
 # Pull requests / package requests / suggestions 
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page
-or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the AUTHORS.md file. I will also take requests for packages _not_ found within Debian Jessie, or those that require extra work to work/install.
+or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the AUTHORS.md file. I will also take requests for packages _not_ found within Debian Jessie, or those that require extra work to implement/add to SteamOS.
 
 # Troubleshooting
 Most scripts in the main folder of the repository write stdout and stderr to `log.txt` in the current directory after completion. Please check this file before submitting any issues or pull requests.

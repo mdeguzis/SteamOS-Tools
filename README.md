@@ -38,20 +38,18 @@ git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS-Tools/
 ```
 
+Normal script execution, sans arguments, goes a little bit like:
+
+```
+./script-name.sh
+```
+
 # Updating
 
 _Please_ regulary check for updates to SteamOS-Tools. To update your local copy of files:
 ```
 cd SteamOS-Tools/
 git pull
-```
-
-There is also a testing branch for this repository, but I advise against using it.
-
-Normal script execution, sans arguments, goes a little bit like:
-
-```
-./script-name.sh
 ```
 
 ## Contents

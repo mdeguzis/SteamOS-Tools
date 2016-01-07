@@ -30,14 +30,17 @@ There is now a Debian personal repository hosted at packages.libregeek.org. Be s
 
 Please make sure you have enabled desktop mode (Settings > Interface > Enable access to the Linux desktop), and aset your password for the dekstop user with `passwd`.
 
-To clone this repository to your local computer, you will need the `git` software package to clone the repository. The command is included below in the first line below if you do not know it.
+To clone this repository to your local computer, you will need the `git` software package to clone the repository. The command is included below in the first line below if you do not know it. Updating is very important for fixes and new features.
+
 ```
 sudo apt-get install git
 git clone https://github.com/ProfessorKaos64/SteamOS-Tools
 cd SteamOS-Tools/
 ```
 
-To update your local copy of files:
+# Updating
+
+_Please_ regulary check for updates to SteamOS-Tools. To update your local copy of files:
 ```
 cd SteamOS-Tools/
 git pull
@@ -57,7 +60,8 @@ Normal script execution, sans arguments, goes a little bit like:
 * docs/ - Various documentation. Previously hosted script documentation that is now on teh wiki.
 * ext-game-installers/ - Game installers for games outside Steam (e.g. GZDoom).
 * extra/ - Various extra scripts
-* game-fixes - A location to store some small deployable fixes for games.
+* game-fixes/ - A location to store some small deployable fixes for games.
+* launchers/ - Script launchers for various software
 * scriptmodules/ - Plugable bash modules / routines for any of the below scripts. Scripts for packages and more.
 * utilities/ - various scripts to handle small parts of the SteamOS-Tools repository (plugable objects), build scripts, and standalone tools for use.
 * README.md - This file.

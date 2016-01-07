@@ -1,3 +1,12 @@
+# SteamOS-Tools Update Log #21
+
+  * Added unattended steamos tools pkg updates
+  * Please do submit an issues ticket if you have problems upgrading Valve or SteamOS-Tools packages
+  * https://github.com/ProfessorKaos64/SteamOS-Tools/issues
+  * https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Troubleshooting
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Thu, 07 Jan 2016 06:41:00 -0500  
+
 # SteamOS-Tools Update Log #20
 
   * Added awstats pulic usage statistics page for tracking popular packages and other items

@@ -1,6 +1,7 @@
 # SteamOS-Tools Update Log #21
 
   * Added unattended steamos tools pkg updates
+  * You _must_ run ./add-debian-repos.sh again from teh GitHub repository root
   * Please do submit an issues ticket if you have problems upgrading Valve or SteamOS-Tools packages
   * https://github.com/ProfessorKaos64/SteamOS-Tools/issues
   * https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Troubleshooting

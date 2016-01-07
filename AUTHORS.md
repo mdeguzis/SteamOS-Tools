@@ -31,7 +31,7 @@ I couldn't have done some of the things here without some help from a lot of gre
 ### Test chroot fixes and contributions
 * Ryochan7
 
-#### UE4 script fixes
+#### UT4 script fixes
 * Ryochan7
 
 #### Running Steam for Windows (under PlayOnLinux) within BPM

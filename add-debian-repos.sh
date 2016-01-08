@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	add-debian-repos.sh
-# Script Ver:	0.7.1
+# Script Ver:	0.7.2
 # Description:	This script automatically enables Debian and/or Libregeek 
 #		repositories
 #
@@ -346,7 +346,7 @@ main()
 		fi
 		
 		# Add unattended upgrade file to update libregeek packages along side Valve's
-		sudo cp "$scriptdir/cfgs/apt/60-unattended-steamos-tools" "/etc/apt/apt.conf.d/"
+		sudo cp "$scriptdir/cfgs/apt/apt.conf.d/60-unattended-steamos-tools" "/etc/apt/apt.conf.d/"
 		
 		# Update system
 		echo -e "\n==> Updating index of packages...\n"

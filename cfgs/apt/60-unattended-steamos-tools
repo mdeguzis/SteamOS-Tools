@@ -41,7 +41,8 @@ Unattended-Upgrade::InstallOnShutdown "true";
 # Set default behavior
 ########################
 
-# This option uses the old conffile and if there is no conffile, the program use the conffile from the package.
+# This option uses the old conffile. 
+# If there is no conffile, the program use the conffile from the package.
 Dpkg::Options {
    "--force-confdef";
    "--force-confold";

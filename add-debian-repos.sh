@@ -346,7 +346,7 @@ main()
 		fi
 		
 		# Add unattended upgrade file to update libregeek packages along side Valve's
-		sudo cp "$scriptdir/cfgs/apt/apt.conf.d/60-unattended-steamos-tools" "/etc/apt/apt.conf.d/"
+		sudo cp "$scriptdir/cfgs/apt/apt.conf.d/60unattended-steamos-tools" "/etc/apt/apt.conf.d/"
 		
 		# Update system
 		echo -e "\n==> Updating index of packages...\n"
@@ -403,6 +403,9 @@ main()
 		sudo rm -f ${steamos_tools_prefer}.bak
 		
 		# apt configs
+		sudo rm -f "/etc/apt/apt.conf.d/60unattended-steamos-tools"
+		
+		# Remove improper file committed, remove after some time
 		sudo rm -f "/etc/apt/apt.conf.d/60-unattended-steamos-tools"
 		
 		sleep 2s

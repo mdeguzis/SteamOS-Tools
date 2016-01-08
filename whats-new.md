@@ -1,3 +1,12 @@
+# SteamOS-Tools Update Log #22
+
+  * ATTN: Due to a package mismatch in the repository it is _highly_ suggested you read the below information.
+  * If you are having upgrade issues where you upgrade SteamOS, yet the icon still remains, please see the [debugging SteamOS upgrades](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Troubleshooting#debugging-steamos-upgrade-issues) wiki page
+  * If you see any output from a debug run of unattended-upgrade or a dry-run that indicates connfile prompts, remove and reinstalling the package in question should solve it.
+  * The unattended configuration is being looked at for improvements to avoid connfiles prompts or handle them appropriately.
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Thu, 07 Jan 2016 21:41:00 -0
+
 # SteamOS-Tools Update Log #21
 
   * Added unattended steamos tools pkg updates

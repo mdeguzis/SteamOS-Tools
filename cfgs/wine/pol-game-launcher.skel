@@ -18,6 +18,10 @@ export WINEPREFIX="/home/steam/.PlayOnLinux/wineprefix/Steam"
 export WINEDEBUG="-all"
 WINEVERSION="$HOME/.PlayOnLinux/wine/linux-x86/VERSION_TMP"
 
+# Change LD_LIBRARY_PATH to include the lib directories for the version of wine that you are running.
+# Please see: issues/115
+export LD_LIBRARY_PATH="$WINEVERSION/lib:$WINEVERSION/lib64:$LD_LIBRARY_PATH"
+
 # Define Steam location and game location here.
 # NOTE: GAME_DIR is not used with current method. Possibly remove?
 STEAM_DIR="$WINEPREFIX/drive_c/Program Files/Steam"

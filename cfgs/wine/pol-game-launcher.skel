@@ -67,12 +67,12 @@ done;
 "$WINEVERSION/bin/wine" "$STEAM_DIR/Steam.exe" -applaunch "$GAME_APPID"
 
 # Wait for application to be launched.
-until pgrep -lf $GAME_EXE; do
+until [ -n "$(ps ax -o comm= | grep -i "$GAME_EXE")" ]; do
   sleep 2
 done;
 
 # Stay in loop while the game is running.
-while pgrep -lf $GAME_EXE; do
+while [ -n "$(ps ax -o comm= | grep -i "$GAME_EXE")" ]; do
   sleep 2
 done;
 

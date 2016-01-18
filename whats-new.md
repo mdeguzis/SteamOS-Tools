@@ -1,3 +1,13 @@
+# SteamOS-Tools Update Log #23
+
+  * "ice-steamos" package added to Libregeek pacakge pool
+  * See: https://github.com/ProfessorKaos64/Ice
+  * Many thanks to Sharkwouter for all his hard work, as well as Ryochan7
+  * Kodi "Jarvis" seems to soon on the horizon, so stay tuned
+  * PlayOnLinux launcher configs are being updated, bear with me as they are tested
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 17 Jan 2016 21:00:00 -0
+
 # SteamOS-Tools Update Log #22
 
   * ATTN: Due to a package mismatch in the repository it is _highly_ suggested you read the below information.

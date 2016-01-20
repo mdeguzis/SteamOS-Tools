@@ -1,3 +1,23 @@
+# SteamOS-Tools Update Log #24
+
+  * Updated RetroArch main pkgs (client, joypad, assets) to new version 1.3.1
+  * Updated several cores to latest upstream changes:
+   * genesis plus gx
+   * libretro vbam
+   * mupen64plus
+   * libretro-desmume
+   * libretro-fba
+   * libretro-fmsx
+   * libretro-handy (uninstall previous if you have issues upgrading, version changed)
+   * libretro-lutro
+   * libretro-vba-next
+   * libretro-reicast (new, largely untested on SteamOS yet)
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * See: packages.libregeek.org
+  * Kodi Jarvis beta 5 builds look good, should be about ready when official release drops
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 19 Jan 2016 21:02:00 -0500
+
 # SteamOS-Tools Update Log #23
 
   * "ice-steamos" package added to Libregeek pacakge pool
@@ -6,7 +26,7 @@
   * Kodi "Jarvis" seems to soon on the horizon, so stay tuned
   * PlayOnLinux launcher configs are being updated, bear with me as they are tested
 
--- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 17 Jan 2016 21:00:00 -0
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 17 Jan 2016 21:00:00 -0500
 
 # SteamOS-Tools Update Log #22
 
@@ -15,7 +35,7 @@
   * If you see any output from a debug run of unattended-upgrade or a dry-run that indicates connfile prompts, remove and reinstalling the package in question should solve it.
   * The unattended configuration is being looked at for improvements to avoid connfiles prompts or handle them appropriately.
 
--- ProfessorKaos64 <mdeguzis@gmail.com>  Thu, 07 Jan 2016 21:41:00 -0
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Thu, 07 Jan 2016 21:41:00 -0500
 
 # SteamOS-Tools Update Log #21
 

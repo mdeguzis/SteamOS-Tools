@@ -1,7 +1,7 @@
 
 # SteamOS-Tools Update Log #25
 
-  * Added Mari0 build/package (Mario+Portals)
+  * Added Mari0 build/package (Mario+Portal)
   * Added SORR (Streets of Rage Remake) build/package
   * Steam Controller profiles for each game are already made
   * Profiles will be uploaded as soon as the 1 hour minimum test time elapses on Steam

@@ -1,22 +1,13 @@
-# SteamOS-Tools Update Log #24
 
-  * Updated RetroArch main pkgs (client, joypad, assets) to new version 1.3.1
-  * Updated several cores to latest upstream changes:
-   * genesis plus gx
-   * libretro vbam
-   * mupen64plus
-   * libretro-desmume
-   * libretro-fba
-   * libretro-fmsx
-   * libretro-handy (uninstall previous if you have issues upgrading, version changed)
-   * libretro-lutro
-   * libretro-vba-next
-   * libretro-reicast (new, largely untested on SteamOS yet)
-  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
-  * See: packages.libregeek.org
-  * Kodi Jarvis beta 5 builds look good, should be about ready when official release drops
+# SteamOS-Tools Update Log #25
 
--- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 19 Jan 2016 21:02:00 -0500
+  * Added Mari0 build/package (Mario+Portals)
+  * Added SORR (Streets of Rage Remake) build/package
+  * Steam Controller profiles for each game are already made
+  * Profiles will be uploaded as soon as the 1 hour minimum test time elapses on Steam
+  * See: http://packages.libregeek.org/SteamOS-Tools/package_lists/
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 23 Jan 2016 21:25:00 -0500
 
 # SteamOS-Tools Update Log #23
 

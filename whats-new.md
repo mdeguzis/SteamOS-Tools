@@ -5,6 +5,7 @@
   * Added SORR (Streets of Rage Remake) build/package
   * Steam Controller profiles for each game are already made
   * Profiles will be uploaded as soon as the 1 hour minimum test time elapses on Steam
+  * Updated ice-unstable
   * See: http://packages.libregeek.org/SteamOS-Tools/package_lists/
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 23 Jan 2016 21:25:00 -0500

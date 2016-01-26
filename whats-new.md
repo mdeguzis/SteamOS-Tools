@@ -1,4 +1,13 @@
 
+# SteamOS-Tools Update Log #26
+
+  * As of the latest Steam Client beta for 20160126, Xephyr hack for Chrome no longer needed.
+  * Old Default-Launch.sh file appended with .old for preservation.
+  * This also means that the Google Chrome application will functions fine when used by itself.
+  * SNIS (Space Nerds in Space) package updated with latest upstream commits.
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Mon, 25 Jan 2016 21:00:00 -0500
+
 # SteamOS-Tools Update Log #25
 
   * Added Mari0 build/package (Mario+Portal)

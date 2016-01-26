@@ -1,4 +1,11 @@
 
+# SteamOS-Tools Update Log #27
+
+  * ice-unstable updated to latest upstream changes
+  * Conversion will be taking place to update all build scripts with fixed .orig archives to follow pkg ver/rev
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Mon, 25 Jan 2016 21:00:00 -0500
+
 # SteamOS-Tools Update Log #26
 
   * As of the latest Steam Client beta for 20160126, Xephyr hack for Chrome no longer needed.

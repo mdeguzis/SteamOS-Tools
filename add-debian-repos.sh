@@ -41,7 +41,7 @@ if [[ "$final_opts" == "--debian-only" ]]; then
 	
 	debian_only="yes"
 	
-elif [[ "$final_opts" == "--enable-testing" ]]; then
+elif [[ "$final_opts" == "--enable-testing" ]]; the
 	
 	test_repo="yes"
 	
@@ -135,6 +135,14 @@ main()
 	#####################################################
 	# Install/Uninstall process
 	#####################################################
+	
+	# Ensure multiarch is enabled (should be by default)
+	if ! dpkg --print-foreign-architectures | grep i386; then
+	
+		# add multiarch
+		dpkg --add-architecture i386
+		
+	fi
 	
 	if [[ "$install" == "yes" ]]; then
 		clear

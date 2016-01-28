@@ -41,7 +41,7 @@ if [[ "$final_opts" == "--debian-only" ]]; then
 	
 	debian_only="yes"
 	
-elif [[ "$final_opts" == "--enable-testing" ]]; the
+elif [[ "$final_opts" == "--enable-testing" ]]; then
 	
 	test_repo="yes"
 	

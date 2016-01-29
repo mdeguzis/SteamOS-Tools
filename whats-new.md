@@ -1,3 +1,19 @@
+# SteamOS-Tools Update Log #28
+
+  * Updated packages:
+   * antimicro
+   * emulationstation
+   * emulationstation-theme-simple
+   * itch (opens now via BPM, but games do not launch)
+   * lutris
+   * obs-studio
+   * ppsspp
+   * pcsx2
+  * The rest of available updates for pacakge will follow into this weekend.
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Packaging-Information
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Thu, 28 Jan 2016 21:25:00 -0500
 
 # SteamOS-Tools Update Log #27
 

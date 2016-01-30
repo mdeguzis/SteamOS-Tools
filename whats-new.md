@@ -4,7 +4,7 @@
   * Added man page for ice-steamos, run "man ice-steamos" to view information
   * This release of ice-steamos supports the available command line options
 
- -- ProfessorKaos64  <mdeguzis@gmail.com>  Sat, 30 Jan 2016 16:34:32 -0500
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Sat, 30 Jan 2016 16:34:32 -0500
 
 # SteamOS-Tools Update Log #29
 

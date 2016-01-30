@@ -1,3 +1,14 @@
+# SteamOS-Tools Update Log #29
+
+  * Updated packages:
+   * ice-steamos (new 1.0.0 upstream release)
+   * ice-steamos-unstable
+  * The rest of available updates for pacakge will follow into this weekend.
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Packaging-Information
+
+-- ProfessorKaos64 <mdeguzis@gmail.com>  Fri, 29 Jan 2016 22:56:00 -0500
+
 # SteamOS-Tools Update Log #28
 
   * Updated packages:

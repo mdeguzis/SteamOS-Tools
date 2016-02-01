@@ -1,6 +1,7 @@
 # Patrons and support from great people such as:
 * Seth M. (Patreon)
 * Justin M. (Patreon)
+* Francis S. (Patreon)
 	
 Thank you for your support!
 

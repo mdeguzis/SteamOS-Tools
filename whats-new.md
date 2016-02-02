@@ -1,3 +1,14 @@
+# SteamOS-Tools Update Log #31
+
+  * ice-steamos / ice-steamos-unstable upgraded to ensure each repository would remove/replace the other
+  * New build of ice-steamos-unstable per upstream latest commit
+  * Typhoon 2001 (A Tempest 2000 clone) ressurrected, packaged, and added to package pool
+  * Feedback for Typhoon 2001 is welcome, but as a static binary, there isn't much I can fix
+  * [Release announcement for Typhoon 2001](https://www.reddit.com/r/SteamOS/comments/43rolg/typhoon_2001_a_tempest_2000_clone_resurrected_and/)
+  * See: https://github.com/ProfessorKaos64/typhoon2001
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Mon, 1 Feb 2016 20:00:00 -0500
+
 # SteamOS-Tools Update Log #30
 
   * ice-steamos_1.0.0+bsos3 synced to repository

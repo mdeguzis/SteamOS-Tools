@@ -47,7 +47,7 @@ Normal script execution, sans arguments, goes a little bit like:
 ```
 
 # Updating
-Be aware that any pacakges installed via the Libregeek package repository will be upgraded during the silent unattended upgrades process in SteamOS (Settings > System) when a new version is available in the package pool. This updates, like Debian and Valve's upgrades, are processed on shutdown.
+Be aware that any pacakges installed via the Libregeek package repository will be upgraded during the silent unattended upgrades process in SteamOS (Settings > System) when a new version is available in the package pool. These updates, like Debian and Valve's upgrades, are processed on shutdown.
 
 _Please_ regulary check for updates to SteamOS-Tools. To update your local copy of files for this repository:
 ```
@@ -76,9 +76,6 @@ More information on utilities and tools can be foudn in the [wiki](https://githu
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages, as well as special additional packages/utilities, such as gameplay recording, "web apps," and more. Please see the readme file in docs/ for the full listing of options.
 * disclaimer.md - safety warnings for this repository.
 
-# Wiki
-- In time I hope to maintain a colletion of useful articles or links to Steamcommunity Guides that still work, currate them and other such things*.
-
 # Video demonstrations / tutorials
 
 * [SteamOS-Tools introductory video](https://youtu.be/h-gdPWjZlb4)
@@ -105,4 +102,4 @@ or any corrections (with justification) as a Pull Request. Have a cool script or
 Most scripts in the main folder of the repository write stdout and stderr to `log.txt` in the current directory after completion. Please check this file before submitting any issues or pull requests.
 
 # Donations
-If you wish to support the work here, hosting costs for packages, and more, you can do so monthly at [Patreon.com](https://www.patreon.com/user?u=60834&ty=h), or make a one time donation over at http://www.libregeek.org/. You can see a list of the amazing folks who have contributed to SteamOS-Tools, in the AUTHORS.md file.
+If you wish to support the work here, hosting costs for packages, and more, you can do so monthly at [Patreon.com](https://www.patreon.com/user?u=60834&ty=h), or make a one time donation over at http://www.libregeek.org/. You can see a list of the amazing folks who have contributed to SteamOS-Tools, in the _AUTHORS.md_ file.

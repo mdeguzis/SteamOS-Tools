@@ -8,7 +8,9 @@ Be sure to check out the [Upcoming features](https://github.com/ProfessorKaos64/
 
 All operations are tested against official Valve releases _only_.
 
-For the latest change details, please see the commits page and changelog.md file for overall change details.
+# Latest Updates and News
+
+For the latest change details, please see the commits page and [whats-new.md](whats-new.md) file for overall change details.
 
 # Warning
 
@@ -20,7 +22,7 @@ Please refer to the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki
 
 For SteamOS-specific help (aside from SteamOS-Tools), I do ask you visit and review the community SteamOS wiki at [Valve's GitHub page](https://github.com/ValveSoftware/SteamOS/wiki) for all other topics. This is one area that I greatly appreciate help and support with. Please considering signing up or anonymously contributing to it. 
 
-# Hosted packages
+# Hosted Packages
 
 There is now a Debian personal repository hosted at packages.libregeek.org. Be sure to check out the "hosted packages" section below! The wiki entry also contains repository information if you should wish to add the repository manually.
 
@@ -76,7 +78,7 @@ More information on utilities and tools can be foudn in the [wiki](https://githu
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages, as well as special additional packages/utilities, such as gameplay recording, "web apps," and more. Please see the readme file in docs/ for the full listing of options.
 * disclaimer.md - safety warnings for this repository.
 
-# Video demonstrations / tutorials
+# Video Demonstrations / Tutorials
 
 * [SteamOS-Tools introductory video](https://youtu.be/h-gdPWjZlb4)
 * [Libregeek on Youtube](https://www.youtube.com/channel/UCkAs7k_xDG0pBD82T1YiD6g)
@@ -94,7 +96,7 @@ Brewmaster branch. Default branch for repository.
 `testing-b`    
 Branch where some new scripts are made. Larger alterations to existing ones implemented, and more for brewmaster.  
 
-# Pull requests / package requests / suggestions 
+# Pull Requests / Package Requests / Suggestions 
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page
 or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the AUTHORS.md file. I will also take requests for packages _not_ found within Debian Jessie, or those that require extra work to implement/add to SteamOS.
 

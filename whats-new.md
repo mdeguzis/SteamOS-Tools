@@ -1,3 +1,15 @@
+# SteamOS-Tools Update Log #32
+
+  * New build of ice-steamos-unstable per upstream latest commit
+  * New release of pcsx2
+  * openpht 1.5.1 is released! 
+  * Due to package versioning conflicts (date vs actual version), and that reprepro only can contain one version
+  * Please run `sudo apt-get purge openpht && sudo apt-get install openpht`
+  * Disregard the symbolic link warnings (better package handling is being worked on)
+  * I apologize for any convenience this caused
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Tue, 2 Feb 2016 21:12:00 -0500
+
 # SteamOS-Tools Update Log #31
 
   * ice-steamos / ice-steamos-unstable upgraded to ensure each repository would remove/replace the other

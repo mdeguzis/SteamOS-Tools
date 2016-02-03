@@ -5,7 +5,6 @@
   * [openpht 1.5.1](https://github.com/RasPlex/OpenPHT/releases/tag/v1.5.1.508-67218541) is released! 
   * Due to package versioning conflicts (date vs actual version), and that reprepro only can contain one version
   * Please run `sudo apt-get purge openpht && sudo apt-get install openpht`
-  * Disregard the symbolic link warnings (better package handling is being worked on)
   * I apologize for any convenience this caused
 
 -- ProfessorKaos64  <mdeguzis@gmail.com>  Tue, 2 Feb 2016 21:12:00 -0500

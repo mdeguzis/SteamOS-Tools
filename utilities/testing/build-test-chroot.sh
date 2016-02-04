@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.8.7
+# Script Ver:	0.8.9
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -28,7 +28,7 @@
 #####################################################
 
 # remove old custom files
-rm -f "log.txt"
+rm -f "/tmp/chroot_log.txt"
 
 # set arguments / defaults
 type="$1"
@@ -408,8 +408,8 @@ main()
 	clear
 	check_sources
 	funct_prereqs
-	funct_set_target
 	funct_set_arch
+	funct_set_target
 	funct_create_chroot
 	
 }
@@ -419,20 +419,19 @@ main()
 #####################################################
 
 # Start main script if above checks clear
-main | tee log_temp.txt
+main | tee /tmp/chroot_log.txt
 
 #####################################################
 # cleanup
 #####################################################
 
 # convert log file to Unix compatible ASCII
-strings log_temp.txt > log.txt
+strings /tmp/log_temp.txt > chroot_log.txt
 
 # strings does catch all characters that I could 
 # work with, final cleanup
-sed -i 's|\[J||g' log.txt
+sed -i 's|\[J||g' chroot_log.txt
 
-# remove file not needed anymore
+# remove files not needed anymore
 rm -f "custom-pkg.txt"
 rm -f "log_temp.txt"
-

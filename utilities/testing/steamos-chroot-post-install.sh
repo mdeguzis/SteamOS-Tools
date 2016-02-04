@@ -107,6 +107,7 @@ pw_set=$(passwd -S root | cut -f2 -d " " 2> /dev/null)
 while [[ "$pw_set" == "" || "$pw_set" == "L" ]];
 do
 	passwd root
+	pw_set=$(passwd -S root | cut -f2 -d " " 2> /dev/null)
 done
 
 # setup steam user
@@ -119,6 +120,7 @@ pw_set=$(passwd -S steam | cut -f2 -d " " 2> /dev/null)
 while [[ "$pw_set" == "" || "$pw_set" == "L" ]];
 do
 	passwd steam
+	pw_set=$(passwd -S steam | cut -f2 -d " " 2> /dev/null)
 done
 
 # Above, we allow users to choose their own password.
@@ -135,6 +137,7 @@ pw_set=$(passwd -S desktop | cut -f2 -d " " 2> /dev/null)
 while [[ "$pw_set" == "" || "$pw_set" == "L" ]];
 do
 	passwd desktop
+	pw_set=$(passwd -S desktop | cut -f2 -d " " 2> /dev/null)
 done
 
 # Above, we allow users to choose their own password.

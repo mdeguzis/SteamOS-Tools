@@ -179,7 +179,7 @@ funct_prereqs()
 	echo -e "==> Installing prerequisite packages\n"
 	sleep 1s
 	
-	# Install the required packages 
+	# Install the required packages
 	sudo apt-get install -y --force-yes binutils debootstrap debian-archive-keyring \
 	ubuntu-archive-keyring valve-archive-keyring
 	
@@ -319,7 +319,7 @@ funct_create_chroot()
 		if ! sudo /usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
 		--arch ${arch} ${release} ${chroot_dir} ${target_URL}; then
 		
-			echo -e "Bootstrap configure failed! Exiting. Packages may possibly not have downloaded"
+			echo -e "\n==ERROR==\nBootstrap configure failed! Exiting. Plese check /tmp/chroot_log.txt"
 			exit 1
 			
 		fi
@@ -330,7 +330,7 @@ funct_create_chroot()
 		if ! sudo /usr/sbin/debootstrap --components=main,contrib,non-free --arch ${arch} ${release} \
 		${chroot_dir} ${target_URL}; then
 		
-			echo -e "Bootstrap configure failed! Exiting. Packages may possibly not have downloaded"
+			echo -e "\n==ERROR==\nBootstrap configure failed! Exiting. Plese check /tmp/chroot_log.txt"
 			exit 1
 		fi
 		
@@ -340,7 +340,7 @@ funct_create_chroot()
 		if ! sudo /usr/sbin/debootstrap --components=main,multiverse,restricted,universe --arch ${arch} ${release} \
 		${chroot_dir} ${target_URL}; then
 		
-			echo -e "Bootstrap configure failed! Exiting. Packages may possibly not have downloaded"
+			echo -e "\n==ERROR==\nBootstrap configure failed! Exiting. Plese check /tmp/chroot_log.txt"
 			exit 1
 			
 		fi
@@ -485,14 +485,14 @@ main()
 #####################################################
 
 # Start main script if above checks clear
-main | tee /tmp/chroot_log.txt
+main | tee /tmp/chroot_log_tmp.txt
 
 #####################################################
 # cleanup
 #####################################################
 
 # convert log file to Unix compatible ASCII
-strings /tmp/log_temp.txt > /tmp/chroot_log.txt
+strings /tmp/chroot_log_tmp.txt > /tmp/chroot_log.txt
 
 # strings does catch all characters that I could 
 # work with, final cleanup

@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	build-test-chroot.sh
-# Script Ver:	0.8.9
+# Script Ver:	0.9.1
 # Description:	Builds a Debian / SteamOS chroot for testing 
 #		purposes. based on repo.steamstatic.com
 #               See: https://wiki.debian.org/chroot
@@ -232,8 +232,6 @@ funct_set_target()
 	target="${type}-${release}-${arch}"
 	stock_choice=""
 	chroot_dir="$HOME/chroots/${target}"
-
-fi
 	
 }
 

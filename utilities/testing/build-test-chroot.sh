@@ -65,7 +65,7 @@ if [[ "$final_opts" == "--remove" ]]; then
 
 	cat<<- EOF
 	==========================================================
-	Available chroots list below. Options: (r)emove (e)xit
+	Available chroots are below. Options: (r)emove (e)xit
 	==========================================================
 	Type the exact name of the chroot (TAB complete works).
 	
@@ -74,6 +74,7 @@ if [[ "$final_opts" == "--remove" ]]; then
 	while [[ "$removal_choice" == "r" || "$removal_choice" != "e" ]];
 	do	 
 		
+		cd "${chroot_dir_root}" && ls
 		read -erp "Option: " removal_choice
 	
 		case "$removal_choice" in
@@ -81,7 +82,6 @@ if [[ "$final_opts" == "--remove" ]]; then
 			r)
 
 				# Remove
-				cd ~/chroots && ls
 				sudo rm -rf "${chroot_dir_root}/${removal_choice}"
 				sed -ie "\:${removal_choice}:,+2d" "${alias_file}"
 				

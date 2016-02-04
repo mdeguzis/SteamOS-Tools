@@ -32,6 +32,7 @@ type="$1"
 release="$2"
 arch="$3"
 final_opts=$(echo "${@: -1}")
+alias_file="$HOME/.bash_aliases"
 
 #####################################################
 # Pre-flight checks
@@ -52,6 +53,7 @@ fi
 
 if [[ "$final_opts" == "--remove" ]]; then
 
+	clear
 	cat<<- EOF
 	==========================================================
 	Available chroots list below. Options: (r)emove (e)xit
@@ -68,13 +70,14 @@ if [[ "$final_opts" == "--remove" ]]; then
 	do	 
 		
 		sudo rm -rf "${removal_choice}"
-		sudo sed -ie "\:${removal_choice}:,+2d" "~/.bash_aliases"
+		sed -ie "\:${removal_choice}:,+2d" "${alias_file}"
 		
 		# source "/$HOME/.bashrc" as desktop user
-		source ${alias_file}
+		source "${alias_file}"
 		
 	done
-		
+	
+	cd "$scriptdir"
 fi
 
 
@@ -209,7 +212,6 @@ funct_set_target()
 	# Set final targets
 	target="${type}-${release}-${arch}"
 	stock_choice=""
-	alias_file="$HOME/.bash_aliases"
 	chroot_dir="$HOME/chroots/${target}"
 
 fi

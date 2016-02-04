@@ -55,6 +55,14 @@ fi
 if [[ "$final_opts" == "--remove" ]]; then
 
 	clear
+	# check if dir is empty before continuing
+	if [[ ! "$(ls -A $chroot_dir_root)" ]]; then
+		
+		echo -e "No listed chroots to delete!\n"
+		exit 1
+		
+	fi
+
 	cat<<- EOF
 	==========================================================
 	Available chroots list below. Options: (r)emove (e)xit
@@ -65,15 +73,15 @@ if [[ "$final_opts" == "--remove" ]]; then
 
 	while [[ "$removal_choice" == "r" || "$removal_choice" != "e" ]];
 	do	 
+		
+		read -erp "Option: " removal_choice
 	
 		case "$removal_choice" in
 		
 			r)
-				# list and offer to delete
-				cd ~/chroots && ls && sleep 0.2s
-				read -erp "Option: " removal_choice
-				
+
 				# Remove
+				cd ~/chroots && ls
 				sudo rm -rf "${chroot_dir_root}/${removal_choice}"
 				sed -ie "\:${removal_choice}:,+2d" "${alias_file}"
 				

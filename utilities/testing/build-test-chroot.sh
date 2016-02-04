@@ -48,6 +48,36 @@ if [[ "$OS_check" != "SteamOS" && "$OS_check" != "Debian" ]]; then
 
 fi
 
+# Process removal (if requested)
+
+if [[ "$final_opts" == "--remove" ]]
+
+	cat<<- EOF
+	==========================================================
+	Available chroots list below. Options: (r)emove (e)xit
+	==========================================================
+	Type the exact name of the chroot (TAB complete works).
+	
+	EOF
+	
+	# list and offer to delete
+	cd ~/chroots && ls && sleep 0.2s
+	read -erp "Delete chroot: " removal_choice
+
+	while [[ "$removal_choice" == "r" || "$removal_choice" != "e" ]];
+	do	 
+		
+		sudo rm -rf "${removal_choice}"
+		sudo sed -ie "\:${removal_choice}:,+2d" "~/.bash_aliases"
+		
+		# source "/$HOME/.bashrc" as desktop user
+		source ${alias_file}
+		
+	done
+		
+fi
+
+
 # shutdown script if type or release is blank or note supported
 if [[ "$type" == "" || "$release" == "" ]]; then
 
@@ -181,33 +211,6 @@ funct_set_target()
 	stock_choice=""
 	alias_file="$HOME/.bash_aliases"
 	chroot_dir="$HOME/chroots/${target}"
-	
-	if [[ "$final_opts" == "--remove" ]]
-
-		cat<<- EOF
-		==========================================================
-		Available chroots list below. Options: (r)emove (e)xit
-		==========================================================
-		Type the exact name of the chroot (TAB complete works).
-		
-		EOF
-		
-		# list and offer to delete
-		cd ~/chroots && ls && sleep 0.2s
-		read -erp "Delete chroot: " removal_choice
-	
-		while [[ "$removal_choice" == "r" || "$removal_choice" != "e" ]];
-		do	 
-			
-			sudo rm -rf "${removal_choice}"
-			sudo sed -ie "\:${removal_choice}:,+2d" "~/.bash_aliases"
-			
-			# source "/$HOME/.bashrc" as desktop user
-			source ${alias_file}
-			
-		done
-			
-	fi
 
 fi
 	

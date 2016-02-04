@@ -65,7 +65,7 @@ if [[ "$final_opts" == "--remove" ]]; then
 
 	cat<<- EOF
 	==========================================================
-	Available chroots are below. Options: (r)emove (e)xit
+	Available chroots are below. Exit with "e"
 	==========================================================
 	Type the exact name of the chroot (TAB complete works).
 	
@@ -78,8 +78,12 @@ if [[ "$final_opts" == "--remove" ]]; then
 		read -erp "Option: " removal_choice
 	
 		case "$removal_choice" in
-		
-			r)
+				
+			e)
+				# exit
+				exit 1
+				;;
+			*)
 
 				# Remove
 				sudo rm -rf "${chroot_dir_root}/${removal_choice}"
@@ -88,11 +92,6 @@ if [[ "$final_opts" == "--remove" ]]; then
 				# source "/$HOME/.bashrc" as desktop user
 				source "${alias_file}"
 				;;
-				
-			e)
-				# exit
-				exit 1
-				;;	
 
 		esac
 	done

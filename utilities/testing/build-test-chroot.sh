@@ -9,10 +9,7 @@
 #               See: https://wiki.debian.org/chroot
 #
 # Usage:	sudo ./build-test-chroot.sh [type] [release] [arch]
-# Options:	types: [debian|steamos|ubuntu] 
-#		releases debian:  [wheezy|jessie]
-#		releases steamos: [alchemist|alchemist-beta|brewmaster|brewmaster-beta]
-#		releases ubuntu:  [trusty|vivid]
+# Options:	See help function below
 #		
 # Help:		sudo ./build-test-chroot.sh --help for help
 #
@@ -34,6 +31,7 @@ rm -f "/tmp/chroot_log.txt"
 type="$1"
 release="$2"
 arch="$3"
+final_opts=$(echo "${@: -1}")
 
 #####################################################
 # Pre-flight checks
@@ -82,6 +80,8 @@ show_help()
 	Releases (Debian):  [wheezy|jessie]
 	Releases (SteamOS): [alchemist|alchemist-beta|brewmaster|brewmaster-beta]
 	arch: [i386|amd64]
+	
+	To remove a chroot, type './build-test-chroot.sh --remove'
 	
 	Plese note that the types wheezy and jessie belong to Debian,
 	and that brewmaster belong to SteamOS.
@@ -182,6 +182,35 @@ funct_set_target()
 	alias_file="$HOME/.bash_aliases"
 	chroot_dir="$HOME/chroots/${target}"
 	
+	if [[ "$final_opts" == "--remove" ]]
+
+		cat<<- EOF
+		==========================================================
+		Available chroots list below. Options: (r)emove (e)xit
+		==========================================================
+		Type the exact name of the chroot (TAB complete works).
+		
+		EOF
+		
+		# list and offer to delete
+		cd ~/chroots && ls && sleep 0.2s
+		read -erp "Delete chroot: " removal_choice
+	
+		while [[ "$removal_choice" == "r" || "$removal_choice" != "e" ]];
+		do	 
+			
+			sudo rm -rf "${removal_choice}"
+			sudo sed -ie "\:${removal_choice}:,+2d" "~/.bash_aliases"
+			
+			# source "/$HOME/.bashrc" as desktop user
+			source ${alias_file}
+			
+		done
+			
+	fi
+
+fi
+	
 }
 
 funct_set_arch()
@@ -189,6 +218,8 @@ funct_set_arch()
 	# fallback to 64bit if no arch is specified
 	if [[ "$arch" == "" ]]; then
 	
+		echo -e "\nNo default arch specified, defaulting to amd64\n"
+		sleep 2s
 		arch="amd64"
 	
 	fi
@@ -209,7 +240,7 @@ funct_create_chroot()
 		sudo umount "${chroot_dir}/sys" &> /dev/null
 		
 		# remove old /etc/fstab entries
-		sudo sed -ie "\:#chroot ${target}:,+3d" "/etc/fstab"
+		sudo sed -ie "\:#chroot ${target}:,+2d" "/etc/fstab"
 	
 		# remove DIR
 		# Fail out if unsuccessful
@@ -319,7 +350,6 @@ funct_create_chroot()
 	if [[ "$alias_check" == "" ]]; then
 	
 		cat <<-EOF >> "${alias_file}"
-		
 		# chroot alias for ${target}
 		alias chroot-${target}='sudo /usr/sbin/chroot /home/desktop/chroots/${target}'
 		EOF
@@ -406,10 +436,10 @@ main()
 {
 	
 	clear
+	funct_set_target
 	check_sources
 	funct_prereqs
 	funct_set_arch
-	funct_set_target
 	funct_create_chroot
 	
 }
@@ -426,11 +456,11 @@ main | tee /tmp/chroot_log.txt
 #####################################################
 
 # convert log file to Unix compatible ASCII
-strings /tmp/log_temp.txt > chroot_log.txt
+strings /tmp/log_temp.txt > /tmp/chroot_log.txt
 
 # strings does catch all characters that I could 
 # work with, final cleanup
-sed -i 's|\[J||g' chroot_log.txt
+sed -i 's|\[J||g' /tmp/chroot_log.txt
 
 # remove files not needed anymore
 rm -f "custom-pkg.txt"

@@ -56,7 +56,7 @@ else
 fi
 
 # steamos chroot seems to be missing 'locales' and 'less', ensure they are installed
-if ! apt-get install -y --force-yes locales;
+if ! apt-get install -y --force-yes locales; then
 
 	echo -e "Could not install basic packages. Exiting."
 	exit 1

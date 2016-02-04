@@ -517,10 +517,10 @@ add_web_app_chrome()
 		# perform swaps for mouse profiles
 		
 		sudo find /usr/bin -name '*Launch.sh' | while read line; do
-		    # echo "Processing file '$line'"
-		    sudo sed -i "s|#antimicro_tmp|$gp_cmd|" $line 
+		# echo "Processing file '$line'"
+		sudo sed -i "s|#antimicro_tmp|$gp_cmd|" $line 
+		
 		done
-	
 	
 		# remove launchers temp file
 		rm -f /tmp/launchers.txt

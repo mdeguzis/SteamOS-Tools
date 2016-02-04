@@ -50,7 +50,7 @@ fi
 
 # Process removal (if requested)
 
-if [[ "$final_opts" == "--remove" ]]
+if [[ "$final_opts" == "--remove" ]]; then
 
 	cat<<- EOF
 	==========================================================

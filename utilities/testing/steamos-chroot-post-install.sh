@@ -98,18 +98,28 @@ useradd -s /bin/bash -m -d /home/steam -c "Steam user" -g steam steam
 usermod -a -G cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,pulse-access desktop
 usermod -a -G audio,dip,video,plugdev,netdev,bluetooth,pulse-access steam
 
-# setup desktop user
+# setup rootuser pw
 echo -e "\n###########################"
 echo -e "Set root user password"
 echo -e "###########################\n"
-passwd root
+
+pw_set=$(passwd -S root | cut -f2 -d " ")
+while [[ "$pw_set" == "" ]];
+do
+	passwd root
+done
 
 # setup steam user
 
 echo -e "\n###########################"
 echo -e "Set steam user password"
 echo -e "###########################\n"
-passwd steam
+
+pw_set=$(passwd -S steam | cut -f2 -d " ")
+while [[ "$pw_set" == "" ]];
+do
+	passwd steam
+done
 
 # Above, we allow users to choose their own password.
 # Below, we could echo the default passwords for them, if desired
@@ -120,7 +130,12 @@ passwd steam
 echo -e "\n###########################"
 echo -e "Set desktop user password"
 echo -e "###########################\n"
-passwd desktop
+
+pw_set=$(passwd -S desktop | cut -f2 -d " ")
+while [[ "$pw_set" == "" ]];
+do
+	passwd desktop
+done
 
 # Above, we allow users to choose their own password.
 # Below, we could echo the default passwords for them, if desired

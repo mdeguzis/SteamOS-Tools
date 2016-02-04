@@ -319,7 +319,7 @@ funct_create_chroot()
 		if ! sudo /usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
 		--arch ${arch} ${release} ${chroot_dir} ${target_URL}; then
 		
-			echo -e "\n==ERROR==\nBootstrap configure failed! Exiting. Plese check /tmp/chroot_log.txt"
+			echo -e "\n==ERROR==\nBootstrap configure failed! Please check /tmp/chroot_log.txt\n"
 			exit 1
 			
 		fi
@@ -330,7 +330,7 @@ funct_create_chroot()
 		if ! sudo /usr/sbin/debootstrap --components=main,contrib,non-free --arch ${arch} ${release} \
 		${chroot_dir} ${target_URL}; then
 		
-			echo -e "\n==ERROR==\nBootstrap configure failed! Exiting. Plese check /tmp/chroot_log.txt"
+			echo -e "\n==ERROR==\nBootstrap configure failed! Please check /tmp/chroot_log.txt\n"
 			exit 1
 		fi
 		
@@ -340,7 +340,7 @@ funct_create_chroot()
 		if ! sudo /usr/sbin/debootstrap --components=main,multiverse,restricted,universe --arch ${arch} ${release} \
 		${chroot_dir} ${target_URL}; then
 		
-			echo -e "\n==ERROR==\nBootstrap configure failed! Exiting. Plese check /tmp/chroot_log.txt"
+			echo -e "\n==ERROR==\nBootstrap configure failed! Please check /tmp/chroot_log.txt\n"
 			exit 1
 			
 		fi

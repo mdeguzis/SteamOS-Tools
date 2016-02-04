@@ -240,7 +240,7 @@ funct_set_arch()
 	# fallback to 64bit if no arch is specified
 	if [[ "$arch" == "" ]]; then
 	
-		echo -e "\nNo default arch specified, defaulting to amd64\n"
+		echo -e "==INFO==\nNo default arch specified, defaulting to amd64\n"
 		sleep 2s
 		arch="amd64"
 	

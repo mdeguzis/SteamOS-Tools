@@ -64,10 +64,10 @@ if [[ "$final_opts" == "--remove" ]]; then
 	fi
 
 	cat<<- EOF
-	==========================================================
+	==================================================================
 	Available chroots are below. Exit with "e"
-	==========================================================
-	Type the exact name of the chroot (TAB complete works).
+	==================================================================
+	Type the exact name of the chroot. Do not leave the ending slash /
 	
 	EOF
 
@@ -316,20 +316,34 @@ funct_create_chroot()
 		
 
 		# handle SteamOS
-		sudo /usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
-		--arch ${arch} ${release} ${chroot_dir} ${target_URL} 
+		if ! sudo /usr/sbin/debootstrap --keyring="/usr/share/keyrings/valve-archive-keyring.gpg" \
+		--arch ${arch} ${release} ${chroot_dir} ${target_URL}; then
+		
+			echo -e "Bootstrap configure failed! Exiting. Packages may possibly not have downloaded"
+			exit 1
+			
+		fi
 		
 	elif [[ "$type" == "debian" ]]; then
 	
 		# handle Debian
-		sudo /usr/sbin/debootstrap --components=main,contrib,non-free --arch ${arch} ${release} \
-		${chroot_dir} ${target_URL}
+		if ! sudo /usr/sbin/debootstrap --components=main,contrib,non-free --arch ${arch} ${release} \
+		${chroot_dir} ${target_URL}; then
+		
+			echo -e "Bootstrap configure failed! Exiting. Packages may possibly not have downloaded"
+			exit 1
+		fi
 		
 	elif [[ "$type" == "ubuntu" ]]; then
 	
 		# handle Ubuntu
-		sudo /usr/sbin/debootstrap --components=main,multiverse,restricted,universe --arch ${arch} ${release} \
-		${chroot_dir} ${target_URL}
+		if ! sudo /usr/sbin/debootstrap --components=main,multiverse,restricted,universe --arch ${arch} ${release} \
+		${chroot_dir} ${target_URL}; then
+		
+			echo -e "Bootstrap configure failed! Exiting. Packages may possibly not have downloaded"
+			exit 1
+			
+		fi
 		
 	fi
 	

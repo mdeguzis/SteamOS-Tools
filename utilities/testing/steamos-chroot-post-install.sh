@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	steamos-chroot-post-install.sh
-# Script Ver:	0.6.7
+# Script Ver:	0.6.9
 # Description:	made to kick off the config with in the chroot.
 #               See: https://wiki.debian.org/chroot
 # Usage:	N/A - called by build-test-chroot
@@ -56,7 +56,12 @@ else
 fi
 
 # steamos chroot seems to be missing 'locales' and 'less', ensure they are installed
-apt-get install -y --force-yes locales less
+if ! apt-get install -y --force-yes locales;
+
+	echo -e "Could not install basic packages. Exiting."
+	exit 1
+	
+fi
 
 cat<<- EOF
 

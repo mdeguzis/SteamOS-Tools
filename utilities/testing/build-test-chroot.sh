@@ -33,6 +33,7 @@ release="$2"
 arch="$3"
 final_opts=$(echo "${@: -1}")
 alias_file="$HOME/.bash_aliases"
+chroot_dir_root="$HOME/chroots/"
 
 #####################################################
 # Pre-flight checks
@@ -61,20 +62,31 @@ if [[ "$final_opts" == "--remove" ]]; then
 	Type the exact name of the chroot (TAB complete works).
 	
 	EOF
-	
-	# list and offer to delete
-	cd ~/chroots && ls && sleep 0.2s
-	read -erp "Delete chroot: " removal_choice
 
 	while [[ "$removal_choice" == "r" || "$removal_choice" != "e" ]];
 	do	 
+	
+		case "$removal_choice" in
 		
-		sudo rm -rf "${removal_choice}"
-		sed -ie "\:${removal_choice}:,+2d" "${alias_file}"
-		
-		# source "/$HOME/.bashrc" as desktop user
-		source "${alias_file}"
-		
+			r)
+				# list and offer to delete
+				cd ~/chroots && ls && sleep 0.2s
+				read -erp "Option: " removal_choice
+				
+				# Remove
+				sudo rm -rf "${chroot_dir_root}/${removal_choice}"
+				sed -ie "\:${removal_choice}:,+2d" "${alias_file}"
+				
+				# source "/$HOME/.bashrc" as desktop user
+				source "${alias_file}"
+				;;
+				
+			e)
+				# exit
+				exit 1
+				;;	
+
+		esac
 	done
 	
 	cd "$scriptdir"

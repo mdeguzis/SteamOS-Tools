@@ -103,8 +103,8 @@ echo -e "\n###########################"
 echo -e "Set root user password"
 echo -e "###########################\n"
 
-pw_set=$(passwd -S root | cut -f2 -d " ")
-while [[ "$pw_set" == "" ]];
+pw_set=$(passwd -S root | cut -f2 -d " " 2> /dev/null)
+while [[ "$pw_set" == "" || "$pw_set" == "L" ]];
 do
 	passwd root
 done
@@ -115,8 +115,8 @@ echo -e "\n###########################"
 echo -e "Set steam user password"
 echo -e "###########################\n"
 
-pw_set=$(passwd -S steam | cut -f2 -d " ")
-while [[ "$pw_set" == "" ]];
+pw_set=$(passwd -S steam | cut -f2 -d " " 2> /dev/null)
+while [[ "$pw_set" == "" || "$pw_set" == "L" ]];
 do
 	passwd steam
 done
@@ -131,8 +131,8 @@ echo -e "\n###########################"
 echo -e "Set desktop user password"
 echo -e "###########################\n"
 
-pw_set=$(passwd -S desktop | cut -f2 -d " ")
-while [[ "$pw_set" == "" ]];
+pw_set=$(passwd -S desktop | cut -f2 -d " " 2> /dev/null)
+while [[ "$pw_set" == "" || "$pw_set" == "L" ]];
 do
 	passwd desktop
 done

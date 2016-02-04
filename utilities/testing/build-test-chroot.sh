@@ -458,10 +458,10 @@ main()
 {
 	
 	clear
+	funct_set_arch
 	funct_set_target
 	check_sources
 	funct_prereqs
-	funct_set_arch
 	funct_create_chroot
 	
 }

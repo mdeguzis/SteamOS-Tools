@@ -1,7 +1,7 @@
 # SteamOS-Tools Update Log #33
 
   * New build of ice-steamos-unstable per upstream latest commit
-  * _All_ Kodi PVR addons have been rebased/rebuilt against Isengard to ensure they are "level"
+  * _All_ Kodi PVR addons have been rebased/rebuilt against Isengard to ensure they are "level", should fix issues/123
   * Due to package versioning conflicts (date vs actual version), and that reprepro only can contain one version, please run `sudo apt-get purge kodi-pvr-ADDON && sudo apt-get install kodi-pvr-ADDON`
   * Replace "ADDON" with the PVR you wish to install
   * I apologize for any convenience this caused

@@ -1,5 +1,6 @@
 # SteamOS-Tools Update Log #33
 
+  * Added working build of OpenLieroX `openlierox` to package pool (A clone of Worms)
   * New build of ice-steamos-unstable per upstream latest commit
   * _All_ Kodi PVR addons have been rebased/rebuilt against Isengard to ensure they are "level", should fix issues/123
   * Due to package versioning conflicts (date vs actual version), and that reprepro only can contain one version, please run `sudo apt-get purge kodi-pvr-ADDON && sudo apt-get install kodi-pvr-ADDON`
@@ -7,7 +8,7 @@
   * I apologize for any convenience this caused
   * On a lighter note, Kodi 16 Jarvis RC3 released yesterday. Shouldn't be much longer :)
 
--- ProfessorKaos64  <mdeguzis@gmail.com>  Fri, 5 Feb 2016 19:12:00 -0500
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Fri, 5 Feb 2016 20:30:00 -0500
 
 # SteamOS-Tools Update Log #32
 

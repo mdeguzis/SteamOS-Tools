@@ -1,7 +1,7 @@
 # SteamOS-Tools Update Log #34
 
   * Added working build of Sonic Robo Blast 2 (fan made Sonic 3D game, using Doom open source engine)
-  * Deitls for SRB2: http://steamcommunity.com/groups/steamuniverse/discussions/0/412446292766218435
+  * [Details / Annoucment for SRB2](http://steamcommunity.com/groups/steamuniverse/discussions/0/412446292766218435)
   * Fork: https://github.com/ProfessorKaos64/SRB2
   * Upstream: https://github.com/STJr/SRB2
 

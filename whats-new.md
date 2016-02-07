@@ -7,8 +7,9 @@
   * Add _binary only_ package of Sonic The Hedgehog 3D, `sonic3d` (fan made). No source code is available
   * See: http://www.indiedb.com/games/sonic-the-hedgehog-3d
   * Sonic 3D needs controls tweaked, or better yet, use a Steam Controler (as the game has full camera control)
+  * Streets of Rage Steam Controller profile is now live (lame 1 hour wait)
 
--- ProfessorKaos64  <mdeguzis@gmail.com>  Sat, 7 Feb 2016 09:26:00 -0500
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Sun, 7 Feb 2016 17:42:00 -0500
 
 # SteamOS-Tools Update Log #33
 

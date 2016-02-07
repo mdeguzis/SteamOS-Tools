@@ -1,6 +1,15 @@
+# SteamOS-Tools Update Log #34
+
+  * Added working build of Sonic Robo Blast 2 (fan made Sonic 3D game, using Doom open source engine)
+  * Deitls for SRB2: http://steamcommunity.com/groups/steamuniverse/discussions/0/412446292766218435
+  * Fork: https://github.com/ProfessorKaos64/SRB2
+  * Upstream: https://github.com/STJr/SRB2
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Sat, 7 Feb 2016 09:26:00 -0500
+
 # SteamOS-Tools Update Log #33
 
-  * Added working build of OpenLieroX `openlierox` to package pool (A clone of Worms)
+  * Added working build of OpenLieroX `openlierox` to package pool (A clone of Liero, Worms-style game)
   * New build of ice-steamos-unstable per upstream latest commit
   * _All_ Kodi PVR addons have been rebased/rebuilt against Isengard to ensure they are "level", should fix issues/123
   * Due to package versioning conflicts (date vs actual version), and that reprepro only can contain one version, please run `sudo apt-get purge kodi-pvr-ADDON && sudo apt-get install kodi-pvr-ADDON`

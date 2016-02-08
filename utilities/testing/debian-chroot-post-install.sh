@@ -182,10 +182,3 @@ echo -e "\tchroot-${target}\n"
 sleep 2s
 exit
 
-
-elif [[ "$tmp_type" == "debian" ]]; then
-
-	# do nothing for now
-	echo "" > /dev/null
-
-fi

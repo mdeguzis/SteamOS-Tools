@@ -31,9 +31,12 @@ rm -f "/tmp/chroot_log.txt"
 type="$1"
 release="$2"
 arch="$3"
+real_release="${release}"
 final_opts=$(echo "${@: -1}")
-alias_file="$HOME/.bash_aliases"
-chroot_dir_root="$HOME/chroots/"
+user=${SUDO_USER:-$USER}
+user_home=$(bash -c "echo ~$user")
+alias_file="$user_home/.bash_aliases"
+chroot_dir_root="$user_home/chroots/"
 
 #####################################################
 # Pre-flight checks
@@ -218,20 +221,22 @@ funct_set_target()
 	
 	# correct targets for beta releases to reflect root release
 	# The beta opt-in will be handled in the post install script
-	if [[ "$target" == "alchemist-beta" ]]; then
+	if [[ "$release" == "alchemist-beta" ]]; then
 	
+		real_release="$release"
 		release="alchemist"
 		
-	elif [[ "$target" == "brewmaster-beta" ]]; then
+	elif [[ "$release" == "brewmaster-beta" ]]; then
 	
+		real_release="$release"
 		release="brewmaster"
 
 	fi
 	
 	# Set final targets
-	target="${type}-${release}-${arch}"
+	target="${type}-${real_release}-${arch}"
 	stock_choice=""
-	chroot_dir="$HOME/chroots/${target}"
+	chroot_dir="${user_home}/chroots/${target}"
 	
 }
 
@@ -446,6 +451,9 @@ funct_create_chroot()
 	
 	# modify release_tmp in post-install script
 	sed -i "s|"tmp_release"|${release}|g" "${chroot_dir}/tmp/${type}-chroot-post-install.sh"
+
+	# modify tmp_real_release in post-install script
+	sed -i "s|"tmp_real_release"|${real_release}|g" "${chroot_dir}/tmp/${type}-chroot-post-install.sh"
 	
 	# modify arch_tmp in post-install script
 	sed -i "s|"tmp_arch"|${arch}|g" "${chroot_dir}/tmp/${type}-chroot-post-install.sh"

@@ -34,8 +34,9 @@ policy="./usr/sbin/policy-rc.d"
 type="tmp_type"
 stock_opt="tmp_stock"
 release="tmp_release"
+real_release="tmp_real_release"
 arch="tmp_arch"
-target="${type}-${release}-${arch}"
+target="${type}-${real_release}-${arch}"
 	
 # pass to ensure we are in the chroot 
 # temp test for chroot (output should be something other than 2)
@@ -177,26 +178,15 @@ else
 	ln -s /bin/true /usr/bin/ischroot
 fi
 
+if [[ ! -f "/etc/debian_chroot" ]]; then
+	echo "${target}" > /etc/debian_chroot
+fi
+
 echo -e "\n==> Configuring repository sources"
 
 # configure the repository sources below, as it doesn't seem debootstrap
 # can assign deb-src lines
-
-if [[ "$release" == "alchemist" ]]; then
-
-	# chroot has deb line, but not deb-src, add it
-	# Also src line from pool is not complete, missing contrib/non-free
-	cat <<-EOF > /etc/apt/sources.list
-	deb http://repo.steampowered.com/steamos alchemist main contrib non-free
-	deb-src http://repo.steampowered.com/steamos alchemist main contrib non-free
-	EOF
-
-	# Enable Debian wheezy repository
-	cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
-	deb http://http.debian.net/debian/ wheezy main
-	EOF
-	
-elif [[ "$release" == "alchemist" && "$type" == "steamos-beta" ]]; then
+if [[ "$release" == "alchemist" && "$real_release" == "alchemist-beta" ]]; then
 
 	# BETA OPT IN
 
@@ -219,22 +209,21 @@ elif [[ "$release" == "alchemist" && "$type" == "steamos-beta" ]]; then
 	deb http://http.debian.net/debian/ wheezy main
 	EOF
 
-elif [[ "$release" == "brewmaster" ]]; then
+elif [[ "$release" == "alchemist" ]]; then
 
 	# chroot has deb line, but not deb-src, add it
 	# Also src line from pool is not complete, missing contrib/non-free
-	
-	cat <<-EOF > "/etc/apt/sources.list"
-	deb http://repo.steampowered.com/steamos brewmaster main contrib non-free
-	deb-src http://repo.steampowered.com/steamos brewmaster main contrib non-free
+	cat <<-EOF > /etc/apt/sources.list
+	deb http://repo.steampowered.com/steamos alchemist main contrib non-free
+	deb-src http://repo.steampowered.com/steamos alchemist main contrib non-free
 	EOF
-	
-	# Enable Debian jessie repository
-	cat <<-EOF > "/etc/apt/sources.list.d/jessie.list"
-	deb http://http.debian.net/debian/ jessie main
+
+	# Enable Debian wheezy repository
+	cat <<-EOF > /etc/apt/sources.list.d/wheezy.list
+	deb http://http.debian.net/debian/ wheezy main
 	EOF
-	
-elif [[ "$release" == "brewmaster" && "$type" == "steamos-beta" ]]; then
+
+elif [[ "$release" == "brewmaster" && "$real_release" == "brewmaster-beta" ]]; then
 
 	# BETA OPT IN
 
@@ -253,6 +242,21 @@ elif [[ "$release" == "brewmaster" && "$type" == "steamos-beta" ]]; then
 	EOF
 
 	# Enable Debian wheezy repository
+	cat <<-EOF > "/etc/apt/sources.list.d/jessie.list"
+	deb http://http.debian.net/debian/ jessie main
+	EOF
+
+elif [[ "$release" == "brewmaster" ]]; then
+
+	# chroot has deb line, but not deb-src, add it
+	# Also src line from pool is not complete, missing contrib/non-free
+	
+	cat <<-EOF > "/etc/apt/sources.list"
+	deb http://repo.steampowered.com/steamos brewmaster main contrib non-free
+	deb-src http://repo.steampowered.com/steamos brewmaster main contrib non-free
+	EOF
+	
+	# Enable Debian jessie repository
 	cat <<-EOF > "/etc/apt/sources.list.d/jessie.list"
 	deb http://http.debian.net/debian/ jessie main
 	EOF
@@ -276,7 +280,7 @@ EOF
 echo -e "\n==> Adding keyrings\n"
 sleep 1s
 
-apt-get install -y debian-archive-keyring
+apt-get install -y debian-archive-keyring valve-archive-keyring
 
 echo -e "\n==> Adding gpg keys\n"
 
@@ -300,9 +304,9 @@ apt-key update
 echo -e "\n==> Instaling packages for testing and building\n"
 sleep 1s
 
-deps="git devscripts build-essential checkinstall debian-keyring \
-debian-archive-keyring cmake g++ g++-multilib libqt4-dev libqt4-dev \
-libxi-dev libxtst-dev libX11-dev bc gcc gcc-multilib sudo"
+deps="git devscripts build-essential checkinstall debian-keyring cmake g++ \
+g++-multilib libqt4-dev libqt4-dev libxi-dev libxtst-dev libX11-dev bc gcc \
+gcc-multilib sudo"
 
 for dep in ${deps}; do
 	pkg_chk=$(dpkg-query -s ${dep})
@@ -342,10 +346,3 @@ echo -e "\tchroot-${target}\n"
 sleep 2s
 exit
 
-
-elif [[ "$tmp_type" == "debian" ]]; then
-
-	# do nothing for now
-	echo "" > /dev/null
-
-fi

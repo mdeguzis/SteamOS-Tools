@@ -22,7 +22,7 @@ I couldn't have done some of the things here without some help from a lot of gre
 ## Installation Guides
 * psppwner300
 
-### Test chroot fixes and contributions
+## Test chroot fixes and contributions
 * Ryochan7
 
 ## UT4 script fixes
@@ -44,7 +44,7 @@ I couldn't have done some of the things here without some help from a lot of gre
 * Sharkwouter
 * Ryochan7
 
-# Patrons and support from great people such as:
+## Patrons and support from great people such as:
 * Seth M. (Patreon)
 * Justin M. (Patreon)
 * Francis S. (Patreon)

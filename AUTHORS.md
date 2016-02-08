@@ -1,10 +1,3 @@
-# Patrons and support from great people such as:
-* Seth M. (Patreon)
-* Justin M. (Patreon)
-* Francis S. (Patreon)
-	
-Thank you for your support!
-
 # Main script code, readme docs, and more
 ***
 - ProfessorKaos64
@@ -22,25 +15,39 @@ I couldn't have done some of the things here without some help from a lot of gre
 # List of contributions
 ***
 
-#### General code fixes
+## General code fixes
 * Sharkwouter
 * Ryochan7
 
-#### Installation Guides
+## Installation Guides
 * psppwner300
 
 ### Test chroot fixes and contributions
 * Ryochan7
 
-#### UT4 script fixes
+## UT4 script fixes
 * Ryochan7
 
-#### Running Steam for Windows (under PlayOnLinux) within BPM
+## Running Steam for Windows (under PlayOnLinux) within BPM
 * iVaN
 * dubigrasu
 * Ryochan7
 
-#### X window code for Chrome "web apps"
+## Testing and help
+* iVaN
+* dubigrasu
+* Ryochan7
+* DirectHex
+
+## X window code for Chrome "web apps"
 * Dubigrasu
 * Sharkwouter
 * Ryochan7
+
+# Patrons and support from great people such as:
+* Seth M. (Patreon)
+* Justin M. (Patreon)
+* Francis S. (Patreon)
+* Cody H. (Donation)
+	
+Thank you for your support!

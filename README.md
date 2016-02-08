@@ -26,6 +26,7 @@ For SteamOS-specific help (aside from SteamOS-Tools), I do ask you visit and rev
 
 There is now a Debian personal repository hosted at packages.libregeek.org. Be sure to check out the "hosted packages" section below! The wiki entry also contains repository information if you should wish to add the repository manually.
 
+* [Package listings](http://packages.libregeek.org/SteamOS-Tools/package_lists/)
 * [SteamoS-Tools repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository)
 * [SteamOS-Tools-Packaging GitHub](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging)
 * [SteamOS-Tools site/package statistics](http://steamos-tools-stats.libregeek.org)

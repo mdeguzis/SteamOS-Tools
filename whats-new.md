@@ -9,8 +9,9 @@
   * obs-studio has been updated to the latest upstream release, 0.13.1
   * Fixed RetroArch v1.3.1 not autoconfiguring gamepads. This is done by default now
   * See SteamOS-Tools-Packaging, commit [edbedec](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/commit/edbedec636b158869b8bc317f15103b28bd0e6ff)
+  * Update retroarch-joypad-autoconfig for the latest changes/profiles
 
--- ProfessorKaos64  <mdeguzis@gmail.com>  Mon, 8 Feb 2016 22:13:00 -0500
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Mon, 8 Feb 2016 22:34:00 -0500
 
 # SteamOS-Tools Update Log #34
 

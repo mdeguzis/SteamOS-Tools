@@ -1,3 +1,15 @@
+# SteamOS-Tools Update Log #35
+
+  * ice-steamos-unstable was updated to the latest upstream master tree commit
+  * pcsx2 has now been split into **pcsx2**, and **pcsx2-unstable**. 
+  * pcsx2 will follow the latest release tag upstream (which is only feasible for projects that maintain them regulary)
+  * pcsx2-unstable will be a semi-daily snapshot of the master source tree's latest commit at time of build
+  * Due to restrictions with reprepro at the moment (until I find a better way), _please [purge and reinstall](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Purging-and-Reinstalling-a-Package) pcsx2_
+  * I apologize for any inconvenience this has caused
+  * obs-studio has been updated to the latest upstream release, 0.13.1
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Mon, 8 Feb 2016 16:10:00 -0500
+
 # SteamOS-Tools Update Log #34
 
   * Added working build of Sonic Robo Blast 2 (fan made Sonic 3D game, using Doom open source engine)

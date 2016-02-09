@@ -7,8 +7,10 @@
   * Due to restrictions with reprepro at the moment (until I find a better way), _please [purge and reinstall](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Purging-and-Reinstalling-a-Package) pcsx2_
   * I apologize for any inconvenience this has caused
   * obs-studio has been updated to the latest upstream release, 0.13.1
+  * Fixed RetroArch v1.3.1 not autoconfiguring gamepads. This is done by default now
+  * See commit [edbedec](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/commit/edbedec636b158869b8bc317f15103b28bd0e6ff)
 
--- ProfessorKaos64  <mdeguzis@gmail.com>  Mon, 8 Feb 2016 16:10:00 -0500
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Mon, 8 Feb 2016 22:13:00 -0500
 
 # SteamOS-Tools Update Log #34
 

@@ -260,7 +260,7 @@ main()
 			
 			Package: *
 			Pin: release n=brewmaster_testing
-			Pin-Priority:150
+			Pin-Priority:200
 			EOF
 			
 		fi

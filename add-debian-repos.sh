@@ -53,7 +53,7 @@ elif [[ "$final_opts" != "--enable-testing" ]]; then
     	
 fi
 
-check_gpg()
+fucnt_check_gpg()
 {
 	if [[ "$current_dir" != "SteamOS-Tools" ]]; then
 	
@@ -78,6 +78,29 @@ check_gpg()
 	# Full Key ID: 8106E72834C589A7
 	echo -ne "Adding Libregeek public signing key: " && \
 	$scriptdir/utilities/gpg-import.sh 8106E72834C589A7 2> /dev/null
+	
+}
+
+funct_create_dirs()
+{
+	
+# set directories to add
+steamos_tools_configs="$HOME/.config/SteamOS-Tools"
+	
+echo -e "\n==> Adding needed directories"
+sleep 2s
+
+dirs="${steamos_tools_configs}"
+
+for dir in ${dirs};
+do
+	if [[ ! -d "${dir}" ]]; then
+	
+		mkdir -p "${dir}"
+	
+	fi
+	
+done
 	
 }
 
@@ -109,7 +132,7 @@ funct_set_vars()
 	steamos_tools_prefer="/etc/apt/preferences.d/${steamos_tools_reponame}"
 }
 
-show_help()
+funct_show_help()
 {
 	
 	clear
@@ -148,7 +171,7 @@ main()
 		clear
 		
 		# Check/add gpg key for libregeek
-		check_gpg
+		fucnt_check_gpg
 		
 		if [[ "$debian_only" == "no" ]]; then
 		
@@ -427,12 +450,13 @@ main()
 
 #Show help if requested
 if [[ "$1" == "--help" ]]; then
-        show_help
+        funct_show_help
 	exit 0
 fi
 #####################################################
-# handle prerequisite software
+# handle prerequisites
 #####################################################
+funct_create_dirs
 funct_set_vars
 
 #####################################################

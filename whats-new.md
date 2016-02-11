@@ -1,6 +1,6 @@
 # SteamOS-Tools Update Log #37
 
-  * Added simple Minecraft package, package name 'minecraft'
+  * Added simple Minecraft package, package name `minecraft`
   * Please read the notice displayed in the terminal window after installation
   * You must register ahead of time, as the browser window it tries to open to register will not show on SteamOS
   * See: packages.libregeek.org

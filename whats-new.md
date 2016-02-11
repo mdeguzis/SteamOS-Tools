@@ -4,6 +4,7 @@
   * Please read the notice displayed in the terminal window after installation
   * You must register ahead of time, as the browser window it tries to open to register will not show on SteamOS
   * See: packages.libregeek.org
+  * Reminder, `minetest`, an open source infinite-world block sandbox game with survival and crafting is also available in the Debian repositories. 
 
 -- ProfessorKaos64  <mdeguzis@gmail.com>  Wed, 10 Feb 2016 12:51:00 -0500
 

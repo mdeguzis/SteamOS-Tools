@@ -1,3 +1,17 @@
+# SteamOS-Tools Update Log #36
+
+  * ice-steamos-unstable was updated to the latest upstream master tree commit
+  * Update 145+ [build scripts](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging) with the following:
+   * debuild now in use over dpkg-buildpackage
+   * The "--testing" option flag to push packages intended for "DIST_testing" to the proper location after the build
+  * Eventually, the intention is to have a reliable pbuilder setup (still new to using it) to keep my test machine "sane."
+  * Work on "configure-packaging-env.sh" to setup build tools and install packages
+  * All of the above is in preperation to build Kodi 16 "Jarvis" into brewamster_testing (Currently release RC3)
+  * Remember, you must pass "--enable-testing" to "add-debian-repos.sh" to work with these packages (at your own risk!)
+  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Wed, 10 Feb 2016 20:15:00 -0500
+
 # SteamOS-Tools Update Log #35
 
   * ice-steamos-unstable was updated to the latest upstream master tree commit

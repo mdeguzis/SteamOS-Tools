@@ -168,7 +168,7 @@ main()
 	#####################################################
 	
 	# Ensure multiarch is enabled (should be by default)
-	if ! dpkg --print-foreign-architectures | grep i386; then
+	if ! dpkg --print-foreign-architectures | grep i386 &> /dev/null; then
 	
 		# add multiarch
 		dpkg --add-architecture i386

@@ -1,3 +1,12 @@
+# SteamOS-Tools Update Log #37
+
+  * Added simple Minecraft package, package name 'minecraft'
+  * Please read the notice displayed in the terminal window after installation
+  * You must register ahead of time, as the browser window it tries to open to register will not show on SteamOS
+  * See: packages.libregeek.org
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Wed, 10 Feb 2016 12:51:00 -0500
+
 # SteamOS-Tools Update Log #36
 
   * ice-steamos-unstable was updated to the latest upstream master tree commit

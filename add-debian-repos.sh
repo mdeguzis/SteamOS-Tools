@@ -13,6 +13,10 @@
 # Extra args:	--enable-testing --debian-only
 # ------------------------------------------------------------------------
 
+#####################################################
+# Set global variables
+#####################################################
+
 # remove old custom files
 rm -f "log.txt"
 
@@ -28,6 +32,10 @@ debian_only="no"
 
 # get top level current dir
 current_dir=$(basename "$PWD") 
+
+#####################################################
+# Source options
+#####################################################
 
 # check for and set install status
 if [[ "$1" == "install" ]]; then
@@ -168,7 +176,6 @@ main()
 	fi
 	
 	if [[ "$install" == "yes" ]]; then
-		clear
 		
 		# Check/add gpg key for libregeek
 		fucnt_check_gpg
@@ -408,7 +415,7 @@ main()
 		EOF
 	
 	elif [[ "$install" == "no" ]]; then
-		clear
+
 		echo -e "==> Removing debian repositories...\n"
 		sleep 2s
 		
@@ -456,6 +463,7 @@ fi
 #####################################################
 # handle prerequisites
 #####################################################
+clear
 funct_create_dirs
 funct_set_vars
 

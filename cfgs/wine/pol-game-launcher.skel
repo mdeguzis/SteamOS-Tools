@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ## This script is used to launch Windows games by using
 ## the Windows Steam client in a Wine virtual desktop.
@@ -72,7 +72,7 @@ env -i DISPLAY=$DISPLAY WINEPREFIX=$WINEPREFIX WINEDEBUG=$WINEDEBUG LD_LIBRARY_P
 
 
 # Wait for application to be launched.
-echo "Waiting for $GAME_EXE to start..."  >> ${RUN_LOG}
+echo "Waiting for $GAME_EXE to start"  >> ${RUN_LOG}
 until [ -n "$(ps -o pid -C "$GAME_EXE" | grep -e [0-9])" ]; do
   sleep 2
 done;
@@ -82,7 +82,7 @@ if ps -o pid -C "$GAME_EXE" | grep -e [0-9]; then
 
 fi
 
-echo "Looping until game exits..."  >> ${RUN_LOG}
+echo "Looping until game exits"  >> ${RUN_LOG}
 # Stay in loop while the game is running.
 while [ -n "$(ps -o pid -C "$GAME_EXE" | grep -e [0-9])" ]; do
   sleep 2
@@ -107,6 +107,5 @@ echo "Killing wine server"  >> ${RUN_LOG}
 # Kill Wine server so Steam will properly return to the library interface.
 "$WINEVERSION/bin/wineserver" -k
 
-echo "--------------------------------------"  >> ${RUN_LOG}
-echo "-------------- End log ---------------"  >> ${RUN_LOG}
+echo -e "\n-------------- End log ---------------"  >> ${RUN_LOG}
 echo -e "--------------------------------------\n"  >> ${RUN_LOG}

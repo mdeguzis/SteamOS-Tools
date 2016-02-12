@@ -37,12 +37,22 @@ GAME_EXE="GAME_EXE"
 #                                         #
 ###########################################
 
+RUN_LOG="/tmp/wine-game-log.txt"
+DATE=$(date)
+
 # Obtain the resolution of the current display so the Wine virtual
 # desktop will be full-screen.
+
+echo -e "\n------------ Starting log ------------"  >> ${RUN_LOG}
+echo "     $DATE    "  >> ${RUN_LOG}
+echo "--------------------------------------"  >> ${RUN_LOG}
+
+echo "Setting dimensions" >> ${RUN_LOG}
 RES=$(xdpyinfo | grep "dimensions" | awk '{print $2}')
 VIRT_DESK="explorer /desktop=Steam,$RES"
 
 # Change to Steam directory and launch Wine virtual desktop.
+echo "Starting virtual desktop" >> ${RUN_LOG}
 cd "$STEAM_DIR"
 $WINEVERSION/bin/wine $VIRT_DESK &
 
@@ -56,28 +66,47 @@ export LD_PRELOAD=
 
 # Launch game from Steam. The game appid used by Steam can be found from the
 # Steam store page for a game or from https://steamdb.info/.
+echo "Starting $GAME_EXE"  >> ${RUN_LOG} 
 env -i DISPLAY=$DISPLAY WINEPREFIX=$WINEPREFIX WINEDEBUG=$WINEDEBUG LD_LIBRARY_PATH=$LD_LIBRARY_PATH PATH=$PATH \
 "$WINEVERSION/bin/wine" $VIRT_DESK "$STEAM_DIR/Steam.exe" -applaunch "$GAME_APPID" &
 
+
 # Wait for application to be launched.
-until [ -n "$(ps ax -o comm= | grep -i "$GAME_EXE")" ]; do
+echo "Waiting for $GAME_EXE to start..."  >> ${RUN_LOG}
+until [ -n "$(ps -o pid -C "$GAME_EXE" | grep -e [0-9])" ]; do
   sleep 2
 done;
 
+if ps -o pid -C "$GAME_EXE" | grep -e [0-9]; then
+	echo "$GAME_EXE has started"  >> ${RUN_LOG}
+
+fi
+
+echo "Looping until game exits..."  >> ${RUN_LOG}
 # Stay in loop while the game is running.
-while [ -n "$(ps ax -o comm= | grep -i "$GAME_EXE")" ]; do
+while [ -n "$(ps -o pid -C "$GAME_EXE" | grep -e [0-9])" ]; do
   sleep 2
 done;
+
+echo "$GAME_EXE has exited"  >> ${RUN_LOG}
 
 # Shut down the Windows Steam client.
+echo "Shutting down Steam..."  >> ${RUN_LOG}
 if [ -n "$(pgrep -lf Steam\.exe)" ]; then
   "$WINEVERSION/bin/wine" $VIRT_DESK "$STEAM_DIR/Steam.exe" -shutdown
 
   # Wait for Steam client to close completely.
   while pgrep -lf "Steam\.exe"; do
     sleep 2
-  done; 
+  done;
 fi;
 
+echo "Steam shutdown"  >> ${RUN_LOG}
+
+echo "Killing wine server"  >> ${RUN_LOG}
 # Kill Wine server so Steam will properly return to the library interface.
 "$WINEVERSION/bin/wineserver" -k
+
+echo "--------------------------------------"  >> ${RUN_LOG}
+echo "-------------- End log ---------------"  >> ${RUN_LOG}
+echo -e "--------------------------------------\n"  >> ${RUN_LOG}

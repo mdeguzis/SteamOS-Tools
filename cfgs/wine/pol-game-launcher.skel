@@ -32,20 +32,28 @@ GAME_EXE="GAME_EXE"
 
 ###########################################
 #                                         #
-# MAIN SCRIPT. DO NOT EDIT UNLESS         #
-# ABSOLUTELY NECESSARY                    #
+# MAIN SCRIPT. DO NOT EDIT ANYTHING       #
+# BELOW UNLESS ABSOLUTELY NECESSARY       #
 #                                         #
 ###########################################
 
+# Rollover the log if it gets more than a certain size
+find /tmp/wine-game-log.txt -size +20M -delete
+
+# Set log vars
 RUN_LOG="/tmp/wine-game-log.txt"
 DATE=$(date)
 
 # Obtain the resolution of the current display so the Wine virtual
 # desktop will be full-screen.
 
-echo -e "\n------------ Starting log ------------"  >> ${RUN_LOG}
-echo "     $DATE    "  >> ${RUN_LOG}
-echo "--------------------------------------"  >> ${RUN_LOG}
+cat<<- EOF>> ${RUN_LOG}
+
+------------ Starting log ------------   
+    $DATE    
+    Game: $GAME_EXE
+--------------------------------------
+EOF
 
 echo "Setting dimensions" >> ${RUN_LOG}
 RES=$(xdpyinfo | grep "dimensions" | awk '{print $2}')
@@ -107,5 +115,10 @@ echo "Killing wine server"  >> ${RUN_LOG}
 # Kill Wine server so Steam will properly return to the library interface.
 "$WINEVERSION/bin/wineserver" -k
 
-echo -e "\n-------------- End log ---------------"  >> ${RUN_LOG}
-echo -e "--------------------------------------\n"  >> ${RUN_LOG}
+cat<<- EOF>> ${RUN_LOG}
+
+-------------- End log ---------------
+    $DATE    
+--------------------------------------
+
+EOF

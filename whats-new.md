@@ -5,8 +5,12 @@
   * You must register ahead of time, as the browser window it tries to open to register will not show on SteamOS
   * See: packages.libregeek.org
   * Reminder, `minetest`, an open source infinite-world block sandbox game with survival and crafting is also available in the Debian repositories. 
+  * Improved POL launch script template (see cfgs/wine/pol-game-launcher.skel)
+   * Monitors PID of GAME_EXE over name (which was getting cut off for long names)
+   * Sends basic log information to `/tmp/wine-game-log.txt' (rolls over at max 20M size)
+   * [Sample log output](http://slexy.org/raw/s20UDBH1PJ)
 
--- ProfessorKaos64  <mdeguzis@gmail.com>  Wed, 10 Feb 2016 12:51:00 -0500
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Wed, 10 Feb 2016 21:37:00 -0500
 
 # SteamOS-Tools Update Log #36
 

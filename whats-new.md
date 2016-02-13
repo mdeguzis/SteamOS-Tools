@@ -4,7 +4,7 @@
   * Please see the README.md file for me (LD_PRELOAD library)
   * Added `playonlinux-unstable` to the main repository after some brief functional tests.
   * playonlinux-unstable follows the latest [POL4 code base](https://github.com/PlayOnLinux/POL-POM-4)
-  * Added ~ 20150123, was the much needed shortcut for the Wine Control Panel (see: applications > configuration)
+  * Added ~ 20160123, was the much needed shortcut for the Wine Control Panel (see: applications > configuration)
   * Previously this was launchable only from the cmd prompt of a Wine "drive/bottle."
   * See: packages.libregeek.org
 

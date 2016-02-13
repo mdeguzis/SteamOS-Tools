@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	add-debian-repos.sh
-# Script Ver:	0.7.2
+# Script Ver:	0.7.3.1
 # Description:	This script automatically enables Debian and/or Libregeek 
 #		repositories
 #
@@ -95,7 +95,7 @@ funct_create_dirs()
 # set directories to add
 steamos_tools_configs="$HOME/.config/SteamOS-Tools"
 	
-echo -e "\n==> Adding needed directories"
+echo -e "==> Adding needed directories\n"
 sleep 2s
 
 dirs="${steamos_tools_configs}"

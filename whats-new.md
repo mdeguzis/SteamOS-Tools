@@ -1,3 +1,15 @@
+# SteamOS-Tools Update Log #38
+
+  * Added experimental [koku-xinput-wine](https://github.com/ProfessorKaos64/koku-xinput-wine) package to brewmaster_testing (32-bit only, needs a lot of testing).
+  * Please see the README.md file for me (LD_PRELOAD library)
+  * Added `playonlinux-unstable` to the main repository after some brief functional tests.
+  * playonlinux-unstable follows the latest [POL4 code base](https://github.com/PlayOnLinux/POL-POM-4)
+  * Added ~ 20150123, was the much needed shortcut for the Wine Control Panel (see: applications > configuration)
+  * Previously this was launchable only from the cmd prompt of a Wine "drive/bottle."
+  * See: packages.libregeek.org
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Fri, 12 Feb 2016 23:30:00 -0500
+
 # SteamOS-Tools Update Log #37
 
   * Added simple Minecraft package, package name `minecraft`

@@ -80,6 +80,7 @@ git pull
 More information on utilities and tools can be foudn in the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki)
 
 * artwork - Banners and various images/artwork for SteamOS.
+* archive - previous scripts and tools that are retired
 * cfgs/ - various configuration files, including package lists for Debian software installations.
 * docs/ - Various documentation. Previously hosted script documentation that is now on teh wiki.
 * ext-game-installers/ - Game installers for games outside Steam (e.g. GZDoom).

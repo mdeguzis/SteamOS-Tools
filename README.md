@@ -24,32 +24,33 @@ For SteamOS-specific help (aside from SteamOS-Tools), I do ask you visit and rev
 
 # Hosted Packages
 
-There is now a Debian personal repository hosted at packages.libregeek.org. Be sure to check out the "hosted packages" section below! The wiki entry also contains repository information if you should wish to add the repository manually.
+There is now a Debian personal repository hosted at packages.libregeek.org. Be sure to check out the "hosted packages" section below! The wiki entry also contains repository information if you should wish to add the repository manually. SteamOS-Tools currently has two different repositories, "brewmaster" and "brewmaster_beta". "brewmaster_beta" is a testing release where packages will gradually accumulate on a weekly or monthly basis. These packages are deemed to not yet be "mature," enough for the main repository. When it appears that they may be read for use, the package(s) will be synced to the main repository.
+
+**WARNING:**  
+There is no easy way to opt out of the beta repo. Removing the package will delete configuration files pertaining to the beta repository, but the packages you have installed from it will be "orphaned." The best course of action, if you choose this route, is to [purge and reinstall](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Purging-and-Reinstalling-a-Package) any pacakges you have installed via the beta repository.
 
 * [Package listings](http://packages.libregeek.org/SteamOS-Tools/package_lists/)
 * [SteamoS-Tools repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository)
 * [SteamOS-Tools-Packaging GitHub](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging)
 * [SteamOS-Tools site/package statistics](http://steamos-tools-stats.libregeek.org)
 
-## Adding the repository
+### Adding the repository
 The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base respository does include Debian repositories, the Debian backports repository, and pacakge pinning to avoid conflicts.
 
 ```
-wget -q http://packages.libregeek.org/SteamOS-Tools/pool/main/libr/libregeek-archive-keyring/libregeek-archive-keyring_0.1.bsos-1_all.deb
-wget -q http://packages.libregeek.org/SteamOS-Tools/pool/main/libr/libregeek-repo/steamos-tools-repo_0.1+bsos-1_all.deb
-sudo dpkg -i libregeek-archive-keyring*.deb
-sudo dpkg -i steamos-tools-repo*.deb
+wget http://packages.libregeek.org/libregeek-archive-keyring-latest.deb -q --show-progress
+wget http://packages.libregeek.org/steamos-tools-repo-latest.deb -q --show-progress
+sudo dpkg -i libregeek-archive-keyring-latest.deb
+sudo dpkg -i steamos-tools-repo-latest..deb
 ```
 
-## Adding the beta repository
-
-Download
+### Adding the beta repository:
 ```
-wget -q http://packages.libregeek.org/SteamOS-Tools/pool/main/libr/libregeek-repo/steamos-tools-beta-repo_0.1+bsos-1_all.deb
-sudo dpkg -i steamos-tools-beta-repo*.deb
+wget http://packages.libregeek.org/steamos-tools-beta-repo-latest.deb -q --show-progress
+sudo dpkg -i steamos-tools-beta-repo-latest..deb
 ```
 
-# Usage / Installation
+# SteamOS-Tools Usage / Installation
 
 Please make sure you have enabled desktop mode (Settings > Interface > Enable access to the Linux desktop), and aset your password for the dekstop user with `passwd`.
 

@@ -34,9 +34,13 @@ elif [[ "$arg1" == "--remove-testing" ]]; then
 
 fi
 
-
 echo -e "\n==> Updating system\n"
 sleep 2s
 
 sudo apt-get update
 
+echo -e "\n==> Cleaning up\n"
+
+rm -f libregeek-archive-keyring-latest.deb
+rm -f steamos-tools-beta-repo-latest.deb
+rm -f steamos-tools-repo-latest.deb

@@ -42,15 +42,15 @@ There is no easy way to opt out of the beta repo. Removing the package will dele
 The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base respository does include Debian repositories, the Debian backports repository, and pacakge pinning to avoid conflicts.
 
 ```
-wget http://packages.libregeek.org/libregeek-archive-keyring-latest.deb -q --show-progress
-wget http://packages.libregeek.org/steamos-tools-repo-latest.deb -q --show-progress
+wget http://packages.libregeek.org/libregeek-archive-keyring-latest.deb -q --show-progress -nc
+wget http://packages.libregeek.org/steamos-tools-repo-latest.deb -q --show-progress -nc
 sudo dpkg -i libregeek-archive-keyring-latest.deb
 sudo dpkg -i steamos-tools-repo-latest.deb
 ```
 
 ### Adding the beta repository:
 ```
-wget http://packages.libregeek.org/steamos-tools-beta-repo-latest.deb -q --show-progress
+wget http://packages.libregeek.org/steamos-tools-beta-repo-latest.deb -q --show-progress -nc
 sudo dpkg -i steamos-tools-beta-repo-latest..deb
 ```
 

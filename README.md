@@ -31,6 +31,24 @@ There is now a Debian personal repository hosted at packages.libregeek.org. Be s
 * [SteamOS-Tools-Packaging GitHub](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging)
 * [SteamOS-Tools site/package statistics](http://steamos-tools-stats.libregeek.org)
 
+## Adding the repository
+The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base respository does include Debian repositories, the Debian backports repository, and pacakge pinning to avoid conflicts.
+
+```
+wget -q http://packages.libregeek.org/SteamOS-Tools/pool/main/libr/libregeek-archive-keyring/libregeek-archive-keyring_0.1.bsos-1_all.deb
+wget -q http://packages.libregeek.org/SteamOS-Tools/pool/main/libr/libregeek-repo/steamos-tools-repo_0.1+bsos-1_all.deb
+sudo dpkg -i libregeek-archive-keyring*.deb
+sudo dpkg -i steamos-tools-repo*.deb
+```
+
+## Adding the beta repository
+
+Download
+```
+wget -q http://packages.libregeek.org/SteamOS-Tools/pool/main/libr/libregeek-repo/steamos-tools-beta-repo_0.1+bsos-1_all.deb
+sudo dpkg -i steamos-tools-beta-repo*.deb
+```
+
 # Usage / Installation
 
 Please make sure you have enabled desktop mode (Settings > Interface > Enable access to the Linux desktop), and aset your password for the dekstop user with `passwd`.
@@ -73,7 +91,6 @@ More information on utilities and tools can be foudn in the [wiki](https://githu
 * README.md - This file.
 * AUTHORS.md - Contributions, attributions, and more
 * LICENCE.md - License for this repository. Share all the things! ZOMGOMGBBQHELICOPTERZ
-* add-debian-repos.sh - adds debian repositories for installing Debian software.
 * changelog.md - Changes made to repository and tools
 * contributing.md - Guidelines for repository contributions
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages, as well as special additional packages/utilities, such as gameplay recording, "web apps," and more. Please see the readme file in docs/ for the full listing of options.

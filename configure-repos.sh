@@ -18,6 +18,7 @@ wget http://packages.libregeek.org/libregeek-archive-keyring-latest.deb -q --sho
 wget http://packages.libregeek.org/steamos-tools-repo-latest.deb -q --show-progress -nc
 sudo dpkg -i libregeek-archive-keyring-latest.deb
 sudo dpkg -i steamos-tools-repo-latest.deb
+sudo apt-get install -y debian-archive-keyring
 
 if [[ "$arg1" == "--testing" ]]; then
 

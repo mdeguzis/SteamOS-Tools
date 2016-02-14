@@ -1,3 +1,12 @@
+# SteamOS-Tools Update Log #39
+
+  * Converted "add-debian-repos.sh" to proper Debian packages
+  * See [libregeek-archive-keying](http://packages.libregeek.org/SteamOS-Tools/pool/main/libr/libregeek-archive-keyring/)
+  * See [steamos-tools-repo](http://packages.libregeek.org/SteamOS-Tools/pool/main/libr/libregeek-repo/) and [steamos-tools-beta-repo](http://packages.libregeek.org/SteamOS-Tools/pool/main/libr/libregeek-repo/)
+  * The old `add-debian-repos.sh` script has been retired into the "old" folder at the repository root
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Sun, 14 Feb 2016 10:22:00 -0500
+
 # SteamOS-Tools Update Log #38
 
   * Added experimental [koku-xinput-wine](https://github.com/ProfessorKaos64/koku-xinput-wine) package to brewmaster_testing (32-bit only, needs a lot of testing).

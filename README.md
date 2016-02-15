@@ -42,12 +42,12 @@ There is no easy way to opt out of the beta repo. Removing the package will dele
 The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base respository does include Debian repositories, the Debian backports repository, and pacakge pinning to avoid conflicts.
 
 ```
-bash configure-repos.sh
+./configure-repos.sh
 ```
 
 ### Adding/Removing the Beta repository:
 ```
-bash configure-repos.sh [--testing|--remove-testing]
+./configure-repos.sh [--testing|--remove-testing]
 ```
 
 ### Update your package lists

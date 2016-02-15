@@ -44,8 +44,8 @@ if [[ "$deb_repo_req" == "yes" ]]; then
 		        ;;
 		        
 		        a|A)
-			echo -e "\nProceeding to add-debian-repos.sh"
-			"$scriptdir/add-debian-repos.sh"
+			echo -e "\nProceeding to configure-repos.sh"
+			"$scriptdir/configure-repos.sh"
 		        ;;
 		         
 		        e|e)

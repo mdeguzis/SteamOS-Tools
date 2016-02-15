@@ -600,8 +600,8 @@ show_warning()
 	        ;;
 
 	        a|A)
-		echo -e "\nProceeding to add-debian-repos.sh"
-		"$scriptdir/add-debian-repos.sh"
+		echo -e "\nProceeding to configure-repos.sh.sh"
+		"$scriptdir/configure-repos.sh.sh"
 	        ;;
 
   	        d|D)

@@ -130,7 +130,7 @@ pre_reqs()
 			read -erp "Choice: " sources_choice
 
 			if [[ "$sources_choice" == "y" ]]; then
-				../add-debian-repos.sh
+				../configure-repos.sh
 			elif [[ "$sources_choice" == "n" ]]; then
 				echo -e "Sources addition skipped"
 			fi

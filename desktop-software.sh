@@ -335,15 +335,23 @@ function gpg_import()
 	# When installing from jessie and jessie backports,
 	# some keys do not load in automatically, import now
 	# helper script accepts $1 as the key
-	echo -e "\n==> Importing Debian GPG keys\n"
+	echo -e "\n==> Importing Debian and Librgeek GPG keys\n"
 	sleep 1s
 
 
 	# Key Desc: Libregeek Signing Key
 	# Key ID: 34C589A7
 	# Full Key ID: 8106E72834C589A7
-	echo -ne "Adding Libregeek public signing key: " && \
-	$scriptdir/utilities/gpg-import.sh 8106E72834C589A7 2> /dev/null
+	libregeek_keyring_test=$(dpkg-query -l libregeek-archive-keyring | grep "no packages")
+	debian_eyring_test=$(dpkg-query -l debian-archive-keyring | grep "no packages")
+	
+	if [[ "${libregeek_keyring_test}" != "" || "${debiankeyring_test}" != "" ]]; then 
+	
+		wget http://packages.libregeek.org/libregeek-archive-keyring-latest.deb -q --show-progress -nc
+		sudo dpkg -i libregeek-archive-keyring-latest.deb
+		sudo apt-get install -y debian-archive-keyring
+
+	fi
 
 }
 

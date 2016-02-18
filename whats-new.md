@@ -1,6 +1,7 @@
 # SteamOS-Tools Update Log #39
 
   * Updated all [build scripts](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging) to utilize `pbuilder`/`pdebuild` by default (Set BUILDER="") inside script
+  * See script header option `BUILDOPTS="options"` for passing arguments to `${BUILDER}`, such as `--debbuildopts -b`
   * Packaging [setup files](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/tree/brewmaster/setup-files) expanded upon
    * `configure-packaging-env.sh` configures some base options for building, and configures pbuilder
    * `setup-pbuilder.sh` (called by the above script) configures pbuilder, installs necessary keyrings, and copys `pbuilder-wrapper.sh` wrapper script into a system path for easy execution anywhere
@@ -8,7 +9,7 @@
   * The old `add-debian-repos.sh` was retired, with `configure-repos.sh` taking it's place
    * Uses a "Debianized" GPG keyring package, along with packaged versions of the `steamos-tools-repo`, and `steamos-tools-beta-repo` repository.
   * Pushed Kodi 16.3rc3-Jarvis to brewmaster_testing to begin eval for upcoming release (syncing now)
-  * The "source" for Streets of Rage Remake I had used, seems to no longer be around. The source code is not really improved anymore, but it shoudld be known that no real updates (besides any packaging fixes) will be done.
+  * The "source" for Streets of Rage Remake I had used, seems to no longer be around. The source code is not really improved anymore, but it should be known that no real updates (besides any packaging fixes) will be done.
   * Please also see the README.md file in the repository root for updated notes on most of the above.
 
 -- ProfessorKaos64  <mdeguzis@gmail.com>  Tue, 16 Feb 2016 19:31:00 -0500

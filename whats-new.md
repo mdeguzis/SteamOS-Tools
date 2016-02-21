@@ -4,6 +4,8 @@
   * Along with this, all build depedencies and PVR addons have updated/built as well.
   * ice-steamos-unstable has been updated
   * Fixed steamos-tools-repo and steamos-tools-beta-repo package unattended configuration file
+  * Note: If you are presented with any prompts to overwrite configuration files, choose to install the maintainer's version.
+  * Please submit any issues as a bug report.
   * Fixed some issues in pbuilder setup for packaging
 
 -- ProfessorKaos64  <mdeguzis@gmail.com>  Sun, 21 Feb 2016 07:44:00 -0500

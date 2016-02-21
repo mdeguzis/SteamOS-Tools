@@ -1,3 +1,13 @@
+# SteamOS-Tools Update Log #40
+
+  * Kodi 16 Jarvis, released yesterday, built and synced to the main repository.
+  * Along with this, all build depedencies and PVR addons have updated/built as well.
+  * ice-steamos-unstable has been updated
+  * Fixed steamos-tools-repo and steamos-tools-beta-repo package unattended configuration file
+  * Fixed some issues in pbuilder setup for packaging
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Sun, 21 Feb 2016 07:44:00 -0500
+
 # SteamOS-Tools Update Log #39
 
   * Updated all [build scripts](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging) to utilize `pbuilder`/`pdebuild` by default (Set BUILDER="") inside script

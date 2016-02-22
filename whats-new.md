@@ -1,3 +1,12 @@
+# SteamOS-Tools Update Log #41
+
+  * `ppsspp` (git) now added (over previous PPA-sourced package), version 1.2.1
+  * This includes a ton of improvments, and early support for future API's (such as Vulkan)
+  * See: http://ppsspp.org/#news
+  * Thank you to the folks over at github.com/hrydgard/ppsspp for the help with the rules file/packaging
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Mon, 22 Feb 2016 17:41:00 -0500
+
 # SteamOS-Tools Update Log #40
 
   * Kodi 16 Jarvis, released yesterday, built and synced to the main repository.

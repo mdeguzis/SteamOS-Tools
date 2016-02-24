@@ -1,3 +1,14 @@
+# SteamOS-Tools Update Log #42
+
+  * `voglperf` package added to brewmaster_testing (needs some kinks worked out yet, but runs)
+  * See: https://github.com/ProfessorKaos64/voglperf/
+  * `lutris` version 3.7.2 uploaded to brewmaster repository
+   * See the wiki entry linked below for notes about running in BPM
+   * Suggestion: (untested personally yet), use the Kodi addon noted [here](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Lutris)
+   * It is unknown yet if a simple pacakge will be made for the Kodi addon, or to facilitate adding SuperRepo sources
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Tue, 23 Feb 2016 19:52:00 -0500
+
 # SteamOS-Tools Update Log #41
 
   * `ppsspp` (git) now added (over previous PPA-sourced package), version 1.2.1

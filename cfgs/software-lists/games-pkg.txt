@@ -1,8 +1,7 @@
-supertuxkart
-openarena
-gnome-games
+astromenace 
 atris
 chromium-bsu
+gnome-games
 cowsay
 criticalmass
 dopewars
@@ -14,7 +13,10 @@ fretsonfire
 frozen-bubble
 mah-jong
 nexuiz
+openarena
 pipenightdreams
 smc
+supertux
+supertuxkart
 vectoroids
 warmux

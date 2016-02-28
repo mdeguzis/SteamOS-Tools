@@ -1,18 +1,18 @@
 # SteamOS-Tools Update Log #42
 
  * The Dark Mod is now copied over to the regular brewmaster repository
- * `thedarkmod` is essentially a virtual package with a few tricks to it
+ * `darkmod` is essentially a virtual package with a few tricks to it
  * modifications done were a bit hacky, so it there is anyone that knows better, a PR is more than welcome at [SteamOS-Tools Packaging](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging)
  * Many tests were done to ensure the 32-bit dependencies were met to run The Dark Mod and provide a 1 step install
  * This is accomplished via the "virtual package" + a few hacky tricks to prepare things for SteamOS / Debian 8
- * `/usr/games/thedarkmod` is a symbolic link to either
+ * `/usr/games/darkmod` is a symbolic link to either
   * `/usr/share/games/darkmod/thedarkmod.x86`
   * `/home/steam/darkmod/thedarkmod.x86`
   * This is due to the base install of / on SteamOS being 10 GB, where /usr sits.
   * Other Debian distro's (which this should also run on), should not have such a small / partition
  * Desktop file
  * Artwork
- * After the `thedarkmod` is installed, the "online updater" will fire off and grab the game files. If a game file exists, it will be checked against the server version (standard behavior)
+ * After the `darkmod` is installed, the "online updater" will fire off and grab the game files. If a game file exists, it will be checked against the server version (standard behavior)
  * There are still efforts to compile the entire project (which I have figured out most of). However, this approach seemed to work fairly well on Debian 8 and SteamOS. If you do inspect debian/control, you'll notice a large batch of 32-bit libraries. The Dark Mod is a 32 bit application still (I believe there are future plans to move to 64 bit on the forums), so these are required.
 
 -- ProfessorKaos64  <mdeguzis@gmail.com>  Fri, 26 Feb 2016 20:09:00 -050

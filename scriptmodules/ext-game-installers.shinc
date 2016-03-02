@@ -28,9 +28,10 @@ egi_install_ut4()
 	# https://aur.archlinux.org/packages/ut4/
 	
 	current_dir=$(pwd)
+	ut4_ver="2883976"
 	URL="https://s3.amazonaws.com/unrealtournament"
-	ut4_zip="UnrealTournament-Client-XAN-2771652-Linux.zip"
-	ut4_dir="/home/desktop/ut4-linux/LinuxNoEditor"
+	ut4_zip="UnrealTournament-Client-XAN-${ut4_ver}-Linux.zip"
+	ut4_dir="$HOME/ut4-linux/LinuxNoEditor"
 	ut4_bin_dir="$ut4_dir/LinuxNoEditor/Engine/Binaries/Linux/"
 	ut4_exe="./UE4-Linux-Test UnrealTournament -SaveToUserDir"
 	

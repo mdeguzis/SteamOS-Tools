@@ -1,6 +1,7 @@
 # SteamOS-Tools Update Log #43
 
   * `citra` the popular, yet experimental/early 3DS emulator now has an early package build
+  * This build uses an early un-merged PR from upstream that replaces GWFL with SDL2
   * For now, this will stay in brewmaster_testing
   * Constructed a virtual package for UT-Alpha, however, it is unknown if this will replace the 'desktop-software.sh' build script wrapper hook.
   * SteamOS-Tools packages auto-update alongside Valve's, so required a lot of extra time for a large package may not be ideal.

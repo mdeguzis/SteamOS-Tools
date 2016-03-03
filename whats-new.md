@@ -1,5 +1,6 @@
 # SteamOS-Tools Update Log #43
 
+  * `pcsx2-unstable` updated to laetst upsteam commit
   * `citra` the popular, yet experimental/early 3DS emulator now has an early package build
   * This build uses an early un-merged PR from upstream that replaces GWFL with SDL2
   * For now, this will stay in brewmaster_testing

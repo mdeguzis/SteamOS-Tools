@@ -1,3 +1,12 @@
+# SteamOS-Tools Update Log #43
+
+  * `citra` the popular, yet experimental/early 3DS emulator now has an early package build
+  * For now, this will stay in brewmaster_testing
+  * Constructed a virtual package for UT-Alpha, however, it is unknown if this will replace the 'desktop-software.sh' build script wrapper.
+  * SteamOS-Tools package auto-update alongside Valve's, so required a lot of extra time for a large package may not be ideal.
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Wed, 3 Mar 2016 19:20:00 -0500
+
 # SteamOS-Tools Update Log #42
 
  * The Dark Mod is now copied over to the regular brewmaster repository

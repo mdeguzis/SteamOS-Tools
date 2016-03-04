@@ -1,3 +1,15 @@
+# SteamOS-Tools Update Log #44
+
+  * Updated a metric ton of libretro-core build scripts with build code.
+  * Subsequently, many libretro cores have been updated against the latest upsteam code
+  * Modified [configure-packaging-env.sh](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/tree/brewmaster/setup-files) to allow building a pbuilder environment on other Debian systems, as well as Arch Linux!
+   * To achive this, devscripts had to "forked" from the AUR to fix it for the latest devscripts Debian package.
+   * The other packages are sourced from the Arch Linux main repositories, as well as the AUR.
+   * If SteamOS is detected during pbuilder chroot creation, $HOME is target for apt package cache, over root, due to 10 GB standard restrictions. This causes issues with large build projects.
+   * pbuilder chroots already are stored in $HOME/pbuilder.
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Fri, 04 Mar 2016 17:34:00 -0500
+
 # SteamOS-Tools Update Log #43
 
   * `pcsx2-unstable` updated to laetst upsteam commit
@@ -7,7 +19,7 @@
   * Constructed a virtual package for UT-Alpha, however, it is unknown if this will replace the 'desktop-software.sh' build script wrapper hook.
   * SteamOS-Tools packages auto-update alongside Valve's, so required a lot of extra time for a large package may not be ideal.
 
--- ProfessorKaos64  <mdeguzis@gmail.com>  Wed, 3 Mar 2016 19:20:00 -0500
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Wed, 03 Mar 2016 19:20:00 -0500
 
 # SteamOS-Tools Update Log #42
 

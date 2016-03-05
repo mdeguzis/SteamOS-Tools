@@ -1,6 +1,8 @@
 # SteamOS-Tools Update Log #44
 
-  * Updated a metric ton of libretro-core build scripts with build code.
+  * Pushed new build of `citra` to brewmaster_testing
+  * Pushed new build of `openpht` 1.5.2 to brewmaster_testing
+  * Updated a metric ton of libretro-core build scripts with new build script code.
   * Subsequently, many libretro cores have been updated against the latest upsteam code
   * Modified [configure-packaging-env.sh](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/tree/brewmaster/setup-files) to allow building a pbuilder environment on other Debian systems, as well as Arch Linux!
    * To achive this, devscripts had to "forked" from the AUR to fix it for the latest devscripts Debian package.

@@ -8,10 +8,11 @@ Be sure to check out the [Upcoming features](https://github.com/ProfessorKaos64/
 
 All operations are tested against official Valve releases _only_.
 
-# Latest Updates and News
+# Latest Updates, News, and discussions
 ***
 
-For the latest change details, please see the commits page and [whats-new.md](whats-new.md) file for overall change details.
+For the latest change details, please see the commits page and [whats-new.md](whats-new.md) file for overall change details. You can also follow development, and engage in discussion by joining the IRC channel `#libregeek`
+located under the irc.freenode.net network. The main op is me "ProfessorKaos64".
 
 # Warning
 ***

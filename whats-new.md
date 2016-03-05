@@ -1,3 +1,15 @@
+# SteamOS-Tools Update Log #45
+
+  * Pushed new build of `minecraft` 1.9 to brewmaster
+   * Now uses `openjdk-jre-8` 
+  * Pushed new build of `lutris` 3.7.3 to brewmaster
+  * Added new build of `citra` to brewmaster_testing
+   * New artwork
+   * Fixed runtime Qt dependencies
+   * Keep in mind this is *experimental* software
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Sat, 05 Mar 2016 14:52:00 -0500
+
 # SteamOS-Tools Update Log #44
 
   * Pushed new build of `citra` to brewmaster_testing

@@ -39,7 +39,7 @@ There is no easy way to opt out of the beta repo. Removing the package will dele
 * [SteamOS-Tools site/package statistics](http://steamos-tools-stats.libregeek.org)
 
 ### Adding the SteamOS-Tools Repository
-The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base respository does include Debian repositories, the Debian backports repository, and pacakge pinning to avoid conflicts.
+The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base respository does include Debian repositories, the Debian backports repository, and package pinning to avoid conflicts.
 
 ```
 ./configure-repos.sh
@@ -58,7 +58,7 @@ sudo apt-get update
 # SteamOS-Tools Usage / Installation
 ***
 
-Please make sure you have enabled desktop mode (Settings > Interface > Enable access to the Linux desktop), and aset your password for the dekstop user with `passwd`.
+Please make sure you have enabled desktop mode (Settings > Interface > Enable access to the Linux Desktop), and have set your password for the dekstop user with `passwd`.
 
 To clone this repository to your local computer, you will need the `git` software package to clone the repository. The command is included below in the first line below if you do not know it. Updating is very important for fixes and new features.
 
@@ -77,7 +77,7 @@ Normal script execution, sans arguments, goes a little bit like:
 # Updating
 ***
 
-Be aware that any pacakges installed via the Libregeek package repository will be upgraded during the silent unattended upgrades process in SteamOS (Settings > System) when a new version is available in the package pool. These updates, like Debian and Valve's upgrades, are processed on shutdown.
+Be aware that any packages installed via the Libregeek package repository will be upgraded during the silent unattended upgrades process in SteamOS (Settings > System) when a new version is available in the package pool. These updates, like Valve's upgrades, are processed on shutdown.
 
 _Please_ regulary check for updates to SteamOS-Tools. To update your local copy of files for this repository:
 ```
@@ -131,7 +131,7 @@ Branch where some new scripts are made. Larger alterations to existing ones impl
 ***
 
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page
-or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the AUTHORS.md file. I will also take requests for packages _not_ found within Debian Jessie, or those that require extra work to implement/add to SteamOS.
+or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the AUTHORS.md file. I will also take requests for packages _not_ found within Debian repositories, or those that require extra work to implement/add to SteamOS.
 
 # Troubleshooting
 ***

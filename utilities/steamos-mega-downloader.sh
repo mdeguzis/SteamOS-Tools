@@ -245,7 +245,7 @@ show_summary()
 	USB drive connected. Either set your computer to boot from a 
 	USB device first, or select it from the boot menu. Please ensure
 	that before booting the USB drive, you ensure you have the proper
-	EFI settings (if applicatble) for your motherboard.
+	EFI settings (if applicable) for your motherboard.
 
 	If you chose to burn an applicable ISO image to a CD or DVD,
 	please reboot your computer with the disc inserted.

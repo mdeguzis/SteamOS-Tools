@@ -7,10 +7,10 @@
   * Modified [configure-packaging-env.sh](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/tree/brewmaster/setup-files) to allow building a pbuilder environment on other Debian systems, as well as Arch Linux!
    * To achive this, devscripts had to "forked" from the AUR to fix it for the latest devscripts Debian package.
    * The other packages are sourced from the Arch Linux main repositories, as well as the AUR.
-   * If SteamOS is detected during pbuilder chroot creation, $HOME is target for apt package cache, over root, due to 10 GB standard restrictions. This causes issues with large build projects.
+   * If SteamOS is detected during pbuilder chroot creation, $HOME is the target for apt package cache, over root, due to 10 GB standard restrictions. This causes issues with large build projects.
    * pbuilder chroots already are stored in $HOME/pbuilder.
 
--- ProfessorKaos64  <mdeguzis@gmail.com>  Fri, 04 Mar 2016 17:34:00 -0500
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Fri, 04 Mar 2016 22:52:00 -0500
 
 # SteamOS-Tools Update Log #43
 

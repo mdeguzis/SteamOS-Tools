@@ -1,3 +1,14 @@
+
+  * Added `google-play-music-desktop-player` (binary only) to brewmaster
+  * This does support Google 2-factor authentication
+  * For more information see the main [Github](https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-) page
+  * Due to the amount of node depedencies that would need Debianized for this package, this will likely stay binary only.
+  * A Steam Controller profile will show up soon
+  * Pushed new build of `pcsx2-unstable` to brewmaster
+  * Pushed new build of `openpht` to brewmaster
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Sat, 05 Mar 2016 14:52:00 -0500
+
 # SteamOS-Tools Update Log #45
 
   * Pushed new build of `minecraft` 1.9 to brewmaster

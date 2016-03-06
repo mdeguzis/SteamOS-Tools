@@ -7,7 +7,7 @@
   * Pushed new build of `pcsx2-unstable` to brewmaster
   * Pushed new build of `openpht` to brewmaster
 
--- ProfessorKaos64  <mdeguzis@gmail.com>  Sat, 05 Mar 2016 14:52:00 -0500
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Sun, 06 Mar 2016 16:43:00 -0500
 
 # SteamOS-Tools Update Log #45
 

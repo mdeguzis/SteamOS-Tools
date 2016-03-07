@@ -6,7 +6,7 @@
   * A Steam Controller profile will show up soon
   * Pushed new build of `pcsx2-unstable` to brewmaster
   * Pushed new build of `openpht` to brewmaster
-  * Fixed runtime depedency errors for Antimicro with new build
+  * Fixed runtime depedency errors for `antimicro` with new build
 
 -- ProfessorKaos64  <mdeguzis@gmail.com>  Sun, 06 Mar 2016 21:12:00 -0500
 

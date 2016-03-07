@@ -1,3 +1,4 @@
+# SteamOS-Tools Update Log #46
 
   * Added `google-play-music-desktop-player` (binary only) to brewmaster
   * This does support Google 2-factor authentication

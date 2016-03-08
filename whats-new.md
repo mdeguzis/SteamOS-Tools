@@ -1,3 +1,11 @@
+# SteamOS-Tools Update Log #47
+
+  * Updated `lutris` to 0.3.7.5
+  * [Upstream changelog](Fix a bug where booleans in scripts would be converted to strings
+  * Update Debian package source format)
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Mon, 07 Mar 2016 21:12:00 -0500
+
 # SteamOS-Tools Update Log #46
 
   * Added `google-play-music-desktop-player` (binary only) to brewmaster

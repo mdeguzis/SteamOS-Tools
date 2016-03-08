@@ -112,7 +112,8 @@ More information on utilities and tools can be foudn in the [wiki](https://githu
 # Video Demonstrations / Tutorials
 ***
 
-* [SteamOS-Tools introductory video](https://youtu.be/h-gdPWjZlb4)
+* [SteamOS-Tools introductory video](https://www.youtube.com/watch?v=P9A-CwVHk7E&feature=youtu.be)
+* [Troubleshooting adding sources](https://youtu.be/UWxHbJMVv5E)
 * [Libregeek on Youtube](https://www.youtube.com/channel/UCkAs7k_xDG0pBD82T1YiD6g)
 * For all other videos and tutorials, please see the [Videos and Tutorials](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Videos-and-Tutorials) wiki page
 

@@ -5,7 +5,7 @@
   * Updated [pbuilder setup](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/tree/brewmaster/setup-files) to use a hook script of class D that cleanly adds SteamOS-Tools package configurations on each build.
   * This ensures that the original chroot is as stock as possible.
   * For anyone affected by this libcec3 conflict, please run:
-   * `sudo apt-get udpate && sudo apt-get install -f`
+   * `sudo apt-get update && sudo apt-get install -f`
 
 -- ProfessorKaos64  <mdeguzis@gmail.com>  Wed, 09 Mar 2016 12:22:00 -0500
 

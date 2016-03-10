@@ -6,6 +6,7 @@
   * This ensures that the original chroot is as stock as possible.
   * For anyone affected by this libcec3 conflict, please run:
    * `sudo apt-get update && sudo apt-get install -f`
+   * For further troubleshooting, see the [SteamOS wiki](https://github.com/ValveSoftware/SteamOS/wiki/Troubleshooting#debugging-steamos-upgrade-issues)
 
 -- ProfessorKaos64  <mdeguzis@gmail.com>  Wed, 09 Mar 2016 12:22:00 -0500
 

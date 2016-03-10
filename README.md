@@ -17,7 +17,7 @@ located under the irc.freenode.net network. The main op is me "ProfessorKaos64".
 # Warning
 ***
 
-Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/alchemist/disclaimer.md). Please also understand the default branch of this GitHub repository is for **SteamOS Brewmaster**.
+Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/brewmaster/disclaimer.md). Please also understand the default branch of this GitHub repository is for **SteamOS Brewmaster**.
 
 # Wiki and FAQ
 ***

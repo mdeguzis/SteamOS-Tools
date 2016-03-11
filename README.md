@@ -36,7 +36,7 @@ There is no easy way to opt out of the beta repo. Removing the package will dele
 
 * [Package listings](http://packages.libregeek.org/SteamOS-Tools/package_lists/)
 * [SteamoS-Tools repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository)
-* [SteamOS-Tools-Packaging GitHub](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging)
+* [LibreGeek-Packaging GitHub](https://github.com/ProfessorKaos64/LibreGeek-Packaging)
 * [SteamOS-Tools site/package statistics](http://steamos-tools-stats.libregeek.org)
 
 ### Adding the SteamOS-Tools Repository

@@ -2,7 +2,7 @@
 
   * Fixed issue with `libcec3` (stretch/sid) conflicting with `libcec3v4` (jessie-backports)
   * `libec3` is now a meta package providing `libcec3v4`
-  * Updated [pbuilder setup](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/tree/brewmaster/setup-files) to use a hook script of class D that cleanly adds SteamOS-Tools package configurations on each build.
+  * Updated [pbuilder setup](https://github.com/ProfessorKaos64/LibreGeek-Packaging/tree/brewmaster/setup-files) to use a hook script of class D that cleanly adds SteamOS-Tools package configurations on each build.
   * This ensures that the original chroot is as stock as possible.
   * For anyone affected by this libcec3 conflict, please run:
    * `sudo apt-get update && sudo apt-get install -f`
@@ -48,7 +48,7 @@
   * Pushed new build of `openpht` 1.5.2 to brewmaster_testing
   * Updated a metric ton of libretro-core build scripts with new build script code.
   * Subsequently, many libretro cores have been updated against the latest upsteam code
-  * Modified [configure-packaging-env.sh](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/tree/brewmaster/setup-files) to allow building a pbuilder environment on other Debian systems, as well as Arch Linux!
+  * Modified [configure-packaging-env.sh](https://github.com/ProfessorKaos64/LibreGeek-Packaging/tree/brewmaster/setup-files) to allow building a pbuilder environment on other Debian systems, as well as Arch Linux!
    * To achive this, devscripts had to "forked" from the AUR to fix it for the latest devscripts Debian package.
    * The other packages are sourced from the Arch Linux main repositories, as well as the AUR.
    * If SteamOS is detected during pbuilder chroot creation, $HOME is the target for apt package cache, over root, due to 10 GB standard restrictions. This causes issues with large build projects.
@@ -71,7 +71,7 @@
 
  * The Dark Mod is now copied over to the regular brewmaster repository
  * `darkmod` is essentially a virtual package with a few tricks to it
- * modifications done were a bit hacky, so it there is anyone that knows better, a PR is more than welcome at [SteamOS-Tools Packaging](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging)
+ * modifications done were a bit hacky, so it there is anyone that knows better, a PR is more than welcome at [SteamOS-Tools Packaging](https://github.com/ProfessorKaos64/LibreGeek-Packaging)
  * Many tests were done to ensure the 32-bit dependencies were met to run The Dark Mod and provide a 1 step install
  * This is accomplished via the "virtual package" + a few hacky tricks to prepare things for SteamOS / Debian 8
  * `/usr/games/darkmod` is a symbolic link to either
@@ -120,9 +120,9 @@
 
 # SteamOS-Tools Update Log #39
 
-  * Updated all [build scripts](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging) to utilize `pbuilder`/`pdebuild` by default (Set BUILDER="") inside script
+  * Updated all [build scripts](https://github.com/ProfessorKaos64/LibreGeek-Packaging) to utilize `pbuilder`/`pdebuild` by default (Set BUILDER="") inside script
   * See script header option `BUILDOPTS="options"` for passing arguments to `${BUILDER}`, such as `--debbuildopts -b`
-  * Packaging [setup files](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/tree/brewmaster/setup-files) expanded upon
+  * Packaging [setup files](https://github.com/ProfessorKaos64/LibreGeek-Packaging/tree/brewmaster/setup-files) expanded upon
    * `configure-packaging-env.sh` configures some base options for building, and configures pbuilder
    * `setup-pbuilder.sh` (called by the above script) configures pbuilder, installs necessary keyrings, and copys `pbuilder-wrapper.sh` wrapper script into a system path for easy execution anywhere
    * Much yet to improve, but tested several builds today (including Kodi 16.0rc3-Jarvis!)
@@ -172,14 +172,14 @@
 # SteamOS-Tools Update Log #36
 
   * ice-steamos-unstable was updated to the latest upstream master tree commit
-  * Update 145+ [build scripts](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging) with the following:
+  * Update 145+ [build scripts](https://github.com/ProfessorKaos64/LibreGeek-Packaging) with the following:
    * debuild now in use over dpkg-buildpackage
    * The "--testing" option flag to push packages intended for "DIST_testing" to the proper location after the build
   * Eventually, the intention is to have a reliable pbuilder setup (still new to using it) to keep my test machine "sane."
   * Work on "configure-packaging-env.sh" to setup build tools and install packages
   * All of the above is in preperation to build Kodi 16 "Jarvis" into brewamster_testing (Currently release RC3)
   * Remember, you must pass "--enable-testing" to "add-debian-repos.sh" to work with these packages (at your own risk!)
-  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * See: https://github.com/ProfessorKaos64/LibreGeek-Packaging
 
 -- ProfessorKaos64  <mdeguzis@gmail.com>  Wed, 10 Feb 2016 20:15:00 -0500
 
@@ -193,7 +193,7 @@
   * I apologize for any inconvenience this has caused
   * obs-studio has been updated to the latest upstream release, 0.13.1
   * Fixed RetroArch v1.3.1 not autoconfiguring gamepads. This is done by default now
-  * See SteamOS-Tools-Packaging, commit [edbedec](https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/commit/edbedec636b158869b8bc317f15103b28bd0e6ff)
+  * See LibreGeek-Packaging, commit [edbedec](https://github.com/ProfessorKaos64/LibreGeek-Packaging/commit/edbedec636b158869b8bc317f15103b28bd0e6ff)
   * Update retroarch-joypad-autoconfig for the latest changes/profiles
 
 -- ProfessorKaos64  <mdeguzis@gmail.com>  Mon, 8 Feb 2016 22:34:00 -0500
@@ -258,7 +258,7 @@
    * ice-steamos (new 1.0.0 upstream release)
    * ice-steamos-unstable
   * The rest of available updates for pacakge will follow into this weekend.
-  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * See: https://github.com/ProfessorKaos64/LibreGeek-Packaging
   * See: https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Packaging-Information
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Fri, 29 Jan 2016 22:56:00 -0500
@@ -275,7 +275,7 @@
    * ppsspp
    * pcsx2
   * The rest of available updates for pacakge will follow into this weekend.
-  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * See: https://github.com/ProfessorKaos64/LibreGeek-Packaging
   * See: https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Packaging-Information
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Thu, 28 Jan 2016 21:25:00 -0500
@@ -354,7 +354,7 @@
   * After some reprepro mess, package pool is back fully up and running
   * All retroarch/libretro package build scripts update and built over last 2 days
   * Added some new wiki pages for how-to, as well as runnings Steam for Windows games on SteamOS
-  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * See: https://github.com/ProfessorKaos64/LibreGeek-Packaging
   * See: https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Tutorials-and-How-To
  
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Tue, 05 Jan 2016 22:06:00 -0500  
@@ -392,7 +392,7 @@
   * Please report any issues with all source-built Retroarch/Libretro packages to the issues tracker
   * Finished modifying the vast majority of build scripts to inlucde full source in repository
   * Updated Kodi builds to prepare for upcoming Jarvis release
-  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * See: https://github.com/ProfessorKaos64/LibreGeek-Packaging
   * Upcoming: Lutris updates, along with Lutris Kodi addon (thanks RobLoach!)
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 27 Dec 2015 21:03:00 -0500
@@ -402,7 +402,7 @@
   * Added fork of pastebinit (uses slexy as default PB)
   * Began laborious restructure of package build scripts to adjust for full-soruce uploads using .changes file
   * Completing this restrucutre will take some time over the next week or two (retroarch/kodi the largest).
-  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging/
+  * See: https://github.com/ProfessorKaos64/LibreGeek-Packaging/
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 20 Dec 2015 19:37:00 -0500
 
@@ -432,7 +432,7 @@
   * Completed basic set of Debian traditional packaging for Kodi packages (including PVR)
   * Completed basic set of Debian traditional packaging for Retroarch (early testing) 
   * Completed basic set of Debian traditional packaging for Libretro cores (early testing) 
-  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * See: https://github.com/ProfessorKaos64/LibreGeek-Packaging
   * Fixed web apps
   * Fixed debian repo additions to use http redirect servers (global)
   * Begin work on GOG download tool (thanks to Sharkwouter)
@@ -448,7 +448,7 @@
   * Updated OBS-Studio with proper debian packaging, release 0.12.2
   * Wiki updated for pairing DS4/PS4 controllers
   * Began work on creating post-configure package for Retroarch
-  * See: https://github.com/ProfessorKaos64/SteamOS-Tools-Packaging
+  * See: https://github.com/ProfessorKaos64/LibreGeek-Packaging
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 22 Oct 2015 16:32:00 -0500
 
@@ -456,7 +456,7 @@
 
   * Updated Kodi to Isengard 15.2 latest git stable release
   * Built all available Kodi PVR addons to libregeek repository
-  * Moved build scripts (increasing in number) to SteamOS-Tools-Packaging repo
+  * Moved build scripts (increasing in number) to LibreGeek-Packaging repo
   * See: https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Kodi for notes
 
 -- ProfessorKaos64 <mdeguzis@gmail.com>  Sun, 15 Oct 2015 22:08:00 -0500

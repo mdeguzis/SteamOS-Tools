@@ -1,3 +1,16 @@
+# SteamOS-Tools Update Log #49
+
+  * New buid of `pcsx2-unstable` pushed to brewmaster
+  * New build of `citra` pushed to brewmaster_testing
+  * `obs-studio` 0.13.2 pushed to brewmaster
+  * **NOTICE**: SteamOS-Tools-Packaging was renamed to LibreGeek Packaging to allow for non SteamOS building in the same repository.
+  * Updated [pbuilder setup](https://github.com/ProfessorKaos64/LibreGeek-Packaging/tree/brewmaster/setup-files)
+   * added required variables to move away from a wrapper script
+   * wrapper script no longer necessary
+  * Reworked `configure-packaging-env` for betting handling of different pieces of work space
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Fri, 11 Mar 2016 12:22:00 -0500
+
 # SteamOS-Tools Update Log #48
 
   * Fixed issue with `libcec3` (stretch/sid) conflicting with `libcec3v4` (jessie-backports)

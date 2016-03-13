@@ -5,7 +5,7 @@
   * Thanks you to Sharkwouter of [VaporOS](http://vaporos.net/), added:
    * Build of `vaporos-mousefix` to brewmaster (Disables mouse acceleration)
    * New build of 'vapors-binds-xbox360` (Now works in Brewmaster!)
-   * Build of `vaporos-trim-support` (Adds SSD (Trim](https://en.wikipedia.org/wiki/Trim_(computing)) support)
+   * Build of `vaporos-trim-support` (Adds SSD [Trim](https://en.wikipedia.org/wiki/Trim_(computing)) support)
   * Fixed more aspects of [LibreGeek Packaging](https://github.com/ProfessorKaos64/LibreGeek-Packaging/tree/brewmaster/setup-files) pbuilder setup.
    * `.pbuildderc` detects SteamOS brewmaster properly, as well if a beta is requested
    * If brewmaster_beta is asked for, the base is brewmasteer, and beta sources are added afterwards as OTHERMIRROR.

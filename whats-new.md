@@ -2,7 +2,7 @@
 
   * New buid of `pcsx2-unstable` pushed to brewmaster
   * New build of `citra` pushed to brewmaster_testing
-  * Thanks you to Sharkwouter of [VaporOS](http://vaporos.net/), added:
+  * Thanks to Sharkwouter of [VaporOS](http://vaporos.net/), added:
    * Build of `vaporos-mousefix` to brewmaster (Disables mouse acceleration)
    * New build of 'vapors-binds-xbox360` (Now works in Brewmaster!)
    * Build of `vaporos-trim-support` (Adds SSD [Trim](https://en.wikipedia.org/wiki/Trim_(computing)) support)

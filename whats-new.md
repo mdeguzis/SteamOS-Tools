@@ -1,3 +1,15 @@
+# SteamOS-Tools Update Log #51
+
+  * ***NOTICE***: Due to a apt-preferences configuration bug, if you experience issues installing or updating `kodi` please run the following in a terminal window:
+   * `sudo apt-get update && sudo apt-get install steamos-tools-repo`
+   * `sudo apt-get update && sudo apt-get install kodi`
+  * Created new `dolphin-emu-master` build script for semi-frequent builds of dolphin-emu master tree
+  * New build of `dolphin-emu-master` pushed to brewmaster
+  * `dolphin-emu` will stay, but not new versions will be uploaded
+   * The RC branch is long abandoned, and will be branched to 5.0 when it is completed.
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Sun, 13 Mar 2016 18:11:00 -0500
+
 # SteamOS-Tools Update Log #50
 
   * New buid of `pcsx2-unstable` pushed to brewmaster

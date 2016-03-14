@@ -1,5 +1,3 @@
-<img src="http://www.americansentinel.edu/blog/wp-content/uploads/2012/11/Alert.jpg" height=5% width=5%/> Domain: librgeek.org is currently *down*
-
 <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/SteamOS-Tools.png" width=100%/>
 
 # SteamOS-Tools

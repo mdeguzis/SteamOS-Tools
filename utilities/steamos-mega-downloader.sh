@@ -2,7 +2,7 @@
 # -------------------------------------------------------------------------------
 # Author:    	  	Michael DeGuzis
 # Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		1.5.5
+# Script Ver:		1.7.5
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #			to specified directory and run SHA512 checks against them.
 #			Installs to a USB drive
@@ -83,8 +83,8 @@ help()
 pre_reqs()
 {
 	# check fo existance of dirs
-	if [[ ! -d "$HOME/downloads/$release" ]]; then
-		mkdir -p "$HOME/downloads/$release"
+	if [[ ! -d "${HOME}/downloads/${release}" ]]; then
+		mkdir -p "${HOME}/downloads/${release}"
 	fi
 
 	echo -e "\n==> Checking for prerequisite packages\n"
@@ -95,7 +95,7 @@ pre_reqs()
 	############################################
 	# Debian
 	############################################
-	if [[ "$distro_check" == "Debian" ]]; then
+	if [[ "${distro}_check" == "Debian" ]]; then
 
 		echo -e "Distro detected: Debian"
 
@@ -118,7 +118,7 @@ pre_reqs()
 	############################################
 	# SteamOS
 	############################################
-	elif [[ "$distro_check" == "SteamOS" ]]; then
+	elif [[ "${distro}_check" == "SteamOS" ]]; then
 
 		# Debian sources are required to install xorriso for Stephenson's Rocket
 		sources_check1=$(sudo find /etc/apt -type f -name "jessie*.list")
@@ -159,7 +159,7 @@ pre_reqs()
 	############################################
 	# Ubuntu
 	############################################
-	elif [[ "$distro_check" == "Ubuntu" ]]; then
+	elif [[ "${distro}_check" == "Ubuntu" ]]; then
 
 		echo -e "Distro detected: Ubuntu"
 
@@ -182,11 +182,12 @@ pre_reqs()
 	############################################
 	# Arch Linux
 	############################################
-	elif [[ "$distro_check" == "Arch" ]]; then
+	elif [[ "${distro}_check" == "Arch" ]]; then
 
 		echo -e "Distro detected: Arch Linux"
-		echo -e "Only official Valve releases are supported at this time!\n"
 		sleep 2s
+
+		echo -e "Installing main dependencies from Arch Linux repos"
 
 		# Check dependencies (stephensons and vaporos-mod)
 		deps="libisoburn syslinux coreutils rsync p7zip wget unzip git"
@@ -206,19 +207,39 @@ pre_reqs()
 			fi
 		done
 
-		# apt (need for stephenson's rocket / vaporos-mod)
-		pkg_chk=$(pacman -Q apt)
-		if [[ "$pkg_chk" == "" ]]; then
+		echo -e "\nInstalling apt from the Arch Linux User Repository"
 
-			mkdir -p /tmp/apt
-			wget -P /tmp "https://aur.archlinux.org/cgit/aur.git/snapshot/apt.tar.gz"
-			tar -C /tmp/ -xzvf /tmp/apt.tar.gz
-			cd /tmp/apt
-			makepkg -sri
-			rm -rf /tmp/apt/
+		# apt (need for stephenson's rocket / vaporos-mod)
+		# Don't clone this repo if they are found
+		if [[ ! $(pacaur -Qs apt) ]]; then
+
+			git clone "https://github.com/ProfessorKaos64/arch-aur-packages"
+			root_dir="${PWD}"
+			aur_install_dir="${root_dir}/arch-aur-packages"
+			my_arch_pkgs="apt"
+			cd "${aur_install_dir}/apt" || exit 1
+			makepkg -s
+			
+			if ! sudo pacman -U ${PACOPTS} ${pkg}*.pkg.tar.gz; then
+		
+				echo "ERROR: Installation of ${pkg} failed. Exiting"
+				exit 1
+		
+			fi
 
 		fi
+		
+		# Last, we need to copmile xorriso from GNU, else the build will fail
+		# This is possibly due to optoins use to compile the package for Arch Linux
+		
+		echo "\nCompiling and install xorriso\n"
+		mkdir temp && cd temp || exit
+		wget "https://www.gnu.org/software/xorriso/xorriso-1.4.2.tar.gz" -q -nc --show-progress
+		./configure && make
+		sudo make install
+		cd .. && rm -rf temp/
 
+	fi
 	############################################
 	# All Others
 	############################################	
@@ -335,7 +356,7 @@ create_usb_zip()
 	echo -e "\n==> Installing release to usb drive\n"
 
 	# unzip archive to drive
-	sudo unzip "$file" -d "/tmp/steamos-usb"
+	sudo unzip "${file}" -d "/tmp/steamos-usb"
 
 	# unount drive 
 	echo -e "\nUmounting USB drive. Please do not reove until done"
@@ -348,13 +369,13 @@ create_usb_zip()
 
 apply_image()
 {
-	# check $file extension
+	# check ${file} extension
 	# ask user if they wish to use a DVD/CD or USB drive for ISO images later below
-	check_iso=$(echo $file | grep -i iso)
-	check_zip=$(echo $file | grep -i zip)
+	check_iso=$(echo ${file} | grep -i iso)
+	check_zip=$(echo ${file} | grep -i zip)
 
 	# set mkdosfs location
-	if [[ "$distro_check" == "SteamOS" || "$distro_check" == "Debian" ]]; then
+	if [[ "${distro}_check" == "SteamOS" || "${distro}_check" == "Debian" ]]; then
 
 		format_drive="sudo /sbin/mkdosfs -F 32 -I"
 
@@ -422,19 +443,19 @@ check_download_integrity()
 	# and keep the local version of the checksum
 
 	# download md5sum
-	if [[ "$md5file" != "none" ]];then
+	if [[ "${md5file}" != "none" ]];then
 
-		if [[ "$distro" == "stephensons-rocket" || "$distro" == "vaporos-mod" ]]; then
+		if [[ "${distro}" == "stephensons-rocket" || "${distro}" == "vaporos-mod" ]]; then
 
 			# This is handled during build
 			echo "" > /dev/null
 
-		elif [[ "$distro" == "vaporos" ]]; then
+		elif [[ "${distro}" == "vaporos" ]]; then
 
-			wget --no-clobber "$base_url/iso/$md5file"
+			wget --no-clobber "${base_url}/iso/${md5file}"
 
 		else
-			wget --no-clobber "$base_url/$release_folder/$md5file"
+			wget --no-clobber "${base_url}/${release}_folder/${md5file}"
 
 		fi
 
@@ -445,14 +466,14 @@ check_download_integrity()
 	fi
 
 	# download shasum
-	if [[ "$shafile" != "none" ]];then
+	if [[ "${shafile}" != "none" ]];then
 
-		if [[ "$distro" == "stephensons-rocket" ]]; then
+		if [[ "${distro}" == "stephensons-rocket" ]]; then
 
 			# This is handled during build
 			echo "" > /dev/null
 
-		elif [[ "$distro" == "vaporos" ]]; then
+		elif [[ "${distro}" == "vaporos" ]]; then
 
 			# no shafile currently for release
 			echo "" > /dev/null
@@ -460,7 +481,7 @@ check_download_integrity()
 		else
 
 			# wget as normal
-			wget --no-clobber "$base_url/$release_folder/$shafile"
+			wget --no-clobber "${base_url}/${release}_folder/${shafile}"
 
 		fi
 
@@ -471,44 +492,44 @@ check_download_integrity()
 	fi
 
 	# for some reason, only the brewmaster integrity check files have /var/www/download in them
-	if [[ "$release" == "alchemist" ]]; then
+	if [[ "${release}" == "alchemist" ]]; then
 
 		# do nothing
 		echo "" > /dev/null
 
-	elif [[ "$release" == "brewmaster" ]]; then
+	elif [[ "${release}" == "brewmaster" ]]; then
 
 		orig_prefix="/var/www/download/brewmaster/"
-		#new_prefix="$HOME/downloads/$release";
+		#new_prefix="${HOME}/downloads/${release}";
 
-		if [[ "$distro" == "valve-official" ]]; then
+		if [[ "${distro}" == "valve-official" ]]; then
 
-			sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$shafile"
-			sed -i "s|$orig_prefix||g" "$HOME/downloads/$release/$md5file"
+			sed -i "s|${orig_prefix}||g" "${HOME}/downloads/${release}/${shafile}"
+			sed -i "s|${orig_prefix}||g" "${HOME}/downloads/${release}/${md5file}"
 
 		fi
 
 	fi
 
 	# Check md5sum of installer
-	if [[ "$md5file" != "none" ]];then
+	if [[ "${md5file}" != "none" ]];then
 
-		if [[ "$distro" == "valve-official" ]]; then
+		if [[ "${distro}" == "valve-official" ]]; then
 
 			# strip extra line(s) from Valve checksum file
-			#sed -i "/$file/!d" $md5file
+			#sed -i "/${file}/!d" ${md5file}
 			:
 
 		fi
 
 		echo -e "\nMD5 Check:"
-		# we only want to check for our $file only below
-		md5check=$(md5sum -c "$HOME/downloads/$release/$md5file" | grep "$file: OK")
+		# we only want to check for our ${file} only below
+		md5check=$(md5sum -c "${HOME}/downloads/${release}/${md5file}" | grep "${file}: OK")
 
-		if [[ "$md5check" == "$file: OK" ]]; then
+		if [[ "${md5check}" == "${file}: OK" ]]; then
 
 			# output check test
-			echo -e "$md5check"
+			echo -e "${md5check}"
 
 		else
 
@@ -522,23 +543,23 @@ check_download_integrity()
 	fi
 
 	# Check sha512sum of installer
-	if [[ "$shafile" != "none" ]];then
+	if [[ "${shafile}" != "none" ]];then
 
-		if [[ "$distro" == "valve-official" ]]; then
+		if [[ "${distro}" == "valve-official" ]]; then
 
 			# strip extra line(s) from Valve checksum file
-			#sed -i "/$file/!d" $shafile
+			#sed -i "/${file}/!d" ${shafile}
 			:
 
 		fi
 
 		echo -e "\nSHA512 Check:"
-		# we only want to check for our $file only below
-		shacheck=$(sha512sum -c "$HOME/downloads/$release/$shafile" | grep "$file: OK")
+		# we only want to check for our ${file} only below
+		shacheck=$(sha512sum -c "${HOME}/downloads/${release}/${shafile}" | grep "${file}: OK")
 
-		if [[ "$shacheck" == "$file: OK" ]]; then
+		if [[ "${shacheck}" == "${file}: OK" ]]; then
 			# output check test
-			echo "$shacheck"
+			echo "${shacheck}"
 
 		else
 			# let user know check failed and to retry with overwrite
@@ -561,52 +582,53 @@ eval_git_repo()
 	if [[ "$fallback" == "true" ]]; then
 
 		# set gitrul to fallback url
-		giturl="$giturl_fallback"
+		giturl="${giturl_fallback}"
 		echo -e "\n==INFO==\nUsing fallback git url."
 
 	fi
 
-	if [[ -d "$HOME/downloads/$release/$gitdir" ]]; then
+	if [[ -d "${HOME}/downloads/${release}/${gitdir}" ]]; then
 
-		echo -e "\n==INFO==\nGit DIR $gitdir exists, trying remote pull"
+		echo -e "\n==INFO==\nGit DIR ${gitdir} exists, trying remote pull"
 		sleep 2s
 
 		# change to git folder
-		cd "$HOME/downloads/$release/$gitdir"
+		cd "${HOME}/downloads/${release}/${gitdir}"
 
 		# remove previous ISOs and checksum (if exists)
-		rm -f "$file"
-		rm -f "$md5sum"
+		rm -f "${file}"
+		rm -f "${md5sum}"
 		rm -f "SteamOSDVD.iso"
 
 		# eval git status
 		output=$(git pull)
 
 		# evaluate git pull. Remove, create, and clone if it fails
-		if [[ "$output" != "Already up-to-date." ]]; then
+		if [[ "${output}" != "Already up-to-date." ]]; then
 
 			echo -e "\n==Info==\nGit directory pull failed. Removing and cloning\n"
 			sleep 2s
-			rm -rf "$HOME/downloads/$release/$distro"
+			rm -rf "${HOME}/downloads/${release}/${distro}"
 
 			# clone
-			git clone $giturl
+			git clone ${giturl}
 
 			# Enter git repo
-			cd "$gitdir"
+			cd "${gitdir}"
 
 		else
 
 			# echo output
-			echo -e "$output"
+			echo -e "${output}"
 		fi
 
 	else
+
 		# git dir does not exist, clone
-		git clone $giturl
+		git clone ${giturl}
 
 		# Enter git repo
-		cd "$gitdir"
+		cd "${gitdir}"
 
 	fi
 
@@ -618,22 +640,22 @@ download_file()
 	# Format: base url, relese folder, filename
 
 	# remove previous files if desired
-	if [[ "$HOME/downloads/$release/$file" ]]; then
+	if [[ "${HOME}/downloads/${release}/${file}" ]]; then
 
-		echo -e "\n$file exists, overwrite? (y/n)"
+		echo -e "\n${file} exists, overwrite? (y/n)"
 		# get user choice
 		read -erp "Choice: " rdl_choice
 
-		if [[ "$rdl_choice" == "y" ]]; then
+		if [[ "${rdl_choice}" == "y" ]]; then
 
 			# remove and download
-			rm -f "$HOME/downloads/$release/$file"
-			rm -f "$HOME/downloads/$release/$md5file"
-			rm -f "$HOME/downloads/$release/$shafile"
+			rm -f "${HOME}/downloads/${release}/${file}"
+			rm -f "${HOME}/downloads/${release}/${md5file}"
+			rm -f "${HOME}/downloads/${release}/${shafile}"
 			echo ""
-			wget --no-clobber "$base_url/$release_folder/$file"
+			wget --no-clobber "${base_url}/${release}_folder/${file}"
 
-		elif [[ "$rdl_choice" == "n" ]]; then
+		elif [[ "${rdl_choice}" == "n" ]]; then
 
 			# Do not overwrite files
 			# If checksum does not exist, it will be downloaded in the integrity check function
@@ -646,7 +668,7 @@ download_file()
 	else
 
 		# file does not exist, download
-		wget --no-clobber "$base_url/$release_folder/$file"
+		wget --no-clobber "${base_url}/${release}_folder/${file}"
 
 	fi
 
@@ -659,25 +681,20 @@ download_stephensons_git()
 	# eval repo status for Stephenson's Rocket
 	eval_git_repo
 
-	# remove apt-specific packages, handled in pre_req function
-	if [[ "$distro_check" == "Arch" ]]; then
-		sed -i 's|apt-utils xorriso syslinux rsync wget p7zip-full realpath||g' gen.sh
-	fi
-
 	# Generate image andchecksum files
-	if [[ "$distro" == "vaporos-git" ]]; then
+	if [[ "${distro}" == "vaporos-git" ]]; then
 
 		echo -e "\n==INFO==\nVaporOS detected"
 		sleep 2s
 
 		# eval repo status
-		eval_git_repo
+		${file}
 
 		# clone vaporos branch
-		git clone --depth=1 $vaporos_git_url
+		git clone --depth=1 ${vaporos_git_url}
 
 		# generate image for VaproOS
-		./gen.sh -n "VaporOS $release" vaporos-${release}
+		./gen.sh -n "VaporOS ${release}" vaporos-${release}
 
 	else
 
@@ -691,11 +708,11 @@ download_stephensons_git()
 	echo -e "\n==> Transferring files to release folder\n"
 	sleep 2s
 
-	mv -v "$file" "$HOME/downloads/$release/"
-	mv -v "$md5file" "$HOME/downloads/$release/"
+	mv -v "${file}" "${HOME}/downloads/${release}/"
+	mv -v "${md5file}" "${HOME}/downloads/${release}/"
 
 	# move to release folder for checksum validation
-	cd "$HOME/downloads/$release"
+	cd "${HOME}/downloads/${release}"
 
 }
 
@@ -703,33 +720,33 @@ download_release_main()
 {
 
 	# enter base directory for release
-	cd "$HOME/downloads/$release"
+	cd "${HOME}/downloads/${release}"
 
 	# download requested file (Valve official)
-	if [[ "$distro" == "valve-official" ]]; then
+	if [[ "${distro}" == "valve-official" ]]; then
 
 		download_file
 
 	# download requested file (VaporOS latest)
-	elif [[ "$distro" == "vaporos-git" ]]; then
+	elif [[ "${distro}" == "vaporos-git" ]]; then
 
 		# VaporOS latest is generated as a "mod" of Stephenson's Rocket
 		download_stephensons_git
 
 	# download requested file (VaporOS stable)
-	elif [[ "$distro" == "vaporos-stable" ]]; then
+	elif [[ "${distro}" == "vaporos-stable" ]]; then
 
 		# Latest from http://download.vaporos.net/iso/
 		download_file
 
 	# download requested file (Stephenson's Rocket latest
-	elif [[ "$distro" == "stephensons-rocket-git" ]]; then
+	elif [[ "${distro}" == "stephensons-rocket-git" ]]; then
 
 		# Built from github
 		download_stephensons_git
 
 	# download requested file (Stephenson's Rocket stable)
-	elif [[ "$distro" == "stephensons-rocket-stable" ]]; then
+	elif [[ "${distro}" == "stephensons-rocket-stable" ]]; then
 
 		# Stored iso image from latest torrent file
 		download_file
@@ -760,7 +777,7 @@ main()
 	EOF
 
 	# set base DIR
-	base_dir="$HOME/downloads"
+	base_dir="${HOME}/downloads"
 
 	# prompt user if they would like to load a controller config
 
@@ -825,7 +842,7 @@ main()
 		file="rocket.iso"
 		git="yes"
 		gitdir="stephensons-rocket"
-		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch $release"
+		giturl="--depth=1 https://github.com/steamos-community/stephensons-rocket.git --branch ${release}"
 		md5file="rocket.iso.md5"
 		shafile="none"
 		# set github default action

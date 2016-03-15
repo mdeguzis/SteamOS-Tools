@@ -14,47 +14,6 @@
 # -------------------------------------------------------------------------------
 arg1="$1"
 
-show_banner()
-{
-
-
-	# show banner
-	cat <<-EOF
-	@@@@@@@@@@@@@@@@@@@@@@&*.........../&@@@@@@@@@@@@@@@@@@@@@@
-	@@@@@@@@@@@@@@@@&*.......................*&@@@@@@@@@@@@@@@@
-	@@@@@@@@@@@@@................................*@@@@@@@@@@@@@
-	@@@@@@@@@@(.....................................(@@@@@@@@@@
-	@@@@@@@@(.....STEAMOS MEGA........................&@@@@@@@@
-	@@@@@@/..........DOWNLOADER......... .*/*. .........(@@@@@@
-	@@@@@............................@@@@@@@@@@@@&........@@@@@
-	@@@&..........................*@@@@@@&**/&@@@@@@.......@@@@
-	@@&..........................@@@@@...&@@@(...@@@@*......&@@
-	@@........................../@@@&..@@@@@@@@@..@@@@ ......@@
-	@...........................@@@@..@@@@@@@@@@@..@@@&.......@
-	(..........................*@@@@./@@@@@@@@@@@..@@@&.......&
-	..........................@@@@@@..(@@@@@@@@@/.&@@@.........
-	.........................@@@@@@@@*..@@@@@@@..&@@@&.........
-	@@&....................&@@@@@@@@@@@@.......@@@@@(..........
-	@@@@@@@&..............@@@@@@@@@@@@@@@@@@@@@@@@&............
-	@@@@@@@@@@@@&....*&@@@@@@@@@@@@@@@@@@@@@@@@/...............
-	@@@@@@@@@@@@@@@@@@@&&@@@@@@@@@@@@@@@@(.....................
-	@@@@@@@@@@@@@@@@@@@@@@**.@@@@@@@@@&.**********************&
-	@*&@@@@@@@@@@@@@@@@@@@@@**&@@@@&**************************@
-	@@*****&@@@@@@@@@@@@@@@@@**@@****************************@@
-	@@&********(@@@@@@@@@@@@(*(@@***************************&@@
-	@@@&/////////@@*(@@@@@@*//@@*//////////////////////////&@@@
-	@@@@@////////*@@@&/***/@@@@///////////////////////////@@@@@
-	@@@@@@(/////////(@@@@@@&////////////////////////////&@@@@@@
-	@@@@@@@@(/////////////////////////////////////////&@@@@@@@@
-	@@@@@@@@@@(/////////////////////////////////////&@@@@@@@@@@
-	@@@@@@@@@@@@@(((((((((((((((((((((((((((((((((@@@@@@@@@@@@@
-	@@@@@@@@@@@@@@@@&(((((((((((((((((((((((((&@@@@@@@@@@@@@@@@	
-	EOF
-	sleep 5s
-
-
-}
-
 help()
 {
 
@@ -95,29 +54,30 @@ pre_reqs()
 	############################################
 	# Debian
 	############################################
+
 	if [[ "${distro}_check" == "Debian" ]]; then
 
 		echo -e "Distro detected: Debian"
 
-		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath unzip"
-		for dep in ${deps}; do
-			pkg_chk=$(dpkg-query -s ${dep} 2> /dev/null)
-			if [[ "$pkg_chk" == "" ]]; then
-				sudo apt-get install -y --force-yes ${dep}
+		pkgs="apt-utils xorriso syslinux rsync wget p7zip-full realpath unzip"
+		for pkg in ${pkgs}; 
+		do
+			if [[ $(dpkg-query -s ${pkg}) == "" ]]; then
 
-				if [[ $? = 100 ]]; then
-					echo -e "Cannot install ${dep}. Please install this manually \n"
+				if ! sudo apt-get install -y --force-yes ${pkg}; then
+					echo -e "Cannot install ${pkg}. Please install this manually \n"
 					exit 1
 				fi
 
 			else
-				echo "package ${dep} [OK]"
+				echo "package ${pkg} [OK]"
 			fi
 		done
 
 	############################################
 	# SteamOS
 	############################################
+
 	elif [[ "${distro}_check" == "SteamOS" ]]; then
 
 		# Debian sources are required to install xorriso for Stephenson's Rocket
@@ -139,19 +99,19 @@ pre_reqs()
 
 		# Note: added isolinux, as syslinux contained within SteamOS does not contain
 		# isohdpfx.bin, but isolinux does.
-		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath isolinux unzip"
-		for dep in ${deps}; do
-			pkg_chk=$(dpkg-query -s ${dep})
-			if [[ "$pkg_chk" == "" ]]; then
-				sudo apt-get install -y --force-yes ${dep}
+		pkgs="apt-utils xorriso syslinux rsync wget p7zip-full realpath isolinux unzip"
 
-				if [[ $? = 100 ]]; then
-					echo -e "Cannot install ${dep}. Please install this manually \n"
+		for pkg in ${pkgs}; 
+		do
+			if [[ $(dpkg-query -s ${dep}) == "" ]]; then
+				
+				if ! sudo apt-get install -y --force-yes ${pkg}
+					echo -e "Cannot install ${pkg}. Please install this manually \n"
 					exit 1
 				fi
 
 			else
-				echo "package ${dep} [OK]"
+				echo "package ${pkg} [OK]"
 				sleep .3s
 			fi
 		done
@@ -159,29 +119,31 @@ pre_reqs()
 	############################################
 	# Ubuntu
 	############################################
+
 	elif [[ "${distro}_check" == "Ubuntu" ]]; then
 
 		echo -e "Distro detected: Ubuntu"
 
-		deps="apt-utils xorriso syslinux rsync wget p7zip-full realpath unzip"
-		for dep in ${deps}; do
-			pkg_chk=$(dpkg-query -s ${dep})
-			if [[ "$pkg_chk" == "" ]]; then
-				sudo apt-get install ${dep}
+		pkgs="apt-utils xorriso syslinux rsync wget p7zip-full realpath unzip"
 
-				if [[ $? = 100 ]]; then
-					echo -e "Cannot install ${dep}. Please install this manually \n"
+		for pkg in ${pkgs}; 
+		do
+			if [[ $(dpkg-query -s ${pkg}) == "" ]]; then
+
+				if ! sudo apt-get install ${pkg}; then
+					echo -e "Cannot install ${pkg}. Please install this manually \n"
 					exit 1
 				fi
 
 			else
-				echo "package ${dep} [OK]"
+				echo "package ${pkg} [OK]"
 			fi
 		done
 
 	############################################
 	# Arch Linux
 	############################################
+
 	elif [[ "${distro}_check" == "Arch" ]]; then
 
 		echo -e "Distro detected: Arch Linux"
@@ -190,19 +152,19 @@ pre_reqs()
 		echo -e "Installing main dependencies from Arch Linux repos"
 
 		# Check dependencies (stephensons and vaporos-mod)
-		deps="libisoburn syslinux coreutils rsync p7zip wget unzip git"
-		for dep in ${deps}; do
-			pkg_chk=$(pacman -Q ${dep})
-			if [[ "$pkg_chk" == "" ]]; then
-				sudo pacman -S  ${dep}
-
-				if [[ $? = 100 ]]; then
-					echo -e "Cannot install ${dep}. Please install this manually \n"
+		pkgs="libisoburn syslinux coreutils rsync p7zip wget unzip git"
+		
+		for pkg in ${pkgs}; 
+		do
+			if [[ $(pacman -Q ${pkg}) == "" ]]; then
+			
+				if ! sudo pacman -S ${pkg}; then
+					echo -e "Cannot install ${pkg}. Please install this manually \n"
 					exit 1
 				fi
 
 			else
-				echo "package ${dep} [OK]"
+				echo "package ${pkg} [OK]"
 				sleep .3s
 			fi
 		done
@@ -211,16 +173,18 @@ pre_reqs()
 
 		# apt (need for stephenson's rocket / vaporos-mod)
 		# Don't clone this repo if they are found
-		if [[ ! $(pacaur -Qs apt) ]]; then
+
+		if $(pacman -Qe apt | grep "not found"); then
 
 			git clone "https://github.com/ProfessorKaos64/arch-aur-packages"
 			root_dir="${PWD}"
 			aur_install_dir="${root_dir}/arch-aur-packages"
 			my_arch_pkgs="apt"
+			PACOPTS="--noconfirm --noprogressbar --needed"
 			cd "${aur_install_dir}/apt" || exit 1
 			makepkg -s
 			
-			if ! sudo pacman -U ${PACOPTS} ${pkg}*.pkg.tar.gz; then
+			if ! sudo pacman -U ${PACOPTS} apt*.pkg.tar.gz; then
 		
 				echo "ERROR: Installation of ${pkg} failed. Exiting"
 				exit 1
@@ -236,13 +200,23 @@ pre_reqs()
 		mkdir temp && cd temp || exit
 		wget "https://www.gnu.org/software/xorriso/xorriso-1.4.2.tar.gz" -q -nc --show-progress
 		./configure && make
-		sudo make install
+		
+		# Install
+		if ! sudo make install; then
+			echo "xorriso installation failed! Exiting"
+			cd .. && rm -rf temp/
+			exit 1
+		fi
+		
+		# cleanup
 		cd .. && rm -rf temp/
 
 	fi
+
 	############################################
 	# All Others
-	############################################	
+	############################################
+
 	else
 
 		echo -e "Warning!: Distro not supported"

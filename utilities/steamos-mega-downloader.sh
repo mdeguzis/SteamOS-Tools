@@ -200,6 +200,7 @@ pre_reqs()
 		echo -e "\nCompiling and installing proper variant of xorriso\n"
 		rm -rf temp && mkdir temp && cd temp || exit
 		wget "https://www.gnu.org/software/xorriso/xorriso-1.4.2.tar.gz" -q -nc --show-progress
+		tar -xf "xorriso-1.4.2.tar.gz" && cd "xorriso-1.4.2" || exit
 		./configure && make
 		
 		# Install

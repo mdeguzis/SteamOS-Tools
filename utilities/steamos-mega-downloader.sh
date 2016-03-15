@@ -227,7 +227,7 @@ pre_reqs()
 			
 		else
 		
-			echo -e "\nxorriso local binary [OK]"
+			echo -e "xorriso local binary [OK]"
 			
 		fi
 
@@ -603,6 +603,8 @@ eval_git_repo()
 			rm -rf "${HOME}/downloads/${release}/${distro}"
 
 			# clone
+			echo -e "\nCloning repository\n"
+			sleep 2s
 			git clone ${giturl}
 
 			# Enter git repo
@@ -617,6 +619,8 @@ eval_git_repo()
 	else
 
 		# git dir does not exist, clone
+		echo -e "\nCloning repository\n"
+		sleep 2s
 		git clone ${giturl}
 
 		# Enter git repo

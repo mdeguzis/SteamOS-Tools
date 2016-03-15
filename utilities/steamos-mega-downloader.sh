@@ -227,7 +227,7 @@ pre_reqs()
 			
 		else
 		
-			echo -e "xorriso local binary [OK]"
+			echo -e "package xorriso local binary [OK]"
 			
 		fi
 

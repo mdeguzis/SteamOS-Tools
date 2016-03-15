@@ -55,7 +55,7 @@ pre_reqs()
 	# Debian
 	############################################
 
-	if [[ "${distro}_check" == "Debian" ]]; then
+	if [[ "${distro_check}" == "Debian" ]]; then
 
 		echo -e "Distro detected: Debian"
 
@@ -78,7 +78,7 @@ pre_reqs()
 	# SteamOS
 	############################################
 
-	elif [[ "${distro}_check" == "SteamOS" ]]; then
+	elif [[ "${distro_check}" == "SteamOS" ]]; then
 
 		# Debian sources are required to install xorriso for Stephenson's Rocket
 		sources_check1=$(sudo find /etc/apt -type f -name "jessie*.list")
@@ -120,7 +120,7 @@ pre_reqs()
 	# Ubuntu
 	############################################
 
-	elif [[ "${distro}_check" == "Ubuntu" ]]; then
+	elif [[ "${distro_check}" == "Ubuntu" ]]; then
 
 		echo -e "Distro detected: Ubuntu"
 
@@ -144,7 +144,7 @@ pre_reqs()
 	# Arch Linux
 	############################################
 
-	elif [[ "${distro}_check" == "Arch" ]]; then
+	elif [[ "${distro_check}" == "Arch" ]]; then
 
 		echo -e "Distro detected: Arch Linux"
 		sleep 2s

@@ -149,7 +149,7 @@ pre_reqs()
 		echo -e "Distro detected: Arch Linux"
 		sleep 2s
 
-		echo -e "Installing main dependencies from Arch Linux repos"
+		echo -e "\nInstalling main dependencies from Arch Linux repos\n"
 
 		# Check dependencies (stephensons and vaporos-mod)
 		pkgs="libisoburn syslinux coreutils rsync p7zip wget unzip git"
@@ -169,18 +169,19 @@ pre_reqs()
 			fi
 		done
 
-		echo -e "\nInstalling apt from the Arch Linux User Repository"
-
 		# apt (need for stephenson's rocket / vaporos-mod)
 		# Don't clone this repo if they are found
 
 		if $(pacman -Qe apt | grep "not found"); then
 
-			git clone "https://github.com/ProfessorKaos64/arch-aur-packages"
 			root_dir="${PWD}"
 			aur_install_dir="${root_dir}/arch-aur-packages"
 			my_arch_pkgs="apt"
 			PACOPTS="--noconfirm --noprogressbar --needed"
+
+			echo -e "\nInstalling apt from the Arch Linux User Repository"
+			git clone "https://github.com/ProfessorKaos64/arch-aur-packages"
+			
 			cd "${aur_install_dir}/apt" || exit 1
 			makepkg -s
 			
@@ -196,7 +197,7 @@ pre_reqs()
 		# Last, we need to copmile xorriso from GNU, else the build will fail
 		# This is possibly due to optoins use to compile the package for Arch Linux
 		
-		echo "\nCompiling and install xorriso\n"
+		echo "\nCompiling and installing proper variant of xorriso\n"
 		mkdir temp && cd temp || exit
 		wget "https://www.gnu.org/software/xorriso/xorriso-1.4.2.tar.gz" -q -nc --show-progress
 		./configure && make

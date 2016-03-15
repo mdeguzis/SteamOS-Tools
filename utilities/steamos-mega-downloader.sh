@@ -202,6 +202,9 @@ pre_reqs()
 
 		fi
 		
+		echo -e "\nInstalling pacakges not in the Arch Linux User Repository"
+		sleep 2s
+		
 		# Last, we need to copmile xorriso from GNU, else the build will fail
 		# This is possibly due to optoins use to compile the package for Arch Linux
 		

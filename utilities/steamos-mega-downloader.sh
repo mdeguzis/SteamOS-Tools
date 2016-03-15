@@ -1,16 +1,16 @@
 #!/bin/bash
 # -------------------------------------------------------------------------------
 # Author:    	  	Michael DeGuzis
-# Scipt Name:	  	fetch-steamos.sh
-# Script Ver:		1.7.5
+# Scipt Name:	  	steamos-mega-downloader.sh
+# Script Ver:		1.8.5
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #			to specified directory and run SHA512 checks against them.
 #			Installs to a USB drive
 #			This NOT associated with Valve whatsover.
 #
-# Usage:      		./fetch-steamos.sh
-#			./fetch-steamos.sh --help
-#			./fetch-steamos.sh --checkonly
+# Usage:      		./steamos-mega-downloader.sh
+#			./steamos-mega-downloader.sh --help
+#			./steamos-mega-downloader.sh --checkonly
 # -------------------------------------------------------------------------------
 arg1="$1"
 
@@ -47,6 +47,7 @@ pre_reqs()
 	fi
 
 	echo -e "\n==> Checking for prerequisite packages\n"
+	sleep 2s
 
 	#check for distro name
 	distro_check=$(lsb_release -i | cut -c 17-25)
@@ -58,6 +59,7 @@ pre_reqs()
 	if [[ "${distro_check}" == "Debian" ]]; then
 
 		echo -e "Distro detected: Debian"
+		sleep 2s
 
 		pkgs="apt-utils xorriso syslinux rsync wget p7zip-full realpath unzip"
 		for pkg in ${pkgs}; 
@@ -79,6 +81,9 @@ pre_reqs()
 	############################################
 
 	elif [[ "${distro_check}" == "SteamOS" ]]; then
+	
+		echo -e "Distro detected: SteamOS"
+		sleep 2s
 
 		# Debian sources are required to install xorriso for Stephenson's Rocket
 		sources_check1=$(sudo find /etc/apt -type f -name "jessie*.list")
@@ -123,6 +128,7 @@ pre_reqs()
 	elif [[ "${distro_check}" == "Ubuntu" ]]; then
 
 		echo -e "Distro detected: Ubuntu"
+		sleep 2s
 
 		pkgs="apt-utils xorriso syslinux rsync wget p7zip-full realpath unzip"
 
@@ -180,6 +186,8 @@ pre_reqs()
 			PACOPTS="--noconfirm --noprogressbar --needed"
 
 			echo -e "\nInstalling apt from the Arch Linux User Repository"
+			sleep 2s
+
 			git clone "https://github.com/ProfessorKaos64/arch-aur-packages"
 			
 			cd "${aur_install_dir}/apt" || exit 1
@@ -197,21 +205,31 @@ pre_reqs()
 		# Last, we need to copmile xorriso from GNU, else the build will fail
 		# This is possibly due to optoins use to compile the package for Arch Linux
 		
-		echo -e "\nCompiling and installing proper variant of xorriso\n"
-		rm -rf temp && mkdir temp && cd temp || exit
-		wget "https://www.gnu.org/software/xorriso/xorriso-1.4.2.tar.gz" -q -nc --show-progress
-		tar -xf "xorriso-1.4.2.tar.gz" && cd "xorriso-1.4.2" || exit
-		./configure && make
+		if [[ ! -f "/usr/local/bin/xorriso" ]]; then
 		
-		# Install
-		if ! sudo make install; then
-			echo "xorriso installation failed! Exiting"
+			echo -e "\nCompiling and installing proper variant of xorriso\n"
+			sleep 2s
+			
+			rm -rf temp && mkdir temp && cd temp || exit
+			wget "https://www.gnu.org/software/xorriso/xorriso-1.4.2.tar.gz" -q -nc --show-progress
+			tar -xf "xorriso-1.4.2.tar.gz" && cd "xorriso-1.4.2" || exit
+			./configure && make
+			
+			# Install
+			if ! sudo make install; then
+				echo "xorriso installation failed! Exiting"
+				cd .. && rm -rf temp/
+				exit 1
+			fi
+			
+			# cleanup
 			cd .. && rm -rf temp/
-			exit 1
-		fi
+			
+		else
 		
-		# cleanup
-		cd .. && rm -rf temp/
+			echo -e "\nxorriso local binary [OK]"
+			
+		fi
 
 	############################################
 	# All Others

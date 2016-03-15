@@ -463,7 +463,7 @@ check_download_integrity()
 	# download shasum
 	if [[ "${shafile}" != "none" ]];then
 
-		if [[ "${distro}" == "stephensons-rocket" ]]; then
+		if [[ "${distro}" == "stephensons-rocket" || "${distro}" == "stephensons-rocket-git" ]]; then
 
 			# This is handled during build
 			echo "" > /dev/null
@@ -476,7 +476,7 @@ check_download_integrity()
 		else
 
 			# wget as normal
-			wget --no-clobber "${base_url}/${release}_folder/${shafile}"
+			wget --no-clobber "${base_url}/${release_folder}/${shafile}"
 
 		fi
 

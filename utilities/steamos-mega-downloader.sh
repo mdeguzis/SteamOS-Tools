@@ -105,7 +105,7 @@ pre_reqs()
 		do
 			if [[ $(dpkg-query -s ${dep}) == "" ]]; then
 				
-				if ! sudo apt-get install -y --force-yes ${pkg}
+				if ! sudo apt-get install -y --force-yes ${pkg}; then
 					echo -e "Cannot install ${pkg}. Please install this manually \n"
 					exit 1
 				fi

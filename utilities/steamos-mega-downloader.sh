@@ -197,8 +197,8 @@ pre_reqs()
 		# Last, we need to copmile xorriso from GNU, else the build will fail
 		# This is possibly due to optoins use to compile the package for Arch Linux
 		
-		echo "\nCompiling and installing proper variant of xorriso\n"
-		mkdir temp && cd temp || exit
+		echo -e "\nCompiling and installing proper variant of xorriso\n"
+		rm -rf temp && mkdir temp && cd temp || exit
 		wget "https://www.gnu.org/software/xorriso/xorriso-1.4.2.tar.gz" -q -nc --show-progress
 		./configure && make
 		

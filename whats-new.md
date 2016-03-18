@@ -17,7 +17,7 @@
    * `sudo apt-get update && sudo apt-get install kodi`
   * Created new `dolphin-emu-master` build script for semi-frequent builds of dolphin-emu master tree
   * New build of `dolphin-emu-master` pushed to brewmaster
-  * `dolphin-emu` will stay, but not new versions will be uploaded
+  * `dolphin-emu` will stay, but no new versions will be uploaded
    * The RC branch is long abandoned, and will be branched to 5.0 when it is completed.
 
 -- ProfessorKaos64  <mdeguzis@gmail.com>  Sun, 13 Mar 2016 18:11:00 -0500

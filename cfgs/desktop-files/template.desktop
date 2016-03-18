@@ -5,4 +5,4 @@ GenericName=GENERIC_TEMP
 Type=Application
 Exec=EXEC_TEMP
 Icon=ICON_TEMP
-Categories=CATEGORY_TEMP;
+Categories=application;

@@ -28,7 +28,7 @@
   * New build of `citra` pushed to brewmaster_testing
   * Thanks to Sharkwouter of [VaporOS](http://vaporos.net/), added:
    * Build of `vaporos-mousefix` to brewmaster (Disables mouse acceleration)
-   * New build of 'vapors-binds-xbox360` (Now works in Brewmaster!)
+   * New build of `vapors-binds-xbox360` (Now works in Brewmaster!)
    * Build of `vaporos-trim-support` (Adds SSD [Trim](https://en.wikipedia.org/wiki/Trim_(computing)) support)
   * Fixed more aspects of [LibreGeek Packaging](https://github.com/ProfessorKaos64/LibreGeek-Packaging/tree/brewmaster/setup-files) pbuilder setup.
    * `.pbuildderc` detects SteamOS brewmaster properly, as well if a beta is requested

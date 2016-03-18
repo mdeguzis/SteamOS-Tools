@@ -1,3 +1,15 @@
+# SteamOS-Tools Update Log #52
+
+  * Added the following packages to brewmaster_testing
+   * `cargo` 0.9.0 - Rust package manager  
+   * `citra` 20160315 - WIP Nintendo 3DS emulator
+   * `libretro-rustation` 0.0.1 - WIP libretro core for [Rustation](https://github.com/simias/rustation)
+   * `retroarch` 1.3.2 - RetroArch emulator frontend
+   * `retroarch` 0.1+20160316 - Asssets for RetroArch
+   * `rustc` 1.7.0 - Rust systems programming language 
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Thu, 17 Mar 2016 21:37:00 -0500
+
 # SteamOS-Tools Update Log #51
 
   * ***NOTICE***: Due to a apt-preferences configuration bug, if you experience issues installing or updating `kodi` please run the following in a terminal window:

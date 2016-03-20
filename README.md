@@ -1,3 +1,6 @@
+<img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Alert**:
+On April 20th, the key used to sign packages will transition to using my GPG key vs. the pseudonym GPG key "SteamsOS-Tools Signing Key." The old key will still be part of the keyring. This is implemented in `libregeek-archive-keyring_0.3+bsos-1` pushed 20160320. This will also other distributions (e.g. newly create [jessie repository](http://packages.libregeek.org/debian/)) to be able to sign with a different key.
+
 <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/SteamOS-Tools.png" width=100%/>
 
 # SteamOS-Tools

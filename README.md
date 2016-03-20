@@ -3,7 +3,7 @@
 # SteamOS-Tools
 ***
 <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Alert**:
-On April 20th, the key used to sign packages will transition to using my GPG key vs. the pseudonym GPG key "SteamsOS-Tools Signing Key." The old key will still be part of the keyring. This is implemented in `libregeek-archive-keyring` version 0.3 onward (0.3 pushed 20160320). This will also other distributions (e.g. newly create [jessie repository](http://packages.libregeek.org/debian/)) to utilize the libregeek-archive-keyring package.
+On April 20th, the key used to sign packages will transition to using my GPG key vs. The pseudonym GPG key "SteamsOS-Tools Signing Key." will likely be retired. The old key will still be part of the keyring. This is implemented in `libregeek-archive-keyring` version 0.3 onward (0.3 pushed 20160320). This will also allow other distributions (e.g. newly create [jessie repository](http://packages.libregeek.org/debian/)) to utilize the libregeek-archive-keyring package.
 ***
 
 SteamOS Tools is a 3rd-party repository with the mission to enhance various aspects of SteamOS from the "stock" experience. SteamOS-Tools contains different various utilities to enhance SteamOS, hosted Debian packages for many programs, and more. The purpose of each folder is listed below in the "Contents" section. The [wiki page](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki) is full of info. Please start there when looking for information.

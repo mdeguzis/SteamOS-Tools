@@ -2,7 +2,8 @@
 
 * **IMPORTANT!**
 * From This point forawrd, due other distributions being involved now, and to keep everything consolidated, updates will be posted at http://libregeek.org
-* The update posts will be taged properly (.e.g "Debian package updates")
+* The update posts will be taged properly (.e.g "Debian package updates" or "SteamOS-Tools Updates")
+* Example of an already made post is [here](http://www.libregeek.org/2015/10/31/steamos-tools-updates-for-october-31-2015/)
 * The updates thread will include any distribution I have updated packages for, such as Brewmaster or Debian Jessie.
 * I would rather update one website vs. multiple.
 

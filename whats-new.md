@@ -1,3 +1,13 @@
+# SteamOS-Tools Update Log #53
+
+* **IMPORTANT!**
+* From This point forawrd, due other distributions being involved now, and to keep everything consolidated, updates will be posted at http://libregeek.org
+* The update posts will be taged properly (.e.g "Debian package updates")
+* The updates thread will include any distribution I have updated packages for, such as Brewmaster or Debian Jessie.
+* I would rather update one website vs. multiple.
+
+-- ProfessorKaos64  <mdeguzis@gmail.com>  Sun, 20 Mar 2016 15:12:00 -0500
+
 # SteamOS-Tools Update Log #52
 
   * Added the following packages to brewmaster_testing

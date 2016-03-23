@@ -15,7 +15,7 @@ All operations are tested against official Valve releases _only_.
 # Latest Updates, News, and discussions
 ***
 
-For the latest change details, please see the commits page and [whats-new.md](whats-new.md) file for overall change details. You can also follow development, and engage in discussion by joining the IRC channel `#libregeek`
+For the latest change details, please see the commits page and [libregeek.org](http://www.libregeek.org/category/steamos-tools/) for overall change details. You can also follow development, and engage in discussion by joining the IRC channel `#libregeek`w
 located under the irc.freenode.net network. The main op is me "ProfessorKaos64".
 
 # Warning

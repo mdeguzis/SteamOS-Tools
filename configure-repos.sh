@@ -29,11 +29,11 @@ if [[ "$arg1" == "--repair" ]]; then
 	done
 
 	# Ensure there isn't a custom repo in main configuration file
-	sed -i '/libregeek/d' "/etc/apt/sources.list"
+	sudo sed -i '/libregeek/d' "/etc/apt/sources.list"
 	
 	# TESTING ONLY
-	ls /etc/apt/sources.list.d && sleep 8s
-	ls /etc/apt/preferences.d && sleep 8s
+	echo "sources list" && ls /etc/apt/sources.list.d && sleep 8s
+	echo "prefs list" && ls /etc/apt/preferences.d && sleep 8s
 	
 fi
 

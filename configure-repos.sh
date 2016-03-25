@@ -23,8 +23,8 @@ if [[ "$arg1" == "--repair" ]]; then
 	for file in "${files}";
 	do
 
-		rm -rf /etc/apt/sources.list.d/${file}*
-		rm -rf /etc/apt/preferences.d/${file}*
+		sudo rm -rf /etc/apt/sources.list.d/${file}*
+		sudo rm -rf /etc/apt/preferences.d/${file}*
 	
 	done
 

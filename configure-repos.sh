@@ -18,6 +18,9 @@ if [[ "$arg1" == "--repair" ]]; then
 	echo -e "\n==> Repairing repository configurations\n"
 	sleep 2s
 
+	# Clear out packages
+	sudo apt-get purge -y steamos-tools-repo libregeek-archive-keyring
+
 	files="jessie jessie-backports steamos-tools"
 
 	for file in ${files};

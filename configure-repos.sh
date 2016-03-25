@@ -20,7 +20,7 @@ if [[ "$arg1" == "--repair" ]]; then
 
 	files="jessie jessie-backports steamos-tools"
 
-	for file in "${files}";
+	for file in ${files};
 	do
 
 		sudo rm -rf /etc/apt/sources.list.d/${file}*

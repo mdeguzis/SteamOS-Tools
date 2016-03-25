@@ -517,10 +517,10 @@ add_web_app_chrome()
 		# perform swaps for mouse profiles
 		
 		sudo find /usr/bin -name '*Launch.sh' | while read line; do
-		    # echo "Processing file '$line'"
-		    sudo sed -i "s|#antimicro_tmp|$gp_cmd|" $line 
+		# echo "Processing file '$line'"
+		sudo sed -i "s|#antimicro_tmp|$gp_cmd|" $line 
+		
 		done
-	
 	
 		# remove launchers temp file
 		rm -f /tmp/launchers.txt
@@ -544,18 +544,10 @@ add_web_app_chrome()
 			echo "" > /dev/null
 		
 		elif [[ "$kiosk_choice" == "n" ]]; then
-		
-			# remove kiosk parameter
-			if [[ "$custom_url" == "no" ]]; then
+
 			
-				# remove kiosk mode from normal launher
-				sudo sed -i "s|--kiosk ||g" "/usr/bin/${TARGET_NAME}-Launch.sh"
-				
-			elif [[ "$custom_url" == "yes" ]]; then
-			
-				# remove kiosk mode from custom launher
-				sudo sed -i "s|--kiosk ||g" "/usr/bin/${custom_name}-Launch.sh"
-			fi
+			# remove kiosk mode from normal launher
+			sudo sed -i "s|--kiosk ||g" "/usr/bin/${TARGET_NAME}-Launch.sh"
 	
 		else
 		

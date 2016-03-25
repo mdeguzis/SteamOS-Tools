@@ -189,6 +189,37 @@ ep_install_gameplay_recording()
 
 }
 
+ep_install_itchio()
+{
+	
+	# Until the build script is worked out source the latest deb from the github release page
+	# When that is done, this module can be retired, as work here can be merged into the package
+	
+	# Install pre-req packages
+	
+	echo -e "Installing prerequisite packages\n"
+	sudo apt-get install -y --force-yes xserver-xephyr
+	
+	# Install itchio
+	
+	echo -e "Installing Itch.io client\n"
+	wget -P /tmp "https://github.com/itchio/itch/releases/download/v0.11.3/itch_0.11.3_amd64.deb"
+	sudo gdebi "/tmp/itch_0.11.3_amd64.deb"
+	rm -f "/tmp/itch_0.11.3_amd64.deb"
+	
+	# copy desktop and launcher files to appropriate locations
+	
+	sudo cp "$scriptdir/cfgs/desktop-files/itchio.desktop" "/usr/share/applications"
+	sudo cp "$scriptdir/launchers/itchio-launcher" "/usr/bin/"
+	
+	# launcher is already exec set, but ensure it is anyway
+	
+	sudo chmod +x "/usr/bin/itchio-launcher"
+	
+	echo -e "\nItch.io's content delivery client should now be available as a non-Steam shortcut\n"
+	
+}
+
 ep_install_lutris()
 {
 	

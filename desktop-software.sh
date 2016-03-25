@@ -3,7 +3,7 @@
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	install-desktop-software.sh
-# Script Ver:	2.0.1.1
+# Script Ver:	2.0.3.1
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
 #		intention of SteamOS, for some users, this will provide
@@ -335,15 +335,23 @@ function gpg_import()
 	# When installing from jessie and jessie backports,
 	# some keys do not load in automatically, import now
 	# helper script accepts $1 as the key
-	echo -e "\n==> Importing Debian GPG keys\n"
+	echo -e "\n==> Importing Debian and Librgeek GPG keys\n"
 	sleep 1s
 
 
 	# Key Desc: Libregeek Signing Key
 	# Key ID: 34C589A7
 	# Full Key ID: 8106E72834C589A7
-	echo -ne "Adding Libregeek public signing key: " && \
-	$scriptdir/utilities/gpg-import.sh 8106E72834C589A7 2> /dev/null
+	libregeek_keyring_test=$(dpkg-query -l libregeek-archive-keyring | grep "no packages")
+	debian_eyring_test=$(dpkg-query -l debian-archive-keyring | grep "no packages")
+	
+	if [[ "${libregeek_keyring_test}" != "" || "${debiankeyring_test}" != "" ]]; then 
+	
+		wget http://packages.libregeek.org/libregeek-archive-keyring-latest.deb -q --show-progress -nc
+		sudo dpkg -i libregeek-archive-keyring-latest.deb
+		sudo apt-get install -y debian-archive-keyring
+
+	fi
 
 }
 
@@ -384,11 +392,15 @@ get_software_type()
 		ep_install_chrome
                 exit 1
         elif [[ "$type" == "gameplay-recording" ]]; then
-                # install plex from helper script
+                # install program from helper script
 		ep_install_gameplay_recording
                 exit 1
+        elif [[ "$type" == "itchio" ]]; then
+                # install itchio from helper script
+		ep_install_itchio
+                exit 1        
         elif [[ "$type" == "retroarch" ]]; then
-                # add emulation software Retroarch
+                # add retroarch software Retroarch
                 ep_install_retroarch
                 exit 1
 	elif [[ "$type" == "ut4" ]]; then
@@ -596,8 +608,8 @@ show_warning()
 	        ;;
 
 	        a|A)
-		echo -e "\nProceeding to add-debian-repos.sh"
-		"$scriptdir/add-debian-repos.sh"
+		echo -e "\nProceeding to configure-repos.sh.sh"
+		"$scriptdir/configure-repos.sh.sh"
 	        ;;
 
   	        d|D)

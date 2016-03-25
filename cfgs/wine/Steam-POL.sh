@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo su - steam -c 'playonlinux'
+gksu -u steam playonlinux

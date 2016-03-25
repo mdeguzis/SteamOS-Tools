@@ -1,0 +1,8 @@
+APT::Periodic::Unattended-Upgrade "1";
+APT::Periodic::Download-Upgradeable-Packages "1";
+APT::Periodic::AutocleanInterval "5";
+// Automatically upgrade packages from these (origin:archive) pairs
+Unattended-Upgrade::Origins-Pattern {
+	"origin=Valve Software LLC,label=SteamOS";
+};
+Unattended-Upgrade::InstallOnShutdown "true";

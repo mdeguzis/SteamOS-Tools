@@ -90,9 +90,13 @@ rpc_configure_common()
 		steam_home="/home/steam"
 		desktop_home="/home/desktop"
 		
+		# root dirs
+		retroarch_root_steam="/home/steam/retroarch"
+		retroarch_root_desktop="/home/desktop/retroarch"
+		
 		# save DIRs
-		save_loc_desktop="/home/desktop/retroarch/saves"
-		save_loc_steam="/home/steam/retroarch/saves"
+		save_loc_desktop="${retroarch_root_desktop}/saves"
+		save_loc_steam="${retroarch_root_steam}/saves"
 		
 		# the retroarch config file needs to be placed in the steam users dir so that
 		# the running retroarch application can access it freely while steamcompmgr is running
@@ -100,14 +104,14 @@ rpc_configure_common()
 		retroarch_cfg_loc_desktop="/home/desktop/.config/retroarch"
 		
 		# other directories
-		roms_dir_desktop="/home/desktop/ROMs"
-		bios_dir_desktop="/home/desktop/retroarch/BIOS"
-		banner_dir_desktop="/home/desktop/Pictures"
-		banner_dir_steam="/home/steam/Pictures"
+		roms_dir_desktop="${desktop_home}/ROMs"
+		bios_dir_desktop="${retroarch_root_desktop}/BIOS"
+		banner_dir_desktop="${desktop_home}/Pictures"
+		banner_dir_steam="${steam_home}/Pictures"
 		
 		# paths set but only referenced
-		roms_dir_steam="/home/steam/ROMs"
-		bios_dir_steam="/home/steam/retroarch/BIOS"
+		roms_dir_steam="${steam_home}/ROMs"
+		bios_dir_steam="${retroarch_root_stean}/BIOS"
 		
 		#################################################
 		# Directories and paths
@@ -120,7 +124,7 @@ rpc_configure_common()
 		pathlist+=("$save_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_steam")
 		pathlist+=("$retroarch_cfg_loc_desktop")
-		# Steam user ROM and BIOS symlinked desktop DIRa
+		# Steam user ROM and BIOS symlinked desktop DIR
 		pathlist+=("$roms_dir_desktop")
 		pathlist+=("$bios_dir_desktop")
 		pathlist+=("$banner_dir_desktop")
@@ -144,10 +148,9 @@ rpc_configure_common()
 		# all file copy operations below.
 
 		sudo chown -R desktop:desktop "$retroarch_cfg_loc_desktop"
-		sudo chown -R desktop:desktop "$save_loc_desktop"
+		sudo chown -R desktop:desktop "$retroarch_root_desktop"
 		sudo chown -R desktop:desktop "$banner_dir_desktop"
 		sudo chown -R desktop:desktop "$roms_dir_desktop"
-		sudo chown -R desktop:desktop "$bios_dir_desktop"
 		
 		#################################################
 		# Linking
@@ -286,9 +289,12 @@ rpc_configure_common()
 		# Steam user only here, desktop corrected upon DIR creation
 		# sudo used to create directories for Steam user, so it must be corrected
 		# from the root user owner.
-		sudo chown -R steam:steam "$retroarch_cfg_loc_steam"
-		sudo chown -R steam:steam "$save_loc_steam"
+		
 		sudo chown -R steam:steam "$banner_dir_steam"
+		sudo chown -R steam:steam "$retroarch_root_steam"
+		sudo chown -R steam:steam "$retroarch_cfg_loc_steam"
+		sudo chown -R steam:steam "$roms_dir_steam"
+		sudo chown -R steam:steam "$save_loc_steam"
 
 	elif [[ "$apt_mode" == "remove" ]]; then
 	
@@ -424,7 +430,7 @@ rpc_configure_src()
 		# add small launcher script
 		# this will acively swap out the current user (desktop or steam) so that the
 		# appropriate retroarch.cfg file will be user
-		sudo cp "$scriptdir/cfgs/retroarch/retroarch-launch.sh" "/usr/bin"
+		sudo cp "$scriptdir/launchers/retroarch-src" "/usr/bin"
 		
 		# copy cores from source build DIR
 		find "/home/desktop/retroarch-src/libretro-super/" -name *.so | xargs sudo cp -t "/usr/lib/libretro" 2> /dev/null

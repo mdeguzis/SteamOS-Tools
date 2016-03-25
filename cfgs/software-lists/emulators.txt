@@ -2,6 +2,7 @@ dgen
 dosbox
 fceu
 gdebi-core
+gngeo
 gnuboy-sdl
 mednafen
 mupen64plus

@@ -15,26 +15,6 @@
 #
 # -------------------------------------------------------------------------------
 
-m_install_gngeo()
-{
-
-	#####################################################
-	# gngeo
-	#####################################################
-	# Built from: code.google.com/p/gngeo 
-	
-	# VARs
-	PKG="gngeo"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
-	# PKG below needs copied to remote share!
-	PKG_FILENAME="gngeo_0.7.1+SteamOS-1_amd64.deb"
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-	
-	# proceed to eval routine
-	m_pkg_routine_eval
-
-}
-
 m_install_higan()
 {
 
@@ -70,25 +50,6 @@ m_install_snes9x_gtk()
 	
 	# proceed to eval routine
 	m_pkg_routine_eval
-}
-
-m_install_vbam()
-{
-
-	#####################################################
-	# VBA-M (SDL)
-	#####################################################
-	# Built from: ppa:sergio-br2/vbam-trunk
-	  
-	# VARs for PKG2
-	PKG="vbam-sdl"
-	BASE_URL="http://www.libregeek.org/SteamOS-Extra/emulation"
-	PKG_FILENAME="vbam-sdl_1.8.0.1231-SteamOS_amd64.deb "
-	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG | grep "install ok installed")
-
-	# proceed to eval routine for PKG 2
-	m_pkg_routine_eval
-	 
 }
 
 m_pkg_routine_eval()
@@ -151,7 +112,6 @@ m_emulation_install_main()
 	
 	# Install the rest ad-hoc for now, will be packaged
 	m_install_snes9x_gtk
-	m_install_vbam
 	m_install_higan
 	# m_install_gngeo
 	echo ""

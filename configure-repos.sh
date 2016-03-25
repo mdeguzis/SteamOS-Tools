@@ -5,11 +5,39 @@
 # Description:	Configures LibreGeek repositories
 #
 # Usage:	./configure-repos.sh
-# Opts:		[ --testing | --remove-testing ]
+# Opts:		[ --testing | --remove-testing | --repair ]
 #		Adds or removes testing. Please see README.md
 # ------------------------------------------------------------------------------
 
 arg1="$1"
+
+# Process repair argument if requested
+
+if [[ "$arg1" == "--repair" ]]; then
+
+	echo -e "\n==> Repairing repository configurations\n"
+	sleep 2s
+
+	files="jessie jessie-backports steamos-tools"
+
+	for file in "${files}";
+	do
+
+		rm -rf /etc/apt/sources.list.d/${file}*
+		rm -rf /etc/apt/preferences.d/${file}*
+	
+	done
+
+	# Ensure there isn't a custom repo in main configuration file
+	sed -i '/libregeek/d' "/etc/apt/sources.list"
+	
+	# TESTING ONLY
+	ls /etc/apt/sources.list.d && sleep 8s
+	ls /etc/apt/preferences.d && sleep 8s
+	
+fi
+
+# Add main configuration set
 
 echo -e "\n==> Adding keyrings and repository configurations\n"
 sleep 2s

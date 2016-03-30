@@ -122,10 +122,7 @@ More information on utilities and tools can be foudn in the [wiki](https://githu
 * For all other videos and tutorials, please see the [Videos and Tutorials](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Videos-and-Tutorials) wiki page
 
 # Branches
-There are three main branches at the moment
-
-`alchemist`  
-Only contains a modified `add-debian-repos.sh`. Only intended for some legacy package testing right now.  
+There are two main branches at the moment. Alchemist is no longer supported
 
 `brewmaster`  
 Brewmaster branch. Default branch for repository.  

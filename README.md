@@ -18,7 +18,7 @@ All operations are tested against official Valve releases _only_.
 For the latest change details, please see the commits page and [libregeek.org](http://www.libregeek.org/category/steamos-tools/) for overall change details. You can also follow development, and engage in discussion by joining the IRC channel `#libregeek`w
 located under the irc.freenode.net network. The main op is me "ProfessorKaos64".
 
-While I know folks I run into will send me friend requestes at time on Steam, please don't be offended if I do not accept it. I try to keep my list small and tidy to minimize notification/r clutter, keep general discussions to IRC, and to keep organized with discussions. I typically only add folks I have regular contact with, and will even prune the list at times. Thank you for understanding.
+While I know folks I run into will send me friend requestes at time on Steam, please don't be offended if I do not accept it. I try to keep my list small and tidy to minimize notification clutter, keep general discussions to IRC, and to keep organized with discussions. I typically only add folks I have regular contact with, and will even prune the list at times. Thank you for understanding.
 
 # Warning
 ***

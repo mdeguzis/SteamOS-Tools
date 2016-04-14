@@ -9,6 +9,33 @@
 # Usage:	      	n/a , module
 # -----------------------------------------------------------------------
 
+install_android_apk()
+{
+	echo -e "\n==> APK installation routine"
+
+	# NOTE!
+	# Shashlik currently only supports x86 compatible Android APKs!!!
+	
+	# Ask where APK is and copy to APK dir for safekeeping and running later on
+	
+	echo -e "\nPlease enter the temporarly path to the APK file. Include the full path and extension\n"
+	sleep 0.2s
+	read -erp 
+	
+	# Copy APK to fixed location
+	cp "${APK}" "${APK_DIR}"
+	
+	# Get base name of APK
+	APK_BASENAME=$(basename "${APK}")
+	
+	echo -e "\n"Installing APK, please wait...\n"
+	
+	# Install APK from fixed location
+	/opt/shashlik/bin/shashlik-install "${APK_DIR}/${APK_BASENAME}"
+
+
+}
+
 add_android_app()
 {
 
@@ -61,8 +88,8 @@ add_android_app()
 	
 			# prompt user for optoin they wish to use
 			echo -e "\nPlease choose from the following. Choose Done when finished."
-			echo "(1) Install Android application"
-			echo "(2) Other"
+			echo "(1) Install Android APK"
+			echo "(2) Install desktop shortcut to APK"
 			echo "(x) Done"
 			echo ""
 			
@@ -74,8 +101,7 @@ add_android_app()
 			case "$android_app_choice" in
 			        
 			        1)
-			        web_app_chrome_exts
-			        kiosk_opt="/usr/bin/$LAUNCHER"
+			        install_android_apk
 			        ;;
 			        
 			        2)

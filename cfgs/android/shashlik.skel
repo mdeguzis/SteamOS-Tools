@@ -1,0 +1,37 @@
+#!/bin/bash
+# -----------------------------------------------------------------------
+# Author: 	    	XÆЯO (Steam Community member)
+# Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	  	N/A
+# Script Ver:	  	0.1.1
+# Initial ver:		20150412
+# Description:		Module for isntalling android-apps. This is a default
+#									template file used by the 'android-apps' module.
+#	
+# Usage:	      	n/a , module
+# -----------------------------------------------------------------------
+
+# Information
+# -----------
+# You must first install an APK by using "/opt/shashlik/bin/shashlik-install /path/appname.apk".
+# Shashlik currently only supports x86 compatible Android APKs.
+# If an app needs a screen rotation, add it as a parameter to the script.
+# Apps can be ran in full-screen mode by pressing left Alt + Enter.
+# Do not delete the downloaded app APK as you'll need it.
+
+apkpath=$1
+apkfile=$2
+apkname=$3
+rotation=$4
+
+if [ $rotation ]; then
+xrandr --orientation $rotation # can be inverted, left, or right
+fi
+
+rm ~/.local/share/shashlik/userdata.img
+cp $apkpath/$apkfile".apk" ~/.local/share/shashlik
+/opt/shashlik/bin/shashlik-run $apkfile "$apkname"
+
+if [ $rotation ]; then
+xrandr --orientation normal
+fi

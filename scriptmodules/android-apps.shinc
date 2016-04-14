@@ -36,6 +36,63 @@ install_android_apk()
 
 }
 
+create_android_app_shortcut()
+{
+
+	if [[ "${skip_shorcut_prompts}" = "false" ]] then;
+	
+		echo -e "Currently installed APKS:
+		
+		# List APKS
+
+	else
+
+		read -erp "Enter a name for the application: " NAME
+		REAL_NAME="$(echo ${APK_BASENAME} | sed -i "
+		SHORTCUT="Twitch.desktop"
+		LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
+		BANNER_IMG="$scriptdir/artwork/banners/android-default.png"
+		
+	fi
+
+	# copy default launcher, modify based on values pased from
+	# web_app_{web_app_name}
+	sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${TARGET_NAME}-Launch.sh"
+	
+	# copy over desktop shortcut
+	sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications/${TARGET_NAME}.desktop"
+	
+	# copy banner
+	sudo cp "$BANNER_IMG" "/home/steam/Pictures"
+	
+	# mark exec
+	sudo chmod +x "/usr/bin/${TARGET_NAME}-Launch.sh"
+	
+	# perform sed replacements on skel files
+	sudo sed -i "s|LAUNCHER_TMP|$LAUNCHER|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+	sudo sed -i "s|NAME_TMP|$NAME|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+	sudo sed -i "s|IMG_TMP|$BANNER_IMG|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+	sudo sed -i "s|WEB_URL_TMP|$WEB_URL|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+	sudo sed -i "s|BROWSER_TMP|$browser|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+	
+	
+	# set launch file loc for easy swapout
+	launch_loc="/usr/bin/${TARGET_NAME}-Launch.sh"
+	
+	# perform sed replacements on skel files
+	sudo sed -i "s|LAUNCHER_TMP|$launch_loc|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+	sudo sed -i "s|NAME_TMP|$custom_name|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+	sudo sed -i "s|WEB_URL_TMP|$custom_url|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+	sudo sed -i "s|BROWSER_TMP|$browser|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+	
+	# mark launcher exec
+	sudo chmod +x "/usr/bin/${TARGET_NAME}-Launch.sh"
+	
+	# Copy skel file and alter
+	cp "${scriptdir}/cfgs/android/shashlik.skel" "/usr/share/applications/
+
+}
+
 add_android_app()
 {
 
@@ -89,7 +146,7 @@ add_android_app()
 			# prompt user for optoin they wish to use
 			echo -e "\nPlease choose from the following. Choose Done when finished."
 			echo "(1) Install Android APK"
-			echo "(2) Install desktop shortcut to APK"
+			echo "(2) Install desktop shortcut to APK (if missing)"
 			echo "(x) Done"
 			echo ""
 			
@@ -101,12 +158,14 @@ add_android_app()
 			case "$android_app_choice" in
 			        
 			        1)
+			        skip_shorcut_prompts="true"
 			        install_android_apk
+			        create_android_app_shortcut
 			        ;;
 			        
 			        2)
-			        web_app_hulu
-			        kiosk_opt="/usr/bin/$LAUNCHER"
+			        skip_shorcut_prompts="false"
+			        create_android_app_shortcut
 			        ;;
 			         
 			        x|done)

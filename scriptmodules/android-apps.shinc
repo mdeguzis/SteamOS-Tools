@@ -1,0 +1,516 @@
+# -----------------------------------------------------------------------
+# Author: 	    	Michael DeGuzis
+# Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt Name:	  	extra-pkgs.
+# Script Ver:	  	0.1.1
+# Description:		Module for installing Android apps on Linux
+#                 Debs: http://static.davidedmundson.co.uk/shashlik/
+#	
+# Usage:	      	n/a , module
+# -----------------------------------------------------------------------
+
+add_android_app()
+{
+
+	if [[ "$options" == "install" ]]; then
+
+		#######################################
+		# Set browser/dirs
+		#######################################
+		# set vars so we can alternate between chrome/chromium for testing
+		# without changing a lot of code
+		
+		browser="google-chrome-stable"
+		#browser="chromium-browser"
+		
+		browser_dir="/home/steam/.config/google-chrome"
+		#browser_dir="/home/steam/.config/chromium"
+
+		config_dir="${browser_dir}/Default/"
+
+		#######################################
+		# Set vars
+		#######################################
+	
+		# set external Deb repo required flag
+		export deb_repo_name="jessie.list"
+		export deb_repo_req="yes"
+		
+		# set custom url to no as a default
+		custom_url="no"
+		
+		# Eval requirements
+		"$scriptdir/utilities/check_repo_req.sh"
+		
+		echo -e "\n==> Installing web app (via Chrome) from automated script...\n"
+		sleep 2s
+		
+		# create Google chrome dir if it does not exist to copy our cfgs in
+		
+		if [[ -d "$config_dir" ]]; then
+			# directory exists
+			echo -e "Chrome config directory found. Skipping default setup"
+		else
+			# create DIR
+			echo -e "Chrome config directory not found, creating"
+			sudo mkdir -p "$config_dir"
+		fi
+		
+		#######################################
+		# Pre-reqs
+		#######################################
+		
+		# required to display x window for Chrome
+		# recently discovered, was libqt-dev for antimciro
+		# This will need added as s dependency into the .deb pkg
+		
+		sudo apt-get install -y --force-yes xserver-xephyr libqt4-dev
+	
+		#######################################
+		# Software function pre-req
+		#######################################
+		
+		echo -e "\n==> Assessing pre-requisite software"
+		sleep 1s
+	
+		pkg_test=$(which $browser)
+	
+		if [[ "$pkg_test" == "" ]]; then
+		
+			if [[ "$browser" == "google-chrome-stable" ]]; then
+		
+				echo -e "\n==INFO==\ngoogle-chrome-stable not found! Installing now..."
+				# install browser from script
+				sleep 2s
+				ep_install_chrome
+			
+			elif [[ "$browser" == "chromium-browser" ]]; then
+			
+				# install chromium-browser beta vesrion from libregeek
+				sudo apt-get install "$browser"
+				
+			fi
+			
+		else
+			
+			echo -e "\nPackage $browser [OK]"
+			sleep 0.5s
+			
+		fi
+		
+		pkg_test=$(which antimicro)
+	
+		if [[ "$pkg_test" == "" ]]; then
+		
+			echo -e "\n==INFO==\nantimicro not found! Installing now..."
+			# install antimicro 
+			sudo apt-get install -y --force-yes antimicro
+			
+		else
+			
+			echo -e "Package antimicro [OK]"
+			sleep 0.5s
+			
+		fi
+		
+		###################################
+		# Start web app addition loop
+		###################################
+		
+		while [[ "$web_app_choice" != "9" || "$web_app_choice" != "done" ]];
+		do	
+			echo -e "\n#############################################################"
+			echo -e "Web application installation (via Chrome kiosk mode)"
+			echo -e "#############################################################"
+	
+			# prompt user For websites they wish to add as web apps
+			echo -e "\nPlease choose which webapp you wish to add. Choose Done when finished."
+			echo "(1) Chrome Extensions"
+			echo "(2) Hulu"
+			echo "(3) Netflix"
+			echo "(4) SoundCloud"
+			echo "(5) Twitch"
+			echo "(6) Youtube"
+			echo "(7) Youtube TV"
+			echo "(8) Vimeo (couch mode)"
+			echo "(9) Custom"
+			echo "(10) Done"
+			echo ""
+			
+			# the prompt sometimes likes to jump above sleep
+			sleep 0.5s
+			
+			read -ep "Choice: " web_app_choice
+			
+			case "$web_app_choice" in
+			        
+			        1)
+			        web_app_chrome_exts
+			        kiosk_opt="/usr/bin/$LAUNCHER"
+			        ;;
+			        
+			        2)
+			        web_app_hulu
+			        kiosk_opt="/usr/bin/$LAUNCHER"
+			        ;;
+			         
+			        3)
+			        web_app_netflix
+			        kiosk_opt="/usr/bin/$LAUNCHER"
+				;;
+	
+			        4)
+			        web_app_soundcloud
+			        kiosk_opt="/usr/bin/$LAUNCHER"
+			        ;;
+			        
+			    	5)
+			        web_app_twitch
+			        kiosk_opt="/usr/bin/$LAUNCHER"
+			        ;;
+	
+			    	6)
+			        web_app_youtube
+			        kiosk_opt="/usr/bin/$LAUNCHER"
+			        ;;
+			        
+			        7)
+			        web_app_youtube_tv
+			        kiosk_opt="/usr/bin/$LAUNCHER"
+			        ;;
+			        
+			        8)
+			        web_app_vimeo_tv
+			        kiosk_opt="/usr/bin/$LAUNCHER"
+			        ;;
+			         
+			        9)
+			        custom_url="yes"
+			        # kiosk_opt handled in custom url sequence below
+			        ;;
+			         
+			        10|done)
+			        # do nothing
+			        echo -e "\n==> Exiting script\n"
+			        exit 1
+			        ;;
+			         
+			        *)
+			        echo -e "\n==ERROR==\nInvalid Selection!"
+			        sleep 1s
+			        continue
+				;;
+			esac
+			
+		#######################################
+		# Configuration
+		#######################################
+	
+		echo -e "\n==> Configuring"
+		sleep 1s
+		
+		# copy launcher to /usr/bin
+		# Eval based on custom url or not
+		
+		# copy default user files for browser over
+		# do not overwrite the Default folder if it exists already
+		
+		# Chrome default directory check
+		config_dir_check=$(sudo ls  "$browser_dir")
+		
+	        if [[ "$config_dir_check" != "" ]]; then
+	                # do nothing
+	                echo -e "\n$browser Default config DIR exists. Skipping..."
+	        else
+	                echo -e "\n$browser Default config DIR does not exist. Adding..."
+	                sudo cp -r $scriptdir/cfgs/web-cfgs/skel/Default/${browser}/.  "$config_dir"
+	        fi
+
+		# add widevine support if we are using chromium-browser
+		# TODO
+		
+		
+		if [[ "$browser" == "chromium-browser" ]]; then
+		
+			# add widebine libraries - TODO
+			:
+			
+		fi
+	
+		#########################
+		# Evaluate custom url
+		#########################
+		
+		if [[ "$custom_url" == "no" ]]; then
+		
+			# copy default launcher, modify based on values pased from
+			# web_app_{web_app_name}
+			sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${TARGET_NAME}-Launch.sh"
+			
+			# copy over desktop shortcut
+			sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications/${TARGET_NAME}.desktop"
+	
+			# copy banner
+			sudo cp "$BANNER_IMG" "/home/steam/Pictures"
+			
+			# mark exec
+			sudo chmod +x "/usr/bin/${TARGET_NAME}-Launch.sh"
+			
+			# perform sed replacements on skel files
+			sudo sed -i "s|LAUNCHER_TMP|$LAUNCHER|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+			sudo sed -i "s|NAME_TMP|$NAME|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+			sudo sed -i "s|IMG_TMP|$BANNER_IMG|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+			sudo sed -i "s|WEB_URL_TMP|$WEB_URL|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+			sudo sed -i "s|BROWSER_TMP|$browser|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+			
+		elif [[ "$custom_url" == "yes" ]]; then
+			
+			# Prompt for url
+			
+			echo -e "\nPlease enter your web url you wish to access\n"
+			sleep 0.5s
+			read -ep "Choice: " custom_url
+			
+			echo -e "\nPlease enter a name for this web app:"
+			echo -e "Avoid a name with '.' symbols.\n"
+			sleep 0.5s
+			read -ep "Choice: " custom_name
+			
+			# To take care of names with spaces, we will set TARGET_NAME
+			# change spaces to dashes
+			TARGET_NAME=$(echo $custom_name | sed "s| |-|g")
+			
+			echo -e "\nPlease enter path to image banner (best: 460x215)"
+			echo -e "Leave this blank if you wish to use the default\n"
+			sleep 0.5s
+			read -ep "Choice: " custom_img
+			
+			# copy skel files over
+			sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${TARGET_NAME}-Launch.sh"
+			sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications/${TARGET_NAME}.desktop"
+			
+			if [[ "$custom_img" == "" ]]; then
+			
+				# copy over default banner
+				default_img="/home/steam/Pictures/WebApp-Default.png"
+				sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.png" "/home/steam/Pictures/WebApp-Default.png"
+				sudo sed -i "s|IMG_TMP|$default_img|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+			else
+				
+				# use custom banner
+				sudo cp "$custom_img" "/home/steam/Pictures"
+				new_img="/home/steam/Pictures/${custom_img}.png"			
+				sudo sed -i "s|IMG_TMP|$custom_img|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+				
+			fi
+	
+			# set launch file loc for easy swapout
+			launch_loc="/usr/bin/${TARGET_NAME}-Launch.sh"
+			
+			# perform sed replacements on skel files
+			sudo sed -i "s|LAUNCHER_TMP|$launch_loc|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+			sudo sed -i "s|NAME_TMP|$custom_name|g" "/usr/share/applications/${TARGET_NAME}.desktop"
+			sudo sed -i "s|WEB_URL_TMP|$custom_url|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+			sudo sed -i "s|BROWSER_TMP|$browser|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+			
+			# mark launcher exec
+			sudo chmod +x "/usr/bin/${TARGET_NAME}-Launch.sh"
+			
+		fi
+	
+		# NOTE:
+		# Mouse support with cursor is fine
+		# Currently working on some kind of xboxdrv swap out
+		# to allow arrow keys
+		
+		#######################################
+		# Antimicro gamepad controls
+		#######################################
+	
+		# create antimicro dir
+		antimicro_dir="/home/steam/antimicro"
+	
+		if [[ -d "$antimicro_dir" ]]; then
+			# DIR found
+			echo -e "Antimicro DIR found. Skipping..."
+		else
+			# create dir
+			sudo mkdir -p "$antimicro_dir"
+		fi
+	
+		# copy in default profiles
+		sudo cp -r "$scriptdir/cfgs/gamepad/web/." "$antimicro_dir"
+	
+		echo -e "\n#############################################################"
+		echo -e "Setting controls for desired supported gamepads"
+		echo -e "#############################################################"
+	
+		# prompt user For controller type if they wish to enable gp mouse control
+		echo -e "\nPlease choose your controller type for web app mouse control"
+		echo "(1) Xbox 360 (wired)"
+		echo "(2) Xbox 360 (wireless)"
+		echo "(3) PS3 Sixaxis (wired)"
+		echo "(4) PS3 Sixaxis (bluetooth)"
+		echo "(5) PS4 Sixaxis (wired)"
+		echo "(6) PS4 Sixaxis (bluetooth)"
+		echo "(7) None (skip)"
+		echo ""
+		
+		# the prompt sometimes likes to jump above sleep
+		sleep 0.5s
+	
+		read -ep "Choice: " gp_mouse_choice
+	
+		case "$gp_mouse_choice" in
+	
+			1)
+			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wired-mouse.gamecontroller.amgp \&"
+			;;
+	
+			2)
+			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wireless-mouse.gamecontroller.amgp \&"
+			;;
+			 
+			3)
+			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wired-mouse.gamecontroller.amgp \&"
+			;;
+	
+			4)
+			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wireless-mouse.gamecontroller.amgp \&"
+			;;
+			
+			5)
+			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps4-wired-mouse.gamecontroller.amgp \&"
+			;;
+			
+			6)
+			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps4-wireless-mouse.gamecontroller.amgp \&"
+			;;
+			
+			7)
+			gp_cmd="#mouse_control_disabled"
+			;;
+			 
+			*)
+			echo -e "\n==ERROR==\nInvalid Selection!"
+			sleep 1s
+			continue
+			;;
+		esac
+	
+		# perform swaps for mouse profiles
+		
+		sudo find /usr/bin -name '*Launch.sh' | while read line; do
+		# echo "Processing file '$line'"
+		sudo sed -i "s|#antimicro_tmp|$gp_cmd|" $line 
+		
+		done
+	
+		# remove launchers temp file
+		rm -f /tmp/launchers.txt
+	
+		###################################
+		# Kiosk mode
+		###################################
+		
+		# Ask user if they want to enable kiosk mode
+		echo -e "\n==> Kiosk mode configuration"
+		echo -e "Do you wish to enable kiosk mode (default)? This will remove all window borders [y/n]\n"
+		
+		# the prompt sometimes likes to jump above sleep
+		sleep 0.5s
+		
+		read -ep "Choice: " kiosk_choice
+		
+		if [[ "$kiosk_choice" == "y" ]]; then
+		
+			# do nothing, this is default
+			echo "" > /dev/null
+		
+		elif [[ "$kiosk_choice" == "n" ]]; then
+
+			
+			# remove kiosk mode from normal launher
+			sudo sed -i "s|--kiosk ||g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+	
+		else
+		
+			echo -e "\nInvalid selection. Default used\n"
+			sleep 1s
+		
+		fi
+		
+		###################################
+		# correct permissions
+		###################################
+		# fix ownership
+		
+		sudo chown -R steam:steam "$antimicro_dir"
+		sudo chown -R steam:steam "$browser_dir"
+		sudo chmod -R 755 "$browser_dir"
+		
+		###################################
+		# end web app addition loop
+		###################################
+		done
+		
+		#####################################################
+		# PKG NAME
+		#####################################################
+		
+		# cleanup
+		ep_pkg_cleanup
+	
+	
+	elif [[ "$uninstall" == "no" ]]; then
+	
+		clear
+		echo -e "==> Uninstalling web app functionality"
+		sleep 3s
+	
+		echo -e "\n${browser} was installed/required by web apps, remove? [y/n]"
+		sleep 0.3s
+		
+		read -ep "Choice: " chrome_choice
+		
+		if [[ "$chrome_choice" == "y" ]]; then
+		
+			sudo apt-get -y remove "$browser"
+		
+		fi
+		
+		echo -e "\nAntimicro was installed/required by web apps, remove? [y/n]"
+		sleep 0.3s
+		
+		read -ep "Choice: " antimicro_choice
+		
+		if [[ "$antimicrochoice" == "y" ]]; then
+		
+			sudo apt-get -y remove antimicro
+		
+		fi
+
+		echo -e "\nRemove created shortcuts from applications directory?"
+		echo -e "Please note this will NOT remove custom URL shortcuts"
+		sleep 0.3s
+		
+		read -ep "Choice: " app_choice
+		
+		if [[ "$app_choice" == "y" ]]; then
+		
+			sudo rm -f "/usr/share/applications/Chrome-Extensions.desktop"
+			sudo rm -f "/usr/share/applications/Hulu.desktop"
+			sudo rm -f "/usr/share/applications/Netflix.desktop"
+			sudo rm -f "/usr/share/applications/Amazon-Prime-Movies.desktop"
+			sudo rm -f "/usr/share/applications/Youtube.desktop"
+			sudo rm -f "/usr/share/applications/YoutubeTV.desktop"
+			sudo rm -f "/usr/share/applications/Soundcloud.desktop"
+			sudo rm -f "/usr/share/applications/Twitch.desktop"
+		
+		fi
+		
+		echo -e "\nRemoval complete. Please manually remove the shortcuts in Big Picture Mode\n"
+		sleep 3s
+		
+	fi
+}

@@ -48,48 +48,133 @@ create_android_app_shortcut()
 	else
 
 		read -erp "Enter a name for the application: " NAME
-		REAL_NAME="$(echo ${APK_BASENAME} | sed -i "
-		SHORTCUT="Twitch.desktop"
-		LAUNCHER="/usr/bin/${TARGET_NAME}-Launch.sh"
+		REAL_NAME="$(echo ${APK_BASENAME} | sed 's/.apk//' )
+		SHORTCUT="${REAL_NAME}.desktop"
+		LAUNCHER="/usr/bin/${REAL_NAME}-launch.sh"
 		BANNER_IMG="$scriptdir/artwork/banners/android-default.png"
 		
 	fi
 
-	# copy default launcher, modify based on values pased from
-	# web_app_{web_app_name}
-	sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default-Launch.sh" "/usr/bin/${TARGET_NAME}-Launch.sh"
+	# copy default launcher, modify based on values pased
+	sudo cp "$scriptdir/cfgs/android/shashlik.skel" "/usr/bin/${REAL_NAME}-launch.sh"
+	LAUNCHER="/usr/bin/${REAL_NAME}-launch.sh"
 	
 	# copy over desktop shortcut
-	sudo cp "$scriptdir/cfgs/web-cfgs/skel/Default.desktop" "/usr/share/applications/${TARGET_NAME}.desktop"
+	sudo cp "$scriptdir/cfgs/android/shashlik.desktop" "/usr/share/applications/${REAL_NAME}.desktop"
 	
 	# copy banner
-	sudo cp "$BANNER_IMG" "/home/steam/Pictures"
+	sudo cp "$scriptdir/artwork/banners/android-default.png" "/home/steam/Pictures"
+	BANNER_IMG="/home/steam/Pictures/android-default.png"
 	
 	# mark exec
-	sudo chmod +x "/usr/bin/${TARGET_NAME}-Launch.sh"
+	sudo chmod +x "/usr/bin/${REAL_NAME}-launch.sh"
 	
 	# perform sed replacements on skel files
-	sudo sed -i "s|LAUNCHER_TMP|$LAUNCHER|g" "/usr/share/applications/${TARGET_NAME}.desktop"
-	sudo sed -i "s|NAME_TMP|$NAME|g" "/usr/share/applications/${TARGET_NAME}.desktop"
-	sudo sed -i "s|IMG_TMP|$BANNER_IMG|g" "/usr/share/applications/${TARGET_NAME}.desktop"
-	sudo sed -i "s|WEB_URL_TMP|$WEB_URL|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
-	sudo sed -i "s|BROWSER_TMP|$browser|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
-	
+	sudo sed -i "s|LAUNCHER_TMP|${LAUNCHER}|g" "/usr/share/applications/${REAL_NAME}.desktop"
+	sudo sed -i "s|NAME_TMP|${REAL_NAME}|g" "/usr/share/applications/${REAL_NAME}.desktop"
+	sudo sed -i "s|IMG_TMP|${BANNER_IMG}|g" "/usr/share/applications/${REAL_NAME}.desktop"
 	
 	# set launch file loc for easy swapout
-	launch_loc="/usr/bin/${TARGET_NAME}-Launch.sh"
+	launch_loc="/usr/bin/${REAL_NAME}-launch.sh"
+
+}
+
+gamepad_profile_configuration()
+{
+
+	#######################################
+	# Antimicro gamepad controls
+	#######################################
+
+	######!!!!!!!!!!#######
+	# KEEP ???
+	######!!!!!!!!!!#######
 	
-	# perform sed replacements on skel files
-	sudo sed -i "s|LAUNCHER_TMP|$launch_loc|g" "/usr/share/applications/${TARGET_NAME}.desktop"
-	sudo sed -i "s|NAME_TMP|$custom_name|g" "/usr/share/applications/${TARGET_NAME}.desktop"
-	sudo sed -i "s|WEB_URL_TMP|$custom_url|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
-	sudo sed -i "s|BROWSER_TMP|$browser|g" "/usr/bin/${TARGET_NAME}-Launch.sh"
+	# create antimicro dir
+	antimicro_dir="/home/steam/antimicro"
+
+	if [[ -d "$antimicro_dir" ]]; then
+		# DIR found
+		echo -e "Antimicro DIR found. Skipping..."
+	else
+		# create dir
+		sudo mkdir -p "$antimicro_dir"
+	fi
+
+	# copy in default profiles
+	sudo cp -r "$scriptdir/cfgs/gamepad/web/." "$antimicro_dir"
+
+	cat<<- EOF
+	#############################################################
+	Setting controls for desired supported gamepads
+	#############################################################
+
+	Please choose your controller type for web app mouse control
 	
-	# mark launcher exec
-	sudo chmod +x "/usr/bin/${TARGET_NAME}-Launch.sh"
+	(1) Xbox 360 (wired)
+	(2) Xbox 360 (wireless)
+	(3) PS3 Sixaxis (wired)
+	(4) PS3 Sixaxis (bluetooth)
+	(5) PS4 Sixaxis (wired)
+	(6) PS4 Sixaxis (bluetooth)
+	(7) None (skip)
+
+	EOF
+
+	# the prompt sometimes likes to jump above sleep
+	sleep 0.5s
+
+	read -ep "Choice: " gp_mouse_choice
+
+	case "$gp_mouse_choice" in
+
+		1)
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wired-mouse.gamecontroller.amgp \&"
+		;;
+
+		2)
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wireless-mouse.gamecontroller.amgp \&"
+		;;
+		 
+		3)
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wired-mouse.gamecontroller.amgp \&"
+		;;
+
+		4)
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wireless-mouse.gamecontroller.amgp \&"
+		;;
+		
+		5)
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps4-wired-mouse.gamecontroller.amgp \&"
+		;;
+		
+		6)
+		gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps4-wireless-mouse.gamecontroller.amgp \&"
+		;;
+		
+		7)
+		gp_cmd="#mouse_control_disabled"
+		;;
+		 
+		*)
+		echo -e "\n==ERROR==\nInvalid Selection!"
+		sleep 1s
+		continue
+		;;
+	esac
+
+	# perform swaps for mouse profiles
 	
-	# Copy skel file and alter
-	cp "${scriptdir}/cfgs/android/shashlik.skel" "/usr/share/applications/
+	sudo find /usr/bin -name '*Launch.sh' | while read line; do
+	# echo "Processing file '$line'"
+	sudo sed -i "s|#antimicro_tmp|$gp_cmd|" $line 
+	
+	done
+
+	# remove launchers temp file
+	rm -f /tmp/launchers.txt
+	
+fi
 
 }
 
@@ -118,7 +203,7 @@ add_android_app()
 		
 		# install shashik, if not installed
 		
-		if [[ $(file "/opt/shashlik/bin/shashlik-run") == "" ]]; then
+		if [[ $(dpkg-query -W --showformat='${Status}\n' shashlik | grep "installed") == "" ]]; then
 		
 			echo -e "\n==> Shaslik not found, installing...\n"
 			sleep 2s
@@ -139,17 +224,18 @@ add_android_app()
 		
 		while [[ "$android_app_choice" != "x" || "$android_app_choice" != "done" ]];
 		do	
-			echo -e "\n#############################################################"
-			echo -e "Shashlik Android App installation"
-			echo -e "#############################################################"
+			cat<<- EOF
+			############################################################
+			Shashlik - Android App installation
+			#############################################################
 	
-			# prompt user for optoin they wish to use
-			echo -e "\nPlease choose from the following. Choose Done when finished."
-			echo "(1) Install Android APK"
-			echo "(2) Install desktop shortcut to APK (if missing)"
-			echo "(x) Done"
-			echo ""
-			
+			Please choose from the following. Choose Done when finished.
+			(1) Install Android APK
+			(2) Show installed APKs (coming soon)
+			(x) Done
+
+			EOF
+
 			# the prompt sometimes likes to jump above sleep
 			sleep 0.5s
 			
@@ -164,8 +250,11 @@ add_android_app()
 			        ;;
 			        
 			        2)
-			        skip_shorcut_prompts="false"
-			        create_android_app_shortcut
+			        continue
+			        ;;
+			        
+			        3)
+			        continue
 			        ;;
 			         
 			        x|done)
@@ -180,100 +269,6 @@ add_android_app()
 			        continue
 				;;
 			esac
-			
-		#######################################
-		# Configuration
-		#######################################
 	
-		#######################################
-		# Antimicro gamepad controls
-		#######################################
-	
-		######!!!!!!!!!!#######
-		# KEEP??
-		######!!!!!!!!!!#######
-		
-		# create antimicro dir
-		antimicro_dir="/home/steam/antimicro"
-	
-		if [[ -d "$antimicro_dir" ]]; then
-			# DIR found
-			echo -e "Antimicro DIR found. Skipping..."
-		else
-			# create dir
-			sudo mkdir -p "$antimicro_dir"
-		fi
-	
-		# copy in default profiles
-		sudo cp -r "$scriptdir/cfgs/gamepad/web/." "$antimicro_dir"
-	
-		echo -e "\n#############################################################"
-		echo -e "Setting controls for desired supported gamepads"
-		echo -e "#############################################################"
-	
-		# prompt user For controller type if they wish to enable gp mouse control
-		echo -e "\nPlease choose your controller type for web app mouse control"
-		echo "(1) Xbox 360 (wired)"
-		echo "(2) Xbox 360 (wireless)"
-		echo "(3) PS3 Sixaxis (wired)"
-		echo "(4) PS3 Sixaxis (bluetooth)"
-		echo "(5) PS4 Sixaxis (wired)"
-		echo "(6) PS4 Sixaxis (bluetooth)"
-		echo "(7) None (skip)"
-		echo ""
-		
-		# the prompt sometimes likes to jump above sleep
-		sleep 0.5s
-	
-		read -ep "Choice: " gp_mouse_choice
-	
-		case "$gp_mouse_choice" in
-	
-			1)
-			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wired-mouse.gamecontroller.amgp \&"
-			;;
-	
-			2)
-			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/x360-wireless-mouse.gamecontroller.amgp \&"
-			;;
-			 
-			3)
-			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wired-mouse.gamecontroller.amgp \&"
-			;;
-	
-			4)
-			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps3-wireless-mouse.gamecontroller.amgp \&"
-			;;
-			
-			5)
-			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps4-wired-mouse.gamecontroller.amgp \&"
-			;;
-			
-			6)
-			gp_cmd="antimicro --hidden --no-tray --profile $antimicro_dir/ps4-wireless-mouse.gamecontroller.amgp \&"
-			;;
-			
-			7)
-			gp_cmd="#mouse_control_disabled"
-			;;
-			 
-			*)
-			echo -e "\n==ERROR==\nInvalid Selection!"
-			sleep 1s
-			continue
-			;;
-		esac
-	
-		# perform swaps for mouse profiles
-		
-		sudo find /usr/bin -name '*Launch.sh' | while read line; do
-		# echo "Processing file '$line'"
-		sudo sed -i "s|#antimicro_tmp|$gp_cmd|" $line 
-		
-		done
-	
-		# remove launchers temp file
-		rm -f /tmp/launchers.txt
-		
-	fi
+
 }

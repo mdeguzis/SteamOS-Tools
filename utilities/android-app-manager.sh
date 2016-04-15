@@ -3,7 +3,7 @@
 # Git:		      	https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt Name:	  	extra-pkgs.
 # Script Ver:	  	0.1.1
-# Description:		Module for installing Android apps on Linux
+# Description:		Script for installing Android apps on Linux
 #                 	Debs: http://static.davidedmundson.co.uk/shashlik/
 #	
 # Usage:	      	n/a , module
@@ -178,97 +178,98 @@ fi
 
 }
 
-add_android_app()
+main()
 {
 
-	if [[ "$options" == "install" ]]; then
+	#######################################
+	# Set dirs
+	#######################################
 
-		#######################################
-		# Set dirs
-		#######################################
-
-		SHASHIK_HOME="$HOME/.config/shashik/
-		APK_DIR="$HOME/android-apks"
-		
-		mkdir -p ${SHASHIK_HOME}
-		mkdir -p ${APK_DIR}
-
-		#######################################
-		# Set vars
-		#######################################
-		
-		#######################################
-		# Pre-reqs
-		#######################################
-		
-		# install shashik, if not installed
-		
-		if [[ $(dpkg-query -W --showformat='${Status}\n' shashlik | grep "installed") == "" ]]; then
-		
-			echo -e "\n==> Shaslik not found, installing...\n"
-			sleep 2s
-			sudo apt-get install -y --force-yes shashik
-			
-		else
-		
-			echo -e "\n==> Shashlik  found, updating...\n"
-			sleep 2s
-			# Update from latest in libregeek repo
-			sudo apt-get install -yqq shashik
-		
-		fi
-		
-		###################################
-		# Start android app addition loop
-		###################################
-		
-		while [[ "$android_app_choice" != "x" || "$android_app_choice" != "done" ]];
-		do	
-			cat<<- EOF
-			############################################################
-			Shashlik - Android App installation
-			#############################################################
+	SHASHIK_HOME="$HOME/.config/shashik/
+	APK_DIR="$HOME/android-apks"
 	
-			Please choose from the following. Choose Done when finished.
-			(1) Install Android APK
-			(2) Show installed APKs (coming soon)
-			(x) Done
+	mkdir -p ${SHASHIK_HOME}
+	mkdir -p ${APK_DIR}
 
-			EOF
-
-			# the prompt sometimes likes to jump above sleep
-			sleep 0.5s
-			
-			read -ep "Choice: " android_app_choice
-			
-			case "$android_app_choice" in
-			        
-			        1)
-			        skip_shorcut_prompts="true"
-			        install_android_apk
-			        create_android_app_shortcut
-			        ;;
-			        
-			        2)
-			        continue
-			        ;;
-			        
-			        3)
-			        continue
-			        ;;
-			         
-			        x|done)
-			        # do nothing
-			        echo -e "\n==> Exiting script\n"
-			        exit 1
-			        ;;
-			         
-			        *)
-			        echo -e "\n==ERROR==\nInvalid Selection!"
-			        sleep 1s
-			        continue
-				;;
-			esac
+	#######################################
+	# Set vars
+	#######################################
 	
+	#######################################
+	# Pre-reqs
+	#######################################
+	
+	# install shashik, if not installed
+	
+	if [[ $(dpkg-query -W --showformat='${Status}\n' shashlik | grep "installed") == "" ]]; then
+	
+		echo -e "\n==> Shaslik not found, installing...\n"
+		sleep 2s
+		sudo apt-get install -y --force-yes shashik
+		
+	else
+	
+		echo -e "\n==> Shashlik  found, updating...\n"
+		sleep 2s
+		# Update from latest in libregeek repo
+		sudo apt-get install -yqq shashik
+	
+	fi
+	
+	###################################
+	# Start android app addition loop
+	###################################
+	
+	while [[ "$android_app_choice" != "x" || "$android_app_choice" != "done" ]];
+	do	
+		cat<<- EOF
+		############################################################
+		Shashlik - Android App installation
+		#############################################################
+
+		Please choose from the following. Choose Done when finished.
+		(1) Install Android APK
+		(2) Show installed APKs (coming soon)
+		(x) Done
+
+		EOF
+
+		# the prompt sometimes likes to jump above sleep
+		sleep 0.5s
+		
+		read -ep "Choice: " android_app_choice
+		
+		case "$android_app_choice" in
+		        
+		        1)
+		        skip_shorcut_prompts="true"
+		        install_android_apk
+		        create_android_app_shortcut
+		        ;;
+		        
+		        2)
+		        continue
+		        ;;
+		        
+		        3)
+		        continue
+		        ;;
+		         
+		        x|done)
+		        # do nothing
+		        echo -e "\n==> Exiting script\n"
+		        exit 1
+		        ;;
+		         
+		        *)
+		        echo -e "\n==ERROR==\nInvalid Selection!"
+		        sleep 1s
+		        continue
+			;;
+	esac
+
 
 }
+
+# Main script routine
+main

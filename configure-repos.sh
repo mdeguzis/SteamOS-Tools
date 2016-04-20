@@ -172,7 +172,7 @@ main()
 		# invalid option, exit
 		echo -e "Invalid option! Exiting..."
 		sleep 2s
-		exit 1
+		break
 		;;
 
 	esac

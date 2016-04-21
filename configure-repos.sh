@@ -146,6 +146,7 @@ main()
 
 		--repair)
 		# reapair setup and process normally
+		install="true"
 		function_repair_setup
 		function_default_setup
 		function_cleanup

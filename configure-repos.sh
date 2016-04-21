@@ -141,12 +141,14 @@ main()
 		# Process just default setup
 		install="true"
 		function_default_setup
+		function_cleanup
 		;;
 
 		--repair)
 		# reapair setup and process normally
 		function_repair_setup
 		function_default_setup
+		function_cleanup
 		;;
 
 		--testing)
@@ -154,18 +156,21 @@ main()
 		install="true"
 		function_default_setup
 		function_beta_setup
+		function_cleanup
 		;;
 		
 		--remove)
 		# process removal
 		install="false"
 		function_default_setup
+		function_cleanup
 		;;
 
 		--remove-testing)
 		# process remove for beta setup
 		install="false"
 		function_beta_setup
+		function_cleanup
 		;;
 
 		*)

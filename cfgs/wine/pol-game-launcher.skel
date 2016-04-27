@@ -54,6 +54,7 @@ cat<<- EOF>> ${RUN_LOG}
     $DATE    
     Game: $GAME_EXE
 --------------------------------------
+
 EOF
 
 echo "Setting dimensions" >> ${RUN_LOG}
@@ -98,7 +99,7 @@ done;
 echo "$GAME_EXE has exited"  >> ${RUN_LOG}
 
 # Shut down the Windows Steam client.
-echo "Shutting down Steam..."  >> ${RUN_LOG}
+echo "Shutting down Steam"  >> ${RUN_LOG}
 if [ -n "$(pgrep -lf Steam\.exe)" ]; then
   "$WINEVERSION/bin/wine" $VIRT_DESK "$STEAM_DIR/Steam.exe" -shutdown
 

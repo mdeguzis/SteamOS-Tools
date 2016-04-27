@@ -50,6 +50,7 @@ DATE=$(date)
 cat<<- EOF>> ${RUN_LOG}
 
 ------------ Starting log ------------   
+    Log: $RUN_LOG
     $DATE    
     Game: $GAME_EXE
 --------------------------------------
@@ -78,21 +79,19 @@ echo "Starting $GAME_EXE"  >> ${RUN_LOG}
 env -i DISPLAY=$DISPLAY WINEPREFIX=$WINEPREFIX WINEDEBUG=$WINEDEBUG LD_LIBRARY_PATH=$LD_LIBRARY_PATH PATH=$PATH \
 "$WINEVERSION/bin/wine" $VIRT_DESK "$STEAM_DIR/Steam.exe" -applaunch "$GAME_APPID" &
 
-
 # Wait for application to be launched.
 echo "Waiting for $GAME_EXE to start"  >> ${RUN_LOG}
-until [ -n "$(ps -o pid -C "$GAME_EXE" | grep -e [0-9])" ]; do
+until [ -n "$(pgrep -lf $GAME_EXE)" ]; do
   sleep 2
 done;
 
-if ps -o pid -C "$GAME_EXE" | grep -e [0-9]; then
+if pgrep -lf $GAME_EXE; then
 	echo "$GAME_EXE has started"  >> ${RUN_LOG}
-
 fi
 
 echo "Looping until game exits"  >> ${RUN_LOG}
 # Stay in loop while the game is running.
-while [ -n "$(ps -o pid -C "$GAME_EXE" | grep -e [0-9])" ]; do
+while [ -n "$(pgrep -lf $GAME_EXE)" ]; do
   sleep 2
 done;
 

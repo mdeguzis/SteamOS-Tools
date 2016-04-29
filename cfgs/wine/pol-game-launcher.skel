@@ -66,6 +66,7 @@ if [[ "${enable_gamepad_support}" == "1" ]]; then
 	if [[ "${gamepad_support_type}" == "xbxodrv" ]]; then
 
 		xboxdrv \
+			--detach-kernel-driver \
 			--silent \
 			--dbus session \
 			--controller-slot 0 \

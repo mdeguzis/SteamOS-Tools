@@ -30,6 +30,15 @@ GAME_APPID="GAME_ID"
 GAME_DIR="GAME_DIR"
 GAME_EXE="GAME_EXE"
 
+# !!! Experimental !!! gamepad support
+# This may be enabled for all non-Steam Controller devices at some point
+# This options will NOT be supported for mixed-controller types at this time.
+
+# Values: [0|1]
+enable_gamepad_support="0"
+# Values: [xbxodrv|x360ce]
+gamepad_support_type="xbxodrv"
+
 ###########################################
 #                                         #
 # MAIN SCRIPT. DO NOT EDIT ANYTHING       #
@@ -44,6 +53,47 @@ find /tmp/wine-game-log.txt -size +20M -delete
 RUN_LOG="/tmp/wine-game-log.txt"
 DATE=$(date)
 
+################################
+# Experimental Gamepad support
+################################
+
+# For some reason, even if a gamepad is detected by the joypad
+# Configuration utility in PlayOnLinux, it will not be detected in-game
+# That particular issue is still being looked at.
+
+if [[ "${enable_gamepad_support}" == "1" ]]; then
+
+	if [[ "${gamepad_support_type}" == "xbxodrv" ]]; then
+
+		xboxdrv \
+			--silent \
+			--dbus session \
+			--controller-slot 0 \
+			--trigger-as-button \
+			--ui-axismap x2=ABS_Z,y2=ABS_RZ \
+			--ui-buttonmap A=BTN_B,B=BTN_X,X=BTN_A,TR=BTN_THUMBL,TL=BTN_MODE,GUIDE=BTN_THUMBR \
+			--next-controller
+
+	elif [[ "${gamepad_support_type}" == "x360ce" ]]; then
+
+		# TODO - work out dll's needed. 
+		# GAMEDIR will *need* to be specified above
+		# The dll's will likely need placed manually 
+		:
+
+	fi
+
+else
+
+	# Clean dll's and xboxdrv (if running)
+	pkill xboxdrv
+	rm -f ${GAME_DIR}/dinput8.dll
+	rm -f ${GAME_DIR}/xinput1_9.dll
+	rm -f ${GAME_DIR}/xinput1_3.dll
+	rm -f ${GAME_DIR}/x360ce.exe
+
+fi
+
 # Obtain the resolution of the current display so the Wine virtual
 # desktop will be full-screen.
 
@@ -51,7 +101,7 @@ cat<<- EOF>> ${RUN_LOG}
 
 ------------ Starting log ------------   
     Log: $RUN_LOG
-    $DATE    
+    $DATE
     Game: $GAME_EXE
 --------------------------------------
 
@@ -114,6 +164,13 @@ echo "Steam shutdown"  >> ${RUN_LOG}
 echo "Killing wine server"  >> ${RUN_LOG}
 # Kill Wine server so Steam will properly return to the library interface.
 "$WINEVERSION/bin/wineserver" -k
+
+if [[ "${enable_gamepad_support}" == "1" ]]; then
+
+	echo "Shutting down gamepad support"
+	pkill xboxdrv
+
+fi
 
 cat<<- EOF>> ${RUN_LOG}
 

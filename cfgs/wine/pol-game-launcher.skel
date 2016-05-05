@@ -36,8 +36,8 @@ GAME_EXE="GAME_EXE"
 
 # Values: [0|1]
 enable_gamepad_support="0"
-# Values: [xbxodrv|x360ce]
-gamepad_support_type="xbxodrv"
+# Values: [xbxodrv|x360ce|koku-xinput-wine]
+gamepad_support_type="koku-xinput-wine"
 
 ###########################################
 #                                         #
@@ -81,6 +81,11 @@ if [[ "${enable_gamepad_support}" == "1" ]]; then
 		# GAMEDIR will *need* to be specified above
 		# The dll's will likely need placed manually 
 		:
+
+	elif [[ "${gamepad_support_type}" == "koku-xinput-wine" ]]; then
+	
+		# Preload the library
+		export LD_PRELOAD=/usr/lib/koku-xinput-wine.so
 
 	fi
 

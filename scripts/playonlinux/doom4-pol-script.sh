@@ -1,10 +1,11 @@
 #!/bin/bash
-# Date : (2016-03-13 09:29)
-# Last revision : (2016-03-13 09:29)
+# Date : (2016-05-13 09:29)
+# Last revision : (2016-05-13 09:29)
 # Wine version used : 1.9.8
 # Distribution used to test : SteamOS / Debian 8.4 Jessie
 # Author : ProfessorKaos64
 # Only For : http://www.playonlinux.com
+# SteamDB: https://steamdb.info/app/379720/
 
 #############################################################
 # Legacy notes:
@@ -75,6 +76,7 @@ POL_Wine_SetVideoDriver
 POL_Call POL_Install_steam_flags "$STEAM_ID"
 
 # Choose between DVD, Digital Download or STEAM version
+
 # I don't have the install DVD for DOOM, so I'll have to verify that method set later
 # If you know the exact names/values, and preferably tested it, let me know!
 # Sorry!

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Date : (2016-05-13 09:29)
-# Last revision : (2016-05-13 09:29)
-# Wine version used : 1.9.8 (64 bit prefix)
+# Last revision : (2016-05-13 11:46)
+# Wine version used : 1.9.7 (64 bit prefix)
 # Distribution used to test : SteamOS / Debian 8.4 Jessie
 # Author : ProfessorKaos64
 # Only For : http://www.playonlinux.com
@@ -21,7 +21,7 @@ PREFIX="doom4"
 EDITOR="ID Software"
 GAME_URL="http://doom.com"
 AUTHOR="ProfessorKaos64"
-WORKING_WINE_VERSION="1.9.8"
+WORKING_WINE_VERSION="1.9.7"
 GAME_VMS="1024"
 STEAM_ID="379720"
  

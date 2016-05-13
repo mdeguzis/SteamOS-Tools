@@ -13,6 +13,11 @@
 # Script based off of : https://www.playonlinux.com/en/app-984-Rage.html
 # Feel free to submit improvements!
 
+# PLEASE NOTE: This is not yet a "supported software" script (I also need to 
+# test a good deal more. You will have to to download the raw content of 
+# this script to a location on your computer and choose Tools > Run a local
+# script" from within PlayOnLinux.
+
 [ "$PLAYONLINUX" = "" ] && exit 0
 source "$PLAYONLINUX/lib/sources"
  

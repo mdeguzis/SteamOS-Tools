@@ -1,7 +1,7 @@
 #!/bin/bash
 # Date : (2016-05-13 09:29)
 # Last revision : (2016-05-13 09:29)
-# Wine version used : 1.9.8
+# Wine version used : 1.9.8 (64 bit prefix)
 # Distribution used to test : SteamOS / Debian 8.4 Jessie
 # Author : ProfessorKaos64
 # Only For : http://www.playonlinux.com
@@ -22,12 +22,11 @@ EDITOR="ID Software"
 GAME_URL="http://doom.com"
 AUTHOR="ProfessorKaos64"
 WORKING_WINE_VERSION="1.9.8"
-#GAME_VMS="1024" # ASK FOR THIS
+GAME_VMS="1024"
 STEAM_ID="379720"
  
 # Starting the script
-#POL_GetSetupImages "http://files.playonlinux.com/resources/setups/DOOM4/top.jpg" \
-#"http://files.playonlinux.com/resources/setups/DOOM4/left.jpg" "$TITLE"
+POL_GetSetupImages "http://cdn.akamai.steamstatic.com/steam/apps/379720/header.jpg" "$TITLE"
 POL_SetupWindow_Init
  
 # Starting debugging API

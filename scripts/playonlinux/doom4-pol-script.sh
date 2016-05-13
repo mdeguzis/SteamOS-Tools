@@ -31,6 +31,7 @@ GAME_VMS="1024"
 STEAM_ID="379720"
  
 # Starting the script
+# TODO: Make / add proper sized images!
 POL_GetSetupImages "http://cdn.akamai.steamstatic.com/steam/apps/379720/header.jpg" "$TITLE"
 POL_SetupWindow_Init
  
@@ -38,8 +39,14 @@ POL_SetupWindow_Init
 POL_Debug_Init
 POL_SetupWindow_presentation "$TITLE" "$EDITOR" "$GAME_URL" "$AUTHOR" "$PREFIX"
  
-# Setting prefix path
-POL_Wine_SelectPrefix "$PREFIX"
+# Setting prefix path (use safety catch if it exists)
+
+if [ -e "$POL_USER_ROOT/wineprefix/$PREFIX" ]; then
+ POL_SetupWindow_textbox "$(eval_gettext 'Please choose a virtual drive name')" "$TITLE"
+ PREFIX="$APP_ANSWER"
+else
+ POL_Wine_SelectPrefix "$PREFIX"
+fi
  
 # Downloading wine if necessary and creating prefix
 POL_System_SetArch "amd64" # This game requires a 64 bit prefix
@@ -104,7 +111,8 @@ elif [ "$INSTALL_METHOD" == "STEAM" ]; then
  # Mandatory pre-install fix for steam
  POL_Call POL_Install_steam_flags "$STEAM_ID"
  POL_SetupWindow_message "$(eval_gettext 'When $TITLE download by Steam is finished,\nDo NOT click on Play. \
- \n\nClose COMPLETELY the Steam interface, \nso that the installation script can continue')" "$TITLE"
+ \n\nClose COMPLETELY the Steam interface, \nso that the installation script can continue') \
+ \n\nPlease disregard any 'steamwebhelper' error messages and simply closed them." "$TITLE"
  cd "$WINEPREFIX/drive_c/$PROGRAMFILES/Steam"
  POL_Wine start /unix "steam.exe" steam://install/$STEAM_ID
  POL_Wine_WaitExit "$TITLE"

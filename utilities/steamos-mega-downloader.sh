@@ -450,7 +450,7 @@ check_download_integrity()
 			wget --no-clobber "${base_url}/iso/${md5file}"
 
 		else
-			wget --no-clobber "${base_url}/${release}_folder/${md5file}"
+			wget --no-clobber "${base_url}/${release_folder}/${md5file}"
 
 		fi
 

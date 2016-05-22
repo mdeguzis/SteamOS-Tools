@@ -158,7 +158,7 @@ pre_reqs()
 		echo -e "\nInstalling main dependencies from Arch Linux repos\n"
 
 		# Check dependencies (stephensons and vaporos-mod)
-		pkgs="libisoburn syslinux coreutils rsync p7zip wget unzip git"
+		pkgs="libisoburn syslinux coreutils rsync p7zip wget unzip git dosfstools"
 		
 		for pkg in ${pkgs}; 
 		do

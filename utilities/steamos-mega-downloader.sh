@@ -652,7 +652,7 @@ download_file()
 			rm -f "${HOME}/downloads/${release}/${md5file}"
 			rm -f "${HOME}/downloads/${release}/${shafile}"
 			echo ""
-			wget --no-clobber "${base_url}/${release}_folder/${file}"
+			wget --no-clobber "${base_url}/${release_folder}/${file}"
 
 		elif [[ "${rdl_choice}" == "n" ]]; then
 
@@ -667,7 +667,7 @@ download_file()
 	else
 
 		# file does not exist, download
-		wget --no-clobber "${base_url}/${release}_folder/${file}"
+		wget --no-clobber "${base_url}/${release_folder}/${file}"
 
 	fi
 

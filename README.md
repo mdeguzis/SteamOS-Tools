@@ -136,7 +136,7 @@ Branch where some new scripts are made. Larger alterations to existing ones impl
 ***
 
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page
-or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the AUTHORS.md file. I will also take requests for packages _not_ found within Debian repositories, or those that require extra work to implement/add to SteamOS.
+or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the AUTHORS.md file. Another great way to help, is to contribute and help solve anything reported as an [issue](https://github.com/ProfessorKaos64/SteamOS-Tools/issues). I will also take requests for packages _not_ found within Debian repositories, or those that require extra work to implement/add to SteamOS.
 
 I welcome any and all contributions as well, suggestions, and more. Please see the TODO list in the [Development and Features](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Development-and-Features#planned-features--to-do-list) section of the wiki. Feel free to add items to the list, but be sure to tag/link your username if you could. This particular areas is more aimed at those who wish to contribute ideas / code. Otherwise, please make a suggestion for a feature/software in an issues ticket. You can see a list of the amazing folks who have contributed to SteamOS-Tools, in the _AUTHORS.md_ file.
 

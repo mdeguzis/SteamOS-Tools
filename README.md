@@ -46,15 +46,11 @@ There is no easy way to opt out of the beta repo. Removing the package will dele
 * [SteamOS-Tools site/package statistics](http://steamos-tools-stats.libregeek.org)
 
 ### Adding the SteamOS-Tools Repository
-The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base respository does include Debian repositories, the Debian backports repository, and package pinning to avoid conflicts.
+
+The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base option (--default, assumed) does include Debian repositories, the Debian backports repository, and package pinning to avoid conflicts. The remove optoion below will erase all libregeek repository configurations. For more see the releant [wiki entry](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Desktop-Software)
 
 ```
-./configure-repos.sh
-```
-
-### Adding/Removing the Beta repository:
-```
-./configure-repos.sh [--testing|--remove-testing]
+./configure-repos.sh [--default|--repair|--enable-testing|--remove-testing|remove]
 ```
 
 ### Update your package lists
@@ -84,9 +80,10 @@ Normal script execution, sans arguments, goes a little bit like:
 # Updating
 ***
 
-Be aware that any packages installed via the Libregeek package repository will be upgraded during the silent unattended upgrades process in SteamOS (Settings > System) when a new version is available in the package pool. These updates, like Valve's upgrades, are processed on shutdown.
+Be aware that any packages installed via the Libregeek package repository will be upgraded during the silent unattended upgrades process in SteamOS (Settings > System) when a new version is available in the package pool. These updates, like Valve's upgrades, are processed on shutdown. Therefore, if you see "SteamOS update available" and Valve has made no announcement of a new OS release (beta or non-beta), you can likely assume you have updates for SteamOS-Tools / LibreGeek.
 
 _Please_ regulary check for updates to SteamOS-Tools. To update your local copy of files for this repository:
+
 ```
 cd SteamOS-Tools/
 git pull
@@ -148,4 +145,4 @@ Most scripts in the main folder of the repository write stdout and stderr to `lo
 # Donations
 ***
 
-If you wish to support the work here, hosting costs for packages, and more, you can do so monthly at [Patreon.com](https://www.patreon.com/user?u=60834&ty=h), or make a one time donation over at http://www.libregeek.org/. You can see a list of the amazing folks who have contributed to SteamOS-Tools, in the _AUTHORS.md_ file. This will greatly help my future plans to increase bandwidth for the entire domain.
+If you wish to support the work here, hosting costs for packages, and more, you can do so monthly at [Patreon.com](https://www.patreon.com/user?u=60834&ty=h), or make a one time donation over at http://www.libregeek.org/. You can see a list of the amazing folks who have contributed to SteamOS-Tools, in the _AUTHORS.md_ file. If I missed adding you, please let me know! This will greatly help my future plans to increase bandwidth for the entire domain.

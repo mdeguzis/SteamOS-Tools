@@ -110,15 +110,15 @@ function_help()
 	clear
 
 	cat<<- EOF
-	=========================================================
+	==================================================================
 	Available options
-	=========================================================
+	==================================================================
 
-	--default		Normal installation
-	--repair		Repair and install setup
-	--testing		Add testing repository
-	--remove		Remove all repository setups
-	--remove-testing	Remove just beta repository setup
+	--default			Normal installation
+	--repair			Repair and install setup
+	--enable-testing		Add testing repository
+	--remove			Remove all repository setups
+	--remove-testing		Remove just beta repository setup
 
 	EOF
 
@@ -152,7 +152,7 @@ main()
 		function_cleanup
 		;;
 
-		--testing)
+		--enable-testing)
 		# Default + testings
 		install="true"
 		function_default_setup

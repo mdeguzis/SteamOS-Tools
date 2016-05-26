@@ -15,5 +15,8 @@ Describe what you _expected_ should happen and what _did_ happen.
 2. 
 3. 
 
-Note:
-Please place logs either in a code block (press `M` in your browser for a GFM cheat sheet) or a [gist](https://gist.github.com) if they are lengthy. Information on log locations what what do with them, can be found on [wiki](https://github.com/ValveSoftware/SteamOS/wiki/Reviewing-log-information). _This block of text can then  be removed._
+#### Progress Tracker (Please do not remove)
+
+- [ ] Investigate issue
+- [ ] Fix committed / Resolution
+

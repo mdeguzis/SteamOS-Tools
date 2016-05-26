@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# NOT USED - LEGACY FILE ONLY!!!!
-
 main()
 {
 

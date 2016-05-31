@@ -80,7 +80,7 @@ install_data_files()
 			sleep 0.2s
 			read -erp "Choice: " disc_end
 
-			if [[ "${disc_end} == "n" ]]
+			if [[ "${disc_end}" == "n" ]]
 				disc_num=$(($disc_num + 1))
 
 			else
@@ -144,6 +144,6 @@ post_install()
 }
 
 # main script
-install_client || exit 1
-install_data_files || exit 1
-post_install || exit 1
+#install_client || exit 1
+#install_data_files || exit 1
+#post_install || exit 1

@@ -1,5 +1,6 @@
 # TEMP WIP - DO NOT USE YET
 
+# See: https://github.com/dhewm/dhewm3/wiki/FAQ
 
 install_client()
 {
@@ -23,6 +24,85 @@ install_client()
 
 }
 
+doom3_data_cdrom()
+{
+
+	#? CDROM (Does SteamOS automount in desktop mode / SSH?)
+
+	# set disc var
+	disc_num=1
+
+	while [[ test "${disc_num}" -gt 0 ]];
+	do
+
+		echo -e "\nPlease insert disc ${disc_num} and press enter"
+		read -erp FAKE_ENTER
+
+		# mout disc and get files
+		mkdir -p /tmp/doom3_data
+		sudo mount -t auto /dev/sr0 /tmp/doom3_data
+		find /tmp/doom3_data -iname "*.pk4" -exec sudo cp -v {} ${DOOM3_DATA} \;
+		sudo umount /tmp/doom3_data
+
+		# See if this is the last disc
+		echo -e "Is this the last disc you have? [y/n]"
+		sleep 0.2s
+		read -erp "Choice: " disc_end
+
+		if [[ "${disc_end}" == "n" ]]
+			disc_num=$(($disc_num + 1))
+
+		else
+			disc_num=0
+		fi
+
+	done
+
+	# ensure we have the patched files
+
+	echo -e "Gather updated patch files\n"
+
+	sleep 2s
+	wget "http://libregeek.org/SteamOS-Extra/games/doom3/doom3-linux-1.3.1.1304.x86.run" -q -nq --show-progress
+	chmod +x doom3-linux-1.3.1.1304.x86.run
+	sh doom3-linux-1.3.1.1304.x86.run --tar xvf --wildcards base/pak* d3xp/p
+	find . -iname "*.pk4" -exec sudo cp -v {} ${DOOM3_DATA} \;
+
+	# cleanup
+	rm -rf base d3xp doom3-linux*.run
+	
+}
+
+doom3_data_steam()
+{
+
+	# get Doom3 files via steam (you must own the game!)
+	echo -e "==> Acquiring files via Steam. You must own the game!"
+	read -erp "    Steam username: " STEAM_LOGIN_NAME
+
+	# Download
+	./steamcmd.sh +@sSteamCmdForcePlatformType windows +login ${STEAM_LOGIN_NAME} \
+	+force_install_dir ./doom3/ +app_update 9050 validate +quit
+
+	# Extract .pk4 files
+	find ./doom3/ -iname "*.pk4" -exec sudo cp -v {} ${DOOM3_DATA} \;
+
+}
+
+doom3_data_custom()
+{
+
+	# CUSTOM
+	# ask for folder
+	echo -e "\nPlease enter the path to the .pk4 files (must contain patched files!)"
+	sleep 0.2s
+	read -erp "Location: " custom_file_loc
+
+	# copy files
+	find ${custom_file_loc} -iname "*.pk4" -exec sudo cp -v {} ${DOOM3_DATA} \;
+
+}
+
 install_data_files()
 {
 
@@ -30,6 +110,7 @@ install_data_files()
 
 	# Set data dir
 	DOOM3_DATA="/home/steam/doom3_data"
+	DHEWM3_DIR="/home/steam/dhewm3"
 
 	if [[ ! -d "${DOOM3_DATA}" ]]; then
 
@@ -58,70 +139,15 @@ install_data_files()
 	case "$install_choice" in
 
 		1)
-		#? CDROM (Does SteamOS automount in desktop mode / SSH?)
-
-		# set disc var
-		disc_num=1
-
-		while [[ test "${disc_num}" -gt 0 ]];
-		do
-
-			echo -e "\nPlease insert disc ${disc_num} and press enter"
-			read -erp FAKE_ENTER
-
-			# mout disc and get files
-			mkdir -p /tmp/doom3_data
-			sudo mount -t auto /dev/sr0 /tmp/doom3_data
-			find /tmp/doom3_data -iname "*.pk4" -exec sudo cp -v {} ${DOOM3_DATA} \;
-			sudo umount /tmp/doom3_data
-
-			# See if this is the last disc
-			echo -e "Is this the last disc you have? [y/n]"
-			sleep 0.2s
-			read -erp "Choice: " disc_end
-
-			if [[ "${disc_end}" == "n" ]]
-				disc_num=$(($disc_num + 1))
-
-			else
-				disc_num=0
-			fi
-
-		done
-
-		# ensure we have the patched files
-
-		echo -e "Gather updated patch files\n"
-
-		sleep 2s
-		wget "http://libregeek.org/SteamOS-Extra/games/doom3/doom3-linux-1.3.1.1304.x86.run" -q -nq --show-progress
-		chmod +x doom3-linux-1.3.1.1304.x86.run
-		sh doom3-linux-1.3.1.1304.x86.run --tar xvf --wildcards base/pak* d3xp/p
-		find . -iname "*.pk4" -exec sudo cp -v {} ${DOOM3_DATA} \;
-
-		# cleanup
-		rm -rf base d3xp doom3-linux*.run
-
+		doom3_data_cdrom
 		;;
 
 		2)
-		# STEAM
-		# copy from folder
-		# These files are already patched if the game is updated
-		# Call steamcmd to download game???
-		# find $STEAMDIR -iname "*.pk4" -exec cp -v {} $DIR \;
-		:
+		doom3_data_steam
 		;;
 
 		3)
-		# CUSTOM
-		# ask for folder
-		echo -e "\nPlease enter the path to the .pk4 files (must contain patched files!)"
-		sleep 0.2s
-		read -erp "Location: " custom_file_loc
-
-		# copy files
-		find ${custom_file_loc} -iname "*.pk4" -exec sudo cp -v {} ${DOOM3_DATA} \;
+		doom3_data_custom
 		;;
 
 		*)
@@ -135,11 +161,11 @@ install_data_files()
 post_install()
 {
 
-	COPY LAUNCHER
+	COPY LAUNCHER - TODO
 
-	COPY DESKTOP FILE
+	COPY DESKTOP FILE - TODO
 
-	COPY ARTWORK
+	COPY ARTWORK - TODO
 
 }
 

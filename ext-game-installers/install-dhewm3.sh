@@ -109,8 +109,13 @@ install_data_files()
 	echo -e "\n==> Checking existance of data directory"
 
 	# Set data dir
-	DOOM3_DATA="/home/steam/doom3_data"
-	DHEWM3_DIR="/home/steam/dhewm3"
+	# Data files can also be placed in the savegame folder per the FAQ
+	# This will be preferred since  / is small on SteamOS
+
+	# config files: $XDG_CONFIG_HOME/dhewm3 (default: $HOME/.config/dhewm3)
+	# savegames: $XDG_DATA_HOME/dhewm3 (default: $HOME/.local/share/dhewm3)
+
+	DOOM3_DATA="/home/steam/.local/share/dhewm3"
 
 	if [[ ! -d "${DOOM3_DATA}" ]]; then
 

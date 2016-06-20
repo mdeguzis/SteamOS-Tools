@@ -28,70 +28,66 @@ egi_install_ut4()
 	# https://aur.archlinux.org/packages/ut4/
 	
 	current_dir=$(pwd)
-	ut4_ver="2883976"
+	UT4_VER="2984440"
 	URL="https://s3.amazonaws.com/unrealtournament"
-	ut4_zip="UnrealTournament-Client-XAN-${ut4_ver}-Linux.zip"
-	ut4_dir="$HOME/ut4-linux/LinuxNoEditor"
-	ut4_bin_dir="$ut4_dir/LinuxNoEditor/Engine/Binaries/Linux/"
-	ut4_exe="./UE4-Linux-Test UnrealTournament -SaveToUserDir"
+	UT4_ZIP="UnrealTournament-Client-XAN-${UT4_VER}-Linux.zip"
+	UT4_DIR="$HOME/ut4-linux/LinuxNoEditor"
+	UT4_BIN_DIR="$UT4_DIR/LinuxNoEditor/Engine/Binaries/Linux/"
+	UT4_EXE="./UE4-Linux-Test UnrealTournament -SaveToUserDir"
 	
-	ut4_shortcut_tmp="/home/desktop/ue4-alpha.desktop"
-	ut4_cli_tmp="/home/desktop/ue4-alpha"
+	UT4_SHORTCUT_TMP="/home/desktop/ue4-alpha.desktop"
+	UT4_CLI_TEMP="/home/desktop/ue4-alpha"
 	
 	# start apt mode if check
 	if [[ "$apt_mode" == "install" ]]; then
 	
-		if [[ -d "$ut4_dir" ]]; then
+		if [[ -d "$UT4_DIR" ]]; then
 			# DIR exists
 			echo -e "\nUT4 Game directory found"
 		else
-			mkdir -p "$ut4_dir"
+			mkdir -p "$UT4_DIR"
 		fi
 		
-		cd "$ut4_dir" || exit
-	
-		#################################################
-		# Prerequisites
-		#################################################
-		
+		cd "$UT4_DIR" || exit
+
 		#################################################
 		# Gather files
 		#################################################
-		
+
 		# sourced from https://aur.archlinux.org/packages/ut4/
-		
+
 		echo -e "\n==> Acquiring files...please wait\n"
-		
+
 		sleep 2
-		
-		echo -e "${ut4_zip}"
-		wget -O "${ut4_zip}" "${URL}/${ut4_zip}"
-		
+
+		echo -e "${UT4_ZIP}"
+		wget -O "${UT4_ZIP}" "${URL}/${UT4_ZIP}"
+
 		#################################################
 		# Setup
 		#################################################
 
 		unzip -o "${ue4_zip}"
-		
+
 		# Mark main binary as executable
-		chmod +x "$ut4_bin_dir/UE4-Linux-Test"
-		
+		chmod +x "$UT4_BIN_DIR/UE4-Linux-Test"
+
 		#################################################
 		# Post install configuration
 		#################################################
-		
+
 		echo -e "\n==> Creating executable and desktop launcher"
-		
+
 		# copy ue4.png into Steam Pictures dir
 		sudo cp "$scriptdir/artwork/games/ut4-alpha.png" "/home/steam/Pictures"
-		
+
 		cat <<-EOF> ${ue4_cli_tmp}
 		#!/bin/bash
 		# execute ut4 alpha
-		cd $ut4_bin_dir
-		$ut4_exe
+		cd $UT4_BIN_DIR
+		$UT4_EXE
 		EOF
-		
+
 		cat <<-EOF> ${ue4_shortcut_tmp}
 		[Desktop Entry]
 		Name=UT4 alpha
@@ -103,23 +99,21 @@ egi_install_ut4()
 		Categories=Game;
 		MimeType=x-scheme-handler/steam;
 		EOF
-		
+
 		# mark exec
-		chmod +x ${ut4_cli_tmp}
-		
+		chmod +x ${UT4_CLI_TEMP}
+
 		# move tmp var files into target locations
 		sudo mv ${ut4_shortcut_tmp}  "/usr/share/applications"
 		sudo mv ${u4_cli_tmp} "/usr/bin"
-		
+
 		#################################################
 		# Cleanup
 		#################################################
-		
-		# clean up dirs
-		
+
 		# return to previous dir
 		cd $current_dir || exit
-		
+
 		clear
 		cat <<-EOF
 		-----------------------------------------------------------------------
@@ -129,24 +123,23 @@ egi_install_ut4()
 		Installation is finished. You can either run 'ue4-alpha' from
 		the command line, or start 'UE4 aplha' from you applications directory.
 		The launcher should show up as a non-Steam game as well in SteamOS BPM.
-		
+
 		EOF
-	
-	
+
 	elif [[ "$apt_mode" == "remove" ]]; then
-	
+
 		# Add dekstop launcher file here
 		# Transfer to /usr/share/applications
 		# TODO !!!
-		
+
 		#Remove directories, build files, etc if uninstall is specified by user
 		echo -e "\n==> Removing related files for UE4-src routine"
 		sleep 2s
-		
+
 		# remove directories
 		sudo rm -rf "/usr/share/applications/ut4-alpha.desktop" "/usr/bin/ut4-alpha" \
-		"$ut4_dir"
-		
+		"$UT4_DIR"
+
 		# end apt mode if check  
 	fi
 

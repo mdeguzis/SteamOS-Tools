@@ -4,5 +4,5 @@ Name=dhewm3
 GenericName=dhewm3
 Type=Application
 Exec=/usr/games/dhewm3
-Icon=
+Icon=/usr/share/pixmaps/doom3.png
 Categories=application;

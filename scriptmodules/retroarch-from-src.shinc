@@ -42,7 +42,6 @@ rfs_retroarch_src_main()
 		export install_dir="/home/desktop/retroarch-src"
 		export git_dir="/home/desktop/retroarch-src/libretro-super"
 		export git_url="https://github.com/libretro/libretro-super"
-		export symlink_target="/usr/bin/retroarch-src"
 		export binary_loc="$git_dir/retroarch/retroarch"
 		export core_loc="/usr/lib/libretro"
 		

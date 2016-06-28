@@ -32,7 +32,7 @@ doom3_data_cdrom()
 	# set disc var
 	disc_num=1
 
-	while [[ test "${disc_num}" -gt 0 ]];
+	while [[ ${disc_num} -gt 0 ]];
 	do
 
 		echo -e "\nPlease insert disc ${disc_num} and press enter"
@@ -49,8 +49,8 @@ doom3_data_cdrom()
 		sleep 0.2s
 		read -erp "Choice: " disc_end
 
-		if [[ "${disc_end}" == "n" ]]
-			disc_num=$(($disc_num + 1))
+		if [[ "${disc_end}" == "n" ]]; then
+			disc_num=$((disc_num + 1))
 
 		else
 			disc_num=0

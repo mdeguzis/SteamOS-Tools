@@ -116,10 +116,15 @@ doom3_data_steam()
 	+force_install_dir ./doom3/ +app_update 9050 validate +quit
 
 	# Extract .pk4 files
-	find doom3/ -iname "*.pk4" -exec sudo cp -v {} "${DOOM3_DATA}" \;
+	# For some reason they still fall into /home/desktop/steamcmd/doom3
+	# FIX THIS
+	
+	#find doom3/ -iname "*.pk4" -exec sudo cp -v {} "${DOOM3_DATA}" \;
+	find /home/desktop/steamcmd/doom3 -iname "*.pk4" -exec sudo cp -v {} "${DOOM3_DATA}" \;
 
 	# cleanup
 	rm -rf doom3
+	rm -rf $HOME/steamcmd/doom3
 }
 
 doom3_data_custom()

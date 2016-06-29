@@ -3,7 +3,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt name:	install-dhewm3.sh
-# Script Ver:	0.1.1
+# Script Ver:	0.8.1
 # Description:	Installs required packages, files for dhewm3, and facilitates
 #		the install of the game.
 #
@@ -12,6 +12,26 @@
 # Usage:	./install-dhewm3.sh
 # -------------------------------------------------------------------------------
 
+set_vars()
+{
+	# Set data dir
+	# Data files can also be placed in the savegame folder per the FAQ
+	# This will be preferred since  / is small on SteamOS
+
+	# config files: $XDG_CONFIG_HOME/dhewm3 (default: $HOME/.config/dhewm3)
+	# savegames: $XDG_DATA_HOME/dhewm3 (default: $HOME/.local/share/dhewm3)
+
+	GAME="dhewm3"
+	GAME_DATA="/home/steam/.local/share/${GAME}/base"
+	GAME_DATA_ALT="/home/steam/${GAME}"
+	CLIENT_PKGS="dhewm3 dhewm3-doom3"
+	GAME_APP_ID="9050"
+	PLATFORM="windows"
+	STEAM_DATA_FILES="$HOME/steamcmd/${GAME}"
+	CLEANUP_STEAM_FILES="yes"
+	
+	
+}
 
 install_client()
 {
@@ -31,11 +51,11 @@ install_client()
 
         fi
 
-	sudo apt-get install -y --force-yes dhewm3 dhewm3-doom3
+	sudo apt-get install -y --force-yes "${CLIENT_PKGS}"
 
 }
 
-doom3_data_cdrom()
+game_data_cdrom()
 {
 
 	#? CDROM (Does SteamOS automount in desktop mode / SSH?)
@@ -56,10 +76,10 @@ doom3_data_cdrom()
 		sudo umount /dev/sr0 2> /dev/null
 
 		# mout disc and get files
-		mkdir -p /tmp/doom3_data
-		sudo mount -t iso9660 -o ro /dev/sr0 /tmp/doom3_data
-		find /tmp/doom3_data -iname "*.pk4" -exec sudo cp -v {} "${DOOM3_DATA}" \;
-		sudo umount /tmp/doom3_data
+		mkdir -p /tmp/GAME_DATA
+		sudo mount -t iso9660 -o ro /dev/sr0 /tmp/GAME_DATA
+		find /tmp/GAME_DATA -iname "*.pk4" -exec sudo cp -v {} "${GAME_DATA}" \;
+		sudo umount /tmp/GAME_DATA
 
 		# See if this is the last disc
 		echo -e "\nIs this the last disc you have? [y/n]"
@@ -76,21 +96,11 @@ doom3_data_cdrom()
 	done
 
 	# ensure we have the patched files
-
-	echo -e "\n==> Gathering updated patch files\n"
-
-	sleep 2s
-	wget "http://libregeek.org/SteamOS-Extra/games/doom3/doom3-linux-1.3.1.1304.x86.run" -q -nc --show-progress
-	chmod +x doom3-linux-1.3.1.1304.x86.run
-	sh doom3-linux-1.3.1.1304.x86.run --tar xvf --wildcards base/pak* d3xp/pak*
-	find . -iname "*.pk4" -exec sudo cp -v {} "${DOOM3_DATA}" \;
-
-	# cleanup
-	rm -rf base d3xp doom3-linux*.run
+	patch_game
 
 }
 
-doom3_data_steam()
+game_data_steam()
 {
 
 	if [[ ! -f "$HOME/steamcmd/steamcmd.sh" ]]; then
@@ -111,33 +121,51 @@ doom3_data_steam()
 	echo ""
 
 	# Download
-	mkdir -p doom3
-	$HOME/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType windows +login ${STEAM_LOGIN_NAME} \
-	+force_install_dir ./doom3/ +app_update 9050 validate +quit
-
-	# Extract .pk4 files
-	# For some reason they still fall into /home/desktop/steamcmd/doom3
-	# FIX THIS
+	# steam cmd likes to put the files in the same directory as the script
 	
-	#find doom3/ -iname "*.pk4" -exec sudo cp -v {} "${DOOM3_DATA}" \;
-	find /home/desktop/steamcmd/doom3 -iname "*.pk4" -exec sudo cp -v {} "${DOOM3_DATA}" \;
+	mkdir -p ${STEAM_DATA_FILES}
+	${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType ${PLATFORM} +login ${STEAM_LOGIN_NAME} \
+	+force_install_dir ./${GAME}/ +app_update ${GAME_APP_ID} validate +quit
+	
+	#find doom3/ -iname "*.pk4" -exec sudo cp -v {} "${GAME_DATA}" \;
+	find "${STEAM_DATA_FILES}"-iname "*.pk4" -exec sudo cp -v {} "${GAME_DATA}" \;
 
 	# cleanup
-	rm -rf doom3
-	rm -rf $HOME/steamcmd/doom3
+	if [[ "${CLEANUP_STEAM_FILES}" == "yes" ]]; then
+
+		rm -rf "${STEAM_DATA_FILES}"
+	
+	fi
 }
 
-doom3_data_custom()
+game_data_custom()
 {
 
 	# CUSTOM
 	# ask for folder
-	echo -e "\nPlease enter the path to the .pk4 files (must contain patched files!)"
+	echo -e "\nPlease enter the path to the game files (must contain any patched files!)"
 	sleep 0.2s
 	read -erp "Location: " custom_file_loc
 
 	# copy files
-	find "${custom_file_loc}" -iname "*.pk4" -exec sudo cp -v {} "${DOOM3_DATA}" \;
+	find "${custom_file_loc}" -iname "*.pk4" -exec sudo cp -v {} "${GAME_DATA}" \;
+
+}
+
+patch_game()
+{
+	# ensure we have the patched files
+
+	echo -e "\n==> Gathering updated patch files\n"
+
+	sleep 2s
+	wget "http://libregeek.org/SteamOS-Extra/games/doom3/doom3-linux-1.3.1.1304.x86.run" -q -nc --show-progress
+	chmod +x doom3-linux-1.3.1.1304.x86.run
+	sh doom3-linux-1.3.1.1304.x86.run --tar xvf --wildcards base/pak* d3xp/pak*
+	find . -iname "*.pk4" -exec sudo cp -v {} "${DOOM3_DATA}" \;
+
+	# cleanup
+	rm -rf base d3xp doom3-linux*.run
 
 }
 
@@ -146,28 +174,17 @@ install_data_files()
 
 	echo -e "\n==> Checking existance of data directory\n"
 
-	# Set data dir
-	# Data files can also be placed in the savegame folder per the FAQ
-	# This will be preferred since  / is small on SteamOS
+	if [[ ! -d "${GAME_DATA}" ]]; then
 
-	# config files: $XDG_CONFIG_HOME/dhewm3 (default: $HOME/.config/dhewm3)
-	# savegames: $XDG_DATA_HOME/dhewm3 (default: $HOME/.local/share/dhewm3)
-
-	DOOM3_DATA="/home/steam/.local/share/dhewm3/base"
-	DOOM3_DATA_ALT="/home/steam/dhewm3"
-
-	if [[ ! -d "${DOOM3_DATA}" ]]; then
-
-		sudo mkdir -p "${DOOM3_DATA}"
-		sudo chown -R steam:steam "${DOOM3_DATA}"
-
+		sudo mkdir -p "${GAME_DATA}"
+		sudo chown -R steam:steam "${GAME_DATA}"
 
 	fi
 
 	# the prompt sometimes likes to jump above sleep
 	cat<<- EOF
 	==============================================
-	Installing Data files for dhewm3
+	Installing Data files for ${GAME}
 	==============================================
 	Please choose a source:
 
@@ -184,15 +201,15 @@ install_data_files()
 	case "${install_choice}" in
 
 		1)
-		doom3_data_cdrom
+		game_data_cdrom
 		;;
 
 		2)
-		doom3_data_steam
+		game_data_steam
 		;;
 
 		3)
-		doom3_data_custom
+		game_data_custom
 		;;
 
 		*)
@@ -211,17 +228,18 @@ post_install()
 	echo -e "\n==> Copying post install configuration files\n"
 
 	# Fix perms
-	sudo chmod 755 -R "${DOOM3_DATA}"
+	sudo chmod 755 -R "${GAME_DATA}"
 
 	# copy dekstop file
-	sudo cp ../cfgs/desktop-files/dhewm3.desktop "/usr/share/applications"
+	sudo cp ../cfgs/desktop-files/${GAME}.desktop "/usr/share/applications"
 
 	# Get artwork
-	sudo wget -O "/usr/share/pixmaps/doom3.png" "http://cdn.akamai.steamstatic.com/steam/apps/9050/header.jpg" -q
+	sudo wget -O "/usr/share/pixmaps/${GAME}.png" "http://cdn.akamai.steamstatic.com/steam/apps/${GAME_APP_ID}/header.jpg" -q
 
 }
 
 # main script
+set_vars || exit 1
 install_client || exit 1
 install_data_files || exit 1
 post_install || exit 1

@@ -29,7 +29,7 @@ set_vars()
 	PLATFORM="windows"
 	STEAM_DATA_FILES="$HOME/steamcmd/${GAME}"
 	CLEANUP_STEAM_FILES="yes"
-	
+	FILE_EXTS="pk4"
 	
 }
 
@@ -76,10 +76,10 @@ game_data_cdrom()
 		sudo umount /dev/sr0 2> /dev/null
 
 		# mout disc and get files
-		mkdir -p /tmp/GAME_DATA
-		sudo mount -t iso9660 -o ro /dev/sr0 /tmp/GAME_DATA
-		find /tmp/GAME_DATA -iname "*.pk4" -exec sudo cp -v {} "${GAME_DATA}" \;
-		sudo umount /tmp/GAME_DATA
+		mkdir -p /tmp/GAME_DATA_TMP
+		sudo mount -t iso9660 -o ro /dev/sr0 /tmp/GAME_DATA_TMP
+		find /tmp/GAME_DATA_TMP -iname "*.${FILE_EXTS}" -exec sudo cp -v {} "${GAME_DATA}" \;
+		sudo umount /tmp/GAME_DATA_TMP
 
 		# See if this is the last disc
 		echo -e "\nIs this the last disc you have? [y/n]"
@@ -107,7 +107,7 @@ game_data_steam()
 
 		# install steamcmd
 		echo -e "\n==> Installing steamcmd\n"
-		mkdir -p "$HOME/steamcmd"
+		mkdir -p "${HOME}/steamcmd"
 		sudo apt-get install -y lib32gcc1 
 		wget "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" -q -nc --show-progress
 		sudo tar -xf "steamcmd_linux.tar.gz" -C "$HOME/steamcmd"
@@ -123,15 +123,15 @@ game_data_steam()
 	# Download
 	# steam cmd likes to put the files in the same directory as the script
 	
-	echo -e "\nDownloading game files to: ${STEAM_DATA_FILES}\n"
+	echo -e "\nDownloading game files to: ${STEAM_DATA_FILES}"
 	sleep 2s
 	
 	mkdir -p ${STEAM_DATA_FILES}
 	${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType ${PLATFORM} +login ${STEAM_LOGIN_NAME} \
 	+force_install_dir ${STEAM_DATA_FILES} +app_update ${GAME_APP_ID} validate +quit
 	
-	#find doom3/ -iname "*.pk4" -exec sudo cp -v {} "${GAME_DATA}" \;
-	find "${STEAM_DATA_FILES}"-iname "*.pk4" -exec sudo cp -v {} "${GAME_DATA}" \;
+	#find doom3/ -iname "*.${FILE_EXTS}" -exec sudo cp -v {} "${GAME_DATA}" \;
+	find "${STEAM_DATA_FILES}" -name "*.${FILE_EXTS}" -exec sudo cp -v {} "${GAME_DATA}" \;
 
 	# cleanup
 	if [[ "${CLEANUP_STEAM_FILES}" == "yes" ]]; then
@@ -151,7 +151,7 @@ game_data_custom()
 	read -erp "Location: " custom_file_loc
 
 	# copy files
-	find "${custom_file_loc}" -iname "*.pk4" -exec sudo cp -v {} "${GAME_DATA}" \;
+	find "${custom_file_loc}" -iname "*.${FILE_EXTS}" -exec sudo cp -v {} "${GAME_DATA}" \;
 
 }
 
@@ -165,7 +165,7 @@ patch_game()
 	wget "http://libregeek.org/SteamOS-Extra/games/doom3/doom3-linux-1.3.1.1304.x86.run" -q -nc --show-progress
 	chmod +x doom3-linux-1.3.1.1304.x86.run
 	sh doom3-linux-1.3.1.1304.x86.run --tar xvf --wildcards base/pak* d3xp/pak*
-	find . -iname "*.pk4" -exec sudo cp -v {} "${DOOM3_DATA}" \;
+	find . -iname "*.${FILE_EXTS}" -exec sudo cp -v {} "${DOOM3_DATA}" \;
 
 	# cleanup
 	rm -rf base d3xp doom3-linux*.run

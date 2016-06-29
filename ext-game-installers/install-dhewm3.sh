@@ -51,7 +51,7 @@ install_client()
 
         fi
 
-	sudo apt-get install -y --force-yes "${CLIENT_PKGS}"
+	sudo apt-get install -y --force-yes ${CLIENT_PKGS}
 
 }
 

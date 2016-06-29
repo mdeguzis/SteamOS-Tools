@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=dhewm3
+GenericName=dhewm3
+Type=Application
+Exec=/usr/games/dhewm3
+Icon=/usr/share/pixmaps/doom3.png
+Categories=application;

@@ -123,9 +123,12 @@ game_data_steam()
 	# Download
 	# steam cmd likes to put the files in the same directory as the script
 	
+	echo -e "\nDownloading game files to: ${STEAM_DATA_FILES}\n"
+	sleep 2s
+	
 	mkdir -p ${STEAM_DATA_FILES}
 	${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType ${PLATFORM} +login ${STEAM_LOGIN_NAME} \
-	+force_install_dir ./${GAME}/ +app_update ${GAME_APP_ID} validate +quit
+	+force_install_dir ${STEAM_DATA_FILES} +app_update ${GAME_APP_ID} validate +quit
 	
 	#find doom3/ -iname "*.pk4" -exec sudo cp -v {} "${GAME_DATA}" \;
 	find "${STEAM_DATA_FILES}"-iname "*.pk4" -exec sudo cp -v {} "${GAME_DATA}" \;

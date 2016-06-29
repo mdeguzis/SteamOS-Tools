@@ -322,9 +322,6 @@ rpc_configure_src()
 		# configurations for Retroarch or libretro 
 		#################################################
 
-		echo -e "\n==> Linking Retroarch to $symlink_target"
-		sleep 2s
-
 		# Run common configuration
 		# This is a piece that both the source build and the package
 		# implementation share

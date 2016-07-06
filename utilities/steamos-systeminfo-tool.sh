@@ -49,6 +49,7 @@ function_set_vars()
 	LOG_ROOT="${HOME}/logs"
 	LOG_FOLDER="${LOG_ROOT}/steamos-logs"
 	LOG_FILE="${LOG_FOLDER}/steam_info.txt"
+	ZIP_FILE="${LOG_FOLDER}_${DATE_SHORT}.zip"
 
 	# Remove old logs to old folder and clean folder
 
@@ -142,11 +143,20 @@ main()
 
 	# Archive log filer with date
 	echo -e "\n==> Archiving logs\n"
-	7za a "${LOG_FOLDER}_${DATE_SHORT}.zip" ${LOG_FOLDER}/*
+	7za a "${ZIP_FILE}" ${LOG_FOLDER}/*
   
 }
 
 # Main
 clear
 function_set_vars
-main | tee ${LOG_FILE}
+echo -e "Running SteamOS system info tool..."
+main &> ${LOG_FILE}
+
+# output summary
+
+cat<<- EOF
+Logs have been store at: ${LOG_FOLDER}
+Log archive stored at: ${ZIP_FILE}
+
+EOF

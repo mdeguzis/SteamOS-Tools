@@ -19,7 +19,7 @@ function_install_utilities()
 	
 	echo -e "==> Installing needed software...\n"
 
-	PKGS="p7zip-full"
+	PKGS="p7zip-full bc"
 
 	for PKG in ${PKGS};
 	do
@@ -40,7 +40,7 @@ function_install_utilities()
 
 function_set_vars()
 {
-  
+
 	TOP=${PWD}
 
 	DATE_LONG=$(date +"%a, %d %b %Y %H:%M:%S %z")
@@ -55,7 +55,7 @@ function_set_vars()
 
 	cp -r ${LOG_FOLDER} ${LOG_FOLDER}.old &> /dev/null
 	rm -rf ${LOG_FOLDER}/*
-	
+
 	# Remove old zip files to avoid clutter.
 	# Max: 90 days
 	find ${LOG_ROOT} -mtime +90 -type f -name "steamos-logs*.zip" -exec rm {} \;
@@ -66,8 +66,14 @@ function_set_vars()
 		mkdir -p "${LOG_FOLDER}"
 
 	fi
-	
+
+	#################
 	# OS
+	#################
+	
+	KERNEL_INFO_FULL=(uname -a)
+	KERNEL_INFO_RELEASE=(uname -r)
+	KERNEL_INFO_ARCH=$(uname -m)
 
 	# Suppress "No LSB modules available message"
 	OS_BASIC_INFO=$(lsb_release -a 2> /dev/null)
@@ -86,12 +92,49 @@ function_set_vars()
 
 	fi
 
+	#################
+	# Hardware
+	#################
+	
+	# CPU
+	CPU_VENDOR=$(lscpu | awk '/Vendor ID/{print $2}')
+	CPU_ARCH=$(lscpu | awk '/Arch/{print $2}')
+	CPU_MHZ=$(lscpu | awk '/MHz/{print $3}')
+	CPU_GHZ=$(echo "scale=2; ${CPU_MHZ}/1000" | bc)
+	CPU_CORES=$(lscpu | awk '/Core\(s\)/{print $4}')
+	
+	# Memory
+	
+	SYSTEM_MEM_KB=$(cat /proc/meminfo | awk '/MemTotal/{print $2}')
+	SYSTEM_MEM_GB=$(echo "scale=2; ${SYSTEM_MEM_KB}/1000/1000" | bc)
+	SYSTEM_SWAP_KB=$(cat /proc/meminfo | awk '/MemTotal/{print $2}')
+	SYSTEM_SWAP_GB=$(echo "scale=2; ${SYSTEM_SWAP_KB}/1000/1000" | bc)
+
+	# DISK
+
+	# just use lsblk in output
+	CMD_LSBLK="lsblk"
+
+	# Check vendor
+	GPU_VENDOR_STRING=$(lspci -v | grep "VGA compatible Controller" | grep -Ei 'nvidia|ati|amd|intel')
+	# Set vendor
+	if echo ${GPU_VENDOR_STRING} | grep -i "nvidia" 1> /dev/null; then GPU_VENDOR="nvidia"; fi
+	if echo ${GPU_VENDOR_STRING} | grep -i "ati" 1> /dev/null; then GPU_VENDOR="ati"; fi
+	if echo ${GPU_VENDOR_STRING} | grep -i "amd" 1> /dev/null; then GPU_VENDOR="amd"; fi
+	if echo ${GPU_VENDOR_STRING} | grep -i "intel" 1> /dev/null; then GPU_VENDOR="intel"; fi
+
+	GPU=$(lspci -v | grep "VGA compatible Controller" | awk -F";" '${print $3}')
+	GPU_DRIVER_STRING=$(cat /var/log/Xorg.0.log | awk -F'\\)' '/GLX Module/{print $2}')
+	# Use fuill driver string from Xorg log for now until more testing can be done
+	GPU_DRIVER_VERSION="${GPU_DRIVER_STRING}"
+
+	#################
 	# Software
+	#################
 
 	SOFTWARE_LIST=$(dpkg-query -W -f='${Package}\t${Architecture}\t${Status}\t${Version}\n' "valve-*" "*steam*" "nvidia*" "fglrx*" "*mesa*")
 
 	# Steam vars
-
 	STEAM_CLIENT_VER=$(grep "version" /home/steam/.steam/steam/package/steam_client_ubuntu12.manifest \
 	| awk '{print $2}' | sed 's/"//g')
 	STEAM_CLIENT_BUILT=$(date -d @${STEAM_CLIENT_VER})
@@ -105,17 +148,39 @@ function_gather_info()
 	# OS
 	cat<<-EOF
 	==============================================
-	SteamOS Info Tool
+	SteamOS System Info Tool
 	==============================================
 	
 	==========================
 	OS Information
 	==========================
 
+	Kernel release: ${KERNEL_INFO_RELEASE}
+	Kernel arch: ${KERNEL_INFO_ARCH}
+	
 	${OS_BASIC_INFO}
 	SteamOS Version: ${STEAMOS_VER}
 	SteamOS OS Beta: ${OS_BETA_STATUS}
 	OS Updates last checked on: ${OS_UPDATE_CHECKTIME}
+	
+	==========================
+	Hardware Information
+	==========================
+
+	CPU Vendor: ${CPU_VENDOR}
+	CPU Arch: ${CPU_ARCH}
+	CPU Clock: ${CPU_GHZ}
+	CPU Cores${CPU_CORES}
+	
+	System Total Memory: ${SYSTEM_MEM_GB}
+	System Total Swap: ${SYSTEM_SWAP_GB}
+
+	GPU Vendor: ${GPU_VENDOR}
+	GPU:${GPU}
+	GPU Driver: ${GPU_DRIVER_VERSION}
+	
+	Harddrive information:
+	${CMD_LSBLK}
 
 	==========================
 	Software Information
@@ -153,6 +218,9 @@ function_gather_logs()
 		# Suprress only when error/not found
 		sudo cp -v ${file} ${LOG_FOLDER} 2>/dev/null
 	done
+	
+	# Gather lspci -v for kicks
+	lspci -v &> "${LOG_FOLDER}/lspci.txt"
 	
 	# Notable logs not included right now
 	# /home/steam/.steam/steam/logs*

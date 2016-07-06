@@ -6,8 +6,6 @@
 # Script Ver:	0.7.7
 # Description:	Tool to collect some information for troubleshooting issues
 #
-# See:		
-#
 # Usage:	./steamos-systeminfo-tool.
 # Opts:		[--testing]
 #		Modifys build script to denote this is a test package build.
@@ -15,7 +13,7 @@
 
 function_install_utilities()
 {
-	
+
 	echo -e "==> Installing needed software...\n"
 
 	PKGS="p7zip-full bc"
@@ -25,12 +23,12 @@ function_install_utilities()
 
 		# This one-liner returns 1 (installed) or 0 (not installed) for the package
 		if ! dpkg-query -W --showformat='${Status}\n' ${PKG} | grep "ok installed"; then
-	
+
 			sudo apt-get install -y ${PKG}
 		else
-	
+
 			echo -e "Package: ${PKG} [OK]\n"
-	
+
 		fi
 
 	done
@@ -69,7 +67,7 @@ function_set_vars()
 	#################
 	# OS
 	#################
-	
+
 	KERNEL_INFO_FULL=$(uname -a)
 	KERNEL_INFO_RELEASE=$(uname -r)
 	KERNEL_INFO_ARCH=$(uname -m)
@@ -77,7 +75,7 @@ function_set_vars()
 	# Suppress "No LSB modules available message"
 	OS_BASIC_INFO=$(lsb_release -a 2> /dev/null)
 	# See when OS updates were last checked for
-	OS_UPDATE_CHECKTIME=$(stat /var/lib/apt/periodic/upgrade-stamp | grep "Access" | tail -n 1 | sed 's/Access: //')
+	OS_UPDATE_CHECKTIME=$(stat /var/lib/apt/periodic/upgrade-stamp | grep "Modify" | tail -n 1 | sed 's/Modify: //')
 	# Beta stuff
 	OS_BETA_CHECK=$(dpkg-query -W --showformat='${Status}\n' steamos-beta-repo | grep "ok installed")
 
@@ -94,16 +92,16 @@ function_set_vars()
 	#################
 	# Hardware
 	#################
-	
+
 	# CPU
 	CPU_VENDOR=$(lscpu | awk '/Vendor ID/{print $3}')
 	CPU_ARCH=$(lscpu | awk '/Arch/{print $2}')
 	CPU_MHZ=$(lscpu | awk '/MHz/{print $3}')
 	CPU_GHZ=$(echo "scale=2; ${CPU_MHZ}/1000" | bc)
 	CPU_CORES=$(lscpu | awk '/Core\(s\)/{print $4}')
-	
+
 	# Memory
-	
+
 	SYSTEM_MEM_KB=$(cat /proc/meminfo | awk '/MemTotal/{print $2}')
 	SYSTEM_MEM_GB=$(echo "scale=2; ${SYSTEM_MEM_KB}/1000/1000" | bc)
 	SYSTEM_SWAP_KB=$(cat /proc/meminfo | awk '/SwapTotal/{print $2}')
@@ -151,19 +149,19 @@ function_gather_info()
 	==============================================
 	SteamOS System Info Tool
 	==============================================
-	
+
 	==========================
 	OS Information
 	==========================
 
 	Kernel release: ${KERNEL_INFO_RELEASE}
 	Kernel arch: ${KERNEL_INFO_ARCH}
-	
+
 	${OS_BASIC_INFO}
 	SteamOS Version: ${STEAMOS_VER}
 	SteamOS OS Beta: ${OS_BETA_STATUS}
 	OS Updates last checked on: ${OS_UPDATE_CHECKTIME}
-	
+
 	==========================
 	Hardware Information
 	==========================
@@ -172,15 +170,16 @@ function_gather_info()
 	CPU Arch: ${CPU_ARCH}
 	CPU Clock: ${CPU_GHZ} GHz
 	CPU Cores: ${CPU_CORES}
-	
+
 	System Total Memory: ${SYSTEM_MEM_GB} GB
 	System Total Swap: ${SYSTEM_SWAP_GB} GB
 
 	GPU Vendor: ${GPU_VENDOR}
 	GPU Model: ${GPU_MODEL}
 	GPU Driver: ${GPU_DRIVER_VERSION}
-	
+
 	Disk information:
+
 	${CMD_LSBLK}
 
 	==========================
@@ -188,11 +187,11 @@ function_gather_info()
 	==========================
 
 	${SOFTWARE_LIST}
-	
+
 	==========================
 	Steam Information
 	==========================
-	
+
 	Steam client version: ${STEAM_CLIENT_VER}
 	Steam client built: ${STEAM_CLIENT_BUILT}
 
@@ -201,9 +200,9 @@ function_gather_info()
 
 function_gather_logs()
 {
-	
+
 	echo -e "\n==> Gathering logs (sudo required for system paths)\n"
-  
+
 	# Simply copy logs to temp log folder to be tarballed later
 	pathlist=()
 	pathlist+=("/tmp/dumps/steam_stdout.txt")
@@ -213,19 +212,19 @@ function_gather_logs()
 	pathlist+=("/var/log/unattended-upgrades/unattended-upgrades.log")
 	pathlist+=("/var/log/unattended-upgrades/unattended-upgrades-shutdown-output.log")
 	pathlist+=("/run/unattended-upgrades/ready.json")
-	
+
 	for file in "${pathlist[@]}"
 	do
 		# Suprress only when error/not found
 		sudo cp -v ${file} ${LOG_FOLDER} 2>/dev/null
 	done
-	
+
 	# Gather lspci -v for kicks
 	lspci -v &> "${LOG_FOLDER}/lspci.txt"
-	
+
 	# Notable logs not included right now
 	# /home/steam/.steam/steam/logs*
-  
+
 }
 
 main()
@@ -243,7 +242,7 @@ main()
 	# Archive log filer with date
 	echo -e "\n==> Archiving logs\n"
 	7za a "${ZIP_FILE}" ${LOG_FOLDER}/*
-  
+
 }
 
 # Main

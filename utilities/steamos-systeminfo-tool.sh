@@ -73,6 +73,16 @@ function_set_vars()
 	OS_BASIC_INFO=$(lsb_release -a 2> /dev/null)
 	# See when OS updates were last checked for
 	OS_UPDATE_CHECKTIME=$(stat /usr/bin/steamos-update | grep "Access" | tail -n 1 | sed 's/Access: //')
+	# Beta stuff
+	if dpkg-query -W --showformat='${Status}\n' steamos-beta-repo | grep "ok installed"; then
+
+		OS_BETA_STATUS="Enabled"
+
+	else
+
+		OS_BETA_STATUS="Disabled"
+
+	fi
 	
 	# Software
 
@@ -102,6 +112,7 @@ function_gather_info()
 
 	${OS_BASIC_INFO}
 	SteamOS Version: ${STEAMOS_VER}
+	SteamOS OS Beta: ${OS_BETA_STATUS}
 	OS Updates last checked on: ${OS_UPDATE_CHECKTIME}
 
 	==========================

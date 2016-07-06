@@ -118,13 +118,13 @@ function_set_vars()
 	# Check vendor
 	GPU_VENDOR_STRING=$(lspci -v | grep "VGA compatible Controller" | grep -Ei 'nvidia|ati|amd|intel')
 	# Set vendor
-	if echo ${GPU_VENDOR_STRING} | grep -i "nvidia" 1> /dev/null; then GPU_VENDOR="nvidia"; fi
-	if echo ${GPU_VENDOR_STRING} | grep -i "ati" 1> /dev/null; then GPU_VENDOR="ati"; fi
-	if echo ${GPU_VENDOR_STRING} | grep -i "amd" 1> /dev/null; then GPU_VENDOR="amd"; fi
-	if echo ${GPU_VENDOR_STRING} | grep -i "intel" 1> /dev/null; then GPU_VENDOR="intel"; fi
+	if echo "${GPU_VENDOR_STRING}" | grep -i "nvidia" 1> /dev/null; then GPU_VENDOR="nvidia"; fi
+	if echo "${GPU_VENDOR_STRING}" | grep -i "ati" 1> /dev/null; then GPU_VENDOR="ati"; fi
+	if echo "${GPU_VENDOR_STRING}" | grep -i "amd" 1> /dev/null; then GPU_VENDOR="amd"; fi
+	if echo "${GPU_VENDOR_STRING}" | grep -i "intel" 1> /dev/null; then GPU_VENDOR="intel"; fi
 
 	GPU_MODEL_FULL=$(lspci -v | awk -F":" '/VGA compatible Controller/{print $3}')
-	GPU_MODE="${GPU_MODEL_FULL}"
+	GPU_MODEL="${GPU_MODEL_FULL}"
 	GPU_DRIVER_STRING=$(cat /var/log/Xorg.0.log | awk -F'\\)' '/GLX Module/{print $2}')
 	# Use full driver string from Xorg log for now until more testing can be done
 	GPU_DRIVER_VERSION="${GPU_DRIVER_STRING}"
@@ -173,11 +173,11 @@ function_gather_info()
 	CPU Clock: ${CPU_GHZ}
 	CPU Cores: ${CPU_CORES}
 	
-	System Total Memory: ${SYSTEM_MEM_GB}
-	System Total Swap: ${SYSTEM_SWAP_GB}
+	System Total Memory: ${SYSTEM_MEM_GB} GB
+	System Total Swap: ${SYSTEM_SWAP_GB} GB
 
 	GPU Vendor: ${GPU_VENDOR}
-	GPU: Model: ${GPU_MODEL_FULL}
+	GPU: Model: ${GPU_MODEL}
 	GPU Driver: ${GPU_DRIVER_VERSION}
 	
 	Disk information:

@@ -77,7 +77,7 @@ function_set_vars()
 	# Suppress "No LSB modules available message"
 	OS_BASIC_INFO=$(lsb_release -a 2> /dev/null)
 	# See when OS updates were last checked for
-	OS_UPDATE_CHECKTIME=$(stat /usr/bin/steamos-update | grep "Access" | tail -n 1 | sed 's/Access: //')
+	OS_UPDATE_CHECKTIME=$(stat /var/lib/apt/periodic/upgrade-stamp | grep "Access" | tail -n 1 | sed 's/Access: //')
 	# Beta stuff
 	OS_BETA_CHECK=$(dpkg-query -W --showformat='${Status}\n' steamos-beta-repo | grep "ok installed")
 

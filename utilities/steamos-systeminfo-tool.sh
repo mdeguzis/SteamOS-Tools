@@ -132,7 +132,8 @@ function_set_vars()
 	# Software
 	#################
 
-	SOFTWARE_LIST=$(dpkg-query -W -f='${Package}\t${Architecture}\t${Status}\t${Version}\n' "valve-*" "*steam*" "nvidia*" "fglrx*" "*mesa*")
+	SOFTWARE_LIST=$(dpkg-query -W -f='${Package}\t${Architecture}\t${Status}\t${Version}\n' "valve-*" \
+	"*steam*" "nvidia*" "fglrx*" "*mesa*" "*libregeek*")
 
 	# Steam vars
 	STEAM_CLIENT_VER=$(grep "version" /home/steam/.steam/steam/package/steam_client_ubuntu12.manifest \

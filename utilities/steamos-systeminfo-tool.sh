@@ -70,8 +70,8 @@ function_set_vars()
 	# OS
 	#################
 	
-	KERNEL_INFO_FULL=(uname -a)
-	KERNEL_INFO_RELEASE=(uname -r)
+	KERNEL_INFO_FULL=$(uname -a)
+	KERNEL_INFO_RELEASE=$(uname -r)
 	KERNEL_INFO_ARCH=$(uname -m)
 
 	# Suppress "No LSB modules available message"

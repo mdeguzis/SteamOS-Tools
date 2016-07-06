@@ -118,10 +118,10 @@ function_set_vars()
 	# Check vendor
 	GPU_VENDOR_STRING=$(lspci -v | grep "VGA compatible controller" | grep -Ei 'nvidia|ati|amd|intel')
 	# Set vendor
-	if echo "${GPU_VENDOR_STRING}" | grep -iw "nvidia" 1> /dev/null; then GPU_VENDOR="nvidia"; fi
-	if echo "${GPU_VENDOR_STRING}" | grep -iw "ati" 1> /dev/null; then GPU_VENDOR="ati"; fi
-	if echo "${GPU_VENDOR_STRING}" | grep -iw "amd" 1> /dev/null; then GPU_VENDOR="amd"; fi
-	if echo "${GPU_VENDOR_STRING}" | grep -iw "intel" 1> /dev/null; then GPU_VENDOR="intel"; fi
+	if echo "${GPU_VENDOR_STRING}" | grep -iw "nvidia" 1> /dev/null; then GPU_VENDOR="Nvidia"; fi
+	if echo "${GPU_VENDOR_STRING}" | grep -iw "ati" 1> /dev/null; then GPU_VENDOR="ATI"; fi
+	if echo "${GPU_VENDOR_STRING}" | grep -iw "amd" 1> /dev/null; then GPU_VENDOR="AMD"; fi
+	if echo "${GPU_VENDOR_STRING}" | grep -iw "intel" 1> /dev/null; then GPU_VENDOR="Intel"; fi
 
 	GPU_MODEL_FULL=$(lspci -v | awk -F":" '/VGA compatible controller/{print $3}')
 	GPU_MODEL="${GPU_MODEL_FULL}"

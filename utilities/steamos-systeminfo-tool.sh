@@ -2,14 +2,13 @@
 #-------------------------------------------------------------------------------
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt name:	steamos-info-tool.sh
+# Scipt name:	steamos-systeminfo-tool.
 # Script Ver:	0.7.7
-# Description:	Tool to collect some information for troubleshooting
-#		release
+# Description:	Tool to collect some information for troubleshooting issues
 #
 # See:		
 #
-# Usage:	./steamos-info-tool.sh
+# Usage:	./steamos-systeminfo-tool.
 # Opts:		[--testing]
 #		Modifys build script to denote this is a test package build.
 # -------------------------------------------------------------------------------

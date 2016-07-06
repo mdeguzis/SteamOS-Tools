@@ -3,7 +3,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt name:	steamos-info-tool.sh
-# Script Ver:	0.3.7
+# Script Ver:	0.7.7
 # Description:	Tool to collect some information for troubleshooting
 #		release
 #
@@ -97,7 +97,7 @@ function_set_vars()
 	#################
 	
 	# CPU
-	CPU_VENDOR=$(lscpu | awk '/Vendor ID/{print $2}')
+	CPU_VENDOR=$(lscpu | awk '/Vendor ID/{print $3}')
 	CPU_ARCH=$(lscpu | awk '/Arch/{print $2}')
 	CPU_MHZ=$(lscpu | awk '/MHz/{print $3}')
 	CPU_GHZ=$(echo "scale=2; ${CPU_MHZ}/1000" | bc)
@@ -107,7 +107,7 @@ function_set_vars()
 	
 	SYSTEM_MEM_KB=$(cat /proc/meminfo | awk '/MemTotal/{print $2}')
 	SYSTEM_MEM_GB=$(echo "scale=2; ${SYSTEM_MEM_KB}/1000/1000" | bc)
-	SYSTEM_SWAP_KB=$(cat /proc/meminfo | awk '/MemTotal/{print $2}')
+	SYSTEM_SWAP_KB=$(cat /proc/meminfo | awk '/SwapTotal/{print $2}')
 	SYSTEM_SWAP_GB=$(echo "scale=2; ${SYSTEM_SWAP_KB}/1000/1000" | bc)
 
 	# DISK
@@ -124,8 +124,9 @@ function_set_vars()
 	if echo ${GPU_VENDOR_STRING} | grep -i "intel" 1> /dev/null; then GPU_VENDOR="intel"; fi
 
 	GPU_MODEL_FULL=$(lspci -v | awk -F":" '/VGA compatible Controller/{print $3}')
+	GPU_MODE="${GPU_MODEL_FULL}"
 	GPU_DRIVER_STRING=$(cat /var/log/Xorg.0.log | awk -F'\\)' '/GLX Module/{print $2}')
-	# Use fuill driver string from Xorg log for now until more testing can be done
+	# Use full driver string from Xorg log for now until more testing can be done
 	GPU_DRIVER_VERSION="${GPU_DRIVER_STRING}"
 
 	#################

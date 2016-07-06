@@ -123,7 +123,7 @@ function_set_vars()
 	if echo ${GPU_VENDOR_STRING} | grep -i "amd" 1> /dev/null; then GPU_VENDOR="amd"; fi
 	if echo ${GPU_VENDOR_STRING} | grep -i "intel" 1> /dev/null; then GPU_VENDOR="intel"; fi
 
-	GPU_MODEL_FULL=$(lspci -v | grep "VGA compatible Controller" | awk -F":" '${print $3}')
+	GPU_MODEL_FULL=$(lspci -v | awk -F":" '/VGA compatible Controller/{print $3}')
 	GPU_DRIVER_STRING=$(cat /var/log/Xorg.0.log | awk -F'\\)' '/GLX Module/{print $2}')
 	# Use fuill driver string from Xorg log for now until more testing can be done
 	GPU_DRIVER_VERSION="${GPU_DRIVER_STRING}"
@@ -179,7 +179,7 @@ function_gather_info()
 	GPU: Model: ${GPU_MODEL_FULL}
 	GPU Driver: ${GPU_DRIVER_VERSION}
 	
-	Harddrive information:
+	Disk information:
 	${CMD_LSBLK}
 
 	==========================

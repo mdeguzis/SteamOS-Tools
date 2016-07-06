@@ -3,7 +3,7 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt name:	steamos-info-tool.sh
-# Script Ver:	0.1.7
+# Script Ver:	0.3.7
 # Description:	Tool to collect some information for troubleshooting
 #		release
 #
@@ -25,7 +25,7 @@ function_install_utilities()
 	do
 
 		# This one-liner returns 1 (installed) or 0 (not installed) for the package
-		if ! $(dpkg-query -W --showformat='${Status}\n' ${PKG} | grep "ok installed"); then
+		if ! dpkg-query -W --showformat='${Status}\n' ${PKG} | grep "ok installed"; then
 	
 			sudo apt-get install -y ${PKG}
 		else
@@ -68,12 +68,18 @@ function_set_vars()
 	fi
 	
 	# OS
-	OS_BASIC_INFO=$(lsb_release -a)
+
+	# Suppress "No LSB modules available message"
+	OS_BASIC_INFO=$(lsb_release -a 2> /dev/null)
+	# See when OS updates were last checked for
+	OS_UPDATE_CHECKTIME=$(stat /usr/bin/steamos-update | grep "Access" | tail -n 1 | sed 's/Access: //')
 	
 	# Software
+
 	SOFTWARE_LIST=$(dpkg-query -W -f='${Package}\t${Architecture}\t${Status}\t${Version}\n' "valve-*" "*steam*" "nvidia*" "fglrx*" "*mesa*")
 
 	# Steam vars
+
 	STEAM_CLIENT_VER=$(grep "version" /home/steam/.steam/steam/package/steam_client_ubuntu12.manifest \
 	| awk '{print $2}' | sed 's/"//g')
 	STEAM_CLIENT_BUILT=$(date -d @${STEAM_CLIENT_VER})
@@ -97,6 +103,7 @@ function_gather_info()
 
 	${OS_BASIC_INFO}
 	SteamOS Version: ${STEAMOS_VER}
+	OS Updates last checked on: ${OS_UPDATE_CHECKTIME}
 
 	==========================
 	Software Information

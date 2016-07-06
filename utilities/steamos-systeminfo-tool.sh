@@ -76,7 +76,7 @@ function_set_vars()
 	# Beta stuff
 	OS_BETA_CHECK=$(dpkg-query -W --showformat='${Status}\n' steamos-beta-repo | grep "ok installed")
 
-	if [[ "${OS_BETA_CHECK}" != "" ]] then
+	if [[ "${OS_BETA_CHECK}" != "" ]]; then
 
 		OS_BETA_STATUS="Enabled"
 

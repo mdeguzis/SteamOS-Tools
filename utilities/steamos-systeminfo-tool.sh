@@ -66,10 +66,18 @@ function_set_vars()
 		mkdir -p "${LOG_FOLDER}"
 
 	fi
+	
+	# OS
+	OS_BASIC_INFO=$(lsb_release -a)
+	
+	# Software
+	SOFTWARE_LIST=$(dpkg-query -W -f='${Package}\t${Architecture}\t${Status}\t${Version}\n' "valve-*" "*steam*" "nvidia*" "fglrx*" "*mesa*")
 
+	# Steam vars
 	STEAM_CLIENT_VER=$(grep "version" /home/steam/.steam/steam/package/steam_client_ubuntu12.manifest \
 	| awk '{print $2}' | sed 's/"//g')
 	STEAM_CLIENT_BUILT=$(date -d @${STEAM_CLIENT_VER})
+	STEAMOS_VER=$(dpkg-query -W -f='${VERSION}\n' steamos-updatelevel)
 
 }
 
@@ -77,26 +85,33 @@ function_gather_info()
 {
 
 	# OS
-	echo -e "==================================="
-	echo -e "OS Information"
-	echo -e "===================================\n"
-
-	lsb_release -a
+	cat<<-EOF
 	
-	# Software
-	echo -e "\n==================================="
-	echo -e "Software Information"
-	echo -e "===================================\n"
-
-	dpkg-query -W -f='${Package}\t${Architecture}\t${Status}\t${Version}\n' "valve-*" "*steam*" "nvidia*" "fglrx*" "*mesa*"
+	==============================================
+	SteamOS Info Tool
+	==============================================
 	
-	echo -e "\n==================================="
-	echo -e "Steam Information"
-	echo -e "===================================\n"
-	
-	echo "Steam client version: ${STEAM_CLIENT_VER}" 
-	echo "Steam client built: ${STEAM_CLIENT_BUILT}"
+	==========================
+	OS Information
+	==========================
 
+	${OS_BASIC_INFO}
+	SteamOS Version: ${STEAMOS_VER}
+
+	==========================
+	Software Information
+	==========================
+
+	${SOFTWARE_LIST}
+	
+	==========================
+	Steam Information
+	==========================
+	
+	Steam client version: ${STEAM_CLIENT_VER}
+	Steam client built: ${STEAM_CLIENT_BUILT}
+
+	EOF
 }
 
 function_gather_logs()
@@ -127,10 +142,6 @@ function_gather_logs()
 
 main()
 {
-	
-	echo -e "=============================================="
-	echo -e "SteamOS Info Tool"
-	echo -e "==============================================\n"
 
 	# Install software
 	function_install_utilities
@@ -156,7 +167,7 @@ main &> ${LOG_FILE}
 # output summary
 
 cat<<- EOF
-Logs have been store at: ${LOG_FOLDER}
+Logs have been stored at: ${LOG_FOLDER}
 Log archive stored at: ${ZIP_FILE}
 
 EOF

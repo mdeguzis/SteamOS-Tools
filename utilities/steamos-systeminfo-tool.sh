@@ -116,7 +116,7 @@ function_set_vars()
 	CMD_LSBLK=$(lsblk)
 
 	# Check vendor
-	GPU_VENDOR_STRING=$(lspci -v | grep "VGA compatible Controller" | grep -Ei 'nvidia|ati|amd|intel')
+	GPU_VENDOR_STRING=$(lspci -v | grep "VGA compatible controller" | grep -Ei 'nvidia|ati|amd|intel')
 	# Set vendor
 	if echo "${GPU_VENDOR_STRING}" | grep -i "nvidia" 1> /dev/null; then GPU_VENDOR="nvidia"; fi
 	if echo "${GPU_VENDOR_STRING}" | grep -i "ati" 1> /dev/null; then GPU_VENDOR="ati"; fi
@@ -170,14 +170,14 @@ function_gather_info()
 
 	CPU Vendor: ${CPU_VENDOR}
 	CPU Arch: ${CPU_ARCH}
-	CPU Clock: ${CPU_GHZ}
+	CPU Clock: ${CPU_GHZ} GHz
 	CPU Cores: ${CPU_CORES}
 	
 	System Total Memory: ${SYSTEM_MEM_GB} GB
 	System Total Swap: ${SYSTEM_SWAP_GB} GB
 
 	GPU Vendor: ${GPU_VENDOR}
-	GPU: Model: ${GPU_MODEL}
+	GPU Model: ${GPU_MODEL}
 	GPU Driver: ${GPU_DRIVER_VERSION}
 	
 	Disk information:

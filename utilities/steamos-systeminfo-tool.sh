@@ -48,7 +48,7 @@ function_set_vars()
 
 	LOG_ROOT="${HOME}/logs"
 	LOG_FOLDER="${LOG_ROOT}/steamos-logs"
-	LOG_FILE="${LOG_FOLDER}/steam_info.txt"
+	LOG_FILE="${LOG_FOLDER}/steamos-systeminfo-stdout.txt"
 	ZIP_FILE="${LOG_FOLDER}_${DATE_SHORT}.zip"
 
 	# Remove old logs to old folder and clean folder
@@ -92,7 +92,6 @@ function_gather_info()
 
 	# OS
 	cat<<-EOF
-	
 	==============================================
 	SteamOS Info Tool
 	==============================================
@@ -169,6 +168,7 @@ main()
 clear
 function_set_vars
 echo -e "Running SteamOS system info tool..."
+echo -e "Note: sudo is required to access and store system level logs"
 main &> ${LOG_FILE}
 
 # output summary

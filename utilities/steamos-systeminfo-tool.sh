@@ -113,7 +113,7 @@ function_set_vars()
 	# DISK
 
 	# just use lsblk in output
-	CMD_LSBLK="lsblk"
+	CMD_LSBLK=$(lsblk)
 
 	# Check vendor
 	GPU_VENDOR_STRING=$(lspci -v | grep "VGA compatible Controller" | grep -Ei 'nvidia|ati|amd|intel')
@@ -123,7 +123,7 @@ function_set_vars()
 	if echo ${GPU_VENDOR_STRING} | grep -i "amd" 1> /dev/null; then GPU_VENDOR="amd"; fi
 	if echo ${GPU_VENDOR_STRING} | grep -i "intel" 1> /dev/null; then GPU_VENDOR="intel"; fi
 
-	GPU=$(lspci -v | grep "VGA compatible Controller" | awk -F";" '${print $3}')
+	GPU_MODEL_FULL=$(lspci -v | grep "VGA compatible Controller" | awk -F":" '${print $3}')
 	GPU_DRIVER_STRING=$(cat /var/log/Xorg.0.log | awk -F'\\)' '/GLX Module/{print $2}')
 	# Use fuill driver string from Xorg log for now until more testing can be done
 	GPU_DRIVER_VERSION="${GPU_DRIVER_STRING}"
@@ -170,13 +170,13 @@ function_gather_info()
 	CPU Vendor: ${CPU_VENDOR}
 	CPU Arch: ${CPU_ARCH}
 	CPU Clock: ${CPU_GHZ}
-	CPU Cores${CPU_CORES}
+	CPU Cores: ${CPU_CORES}
 	
 	System Total Memory: ${SYSTEM_MEM_GB}
 	System Total Swap: ${SYSTEM_SWAP_GB}
 
 	GPU Vendor: ${GPU_VENDOR}
-	GPU:${GPU}
+	GPU: Model: ${GPU_MODEL_FULL}
 	GPU Driver: ${GPU_DRIVER_VERSION}
 	
 	Harddrive information:

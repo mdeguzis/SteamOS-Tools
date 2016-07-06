@@ -74,7 +74,9 @@ function_set_vars()
 	# See when OS updates were last checked for
 	OS_UPDATE_CHECKTIME=$(stat /usr/bin/steamos-update | grep "Access" | tail -n 1 | sed 's/Access: //')
 	# Beta stuff
-	if dpkg-query -W --showformat='${Status}\n' steamos-beta-repo | grep "ok installed"; then
+	OS_BETA_CHECK=$(dpkg-query -W --showformat='${Status}\n' steamos-beta-repo | grep "ok installed")
+
+	if [[ "${OS_BETA_CHECK}" != "" ]] then
 
 		OS_BETA_STATUS="Enabled"
 
@@ -83,7 +85,7 @@ function_set_vars()
 		OS_BETA_STATUS="Disabled"
 
 	fi
-	
+
 	# Software
 
 	SOFTWARE_LIST=$(dpkg-query -W -f='${Package}\t${Architecture}\t${Status}\t${Version}\n' "valve-*" "*steam*" "nvidia*" "fglrx*" "*mesa*")

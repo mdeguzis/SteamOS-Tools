@@ -180,7 +180,7 @@ function_gather_info()
 
 	GPU: ${GPU_MODEL}
 	GPU Driver: ${GPU_DRIVER_VERSION}
-	GPU Video Memory: ${GPU_VIDEO_MEMORY}
+	GPU Video Memory: ${GPU_VIDEO_MEMORY} GB
 
 	Disk information:
 

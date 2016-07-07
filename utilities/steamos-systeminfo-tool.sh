@@ -99,6 +99,8 @@ function_set_vars()
 	CPU_MHZ=$(lscpu | awk '/MHz/{print $3}')
 	CPU_GHZ=$(echo "scale=2; ${CPU_MHZ}/1000" | bc)
 	CPU_CORES=$(lscpu | awk '/Core\(s\)/{print $4}')
+	CPU_THREADS_PER_CORE=$(lscpu | awk '/Thread/{print $4}')
+	CPU_THREADS=$(echo "${CPU_CORES}*${CPU_THREADS_PER_CORE}" | bc)
 
 	# Memory
 
@@ -125,6 +127,7 @@ function_set_vars()
 	GPU_DRIVER_STRING=$(cat /var/log/Xorg.0.log | awk -F'\\)' '/GLX Module/{print $2}')
 	# Use full driver string from Xorg log for now until more testing can be done
 	GPU_DRIVER_VERSION="${GPU_DRIVER_STRING}"
+	GPU_VIDEO_MEMORY=$(lspci -v -s `lspci | awk '/VGA/{print $1}'` | sed -n '/Memory.*, prefetchable/s/.*\[size=\([^]]\+\)\]/\1/p')
 
 	#################
 	# Software
@@ -160,7 +163,7 @@ function_gather_info()
 	${OS_BASIC_INFO}
 	SteamOS Version: ${STEAMOS_VER}
 	SteamOS OS Beta: ${OS_BETA_STATUS}
-	OS Updates last checked on: ${OS_UPDATE_CHECKTIME}
+	SteamOS last update check: ${OS_UPDATE_CHECKTIME}
 
 	==========================
 	Hardware Information
@@ -169,7 +172,7 @@ function_gather_info()
 	CPU Vendor: ${CPU_VENDOR}
 	CPU Arch: ${CPU_ARCH}
 	CPU Clock: ${CPU_GHZ} GHz
-	CPU Cores: ${CPU_CORES}
+	CPU Cores: ${CPU_CORES} Cores ${CPU_THREADS} Threads
 
 	System Total Memory: ${SYSTEM_MEM_GB} GB
 	System Total Swap: ${SYSTEM_SWAP_GB} GB
@@ -177,6 +180,7 @@ function_gather_info()
 	GPU Vendor: ${GPU_VENDOR}
 	GPU Model: ${GPU_MODEL}
 	GPU Driver: ${GPU_DRIVER_VERSION}
+	GPU Video Memory: ${GPU_VIDEO_MEMORY}
 
 	Disk information:
 

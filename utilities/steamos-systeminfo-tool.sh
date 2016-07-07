@@ -255,7 +255,8 @@ main &> ${LOG_FILE}
 # output summary
 
 cat<<- EOF
-Logs have been stored at: ${LOG_FOLDER}
+Logs directory: ${LOG_FOLDER}
+Standard log ouput stored at: ${LOG_FILE}
 Log archive stored at: ${ZIP_FILE}
 
 EOF

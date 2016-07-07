@@ -240,7 +240,7 @@ main()
 	function_gather_logs
 
 	# Archive log filer with date
-	echo -e "\n==> Archiving logs\n"
+	echo -e "==> Archiving logs\n"
 	7za a "${ZIP_FILE}" ${LOG_FOLDER}/*
 
 }

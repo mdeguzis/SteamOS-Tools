@@ -103,9 +103,9 @@ function_set_vars()
 	# Memory
 
 	SYSTEM_MEM_KB=$(cat /proc/meminfo | awk '/MemTotal/{print $2}')
-	SYSTEM_MEM_GB=$(echo "scale=2; ${SYSTEM_MEM_KB}/1000/1000" | bc)
+	SYSTEM_MEM_GB=$(echo "scale=2; ${SYSTEM_MEM_KB}/1024/1024" | bc)
 	SYSTEM_SWAP_KB=$(cat /proc/meminfo | awk '/SwapTotal/{print $2}')
-	SYSTEM_SWAP_GB=$(echo "scale=2; ${SYSTEM_SWAP_KB}/1000/1000" | bc)
+	SYSTEM_SWAP_GB=$(echo "scale=2; ${SYSTEM_SWAP_KB}/1024/1024" | bc)
 
 	# DISK
 

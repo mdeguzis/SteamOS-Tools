@@ -127,7 +127,7 @@ function_set_vars()
 	GPU_DRIVER_STRING=$(cat /var/log/Xorg.0.log | awk -F'\\)' '/GLX Module/{print $2}')
 	# Use full driver string from Xorg log for now until more testing can be done
 	GPU_DRIVER_VERSION="${GPU_DRIVER_STRING}"
-	GPU_VIDEO_MEMORY_KB=$(cat /var/log/Xorg.0.log | awk '/Memory/' | sed 's/.*,Memory: //' | sed 's/kBytes//')
+	GPU_VIDEO_MEMORY_KB=$(cat /var/log/Xorg.0.log | awk '/Memory/' | sed 's/.*Memory: //' | sed 's/kBytes//')
 	GPU_VIDEO_MEMORY=$(echo "scale=2; ${GPU_VIDEO_MEMORY_KB}/1024/1024" | bc)
 
 	#################

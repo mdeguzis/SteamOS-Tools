@@ -16,7 +16,7 @@ function_install_utilities()
 
 	echo -e "==> Installing needed software...\n"
 
-	PKGS="p7zip-full bc"
+	PKGS="p7zip-full bc lshw"
 
 	for PKG in ${PKGS};
 	do
@@ -115,20 +115,28 @@ function_set_vars()
 	CMD_LSBLK=$(lsblk)
 
 	# Check vendor
-	GPU_VENDOR_STRING=$(lspci -v | grep "VGA compatible controller" | grep -Ei 'nvidia|ati|amd|intel')
-	# Set vendor
-	if echo "${GPU_VENDOR_STRING}" | grep -iw "nvidia" 1> /dev/null; then GPU_VENDOR="Nvidia"; fi
-	if echo "${GPU_VENDOR_STRING}" | grep -iw "ati" 1> /dev/null; then GPU_VENDOR="ATI"; fi
-	if echo "${GPU_VENDOR_STRING}" | grep -iw "amd" 1> /dev/null; then GPU_VENDOR="AMD"; fi
-	if echo "${GPU_VENDOR_STRING}" | grep -iw "intel" 1> /dev/null; then GPU_VENDOR="Intel"; fi
-
-	GPU_MODEL_FULL=$(lspci -v | awk -F":" '/VGA compatible controller/{print $3}')
-	GPU_MODEL="${GPU_MODEL_FULL}"
-	GPU_DRIVER_STRING=$(cat /var/log/Xorg.0.log | awk -F'\\)' '/GLX Module/{print $2}')
+	GPU_VENDOR=$(lshw -c video 2> /dev/null | awk '/vendor/{print $2}')
+	GPU_MODEL=$(lshw -c video 2> /dev/null | awk '/product/' | sed 's/.*product: //')
+	GPU_DRIVER=$(lshw -c video 2> /dev/null | awk '/configuration/{print $2}' | sed 's/driver=//' )
+	GPU_DRIVER_VERSION_STRING=$(cat /var/log/Xorg.0.log | awk -F'\\)' '/GLX Module/{print $2}')
 	# Use full driver string from Xorg log for now until more testing can be done
-	GPU_DRIVER_VERSION="${GPU_DRIVER_STRING}"
+	GPU_DRIVER_VERSION="${GPU_DRIVER_VERSION_STRING}"
 	GPU_VIDEO_MEMORY_KB=$(cat /var/log/Xorg.0.log | awk '/Memory/' | sed 's/.*Memory: //' | sed 's/kBytes//')
 	GPU_VIDEO_MEMORY=$(echo "scale=2; ${GPU_VIDEO_MEMORY_KB}/1024/1024" | bc)
+	
+	##################################
+	# Legacy / old methods
+	##################################
+
+	# GPU_MODEL_FULL=$(lspci -v | awk -F":" '/VGA compatible controller/{print $3}')
+	# GPU_MODEL="${GPU_MODEL_FULL}"
+	
+	#GPU_VENDOR_STRING=$(lspci -v | grep "VGA compatible controller" | grep -Ei 'nvidia|ati|amd|intel')
+	# Set vendor
+	#if echo "${GPU_VENDOR_STRING}" | grep -iw "nvidia" 1> /dev/null; then GPU_VENDOR="Nvidia"; fi
+	#if echo "${GPU_VENDOR_STRING}" | grep -iw "ati" 1> /dev/null; then GPU_VENDOR="ATI"; fi
+	#if echo "${GPU_VENDOR_STRING}" | grep -iw "amd" 1> /dev/null; then GPU_VENDOR="AMD"; fi
+	#if echo "${GPU_VENDOR_STRING}" | grep -iw "intel" 1> /dev/null; then GPU_VENDOR="Intel"; fi
 
 	#################
 	# Software
@@ -179,7 +187,9 @@ function_gather_info()
 	System Total Swap: ${SYSTEM_SWAP_GB} GB
 
 	GPU: ${GPU_MODEL}
-	GPU Driver: ${GPU_DRIVER_VERSION}
+	GPU Vendor: ${GPU_VENDOR}
+	GPU Driver in use: ${GPU_DRIVER}
+	GPU Driver Version: ${GPU_DRIVER_VERSION}
 	GPU Video Memory: ${GPU_VIDEO_MEMORY} GB
 
 	Disk information:

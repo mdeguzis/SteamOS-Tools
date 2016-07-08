@@ -18,5 +18,5 @@ Describe what you _expected_ should happen and what _did_ happen. Optional:Run `
 #### Progress Tracker (Please do not remove)
 
 - [ ] Investigate issue
-- [ ] Fix committed / Resolution
-
+- [ ] Fix committed
+- [ ] Confirmed Resolution

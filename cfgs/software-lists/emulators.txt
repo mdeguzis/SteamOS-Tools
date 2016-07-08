@@ -13,6 +13,7 @@ mame
 mess
 nestopia
 pcsxr
+pcsx2
 ppsspp
 scummvm
 stella

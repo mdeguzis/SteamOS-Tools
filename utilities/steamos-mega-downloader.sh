@@ -639,7 +639,7 @@ download_file()
 	# Format: base url, relese folder, filename
 
 	# remove previous files if desired
-	if [[ "${HOME}/downloads/${release}/${file}" ]]; then
+	if [[ -f "${HOME}/downloads/${release}/${file}" ]]; then
 
 		echo -e "\n${file} exists, overwrite? (y/n)"
 		# get user choice

@@ -171,7 +171,7 @@ pre_reqs()
 
 			else
 				echo "package ${pkg} [OK]"
-				sleep .3s
+				sleep .1s
 			fi
 		done
 

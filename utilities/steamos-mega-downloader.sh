@@ -312,7 +312,7 @@ create_usb_iso()
 	sudo dd bs=1M if=${file} of=${drive_choice}
 
 	# unount drive 
-	echo -e "\nUmounting USB drive. Please do not remove until done"
+	echo -e "\nUnmounting USB drive. Please do not remove until done..."
 	sudo umount ${drive_choice} 
 	echo -e "Done"
 	sleep 2s

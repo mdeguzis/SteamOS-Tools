@@ -354,7 +354,7 @@ create_usb_zip()
 	sudo unzip "${file}" -d "/tmp/steamos-usb"
 
 	# unount drive 
-	echo -e "\nUmounting USB drive. Please do not reove until done"
+	echo -e "\nUmounting USB drive. Please do not remove until done"
 	sudo umount ${drive_choice}
 
 	# show user end summary

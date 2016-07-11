@@ -244,6 +244,9 @@ function_gather_logs()
 main()
 {
 
+	# install utilities
+	function_install_utilities 
+	
 	# set vars
 	function_set_vars
 
@@ -261,7 +264,6 @@ main()
 
 # Main
 clear
-function_install_utilities
 echo -e "Running SteamOS system info tool..."
 echo -e "Note: sudo is required to access and store system level logs"
 main &> "${HOME}/temp-log.txt"

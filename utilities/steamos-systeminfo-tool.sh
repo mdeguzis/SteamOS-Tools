@@ -48,6 +48,13 @@ function_set_vars()
 	LOG_FILE="${LOG_FOLDER}/steamos-systeminfo-stdout.txt"
 	ZIP_FILE="${LOG_FOLDER}_${DATE_SHORT}.zip"
 
+	# Create log folder if it does not exist
+	if [[ ! -d "${LOG_FOLDER}" ]]; then
+
+		mkdir -p "${LOG_FOLDER}"
+
+	fi
+	
 	# Remove old logs to old folder and clean folder
 
 	cp -r ${LOG_FOLDER} ${LOG_FOLDER}.old &> /dev/null
@@ -56,13 +63,6 @@ function_set_vars()
 	# Remove old zip files to avoid clutter.
 	# Max: 90 days
 	find ${LOG_ROOT} -mtime +90 -type f -name "steamos-logs*.zip" -exec rm {} \;
-
-	# Create log folder if it does not exist
-	if [[ ! -d "${LOG_FOLDER}" ]]; then
-
-		mkdir -p "${LOG_FOLDER}"
-
-	fi
 
 	#################
 	# OS
@@ -243,9 +243,12 @@ function_gather_logs()
 
 main()
 {
-
+	
 	# Install software
 	function_install_utilities
+	
+	# set vars
+	function_set_vars
 
 	# get info about system
 	function_gather_info

@@ -273,4 +273,15 @@ Logs directory: ${LOG_FOLDER}
 Standard log ouput stored at: ${LOG_FILE}
 Log archive stored at: ${ZIP_FILE}
 
+View standard log now? [y/n]
 EOF
+
+read -erp "Choice: " VIEW_LOG
+
+if [[ "${VIEW_LOG}" == "y" ]]; then
+
+	less "${LOG_FILE}"
+
+if 
+
+

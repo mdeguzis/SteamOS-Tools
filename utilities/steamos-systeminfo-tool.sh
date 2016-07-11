@@ -282,6 +282,6 @@ if [[ "${VIEW_LOG}" == "y" ]]; then
 
 	less "${LOG_FILE}"
 
-if 
+fi
 
 

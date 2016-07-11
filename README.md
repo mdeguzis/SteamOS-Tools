@@ -2,6 +2,7 @@
 
 # SteamOS-Tools
 ***
+ <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Alert**:  
 `jessie-backports` sources are now _disabled_ and optional. This will be noted below and in the wiki. Despite apt-preferences pinning, I decided that this would be the safest route going forward. See [SteamOS-Tools-Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository) for more. If you have trouble updating, see [Debugging SteamOS upgrade](https://github.com/ValveSoftware/SteamOS/wiki/Troubleshooting#debugging-steamos-upgrade-issues) issues.
 
 ***

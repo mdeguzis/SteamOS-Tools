@@ -96,7 +96,7 @@ function_set_vars()
 	# CPU
 	CPU_VENDOR=$(lscpu | awk '/Vendor ID/{print $3}')
 	CPU_ARCH=$(lscpu | awk '/Arch/{print $2}')
-	CPU_MHZ=$(lscpu | awk '/MHz/{print $3}')
+	CPU_MHZ=$(lscpu | awk '/CPU MHz/{print $3}')
 	CPU_GHZ=$(echo "scale=2; ${CPU_MHZ}/1000" | bc)
 	CPU_CORES=$(lscpu | awk '/Core\(s\)/{print $4}')
 	CPU_THREADS_PER_CORE=$(lscpu | awk '/Thread/{print $4}')

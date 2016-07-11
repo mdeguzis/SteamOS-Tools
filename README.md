@@ -5,7 +5,7 @@
  <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Alert**:  
 `jessie-backports` sources are now _disabled_ and optional. This will be noted below and in the wiki. Despite apt-preferences pinning, I decided that this would be the safest route going forward. See [SteamOS-Tools-Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository) for more. If you have trouble updating, see [Debugging SteamOS upgrade](https://github.com/ValveSoftware/SteamOS/wiki/Troubleshooting#debugging-steamos-upgrade-issues) issues.
 
-***
+**After testing some changes to the unattended upgrades configuration, backports may return**
 
 SteamOS Tools is a 3rd-party repository with the mission to enhance various aspects of SteamOS from the "stock" experience. SteamOS-Tools contains different various utilities to enhance SteamOS, hosted Debian packages for many programs, and more. The purpose of each folder is listed below in the "Contents" section. The [wiki page](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki) is full of info. Please start there when looking for information.
 

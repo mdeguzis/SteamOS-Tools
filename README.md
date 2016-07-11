@@ -4,6 +4,9 @@
 ***
 <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Alert**:
 There is now a system reporter tool, which collects information using bash scripting (akin to python with the original Valve Bugreporter in Alchemist). You can run `bash utilties/steamos-systeminfo-tool` from within the SteamOS-Tools repository directory and attach the resultant zip file to better help me determine the cause of your issue. See also: [/r/SteamOS thread](https://www.reddit.com/r/SteamOS/comments/4rj33a/valve_bug_reporter_part_deuce/)
+
+Also, `jessie-backports` sources are now _disabled_ and optional. This will be noted below and in the wiki. Despite apt-preferences pinning, I decided that this would be the safest route going forward. See [SteamOS-Tools-Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository) for more.
+
 ***
 
 SteamOS Tools is a 3rd-party repository with the mission to enhance various aspects of SteamOS from the "stock" experience. SteamOS-Tools contains different various utilities to enhance SteamOS, hosted Debian packages for many programs, and more. The purpose of each folder is listed below in the "Contents" section. The [wiki page](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki) is full of info. Please start there when looking for information.
@@ -35,7 +38,7 @@ For SteamOS-specific help (aside from SteamOS-Tools), I do ask you visit and rev
 # Hosted Packages
 ***
 
-There is now a Debian personal repository hosted at packages.libregeek.org. SteamOS-Tools currently has two different repositories, "brewmaster" and "brewmaster_beta". "brewmaster_beta" is a testing release where packages will gradually accumulate on a weekly or monthly basis. These packages are deemed to not yet be "mature," enough for the main repository. When it appears that they may be ready for use, the package(s) will be synced to the main repository.
+There is now a Debian personal repository hosted at packages.libregeek.org. SteamOS-Tools currently has two different repositories, "brewmaster" and "brewmaster_beta". "brewmaster_beta" is a testing release where packages will gradually accumulate on a weekly or monthly basis. These packages are deemed to not yet be "mature," enough for the main repository. When it appears that they may be ready for use, the package(s) will be synced to the main repository. `jessie-backports` can be enabled at your own risk (see SteamoS-Tools repository below).
 
 **WARNING:**  
 There is no easy way to opt out of the beta repo. Removing the package will delete configuration files pertaining to the beta repository, but the packages you have installed from it will be "orphaned." The best course of action, if you choose this route, is to [purge and reinstall](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Purging-and-Reinstalling-a-Package) any pacakges you have installed via the beta repository.
@@ -47,7 +50,7 @@ There is no easy way to opt out of the beta repo. Removing the package will dele
 
 ### Adding the SteamOS-Tools Repository
 
-The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base option (--default, assumed) does include Debian repositories, the Debian backports repository, and package pinning to avoid conflicts. The remove optoion below will erase all libregeek repository configurations. For more see the releant [wiki entry](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Desktop-Software)
+The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base option (--default, assumed) does include Debian repositories, and package pinning to avoid conflicts. The remove optoion below will erase all libregeek repository configurations. For more see the releant [wiki entry](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Desktop-Software).
 
 ```
 ./configure-repos.sh [--default|--repair|--enable-testing|--remove-testing|remove]

@@ -2,10 +2,7 @@
 
 # SteamOS-Tools
 ***
-<img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Alert**:
-There is now a system reporter tool, which collects information using bash scripting (akin to python with the original Valve Bugreporter in Alchemist). You can run `bash utilties/steamos-systeminfo-tool` from within the SteamOS-Tools repository directory and attach the resultant zip file to better help me determine the cause of your issue. See also: [/r/SteamOS thread](https://www.reddit.com/r/SteamOS/comments/4rj33a/valve_bug_reporter_part_deuce/)
-
-Also, `jessie-backports` sources are now _disabled_ and optional. This will be noted below and in the wiki. Despite apt-preferences pinning, I decided that this would be the safest route going forward. See [SteamOS-Tools-Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository) for more.
+`jessie-backports` sources are now _disabled_ and optional. This will be noted below and in the wiki. Despite apt-preferences pinning, I decided that this would be the safest route going forward. See [SteamOS-Tools-Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository) for more. If you have trouble updating, see [Debugging SteamOS upgrade](https://github.com/ValveSoftware/SteamOS/wiki/Troubleshooting#debugging-steamos-upgrade-issues) issues.
 
 ***
 

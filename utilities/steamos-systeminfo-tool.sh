@@ -264,7 +264,8 @@ clear
 function_install_utilities
 echo -e "Running SteamOS system info tool..."
 echo -e "Note: sudo is required to access and store system level logs"
-main &> ${LOG_FILE}
+main &> "${HOME}/temp-log.txt"
+mv "${HOME}/temp-log.txt" "${LOG_FILE}"
 
 # output summary
 

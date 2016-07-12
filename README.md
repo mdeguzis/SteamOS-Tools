@@ -3,7 +3,7 @@
 # SteamOS-Tools
 ***
  <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Alert**:  
-`jessie-backports` sources are now _disabled_ and optional. This will be noted below and in the wiki. Despite apt-preferences pinning, I decided that this would be the safest route going forward. See [SteamOS-Tools-Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository) for more. If you have trouble updating, see [Debugging SteamOS upgrade](https://github.com/ValveSoftware/SteamOS/wiki/Troubleshooting#debugging-steamos-upgrade-issues) issues.
+`jessie-backports` sources are now _removed_. This will be noted below and in the wiki, if you wish to add them. Despite apt-preferences pinning, I decided that this would be the safest route going forward. See [SteamOS-Tools-Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository) for more. If you have trouble updating, see [Debugging SteamOS upgrade](https://github.com/ValveSoftware/SteamOS/wiki/Troubleshooting#debugging-steamos-upgrade-issues) issues.
 
 **After testing some changes to the unattended upgrades configuration, backports may return**
 
@@ -37,7 +37,7 @@ For SteamOS-specific help (aside from SteamOS-Tools), I do ask you visit and rev
 # Hosted Packages
 ***
 
-There is now a Debian personal repository hosted at packages.libregeek.org. SteamOS-Tools currently has two different repositories, "brewmaster" and "brewmaster_beta". "brewmaster_beta" is a testing release where packages will gradually accumulate on a weekly or monthly basis. These packages are deemed to not yet be "mature," enough for the main repository. When it appears that they may be ready for use, the package(s) will be synced to the main repository. `jessie-backports` can be enabled at your own risk (see SteamoS-Tools repository below).
+There is now a Debian personal repository hosted at packages.libregeek.org. SteamOS-Tools currently has two different repositories, "brewmaster" and "brewmaster_beta". "brewmaster_beta" is a testing release where packages will gradually accumulate on a weekly or monthly basis. These packages are deemed to not yet be "mature," enough for the main repository. When it appears that they may be ready for use, the package(s) will be synced to the main repository.
 
 **WARNING:**  
 There is no easy way to opt out of the beta repo. Removing the package will delete configuration files pertaining to the beta repository, but the packages you have installed from it will be "orphaned." The best course of action, if you choose this route, is to [purge and reinstall](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Purging-and-Reinstalling-a-Package) any pacakges you have installed via the beta repository.

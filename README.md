@@ -3,7 +3,7 @@
 # SteamOS-Tools
 ***
  <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Alert**:  
-`jessie-backports` sources are now _removed_. This will be noted below and in the wiki, if you wish to add them. Despite apt-preferences pinning, I decided that this would be the safest route going forward. See [SteamOS-Tools-Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository) for more. If you have trouble updating, see [Debugging SteamOS upgrade](https://github.com/ValveSoftware/SteamOS/wiki/Troubleshooting#debugging-steamos-upgrade-issues) issues.
+`jessie-backports` sources are now _removed_. This will be noted below and in the wiki, if you wish to add them. Despite apt-preferences pinning, I decided that this would be the safest route going forward. See [SteamOS-Tools-Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository) for more. If you have trouble updating, see [Debugging SteamOS upgrade](https://github.com/ValveSoftware/SteamOS/wiki/Troubleshooting#debugging-steamos-upgrade-issues) issues. If you have trouble upgrading packages, run configure-repos with the repair flag.
 
 **After testing some changes to the unattended upgrades configuration, backports may return**
 
@@ -49,7 +49,9 @@ There is no easy way to opt out of the beta repo. Removing the package will dele
 
 ### Adding the SteamOS-Tools Repository
 
-The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base option (--default, assumed) does include Debian repositories, and package pinning to avoid conflicts. The remove optoion below will erase all libregeek repository configurations. For more see the releant [wiki entry](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Desktop-Software).
+The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base option (--default, assumed) does include Debian repositories, and package pinning to avoid conflicts. The remove optoion below will erase all libregeek repository configurations. If you find yourself in a bind, or packaging mistake snuck in, try using the `--repair` option to reset your configuration.
+
+For more see the relevant [wiki entry](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Desktop-Software).
 
 ```
 ./configure-repos.sh [--default|--repair|--enable-testing|--remove-testing|remove]

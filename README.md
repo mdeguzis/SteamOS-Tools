@@ -146,6 +146,14 @@ I welcome any and all contributions as well, suggestions, and more. Please see t
 
 You can run `bash utilties/steamos-systeminfo-tool` from within the SteamOS-Tools repository directory and attach the resultant zip file for any reported issue. This will collect system information to help better resolve your problem. Most scripts in the main folder of the repository write stdout and stderr to `log.txt` in the current directory after completion. Please check this file before submitting any issues or pull requests. For all issues, 
 
+If an upgrade/versioning issue snuck into the repository, try remove/purge options with apt-get to install the correct version:
+
+```
+sudo apt-get remove ffmpeg
+sudo apt-get update
+sudo apt-get install ffmpeg
+```
+
 # Donations
 ***
 

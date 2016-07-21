@@ -16,9 +16,9 @@ libreoffice
 libfreetype6
 libxine2
 ncdu
-perl
 openjdk-7-jre
 openssh-server
+perl
 samba
 screen
 vim

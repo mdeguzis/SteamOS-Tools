@@ -26,8 +26,8 @@ set_vars()
 	GAME="daikatana"
 	GAME_DATA="/home/steam/.local/share/${GAME}/base"
 	GAME_DATA_ALT="/home/steam/${GAME}"
-	CLIENT_PKGS="daikatana daikatana-doom3"
-	GAME_APP_ID="9050"
+	CLIENT_PKGS=""
+	GAME_APP_ID="242980"
 	PLATFORM="windows"
 	STEAM_DATA_FILES="$HOME/steamcmd/${GAME}"
 	CLEANUP_STEAM_FILES="yes"
@@ -77,11 +77,8 @@ game_data_cdrom()
 		# Umount any disc that may be left over
 		sudo umount /dev/sr0 2> /dev/null
 
-		# mout disc and get files
-		mkdir -p /tmp/GAME_DATA_TMP
-		sudo mount -t iso9660 -o ro /dev/sr0 /tmp/GAME_DATA_TMP
-		find /tmp/GAME_DATA_TMP -iname "*.${FILE_EXTS}" -exec sudo cp -v {} "${GAME_DATA}" \;
-		sudo umount /tmp/GAME_DATA_TMP
+		# get patch
+		# TODO
 
 		# See if this is the last disc
 		echo -e "\nIs this the last disc you have? [y/n]"

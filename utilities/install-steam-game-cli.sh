@@ -56,14 +56,14 @@ main()
         else
 
                 # let this be a default
+                STEAM_DATA_FILES="default directory"
                 INSTALL_PATH=""
       
         fi
 	
 	echo -e "\nDownloading game files to: ${STEAM_DATA_FILES}"
 	sleep 2s
-	
-	mkdir -p ${STEAM_DATA_FILES}
+
 	${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType ${PLATFORM} +login ${STEAM_LOGIN_NAME} \
         ${INSTALL_PATH} +app_update ${GAME_APP_ID} validate +quit
 

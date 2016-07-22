@@ -56,16 +56,19 @@ main()
         else
 
                 # let this be a default
+                # If this is not set, the path will be $HOME/Steam/steamapps/common/
                 STEAM_DATA_FILES="default directory"
-                INSTALL_PATH=""
+                INSTALL_PATH="+force_install_dir /home/steam/.local/share/Steam/steamapps/common/"
       
         fi
 	
 	echo -e "\nDownloading game files to: ${STEAM_DATA_FILES}"
 	sleep 2s
 
-	${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType ${PLATFORM} +login ${STEAM_LOGIN_NAME} \
-        ${INSTALL_PATH} +app_update ${GAME_APP_ID} validate +quit
+	# run as steam user
+	sudo -u steam ${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType \
+	${PLATFORM} +login ${STEAM_LOGIN_NAME} ${INSTALL_PATH} +app_update \
+	${GAME_APP_ID} validate +quit
 
 }
 

@@ -7,8 +7,6 @@
 # Description:	Installs required packages, files for daikatana, and facilitates
 #		the install of the game.
 #
-#               WIP - DO NOT USE
-#
 # See: 		https://bitbucket.org/daikatana13/daikatana
 #
 # Usage:	./install-daikatana.sh
@@ -24,9 +22,12 @@ set_vars()
 	# savegames: $XDG_DATA_HOME/daikatana (default: $HOME/.local/share/daikatana)
 
 	GAME="daikatana"
-	GAME_DATA="/home/steam/.local/share/${GAME}/base"
-	GAME_DATA_ALT="/home/steam/${GAME}"
-	CLIENT_PKGS=""
+	GAME_DATA="/home/desktop/daikatana"
+	LINUX_VER="Daikatana-Linux-2016-07-13"
+	# Requires 32 bit pacakges of the below.
+	# The SteamOS installation should laready have a 32 bit version of any of the below
+	# libgl1-nvidia-glx, libgl1-fglrx-glx, or libgl1-mesa-glx
+	CLIENT_PKGS="lgogdownloader innoextract libstdc++6:i386 libopenal1:i386"
 	GAME_APP_ID="242980"
 	PLATFORM="windows"
 	STEAM_DATA_FILES="$HOME/steamcmd/${GAME}"
@@ -35,10 +36,10 @@ set_vars()
 	
 }
 
-install_client()
+install_prereqs()
 {
 
-	echo -e "\n==> Installing daikatana package\n"
+	echo -e "\n==> Installing required package\n"
 	sleep 2s
 
 	sources_check_jessie=$(sudo find /etc/apt -type f -name "jessie*.list")
@@ -122,22 +123,14 @@ game_data_steam()
 	# Download
 	# steam cmd likes to put the files in the same directory as the script
 	
-	echo -e "\nDownloading game files to: ${STEAM_DATA_FILES}"
+	echo -e "\nDownloading game files to: ${GAME_DATA}"
 	sleep 2s
 	
-	mkdir -p ${STEAM_DATA_FILES}
+	mkdir -p ${GAME_DATA}
 	${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType ${PLATFORM} +login ${STEAM_LOGIN_NAME} \
-	+force_install_dir ${STEAM_DATA_FILES} +app_update ${GAME_APP_ID} validate +quit
-	
-	#find doom3/ -iname "*.${FILE_EXTS}" -exec sudo cp -v {} "${GAME_DATA}" \;
-	find "${STEAM_DATA_FILES}" -name "*.${FILE_EXTS}" -exec sudo cp -v {} "${GAME_DATA}" \;
+	+force_install_dir ${GAME_DATA} +app_update ${GAME_APP_ID} validate +quit
 
-	# cleanup
-	if [[ "${CLEANUP_STEAM_FILES}" == "yes" ]]; then
 
-		rm -rf "${STEAM_DATA_FILES}"
-	
-	fi
 }
 
 game_data_custom()
@@ -152,46 +145,63 @@ game_data_custom()
 	# copy files
 	find "${custom_file_loc}" -iname "*.${FILE_EXTS}" -exec sudo cp -v {} "${GAME_DATA}" \;
 
+	# Call innoextract
+	innoextract
 }
 
-patch_game()
+
+game_data_gog()
 {
-	# ensure we have the patched files
 
-	echo -e "\n==> Gathering updated patch files\n"
+	# The version here is already patched to 1.2
+	echo -e "Gathering game files from GOG"
 
-	sleep 2s
-	wget "http://libregeek.org/SteamOS-Extra/games/doom3/doom3-linux-1.3.1.1304.x86.run" -q -nc --show-progress
-	chmod +x doom3-linux-1.3.1.1304.x86.run
-	sh doom3-linux-1.3.1.1304.x86.run --tar xvf --wildcards base/pak* d3xp/pak*
-	find . -iname "*.${FILE_EXTS}" -exec sudo cp -v {} "${DOOM3_DATA}" \;
+	# A bug prevents use of the secure option with lgogdownloader
+	# See: https://github.com/Sude-/lgogdownloader/issues/77
 
-	# cleanup
-	rm -rf base d3xp doom3-linux*.run
+	echo -e "\n==> Downloading Daikatana\n" && sleep 2s
+	lgogdownloader --download --game daikatana --directory ${HOME} daikatana --insecure
+
+	# backup config file (couldn not find this?)
+	# echo -e "\n==> Backing up current.cfg file"
+
+	echo -e "\n==> Fetching Daikatana 1.3 files" && sleep 2s
+	wget -P "${GAME_DATA}" \
+	"http://libregeek.org/SteamOS-Extra/games/daikatana/${LINUX_VER}.tar.bz2" -nc -q --show-progress
+
+	# Go to 1.3 setup 
+	process_game_data
 
 }
 
-install_data_files()
+process_game_data()
 {
 
-	echo -e "\n==> Checking existance of data directory\n"
+	echo -e "\n==> Extracting Daikatana 1.3 files\n" && sleep 2s
+	tar -xjvf "${LINUX_VER}.tar.bz2" -C "${GAME_DATA}"
 
-	if [[ ! -d "${GAME_DATA}" ]]; then
+	echo -e "\n==> Installing Daikatana 1.3 files\n" && sleep 2s
+	cd "${GAME_DATA}/${LINUX_VER}"
+	./extract_from_gog.sh "${GAME_DATA}/setup_daikatana_2.0.0.3.exe"
 
-		sudo mkdir -p "${GAME_DATA}"
-		sudo chown -R steam:steam "${GAME_DATA}"
+	echo -e "\n==> Unpack Daikatana setup\n" && sleep 2s
+	innoextract -e "${GAME_DATA}/setup_daikatana_2.0.0.3.exe" -d "${GAME_DATA}"
 
-	fi
+}
+
+main_menu()
+{
 
 	# the prompt sometimes likes to jump above sleep
 	cat<<- EOF
 	==============================================
-	Installing Data files for ${GAME}
+	${GAME} installation helper script
 	==============================================
 	Please choose a source:
 
-	1) CD-ROM / DVD-ROM
+	1) CD-ROM / DVD-ROM (disabled for now)
 	2) Steam game files (downloads via steamcmd)
+	3) GOG (Good Old Games)
 	3) Custom location
 
 	EOF
@@ -203,14 +213,19 @@ install_data_files()
 	case "${install_choice}" in
 
 		1)
-		game_data_cdrom
+		echo -e "Option disabled. (no CD to test with)"
+		break
 		;;
 
 		2)
 		game_data_steam
 		;;
-
+		
 		3)
+		game_data_gog
+		;;
+
+		4)
 		game_data_custom
 		;;
 
@@ -236,12 +251,15 @@ post_install()
 	sudo cp ../cfgs/desktop-files/${GAME}.desktop "/usr/share/applications"
 
 	# Get artwork
-	sudo wget -O "/usr/share/pixmaps/${GAME}.png" "http://cdn.akamai.steamstatic.com/steam/apps/${GAME_APP_ID}/header.jpg" -q
+	sudo wget "http://cdn.akamai.steamstatic.com/steam/apps/242980/header.jpg" -O "/usr/share/pixmaps/daikatana.png"
+
+	# Symlink executable
+	sudo ln -s "${GAME_DATA}/${LINUX_VER}/daikatana" "/usr/bin/daikatana"
 
 }
 
 # main script
 set_vars || exit 1
-install_client || exit 1
-install_data_files || exit 1
+install_prereqs || exit 1
+main_menu || exit 1
 post_install || exit 1

@@ -159,8 +159,11 @@ game_data_gog()
 	# A bug prevents use of the secure option with lgogdownloader
 	# See: https://github.com/Sude-/lgogdownloader/issues/77
 
+	echo -e "\n==> Logging into GOG.com\n" && sleep 2s
+	lgogdownloader --login --insecure
+
 	echo -e "\n==> Downloading Daikatana\n" && sleep 2s
-	lgogdownloader --download --game daikatana --directory ${HOME} daikatana --insecure
+	lgogdownloader --download --game daikatana --directory ${HOME}
 
 	# backup config file (couldn not find this?)
 	# echo -e "\n==> Backing up current.cfg file"

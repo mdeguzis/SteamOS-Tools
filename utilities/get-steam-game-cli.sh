@@ -113,13 +113,22 @@ main()
 
         fi
 
-	echo -e "\nDownloading game files to: ${DIRECTORY}"
+	echo -e "\n==> Downloading game files to: ${DIRECTORY}"
 	sleep 2s
+	
+	TEMP_DIRECTORY="$HOME/steamcmd_tmp"
+	mkdir -p "${TEMP_DIRECTORY}"
 
 	# run as steam user
-	sudo -u ${USER}  ${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType \
+	${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType \
 	${PLATFORM} +login ${STEAM_LOGIN_NAME} +force_install_dir ${DIRECTORY} \
 	+app_update ${GAME_APP_ID} validate +quit
+	
+	# Move files to actual directory
+	sudo mv "${TEMP_DIRECTORY}" "${DIRECTORY}"
+	
+	# cleanup
+	rm -rf "${TEMP_DIRECTORY}"
 
 }
 

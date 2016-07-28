@@ -15,7 +15,7 @@
 while :; do
 	case $1 in
 
-		--appid|--a)
+		--appid|-a)
 			if [[ -n "$2" ]]; then
 				APPID=$2
 				# echo "INSTALL PATH: $DIRECTORY"

@@ -104,9 +104,6 @@ main()
 	# Download
 	# steam cmd likes to put the files in the same directory as the script
 
-	echo -e "Use custom install directory?\n"
-	read -erp "Choice [y/n]: " CUSTOM_DATA_PATH
-
 	if [[ "${CUSTOM_DATA_PATH}" != "true" ]]; then
 
                 # let this be a default

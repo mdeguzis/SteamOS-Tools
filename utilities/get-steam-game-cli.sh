@@ -3,24 +3,82 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt name:	install-steam-game-cli.sh
-# Script Ver:	0.8.1
+# Script Ver:	0.9.1
 # Description:	Downloads a game from Steam, based on it's AppID, useful for
 #               for on-the-go situations, or free-to-play when you can't 
 #               load the client.
 #
-# Usage:	./install-steam-game-cli.sh [AppID] [Platform]
+# Usage:	./get-steam-game-cli.sh -a [AppID] -p [Platform] -d [TARGET_DIR]
 # -------------------------------------------------------------------------------
 
-GAME_APP_ID="$1"
-PLATFORM="$2"
+# source options
+while :; do
+	case $1 in
 
-# set defaults 
+		--appid|--a)
+			if [[ -n "$2" ]]; then
+				APPID=$2
+				# echo "INSTALL PATH: $DIRECTORY"
+				shift
+			else
+				echo -e "ERROR: --appid|-a requires an argument.\n" >&2
+				exit 1
+			fi
+		;;
+		
+		--directory|-d)       # Takes an option argument, ensuring it has been specified.
+			if [[ -n "$2" ]]; then
+				DIRECTORY=$2
+				# echo "INSTALL PATH: $DIRECTORY"
+				shift
+			else
+				echo -e "ERROR: --directory|-d requires an argument.\n" >&2
+				exit 1
+			fi
+		;;
 
-if [[ "${PLATFORM}" == "" ]]; then
+		--platform|-p)       # Takes an option argument, ensuring it has been specified.
+			if [[ -n "$2" ]]; then
+				PLATFORM=$2
+				# echo "PLATFORM: $PLATFORM"
+				shift
+			else
+				echo -e "ERROR: --platform|-p requires an argument.\n" >&2
+				exit 1
+			fi
+		;;
+		
+		--help|-h) 
+			cat<<-EOF
+			
+			Usage:	 ./get-steam-game-cli.sh [options]
+			Options: -a [AppID] 
+				 -p [Platform] 
+				 -d [TARGET_DIR]
+			
+			EOF
+			break
+		;;
+		
+		--)
+		# End of all options.
+		shift
+		break
+		;;
 
-        PLATFORM="linux"
+		-?*)
+		printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+		;;
+  
+		*)  
+		# Default case: If no more options then break out of the loop.
+		break
 
-fi
+	esac
+
+	# shift args
+	shift
+done
 
 main()
 {
@@ -51,23 +109,23 @@ main()
 	if [[ "${CUSTOM_DATA_PATH}" == "y" ]]; then
 
 	        read -erp "Path: " STEAM_DATA_FILES
-	        INSTALL_PATH="+force_install_dir ${STEAM_DATA_FILES}"
+	        DIRECTORY="+force_install_dir ${STEAM_DATA_FILES}"
 
         else
 
                 # let this be a default
                 # If this is not set, the path will be $HOME/Steam/steamapps/common/
                 STEAM_DATA_FILES="default directory"
-                INSTALL_PATH="+force_install_dir /home/steam/.local/share/Steam/steamapps/common/"
+                DIRECTORY="+force_install_dir /home/steam/.local/share/Steam/steamapps/common/"
       
         fi
 	
-	echo -e "\nDownloading game files to: ${STEAM_DATA_FILES}"
+	echo -e "\nDownloading game files to: ${DIRECTORY}"
 	sleep 2s
 
 	# run as steam user
 	${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType \
-	${PLATFORM} +login ${STEAM_LOGIN_NAME} ${INSTALL_PATH} +app_update \
+	${PLATFORM} +login ${STEAM_LOGIN_NAME} ${DIRECTORY} +app_update \
 	${GAME_APP_ID} validate +quit
 
 }

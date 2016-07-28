@@ -117,7 +117,7 @@ main()
 	sleep 2s
 
 	# run as steam user
-	sudo ${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType \
+	sudo -u ${USER}  ${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType \
 	${PLATFORM} +login ${STEAM_LOGIN_NAME} +force_install_dir ${DIRECTORY} \
 	+app_update ${GAME_APP_ID} validate +quit
 

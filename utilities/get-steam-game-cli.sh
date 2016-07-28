@@ -25,9 +25,10 @@ while :; do
 				exit 1
 			fi
 		;;
-		
+
 		--directory|-d)       # Takes an option argument, ensuring it has been specified.
 			if [[ -n "$2" ]]; then
+				CUSTOM_DATA_PATH="true"
 				DIRECTORY=$2
 				# echo "INSTALL PATH: $DIRECTORY"
 				shift
@@ -47,7 +48,7 @@ while :; do
 				exit 1
 			fi
 		;;
-		
+
 		--help|-h) 
 			cat<<-EOF
 			
@@ -59,7 +60,7 @@ while :; do
 			EOF
 			break
 		;;
-		
+
 		--)
 		# End of all options.
 		shift
@@ -69,7 +70,7 @@ while :; do
 		-?*)
 		printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
 		;;
-  
+
 		*)  
 		# Default case: If no more options then break out of the loop.
 		break
@@ -102,31 +103,26 @@ main()
 
 	# Download
 	# steam cmd likes to put the files in the same directory as the script
-	
+
 	echo -e "Use custom install directory?\n"
 	read -erp "Choice [y/n]: " CUSTOM_DATA_PATH
-	
-	if [[ "${CUSTOM_DATA_PATH}" == "y" ]]; then
 
-	        read -erp "Path: " STEAM_DATA_FILES
-	        DIRECTORY="+force_install_dir ${STEAM_DATA_FILES}"
-
-        else
+	if [[ "${CUSTOM_DATA_PATH}" != "true" ]]; then
 
                 # let this be a default
                 # If this is not set, the path will be $HOME/Steam/steamapps/common/
                 STEAM_DATA_FILES="default directory"
-                DIRECTORY="+force_install_dir /home/steam/.local/share/Steam/steamapps/common/"
-      
+                DIRECTORY="/home/steam/.local/share/Steam/steamapps/common/"
+
         fi
-	
+
 	echo -e "\nDownloading game files to: ${DIRECTORY}"
 	sleep 2s
 
 	# run as steam user
 	${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType \
-	${PLATFORM} +login ${STEAM_LOGIN_NAME} ${DIRECTORY} +app_update \
-	${GAME_APP_ID} validate +quit
+	${PLATFORM} +login ${STEAM_LOGIN_NAME} +force_install_dir ${DIRECTORY} \
+	+app_update ${GAME_APP_ID} validate +quit
 
 }
 

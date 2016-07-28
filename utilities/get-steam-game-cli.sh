@@ -121,7 +121,7 @@ main()
 
 	# run as steam user
 	${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType \
-	${PLATFORM} +login ${STEAM_LOGIN_NAME} +force_install_dir ${DIRECTORY} \
+	${PLATFORM} +login ${STEAM_LOGIN_NAME} +force_install_dir ${TEMP_DIRECTORY} \
 	+app_update ${GAME_APP_ID} validate +quit
 	
 	# Move files to actual directory

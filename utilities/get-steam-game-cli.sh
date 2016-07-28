@@ -17,7 +17,7 @@ while :; do
 
 		--appid|-a)
 			if [[ -n "$2" ]]; then
-				APPID=$2
+				GAME_APP_ID=$2
 				# echo "INSTALL PATH: $DIRECTORY"
 				shift
 			else

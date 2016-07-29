@@ -50,8 +50,10 @@ while :; do
 			;;
 		
 		--reset-steamcmd|-r)
-			echo -e "\nReinstalling steamcmd" && sleep 2s
-			rm -rf $HOME/Steam/ $HOME/steamcmd
+			# Very useful if you restore SteamoS.
+			# Cleans out metadata cruft
+			echo -e "\n==> Reinstalling steamcmd" && sleep 2s
+			rm -rf "$HOME/Steam/" "$HOME/steamcmd" "$HOME/.steam" "$HOME/steamcmd_tmp"
 			;;
 
 		--help|-h) 

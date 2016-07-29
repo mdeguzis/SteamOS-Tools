@@ -24,7 +24,7 @@ while :; do
 				echo -e "ERROR: --appid|-a requires an argument.\n" >&2
 				exit 1
 			fi
-		;;
+			;;
 
 		--directory|-d)       # Takes an option argument, ensuring it has been specified.
 			if [[ -n "$2" ]]; then
@@ -36,7 +36,7 @@ while :; do
 				echo -e "ERROR: --directory|-d requires an argument.\n" >&2
 				exit 1
 			fi
-		;;
+			;;
 
 		--platform|-p)       # Takes an option argument, ensuring it has been specified.
 			if [[ -n "$2" ]]; then
@@ -47,7 +47,12 @@ while :; do
 				echo -e "ERROR: --platform|-p requires an argument.\n" >&2
 				exit 1
 			fi
-		;;
+			;;
+		
+		--reset-steamcmd|-r)
+			echo -e "\nReinstalling steamcmd" && sleep 2s
+			rm -rf $HOME/Steam/ $HOME/steamcmd
+			;;
 
 		--help|-h) 
 			cat<<-EOF
@@ -59,7 +64,7 @@ while :; do
 			
 			EOF
 			break
-		;;
+			;;
 
 		--)
 		# End of all options.

@@ -96,6 +96,11 @@ main()
 
 	fi
 
+	echo -e "\n==> Checking for required pacakges\n"
+	sleep 2s
+	
+	sudo apt-get install -y --force-yes lib32gcc1 libc6-i386
+
 	# get game files via steam (you must own the game!)
 	echo -e "\n==> Acquiring files via Steam. You must own the game!"
 	read -erp "    Steam username: " STEAM_LOGIN_NAME

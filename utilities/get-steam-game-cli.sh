@@ -118,7 +118,7 @@ main()
 
         fi
 
-	echo -e "\n==> Downloading game files to: ${DIRECTORY}"
+	echo -e "==> Downloading game files to: ${DIRECTORY}"
 	sleep 2s
 	
 	TEMP_DIRECTORY="$HOME/steamcmd_tmp"
@@ -127,7 +127,7 @@ main()
 	# run as steam user
 	${HOME}/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType \
 	${PLATFORM} +login ${STEAM_LOGIN_NAME} +force_install_dir ${TEMP_DIRECTORY} \
-	+app_update ${GAME_APP_ID} validate +quit
+	+app_update ${GAME_APP_ID} validate +quit || exit 1
 	
 	# Move files to actual directory
 	sudo mv "${TEMP_DIRECTORY}" "${DIRECTORY}"

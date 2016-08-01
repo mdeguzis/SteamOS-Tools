@@ -137,7 +137,7 @@ main()
 	+app_update ${GAME_APP_ID} validate +quit || exit 1
 	
 	# Move files to actual directory
-	sudo mv ${TEMP_DIRECTORY}/* "${DIRECTORY}"
+	sudo cp -r ${TEMP_DIRECTORY}/* "${DIRECTORY}"
 	
 	# cleanup
 	rm -rf "${TEMP_DIRECTORY}"

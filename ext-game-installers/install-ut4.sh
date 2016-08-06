@@ -28,7 +28,7 @@ UT4_BIN_DIR="${UT4_DIR}/LinuxNoEditor/Engine/Binaries/Linux/"
 UT4_EXE="./UT4-Linux-Test UnrealTournament -SaveToUserDir"
 
 UT4_SHORTCUT_TMP="${HOME}/UT4-alpha.desktop"
-UT4_CLI_TEMP="${HOME}/UT4-alpha"
+UT4_CLI_TEMP="${HOME}/ut4-alpha"
 
 # See if we need to reset the directory
 if [[ "${OPTIONS}" == "--reset" ]]; then
@@ -76,23 +76,24 @@ chmod +x "${UT4_BIN_DIR}/UT4-Linux-Test"
 #################################################
 
 echo -e "\n==> Creating executable and desktop launcher"
+sleep 2s
 
 # copy UT4.png into Steam Pictures dir
-sudo cp "${SCRIPTDIR}/artwork/games/ut4-alpha.png" "/home/steam/Pictures"
+sudo cp "${SCRIPTDIR}/artwork/games/ut4-alpha.png" "/usr/share/pixmaps"
 
 cat <<-EOF> ${UT4_CLI_TMP}
 #!/bin/bash
 # execute ut4 alpha
 cd ${UT4_BIN_DIR}
-$UT4_EXE
+${UT4_EXE}
 EOF
 
 cat <<-EOF> ${UT4_shortcut_tmp}
 [Desktop Entry]
 Name=UT4 alpha
-Comment=Launcher for UT4 Tournament alpha
+Comment=Launcher for UT4 Tournament Alpha
 Exec=/usr/bin/ut4-alpha
-Icon=/home/steam/Pictures/ut4-alpha.png
+Icon=/usr/share/pixmaps/ut4-alpha.png
 Terminal=false
 Type=Application
 Categories=Game;

@@ -1,120 +1,113 @@
-	# See:	
-	# https://forums.unrealtournament.com/showthread.php?14240-How-to-run-UT4-Alpha-build
-	# https://forums.unrealtournament.com/showthread.php?12011-Unreal-Tournament-Pre-Alpha-Playable-Build
-	
-	# Archive source can also be generally noted from:
-	# https://aur.archlinux.org/packages/ut4/
-	
-	current_dir=$(pwd)
-	UT4_VER="3045522"
-	URL="https://s3.amazonaws.com/unrealtournament"
-	UT4_ZIP="UnrealTournament-Client-XAN-${UT4_VER}-Linux.zip"
-	UT4_DIR="$HOME/ut4-linux/LinuxNoEditor"
-	UT4_BIN_DIR="$UT4_DIR/LinuxNoEditor/Engine/Binaries/Linux/"
-	UT4_EXE="./UE4-Linux-Test UnrealTournament -SaveToUserDir"
-	
-	UT4_SHORTCUT_TMP="/home/desktop/ue4-alpha.desktop"
-	UT4_CLI_TEMP="/home/desktop/ue4-alpha"
-	
-	# start apt mode if check
-	if [[ "$apt_mode" == "install" ]]; then
-	
-		if [[ -d "$UT4_DIR" ]]; then
-			# DIR exists
-			echo -e "\nUT4 Game directory found"
-		else
-			mkdir -p "$UT4_DIR"
-		fi
-		
-		cd "$UT4_DIR" || exit
+#!/bin/bash
+#-------------------------------------------------------------------------------
+# Author:	Michael DeGuzis
+# Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
+# Scipt name:	install-ut4.sh
+# Script Ver:	0.3.1
+# Description:	Installs required packages, files for dhewm3, and facilitates
+#		the install of the game.
+##
+# Usage:	./install-ut4.sh
+# -------------------------------------------------------------------------------
 
-		#################################################
-		# Gather files
-		#################################################
+# See:	
+# https://forums.unrealtournament.com/showthread.php?14240-How-to-run-UT4-Alpha-build
+# https://forums.unrealtournament.com/showthread.php?12011-Unreal-Tournament-Pre-Alpha-Playable-Build
 
-		# sourced from https://aur.archlinux.org/packages/ut4/
+# Archive source can also be generally noted from:
+# https://aur.archlinux.org/packages/ut4/
 
-		echo -e "\n==> Acquiring files...please wait\n"
+current_dir=$(pwd)
+UT4_VER="3045522"
+URL="https://s3.amazonaws.com/unrealtournament"
+UT4_ZIP="UnrealTournament-Client-XAN-${UT4_VER}-Linux.zip"
+UT4_DIR="$HOME/ut4-linux/LinuxNoEditor"
+UT4_BIN_DIR="${UT4_DIR}/LinuxNoEditor/Engine/Binaries/Linux/"
+UT4_EXE="./UE4-Linux-Test UnrealTournament -SaveToUserDir"
 
-		sleep 2
+UT4_SHORTCUT_TMP="/home/desktop/ue4-alpha.desktop"
+UT4_CLI_TEMP="/home/desktop/ue4-alpha"
 
-		echo -e "${UT4_ZIP}"
-		wget -O "${UT4_ZIP}" "${URL}/${UT4_ZIP}"
 
-		#################################################
-		# Setup
-		#################################################
+if [[ -d "${UT4_DIR}" ]]; then
+	# DIR exists
+	echo -e "\nUT4 Game directory found"
+else
+	mkdir -p "${UT4_DIR}"
+fi
 
-		unzip -o "${ue4_zip}"
+cd "${UT4_DIR}" || exit
 
-		# Mark main binary as executable
-		chmod +x "$UT4_BIN_DIR/UE4-Linux-Test"
+#################################################
+# Gather files
+#################################################
 
-		#################################################
-		# Post install configuration
-		#################################################
+# sourced from https://aur.archlinux.org/packages/ut4/
 
-		echo -e "\n==> Creating executable and desktop launcher"
+echo -e "\n==> Acquiring files...please wait\n"
 
-		# copy ue4.png into Steam Pictures dir
-		sudo cp "$scriptdir/artwork/games/ut4-alpha.png" "/home/steam/Pictures"
+sleep 2
 
-		cat <<-EOF> ${ue4_cli_tmp}
-		#!/bin/bash
-		# execute ut4 alpha
-		cd $UT4_BIN_DIR
-		$UT4_EXE
-		EOF
+echo -e "${UT4_ZIP}"
+wget -O "${UT4_ZIP}" "${URL}/${UT4_ZIP}"
 
-		cat <<-EOF> ${ue4_shortcut_tmp}
-		[Desktop Entry]
-		Name=UT4 alpha
-		Comment=Launcher for UT4 Tournament alpha
-		Exec=/usr/bin/ut4-alpha
-		Icon=/home/steam/Pictures/ut4-alpha.png
-		Terminal=false
-		Type=Application
-		Categories=Game;
-		MimeType=x-scheme-handler/steam;
-		EOF
+#################################################
+# Setup
+#################################################
 
-		# mark exec
-		chmod +x ${UT4_CLI_TEMP}
+unzip -o "${UE4_ZIP}"
 
-		# move tmp var files into target locations
-		sudo mv ${ut4_shortcut_tmp}  "/usr/share/applications"
-		sudo mv ${u4_cli_tmp} "/usr/bin"
+# Mark main binary as executable
+chmod +x "${UT4_BIN_DIR}/UE4-Linux-Test"
 
-		#################################################
-		# Cleanup
-		#################################################
+#################################################
+# Post install configuration
+#################################################
 
-		# return to previous dir
-		cd $current_dir || exit
+echo -e "\n==> Creating executable and desktop launcher"
 
-		clear
-		cat <<-EOF
-		-----------------------------------------------------------------------
-		Summary
-		-----------------------------------------------------------------------
-		Installation is finished. You can either run 'ue4-alpha' from
-		the command line, or start 'UE4 aplha' from you applications directory.
-		The launcher should show up as a non-Steam game as well in SteamOS BPM.
-		EOF
+# copy ue4.png into Steam Pictures dir
+sudo cp "${SCRIPTDIR}/artwork/games/ut4-alpha.png" "/home/steam/Pictures"
 
-	elif [[ "$apt_mode" == "remove" ]]; then
+cat <<-EOF> ${UE4_CLI_TMP}
+#!/bin/bash
+# execute ut4 alpha
+cd ${UT4_BIN_DIR}
+$UT4_EXE
+EOF
 
-		# Add dekstop launcher file here
-		# Transfer to /usr/share/applications
-		# TODO !!!
+cat <<-EOF> ${ue4_shortcut_tmp}
+[Desktop Entry]
+Name=UT4 alpha
+Comment=Launcher for UT4 Tournament alpha
+Exec=/usr/bin/ut4-alpha
+Icon=/home/steam/Pictures/ut4-alpha.png
+Terminal=false
+Type=Application
+Categories=Game;
+MimeType=x-scheme-handler/steam;
+EOF
 
-		#Remove directories, build files, etc if uninstall is specified by user
-		echo -e "\n==> Removing related files for UE4-src routine"
-		sleep 2s
+# mark exec
+chmod +x ${UT4_CLI_TEMP}
 
-		# remove directories
-		sudo rm -rf "/usr/share/applications/ut4-alpha.desktop" "/usr/bin/ut4-alpha" \
-		"$UT4_DIR"
+# move tmp var files into target locations
+sudo mv ${UT4_SHORTCUT_TMP}  "/usr/share/applications"
+sudo mv ${UT4_CLI_TMP} "/usr/bin"
 
-		# end apt mode if check  
-	fi
+#################################################
+# Cleanup
+#################################################
+
+# return to previous dir
+cd ${CURRENT_DIR} || exit
+
+clear
+cat <<-EOF
+-----------------------------------------------------------------------
+Summary
+-----------------------------------------------------------------------
+Installation is finished. You can either run 'ue4-alpha' from
+the command line, or start 'UE4 aplha' from you applications directory.
+The launcher should show up as a non-Steam game as well in SteamOS BPM.
+EOF

@@ -21,12 +21,12 @@ current_dir=$(pwd)
 UT4_VER="3045522"
 URL="https://s3.amazonaws.com/unrealtournament"
 UT4_ZIP="UnrealTournament-Client-XAN-${UT4_VER}-Linux.zip"
-UT4_DIR="$HOME/ut4-linux/LinuxNoEditor"
+UT4_DIR="${HOME}/ut4-linux/LinuxNoEditor"
 UT4_BIN_DIR="${UT4_DIR}/LinuxNoEditor/Engine/Binaries/Linux/"
-UT4_EXE="./UE4-Linux-Test UnrealTournament -SaveToUserDir"
+UT4_EXE="./UT4-Linux-Test UnrealTournament -SaveToUserDir"
 
-UT4_SHORTCUT_TMP="/home/desktop/ue4-alpha.desktop"
-UT4_CLI_TEMP="/home/desktop/ue4-alpha"
+UT4_SHORTCUT_TMP="${HOME}/UT4-alpha.desktop"
+UT4_CLI_TEMP="${HOME}/UT4-alpha"
 
 
 if [[ -d "${UT4_DIR}" ]]; then
@@ -55,10 +55,10 @@ wget -O "${UT4_ZIP}" "${URL}/${UT4_ZIP}"
 # Setup
 #################################################
 
-unzip -o "${UE4_ZIP}"
+unzip -o "${UT4_ZIP}"
 
 # Mark main binary as executable
-chmod +x "${UT4_BIN_DIR}/UE4-Linux-Test"
+chmod +x "${UT4_BIN_DIR}/UT4-Linux-Test"
 
 #################################################
 # Post install configuration
@@ -66,17 +66,17 @@ chmod +x "${UT4_BIN_DIR}/UE4-Linux-Test"
 
 echo -e "\n==> Creating executable and desktop launcher"
 
-# copy ue4.png into Steam Pictures dir
+# copy UT4.png into Steam Pictures dir
 sudo cp "${SCRIPTDIR}/artwork/games/ut4-alpha.png" "/home/steam/Pictures"
 
-cat <<-EOF> ${UE4_CLI_TMP}
+cat <<-EOF> ${UT4_CLI_TMP}
 #!/bin/bash
 # execute ut4 alpha
 cd ${UT4_BIN_DIR}
 $UT4_EXE
 EOF
 
-cat <<-EOF> ${ue4_shortcut_tmp}
+cat <<-EOF> ${UT4_shortcut_tmp}
 [Desktop Entry]
 Name=UT4 alpha
 Comment=Launcher for UT4 Tournament alpha
@@ -107,7 +107,7 @@ cat <<-EOF
 -----------------------------------------------------------------------
 Summary
 -----------------------------------------------------------------------
-Installation is finished. You can either run 'ue4-alpha' from
-the command line, or start 'UE4 aplha' from you applications directory.
+Installation is finished. You can either run 'UT4-alpha' from
+the command line, or start 'UT4 aplha' from you applications directory.
 The launcher should show up as a non-Steam game as well in SteamOS BPM.
 EOF

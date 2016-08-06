@@ -84,14 +84,14 @@ sleep 2s
 # copy UT4.png into Steam Pictures dir
 sudo cp "${SCRIPTDIR}/artwork/games/ut4-alpha.png" "/usr/share/pixmaps"
 
-cat <<-EOF> ${UT4_CLI_TMP}
+cat <<-EOF> ${UT4_BIN_TMP}
 #!/bin/bash
 # execute ut4 alpha
 cd ${UT4_BIN_DIR}
 ${UT4_EXE}
 EOF
 
-cat <<-EOF> ${UT4_shortcut_tmp}
+cat <<-EOF> ${UT4_SHORTCUT_TMP}
 [Desktop Entry]
 Name=UT4 alpha
 Comment=Launcher for UT4 Tournament Alpha
@@ -108,7 +108,7 @@ chmod +x ${UT4_BIN_TMP}
 
 # move tmp var files into target locations
 sudo mv ${UT4_SHORTCUT_TMP} "${UT4_SHORTCUT}"
-sudo mv ${UT4_CLI_TMP} ${UT4_BIN}
+sudo mv ${UT4_BIN_TMP} ${UT4_BIN}
 
 #################################################
 # Cleanup

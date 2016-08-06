@@ -28,14 +28,17 @@ UT4_BIN_DIR="${UT4_DIR}/LinuxNoEditor/Engine/Binaries/Linux/"
 UT4_EXE="./UT4-Linux-Test UnrealTournament -SaveToUserDir"
 
 UT4_SHORTCUT_TMP="${HOME}/UT4-alpha.desktop"
-UT4_CLI_TEMP="${HOME}/ut4-alpha"
+UT4_SHORTCUT="/usr/share/applications/UT4-alpha.desktop"
+UT4_BIN_TMP="${HOME}/ut4-alpha"
+UT4_BIN="/usr/bin/ut4-alpha"
 
 # See if we need to reset the directory
 if [[ "${OPTIONS}" == "--reset" ]]; then
 
 	echo -e "\n==> Resetting installation directory, please wait."
 	sudo rm -rf "${UT4_DIR}"
-	sudo rm -rf "/usr/share/applications/UT4-alpha.desktop"
+	sudo rm -rf "${UT4_SHORTCUT}"
+	sudo rm -rf ${UT4_BIN}
 fi
 
 
@@ -101,11 +104,11 @@ MimeType=x-scheme-handler/steam;
 EOF
 
 # mark exec
-chmod +x ${UT4_CLI_TEMP}
+chmod +x ${UT4_BIN_TMP}
 
 # move tmp var files into target locations
-sudo mv ${UT4_SHORTCUT_TMP}  "/usr/share/applications"
-sudo mv ${UT4_CLI_TMP} "/usr/bin"
+sudo mv ${UT4_SHORTCUT_TMP} "${UT4_SHORTCUT}"
+sudo mv ${UT4_CLI_TMP} ${UT4_BIN}
 
 #################################################
 # Cleanup

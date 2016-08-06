@@ -18,8 +18,9 @@
 # https://aur.archlinux.org/packages/ut4/
 
 OPTIONS="$1"
+SCRIPTDIR="${PWD}"
 
-current_dir=$(pwd)
+# vars
 UT4_VER="3045522"
 URL="https://s3.amazonaws.com/unrealtournament"
 UT4_ZIP="UnrealTournament-Client-XAN-${UT4_VER}-Linux.zip"
@@ -38,7 +39,7 @@ if [[ "${OPTIONS}" == "--reset" ]]; then
 	echo -e "\n==> Resetting installation directory, please wait."
 	sudo rm -rf "${UT4_DIR}"
 	sudo rm -rf "${UT4_SHORTCUT}"
-	sudo rm -rf ${UT4_BIN}
+	sudo rm -rf "${UT4_BIN}"
 fi
 
 
@@ -115,7 +116,7 @@ sudo mv ${UT4_BIN_TMP} ${UT4_BIN}
 #################################################
 
 # return to previous dir
-cd ${CURRENT_DIR} || exit
+cd ${SCRIPTDIR} || exit
 
 cat <<-EOF
 

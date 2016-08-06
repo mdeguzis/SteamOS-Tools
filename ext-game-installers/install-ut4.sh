@@ -60,7 +60,7 @@ echo -e "\n==> Acquiring files...please wait\n"
 sleep 2
 
 echo -e "${UT4_ZIP}"
-wget -O "${UT4_ZIP}" "${URL}/${UT4_ZIP}"
+wget -O "${UT4_ZIP}" "${URL}/${UT4_ZIP}" -q -nc --show-progress
 
 #################################################
 # Setup

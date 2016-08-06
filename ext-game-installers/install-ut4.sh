@@ -7,7 +7,7 @@
 # Description:	Installs required packages, files for dhewm3, and facilitates
 #		the install of the game.
 ##
-# Usage:	./install-ut4.sh
+# Usage:	./install-ut4.sh [OPTIONS]
 # -------------------------------------------------------------------------------
 
 # See:	
@@ -16,6 +16,8 @@
 
 # Archive source can also be generally noted from:
 # https://aur.archlinux.org/packages/ut4/
+
+OPTIONS="$1"
 
 current_dir=$(pwd)
 UT4_VER="3045522"
@@ -28,7 +30,15 @@ UT4_EXE="./UT4-Linux-Test UnrealTournament -SaveToUserDir"
 UT4_SHORTCUT_TMP="${HOME}/UT4-alpha.desktop"
 UT4_CLI_TEMP="${HOME}/UT4-alpha"
 
+# See if we need to reset the directory
+if [[ "${OPTIONS}" == "--reset" ]]; then
 
+	sudo rm -rf "${UT4_DIR}"
+	sudo rm -rf "/usr/share/applications/UT4-alpha.desktop"
+fi
+
+
+# Check for target dir
 if [[ -d "${UT4_DIR}" ]]; then
 	# DIR exists
 	echo -e "\nUT4 Game directory found"

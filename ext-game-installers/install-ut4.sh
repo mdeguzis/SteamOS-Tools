@@ -1,25 +1,3 @@
-#!/bin/bash
-
-# -------------------------------------------------------------------------------
-# Author:	Michael DeGuzis
-# Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	ext-game-installers.shinc
-# Script Ver:	0.3.1
-# Description:	script to install games that are not currently packaged
-#
-# See:          
-#
-# Usage:	N/A, called from another script
-#
-#		Please see SteamOS-Tools/docs/desktop-software-readme.md 
-# -------------------------------------------------------------------------------
-
-time_start=$(date +%s)
-time_stamp_start=(`date +"%T"`)
-
-egi_install_ut4()
-{
-	
 	# See:	
 	# https://forums.unrealtournament.com/showthread.php?14240-How-to-run-UT4-Alpha-build
 	# https://forums.unrealtournament.com/showthread.php?12011-Unreal-Tournament-Pre-Alpha-Playable-Build
@@ -119,11 +97,9 @@ egi_install_ut4()
 		-----------------------------------------------------------------------
 		Summary
 		-----------------------------------------------------------------------
-
 		Installation is finished. You can either run 'ue4-alpha' from
 		the command line, or start 'UE4 aplha' from you applications directory.
 		The launcher should show up as a non-Steam game as well in SteamOS BPM.
-
 		EOF
 
 	elif [[ "$apt_mode" == "remove" ]]; then
@@ -142,5 +118,3 @@ egi_install_ut4()
 
 		# end apt mode if check  
 	fi
-
-}

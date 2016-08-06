@@ -83,7 +83,7 @@ echo -e "\n==> Creating executable and desktop launcher"
 sleep 2s
 
 # copy UT4.png into Steam Pictures dir
-sudo cp "${SCRIPTDIR}/artwork/games/ut4-alpha.png" "/usr/share/pixmaps"
+sudo cp ../artwork/games/ut4-alpha.png" "/usr/share/pixmaps"
 
 cat <<-EOF> ${UT4_BIN_TMP}
 #!/bin/bash

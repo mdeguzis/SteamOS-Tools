@@ -1,12 +1,11 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
 # Author:	Michael DeGuzis
-# Script Ver:	1.3.0
+# Script Ver:	1.3.2
 # Description:	Configures LibreGeek repositories
 #
 # Usage:	./configure-repos.sh
-# Opts:		[ --testing | --remove-testing | --repair ]
-#		Adds or removes testing. Please see README.md
+# Opts:		See "--help"
 # ------------------------------------------------------------------------------
 
 arg1="$1"
@@ -25,9 +24,9 @@ function_repair_setup()
 	sleep 2s
 
 	# Clear out packages
-	sudo apt-get purge -y steamos-tools-repo libregeek-archive-keyring
+	sudo apt-get purge -y steamos-tools-repo libregeek-archive-keyring steamos-tools-beta-repo
 
-	files="jessie jessie-backports steamos-tools"
+	files="jessie jessie-backports steamos-tools steamos-tools-beta"
 
 	for file in ${files};
 	do
@@ -41,6 +40,7 @@ function_repair_setup()
 	sudo sed -i '/libregeek/d' "/etc/apt/sources.list"
 
 }
+
 function_default_setup()
 {
 

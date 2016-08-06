@@ -33,7 +33,7 @@ UT4_CLI_TEMP="${HOME}/UT4-alpha"
 # See if we need to reset the directory
 if [[ "${OPTIONS}" == "--reset" ]]; then
 
-	echo -e "\nResetting installation directory, please wait."
+	echo -e "\n==> Resetting installation directory, please wait."
 	sudo rm -rf "${UT4_DIR}"
 	sudo rm -rf "/usr/share/applications/UT4-alpha.desktop"
 fi
@@ -113,8 +113,8 @@ sudo mv ${UT4_CLI_TMP} "/usr/bin"
 # return to previous dir
 cd ${CURRENT_DIR} || exit
 
-clear
 cat <<-EOF
+
 -----------------------------------------------------------------------
 Summary
 -----------------------------------------------------------------------

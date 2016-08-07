@@ -20,3 +20,4 @@ supertux
 supertuxkart
 vectoroids
 warmux
+wolf4sdl

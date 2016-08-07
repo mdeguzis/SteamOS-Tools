@@ -88,6 +88,26 @@ function_beta_setup()
 
 }
 
+function_debian_only()
+{
+
+	if [[ "${install}" = "true" ]]; then
+
+		echo -e "\n==> Adding Debian repository\n"
+		sleep 2s
+		wget http://packages.libregeek.org/debian-repo-latest.deb -q --show-progress
+		sudo dpkg -i debian-repo-latest.deb
+
+	elif [[ "${install}" = "false" ]]; then
+
+		echo -e "\n==> Removing Debian repository setup.\n"
+		sleep 2s
+		sudo apt-get purge -y debian-repo
+
+	fi
+
+}
+
 function_cleanup()
 {
 
@@ -101,6 +121,7 @@ function_cleanup()
 	rm -f libregeek-archive-keyring-latest.deb
 	rm -f steamos-tools-beta-repo-latest.deb
 	rm -f steamos-tools-repo-latest.deb
+	rm -f debian-repo-latest.deb
 
 }
 
@@ -115,6 +136,7 @@ function_help()
 	==================================================================
 
 	--default			Normal installation
+	--debian-only			Add only Debian sources
 	--repair			Repair and install setup
 	--enable-testing		Add testing repository
 	--remove			Remove all repository setups
@@ -141,6 +163,13 @@ main()
 		# Process just default setup
 		install="true"
 		function_default_setup
+		function_cleanup
+		;;
+
+		--debian-only)
+		# Process just debian setup
+		install="true"
+		function_debian_only
 		function_cleanup
 		;;
 

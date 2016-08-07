@@ -683,7 +683,6 @@ main()
 	import "$scriptdir/scriptmodules/retroarch-post-cfgs"
 	import "$scriptdir/scriptmodules/extra-pkgs"
 	import "$scriptdir/scriptmodules/retroarch-from-src"
-	import "$scriptdir/scriptmodules/ext-game-installers"
 	import "$scriptdir/scriptmodules/web-apps"
 
         # generate software listing based on type or skip to auto script

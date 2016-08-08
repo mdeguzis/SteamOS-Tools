@@ -78,8 +78,12 @@ function_set_vars()
 
 	# Suppress "No LSB modules available message"
 	OS_BASIC_INFO=$(lsb_release -a 2> /dev/null)
+
 	# See when OS updates were last checked for
-	OS_UPDATE_CHECKTIME=$(stat /var/lib/apt/periodic/upgrade-stamp | grep "Modify" | tail -n 1 | sed 's/Modify: //')
+	# Note: can't stat the file without elevated privledges
+	OS_UPDATE_CHECKTIME=$(sudo stat /var/log/unattended-upgrades/unattended-upgrades.log \
+	| grep "Modify" | tail -n 1 | sed 's/Modify: //')
+
 	# Beta stuff
 	OS_BETA_CHECK=$(dpkg-query -W --showformat='${Status}\n' steamos-beta-repo | grep "ok installed")
 
@@ -98,6 +102,7 @@ function_set_vars()
 	#################
 
 	# CPU
+
 	CPU_VENDOR=$(lscpu | awk '/Vendor ID/{print $3}')
 	CPU_ARCH=$(lscpu | awk '/Arch/{print $2}')
 	CPU_MHZ=$(lscpu | awk '/CPU MHz/{print $3}')

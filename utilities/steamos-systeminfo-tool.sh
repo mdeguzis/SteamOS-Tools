@@ -146,8 +146,24 @@ function_set_vars()
 	"*steam*" "nvidia*" "fglrx*" "*mesa*" "*libregeek*")
 
 	# Steam vars
-	STEAM_CLIENT_VER=$(grep "version" /home/steam/.steam/steam/package/steam_client_ubuntu12.manifest \
-	| awk '{print $2}' | sed 's/"//g')
+	
+	MANIFEST="/home/steam/.steam/steam/package/steam_client_ubuntu12.manifest"
+	BETA_MANIFEST="/home/steam/.steam/steam/package/steam_client_publicbeta_ubuntu12.manifest"
+	
+	if [[ -f "${MANIFEST}" ]]; then
+
+		CLIENT_BETA="false"
+		MANIFEST="${MANIFEST}"
+
+	else
+
+		CLIENT_BETA="true"
+		MANIFEST="${BETA_MANIFEST}"
+
+	fi
+
+	# Get client versions
+	STEAM_CLIENT_VER=$(grep "version"  ${MANIFEST} | awk '{print $2}' | sed 's/"//g')
 	STEAM_CLIENT_BUILT=$(date -d @${STEAM_CLIENT_VER})
 	STEAMOS_VER=$(dpkg-query -W -f='${VERSION}\n' steamos-updatelevel)
 
@@ -206,6 +222,7 @@ function_gather_info()
 	Steam Information
 	==========================
 
+	Steam Client beta: ${IS_STEAM_CLIENT_BETA}
 	Steam client version: ${STEAM_CLIENT_VER}
 	Steam client built: ${STEAM_CLIENT_BUILT}
 
@@ -246,7 +263,7 @@ main()
 
 	# install utilities
 	function_install_utilities 
-	
+
 	# set vars
 	function_set_vars
 
@@ -257,7 +274,7 @@ main()
 	function_gather_logs
 
 	# Archive log filer with date
-	echo -e "==> Archiving logs\n"
+	echo -e "\n==> Archiving logs\n"
 	7za a "${ZIP_FILE}" ${LOG_FOLDER}/*
 
 }

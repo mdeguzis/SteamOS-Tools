@@ -16,7 +16,7 @@ function_install_utilities()
 
 	echo -e "==> Installing needed software...\n"
 
-	PKGS="p7zip-full bc lshw"
+	PKGS="bc lshw zip"
 
 	for PKG in ${PKGS};
 	do
@@ -54,11 +54,13 @@ function_set_vars()
 		mkdir -p "${LOG_FOLDER}"
 
 	fi
-	
+
 	# Remove old logs to old folder and clean folder
 
 	cp -r "${LOG_FOLDER}" "${LOG_FOLDER}.old" &> /dev/null
 	rm -rf ${LOG_FOLDER}/*
+
+	# Remove current zip file if running this multiple times in a day
 	rm -f "${ZIP_FILE}"
 
 	# Remove old zip files to avoid clutter.
@@ -124,14 +126,14 @@ function_set_vars()
 	GPU_DRIVER_VERSION="${GPU_DRIVER_VERSION_STRING}"
 	GPU_VIDEO_MEMORY_KB=$(cat /var/log/Xorg.0.log | awk '/Memory/' | sed 's/.*Memory: //' | sed 's/kBytes//')
 	GPU_VIDEO_MEMORY=$(echo "scale=2; ${GPU_VIDEO_MEMORY_KB}/1024/1024" | bc)
-	
+
 	##################################
 	# Legacy / old methods
 	##################################
 
 	# GPU_MODEL_FULL=$(lspci -v | awk -F":" '/VGA compatible controller/{print $3}')
 	# GPU_MODEL="${GPU_MODEL_FULL}"
-	
+
 	#GPU_VENDOR_STRING=$(lspci -v | grep "VGA compatible controller" | grep -Ei 'nvidia|ati|amd|intel')
 	# Set vendor
 	#if echo "${GPU_VENDOR_STRING}" | grep -iw "nvidia" 1> /dev/null; then GPU_VENDOR="Nvidia"; fi
@@ -147,10 +149,10 @@ function_set_vars()
 	"*steam*" "nvidia*" "fglrx*" "*mesa*" "*libregeek*")
 
 	# Steam vars
-	
+
 	MANIFEST="/home/steam/.steam/steam/package/steam_client_ubuntu12.manifest"
 	BETA_MANIFEST="/home/steam/.steam/steam/package/steam_client_publicbeta_ubuntu12.manifest"
-	
+
 	if [[ -f "${MANIFEST}" ]]; then
 
 		CLIENT_BETA="false"
@@ -166,7 +168,7 @@ function_set_vars()
 	fi
 
 	# Get client versions
-	STEAM_CLIENT_VER=$(grep "version"  ${MANIFEST} | awk '{print $2}' | sed 's/"//g')
+	STEAM_CLIENT_VER=$(grep "version" ${MANIFEST} | awk '{print $2}' | sed 's/"//g')
 	STEAM_CLIENT_BUILT=$(date -d @${STEAM_CLIENT_VER})
 	STEAMOS_VER=$(dpkg-query -W -f='${VERSION}\n' steamos-updatelevel)
 
@@ -265,7 +267,7 @@ main()
 {
 
 	# install utilities
-	function_install_utilities 
+	function_install_utilities
 
 	# set vars
 	function_set_vars
@@ -276,16 +278,24 @@ main()
 	# Get logs
 	function_gather_logs
 
+        # Correct permissions
+        sudo chown -R ${USER}:${USER} ${LOG_FOLDER}
+        sudo chmod -R 755 ${LOG_FOLDER}
+
 	# Archive log filer with date
 	echo -e "\n==> Archiving logs\n"
-	7za a "${ZIP_FILE}" ${LOG_FOLDER}/*
+	zip "${ZIP_FILE}" ${LOG_FOLDER}/*
 
 }
 
+################
 # Main
+################
+
 clear
 echo -e "Running SteamOS system info tool..."
 echo -e "Note: sudo is required to access and store system level logs"
+
 main &> "${HOME}/temp-log.txt"
 mv "${HOME}/temp-log.txt" "${LOG_FILE}"
 

@@ -57,8 +57,9 @@ function_set_vars()
 	
 	# Remove old logs to old folder and clean folder
 
-	cp -r ${LOG_FOLDER} ${LOG_FOLDER}.old &> /dev/null
+	cp -r "${LOG_FOLDER}" "${LOG_FOLDER}.old" &> /dev/null
 	rm -rf ${LOG_FOLDER}/*
+	rm -f "${ZIP_FILE}"
 
 	# Remove old zip files to avoid clutter.
 	# Max: 90 days
@@ -154,11 +155,13 @@ function_set_vars()
 
 		CLIENT_BETA="false"
 		MANIFEST="${MANIFEST}"
+		IS_STEAM_CLIENT_BETA="no"
 
 	else
 
 		CLIENT_BETA="true"
 		MANIFEST="${BETA_MANIFEST}"
+		IS_STEAM_CLIENT_BETA="yes"
 
 	fi
 

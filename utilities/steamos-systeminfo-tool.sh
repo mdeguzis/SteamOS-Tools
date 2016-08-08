@@ -303,9 +303,9 @@ mv "${HOME}/temp-log.txt" "${LOG_FILE}"
 # output summary
 
 cat<<- EOF
--------------------------------------------------------
+------------------------------------
 SteamOS System Info Tool
--------------------------------------------------------
+------------------------------------
 
 Logs directory: ${LOG_FOLDER}
 Standard log ouput stored at: ${LOG_FILE}

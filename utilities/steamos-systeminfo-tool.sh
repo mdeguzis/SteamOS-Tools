@@ -3,8 +3,9 @@
 # Author:	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
 # Scipt name:	steamos-systeminfo-tool.
-# Script Ver:	0.7.7
+# Script Ver:	0.7.9
 # Description:	Tool to collect some information for troubleshooting issues
+#		! sudo is required to access and store system level logs. !
 #
 # Usage:	./steamos-systeminfo-tool.
 # Opts:		[--testing]
@@ -296,15 +297,16 @@ main()
 ################
 
 clear
-echo -e "Running SteamOS system info tool..."
-echo -e "Note: sudo is required to access and store system level logs"
-
 main &> "${HOME}/temp-log.txt"
-mv "${HOME}/temp-log.txt" "${LOG_FILE_LINK}"
+mv "${HOME}/temp-log.txt" "${LOG_FILE}"
 
 # output summary
 
 cat<<- EOF
+-------------------------------------------------------
+SteamOS System Info Tool
+-------------------------------------------------------
+
 Logs directory: ${LOG_FOLDER}
 Standard log ouput stored at: ${LOG_FILE}
 Log archive stored at: ${ZIP_FILE}

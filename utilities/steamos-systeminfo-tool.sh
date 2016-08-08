@@ -286,6 +286,9 @@ main()
 	echo -e "\n==> Archiving logs\n"
 	zip "${ZIP_FILE}" ${LOG_FOLDER}/*
 
+	# Add main log to sprunge to allow easy pasting of main info
+	LOG_FILE_LINK=$(cat "${LOG_FILE}" | curl -sF 'sprunge=<-' http://sprunge.us)
+
 }
 
 ################
@@ -297,7 +300,7 @@ echo -e "Running SteamOS system info tool..."
 echo -e "Note: sudo is required to access and store system level logs"
 
 main &> "${HOME}/temp-log.txt"
-mv "${HOME}/temp-log.txt" "${LOG_FILE}"
+mv "${HOME}/temp-log.txt" "${LOG_FILE_LINK}"
 
 # output summary
 
@@ -305,6 +308,7 @@ cat<<- EOF
 Logs directory: ${LOG_FOLDER}
 Standard log ouput stored at: ${LOG_FILE}
 Log archive stored at: ${ZIP_FILE}
+Web link to main log: ${LOG_FILE_LINK}
 
 View standard log now? [y/n]
 EOF

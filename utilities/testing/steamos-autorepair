@@ -22,8 +22,21 @@ service plymouth-reboot start
 
 plymouth display-message --text="SteamOS is attempting to recover from a fatal error"
 plymouth system-update --progress=10
+
+# Configure  a  package  which  has  been  unpacked  but  not  yet configured.  
+# If -a or --pending is given instead of package, all unpacked but unconfigured packages are configured.
 dpkg --configure -a
+
+# Attempt to fix broken packages with apt
 apt-get -f -y install
+
+# Reset the Steam client
+runuser -l steam -c '/usr/bin/steam --reset'
+
+# Update progress
+plymouth system-update --progress=30
+
+# Update progress
 plymouth system-update --progress=50
 
 #

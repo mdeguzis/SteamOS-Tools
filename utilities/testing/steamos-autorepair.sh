@@ -32,8 +32,9 @@ su - steam -c '/usr/bin/steam --reset'
 plymouth system-update --progress=30
 
 # If the tenfoot folder is missing, we need to get that back
-# TODO... not sure what triggers addition of this
-
+# It may just be best to run steam on the CLI and let it update:
+su - steam -c 'DISPLAY=:0 /usr/bin/steam'
+plymouth system-update --progress=40
 
 # Attempt to fix broken packages with apt
 apt-get -f -y install

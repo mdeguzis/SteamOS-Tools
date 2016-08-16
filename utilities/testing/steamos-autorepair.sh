@@ -27,27 +27,25 @@ plymouth system-update --progress=10
 # so all unpacked, but unconfigured packages, are configured.
 dpkg --configure -a
 
-# Attempt to fix broken packages with apt
-apt-get -f -y install
+# Reset the Steam client files
+su - steam -c '/usr/bin/steam --reset'
+plymouth system-update --progress=20
+
+# If the tenfoot folder is missing, things are dire, so reinstall steam from 
+# cached apt archives (if possible)
+
+# This current approach would only work fi we have network, which we should at
+# this point, as X may just be crashing, but services are started
+
+apt-get remove -y steam
+wget "http://media.steampowered.com/client/installer/steam.deb" -q -nc
+dpkg -i steam_latest.deb
+rm "steam_latest.deb"
 plymouth system-update --progress=30
 
-# Reset the Steam client files
-# It is possible the manifest half-installs, or gets incorrect information about tenfoot
-# being installed to /home/steam/.local/share/Steam/
-# TODO - source where tenfoot is installed from, bootstrap process?
-rm /home/steam/.local/share/Steam/package/*.installed
-
-if su - steam -c '/usr/bin/steam --reset';
-
-    plymouth system-update --progress=50
-
-else
-
-    plymouth display-message --text="Cannot reset the Steam Client! Rebooting..."
-    sleep 5s
-    reboot
-
-fi
+# Attempt to fix broken packages with apt
+apt-get -f -y install
+plymouth system-update --progress=50
 
 #
 # force rebuild dkms modules

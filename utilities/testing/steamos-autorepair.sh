@@ -29,19 +29,11 @@ dpkg --configure -a
 
 # Reset the Steam client files
 su - steam -c '/usr/bin/steam --reset'
-plymouth system-update --progress=20
-
-# If the tenfoot folder is missing, things are dire, so reinstall steam from 
-# cached apt archives (if possible)
-
-# This current approach would only work fi we have network, which we should at
-# this point, as X may just be crashing, but services are started
-
-apt-get remove -y steam
-wget "http://media.steampowered.com/client/installer/steam.deb" -q -nc
-dpkg -i steam.deb
-rm "steam.deb"
 plymouth system-update --progress=30
+
+# If the tenfoot folder is missing, we need to get that back
+# TODO... not sure what triggers addition of this
+
 
 # Attempt to fix broken packages with apt
 apt-get -f -y install

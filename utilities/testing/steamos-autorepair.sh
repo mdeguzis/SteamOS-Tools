@@ -35,7 +35,7 @@ plymouth system-update --progress=30
 # It is possible the manifest half-installs, or gets incorrect information about tenfoot
 # being installed to /home/steam/.local/share/Steam/
 # TODO - source where tenfoot is installed from, bootstrap process?
-rm "/home/steam/.local/share/Steam/package/steam_client_ubuntu12.installed"
+rm /home/steam/.local/share/Steam/package/*.installed
 
 if su - steam -c '/usr/bin/steam --reset';
 

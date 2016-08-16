@@ -27,13 +27,14 @@ plymouth system-update --progress=10
 # so all unpacked, but unconfigured packages, are configured.
 dpkg --configure -a
 
-# Reset the Steam client files
+# Reset the Steam client
 su - steam -c '/usr/bin/steam --reset'
 plymouth system-update --progress=30
 
 # If the tenfoot folder is missing, we need to get that back
 # It may just be best to run steam on the CLI and let it update:
-su - steam -c 'DISPLAY=:0 /usr/bin/steam'
+apt-get install -y xvfb &> /dev/null
+sudo su - steam -c '/usr/bin/xvfb-run -a -e /tmp/steam_update_log.txt /usr/bin/steam'
 plymouth system-update --progress=40
 
 # Attempt to fix broken packages with apt

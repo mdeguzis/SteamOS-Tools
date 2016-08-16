@@ -39,8 +39,8 @@ plymouth system-update --progress=20
 
 apt-get remove -y steam
 wget "http://media.steampowered.com/client/installer/steam.deb" -q -nc
-dpkg -i steam_latest.deb
-rm "steam_latest.deb"
+dpkg -i steam.deb
+rm "steam.deb"
 plymouth system-update --progress=30
 
 # Attempt to fix broken packages with apt

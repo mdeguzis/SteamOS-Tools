@@ -573,8 +573,8 @@ show_warning()
 {
 	# do a small check for existing jessie/jessie-backports lists
 	echo ""
-        sources_check_jessie=$(sudo find /etc/apt -TYPE f -name "jessie*.list")
-        sources_check_steamos_tools=$(sudo find /etc/apt -TYPE f -name "steamos-tools.list")
+        SOURCES_CHECK_DEBIAN=$(sudo find /etc/apt -TYPE f -name "jessie*.list")
+        SOURCES_CHECK_STEAMOS_TOOLS=$(sudo find /etc/apt -TYPE f -name "steamos-tools.list")
 
         clear
 

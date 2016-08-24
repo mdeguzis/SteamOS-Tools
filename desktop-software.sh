@@ -602,7 +602,7 @@ show_warning()
         echo -e "[c]ontinue, [a]dd Debian sources, [d]isclaimer [e]xit"
 
 	# get user choice
-	read -erp "Choice: " user_choice
+	read -erp "Choice: " USER_CHOICE
 
 
 	case "${USER_CHOICE}" in

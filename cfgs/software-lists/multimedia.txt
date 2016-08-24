@@ -1,0 +1,7 @@
+clementine
+gtk-recordmydesktop
+kodi
+openpht
+qmmp
+totem
+vlc

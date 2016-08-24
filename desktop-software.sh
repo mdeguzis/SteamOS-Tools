@@ -355,7 +355,7 @@ function gpg_import()
 
 }
 
-get_software_TYPE()
+get_software_type()
 {
 	####################################################
 	# Software packs
@@ -573,8 +573,8 @@ show_warning()
 {
 	# do a small check for existing jessie/jessie-backports lists
 	echo ""
-        SOURCES_CHECK_DEBIAN=$(sudo find /etc/apt -TYPE f -name "jessie*.list")
-        SOURCES_CHECK_STEAMOS_TOOLS=$(sudo find /etc/apt -TYPE f -name "steamos-tools.list")
+        SOURCES_CHECK_DEBIAN=$(sudo find /etc/apt -type f -name "jessie*.list")
+        SOURCES_CHECK_STEAMOS_TOOLS=$(sudo find /etc/apt -type f -name "steamos-tools.list")
 
         clear
 
@@ -594,7 +594,7 @@ show_warning()
 
         echo -e "\nIf you wish to exit, please press CTRL+C now. Otherwise,"
         echo -e "press [ENTER] to continue."
-        echo -e "\nTYPE './desktop-software --help' (without quotes) for help."
+        echo -e "\nType './desktop-software --help' (without quotes) for help."
         echo -e "If you need to add the Debian repos, please add them now\n"
         echo -e "Please read the disclaimer.md now or in the main GitHub"
         echo -e "root folder!\n"
@@ -689,13 +689,13 @@ main()
 	import "${SCRIPTDIR}/scriptmodules/web-apps"
 
         # generate software listing based on TYPE or skip to auto script
-        get_software_TYPE
+        get_software_type
         
         #############################################
         # Main install functionality
         #############################################
         
-	# Assess software TYPEs and fire of installation routines if need be.
+	# Assess software types and fire of installation routines if need be.
 	# The first section will be basic checks, then specific use cases will be
 	# assessed.
 	

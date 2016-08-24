@@ -135,7 +135,7 @@ function import()
     # @description the first location searched is the script directory.
     # @description if not found, search the module in the paths contained in ${SHELL_LIBRARY_PATH} environment variable
     # @param $1 the .shinc file to import, without .shinc extension
-    module=$1
+    MODULE=$1
 
     if [ -f "${MODULE}.shinc" ]; then
       source "${MODULE}.shinc"

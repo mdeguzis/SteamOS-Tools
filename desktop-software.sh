@@ -2,7 +2,7 @@
 # -------------------------------------------------------------------------------
 # Author: 	Michael DeGuzis
 # Git:		https://github.com/ProfessorKaos64/SteamOS-Tools
-# Scipt Name:	install-desktop-software.sh
+# Scipt Name:	desktop-software.sh
 # Script Ver:	2.0.3.2
 # Description:	Adds various desktop software to the system for a more
 #		usable experience. Although this is not the main
@@ -370,7 +370,7 @@ elif [[ "${TYPE}" == "extra" ]]; then
 elif [[ "${TYPE}" == "emulators" ]]; then
 	# add emulation softare to temp list
 	SOFTWARE_LIST="${SCRIPTDIR}/cfgs/software-lists/emulators.txt"
-elif [[ "${TYPE}" == "multimeedia" ]]; then
+elif [[ "${TYPE}" == "multimedia" ]]; then
 	# add retroarch softare to temp list
 	SOFTWARE_LIST="${SCRIPTDIR}/cfgs/software-lists/multimedia.txt"
 elif [[ "${TYPE}" == "retroarch-src" ]]; then

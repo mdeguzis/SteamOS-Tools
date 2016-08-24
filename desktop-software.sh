@@ -171,7 +171,7 @@ function import()
     then
         # import from the shell script library path
         # save the separator and use the ':' instead
-        local saved_IFS="$IFS"
+        local saved_IFS="${i}FS"
         IFS=':'
         for PATH_TMP in ${SHELL_LIBRARY_PATH}
         do
@@ -466,7 +466,7 @@ install_software()
 
 	mkdir -p "/home/desktop/steamos-tools-aptcache"
 	# create cache command
-	${CACHE_TMP}=$(echo "-o dir::cache::archives="/home/desktop/steamos-tools-aptcache"")
+	CACHE_TMP=$(echo "-o dir::cache::archives="/home/desktop/steamos-tools-aptcache"")
 
 	###########################################################
 	# Installation routine (brewmaster/main)
@@ -485,44 +485,44 @@ install_software()
 			# set fail default
 			pkg_fail="no"
 
-			if [[ "$i" =~ "!broken!" ]]; then
-				skipflag="yes"
-				echo -e "skipping broken package: $i ..."
+			if [[ "${i}" =~ "!broken!" ]]; then
+				SKIPFLAG="yes"
+				echo -e "skipping broken package: ${i} ..."
 				sleep 0.3s
 			else
 
 				# check for packages already installed first
 				# Force if statement to run if unininstalled is specified for exiting software
-				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' ${i} | grep "install ok installed")
 
 				# report package current status
 				if [ "${PKG_OK}" != "" ]; then
 
-					echo -e "$i package status: [OK]"
+					echo -e "${i} package status: [OK]"
 					sleep .1s
 
 				else
-					echo -e "$i package status: [Not found]"
+					echo -e "${i} package status: [Not found]"
 					sleep 1s
 
 				fi
 
 				# setup ${FIRSTCHECK} var for first run through
-				${FIRSTCHECK}="yes"
+				FIRSTCHECK="yes"
 
 				# Assess pacakge requests
 				if [ "${PKG_OK}" == "" ] && [ "${APT_MODE}" == "install" ]; then
 
-					echo -e "\n==> Attempting $i automatic package installation...\n"
+					echo -e "\n==> Attempting ${i} automatic package installation...\n"
 					sleep 2s
 
-					if sudo apt-get "${CACHE_TMP}" "${APT_MODE}" $i -y; then
+					if sudo apt-get "${CACHE_TMP}" "${APT_MODE}" ${i} -y; then
 						
-						echo -e "\n==INFO==\nSuccessfully installed package $i\n"
+						echo -e "\n==INFO==\nSuccessfully installed package ${i}\n"
 						
 					else
 						
-						echo -e "\n==ERROR==\nFailed to install package $i"
+						echo -e "\n==ERROR==\nFailed to install package ${i}"
 						echo -e "Did you remember to add the Debian sources?\n"
 						sleep 3s
 						exit 1
@@ -531,7 +531,7 @@ install_software()
 						
 				elif [ "${APT_MODE}" == "remove" ]; then
 					
-					echo -e "\n==> Removal requested for package: $i \n"
+					echo -e "\n==> Removal requested for package: ${i} \n"
 					
 					if [ "${PKG_OK}" == "" ]; then
 						
@@ -539,7 +539,7 @@ install_software()
 						sleep 2s
 					fi
 					
-					if sudo apt-get ${CACHE_TMP} ${APT_MODE} $i; then
+					if sudo apt-get ${CACHE_TMP} ${APT_MODE} ${i}; then
 					
 						echo -e "\n==INFO==\nRemoval succeeded\n"
 						
@@ -644,24 +644,24 @@ manual_software_check()
 	if [ -n "${SOFTWARE_LIST}" ]; then
 		for i in `cat ${SOFTWARE_LIST}`; do
 
-			if [[ "$i" =~ "!broken!" ]]; then
+			if [[ "${i}" =~ "!broken!" ]]; then
 
-				skipflag="yes"
-				echo -e "skipping broken package: $i ..."
+				SKIPFLAG="yes"
+				echo -e "skipping broken package: ${i} ..."
 				sleep 0.3s
 
 			else
 
-				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $i | grep "install ok installed")
+				PKG_OK=$(dpkg-query -W --showformat='${Status}\n' ${i} | grep "install ok installed")
 				if [ "${PKG_OK}" == "" ]; then
 
 					# dpkg outputs it's own line that can't be supressed
-					echo -e "Package $i [Not Found]" > /dev/null
+					echo -e "Package ${i} [Not Found]" > /dev/null
 					sleep 1s
 
 				else
 
-					echo -e "Packge $i [OK]"
+					echo -e "Packge ${i} [OK]"
 					sleep .1s
 
 				fi

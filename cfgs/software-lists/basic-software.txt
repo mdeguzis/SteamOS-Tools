@@ -22,4 +22,3 @@ perl
 samba
 screen
 vim
-vlc

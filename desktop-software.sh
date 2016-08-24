@@ -76,7 +76,7 @@ fi
 # Specify a final arg for any extra OPTIONS to build in later
 # The command being echo'd will contain the last arg used.
 # See: http://www.cyberciti.biz/faq/linux-unix-bsd-apple-osx-bash-get-last-argument/
-export extra_opts=$(echo "${@: -1}")
+export EXTRA_OPTS=$(echo "${@: -1}")
 
 # remove old custom files
 rm -f "custom-pkg.txt"
@@ -86,7 +86,7 @@ rm -f "log.txt"
 while [ "$2" != "" ]; do
 	# set TYPE var to arugment, append to custom list
 	# for mutliple package specifications by user
-	${TYPE_TMP}="$2"
+	TYPE_TMP="$2"
 	echo "${TYPE_TMP}" >> "custom-pkg.txt"
 	# Shift all the parameters down by one
 	shift

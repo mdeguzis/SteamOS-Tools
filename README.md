@@ -3,7 +3,7 @@
 # SteamOS-Tools
 ***
  <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Latest News**:  
-The IP blaclist on packages.libregeek.org has been fixed. Please try to update again.
+None
 
 ***
 SteamOS Tools is a 3rd-party repository with the mission to enhance various aspects of SteamOS from the "stock" experience. SteamOS-Tools contains different various utilities to enhance SteamOS, hosted Debian packages for many programs, and more. The purpose of each folder is listed below in the "Contents" section. The [wiki page](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki) is full of info. Please start there when looking for information.

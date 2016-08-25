@@ -7,7 +7,7 @@ You will receive this error when trying to update your package lists from libreg
 
 >Access denied. Your IP address [redacted] is blacklisted. If you feel this is in error please contact your hosting providers abuse department.
 
-**After testing some changes to the unattended upgrades configuration, backports may return**
+Stay tuned...
 
 ***
 SteamOS Tools is a 3rd-party repository with the mission to enhance various aspects of SteamOS from the "stock" experience. SteamOS-Tools contains different various utilities to enhance SteamOS, hosted Debian packages for many programs, and more. The purpose of each folder is listed below in the "Contents" section. The [wiki page](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki) is full of info. Please start there when looking for information.

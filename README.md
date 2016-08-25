@@ -3,7 +3,9 @@
 # SteamOS-Tools
 ***
  <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Alert**:  
-`jessie-backports` sources are now _removed_. This will be noted below and in the wiki, if you wish to add them. Despite apt-preferences pinning, I decided that this would be the safest route going forward. See [SteamOS-Tools-Repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository) for more. If you have trouble updating, see [Debugging SteamOS upgrade](https://github.com/ValveSoftware/SteamOS/wiki/Troubleshooting#debugging-steamos-upgrade-issues) issues. If you have trouble upgrading packages, run configure-repos with the repair flag.
+You will receive this error when trying to update your package lists from libregeek.org: "403 Forbidden". I am working with my hosting provider to find out why this is occuring.
+
+>Access denied. Your IP address [redacted] is blacklisted. If you feel this is in error please contact your hosting providers abuse department.
 
 **After testing some changes to the unattended upgrades configuration, backports may return**
 

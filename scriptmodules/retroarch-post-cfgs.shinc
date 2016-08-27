@@ -206,11 +206,6 @@ rpc_configure_common()
 		EOF
 		sleep 3s
 
-		# Add default retroarch config file with our paths
-		# "default" modified retroarch.cfg to user DIRs without gamepad config
-		cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_desktop/retroarch.cfg"
-		sudo cp "$scriptdir/cfgs/retroarch/retroarch.cfg" "$retroarch_cfg_loc_steam/retroarch.cfg"
-
 		# Swap home_temp out for each user DIR path
 		# The steam user's ROM and BIOS directory will be symlinked to the desktop user
 		# Adding ROMs with the normal desktop user, and the Steam user should be able to see/read the ROMs

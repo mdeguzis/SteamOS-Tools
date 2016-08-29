@@ -22,7 +22,7 @@ time_stamp_start=(`date +"%T"`)
 rfs_retroarch_src_main()
 {
 
-	if [[ "$apt_mode" == "install" ]]; then
+	if [[ "${OPTIONS}" == "install" ]]; then
 		
 		#################################################
 		# Initial setup
@@ -323,7 +323,7 @@ rfs_retroarch_src_main()
 		# jump to post congifuration
 		rpc_configure_src
 		
-	elif [[ "$apt_mode" == "remove" ]]; then
+	elif [[ "${OPTIONS}" == "uninstall" ]]; then
 		
 		#Remove directories, build files, etc if uninstall is specified by user
 		echo -e "\n==> Removing related files for retroarch-src routine"

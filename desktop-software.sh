@@ -171,20 +171,20 @@ function import()
     then
         # import from the shell script library path
         # save the separator and use the ':' instead
-        local saved_IFS="${i}FS"
+        local saved_IFS="$IFS"
         IFS=':'
-        for PATH_TMP in ${SHELL_LIBRARY_PATH}
+        for path in $SHELL_LIBRARY_PATH
         do
-          if test -e "${PATH_TMP}/${MODULE}.shinc"
+          if test -e "$path/$module.shinc"
           then
-                . "${PATH_TMP}/${MODULE}.shinc"
+                . "$path/$module.shinc"
                 return
           fi
         done
         # restore the standard separator
-        IFS="${SAVED_IFS}"
+        IFS="$saved_IFS"
     fi
-    echo "${SCRIPT_NAME} : Unable to find module ${MODULE}"
+    echo "$script_name : Unable to find module $module"
     exit 1
 }
 

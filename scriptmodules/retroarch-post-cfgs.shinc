@@ -78,7 +78,7 @@ rpc_configure_common()
 	fi
 	
 	# allow apt-mode none to manually source
-	if [[ "$apt_mode" == "install" || "$apt_mode" == "" ]]; then
+	if [[ "${OPTIONS}" == "install" ]]; then
 
 		#################################################
 		# VARs
@@ -290,7 +290,7 @@ rpc_configure_common()
 		sudo chown -R steam:steam "$roms_dir_steam"
 		sudo chown -R steam:steam "$save_loc_steam"
 
-	elif [[ "$apt_mode" == "remove" ]]; then
+	elif [[ "${OPTIONS}" == "uninstall" ]]; then
 
 		# Remove directories, build files, etc if uninstall is specified by user
 		# fire off common removal function
@@ -303,7 +303,7 @@ rpc_configure_common()
 rpc_configure_src()
 {
 
-	if [[ "$apt_mode" == "install" ]]; then
+	if [[ "${OPTIONS}" == "install" ]]; then
 
 		# Vars exported emu-from-source.shinc
 		#echo "install_dir is $install_dir"
@@ -445,7 +445,7 @@ rpc_configure_src()
 		# go to summary
 		rpc_summary
 
-	elif [[ "$apt_mode" == "remove" ]]; then
+	elif [[ "${OPTIONS}" == "remove" ]]; then
 		
 		#Remove directories, build files, etc if uninstall is specified by user
 		# fire off common removal function

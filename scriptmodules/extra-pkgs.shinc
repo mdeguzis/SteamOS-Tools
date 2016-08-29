@@ -76,7 +76,7 @@ ep_install_chrome()
 	multi="n"
 	
 	# test if user requests it
-	if [[ "$options" == "test" ]]; then
+	if [[ "${OPTIONS}" == "test" ]]; then
 		# go to test function
 		ep_test_deb
 		exit
@@ -551,7 +551,7 @@ ep_test_opts()
 
 	# simple echo of passed opts for testing only
 	echo "opts received: "
-	echo -e "options : $options"
+	echo -e "options : ${OPTIONS}"
 	echo "Software type : $type"
 	echo "Extra opts : $extra_opts"
 	echo -e "Availble custom pkg list 2: \n"

@@ -31,7 +31,7 @@ ep_pkg_cleanup()
 	rm -f /tmp/*.Release.key*
 	
 	# autoremove unecessary packages
-	sudo apt-get autoremove
+	sudo apt-get -y autoremove
 }
 
 ep_install_chrome()

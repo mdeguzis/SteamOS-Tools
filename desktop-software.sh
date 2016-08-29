@@ -437,7 +437,7 @@ install_software()
 
                 export APT_MODE="install"
 
-	elif [[ "${OPTIONS}" == "UNINSTALL" ]]; then
+	elif [[ "${OPTIONS}" == "uninstall" ]]; then
 
                 export APT_MODE="remove"
 
@@ -454,7 +454,7 @@ install_software()
         # Update keys and system first, skip if removing software
         # or if we are just checking packages
  
-	if [[ "${OPTIONS}" != "UNINSTALL" && "${OPTIONS}" != "check" ]]; then
+	if [[ "${OPTIONS}" != "uninstall" && "${OPTIONS}" != "check" ]]; then
 	        echo -e "\n==> Updating system, please wait...\n"
 		sleep 1s
 	        sudo apt-key update
@@ -708,7 +708,7 @@ main()
 	      "${TYPE}" == "retroarch-src" ||
 	      "${TYPE}" == "${TYPE}" ]]; then
 
-		if [[ "${OPTIONS}" == "UNINSTALL" ]]; then
+		if [[ "${OPTIONS}" == "uninstall" ]]; then
         		UNINSTALL="yes"
 
                 elif [[ "${OPTIONS}" == "list" ]]; then

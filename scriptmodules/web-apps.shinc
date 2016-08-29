@@ -128,7 +128,7 @@ web_app_vimeo_tv()
 add_web_app_chrome()
 {
 
-	if [[ "$options" == "install" ]]; then
+	if [[ "${OPTIONS}" == "install" ]]; then
 
 		#######################################
 		# Set browser/dirs
@@ -578,7 +578,7 @@ add_web_app_chrome()
 		ep_pkg_cleanup
 	
 	
-	elif [[ "$uninstall" == "no" ]]; then
+	elif [[ "${OPTIONS}" == "uninstall" ]]; then
 	
 		clear
 		echo -e "==> Uninstalling web app functionality"

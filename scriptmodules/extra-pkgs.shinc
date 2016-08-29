@@ -53,7 +53,7 @@ ep_install_chrome()
 	export deb_repo_name="jessie.list"
 	export deb_repo_req="yes"
 	# Eval requirements
-	"$scriptdir/utilities/check_repo_req.sh"
+	"$${SCRIPTDIR}/utilities/check_repo_req.sh"
 	
 	# create and enter build dir
 	if [[ -d "$install_dir" ]]; then
@@ -97,8 +97,8 @@ ep_install_chrome()
 	echo "y" | sudo gdebi google-chrome-stable_current_amd64.deb
 
 	# back out of installdir
-	if [[ -d "$scriptdir" ]]; then
-		cd "$scriptdir"
+	if [[ -d "${SCRIPTDIR}" ]]; then
+		cd "${SCRIPTDIR}"
 	else
 		# attempt to use default DIR
 		cd "/home/desktop/SteamOS-Tools/"
@@ -167,7 +167,7 @@ ep_install_gameplay_recording()
 	
 	# Pull in files for recording from cfgs/recording
 
-	sudo cp "$scriptdir/utilities/steamos-record.sh" "/usr/local/bin"
+	sudo cp "${SCRIPTDIR}/utilities/steamos-record.sh" "/usr/local/bin"
 
 	############################################
 	# Configure
@@ -209,8 +209,8 @@ ep_install_itchio()
 	
 	# copy desktop and launcher files to appropriate locations
 	
-	sudo cp "$scriptdir/cfgs/desktop-files/itchio.desktop" "/usr/share/applications"
-	sudo cp "$scriptdir/launchers/itchio-launcher" "/usr/bin/"
+	sudo cp "${SCRIPTDIR}/cfgs/desktop-files/itchio.desktop" "/usr/share/applications"
+	sudo cp "${SCRIPTDIR}/launchers/itchio-launcher" "/usr/bin/"
 	
 	# launcher is already exec set, but ensure it is anyway
 	
@@ -379,8 +379,8 @@ ep_install_eval_pkg()
 	fi
 
 	# back out of any temp dir to script dir
-	if [[ "$scriptdir" != "" ]]; then
-		cd "$scriptdir"
+	if [[ "${SCRIPTDIR}" != "" ]]; then
+		cd "${SCRIPTDIR}"
 	else
 		cd "$HOME"
 	fi

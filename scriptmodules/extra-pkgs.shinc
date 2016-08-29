@@ -53,7 +53,7 @@ ep_install_chrome()
 	export deb_repo_name="jessie.list"
 	export deb_repo_req="yes"
 	# Eval requirements
-	"$${SCRIPTDIR}/utilities/check_repo_req.sh"
+	"${SCRIPTDIR}/utilities/check_repo_req.sh"
 	
 	# create and enter build dir
 	if [[ -d "$install_dir" ]]; then

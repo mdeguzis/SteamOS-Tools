@@ -22,7 +22,7 @@ m_install_ue4_src()
 {
 	
 	# start apt mode if check
-	if [[ "$apt_mode" == "install" ]]; then
+	if [[ "$${OPTIONS}" == "install" ]]; then
 	
 		#################################################
 		# Prerequisites
@@ -225,7 +225,7 @@ m_install_ue4_src()
 		echo -e "Total Runtime (minutes): $runtime\n"
 	
 	
-	elif [[ "$apt_mode" == "remove" ]]; then
+	elif [[ "${OPTIONS}" == "uninstall" ]]; then
 	
 		# Add dekstop launcher file here
 		# Transfer to /usr/share/applications

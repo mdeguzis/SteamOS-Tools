@@ -313,8 +313,7 @@ create_usb_iso()
 
 	# unount drive 
 	echo -e "\nUnmounting USB drive. Please do not remove until done!"
-	sudo umount ${drive_choice} 
-	echo -e "Done"
+	sudo umount ${drive_choice} && echo -e "Done!"
 	sleep 2s
 
 	# show user end summary
@@ -355,7 +354,7 @@ create_usb_zip()
 
 	# unount drive 
 	echo -e "\nUnounting USB drive. Please do not remove until done!"
-	sudo umount ${drive_choice}
+	sudo umount ${drive_choice} && echo "Done!"
 
 	# show user end summary
 	show_summary

@@ -207,7 +207,7 @@ main()
 		# invalid option, exit
 		echo -e "Invalid option! Exiting..."
 		sleep 2s
-		break
+		exit
 		;;
 
 	esac

@@ -1,19 +1,19 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
 # Author:	Michael DeGuzis
-# Script Ver:	1.3.2
+# Script Ver:	1.3.3
 # Description:	Configures LibreGeek repositories
 #
 # Usage:	./configure-repos.sh
 # Opts:		See "--help"
 # ------------------------------------------------------------------------------
 
-arg1="$1"
+ARG1="$1"
 
 # Set default arg if none is set
-if [[ "${arg1}" == "" ]]; then
+if [[ "${ARG1}" == "" ]]; then
 
-	arg1="--default"
+	ARG1="--default"
 	
 fi
 
@@ -22,6 +22,17 @@ function_repair_setup()
 
 	echo -e "\n==> Repairing repository configurations\n"
 	sleep 2s
+
+	BETA_LIST="/etc/apt/sources.list/steamos-tools-beta.list"
+	BETA_PREFS="/etc/apt/preferences.d/steamos-tools-beta"
+
+	# See if we have a beta repository, so it is retained
+	if [[ "${BETA_LIST}" != "" || "${BETA_PREFS}" != "" ]]; then
+
+		# If either file is present, assume beta was added or is now broken
+		BETA_REPO="true"
+
+	fi
 
 	# Clear out packages
 	sudo apt-get purge -y steamos-tools-repo libregeek-archive-keyring steamos-tools-beta-repo
@@ -41,10 +52,10 @@ function_repair_setup()
 
 }
 
-function_default_setup()
+function_repo_setup()
 {
 
-	if [[ "${install}" = "true" ]]; then
+	if [[ "${INSTALL}" = "true" ]]; then
 
 		# Add main configuration set
 
@@ -56,33 +67,24 @@ function_default_setup()
 		sudo dpkg -i libregeek-archive-keyring-latest.deb
 		sudo dpkg -i steamos-tools-repo-latest.deb
 		sudo apt-get install -y debian-archive-keyring
+	
+		# If beta repo is requested
 
-	elif [[ "${install}" = "false" ]]; then
+		if [[ "${BETA_REPO}" = "true" ]]; then
 
-		echo -e "\n==> Removing all repository setups.\n"
+			echo -e "\n==> Adding additional beta repository\n"
+			sleep 2s
+			wget http://packages.libregeek.org/steamos-tools-beta-repo-latest.deb -q --show-progress
+			sudo dpkg -i steamos-tools-beta-repo-latest.deb
+
+		fi
+
+	elif [[ "${INSTALL}" = "false" ]]; then
+
+		echo -e "\n==> Removing all repository setups and keyrings.\n"
 		sleep 2s
 
-		sudo apt-get purge -y steamos-tools-beta-repo steamos-tools-repo
-
-	fi
-
-}
-
-function_beta_setup()
-{
-
-	if [[ "${install}" = "true" ]]; then
-
-		echo -e "\n==> Adding additional beta repository\n"
-		sleep 2s
-		wget http://packages.libregeek.org/steamos-tools-beta-repo-latest.deb -q --show-progress
-		sudo dpkg -i steamos-tools-beta-repo-latest.deb
-
-	elif [[ "${install}" = "false" ]]; then
-
-		echo -e "\n==> Removing beta repository setup.\n"
-		sleep 2s
-		sudo apt-get purge -y steamos-tools-beta-repo
+		sudo apt-get purge -y steamos-tools-beta-repo steamos-tools-repo libregeek-archive-keyring
 
 	fi
 
@@ -91,14 +93,14 @@ function_beta_setup()
 function_debian_only()
 {
 
-	if [[ "${install}" = "true" ]]; then
+	if [[ "${INSTALL}" = "true" ]]; then
 
 		echo -e "\n==> Adding Debian repository\n"
 		sleep 2s
 		wget http://packages.libregeek.org/debian-repo-latest.deb -q --show-progress
 		sudo dpkg -i debian-repo-latest.deb
 
-	elif [[ "${install}" = "false" ]]; then
+	elif [[ "${INSTALL}" = "false" ]]; then
 
 		echo -e "\n==> Removing Debian repository setup.\n"
 		sleep 2s
@@ -151,55 +153,55 @@ main()
 	
 	# Process options or exit if an incorrect option is called
 
-	case "${arg1}" in
+	case "${ARG1}" in
 
 		--help)
 		# Just show help
 		function_help
-		break
+		exit
 		;;
 
 		--default)
 		# Process just default setup
-		install="true"
-		function_default_setup
+		INSTALL="true"
+		function_repo_setup
 		function_cleanup
 		;;
 
 		--debian-only)
 		# Process just debian setup
-		install="true"
+		INSTALL="true"
 		function_debian_only
 		function_cleanup
 		;;
 
 		--repair)
 		# reapair setup and process normally
-		install="true"
+		INSTALL="true"
 		function_repair_setup
-		function_default_setup
+		function_repo_setup
 		function_cleanup
 		;;
 
 		--enable-testing)
 		# Default + testings
-		install="true"
-		function_default_setup
-		function_beta_setup
+		INSTALL="true"
+		BETA_REPO="true"
+		function_repo_setup
 		function_cleanup
 		;;
 		
 		--remove)
 		# process removal
-		install="false"
-		function_default_setup
+		INSTALL="false"
+		function_repo_setup
 		function_cleanup
 		;;
 
 		--remove-testing)
 		# process remove for beta setup
-		install="false"
-		function_beta_setup
+		INSTALL="false"
+		function_repo_setup
 		function_cleanup
 		;;
 

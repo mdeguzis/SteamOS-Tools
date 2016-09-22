@@ -3,7 +3,6 @@
 # SteamOS-Tools
 ***
  <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Latest News**:  
-None
 
 ***
 SteamOS Tools is a 3rd-party repository with the mission to enhance various aspects of SteamOS from the "stock" experience. SteamOS-Tools contains different various utilities to enhance SteamOS, hosted Debian packages for many programs, and more. The purpose of each folder is listed below in the "Contents" section. The [wiki page](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki) is full of info. Please start there when looking for information.
@@ -15,7 +14,7 @@ All operations are tested against official Valve releases _only_.
 # Latest Updates, News, and discussions
 ***
 
-For the latest change details, please see the commits page and [libregeek.org](http://www.libregeek.org/category/steamos-tools/) for overall change details. You can also follow development, and engage in discussion by joining the IRC channel `#libregeek`w
+For the latest change details, please see the commits page and [libregeek.org](http://www.libregeek.org/category/steamos-tools/) for overall change details. You can also follow development, and engage in discussion by joining the IRC channel `#libregeek`
 located under the irc.freenode.net network. The main op is me "ProfessorKaos64".
 
 While I know folks I run into will send me friend requestes at time on Steam, please don't be offended if I do not accept it. I try to keep my list small and tidy to minimize notification clutter, keep general discussions to IRC, and to keep organized with discussions. I typically only add folks I have regular contact with, and will even prune the list at times. Thank you for understanding.

@@ -1,0 +1,8 @@
+# SteamOS tweak-tool
+
+# TODO
+
+1. Learn ncurses c functions
+2. Menu
+3. Funtions
+

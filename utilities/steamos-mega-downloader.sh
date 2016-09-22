@@ -2,7 +2,7 @@
 # -------------------------------------------------------------------------------
 # Author:    	  	Michael DeGuzis
 # Scipt Name:	  	steamos-mega-downloader.sh
-# Script Ver:		1.8.5
+# Script Ver:		1.8.6
 # Description:		Fetch latest Alchemist and Brewmaster SteamOS release files
 #			to specified directory and run SHA512 checks against them.
 #			Installs to a USB drive
@@ -206,7 +206,7 @@ pre_reqs()
 		sleep 2s
 		
 		# Last, we need to copmile xorriso from GNU, else the build will fail
-		# This is possibly due to optoins use to compile the package for Arch Linux
+		# This is possibly due to options used to compile the package for Arch Linux
 		
 		if [[ ! -f "/usr/local/bin/xorriso" ]]; then
 		
@@ -214,8 +214,8 @@ pre_reqs()
 			sleep 2s
 			
 			rm -rf temp && mkdir temp && cd temp || exit
-			wget "https://www.gnu.org/software/xorriso/xorriso-1.4.2.tar.gz" -q -nc --show-progress
-			tar -xf "xorriso-1.4.2.tar.gz" && cd "xorriso-1.4.2" || exit
+			wget "https://www.gnu.org/software/xorriso/xorriso-1.4.7.tar.gz" -q -nc --show-progress
+			tar -xf "xorriso-1.4.7.tar.gz" && cd "xorriso-1.4.7" || exit
 			./configure && make
 			
 			# Install
@@ -337,20 +337,23 @@ create_usb_zip()
 	sudo umount ${drive_choice}*
 	$format_drive ${drive_choice}
 
+	# Set tmp path
+	TMP_USB="$HOME/steamos-usb"
+
 	# create tmp dir and moutn drive
-	if [[ -d "/tmp/steamos-usb" ]]; then
-		rm -rf "/tmp/steamos-usb/*"
+	if [[ -d "${TMP_USB}" ]]; then
+		rm -r ${TMP_USB}/*
 	else
-		mkdir -p "/tmp/steamos-usb"
+		mkdir -p "${TMP_USB}"
 	fi
 
 	# mount drive to tmp location
-	sudo mount "$drive_choice" "/tmp/steamos-usb"
+	sudo mount "$drive_choice" "${TMP_USB}"
 
 	echo -e "\n==> Installing release to usb drive\n"
 
 	# unzip archive to drive
-	sudo unzip "${file}" -d "/tmp/steamos-usb"
+	unzip "${file}" -d "${TMP_USB}"
 
 	# unount drive 
 	echo -e "\nUnounting USB drive. Please do not remove until done!"
@@ -802,7 +805,7 @@ main()
 		1)
 		distro="valve-official"
 		base_url="repo.steampowered.com/"
-		release_folder="download/brewmaster"
+		release_folder="download/"
 		release="brewmaster"
 		file="SteamOSInstaller.zip"
 		git="no"

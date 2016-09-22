@@ -4,6 +4,8 @@
 ***
  <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Latest News**:  
 
+Please do not use the steamos-mega-downloader.sh tool for preparing drives until a bug is worked out in USB preparation. For whatever reason, the installer will not pick up the USB drive. However, the standard method Valve reccomends (unzip, such as via file-roller) is fine. 
+
 ***
 SteamOS Tools is a 3rd-party repository with the mission to enhance various aspects of SteamOS from the "stock" experience. SteamOS-Tools contains different various utilities to enhance SteamOS, hosted Debian packages for many programs, and more. The purpose of each folder is listed below in the "Contents" section. The [wiki page](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki) is full of info. Please start there when looking for information.
 

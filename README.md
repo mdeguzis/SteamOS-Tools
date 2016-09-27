@@ -6,7 +6,7 @@
 
 **IMPORTANT**
 
-Please be aware that on 2016-10-25, the currrent GPG used to sign packages here at packages.libregeek.org will be changing. They key will expire on that day, and subsequently be signaled for revocation from keyservers. This was done to upgrade the 2048-bit RSA GPG key to 4006-bit RSA. The [keyring package](https://github.com/ProfessorKaos64/libregeek-archive-keyring/) will be updated well before this. The current key will still function. A list of former keys can also be found in the revoked-inactive-keys folder within the keyring repository.
+Please be aware that on **2016-10-26**, the currrent GPG used to sign packages here at packages.libregeek.org will be changing. The key will expire on that day, and subsequently be signaled for revocation from keyservers. This was done to upgrade the 2048-bit RSA GPG key to 4006-bit RSA. The [keyring package](https://github.com/ProfessorKaos64/libregeek-archive-keyring/) will be updated well before this. The current key will still function. A list of former keys can also be found in the revoked-inactive-keys folder within the keyring repository.
 
 Please do not use the steamos-mega-downloader.sh tool for preparing drives until a bug is worked out in USB preparation. For whatever reason, the installer will not pick up the USB drive. However, the standard method Valve reccomends (unzip, such as via file-roller) is fine. 
 

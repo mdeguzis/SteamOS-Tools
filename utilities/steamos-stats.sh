@@ -147,7 +147,7 @@ funct_pre_req_checks()
 	# FPS + more binds from VaporOS 2
 	# For bindings, see: /etc/actkbd-steamos-controller.conf
 	
-	echo -e "\n==> VaporOS Xbox 360 bindings\n"
+	echo -e "\n==> VaporOS Xbox 360 bindings"
 	sleep 1s
 	
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
@@ -231,7 +231,7 @@ funct_pre_req_checks()
 			exit 1
 		fi
 	else
-		echo "Found package 'voglperf' [Ok]"
+		echo -e "\nFound package 'voglperf' [Ok]"
 		sleep 0.2s
 	fi
 
@@ -320,7 +320,7 @@ funct_pre_req_checks()
 	####################################################################
 	
 	# copy script to /usr/bin for easy use
-	sudo cp "${scriptdir}/utilities/steamos-stats.sh" "/usr/bin/steamos-stats"
+	sudo cp "${scriptdir}/steamos-stats.sh" "/usr/bin/steamos-stats"
 	sudo chmod +x "/usr/bin/steamos-stats"
 }
 

@@ -257,8 +257,8 @@ funct_pre_req_checks()
 	done
 
 	# notify user if GPU is supported by utility
-	echo "Supported GPU: $supported_gpu"
-	sleep 1s
+	echo -e "\n==> GPU status"
+	echo -e "\nSupported GPU: $supported_gpu"
 
 	# TESTING ONLY - pause for pkg check testing
 	# echo -e "\nPausing for dramatic effect ^_^ "

@@ -31,7 +31,7 @@ funct_set_main_vars()
 	supported_gpu="yes"
 	
 	# set default scriptdir
-	scriptdir="/home/desktop/SteamOS-Tools"
+	scriptdir="${PWD}"
 }
 
 funct_pre_req_checks()
@@ -99,7 +99,7 @@ funct_pre_req_checks()
 		if [ "" == "$PKG_OK" ]; then
 			echo -e "No lib32gcc1 found. Setting up lib32gcc1.\n"
 			sleep 1s
-			sudo apt-get install lib32gcc1
+			sudo apt-get install -y --force-yes lib32gcc1
 		else
 			echo -e "\nChecking for lib32gcc1: [Ok]"
 			sleep 0.2s
@@ -140,7 +140,7 @@ funct_pre_req_checks()
 		# FPS + more binds from VaporOS 2
 		# For bindings, see: /etc/actkbd-steamos-controller.conf
 		
-		echo -e "\n==> VaporOS Xbox 360 bindings"
+		echo -e "\n==> VaporOS Xbox 360 bindings\n"
 		sleep 1s
 		
 		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
@@ -185,19 +185,22 @@ funct_pre_req_checks()
 			echo -e "Attempting to install this now...\n"
 			sleep 1s
 			# Fetch binaries
-			sudo apt-get install 
+			sudo apt-get install -y --force-yes
+
 			# we need to remove apt pinning preferences temporarily only due to the fact
 			# that mesa-common-dev has dep issues with apt pinning. This is being looked at
+	
 			if [[ -d "/etc/apt/preferences" ]]; then
 				# backup preferences file
 				sudo mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
 			fi 
-	 		sudo apt-get update 
-	 		sudo apt-get install steamos-dev  git ca-certificates cmake g++ gcc-multilib \
-	 		g++-multilib mesa-common-dev libedit-dev libtinfo-dev libtinfo-dev:i386 \
-	 		ncurses-dev
+
+	 		sudo apt-get update -y
+	 		sudo apt-get install -y --force-yes steamos-dev  git ca-certificates \
+			cmake g++ gcc-multilib g++-multilib mesa-common-dev libedit-dev \
+			libtinfo-dev libtinfo-dev:i386 ncurses-dev
 			
-			cd ~
+			cd "${HOME}"
 			
 			# Valve official repo
 			# git clone https://github.com/ValveSoftware/voglperf
@@ -235,7 +238,7 @@ funct_pre_req_checks()
 		# Other core utilties from official repos 
 		#####################################################"
 	
-		echo -e "\n==> Installing other core utilties"
+		echo -e "\n==> Installing other core utilties\n"
 		sleep 2s
 	
 		# set external Deb repo required flag 
@@ -254,19 +257,18 @@ funct_pre_req_checks()
 			echo -e "Attempting to install these now (Must have Debian Repos added)\n"
 			sleep 2s
 			# Update system first
-			sudo apt-get update
+			sudo apt-get update -y
 	
 			# fetch needed pkgs
-			sudo apt-get install lm-sensors sysstat git -y
-			sudo apt-get install nvidia-smi openssh-server -y
+			sudo apt-get install -y --force-yes lm-sensors sysstat git nvidia-smi openssh-server
 			# detect sensors automatically
 			yes | sudo sensors-detect
 	
 			if [ $? == '0' ]; then
-				echo "Successfully installed pre-requisite packages."
+				echo -e "Successfully installed pre-requisite packages.\n"
 				sleep 2s
 			else
-				echo "Could not install pre-requisite packages. Exiting..."
+				echo -e "Could not install pre-requisite packages. Exiting...\n"
 				sleep 2s
 				exit 1
 			fi
@@ -323,7 +325,7 @@ funct_pre_req_checks()
 	####################################################################
 	
 	# copy script to /usr/bin for easy use
-	sudo cp "$scriptdir/utilities/steamos-stats.sh" "/usr/bin/steamos-stats"
+	sudo cp "${scriptdir}/utilities/steamos-stats.sh" "/usr/bin/steamos-stats"
 	sudo chmod +x "/usr/bin/steamos-stats"
 }
 

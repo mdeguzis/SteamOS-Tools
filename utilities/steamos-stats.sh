@@ -83,225 +83,220 @@ funct_pre_req_checks()
 	echo "Package pre-req checks"
 	echo "#####################################################"
 	
-		#####################################################"
-		# SteamCMD
-		#####################################################"
-		# See: https://developer.valvesoftware.com/wiki/SteamCMD
-		# steamcmd is not installed to any particular directory, but we
-		# will have to assume the user started in the /home/desktop DIR
+	# set external Deb repo required flag 
+	export deb_repo_name="jessie.list" 
+	export deb_repo_req="yes" 
+	# Eval requirements 
+	"${scriptdir}/check_repo_req.sh" 
 	
-		echo -e "\n==> SteamCMD"
-		sleep 1s
-	
-		# steamcmd dependencies
-		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' lib32gcc1 | grep "install ok installed")
-		
-		if [ "" == "$PKG_OK" ]; then
-			echo -e "No lib32gcc1 found. Setting up lib32gcc1.\n"
-			sleep 1s
-			sudo apt-get install -y --force-yes lib32gcc1
-		else
-			echo -e "\nChecking for lib32gcc1: [Ok]"
-			sleep 0.2s
-		fi
-	
-		# check for SteamCMD's existance in /home/desktop
-		if [[ ! -f "/home/desktop/steamcmd/steamcmd.sh" ]]; then
-			echo -e "\nsteamcmd not found\n"
-			echo -e "Attempting to install this now.\n"
-			sleep 1s
-			# if directory exists, remove it so we have a clean slate
-			if [[ ! -d "/home/desktop/steamcmd" ]]; then
-				rm -rf "/home/desktop/steamcmd"
-				mkdir ~/steamcmd
-			fi
-		
-			# Download and unpack steamcmd directory
-			cd ~/steamcmd
-			wget "http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
-			tar -xvzf steamcmd_linux.tar.gz
-	
-			if [ $? == '0' ]; then
-				echo "Successfully installed 'steamcmd'"
-				sleep 2s
-			else
-				echo "Could not install 'steamcmd'. Exiting..."
-				sleep 2s
-				exit 1
-			fi
-		else
-			echo "Checking for 'steamcmd' [Ok]"
-			sleep 0.2s
-		fi
-	
-		#####################################################"
-		# VaporOS bindings (controller shortcuts)
-		#####################################################"
-		# FPS + more binds from VaporOS 2
-		# For bindings, see: /etc/actkbd-steamos-controller.conf
-		
-		echo -e "\n==> VaporOS Xbox 360 bindings\n"
-		sleep 1s
-		
-		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
-		if [ "" == "$PKG_OK" ]; then
-			echo -e "vaporos-binds-xbox360 not found. Setting up vaporos-binds-xbox360 now...\n"
-			sleep 1s
-			cd ~/Downloads
-			wget -O "vaporos-binds-xbox360_1.0_all.deb" \
-			"https://github.com/sharkwouter/vaporos/raw/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb"
-			sudo dpkg -i vaporos-binds-xbox360_1.0_all.deb
-			cd
-			if [ $? == '0' ]; then
-				echo -e "\nSuccessfully installed 'vaporos-binds-xbox360'"
-				sleep 2s
-			else
-				echo -e "\nCould not install 'vaporos-binds-xbox360'. Exiting..."
-				sleep 2s
-				exit 1
-			fi
-		else
-			echo -e "\nChecking for 'vaporos-binds-xbox360 [OK]'."
-			sleep 0.2s
-		fi
-	
-		#####################################################"
-		# Voglperf
-		#####################################################"
-		# Since Voglperf compiles into a bin/ folder, not /usr/bin, we have to
-		# assume the git repo was cloned into /home/desktop for now.
-		
-		echo -e "\n==> Voglperf"
-		sleep 2s
-		
-		# set external Deb repo required flag 
-		export deb_repo_name="jessie.list" 
-		export deb_repo_req="yes" 
-		# Eval requirements 
-		"$scriptdir/utilities/check_repo_req.sh" 
-		
-		if [[ ! -f "/home/desktop/voglperf/bin/voglperfrun64" ]]; then
-			echo -e "\nVoglperf not found"
-			echo -e "Attempting to install this now...\n"
-			sleep 1s
-			# Fetch binaries
-			sudo apt-get install -y --force-yes
+	#####################################################"
+	# SteamCMD
+	#####################################################"
+	# See: https://developer.valvesoftware.com/wiki/SteamCMD
+	# steamcmd is not installed to any particular directory, but we
+	# will have to assume the user started in the /home/desktop DIR
 
-			# we need to remove apt pinning preferences temporarily only due to the fact
-			# that mesa-common-dev has dep issues with apt pinning. This is being looked at
-	
-			if [[ -d "/etc/apt/preferences" ]]; then
-				# backup preferences file
-				sudo mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
-			fi 
+	echo -e "\n==> SteamCMD"
+	sleep 1s
 
-	 		sudo apt-get update -y
-	 		sudo apt-get install -y --force-yes steamos-dev  git ca-certificates \
-			cmake g++ gcc-multilib g++-multilib mesa-common-dev libedit-dev \
-			libtinfo-dev libtinfo-dev:i386 ncurses-dev
-			
-			cd "${HOME}"
-			
-			# Valve official repo
-			# git clone https://github.com/ValveSoftware/voglperf
-			
-			# Kingtaurus (ahead and newer)
-			git clone https://github.com/kingtaurus/voglperf
-			
-			cd voglperf/
-			make
+	# steamcmd dependencies
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' lib32gcc1 | grep "install ok installed")
+
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "No lib32gcc1 found. Setting up lib32gcc1.\n"
+		sleep 1s
+		sudo apt-get install -y --force-yes lib32gcc1
+	else
+		echo -e "\nChecking for lib32gcc1: [Ok]"
+		sleep 0.2s
+	fi
 	
-			# Restore apt preferences if the backup file exists
-			if [[ -f "/etc/apt/preferences.bak" ]]; then
-				# restore preferences file
-				sudo mv "/etc/apt/preferences.bak" "/etc/apt/preferences"
-			fi
-	
-			# Update
-			sudo apt-get update
-			cd
-	
-			if [ $? == '0' ]; then
-				echo "Successfully installed 'voglperf'"
-				sleep 2s
-			else
-				echo "Could not install 'voglperf'. Exiting..."
-				sleep 2s
-				exit 1
-			fi
-		else
-			echo "Found package 'voglperf' [Ok]"
-			sleep 0.2s
+	# check for SteamCMD's existance in /home/desktop
+	if [[ ! -f "/home/desktop/steamcmd/steamcmd.sh" ]]; then
+		echo -e "\nsteamcmd not found\n"
+		echo -e "Attempting to install this now.\n"
+		sleep 1s
+
+		# if directory exists, remove it so we have a clean slate
+		if [[ ! -d "/home/desktop/steamcmd" ]]; then
+			rm -rf "/home/desktop/steamcmd"
+			mkdir ~/steamcmd
 		fi
-	
-		#####################################################"
-		# Other core utilties from official repos 
-		#####################################################"
-	
-		echo -e "\n==> Installing other core utilties\n"
-		sleep 2s
-	
-		# set external Deb repo required flag 
-		export deb_repo_name="jessie.list" 
-		export deb_repo_req="yes" 
-		# Eval requirements 
-		"$scriptdir/utilities/check_repo_req.sh" 
-	
-		if [[ -z $(type -P sensors) \
-		       || -z $(type -P nvidia-smi) \
-		       || -z $(type -P sar) \
-		       || -z $(type -P git) \
-		       || -z $(type -P free) ]]; then
-	
-			echo "1 or more core packages not found"
-			echo -e "Attempting to install these now (Must have Debian Repos added)\n"
+
+		# Download and unpack steamcmd directory
+		cd ~/steamcmd
+		wget "http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
+		tar -xvzf steamcmd_linux.tar.gz
+
+		if [ $? == '0' ]; then
+			echo "Successfully installed 'steamcmd'"
 			sleep 2s
-			# Update system first
-			sudo apt-get update -y
-	
-			# fetch needed pkgs
-			sudo apt-get install -y --force-yes lm-sensors sysstat git nvidia-smi openssh-server
-			# detect sensors automatically
-			yes | sudo sensors-detect
-	
-			if [ $? == '0' ]; then
-				echo -e "Successfully installed pre-requisite packages.\n"
-				sleep 2s
-			else
-				echo -e "Could not install pre-requisite packages. Exiting...\n"
-				sleep 2s
-				exit 1
-			fi
+		else
+			echo "Could not install 'steamcmd'. Exiting..."
+			sleep 2s
+			exit 1
 		fi
+	else
+		echo "Checking for 'steamcmd' [Ok]"
+		sleep 0.2s
+	fi
 	
-		# output quick checks for intalled packages explicitly needed by
-		# this script, and are added by a group package like 'sysstat'
-		
-		if [[ -n $(type -P sensors) ]]; then
-			# Group package: sysstat
-			echo "Found package 'lm-sensors' [Ok]"
-			sleep 0.2s
-		fi
+	#####################################################"
+	# VaporOS bindings (controller shortcuts)
+	#####################################################"
+	# FPS + more binds from VaporOS 2
+	# For bindings, see: /etc/actkbd-steamos-controller.conf
 	
-		if [[ -n $(type -P free) ]]; then
-			# Group package: sysstat
-			echo "Found package 'free' [Ok]"
-			sleep 0.2s
-		fi
+	echo -e "\n==> VaporOS Xbox 360 bindings\n"
+	sleep 1s
 	
-		if [[ -n $(type -P git) ]]; then
-			# Group package: sysstat
-			echo "Found package 'ssh' [Ok]"
-			sleep 0.2s
-		fi
-	
-		# notify user if GPU is supported by utility
-		echo "Supported GPU: $supported_gpu"
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
+	if [ "" == "$PKG_OK" ]; then
+		echo -e "vaporos-binds-xbox360 not found. Setting up vaporos-binds-xbox360 now...\n"
 		sleep 1s
+		cd ~/Downloads
+		wget -O "vaporos-binds-xbox360_1.0_all.deb" \
+		"https://github.com/sharkwouter/vaporos/raw/master/pool/main/v/vaporos-binds-xbox360/vaporos-binds-xbox360_1.0_all.deb"
+		sudo dpkg -i vaporos-binds-xbox360_1.0_all.deb
+		cd
+		if [ $? == '0' ]; then
+			echo -e "\nSuccessfully installed 'vaporos-binds-xbox360'"
+			sleep 2s
+		else
+			echo -e "\nCould not install 'vaporos-binds-xbox360'. Exiting..."
+			sleep 2s
+			exit 1
+		fi
+	else
+		echo -e "\nChecking for 'vaporos-binds-xbox360 [OK]'."
+		sleep 0.2s
+	fi
+
+	#####################################################"
+	# Voglperf
+	#####################################################"
+	# Since Voglperf compiles into a bin/ folder, not /usr/bin, we have to
+	# assume the git repo was cloned into /home/desktop for now.
+
+	echo -e "\n==> Voglperf"
+	sleep 2s
+
+	if [[ ! -f "/home/desktop/voglperf/bin/voglperfrun64" ]]; then
+		echo -e "\nVoglperf not found"
+		echo -e "Attempting to install this now...\n"
+		sleep 1s
+		# Fetch binaries
+		sudo apt-get install -y --force-yes
+
+		# we need to remove apt pinning preferences temporarily only due to the fact
+		# that mesa-common-dev has dep issues with apt pinning. This is being looked at
+
+		if [[ -d "/etc/apt/preferences" ]]; then
+			# backup preferences file
+			sudo mv "/etc/apt/preferences" "/etc/apt/preferences.bak"
+		fi 
+
+		sudo apt-get update -y
+		sudo apt-get install -y --force-yes steamos-dev  git ca-certificates \
+		cmake g++ gcc-multilib g++-multilib mesa-common-dev libedit-dev \
+		libtinfo-dev libtinfo-dev:i386 ncurses-dev
+
+		cd "${HOME}"
+
+		# Valve official repo
+		# git clone https://github.com/ValveSoftware/voglperf
+
+		# Kingtaurus (ahead and newer)
+		git clone https://github.com/kingtaurus/voglperf
+
+		cd voglperf/
+		make
+
+		# Restore apt preferences if the backup file exists
+		if [[ -f "/etc/apt/preferences.bak" ]]; then
+			# restore preferences file
+			sudo mv "/etc/apt/preferences.bak" "/etc/apt/preferences"
+		fi
 	
-		# TESTING ONLY - pause for pkg check testing
-		# echo -e "\nPausing for dramatic effect ^_^ "
-		# sleep 10s
+		# Update
+		sudo apt-get update
+		cd
+
+		if [ $? == '0' ]; then
+			echo "Successfully installed 'voglperf'"
+			sleep 2s
+		else
+			echo "Could not install 'voglperf'. Exiting..."
+			sleep 2s
+			exit 1
+		fi
+	else
+		echo "Found package 'voglperf' [Ok]"
+		sleep 0.2s
+	fi
+
+	#####################################################"
+	# Other core utilties from official repos 
+	#####################################################"
+
+	echo -e "\n==> Installing other core utilties\n"
+	sleep 2s
+
+	if [[ -z $(type -P sensors) \
+	       || -z $(type -P nvidia-smi) \
+	       || -z $(type -P sar) \
+	       || -z $(type -P git) \
+	       || -z $(type -P free) ]]; then
+
+		echo "1 or more core packages not found"
+		echo -e "Attempting to install these now (Must have Debian Repos added)\n"
+		sleep 2s
+		# Update system first
+		sudo apt-get update -y
+
+		# fetch needed pkgs
+		sudo apt-get install -y --force-yes lm-sensors sysstat git nvidia-smi openssh-server
+		# detect sensors automatically
+		yes | sudo sensors-detect
+
+		if [ $? == '0' ]; then
+			echo -e "Successfully installed pre-requisite packages.\n"
+			sleep 2s
+		else
+			echo -e "Could not install pre-requisite packages. Exiting...\n"
+			sleep 2s
+			exit 1
+		fi
+	fi
+	
+	# output quick checks for intalled packages explicitly needed by
+	# this script, and are added by a group package like 'sysstat'
+
+	if [[ -n $(type -P sensors) ]]; then
+		# Group package: sysstat
+		echo "Found package 'lm-sensors' [Ok]"
+		sleep 0.2s
+	fi
+
+	if [[ -n $(type -P free) ]]; then
+		# Group package: sysstat
+		echo "Found package 'free' [Ok]"
+		sleep 0.2s
+	fi
+
+	if [[ -n $(type -P git) ]]; then
+		# Group package: sysstat
+		echo "Found package 'ssh' [Ok]"
+		sleep 0.2s
+	fi
+
+	# notify user if GPU is supported by utility
+	echo "Supported GPU: $supported_gpu"
+	sleep 1s
+
+	# TESTING ONLY - pause for pkg check testing
+	# echo -e "\nPausing for dramatic effect ^_^ "
+	# sleep 10s
 	
 	####################################################################
 	# voglperf

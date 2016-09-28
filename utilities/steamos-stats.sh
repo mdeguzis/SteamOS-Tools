@@ -4,7 +4,7 @@
 # Author: 		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/scripts
 # Scipt Name:		steamos-stats.sh
-# Script Ver:		0.7.8
+# Script Ver:		0.7.9
 # Description:		Monitors various stats easily over an SSH connetion
 #			to gauge performance and temperature loads on steamos.
 # Usage:		./steamos-stats.sh -gpu [gfx driver] -appid [APPID]
@@ -243,7 +243,7 @@ funct_pre_req_checks()
 	for PKG in ${CORE_PKGS}; 
 	do
 
-		if [[ $(dpkg-query -s ${pkg}) == "" ]]; then
+		if [[ $(dpkg-query -s ${PKG}) == "" ]]; then
 
 			if ! sudo apt-get install -y --force-yes ${PKG}; then
 				echo -e "Cannot install ${PKG}. Please install this manually \n"

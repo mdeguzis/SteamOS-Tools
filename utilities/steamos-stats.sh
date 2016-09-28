@@ -72,7 +72,6 @@ funct_pre_req_checks()
 	#echo "APP ID: $APPID"
 	#echo "Kernel Ver: $kernelver"
 	#echo "Active GPU $active_gpu"
-	#sleep 5s
 	
 	clear
 	####################################################################
@@ -97,7 +96,6 @@ funct_pre_req_checks()
 	# will have to assume the user started in the /home/desktop DIR
 
 	echo -e "\n==> SteamCMD"
-	sleep 1s
 
 	# steamcmd dependencies
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' lib32gcc1 | grep "install ok installed")
@@ -108,7 +106,6 @@ funct_pre_req_checks()
 		sudo apt-get install -y --force-yes lib32gcc1
 	else
 		echo -e "\nChecking for lib32gcc1: [Ok]"
-		sleep 0.2s
 	fi
 	
 	# check for SteamCMD's existance in /home/desktop
@@ -138,7 +135,6 @@ funct_pre_req_checks()
 		fi
 	else
 		echo "Checking for 'steamcmd' [Ok]"
-		sleep 0.2s
 	fi
 	
 	#####################################################"
@@ -239,56 +235,26 @@ funct_pre_req_checks()
 	# Other core utilties from official repos 
 	#####################################################"
 
-	echo -e "\n==> Installing other core utilties\n"
+	echo -e "\n==> Checking for other core utilties\n"
 	sleep 2s
 
-	if [[ -z $(type -P sensors) \
-	       || -z $(type -P nvidia-smi) \
-	       || -z $(type -P sar) \
-	       || -z $(type -P git) \
-	       || -z $(type -P free) ]]; then
+	CORE_PKGS="lm-sensors sysstat git nvidia-smi openssh-server"
 
-		echo "1 or more core packages not found"
-		echo -e "Attempting to install these now (Must have Debian Repos added)\n"
-		sleep 2s
-		# Update system first
-		sudo apt-get update -y
+	for PKG in ${CORE_PKGS}; 
+	do
 
-		# fetch needed pkgs
-		sudo apt-get install -y --force-yes lm-sensors sysstat git nvidia-smi openssh-server
-		# detect sensors automatically
-		yes | sudo sensors-detect
+		if [[ $(dpkg-query -s ${pkg}) == "" ]]; then
 
-		if [ $? == '0' ]; then
-			echo -e "Successfully installed pre-requisite packages.\n"
-			sleep 2s
+			if ! sudo apt-get install -y --force-yes ${PKG}; then
+				echo -e "Cannot install ${PKG}. Please install this manually \n"
+				exit 1
+			fi
+
 		else
-			echo -e "Could not install pre-requisite packages. Exiting...\n"
-			sleep 2s
-			exit 1
+			echo "package ${PKG} [OK]"
 		fi
-	fi
 	
-	# output quick checks for intalled packages explicitly needed by
-	# this script, and are added by a group package like 'sysstat'
-
-	if [[ -n $(type -P sensors) ]]; then
-		# Group package: sysstat
-		echo "Found package 'lm-sensors' [Ok]"
-		sleep 0.2s
-	fi
-
-	if [[ -n $(type -P free) ]]; then
-		# Group package: sysstat
-		echo "Found package 'free' [Ok]"
-		sleep 0.2s
-	fi
-
-	if [[ -n $(type -P git) ]]; then
-		# Group package: sysstat
-		echo "Found package 'ssh' [Ok]"
-		sleep 0.2s
-	fi
+	done
 
 	# notify user if GPU is supported by utility
 	echo "Supported GPU: $supported_gpu"

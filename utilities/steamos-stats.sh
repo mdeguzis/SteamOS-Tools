@@ -23,7 +23,7 @@ funct_set_main_vars()
 	# Set initial VAR values
 	APPID_ENABLE="False"
 	APPID="0"
-	kernel_ver=$(uname -r)
+	KERNEL_VER=$(uname -r)
 	# set default for now
 	# Valve's installer will use proprietary drivers, if available
 	active_driver="nvidia"
@@ -316,6 +316,10 @@ funct_main_loop()
 		# Celcius symbol
 		CEL=$(echo $'\xc2\xb0'C)
 
+		# OS
+		ACTIVE_PROCESS_NUM=$(echo /proc/[0-9]* | wc -w)
+		MOST_EXP_PROCESS=$(ps -eo pcpu,comm | sort -r -k1 | head -n 2 | tail -n 1 | sed 's/ /% load for cmd: /g')
+
 		CPU=$(less /proc/cpuinfo | grep -m 1 "model name" | cut -c 14-70)
 		CPU_TEMPS=$(sensors | grep -E '(Core|Physical)'| perl -pe 's/[^[:ascii:]]//g' | \
 		sed "s|C |${CEL} |g" | sed "s|C,|${CEL},|g" | sed "s|C)|${CEL})|g")
@@ -384,9 +388,9 @@ funct_main_loop()
 		###########################################################
 		Monitoring system statistics    |  Press any key to quit  #
 		###########################################################
-		Kernel version: $kernel_ver
-		Steam Client version: Unavailable
-		Steam API verion: Unavailable
+		Kernel version: $KERNEL_VER
+		Number of active processes: $ACTIVE_PROCESS_NUM
+		Most expensive process: $MOST_EXP_PROCESS
 		-----------------------------------------------------------
 		GPU Stats
 		-----------------------------------------------------------

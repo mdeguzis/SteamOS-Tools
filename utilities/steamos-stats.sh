@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # ----------------------------------------------------------------------------
 # Author: 		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/scripts
@@ -312,10 +311,13 @@ funct_main_loop()
 		########################################
 		# Set VARS
 		########################################
+
+		# Celcius symbol
 		CEL=$(echo $'\xc2\xb0'C)
 
 		CPU=$(less /proc/cpuinfo | grep -m 1 "model name" | cut -c 14-70)
-		CPU_TEMPS=$(sensors | grep -E '(Core|Physical)'| iconv -f ISO-8859-1 -t UTF-8)
+		CPU_TEMPS=$(sensors | grep -E '(Core|Physical)'| perl -pe 's/[^[:ascii:]]//g' | \
+		sed "s|C |${CEL} |g" | sed "s|C,|${CEL},|g" | sed "s|C)|${CEL})|g")
 
 		#also see: xxd, iconv
 		CPU_LOAD=$(iostat | cut -f 2 | grep -A 1 "avg-cpu")
@@ -325,9 +327,10 @@ funct_main_loop()
 		# There is a bug in the current steamcmd version that outputs a
 		# Danish "o" in "version"
 
-		# These don't seem to resolve anymore, can't find this command in the find command
-		steam_ver=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "package" | cut -c 25-35)
-		steam_api=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep -E "^Steam API\:" | cut -c 12-15)
+		# These don't seem to resolve anymore, can't find this command in steamcmd at the moment, or the equiv.
+
+		#steam_ver=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep "package" | cut -c 25-35)
+		#steam_api=$(/home/desktop/steamcmd/steamcmd.sh "+versi$(echo -e '\xc3\xb8')n" +quit | grep -E "^Steam API\:" | cut -c 12-15)
 
 		# Determine which GPU chipset we are dealing with
 		# Currently, Nvidia is only supported
@@ -375,23 +378,22 @@ funct_main_loop()
 		fi
 
 		clear
-		echo "###########################################################"
-		echo "Monitoring system statistics... |  Press any key to quit  #"
-		echo "###########################################################"
-		echo "Kernel version: $kernel_ver"
-		echo "Steam Client version: $steam_ver"
-		echo "Steam API verion: $steam_api"
-		########################################
-		# GPU Stats
-		########################################
-		echo "-----------------------------------------------------------"
-		echo "GPU Stats"
-		echo "-----------------------------------------------------------"
-		echo "GPU name: $GPU"
-		echo "GPU driver Version: $GPU_DRIVER"
-		echo "GPU temp: $GPU_TEMP"
-		echo "GPU fan speed: $GPU_FAN"
 
+		cat<<-EOF
+		###########################################################
+		Monitoring system statistics... |  Press any key to quit  #
+		###########################################################
+		Kernel version: $kernel_ver
+		Steam Client version: Unavailable
+		Steam API verion: Unavailable
+		-----------------------------------------------------------
+		GPU Stats
+		-----------------------------------------------------------
+		GPU name: $GPU
+		GPU driver Version: $GPU_DRIVER
+		GPU temp: $GPU_TEMP
+		GPU fan speed: $GPU_FAN
+		EOF
 		########################################
 		# FPS Stats (vogelperf)
 		########################################
@@ -405,35 +407,27 @@ funct_main_loop()
 	  		echo "Game FPS: 00.00"
 		fi
 
-		########################################
-		# CPU Stats
-		########################################
-		# With Cores
-		#echo ""
-		echo "-----------------------------------------------------------"
-		echo "CPU Stats"
-		echo "-----------------------------------------------------------"
-		echo "CPU Name: $CPU"
-		echo ""
-		echo "CPU Temp:"
-		echo "$CPU_TEMPS"
-		echo ""
-		echo "CPU Utilization:"
-		echo "$CPU_LOAD"
+		cat<<-EOF
+		-----------------------------------------------------------
+		CPU Stats
+		-----------------------------------------------------------
+		CPU Name: $CPU
 
-		########################################
-		# MEMORY Stats
-		########################################
-		#echo ""
-		echo "-----------------------------------------------------------"
-		echo "Memory Stats"
-		echo "-----------------------------------------------------------"
-		echo "$MEM_LOAD"
+		CPU Temps:
+		$CPU_TEMPS
+
+		CPU Utilization:
+		$CPU_LOAD
+		-----------------------------------------------------------
+		Memory Stats
+		-----------------------------------------------------------
+		$MEM_LOAD
+		EOF
 
 		# let stat's idle for a bit
 		# Removed for now, may not need this
 		# will evailuate if user feeback is given in response to fresh rate
-		# sleep 1s
+		sleep 1s
 
 	done
 

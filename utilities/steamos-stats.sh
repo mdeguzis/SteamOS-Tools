@@ -3,7 +3,7 @@
 # Author: 		Michael DeGuzis
 # Git:			https://github.com/ProfessorKaos64/scripts
 # Scipt Name:		steamos-stats.sh
-# Script Ver:		0.7.9
+# Script Ver:		0.8.1
 # Description:		Monitors various stats easily over an SSH connetion
 #			to gauge performance and temperature loads on steamos.
 # Usage:		./steamos-stats.sh -gpu [gfx driver] -appid [APPID]
@@ -146,6 +146,7 @@ funct_pre_req_checks()
 	sleep 1s
 
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' vaporos-binds-xbox360 | grep "install ok installed")
+
 	if [ "" == "$PKG_OK" ]; then
 		echo -e "vaporos-binds-xbox360 not found. Setting up vaporos-binds-xbox360 now...\n"
 		sleep 1s
@@ -337,7 +338,7 @@ funct_main_loop()
 		# Other values: intel, fglrx, nouveau, radeon
 		if [[ "$active_driver" == "nvidia" ]]; then
 			# Nvidia detected
-			GPU=$(nvidia-smi -a | grep -E 'Name' | cut -c 39-100)
+			GPU=$(nvidia-smi -a | grep -E 'Product Name' | cut -c 39-100)
 			GPU_DRIVER=$(nvidia-smi -a | grep -E 'Driver Version' | cut -c 39-100)
 			GPU_TEMP=$(nvidia-smi -a | grep -E 'Current Temp' | cut -c 39-40 | sed "s|$|$CEL|g")
 			GPU_FAN=$(nvidia-smi -a | grep -E 'Fan Speed' | cut -c 39-45 | sed "s| %|%|g")

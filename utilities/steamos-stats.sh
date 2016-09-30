@@ -428,7 +428,7 @@ funct_main_loop()
 		# let stat's idle for a bit
 		# Removed for now, may not need this
 		# will evailuate if user feeback is given in response to fresh rate
-		sleep 1s
+		sleep 3s
 
 	done
 

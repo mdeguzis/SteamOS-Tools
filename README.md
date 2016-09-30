@@ -1,6 +1,7 @@
 <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/SteamOS-Tools.png" width=100%/>
 
 # SteamOS-Tools
+[![Build Status](https://travis-ci.org/ProfessorKaos64/SteamOS-Tools.svg?branch=brewmaster)](https://travis-ci.org/ProfessorKaos64/SteamOS-Tools)
 ***
  <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Latest News**:  
 

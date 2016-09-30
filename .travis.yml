@@ -20,10 +20,13 @@ branches:
 # This tests basic repo configuration, repo availability, and syntax errors
 # If something goes wrong with a repo push, this should show an alert.
 
+# wget is old on Trust, and does not have --show-progress
+
 # Other tests will be added later on, but this is the main important one
 
 script:
   - cd "$TRAVIS_BUILD_DIR"
+  - sed -i 's/-q --show-progress -nc/-nc/g' configure-repos.sh
   - ./configure-repos.sh && ./configure-repos.sh --remove
   - ./configure-repos.sh && ./configure-repos.sh --remove-testing
   - ./configure-repos.sh --default && ./configure-repos.sh --remove

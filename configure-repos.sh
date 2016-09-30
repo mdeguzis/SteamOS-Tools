@@ -74,7 +74,7 @@ function_repo_setup()
 
 			echo -e "\n==> Adding additional beta repository\n"
 			sleep 2s
-			wget http://packages.libregeek.org/steamos-tools-beta-repo-latest.deb -q --show-progress
+			wget http://packages.libregeek.org/steamos-tools-beta-repo-latest.deb -q --show-progress -nc
 			sudo dpkg -i steamos-tools-beta-repo-latest.deb
 
 		fi
@@ -97,7 +97,7 @@ function_debian_only()
 
 		echo -e "\n==> Adding Debian repository\n"
 		sleep 2s
-		wget http://packages.libregeek.org/debian-repo-latest.deb -q --show-progress
+		wget http://packages.libregeek.org/debian-repo-latest.deb -q --show-progress -nc
 		sudo dpkg -i debian-repo-latest.deb
 
 	elif [[ "${INSTALL}" = "false" ]]; then

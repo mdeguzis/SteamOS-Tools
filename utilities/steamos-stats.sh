@@ -382,7 +382,7 @@ funct_main_loop()
 
 		cat<<-EOF
 		###########################################################
-		Monitoring system statistics... |  Press any key to quit  #
+		Monitoring system statistics    |  Press any key to quit  #
 		###########################################################
 		Kernel version: $kernel_ver
 		Steam Client version: Unavailable
@@ -428,7 +428,7 @@ funct_main_loop()
 		# let stat's idle for a bit
 		# Removed for now, may not need this
 		# will evailuate if user feeback is given in response to fresh rate
-		sleep 3s
+		sleep 1s && echo -n "." && sleep 1 && echo -n "." && sleep 1 && echo -n "." && sleep 1
 
 	done
 
@@ -465,7 +465,7 @@ main | tee log_temp.txt
 # convert log file to Unix compatible ASCII
 strings log_temp.txt > log.txt
 
-# strings does catch all characters that I could 
+# strings does catch all characters that I could
 # work with, final cleanup
 sed -i 's|\[J||g' log.txt
 

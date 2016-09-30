@@ -318,7 +318,7 @@ funct_main_loop()
 
 		# OS
 		ACTIVE_PROCESS_NUM=$(echo /proc/[0-9]* | wc -w)
-		MOST_EXP_PROCESS=$(ps -eo pcpu,comm | sort -r -k1 | head -n 2 | tail -n 1 | sed 's/ /% load for cmd: /g')
+		MOST_EXP_PROCESS=$(ps -eo pcpu,comm | sort -r -k1 | head -n 2 | tail -n 1)
 
 		CPU=$(less /proc/cpuinfo | grep -m 1 "model name" | cut -c 14-70)
 		CPU_TEMPS=$(sensors | grep -E '(Core|Physical)'| perl -pe 's/[^[:ascii:]]//g' | \

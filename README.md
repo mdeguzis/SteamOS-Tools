@@ -58,7 +58,7 @@ The below commands will fetch and install the GPG keyring for Librgeek, and inst
 For more see the relevant [wiki entry](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Desktop-Software).
 
 ```
-./configure-repos.sh [--default|--repair|--enable-testing|--remove-testing|remove]
+./configure-repos.sh [--default|--repair|--enable-testing|--remove-testing|--remove]
 ```
 
 ### Update your package lists

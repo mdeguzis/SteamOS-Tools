@@ -100,7 +100,7 @@ git pull
 # Contents
 ***
 
-More information on utilities and tools can be foudn in the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki)
+More information on utilities and tools can be found in the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki)
 
 * artwork - Banners and various images/artwork for SteamOS.
 * archive - previous scripts and tools that are retired
@@ -113,9 +113,9 @@ More information on utilities and tools can be foudn in the [wiki](https://githu
 * scriptmodules/ - Plugable bash modules / routines for any of the below scripts. Scripts for packages and more.
 * utilities/ - various scripts to handle small parts of the SteamOS-Tools repository (plugable objects), build scripts, and standalone tools for use.
 * README.md - This file.
+* configure-repos.sh - the main utility script to configure software repositories
 * AUTHORS.md - Contributions, attributions, and more
 * LICENCE.md - License for this repository. Share all the things! ZOMGOMGBBQHELICOPTERZ
-* changelog.md - Changes made to repository and tools
 * contributing.md - Guidelines for repository contributions
 * desktop-software.sh - script to install custom and bulk Debian desktop software packages, as well as special additional packages/utilities, such as gameplay recording, "web apps," and more. Please see the readme file in docs/ for the full listing of options.
 * disclaimer.md - safety warnings for this repository.

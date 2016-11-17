@@ -11,7 +11,7 @@ do
 
 	echo -e "Installing: ${PKG}"
 
-	if sudo apt-get install -y --force-yes ${PKG} &> /dev/null; then
+	if apt-get install -y --force-yes ${PKG} &> /dev/null; then
 
 		echo -e "Package: ${PKG} [OK]"
 

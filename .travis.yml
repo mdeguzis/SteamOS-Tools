@@ -13,8 +13,8 @@ branches:
     - brewmaster
 
 env:
-    - CONFIG="Repo tests" SCRIPT="configure-repos-test.sh" CI_DOCKER_IMAGE=professorkaos64/steamos ARCH=i386
-    - CONFIG="Package tests" SCRIPT="package-tests.sh" CI_DOCKER_IMAGE=professorkaos64/steamos ARCH=i386
+    - CONFIG="Repo tests" SCRIPT="configure-repos-test.sh" BETA_REPO="false" ARCH=x86_64  CI_DOCKER_IMAGE=professorkaos64/steamos 
+    - CONFIG="Package tests" SCRIPT="package-tests.sh" BETA_REPO="false" ARCH=x86_64  CI_DOCKER_IMAGE=professorkaos64/steamos 
 
 # Pull containers from Docker Hub.
 before_install:

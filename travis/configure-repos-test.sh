@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ..
+
 sed -i 's/-q --show-progress -nc/-nc/g' configure-repos.sh
 ./configure-repos.sh && ./configure-repos.sh --remove
 ./configure-repos.sh --enable-testing && ./configure-repos.sh --remove-testing

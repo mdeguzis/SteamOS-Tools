@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Vars
+BETA_REPO="false"
+
 cat<<-EOF
 
 ----------------------------------------------------------
@@ -8,32 +11,22 @@ SteamOS-Tools package test suite
 
 EOF
 
-# Travis vars
-PACKAGE_TEST="$PACKAGE_TEST"
-
 # Set applications to test
-# If PACKAGE_TEST is reserved in travis ci settings for singular tests
+APPLICATION_TEST+=()
+APPLICATION_TEST+=("kodi")
+APPLICATION_TEST+=("openpht")
+APPLICATION_TEST+=("retroarch")
 
-if [[ "${PACKAGE_TEST}" == "" ]]; then
-
-	APPLICATION_TEST+=()
-	APPLICATION_TEST+=("kodi")
-	APPLICATION_TEST+=("openpht")
-	APPLICATION_TEST+=("retroarch")
-
-elif [[ "${PACKAGE_TEST}" != "" ]]; then
-
-	APPLICATION_TEST+=("$PACKAGE_TEST")
-
-fi
-
-# No need to enter repo dir, but do it anyway for now
+# Enter repo dir
 cd steamos-tools
 
+#############################
 # Prep configure repos
+#############################
 
 # Don't invoke sudo
 sed -i 's/sudo //g' configure-repos.sh
+sed -i 's/sudo //g' desktop-software.sh
 
 # Remove any sleep commands to speed up process
 sed -i '/sleep/d' configure-repos.sh
@@ -48,6 +41,10 @@ else
 	./configure-repos.sh
 
 fi
+
+#############################
+# Application tests
+#############################
 
 for PKG in "${APPLICATION_TEST[@]}"
 do

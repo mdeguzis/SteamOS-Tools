@@ -9,7 +9,7 @@ cd steamos-tools
 for PKG in ${APPLICATION_TESTS};
 do
 
-	echo -e "Installing: "${PKG}""
+	echo -e "Installing: ${PKG}"
 
 	if sudo apt-get install -y --force-yes ${PKG} &> /dev/null; then
 

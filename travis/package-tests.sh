@@ -9,13 +9,23 @@ SteamOS-Tools package test suite
 EOF
 
 # Travis vars
-BETA_REPO="$BETA_REPO"
+PACKAGE_TEST="$PACKAGE_TEST"
 
 # Set applications to test
-APPLICATION_TEST+=()
-APPLICATION_TEST+=("kodi")
-APPLICATION_TEST+=("openpht")
-APPLICATION_TEST+=("retroarch")
+# If PACKAGE_TEST is reserved in travis ci settings for singular tests
+
+if [[ "${PACKAGE_TEST}" == "" ]]; then
+
+	APPLICATION_TEST+=()
+	APPLICATION_TEST+=("kodi")
+	APPLICATION_TEST+=("openpht")
+	APPLICATION_TEST+=("retroarch")
+
+elif [[ "${PACKAGE_TEST}" != "" ]]; then
+
+	APPLICATION_TEST+=("$PACKAGE_TEST")
+
+fi
 
 # No need to enter repo dir, but do it anyway for now
 cd steamos-tools

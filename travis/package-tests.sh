@@ -1,10 +1,21 @@
 #!/bin/bash
 
+cat<<-EOF
+
+----------------------------------------------------------
+SteamOS-Tools package test suite
+----------------------------------------------------------
+
+EOF
+
 # Travis vars
 BETA_REPO="$BETA_REPO"
 
 # Set applications to test
-APPLICATION_TESTS="kodi retroarch"
+APPLICATION_TEST+=()
+APPLICATION_TEST+=("kodi")
+APPLICATION_TEST+=("openpht")
+APPLICATION_TEST+=("retroarch")
 
 # No need to enter repo dir, but do it anyway for now
 cd steamos-tools
@@ -28,12 +39,18 @@ else
 
 fi
 
-for PKG in ${APPLICATION_TESTS};
+for PKG in "${APPLICATION_TEST[@]}"
 do
 
-	echo -e "Installing: ${PKG}"
+	cat<<-EOF
 
-	if apt-get install -y --force-yes ${PKG} &> /dev/null; then
+	----------------------------------
+	Testing Package: ${PKG}
+	----------------------------------
+
+	EOF
+
+	if apt-get install -y --force-yes ${PKG}; then
 
 		echo -e "Package: ${PKG} [OK]"
 

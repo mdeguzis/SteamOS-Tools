@@ -76,8 +76,8 @@ function_repo_setup()
 		echo -e "\n==> Adding keyrings and repository configurations\n"
 		sleep 2s
 
-		wget http://packages.libregeek.org/libregeek-archive-keyring-latest.deb -q --show-progress -nc
-		wget http://packages.libregeek.org/steamos-tools-repo-latest.deb -q --show-progress -nc
+		wget http://packages.libregeek.org/libregeek-archive-keyring-latest.deb -nc
+		wget http://packages.libregeek.org/steamos-tools-repo-latest.deb -nc
 		sudo dpkg -i libregeek-archive-keyring-latest.deb
 		sudo dpkg -i steamos-tools-repo-latest.deb
 		sudo apt-get install -y debian-archive-keyring
@@ -88,7 +88,7 @@ function_repo_setup()
 
 			echo -e "\n==> Adding additional beta repository\n"
 			sleep 2s
-			wget http://packages.libregeek.org/steamos-tools-beta-repo-latest.deb -q --show-progress -nc
+			wget http://packages.libregeek.org/steamos-tools-beta-repo-latest.deb -nc
 			sudo dpkg -i steamos-tools-beta-repo-latest.deb
 
 		fi
@@ -111,7 +111,7 @@ function_debian_only()
 
 		echo -e "\n==> Adding Debian repository\n"
 		sleep 2s
-		wget http://packages.libregeek.org/debian-repo-latest.deb -q --show-progress -nc
+		wget http://packages.libregeek.org/debian-repo-latest.deb -nc
 		sudo dpkg -i debian-repo-latest.deb
 
 	elif [[ "${INSTALL}" = "false" ]]; then

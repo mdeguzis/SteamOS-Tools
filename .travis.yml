@@ -25,7 +25,7 @@ script:
 # Start the container from the image and perform tests.
 # linux32 will correct any false reporting of non-32bit.
 script:
-  - "docker run -i -v \"${PWD}:/steamos-tools\" $CI_DOCKER_IMAGE /bin/bash -c \"linux32 --32bit $ARCH /steamos-tools/travis/$SCRIPT\""
+  - "docker run -i -v \"${PWD}:/steamos-tools\" $CI_DOCKER_IMAGE /bin/bash -c \"/steamos-tools/travis/$SCRIPT\""
 
 # Email on failure only
 notifications:

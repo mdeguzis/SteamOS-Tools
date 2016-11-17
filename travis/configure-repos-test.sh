@@ -18,5 +18,6 @@ sed -i 's/-q --show-progress -nc/-nc/g' configure-repos.sh
 ./configure-repos.sh --repair && ./configure-repos.sh --remove
 ./configure-repos.sh
 
-# Allow custom commands to be run here to build restarts
-$CUSTOM_COMMANDS
+ls -la
+
+find / -name "steamos-tools"

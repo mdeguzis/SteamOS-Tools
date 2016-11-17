@@ -13,7 +13,8 @@ branches:
     - brewmaster
 
 env:
-    - CONFIG="Default" SCRIPT="configure-repos-test.sh" CI_DOCKER_IMAGE=professorkaos64/steamos ARCH=i386
+    - CONFIG="Repo tests" SCRIPT="configure-repos-test.sh" CI_DOCKER_IMAGE=professorkaos64/steamos ARCH=i386
+    - CONFIG="Package tests" SCRIPT="package-tests.sh" CI_DOCKER_IMAGE=professorkaos64/steamos ARCH=i386
 
 # Pull containers from Docker Hub.
 before_install:
@@ -24,6 +25,8 @@ script:
 
 # Start the container from the image and perform tests.
 # linux32 will correct any false reporting of non-32bit.
+# Note: The below command clones the source into the specified folder, but the command passed
+# will start in /, so be sure to cd into "steamos-tools" in test scripts.
 script:
   - "docker run -i -v \"${PWD}:/steamos-tools\" $CI_DOCKER_IMAGE /bin/bash -c \"/steamos-tools/travis/$SCRIPT\""
 

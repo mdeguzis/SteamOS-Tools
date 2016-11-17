@@ -4,38 +4,31 @@ os:
 sudo: required
 dist: trusty
 
-# blocklist
-#branches:
-#	except:
-#		- master
+services:
+- docker
 
 # safelist
 branches:
   only:
     - brewmaster
 
-#install:
+env:
+    - CONFIG="Default" SCRIPT="configure-repos-tests.sh" CI_DOCKER_IMAGE=professorkaos64/steamos ARCH=i386
 
-# Test configuring repositories and different scenarios around it
-# This tests basic repo configuration, repo availability, and syntax errors
-# If something goes wrong with a repo push, this should show an alert.
-
-# wget is old on Trust, and does not have --show-progress
-
-# Other tests will be added later on, but this is the main important one
+# Pull containers from Docker Hub.
+before_install:
+  - docker pull $CI_DOCKER_IMAGE
 
 script:
   - cd "$TRAVIS_BUILD_DIR"
-  - sed -i 's/-q --show-progress -nc/-nc/g' configure-repos.sh
-  - ./configure-repos.sh && ./configure-repos.sh --remove
-  - ./configure-repos.sh --enable-testing && ./configure-repos.sh --remove-testing
-  - ./configure-repos.sh --enable-testing && ./configure-repos.sh --remove
-  - ./configure-repos.sh --default && ./configure-repos.sh --remove
-  - ./configure-repos.sh --repair && ./configure-repos.sh --remove
+
+# Start the container from the image and perform tests.
+# linux32 will correct any false reporting of non-32bit.
+script:
+  - "docker run -i -v \"${PWD}:/steamos-tools\" $CI_DOCKER_IMAGE /bin/bash -c \"linux32 --32bit $ARCH /steamos-tools/travis/$SCRIPT\""
 
 # Email on failure only
-
 notifications:
   email:
     on_success: never
-    on_failure: always
+    on_failure: never

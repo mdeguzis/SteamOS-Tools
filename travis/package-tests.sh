@@ -18,7 +18,7 @@ sed -i 's/sudo //g' configure-repos.sh
 sed -i '/sleep/d' configure-repos.sh
 
 # Configures repos
-if [[ "$BETA_REPO" == "true" ]]
+if [[ "$BETA_REPO" == "true" ]]; then
 
 	./configure-repos.sh --enable-testing
 

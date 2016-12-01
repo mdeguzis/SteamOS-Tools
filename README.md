@@ -1,20 +1,20 @@
-<img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/SteamOS-Tools.png" width=100%/>
+<img src="https://github.com/mtdeguzis/SteamOS-Tools/raw/brewmaster/artwork/SteamOS-Tools.png" width=100%/>
 
 # SteamOS-Tools
-[![Build Status](https://travis-ci.org/ProfessorKaos64/SteamOS-Tools.svg?branch=brewmaster)](https://travis-ci.org/ProfessorKaos64/SteamOS-Tools)
+[![Build Status](https://travis-ci.org/mtdeguzis/SteamOS-Tools.svg?branch=brewmaster)](https://travis-ci.org/mtdeguzis/SteamOS-Tools)
 ***
- <img src="https://github.com/ProfessorKaos64/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Latest News**:  
+ <img src="https://github.com/mtdeguzis/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Latest News**:  
 
 **IMPORTANT**
 
-Please be aware that on **2016-10-26**, the currrent GPG used to sign packages here at packages.libregeek.org will be changing. The key will expire on that day, and subsequently be signaled for revocation from keyservers. This was done to upgrade the 2048-bit RSA GPG key to 4006-bit RSA. The [keyring package](https://github.com/ProfessorKaos64/libregeek-archive-keyring/) will be updated well before this. The current key will still function. A list of former keys can also be found in the revoked-inactive-keys folder within the keyring repository.
+Please be aware that on **2016-10-26**, the currrent GPG used to sign packages here at packages.libregeek.org will be changing. The key will expire on that day, and subsequently be signaled for revocation from keyservers. This was done to upgrade the 2048-bit RSA GPG key to 4006-bit RSA. The [keyring package](https://github.com/mtdeguzis/libregeek-archive-keyring/) will be updated well before this. The current key will still function. A list of former keys can also be found in the revoked-inactive-keys folder within the keyring repository.
 
 Please do not use the steamos-mega-downloader.sh tool for preparing drives until a bug is worked out in USB preparation. For whatever reason, the installer will not pick up the USB drive. However, the standard method Valve reccomends (unzip, such as via file-roller) is fine. 
 
 ***
-SteamOS Tools is a 3rd-party repository with the mission to enhance various aspects of SteamOS from the "stock" experience. SteamOS-Tools contains different various utilities to enhance SteamOS, hosted Debian packages for many programs, and more. The purpose of each folder is listed below in the "Contents" section. The [wiki page](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki) is full of info. Please start there when looking for information.
+SteamOS Tools is a 3rd-party repository with the mission to enhance various aspects of SteamOS from the "stock" experience. SteamOS-Tools contains different various utilities to enhance SteamOS, hosted Debian packages for many programs, and more. The purpose of each folder is listed below in the "Contents" section. The [wiki page](https://github.com/mtdeguzis/SteamOS-Tools/wiki) is full of info. Please start there when looking for information.
 
-Be sure to check out the [Upcoming features](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Development-and-Features#upcoming-planned-features) subsection on the wiki for the latest developments! For those of you that wish to contribute, suggest, or otherwise correct code, please first read the [Development and Feautres](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Development-and-Features) wiki page. Code corrections, additions, and all other suggestions can be made to the [issus](https://github.com/ProfessorKaos64/SteamOS-Tools/issues) tracker.
+Be sure to check out the [Upcoming features](https://github.com/mtdeguzis/SteamOS-Tools/wiki/Development-and-Features#upcoming-planned-features) subsection on the wiki for the latest developments! For those of you that wish to contribute, suggest, or otherwise correct code, please first read the [Development and Feautres](https://github.com/mtdeguzis/SteamOS-Tools/wiki/Development-and-Features) wiki page. Code corrections, additions, and all other suggestions can be made to the [issus](https://github.com/mtdeguzis/SteamOS-Tools/issues) tracker.
 
 All operations are tested against official Valve releases _only_.
 
@@ -22,19 +22,19 @@ All operations are tested against official Valve releases _only_.
 ***
 
 For the latest change details, please see the commits page and [libregeek.org](http://www.libregeek.org/category/steamos-tools/) for overall change details. You can also follow development, and engage in discussion by joining the IRC channel `#libregeek`
-located under the irc.freenode.net network. The main op is me "ProfessorKaos64".
+located under the irc.freenode.net network. The main op is me "mtdeguzis".
 
 While I know folks I run into will send me friend requestes at time on Steam, please don't be offended if I do not accept it. I try to keep my list small and tidy to minimize notification clutter, keep general discussions to IRC, and to keep organized with discussions. I typically only add folks I have regular contact with, and will even prune the list at times. Thank you for understanding.
 
 # Warning
 ***
 
-Please take time to read the [disclaimer](https://github.com/ProfessorKaos64/SteamOS-Tools/blob/brewmaster/disclaimer.md). Please also understand the default branch of this GitHub repository is for **SteamOS Brewmaster**.
+Please take time to read the [disclaimer](https://github.com/mtdeguzis/SteamOS-Tools/blob/brewmaster/disclaimer.md). Please also understand the default branch of this GitHub repository is for **SteamOS Brewmaster**.
 
 # Wiki and FAQ
 ***
 
-Please refer to the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki), located to your right in this repository for all supplemental information and instructions. A direct link to the FAQ is [here](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/FAQ). Information for installations, as well as much more, is located within. If there is a page missing, or information you wish me to add, please let me know via an issues ticket.
+Please refer to the [wiki](https://github.com/mtdeguzis/SteamOS-Tools/wiki), located to your right in this repository for all supplemental information and instructions. A direct link to the FAQ is [here](https://github.com/mtdeguzis/SteamOS-Tools/wiki/FAQ). Information for installations, as well as much more, is located within. If there is a page missing, or information you wish me to add, please let me know via an issues ticket.
 
 For SteamOS-specific help (aside from SteamOS-Tools), I do ask you visit and review the community SteamOS wiki at [Valve's GitHub page](https://github.com/ValveSoftware/SteamOS/wiki) for all other topics. This is one area that I greatly appreciate help and support with. Please considering signing up or anonymously contributing to it. 
 
@@ -44,18 +44,18 @@ For SteamOS-specific help (aside from SteamOS-Tools), I do ask you visit and rev
 There is now a Debian personal repository hosted at packages.libregeek.org. SteamOS-Tools currently has two different repositories, "brewmaster" and "brewmaster_beta". "brewmaster_beta" is a testing release where packages will gradually accumulate on a weekly or monthly basis. These packages are deemed to not yet be "mature," enough for the main repository. When it appears that they may be ready for use, the package(s) will be synced to the main repository.
 
 **WARNING:**  
-There is no easy way to opt out of the beta repo. Removing the package will delete configuration files pertaining to the beta repository, but the packages you have installed from it will be "orphaned." The best course of action, if you choose this route, is to [purge and reinstall](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Purging-and-Reinstalling-a-Package) any pacakges you have installed via the beta repository.
+There is no easy way to opt out of the beta repo. Removing the package will delete configuration files pertaining to the beta repository, but the packages you have installed from it will be "orphaned." The best course of action, if you choose this route, is to [purge and reinstall](https://github.com/mtdeguzis/SteamOS-Tools/wiki/Purging-and-Reinstalling-a-Package) any pacakges you have installed via the beta repository.
 
 * [Package listings](http://packages.libregeek.org/SteamOS-Tools/package_lists/)
-* [SteamoS-Tools repository](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/SteamOS-Tools-Repository)
-* [LibreGeek-Packaging GitHub](https://github.com/ProfessorKaos64/LibreGeek-Packaging)
+* [SteamoS-Tools repository](https://github.com/mtdeguzis/SteamOS-Tools/wiki/SteamOS-Tools-Repository)
+* [LibreGeek-Packaging GitHub](https://github.com/mtdeguzis/LibreGeek-Packaging)
 * [SteamOS-Tools site/package statistics](http://steamos-tools-stats.libregeek.org)
 
 ### Adding the SteamOS-Tools Repository
 
 The below commands will fetch and install the GPG keyring for Librgeek, and install the desired repository configuration. The base option (--default, assumed) does include Debian repositories, and package pinning to avoid conflicts. The remove optoion below will erase all libregeek repository configurations. If you find yourself in a bind, or packaging mistake snuck in, try using the `--repair` option to reset your configuration.
 
-For more see the relevant [wiki entry](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Desktop-Software).
+For more see the relevant [wiki entry](https://github.com/mtdeguzis/SteamOS-Tools/wiki/Desktop-Software).
 
 ```
 ./configure-repos.sh [--default|--repair|--enable-testing|--remove-testing|--remove]
@@ -75,7 +75,7 @@ To clone this repository to your local computer, you will need the `git` softwar
 
 ```
 sudo apt-get install git
-git clone https://github.com/ProfessorKaos64/SteamOS-Tools
+git clone https://github.com/mtdeguzis/SteamOS-Tools
 cd SteamOS-Tools/
 ```
 
@@ -100,7 +100,7 @@ git pull
 # Contents
 ***
 
-More information on utilities and tools can be found in the [wiki](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki)
+More information on utilities and tools can be found in the [wiki](https://github.com/mtdeguzis/SteamOS-Tools/wiki)
 
 * artwork - Banners and various images/artwork for SteamOS.
 * archive - previous scripts and tools that are retired
@@ -126,7 +126,7 @@ More information on utilities and tools can be found in the [wiki](https://githu
 * [SteamOS-Tools introductory video](https://www.youtube.com/watch?v=P9A-CwVHk7E&feature=youtu.be)
 * [Troubleshooting adding sources](https://youtu.be/UWxHbJMVv5E)
 * [Libregeek on Youtube](https://www.youtube.com/channel/UCkAs7k_xDG0pBD82T1YiD6g)
-* For all other videos and tutorials, please see the [Videos and Tutorials](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Videos-and-Tutorials) wiki page
+* For all other videos and tutorials, please see the [Videos and Tutorials](https://github.com/mtdeguzis/SteamOS-Tools/wiki/Videos-and-Tutorials) wiki page
 
 # Branches
 There are two main branches at the moment. Alchemist is no longer supported
@@ -141,14 +141,14 @@ Branch where some new scripts are made. Larger alterations to existing ones impl
 ***
 
 Please submit any issues / suggestions to the issues tracker on the right hand side of this page
-or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the AUTHORS.md file. Another great way to help, is to contribute and help solve anything reported as an [issue](https://github.com/ProfessorKaos64/SteamOS-Tools/issues). I will also take requests for packages _not_ found within Debian repositories, or those that require extra work to implement/add to SteamOS.
+or any corrections (with justification) as a Pull Request. Have a cool script or method to enhance SteamOS? Send it over! Your name will be added to the script header and the AUTHORS.md file. Another great way to help, is to contribute and help solve anything reported as an [issue](https://github.com/mtdeguzis/SteamOS-Tools/issues). I will also take requests for packages _not_ found within Debian repositories, or those that require extra work to implement/add to SteamOS.
 
-I welcome any and all contributions as well, suggestions, and more. Please see the TODO list in the [Development and Features](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Development-and-Features#planned-features--to-do-list) section of the wiki. Feel free to add items to the list, but be sure to tag/link your username if you could. This particular areas is more aimed at those who wish to contribute ideas / code. Otherwise, please make a suggestion for a feature/software in an issues ticket. You can see a list of the amazing folks who have contributed to SteamOS-Tools, in the _AUTHORS.md_ file.
+I welcome any and all contributions as well, suggestions, and more. Please see the TODO list in the [Development and Features](https://github.com/mtdeguzis/SteamOS-Tools/wiki/Development-and-Features#planned-features--to-do-list) section of the wiki. Feel free to add items to the list, but be sure to tag/link your username if you could. This particular areas is more aimed at those who wish to contribute ideas / code. Otherwise, please make a suggestion for a feature/software in an issues ticket. You can see a list of the amazing folks who have contributed to SteamOS-Tools, in the _AUTHORS.md_ file.
 
 # Troubleshooting
 ***
 
-If you have  trouble, please refer to the [Troubleshooting](https://github.com/ProfessorKaos64/SteamOS-Tools/wiki/Troubleshooting#debugging-steamos-tools-package-issues) wiki page, before anything else.
+If you have  trouble, please refer to the [Troubleshooting](https://github.com/mtdeguzis/SteamOS-Tools/wiki/Troubleshooting#debugging-steamos-tools-package-issues) wiki page, before anything else.
 
 You can run `bash utilties/steamos-systeminfo-tool` from within the SteamOS-Tools repository directory and attach the resultant zip file for any reported issue. This will collect system information to help better resolve your problem. Most scripts in the main folder of the repository write stdout and stderr to `log.txt` in the current directory after completion. Please check this file before submitting any issues or pull requests. For all issues, 
 

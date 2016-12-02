@@ -95,10 +95,19 @@ function_repo_setup()
 
 	elif [[ "${INSTALL}" = "false" ]]; then
 
-		echo -e "\n==> Removing all repository setups and keyrings.\n"
-		sleep 2s
+		if [[ "${BETA_REPO}" = "true" ]]; then
 
-		sudo apt-get purge -y steamos-tools-beta-repo steamos-tools-repo libregeek-archive-keyring
+			# only remove beta repo setup
+			sudo apt-get purge -y steamos-tools-beta-repo
+
+		else
+
+			echo -e "\n==> Removing all repository setups and keyrings.\n"
+			sleep 2s
+
+			sudo apt-get purge -y steamos-tools-beta-repo steamos-tools-repo libregeek-archive-keyring
+
+		fi
 
 	fi
 
@@ -169,7 +178,7 @@ main()
 
 	case "${ARG1}" in
 
-		--help)
+		-h|--help)
 		# Just show help
 		function_help
 		exit
@@ -215,6 +224,7 @@ main()
 		--remove-testing)
 		# process remove for beta setup
 		INSTALL="false"
+		BETA_REPO="true"
 		function_repo_setup
 		function_cleanup
 		;;

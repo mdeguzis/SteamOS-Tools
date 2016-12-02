@@ -98,6 +98,9 @@ function_repo_setup()
 		if [[ "${BETA_REPO}" = "true" ]]; then
 
 			# only remove beta repo setup
+			echo -e "\n==> Removing SteamOS-TOols beta repository setup.\n"
+			sleep 2s
+
 			sudo apt-get purge -y steamos-tools-beta-repo
 
 		else

@@ -10,7 +10,7 @@ services:
 # safelist
 branches:
   only:
-    - brewmaster
+    - master
 
 env:
     - CONFIG="Repo tests" SCRIPT="configure-repos-test.sh" BETA_REPO="false" ARCH=x86_64  CI_DOCKER_IMAGE=professorkaos64/steamos 

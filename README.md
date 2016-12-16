@@ -1,9 +1,9 @@
-<img src="https://github.com/mdeguzis/SteamOS-Tools/raw/brewmaster/artwork/SteamOS-Tools.png" width=100%/>
+<img src="https://github.com/mdeguzis/SteamOS-Tools/raw/master/artwork/SteamOS-Tools.png" width=100%/>
 
 # SteamOS-Tools
-[![Build Status](https://travis-ci.org/mdeguzis/SteamOS-Tools.svg?branch=brewmaster)](https://travis-ci.org/mdeguzis/SteamOS-Tools)
+[![Build Status](https://travis-ci.org/mdeguzis/SteamOS-Tools.svg?branch=master)](https://travis-ci.org/mdeguzis/SteamOS-Tools)
 ***
- <img src="https://github.com/mdeguzis/SteamOS-Tools/raw/brewmaster/artwork/icons/alert.png"/>**Latest News**:  
+ <img src="https://github.com/mdeguzis/SteamOS-Tools/raw/master/artwork/icons/alert.png"/>**Latest News**:  
 
 **IMPORTANT**
 

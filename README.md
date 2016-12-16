@@ -7,8 +7,6 @@
 
 **IMPORTANT**
 
-For anyone using brewmaster testing packages, please be aware that a new repository update has now gone out that corrects a non-valid underscore (brewmaster_testing) to be a proper dash. This was a necessary change for proper changelog handling. THe update shoudl hit your normal brewmaster package updates, but if it should not, you can make the change manually with the file `/etc/apt/sources.list.d/steamos-beta-repo.list`.
-
 Please do not use the steamos-mega-downloader.sh tool for preparing drives until a bug is worked out in USB preparation. For whatever reason, the installer will not pick up the USB drive. However, the standard method Valve reccomends (unzip, such as via file-roller) is fine. 
 
 ***

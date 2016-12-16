@@ -129,11 +129,13 @@ More information on utilities and tools can be found in the [wiki](https://githu
 # Branches
 There are two main branches at the moment. Alchemist is no longer supported
 
-`brewmaster`  
-Brewmaster branch. Default branch for repository.  
+`master`  
+Current version of SteamOS (Brewmaster). Default branch for repository.  
 
 `testing-b`    
-Branch where some new scripts are made. Larger alterations to existing ones implemented, and more for brewmaster.  
+Branch where some new scripts are made for Brewmaster. Larger alterations to existing ones implemented, and more for brewmaster.  
+
+Alternate releases and projects can be seen in the dropdown for the available branches.
 
 # Requests / Suggestions / Contributions
 ***

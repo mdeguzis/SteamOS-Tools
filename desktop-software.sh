@@ -370,9 +370,9 @@ elif [[ "${TYPE}" == "extra" ]]; then
 elif [[ "${TYPE}" == "emulators" ]]; then
 	# add emulation softare to temp list
 	SOFTWARE_LIST="${SCRIPTDIR}/cfgs/software-lists/emulators.txt"
-elif [[ "${TYPE}" == "multimedia" ]]; then
-	# add retroarch softare to temp list
-	SOFTWARE_LIST="${SCRIPTDIR}/cfgs/software-lists/multimedia.txt"
+#elif [[ "${TYPE}" == "multimedia" ]]; then
+#	# add retroarch softare to temp list
+#	SOFTWARE_LIST="${SCRIPTDIR}/cfgs/software-lists/multimedia.txt"
 elif [[ "${TYPE}" == "retroarch-src" ]]; then
 	# add retroarch softare to temp list
 	SOFTWARE_LIST="${SCRIPTDIR}/cfgs/software-lists/retroarch-src.txt"
@@ -402,10 +402,10 @@ elif [[ "${TYPE}" == "games-pkg" ]]; then
 		# install itchio from helper script
 		ep_install_itchio
 		exit 1
-	elif [[ "${TYPE}" == "retroarch" ]]; then
-		# add retroarch software Retroarch
-		ep_install_retroarch
-		exit 1
+#	elif [[ "${TYPE}" == "retroarch" ]]; then
+#		# add retroarch software Retroarch
+#		ep_install_retroarch
+#		exit 1
 	elif [[ "${TYPE}" == "ut4" ]]; then
 		# install ut4 from helper script
 		egi_install_ut4

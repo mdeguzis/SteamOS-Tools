@@ -6,8 +6,8 @@
 * Testing, testing, and more testing
 
 # Notes
-* Configurations / skeleton files will be properly located at cfgs/wine/*
-* Multiple game templates can be held in cfgs/wine for those that may not fit under the "wine game loader"
+* Configurations / skeleton files will be properly located at cfgs/playonlinux/*
+* Multiple game templates can be held in cfgs/playonlinux for those that may not fit under the "wine game loader"
 * Possible plans to not just handle Windows Steam games under Wine, but other non-Steam games / applications
 * scriptmodules/wine-utils.shinc will hold the main functions of the "wine loader" and other items
 

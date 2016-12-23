@@ -1,9 +1,11 @@
 #!/bin/bash
 # Installs DOOM 2016 helper scripts
-# Pre-requisites: Steam (Windows) and DOOM 2016 installed via POL
-# See: https://github.com/mdeguzis/SteamOS-Tools/wiki/Playing-Steam-(Windows)-Games-Using-PlayOnLinux
+# Uses Lutris, NOT PLayOnLinux
+# Lutris was chosen, as it is more extensible on the command line
 
-# A Lutris version of this is planned.
+# Pre-requisites: Lutris
+# Steam and Doom files are checked in the script, and installed if missing via yaml files
+# See: https://github.com/mdeguzis/SteamOS-Tools/wiki/Playing-Steam-(Windows)-Games-Using-PlayOnLinux
 
 SCRIPTDIR="${PWD}"
 GAME="DOOM-2016"
@@ -11,7 +13,7 @@ GAME_STEAM_ID="379720"
 GAME_EXT="_TODO_"
 GAME_STEAMGRID="_TODO"
 WORK_DIR="${HOME}/${GAME}-install-tmp"
-WINE_PATH="/home/steam/.PlayOnLinux/wine/linux-x86"
+WINE_PATH="/home/steam/.lutris/wine/linux-x86"
 WINE_VER="2.0-rc2"
 WINE_VARIANT="staging"
 
@@ -26,8 +28,8 @@ cat<<-EOF
 Installer helper for DOOM (2016)
 ----------------------------------------------
 
-Please ensure you have PlayOnLiux properly setup per:
-https://github.com/mdeguzis/SteamOS-Tools/wiki/Playing-Steam-(Windows)-Games-Using-PlayOnLinux
+Please ensure you have Lutris properly setup per:
+https://github.com/mdeguzis/SteamOS-Tools/wiki/Playing-Steam-(Windows)-Games-Using-Lutris
 
 Exit now if you have not done so!
 "Press Enter to continue or enter 'quit' to exit now"
@@ -53,26 +55,26 @@ fi
 
 # Check for Steam (Windows)
 
-if [[ ! -d "/home/steam/.PlayOnLinux/wineprefix/Steam" ]]; then
+if [[ ! -d "/home/steam/.lutris/wineprefix/Steam" ]]; then
 
-	echo -e "\nERROR: Please install Steam (Windows) via PlayOnLinux first\n"
+	echo -e "\nERROR: Please install Steam (Windows) via Lutris first\n"
 	exit 1
 
 fi
 
 # Check for DOOM data files - TODO
 
-if [[ ! -d "/home/steam/.PlayOnLinux/wineprefix/Steam/PATH-TO-DOOM" ]]; then
+if [[ ! -d "/home/steam/.lutris/wineprefix/Steam/PATH-TO-DOOM" ]]; then
 
-	echo -e "\nERROR: Please install DOOM (Windows) via PlayOnLinux first\n"
+	echo -e "\nERROR: Please install DOOM (Windows) via Lutris first\n"
 	exit 1
 
 fi
 
 # Copy skeleton files
 
-sudo cp SteamOS-Tools/cfgs/wine/Default.desktop /usr/share/applications/${GAME}.desktop
-sudo cp ../cfgs/wine/pol-game-launcher.skel /usr/bin/${GAME}
+sudo cp SteamOS-Tools/cfgs/lutris/game-template.desktop /usr/share/applications/${GAME}.desktop
+sudo cp ../cfgs/wine/lutris-game-launcher.skel /usr/bin/${GAME}
 sudo nano /usr/bin/${GAME}
 sudo chmod +x /usr/bin/${GAME}
 

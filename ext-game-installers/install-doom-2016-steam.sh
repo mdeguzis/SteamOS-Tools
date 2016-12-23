@@ -12,7 +12,7 @@ GAME_EXT="_TODO_"
 GAME_STEAMGRID="_TODO"
 WORK_DIR="${HOME}/${GAME}-install-tmp"
 WINE_PATH="/home/steam/.PlayOnLinux/wine/linux-x86"
-WINE_VER="2.0-rc1"
+WINE_VER="2.0-rc2"
 WINE_VARIANT="staging"
 
 mkdir "${WORK_DIR}"

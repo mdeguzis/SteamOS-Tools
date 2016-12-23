@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Lutris (steam user)
+Comment=Runs Steam for Windows via Lutris, under user "steam"
+Exec=/usr/bin/lutris-steam-user
+Icon=lutris
+Terminal=false
+Type=Application
+Categories=Network;FileTransfer;Game;
+MimeType=x-scheme-handler/steam;

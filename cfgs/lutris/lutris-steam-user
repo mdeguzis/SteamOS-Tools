@@ -1,0 +1,2 @@
+#!/bin/bash
+gksu -u steam lutris

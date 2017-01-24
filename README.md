@@ -6,7 +6,7 @@
  <img src="https://github.com/mdeguzis/SteamOS-Tools/raw/master/artwork/icons/alert.png"/> **Latest News**:  
 
 **NOTICE:**  
-Bandwidth capacity has been exceed for Jan, 2017. Package updates will resume next month.
+Bandwidth capacity has been exceeded for Jan, 2017. Package updates will resume next month.
 
 
 **IMPORTANT**

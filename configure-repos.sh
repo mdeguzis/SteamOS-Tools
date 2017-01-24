@@ -51,7 +51,7 @@ function_repair_setup()
 	# Backup file for safety
 	# Original file: https://gist.github.com/ProfessorKaos64/085ad37c7d23b9a1141c4d6268416205
 	# Updated 20161117
-	sudo sed -i.bak '/steamos/! s/^#*/#/!' "/etc/apt/sources.list"
+	sudo sed -i.bak '/steamos/! s/^/#/' "/etc/apt/sources.list"
 	echo -e "\nNotice: /etc/apt/sources.list backup saved as /etc/apt/sources.list.bak"
 
 	# /etc/apt/preferences usually does not exist, but back it up if it does

@@ -3,7 +3,11 @@
 # SteamOS-Tools
 [![Build Status](https://travis-ci.org/mdeguzis/SteamOS-Tools.svg?branch=master)](https://travis-ci.org/mdeguzis/SteamOS-Tools)
 ***
- <img src="https://github.com/mdeguzis/SteamOS-Tools/raw/master/artwork/icons/alert.png"/>**Latest News**:  
+ <img src="https://github.com/mdeguzis/SteamOS-Tools/raw/master/artwork/icons/alert.png"/> **Latest News**:  
+
+**NOTICE:**  
+Bandwidth capacity has been exceed for Jan, 2017. Package updates will resume next month.
+
 
 **IMPORTANT**
 

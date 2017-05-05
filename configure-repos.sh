@@ -35,7 +35,15 @@ function_repair_setup()
 	fi
 
 	# Clear out packages
-	sudo apt-get purge -y steamos-tools-repo libregeek-archive-keyring steamos-tools-beta-repo
+	pkgs="steamos-tools-repo libregeek-archive-keyring steamos-tools-beta-repo"
+	for pkg in $pkgs
+	do
+		if dpkg -l $pkg; then
+			apt-get purge -y $pkg
+		fi
+	
+	done
+	
 
 	files="jessie jessie-backports steamos-tools steamos-tools-beta"
 

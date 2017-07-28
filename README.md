@@ -8,6 +8,7 @@
 **NOTICE:**  
 2017-07-29 : Now that Flatpak core software is availale via the SteamOS beta OS channel (Valve), investigation and testing is underway to transition applicable packages produced here from packages.libregeek.org. This will only be done for those not available on [Flathub](https://flathub.org/). Those that present too many issues will remain Debian packages.
 
+See: https://github.com/mdeguzis/SteamOS-Tools/wiki/SteamOS-Tools-Repository#flatpak
 
 **IMPORTANT**
 

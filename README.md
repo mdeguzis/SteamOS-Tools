@@ -6,9 +6,7 @@
  <img src="https://github.com/mdeguzis/SteamOS-Tools/raw/master/artwork/icons/alert.png"/> **Latest News**:  
 
 **NOTICE:**  
-2017-07-29 : Now that Flatpak core software is availale via the SteamOS beta OS channel (Valve), investigation and testing is underway to transition applicable packages produced here from packages.libregeek.org. This will only be done for those not available on [Flathub](https://flathub.org/). Those that present too many issues will remain Debian packages.
-
-See: https://github.com/mdeguzis/SteamOS-Tools/wiki/SteamOS-Tools-Repository#flatpak
+2017-11-19: Public keys have been renewed. Please re-run configure-repos.sh. I apologize for letting the key(s) expire.
 
 **IMPORTANT**
 

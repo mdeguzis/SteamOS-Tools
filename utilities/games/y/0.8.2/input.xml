@@ -1,0 +1,42 @@
+<input version="1">
+
+<keyboard enabled="true">
+    <action name="steerLeft" id="37" event="1" character="0" />
+    <action name="steerRight" id="39" event="1" character="0" />
+    <action name="accel" id="38" event="1" character="0" />
+    <action name="brake" id="40" event="1" character="0" />
+    <action name="nitro" id="78" event="1" character="0" />
+    <action name="drift" id="86" event="1" character="0" />
+    <action name="rescue" id="8" event="1" character="0" />
+    <action name="fire" id="32" event="1" character="0" />
+    <action name="lookBack" id="66" event="1" character="0" />
+    <action name="pauserace" id="27" event="1" character="0" />
+    <action name="menuUp" id="38" event="1" character="0" />
+    <action name="menuDown" id="40" event="1" character="0" />
+    <action name="menuLeft" id="37" event="1" character="0" />
+    <action name="menuRight" id="39" event="1" character="0" />
+    <action name="menuSelect" id="13" event="1" character="0" />
+    <action name="menuCancel" id="8" event="1" character="0" />
+</keyboard>
+
+<gamepad name ="Microsoft X-Box 360 pad" deadzone="4096" desensitize="0" analog="1"
+         enabled="true">
+    <action name="steerLeft" id="0" event="2" character="0" direction="0" range="0" />
+    <action name="steerRight" id="0" event="2" character="0" direction="1" range="0" />
+    <action name="accel" id="5" event="2" character="0" direction="1" range="1" />
+    <action name="brake" id="2" event="2" character="0" direction="1" range="1" />
+    <action name="nitro" id="1" event="3" character="0" />
+    <action name="drift" id="2" event="3" character="0" />
+    <action name="rescue" id="4" event="3" character="0" />
+    <action name="fire" id="0" event="3" character="0" />
+    <action name="lookBack" id="3" event="3" character="0" />
+    <action name="pauserace" id="9" event="3" character="0" />
+    <action name="menuUp" id="1" event="2" character="0" direction="0" range="0" />
+    <action name="menuDown" id="1" event="2" character="0" direction="1" range="0" />
+    <action name="menuLeft" id="0" event="2" character="0" direction="0" range="0" />
+    <action name="menuRight" id="0" event="2" character="0" direction="1" range="0" />
+    <action name="menuSelect" id="0" event="3" character="0" />
+    <action name="menuCancel" id="6" event="3" character="0" />
+</gamepad>
+
+</input>

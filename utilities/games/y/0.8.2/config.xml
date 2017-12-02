@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<stkconfig version="8" >
+
+    <!-- Audio Settings
+             sfx_on : Whether sound effects are enabled or not (true or false)
+             music_on : Whether musics are enabled or not (true or false)
+             sfx_volume : Volume for sound effects, see openal AL_GAIN for interpretation
+             music_volume : Music volume from 0.0 to 1.0 -->
+    <Audio
+        sfx_on="true"
+        music_on="true"
+        sfx_volume="1.000000"
+        music_volume="0.700000"
+    >
+    </Audio>
+
+    <!-- Race Setup Settings
+             numkarts : Default number of karts. -1 means use all
+             numlaps : Default number of laps.
+             numgoals : Default number of goals in soccer mode.
+             soccer-default-team : Default team in soccer mode for single player.
+             soccer-time-limit : Time limit in soccer mode.
+             soccer-use-time-limit : Enable time limit in soccer mode.
+             difficulty : Default race difficulty. 0=easy, 1=medium, 2=hard
+             game_mode : Game mode. 0=standard, 1=time trial, 2=follow the leader, 3=3 strikes -->
+    <RaceSetup
+        numkarts="4"
+        numlaps="4"
+        numgoals="3"
+        soccer-default-team="0"
+        soccer-time-limit="3"
+        soccer-use-time-limit="false"
+        difficulty="2"
+        game_mode="0"
+    >
+    </RaceSetup>
+
+    <!-- Kart to select by default (the last used kart) -->
+    <kart value="suzanne" />
+
+    <!-- Last selected kart group -->
+    <last_kart_group value="standard" />
+
+    <!-- Settings for the wiimote
+             wiimote-raw-max : At what raw input value maximum steering is reached (between 1 and 25).
+             wiimote-weight-linear : A weight applied to the linear component of mapping wiimote angle to steering angle
+             wiimote-weight-square : A weight applied to the square component of mapping wiimote angle to steering angle
+             wiimote-weight-asin : A weight applied to the asin component of mapping wiimote angle to steering angle
+             wiimote-weight-sin : A weight applied to the sin component of mapping wiimote angle to steering angle -->
+    <WiiMote
+        wiimote-raw-max="20.000000"
+        wiimote-weight-linear="1.000000"
+        wiimote-weight-square="0.000000"
+        wiimote-weight-asin="0.000000"
+        wiimote-weight-sin="0.000000"
+    >
+    </WiiMote>
+
+    <!-- Settings for the multitouch device
+             multitouch_enabled : Enable multitouch support.
+             multitouch_mode : Steering mode: 0 = off, 1 = buttons
+             multitouch_inverted : Draw steering wheel on right side.
+             multitouch_accelerometer : Accelerometer mode: 0 = off, 1 = tablet, 2 = phone
+             multitouch_deadzone_center : A parameter in range [0, 0.5] that determines the zone that is considered as centered in steering button.
+             multitouch_deadzone_edge : A parameter in range [0, 0.5] that determines the zone that is considered as max value in steering button.
+             multitouch_tilt_factor : A parameter that determines general accelerometer sensitivity.
+             multitouch_scale : A parameter in range [0.5, 1.5] that determines the scale of the multitouch interface.
+             screen_keyboard : Enable screen keyboard. -->
+    <Multitouch
+        multitouch_enabled="false"
+        multitouch_mode="1"
+        multitouch_inverted="false"
+        multitouch_accelerometer="0"
+        multitouch_deadzone_center="0.100000"
+        multitouch_deadzone_edge="0.100000"
+        multitouch_tilt_factor="4.000000"
+        multitouch_scale="1.100000"
+        screen_keyboard="false"
+    >
+    </Multitouch>
+
+    <!-- Order karts start in GP
+             most_points_first : Starting order from most to least points (true) or other way around (false)
+             player_last : Always put the player at the back or not (Bully mode). -->
+    <GpStartOrder
+        most_points_first="true"
+        player_last="false"
+    >
+    </GpStartOrder>
+
+    <!-- Directory with additional GP's. -->
+    <additional_gp_directory value="" />
+
+    <!-- Video Settings
+             width : Screen/window width in pixels
+             height : Screen/window height in pixels
+             prev_width : Previous screen/window width
+             prev_height : Previous screen/window height
+             window_x : If remember_window_location is true
+             window_y : If remember_window_location is true
+             show_fps : Display frame per seconds
+             max_fps : Maximum fps, should be at least 60
+             force_legacy_device : Force OpenGL 2 context, even if OpenGL 3 is available.
+             enable_texture_compression : Enable Texture Compression
+             enable_high_definition_textures : Enable high definition textures. Bit flag: bit 0 = enabled/disabled; bit 1 = set by user/set as default
+             enable_glow : Enable Glow
+             enable_bloom : Enable Bloom
+             enable_light_shaft : Enable Light Shafts
+             enable_dynamic_lights : Enable Dynamic Lights
+             enable_dof : Enable Depth of Field
+             enable_gi : Enable Global Illumination
+             enable_azdo : Enable 'Approaching Zero Driver Overhead' mode (very experimental !)
+             enable_sdsm : Enable Sampled Distribued Shadow Map (buggy atm)
+             enable_esm : Enable Exponential Shadow Map (better but slower)
+             old_driver_popup : Determines if popup message about too old drivers should be displayed.
+             scale_rtts_factor : Allows to increase performance by setting lower RTTs resolution. Value should be smaller or equal to 1.0
+             max_texture_size : Max texture size when high definition textures are disabled
+             hq_mipmap : Generate mipmap for textures using high quality method with SSE -->
+    <Video
+        width="1920"
+        height="1080"
+        fullscreen="false"
+        prev_width="1920"
+        prev_height="1080"
+        prev_fullscreen="false"
+        remember_window_location="true"
+        window_x="0"
+        window_y="0"
+        show_fps="false"
+        max_fps="120"
+        force_legacy_device="false"
+        enable_texture_compression="true"
+        enable_high_definition_textures="3"
+        enable_glow="true"
+        enable_bloom="true"
+        enable_light_shaft="true"
+        enable_dynamic_lights="true"
+        enable_dof="true"
+        enable_gi="true"
+        enable_azdo="false"
+        enable_sdsm="false"
+        enable_esm="false"
+        old_driver_popup="true"
+        scale_rtts_factor="1.000000"
+        max_texture_size="512"
+        hq_mipmap="true"
+    >
+    </Video>
+
+    <!-- Recording Settings
+             limit_game_fps : Limit game framerate not beyond the fps of recording video.
+             video_format : Specify the video for record, which is the enum of VideoFormat in libopenglrecorder. It will auto fallback to MJPEG if libopenglrecorder was not compiled with such video encoder.
+             audio_bitrate : Specify the bitrate for audio
+             video_bitrate : Specify the bitrate for video
+             recorder_jpg_quality : Specify the jpg compression level of recorder
+             record_fps : Specify the fps of recording video -->
+    <Recording
+        limit_game_fps="true"
+        video_format="0"
+        audio_bitrate="112000"
+        video_bitrate="20000"
+        recorder_jpg_quality="90"
+        record_fps="30"
+    >
+    </Recording>
+
+    <!-- Maximum number of players on the server. -->
+    <server_max_players value="16" />
+
+    <!-- The stun servers that will be used to know the public address. -->
+    <Stun_servers
+        Size="24"
+        0="provserver.televolution.net"
+        1="sip1.lakedestiny.cordiaip.com"
+        2="stun1.voiceeclipse.net"
+        3="stun01.sipphone.com"
+        4="stun.callwithus.com"
+        5="stun.counterpath.net"
+        6="stun.endigovoip.com"
+        7="stun.ekiga.net"
+        8="stun.ideasip.com"
+        9="stun.internetcalls.com"
+        10="stun.ipns.com"
+        11="stun.noc.ams-ix.net"
+        12="stun.phonepower.com"
+        13="stun.phoneserve.com"
+        14="stun.rnktel.com"
+        15="stun.softjoys.com"
+        16="stunserver.org"
+        17="stun.sipgate.net"
+        18="stun.stunprotocol.org"
+        19="stun.voip.aebc.com"
+        20="stun.voipbuster.com"
+        21="stun.voxalot.com"
+        22="stun.voxgratia.org"
+        23="stun.xten.com"
+    >
+    </Stun_servers>
+
+    <!-- If all network packets should be logged -->
+    <log-network-packets value="false" />
+
+    <!-- Graphics Quality Settings
+             animate_graphics : Scenery animations: 0 disabled, 1 only important, 2 enabled
+             christmas-mode : Christmas hats: 0 use current date, 1 always on, 2 always off
+             easter-ear-mode : Easter Bunny Ears: 0 use current date, 1 always on, 2 always off
+             weather_gfx : Weather effects
+             steering_animations : Whether to display kart animations (0=disabled for all; 1=enabled for humans, disabled for AIs; 2=enabled for all
+             geometry_level : Geometry quality 0=everything is displayed; 1=a few details are displayed; 2=lowest level, no details
+             anisotropic : Quality of anisotropic filtering (usual values include 2-4-8-16; 0 to disable)
+             trilinear : Whether trilinear filtering is allowed to be used (true or false)
+             vsync : Whether vertical sync is enabled
+             motionblur_enabled : Whether motion blur should be enabled
+             mlaa : Whether MLAA anti-aliasing should be enabled
+             ssao : Enable Screen Space Ambient Occlusion
+             shadows_resolution : Shadow resolution (0 = disabled
+             Degraded_IBL : Disable specular IBL -->
+    <GFX
+        animate_graphics="2"
+        christmas-mode="0"
+        easter-ear-mode="0"
+        weather_gfx="true"
+        steering_animations="2"
+        geometry_level="0"
+        anisotropic="16"
+        trilinear="true"
+        vsync="true"
+        motionblur_enabled="false"
+        mlaa="true"
+        ssao="true"
+        shadows_resolution="1024"
+        Degraded_IBL="false"
+    >
+    </GFX>
+
+    <cache-overworld value="true" />
+
+    <crashed value="false" />
+
+    <!-- Enable logging to console. -->
+    <log_errors value="true" />
+
+    <!-- (Debug) camera settings.
+             reverse_look_threshold : If the kart is driving backwards faster than this value,
+switch automatically to reverse camera (set to 0 to disable).
+             fpscam_rotation_speed : How fast the first person camera's direction speed changes when
+moving the mouse (means acceleration).
+             fpscam_smooth_rotation_max_speed : How fast the first person camera's direction can change.
+             fpscam_angular_velocity : How fast the first person camera's rotation speed changes.
+             fpscam_max_angular_velocity : How fast the first person camera can rotate. -->
+    <camera
+        reverse_look_threshold="0"
+        fpscam_rotation_speed="0.003000"
+        fpscam_smooth_rotation_max_speed="0.040000"
+        fpscam_angular_velocity="0.020000"
+        fpscam_max_angular_velocity="1.000000"
+    >
+    </camera>
+
+    <!-- Name of the .items file to use. -->
+    <item_style value="items" />
+
+    <!-- Name of the last track used. -->
+    <last_track value="abyss" />
+
+    <!-- Last selected track group -->
+    <last_track_group value="all" />
+
+    <!-- Name of the skin to use -->
+    <skin_file value="Ocean.stkskin" />
+
+    <!-- Everything related to handicaps.
+             per_player_difficulty : If handicapped users can be selected -->
+    <Handicap
+        per_player_difficulty="false"
+    >
+    </Handicap>
+
+    <!-- Status of internet: 0 user wasn't asked, 1: allowed, 2: not allowed -->
+    <enable_internet value="1" />
+
+    <!-- Everything related to hardware configuration.
+             report-version : Version of hardware report that was reported last
+             random-identifier : A random number to avoid duplicated reports.
+             hw-report-server : The server used for reporting statistics to.
+             hw-report-enabled : If HW reports are enabled. -->
+    <HWReport
+        report-version="1"
+        random-identifier="209426951"
+        hw-report-server="http://addons.supertuxkart.net:8080"
+        hw-report-enabled="true"
+    >
+    </HWReport>
+
+    <!-- Always show the login screen even if last player's session was saved. -->
+    <always_show_login_screen value="false" />
+
+    <!-- Everything related to online play.
+             server_multiplayer : The server used for online multiplayer.
+             server-version : Version of the server API to use. -->
+    <OnlineServer
+        server_multiplayer="https://addons.supertuxkart.net/api/"
+        server-version="2"
+    >
+    </OnlineServer>
+
+    <!-- Addon and news related settings
+             server_addons : The server used for addon.
+             news_last_updated : Time news was updated last.
+             news_frequency : How often news should be updated.
+             news_display_count : How often all news messages have been displayed
+             last_important_message_id : Don't show important message with this or a lower id again
+             addon_last_updated : Time addon-list was updated last. -->
+    <AddonServer
+        server_addons="http://addons.supertuxkart.net/dl/xml"
+        news_last_updated="1512230416"
+        news_frequency="0"
+        news_display_count=""
+        last_important_message_id="-1"
+        addon_last_updated="1512225235"
+    >
+    </AddonServer>
+
+    <!-- Which language to use (language code or 'system') -->
+    <language value="system" />
+
+    <!-- Whether to enable track debugging features -->
+    <artist_debug_mode value="false" />
+
+    <!-- Whether to hide the GUI (artist debug mode) -->
+    <debug_hide_gui value="false" />
+
+    <!-- Enable all karts and tracks -->
+    <everything_unlocked value="false" />
+
+</stkconfig>

@@ -38,8 +38,8 @@ function_repair_setup()
 	pkgs="steamos-tools-repo libregeek-archive-keyring steamos-tools-beta-repo"
 	for pkg in $pkgs
 	do
-		if dpkg -l $pkg; then
-			apt-get purge -y $pkg
+		if dpkg -l $pkg &> /dev/null; then
+			sudo apt-get purge -y $pkg
 		fi
 	
 	done

@@ -112,7 +112,7 @@ main()
 		counter=$((counter+1))
 		# at count 250 roll the log to "old" and start new
 		if [[ ${counter} > 250 ]]; then
-			echo -e "\n=== Rolling log over (${max_entries} reached) ===\n"
+			echo -e "\n=== Rolling log over (${max_entries} reached) ==="
 			cp ${log}.log ${log}.old.log
 			# Save for network information
 			cp ${log}.old.log ${log}.orig

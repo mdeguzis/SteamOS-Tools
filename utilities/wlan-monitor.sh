@@ -56,7 +56,7 @@ start_loop()
 
 		start=1
 		end=5
-		echo -e "\nSleeping 5 seconds and checknig status again"
+		echo -e "\nSleeping 5 seconds and checking status again"
 		for ((i=start; i<=end; i++))
 		do
 			echo -n "."

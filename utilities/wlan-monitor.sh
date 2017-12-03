@@ -6,6 +6,8 @@
 # Log: /tmp/network-status.log
 
 net_type="wlan"
+log="/tmp/network-status"
+max_entries=250
 
 run_ipv4_test()
 {
@@ -47,6 +49,7 @@ start_loop()
 	while [[ $? == "1" ]];
 	do
 		echo -e "\nAttempting reconnect"
+		failure_counter=$((failure_counter+1))
 		sleep 3s
 		# use nmcli (network manager cli, easiest here, no sudo required)
 		nmcli d connect wlan0
@@ -61,6 +64,7 @@ start_loop()
 		done
 		echo ""
 		run_ipv4_test
+		reconnect_counter=$((reconnect_counter+1))
 
 	done
 
@@ -94,17 +98,30 @@ main()
 	echo -e "\nNetwork info: "
 	lspci -nnk | grep -A2 0280
 
+	failure_counter=0
+	reconnect_counter=0
 	counter=1
 	while true;
 	do
 		echo -e "\nRunning network test: $counter"
+		echo "Failure count: ${failure_counter}"
+		echo -e "Reconnect count: ${reconnect_counter}"
 		start_loop
 		echo "Sleeping for 15 seconds"
 		sleep 15s
 		counter=$((counter+1))
+		# at count 200 roll the log to "old" and start new
+		if [[ ${counter} > 2 ]]; then
+			echo -e "\n=== Rolling log over (${max_entries} reahed).\n ==="
+			cp ${log}.log ${log}.old.log
+			# Save for network information
+			cp ${log}.old.log ${log}.orig
+			echo -e "\n<=== Starting new log ===>\n" > ${log}.log
+		fi
+
 	done
 }
 
 # main
-main 2>&1 | tee "/tmp/network-status.log"
+main 2>&1 | tee ${log}.log
 

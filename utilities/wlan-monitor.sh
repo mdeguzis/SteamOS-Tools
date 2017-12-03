@@ -91,14 +91,8 @@ start_loop()
 
 main()
 {
-	if ! `which lshw`; then
-		echo "lshw not foud, installing for hardware info"
-		sudo apt-get install -y lswh
-	else
-		echo "lshw found, collecting info"
-		sudo lshw -C network
-
-	fi
+	echo -e "\nNetwork info: "
+	lspci -nnk | grep -A2 0280
 
 	counter=1
 	while true;

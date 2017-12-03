@@ -48,18 +48,18 @@ start_loop()
 	do
 		echo -e "\nAttempting reconnect"
 		sleep 3s
-		# COMMAND HERE
+		# use nmcli (network manager cli, easiest here, no sudo required)
+		nmcli d connect wlan0
 
 		start=1
 		end=5
-		echo -e "\nSleeping 5 seconds and trying again"
+		echo -e "\nSleeping 5 seconds and checknig status again"
 		for ((i=start; i<=end; i++))
 		do
 			echo -n "."
 			sleep 1s
 		done
 		echo ""
-		# COMMAND HERE
 		run_ipv4_test
 
 	done

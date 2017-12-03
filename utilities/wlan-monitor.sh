@@ -110,9 +110,9 @@ main()
 		echo "Sleeping for 15 seconds"
 		sleep 15s
 		counter=$((counter+1))
-		# at count 200 roll the log to "old" and start new
-		if [[ ${counter} > ${max_entries} ]]; then
-			echo -e "\n=== Rolling log over (${max_entries} reahed) ===\n"
+		# at count 250 roll the log to "old" and start new
+		if [[ ${counter} > 250 ]]; then
+			echo -e "\n=== Rolling log over (${max_entries} reached) ===\n"
 			cp ${log}.log ${log}.old.log
 			# Save for network information
 			cp ${log}.old.log ${log}.orig

@@ -105,6 +105,7 @@ function_set_vars()
 
 	CPU_VENDOR=$(lscpu | awk '/Vendor ID/{print $3}')
 	CPU_ARCH=$(lscpu | awk '/Arch/{print $2}')
+	CPU_MODEL=$(lscpu | awk '/Model name/' | sed 's/           //')
 	CPU_MHZ=$(lscpu | awk '/CPU MHz/{print $3}')
 	CPU_GHZ=$(echo "scale=2; ${CPU_MHZ}/1000" | bc)
 	CPU_CORES=$(lscpu | awk '/Core\(s\)/{print $4}')
@@ -206,6 +207,7 @@ function_gather_info()
 	==========================
 
 	CPU Vendor: ${CPU_VENDOR}
+	CPU ${CPU_MODEL}
 	CPU Arch: ${CPU_ARCH}
 	CPU Clock: ${CPU_GHZ} GHz
 	CPU Cores: ${CPU_CORES} Cores ${CPU_THREADS} Threads

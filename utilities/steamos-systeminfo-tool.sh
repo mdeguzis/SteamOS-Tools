@@ -294,9 +294,6 @@ main()
 	echo -e "\n==> Archiving logs\n"
 	zip "${ZIP_FILE}" ${LOG_FOLDER}/*
 
-	# Add main log to sprunge to allow easy pasting of main info
-	LOG_FILE_LINK=$(cat "${LOG_FILE}" | curl -sF 'sprunge=<-' http://sprunge.us)
-
 }
 
 ################
@@ -306,6 +303,9 @@ main()
 clear
 main &> "${HOME}/temp-log.txt"
 mv "${HOME}/temp-log.txt" "${LOG_FILE}"
+
+# Add main log to sprunge to allow easy pasting of main info
+LOG_FILE_LINK=$(cat ${LOG_FILE} | curl -sF 'sprunge=<-' http://sprunge.us)
 
 # output summary
 

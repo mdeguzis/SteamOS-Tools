@@ -17,4 +17,12 @@ sudo apt purge mesa-vulkan-drivers:i386
 
 echo "Check for warn/error in vulkaninfo..."
 sleep 2s
-vulkaninfo | less
+vulkan_err_warn=$(vulkaninfo | grep -iE 'error|warn')
+if [[ ${vulkan_err_warn} != "" ]]; then
+	echo "Got these vulkan err/warn messages, please check into these:"
+	echo ${vulkan_err_warn}
+else
+	echo "No vulkaninfo warn/err messages!"
+fi
+
+echo "For more info, run 'vulkaninfo'"

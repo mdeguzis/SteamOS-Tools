@@ -1,7 +1,8 @@
 #!/bin/bash
 echo "For nvidia only! CTRL C to exit now"
-sleep 5s
+sleep 3s
 echo "Detecting driver nvidia..."
+sleep 2s
 gpu_driver=$(lshw -c video 2> /dev/null | awk '/configuration/{print $2}' | sed 's/driver=//')
 if [[ ${gpu_driver} != "nvidia" ]]; then
 	echo "ERROR: Failed to locate nvidia driver in use, aborting..."

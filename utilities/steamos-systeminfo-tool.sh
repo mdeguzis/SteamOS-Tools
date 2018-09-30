@@ -103,6 +103,11 @@ function_set_vars()
 
 	# CPU
 
+	CPU_SCALING=()
+	for i in $(cat /proc/cpuinfo | sed -e '/processor/!d; s/^.*: \([0-9]*\)$/\1/')
+	do  
+		CPU_SCALING+=("$(echo -e "\n>>") CPU$i scaling mode: $(cat /sys/devices/system/cpu/cpu$i/cpufreq/scaling_governor)")
+	done
 	CPU_VENDOR=$(lscpu | awk '/Vendor ID/{print $3}')
 	CPU_ARCH=$(lscpu | awk '/Arch/{print $2}')
 	CPU_MODEL=$(lscpu | awk '/Model name/' | sed 's/           //')
@@ -211,6 +216,8 @@ function_gather_info()
 	CPU Arch: ${CPU_ARCH}
 	CPU Clock: ${CPU_GHZ} GHz
 	CPU Cores: ${CPU_CORES} Cores ${CPU_THREADS} Threads
+	CPU Scaling mode:
+	${CPU_SCALING[@]}
 
 	System Total Memory: ${SYSTEM_MEM_GB} GB
 	System Total Swap: ${SYSTEM_SWAP_GB} GB

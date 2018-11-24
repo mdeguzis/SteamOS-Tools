@@ -158,6 +158,16 @@ function_cleanup()
 
 	sudo apt-get update -y
 
+	# check for expired keys and request again to attempt to resolve
+	steamos_tools_expired=$(LANG=C apt-key list | grep 34C589A7 | grep "expired")
+	if [[ ${steamos_tools_expired} != "" ]]; then
+		echo "SteamOS-Tools expiration check: [FAILED]"
+		echo "SteamOS-Tools GPG key looks expired, attempting to renew..."
+		sudo apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 34C589A7
+	else
+		echo "SteamOS-Tools expiration check: [OK]"
+	fi
+
 	echo -e "\n==> Cleaning up\n"
 
 	rm -f libregeek-archive-keyring.deb

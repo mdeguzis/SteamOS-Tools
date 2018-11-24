@@ -120,6 +120,10 @@ function_repo_setup()
 
 		fi
 
+		# Catch any leftovers...
+		sudo rm -f /etc/apt/sources.list.d/steamos-tools.list
+		sudo rm -f /etc/apt/sources.list.d/steamos-tools-beta.list
+
 	fi
 
 }

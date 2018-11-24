@@ -110,6 +110,9 @@ function_repo_setup()
 			sleep 2s
 
 			sudo apt-get purge -y steamos-tools-beta-repo
+			# Catch any leftovers...
+			sudo rm -f /etc/apt/sources.list.d/steamos-tools-beta.list
+			sudo rm -f /etc/apt/sources.list.d/steamos-tools.list
 
 		else
 
@@ -117,12 +120,11 @@ function_repo_setup()
 			sleep 2s
 
 			sudo apt-get purge -y steamos-tools-beta-repo steamos-tools-repo libregeek-archive-keyring
+			# Catch any leftovers...
+			sudo rm -f /etc/apt/sources.list.d/steamos-tools-beta.list
+			sudo rm -f /etc/apt/sources.list.d/steamos-tools.list
 
 		fi
-
-		# Catch any leftovers...
-		sudo rm -f /etc/apt/sources.list.d/steamos-tools.list
-		sudo rm -f /etc/apt/sources.list.d/steamos-tools-beta.list
 
 	fi
 

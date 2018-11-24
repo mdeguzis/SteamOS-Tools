@@ -6,7 +6,12 @@
  <img src="https://github.com/mdeguzis/SteamOS-Tools/raw/master/artwork/icons/alert.png"/> **Latest News**:  
 
 **NOTICE:**  
-2017-11-19: Public keys have been renewed. Please re-run configure-repos.sh. I apologize for letting the key(s) expire.
+2018-11-14: Public keys have been renewed. Please re-run configure-repos.sh as so:
+
+```
+./configure-repos.sh --remove
+./configure-repos.sh
+```
 
 **IMPORTANT**
 

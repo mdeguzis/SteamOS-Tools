@@ -184,6 +184,9 @@ function_set_vars()
 	STEAM_CLIENT_BUILT=$(date -d @${STEAM_CLIENT_VER})
 	STEAMOS_VER=$(dpkg-query -W -f='${VERSION}\n' steamos-updatelevel)
 
+	# Proton
+	PROTON_VER=$(cat /home/steam/.local/share/Steam/config/config.vdf | awk -F'"' '/proton/ {print $4}')
+
 }
 
 function_gather_info()
@@ -235,6 +238,8 @@ function_gather_info()
 	==========================
 	Software Information
 	==========================
+
+	Proton version: ${PROTON_VER}
 
 	${SOFTWARE_LIST}
 

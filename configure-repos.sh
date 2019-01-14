@@ -150,6 +150,27 @@ function_debian_only()
 
 }
 
+function_debian_backports_only()
+{
+
+	if [[ "${INSTALL}" = "true" ]]; then
+
+		echo -e "\n==> Adding Debian backports repository\n"
+		sleep 2s
+		wget http://packages.libregeek.org/debian-backports-repo.deb -nc
+		sudo dpkg -i debian-backports-repo.deb
+
+	elif [[ "${INSTALL}" = "false" ]]; then
+
+		echo -e "\n==> Removing Debian backports repository setup.\n"
+		sleep 2s
+		sudo apt-get purge -y debian-backports-repo
+
+	fi
+
+}
+
+
 function_cleanup()
 {
 
@@ -189,6 +210,7 @@ function_help()
 
 	--default			Normal installation
 	--debian-only			Add only Debian sources
+	--debian-backports			Enable Debian backports repo
 	--repair			Repair and install setup
 	--enable-testing		Add testing repository
 	--remove			Remove all repository setups
@@ -222,6 +244,13 @@ main()
 		# Process just debian setup
 		INSTALL="true"
 		function_debian_only
+		function_cleanup
+		;;
+
+		--debian-backports)
+		# Process just debian backports setup
+		INSTALL="true"
+		function_debian_backports_only
 		function_cleanup
 		;;
 

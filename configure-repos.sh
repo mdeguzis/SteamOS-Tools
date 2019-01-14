@@ -210,7 +210,7 @@ function_help()
 
 	--default			Normal installation
 	--debian-only			Add only Debian sources
-	--debian-backports			Enable Debian backports repo
+	--debian-backports		Enable Debian backports repo
 	--repair			Repair and install setup
 	--enable-testing		Add testing repository
 	--remove			Remove all repository setups

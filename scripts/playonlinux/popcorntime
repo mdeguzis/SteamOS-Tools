@@ -1,0 +1,47 @@
+#!/bin/bash
+# Start popcorn time in SteamOS BPM
+# Ensure you have the VPN setup per your VPN's instructions
+# This is an example with Nord VPN, using a file "secret" in /etc/openvpn/ovpn_${PROTOCOL}
+
+ARG=$1
+CONFIG="us2961.nordvpn.com.udp.ovpn"
+PROTOCOL="udp"
+
+if [[ $ARG == "stop" ]]; then
+	echo "Killing all openvpn/popcorn time"
+	for x in $(ps -aux | awk '/openvpn/ {print $2}'); do sudo kill -9 $x; done
+	sudo killall -9 openvpn
+	exit 0
+
+elif [[ $ARG == "ps" ]]; then
+	ps -aux | awk '/popcorn/ {print $2}'
+	ps -aux | awk '/openpvn/ {print $2}'
+	exit 0
+
+fi
+
+main ()
+{
+	# Flush?
+	#sudo ip addr flush dev wlan0 
+
+	# start vpn
+	# must cd so secret pass is found
+	echo -e "\n===> Starting Nord VPN\n"
+	sleep 2s
+	cd /etc/openvpn/ovpn_tcp/
+	sudo -b /usr/sbin/openvpn /etc/openvpn/ovpn_${PROTOCOL}/${CONFIG} || exit 1
+
+	# start popcorn time
+	echo -e "\n===> Starting popcorn time\n"
+	sleep 2s
+	/opt/popcorntime/Popcorn-Time || exit 1
+
+	# kill procs
+	for x in $(ps -aux | awk '/openvpn/ {print $2}'); do sudo kill -9 $x; done
+
+}
+
+# Start and log
+main 2>&1 | tee /tmp/popcorntime.log
+

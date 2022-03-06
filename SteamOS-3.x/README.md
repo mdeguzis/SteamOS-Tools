@@ -1,3 +1,17 @@
+<!---toc start-->
+
+  * [Warning](#warning)
+  * [Script Helper](#script-helper)
+  * [Manifest](#manifest)
+  * [Primary elements](#primary-elements)
+  * [Table](#table)
+  * [Package Deep Dives / Inspection](#package-deep-dives--inspection)
+    * [steamos-customizations-jupiter](#steamos-customizations-jupiter)
+  * [Troubleshooting](#troubleshooting)
+    * [Reset](#reset)
+
+<!---toc end-->
+
 ## Warning
 All things below are to be done AT YOUR OWN RISK! I am not responsible for any fallout from tinkering with this new UI on non-Steam Deck devices
 

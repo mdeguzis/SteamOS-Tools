@@ -14,4 +14,7 @@ These are some known/unknown file dumps / pieces of SteamoS 3.0 / Steam Deck's g
 
 ## Package Deep Dives / Inspection
 
-TODO
+### steamos-customizations-jupiter
+
+* /usr/lib/systemd/system/system-generator/steamos-steamlib-generator: Seems to be the magic for the multiple libraries
+

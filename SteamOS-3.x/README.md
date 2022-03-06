@@ -1,3 +1,9 @@
+## Warning
+All things below are to be done AT YOUR OWN RISK! I am not responsible for any fallout from tinkering with this new UI on non-Steam Deck devices
+
+## Script Helper
+See `steam-deck.sh` in this directory for simple method to toggle the new gamepadUI on/off.
+
 ## Manifest
 These are some known/unknown file dumps / pieces of SteamoS 3.0 / Steam Deck's gamepadUI inner workings. WIP collection of possible helpful elements
 
@@ -19,3 +25,11 @@ These are some known/unknown file dumps / pieces of SteamoS 3.0 / Steam Deck's g
 
 * /usr/lib/systemd/system/system-generator/steamos-steamlib-generator: Seems to be the magic for the multiple libraries
 
+
+## Troubleshooting
+
+### Reset
+Running into trouble after messing too much with things? You can try a few things (at your own risk)
+
+1. Remove `/.local/share/Steam/config/Config.vdf` (will force you to re-enter login details). 
+2. Run `steam-runtime --reset` (reset pretty much everything for Steam)

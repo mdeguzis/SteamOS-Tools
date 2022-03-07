@@ -14,7 +14,6 @@ OPTION=$1
 CLIENT_BETA_CONFIG="${HOME}/.local/share/Steam/package/beta"
 DECK_VER="steampal_stable_9a24a2bf68596b860cb6710d9ea307a76c29a04d"
 DECK_CONF="${HOME}/.config/environment.d/deckui.conf"
-
 VGA_GPU=$(lspci -v | grep VGA)
 VALID_GPU="false"
 if echo "${VGA_GPU}" | grep -q "AMD"; then

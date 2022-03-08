@@ -67,7 +67,7 @@ if [[ ${OPTION} == "enable" || ${OPTION} == "install" ]]; then
 		fi
 
 	else
-		echo "Warning: Did not see an AMD GPU in use, falling back to lightdm only..."
+		echo "[WARN] Did not see an AMD GPU in use, falling back to lightdm only..."
 		sudo systemctl restart lightdm
 	fi
 	

@@ -110,7 +110,10 @@ function config() {
 
 	if [[ ${action} == "install" ]]; then
 		echo "[INFO] Copying beta config into place"
+		sudo bash -c "echo ${DECK_VER} > ${CLIENT_BETA_CONFIG}"
+
 		# Add deckui.conf
+		echo "[INFO] Copying deckui config into place"
 		cat <<-EOF >> "${DECK_CONF}"
 		GAMESCOPECMD="gamescope -W ${RES_W} -H ${RES_H} --steam -f"
 		STEAMCMD="steam -steamos -gamepadui"
@@ -202,35 +205,30 @@ case "${OPTION}" in
 esac
 
 main() {
-	# Main handling routines
+	# Main handling routines	
+	case "${OPTION}" in
+		"--enable")
+			config backup
+			config install
+			session enable
+			;;
+			
+		"--disable")
+			config restore
+			session disable
+			;;
 
-	# "publicbeta" is the original beta config if added previously
-	# Add appropriate Steam client beta version
-	sudo bash -c "echo ${DECK_VER} > ${CLIENT_BETA_CONFIG}"
-		
-		case "${OPTION}" in
-			"--enable")
-				config backup
-				config install
-				session enable
-				;;
-				
-			"--disable")
-				config restore
-				session disable
-				;;
+		"--install")
+			config backup
+			config install
+			session install
+			;;
 
-			"--install")
-				config backup
-				config install
-				session install
-				;;
-
-			"--uninstall")
-				config uninstall
-				session uninstall
-				;;
-		esac
+		"--uninstall")
+			config uninstall
+			session uninstall
+			;;
+	esac
 
 	echo "[INFO] Done!"
 }

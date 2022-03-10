@@ -4,8 +4,6 @@
 # TODO
 #   * Intelligently set resolution for config file or provide a deault + arg option
 
-set -e 
-
 LINE="==========================================================="
 OPTION=$1
 BETA_CONFIG_FOUND="false"

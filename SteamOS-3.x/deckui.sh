@@ -1,6 +1,8 @@
 #!/bin/bash
 # Description: Install/uninstall gamepad UI and/or Gamescope from Steam Deck
 # Designed for ChimeraOS
+# Resources
+#   * gamescope options: https://github.com/Plagman/gamescope/blob/master/src/main.cpp
 
 LINE="==========================================================="
 OPTION=$1

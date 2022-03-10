@@ -95,9 +95,6 @@ function gamescope() {
 		sudo systemctl start lightdm
 	fi
 
-	echo "[INFO] Restarting Steam..."
-	pkill steam
-
 }
 
 function config() {
@@ -176,6 +173,10 @@ function session () {
 		fi
 
 	fi
+
+	echo "[INFO] Restarting Steam..."
+	pkill steam
+
 }
 
 

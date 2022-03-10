@@ -195,7 +195,8 @@ case "${OPTION}" in
 		verify_status
 		;;
 	*)
-		echo "[ERROR] Failed to provid a valid option. One of: install, uninstall, enable, disable"
+		echo "[ERROR] Failed to provid a valid option:"
+		show_help
 		exit 1
 		;;
 esac

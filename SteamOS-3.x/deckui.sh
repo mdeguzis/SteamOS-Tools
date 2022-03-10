@@ -172,9 +172,11 @@ function session () {
 
 	fi
 
-	echo "[INFO] Restarting Steam..."
-	pkill steam
+}
 
+function restart_steam () {
+    echo "[INFO] Restarting Steam..."
+    pkill steam
 }
 
 
@@ -208,22 +210,26 @@ main() {
 			config backup
 			config install
 			session enable
+			restart_steam
 			;;
 			
 		"--disable")
 			config restore
 			session disable
+			restart_steam
 			;;
 
 		"--install")
 			config backup
 			config install
 			session install
+			restart_steam
 			;;
 
 		"--uninstall")
 			config uninstall
 			session uninstall
+			restart_steam
 			;;
 	esac
 

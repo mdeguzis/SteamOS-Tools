@@ -1,8 +1,6 @@
 #!/bin/bash
 # Description: Install/uninstall gamepad UI and/or Gamescope from Steam Deck
 # Designed for ChimeraOS
-# TODO
-#   * Intelligently set resolution for config file or provide a deault + arg option
 
 LINE="==========================================================="
 OPTION=$1
@@ -11,8 +9,6 @@ CLIENT_BETA_CONFIG="${HOME}/.local/share/Steam/package/beta"
 DECK_VER="steampal_stable_9a24a2bf68596b860cb6710d9ea307a76c29a04d"
 DECK_CONF="${HOME}/.config/environment.d/deckui.conf"
 VALID_GPU="false"
-RES_H="1080"
-RES_W="1920"
 
 # Valid GPU vendors at this point are AMD (best case) and Intel.
 # See: /usr/share/hwdata/pci.ids
@@ -55,8 +51,8 @@ function show_help() {
 	--help|-h		Show this help page
 	--enable		Enable the gamepadUI and/or Gamescope (do not persist on reboot)
 	--disable		Disable and revert to stock configuration the user has/had (do not persist on reboot)
-	--install		Make changes permenant to system (persist on reboot)
-	--uninstall		Remoeve and revert to stock configuration (persist on reboot)
+	--install		Make changes permanent to system (persist on reboot)
+	--uninstall		Remove and revert to stock configuration (persist on reboot)
 
 	HELP_EOF
 
@@ -110,7 +106,7 @@ function config() {
 		# Add deckui.conf
 		echo "[INFO] Copying deckui config into place"
 		cat <<-EOF >> "${DECK_CONF}"
-		GAMESCOPECMD="gamescope -W ${RES_W} -H ${RES_H} --steam -f"
+		GAMESCOPECMD="gamescope -e -f --steam -f"
 		STEAMCMD="steam -steamos -gamepadui"
 		EOF
 

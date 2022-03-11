@@ -174,6 +174,7 @@ fi
 case "${OPTION}" in
 	"help"|"--help"|"-h")
 		show_help
+        exit 0
 		;;
 	"--enable"|"--install"|"--uninstall")
 		;;

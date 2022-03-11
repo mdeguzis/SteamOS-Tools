@@ -37,6 +37,7 @@ function verify_status() {
 
 	# Display current config only
 	cat<<-EOF2
+
 	Current configuration:
 
 	Expected beta config file: ${CLIENT_BETA_CONFIG}
@@ -178,6 +179,11 @@ main() {
 
 	EOF
 
+	# No options?
+	if [[ -z $1 ]]; then
+		VERIFY_ONLY="true"
+	fi
+
 	while :; do
 		case $1 in
 
@@ -230,7 +236,7 @@ main() {
 	done
 
 	# Information display when no option is given
-	if [[ -z $1 || ${VERIFY_ONLY} == "true" ]]; then
+	if [[ ${VERIFY_ONLY} == "true" ]]; then
 		verify_status
 	fi
 }

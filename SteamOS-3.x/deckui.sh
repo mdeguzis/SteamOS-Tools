@@ -6,6 +6,8 @@
 
 # Defaults
 
+DATE=$(date +%Y%m%d-%H%M%S)
+LOG_FILE="/tmp/deckui-tool-$(date +%Y%m%d-%H%M%S)"
 LINE="==========================================================="
 OPTION=$1
 BETA_CONFIG_FOUND="false"
@@ -207,5 +209,9 @@ main() {
 }
 
 # Start and log
-main "$@" 2>&1 | tee /tmp/gamescope-switcher.log
-echo "[INFO] Log: /tmp/gamescope-switcher.log"
+main "$@" 2>&1 | tee ${LOG_FILE}
+echo "[INFO] Log: ${LOG_FILE}"
+
+# Trim logs
+find /tmp -name "deckui-tool-*" -mtime 14 -exec -delete 2>/dev/null
+

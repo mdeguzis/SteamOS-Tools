@@ -2,7 +2,7 @@
 # Description: Install/uninstall gamepad UI and/or Gamescope from Steam Deck
 # Designed for ChimeraOS
 # Resources
-#   * gamescope options: https://github.com/Plagman/gamescope/blob/master/src/main.cpp
+#	* gamescope options: https://github.com/Plagman/gamescope/blob/master/src/main.cpp
 
 # Defaults
 
@@ -35,9 +35,9 @@ function verify_status() {
 	# Display current config only
 	cat<<-EOF2
 	Current configuration:
-	
+
 	Expected beta config file: ${CLIENT_BETA_CONFIG}
-	Beta config found: ${BETA_CONFIG_FOUND}	
+	Beta config found: ${BETA_CONFIG_FOUND} 
 	Valid GPU for Gamescope?: ${VALID_GPU}
 
 	EOF2
@@ -63,20 +63,20 @@ function gamescope() {
 		sudo systemctl stop lightdm
 		echo "[INFO] Starting gamescope session"
 		sudo systemctl start gamescope@tty1
-        if [[ ${PERSIST} == "true" ]]; then
-            sudo systemctl enable gamescope@tty1
-            sudo systemctl disable lightdm
-        fi
+		if [[ ${PERSIST} == "true" ]]; then
+			sudo systemctl enable gamescope@tty1
+			sudo systemctl disable lightdm
+		fi
 
 	elif [[ ${ACTION} == "disable" ]]; then
 		echo "[INFO] Stopping gamescope session"
 		sudo systemctl stop gamescope@tty1
 		echo "[INFO] Starting lightdm session"
 		sudo systemctl start lightdm
-        if [[ ${PERSIST} == "true" ]]; then
-            sudo systemctl disable gamescope@tty1
-            sudo systemctl enable lightdm
-        fi
+		if [[ ${PERSIST} == "true" ]]; then
+			sudo systemctl disable gamescope@tty1
+			sudo systemctl enable lightdm
+		fi
 	fi
 }
 
@@ -145,66 +145,67 @@ function session () {
 }
 
 function restart_steam () {
-    echo "[INFO] Restarting Steam..."
-    pkill steam
+	echo "[INFO] Restarting Steam..."
+	pkill steam
 }
 
 main() {
-    cat<<-EOF
-    ${LINE}
-    Steam Deck gamepadui installation script (experimental)
-    ${LINE}
+	cat<<-EOF
+	${LINE}
+	Steam Deck gamepadui installation script (experimental)
+	${LINE}
 
-    EOF
+	EOF
 
-    # Information display when no option is given
-    if [[ -z $1 ]]; then
-        verify_status
-    fi
+	# Information display when no option is given
+	if [[ -z $1 ]]; then
+		verify_status
+	fi
 
-    while :; do
-        case $1 in
+	while :; do
+		case $1 in
 
-            --persist|-p)
-                PERSIST="true"
-                ;;
+			--persist|-p)
+				PERSIST="true"
+				;;
 
-            --enable)
-                config backup
-                config enable
-                session enable
-                restart_steam
-                ;;
-                
-            --disable)
-                session disable
-                restart_steam
-                ;;
+			--enable)
+				config backup
+				config enable
+				session enable
+				restart_steam
+				;;
+				
+			--disable)
+				session disable
+				restart_steam
+				;;
 
-            --help|-h)
-                show_help;
+			--help|-h)
+				show_help;
+				;;
 
-            --)
-                # End of all options.
-                shift
-                break
-            ;;
+			--)
+				# End of all options.
+				shift
+				break
+			;;
 
-            -?*)
-                printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
-            ;;
+			-?*)
+				printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+			;;
 
-            *)
-                # Default case: If no more options then break out of the loop.
-                break
+			*)
+				# Default case: If no more options then break out of the loop.
+				break
 
-        esac
+		esac
 
-        # shift args
-        shift
-    done
+		# shift args
+		shift
+	done
 }
 
 # Start and log
-main 2>&1 | tee /tmp/gamescope-switcher.log
+main "$@" 2>&1 | tee /tmp/gamescope-switcher.log
 echo "[INFO] Log: /tmp/gamescope-switcher.log"

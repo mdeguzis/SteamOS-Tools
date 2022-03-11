@@ -4,6 +4,8 @@
 # Resources
 #   * gamescope options: https://github.com/Plagman/gamescope/blob/master/src/main.cpp
 
+# Defaults
+
 LINE="==========================================================="
 OPTION=$1
 BETA_CONFIG_FOUND="false"
@@ -11,6 +13,7 @@ CLIENT_BETA_CONFIG="${HOME}/.local/share/Steam/package/beta"
 DECK_VER="steampal_stable_9a24a2bf68596b860cb6710d9ea307a76c29a04d"
 DECK_CONF="${HOME}/.config/environment.d/deckui.conf"
 VALID_GPU="false"
+PERSIST="false"
 
 # Valid GPU vendors at this point are AMD (best case) and Intel.
 # See: /usr/share/hwdata/pci.ids
@@ -27,13 +30,6 @@ fi
 if [[ -f ${CLIENT_BETA_CONFIG} ]]; then
 	BETA_CONFIG_FOUND="true"
 fi
-
-cat<<-EOF
-${LINE}
-Steam Deck gamepadui installation script (experimental)
-${LINE}
-
-EOF
 
 function verify_status() {
 	# Display current config only
@@ -52,48 +48,45 @@ function show_help() {
 	cat<<-HELP_EOF
 	--help|-h		Show this help page
 	--enable		Enable the gamepadUI and/or Gamescope (do not persist on reboot)
-	--install		Make changes permanent to system (persist on reboot)
-	--uninstall		Remove and revert to stock configuration (persist on reboot)
+	--disable		Disable the gamepadUI and/or Gamescope (do not persist on reboot)
+	--persist		Persist changes upon reboot.
 
 	HELP_EOF
 
 }
 
 function gamescope() {
-	local action=$1
+	local ACTION=$1
 
-	if [[ ${action} == "install" ]]; then
-		echo "[INFO] Stopping lightdm"
-		sudo systemctl stop lightdm
-		echo "[INFO] Installing gamescope session"
-		sudo systemctl enable gamescope@tty1
-		sudo systemctl start gamescope@tty1
-
-	elif [[ ${action} == "uninstall" ]]; then
-		echo "[INFO] Uninstalling gamescope session"
-		sudo systemctl stop gamescope@tty1
-		sudo systemctl disable gamescope@tty1
-		echo "[INFO] Starting lightdm session"
-		sudo systemctl enable lightdm
-		sudo systemctl start lightdm
-
-	elif [[ ${action} == "enable" ]]; then
+	if [[ ${ACTION} == "enable" ]]; then
 		echo "[INFO] Stopping lightdm"
 		sudo systemctl stop lightdm
 		echo "[INFO] Starting gamescope session"
 		sudo systemctl start gamescope@tty1
+        if [[ ${PERSIST} == "true" ]]; then
+            sudo systemctl enable gamescope@tty1
+            sudo systemctl disable lightdm
+        fi
 
+	elif [[ ${ACTION} == "disable" ]]; then
+		echo "[INFO] Stopping gamescope session"
+		sudo systemctl stop gamescope@tty1
+		echo "[INFO] Starting lightdm session"
+		sudo systemctl start lightdm
+        if [[ ${PERSIST} == "true" ]]; then
+            sudo systemctl disable gamescope@tty1
+            sudo systemctl enable lightdm
+        fi
 	fi
-
 }
 
 function config() {
-	local action=$1
+	local ACTION=$1
 
 	# Env prep
 	mkdir -p ~/.config/environment.d
 
-	if [[ ${action} == "install" ]]; then
+	if [[ ${ACTION} == "enable" ]]; then
 		echo "[INFO] Copying beta config into place"
 		sudo bash -c "echo ${DECK_VER} > ${CLIENT_BETA_CONFIG}"
 
@@ -104,13 +97,13 @@ function config() {
 		STEAMCMD="steam -steamos -gamepadui"
 		EOF
 
-	elif [[ ${action} == "backup" ]]; then
+	elif [[ ${ACTION} == "backup" ]]; then
 		if [[ -f ${CLIENT_BETA_CONFIG} ]]; then
 			echo "[INFO] Backing up existing ${CLIENT_BETA_CONFIG} to ${CLIENT_BETA_CONFIG}.old"
 			sudo cp "${CLIENT_BETA_CONFIG}" "${CLIENT_BETA_CONFIG}.orig"
 		fi
 
-	elif [[ ${action} == "restore" ]]; then
+	elif [[ ${ACTION} == "restore" ]]; then
 		echo "[INFO] Restoring old configuration"
 		rm -f "${DECK_CONF}"
 		# Restore client beta config or remove if it never existed
@@ -131,29 +124,21 @@ function lightdm_fallback() {
 }
 
 function session () {
-	local action=$1
+	local ACTION=$1
 
-	if [[ ${action} == "install" ]]; then
-		if [[ ${VALID_GPU} == "true" ]]; then
-			echo "[INFO] Found usable GPU for gamescope, enabling..."
-			gamescope install
-		else
-			lightdm_fallback
-		fi
-
-	elif [[ ${action} == "uninstall" ]]; then
-		# Remove configs"
-		rm -f "${DECK_CONF}"
-		gamescope uninstall
-		config restore	
-
-	elif [[ ${action} == "enable" ]]; then
+	if [[ ${ACTION} == "enable" ]]; then
 		if [[ ${VALID_GPU} == "true" ]]; then
 			echo "[INFO] Found usable GPU for gamescope, enabling..."
 			gamescope enable
 		else
 			lightdm_fallback
 		fi
+
+	elif [[ ${ACTION} == "disable" ]]; then
+		# Remove configs"
+		rm -f "${DECK_CONF}"
+		gamescope disable
+		config restore	
 
 	fi
 
@@ -164,56 +149,60 @@ function restart_steam () {
     pkill steam
 }
 
-
-# Information display when no option is given
-if [[ -z ${OPTION} ]]; then
-	verify_status
-fi
-
-# Check for valid options
-case "${OPTION}" in
-	"help"|"--help"|"-h")
-		show_help
-        exit 0
-		;;
-	"--enable"|"--install"|"--uninstall")
-		;;
-		
-	"--verify")
-		verify_status
-		;;
-	*)
-		echo "[ERROR] Failed to provid a valid option:"
-		show_help
-		exit 1
-		;;
-esac
-
 main() {
-	# Main handling routines	
-	case "${OPTION}" in
-		"--enable")
-			config backup
-			config install
-			session enable
-			restart_steam
-			;;
-			
-		"--install")
-			config backup
-			config install
-			session install
-			restart_steam
-			;;
+    cat<<-EOF
+    ${LINE}
+    Steam Deck gamepadui installation script (experimental)
+    ${LINE}
 
-		"--uninstall")
-			config uninstall
-			session uninstall
-			restart_steam
-			;;
-	esac
+    EOF
 
-	echo "[INFO] Done!"
+    # Information display when no option is given
+    if [[ -z $1 ]]; then
+        verify_status
+    fi
+
+    while :; do
+        case $1 in
+
+            --persist|-p)
+                PERSIST="true"
+                ;;
+
+            --enable)
+                config backup
+                config enable
+                session enable
+                restart_steam
+                ;;
+                
+            --disable)
+                session disable
+                restart_steam
+                ;;
+
+            --help|-h)
+                show_help;
+
+            --)
+                # End of all options.
+                shift
+                break
+            ;;
+
+            -?*)
+                printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+            ;;
+
+            *)
+                # Default case: If no more options then break out of the loop.
+                break
+
+        esac
+
+        # shift args
+        shift
+    done
 }
 
 # Start and log

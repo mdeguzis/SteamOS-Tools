@@ -7,9 +7,8 @@
 # Defaults
 
 DATE=$(date +%Y%m%d-%H%M%S)
-LOG_FILE="/tmp/deckui-tool-$(date +%Y%m%d-%H%M%S)"
+LOG_FILE="/tmp/deckui-tool-${DATE}.log"
 LINE="==========================================================="
-OPTION=$1
 BETA_CONFIG_FOUND="false"
 CLIENT_BETA_CONFIG="${HOME}/.local/share/Steam/package/beta"
 DECK_VER="steampal_stable_9a24a2bf68596b860cb6710d9ea307a76c29a04d"
@@ -23,7 +22,7 @@ PERSIST="false"
 AMD_VEND_ID="1002"
 INTEL_VEND_ID="8086"
 PCI_VGA=$(lspci -nm | awk '{print $1 " " $2 " " $3}' | grep -E '300|302')
-ACCEPTABLE_GPU_LIST=$(echo ${PCI_VGA} | grep -E "${AMD_VEND_ID}|${INTEL_VEND_ID}")
+ACCEPTABLE_GPU_LIST=$(echo "${PCI_VGA}" | grep -E "${AMD_VEND_ID}|${INTEL_VEND_ID}")
 if [[ -n ${ACCEPTABLE_GPU_LIST} ]]; then
 	VALID_GPU="true"
 fi
@@ -100,8 +99,10 @@ function config() {
 		EOF
 
 	elif [[ ${ACTION} == "backup" ]]; then
-		if [[ -f ${CLIENT_BETA_CONFIG} ]]; then
-			echo "[INFO] Backing up existing ${CLIENT_BETA_CONFIG} to ${CLIENT_BETA_CONFIG}.old"
+		# Only backup the file if it does not have steampal in it (specific to Steam Deck at this time)
+		# This is to avoid issues with a user running enable when the session already is
+		if [[ -f "${CLIENT_BETA_CONFIG}" ]] && ! grep -q "steampal" "${CLIENT_BETA_CONFIG}"; then
+			echo "[INFO] Backing up existing ${CLIENT_BETA_CONFIG} to ${CLIENT_BETA_CONFIG}.orig"
 			sudo cp "${CLIENT_BETA_CONFIG}" "${CLIENT_BETA_CONFIG}.orig"
 		fi
 
@@ -110,8 +111,8 @@ function config() {
 		rm -f "${DECK_CONF}"
 		# Restore client beta config or remove if it never existed
 		if [[ -f "${CLIENT_BETA_CONFIG}.orig" ]]; then
-			echo "[INFO] Old beta config found, restoring Steam Client beta"
-			sudo bash -c "echo publicbeta > ${CLIENT_BETA_CONFIG}"
+			echo "[INFO] Old beta config found, restoring..."
+			sudo mv "${CLIENT_BETA_CONFIG}" "${CLIENT_BETA_CONFIG}.orig"
 		else
 			echo "[INFO] Old beta config NOT found, removing beta config file"
 			rm -f "${CLIENT_BETA_CONFIG}"
@@ -209,9 +210,9 @@ main() {
 }
 
 # Start and log
-main "$@" 2>&1 | tee ${LOG_FILE}
+main "$@" 2>&1 | tee "${LOG_FILE}"
 echo "[INFO] Log: ${LOG_FILE}"
 
 # Trim logs
-find /tmp -name "deckui-tool-*" -mtime 14 -exec -delete 2>/dev/null
+find /tmp -name "deckui-tool-*" -mtime 14 -exec -delete \; 2>/dev/null
 

@@ -33,12 +33,24 @@ These are some known/unknown file dumps / pieces of SteamoS 3.0 / Steam Deck's g
 |steamos-customizations-jupiter| [link](https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter/os/x86_64/steamos-customizations-jupiter-20220227.2-1-any.pkg.tar.zst) | unknown | |
 | jupiter-hw-support | [link](https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter/os/x86_64/jupiter-hw-support-20220224.1.2-1-any.pkg.tar.zst) | unknown |
 
+## Installing Recovery Image to Virtual Box
+
+1. Install the [VirtualBox extension pack](https://www.nakivo.com/blog/how-to-install-virtualbox-extension-pack/). If you need an 
+older version, navigate to the old version page, such as http://download.virtualbox.org/virtualbox/6.1.30.
+1. Set storage type as NVMe
+2. Under settings for the VM, system tab -> enable EFI. 
+3. Use `dd` to extract img archive to ISO format: 
+   ```
+   bzcat steamdeck-recovery-1.img.bz2 | dd if=/dev/stdin of=steamdeck-recovery.iso oflag=sync status=progress bs=128M
+   ```
+
+Somme help source from [this](https://www.reddit.com/r/SteamDeck/comments/t5nzh4/so_i_tried_booting_the_recovery_image/) Reddit post.
+
 ## Package Deep Dives / Inspection
 
 ### steamos-customizations-jupiter
 
 * /usr/lib/systemd/system/system-generator/steamos-steamlib-generator: Seems to be the magic for the multiple libraries
-
 
 ## Troubleshooting
 

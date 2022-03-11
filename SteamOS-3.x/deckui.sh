@@ -52,7 +52,6 @@ function show_help() {
 	cat<<-HELP_EOF
 	--help|-h		Show this help page
 	--enable		Enable the gamepadUI and/or Gamescope (do not persist on reboot)
-	--disable		Disable and revert to stock configuration the user has/had (do not persist on reboot)
 	--install		Make changes permanent to system (persist on reboot)
 	--uninstall		Remove and revert to stock configuration (persist on reboot)
 
@@ -84,13 +83,6 @@ function gamescope() {
 		echo "[INFO] Starting gamescope session"
 		sudo systemctl start gamescope@tty1
 
-	elif [[ ${action} == "disable" ]]; then
-		echo "[INFO] Disabling gamescope session"
-		sudo systemctl stop gamescope@tty1
-		sudo systemctl disable gamescope@tty1
-		echo "[INFO] Starting lightdm session"
-		sudo systemctl enable lightdm
-		sudo systemctl start lightdm
 	fi
 
 }
@@ -163,13 +155,6 @@ function session () {
 			lightdm_fallback
 		fi
 
-	elif [[ ${action} == "disable" ]]; then
-		if [[ ${VALID_GPU} == "true" ]]; then
-			gamescope disable
-		else
-			lightdm_fallback
-		fi
-
 	fi
 
 }
@@ -190,7 +175,7 @@ case "${OPTION}" in
 	"help"|"--help"|"-h")
 		show_help
 		;;
-	"--enable"|"--disable"|"--install"|"--uninstall")
+	"--enable"|"--install"|"--uninstall")
 		;;
 		
 	"--verify")
@@ -213,12 +198,6 @@ main() {
 			restart_steam
 			;;
 			
-		"--disable")
-			config restore
-			session disable
-			restart_steam
-			;;
-
 		"--install")
 			config backup
 			config install

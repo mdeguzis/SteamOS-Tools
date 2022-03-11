@@ -16,6 +16,7 @@ DECK_CONF="${HOME}/.config/environment.d/deckui.conf"
 VALID_GPU="false"
 PERSIST="false"
 FORCE_ENABLE="false"
+VERIFY_ONLY="false"
 
 # Valid GPU vendors at this point are AMD (best case) and Intel.
 # See: /usr/share/hwdata/pci.ids
@@ -40,6 +41,7 @@ function verify_status() {
 
 	Expected beta config file: ${CLIENT_BETA_CONFIG}
 	Beta config found: ${BETA_CONFIG_FOUND} 
+	Force enable: ${FORCE_ENABLE}
 	Valid GPU for Gamescope?: ${VALID_GPU}
 
 	EOF2
@@ -176,11 +178,6 @@ main() {
 
 	EOF
 
-	# Information display when no option is given
-	if [[ -z $1 ]]; then
-		verify_status
-	fi
-
 	while :; do
 		case $1 in
 
@@ -205,7 +202,7 @@ main() {
 				;;
 
 			--verify|-v)
-				verify_status;
+				VERIFY_ONLY="true"
 				;;
 
 			--help|-h)
@@ -231,6 +228,11 @@ main() {
 		# shift args
 		shift
 	done
+
+	# Information display when no option is given
+	if [[ -z $1 || ${VERIFY_ONLY} == "true" ]]; then
+		verify_status
+	fi
 }
 
 # Start and log

@@ -188,20 +188,24 @@ main() {
 				PERSIST="true"
 				;;
 
-			--enable)
+			--enable|-e)
 				config backup
 				config enable
 				session enable
 				restart_steam
 				;;
 				
-			--disable)
+			--disable|-d)
 				session disable
 				restart_steam
 				;;
 
-			--force-enable)
+			--force-enable|-f)
 				FORCE_ENABLE="true"
+				;;
+
+			--verify|-v)
+				verify_status;
 				;;
 
 			--help|-h)

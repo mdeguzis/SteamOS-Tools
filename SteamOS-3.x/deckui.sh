@@ -15,6 +15,7 @@ DECK_VER="steampal_stable_9a24a2bf68596b860cb6710d9ea307a76c29a04d"
 DECK_CONF="${HOME}/.config/environment.d/deckui.conf"
 VALID_GPU="false"
 PERSIST="false"
+FORCE_ENABLE="false"
 
 # Valid GPU vendors at this point are AMD (best case) and Intel.
 # See: /usr/share/hwdata/pci.ids
@@ -23,9 +24,6 @@ AMD_VEND_ID="1002"
 INTEL_VEND_ID="8086"
 PCI_VGA=$(lspci -nm | awk '{print $1 " " $2 " " $3}' | grep -E '300|302')
 ACCEPTABLE_GPU_LIST=$(echo "${PCI_VGA}" | grep -E "${AMD_VEND_ID}|${INTEL_VEND_ID}")
-if [[ -n ${ACCEPTABLE_GPU_LIST} ]]; then
-	VALID_GPU="true"
-fi
 
 # Dynamic vars
 if [[ -f ${CLIENT_BETA_CONFIG} ]]; then
@@ -33,6 +31,9 @@ if [[ -f ${CLIENT_BETA_CONFIG} ]]; then
 fi
 
 function verify_status() {
+	# Check GPU type
+	validate_gpu
+
 	# Display current config only
 	cat<<-EOF2
 	Current configuration:
@@ -47,10 +48,11 @@ function verify_status() {
 
 function show_help() {
 	cat<<-HELP_EOF
-	--help|-h		Show this help page
-	--enable		Enable the gamepadUI and/or Gamescope (do not persist on reboot)
-	--disable		Disable the gamepadUI and/or Gamescope (do not persist on reboot)
-	--persist		Persist changes upon reboot.
+	--help|-h			Show this help page
+	--enable			Enable the gamepadUI and/or Gamescope (do not persist on reboot)
+	--disable			Disable the gamepadUI and/or Gamescope (do not persist on reboot)
+	--persist			Persist changes upon reboot.
+	--force-enable		        Ignore GPU type restriction and enable Gamescope
 
 	HELP_EOF
 
@@ -129,6 +131,9 @@ function lightdm_fallback() {
 function session () {
 	local ACTION=$1
 
+	# Validate GPU type
+	validate_gpu
+
 	if [[ ${ACTION} == "enable" ]]; then
 		if [[ ${VALID_GPU} == "true" ]]; then
 			echo "[INFO] Found usable GPU for gamescope, enabling..."
@@ -150,6 +155,17 @@ function session () {
 function restart_steam () {
 	echo "[INFO] Restarting Steam..."
 	pkill steam
+}
+
+function validate_gpu () {
+	if [[ -n ${ACCEPTABLE_GPU_LIST} ]]; then
+		VALID_GPU="true"
+	fi
+
+	if [[ ${FORCE_ENABLE} == "true" ]]; then
+		echo "[WARN] Ignoring GPU type restriction for Gamescope configuration"
+		VALID_GPU="true"
+	fi
 }
 
 main() {
@@ -182,6 +198,10 @@ main() {
 			--disable)
 				session disable
 				restart_steam
+				;;
+
+			--force-enable)
+				FORCE_ENABLE="true"
 				;;
 
 			--help|-h)

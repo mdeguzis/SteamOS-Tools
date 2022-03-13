@@ -57,7 +57,7 @@ function show_help() {
 	--enable			Enable the gamepadUI and/or Gamescope (do not persist on reboot)
 	--disable			Disable the gamepadUI and/or Gamescope (do not persist on reboot)
 	--persist			Persist changes upon reboot.
-	--force-enable		        Ignore GPU type restriction and enable Gamescope
+	--force-enable				Ignore GPU type restriction and enable Gamescope
 
 	HELP_EOF
 
@@ -68,7 +68,7 @@ function gamescope() {
 
 	if [[ ${ACTION} == "enable" ]]; then
 		if [[ ${PERSIST} == "true" ]]; then
-            echo "[INFO] Persisting changes"
+			echo "[INFO] Persisting changes"
 			sudo systemctl disable lightdm
 			sudo systemctl enable gamescope@tty1
 		fi
@@ -79,7 +79,7 @@ function gamescope() {
 
 	elif [[ ${ACTION} == "disable" ]]; then
 		if [[ ${PERSIST} == "true" ]]; then
-            echo "[INFO] Persisting changes"
+			echo "[INFO] Persisting changes"
 			sudo systemctl disable gamescope@tty1
 			sudo systemctl enable lightdm
 		fi
@@ -197,11 +197,11 @@ main() {
 				;;
 
 			--enable|-e)
-                ENABLE="true"
+				ENABLE="true"
 				;;
 				
 			--disable|-d)
-                ENABLE="false"
+				ENABLE="false"
 				;;
 
 			--force-enable|-f)
@@ -240,15 +240,15 @@ main() {
 	if [[ ${VERIFY_ONLY} == "true" ]]; then
 		verify_status
 
-    elif [[ ${ENABLE} == "true" ]]; then
-        config backup
-        config enable
-        session enable
-        restart_steam
+	elif [[ ${ENABLE} == "true" ]]; then
+		config backup
+		config enable
+		session enable
+		restart_steam
 
-    elif [[ ${ENABLE} == "false" ]]; then
-        session disable
-        restart_steam
+	elif [[ ${ENABLE} == "false" ]]; then
+		session disable
+		restart_steam
 
 	fi
 }

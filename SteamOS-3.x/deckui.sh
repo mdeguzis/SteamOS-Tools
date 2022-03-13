@@ -60,7 +60,7 @@ function show_help() {
 	--force-enable				Ignore GPU type restriction and enable Gamescope
 
 	HELP_EOF
-
+    exit 0
 }
 
 function gamescope() {

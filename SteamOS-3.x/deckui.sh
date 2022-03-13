@@ -5,7 +5,6 @@
 #	* gamescope options: https://github.com/Plagman/gamescope/blob/master/src/main.cpp
 
 # Defaults
-
 DATE=$(date +%Y%m%d-%H%M%S)
 LOG_FILE="/tmp/deckui-tool-${DATE}.log"
 LINE="==========================================================="
@@ -18,6 +17,17 @@ PERSIST="false"
 FORCE_ENABLE="false"
 VERIFY_ONLY="false"
 ENABLE=""
+
+# Set appropriate user for systemd unit file actions
+# If this script is used within a systemd unit file, ensure appropriate
+# user is set for gamescope target
+if [[ "$EUID" -eq 0 ]]; then
+	CURRENT_USER=${SUDO_USER}
+	SUDO_PREFIX=""
+else
+	CURRENT_USER=${USER}
+	SUDO_PREFIX="sudo"
+fi
 
 # Valid GPU vendors at this point are AMD (best case) and Intel.
 # See: /usr/share/hwdata/pci.ids
@@ -41,6 +51,7 @@ function verify_status() {
 
 	Current configuration:
 
+	Current user: ${CURRENT_USER}
 	Expected beta config file: ${CLIENT_BETA_CONFIG}
 	Beta config found: ${BETA_CONFIG_FOUND} 
 	Force enable: ${FORCE_ENABLE}
@@ -60,7 +71,7 @@ function show_help() {
 	--force-enable				Ignore GPU type restriction and enable Gamescope
 
 	HELP_EOF
-    exit 0
+	exit 0
 }
 
 function gamescope() {
@@ -69,24 +80,24 @@ function gamescope() {
 	if [[ ${ACTION} == "enable" ]]; then
 		if [[ ${PERSIST} == "true" ]]; then
 			echo "[INFO] Persisting changes"
-			sudo systemctl disable lightdm
-			sudo systemctl enable gamescope@tty1
+			${SUDO_PREFIX} systemctl disable lightdm
+			${SUDO_PREFIX} systemctl enable gamescope@${CURRENT_USER}
 		fi
 		echo "[INFO] Stopping lightdm"
-		sudo systemctl stop lightdm
+		${SUDO_PREFIX} systemctl stop lightdm
 		echo "[INFO] Starting gamescope session"
-		sudo systemctl start gamescope@tty1
+		${SUDO_PREFIX} systemctl start gamescope@tty1
 
 	elif [[ ${ACTION} == "disable" ]]; then
 		if [[ ${PERSIST} == "true" ]]; then
 			echo "[INFO] Persisting changes"
-			sudo systemctl disable gamescope@tty1
-			sudo systemctl enable lightdm
+			${SUDO_PREFIX} systemctl disable gamescope@${CURRENT_USER}
+			${SUDO_PREFIX} systemctl enable lightdm
 		fi
 		echo "[INFO] Stopping gamescope session"
-		sudo systemctl stop gamescope@tty1
+		${SUDO_PREFIX} systemctl stop gamescope@${CURRENT_USER}
 		echo "[INFO] Starting lightdm session"
-		sudo systemctl start lightdm
+		${SUDO_PREFIX} systemctl start lightdm
 	fi
 }
 
@@ -98,7 +109,7 @@ function config() {
 
 	if [[ ${ACTION} == "enable" ]]; then
 		echo "[INFO] Copying beta config into place"
-		sudo bash -c "echo ${DECK_VER} > ${CLIENT_BETA_CONFIG}"
+		${SUDO_PREFIX} bash -c "echo ${DECK_VER} > ${CLIENT_BETA_CONFIG}"
 
 		# Add deckui.conf
 		echo "[INFO] Copying deckui config into place"
@@ -112,7 +123,7 @@ function config() {
 		# This is to avoid issues with a user running enable when the session already is
 		if [[ -f "${CLIENT_BETA_CONFIG}" ]] && ! grep -q "steampal" "${CLIENT_BETA_CONFIG}"; then
 			echo "[INFO] Backing up existing ${CLIENT_BETA_CONFIG} to ${CLIENT_BETA_CONFIG}.orig"
-			sudo cp "${CLIENT_BETA_CONFIG}" "${CLIENT_BETA_CONFIG}.orig"
+			${SUDO_PREFIX} cp "${CLIENT_BETA_CONFIG}" "${CLIENT_BETA_CONFIG}.orig"
 		fi
 
 	elif [[ ${ACTION} == "restore" ]]; then
@@ -122,7 +133,7 @@ function config() {
 		# Restore client beta config or remove if it never existed
 		if [[ -f "${CLIENT_BETA_CONFIG}.orig" ]]; then
 			echo "[INFO] Old beta config found, restoring..."
-			sudo mv "${CLIENT_BETA_CONFIG}" "${CLIENT_BETA_CONFIG}.orig"
+			${SUDO_PREFIX} mv "${CLIENT_BETA_CONFIG}" "${CLIENT_BETA_CONFIG}.orig"
 		else
 			echo "[INFO] Old beta config NOT found, removing beta config file"
 			rm -f "${CLIENT_BETA_CONFIG}"
@@ -133,7 +144,7 @@ function config() {
 
 function lightdm_fallback() {
 	echo "[WARN] Did not find usable GPU for gamescope! Falling back to lightdm"
-	sudo systemctl restart lightdm
+	${SUDO_PREFIX} systemctl restart lightdm
 }
 
 function session () {

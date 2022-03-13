@@ -65,24 +65,26 @@ function gamescope() {
 	local ACTION=$1
 
 	if [[ ${ACTION} == "enable" ]]; then
+		if [[ ${PERSIST} == "true" ]]; then
+            echo "[INFO] Persisting changes"
+			sudo systemctl disable lightdm
+			sudo systemctl enable gamescope@tty1
+		fi
 		echo "[INFO] Stopping lightdm"
 		sudo systemctl stop lightdm
 		echo "[INFO] Starting gamescope session"
 		sudo systemctl start gamescope@tty1
-		if [[ ${PERSIST} == "true" ]]; then
-			sudo systemctl enable gamescope@tty1
-			sudo systemctl disable lightdm
-		fi
 
 	elif [[ ${ACTION} == "disable" ]]; then
+		if [[ ${PERSIST} == "true" ]]; then
+            echo "[INFO] Persisting changes"
+			sudo systemctl disable gamescope@tty1
+			sudo systemctl enable lightdm
+		fi
 		echo "[INFO] Stopping gamescope session"
 		sudo systemctl stop gamescope@tty1
 		echo "[INFO] Starting lightdm session"
 		sudo systemctl start lightdm
-		if [[ ${PERSIST} == "true" ]]; then
-			sudo systemctl disable gamescope@tty1
-			sudo systemctl enable lightdm
-		fi
 	fi
 }
 

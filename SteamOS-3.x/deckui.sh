@@ -192,7 +192,6 @@ main() {
 	${LINE}
 	Steam Deck gamepadui installation script (experimental)
 	${LINE}
-
 	EOF
 
 	# No options?

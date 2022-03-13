@@ -99,7 +99,7 @@ function config() {
 		# Add deckui.conf
 		echo "[INFO] Copying deckui config into place"
 		cat <<-EOF >> "${DECK_CONF}"
-		GAMESCOPECMD="gamescope -e -f --steam -f"
+		GAMESCOPECMD="gamescope -e -f --steam"
 		STEAMCMD="steam -steamos -gamepadui"
 		EOF
 

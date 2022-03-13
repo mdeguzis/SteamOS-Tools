@@ -43,6 +43,7 @@ function verify_status() {
 	Expected beta config file: ${CLIENT_BETA_CONFIG}
 	Beta config found: ${BETA_CONFIG_FOUND} 
 	Force enable: ${FORCE_ENABLE}
+	Persist changes?: ${PERSIST}
 	Valid GPU for Gamescope?: ${VALID_GPU}
 
 	EOF2

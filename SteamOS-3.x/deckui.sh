@@ -17,6 +17,7 @@ VALID_GPU="false"
 PERSIST="false"
 FORCE_ENABLE="false"
 VERIFY_ONLY="false"
+ENABLE=""
 
 # Valid GPU vendors at this point are AMD (best case) and Intel.
 # See: /usr/share/hwdata/pci.ids
@@ -102,7 +103,7 @@ function config() {
 		# Add deckui.conf
 		echo "[INFO] Copying deckui config into place"
 		cat <<-EOF >> "${DECK_CONF}"
-		GAMESCOPECMD="gamescope -e -f --steam"
+		GAMESCOPECMD="gamescope -e -f"
 		STEAMCMD="steam -steamos -gamepadui"
 		EOF
 
@@ -195,15 +196,11 @@ main() {
 				;;
 
 			--enable|-e)
-				config backup
-				config enable
-				session enable
-				restart_steam
+                ENABLE="true"
 				;;
 				
 			--disable|-d)
-				session disable
-				restart_steam
+                ENABLE="false"
 				;;
 
 			--force-enable|-f)
@@ -241,6 +238,17 @@ main() {
 	# Information display when no option is given
 	if [[ ${VERIFY_ONLY} == "true" ]]; then
 		verify_status
+
+    elif [[ ${ENABLE} == "true" ]]; then
+        config backup
+        config enable
+        session enable
+        restart_steam
+
+    elif [[ ${ENABLE} == "false" ]]; then
+        session disable
+        restart_steam
+
 	fi
 }
 

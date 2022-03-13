@@ -86,7 +86,7 @@ function gamescope() {
 		echo "[INFO] Stopping lightdm"
 		${SUDO_PREFIX} systemctl stop lightdm
 		echo "[INFO] Starting gamescope session"
-		${SUDO_PREFIX} systemctl start gamescope@tty1
+		${SUDO_PREFIX} systemctl start gamescope@${CURRENT_USER}
 
 	elif [[ ${ACTION} == "disable" ]]; then
 		if [[ ${PERSIST} == "true" ]]; then

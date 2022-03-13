@@ -133,7 +133,7 @@ function config() {
 		# Restore client beta config or remove if it never existed
 		if [[ -f "${CLIENT_BETA_CONFIG}.orig" ]]; then
 			echo "[INFO] Old beta config found, restoring..."
-			${SUDO_PREFIX} mv "${CLIENT_BETA_CONFIG}" "${CLIENT_BETA_CONFIG}.orig"
+			${SUDO_PREFIX} mv "${CLIENT_BETA_CONFIG}".orig "${CLIENT_BETA_CONFIG}"
 		else
 			echo "[INFO] Old beta config NOT found, removing beta config file"
 			rm -f "${CLIENT_BETA_CONFIG}"

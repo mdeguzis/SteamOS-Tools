@@ -116,7 +116,8 @@ function config() {
 		fi
 
 	elif [[ ${ACTION} == "restore" ]]; then
-		echo "[INFO] Restoring old configuration"
+		echo "[INFO] Restoring old configuration..."
+		echo "[INFO] Removing deckui conf"
 		rm -f "${DECK_CONF}"
 		# Restore client beta config or remove if it never existed
 		if [[ -f "${CLIENT_BETA_CONFIG}.orig" ]]; then

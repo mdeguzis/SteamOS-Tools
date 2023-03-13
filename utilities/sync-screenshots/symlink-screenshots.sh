@@ -8,15 +8,17 @@
 
 set -e
 
-echo "[INFO] symlinking screenshots"
-mkdir -p ~/.steam_screenshots
+main() {
+	echo "[INFO] symlinking screenshots"
+	mkdir -p ~/.steam_screenshots
 
-for d in $(find -L ${HOME}/.local/share/Steam/userdata/ -type d -name "screenshots" -not -path '*thumbnails*');
-do
-	# Link
-	for f in $(find -L ${d} -type f -name "*.jpg" -not -path '*thumbnails*');
+	for d in $(find -L ${HOME}/.local/share/Steam/userdata/ -type d -name "screenshots" -not -path '*thumbnails*');
 	do
-		ln -sf ${f} ${HOME}/.steam_screenshots/$(basename ${f})
+		# Link
+		for f in $(find -L ${d} -type f -name "*.jpg" -not -path '*thumbnails*');
+		do
+			ln -sfv ${f} ${HOME}/.steam_screenshots/$(basename ${f})
+		done
 	done
 
 	# Cleanup links that have no target anymore
@@ -27,4 +29,7 @@ do
 			rm -fv ${l}
 		fi
 	done
-done
+
+}
+main 2>&1 | tee /tmp/sync-screenshots-linker.log
+echo "[INFO] Done! See /tmp/sync-screenshots-linker.log"

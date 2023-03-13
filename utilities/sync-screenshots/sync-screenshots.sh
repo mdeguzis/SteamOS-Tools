@@ -31,45 +31,20 @@ main() {
 		fi
 
 		echo "[INFO] Installing and activating systemd unit files"
-		cp -v sync-screenshots.path ~/.config/systemd/user/
-		cp -v sync-screenshots.service ~/.config/systemd/user/
+		cp -v systemd/* ~/.config/systemd/user/
 		sudo systemctl daemon-reload
-		systemctl --user enable sync-screenshots.path
-		systemctl --user start sync-screenshots.path
+		systemctl --user enable --now sync-screenshots.path
 		systemctl --user status sync-screenshots.path
 
+		# Symlinking service to workaround forced target directories in Google Photos
+		systemctl --user enable --now sync-screenshots-linker.service
+		systemctl --user status sync-screenshots-linker.service
+		systemctl --user enable --now sync-screenshots-linker.timer
+		systemctl --user status sync-screenshots-linker.timer
+
 	elif [[ "${action}" == "run" ]]; then
-		# rclone cannot currently sync with "flattened" files (no dirs)
-		# It's possible a new version will provide a flatten option or something
-		# Do not sync useless thumbnails directory
-		#
-		# The trick right now is create symlinks to all the screenshots to ~/.steam_screenshots
-		# It's lame/messy, but it gets the job done
-
-		# I hate this...
-		rm -rf ~/.steam_screenshots
-		mkdir -p ~/.steam_screenshots
-		for d in $(find -L ${HOME}/.local/share/Steam/userdata/ -type d -name "screenshots" -not -path '*thumbnails*');
-		do
-			# Link
-			echo "[INFO] symlinking screenshots"
-			for f in $(find -L ${d} -type f -name "*.jpg" -not -path '*thumbnails*');
-			do
-				ln -sf ${f} ${HOME}/.steam_screenshots/$(basename ${f})
-			done
-
-			# Cleanup links that have no target anymore
-			echo "[INFO] Cleaning up old broken symlinks"
-			for l in $(find ~/.steam_screenshots -name "*.jpg");
-			do
-				if [[ ! -f $(readlink -f ${l}) ]]; then
-					rm -fv ${l}
-				fi
-			done
-		done
-
 		echo "[INFO] Syncing screenshots from ${SOURCE_DIR} to ${REMOTE_DIR}, please wait..."
-		~/.local/bin/rclone sync -L -P "${SOURCE_DIR}" "${REMOTE_NAME}:${REMOTE_DIR}" \
+		~/.local/bin/rclone sync -vv -L -P "${SOURCE_DIR}" "${REMOTE_NAME}:${REMOTE_DIR}" \
 			--exclude=**/thumbnails/**
 	else
 		echo "[ERROR] Unknown action: ${action}. Please use one of: install, run"

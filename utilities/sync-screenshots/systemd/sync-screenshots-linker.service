@@ -2,4 +2,4 @@
 Description=Regulary checks for and symlinks new screenshots to ~/.steam_screenshots
 
 [Service]
-ExecStart=%h/github-repos/SteamOS-Tools/utilities/sync-screenshots/symlink-screenshots.sh
+ExecStart=%hSRC_CODE_ROOT/utilities/sync-screenshots/symlink-screenshots.sh

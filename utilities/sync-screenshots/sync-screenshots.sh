@@ -18,6 +18,13 @@ main() {
 	SOURCE_DIR="${HOME}/.steam_screenshots"
 
 	if [[ "${action}" == "install" ]]; then
+		if ! git status &> /dev/null; then
+			echo "[ERROR] Please ensure you are runnign this project from a git clone"
+			exit 1
+		else
+			echo "[INFO] Git status: OK"
+		fi
+
 		if ! $(which rclone &>/dev/null); then
 			echo -e "[INFO] Missing rclone, installing..."
 			mkdir -p ~/rclone
@@ -30,8 +37,15 @@ main() {
 			cd ${scriptdir}
 		fi
 
-		echo "[INFO] Installing and activating systemd unit files"
+		# Adjust the path to where this source code is
+		echo "[INFO] Configuring new systemd unit files"
 		cp -v systemd/* ~/.config/systemd/user/
+		SRC_CODE_ROOT=$(git rev-parse --show-toplevel)
+		sed -i "s|SRC_CODE_ROOT|$SRC_CODE_ROOT|" ~/.config/systemd/user/sync-screenshots.service
+		sed -i "s|SRC_CODE_ROOT|$SRC_CODE_ROOT|" ~/.config/systemd/user/sync-screenshots-linker.service
+		exit 0
+
+		echo "[INFO] Installing and activating systemd unit files"
 		sudo systemctl daemon-reload
 		systemctl --user enable --now sync-screenshots.path
 		systemctl --user status sync-screenshots.path

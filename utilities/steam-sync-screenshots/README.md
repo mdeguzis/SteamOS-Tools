@@ -13,7 +13,30 @@ The default timer for the symlinker watcher is 60 seconds, but you can adjust th
 /tmp/sync-screenshots.log
 ```
 
-Setting up your gphoto target: https://foosel.net/til/how-to-automatically-sync-screenshots-from-the-steamdeck-to-google-photos/
+Setting up your gphoto target:
+
+Creat a new target called `gphoto` by running `~/.local/bin/rclone` config again and then following these steps. Quick summary:
+
+1. New remote
+1. gphoto
+1. Empty application ID and secret
+1. Full access ("false" to read only question)
+1. No advanced config
+1. Use web browser to authenticate. You can say "n" here if you are on another machine with CLI only. You'll receive a token in the local browser to add to you remote machine
+
+I then created a new album:
+
+```
+~/.local/bin/rclone mkdir gphoto:album/Steamdeck
+```
+
+Adjust `sync-screenshots.sh` to use the new remote and remote path:
+```
+REMOTE_NAME='gphoto'
+REMOTE_DIR='album/Steamdeck'
+```
+
+Original source: https://foosel.net/til/how-to-automatically-sync-screenshots-from-the-steamdeck-to-google-photos/
 
 ## Installation:
 ```

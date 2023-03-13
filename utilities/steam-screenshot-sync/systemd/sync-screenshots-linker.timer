@@ -1,0 +1,7 @@
+[Unit]
+Description=Timer for Steam screenshot sync symlinker service
+
+[Timer]
+OnBootSec=60s
+OnUnitActiveSec=60s
+Unit=sync-screenshots-linker.service

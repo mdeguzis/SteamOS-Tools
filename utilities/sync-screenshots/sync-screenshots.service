@@ -3,4 +3,4 @@ Description=Sync Steam Screenshots
 
 [Service]
 Type=oneshot
-ExecStart=%h/SteamOS-Tools/utilties/sync-screenshots/sync-screenshots.sh
+ExecStart=%h/github-repos/SteamOS-Tools/utilities/sync-screenshots/sync-screenshots.sh run

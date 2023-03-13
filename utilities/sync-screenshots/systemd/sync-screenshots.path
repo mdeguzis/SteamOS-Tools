@@ -1,9 +1,0 @@
-[Unit]
-Description=Sync Steam Screenshots
-
-[Path]
-PathModified=%h/.steam_screenshots
-Unit=sync-screenshots.service
-
-[Install]
-WantedBy=default.target

@@ -1,6 +1,0 @@
-[Unit]
-Description=Sync Steam Screenshots
-
-[Service]
-Type=oneshot
-ExecStart=%hSRC_CODE_ROOT/utilities/sync-screenshots/sync-screenshots.sh run

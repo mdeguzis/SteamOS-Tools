@@ -1,5 +1,5 @@
 [Unit]
-Description: Timer for Steam screenshot sync symlinker service
+Description=Timer for Steam screenshot sync symlinker service
 
 [Timer]
 OnBootSec=60s

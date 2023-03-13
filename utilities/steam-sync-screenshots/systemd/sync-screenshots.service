@@ -1,0 +1,6 @@
+[Unit]
+Description=Sync Steam Screenshots
+
+[Service]
+Type=oneshot
+ExecStart=%h/steam-sync-screenshots/sync-screenshots.sh run

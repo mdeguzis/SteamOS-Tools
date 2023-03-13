@@ -30,9 +30,9 @@ main() {
 			cd ${scriptdir}
 		fi
 
-		echo "[INFO] Copyign source code to ~/steam-screenshot-sync"
-		mkdir -p ~/steam-screenshot-sync
-		cp -rv . ~/steam-screenshot-sync
+		echo "[INFO] Copyign source code to ~/steam-screenshots-sync"
+		mkdir -p ~/steam-screenshots-sync
+		cp -rv . ~/steam-screenshots-sync
 
 		echo "[INFO] Configuring new systemd unit files"
 		cp -v systemd/* ~/.config/systemd/user/

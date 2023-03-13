@@ -30,17 +30,6 @@ main() {
 			cd ${scriptdir}
 		fi
 
-		# There are screenshot dirs per user and per game, collect them all
-		echo "[INFO] Symlimking screenshots directory for systemd"
-		mkdir -p ~/.steam_screenshots
-		for d in $(find ${HOME}/.local/share/Steam/userdata/ -name "screenshots");
-		do
-			steam_account=$(echo ${d} | awk -F'/' '{print $8}')
-			game_dir=$(echo ${d} | awk -F'/' '{print $11}')
-			short_name=$(echo $(basename ${d})-${steam_account}-${game_dir})
-			ln -sfv ${d} ${HOME}/.steam_screenshots/${short_name}
-		done
-
 		echo "[INFO] Installing and activating systemd unit files"
 		cp -v sync-screenshots.path ~/.config/systemd/user/
 		cp -v sync-screenshots.service ~/.config/systemd/user/
@@ -50,9 +39,36 @@ main() {
 		systemctl --user status sync-screenshots.path
 
 	elif [[ "${action}" == "run" ]]; then
-		# rclone cannot currently sync with "flattened" files (no dirs). Check back on this.
+		# rclone cannot currently sync with "flattened" files (no dirs)
+		# It's possible a new version will provide a flatten option or something
 		# Do not sync useless thumbnails directory
-		echo "[INFO] Syncing screenshots from ${SOURCE_DIR}, please wait..."
+		#
+		# The trick right now is create symlinks to all the screenshots to ~/.steam_screenshots
+		# It's lame/messy, but it gets the job done
+
+		# I hate this...
+		rm -rf ~/.steam_screenshots
+		mkdir -p ~/.steam_screenshots
+		for d in $(find -L ${HOME}/.local/share/Steam/userdata/ -type d -name "screenshots" -not -path '*thumbnails*');
+		do
+			# Link
+			echo "[INFO] symlinking screenshots"
+			for f in $(find -L ${d} -type f -name "*.jpg" -not -path '*thumbnails*');
+			do
+				ln -sfv ${f} ${HOME}/.steam_screenshots/$(basename ${f})
+			done
+
+			# Cleanup links that have no target anymore
+			echo "[INFO] Cleaning up old broken symlinks"
+			for l in $(find ~/.steam_screenshots -name "*.jpg");
+			do
+				if [[ ! -f $(readlink -f ${l}) ]]; then
+					rm -fv ${l}
+				fi
+			done
+		done
+
+		echo "[INFO] Syncing screenshots from ${SOURCE_DIR} to ${REMOTE_DIR}, please wait..."
 		~/.local/bin/rclone sync -L -P "${SOURCE_DIR}" "${REMOTE_NAME}:${REMOTE_DIR}" \
 			--exclude=**/thumbnails/**
 	else

@@ -50,6 +50,6 @@ Run once (the systemd unit files will run this automatically):
 
 ## TODO
 
-* Add remote la for gphoto target before sync to check if a user 
+* Add remote ls for gphoto target before sync to check if a user 
 Deleted a screenshot in Google Photos. If they did, delete it from
 our local store. 

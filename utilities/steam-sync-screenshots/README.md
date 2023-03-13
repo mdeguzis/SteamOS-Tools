@@ -13,7 +13,7 @@ The default timer for the symlinker watcher is 60 seconds, but you can adjust th
 /tmp/sync-screenshots.log
 ```
 
-Setting up your gphoto target:
+## Setting up your gphoto target:
 
 Creat a new target called `gphoto` by running `~/.local/bin/rclone` config again and then following these steps. Quick summary:
 

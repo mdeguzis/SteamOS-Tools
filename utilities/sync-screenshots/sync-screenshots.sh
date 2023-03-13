@@ -55,7 +55,7 @@ main() {
 			echo "[INFO] symlinking screenshots"
 			for f in $(find -L ${d} -type f -name "*.jpg" -not -path '*thumbnails*');
 			do
-				ln -sfv ${f} ${HOME}/.steam_screenshots/$(basename ${f})
+				ln -sf ${f} ${HOME}/.steam_screenshots/$(basename ${f})
 			done
 
 			# Cleanup links that have no target anymore

@@ -31,14 +31,13 @@ main() {
 		fi
 
 		echo "[INFO] Copyign source code to ~/steam-screenshots-sync"
-		mkdir -p ~/steam-screenshots-sync
-		cp -rv . ~/steam-screenshots-sync
+		mkdir -p ~/steam-sync-screenshots
+		cp -rv . ~/steam-sync-screenshots
 
 		echo "[INFO] Configuring new systemd unit files"
 		cp -v systemd/* ~/.config/systemd/user/
 
 		echo "[INFO] Installing and activating systemd unit files"
-		sudo systemctl daemon-reload
 		systemctl --user enable --now sync-screenshots.path
 		systemctl --user status sync-screenshots.path
 
@@ -47,6 +46,8 @@ main() {
 		systemctl --user status sync-screenshots-linker.service
 		systemctl --user enable --now sync-screenshots-linker.timer
 		systemctl --user status sync-screenshots-linker.timer
+
+		sudo systemctl daemon-reload
 
 	elif [[ "${action}" == "run" ]]; then
 		echo "[INFO] Syncing screenshots from ${SOURCE_DIR} to ${REMOTE_DIR}, please wait..."

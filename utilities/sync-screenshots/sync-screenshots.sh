@@ -12,7 +12,7 @@ main() {
 	# Find current profiles with 'find ~/.steam/steam/ -name "screenshots"'
 	# Also, you can find this in Steam settings
 	# Symlink this so the <service>.path is easy and does not change
-	SCREENSHOTS_DIR="${HOME}/.local/share/Steam/userdata/<SOME_ID>/760/remote/<SOME_PROFILE>/screenshots"
+	SCREENSHOTS_DIR="${HOME}/.local/share/Steam/userdata/<STEAM_ID>/760/remote/<STEAM_PROFILE>/screenshots"
 	SOURCE_DIR="${HOME}/.steam_screenshots"
 
 
@@ -42,7 +42,9 @@ main() {
 
 	elif [[ "${action}" == run ]]; then
 		echo "[INFO] Syncing screenshots from ${SOURCE_DIR}, please wait..."
-		~/.local/bin/rclone sync -L -P "${SOURCE_DIR}" "${REMOTE_NAME}:${REMOTE_DIR}"
+		# Double directory instead of screenshots dir?
+		~/.local/bin/rclone sync -L -P "${SOURCE_DIR}" "${REMOTE_NAME}:${REMOTE_DIR}" \
+			--exclude='/thumbnails/' --exclude='/screenshots/'
 	else
 		echo "[ERROR] Unknown action: ${action}. Please use one of: install, run"
 		exit 1

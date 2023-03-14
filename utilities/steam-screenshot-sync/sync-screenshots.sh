@@ -50,6 +50,10 @@ main() {
 		sudo systemctl daemon-reload
 
 	elif [[ "${action}" == "run" ]]; then
+		# Add a crude "sync back" that checks the remote listing then compares
+		# what is in ~/.steam_screenshots to try and achieve a "bi-directional"
+		# sync.  Results will be matched and deleted from the real path
+
 		echo "[INFO] Syncing screenshots from ${SOURCE_DIR} to ${REMOTE_DIR}, please wait..."
 		~/.local/bin/rclone sync -vv -L -P "${SOURCE_DIR}" "${REMOTE_NAME}:${REMOTE_DIR}" \
 			--exclude=**/thumbnails/**

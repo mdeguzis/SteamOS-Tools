@@ -6,6 +6,9 @@ You can change the target to something else, but the script is made to sync scre
 (no directories created in Google Photos, just add screenshots), so there is hacky workaround that symlinks to the files for sync and watches/mutates 
 when new screenshots are added. If you just sync the screenshots folder of choice, you'll end up with a different Google Photos directory per folder within...
 
+There is also a crude "sync back" (Google Photos > Local path) that runes before new symlinks are created. This effectively will remove the
+real/symlink file(s) in `~/.steam_screenshots` when you delete a screenshot in your Google Photo album.
+
 The default timer for the symlinker watcher is 60 seconds, but you can adjust this yourself. Logs are printed to the following locations:
 
 ```

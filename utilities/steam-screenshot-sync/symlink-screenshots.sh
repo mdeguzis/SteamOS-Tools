@@ -15,6 +15,9 @@ main() {
 
 	# Crude Google Photos > local sync for deleted photos
 	# If this is too unstable, this may be removed
+	# What this accomplishes then, is the local path is mutated, which will
+	# kick off the systemd path unit file and trigger an upload after everthing here
+	# is done. This should then replicate 1:1 between actions local/remote in Album
         echo "[INFO] 'Syncing' back from Google Photos what was deleted"
         lfiles=$(find ${SOURCE_DIR} -name *.jpg -exec $(echo basename {}) \; | tr -s '\n' ' ')
         gfiles=()

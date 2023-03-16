@@ -42,10 +42,12 @@ main() {
 		systemctl --user status sync-screenshots.path
 
 		# Symlinking service to workaround forced target directories in Google Photos
-		systemctl --user enable --now sync-screenshots-linker.service
-		systemctl --user status sync-screenshots-linker.service
 		systemctl --user enable --now sync-screenshots-linker.timer
 		systemctl --user status sync-screenshots-linker.timer
+
+		# Main service
+		systemctl --user enable --now sync-screenshots.service
+		systemctl --user status sync-screenshots.service
 
 		sudo systemctl daemon-reload
 

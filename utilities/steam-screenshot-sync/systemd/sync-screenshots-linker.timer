@@ -2,6 +2,6 @@
 Description=Timer for Steam screenshot sync symlinker service
 
 [Timer]
-OnBootSec=60s
-OnUnitActiveSec=60s
+OnBootSec=30s
+OnUnitActiveSec=30s
 Unit=sync-screenshots-linker.service

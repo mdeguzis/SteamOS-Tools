@@ -2,7 +2,7 @@
 Description=Sync Steam Screenshots
 
 [Path]
-PathModified=%h/.steam_screenshots
+PathModified=%h/.steam-screenshots
 Unit=sync-screenshots.service
 
 [Install]

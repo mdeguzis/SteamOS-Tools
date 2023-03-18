@@ -1,6 +1,8 @@
 #!/bin/bash
 # Credit: https://foosel.net/til/how-to-automatically-sync-screenshots-from-the-steamdeck-to-google-drive/
 
+set -e
+
 main() {
 	if [[ -z ${action} ]]; then
 		echo "[ERROR] Action must be passed as the first arg! One of: install, run"
@@ -15,7 +17,7 @@ main() {
 	# Find current profiles with 'find ~/.steam/steam/ -name "screenshots"'
 	# Also, you can find this in Steam settings
 	# Symlink this so the <service>.path is easy and does not change
-	SOURCE_DIR="${HOME}/.steam_screenshots"
+	SOURCE_DIR="${HOME}/.steam-screenshots"
 
 	if [[ "${action}" == "install" ]]; then
 		if ! $(which rclone &>/dev/null); then
@@ -29,6 +31,9 @@ main() {
 			ln -sfv $(readlink -f rclone-v${rclone_ver}-linux-amd64/rclone) ~/.local/bin/rclone
 			cd ${scriptdir}
 		fi
+
+		echo "[INFO] Creating Google Photos album: ${REMOTE_IDR}"
+		~/.local/bin/rclone mkdir gphoto:${REMOTE_DIR}
 
 		echo "[INFO] Copyign source code to ~/steam-screenshot-sync"
 		mkdir -p ~/steam-screenshot-sync
@@ -49,18 +54,26 @@ main() {
 		systemctl --user enable --now sync-screenshots.service
 		systemctl --user status sync-screenshots.service
 
-		sudo systemctl daemon-reload
+		systemctl --user daemon-reload
+
+	elif [[ "${action}" == "uninstall" ]]; then
+		systemctl --user disable --now sync-screenshots.path
+		systemctl --user disable --now sync-screenshots.service
+		systemctl --user disable --now sync-screenshots-linker.timer
+		systemctl --user disable --now sync-screenshots-linker.service
+		systemctl --user daemon-reload
+		rm -v ~/.config/systemd/user/sync-screenshots*
 
 	elif [[ "${action}" == "run" ]]; then
 		# Add a crude "sync back" that checks the remote listing then compares
-		# what is in ~/.steam_screenshots to try and achieve a "bi-directional"
+		# what is in ~/.steam-screenshots to try and achieve a "bi-directional"
 		# sync.  Results will be matched and deleted from the real path
 
 		echo "[INFO] Syncing screenshots from ${SOURCE_DIR} to ${REMOTE_DIR}, please wait..."
 		~/.local/bin/rclone sync -vv -L -P "${SOURCE_DIR}" "${REMOTE_NAME}:${REMOTE_DIR}" \
 			--exclude=**/thumbnails/**
 	else
-		echo "[ERROR] Unknown action: ${action}. Please use one of: install, run"
+		echo "[ERROR] Unknown action: ${action}. Please use one of: install, uninstall, run"
 		exit 1
 	fi
 

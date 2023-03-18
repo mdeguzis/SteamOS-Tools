@@ -9,7 +9,7 @@ when new screenshots are added. If you just sync the screenshots folder of choic
 There is also a crude "sync back" (Google Photos > Local path) that runes before new symlinks are created. This effectively will remove the
 real/symlink file(s) in `~/.steam_screenshots` when you delete a screenshot in your Google Photo album.
 
-The default timer for the symlinker watcher is 60 seconds, but you can adjust this yourself. Logs are printed to the following locations:
+The default timer for the symlinker watcher is 30 seconds, but you can adjust this yourself. Logs are printed to the following locations:
 
 ```
 /tmp/sync-screenshots-linker.log
@@ -50,4 +50,9 @@ Run once (the systemd unit files will run this automatically):
 ```
 ./sync-screenshots.sh run
 ```
+
+## Cleanup routines
+
+* Note that the backups directory at `~/.steam-screenshots-backup` will auto purge files older than 6 months to keeep 
+the local disk from eventually filling up with screenshots. You can adjust this in `symlink-screenshots.sh`.
 

@@ -15,7 +15,7 @@ main() {
 	echo "[INFO] Checking for active rclone actions..."
 	if pgrep -a rclone; then
 		echo "[ERROR] Active rclone action in progress, aborting"
-		exit
+		exit 0
 	fi
 
 	echo "[INFO] symlinking screenshots"
@@ -58,7 +58,7 @@ main() {
 		done
 	else
 		echo "[ERROR] Cannot run linker, see error message"
-		exit 1
+		exit 0
 	fi
 
 	echo "[INFO] Linking Steam screnshots to ${SOURCE_DIR}"

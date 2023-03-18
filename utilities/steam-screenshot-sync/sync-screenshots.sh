@@ -48,6 +48,8 @@ main() {
 		systemctl --user status sync-screenshots.path
 
 		# Symlinking service to workaround forced target directories in Google Photos
+		systemctl --user enable --now sync-screenshots-linker.service
+		systemctl --user status sync-screenshots-linker.service
 		systemctl --user enable --now sync-screenshots-linker.timer
 		systemctl --user status sync-screenshots-linker.timer
 
@@ -72,7 +74,7 @@ main() {
 		echo "[INFO] Checking for active linker actions..."
 		if pgrep -lf ".*bash.*symlink-screenshots.sh"; then
 			echo "[ERROR] Symlinker is currently runnig, aborting."
-			exit
+			exit 0
 		fi
 
 		# Add a crude "sync back" that checks the remote listing then compares

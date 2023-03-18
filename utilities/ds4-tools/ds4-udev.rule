@@ -1,0 +1,3 @@
+# Set First DualShock 4 LED color
+
+ACTION=="add", SUBSYSTEM=="input", ATTRS{uniq}=="CHANGEME" RUN+="/usr/local/bin/ds4led '%p' 000100"

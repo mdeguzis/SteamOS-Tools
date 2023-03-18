@@ -11,8 +11,9 @@ set -e
 
 main() {
 	# Do not run this if rclone is active to avoid conflicts
+	echo "[INFO] Checking if rclone is currently running.."
 	if pgrep rclone; then
-		echo "[ERROR] Skipping symlnk run, reclone action are running"
+		echo "[ERROR] Skipping symlink run, reclone action are running"
 		exit 0
 	fi
 	

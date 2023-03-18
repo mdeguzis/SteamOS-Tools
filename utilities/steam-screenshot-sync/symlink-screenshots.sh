@@ -10,13 +10,14 @@
 set -e
 
 main() {
-	# Do not run this if rclone is active to avoid conflicts
-	echo "[INFO] Checking if rclone is currently running.."
-	if pgrep rclone; then
-		echo "[ERROR] Skipping symlink run, reclone action are running"
-		exit 0
+	# Check for active rclone processes
+	# Don't run at the same time to avoid conflicts
+	echo "[INFO] Checking for active rclone actions..."
+	if pgrep -a rclone; then
+		echo "[ERROR] Active rclone action in progress, aborting"
+		exit
 	fi
-	
+
 	echo "[INFO] symlinking screenshots"
 	SOURCE_DIR="${HOME}/.steam-screenshots"
 	BACKUP_DIR="${HOME}/.steam-screenshots-backup"

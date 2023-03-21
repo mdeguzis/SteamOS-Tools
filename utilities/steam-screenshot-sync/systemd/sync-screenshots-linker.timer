@@ -5,3 +5,7 @@ Description=Timer for Steam screenshot sync symlinker service
 OnBootSec=30s
 OnUnitActiveSec=30s
 Unit=sync-screenshots-linker.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -72,10 +72,11 @@ main() {
 		# This could result in an imbalance between local/remote, wherein
 		# A file is being removed/added while a sync kicks off
 		echo "[INFO] Checking for active linker actions..."
-		if pgrep -lf ".*bash.*symlink-screenshots.sh"; then
-			echo "[ERROR] Symlinker is currently runnig, aborting."
-			exit 0
-		fi
+		while pgrep -lf ".*bash.*symlink-screenshots.sh";
+		do
+			echo "[ERROR] Symlinker is currently runnig, waiting until it is done..."
+			sleep 5s
+		done
 
 		# Add a crude "sync back" that checks the remote listing then compares
 		# what is in ~/.steam-screenshots to try and achieve a "bi-directional"

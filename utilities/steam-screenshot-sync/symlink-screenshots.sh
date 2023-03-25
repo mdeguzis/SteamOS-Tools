@@ -13,10 +13,11 @@ main() {
 	# Check for active rclone processes
 	# Don't run at the same time to avoid conflicts
 	echo "[INFO] Checking for active rclone actions..."
-	if pgrep -a rclone; then
-		echo "[ERROR] Active rclone action in progress, aborting"
-		exit 0
-	fi
+	while pgrep -a rclone;
+	do
+		echo "[ERROR] Active rclone action in progress, waiting until it is done..."
+		sleep 5
+	done
 
 	echo "[INFO] symlinking screenshots"
 	SOURCE_DIR="${HOME}/.steam-screenshots"

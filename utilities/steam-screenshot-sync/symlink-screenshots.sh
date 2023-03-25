@@ -82,7 +82,7 @@ main() {
 
 	# Trim backup photos older than 3 months so they don't potentially fill up the disk
 	echo "Removing backed up photos older than 6 months"
-	find "${BACKUP_DIR}" -mindepth 1 -mtime +180 -exec rm -fv {} \;
+	find ${BACKUP_DIR} -mindepth 1 -mtime +180 -exec rm -fv {} \;
 
 }
 main 2>&1 | tee /tmp/sync-screenshots-linker.log

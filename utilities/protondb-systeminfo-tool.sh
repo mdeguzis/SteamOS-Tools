@@ -1,4 +1,5 @@
 #!/bin/bash
+# NOTE: This was yanked from ChimeraOS, add credit due there for this copy of the script.
 export LC_ALL=C
 
 # Scaffold some hefty guard rails around ensuring DISPLAY works

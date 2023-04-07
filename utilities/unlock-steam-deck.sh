@@ -13,4 +13,4 @@ echo "[INFO] Updating repository index"
 sudo pacman -Syy
 
 echo "[INFO] Installing basic devtools"
-sudo pacman -S --no-confirm base-devel
+sudo pacman -S --noconfirm base-devel

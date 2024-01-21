@@ -5,6 +5,7 @@ set -e
 
 # Defaults
 DATE=$(date +%Y%m%d-%H%M%S)
+GIT_ROOT=$(git rev-parse --show-toplevel)
 LOG_FILE="/tmp/supermodel-mgr-${DATE}.log"
 LINE="==========================================================="
 
@@ -12,6 +13,10 @@ function show_help() {
 	cat<<-HELP_EOF
 	--help|-h			Show this help page
 	--install			Install supermodel
+	--add-game			Add game desktop file for Steam
+	--remote-game			Remove game desktop file for Steam
+	--game-name			Set name of game to add/remove
+	--game-zip			Set zip location for game to add/remove
 
 	HELP_EOF
 	exit 0
@@ -71,6 +76,34 @@ main() {
 				INSTALL="true"
 				;;
 
+			--add-game|-a)
+				ADD_GAME="true"
+				;;
+
+			--game-name|-n)
+				if [[ -n $2 ]]; then
+					GAME_NAME="$2"
+				else
+					echo "[ERROR] An argument must be passed!"
+					exit 1
+				fi
+				shift
+				;;
+
+			--game-zip|-z)
+				if [[ -n $2 ]]; then
+					GAME_ZIP="$2"
+				else
+					echo "[ERROR] An argument must be passed!"
+					exit 1
+				fi
+				shift
+				;;
+
+			--remove-game)
+				REMOVE_GAME="true"
+				;;
+
 			--help|-h)
 				show_help;
 				;;
@@ -98,10 +131,34 @@ main() {
 	# Do we need to buidl
 	if [[ ${INSTALL} == "true" ]]; then
 		install_supermodel
-	fi
+	fi	
 
 	# Add desktop files for games
-	# TODO
+	# Set max resolution from available modes
+	DEVICE_RES=$(cat /sys/class/drm/*/modes | head -n 1)
+
+	# Set vars
+	if [[ ${ADD_GAME} == "true" ]]; then
+		if [[ -z ${GAME_NAME} || -z ${GAME_ZIP} ]]; then
+			echo "[ERROR] Please provide the game name and game zip args!"
+			exit 1
+		fi
+
+		# Verify paths
+		if [[ ! -f ${GAME_ZIP} ]]; then
+			echo "[ERROR] Could not locate game zip at path: '${GAME_ZIP}'!"
+			exit 1
+		fi
+		exit 0
+
+		# Copy desktop file with absolute path to game zip
+		cp -v "${GIT_ROOT}/cfgs/desktop-files/supermodel-template.desktop" "/usr/share/applications/supermodel-${GAME_NAME}.desktop"
+
+		# Update values
+		sed "s|GAME_NAME|${GAME_NAME}|g" "/usr/share/applications/${GAME_NAME}.desktop"
+		sed "s|GAME_ZIP|${GAME_ZIP}|g" "/usr/share/applications/${GAME_NAME}.desktop"
+	fi
+
 }
 
 # Start and log

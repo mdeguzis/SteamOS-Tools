@@ -1,6 +1,13 @@
 # Supermodel-Pre-Configured-Files
 
-INSTRUCTIONS
+## Legacy
+
+Source: https://forums.launchbox-app.com/files/file/3857-sega-model-3-supermodel-git-everything-pre-configured-inc-controls-for-pc-controller-mouse-light-guns-test-menus-configured-free-play-all-games-in-english-2-player-mouse-support-audio-adjusted-layout-imagesthe-whole-9-yards/
+
+## Instructions
+
+TODO: Make this more clear on what to do / automate with manager script
+
 
 -Download NVRAM files and place in Supermodel file system
 

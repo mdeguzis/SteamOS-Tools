@@ -107,6 +107,7 @@ main() {
 
 	# Set vars
 	if [[ ${ADD_GAME} == "true" ]]; then
+		GAME_BASENAME=$(basename ${GAME_ZIP} | sed 's/\.zip//')
 		if [[ -z ${GAME_NAME} || -z ${GAME_ZIP} ]]; then
 			echo "[ERROR] Please provide the game name and game zip args!"
 			exit 1
@@ -119,11 +120,12 @@ main() {
 		fi
 
 		# Copy desktop file with absolute path to game zip
-		cp -v "${GIT_ROOT}/cfgs/desktop-files/supermodel-template.desktop" "${HOME}/.local/share/applications/supermodel-${GAME_ZIP}.desktop"
+		cp -v "${GIT_ROOT}/cfgs/desktop-files/supermodel-template.desktop" "${HOME}/.local/share/applications/supermodel-${GAME_BASENAME}.desktop"
 
 		# Update values
-		sed "s|GAME_NAME|${GAME_NAME}|g" "/usr/share/applications/${GAME_ZIP}.desktop"
-		sed "s|GAME_ZIP|${GAME_ZIP}|g" "/usr/share/applications/${GAME_ZIP}.desktop"
+		sed -i "s|GAME_NAME|${GAME_NAME}|g" "${HOME}/.local/share/applications/supermodel-${GAME_BASENAME}.desktop"
+		sed -i "s|GAME_ZIP|${GAME_ZIP}|g" "${HOME}/.local/share/applications/supermodel-${GAME_BASENAME}.desktop"
+		sed -i "s|DEVICE_RES|${DEVICE_RES}|g" "${HOME}/.local/share/applications/supermodel-${GAME_BASENAME}.desktop"
 	fi
 
 }

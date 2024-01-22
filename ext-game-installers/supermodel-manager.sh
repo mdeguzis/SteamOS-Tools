@@ -23,42 +23,10 @@ function show_help() {
 }
 
 function install_supermodel() {
-	# Support ChimeraOS/Steam Deck
-	if [[ -f "/usr/bin/frzr-unlock" ]]; then
-		# ChimeraOS
-		sudo frzr-unlock
-	else
-		sudo steamos-readonly disable
-	fi
-
-	# Deps
-	echo -e "\n[INFO] Initializing and refreshing keys, please wait..."
-	sudo pacman -Syy
-	sudo pacman -S archlinux-keyring --noconfirm
-	sudo pacman-key --init
-	sudo pacman-key --populate archlinux
-	# If this fails, regenerate mirrors with the curl command and upgrade keyring
-	# 	https://wiki.archlinux.org/title/mirrors
-	# 	sudo pacman -Sy archlinux-keyring --noconfirm
-	# This also manifests as getting install errors such as:
-	# 	error: pkgconf: signature from "Johannes Löthberg <johannes@kyriasis.com>" is marginal trust
-	sudo pacman -Sy sdl2 sdl2_net devtools base-devel --noconfirm
-
-	# Clone
-	echo -e "\n[INFO] Building and installing supermodel"
-	mkdir -p ${HOME}/src
-	if [[ ! -d "${HOME}/src/supermodel" ]]; then
-		git clone https://github.com/trzy/Supermodel ~/src/supermodel
-	else
-		git -C "${HOME}/src/supermodel" pull
-	fi
-	cd "${HOME}/src/supermodel"
-	make -f Makefiles/Makefile.UNIX NET_BOARD=1
-
-	# When built, we need to execute this link from the src root
-	sudo ln -sfv $(readlink -f bin/supermodel) /usr/bin/supermodel
-	mkdir -p ${HOME}/.config/supermodel/Config
-	rsync -rav ${HOME}/src/supermodel/Config ~/.config/supermodel/Config/
+	# use the Flatpak (much safer install
+	# https://gitlab.com/es-de/emulationstation-de/-/blob/master/USERGUIDE.md#arcade-and-neo-geo
+	# https://flathub.org/apps/com.supermodel3.Supermodel
+	flatpak install --user com.supermodel3.Supermodel -y
 
 	echo -e "\nBasic usage: https://www.supermodel3.com/Usage.html"
 }
@@ -149,14 +117,13 @@ main() {
 			echo "[ERROR] Could not locate game zip at path: '${GAME_ZIP}'!"
 			exit 1
 		fi
-		exit 0
 
 		# Copy desktop file with absolute path to game zip
-		cp -v "${GIT_ROOT}/cfgs/desktop-files/supermodel-template.desktop" "/usr/share/applications/supermodel-${GAME_NAME}.desktop"
+		cp -v "${GIT_ROOT}/cfgs/desktop-files/supermodel-template.desktop" "${HOME}/.local/share/applications/supermodel-${GAME_ZIP}.desktop"
 
 		# Update values
-		sed "s|GAME_NAME|${GAME_NAME}|g" "/usr/share/applications/${GAME_NAME}.desktop"
-		sed "s|GAME_ZIP|${GAME_ZIP}|g" "/usr/share/applications/${GAME_NAME}.desktop"
+		sed "s|GAME_NAME|${GAME_NAME}|g" "/usr/share/applications/${GAME_ZIP}.desktop"
+		sed "s|GAME_ZIP|${GAME_ZIP}|g" "/usr/share/applications/${GAME_ZIP}.desktop"
 	fi
 
 }

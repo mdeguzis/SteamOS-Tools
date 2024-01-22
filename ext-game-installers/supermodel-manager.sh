@@ -137,6 +137,8 @@ main() {
 # Start and log
 main "$@" 2>&1 | tee "${LOG_FILE}"
 echo "[INFO] Log: ${LOG_FILE}"
+echo "[INFO] Looking for notes on how to pre-configure controls for your gamepad?"
+ehco "[INFO] https://forums.launchbox-app.com/files/file/3857-sega-model-3-supermodel-git-everything-pre-configured-inc-controls-for-pc-controller-mouse-light-guns-test-menus-configured-free-play-all-games-in-english-2-player-mouse-support-audio-adjusted-layout-imagesthe-whole-9-yards/"
 
 # Trim logs
 find /tmp -name "supermodel-mgr-*" -mtime 14 -exec -delete \; 2>/dev/null

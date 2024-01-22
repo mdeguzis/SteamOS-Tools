@@ -103,7 +103,11 @@ main() {
 
 	# Add desktop files for games
 	# Set max resolution from available modes
-	DEVICE_RES=$(cat /sys/class/drm/*/modes | head -n 1)
+	# Using the modes file, it seems to be backwards:
+	# 	Steam Deck: 800x1280 
+	DEVICE_RES_X=$(cat /sys/class/drm/*/modes | head -n 1 | awk -F'x' '{print $2}')
+	DEVICE_RES_Y=$(cat /sys/class/drm/*/modes | head -n 1 | awk -F'x' '{print $1}')
+	DEVICE_RES=$(echo "${DEVICE_RES_X},${DEVICE_RES_Y}")
 
 	# Set vars
 	if [[ ${ADD_GAME} == "true" ]]; then

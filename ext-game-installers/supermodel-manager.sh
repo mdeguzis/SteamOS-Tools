@@ -1,5 +1,9 @@
 #!/bin/bash
 # Description: Install, run, and manage Supermodel (Sega) emulator + roms
+# Notes:
+# 	'sdl' input seems to mostly work on Linux
+# 	Install 'joyutils' to test your inputs: jstest /dev/input/js0 usually
+#
 
 set -e
 
@@ -197,6 +201,7 @@ main() {
 
 		1) xinput
 		2) dinput
+		3) sdl
 
 		EOF
 		read -erp "Choice: " INPUT_CHOICE
@@ -204,6 +209,8 @@ main() {
 			cp -v "${GIT_ROOT}/cfgs/supermodel3/xinput/Supermodel.ini" "${HOME}/src/supermodel/Config/"
 		elif [[ ${INPUT_CHOICE} == "2" ]]; then
 			cp -v "${GIT_ROOT}/cfgs/supermodel3/dinput/Supermodel.ini" "${HOME}/src/supermodel/Config/"
+		elif [[ ${INPUT_CHOICE} == "3" ]]; then
+			cp -v "${GIT_ROOT}/cfgs/supermodel3/sdl/Supermodel.ini" "${HOME}/src/supermodel/Config/"
 		else
 			echo "[ERROR] Invalid choice!"
 			exit 1

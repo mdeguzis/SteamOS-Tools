@@ -225,6 +225,8 @@ main() {
 
 # Start and log
 main "$@" 2>&1 | tee "${LOG_FILE}"
+echo -e "\nNOTE: Make sure to run the following from ~/src/supermodel to configure inputs in desktop mode!"
+echo "flatpak run com.supermodel3.Supermodel -config-input"
 echo "[INFO] Log: ${LOG_FILE}"
 echo "[INFO] Looking for notes on how to pre-configure controls for your gamepad? See cfgs/supermodel3/README.md"
 

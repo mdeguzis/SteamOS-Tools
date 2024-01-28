@@ -1,0 +1,9 @@
+[Unit]
+Description=Sync Steam Screenshots
+
+[Service]
+Type=oneshot
+ExecStart=%h/steam-screenshot-sync/sync-screenshots.sh run
+
+[Install]
+WantedBy=multi-user.target

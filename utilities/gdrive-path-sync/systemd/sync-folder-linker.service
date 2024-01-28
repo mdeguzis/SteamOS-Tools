@@ -1,0 +1,8 @@
+[Unit]
+Description=Regulary checks for and symlinks new screenshots to ~/.steam_screenshots
+
+[Service]
+ExecStart=%h/steam-screenshot-sync/symlink-screenshots.sh
+
+[Install]
+WantedBy=multi-user.target

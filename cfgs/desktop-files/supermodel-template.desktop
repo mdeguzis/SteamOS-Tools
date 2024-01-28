@@ -3,7 +3,7 @@ Version=1.0
 Name=GAME_NAME
 GenericName=GAME_NAME
 Comment=Supermodel (Sega) game launcher for GAME_NAME
-Exec=SUPERMODEL_BIN GAME_ZIP -res=DEVICE_RES -fullscreen
+Exec=SUPERMODEL_BIN GAME_ZIP -res=DEVICE_RES -fullscreen -wide-screen -wide-bg
 Path=START_PATH
 Terminal=false
 Type=Application

@@ -143,8 +143,11 @@ main() {
 		shift
 	done
 
+	OS_ID=$(cat /etc/os-release | grep ID_LIKE)
 	if [[ -f "/usr/bin/frzr-unlock" ]]; then
 		OS_TYPE="ChimeraOS"
+	elif [[ ${OS_ID} =~ "debian" ]]; then
+		OS_TYPE="Debian"
 	else
 		OS_TYPE="SteamDeck"
 	fi
@@ -158,8 +161,8 @@ main() {
 	# Set max resolution from available modes
 	# Using the modes file, it seems to be backwards:
 	# 	Steam Deck: 800x1280 
-	DEVICE_RES_X=$(cat /sys/class/drm/*/modes | head -n 1 | awk -F'x' '{print $2}')
-	DEVICE_RES_Y=$(cat /sys/class/drm/*/modes | head -n 1 | awk -F'x' '{print $1}')
+	DEVICE_RES_X=$(cat /sys/class/drm/*/modes | head -n 1 | awk -F'x' '{print $1}')
+	DEVICE_RES_Y=$(cat /sys/class/drm/*/modes | head -n 1 | awk -F'x' '{print $2}')
 	DEVICE_RES=$(echo "${DEVICE_RES_X},${DEVICE_RES_Y}")
 
 	# Set vars

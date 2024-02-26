@@ -74,12 +74,13 @@ update_steam_emu ()
 	echo "[INFO] Updating $name"
 
 	emu_location=$(find ~/.steam/steam/steamapps/ -name "${exec_name}")
+	emu_dir=$(dirname "${emu_location}")
 	if [[ -z "${emu_location}" ]]; then
 		echo "[ERROR] Could not find Steam app location for ${name} with exec name ${exec_name} ! Skipping..."
 		return
 	fi
 	mkdir -p "${app_dir}"
-	cp -v "${emu_location}" "${app_dir}" 
+	cp -v ${emu_dir}/* "${app_dir}" 
 }
 
 update_from_curl ()
@@ -93,28 +94,33 @@ update_from_curl ()
 	cp -v "${emu_location}" "${app_dir}" 
 }
 
-echo -e "[INFO] Updating emulators (Flatpaks)\n"
-sleep 3
-update_emu_flatpak "RetroArch" "org.libretro.RetroArch"
-update_emu_flatpak "PrimeHack" "io.github.shiiion.primehack"
-update_emu_flatpak "RPCS3" "net.rpcs3.RPCS3"
-update_emu_flatpak "Citra" "org.citra_emu.citra"
-update_emu_flatpak "dolphin-emu" "org.DolphinEmu.dolphin-emu"
-update_emu_flatpak "DuckStation" "org.duckstation.DuckStation"
-update_emu_flatpak "PPSSPP" "org.ppsspp.PPSSPP"
-update_emu_flatpak "Xemu-Emu" "app.xemu.xemu"
-update_emu_flatpak "ScummVM" "org.scummvm.ScummVM"
-update_emu_flatpak "melonDS" "net.kuribo64.melonDS"
-update_emu_flatpak "RMG" "com.github.Rosalie241.RMG"
+main () {
+	echo -e "[INFO] Updating emulators (Flatpaks)\n"
+	sleep 3
+	update_emu_flatpak "RetroArch" "org.libretro.RetroArch"
+	update_emu_flatpak "PrimeHack" "io.github.shiiion.primehack"
+	update_emu_flatpak "RPCS3" "net.rpcs3.RPCS3"
+	update_emu_flatpak "Citra" "org.citra_emu.citra"
+	update_emu_flatpak "dolphin-emu" "org.DolphinEmu.dolphin-emu"
+	update_emu_flatpak "DuckStation" "org.duckstation.DuckStation"
+	update_emu_flatpak "PPSSPP" "org.ppsspp.PPSSPP"
+	update_emu_flatpak "Xemu-Emu" "app.xemu.xemu"
+	update_emu_flatpak "ScummVM" "org.scummvm.ScummVM"
+	update_emu_flatpak "melonDS" "net.kuribo64.melonDS"
+	update_emu_flatpak "RMG" "com.github.Rosalie241.RMG"
 
-echo -e "\n[INFO] Updating Windows EXE's (e.g. xenia))"
-update_windows_exe "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip"
-update_windows_exe "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip"
+	echo -e "\n[INFO] Updating Windows EXE's (e.g. xenia))"
+	update_windows_exe "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip"
+	update_windows_exe "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip"
 
-echo -e "\n[INFO] Symlinking any emulators from Steam"
+	echo -e "\n[INFO] Symlinking any emulators from Steam"
 
-# https://steamdb.info/app/1147940/
-update_steam_emu "3dSen" "3dSen.exe"
+	# https://steamdb.info/app/1147940/
+	update_steam_emu "3dSen" "3dSen.exe"
 
-echo -e "[INFO] Updating emulators via webscraping\n"
-curlit "BigPEmu" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
+	echo -e "[INFO] Updating emulators via webscraping\n"
+	curlit "BigPEmu" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
+}
+
+main 2>&1 | tee "/tmp/emulator-updates.log"
+echo "[INFO] Log: /tmp/emulator-updates.log"

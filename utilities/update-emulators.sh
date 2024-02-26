@@ -109,6 +109,9 @@ main () {
 	update_emu_flatpak "melonDS" "net.kuribo64.melonDS"
 	update_emu_flatpak "RMG" "com.github.Rosalie241.RMG"
 
+	echo -e "\n[INFO] These cores are installed from the Retorach flatpak: "
+	ls ~/.var/app/org.libretro.RetroArch/config/retroarch/cores | column -c 150
+
 	echo -e "\n[INFO] Updating Windows EXE's (e.g. xenia))"
 	update_windows_exe "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip"
 	update_windows_exe "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip"

@@ -24,7 +24,6 @@ curlit()
 			echo "Found download url: ${dl_url}, processing"
 			filename=$(basename -- "${dl_url}")
 			file_type="${filename##*.}"
-			echo "Fileype: ${file_type}"
 			case $file_type in
 				"zip")
 					echo "Got a ZIP file"

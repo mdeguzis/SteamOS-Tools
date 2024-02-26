@@ -5,6 +5,8 @@
 #bash ${HOME}/.config/EmuDeck/backend/tools/binupdate/binupdate.sh
 #!/bin/bash
 
+CURDIR="${PWD}"
+
 curlit()
 {
 	name=$1
@@ -21,15 +23,24 @@ curlit()
 			dl_url=$(echo "${url}" | sed 's/.*http/http/;s/".*//')
 
 			# which type?
-			echo "Found download url: ${dl_url}, processing"
+			echo "Found download url: '${dl_url}', processing"
 			filename=$(basename -- "${dl_url}")
-			file_type="${filename##*.}"
+			file_type=$(echo "${filename##*.}" | tr '[:upper:]' '[:lower:]')
+			echo "Filetype found: ${file_type}"
 			case $file_type in
 				"zip")
-					echo "Got a ZIP file"
 					curl -sLo "/tmp/${name}.zip" "${dl_url}"
 					unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
 					;;
+				"appimage")
+					mkdir -p "${HOME}/Applications/${name}"
+					cd "${HOME}/Applications/${name}"
+					echo "[INFO] Moving old AppImage to .bak"
+					mv -v *AppImage ${name}.AppImage.bak
+					curl -LO "${dl_url}"
+					cd "${CURDIR}"
+					;;
+
 				*)
 					echo "I don't know how to process ${file_type}, skipping..."
 					return 0
@@ -50,7 +61,7 @@ update_emu_flatpak ()
 	flatpak override $ID --share=network --user;
 }
 
-update_windows_exe ()
+update_binary ()
 {
 	name=$1;
 	URL=$2;
@@ -96,6 +107,8 @@ update_from_curl ()
 
 main () {
 	echo -e "[INFO] Updating emulators (Flatpaks)\n"
+	curlit "rpcs3" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
+	exit 0
 	sleep 3
 	update_emu_flatpak "RetroArch" "org.libretro.RetroArch"
 	update_emu_flatpak "PrimeHack" "io.github.shiiion.primehack"
@@ -112,17 +125,15 @@ main () {
 	echo -e "\n[INFO] These cores are installed from the Retorach flatpak: "
 	ls ~/.var/app/org.libretro.RetroArch/config/retroarch/cores | column -c 150
 
-	echo -e "\n[INFO] Updating Windows EXE's (e.g. xenia))"
-	update_windows_exe "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip"
-	update_windows_exe "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip"
+	echo -e "\n[INFO] Updating binaries"
+	update_binary "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip"
+	curlit "rpcs3" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
+	curlit "BigPEmu" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
 
 	echo -e "\n[INFO] Symlinking any emulators from Steam"
-
 	# https://steamdb.info/app/1147940/
 	update_steam_emu "3dSen" "3dSen.exe"
 
-	echo -e "[INFO] Updating emulators via webscraping\n"
-	curlit "BigPEmu" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
 }
 
 main 2>&1 | tee "/tmp/emulator-updates.log"

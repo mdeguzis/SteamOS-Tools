@@ -40,7 +40,7 @@ fi
 roms_to_move=()
 num_roms=$(cat "${romlist}" | wc -l)
 echo "[INFO] This operation will move ${num_roms} roms from ${src} to ${dest}"
-read -erp "Proceed? (y/N): " response
+read -erp "[INFO] Proceed? (y/N): " response
 if [[ "${response}" != "y" ]]; then
 	echo "[INFO] Aborting..."
 	exit 0

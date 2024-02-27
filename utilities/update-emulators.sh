@@ -75,8 +75,9 @@ update_emu_flatpak ()
 update_binary ()
 {
 	name=$1;
-	URL=$2;
-	dl_type=$3
+	folder_target=$2;
+	URL=$3;
+	dl_type=$4
 	echo "[INFO] Updating $name";
 
 	# The ~/Applicaitons dir is compliant with ES-DE
@@ -88,13 +89,23 @@ update_binary ()
 		# Handle github release page
 		echo "[INFO] Fetching latet release from ${URL}"
 		# Prefer app iamge
-		app_image_url=$(curl -s "${URL}" | awk '/http.*x*64*AppImage/ {print $2}' | sed 's/"//g')
-		source_url=$(curl -s "${URL}" | awk "/http.*\/${name}-.*linux.*x*64.*tar.gz/ {print \$2}" | sed 's/"//g')
+		app_image_url_noarch=$(curl -s "${URL}" | awk '/http*AppImage/ {print $2}' | sed 's/"//g')
+		app_image_url_arch=$(curl -s "${URL}" | awk '/http.*x*64*AppImage/ {print $2}' | sed 's/"//g')
+		app_image_url=$(curl -s "${URL}" | awk '/http.*AppImage/ {print $2}' | sed 's/"//g')
+		source_url=$(curl -s "${URL}" | awk "/http.*\/${name}-.*linux.*x64.*tar.gz/ {print \$2}" | sed 's/"//g')
+		source_url_alt=$(curl -s "${URL}" | awk "/http.*\/${name}-.*linux.*x86_64.*tar.gz/ {print \$2}" | sed 's/"//g')
 
 		# Set download URL
-		if [[ -n "${app_image_url}" ]]; then
+		# Prefer arch-specific first
+		if [[ -n "${app_image_url_arch}" ]]; then
+			dl_url="${app_image_url_arch}"
+		elif [[ -n "${app_image_url}" ]]; then
 			dl_url="${app_image_url}"
+		elif [[ -n "${app_image_url_noarch}" ]]; then
+			dl_url="${app_image_url_noarch}"
 		elif [[ -n "${source_url}" ]]; then
+			dl_url="${source_url}"
+		elif [[ -n "${source_url_alt}" ]]; then
 			dl_url="${source_url}"
 		else
 			# https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28
@@ -110,7 +121,11 @@ update_binary ()
 	# Handle download by type
 	file_type=$(echo "${dl_type}" | tr '[:upper:]' '[:lower:]')
 	if [[ "${file_type}" == "zip" ]]; then
-		unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
+		if [[ -n "${folder_target}" ]]; then
+			unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${folder_target}"
+		else
+			unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/"
+		fi
 
 	elif [[ "${file_type}" == "tar.gz" ]]; then
 		tar_file=$(ls -t /tmp/${name}*tar.gz)
@@ -196,16 +211,16 @@ main () {
 	echo -e "\n[INFO] Updating binaries"
 
 	# ZIPs
-	update_binary "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
-	update_binary "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
+	update_binary "xenia" "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
+	update_binary "xenia" "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
 
 	# From GitHub release pages
 	# Careful not to get rate exceed here...
-	update_binary "Steam-ROM-Manager" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
-	update_binary "ryujinx" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
-	update_binary "pcsx2" "https://api.github.com/repos/PCSX2/pcsx2/releases/latest" "AppImage"
-	update_binary "Cemu" "https://api.github.com/repos/cemu-project/Cemu/releases/latest" "AppImage"
-	update_binary "Vita3k" "https://api.github.com/repos/Vita3K/Vita3K/releases/latest" "AppImage"
+	update_binary "Steam-ROM-Manager" "" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
+	update_binary "ryujinx" "" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
+	update_binary "pcsx2" "" "https://api.github.com/repos/PCSX2/pcsx2/releases/latest" "AppImage"
+	update_binary "Cemu" "" "https://api.github.com/repos/cemu-project/Cemu/releases/latest" "AppImage"
+	update_binary "Vita3k" "" "https://api.github.com/repos/Vita3K/Vita3K/releases/latest" "AppImage"
 
 	# From web scrape
 	curlit "rpcs3" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"

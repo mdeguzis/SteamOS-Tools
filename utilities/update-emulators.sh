@@ -31,6 +31,14 @@ curlit()
 			filename=$(basename -- "${dl_url}")
 			file_type=$(echo "${filename##*.}" | tr '[:upper:]' '[:lower:]')
 			echo "[INFO] Filetype found: ${file_type}"
+
+			# Backup
+			if ls "${HOME}/Applications"| grep -qE "${name}.*${dl_type}"; then
+				echo "[INFO] Moving old ${dl_type} to .bak"
+				echo "[INFO] $(mv -v ${HOME}/Applications/${name}*${dl_type} ${HOME}/Applications/${name}.${dl_type}.bak)"
+			fi
+
+			# Handle different file types
 			case $file_type in
 				"zip")
 					curl -sLo "/tmp/${name}.zip" "${dl_url}"
@@ -38,10 +46,6 @@ curlit()
 					;;
 				"appimage")
 					cd "${HOME}/Applications"
-					if ls | grep -qE "${name}.*AppImage"; then
-						echo "[INFO] Moving old ${dl_type} to .bak"
-						echo "[INFO] $(mv -v ${name}*AppImage ${name}.AppImage.bak)"
-					fi
 					curl -LO "${dl_url}"
 					cd "${CURDIR}"
 					;;
@@ -78,20 +82,24 @@ update_binary ()
 		# Handle direct URL zips
 		echo "[INFO] Downloading and extracting ZIP for ${name}"
 		curl -sLo "/tmp/${name}.zip" "${URL}"
-		unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
 
 	elif echo "${URL}" | grep -q "github.com"; then
 		# Handle github release page
 		echo "[INFO] Fetching latet release from ${URL}"
 		# Prefer app iamge
-		app_image_url=$(curl -s "${URL}" | awk '/http.*AppImage/ {print $2}' | sed 's/"//g')
+		app_image_url=$(curl -s "${URL}" | awk '/.*browser_download_url.*http.*AppImage/ {print $2}' | sed 's/"//g')
+		source_url=$(curl -s "${URL}" | awk "/.*browser_download_url.*http.*\/${name}-.*linux.*x64.*tar.gz/ {print \$2}" | sed 's/"//g')
 
 		# Set download URL
-		if [[ -z" ${app_image_url}" ]]; then
+		if [[ -n "${app_image_url}" ]]; then
 			dl_url="${app_image_url}"
+		elif [[ -n "${source_url}" ]]; then
+			dl_url="${source_url}"
 		else
+			# https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28
 			echo "[ERROR] Could not get a download url for ${URL}!"
-			return 0
+			echo "[ERROR] Response: $(curl ${URL})"
+			exit 1
 		fi
 
 		# Get release
@@ -100,17 +108,34 @@ update_binary ()
 			echo "[INFO] Moving old ${dl_type} to .bak"
 			echo "[INFO] $(mv -v ${name}*${dl_type} ${name}.AppImage.bak)"
 		fi
-		echo "[INFO] Downloading ${dl_url}"
-		curl -LO "${dl_url}"
+	fi
 
-	else
-		cd "${HOME}/Applications"
-		if ls | grep -qE "${name}.*AppImage"; then
-			echo "[INFO] Moving old ${dl_type} to .bak"
-			echo "[INFO] $(mv -v ${name}*AppImage ${name}.AppImage.bak)"
+	# Download
+	echo "[INFO] Downloading ${dl_url}"
+	curl -LO "${dl_url}"
+
+	# Handle download by type
+	if [[ "${dl_type}" == ".zip" ]]; then
+		unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
+
+	elif [[ "${dl_type}" == "tar.gz" ]]; then
+		tar_file=$(ls -t ${name}*tar.gz)
+		if [[ -z "${tar_file}" ]]; then
+			echo "[ERROR] Could not match tar.gz file!"
+			exit 1
 		fi
-		echo "[INFO] Downloading ${dl_url}"
-		curl -LO "${dl_url}"
+		echo "[INFO] Extracting ${tar_file}"
+		tar -xvf  -C "$HOME/Applications/" "${tar_file}"
+		rm -rf "${tar_file}"
+	else
+		echo "[INFO] Failed to handle download!"
+		exit 1
+	fi
+
+	# Backup
+	if ls "${HOME}/Applications"| grep -qE "${name}.*${dl_type}"; then
+		echo "[INFO] Moving old ${dl_type} to .bak"
+		echo "[INFO] $(mv -v ${HOME}/Applications/${name}*${dl_type} ${HOME}/Applications/${name}.${dl_type}.bak)"
 	fi
 
 }
@@ -126,24 +151,15 @@ update_steam_emu ()
 	emu_dir=$(dirname "${emu_location}")
 	if [[ -z "${emu_location}" ]]; then
 		echo "[ERROR] Could not find Steam app location for ${name} with exec name ${exec_name} ! Skipping..."
-		return
+		exit 1
 	fi
 	mkdir -p "${app_dir}"
 	cp -r ${emu_dir}/* "${app_dir}" 
 }
 
-update_from_curl ()
-{
-	name=$1;
-	url_match=$2
-	app_dir="${HOME}/Applications/${name}"
-	echo "[INFO] Fetching release from ${url_match} for ${name}"
-
-	mkdir -p "${app_dir}"
-	cp -v "${emu_location}" "${app_dir}" 
-}
-
 main () {
+	update_binary "ryujinx" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
+	exit 0
 	#####################
 	# Flatpak
 	#####################
@@ -159,6 +175,7 @@ main () {
 	update_emu_flatpak "ScummVM" "org.scummvm.ScummVM"
 	update_emu_flatpak "melonDS" "net.kuribo64.melonDS"
 	update_emu_flatpak "RMG" "com.github.Rosalie241.RMG"
+	update_emu_flatpak "Ryujinx" "org.ryujinx.Ryujinx"
 
 	echo -e "\n[INFO] These cores are installed from the Retorach flatpak: "
 	ls ~/.var/app/org.libretro.RetroArch/config/retroarch/cores | column -c 150
@@ -167,14 +184,19 @@ main () {
 	# Binaries
 	#####################
 	echo -e "\n[INFO] Updating binaries"
+
 	# ZIPs
 	update_binary "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip"
+
 	# From GitHub release pages
 	update_binary "Steam-ROM-Manager" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
+	update_binary "Ryujinx" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
+
 	# From web scrape
 	curlit "rpcs3" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
 	curlit "BigPEmu" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
 
+	# TODO yet....
 	#binTable+=(TRUE "Steam Rom Manager" "srm")
 	#binTable+=(TRUE "GameBoy / Color / Advance Emu" "mgba")
 	#binTable+=(TRUE "Nintendo Switch Emu" "yuzu (mainline)")

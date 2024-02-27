@@ -39,7 +39,7 @@ fi
 # Move
 roms_to_move=()
 num_roms=$(cat "${romlist}" | wc -l)
-echo "[INFO] This operation will move ${num_roms} roms from ${src} to ${dest}"
+echo "[INFO] This operation will move ${num_roms} ROM from ${src} to ${dest}"
 read -erp "[INFO] Proceed? (y/N): " response
 if [[ "${response}" != "y" ]]; then
 	echo "[INFO] Aborting..."
@@ -48,12 +48,18 @@ fi
 
 for rom in $(cat "${romlist}");
 do
-	echo "Moving rom from list: $rom to $dest"
 	rom_file=$(find "${src}" -name "${rom}")
+	rom_file_no_ext=$(basename $(echo "${rom_file}" | sed 's/.zip//'))
+	chd_folder=$(find "${src}" -type d -name "${rom_file_no_ext}")
 	if [[ -z "${rom_file}" ]]; then
-		echo "[ERROR] Could not find rom ${rom}, skipping"
+		echo "[ERROR] Could not find ROM ${rom}, skipping"
 		continue
 	fi
+	echo "Moving ROM from list: $rom to $dest"
 	mv "${rom_file}" "${dest}"
+	if [[ -n "${chd_folder}" ]]; then
+		echo "Moving ROM CHD folder/files from list: $rom to $dest"
+		mv "${chd_folder}" "${dest}/"
+	fi
 done
 

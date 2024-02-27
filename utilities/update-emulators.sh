@@ -25,7 +25,7 @@ curlit()
 	urls_to_parse=()
 	for url in $urls;
 	do
-		if $(ech "${url}" | grep -q href) && $(echo "${url}" | grep -qE ${exe_match}); then
+		if $(echo "${url}" | grep -q href) && $(echo "${url}" | grep -qE ${exe_match}); then
 			dl_url=$(echo "${url}" | sed 's/.*http/http/;s/".*//')
 
 			# which type?
@@ -91,25 +91,31 @@ update_binary ()
 		# Handle github release page
 		echo "[INFO] Fetching latet release from ${URL}"
 		# Prefer app iamge
-		app_image_url_noarch=$(curl -s "${URL}" | awk '/http*AppImage/ {print $2}' | sed 's/"//g')
-		app_image_url_arch=$(curl -s "${URL}" | awk '/http.*x*64*AppImage/ {print $2}' | sed 's/"//g')
-		app_image_url=$(curl -s "${URL}" | awk '/http.*AppImage/ {print $2}' | sed 's/"//g')
-		source_url=$(curl -s "${URL}" | awk "/http.*\/${name}-.*linux.*x64.*tar.gz/ {print \$2}" | sed 's/"//g')
-		source_url_alt=$(curl -s "${URL}" | awk "/http.*\/${name}-.*linux.*x86_64.*tar.gz/ {print \$2}" | sed 's/"//g')
-
 		# Set download URL
 		# Prefer arch-specific first
-		if [[ -n "${app_image_url_arch}" ]]; then
-			dl_url="${app_image_url_arch}"
-		elif [[ -n "${app_image_url}" ]]; then
-			dl_url="${app_image_url}"
-		elif [[ -n "${app_image_url_noarch}" ]]; then
-			dl_url="${app_image_url_noarch}"
-		elif [[ -n "${source_url}" ]]; then
-			dl_url="${source_url}"
-		elif [[ -n "${source_url_alt}" ]]; then
-			dl_url="${source_url}"
+		# If not /latest, assume pre-release
+		if ! echo "${URL}" | grep -q "latest"; then
+			collected_urls=$(curl -s "${URL}" | jq -r 'map(select(.prerelease)) | first | .assets[] | .browser_download_url')
 		else
+			collected_urls=$(curl -s "${URL}" | jq -r '.assets[] | .browser_download_url')
+		fi
+
+		for this_url in ${collected_urls};
+		do
+			# Prefer AppImage
+			if echo "${this_url}" | grep -qE "http.*AppImage$"; then
+				dl_url="${this_url}"
+				break
+			elif echo  "${this_url}" | grep -qE "http.*x.*64.*AppImage$"; then
+				dl_url="${this_url}"
+				break
+			elif echo "${this_url}" | grep -qE "http.*${name}-.*linux.*x*64.*tar.gz$"; then
+				dl_url="${this_url}"
+				break
+			fi
+		done
+
+		if [[ -z "${dl_url}" ]]; then
 			# https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28
 			echo "[ERROR] Could not get a download url for ${URL}!"
 			exit 1
@@ -130,13 +136,13 @@ update_binary ()
 		fi
 
 	elif [[ "${file_type}" == "tar.gz" ]]; then
-		tar_file=$(ls -t /tmp/${name}*tar.gz)
+		tar_file=$(ls -t /tmp/${name}*tar.gz | head -n 1)
 		if [[ -z "${tar_file}" ]]; then
 			echo "[ERROR] Could not match tar.gz file!"
 			exit 1
 		fi
 		echo "[INFO] Extracting ${tar_file}"
-		tar -xf "${tar_file}" -C "$HOME/Applications" 
+		tar -xvf "${tar_file}" -C "$HOME/Applications" 
 		rm -rf "${tar_file}"
 
 	elif [[ "${file_type}" == "appimage" ]]; then
@@ -230,8 +236,9 @@ main () {
 	update_binary "Steam-ROM-Manager" "" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
 	update_binary "ryujinx" "" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
 	update_binary "pcsx2" "" "https://api.github.com/repos/PCSX2/pcsx2/releases/latest" "AppImage"
-	update_binary "Cemu" "" "https://api.github.com/repos/cemu-project/Cemu/releases/latest" "AppImage"
-	update_binary "Vita3k" "" "https://api.github.com/repos/Vita3K/Vita3K/releases/latest" "AppImage"
+	# No Cemu latest tag has a Linux AppImage, must use use pre-releases
+	update_binary "Cemu" "" "https://api.github.com/repos/cemu-project/Cemu/releases" "AppImage"
+	update_binary "Vita3K" "" "https://api.github.com/repos/Vita3K/Vita3K/releases/latest" "AppImage"
 
 	# From web scrape
 	curlit "rpcs3" "" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
@@ -245,6 +252,19 @@ main () {
 	# https://steamdb.info/app/1147940/
 	update_steam_emu "3dSen" "3dSen" "3dSen.exe"
 
+	#####################
+	# Cleanup
+	#####################
+	echo "[INFO] Marking any ELF executables in ${HOME}/Applications executable"
+	for bin in $(find ~/Applications -type f -exec file {} \; \
+		| grep ELF \
+		| awk -F':' '{print $1}' \
+		| grep -vE ".so|debug")
+	do 
+		echo "[INFO] Marking ${bin} executable"
+		chmod +x "${bin}"
+	done
+	
 }
 
 main 2>&1 | tee "/tmp/emulator-updates.log"

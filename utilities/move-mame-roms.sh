@@ -38,10 +38,18 @@ fi
 
 # Move
 roms_to_move=()
+num_roms=$(cat "${romlist}" | wc -l)
+echo "[INFO] This operation will move ${num_roms} roms from ${src} to ${dest}"
+read -erp "Proceed? (y/N): " response
+if [[ "${response}" != "y" ]]; then
+	echo "[INFO] Aborting..."
+	exit 0
+fi
+
 for rom in $(cat "${romlist}");
 do
-	echo "Adding rom from list: $rom to $dest"
-	rom_file=$(find "${src}" -name "${rom}.zip")
+	echo "Moving rom from list: $rom to $dest"
+	rom_file=$(find "${src}" -name "${rom}")
 	if [[ -z "${rom_file}" ]]; then
 		echo "[ERROR] Could not find rom ${rom}, skipping"
 		continue

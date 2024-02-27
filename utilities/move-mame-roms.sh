@@ -60,7 +60,7 @@ do
 	echo "Moving ROM from list: $rom to $dest"
 	mv "${rom_file}" "${dest}"
 	if [[ -n "${chd_folder}" ]]; then
-		echo "Moving ROM CHD folder/files from list: $rom to $dest"
+		echo "Moving ROM CHD folder/files from list: $chd_folder to $dest"
 		mv "${chd_folder}" "${dest}/"
 	fi
 done

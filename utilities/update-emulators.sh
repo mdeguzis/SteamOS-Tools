@@ -16,7 +16,7 @@ curlit()
 	name=$1
 	search_url=$2
 	exe_match=$3
-	echo "[INFO] Updating $name (search for ${exe_match} on page"
+	echo "[INFO] Updating $name (searching for ${exe_match} on page...)"
 	curl -q -v "${search_url}" &> "/tmp/results.txt"
 	urls=$(awk -F"[><]" '{for(i=1;i<=NF;i++){if($i ~ /a href=.*\//){print "<" $i ">"}}}' "/tmp/results.txt")
 	rm -f "/tmp/results.txt"
@@ -45,8 +45,7 @@ curlit()
 					unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
 					;;
 				"appimage")
-					cd "${HOME}/Applications"
-					curl -LO "${dl_url}"
+					curl -LO --output-dir "${HOME}/Applications" "${dl_url}"
 					cd "${CURDIR}"
 					;;
 
@@ -65,7 +64,10 @@ update_emu_flatpak ()
 	name=$1;
 	ID=$2;
 	echo "[INFO] Updating $name";
-	flatpak update $ID -y;
+	if ! flatpak update $ID -y; then
+		# Install
+		flatpak install --user -y --noninteractive $ID
+	fi
 	flatpak override $ID --filesystem=host --user;
 	flatpak override $ID --share=network --user;
 }
@@ -80,15 +82,14 @@ update_binary ()
 	# The ~/Applicaitons dir is compliant with ES-DE
 	if echo "${URL}" | grep -q ".zip"; then
 		# Handle direct URL zips
-		echo "[INFO] Downloading and extracting ZIP for ${name}"
-		curl -sLo "/tmp/${name}.zip" "${URL}"
+		dl_url="${URL}"
 
 	elif echo "${URL}" | grep -q "github.com"; then
 		# Handle github release page
 		echo "[INFO] Fetching latet release from ${URL}"
 		# Prefer app iamge
-		app_image_url=$(curl -s "${URL}" | awk '/.*browser_download_url.*http.*AppImage/ {print $2}' | sed 's/"//g')
-		source_url=$(curl -s "${URL}" | awk "/.*browser_download_url.*http.*\/${name}-.*linux.*x64.*tar.gz/ {print \$2}" | sed 's/"//g')
+		app_image_url=$(curl -s "${URL}" | awk '/http.*AppImage/ {print $2}' | sed 's/"//g')
+		source_url=$(curl -s "${URL}" | awk "/http.*\/${name}-.*linux.*x64.*tar.gz/ {print \$2}" | sed 's/"//g')
 
 		# Set download URL
 		if [[ -n "${app_image_url}" ]]; then
@@ -98,42 +99,39 @@ update_binary ()
 		else
 			# https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28
 			echo "[ERROR] Could not get a download url for ${URL}!"
-			echo "[ERROR] Response: $(curl ${URL})"
 			exit 1
-		fi
-
-		# Get release
-		cd "${HOME}/Applications"
-		if ls | grep -qE "${name}.*${dl_type}"; then
-			echo "[INFO] Moving old ${dl_type} to .bak"
-			echo "[INFO] $(mv -v ${name}*${dl_type} ${name}.AppImage.bak)"
 		fi
 	fi
 
 	# Download
 	echo "[INFO] Downloading ${dl_url}"
-	curl -LO "${dl_url}"
+	curl -LO --output-dir "/tmp" "${dl_url}"
 
 	# Handle download by type
-	if [[ "${dl_type}" == ".zip" ]]; then
+	file_type=$(echo "${dl_type}" | tr '[:upper:]' '[:lower:]')
+	if [[ "${file_type}" == "zip" ]]; then
 		unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
 
-	elif [[ "${dl_type}" == "tar.gz" ]]; then
-		tar_file=$(ls -t ${name}*tar.gz)
+	elif [[ "${file_type}" == "tar.gz" ]]; then
+		tar_file=$(ls -t /tmp/${name}*tar.gz)
 		if [[ -z "${tar_file}" ]]; then
 			echo "[ERROR] Could not match tar.gz file!"
 			exit 1
 		fi
 		echo "[INFO] Extracting ${tar_file}"
-		tar -xvf  -C "$HOME/Applications/" "${tar_file}"
+		tar -xf "${tar_file}" -C "$HOME/Applications" 
 		rm -rf "${tar_file}"
+
+	elif [[ "${file_type}" == "appimage" ]]; then
+		app_image=$(ls -t /tmp/${name}*AppImage)
+		mv -v "${app_image}" "${HOME}/Applications"
 	else
 		echo "[INFO] Failed to handle download!"
 		exit 1
 	fi
 
 	# Backup
-	if ls "${HOME}/Applications"| grep -qE "${name}.*${dl_type}"; then
+	if ls "${HOME}/Applications"| grep -qE "${name}*${dl_type}"; then
 		echo "[INFO] Moving old ${dl_type} to .bak"
 		echo "[INFO] $(mv -v ${HOME}/Applications/${name}*${dl_type} ${HOME}/Applications/${name}.${dl_type}.bak)"
 	fi
@@ -158,8 +156,15 @@ update_steam_emu ()
 }
 
 main () {
-	update_binary "ryujinx" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
-	exit 0
+	#####################
+	# Pre-reqs
+	#####################
+	echo -e "[INFO] Installing 'gh' to handle authenticated GitHub API request"
+	echo "[INFO] Issues? Re-run 'gh auth login'"
+	if ! which gh &> /dev/null; then
+		curl -sS https://webi.sh/gh | sh
+	fi
+
 	#####################
 	# Flatpak
 	#####################
@@ -186,18 +191,19 @@ main () {
 	echo -e "\n[INFO] Updating binaries"
 
 	# ZIPs
-	update_binary "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip"
+	update_binary "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
+	update_binary "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
 
 	# From GitHub release pages
+	# Careful not to get rate exceed here...
 	update_binary "Steam-ROM-Manager" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
-	update_binary "Ryujinx" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
+	update_binary "ryujinx" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
 
 	# From web scrape
 	curlit "rpcs3" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
 	curlit "BigPEmu" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
 
 	# TODO yet....
-	#binTable+=(TRUE "Steam Rom Manager" "srm")
 	#binTable+=(TRUE "GameBoy / Color / Advance Emu" "mgba")
 	#binTable+=(TRUE "Nintendo Switch Emu" "yuzu (mainline)")
 	#binTable+=(TRUE "Nintendo Switch Emu" "yuzu (early access)")
@@ -206,7 +212,6 @@ main () {
 	#binTable+=(TRUE "Nintendo WiiU Emu (Proton)" "cemu (win/proton)")
 	#binTable+=(TRUE "Nintendo WiiU Emu (Native)" "cemu (native)")
 	#binTable+=(TRUE "Sony PlayStation Vita Emu" "vita3k")
-	#binTable+=(TRUE "Xbox 360 Emu" "xenia") 
 
 	#####################
 	# Steam
@@ -218,4 +223,6 @@ main () {
 }
 
 main 2>&1 | tee "/tmp/emulator-updates.log"
+echo "[INFO] Done!"
 echo "[INFO] Log: /tmp/emulator-updates.log"
+

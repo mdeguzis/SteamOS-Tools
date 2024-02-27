@@ -80,12 +80,22 @@ update_binary ()
 	folder_target=$2;
 	URL=$3;
 	dl_type=$4
+	curl_options="-LO --output-dir /tmp"
+
 	echo "[INFO] Updating $name";
 
 	# The ~/Applicaitons dir is compliant with ES-DE
 	if echo "${URL}" | grep -q ".zip"; then
 		# Handle direct URL zips
 		dl_url="${URL}"
+
+	elif echo "${URL}" | grep -q "gitlab.com/api"; then
+		echo "[INFO] Fetching latet release from ${URL}"
+		latest_release=$(curl -Ls "${URL}" | jq -r '.assets.links[] | select(.name | test('\"$name.*x64.AppImage\"'))')
+		artifact_name=$(echo "${latest_release}" | jq -r '.name')
+		dl_url=$(echo "${latest_release}" | jq -r '.direct_asset_url')
+		# Use -J and --clobber to attach the remote name and overwrite
+		curl_options="--clobber -JLO --output-dir /tmp"
 
 	elif echo "${URL}" | grep -q "github.com"; then
 		# Handle github release page
@@ -122,9 +132,16 @@ update_binary ()
 		fi
 	fi
 
+	# Backup
+	if ls "${HOME}/Applications"| grep -qE ${name}*${dl_type}; then
+		echo "[INFO] Moving old ${dl_type} to .bak in /tmp"
+		echo "[INFO] $(mv -v ${HOME}/Applications/${name}*${dl_type} /tmp/${name}.${dl_type}.bak)"
+	fi
+
 	# Download
 	echo "[INFO] Downloading ${dl_url}"
-	curl -LO --output-dir "/tmp" "${dl_url}"
+	cmd="curl ${curl_options} ${dl_url}"
+	eval "${cmd}"
 
 	# Handle download by type
 	file_type=$(echo "${dl_type}" | tr '[:upper:]' '[:lower:]')
@@ -151,12 +168,6 @@ update_binary ()
 	else
 		echo "[INFO] Failed to handle download!"
 		exit 1
-	fi
-
-	# Backup
-	if ls "${HOME}/Applications"| grep -qE ${name}*${dl_type}; then
-		echo "[INFO] Moving old ${dl_type} to .bak in /tmp"
-		echo "[INFO] $(mv -v ${HOME}/Applications/${name}*${dl_type} /tmp/${name}.${dl_type}.bak)"
 	fi
 
 }
@@ -228,11 +239,12 @@ main () {
 	sleep 2
 
 	# ZIPs
-	update_binary "xenia" "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
-	update_binary "xenia" "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
+	update_binary "xenia_master" "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
+	update_binary "xenia_canary" "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
 
 	# From GitHub release pages
-	# Careful not to get rate exceed here...
+	# Careful not to get rate exceeded here...
+	update_binary "ES-DE" "" "https://gitlab.com/api/v4/projects/18817634/releases/permalink/latest" "AppImage"
 	update_binary "Steam-ROM-Manager" "" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
 	update_binary "ryujinx" "" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
 	update_binary "pcsx2" "" "https://api.github.com/repos/PCSX2/pcsx2/releases/latest" "AppImage"

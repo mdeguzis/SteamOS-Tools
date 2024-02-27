@@ -35,9 +35,9 @@ curlit()
 			echo "[INFO] Filetype found: ${file_type}"
 
 			# Backup
-			if ls "${HOME}/Applications"| grep -qE "${name}.*${dl_type}"; then
-				echo "[INFO] Moving old ${dl_type} to .bak"
-				echo "[INFO] $(mv -v ${HOME}/Applications/${name}*${dl_type} ${HOME}/Applications/${name}.${dl_type}.bak)"
+			if ls "${HOME}/Applications"| grep -qE ${name}*${dl_type}; then
+				echo "[INFO] Moving old ${dl_type} to .bak in /tmp"
+				echo "[INFO] $(mv -v ${HOME}/Applications/${name}*${dl_type} /tmp/${name}.${dl_type}.bak)"
 			fi
 
 			# Handle different file types
@@ -148,9 +148,9 @@ update_binary ()
 	fi
 
 	# Backup
-	if ls "${HOME}/Applications"| grep -qE "${name}*${dl_type}"; then
-		echo "[INFO] Moving old ${dl_type} to .bak"
-		echo "[INFO] $(mv -v ${HOME}/Applications/${name}*${dl_type} ${HOME}/Applications/${name}.${dl_type}.bak)"
+	if ls "${HOME}/Applications"| grep -qE ${name}*${dl_type}; then
+		echo "[INFO] Moving old ${dl_type} to .bak in /tmp"
+		echo "[INFO] $(mv -v ${HOME}/Applications/${name}*${dl_type} /tmp/${name}.${dl_type}.bak)"
 	fi
 
 }

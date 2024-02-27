@@ -23,7 +23,7 @@ curlit()
 	urls_to_parse=()
 	for url in $urls;
 	do
-		if $(echo "${url}" | grep -q href) && $(echo "${url}" | grep -qE ${exe_match}); then
+		if $(ech "${url}" | grep -q href) && $(echo "${url}" | grep -qE ${exe_match}); then
 			dl_url=$(echo "${url}" | sed 's/.*http/http/;s/".*//')
 
 			# which type?
@@ -88,8 +88,8 @@ update_binary ()
 		# Handle github release page
 		echo "[INFO] Fetching latet release from ${URL}"
 		# Prefer app iamge
-		app_image_url=$(curl -s "${URL}" | awk '/http.*AppImage/ {print $2}' | sed 's/"//g')
-		source_url=$(curl -s "${URL}" | awk "/http.*\/${name}-.*linux.*x64.*tar.gz/ {print \$2}" | sed 's/"//g')
+		app_image_url=$(curl -s "${URL}" | awk '/http.*x*64*AppImage/ {print $2}' | sed 's/"//g')
+		source_url=$(curl -s "${URL}" | awk "/http.*\/${name}-.*linux.*x*64.*tar.gz/ {print \$2}" | sed 's/"//g')
 
 		# Set download URL
 		if [[ -n "${app_image_url}" ]]; then
@@ -159,10 +159,15 @@ main () {
 	#####################
 	# Pre-reqs
 	#####################
-	echo -e "[INFO] Installing 'gh' to handle authenticated GitHub API request"
-	echo "[INFO] Issues? Re-run 'gh auth login'"
-	if ! which gh &> /dev/null; then
-		curl -sS https://webi.sh/gh | sh
+	
+	# Check for rate exceeded
+	echo "[INFO] Testing Git API"
+	git_test=$(curl -s "https://api.github.com")
+	if echo "${git_test}" | grep -q "exceeded"; then
+		echo "${git_test}"
+		exit 1
+	else
+		echo "[INFO] Git API test: [OK]"
 	fi
 
 	#####################
@@ -198,20 +203,13 @@ main () {
 	# Careful not to get rate exceed here...
 	update_binary "Steam-ROM-Manager" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
 	update_binary "ryujinx" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
+	update_binary "pcsx2" "https://api.github.com/repos/PCSX2/pcsx2/releases/latest" "AppImage"
+	update_binary "Cemu" "https://api.github.com/repos/cemu-project/Cemu/releases/latest" "AppImage"
+	update_binary "Vita3k" "https://api.github.com/repos/Vita3K/Vita3K/releases/latest" "AppImage"
 
 	# From web scrape
 	curlit "rpcs3" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
 	curlit "BigPEmu" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
-
-	# TODO yet....
-	#binTable+=(TRUE "GameBoy / Color / Advance Emu" "mgba")
-	#binTable+=(TRUE "Nintendo Switch Emu" "yuzu (mainline)")
-	#binTable+=(TRUE "Nintendo Switch Emu" "yuzu (early access)")
-	#binTable+=(TRUE "Nintendo Switch Emu" "ryujinx")
-	#binTable+=(TRUE "Sony PlayStation 2 Emu" "pcsx2-qt")
-	#binTable+=(TRUE "Nintendo WiiU Emu (Proton)" "cemu (win/proton)")
-	#binTable+=(TRUE "Nintendo WiiU Emu (Native)" "cemu (native)")
-	#binTable+=(TRUE "Sony PlayStation Vita Emu" "vita3k")
 
 	#####################
 	# Steam

@@ -1,14 +1,18 @@
 #!/bin/bash
 # Updates AppImage/Flatpak emulators in one go
+# Notes:
+# 	Where to put files: https://gitlab.com/es-de/emulationstation-de/-/blob/stable-3.0/resources/systems/linux/es_find_rules.xml
 
 # Binaries
-#bash ${HOME}/.config/EmuDeck/backend/tools/binupdate/binupdate.sh
-#!/bin/bash
+
+set -e -o pipefail
 
 CURDIR="${PWD}"
 
 curlit()
 {
+	# This function is meat to grab an archive/file out of a page HTML/CSS dump
+
 	name=$1
 	search_url=$2
 	exe_match=$3
@@ -23,20 +27,21 @@ curlit()
 			dl_url=$(echo "${url}" | sed 's/.*http/http/;s/".*//')
 
 			# which type?
-			echo "Found download url: '${dl_url}', processing"
+			echo "[INFO] Found download url: '${dl_url}', processing"
 			filename=$(basename -- "${dl_url}")
 			file_type=$(echo "${filename##*.}" | tr '[:upper:]' '[:lower:]')
-			echo "Filetype found: ${file_type}"
+			echo "[INFO] Filetype found: ${file_type}"
 			case $file_type in
 				"zip")
 					curl -sLo "/tmp/${name}.zip" "${dl_url}"
 					unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
 					;;
 				"appimage")
-					mkdir -p "${HOME}/Applications/${name}"
-					cd "${HOME}/Applications/${name}"
-					echo "[INFO] Moving old AppImage to .bak"
-					mv -v *AppImage ${name}.AppImage.bak
+					cd "${HOME}/Applications"
+					if ls | grep -qE "${name}.*AppImage"; then
+						echo "[INFO] Moving old ${dl_type} to .bak"
+						echo "[INFO] $(mv -v ${name}*AppImage ${name}.AppImage.bak)"
+					fi
 					curl -LO "${dl_url}"
 					cd "${CURDIR}"
 					;;
@@ -65,14 +70,47 @@ update_binary ()
 {
 	name=$1;
 	URL=$2;
+	dl_type=$3
 	echo "[INFO] Updating $name";
 
-	# Git repo releases page? get latest
 	# The ~/Applicaitons dir is compliant with ES-DE
-	if echo "${URL}" | grep -q "zip"; then
+	if echo "${URL}" | grep -q ".zip"; then
+		# Handle direct URL zips
 		echo "[INFO] Downloading and extracting ZIP for ${name}"
 		curl -sLo "/tmp/${name}.zip" "${URL}"
 		unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
+
+	elif echo "${URL}" | grep -q "github.com"; then
+		# Handle github release page
+		echo "[INFO] Fetching latet release from ${URL}"
+		# Prefer app iamge
+		app_image_url=$(curl -s "${URL}" | awk '/http.*AppImage/ {print $2}' | sed 's/"//g')
+
+		# Set download URL
+		if [[ -z" ${app_image_url}" ]]; then
+			dl_url="${app_image_url}"
+		else
+			echo "[ERROR] Could not get a download url for ${URL}!"
+			return 0
+		fi
+
+		# Get release
+		cd "${HOME}/Applications"
+		if ls | grep -qE "${name}.*${dl_type}"; then
+			echo "[INFO] Moving old ${dl_type} to .bak"
+			echo "[INFO] $(mv -v ${name}*${dl_type} ${name}.AppImage.bak)"
+		fi
+		echo "[INFO] Downloading ${dl_url}"
+		curl -LO "${dl_url}"
+
+	else
+		cd "${HOME}/Applications"
+		if ls | grep -qE "${name}.*AppImage"; then
+			echo "[INFO] Moving old ${dl_type} to .bak"
+			echo "[INFO] $(mv -v ${name}*AppImage ${name}.AppImage.bak)"
+		fi
+		echo "[INFO] Downloading ${dl_url}"
+		curl -LO "${dl_url}"
 	fi
 
 }
@@ -91,7 +129,7 @@ update_steam_emu ()
 		return
 	fi
 	mkdir -p "${app_dir}"
-	cp -v ${emu_dir}/* "${app_dir}" 
+	cp -r ${emu_dir}/* "${app_dir}" 
 }
 
 update_from_curl ()
@@ -106,10 +144,10 @@ update_from_curl ()
 }
 
 main () {
+	#####################
+	# Flatpak
+	#####################
 	echo -e "[INFO] Updating emulators (Flatpaks)\n"
-	curlit "rpcs3" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
-	exit 0
-	sleep 3
 	update_emu_flatpak "RetroArch" "org.libretro.RetroArch"
 	update_emu_flatpak "PrimeHack" "io.github.shiiion.primehack"
 	update_emu_flatpak "RPCS3" "net.rpcs3.RPCS3"
@@ -125,11 +163,32 @@ main () {
 	echo -e "\n[INFO] These cores are installed from the Retorach flatpak: "
 	ls ~/.var/app/org.libretro.RetroArch/config/retroarch/cores | column -c 150
 
+	#####################
+	# Binaries
+	#####################
 	echo -e "\n[INFO] Updating binaries"
+	# ZIPs
 	update_binary "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip"
+	# From GitHub release pages
+	update_binary "Steam-ROM-Manager" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
+	# From web scrape
 	curlit "rpcs3" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
 	curlit "BigPEmu" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
 
+	#binTable+=(TRUE "Steam Rom Manager" "srm")
+	#binTable+=(TRUE "GameBoy / Color / Advance Emu" "mgba")
+	#binTable+=(TRUE "Nintendo Switch Emu" "yuzu (mainline)")
+	#binTable+=(TRUE "Nintendo Switch Emu" "yuzu (early access)")
+	#binTable+=(TRUE "Nintendo Switch Emu" "ryujinx")
+	#binTable+=(TRUE "Sony PlayStation 2 Emu" "pcsx2-qt")
+	#binTable+=(TRUE "Nintendo WiiU Emu (Proton)" "cemu (win/proton)")
+	#binTable+=(TRUE "Nintendo WiiU Emu (Native)" "cemu (native)")
+	#binTable+=(TRUE "Sony PlayStation Vita Emu" "vita3k")
+	#binTable+=(TRUE "Xbox 360 Emu" "xenia") 
+
+	#####################
+	# Steam
+	#####################
 	echo -e "\n[INFO] Symlinking any emulators from Steam"
 	# https://steamdb.info/app/1147940/
 	update_steam_emu "3dSen" "3dSen.exe"

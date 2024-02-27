@@ -49,12 +49,14 @@ fi
 for rom in $(cat "${romlist}");
 do
 	rom_file=$(find "${src}" -name "${rom}")
-	rom_file_no_ext=$(basename $(echo "${rom_file}" | sed 's/.zip//'))
-	chd_folder=$(find "${src}" -type d -name "${rom_file_no_ext}")
 	if [[ -z "${rom_file}" ]]; then
 		echo "[ERROR] Could not find ROM ${rom}, skipping"
 		continue
 	fi
+
+	rom_file_no_ext=$(basename $(echo "${rom_file}" | sed 's/.zip//'))
+	chd_folder=$(find "${src}" -type d -name "${rom_file_no_ext}")
+
 	echo "Moving ROM from list: $rom to $dest"
 	mv "${rom_file}" "${dest}"
 	if [[ -n "${chd_folder}" ]]; then

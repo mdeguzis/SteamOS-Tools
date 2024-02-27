@@ -14,8 +14,10 @@ curlit()
 	# This function is meat to grab an archive/file out of a page HTML/CSS dump
 
 	name=$1
-	search_url=$2
-	exe_match=$3
+	target_folder=$2
+	search_url=$3
+	exe_match=$4
+
 	echo "[INFO] Updating $name (searching for ${exe_match} on page...)"
 	curl -q -v "${search_url}" &> "/tmp/results.txt"
 	urls=$(awk -F"[><]" '{for(i=1;i<=NF;i++){if($i ~ /a href=.*\//){print "<" $i ">"}}}' "/tmp/results.txt")
@@ -156,8 +158,14 @@ update_binary ()
 update_steam_emu ()
 {
 	name=$1;
-	exec_name=$2
-	app_dir="${HOME}/Applications/${name}"
+	folder_target=$2
+	exec_name=$3
+
+	if [[ -n "${folder_target}" ]]; then
+		app_dir="${HOME}/Applications/${name}"
+	else
+		app_dir="${HOME}/Applications"
+	fi
 	echo "[INFO] Updating $name"
 
 	emu_location=$(find ~/.steam/steam/steamapps/ -name "${exec_name}")
@@ -223,15 +231,15 @@ main () {
 	update_binary "Vita3k" "" "https://api.github.com/repos/Vita3K/Vita3K/releases/latest" "AppImage"
 
 	# From web scrape
-	curlit "rpcs3" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
-	curlit "BigPEmu" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
+	curlit "rpcs3" "" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
+	curlit "BigPEmu" "" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
 
 	#####################
 	# Steam
 	#####################
 	echo -e "\n[INFO] Symlinking any emulators from Steam"
 	# https://steamdb.info/app/1147940/
-	update_steam_emu "3dSen" "3dSen.exe"
+	update_steam_emu "3dSen" "3dSen" "3dSen.exe"
 
 }
 

@@ -185,6 +185,7 @@ main () {
 	
 	# Check for rate exceeded
 	echo "[INFO] Testing Git API"
+	sleep 2
 	git_test=$(curl -s "https://api.github.com")
 	if echo "${git_test}" | grep -q "exceeded"; then
 		echo "${git_test}"
@@ -197,6 +198,7 @@ main () {
 	# Flatpak
 	#####################
 	echo -e "[INFO] Updating emulators (Flatpaks)\n"
+	sleep 2
 	update_emu_flatpak "RetroArch" "org.libretro.RetroArch"
 	update_emu_flatpak "PrimeHack" "io.github.shiiion.primehack"
 	update_emu_flatpak "RPCS3" "net.rpcs3.RPCS3"
@@ -217,6 +219,7 @@ main () {
 	# Binaries
 	#####################
 	echo -e "\n[INFO] Updating binaries"
+	sleep 2
 
 	# ZIPs
 	update_binary "xenia" "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
@@ -238,6 +241,7 @@ main () {
 	# Steam
 	#####################
 	echo -e "\n[INFO] Symlinking any emulators from Steam"
+	sleep 2
 	# https://steamdb.info/app/1147940/
 	update_steam_emu "3dSen" "3dSen" "3dSen.exe"
 

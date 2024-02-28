@@ -222,6 +222,7 @@ main () {
 	update_emu_flatpak "Citra" "org.citra_emu.citra"
 	update_emu_flatpak "dolphin-emu" "org.DolphinEmu.dolphin-emu"
 	update_emu_flatpak "DuckStation" "org.duckstation.DuckStation"
+	update_emu_flatpak "Mupen64Plus(GUI)" "com.github.Rosalie241.RMG"
 	update_emu_flatpak "PPSSPP" "org.ppsspp.PPSSPP"
 	update_emu_flatpak "Xemu-Emu" "app.xemu.xemu"
 	update_emu_flatpak "ScummVM" "org.scummvm.ScummVM"

@@ -10,26 +10,35 @@
 # http://adb.arcadeitalia.net/lista_mame.php
 
 # The rom list should have the string to match, one per line
-archive="roms.archived"
 operation=$1
-romlist=$2
+system=$2
+romlist=$3
+archive="${HOME}/Emulation/roms/archive/${system}"
 
 if [[ -z "${operation}" ]]; then
 	echo "[ERROR] Missing operation as arg 1! One of: archive, unarchive"
+	exit 1
+fi
+if [[ -z "${system}" ]]; then
+	echo "[ERROR] Missing system name as arg 2! E.g. 'mame', 'psp'"
 	exit 1
 fi
 if [[ -z "${romlist}" ]]; then
 	echo "[ERROR] Missing rom list to parse as arg 2!"
 	exit 1
 fi
+if [[ ! -d "${archive}" ]]; then
+	echo "[ERROR] Archive dir ${archive} does not exist!"
+	exit 1
+fi
 
 # Set src/dest
 if [[ "${operation}" == "unarchive" ]]; then
 	dest="${PWD}"
-	src="roms.archived"
+	src="${archive}"
 
 elif [[ "${operation}" == "archive" ]]; then
-	dest="roms.archived"
+	dest="${archive}"
 	src="${PWD}"
 else
 	echo "[ERROR] Invalid operation!"
@@ -53,15 +62,21 @@ do
 		echo "[ERROR] Could not find ROM(s) ${rom}, skipping"
 		continue
 	fi
-
 	rom_file_no_ext=$(basename $(echo "${rom_file}" | sed 's/.zip//'))
-	chd_folder=$(find "${src}" -type d -name "${rom_file_no_ext}")
 
-	echo "Moving ROM from list: $rom to $dest"
-	mv "${rom_file}" "${dest}"
-	if [[ -n "${chd_folder}" ]]; then
-		echo "Moving ROM CHD folder/files from list: $chd_folder to $dest"
-		mv "${chd_folder}" "${dest}/"
+	##############################
+	# Special handling
+	##############################
+	
+	# MAME
+	if [[ "${system}" == "mame" ]]; then
+		chd_folder=$(find "${src}" -type d -name "${rom_file_no_ext}")
+		echo "Moving ROM from list: $rom to $dest"
+		mv "${rom_file}" "${dest}"
+		if [[ -n "${chd_folder}" ]]; then
+			echo "Moving ROM CHD folder/files from list: $chd_folder to $dest"
+			mv "${chd_folder}" "${dest}/"
+		fi
 	fi
 done
 

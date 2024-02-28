@@ -50,7 +50,7 @@ for rom in $(cat "${romlist}");
 do
 	rom_file=$(find "${src}" -name "${rom}")
 	if [[ -z "${rom_file}" ]]; then
-		echo "[ERROR] Could not find ROM ${rom}, skipping"
+		echo "[ERROR] Could not find ROM(s) ${rom}, skipping"
 		continue
 	fi
 

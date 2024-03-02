@@ -189,11 +189,11 @@ update_steam_emu ()
 	fi
 	echo "[INFO] Updating $name"
 
-	emu_location=$(find ~/.steam/steam/steamapps/ -name "${exec_name}")
+	emu_location=$(find ~/.steam/steam/steamapps/ -name "${exec_name}" || true)
 	emu_dir=$(dirname "${emu_location}")
 	if [[ -z "${emu_location}" ]]; then
 		echo "[ERROR] Could not find Steam app location for ${name} with exec name ${exec_name} ! Skipping..."
-		exit 1
+		return
 	fi
 	mkdir -p "${app_dir}"
 	cp -r ${emu_dir}/* "${app_dir}" 
@@ -226,7 +226,7 @@ main () {
 	update_emu_flatpak "Citra" "org.citra_emu.citra"
 	update_emu_flatpak "dolphin-emu" "org.DolphinEmu.dolphin-emu"
 	update_emu_flatpak "DuckStation" "org.duckstation.DuckStation"
-	update_emu_flatpak "Mupen64Plus(GUI)" "com.github.Rosalie241.RMG"
+	update_emu_flatpak "Mupen64Plus (GUI)" "com.github.Rosalie241.RMG"
 	update_emu_flatpak "Lutris" "net.lutris.Lutris"
 	update_emu_flatpak "PPSSPP" "org.ppsspp.PPSSPP"
 	update_emu_flatpak "Xemu-Emu" "app.xemu.xemu"

@@ -11,7 +11,7 @@ CURDIR="${PWD}"
 
 curlit()
 {
-	# This function is meat to grab an archive/file out of a page HTML/CSS dump
+	# This function is meantt to grab an archive/file out of a page HTML/CSS dump
 
 	name=$1
 	target_folder=$2

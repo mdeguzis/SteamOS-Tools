@@ -44,7 +44,7 @@ curlit()
 			case $file_type in
 				"zip")
 					curl -sLo "/tmp/${name}.zip" "${dl_url}"
-					unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
+					unzip -fo "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
 					;;
 				"appimage")
 					curl -LO --output-dir "${HOME}/Applications" "${dl_url}"
@@ -147,9 +147,9 @@ update_binary ()
 	file_type=$(echo "${dl_type}" | tr '[:upper:]' '[:lower:]')
 	if [[ "${file_type}" == "zip" ]]; then
 		if [[ -n "${folder_target}" ]]; then
-			unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${folder_target}"
+			unzip -fo "/tmp/${name}.zip" -d "${HOME}/Applications/${folder_target}"
 		else
-			unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/"
+			unzip -fo "/tmp/${name}.zip" -d "${HOME}/Applications/"
 		fi
 
 	elif [[ "${file_type}" == "tar.gz" ]]; then
@@ -257,7 +257,6 @@ main () {
 	update_binary "Steam-ROM-Manager" "" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
 	update_binary "ryujinx" "" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
 	update_binary "pcsx2" "" "https://api.github.com/repos/PCSX2/pcsx2/releases/latest" "AppImage"
-	update_binary "wine-staging_ge-proton" "" "https://github.com/mmtrt/WINE_AppImage/releases" "AppImage"
 	# No Cemu latest tag has a Linux AppImage, must use use pre-releases
 	update_binary "Cemu" "" "https://api.github.com/repos/cemu-project/Cemu/releases" "AppImage"
 	update_binary "Vita3K" "" "https://api.github.com/repos/Vita3K/Vita3K/releases/latest" "AppImage"

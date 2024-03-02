@@ -164,7 +164,11 @@ update_binary ()
 
 	elif [[ "${file_type}" == "appimage" ]]; then
 		app_image=$(ls -t /tmp/${name}*AppImage)
-		mv -v "${app_image}" "${HOME}/Applications"
+		if [[ -n "${folder_target}" ]]; then
+			mv -v "${app_image}" "${HOME}/Applications/${folder_target}"
+		else
+			mv -v "${app_image}" "${HOME}/Applications"
+		fi
 	else
 		echo "[INFO] Failed to handle download!"
 		exit 1
@@ -223,6 +227,7 @@ main () {
 	update_emu_flatpak "dolphin-emu" "org.DolphinEmu.dolphin-emu"
 	update_emu_flatpak "DuckStation" "org.duckstation.DuckStation"
 	update_emu_flatpak "Mupen64Plus(GUI)" "com.github.Rosalie241.RMG"
+	update_emu_flatpak "Lutris" "net.lutris.Lutris"
 	update_emu_flatpak "PPSSPP" "org.ppsspp.PPSSPP"
 	update_emu_flatpak "Xemu-Emu" "app.xemu.xemu"
 	update_emu_flatpak "ScummVM" "org.scummvm.ScummVM"
@@ -239,6 +244,9 @@ main () {
 	echo -e "\n[INFO] Updating binaries"
 	sleep 2
 
+	# Wine / Proton
+	update_binary "wine-staging_ge-proton" "Proton" "https://api.github.com/repos/mmtrt/WINE_AppImage/releases/latest" "AppImage"
+
 	# ZIPs
 	update_binary "xenia_master" "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
 	update_binary "xenia_canary" "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
@@ -249,6 +257,7 @@ main () {
 	update_binary "Steam-ROM-Manager" "" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
 	update_binary "ryujinx" "" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
 	update_binary "pcsx2" "" "https://api.github.com/repos/PCSX2/pcsx2/releases/latest" "AppImage"
+	update_binary "wine-staging_ge-proton" "" "https://github.com/mmtrt/WINE_AppImage/releases" "AppImage"
 	# No Cemu latest tag has a Linux AppImage, must use use pre-releases
 	update_binary "Cemu" "" "https://api.github.com/repos/cemu-project/Cemu/releases" "AppImage"
 	update_binary "Vita3K" "" "https://api.github.com/repos/Vita3K/Vita3K/releases/latest" "AppImage"

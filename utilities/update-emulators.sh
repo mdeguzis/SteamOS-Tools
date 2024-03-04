@@ -158,13 +158,21 @@ update_binary ()
 			echo "[ERROR] Could not match tar.gz file!"
 			exit 1
 		fi
+
 		echo "[INFO] Extracting ${tar_file}"
-		tar -xvf "${tar_file}" -C "$HOME/Applications" 
+		if [[ -n "${folder_target}" ]]; then
+			mkdir -p "${HOME}/Applications/${folder_target}"
+			tar -xvf "${tar_file}" -C "$HOME/Applications/${folder_target}" 
+		else
+			tar -xvf "${tar_file}" -C "$HOME/Applications" 
+		fi
+
 		rm -rf "${tar_file}"
 
 	elif [[ "${file_type}" == "appimage" ]]; then
 		app_image=$(ls -t /tmp/${name}*AppImage)
 		if [[ -n "${folder_target}" ]]; then
+			mkdir -p "${HOME}/Applications/${folder_target}"
 			mv -v "${app_image}" "${HOME}/Applications/${folder_target}"
 		else
 			mv -v "${app_image}" "${HOME}/Applications"

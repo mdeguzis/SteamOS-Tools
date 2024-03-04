@@ -1,21 +1,29 @@
 #!/bin/bash
 
+set -e -o pipefail
+
 CURDIR="${PWD}"
 echo "[INFO] unlocking immutable OS"
 
-sudo frzr-unlock
-sudo pacman-key --init
-sudo pacman-key --populate archlinux
+if which frzr-unlock &> /dev/null; then
+	sudo frzr-unlock
+	sudo pacman-key --init
+	sudo pacman-key --populate archlinux
+else
+	sudo steamos-readonly disable
+	sudo pacman-key --init
+	sudo pacman-key --populate holo
+fi
 sudo pacman -Sy
 
 # https://github.com/Jguer/yay
 echo "[INFO] Installing 'yay' for user repository packages"
-pacman -S --needed git base-devel
+sudo pacman -S --noconfirm --needed git base-devel
 cd ~/src
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-cd "${CURDIR}}"
+cd "${CURDIR}"
 
 echo "[INFO] Installing supplemental software to OS"
 

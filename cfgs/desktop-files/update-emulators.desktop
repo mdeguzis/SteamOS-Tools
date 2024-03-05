@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=konsole -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh; $SHELL"'
+Icon=utilities-terminal
+Categories=Qt;KDE;System;TerminalEmulator;
+StartupWMClass=konsole
+Name=Update Emulators
+Comment=Update Emulators
+

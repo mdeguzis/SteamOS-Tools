@@ -3,7 +3,4 @@
 
 # Ignore dumb .so warnings by setting LD_PRELOAD to undefined
 export LD_PRELOAD=""
-konsole -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh; $SHELL" 2> /dev/null'
-echo "Done!"
-sleep 5
-exit
+konsole -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'

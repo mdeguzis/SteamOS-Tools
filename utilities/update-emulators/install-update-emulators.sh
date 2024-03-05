@@ -11,3 +11,4 @@ cp -v "${GIT_ROOT}/utilities/update-emulators/update-emulators.sh" "${HOME}/.loc
 cp -v "${GIT_ROOT}/utilities/update-emulators/launch-update-emulators.sh" "${HOME}/.local/bin"
 
 echo -e "\nYou can now add this via the Decky Loader > Quick Launch plugin."
+echo "'launch-update-emulators.sh' is meant for Steam GameMode"

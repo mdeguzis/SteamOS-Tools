@@ -2,6 +2,7 @@
 # Updates AppImage/Flatpak emulators in one go
 # Notes:
 # 	Where to put files: https://gitlab.com/es-de/emulationstation-de/-/blob/stable-3.0/resources/systems/linux/es_find_rules.xml
+# 	Emulator files: https://emulation.gametechwiki.com/index.php/Emulator_files
 
 # Binaries
 
@@ -67,8 +68,13 @@ update_emu_flatpak ()
 	ID=$2;
 	echo "[INFO] Updating $name";
 	if ! flatpak update $ID -y; then
+		sleep 2
 		# Install
 		flatpak install --user -y --noninteractive $ID
+		if [[ $? -ne 0 ]]; then
+			echo "[ERROR] Failed to install Flatpak!"
+			exit 1
+		fi
 	fi
 	flatpak override $ID --filesystem=host --user;
 	flatpak override $ID --share=network --user;
@@ -243,6 +249,8 @@ main () {
 	update_emu_flatpak "melonDS" "net.kuribo64.melonDS"
 	update_emu_flatpak "RMG" "com.github.Rosalie241.RMG"
 	update_emu_flatpak "Ryujinx" "org.ryujinx.Ryujinx"
+	update_emu_flatpak "DOSBox" "com.dosbox.DOSBox"
+	update_emu_flatpak "DOSBox-Staging" "io.github.dosbox-staging"
 
 	echo -e "\n[INFO] These cores are installed from the Retorach flatpak: "
 	ls ~/.var/app/org.libretro.RetroArch/config/retroarch/cores | column -c 150

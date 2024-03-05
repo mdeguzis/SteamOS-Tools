@@ -231,7 +231,8 @@ main () {
 	update_emu_flatpak "RetroArch" "org.libretro.RetroArch"
 	update_emu_flatpak "PrimeHack" "io.github.shiiion.primehack"
 	update_emu_flatpak "RPCS3" "net.rpcs3.RPCS3"
-	update_emu_flatpak "Citra" "org.citra_emu.citra"
+	# RIP Citra
+	# update_emu_flatpak "Citra" "org.citra_emu.citra"
 	update_emu_flatpak "dolphin-emu" "org.DolphinEmu.dolphin-emu"
 	update_emu_flatpak "DuckStation" "org.duckstation.DuckStation"
 	update_emu_flatpak "Mupen64Plus (GUI)" "com.github.Rosalie241.RMG"

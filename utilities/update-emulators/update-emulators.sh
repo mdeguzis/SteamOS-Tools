@@ -19,7 +19,7 @@ curlit()
 	search_url=$3
 	exe_match=$4
 
-	echo "[INFO] Updating $name (searching for ${exe_match} on page...)"
+	echo -e "\n[INFO] Updating $name (searching for ${exe_match} on page...)"
 	curl -q -v "${search_url}" &> "/tmp/results.txt"
 	urls=$(awk -F"[><]" '{for(i=1;i<=NF;i++){if($i ~ /a href=.*\//){print "<" $i ">"}}}' "/tmp/results.txt")
 	rm -f "/tmp/results.txt"
@@ -66,7 +66,7 @@ update_emu_flatpak ()
 {
 	name=$1;
 	ID=$2;
-	echo "[INFO] Updating $name";
+	echo -e "\n[INFO] Updating $name";
 	if ! flatpak update $ID -y; then
 		sleep 2
 		# Show version
@@ -91,7 +91,7 @@ update_binary ()
 	dl_type=$4
 	curl_options="-LO --output-dir /tmp"
 
-	echo "[INFO] Updating $name";
+	echo -e "\n[INFO] Updating binary for $name";
 
 	# The ~/Applications dir is compliant with ES-DE
 	if echo "${URL}" | grep -q ".zip"; then
@@ -258,8 +258,10 @@ main () {
 	update_emu_flatpak "ScummVM" "org.scummvm.ScummVM"
 	update_emu_flatpak "Xemu-Emu" "app.xemu.xemu"
 
-	echo -e "\n[INFO] These cores are installed from the Retorach flatpak: "
-	ls ~/.var/app/org.libretro.RetroArch/config/retroarch/cores | column -c 150
+    if [[ -d "${HOME}/.var/app/org.libretro.RetroArch/config/retroarch/cores" ]]; then
+        echo -e "\n[INFO] These cores are installed from the Retorach flatpak: "
+        ls "${HOME}/.var/app/org.libretro.RetroArch/config/retroarch/cores" | column -c 150
+    fi
 
 	#####################
 	# Binaries

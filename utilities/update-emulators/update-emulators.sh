@@ -67,7 +67,7 @@ update_emu_flatpak ()
 	name=$1;
 	ID=$2;
 	echo -e "\n[INFO] Updating $name";
-	if ! flatpak update $ID -y; then
+	if ! flatpak --user update $ID -y; then
 		sleep 2
 		# Show version
 		# Install

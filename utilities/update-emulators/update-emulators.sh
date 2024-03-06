@@ -93,7 +93,7 @@ update_binary ()
 
 	echo "[INFO] Updating $name";
 
-	# The ~/Applicaitons dir is compliant with ES-DE
+	# The ~/Applications dir is compliant with ES-DE
 	if echo "${URL}" | grep -q ".zip"; then
 		# Handle direct URL zips
 		dl_url="${URL}"
@@ -220,6 +220,8 @@ main () {
 	#####################
 	# Pre-reqs
 	#####################
+
+    mkdir -p "${HOME}/Applications"
 	
 	# Check for rate exceeded
 	echo "[INFO] Testing Git API"
@@ -271,6 +273,8 @@ main () {
 	# ZIPs
 	update_binary "xenia_master" "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
 	update_binary "xenia_canary" "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
+    # Note that the Panda3DS AppImage name is oddly named: "Alber-x86_64.AppImage"
+	update_binary "Panda3DS" "" "https://nightly.link/wheremyfoodat/Panda3DS/workflows/Qt_Build/master/Linux%20executable.zip" "zip"
 
 	# From GitHub release pages
 	# Careful not to get rate exceeded here...

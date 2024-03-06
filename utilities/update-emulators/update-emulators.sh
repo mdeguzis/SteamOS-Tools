@@ -69,12 +69,15 @@ update_emu_flatpak ()
 	echo "[INFO] Updating $name";
 	if ! flatpak update $ID -y; then
 		sleep 2
+		# Show version
 		# Install
 		flatpak install --user -y --noninteractive $ID
 		if [[ $? -ne 0 ]]; then
 			echo "[ERROR] Failed to install Flatpak!"
 			exit 1
 		fi
+	#else
+	#	flatpak --user info $ID | grep Version | sed 's/\ //g'
 	fi
 	flatpak override $ID --filesystem=host --user;
 	flatpak override $ID --share=network --user;
@@ -234,23 +237,24 @@ main () {
 	#####################
 	echo -e "[INFO] Updating emulators (Flatpaks)\n"
 	sleep 2
-	update_emu_flatpak "RetroArch" "org.libretro.RetroArch"
-	update_emu_flatpak "PrimeHack" "io.github.shiiion.primehack"
-	update_emu_flatpak "RPCS3" "net.rpcs3.RPCS3"
 	# RIP Citra
 	# update_emu_flatpak "Citra" "org.citra_emu.citra"
 	update_emu_flatpak "dolphin-emu" "org.DolphinEmu.dolphin-emu"
-	update_emu_flatpak "DuckStation" "org.duckstation.DuckStation"
-	update_emu_flatpak "Mupen64Plus (GUI)" "com.github.Rosalie241.RMG"
-	update_emu_flatpak "Lutris" "net.lutris.Lutris"
-	update_emu_flatpak "PPSSPP" "org.ppsspp.PPSSPP"
-	update_emu_flatpak "Xemu-Emu" "app.xemu.xemu"
-	update_emu_flatpak "ScummVM" "org.scummvm.ScummVM"
-	update_emu_flatpak "melonDS" "net.kuribo64.melonDS"
-	update_emu_flatpak "RMG" "com.github.Rosalie241.RMG"
-	update_emu_flatpak "Ryujinx" "org.ryujinx.Ryujinx"
 	update_emu_flatpak "DOSBox" "com.dosbox.DOSBox"
 	update_emu_flatpak "DOSBox-Staging" "io.github.dosbox-staging"
+	update_emu_flatpak "DuckStation" "org.duckstation.DuckStation"
+	update_emu_flatpak "Lutris" "net.lutris.Lutris"
+	update_emu_flatpak "MAME" "org.mamedev.MAME"
+	update_emu_flatpak "melonDS" "net.kuribo64.melonDS"
+	update_emu_flatpak "Mupen64Plus (GUI)" "com.github.Rosalie241.RMG"
+	update_emu_flatpak "PPSSPP" "org.ppsspp.PPSSPP"
+	update_emu_flatpak "PrimeHack" "io.github.shiiion.primehack"
+	update_emu_flatpak "RetroArch" "org.libretro.RetroArch"
+	update_emu_flatpak "RMG" "com.github.Rosalie241.RMG"
+	update_emu_flatpak "RPCS3" "net.rpcs3.RPCS3"
+	update_emu_flatpak "Ryujinx" "org.ryujinx.Ryujinx"
+	update_emu_flatpak "ScummVM" "org.scummvm.ScummVM"
+	update_emu_flatpak "Xemu-Emu" "app.xemu.xemu"
 
 	echo -e "\n[INFO] These cores are installed from the Retorach flatpak: "
 	ls ~/.var/app/org.libretro.RetroArch/config/retroarch/cores | column -c 150

@@ -8,7 +8,7 @@
 
 set -e -o pipefail
 
-VERSION="0.6.2"
+VERSION="0.6.3"
 CURDIR="${PWD}"
 
 curlit()
@@ -270,7 +270,6 @@ main () {
 	update_emu_flatpak "Ryujinx" "org.ryujinx.Ryujinx"
 	update_emu_flatpak "ScummVM" "org.scummvm.ScummVM"
 	update_emu_flatpak "VICE" "net.sf.VICE"
-	update_emu_flatpak "Wine" "org.winehq.Wine"
 	update_emu_flatpak "Xemu-Emu" "app.xemu.xemu"
 
 	if [[ -d "${HOME}/.var/app/org.libretro.RetroArch/config/retroarch/cores" ]]; then

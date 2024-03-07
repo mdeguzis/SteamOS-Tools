@@ -199,6 +199,7 @@ update_steam_emu ()
 	name=$1;
 	folder_target=$2
 	exec_name=$3
+	steam_location="${HOME}/.steam/steam/steamapps"
 
 	if [[ -n "${folder_target}" ]]; then
 		app_dir="${HOME}/Applications/${name}"
@@ -207,14 +208,18 @@ update_steam_emu ()
 	fi
 	echo "[INFO] Updating $name"
 
-	emu_location=$(find ~/.steam/steam/steamapps/ -name "${exec_name}" || true)
-	emu_dir=$(dirname "${emu_location}")
-	if [[ -z "${emu_location}" ]]; then
-		echo "[ERROR] Could not find Steam app location for ${name} with exec name ${exec_name} ! Skipping..."
-		return
+	if [[ ! -d "${steam_location}" ]]; then
+		echo "[ERROR] Steam directory does not exist, skipping installation/update"
+	else
+		emu_location=$(find "${steam_location}" -name "${exec_name}" || true)
+		emu_dir=$(dirname "${emu_location}")
+		if [[ -z "${emu_location}" ]]; then
+			echo "[ERROR] Could not find Steam app location for ${name} with exec name ${exec_name} ! Skipping..."
+			return
+		fi
+		mkdir -p "${app_dir}"
+		cp -r ${emu_dir}/* "${app_dir}" 
 	fi
-	mkdir -p "${app_dir}"
-	cp -r ${emu_dir}/* "${app_dir}" 
 }
 
 main () {
@@ -304,7 +309,7 @@ main () {
 	#####################
 	# Cleanup
 	#####################
-	echo "[INFO] Marking any ELF executables in ${HOME}/Applications executable"
+	echo -e "\n[INFO] Marking any ELF executables in ${HOME}/Applications executable"
 	for bin in $(find ~/Applications -type f -exec file {} \; \
 		| grep ELF \
 		| awk -F':' '{print $1}' \

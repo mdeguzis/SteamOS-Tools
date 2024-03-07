@@ -19,6 +19,6 @@ if [[ -f "/usr/bin/konsole" ]]; then
 elif [[ -f "/usr/bin/gnome-terminal" ]]; then
 	gnome-terminal -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'
 else
-	echo "[ERROR] Uknown terminal in use"
+	echo "[ERROR] Unknown terminal in use"
 	exit 1
 fi

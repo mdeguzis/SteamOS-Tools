@@ -45,7 +45,7 @@ curlit()
 			case $file_type in
 				"zip")
 					curl -sLo "/tmp/${name}.zip" "${dl_url}"
-					unzip -fo "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
+					unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
 					;;
 				"appimage")
 					curl -LO --output-dir "${HOME}/Applications" "${dl_url}"
@@ -96,6 +96,7 @@ update_binary ()
 	# The ~/Applications dir is compliant with ES-DE
 	if echo "${URL}" | grep -q ".zip"; then
 		# Handle direct URL zips
+		zip_name=$(basename "${URL}")
 		dl_url="${URL}"
 
 	elif echo "${URL}" | grep -q "gitlab.com/api"; then
@@ -156,9 +157,9 @@ update_binary ()
 	file_type=$(echo "${dl_type}" | tr '[:upper:]' '[:lower:]')
 	if [[ "${file_type}" == "zip" ]]; then
 		if [[ -n "${folder_target}" ]]; then
-			unzip -fo "/tmp/${name}.zip" -d "${HOME}/Applications/${folder_target}"
+			unzip -o "/tmp/${zip_name}" -d "${HOME}/Applications/${folder_target}"
 		else
-			unzip -fo "/tmp/${name}.zip" -d "${HOME}/Applications/"
+			unzip -o "/tmp/${zip_name}" -d "${HOME}/Applications/"
 		fi
 
 	elif [[ "${file_type}" == "tar.gz" ]]; then
@@ -221,7 +222,7 @@ main () {
 	# Pre-reqs
 	#####################
 
-    mkdir -p "${HOME}/Applications"
+	mkdir -p "${HOME}/Applications"
 	
 	# Check for rate exceeded
 	echo "[INFO] Testing Git API"
@@ -258,10 +259,10 @@ main () {
 	update_emu_flatpak "ScummVM" "org.scummvm.ScummVM"
 	update_emu_flatpak "Xemu-Emu" "app.xemu.xemu"
 
-    if [[ -d "${HOME}/.var/app/org.libretro.RetroArch/config/retroarch/cores" ]]; then
-        echo -e "\n[INFO] These cores are installed from the Retorach flatpak: "
-        ls "${HOME}/.var/app/org.libretro.RetroArch/config/retroarch/cores" | column -c 150
-    fi
+	if [[ -d "${HOME}/.var/app/org.libretro.RetroArch/config/retroarch/cores" ]]; then
+		echo -e "\n[INFO] These cores are installed from the Retorach flatpak: "
+		ls "${HOME}/.var/app/org.libretro.RetroArch/config/retroarch/cores" | column -c 150
+	fi
 
 	#####################
 	# Binaries
@@ -275,8 +276,8 @@ main () {
 	# ZIPs
 	update_binary "xenia_master" "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
 	update_binary "xenia_canary" "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
-    # Note that the Panda3DS AppImage name is oddly named: "Alber-x86_64.AppImage"
-	update_binary "Panda3DS" "" "https://nightly.link/wheremyfoodat/Panda3DS/workflows/Qt_Build/master/Linux executable.zip" "zip"
+	# Note that the Panda3DS AppImage name is oddly named: "Alber-x86_64.AppImage"
+	update_binary "Panda3DS" "" "https://github.com/wheremyfoodat/Panda3DS/releases/latest/download/Linux-SDL.zip" "zip"
 
 	# From GitHub release pages
 	# Careful not to get rate exceeded here...

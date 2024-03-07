@@ -276,7 +276,7 @@ main () {
 	update_binary "xenia_master" "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
 	update_binary "xenia_canary" "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
     # Note that the Panda3DS AppImage name is oddly named: "Alber-x86_64.AppImage"
-	update_binary "Panda3DS" "" "https://nightly.link/wheremyfoodat/Panda3DS/workflows/Qt_Build/master/Linux%20executable.zip" "zip"
+	update_binary "Panda3DS" "" "https://nightly.link/wheremyfoodat/Panda3DS/workflows/Qt_Build/master/Linux executable.zip" "zip"
 
 	# From GitHub release pages
 	# Careful not to get rate exceeded here...

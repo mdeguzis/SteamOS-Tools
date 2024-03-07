@@ -8,7 +8,7 @@
 
 set -e -o pipefail
 
-VERSION="0.6.1"
+VERSION="0.6.2"
 CURDIR="${PWD}"
 
 curlit()
@@ -261,6 +261,7 @@ main () {
 	update_emu_flatpak "MAME" "org.mamedev.MAME"
 	update_emu_flatpak "melonDS" "net.kuribo64.melonDS"
 	update_emu_flatpak "Mupen64Plus (GUI)" "com.github.Rosalie241.RMG"
+	update_emu_flatpak "Pegasus" "org.pegasus_frontend.Pegasus"
 	update_emu_flatpak "PPSSPP" "org.ppsspp.PPSSPP"
 	update_emu_flatpak "PrimeHack" "io.github.shiiion.primehack"
 	update_emu_flatpak "RetroArch" "org.libretro.RetroArch"
@@ -268,6 +269,8 @@ main () {
 	update_emu_flatpak "RPCS3" "net.rpcs3.RPCS3"
 	update_emu_flatpak "Ryujinx" "org.ryujinx.Ryujinx"
 	update_emu_flatpak "ScummVM" "org.scummvm.ScummVM"
+	update_emu_flatpak "VICE" "net.sf.VICE"
+	update_emu_flatpak "Wine" "org.winehq.Wine"
 	update_emu_flatpak "Xemu-Emu" "app.xemu.xemu"
 
 	if [[ -d "${HOME}/.var/app/org.libretro.RetroArch/config/retroarch/cores" ]]; then

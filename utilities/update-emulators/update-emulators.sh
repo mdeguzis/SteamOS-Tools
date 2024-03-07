@@ -8,6 +8,7 @@
 
 set -e -o pipefail
 
+VERSION="0.6.1"
 CURDIR="${PWD}"
 
 curlit()
@@ -226,6 +227,8 @@ main () {
 	#####################
 	# Pre-reqs
 	#####################
+
+	echo "[INFO] Updater version: ${VERSION}"
 
 	backup_loc="/tmp/update-emulators-backup"
 	app_loc="${HOME}/Applications"

@@ -36,19 +36,19 @@ curlit()
 			echo "[INFO] Filetype found: ${file_type}"
 
 			# Backup
-			if ls "${HOME}/Applications"| grep -qE ${name}*${dl_type}; then
-				echo "[INFO] Moving old ${dl_type} to .bak in /tmp"
-				echo "[INFO] $(mv -v ${HOME}/Applications/${name}*${dl_type} /tmp/${name}.${dl_type}.bak)"
+			if ls "${app_loc}"| grep -qiE "${name}.*${file_type}"; then
+				echo "[INFO] Moving old ${file_type} to .bak in /tmp"
+				echo "[INFO] $(find ${app_loc} -iname "${name}*${file_type}" -exec mv -v {} ${backup_loc} \;)"
 			fi
 
 			# Handle different file types
 			case $file_type in
 				"zip")
 					curl -sLo "/tmp/${name}.zip" "${dl_url}"
-					unzip -o "/tmp/${name}.zip" -d "${HOME}/Applications/${name}"
+					unzip -o "/tmp/${name}.zip" -d "${app_loc}/${name}"
 					;;
 				"appimage")
-					curl -LO --output-dir "${HOME}/Applications" "${dl_url}"
+					curl -LO --output-dir "${app_loc}" "${dl_url}"
 					cd "${CURDIR}"
 					;;
 
@@ -143,9 +143,9 @@ update_binary ()
 	fi
 
 	# Backup
-	if ls "${HOME}/Applications"| grep -qE ${name}*${dl_type}; then
-		echo "[INFO] Moving old ${dl_type} to .bak in /tmp"
-		echo "[INFO] $(mv -v ${HOME}/Applications/${name}*${dl_type} /tmp/${name}.${dl_type}.bak)"
+	if ls "${app_loc}"| grep -qiE "${name}.*${dl_type}"; then
+		echo "[INFO] Moving old ${dl_type} to /tmp"
+		echo "[INFO] $(find ${app_loc} -iname "${name}*${dl_type}" -exec mv -v {} ${backup_loc} \;)"
 	fi
 
 	# Download
@@ -157,9 +157,9 @@ update_binary ()
 	file_type=$(echo "${dl_type}" | tr '[:upper:]' '[:lower:]')
 	if [[ "${file_type}" == "zip" ]]; then
 		if [[ -n "${folder_target}" ]]; then
-			unzip -o "/tmp/${zip_name}" -d "${HOME}/Applications/${folder_target}"
+			unzip -o "/tmp/${zip_name}" -d "${app_loc}/${folder_target}"
 		else
-			unzip -o "/tmp/${zip_name}" -d "${HOME}/Applications/"
+			unzip -o "/tmp/${zip_name}" -d "${app_loc}/"
 		fi
 
 	elif [[ "${file_type}" == "tar.gz" ]]; then
@@ -171,21 +171,21 @@ update_binary ()
 
 		echo "[INFO] Extracting ${tar_file}"
 		if [[ -n "${folder_target}" ]]; then
-			mkdir -p "${HOME}/Applications/${folder_target}"
-			tar -xvf "${tar_file}" -C "$HOME/Applications/${folder_target}" 
+			mkdir -p "${app_loc}/${folder_target}"
+			tar -xvf "${tar_file}" -C "${app_loc}/${folder_target}" 
 		else
-			tar -xvf "${tar_file}" -C "$HOME/Applications" 
+			tar -xvf "${tar_file}" -C "${app_loc}" 
 		fi
 
 		rm -rf "${tar_file}"
 
 	elif [[ "${file_type}" == "appimage" ]]; then
-		app_image=$(ls -t /tmp/${name}*AppImage)
+		app_image=$(ls -ltr /tmp/${name}*AppImage | tail -n 1 | awk '{print $9}')
 		if [[ -n "${folder_target}" ]]; then
-			mkdir -p "${HOME}/Applications/${folder_target}"
-			mv -v "${app_image}" "${HOME}/Applications/${folder_target}"
+			mkdir -p "${app_loc}/${folder_target}"
+			mv -v "${app_image}" "${app_loc}/${folder_target}"
 		else
-			mv -v "${app_image}" "${HOME}/Applications"
+			mv -v "${app_image}" "${app_loc}"
 		fi
 	else
 		echo "[INFO] Failed to handle download!"
@@ -202,9 +202,9 @@ update_steam_emu ()
 	steam_location="${HOME}/.steam/steam/steamapps"
 
 	if [[ -n "${folder_target}" ]]; then
-		app_dir="${HOME}/Applications/${name}"
+		app_dir="${app_loc}/${name}"
 	else
-		app_dir="${HOME}/Applications"
+		app_dir="${app_loc}"
 	fi
 	echo "[INFO] Updating $name"
 
@@ -227,7 +227,10 @@ main () {
 	# Pre-reqs
 	#####################
 
-	mkdir -p "${HOME}/Applications"
+	backup_loc="/tmp/update-emulators-backup"
+	app_loc="${HOME}/Applications"
+	mkdir -p "${app_loc}"
+	mkdir -p "${backup_loc}"
 	
 	# Check for rate exceeded
 	echo "[INFO] Testing Git API"
@@ -309,8 +312,8 @@ main () {
 	#####################
 	# Cleanup
 	#####################
-	echo -e "\n[INFO] Marking any ELF executables in ${HOME}/Applications executable"
-	for bin in $(find ~/Applications -type f -exec file {} \; \
+	echo -e "\n[INFO] Marking any ELF executables in ${app_loc} executable"
+	for bin in $(find ${app_loc} -type f -exec file {} \; \
 		| grep ELF \
 		| awk -F':' '{print $1}' \
 		| grep -vE ".so|debug")

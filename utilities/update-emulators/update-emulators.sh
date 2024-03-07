@@ -8,7 +8,7 @@
 
 set -e -o pipefail
 
-VERSION="0.6.4"
+VERSION="0.6.5"
 CURDIR="${PWD}"
 
 curlit()
@@ -257,6 +257,7 @@ main () {
 	update_emu_flatpak "DOSBox" "com.dosbox.DOSBox"
 	update_emu_flatpak "DOSBox-Staging" "io.github.dosbox-staging"
 	update_emu_flatpak "DuckStation" "org.duckstation.DuckStation"
+	update_emu_flatpak "Flycast" "org.flycast.Flycast"
 	update_emu_flatpak "Lutris" "net.lutris.Lutris"
 	update_emu_flatpak "MAME" "org.mamedev.MAME"
 	update_emu_flatpak "melonDS" "net.kuribo64.melonDS"

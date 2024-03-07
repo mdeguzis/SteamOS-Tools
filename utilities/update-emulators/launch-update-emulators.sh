@@ -15,12 +15,23 @@ chmod +x "${HOME}/.local/bin/update-emulators.sh"
 
 # Ignore dumb .so warnings by setting LD_PRELOAD to undefined
 export LD_PRELOAD=""
-if [[ -f "/usr/bin/konsole" ]]; then
+
+# Launch based on terminal preference
+# Set default as xterm (easiest to use for all systems)
+if [[ -f "/usr/bin/xterm" ]]; then
+	xterm -fg white -bg black \
+		-maximized -fa 'Monospace' -fs 24 \
+		-e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'
+
+elif [[ -f "/usr/bin/konsole" ]]; then
 	konsole -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'
+
 elif [[ -f "/usr/bin/gnome-terminal" ]]; then
 	gnome-terminal -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'
+
 elif [[ -f "/usr/bin/kgx" ]]; then
 	kgx -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'
+
 else
 	echo "[ERROR] Unknown terminal in use"
 	exit 1

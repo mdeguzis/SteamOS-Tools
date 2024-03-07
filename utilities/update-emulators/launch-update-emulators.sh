@@ -19,6 +19,8 @@ if [[ -f "/usr/bin/konsole" ]]; then
 	konsole -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'
 elif [[ -f "/usr/bin/gnome-terminal" ]]; then
 	gnome-terminal -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'
+elif [[ -f "/usr/bin/kgx" ]]; then
+	kgx -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'
 else
 	echo "[ERROR] Unknown terminal in use"
 	exit 1

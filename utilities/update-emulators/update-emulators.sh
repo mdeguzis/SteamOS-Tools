@@ -8,7 +8,7 @@
 
 set -e -o pipefail
 
-VERSION="0.6.5"
+VERSION="0.6.6"
 CURDIR="${PWD}"
 
 curlit()
@@ -261,6 +261,7 @@ main () {
 	update_emu_flatpak "Lutris" "net.lutris.Lutris"
 	update_emu_flatpak "MAME" "org.mamedev.MAME"
 	update_emu_flatpak "melonDS" "net.kuribo64.melonDS"
+	update_emu_flatpak "mGBA" "io.mgba.mGBA"
 	update_emu_flatpak "Mupen64Plus (GUI)" "com.github.Rosalie241.RMG"
 	update_emu_flatpak "Pegasus" "org.pegasus_frontend.Pegasus"
 	update_emu_flatpak "PPSSPP" "org.ppsspp.PPSSPP"

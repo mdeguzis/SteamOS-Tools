@@ -13,4 +13,11 @@ fi
 
 # Ignore dumb .so warnings by setting LD_PRELOAD to undefined
 export LD_PRELOAD=""
-konsole -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'
+if [[ -f "/usr/bin/konsole" ]]; then
+	konsole -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'
+elif [[ -f "/usr/bin/gnome-terminal" ]]; then
+	gnome-terminal -e '$SHELL -c "${HOME}/.local/bin/update-emulators.sh && exit; $SHELL"'
+else
+	echo "[ERROR] Uknown terminal in use"
+	exit 1
+fi

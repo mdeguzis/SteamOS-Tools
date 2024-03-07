@@ -10,6 +10,7 @@ if [[ $? -eq 0 ]]; then
 else
 	rm -f "${HOME}/.local/bin/update-emulators.sh.new"
 fi
+chmod +x "${HOME}/.local/bin/update-emulators.sh"
 
 # Ignore dumb .so warnings by setting LD_PRELOAD to undefined
 export LD_PRELOAD=""

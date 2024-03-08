@@ -8,7 +8,7 @@
 
 set -e -o pipefail
 
-VERSION="0.6.6"
+VERSION="0.6.8"
 CURDIR="${PWD}"
 
 curlit()
@@ -87,9 +87,10 @@ update_emu_flatpak ()
 update_binary ()
 {
 	name=$1;
-	folder_target=$2;
-	URL=$3;
-	dl_type=$4
+	folder_target=$2
+	filename=$3
+	URL=$4
+	dl_type=$5
 	curl_options="-LO --output-dir /tmp"
 
 	echo -e "\n[INFO] Updating binary for $name";
@@ -110,7 +111,8 @@ update_binary ()
 
 	elif echo "${URL}" | grep -q "github.com"; then
 		# Handle github release page
-		echo "[INFO] Fetching latet release from ${URL}"
+		# Try to auto download unless we have a filename regex/name passed
+		echo "[INFO] Fetching latet Git release from ${URL}"
 		# Prefer app iamge
 		# Set download URL
 		# Prefer arch-specific first
@@ -123,16 +125,25 @@ update_binary ()
 
 		for this_url in ${collected_urls};
 		do
-			# Prefer AppImage
-			if echo "${this_url}" | grep -qE "http.*AppImage$"; then
-				dl_url="${this_url}"
-				break
-			elif echo  "${this_url}" | grep -qE "http.*x.*64.*AppImage$"; then
-				dl_url="${this_url}"
-				break
-			elif echo "${this_url}" | grep -qE "http.*${name}-.*linux.*x*64.*tar.gz$"; then
-				dl_url="${this_url}"
-				break
+			# Filename / regex to match above all else?
+			if [[ -n "${filename}" ]]; then
+				if echo "${this_url}" | grep -qE ${filename}; then
+					dl_url="${this_url}"
+					break
+				fi
+			else
+				# Auto find if no filename given...
+				# Prefer AppImage
+				if echo "${this_url}" | grep -qE "http.*AppImage$"; then
+					dl_url="${this_url}"
+					break
+				elif echo  "${this_url}" | grep -qE "http.*x.*64.*AppImage$"; then
+					dl_url="${this_url}"
+					break
+				elif echo "${this_url}" | grep -qE "http.*${name}-.*linux.*x64.*tar.gz$"; then
+					dl_url="${this_url}"
+					break
+				fi
 			fi
 		done
 
@@ -224,9 +235,9 @@ update_steam_emu ()
 }
 
 main () {
-	#####################
+	######################################################################
 	# Pre-reqs
-	#####################
+	######################################################################
 
 	echo "[INFO] Updater version: ${VERSION}"
 
@@ -246,9 +257,10 @@ main () {
 		echo "[INFO] Git API test: [OK]"
 	fi
 
-	#####################
+	######################################################################
 	# Flatpak
-	#####################
+	# Args: general name, flatpak package name
+	######################################################################
 	echo -e "[INFO] Updating emulators (Flatpaks)\n"
 	sleep 2
 	# RIP Citra
@@ -279,46 +291,48 @@ main () {
 		ls "${HOME}/.var/app/org.libretro.RetroArch/config/retroarch/cores" | column -c 150
 	fi
 
-	#####################
+	######################################################################
 	# Binaries
-	#####################
+	# Args: name, folder target, filename to match (regex), url, type
+	######################################################################
 	echo -e "\n[INFO] Updating binaries"
 	sleep 2
 
 	# Wine / Proton
-	update_binary "wine-staging_ge-proton" "Proton" "https://api.github.com/repos/mmtrt/WINE_AppImage/releases/latest" "AppImage"
+	update_binary "wine-staging_ge-proton" "Proton" "" "https://api.github.com/repos/mmtrt/WINE_AppImage/releases/latest" "AppImage"
 
 	# ZIPs
-	update_binary "xenia_master" "xenia" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
-	update_binary "xenia_canary" "xenia" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
+	update_binary "xenia_master" "xenia" "" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
+	update_binary "xenia_canary" "xenia" "" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
 	# Note that the Panda3DS AppImage name is oddly named: "Alber-x86_64.AppImage"
-	update_binary "Panda3DS" "" "https://github.com/wheremyfoodat/Panda3DS/releases/latest/download/Linux-SDL.zip" "zip"
+	update_binary "Panda3DS" "" "" "https://github.com/wheremyfoodat/Panda3DS/releases/latest/download/Linux-SDL.zip" "zip"
 
 	# From GitHub release pages
 	# Careful not to get rate exceeded here...
-	update_binary "ES-DE" "" "https://gitlab.com/api/v4/projects/18817634/releases/permalink/latest" "AppImage"
-	update_binary "Steam-ROM-Manager" "" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
-	update_binary "ryujinx" "" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
-	update_binary "pcsx2" "" "https://api.github.com/repos/PCSX2/pcsx2/releases/latest" "AppImage"
+	update_binary "ES-DE" "" "" "https://gitlab.com/api/v4/projects/18817634/releases/permalink/latest" "AppImage"
+	update_binary "Steam-ROM-Manager" "" "" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
+	update_binary "ryujinx" "" "" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
+	update_binary "pcsx2" "" "" "https://api.github.com/repos/PCSX2/pcsx2/releases/latest" "AppImage"
 	# No Cemu latest tag has a Linux AppImage, must use use pre-releases
-	update_binary "Cemu" "" "https://api.github.com/repos/cemu-project/Cemu/releases" "AppImage"
-	update_binary "Vita3K" "" "https://api.github.com/repos/Vita3K/Vita3K/releases/latest" "AppImage"
+	update_binary "Cemu" "" "" "https://api.github.com/repos/cemu-project/Cemu/releases" "AppImage"
+	update_binary "Vita3K" "" "" "https://api.github.com/repos/Vita3K/Vita3K/releases/latest" "AppImage"
 
 	# From web scrape
 	curlit "rpcs3" "" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
 	curlit "BigPEmu" "" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
 
-	#####################
+	######################################################################
 	# Steam
-	#####################
+	# Args: name, folder, exec name
+	######################################################################
 	echo -e "\n[INFO] Symlinking any emulators from Steam"
 	sleep 2
 	# https://steamdb.info/app/1147940/
 	update_steam_emu "3dSen" "3dSen" "3dSen.exe"
 
-	#####################
+	######################################################################
 	# Cleanup
-	#####################
+	######################################################################
 	echo -e "\n[INFO] Marking any ELF executables in ${app_loc} executable"
 	for bin in $(find ${app_loc} -type f -exec file {} \; \
 		| grep ELF \

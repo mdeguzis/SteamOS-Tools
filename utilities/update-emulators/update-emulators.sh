@@ -8,7 +8,7 @@
 
 set -e -o pipefail
 
-VERSION="0.6.8"
+VERSION="0.6.9"
 CURDIR="${PWD}"
 
 curlit()
@@ -109,7 +109,7 @@ update_binary ()
 		# Use -J and --clobber to attach the remote name and overwrite
 		curl_options="--clobber -JLO --output-dir /tmp"
 
-	elif echo "${URL}" | grep -q "github.com"; then
+	elif echo "${URL}" | grep -qE ".*github.com.*releases.*"; then
 		# Handle github release page
 		# Try to auto download unless we have a filename regex/name passed
 		echo "[INFO] Fetching latet Git release from ${URL}"
@@ -152,10 +152,12 @@ update_binary ()
 			echo "[ERROR] Could not get a download url for ${URL}!"
 			exit 1
 		fi
+	else
+		dl_url="${URL}"
 	fi
 
 	# Backup
-	if ls "${app_loc}"| grep -qiE "${name}.*${dl_type}"; then
+	if ls "${app_loc}"| grep -qiE "${name}.*${dl_type}" 2> /dev/null; then
 		echo "[INFO] Moving old ${dl_type} to /tmp"
 		echo "[INFO] $(find ${app_loc} -iname "${name}*${dl_type}" -exec mv -v {} ${backup_loc} \;)"
 	fi
@@ -300,6 +302,9 @@ main () {
 
 	# Wine / Proton
 	update_binary "wine-staging_ge-proton" "Proton" "" "https://api.github.com/repos/mmtrt/WINE_AppImage/releases/latest" "AppImage"
+
+	# Single file binaries
+	update_binary "dolphin-emu-triforce" "" "" "https://github.com/mdeguzis/SteamOS-Tools/raw/master/AppImage/dolphin-emu-triforce.AppImage" "AppImage"
 
 	# ZIPs
 	update_binary "xenia_master" "xenia" "" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"

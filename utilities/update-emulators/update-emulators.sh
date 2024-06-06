@@ -8,7 +8,7 @@
 
 set -e -o pipefail
 
-VERSION="0.6.9"
+VERSION="0.7.1"
 CURDIR="${PWD}"
 
 curlit()
@@ -317,7 +317,7 @@ main () {
 	update_binary "ES-DE" "" "" "https://gitlab.com/api/v4/projects/18817634/releases/permalink/latest" "AppImage"
 	update_binary "Steam-ROM-Manager" "" "" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
 	update_binary "ryujinx" "" "" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
-	update_binary "pcsx2" "" "" "https://api.github.com/repos/PCSX2/pcsx2/releases/latest" "AppImage"
+	update_binary "pcsx2" "" "" "https://api.github.com/repos/PCSX2/pcsx2/releases" "AppImage"
 	# No Cemu latest tag has a Linux AppImage, must use use pre-releases
 	update_binary "Cemu" "" "" "https://api.github.com/repos/cemu-project/Cemu/releases" "AppImage"
 	update_binary "Vita3K" "" "" "https://api.github.com/repos/Vita3K/Vita3K/releases/latest" "AppImage"

@@ -8,7 +8,7 @@
 
 set -e -o pipefail
 
-VERSION="0.7.1"
+VERSION="0.7.5"
 CURDIR="${PWD}"
 
 curlit()
@@ -133,11 +133,11 @@ update_binary ()
 				fi
 			else
 				# Auto find if no filename given...
-				# Prefer AppImage
-				if echo "${this_url}" | grep -qE "http.*AppImage$"; then
+				# Prefer AppImage and 64 bit
+				if echo  "${this_url}" | grep -qE "http.*x.*64.*AppImage$"; then
 					dl_url="${this_url}"
 					break
-				elif echo  "${this_url}" | grep -qE "http.*x.*64.*AppImage$"; then
+				elif echo "${this_url}" | grep -qE "http.*AppImage$"; then
 					dl_url="${this_url}"
 					break
 				elif echo "${this_url}" | grep -qE "http.*${name}-.*linux.*x64.*tar.gz$"; then
@@ -300,19 +300,27 @@ main () {
 	echo -e "\n[INFO] Updating binaries"
 	sleep 2
 
+	####################################
 	# Wine / Proton
+	####################################
 	update_binary "wine-staging_ge-proton" "Proton" "" "https://api.github.com/repos/mmtrt/WINE_AppImage/releases/latest" "AppImage"
 
+	####################################
 	# Single file binaries
+	####################################
 	update_binary "dolphin-emu-triforce" "" "" "https://github.com/mdeguzis/SteamOS-Tools/raw/master/AppImage/dolphin-emu-triforce.AppImage" "AppImage"
 
+	####################################
 	# ZIPs
+	####################################
 	update_binary "xenia_master" "xenia" "" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
 	update_binary "xenia_canary" "xenia" "" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
 	# Note that the Panda3DS AppImage name is oddly named: "Alber-x86_64.AppImage"
 	update_binary "Panda3DS" "" "" "https://github.com/wheremyfoodat/Panda3DS/releases/latest/download/Linux-SDL.zip" "zip"
 
+	####################################
 	# From GitHub release pages
+	####################################
 	# Careful not to get rate exceeded here...
 	update_binary "ES-DE" "" "" "https://gitlab.com/api/v4/projects/18817634/releases/permalink/latest" "AppImage"
 	update_binary "Steam-ROM-Manager" "" "" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
@@ -326,14 +334,24 @@ main () {
 	curlit "rpcs3" "" "https://rpcs3.net/download" ".*rpcs3.*_linux64.AppImage"
 	curlit "BigPEmu" "" "https://www.richwhitehouse.com/jaguar/index.php?content=download" ".*BigPEmu.*[0-9].zip"
 
-	######################################################################
+	####################################
 	# Steam
 	# Args: name, folder, exec name
-	######################################################################
+	####################################
 	echo -e "\n[INFO] Symlinking any emulators from Steam"
 	sleep 2
 	# https://steamdb.info/app/1147940/
 	update_steam_emu "3dSen" "3dSen" "3dSen.exe"
+
+	####################################
+	# Fixes
+	####################################
+	echo "[INFO] Applying compatibility fixes"
+
+	# If we are still making use of EmuDeck for anything, it imposes an imcorrect name "pcsx2-Qt"
+	# https://github.com/dragoonDorise/EmuDeck/blob/main/tools/launchers/pcsx2-qt.sh#L4
+	# Releases are named "pcsx2-[VERSION]-linux-appimage-x64-Qt.AppImage" on https://github.com/PCSX2/pcsx2/releases
+	find "${HOME}/Applications/" -name "pcsx2*AppImage" -exec ln -sfv {} "${HOME}/Applications/pcsx2-Qt.AppImage" \;
 
 	######################################################################
 	# Cleanup

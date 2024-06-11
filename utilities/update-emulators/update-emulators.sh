@@ -8,7 +8,7 @@
 
 set -e -o pipefail
 
-VERSION="0.7.5"
+VERSION="0.7.6"
 CURDIR="${PWD}"
 
 curlit()
@@ -346,7 +346,7 @@ main () {
 	####################################
 	# Fixes
 	####################################
-	echo "[INFO] Applying compatibility fixes"
+	echo -e "\n[INFO] Applying compatibility fixes"
 
 	# If we are still making use of EmuDeck for anything, it imposes an imcorrect name "pcsx2-Qt"
 	# https://github.com/dragoonDorise/EmuDeck/blob/main/tools/launchers/pcsx2-qt.sh#L4

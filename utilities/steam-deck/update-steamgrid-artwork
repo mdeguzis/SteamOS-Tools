@@ -1,0 +1,53 @@
+#!/bin/bash
+# Description: Updates all artwork for you Steam Deck via SteamGridDB
+# Requires: API key from steamgriddb
+# Context: https://www.reddit.com/r/steamgrid/comments/ym0ade/guide_to_update_all_the_steam_art_automatically/?share_id=DVWke3TJ8OiMgkjCXlg9j&utm_content=1&utm_medium=android_app&utm_name=androidcss&utm_source=share&utm_term=1
+
+set -e
+
+ACTION=$1
+URL="https://api.github.com/repos/dozeworthy/steamgrid/releases/latest"
+SOFTWARE_ROOT="${HOME}/software/steamgrid"
+RELEASE="steamgrid_linux.zip"
+
+if [[ -z "${ACTION}" ]]; then
+	echo "[ERROR] Action as arugment one must be one of: install, run"
+	exit 1
+fi
+
+if [[ ! -d "${SOFTWARE_ROOT}" || ${ACTION} == "install" ]]; then
+	# For Install/upgrade
+	rm -rf "${SOFTWARE_ROOT}"
+	mkdir -p "${SOFTWARE_ROOT}"
+
+	echo "[INFO] Installing steamgrid tool"
+	collected_urls=$(curl -s "${URL}" | jq -r '.assets[] | .browser_download_url')
+	for this_url in ${collected_urls};
+	do
+		if echo  "${this_url}" | grep -qE "steamgrid_linux.zip$"; then
+			dl_url="${this_url}"
+			break
+		fi
+	done
+
+	if [[ -z "${dl_url}" ]]; then
+		echo "[ERROR] Could not find latest release!"
+		exit 1
+	fi
+	# Download and install to SOFTWARE_ROOT
+	curl -LO --output-dir /tmp "${dl_url}"
+
+	# Unzip
+	unzip -o "/tmp/${RELEASE}" -d "${SOFTWARE_ROOT}/"
+
+	# Exec and link
+	chmod +x "${SOFTWARE_ROOT}/steamgrid"
+	ln -sfv "${SOFTWARE_ROOT}/steamgrid" "${HOME}/.local/bin/steamgrid"
+
+	echo "[INFO] Done!"
+
+elif [[ ${ACTION} == "run" ]]; then
+	"${SOFTWARE_ROOT}/steamgrid"
+fi
+
+

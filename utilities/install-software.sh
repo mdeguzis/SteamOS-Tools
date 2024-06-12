@@ -27,6 +27,9 @@ cd "${CURDIR}"
 
 echo "[INFO] Installing supplemental software to OS"
 
+# Flatpaks
+flatpak install --user --noninteractive flathub io.github.philipk.boilr
+
 # Transmission
 sudo pacman -Sy transmission-cli libnatpmp libb64
 sudo systemctl enable transmission.service
@@ -37,4 +40,7 @@ sudo systemctl stop transmission.service
 read -erp "Opening ~/.config/transmission-daemon/settings.json. Please update rpc username/password..."
 vim "~/.config/transmission-daemon/settings.json"
 sudo systemctl start transmission.service
+
+# https://github.com/Tormak9970/Steam-Art-Manager
+# TODO - make this dynamic for any app images...
 

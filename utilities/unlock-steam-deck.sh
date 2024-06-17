@@ -7,7 +7,7 @@ sudo steamos-readonly disable
 
 echo "[INFO] Adding/updating Arch Linux keyrings"
 sudo pacman-key --init
-sudo pacman-key --populate archlinux
+sudo pacman-key --populate holo
 
 echo "[INFO] Updating repository index"
 sudo pacman -Syy

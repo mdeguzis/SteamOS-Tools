@@ -49,22 +49,23 @@ sleep 2
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 # Manage App Images
-echo -e "\n[INFO] Installing 'zap' to manager AppImages"
+echo -e "\n[INFO] Installing 'Zap' to manager AppImages"
 sleep 2
 curl https://raw.githubusercontent.com/srevinsaju/zap/main/install.sh | bash -s
 
 echo -e "\n[INFO] Installing AppImages via Zap"
 sleep 2
-zap install --github --from Tormak9970/Steam-Art-Manager
-
+zap install --no-interactive --github --from Tormak9970/Steam-Art-Manager
 
 # Transmission
-sudo systemctl enable transmission.service
-sudo mkdir -p /etc/systemd/system/transmission.service.d
-sudo bash -c "echo -e \"[Service]\nUser=${USER}\" > /etc/systemd/system/transmission.service.d/username.conf"
-sudo systemctl stop transmission.service
-# Update config and start service
-read -erp "Opening ~/.config/transmission-daemon/settings.json. Please update rpc username/password..."
-vim "~/.config/transmission-daemon/settings.json"
-sudo systemctl start transmission.service
-
+read -erp "Configure Transmission? (y/N)" CONFIG_TRANSMISSION
+if [[ "${CONFI_TRANSMISSION}" == "y" ]]; then
+	sudo systemctl enable transmission.service
+	sudo mkdir -p /etc/systemd/system/transmission.service.d
+	sudo bash -c "echo -e \"[Service]\nUser=${USER}\" > /etc/systemd/system/transmission.service.d/username.conf"
+	sudo systemctl stop transmission.service
+	# Update config and start service
+	read -erp "Opening ~/.config/transmission-daemon/settings.json. Please update rpc username/password..."
+	vim "~/.config/transmission-daemon/settings.json"
+	sudo systemctl start transmission.service
+fi

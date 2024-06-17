@@ -3,7 +3,7 @@
 set -e -o pipefail
 
 CURDIR="${PWD}"
-echo "[INFO] unlocking immutable OS"
+echo -e "\n[INFO] unlocking immutable OS"
 
 if which frzr-unlock &> /dev/null; then
 	sudo frzr-unlock
@@ -20,9 +20,9 @@ sudo pacman -Sy
 # SteamOS may lag a little behind with required deps (e.g. pacman), so manually
 # update the tag as needed.
 # Use yay-bin for the least amount of headaches...
-echo "[INFO] Installing 'yay' for user repository packages"
-sudo pacman -S --noconfirm --needed git base-devel
 if [[ ! -f "/usr/bin/yay" ]]; then
+	echo -e "\n[INFO] Installing 'yay' for user repository packages"
+	sudo pacman -S --noconfirm --needed git base-devel
 	git clone https://aur.archlinux.org/yay-bin.git "${HOME}/src/yay-bin"
 	git -C "${HOME}/src/yay-bin" checkout "96f90180a3cf72673b1769c23e2c74edb0293a9f"
 	cd "${HOME}/src/yay-bin"
@@ -30,8 +30,7 @@ if [[ ! -f "/usr/bin/yay" ]]; then
 	cd "${CURDIR}"
 fi
 
-echo "[INFO] Installing supplemental software to OS"
-
+echo -e "\n[INFO] Installing Arch Linux packages"
 # Arch packages that do not have Flatpaks
 sudo pacman -S --noconfirm --needed \
 	libnatpmp \
@@ -41,12 +40,23 @@ sudo pacman -S --noconfirm --needed \
 	transmission-cli
 
 # Flatpaks
+echo -e "\n[INFO] Installing Flatpaks"
 flatpak install --user --noninteractive flathub io.github.philipk.boilr
+flatpak install --user --noninteractive flathub com.github.tchx84.Flatseal
+flatpak install --user --noninteractive flathub com.google.Chrome
+flatpak install --user --noninteractive flathub com.heroicgameslauncher.hgl
+flatpak install --user --noninteractive flathub com.transmissionbt.Transmission
+flatpak install --user --noninteractive flathub io.itch.itch
+flatpak install --user --noninteractive flathub net.lutris.Lutris
+flatpak install --user --noninteractive flathub org.winehq.Wine
+flatpak install --user --noninteractive flathub tv.plex.PlexDesktop
 
 # For Decky Loader dev
-echo -e "\n[INFO] Installing 'pnpm' for Decky Loader dev"
-sleep 2
-curl -fsSL https://get.pnpm.io/install.sh | sh -
+if [[ ! -f "${HOME}/.local/share/pnpm/pnpm" ]]; then
+	echo -e "\n[INFO] Installing 'pnpm' for Decky Loader dev"
+	sleep 2
+	curl -fsSL https://get.pnpm.io/install.sh | sh -
+fi
 
 # Manage App Images
 echo -e "\n[INFO] Installing 'Zap' to manager AppImages"
@@ -59,7 +69,7 @@ zap install --no-interactive --github --from Tormak9970/Steam-Art-Manager
 
 # Transmission
 read -erp "Configure Transmission? (y/N)" CONFIG_TRANSMISSION
-if [[ "${CONFI_TRANSMISSION}" == "y" ]]; then
+if [[ "${CONFIG_TRANSMISSION}" == "y" ]]; then
 	sudo systemctl enable transmission.service
 	sudo mkdir -p /etc/systemd/system/transmission.service.d
 	sudo bash -c "echo -e \"[Service]\nUser=${USER}\" > /etc/systemd/system/transmission.service.d/username.conf"

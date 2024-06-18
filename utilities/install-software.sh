@@ -16,6 +16,15 @@ else
 fi
 sudo pacman -Sy
 
+echo -e "\n[INFO] Installing Arch Linux packages"
+# Arch packages that do not have Flatpaks
+sudo pacman -S --noconfirm --needed \
+	libnatpmp \
+	libb64 \
+	nodejs \
+	npm \
+	transmission-cli
+ 
 # https://github.com/Jguer/yay
 # SteamOS may lag a little behind with required deps (e.g. pacman), so manually
 # update the tag as needed.
@@ -30,14 +39,7 @@ if [[ ! -f "/usr/bin/yay" ]]; then
 	cd "${CURDIR}"
 fi
 
-echo -e "\n[INFO] Installing Arch Linux packages"
-# Arch packages that do not have Flatpaks
-sudo pacman -S --noconfirm --needed \
-	libnatpmp \
-	libb64 \
-	nodejs \
-	npm \
-	transmission-cli
+#echo -e "\n[INFO] Installing AUR Linux packages"
 
 # Flatpaks
 echo -e "\n[INFO] Installing Flatpaks"
@@ -50,6 +52,7 @@ flatpak install --user --noninteractive flathub io.itch.itch
 flatpak install --user --noninteractive flathub net.lutris.Lutris
 flatpak install --user --noninteractive flathub org.winehq.Wine
 flatpak install --user --noninteractive flathub tv.plex.PlexDesktop
+flatpak install --user --noninteractive flathub org.zdoom.GZDoom
 
 # For Decky Loader dev
 if [[ ! -f "${HOME}/.local/share/pnpm/pnpm" ]]; then

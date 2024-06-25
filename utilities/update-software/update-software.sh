@@ -63,15 +63,17 @@ curlit()
 
 }
 
-update_flatpak ()
+update_install_flatpak ()
 {
+	# Loop the list and install if update fails (not found)
+	# This is more useful so we know exactly what was attempted vs just
+	# seeing an error
+
 	name=$1;
 	ID=$2;
-	echo -e "\n[INFO] Updating $name";
+	echo -e "\n[INFO] Installing/Updating $name";
 	if ! flatpak --user update $ID -y; then
-		sleep 2
-		# Show version
-		# Install
+		# Install if not found
 		flatpak install --user -y --noninteractive $ID
 		if [[ $? -ne 0 ]]; then
 			echo "[ERROR] Failed to install Flatpak!"
@@ -80,6 +82,8 @@ update_flatpak ()
 	#else
 	#	flatpak --user info $ID | grep Version | sed 's/\ //g'
 	fi
+
+	# Adjust common user permission
 	flatpak override $ID --filesystem=host --user;
 	flatpak override $ID --share=network --user;
 }
@@ -253,36 +257,40 @@ update_user_binaries () {
 
 }
 
+update_user_misc () {
+	echo -e "\n[INFO] None for now..."
+	sleep 2
+}
+
 update_emulator_software () {
 
 	######################################################################
 	# Flatpak
 	# Args: general name, flatpak package name
 	######################################################################
-	echo -e "[INFO] Updating emulators (Flatpaks)\n"
+	echo -e "\n[INFO] Updating emulators (Flatpaks)\n"
 	sleep 2
 	# RIP Citra
-	# update_flatpak "Citra" "org.citra_emu.citra"
-	update_flatpak "dolphin-emu" "org.DolphinEmu.dolphin-emu"
-	update_flatpak "DOSBox" "com.dosbox.DOSBox"
-	update_flatpak "DOSBox-Staging" "io.github.dosbox-staging"
-	update_flatpak "DuckStation" "org.duckstation.DuckStation"
-	update_flatpak "Flycast" "org.flycast.Flycast"
-	update_flatpak "Lutris" "net.lutris.Lutris"
-	update_flatpak "MAME" "org.mamedev.MAME"
-	update_flatpak "melonDS" "net.kuribo64.melonDS"
-	update_flatpak "mGBA" "io.mgba.mGBA"
-	update_flatpak "Mupen64Plus (GUI)" "com.github.Rosalie241.RMG"
-	update_flatpak "Pegasus" "org.pegasus_frontend.Pegasus"
-	update_flatpak "PPSSPP" "org.ppsspp.PPSSPP"
-	update_flatpak "PrimeHack" "io.github.shiiion.primehack"
-	update_flatpak "RetroArch" "org.libretro.RetroArch"
-	update_flatpak "RMG" "com.github.Rosalie241.RMG"
-	update_flatpak "RPCS3" "net.rpcs3.RPCS3"
-	update_flatpak "Ryujinx" "org.ryujinx.Ryujinx"
-	update_flatpak "ScummVM" "org.scummvm.ScummVM"
-	update_flatpak "VICE" "net.sf.VICE"
-	update_flatpak "Xemu-Emu" "app.xemu.xemu"
+	# update_install_flatpak "Citra" "org.citra_emu.citra"
+	update_install_flatpak "dolphin-emu" "org.DolphinEmu.dolphin-emu"
+	update_install_flatpak "DOSBox" "com.dosbox.DOSBox"
+	update_install_flatpak "DOSBox-Staging" "io.github.dosbox-staging"
+	update_install_flatpak "DuckStation" "org.duckstation.DuckStation"
+	update_install_flatpak "Flycast" "org.flycast.Flycast"
+	update_install_flatpak "MAME" "org.mamedev.MAME"
+	update_install_flatpak "melonDS" "net.kuribo64.melonDS"
+	update_install_flatpak "mGBA" "io.mgba.mGBA"
+	update_install_flatpak "Mupen64Plus (GUI)" "com.github.Rosalie241.RMG"
+	update_install_flatpak "Pegasus" "org.pegasus_frontend.Pegasus"
+	update_install_flatpak "PPSSPP" "org.ppsspp.PPSSPP"
+	update_install_flatpak "PrimeHack" "io.github.shiiion.primehack"
+	update_install_flatpak "RetroArch" "org.libretro.RetroArch"
+	update_install_flatpak "RMG" "com.github.Rosalie241.RMG"
+	update_install_flatpak "RPCS3" "net.rpcs3.RPCS3"
+	update_install_flatpak "Ryujinx" "org.ryujinx.Ryujinx"
+	update_install_flatpak "ScummVM" "org.scummvm.ScummVM"
+	update_install_flatpak "VICE" "net.sf.VICE"
+	update_install_flatpak "Xemu-Emu" "app.xemu.xemu"
 
 	if [[ -d "${HOME}/.var/app/org.libretro.RetroArch/config/retroarch/cores" ]]; then
 		echo -e "\n[INFO] These cores are installed from the Retorach flatpak: "
@@ -293,7 +301,7 @@ update_emulator_software () {
 	# Binaries
 	# Args: name, folder target, filename to match (regex), url, type
 	######################################################################
-	echo -e "[INFO] Updating emulators (binaries)\n"
+	echo -e "\n[INFO] Updating emulators (binaries)\n"
 	sleep 2
 
 	####################################
@@ -329,10 +337,12 @@ update_emulator_software () {
 	# Steam
 	# Args: name, folder, exec name
 	####################################
-	echo -e "\n[INFO] Symlinking any emulators from Steam"
-	sleep 2
-	# https://steamdb.info/app/1147940/
-	update_steam_emu "3dSen" "3dSen" "3dSen.exe"
+
+	# Unsed for now
+	#echo -e "\n[INFO] Symlinking any emulators from Steam"
+	#sleep 2
+	## https://steamdb.info/app/1147940/
+	#update_steam_emu "3dSen" "3dSen" "3dSen.exe"
 
 	####################################
 	# Fixes
@@ -349,7 +359,10 @@ update_emulator_software () {
 
 update_user_flatpaks () {
 
-	# Update existing when possible
+	# Install if missing
+	update_install_flatpak "Lutris" "net.lutris.Lutris"
+
+	# Update the rest of the user's Flatpaks
 	flatpak --user --noninteractive upgrade
 
 }
@@ -398,6 +411,7 @@ main () {
 		update_emulator_software
 		update_user_binaries
 		update_user_flatpaks
+		update_user_misc
 	else
 		if [[ "${ask}" == "Emulators and associated sofware" ]]; then
 			update_emulator_software
@@ -406,8 +420,7 @@ main () {
 		elif [[ "${ask}" == "User binaries" ]]; then
 			update_user_binaries
 		elif [[ "${ask}" == "Utilities (miscellaneous)" ]]; then
-			echo "Skipping for now"
-			sleep 2
+			update_user_misc
 		fi
 	fi
 

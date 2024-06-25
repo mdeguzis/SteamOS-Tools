@@ -471,5 +471,6 @@ main 2>&1 | tee "/tmp/emulator-updates.log"
 echo "[INFO] Done!"
 echo "[INFO] Log: /tmp/emulator-updates.log. Exiting."
 # Pause a bit when running GameMode
-sleep 5
+sleep 2
+exit 0
 

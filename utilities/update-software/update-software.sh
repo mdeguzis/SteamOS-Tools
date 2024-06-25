@@ -8,7 +8,7 @@
 
 set -e -o pipefail
 
-VERSION="0.8.1"
+VERSION="0.8.3"
 CURDIR="${PWD}"
 
 curlit()
@@ -400,14 +400,22 @@ main () {
 		"User Flatpaks" \
 		"User binaries" \
 		"Utilities (miscellaneous)" \
+		"Exit" \
 		--width ${W} \
 		--height ${H} \
 		--hide-header
 	)
+	if [[ $? -ne 0 ]]; then
+		# cancel pressed, exit
+		exit 0
+	fi
+
 	echo "[INFO] Choice entered: '${ask}'"
 
 	# TODO - intergate and update with Zap? (AppImages)
-	if [[ "${ask}" == "All" ]]; then
+	if [[ "${ask}" == "Exit" ]]; then
+		exit 0
+	elif [[ "${ask}" == "All" ]]; then
 		update_emulator_software
 		update_user_binaries
 		update_user_flatpaks

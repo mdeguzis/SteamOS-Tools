@@ -1,11 +1,6 @@
 #!/bin/bash
 # Spawns a new terminal window to run the script
 
-# Replace legacy script if it exists
-if [[ -f "${HOME}/.local/bin/update-emulators.sh" ]]; then
-	echo "Replacing legacy 'update-emulators.sh' script with new multi-purpose script" && sleep 3 | zenity --progress --auto-close --pulsate --text="Legacy softare update" --title="Updater" --width=600 --height=250 2>/dev/null
-fi
-
 # Update git source if possible first
 mkdir -p "${HOME}/.local/bin"
 curl -o "${HOME}/.local/bin/update-software.sh.new" "https://raw.githubusercontent.com/mdeguzis/SteamOS-Tools/master/utilities/update-software/update-software.sh" && sleep 3 | zenity --progress --auto-close --pulsate --text="Fetching the latest update-software.sh script" --title="Updater" --width=600 --height=250 2>/dev/null

@@ -21,16 +21,16 @@ export LD_PRELOAD=""
 if [[ -f "/usr/bin/xterm" ]]; then
 	xterm -fg white -bg black \
 		-maximized -fa 'Monospace' -fs 24 \
-		-e '$SHELL -c "${HOME}/.local/bin/update-software.sh && exit; $SHELL"'
+		-e '$SHELL -c "${HOME}/.local/bin/update-software.sh; exit; $SHELL"'
 
 elif [[ -f "/usr/bin/konsole" ]]; then
-	konsole -e '$SHELL -c "${HOME}/.local/bin/update-software.sh && exit; $SHELL"'
+	konsole -e '$SHELL -c "${HOME}/.local/bin/update-software.sh; exit; $SHELL"'
 
 elif [[ -f "/usr/bin/gnome-terminal" ]]; then
-	gnome-terminal -e '$SHELL -c "${HOME}/.local/bin/update-software.sh && exit; $SHELL"'
+	gnome-terminal -e '$SHELL -c "${HOME}/.local/bin/update-software.sh; exit; $SHELL"'
 
 elif [[ -f "/usr/bin/kgx" ]]; then
-	kgx -e '$SHELL -c "${HOME}/.local/bin/update-software.sh && exit; $SHELL"'
+	kgx -e '$SHELL -c "${HOME}/.local/bin/update-software.sh; exit; $SHELL"'
 
 else
 	echo "[ERROR] Unknown terminal in use"

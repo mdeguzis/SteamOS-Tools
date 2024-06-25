@@ -2,7 +2,7 @@
 # Spawns a new terminal window to run the script
 
 # Replace legacy script if it exists
-if [[ -f "${HOME}/.local/bin/update-emulators.sh.new" ]]; then
+if [[ -f "${HOME}/.local/bin/update-emulators.sh" ]]; then
 	echo "Replacing legacy 'update-emulators.sh' script with new multi-purpose script" && sleep 3 | zenity --progress --auto-close --pulsate --text="Legacy softare update" --title="Updater" --width=600 --height=250 2>/dev/null
 fi
 

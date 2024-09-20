@@ -86,6 +86,16 @@ if [[ "${CONFIG_TRANSMISSION}" == "y" ]]; then
 	sudo systemctl start transmission.service
 fi
 
+# 
+# Configs
+#
+
+echo -e "\n[INFO] Copying configs\n"
+
+echo "[INFO] ludusavi"
+cp -v $(git root)/cfgs/ludusavi/config.yaml ${HOME}/.var/app/com.github.mtkennerly.ludusavi/config/ludusavi/config.yaml
+sed -i "s|HOME_PATH|${HOME}|g" ${HOME}/.var/app/com.github.mtkennerly.ludusavi/config/ludusavi/config.yaml
+
 #
 # systemd units (user mode)
 #

@@ -53,6 +53,7 @@ flatpak install --user --noninteractive flathub net.lutris.Lutris
 flatpak install --user --noninteractive flathub org.winehq.Wine
 flatpak install --user --noninteractive flathub tv.plex.PlexDesktop
 flatpak install --user --noninteractive flathub org.zdoom.GZDoom
+flatpak install --user --noninteractive flathub com.github.mtkennerly.ludusavi
 
 # For Decky Loader dev
 if [[ ! -f "${HOME}/.local/share/pnpm/pnpm" ]]; then
@@ -82,3 +83,28 @@ if [[ "${CONFIG_TRANSMISSION}" == "y" ]]; then
 	vim "~/.config/transmission-daemon/settings.json"
 	sudo systemctl start transmission.service
 fi
+
+# systemd units (user mode)
+echo -e "\n[INFO] Installing systemd user service for ludusavi (backups)"
+cat > "${HOME}/.config/systemd/user/ludusavi-backup.service" <<EOF
+[Unit]
+Description="Ludusavi backup"
+
+[Service]
+ExecStart=/opt/ludusavi backup --force
+EOF
+
+cat > "${HOME}/.config/systemd/user/ludusavi-backup.timer" <<EOF
+[Unit]
+Description="Ludusavi backup timer"
+
+[Timer]
+OnCalendar=*/30 * * * *
+Unit=ludusavi-backup.service
+
+[Install]
+WantedBy=timers.target
+EOF
+
+echo -e "\n[INFO] Done!"
+

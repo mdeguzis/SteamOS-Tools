@@ -98,7 +98,7 @@ cat > "${HOME}/.config/systemd/user/ludusavi-backup.service" <<EOF
 Description="Ludusavi backup"
 
 [Service]
-ExecStart=/opt/ludusavi backup --force
+ExecStart=flatpak run com.github.mtkennerly.ludusavi backup --force
 EOF
 
 cat > "${HOME}/.config/systemd/user/ludusavi-backup.timer" <<EOF

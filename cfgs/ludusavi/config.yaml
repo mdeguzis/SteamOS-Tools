@@ -1,0 +1,70 @@
+---
+runtime:
+  threads: ~
+release:
+  check: true
+manifest:
+  enable: true
+language: en-US
+theme: light
+roots:
+  - store: steam
+    path: /home/gamer/.local/share/Steam
+  - store: heroic
+    path: /home/gamer/.var/app/com.heroicgameslauncher.hgl/config/heroic
+redirects: []
+backup:
+  path: /home/gamer/ludusavi-backup
+  ignoredGames: []
+  filter:
+    excludeStoreScreenshots: false
+    cloud:
+      exclude: false
+      epic: true
+      gog: true
+      origin: true
+      steam: true
+      uplay: true
+    ignoredPaths:
+      - "/home/gamer/.local/share/Steam/steamapps/common/Indiana Jones and the Emperors Tomb"
+    ignoredRegistry: []
+  toggledPaths: {}
+  toggledRegistry: {}
+  sort:
+    key: status
+    reversed: false
+  retention:
+    full: 1
+    differential: 0
+  format:
+    chosen: simple
+    zip:
+      compression: deflate
+    compression:
+      deflate:
+        level: 6
+      bzip2:
+        level: 6
+      zstd:
+        level: 10
+restore:
+  path: /home/gamer/ludusavi-backup
+  ignoredGames: []
+  toggledPaths: {}
+  toggledRegistry: {}
+  sort:
+    key: status
+    reversed: false
+scan:
+  showDeselectedGames: true
+  showUnchangedGames: true
+  showUnscannedGames: true
+cloud:
+  remote: ~
+  path: ludusavi-backup
+  synchronize: true
+apps:
+  rclone:
+    path: ""
+    arguments: "--fast-list --ignore-checksum"
+customGames: []

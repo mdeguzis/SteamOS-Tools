@@ -14,7 +14,9 @@ else
 	sudo pacman-key --init
 	sudo pacman-key --populate holo
 fi
-sudo pacman -Sy
+
+echo -e "\n[INFO] Updating package databases"
+sudo pacman -Syy
 
 echo -e "\n[INFO] Installing Arch Linux packages"
 # Arch packages that do not have Flatpaks
@@ -84,7 +86,12 @@ if [[ "${CONFIG_TRANSMISSION}" == "y" ]]; then
 	sudo systemctl start transmission.service
 fi
 
+#
 # systemd units (user mode)
+#
+
+# ludusavi
+# https://github.com/mtkennerly/ludusavi/blob/master/docs/help/backup-automation.md
 echo -e "\n[INFO] Installing systemd user service for ludusavi (backups)"
 cat > "${HOME}/.config/systemd/user/ludusavi-backup.service" <<EOF
 [Unit]
@@ -105,6 +112,8 @@ Unit=ludusavi-backup.service
 [Install]
 WantedBy=timers.target
 EOF
+systemctl --user enable ${HOME}/.config/systemd/user/ludusavi-backup.timer
+systemctl --user start ${HOME}/.config/systemd/user/ludusavi-backup.timer
 
 echo -e "\n[INFO] Done!"
 

@@ -116,14 +116,14 @@ cat > "${HOME}/.config/systemd/user/ludusavi-backup.timer" <<EOF
 Description="Ludusavi backup timer"
 
 [Timer]
-OnCalendar=*/30 * * * *
+OnCalendar=*-*-* *:00/5:00
 Unit=ludusavi-backup.service
 
 [Install]
 WantedBy=timers.target
 EOF
-systemctl --user enable ${HOME}/.config/systemd/user/ludusavi-backup.timer
-systemctl --user start ${HOME}/.config/systemd/user/ludusavi-backup.timer
+systemctl --user enable ludusavi-backup.timer
+systemctl --user start ludusavi-backup.timer
 
 echo -e "\n[INFO] Done!"
 

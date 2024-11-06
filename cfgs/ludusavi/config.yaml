@@ -9,12 +9,12 @@ language: en-US
 theme: light
 roots:
   - store: steam
-    path: /home/gamer/.local/share/Steam
+    path: HOME_PATH/.local/share/Steam
   - store: heroic
-    path: /home/gamer/.var/app/com.heroicgameslauncher.hgl/config/heroic
+    path: HOME_PATH/.var/app/com.heroicgameslauncher.hgl/config/heroic
 redirects: []
 backup:
-  path: /home/gamer/ludusavi-backup
+  path: HOME_PATH/ludusavi-backup
   ignoredGames: []
   filter:
     excludeStoreScreenshots: false
@@ -26,7 +26,7 @@ backup:
       steam: true
       uplay: true
     ignoredPaths:
-      - "/home/gamer/.local/share/Steam/steamapps/common/Indiana Jones and the Emperors Tomb"
+      - "HOME_PATH/.local/share/Steam/steamapps/common/Indiana Jones and the Emperors Tomb"
     ignoredRegistry: []
   toggledPaths: {}
   toggledRegistry: {}
@@ -48,7 +48,7 @@ backup:
       zstd:
         level: 10
 restore:
-  path: /home/gamer/ludusavi-backup
+  path: HOME_PATH/ludusavi-backup
   ignoredGames: []
   toggledPaths: {}
   toggledRegistry: {}

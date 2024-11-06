@@ -108,6 +108,7 @@ cat > "${HOME}/.config/systemd/user/ludusavi-backup.service" <<EOF
 Description="Ludusavi backup"
 
 [Service]
+Environment="RUST_LOG=ludusavi=debug"
 ExecStart=flatpak run com.github.mtkennerly.ludusavi backup --force
 EOF
 

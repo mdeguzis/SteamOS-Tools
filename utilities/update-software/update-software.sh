@@ -7,20 +7,27 @@
 set -e -o pipefail
 
 VERSION="0.8.5"
-CURDIR="${PWD}"
-#CLI="false"
-CLI="true"
+CURDIR="${PWD}"Lw
+BACKUP_LOC="/tmp/update-emulators-backup"
+APP_LOC="${HOME}/Applications"
+LOG="/tmp/steamos-software-updater.log"
+if [[ -z ${DISPLAY} ]]; then
+	CLI=true
+fi
 
 function show_help() {
 	cat <<-HELP_EOF
-		--help|-h           Show this help page
-		--install|-i        Install backup manager
-		--dry-run           Dry-run test sync
-		--uninstall|-u      Uninstall backup manager
-		--list-remotes|-l  List available remotes
-		--backup|-b         Run backup
-		--status|-s         Backup service status
-		--remote-name       The name of the rclone remote to use
+		===============================================
+		SteamOS user software installer/updater
+		===============================================
+
+		--all |-a)			Install/update all software
+		--core-software | -cs)		Install/update core software (e.g. Decky Loader)
+		--update-emulators | -ue)	Install/update emulator software
+		--users-flatpaks | -uf)		Install/update user flatpaks
+		--users-binaries | -ub)		Install/update user binaries
+		--help | -h)			Show this help page
+
 
 	HELP_EOF
 	exit 0
@@ -28,11 +35,14 @@ function show_help() {
 
 curlit() {
 	# This function is meantt to grab an archive/file out of a page HTML/CSS dump
-
 	name=$1
 	target_folder=$2
 	search_url=$3
 	exe_match=$4
+
+	if [[ -n ${target_folder} ]]; then
+		app_loc="${target_folder}"
+	fi
 
 	echo -e "\n[INFO] Updating $name (searching for ${exe_match} on page...)"
 	curl -q -v "${search_url}" &>"/tmp/results.txt"
@@ -50,20 +60,19 @@ curlit() {
 			echo "[INFO] Filetype found: ${file_type}"
 
 			# Backup
-			if ls "${app_loc}" | grep -qiE "${name}.*${file_type}"; then
+			if ls "${APP_LOC}" | grep -qiE "${name}.*${file_type}"; then
 				echo "[INFO] Moving old ${file_type} to .bak in /tmp"
-				echo "[INFO] $(find ${app_loc} -iname "${name}*${file_type}" -exec mv -v {} ${backup_loc} \;)"
+				echo "[INFO] $(find ${APP_LOC} -iname "${name}*${file_type}" -exec mv -v {} ${BACKUP_LOC} \;)"
 			fi
 
 			# Handle different file types
 			case $file_type in
 			"zip")
 				curl -sLo "/tmp/${name}.zip" "${dl_url}"
-				unzip -o "/tmp/${name}.zip" -d "${app_loc}/${name}"
+				unzip -o "/tmp/${name}.zip" -d "${APP_LOC}/${name}"
 				;;
 			"appimage")
-				curl -LO --output-dir "${app_loc}" "${dl_url}"
-				cd "${CURDIR}"
+				curl -LO --output-dir "${APP_LOC}" "${dl_url}"
 				;;
 
 			*)
@@ -171,9 +180,9 @@ update_binary() {
 	fi
 
 	# Backup
-	if ls "${app_loc}" | grep -qiE "${name}.*${dl_type}" 2>/dev/null; then
+	if ls "${APP_LOC}" | grep -qiE "${name}.*${dl_type}" 2>/dev/null; then
 		echo "[INFO] Moving old ${dl_type} to /tmp"
-		echo "[INFO] $(find ${app_loc} -iname "${name}*${dl_type}" -exec mv -v {} ${backup_loc} \;)"
+		echo "[INFO] $(find ${APP_LOC} -iname "${name}*${dl_type}" -exec mv -v {} ${BACKUP_LOC} \;)"
 	fi
 
 	# Download
@@ -185,9 +194,9 @@ update_binary() {
 	file_type=$(echo "${dl_type}" | tr '[:upper:]' '[:lower:]')
 	if [[ "${file_type}" == "zip" ]]; then
 		if [[ -n "${folder_target}" ]]; then
-			unzip -o "/tmp/${zip_name}" -d "${app_loc}/${folder_target}"
+			unzip -o "/tmp/${zip_name}" -d "${APP_LOC}/${folder_target}"
 		else
-			unzip -o "/tmp/${zip_name}" -d "${app_loc}/"
+			unzip -o "/tmp/${zip_name}" -d "${APP_LOC}/"
 		fi
 
 	elif [[ "${file_type}" == "tar.gz" ]]; then
@@ -199,10 +208,10 @@ update_binary() {
 
 		echo "[INFO] Extracting ${tar_file}"
 		if [[ -n "${folder_target}" ]]; then
-			mkdir -p "${app_loc}/${folder_target}"
-			tar -xvf "${tar_file}" -C "${app_loc}/${folder_target}"
+			mkdir -p "${APP_LOC}/${folder_target}"
+			tar -xvf "${tar_file}" -C "${APP_LOC}/${folder_target}"
 		else
-			tar -xvf "${tar_file}" -C "${app_loc}"
+			tar -xvf "${tar_file}" -C "${APP_LOC}"
 		fi
 
 		rm -rf "${tar_file}"
@@ -210,10 +219,10 @@ update_binary() {
 	elif [[ "${file_type}" == "appimage" ]]; then
 		app_image=$(ls -ltr /tmp/${name}*AppImage | tail -n 1 | awk '{print $9}')
 		if [[ -n "${folder_target}" ]]; then
-			mkdir -p "${app_loc}/${folder_target}"
-			mv -v "${app_image}" "${app_loc}/${folder_target}"
+			mkdir -p "${APP_LOC}/${folder_target}"
+			mv -v "${app_image}" "${APP_LOC}/${folder_target}"
 		else
-			mv -v "${app_image}" "${app_loc}"
+			mv -v "${app_image}" "${APP_LOC}"
 		fi
 	else
 		echo "[INFO] Failed to handle download!"
@@ -229,9 +238,9 @@ update_steam_emu() {
 	steam_location="${HOME}/.steam/steam/steamapps"
 
 	if [[ -n "${folder_target}" ]]; then
-		app_dir="${app_loc}/${name}"
+		app_dir="${APP_LOC}/${name}"
 	else
-		app_dir="${app_loc}"
+		app_dir="${APP_LOC}"
 	fi
 	echo "[INFO] Updating $name"
 
@@ -261,13 +270,24 @@ update_user_binaries() {
 	####################################
 	# Wine / Proton
 	####################################
-	update_binary "wine-staging_ge-proton" "Proton" "" "https://api.github.com/repos/mmtrt/WINE_AppImage/releases/latest" "AppImage"
+
+	echo "Skipping, none for now"
+	# Use wine cellar
+	#update_binary "wine-staging_ge-proton" "Proton" "" "https://api.github.com/repos/mmtrt/WINE_AppImage/releases/latest" "AppImage"
 
 }
 
-update_user_misc() {
-	echo -e "\n[INFO] None for now..."
+update_core_software() {
+	echo -e "\n[INFO] Updating core software\n"
 	sleep 2
+
+	# Decky Loader only if it does not exist
+	if [[ ! -f "${HOME}/homebrew/services/PluginLoader" ]]; then
+		echo "[INFO] Installing Decky Loader"
+		curl -L https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/install_prerelease.sh | sh
+	else
+		echo "[INFO] Decky Loader [OK]"
+	fi
 }
 
 update_emulator_software() {
@@ -295,7 +315,8 @@ update_emulator_software() {
 	update_install_flatpak "RetroArch" "org.libretro.RetroArch"
 	update_install_flatpak "RMG" "com.github.Rosalie241.RMG"
 	update_install_flatpak "RPCS3" "net.rpcs3.RPCS3"
-	update_install_flatpak "Ryujinx" "org.ryujinx.Ryujinx"
+	# RIP Ryujinx
+	#update_install_flatpak "Ryujinx" "org.ryujinx.Ryujinx"
 	update_install_flatpak "ScummVM" "org.scummvm.ScummVM"
 	update_install_flatpak "VICE" "net.sf.VICE"
 	update_install_flatpak "Xemu-Emu" "app.xemu.xemu"
@@ -331,7 +352,8 @@ update_emulator_software() {
 	# Careful not to get rate exceeded here...
 	update_binary "ES-DE" "" "" "https://gitlab.com/api/v4/projects/18817634/releases/permalink/latest" "AppImage"
 	update_binary "Steam-ROM-Manager" "" "" "https://api.github.com/repos/SteamGridDB/steam-rom-manager/releases/latest" "AppImage"
-	update_binary "ryujinx" "" "" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
+	# RIP Ryujinx
+	#update_binary "ryujinx" "" "" "https://api.github.com/repos/Ryujinx/release-channel-master/releases/latest" "tar.gz"
 	update_binary "pcsx2" "" "" "https://api.github.com/repos/PCSX2/pcsx2/releases" "AppImage"
 	# No Cemu latest tag has a Linux AppImage, must use use pre-releases
 	update_binary "Cemu" "" "" "https://api.github.com/repos/cemu-project/Cemu/releases" "AppImage"
@@ -374,42 +396,29 @@ update_user_flatpaks() {
 
 }
 
- # args
+######################################################################
+# CLI-args
+######################################################################
 while :; do
 	case $1 in
+	--all |-a)
+		ALL=true
+		;;
+
+	--core-software | -cs)
+		CORE_SOFTWARE=true
+		;;
+
 	--update-emulators | -ue)
 		UPDATE_EMULATORS=true
 		;;
 
-	--uninstall | -u)
-		UNINSTALL="true"
+	--users-flatpaks | -uf)
+		USER_FLATPAKS=true
 		;;
 
-	--backup | -b)
-		BACKUP="true"
-		;;
-
-	--dry-run)
-		DRY_RUN="true"
-		RCLONE_OPTS="--dry-run"
-		;;
-
-	--list-remotes | -l)
-		LIST_REMOTES="true"
-		;;
-
-	--status | -s)
-		STATUS="true"
-		;;
-
-	--remote-name)
-		if [[ -n "$2" ]]; then
-			REMOTE="$2"
-			shift
-		else
-			echo -e "ERROR: This option requires an argument.\n" >&2
-			exit 1
-		fi
+	--users-binaries | -ub)
+		USER_BINARIES=true
 		;;
 
 	--help | -h)
@@ -439,12 +448,6 @@ done
 echo
 
 main() {
-	######################################################################
-	# CLI-args
-	######################################################################
-	echo "UPDATE_EMULATORS: $UPDATE_EMULATORS"
-	echo "CLI: $CLI"
-
 	######################################################
 	# Set Zenity margins based on screen resolution
 	######################################################
@@ -474,10 +477,8 @@ main() {
 
 	echo "[INFO] Updater version: ${VERSION}"
 
-	backup_loc="/tmp/update-emulators-backup"
-	app_loc="${HOME}/Applications"
-	mkdir -p "${app_loc}"
-	mkdir -p "${backup_loc}"
+	mkdir -p "${APP_LOC}"
+	mkdir -p "${BACKUP_LOC}"
 
 	# Check for rate exceeded
 	echo "[INFO] Testing Git API"
@@ -500,6 +501,7 @@ main() {
 			zenity --list --title="Update which softare component?" \
 				--column=0 \
 				"All" \
+				"Core software" \
 				"Emulators and associated sofware" \
 				"User Flatpaks" \
 				"User binaries" \
@@ -517,11 +519,11 @@ main() {
 		echo "[INFO] Choice entered: '${ask}'"
 	fi
 
-	echo $UPDATE_EMULATORS
 	if [[ "${ask}" == "Exit" ]]; then
 		exit 0
 
-	elif [[ "${ask}" == "All" ]]; then
+	elif [[ "${ask}" == "All" || ${ALL} ]]; then
+		update_core_software
 		update_emulator_software
 		update_user_binaries
 		update_user_flatpaks
@@ -529,11 +531,13 @@ main() {
 	else
 		if [[ "${ask}" == "Emulators and associated sofware" || ${UPDATE_EMULATORS} ]]; then
 			update_emulator_software
-		elif [[ "${ask}" == "User Flatpaks" ]]; then
+		elif [[ "${ask}" == "Core software" || ${CORE_SOFTWARE} ]]; then
+			update_core_software
+		elif [[ "${ask}" == "User Flatpaks" || ${USER_FLATPAKS} ]]; then
 			update_user_flatpaks
-		elif [[ "${ask}" == "User binaries" ]]; then
+		elif [[ "${ask}" == "User binaries" || ${USER_BINARIES} ]]; then
 			update_user_binaries
-		elif [[ "${ask}" == "Utilities (miscellaneous)" ]]; then
+		elif [[ "${ask}" == "Utilities (miscellaneous)" || ${MISC} ]]; then
 			update_user_misc
 		fi
 	fi
@@ -541,8 +545,8 @@ main() {
 	######################################################################
 	# Cleanup
 	######################################################################
-	echo -e "\n[INFO] Marking any ELF executables in ${app_loc} executable"
-	for bin in $(find ${app_loc} -type f -exec file {} \; |
+	echo -e "\n[INFO] Marking any ELF executables in ${APP_LOC} executable"
+	for bin in $(find ${APP_LOC} -type f -exec file {} \; |
 		grep ELF |
 		awk -F':' '{print $1}' |
 		grep -vE ".so|debug"); do
@@ -559,6 +563,6 @@ main() {
 }
 
 # Run and log
-main 2>&1 | tee "/tmp/emulator-updates.log"
+main 2>&1 | tee "${LOG}"
 echo "[INFO] Done!"
-echo "[INFO] Log: /tmp/emulator-updates.log. Exiting."
+echo "[INFO] Log: ${LOG}"

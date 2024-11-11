@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Exec=konsole -e '$SHELL -c "${HOME}/.local/bin/update-software.sh; $SHELL"'
+Exec=%h/.local/bin/launch-update-software.sh
 Icon=utilities-terminal
 Categories=Qt;KDE;System;TerminalEmulator;
 StartupWMClass=konsole
-Name=Update Software
+Name=Update Software (SteamOS-Tools)
 Comment=Update Software for system
 

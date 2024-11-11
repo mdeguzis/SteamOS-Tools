@@ -278,9 +278,6 @@ update_user_binaries() {
 }
 
 update_core_software() {
-	echo -e "\n[INFO] Updating core software\n"
-	sleep 2
-
 	# Decky Loader only if it does not exist
 	if [[ ! -f "${HOME}/homebrew/services/PluginLoader" ]]; then
 		echo "[INFO] Installing Decky Loader"
@@ -288,6 +285,51 @@ update_core_software() {
 	else
 		echo "[INFO] Decky Loader [OK]"
 	fi
+
+	echo -e "\n[INFO] Copying configs\n"
+
+	# need to run once to get configs placed
+	update_install_flatpak "Ludusavi" "com.github.mtkennerly.ludusavi"
+	flatpak run com.github.mtkennerly.ludusavi --version
+
+	echo "[INFO] ludusavi"
+	cp -v ${git_root}/cfgs/ludusavi/config.yaml ${HOME}/.var/app/com.github.mtkennerly.ludusavi/config/ludusavi/config.yaml
+	sed -i "s|HOME_PATH|${HOME}|g" ${HOME}/.var/app/com.github.mtkennerly.ludusavi/config/ludusavi/config.yaml
+
+	#
+	# systemd units (user mode)
+	#
+
+	# ludusavi
+	# https://github.com/mtkennerly/ludusavi/blob/master/docs/help/backup-automation.md
+	echo -e "\n[INFO] Installing systemd user service for ludusavi (backups)"
+	cat > "${HOME}/.config/systemd/user/ludusavi-backup.service" <<EOF
+	[Unit]
+	Description="Ludusavi backup"
+
+	[Service]
+	Environment="RUST_LOG=ludusavi=debug"
+	ExecStart=flatpak run com.github.mtkennerly.ludusavi backup --force
+	EOF
+
+	cat > "${HOME}/.config/systemd/user/ludusavi-backup.timer" <<EOF
+	[Unit]
+	Description="Ludusavi backup timer"
+
+	[Timer]
+	OnCalendar=*-*-* *:00/5:00
+	Unit=ludusavi-backup.service
+
+	[Install]
+	WantedBy=timers.target
+EOF
+	systemctl --user enable ludusavi-backup.timer
+	systemctl --user start ludusavi-backup.timer
+
+	echo -e "\n[INFO] Updating core software\n"
+	sleep 2
+
+
 }
 
 update_emulator_software() {
@@ -387,10 +429,6 @@ update_emulator_software() {
 }
 
 update_user_flatpaks() {
-
-	# Install if missing
-	update_install_flatpak "Lutris" "net.lutris.Lutris"
-
 	# Update the rest of the user's Flatpaks
 	flatpak --user --noninteractive upgrade
 
@@ -565,4 +603,5 @@ main() {
 # Run and log
 main 2>&1 | tee "${LOG}"
 echo "[INFO] Done!"
-echo "[INFO] Log: ${LOG}"
+echo "[INFO] Log: /tmp/emulator-updates.log. Exiting."
+

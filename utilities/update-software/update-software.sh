@@ -8,28 +8,25 @@ set -e -o pipefail
 
 VERSION="0.8.5"
 CURDIR="${PWD}"
-CLI="false"
-if ! xwininfo 2> /dev/null; then
-	CLI="true"
-fi
+#CLI="false"
+CLI="true"
 
 function show_help() {
-	cat<<-HELP_EOF
-	--help|-h			Show this help page
-	--install|-i			Install backup manager
-	--dry-run			Dry-run test sync
-	--uninstall|-u			Uninstall backup manager
-	--list-remotes|-l		List available remotes
-	--backup|-b			Run backup
-	--status|-s			Backup service status
-	--remote-name			The name of the rclone remote to use
+	cat <<-HELP_EOF
+		--help|-h           Show this help page
+		--install|-i        Install backup manager
+		--dry-run           Dry-run test sync
+		--uninstall|-u      Uninstall backup manager
+		--list-remotes|-l  List available remotes
+		--backup|-b         Run backup
+		--status|-s         Backup service status
+		--remote-name       The name of the rclone remote to use
 
 	HELP_EOF
 	exit 0
 }
 
-curlit()
-{
+curlit() {
 	# This function is meantt to grab an archive/file out of a page HTML/CSS dump
 
 	name=$1
@@ -38,12 +35,11 @@ curlit()
 	exe_match=$4
 
 	echo -e "\n[INFO] Updating $name (searching for ${exe_match} on page...)"
-	curl -q -v "${search_url}" &> "/tmp/results.txt"
+	curl -q -v "${search_url}" &>"/tmp/results.txt"
 	urls=$(awk -F"[><]" '{for(i=1;i<=NF;i++){if($i ~ /a href=.*\//){print "<" $i ">"}}}' "/tmp/results.txt")
 	rm -f "/tmp/results.txt"
 	urls_to_parse=()
-	for url in $urls;
-	do
+	for url in $urls; do
 		if $(echo "${url}" | grep -q href) && $(echo "${url}" | grep -qE ${exe_match}); then
 			dl_url=$(echo "${url}" | sed 's/.*http/http/;s/".*//')
 
@@ -54,41 +50,40 @@ curlit()
 			echo "[INFO] Filetype found: ${file_type}"
 
 			# Backup
-			if ls "${app_loc}"| grep -qiE "${name}.*${file_type}"; then
+			if ls "${app_loc}" | grep -qiE "${name}.*${file_type}"; then
 				echo "[INFO] Moving old ${file_type} to .bak in /tmp"
 				echo "[INFO] $(find ${app_loc} -iname "${name}*${file_type}" -exec mv -v {} ${backup_loc} \;)"
 			fi
 
 			# Handle different file types
 			case $file_type in
-				"zip")
-					curl -sLo "/tmp/${name}.zip" "${dl_url}"
-					unzip -o "/tmp/${name}.zip" -d "${app_loc}/${name}"
-					;;
-				"appimage")
-					curl -LO --output-dir "${app_loc}" "${dl_url}"
-					cd "${CURDIR}"
-					;;
+			"zip")
+				curl -sLo "/tmp/${name}.zip" "${dl_url}"
+				unzip -o "/tmp/${name}.zip" -d "${app_loc}/${name}"
+				;;
+			"appimage")
+				curl -LO --output-dir "${app_loc}" "${dl_url}"
+				cd "${CURDIR}"
+				;;
 
-				*)
-					echo "I don't know how to process ${file_type}, skipping..."
-					return 0
-					;;
+			*)
+				echo "I don't know how to process ${file_type}, skipping..."
+				return 0
+				;;
 			esac
 		fi
 	done
 
 }
 
-update_install_flatpak ()
-{
+update_install_flatpak() {
 	# Loop the list and install if update fails (not found)
 	# This is more useful so we know exactly what was attempted vs just
 	# seeing an error
 
-	name=$1;
-	ID=$2;
-	echo -e "\n[INFO] Installing/Updating $name";
+	name=$1
+	ID=$2
+	echo -e "\n[INFO] Installing/Updating $name"
 	if ! flatpak --user update $ID -y; then
 		# Install if not found
 		flatpak install --user -y --noninteractive $ID
@@ -101,20 +96,19 @@ update_install_flatpak ()
 	fi
 
 	# Adjust common user permission
-	flatpak override $ID --filesystem=host --user;
-	flatpak override $ID --share=network --user;
+	flatpak override $ID --filesystem=host --user
+	flatpak override $ID --share=network --user
 }
 
-update_binary ()
-{
-	name=$1;
+update_binary() {
+	name=$1
 	folder_target=$2
 	filename=$3
 	URL=$4
 	dl_type=$5
 	curl_options="-LO --output-dir /tmp"
 
-	echo -e "\n[INFO] Updating binary for $name";
+	echo -e "\n[INFO] Updating binary for $name"
 
 	# The ~/Applications dir is compliant with ES-DE
 	if echo "${URL}" | grep -q ".zip"; then
@@ -144,8 +138,7 @@ update_binary ()
 			collected_urls=$(curl -s "${URL}" | jq -r '.assets[] | .browser_download_url')
 		fi
 
-		for this_url in ${collected_urls};
-		do
+		for this_url in ${collected_urls}; do
 			# Filename / regex to match above all else?
 			if [[ -n "${filename}" ]]; then
 				if echo "${this_url}" | grep -qE ${filename}; then
@@ -155,7 +148,7 @@ update_binary ()
 			else
 				# Auto find if no filename given...
 				# Prefer AppImage and 64 bit
-				if echo  "${this_url}" | grep -qE "http.*x.*64.*AppImage$"; then
+				if echo "${this_url}" | grep -qE "http.*x.*64.*AppImage$"; then
 					dl_url="${this_url}"
 					break
 				elif echo "${this_url}" | grep -qE "http.*AppImage$"; then
@@ -178,7 +171,7 @@ update_binary ()
 	fi
 
 	# Backup
-	if ls "${app_loc}"| grep -qiE "${name}.*${dl_type}" 2> /dev/null; then
+	if ls "${app_loc}" | grep -qiE "${name}.*${dl_type}" 2>/dev/null; then
 		echo "[INFO] Moving old ${dl_type} to /tmp"
 		echo "[INFO] $(find ${app_loc} -iname "${name}*${dl_type}" -exec mv -v {} ${backup_loc} \;)"
 	fi
@@ -207,9 +200,9 @@ update_binary ()
 		echo "[INFO] Extracting ${tar_file}"
 		if [[ -n "${folder_target}" ]]; then
 			mkdir -p "${app_loc}/${folder_target}"
-			tar -xvf "${tar_file}" -C "${app_loc}/${folder_target}" 
+			tar -xvf "${tar_file}" -C "${app_loc}/${folder_target}"
 		else
-			tar -xvf "${tar_file}" -C "${app_loc}" 
+			tar -xvf "${tar_file}" -C "${app_loc}"
 		fi
 
 		rm -rf "${tar_file}"
@@ -229,9 +222,8 @@ update_binary ()
 
 }
 
-update_steam_emu ()
-{
-	name=$1;
+update_steam_emu() {
+	name=$1
 	folder_target=$2
 	exec_name=$3
 	steam_location="${HOME}/.steam/steam/steamapps"
@@ -253,11 +245,11 @@ update_steam_emu ()
 			return
 		fi
 		mkdir -p "${app_dir}"
-		cp -r ${emu_dir}/* "${app_dir}" 
+		cp -r ${emu_dir}/* "${app_dir}"
 	fi
 }
 
-update_user_binaries () {
+update_user_binaries() {
 
 	######################################################################
 	# Binaries
@@ -271,15 +263,14 @@ update_user_binaries () {
 	####################################
 	update_binary "wine-staging_ge-proton" "Proton" "" "https://api.github.com/repos/mmtrt/WINE_AppImage/releases/latest" "AppImage"
 
-
 }
 
-update_user_misc () {
+update_user_misc() {
 	echo -e "\n[INFO] None for now..."
 	sleep 2
 }
 
-update_emulator_software () {
+update_emulator_software() {
 
 	######################################################################
 	# Flatpak
@@ -371,10 +362,9 @@ update_emulator_software () {
 	# Releases are named "pcsx2-[VERSION]-linux-appimage-x64-Qt.AppImage" on https://github.com/PCSX2/pcsx2/releases
 	find "${HOME}/Applications/" -name "pcsx2*AppImage" -exec ln -sfv {} "${HOME}/Applications/pcsx2-Qt.AppImage" \;
 
-
 }
 
-update_user_flatpaks () {
+update_user_flatpaks() {
 
 	# Install if missing
 	update_install_flatpak "Lutris" "net.lutris.Lutris"
@@ -384,72 +374,74 @@ update_user_flatpaks () {
 
 }
 
+ # args
+while :; do
+	case $1 in
+	--update-emulators | -ue)
+		UPDATE_EMULATORS=true
+		;;
+
+	--uninstall | -u)
+		UNINSTALL="true"
+		;;
+
+	--backup | -b)
+		BACKUP="true"
+		;;
+
+	--dry-run)
+		DRY_RUN="true"
+		RCLONE_OPTS="--dry-run"
+		;;
+
+	--list-remotes | -l)
+		LIST_REMOTES="true"
+		;;
+
+	--status | -s)
+		STATUS="true"
+		;;
+
+	--remote-name)
+		if [[ -n "$2" ]]; then
+			REMOTE="$2"
+			shift
+		else
+			echo -e "ERROR: This option requires an argument.\n" >&2
+			exit 1
+		fi
+		;;
+
+	--help | -h)
+		show_help
+		;;
+
+	--)
+		# End of all options.
+		shift
+		break
+		;;
+
+	-?*)
+		printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+		;;
+
+	*)
+		# Default case: If no more options then break out of the loop.
+		break
+		;;
+
+	esac
+
+	# shift args
+	shift
+done
+echo
+
 main() {
 	######################################################################
 	# CLI-args
 	######################################################################
-	while :; do
-		case $1 in
-			--update-emulators|-ue)
-				UPDATE_EMULATORS=true
-				;;
-
-			--uninstall|-u)
-				UNINSTALL="true"
-				;;
-
-			--backup|-b)
-				BACKUP="true"
-				;;
-
-			--dry-run)
-				DRY_RUN="true"
-				RCLONE_OPTS="--dry-run"
-				;;
-
-			--list-remotes|-l)
-				LIST_REMOTES="true"
-				;;
-
-			--status|-s)
-				STATUS="true"
-				;;
-
-			--remote-name)
-				if [[ -n "$2" ]]; then
-					REMOTE="$2"
-					shift
-				else
-					echo -e "ERROR: This option requires an argument.\n" >&2
-					exit 1
-				fi
-				;;
-
-			--help|-h)
-				show_help;
-				;;
-
-			--)
-				# End of all options.
-				shift
-				break
-			;;
-
-			-?*)
-				printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
-			;;
-
-			*)
-				# Default case: If no more options then break out of the loop.
-				break
-
-		esac
-
-		# shift args
-		shift
-	done
-	echo
-
 	echo "UPDATE_EMULATORS: $UPDATE_EMULATORS"
 	echo "CLI: $CLI"
 
@@ -468,14 +460,13 @@ main() {
 		# xwininfo is built into most OS distributions
 		SCREEN_WIDTH=$(xwininfo -root | awk '$1=="Width:" {print $2}')
 		SCREEN_HEIGHT=$(xwininfo -root | awk '$1=="Height:" {print $2}')
-		W=$(( ${SCREEN_WIDTH} / 2 - ${RIGHT_MARGIN} ))
-		H=$(( ${SCREEN_HEIGHT} / 2 - ${TOP_MARGIN} ))
+		W=$((${SCREEN_WIDTH} / 2 - ${RIGHT_MARGIN}))
+		H=$((${SCREEN_HEIGHT} / 2 - ${TOP_MARGIN}))
 
 		echo "[INFO] Scren dimensions detected:"
 		echo "[INFO] Width: ${SCREEN_WIDTH}"
 		echo "[INFO] Height: ${SCREEN_HEIGHT}"
 	fi
-
 
 	######################################################################
 	# Pre-reqs
@@ -487,7 +478,7 @@ main() {
 	app_loc="${HOME}/Applications"
 	mkdir -p "${app_loc}"
 	mkdir -p "${backup_loc}"
-	
+
 	# Check for rate exceeded
 	echo "[INFO] Testing Git API"
 	sleep 2
@@ -505,17 +496,18 @@ main() {
 	######################################################################
 
 	if [[ ${CLI} == "false" ]]; then
-		ask=$(zenity --list --title="Update which softare component?" \
-			--column=0 \
-			"All" \
-			"Emulators and associated sofware" \
-			"User Flatpaks" \
-			"User binaries" \
-			"Utilities (miscellaneous)" \
-			"Exit" \
-			--width ${W} \
-			--height ${H} \
-			--hide-header
+		ask=$(
+			zenity --list --title="Update which softare component?" \
+				--column=0 \
+				"All" \
+				"Emulators and associated sofware" \
+				"User Flatpaks" \
+				"User binaries" \
+				"Utilities (miscellaneous)" \
+				"Exit" \
+				--width ${W} \
+				--height ${H} \
+				--hide-header
 		)
 		if [[ $? -ne 0 ]]; then
 			# cancel pressed, exit
@@ -550,11 +542,10 @@ main() {
 	# Cleanup
 	######################################################################
 	echo -e "\n[INFO] Marking any ELF executables in ${app_loc} executable"
-	for bin in $(find ${app_loc} -type f -exec file {} \; \
-		| grep ELF \
-		| awk -F':' '{print $1}' \
-		| grep -vE ".so|debug")
-	do 
+	for bin in $(find ${app_loc} -type f -exec file {} \; |
+		grep ELF |
+		awk -F':' '{print $1}' |
+		grep -vE ".so|debug"); do
 		echo "[INFO] Marking ${bin} executable"
 		chmod +x "${bin}"
 	done
@@ -571,4 +562,3 @@ main() {
 main 2>&1 | tee "/tmp/emulator-updates.log"
 echo "[INFO] Done!"
 echo "[INFO] Log: /tmp/emulator-updates.log. Exiting."
-

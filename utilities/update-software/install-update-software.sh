@@ -6,7 +6,7 @@ set -e -o pipefail
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
 cp -v "${GIT_ROOT}/cfgs/desktop-files/update-software.desktop" "${HOME}/Desktop"
-sudo cp -v "${GIT_ROOT}/cfgs/desktop-files/update-software.desktop" "/usr/share/applications"
+cp -v "${GIT_ROOT}/cfgs/desktop-files/update-software.desktop" "${HOME}/.local/share/applications"
 cp -v "${GIT_ROOT}/utilities/update-software/update-software.sh" "${HOME}/.local/bin"
 cp -v "${GIT_ROOT}/utilities/update-software/launch-update-software.sh" "${HOME}/.local/bin"
 

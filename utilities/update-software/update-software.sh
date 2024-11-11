@@ -1,15 +1,32 @@
 #!/bin/bash
 # Updates AppImage/Flatpak emulators in one go
 # Notes:
-# 	Where to put files: https://gitlab.com/es-de/emulationstation-de/-/blob/stable-3.0/resources/systems/linux/es_find_rules.xml
-# 	Emulator files: https://emulation.gametechwiki.com/index.php/Emulator_files
-
-# Binaries
+#	Where to put files: https://gitlab.com/es-de/emulationstation-de/-/blob/stable-3.0/resources/systems/linux/es_find_rules.xml
+#	Emulator files: https://emulation.gametechwiki.com/index.php/Emulator_files
 
 set -e -o pipefail
 
-VERSION="0.8.3"
+VERSION="0.8.5"
 CURDIR="${PWD}"
+CLI="false"
+if ! xwininfo 2> /dev/null; then
+	CLI="true"
+fi
+
+function show_help() {
+	cat<<-HELP_EOF
+	--help|-h			Show this help page
+	--install|-i			Install backup manager
+	--dry-run			Dry-run test sync
+	--uninstall|-u			Uninstall backup manager
+	--list-remotes|-l		List available remotes
+	--backup|-b			Run backup
+	--status|-s			Backup service status
+	--remote-name			The name of the rclone remote to use
+
+	HELP_EOF
+	exit 0
+}
 
 curlit()
 {
@@ -367,7 +384,99 @@ update_user_flatpaks () {
 
 }
 
-main () {
+main() {
+	######################################################################
+	# CLI-args
+	######################################################################
+	while :; do
+		case $1 in
+			--update-emulators|-ue)
+				UPDATE_EMULATORS=true
+				;;
+
+			--uninstall|-u)
+				UNINSTALL="true"
+				;;
+
+			--backup|-b)
+				BACKUP="true"
+				;;
+
+			--dry-run)
+				DRY_RUN="true"
+				RCLONE_OPTS="--dry-run"
+				;;
+
+			--list-remotes|-l)
+				LIST_REMOTES="true"
+				;;
+
+			--status|-s)
+				STATUS="true"
+				;;
+
+			--remote-name)
+				if [[ -n "$2" ]]; then
+					REMOTE="$2"
+					shift
+				else
+					echo -e "ERROR: This option requires an argument.\n" >&2
+					exit 1
+				fi
+				;;
+
+			--help|-h)
+				show_help;
+				;;
+
+			--)
+				# End of all options.
+				shift
+				break
+			;;
+
+			-?*)
+				printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+			;;
+
+			*)
+				# Default case: If no more options then break out of the loop.
+				break
+
+		esac
+
+		# shift args
+		shift
+	done
+	echo
+
+	echo "UPDATE_EMULATORS: $UPDATE_EMULATORS"
+	echo "CLI: $CLI"
+
+	######################################################
+	# Set Zenity margins based on screen resolution
+	######################################################
+
+	if [[ ${CLI} == "false" ]]; then
+		echo "not running cli"
+		# Height in px of the top system bar
+		TOPM_ARGIN="${TOP_MARGIN:=27}"
+		# Height in px of all horizontal borders
+		RIGHT_MARGIN="${RIGHT_MARGIN:=10}"
+
+		# Get width and height of video out
+		# xwininfo is built into most OS distributions
+		SCREEN_WIDTH=$(xwininfo -root | awk '$1=="Width:" {print $2}')
+		SCREEN_HEIGHT=$(xwininfo -root | awk '$1=="Height:" {print $2}')
+		W=$(( ${SCREEN_WIDTH} / 2 - ${RIGHT_MARGIN} ))
+		H=$(( ${SCREEN_HEIGHT} / 2 - ${TOP_MARGIN} ))
+
+		echo "[INFO] Scren dimensions detected:"
+		echo "[INFO] Width: ${SCREEN_WIDTH}"
+		echo "[INFO] Height: ${SCREEN_HEIGHT}"
+	fi
+
+
 	######################################################################
 	# Pre-reqs
 	######################################################################
@@ -392,36 +501,41 @@ main () {
 
 	######################################################################
 	# Update software based on selection
+	# Skip if using CLI
 	######################################################################
-	ask=$(zenity --list --title="Update which softare component?" \
-		--column=0 \
-		"All" \
-		"Emulators and associated sofware" \
-		"User Flatpaks" \
-		"User binaries" \
-		"Utilities (miscellaneous)" \
-		"Exit" \
-		--width ${W} \
-		--height ${H} \
-		--hide-header
-	)
-	if [[ $? -ne 0 ]]; then
-		# cancel pressed, exit
-		exit 0
+
+	if [[ ${CLI} == "false" ]]; then
+		ask=$(zenity --list --title="Update which softare component?" \
+			--column=0 \
+			"All" \
+			"Emulators and associated sofware" \
+			"User Flatpaks" \
+			"User binaries" \
+			"Utilities (miscellaneous)" \
+			"Exit" \
+			--width ${W} \
+			--height ${H} \
+			--hide-header
+		)
+		if [[ $? -ne 0 ]]; then
+			# cancel pressed, exit
+			exit 0
+		fi
+
+		echo "[INFO] Choice entered: '${ask}'"
 	fi
 
-	echo "[INFO] Choice entered: '${ask}'"
-
-	# TODO - intergate and update with Zap? (AppImages)
+	echo $UPDATE_EMULATORS
 	if [[ "${ask}" == "Exit" ]]; then
 		exit 0
+
 	elif [[ "${ask}" == "All" ]]; then
 		update_emulator_software
 		update_user_binaries
 		update_user_flatpaks
 		update_user_misc
 	else
-		if [[ "${ask}" == "Emulators and associated sofware" ]]; then
+		if [[ "${ask}" == "Emulators and associated sofware" || ${UPDATE_EMULATORS} ]]; then
 			update_emulator_software
 		elif [[ "${ask}" == "User Flatpaks" ]]; then
 			update_user_flatpaks
@@ -444,33 +558,17 @@ main () {
 		echo "[INFO] Marking ${bin} executable"
 		chmod +x "${bin}"
 	done
-	
+
+	# Pause a bit when running GameMode
+	if [[ ${CLI} == "false" ]]; then
+		sleep 2
+		exit 0
+	fi
+
 }
 
-######################################################
-# Set Zenity margins based on screen resolution
-######################################################
-
-# Height in px of the top system bar
-TOPM_ARGIN="${TOP_MARGIN:=27}"
-# Height in px of all horizontal borders
-RIGHT_MARGIN="${RIGHT_MARGIN:=10}"
-
-# Get width and height of video out
-# xwinfo is built into most OS distributions
-SCREEN_WIDTH=$(xwininfo -root | awk '$1=="Width:" {print $2}')
-SCREEN_HEIGHT=$(xwininfo -root | awk '$1=="Height:" {print $2}')
-W=$(( ${SCREEN_WIDTH} / 2 - ${RIGHT_MARGIN} ))
-H=$(( ${SCREEN_HEIGHT} / 2 - ${TOP_MARGIN} ))
-
-echo "[INFO] Scren dimensions detected:"
-echo "[INFO] Width: ${SCREEN_WIDTH}"
-echo "[INFO] Height: ${SCREEN_HEIGHT}"
-
+# Run and log
 main 2>&1 | tee "/tmp/emulator-updates.log"
 echo "[INFO] Done!"
 echo "[INFO] Log: /tmp/emulator-updates.log. Exiting."
-# Pause a bit when running GameMode
-sleep 2
-exit 0
 

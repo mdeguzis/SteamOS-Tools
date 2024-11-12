@@ -429,6 +429,10 @@ update_emulator_software() {
 }
 
 update_user_flatpaks() {
+	# Tools
+	update_install_flatpak "Protontricks" "com.github.Matoking.protontricks"
+	update_install_flatpak "Chrome" "com.google.Chrome"
+
 	# Update the rest of the user's Flatpaks
 	flatpak --user --noninteractive upgrade
 

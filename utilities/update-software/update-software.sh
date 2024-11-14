@@ -431,6 +431,7 @@ update_emulator_software() {
 update_user_flatpaks() {
 	# Tools
 	update_install_flatpak "Protontricks" "com.github.Matoking.protontricks"
+	update_install_flatpak "Heroic Games Launcher" "com.heroicgameslauncher.hgl"
 	update_install_flatpak "Chrome" "com.google.Chrome"
 
 	# Update the rest of the user's Flatpaks
@@ -455,7 +456,7 @@ while :; do
 		UPDATE_EMULATORS=true
 		;;
 
-	--users-flatpaks | -uf)
+	--user-flatpaks | -uf)
 		USER_FLATPAKS=true
 		;;
 

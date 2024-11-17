@@ -7,8 +7,9 @@
 set -e -o pipefail
 
 VERSION="0.8.5"
-CURDIR="${PWD}"Lw
+CURDIR="${PWD}"
 BACKUP_LOC="/tmp/update-emulators-backup"
+CONFIG_ROOT="${HOME}/.config/steamos-tools"
 APP_LOC="${HOME}/Applications"
 LOG="/tmp/steamos-software-updater.log"
 CLI=false
@@ -294,7 +295,7 @@ update_core_software() {
 	flatpak run com.github.mtkennerly.ludusavi --version
 
 	echo "[INFO] ludusavi"
-	cp -v ${git_root}/cfgs/ludusavi/config.yaml ${HOME}/.var/app/com.github.mtkennerly.ludusavi/config/ludusavi/config.yaml
+	cp -v ${CONFIG_ROOT}/ludusavi/config.yaml ${HOME}/.var/app/com.github.mtkennerly.ludusavi/config/ludusavi/config.yaml
 	sed -i "s|HOME_PATH|${HOME}|g" ${HOME}/.var/app/com.github.mtkennerly.ludusavi/config/ludusavi/config.yaml
 
 	#

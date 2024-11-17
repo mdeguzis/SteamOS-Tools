@@ -5,6 +5,14 @@
 set -e -o pipefail
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
+CONFIG_ROOT="${HOME}/.config/steamos-tools"
+
+# Config dirs
+mkdir -p "${CONFIG_ROOT}"
+mkdir -p "${CONFIG_ROOT}/ludusavi"
+
+# Copy
+cp -v "${GIT_ROOT}/cfgs/ludusavi/config.yaml" "${CONFIG_ROOT}/ludusavi/"
 cp -v "${GIT_ROOT}/cfgs/desktop-files/update-software.desktop" "${HOME}/Desktop"
 cp -v "${GIT_ROOT}/cfgs/desktop-files/update-software.desktop" "${HOME}/.local/share/applications"
 cp -v "${GIT_ROOT}/utilities/update-software/update-software.sh" "${HOME}/.local/bin"

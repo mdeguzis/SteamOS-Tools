@@ -10,9 +10,12 @@ CONFIG_ROOT="${HOME}/.config/steamos-tools"
 # Config dirs
 mkdir -p "${CONFIG_ROOT}"
 mkdir -p "${CONFIG_ROOT}/ludusavi"
+mkdir -p "${CONFIG_ROOT}/systemd"
 
 # Copy
 cp -v "${GIT_ROOT}/cfgs/ludusavi/config.yaml" "${CONFIG_ROOT}/ludusavi/"
+cp -v "${GIT_ROOT}/cfgs/systemd/ludusavi-backup.service" "${CONFIG_ROOT}/systemd/"
+cp -v "${GIT_ROOT}/cfgs/systemd/ludusavi-backup.timer" "${CONFIG_ROOT}/systemd/"
 cp -v "${GIT_ROOT}/cfgs/desktop-files/update-software.desktop" "${HOME}/Desktop"
 cp -v "${GIT_ROOT}/cfgs/desktop-files/update-software.desktop" "${HOME}/.local/share/applications"
 cp -v "${GIT_ROOT}/utilities/update-software/update-software.sh" "${HOME}/.local/bin"

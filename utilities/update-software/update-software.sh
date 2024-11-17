@@ -305,32 +305,10 @@ update_core_software() {
 	# ludusavi
 	# https://github.com/mtkennerly/ludusavi/blob/master/docs/help/backup-automation.md
 	echo -e "\n[INFO] Installing systemd user service for ludusavi (backups)"
-	cat > "${HOME}/.config/systemd/user/ludusavi-backup.service" <<EOF
-	[Unit]
-	Description="Ludusavi backup"
-
-	[Service]
-	Environment="RUST_LOG=ludusavi=debug"
-	ExecStart=flatpak run com.github.mtkennerly.ludusavi backup --force
-	EOF
-
-	cat > "${HOME}/.config/systemd/user/ludusavi-backup.timer" <<EOF
-	[Unit]
-	Description="Ludusavi backup timer"
-
-	[Timer]
-	OnCalendar=*-*-* *:00/5:00
-	Unit=ludusavi-backup.service
-
-	[Install]
-	WantedBy=timers.target
-EOF
+	cp -v "${CONFIG_ROOT}/systemd/ludusavi-backup.service" "${HOME}/.config/systemd/user/ludusavi-backup.service"
+	cp -v "${CONFIG_ROOT}/systemd/ludusavi-backup.timer" "${HOME}/.config/systemd/user/ludusavi-backup.timer"
 	systemctl --user enable ludusavi-backup.timer
 	systemctl --user start ludusavi-backup.timer
-
-	echo -e "\n[INFO] Updating core software\n"
-	sleep 2
-
 
 }
 

@@ -1,0 +1,5 @@
+[Unit]
+Description="Ludusavi backup"
+
+[Service]
+ExecStart=/opt/ludusavi backup --force

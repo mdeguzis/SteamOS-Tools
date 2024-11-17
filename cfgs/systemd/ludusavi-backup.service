@@ -2,4 +2,6 @@
 Description="Ludusavi backup"
 
 [Service]
-ExecStart=/opt/ludusavi backup --force
+Environment="RUST_LOG=ludusavi=debug"
+ExecStart=flatpak run com.github.mtkennerly.ludusavi backup --force
+

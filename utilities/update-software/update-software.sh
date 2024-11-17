@@ -11,6 +11,7 @@ CURDIR="${PWD}"Lw
 BACKUP_LOC="/tmp/update-emulators-backup"
 APP_LOC="${HOME}/Applications"
 LOG="/tmp/steamos-software-updater.log"
+CLI=false
 if [[ -z ${DISPLAY} ]]; then
 	CLI=true
 fi
@@ -495,8 +496,7 @@ main() {
 	# Set Zenity margins based on screen resolution
 	######################################################
 
-	if [[ ${CLI} == "false" ]]; then
-		echo "not running cli"
+	if ! ${CLI}; then
 		# Height in px of the top system bar
 		TOPM_ARGIN="${TOP_MARGIN:=27}"
 		# Height in px of all horizontal borders
@@ -539,7 +539,7 @@ main() {
 	# Skip if using CLI
 	######################################################################
 
-	if [[ ${CLI} == "false" ]]; then
+	if ! ${CLI}; then
 		ask=$(
 			zenity --list --title="Update which softare component?" \
 				--column=0 \
@@ -598,7 +598,7 @@ main() {
 	done
 
 	# Pause a bit when running GameMode
-	if [[ ${CLI} == "false" ]]; then
+	if ! ${CLI}; then
 		sleep 2
 		exit 0
 	fi
@@ -608,5 +608,5 @@ main() {
 # Run and log
 main 2>&1 | tee "${LOG}"
 echo "[INFO] Done!"
-echo "[INFO] Log: /tmp/emulator-updates.log. Exiting."
+echo "[INFO] Log: ${LOG}. Exiting."
 

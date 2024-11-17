@@ -2,8 +2,9 @@
 Description="Ludusavi backup timer"
 
 [Timer]
-OnCalendar=*/30 * * * *
+OnCalendar=*-*-* *:00/5:00
 Unit=ludusavi-backup.service
+
 
 [Install]
 WantedBy=timers.target

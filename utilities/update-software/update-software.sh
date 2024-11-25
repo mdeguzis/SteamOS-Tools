@@ -413,6 +413,7 @@ update_user_flatpaks() {
 	update_install_flatpak "Protontricks" "com.github.Matoking.protontricks"
 	update_install_flatpak "Heroic Games Launcher" "com.heroicgameslauncher.hgl"
 	update_install_flatpak "Chrome" "com.google.Chrome"
+	update_install_flatpak "Limo" "io.github.limo_app.limo"
 
 	# Update the rest of the user's Flatpaks
 	flatpak --user --noninteractive upgrade

@@ -220,6 +220,10 @@ def list_shortcuts(library_path):
                 print("\n  Found shortcuts:")
                 print("  " + "-" * 50)
 
+                # The negative App IDs in Steam shortcuts are intentionally used to 
+                # avoid conflicts with real Steam games, which use positive IDs. 
+                # The negative IDs are generated using a hash of the shortcut's 
+                # properties to create a unique identifier.
                 for idx, shortcut in shortcuts['shortcuts'].items():
                     print(f"\n  Shortcut #{idx}:")
                     print(f"    Name: {shortcut.get('AppName', 'Unknown')}")  # Changed from 'appname' to 'AppName'
@@ -243,6 +247,7 @@ def list_shortcuts(library_path):
                     tags = shortcut.get('tags', {})
                     if tags:
                         print("    Tags:", ", ".join(tags.values()))
+                print()
             except Exception as e:
                 logger.error(f"Error reading shortcuts for user {persona_name}: {str(e)}")
                 print(f"  Error reading shortcuts: {str(e)}")
@@ -376,6 +381,7 @@ def display_steam_info(libraries, selected_library):
                     print(f"- {user_dir} - Unknown Account")
         else:
             print("\nNo Steam accounts found")
+        print()
     else:
         print("\nNo Steam userdata directory found")
 

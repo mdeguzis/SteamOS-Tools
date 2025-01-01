@@ -275,7 +275,11 @@ update_user_binaries() {
 
 	echo "Skipping, none for now"
 	# Use wine cellar
-	#update_binary "wine-staging_ge-proton" "Proton" "" "https://api.github.com/repos/mmtrt/WINE_AppImage/releases/latest" "AppImage"
+	#update_binary "wine-staging_ge-proton" "Proton" "" "https://api.github.com/repos/mmtrt/WINE_AppImage/releases/latest" "AppImage"	
+
+	####################################
+	# Gamejolt
+	####################################
 
 }
 

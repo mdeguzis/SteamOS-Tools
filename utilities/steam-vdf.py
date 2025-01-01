@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
 import argparse
+import datetime
 import json
 import logging
 import os
 import platform
 import readline
+import shutil
 import subprocess
 import time
 import vdf
@@ -445,16 +447,102 @@ def get_steam_user_names(steam_path):
     return user_names
 
 
+def get_installed_games(library_path):
+    apps_path = os.path.join(library_path, "steamapps")
+    installed_games = []
+
+    if os.path.exists(apps_path):
+        for file in os.listdir(apps_path):
+            if file.startswith("appmanifest_"):
+                manifest_path = os.path.join(apps_path, file)
+                try:
+                    with open(manifest_path, "r", encoding="utf-8") as f:
+                        manifest = vdf.load(f)
+                        app_data = manifest.get("AppState", {})
+                        installed_games.append(
+                            {
+                                "name": app_data.get("name", "Unknown"),
+                                "app_id": app_data.get("appid", "Unknown"),
+                                "size": int(app_data.get("SizeOnDisk", 0))
+                                / (1024 * 1024 * 1024),  # Convert to GB
+                            }
+                        )
+                except Exception as e:
+                    logger.error(f"Error reading manifest {file}: {str(e)}")
+
+    return installed_games
+
+
+def get_library_storage_info(library_path):
+    try:
+        total, used, free = shutil.disk_usage(library_path)
+        return {
+            "total": total // (1024 * 1024 * 1024),  # GB
+            "used": used // (1024 * 1024 * 1024),
+            "free": free // (1024 * 1024 * 1024),
+        }
+    except Exception as e:
+        logger.error(f"Error getting storage info: {str(e)}")
+        return None
+
+
+def get_recent_games(userdata_path, user_id):
+    config_path = os.path.join(userdata_path, user_id, "config", "localconfig.vdf")
+    recent_games = []
+
+    if os.path.exists(config_path):
+        try:
+            with open(config_path, "r", encoding="utf-8") as f:
+                config = vdf.load(f)
+                if (
+                    "Software" in config
+                    and "Valve" in config["Software"]
+                    and "Steam" in config["Software"]["Valve"]
+                ):
+                    steam_config = config["Software"]["Valve"]["Steam"]
+                    if "apps" in steam_config:
+                        for app_id, app_data in steam_config["apps"].items():
+                            if "LastPlayed" in app_data:
+                                recent_games.append(
+                                    {
+                                        "app_id": app_id,
+                                        "last_played": datetime.datetime.fromtimestamp(
+                                            int(app_data["LastPlayed"])
+                                        ),
+                                    }
+                                )
+        except Exception as e:
+            logger.error(f"Error reading localconfig.vdf: {str(e)}")
+
+    return sorted(recent_games, key=lambda x: x["last_played"], reverse=True)[
+        :5
+    ]  # Return top 5
+
+
 def display_steam_info(libraries, selected_library):
     """
     Display Steam library and account information
     """
     logger.info("Displaying Steam information")
-    print("\nSteam Libraries:")
-    for lib in libraries:
-        print(f"- {lib}")
-    print()
 
+    # Display storage information
+    storage_info = get_library_storage_info(selected_library)
+    if storage_info:
+        print("\nStorage Information:")
+        print(f"Total: {storage_info['total']} GB")
+        print(f"Used: {storage_info['used']} GB")
+        print(f"Free: {storage_info['free']} GB")
+
+    # Display installed games
+    print("\nInstalled Games:")
+    installed_games = get_installed_games(selected_library)
+    if installed_games:
+        for game in installed_games:
+            print(f"- {game['name']} (ID: {game['app_id']}) - {game['size']:.2f} GB")
+    else:
+        print("No games installed")
+
+    # Original user account display code...
     userdata_path = os.path.join(selected_library, "userdata")
     if os.path.exists(userdata_path):
         user_dirs = [
@@ -483,6 +571,15 @@ def display_steam_info(libraries, selected_library):
                         print(f"- {user_dir} - {persona_name}")
                 else:
                     print(f"- {user_dir} - Unknown Account")
+
+                # Add recent games for each user
+                recent_games = get_recent_games(userdata_path, user_dir)
+                if recent_games:
+                    print("\n  Recent Games:")
+                    for game in recent_games:
+                        print(
+                            f"  - App ID {game['app_id']}, Last played: {game['last_played']}"
+                        )
         else:
             print("\nNo Steam accounts found")
         print()

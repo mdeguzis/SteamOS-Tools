@@ -11,6 +11,37 @@ import shutil
 import subprocess
 import time
 import vdf
+from pathlib import Path
+
+
+def get_non_steam_usage(steam_path):
+    """Get sizes of directories on same drive as Steam, excluding Steam directory"""
+    steam_path = os.path.abspath(steam_path)
+    home_dir = str(Path.home())
+    parent_dir = os.path.dirname(steam_path)
+    sizes = []
+
+    for entry in os.scandir(parent_dir):
+        if entry.is_dir() and entry.path != steam_path:
+            try:
+                total = 0
+                for dirpath, dirnames, filenames in os.walk(entry.path):
+                    try:
+                        for f in filenames:
+                            fp = os.path.join(dirpath, f)
+                            if not os.path.islink(fp):
+                                total += os.path.getsize(fp)
+                    except (PermissionError, FileNotFoundError):
+                        continue
+
+                if total > 0:  # Only include if it has size
+                    sizes.append(
+                        {"path": entry.path, "size": total / (1024**3)}  # Convert to GB
+                    )
+            except (PermissionError, FileNotFoundError):
+                continue
+
+    return sorted(sizes, key=lambda x: x["size"], reverse=True)
 
 
 def restart_steam():
@@ -519,14 +550,8 @@ def get_recent_games(userdata_path, user_id):
     ]  # Return top 5
 
 
-def display_steam_info(libraries, selected_library):
-    """
-    Display Steam library and account information
-    """
-    logger.info("Displaying Steam information")
-
-    # Display storage information
-    storage_info = get_library_storage_info(selected_library)
+def analyze_storage(steam_library):
+    storage_info = get_library_storage_info(steam_library)
     if storage_info:
         print("\nStorage Information:")
         print(f"Total: {storage_info['total']} GB")
@@ -534,7 +559,7 @@ def display_steam_info(libraries, selected_library):
         print(f"Free: {storage_info['free']} GB")
 
     print("\nInstalled Games (Top 20 by size):")
-    installed_games = get_installed_games(selected_library)
+    installed_games = get_installed_games(steam_library)
     if installed_games:
         # Sort the games list by size in descending order and take top 20
         sorted_games = sorted(installed_games, key=lambda x: x["size"], reverse=True)[
@@ -549,7 +574,25 @@ def display_steam_info(libraries, selected_library):
     else:
         print("No games installed")
 
-    # Original user account display code...
+    # Add the non-Steam usage display
+    print("\nLargest Non-Steam Directories (Top 20):")
+    print("-" * 60)
+    sizes = get_non_steam_usage(steam_library)
+    if sizes:
+        total_non_steam = sum(item["size"] for item in sizes)
+        for item in sizes[:20]:
+            # Get relative path from home directory if possible
+            home = str(Path.home())
+            display_path = item["path"].replace(home, "~")
+            print(f"{display_path:<50} {item['size']:.2f} GB")
+        print("-" * 60)
+        print(f"Total size of all non-Steam directories: {total_non_steam:.2f} GB")
+    else:
+        print("No accessible non-Steam directories found")
+
+
+def get_user_info():
+    # user account display code
     userdata_path = os.path.join(selected_library, "userdata")
     if os.path.exists(userdata_path):
         user_dirs = [
@@ -592,6 +635,20 @@ def display_steam_info(libraries, selected_library):
         print()
     else:
         print("\nNo Steam userdata directory found")
+
+
+def display_steam_info(this_steam_library):
+    """
+    Display Steam library and account information
+    """
+    logger.info("Displaying Steam information")
+
+    # Display user info
+    get_user_info()
+
+    # Display storage information
+    if args.analyze_storage:
+        analyze_storage(this_steam_library)
 
 
 def setup_logging():
@@ -953,44 +1010,59 @@ def choose_library(libraries):
 def parse_arguments():
     """Parse command line arguments"""
     parser = argparse.ArgumentParser(description="Steam VDF Tool")
-    parser.add_argument(
-        "-i", "--info", action="store_true", help="Display Steam library information"
+    subparsers = parser.add_subparsers(dest="command")
+
+    # Info command and its options
+    info_parser = subparsers.add_parser(
+        "info", help="Display Steam library information"
     )
-    parser.add_argument(
-        "-s",
-        "--add-shortcut",
+    info_parser.add_argument(
+        "--analyze-storage",
         action="store_true",
-        help="Add a new non-Steam game shortcut",
+        help="Analyze storage usage including non-Steam directories",
     )
-    parser.add_argument(
-        "-l",
-        "--list-shortcuts",
-        action="store_true",
-        help="List existing non-Steam game shortcuts",
+    info_parser.set_defaults(info=True)
+
+    # Other main commands
+    add_parser = subparsers.add_parser(
+        "add-shortcut", help="Add a new non-Steam game shortcut"
     )
-    parser.add_argument(
-        "-d",
-        "--delete-shortcut",
-        action="store_true",
-        help="Delete an existing non-Steam game shortcut",
+    add_parser.set_defaults(add_shortcut=True)
+
+    list_parser = subparsers.add_parser(
+        "list-shortcuts", help="List existing non-Steam game shortcuts"
     )
-    parser.add_argument(
-        "-r", "--restart-steam", action="store_true", help="Restart Steam"
+    list_parser.set_defaults(list_shortcuts=True)
+
+    delete_parser = subparsers.add_parser(
+        "delete-shortcut", help="Delete an existing non-Steam game shortcut"
     )
+    delete_parser.set_defaults(delete_shortcut=True)
+
+    restart_parser = subparsers.add_parser("restart-steam", help="Restart Steam")
+    restart_parser.set_defaults(restart_steam=True)
+
+    # Optional flags
     parser.add_argument(
         "-v", "--dump-vdfs", action="store_true", help="Enable dumping of VDFs to JSON"
     )
-    return parser.parse_args()
+
+    args = parser.parse_args()
+    if not args.command:
+        parser.print_help()
+        parser.exit()
+
+    return args
 
 
 if __name__ == "__main__":
     # Initialize logger
     logger = setup_logging()
-    logger.info("Starting Steam tool")
 
     # Parse arguments
     args = parse_arguments()
 
+    logger.info("Starting Steam tool")
     # Initialize the matches attribute for the complete_path function
     complete_path.matches = []
 
@@ -1009,17 +1081,13 @@ if __name__ == "__main__":
         exit(1)
 
     if args.info:
-        display_steam_info(all_libraries, selected_library)
+        display_steam_info(selected_library)
 
     elif args.list_shortcuts:
         list_shortcuts(selected_library)
 
     elif args.delete_shortcut:
         delete_shortcut(selected_library)
-        restart_steam()
-
-    elif args.restart_steam:
-        restart_steam()
         restart_steam()
 
     elif args.restart_steam:

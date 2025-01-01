@@ -533,12 +533,19 @@ def display_steam_info(libraries, selected_library):
         print(f"Used: {storage_info['used']} GB")
         print(f"Free: {storage_info['free']} GB")
 
-    # Display installed games
-    print("\nInstalled Games:")
+    print("\nInstalled Games (Top 20 by size):")
     installed_games = get_installed_games(selected_library)
     if installed_games:
-        for game in installed_games:
+        # Sort the games list by size in descending order and take top 20
+        sorted_games = sorted(installed_games, key=lambda x: x["size"], reverse=True)[
+            :20
+        ]
+        total_size = sum(
+            game["size"] for game in installed_games
+        )  # Calculate total from ALL games
+        for game in sorted_games:
             print(f"- {game['name']} (ID: {game['app_id']}) - {game['size']:.2f} GB")
+        print(f"\nTotal space used by all games: {total_size:.2f} GB")
     else:
         print("No games installed")
 

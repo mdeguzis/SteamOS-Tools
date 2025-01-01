@@ -7,14 +7,63 @@ import logging
 import os
 import platform
 import readline
+import subprocess
+import time
 import vdf 
 
+def restart_steam():
+    """
+    Prompt user to restart Steam and handle the restart process
+    """
+    try:
+        restart = input("\nWould you like to restart Steam now? (y/N): ").strip().lower()
+        if restart == 'y':
+            print("\nRestarting Steam...")
+            logger.info("User requested Steam restart")
+            
+            # Kill existing Steam process
+            try:
+                subprocess.run(['killall', 'steam'], check=True)
+                logger.info("Successfully terminated Steam process")
+            except subprocess.CalledProcessError:
+                logger.warning("No Steam process found to terminate")
+            except Exception as e:
+                logger.error(f"Error terminating Steam: {str(e)}")
+                return False
+
+            # Wait a moment for Steam to fully close
+            time.sleep(2)
+
+            # Start Steam in background
+            try:
+                subprocess.Popen(['steam'], 
+                               stdout=subprocess.DEVNULL, 
+                               stderr=subprocess.DEVNULL, 
+                               start_new_session=True)
+                logger.info("Successfully started Steam")
+                print("Steam is restarting...")
+                return True
+            except Exception as e:
+                logger.error(f"Error starting Steam: {str(e)}")
+                print("Error starting Steam. Please restart manually.")
+                return False
+        else:
+            print("\nPlease restart Steam manually for changes to take effect.")
+            return False
+    except (KeyboardInterrupt, EOFError):
+        logger.info("\nRestart operation cancelled by user")
+        print("\nPlease restart Steam manually for changes to take effect.")
+        return False
 
 def dump_vdf_to_json(vdf_data, vdf_path):
     """
     Dump VDF data to JSON file in /tmp directory
     The JSON filename will include the source directory (steamapps or config)
     """
+
+    if not args.dump_vdfs:
+        return
+
     # Get the base filename and parent directory
     base_name = os.path.basename(vdf_path)
     parent_dir = os.path.basename(os.path.dirname(vdf_path))
@@ -36,15 +85,6 @@ def dump_vdf_to_json(vdf_data, vdf_path):
     except Exception as e:
         logger.error(f"Error dumping VDF to JSON: {str(e)}")
         return False
-
-def parse_arguments():
-    """Parse command line arguments"""
-    parser = argparse.ArgumentParser(description='Steam VDF Tool')
-    parser.add_argument('-i', '--info', action='store_true', help='Display Steam library information')
-    parser.add_argument('-s', '--add-shortcut', action='store_true', help='Add a new non-Steam game shortcut')
-    parser.add_argument('-l', '--list-shortcuts', action='store_true', help='List existing non-Steam game shortcuts')
-    parser.add_argument('-d', '--delete-shortcut', action='store_true', help='Delete an existing non-Steam game shortcut')
-    return parser.parse_args()
 
 def delete_shortcut(library_path):
     """
@@ -672,8 +712,6 @@ def find_steam_library_folders():
                 logger.debug(f"Reading VDF file: {vdf_path}")
                 with open(vdf_path, 'r', encoding='utf-8') as f:
                     content = vdf.load(f)
-                    # Dump to JSON
-                    logger.info(f"Dumping VDF content to JSON: {vdf_path}")
                     dump_vdf_to_json(content, vdf_path)
                     
                     # Process library folders
@@ -727,6 +765,19 @@ def choose_library(libraries):
             logger.info("\nOperation cancelled")
             return None
 
+
+def parse_arguments():
+    """Parse command line arguments"""
+    parser = argparse.ArgumentParser(description='Steam VDF Tool')
+    parser.add_argument('-i', '--info', action='store_true', help='Display Steam library information')
+    parser.add_argument('-s', '--add-shortcut', action='store_true', help='Add a new non-Steam game shortcut')
+    parser.add_argument('-l', '--list-shortcuts', action='store_true', help='List existing non-Steam game shortcuts')
+    parser.add_argument('-d', '--delete-shortcut', action='store_true', help='Delete an existing non-Steam game shortcut')
+    parser.add_argument('-r', '--restart-steam', action='store_true', help='Restart Steam')
+    parser.add_argument('-v', '--dump-vdfs', action='store_true', help='Enable dumping of VDFs to JSON')
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
     # Initialize logger
     logger = setup_logging()
@@ -751,7 +802,7 @@ if __name__ == "__main__":
         logger.error("No Steam library selected")
         print("No library selected. Exiting.")
         exit(1)
-    
+
     if args.info:
         display_steam_info(all_libraries, selected_library)
 
@@ -760,6 +811,10 @@ if __name__ == "__main__":
 
     elif args.delete_shortcut:
         delete_shortcut(selected_library)
+        restart_steam()
+
+    elif args.restart_steam:
+        restart_steam()
 
     elif args.add_shortcut:
         # Add new shortcut
@@ -819,6 +874,7 @@ if __name__ == "__main__":
                         shortcuts = add_shortcut_to_shortcuts(shortcuts, new_entry)
                         if save_shortcuts(shortcuts_vdf, shortcuts):
                             logger.info("Shortcut added successfully")
+                            restart_steam()
                         else:
                             logger.error("Failed to save shortcuts")
         except Exception as e:

@@ -2,7 +2,6 @@
 
 import argparse
 import json
-import glob
 import logging
 import os
 import platform

@@ -284,6 +284,7 @@ def list_shortcuts(library_path):
             print(f"\nShortcuts for user: {persona_name}")
 
         if os.path.exists(shortcuts_vdf):
+            print(f"Loading shortcuts from: {shortcuts_vdf}")
             try:
                 with open(shortcuts_vdf, "rb") as f:
                     shortcuts = vdf.binary_load(f)
@@ -301,18 +302,14 @@ def list_shortcuts(library_path):
                 # properties to create a unique identifier.
                 for idx, shortcut in shortcuts["shortcuts"].items():
                     print(f"\n  Shortcut #{idx}:")
-                    print(
-                        f"    Name: {shortcut.get('AppName', 'Unknown')}"
-                    )  # Changed from 'appname' to 'AppName'
+                    print(f"    Name: {shortcut.get('AppName', 'Unknown')}")
                     print(
                         f"    Executable: {shortcut.get('Exe', 'Unknown').strip('\"')}"
-                    )  # Changed from 'exe' to 'Exe'
+                    )
                     print(
                         f"    Start Directory: {shortcut.get('StartDir', 'Unknown').strip('\"')}"
                     )
-                    print(
-                        f"    App ID: {shortcut.get('appid', 'Unknown')}"
-                    )  # Added App ID
+                    print(f"    App ID: {shortcut.get('appid', 'Unknown')}")
 
                     launch_options = shortcut.get("LaunchOptions", "")
                     if launch_options:

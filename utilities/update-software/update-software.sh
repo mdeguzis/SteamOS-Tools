@@ -327,7 +327,6 @@ update_emulator_software() {
 	# RIP Citra
 	# update_install_flatpak "Citra" "org.citra_emu.citra"
 	update_install_flatpak "dolphin-emu" "org.DolphinEmu.dolphin-emu"
-	update_install_flatpak "DOSBox" "com.dosbox.DOSBox"
 	update_install_flatpak "DOSBox-Staging" "io.github.dosbox-staging"
 	update_install_flatpak "DuckStation" "org.duckstation.DuckStation"
 	update_install_flatpak "Flycast" "org.flycast.Flycast"

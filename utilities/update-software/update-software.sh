@@ -26,8 +26,8 @@ function show_help() {
 		--all |-a)			Install/update all software
 		--core-software | -cs)		Install/update core software (e.g. Decky Loader)
 		--update-emulators | -ue)	Install/update emulator software
-		--users-flatpaks | -uf)		Install/update user flatpaks
-		--users-binaries | -ub)		Install/update user binaries
+		--user-flatpaks | -uf)		Install/update user flatpaks
+		--user-binaries | -ub)		Install/update user binaries
 		--help | -h)			Show this help page
 
 
@@ -444,7 +444,7 @@ while :; do
 		USER_FLATPAKS=true
 		;;
 
-	--users-binaries | -ub)
+	--user-binaries | -ub)
 		USER_BINARIES=true
 		;;
 

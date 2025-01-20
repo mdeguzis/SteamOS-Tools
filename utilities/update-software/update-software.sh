@@ -312,7 +312,7 @@ update_core_software() {
 	cp -v "${CONFIG_ROOT}/systemd/ludusavi-backup.service" "${HOME}/.config/systemd/user/ludusavi-backup.service"
 	cp -v "${CONFIG_ROOT}/systemd/ludusavi-backup.timer" "${HOME}/.config/systemd/user/ludusavi-backup.timer"
 	systemctl --user enable ludusavi-backup.timer
-	systemctl --user start ludusavi-backup.timer
+	systemctl --user restart ludusavi-backup.timer
 
 }
 

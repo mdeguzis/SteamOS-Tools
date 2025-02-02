@@ -6,7 +6,7 @@
 
 set -e -o pipefail
 
-VERSION="0.8.5"
+VERSION="0.8.6"
 CURDIR="${PWD}"
 BACKUP_LOC="/tmp/update-emulators-backup"
 CONFIG_ROOT="${HOME}/.config/steamos-tools"

@@ -342,7 +342,7 @@ update_emulator_software() {
 	update_install_flatpak "RPCS3" "net.rpcs3.RPCS3"
 	# RIP Ryujinx
 	#update_install_flatpak "Ryujinx" "org.ryujinx.Ryujinx"
-update_install_flatpak "shadPS4" "net.shadps4.shadPS4"
+	update_install_flatpak "shadPS4" "net.shadps4.shadPS4"
 	update_install_flatpak "ScummVM" "org.scummvm.ScummVM"
 	update_install_flatpak "VICE" "net.sf.VICE"
 	update_install_flatpak "Xemu-Emu" "app.xemu.xemu"

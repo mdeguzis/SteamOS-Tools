@@ -168,6 +168,12 @@ update_binary() {
 				elif echo "${this_url}" | grep -qE "http.*${name}-.*linux.*x64.*tar.gz$"; then
 					dl_url="${this_url}"
 					break
+				elif echo "${this_url}" | grep -qE "http.*${name}.*linux.*tar.gz$"; then
+					dl_url="${this_url}"
+					break
+				elif echo "${this_url}" | grep -qE "http.*${name}.*linux.*tar.xz$"; then
+					dl_url="${this_url}"
+					break
 				fi
 			fi
 		done
@@ -201,8 +207,8 @@ update_binary() {
 			unzip -o "/tmp/${zip_name}" -d "${APP_LOC}/"
 		fi
 
-	elif [[ "${file_type}" == "tar.gz" ]]; then
-		tar_file=$(ls -t /tmp/${name}*tar.gz | head -n 1)
+	elif [[ "${file_type}" == "tar.gz" || "${file_type}" == "tar.xz" ]]; then
+		tar_file=$(ls -t /tmp/${name}*${file_type} | head -n 1)
 		if [[ -z "${tar_file}" ]]; then
 			echo "[ERROR] Could not match tar.gz file!"
 			exit 1
@@ -368,7 +374,7 @@ update_emulator_software() {
 	# ZIPs
 	####################################
 	update_binary "xenia_master" "xenia" "" "https://github.com/xenia-project/release-builds-windows/releases/latest/download/xenia_master.zip" "zip"
-	update_binary "xenia_canary" "xenia" "" "https://github.com/xenia-canary/xenia-canary/releases/download/experimental/xenia_canary.zip" "zip"
+	update_binary "xenia_canary" "xenia-canary" "" "https://api.github.com/repos/xenia-canary/xenia-canary-releases/releases/latest" "tar.xz"
 	# Note that the Panda3DS AppImage name is oddly named: "Alber-x86_64.AppImage"
 	update_binary "Panda3DS" "" "" "https://github.com/wheremyfoodat/Panda3DS/releases/latest/download/Linux-SDL.zip" "zip"
 
@@ -554,7 +560,6 @@ main() {
 		update_emulator_software
 		update_user_binaries
 		update_user_flatpaks
-		update_user_misc
 	else
 		if [[ "${ask}" == "Emulators and associated sofware" || ${UPDATE_EMULATORS} ]]; then
 			update_emulator_software
@@ -564,8 +569,6 @@ main() {
 			update_user_flatpaks
 		elif [[ "${ask}" == "User binaries" || ${USER_BINARIES} ]]; then
 			update_user_binaries
-		elif [[ "${ask}" == "Utilities (miscellaneous)" || ${MISC} ]]; then
-			update_user_misc
 		fi
 	fi
 

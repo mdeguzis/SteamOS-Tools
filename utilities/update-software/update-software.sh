@@ -6,7 +6,7 @@
 
 set -eE -o pipefail
 
-VERSION="0.8.18"
+VERSION="0.8.20"
 
 # Error log file for stderr capture
 ERROR_LOG="/tmp/steamos-software-updater-error.log"
@@ -63,9 +63,11 @@ ${last_lines}
 Full log file: ${LOG}
 ========================================"
 		
-		# Show error in scrollable text dialog
+		# Show error in scrollable text dialog with Exit button only
 		echo "${error_text}" | zenity --text-info \
 			--title="Updater Error - Exit Code ${exit_code}" \
+			--ok-label="Exit" \
+			--no-cancel \
 			--width=1000 \
 			--height=800 \
 			--font="Monospace 10"
@@ -576,7 +578,8 @@ show_installed_flatpaks() {
 	app_version=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f4)
 	
 	if [[ ${button_pressed} -eq 5 ]]; then
-		# Info button pressed - disable error trap for this operation
+		# Info button pressed - temporarily disable error trap
+		trap - ERR
 		set +e
 		
 		# Get full app info from flatpak (local)
@@ -598,7 +601,7 @@ show_installed_flatpaks() {
 			app_install_size=$(echo "${full_info}" | grep "^Installed size:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			
 			# Fetch additional info from Flathub API
-			flathub_data=$(curl -s "https://flathub.org/api/v2/appstream/${selected_app}" 2>/dev/null)
+			flathub_data=$(curl -s "https://flathub.org/api/v2/appstream/${selected_app}" 2>/dev/null || true)
 			
 			if [[ -n "${flathub_data}" ]] && echo "${flathub_data}" | jq -e '.' >/dev/null 2>&1; then
 				# Extract Flathub details
@@ -641,11 +644,12 @@ show_installed_flatpaks() {
 				--title="App Info: ${app_name}" \
 				--text="${info_text}" \
 				--width=600 \
-				--height=450
+				--height=450 || true
 		fi
 		
 		# Re-enable error trap
 		set -e
+		trap 'error_handler ${LINENO} "$BASH_COMMAND"' ERR
 			
 	elif [[ ${button_pressed} -eq 6 ]]; then
 		# Update button pressed
@@ -1115,23 +1119,21 @@ main() {
 				"Update Utilities (miscellaneous)" \
 				"Search and Install from Flathub" \
 				"Show Installed Flatpaks" \
-				"Exit" \
+				--cancel-label="Exit" \
 				--width ${W} \
 				--height ${H} \
 				--hide-header
 		)
 		if [[ $? -ne 0 ]]; then
-			# cancel pressed, exit
+			# Exit button pressed, exit cleanly
+			echo "[INFO] Exiting..."
 			exit 0
 		fi
 
 		echo "[INFO] Choice entered: '${ask}'"
 	fi
 
-	if [[ "${ask}" == "Exit" ]]; then
-		exit 0
-
-	elif [[ "${ask}" == "Update All Software" || ${ALL} ]]; then
+	if [[ "${ask}" == "Update All Software" || ${ALL} ]]; then
 		update_core_software
 		update_emulator_software
 		update_user_binaries

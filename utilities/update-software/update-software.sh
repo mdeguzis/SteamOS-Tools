@@ -6,7 +6,7 @@
 
 set -e -o pipefail
 
-VERSION="0.8.7"
+VERSION="0.8.8"
 CURDIR="${PWD}"
 BACKUP_LOC="/tmp/update-emulators-backup"
 CONFIG_ROOT="${HOME}/.config/steamos-tools"
@@ -442,6 +442,9 @@ update_user_flatpaks() {
 search_and_install_flathub() {
 	echo -e "\n[INFO] Flathub app search and install"
 	
+	# Get list of installed flatpaks once
+	installed_flatpaks=$(flatpak list --app --columns=application 2>/dev/null || echo "")
+	
 	while true; do
 		# Get search query from user
 		search_query=$(zenity --entry \
@@ -473,9 +476,10 @@ search_and_install_flathub() {
 			--width=400 \
 			--height=150 2>/dev/null
 		
-		# Search Flathub API
-		search_url="https://flathub.org/api/v2/search?q=${search_query}"
-		search_results=$(curl -s "${search_url}")
+		# Search Flathub API (requires POST with JSON)
+		search_results=$(curl -s -X POST "https://flathub.org/api/v2/search" \
+			-H "Content-Type: application/json" \
+			-d "{\"query\":\"${search_query}\"}")
 		
 		# Check if results are valid
 		if ! echo "${search_results}" | jq -e '.hits' >/dev/null 2>&1; then
@@ -501,25 +505,34 @@ search_and_install_flathub() {
 		
 		echo "[INFO] Found ${results_count} results"
 		
-		# Build zenity list arguments with improved formatting
+		# Build zenity list arguments with status column
 		list_args=()
 		while IFS=$'\t' read -r app_id name summary; do
 			# Truncate summary if too long
-			if [[ ${#summary} -gt 80 ]]; then
-				summary="${summary:0:77}..."
+			if [[ ${#summary} -gt 70 ]]; then
+				summary="${summary:0:67}..."
 			fi
-			list_args+=("${app_id}" "${name}" "${summary}")
+			
+			# Check installation status
+			if echo "${installed_flatpaks}" | grep -q "^${app_id}$"; then
+				status="✓ Installed"
+			else
+				status="Not Installed"
+			fi
+			
+			list_args+=("${app_id}" "${name}" "${summary}" "${status}")
 		done < <(echo "${search_results}" | jq -r '.hits[] | [.app_id, .name, .summary] | @tsv')
 		
-		# Show results in zenity list
+		# Show results in zenity list with status
 		selected_app=$(zenity --list \
 			--title="Flathub Search Results - ${results_count} apps found" \
-			--text="Select an app to install (searched for: '${search_query}'):" \
+			--text="Select an app (searched for: '${search_query}'):" \
 			--column="App ID" \
 			--column="Name" \
 			--column="Description" \
+			--column="Status" \
 			"${list_args[@]}" \
-			--width=${W:-800} \
+			--width=${W:-900} \
 			--height=${H:-500} \
 			--print-column=1)
 		
@@ -540,61 +553,148 @@ search_and_install_flathub() {
 		app_name=$(echo "${search_results}" | jq -r --arg id "${selected_app}" '.hits[] | select(.app_id == $id) | .name')
 		app_summary=$(echo "${search_results}" | jq -r --arg id "${selected_app}" '.hits[] | select(.app_id == $id) | .summary')
 		
-		# Confirm installation
-		zenity --question \
-			--title="Confirm Installation" \
-			--text="Install the following app?\n\n<b>Name:</b> ${app_name}\n<b>ID:</b> ${selected_app}\n<b>Description:</b> ${app_summary}\n\nThe app will be installed with user-level permissions." \
-			--width=500 \
-			--height=200
-		
-		if [[ $? -ne 0 ]]; then
-			# User cancelled installation
-			zenity --question \
-				--title="Search Again?" \
-				--text="Do you want to search for another app?" \
-				--width=400 \
-				--height=150
-			if [[ $? -ne 0 ]]; then
-				return 0
+		# Check if app is already installed
+		if echo "${installed_flatpaks}" | grep -q "^${selected_app}$"; then
+			# App is installed - offer update or uninstall
+			action=$(zenity --list \
+				--title="Manage ${app_name}" \
+				--text="<b>${app_name}</b> is already installed.\n\n<b>ID:</b> ${selected_app}\n<b>Description:</b> ${app_summary}\n\nWhat would you like to do?" \
+				--column="Action" \
+				"Update" \
+				"Uninstall" \
+				"Cancel" \
+				--width=500 \
+				--height=300)
+			
+			if [[ "${action}" == "Update" ]]; then
+				# Update the app
+				(
+					echo "10" ; echo "# Updating ${app_name}..."
+					flatpak --user update "${selected_app}" -y 2>&1
+					exit_code=$?
+					if [[ ${exit_code} -eq 0 ]]; then
+						echo "100" ; echo "# Update complete!"
+					else
+						echo "# Update failed!"
+						exit ${exit_code}
+					fi
+				) | zenity --progress \
+					--title="Updating ${app_name}" \
+					--text="Updating..." \
+					--percentage=0 \
+					--auto-close \
+					--width=400 \
+					--height=150
+				
+				if [[ $? -eq 0 ]]; then
+					zenity --info \
+						--title="Update Complete" \
+						--text="<b>${app_name}</b> has been updated successfully!" \
+						--width=400 \
+						--height=150
+				else
+					zenity --error \
+						--title="Update Failed" \
+						--text="Failed to update <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
+						--width=400 \
+						--height=150
+				fi
+				
+			elif [[ "${action}" == "Uninstall" ]]; then
+				# Confirm uninstall
+				zenity --question \
+					--title="Confirm Uninstall" \
+					--text="Are you sure you want to uninstall <b>${app_name}</b>?" \
+					--width=400 \
+					--height=150
+				
+				if [[ $? -eq 0 ]]; then
+					# Uninstall the app
+					(
+						echo "10" ; echo "# Uninstalling ${app_name}..."
+						flatpak --user uninstall "${selected_app}" -y 2>&1
+						exit_code=$?
+						if [[ ${exit_code} -eq 0 ]]; then
+							echo "100" ; echo "# Uninstall complete!"
+						else
+							echo "# Uninstall failed!"
+							exit ${exit_code}
+						fi
+					) | zenity --progress \
+						--title="Uninstalling ${app_name}" \
+						--text="Uninstalling..." \
+						--percentage=0 \
+						--auto-close \
+						--width=400 \
+						--height=150
+					
+					if [[ $? -eq 0 ]]; then
+						# Refresh installed list
+						installed_flatpaks=$(flatpak list --app --columns=application 2>/dev/null || echo "")
+						
+						zenity --info \
+							--title="Uninstall Complete" \
+							--text="<b>${app_name}</b> has been uninstalled successfully!" \
+							--width=400 \
+							--height=150
+					else
+						zenity --error \
+							--title="Uninstall Failed" \
+							--text="Failed to uninstall <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
+							--width=400 \
+							--height=150
+					fi
+				fi
 			fi
-			continue
-		fi
-		
-		# Install the app with progress dialog
-		(
-			echo "10" ; echo "# Installing ${app_name}..."
-			update_install_flatpak "${app_name}" "${selected_app}" 2>&1
-			exit_code=$?
-			if [[ ${exit_code} -eq 0 ]]; then
-				echo "100" ; echo "# Installation complete!"
-			else
-				echo "# Installation failed!"
-				exit ${exit_code}
-			fi
-		) | zenity --progress \
-			--title="Installing ${app_name}" \
-			--text="Installing..." \
-			--percentage=0 \
-			--auto-close \
-			--width=400 \
-			--height=150
-		
-		install_status=$?
-		
-		if [[ ${install_status} -eq 0 ]]; then
-			# Installation successful
-			zenity --info \
-				--title="Installation Complete" \
-				--text="<b>${app_name}</b> has been installed successfully!\n\nApp ID: ${selected_app}" \
-				--width=400 \
-				--height=150
 		else
-			# Installation failed
-			zenity --error \
-				--title="Installation Failed" \
-				--text="Failed to install <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
-				--width=400 \
-				--height=150
+			# App is not installed - offer to install
+			zenity --question \
+				--title="Confirm Installation" \
+				--text="Install the following app?\n\n<b>Name:</b> ${app_name}\n<b>ID:</b> ${selected_app}\n<b>Description:</b> ${app_summary}\n\nThe app will be installed with user-level permissions." \
+				--width=500 \
+				--height=200
+			
+			if [[ $? -eq 0 ]]; then
+				# Install the app with progress dialog
+				(
+					echo "10" ; echo "# Installing ${app_name}..."
+					update_install_flatpak "${app_name}" "${selected_app}" 2>&1
+					exit_code=$?
+					if [[ ${exit_code} -eq 0 ]]; then
+						echo "100" ; echo "# Installation complete!"
+					else
+						echo "# Installation failed!"
+						exit ${exit_code}
+					fi
+				) | zenity --progress \
+					--title="Installing ${app_name}" \
+					--text="Installing..." \
+					--percentage=0 \
+					--auto-close \
+					--width=400 \
+					--height=150
+				
+				install_status=$?
+				
+				if [[ ${install_status} -eq 0 ]]; then
+					# Refresh installed list
+					installed_flatpaks=$(flatpak list --app --columns=application 2>/dev/null || echo "")
+					
+					# Installation successful
+					zenity --info \
+						--title="Installation Complete" \
+						--text="<b>${app_name}</b> has been installed successfully!\n\nApp ID: ${selected_app}" \
+						--width=400 \
+						--height=150
+				else
+					# Installation failed
+					zenity --error \
+						--title="Installation Failed" \
+						--text="Failed to install <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
+						--width=400 \
+						--height=150
+				fi
+			fi
 		fi
 		
 		# Ask if user wants to search for more apps

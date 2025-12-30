@@ -6,14 +6,23 @@
 
 set -e -o pipefail
 
-VERSION="0.8.6"
+VERSION="0.8.7"
 CURDIR="${PWD}"
 BACKUP_LOC="/tmp/update-emulators-backup"
 CONFIG_ROOT="${HOME}/.config/steamos-tools"
 APP_LOC="${HOME}/Applications"
 LOG="/tmp/steamos-software-updater.log"
 CLI=false
-if [[ -z ${DISPLAY} ]]; then
+
+# Detect if running in CLI mode
+# On macOS, DISPLAY is not set but we still have GUI
+if [[ "$(uname)" == "Darwin" ]]; then
+	# macOS - check if we have access to zenity
+	if ! command -v zenity &> /dev/null; then
+		CLI=true
+	fi
+elif [[ -z ${DISPLAY} ]]; then
+	# Linux - check DISPLAY variable
 	CLI=true
 fi
 
@@ -430,6 +439,177 @@ update_user_flatpaks() {
 
 }
 
+search_and_install_flathub() {
+	echo -e "\n[INFO] Flathub app search and install"
+	
+	while true; do
+		# Get search query from user
+		search_query=$(zenity --entry \
+			--title="Search Flathub" \
+			--text="Enter app name to search on Flathub:" \
+			--width=400 \
+			--height=150)
+		
+		if [[ $? -ne 0 || -z "${search_query}" ]]; then
+			# User cancelled or entered empty query
+			return 0
+		fi
+		
+		echo "[INFO] Searching Flathub for: ${search_query}"
+		
+		# Show progress dialog while searching
+		(
+			echo "10" ; echo "# Connecting to Flathub API..."
+			sleep 0.5
+			echo "50" ; echo "# Searching for '${search_query}'..."
+			sleep 0.5
+			echo "100" ; echo "# Processing results..."
+		) | zenity --progress \
+			--title="Searching Flathub" \
+			--text="Searching..." \
+			--percentage=0 \
+			--auto-close \
+			--no-cancel \
+			--width=400 \
+			--height=150 2>/dev/null
+		
+		# Search Flathub API
+		search_url="https://flathub.org/api/v2/search?q=${search_query}"
+		search_results=$(curl -s "${search_url}")
+		
+		# Check if results are valid
+		if ! echo "${search_results}" | jq -e '.hits' >/dev/null 2>&1; then
+			zenity --error \
+				--title="Search Error" \
+				--text="Failed to search Flathub. Please check your internet connection." \
+				--width=400 \
+				--height=150
+			continue
+		fi
+		
+		# Parse results and create zenity list
+		results_count=$(echo "${search_results}" | jq '.hits | length')
+		
+		if [[ ${results_count} -eq 0 ]]; then
+			zenity --info \
+				--title="No Results" \
+				--text="No apps found matching '${search_query}'" \
+				--width=400 \
+				--height=150
+			continue
+		fi
+		
+		echo "[INFO] Found ${results_count} results"
+		
+		# Build zenity list arguments with improved formatting
+		list_args=()
+		while IFS=$'\t' read -r app_id name summary; do
+			# Truncate summary if too long
+			if [[ ${#summary} -gt 80 ]]; then
+				summary="${summary:0:77}..."
+			fi
+			list_args+=("${app_id}" "${name}" "${summary}")
+		done < <(echo "${search_results}" | jq -r '.hits[] | [.app_id, .name, .summary] | @tsv')
+		
+		# Show results in zenity list
+		selected_app=$(zenity --list \
+			--title="Flathub Search Results - ${results_count} apps found" \
+			--text="Select an app to install (searched for: '${search_query}'):" \
+			--column="App ID" \
+			--column="Name" \
+			--column="Description" \
+			"${list_args[@]}" \
+			--width=${W:-800} \
+			--height=${H:-500} \
+			--print-column=1)
+		
+		if [[ $? -ne 0 || -z "${selected_app}" ]]; then
+			# User cancelled selection, ask if they want to search again
+			zenity --question \
+				--title="Search Again?" \
+				--text="Do you want to search for another app?" \
+				--width=400 \
+				--height=150
+			if [[ $? -ne 0 ]]; then
+				return 0
+			fi
+			continue
+		fi
+		
+		# Get app details
+		app_name=$(echo "${search_results}" | jq -r --arg id "${selected_app}" '.hits[] | select(.app_id == $id) | .name')
+		app_summary=$(echo "${search_results}" | jq -r --arg id "${selected_app}" '.hits[] | select(.app_id == $id) | .summary')
+		
+		# Confirm installation
+		zenity --question \
+			--title="Confirm Installation" \
+			--text="Install the following app?\n\n<b>Name:</b> ${app_name}\n<b>ID:</b> ${selected_app}\n<b>Description:</b> ${app_summary}\n\nThe app will be installed with user-level permissions." \
+			--width=500 \
+			--height=200
+		
+		if [[ $? -ne 0 ]]; then
+			# User cancelled installation
+			zenity --question \
+				--title="Search Again?" \
+				--text="Do you want to search for another app?" \
+				--width=400 \
+				--height=150
+			if [[ $? -ne 0 ]]; then
+				return 0
+			fi
+			continue
+		fi
+		
+		# Install the app with progress dialog
+		(
+			echo "10" ; echo "# Installing ${app_name}..."
+			update_install_flatpak "${app_name}" "${selected_app}" 2>&1
+			exit_code=$?
+			if [[ ${exit_code} -eq 0 ]]; then
+				echo "100" ; echo "# Installation complete!"
+			else
+				echo "# Installation failed!"
+				exit ${exit_code}
+			fi
+		) | zenity --progress \
+			--title="Installing ${app_name}" \
+			--text="Installing..." \
+			--percentage=0 \
+			--auto-close \
+			--width=400 \
+			--height=150
+		
+		install_status=$?
+		
+		if [[ ${install_status} -eq 0 ]]; then
+			# Installation successful
+			zenity --info \
+				--title="Installation Complete" \
+				--text="<b>${app_name}</b> has been installed successfully!\n\nApp ID: ${selected_app}" \
+				--width=400 \
+				--height=150
+		else
+			# Installation failed
+			zenity --error \
+				--title="Installation Failed" \
+				--text="Failed to install <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
+				--width=400 \
+				--height=150
+		fi
+		
+		# Ask if user wants to search for more apps
+		zenity --question \
+			--title="Install More Apps?" \
+			--text="Do you want to search for and install another app?" \
+			--width=400 \
+			--height=150
+		
+		if [[ $? -ne 0 ]]; then
+			return 0
+		fi
+	done
+}
+
 ######################################################################
 # CLI-args
 ######################################################################
@@ -493,13 +673,23 @@ main() {
 		RIGHT_MARGIN="${RIGHT_MARGIN:=10}"
 
 		# Get width and height of video out
-		# xwininfo is built into most OS distributions
-		SCREEN_WIDTH=$(xwininfo -root | awk '$1=="Width:" {print $2}')
-		SCREEN_HEIGHT=$(xwininfo -root | awk '$1=="Height:" {print $2}')
+		if [[ "$(uname)" == "Darwin" ]]; then
+			# macOS - use system_profiler
+			SCREEN_WIDTH=$(system_profiler SPDisplaysDataType | grep Resolution | awk '{print $2}' | head -n1)
+			SCREEN_HEIGHT=$(system_profiler SPDisplaysDataType | grep Resolution | awk '{print $4}' | head -n1)
+			# Default to reasonable values if detection fails
+			SCREEN_WIDTH=${SCREEN_WIDTH:-1920}
+			SCREEN_HEIGHT=${SCREEN_HEIGHT:-1080}
+		else
+			# Linux - xwininfo is built into most OS distributions
+			SCREEN_WIDTH=$(xwininfo -root | awk '$1=="Width:" {print $2}')
+			SCREEN_HEIGHT=$(xwininfo -root | awk '$1=="Height:" {print $2}')
+		fi
+		
 		W=$((${SCREEN_WIDTH} / 2 - ${RIGHT_MARGIN}))
 		H=$((${SCREEN_HEIGHT} / 2 - ${TOP_MARGIN}))
 
-		echo "[INFO] Scren dimensions detected:"
+		echo "[INFO] Screen dimensions detected:"
 		echo "[INFO] Width: ${SCREEN_WIDTH}"
 		echo "[INFO] Height: ${SCREEN_HEIGHT}"
 	fi
@@ -538,6 +728,7 @@ main() {
 				"Emulators and associated sofware" \
 				"User Flatpaks" \
 				"User binaries" \
+				"Search and install from Flathub" \
 				"Utilities (miscellaneous)" \
 				"Exit" \
 				--width ${W} \
@@ -569,6 +760,8 @@ main() {
 			update_user_flatpaks
 		elif [[ "${ask}" == "User binaries" || ${USER_BINARIES} ]]; then
 			update_user_binaries
+		elif [[ "${ask}" == "Search and install from Flathub" ]]; then
+			search_and_install_flathub
 		fi
 	fi
 
@@ -596,4 +789,3 @@ main() {
 main 2>&1 | tee "${LOG}"
 echo "[INFO] Done!"
 echo "[INFO] Log: ${LOG}. Exiting."
-

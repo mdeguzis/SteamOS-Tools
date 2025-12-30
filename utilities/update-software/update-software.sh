@@ -6,7 +6,7 @@
 
 set -e -o pipefail
 
-VERSION="0.8.9"
+VERSION="0.8.10"
 CURDIR="${PWD}"
 BACKUP_LOC="/tmp/update-emulators-backup"
 CONFIG_ROOT="${HOME}/.config/steamos-tools"
@@ -443,7 +443,7 @@ show_installed_flatpaks() {
 	echo -e "\n[INFO] Showing installed Flatpaks"
 	
 	# Get list of installed flatpaks with names
-	installed_list=$(flatpak list --app --columns=application,name,description 2>/dev/null)
+	installed_list=$(flatpak list --app --columns=application,name,description,version 2>/dev/null)
 	
 	if [[ -z "${installed_list}" ]]; then
 		zenity --info \
@@ -459,7 +459,7 @@ show_installed_flatpaks() {
 	
 	# Build zenity list arguments
 	list_args=()
-	while IFS=$'\t' read -r app_id name description; do
+	while IFS=$'\t' read -r app_id name description version; do
 		# Truncate description if too long
 		if [[ ${#description} -gt 60 ]]; then
 			description="${description:0:57}..."
@@ -467,39 +467,37 @@ show_installed_flatpaks() {
 		list_args+=("${app_id}" "${name}" "${description}")
 	done < <(echo "${installed_list}")
 	
-	# Show installed apps in zenity list
+	# Show installed apps in zenity list with action buttons
 	selected_app=$(zenity --list \
 		--title="Installed Flatpaks - ${installed_count} apps" \
-		--text="Select an app to manage:" \
+		--text="Select an app and choose an action:" \
 		--column="App ID" \
 		--column="Name" \
 		--column="Description" \
 		"${list_args[@]}" \
+		--extra-button="Update" \
+		--extra-button="Uninstall" \
+		--extra-button="Info" \
 		--width=750 \
 		--height=450 \
 		--print-column=1)
 	
-	if [[ $? -ne 0 || -z "${selected_app}" ]]; then
+	button_pressed=$?
+	
+	# Check which button was pressed or if cancelled
+	# 0 = OK, 1 = Cancel/Escape, 5 = Extra button 1 (Update), 6 = Extra button 2 (Uninstall), 7 = Extra button 3 (Info)
+	if [[ ${button_pressed} -eq 1 || -z "${selected_app}" ]]; then
+		# User cancelled or no selection, return to main menu
 		return 0
 	fi
 	
-	# Get app name from the list
+	# Get app details from the list
 	app_name=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f2)
 	app_description=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f3)
+	app_version=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f4)
 	
-	# Show management dialog
-	action=$(zenity --list \
-		--title="Manage ${app_name}" \
-		--text="<b>${app_name}</b>\n\n<b>ID:</b> ${selected_app}\n<b>Description:</b> ${app_description}\n\nWhat would you like to do?" \
-		--column="Action" \
-		"Update" \
-		"Uninstall" \
-		"Cancel" \
-		--width=500 \
-		--height=280)
-	
-	if [[ "${action}" == "Update" ]]; then
-		# Update the app
+	if [[ ${button_pressed} -eq 5 ]]; then
+		# Update button pressed
 		(
 			echo "10" ; echo "# Updating ${app_name}..."
 			flatpak --user update "${selected_app}" -y 2>&1
@@ -532,19 +530,8 @@ show_installed_flatpaks() {
 				--height=150
 		fi
 		
-		# Ask if user wants to manage more apps
-		zenity --question \
-			--title="Manage More Apps?" \
-			--text="Do you want to manage another installed app?" \
-			--width=400 \
-			--height=150
-		
-		if [[ $? -eq 0 ]]; then
-			show_installed_flatpaks
-		fi
-		
-	elif [[ "${action}" == "Uninstall" ]]; then
-		# Confirm uninstall
+	elif [[ ${button_pressed} -eq 6 ]]; then
+		# Uninstall button pressed
 		zenity --question \
 			--title="Confirm Uninstall" \
 			--text="Are you sure you want to uninstall <b>${app_name}</b>?" \
@@ -577,17 +564,6 @@ show_installed_flatpaks() {
 					--text="<b>${app_name}</b> has been uninstalled successfully!" \
 					--width=400 \
 					--height=150
-					
-				# Ask if user wants to manage more apps
-				zenity --question \
-					--title="Manage More Apps?" \
-					--text="Do you want to manage another installed app?" \
-					--width=400 \
-					--height=150
-				
-				if [[ $? -eq 0 ]]; then
-					show_installed_flatpaks
-				fi
 			else
 				zenity --error \
 					--title="Uninstall Failed" \
@@ -596,7 +572,28 @@ show_installed_flatpaks() {
 					--height=150
 			fi
 		fi
+		
+	elif [[ ${button_pressed} -eq 7 ]]; then
+		# Info button pressed
+		# Get full app info from flatpak
+		full_info=$(flatpak info "${selected_app}" 2>/dev/null)
+		
+		# Extract key details
+		app_ref=$(echo "${full_info}" | grep "^Ref:" | cut -d: -f2- | xargs)
+		app_arch=$(echo "${full_info}" | grep "^Arch:" | cut -d: -f2- | xargs)
+		app_branch=$(echo "${full_info}" | grep "^Branch:" | cut -d: -f2- | xargs)
+		app_origin=$(echo "${full_info}" | grep "^Origin:" | cut -d: -f2- | xargs)
+		app_install_size=$(echo "${full_info}" | grep "^Installed size:" | cut -d: -f2- | xargs)
+		
+		zenity --info \
+			--title="App Info: ${app_name}" \
+			--text="<b>Name:</b> ${app_name}\n<b>App ID:</b> ${selected_app}\n<b>Version:</b> ${app_version}\n<b>Description:</b> ${app_description}\n\n<b>Architecture:</b> ${app_arch}\n<b>Branch:</b> ${app_branch}\n<b>Origin:</b> ${app_origin}\n<b>Installed Size:</b> ${app_install_size}" \
+			--width=500 \
+			--height=350
 	fi
+	
+	# After any action, return to main menu
+	return 0
 }
 
 search_and_install_flathub() {

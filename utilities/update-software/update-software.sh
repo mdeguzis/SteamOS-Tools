@@ -6,7 +6,7 @@
 
 set -eE -o pipefail
 
-VERSION="0.8.20"
+VERSION="0.8.21"
 
 # Error log file for stderr capture
 ERROR_LOG="/tmp/steamos-software-updater-error.log"
@@ -578,39 +578,33 @@ show_installed_flatpaks() {
 	app_version=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f4)
 	
 	if [[ ${button_pressed} -eq 5 ]]; then
-		# Info button pressed - temporarily disable error trap
-		trap - ERR
-		set +e
-		
-		# Get full app info from flatpak (local)
-		full_info=$(flatpak info "${selected_app}" 2>&1)
-		info_exit_code=$?
-		
-		if [[ ${info_exit_code} -ne 0 ]]; then
-			zenity --error \
-				--title="Info Error" \
-				--text="Failed to get information for <b>${app_name}</b>.\n\nError: ${full_info}" \
-				--width=500 \
-				--height=200
-		else
-			# Extract local details
+		# Info button pressed - run in isolated subshell to prevent error propagation
+		(
+			# Completely disable error handling in subshell
+			set +eE +o pipefail
+			trap - ERR
+			
+			# Get full app info from flatpak (local)
+			full_info=$(flatpak info "${selected_app}" 2>&1 || echo "Error getting info")
+			
+			# Extract local details (all with fallbacks)
 			app_ref=$(echo "${full_info}" | grep "^Ref:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			app_arch=$(echo "${full_info}" | grep "^Arch:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			app_branch=$(echo "${full_info}" | grep "^Branch:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			app_origin=$(echo "${full_info}" | grep "^Origin:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			app_install_size=$(echo "${full_info}" | grep "^Installed size:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			
-			# Fetch additional info from Flathub API
-			flathub_data=$(curl -s "https://flathub.org/api/v2/appstream/${selected_app}" 2>/dev/null || true)
+			# Fetch additional info from Flathub API (with fallback)
+			flathub_data=$(curl -s "https://flathub.org/api/v2/appstream/${selected_app}" 2>/dev/null || echo "{}")
 			
-			if [[ -n "${flathub_data}" ]] && echo "${flathub_data}" | jq -e '.' >/dev/null 2>&1; then
-				# Extract Flathub details
-				app_developer=$(echo "${flathub_data}" | jq -r '.developer_name // "N/A"' 2>/dev/null || echo "N/A")
-				app_license=$(echo "${flathub_data}" | jq -r '.project_license // "N/A"' 2>/dev/null || echo "N/A")
-				app_homepage=$(echo "${flathub_data}" | jq -r '.urls.homepage // "N/A"' 2>/dev/null || echo "N/A")
-				app_categories=$(echo "${flathub_data}" | jq -r '.categories[]? // empty' 2>/dev/null | tr '\n' ', ' | sed 's/,$//' || echo "N/A")
-				
-				# Build comprehensive info text
+			# Try to extract Flathub details (all with fallbacks)
+			app_developer=$(echo "${flathub_data}" | jq -r '.developer_name // "N/A"' 2>/dev/null || echo "N/A")
+			app_license=$(echo "${flathub_data}" | jq -r '.project_license // "N/A"' 2>/dev/null || echo "N/A")
+			app_homepage=$(echo "${flathub_data}" | jq -r '.urls.homepage // "N/A"' 2>/dev/null || echo "N/A")
+			app_categories=$(echo "${flathub_data}" | jq -r '.categories[]? // empty' 2>/dev/null | tr '\n' ', ' | sed 's/,$//' 2>/dev/null || echo "N/A")
+			
+			# Build info text (works even if Flathub failed)
+			if [[ "${app_developer}" != "N/A" ]]; then
 				info_text="<b>Name:</b> ${app_name}
 <b>App ID:</b> ${selected_app}
 <b>Version:</b> ${app_version}
@@ -627,7 +621,7 @@ show_installed_flatpaks() {
 <b>Origin:</b> ${app_origin}
 <b>Installed Size:</b> ${app_install_size}"
 			else
-				# Fallback if Flathub API fails
+				# Minimal fallback
 				info_text="<b>Name:</b> ${app_name}
 <b>App ID:</b> ${selected_app}
 <b>Version:</b> ${app_version}
@@ -640,16 +634,16 @@ show_installed_flatpaks() {
 <b>Installed Size:</b> ${app_install_size}"
 			fi
 			
+			# Show dialog (ignore exit code)
 			zenity --info \
 				--title="App Info: ${app_name}" \
 				--text="${info_text}" \
 				--width=600 \
-				--height=450 || true
-		fi
-		
-		# Re-enable error trap
-		set -e
-		trap 'error_handler ${LINENO} "$BASH_COMMAND"' ERR
+				--height=450 2>/dev/null || true
+			
+			# Always exit subshell with success
+			exit 0
+		)
 			
 	elif [[ ${button_pressed} -eq 6 ]]; then
 		# Update button pressed

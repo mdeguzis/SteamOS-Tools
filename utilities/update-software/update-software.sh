@@ -6,7 +6,7 @@
 
 set -e -o pipefail
 
-VERSION="0.8.13"
+VERSION="0.8.14"
 
 # Global error handler
 error_handler() {
@@ -529,48 +529,36 @@ show_installed_flatpaks() {
 	app_version=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f4)
 	
 	if [[ ${button_pressed} -eq 5 ]]; then
-		# Info button pressed
-		# Temporarily disable exit on error for info extraction
-		set +e
-		
-		# Get full app info from flatpak
-		full_info=$(flatpak info "${selected_app}" 2>&1)
-		info_exit_code=$?
-		
-		if [[ ${info_exit_code} -ne 0 ]]; then
-			set -e
-			zenity --error \
-				--title="Info Error" \
-				--text="Failed to get information for <b>${app_name}</b>.\n\nError: ${full_info}" \
+		# Info button pressed - wrap entire operation to prevent error trap
+		(
+			set +e
+			
+			# Get full app info from flatpak
+			full_info=$(flatpak info "${selected_app}" 2>&1)
+			info_exit_code=$?
+			
+			if [[ ${info_exit_code} -ne 0 ]]; then
+				zenity --error \
+					--title="Info Error" \
+					--text="Failed to get information for <b>${app_name}</b>.\n\nError: ${full_info}" \
+					--width=500 \
+					--height=200
+				exit 0
+			fi
+			
+			# Extract key details with safe grep (won't fail if no match)
+			app_ref=$(echo "${full_info}" | grep "^Ref:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+			app_arch=$(echo "${full_info}" | grep "^Arch:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+			app_branch=$(echo "${full_info}" | grep "^Branch:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+			app_origin=$(echo "${full_info}" | grep "^Origin:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+			app_install_size=$(echo "${full_info}" | grep "^Installed size:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+			
+			zenity --info \
+				--title="App Info: ${app_name}" \
+				--text="<b>Name:</b> ${app_name}\n<b>App ID:</b> ${selected_app}\n<b>Version:</b> ${app_version}\n<b>Description:</b> ${app_description}\n\n<b>Architecture:</b> ${app_arch}\n<b>Branch:</b> ${app_branch}\n<b>Origin:</b> ${app_origin}\n<b>Installed Size:</b> ${app_install_size}" \
 				--width=500 \
-				--height=200
-			return 0
-		fi
-		
-		# Extract key details (handle missing fields gracefully)
-		app_ref=$(echo "${full_info}" | grep "^Ref:" | cut -d: -f2- | xargs 2>/dev/null)
-		app_ref=${app_ref:-N/A}
-		
-		app_arch=$(echo "${full_info}" | grep "^Arch:" | cut -d: -f2- | xargs 2>/dev/null)
-		app_arch=${app_arch:-N/A}
-		
-		app_branch=$(echo "${full_info}" | grep "^Branch:" | cut -d: -f2- | xargs 2>/dev/null)
-		app_branch=${app_branch:-N/A}
-		
-		app_origin=$(echo "${full_info}" | grep "^Origin:" | cut -d: -f2- | xargs 2>/dev/null)
-		app_origin=${app_origin:-N/A}
-		
-		app_install_size=$(echo "${full_info}" | grep "^Installed size:" | cut -d: -f2- | xargs 2>/dev/null)
-		app_install_size=${app_install_size:-N/A}
-		
-		# Re-enable exit on error
-		set -e
-		
-		zenity --info \
-			--title="App Info: ${app_name}" \
-			--text="<b>Name:</b> ${app_name}\n<b>App ID:</b> ${selected_app}\n<b>Version:</b> ${app_version}\n<b>Description:</b> ${app_description}\n\n<b>Architecture:</b> ${app_arch}\n<b>Branch:</b> ${app_branch}\n<b>Origin:</b> ${app_origin}\n<b>Installed Size:</b> ${app_install_size}" \
-			--width=500 \
-			--height=350
+				--height=350
+		)
 			
 	elif [[ ${button_pressed} -eq 6 ]]; then
 		# Update button pressed

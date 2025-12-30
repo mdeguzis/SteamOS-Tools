@@ -50,56 +50,63 @@ else
 	SCRIPT_TO_RUN="${HOME}/.local/bin/update-software.sh"
 fi
 
-# Build command with any additional arguments
+# Build command with any additional arguments  
 if [[ ${#SCRIPT_ARGS[@]} -gt 0 ]]; then
 	SCRIPT_CMD="${SCRIPT_TO_RUN} ${SCRIPT_ARGS[*]}"
 else
 	SCRIPT_CMD="${SCRIPT_TO_RUN}"
 fi
 
+# Log file location
+LOG_FILE="/tmp/steamos-software-updater.log"
+
 # Ignore dumb .so warnings by setting LD_PRELOAD to undefined
 export LD_PRELOAD=""
 
-# Launch based on terminal preference
-# Detect OS first
-if [[ "$(uname)" == "Darwin" ]]; then
-	# macOS - use Terminal.app or iTerm2
-	if [[ -d "/Applications/iTerm.app" ]]; then
-		# iTerm2 if available
-		osascript <<-EOF
-			tell application "iTerm"
-				create window with default profile
-				tell current session of current window
-					write text "${SCRIPT_CMD}"
-				end tell
-			end tell
-		EOF
-	else
-		# Default macOS Terminal.app
-		osascript <<-EOF
-			tell application "Terminal"
-				do script "${SCRIPT_CMD}; exit"
-				activate
-			end tell
-		EOF
+# Run the script directly (not in a new terminal) and capture exit code
+echo "[INFO] Running updater..."
+bash "${SCRIPT_CMD}" 2>&1 | tee "${LOG_FILE}"
+EXIT_CODE=${PIPESTATUS[0]}
+
+# Check if script failed
+if [[ ${EXIT_CODE} -ne 0 ]]; then
+	echo "[ERROR] Updater failed with exit code ${EXIT_CODE}"
+	
+	# Show error dialog with log if zenity is available
+	if command -v zenity &> /dev/null; then
+		# Get last 40 lines of log
+		if [[ -f "${LOG_FILE}" ]]; then
+			log_content=$(tail -n 40 "${LOG_FILE}" 2>/dev/null)
+		else
+			log_content="Log file not found"
+		fi
+		
+		# Create error text
+		error_text="========================================
+UPDATER ERROR
+
+Exit Code: ${EXIT_CODE}
+Time: $(date)
+
+Recent Log Output (last 40 lines):
+
+${log_content}
+
+Full log file: ${LOG_FILE}
+========================================"
+		
+		# Show in zenity text dialog
+		echo "${error_text}" | zenity --text-info \
+			--title="Updater Failed - Exit Code ${EXIT_CODE}" \
+			--ok-label="Exit" \
+			--no-cancel \
+			--width=1000 \
+			--height=800 \
+			--font="Monospace 10"
 	fi
-
-# Linux - check for various terminal emulators
-elif [[ -f "/usr/bin/xterm" ]]; then
-	xterm -fg white -bg black \
-		-maximized -fa 'Monospace' -fs 24 \
-		-e '$SHELL -c "${SCRIPT_CMD}; exit; $SHELL"'
-
-elif [[ -f "/usr/bin/konsole" ]]; then
-	konsole -e '$SHELL -c "${SCRIPT_CMD}; exit; $SHELL"'
-
-elif [[ -f "/usr/bin/gnome-terminal" ]]; then
-	gnome-terminal -e '$SHELL -c "${SCRIPT_CMD}; exit; $SHELL"'
-
-elif [[ -f "/usr/bin/kgx" ]]; then
-	kgx -e '$SHELL -c "${SCRIPT_CMD}; exit; $SHELL"'
-
-else
-	echo "[ERROR] Unknown terminal in use"
-	exit 1
+	
+	exit ${EXIT_CODE}
 fi
+
+echo "[INFO] Updater completed successfully"
+exit 0

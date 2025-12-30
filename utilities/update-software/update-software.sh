@@ -4,89 +4,15 @@
 #	Where to put files: https://gitlab.com/es-de/emulationstation-de/-/blob/stable-3.0/resources/systems/linux/es_find_rules.xml
 #	Emulator files: https://emulation.gametechwiki.com/index.php/Emulator_files
 
-set -eE -o pipefail
+set -e -o pipefail
 
-VERSION="0.8.21"
+VERSION="0.8.22"
 
-# Error log file for stderr capture
-ERROR_LOG="/tmp/steamos-software-updater-error.log"
-
-# Global error handler with better error capture
-error_handler() {
-	local exit_code=$?
-	local line_number=$1
-	local command="$2"
-	
-	# Write error details to main log
-	{
-		echo ""
-		echo "========================================="
-		echo "[ERROR] Script failed!"
-		echo "========================================="
-		echo "Exit Code: ${exit_code}"
-		echo "Line Number: ${line_number}"
-		echo "Failed Command: ${command}"
-		echo "Time: $(date)"
-		echo "========================================="
-		echo ""
-		
-		# Include stderr if captured
-		if [[ -f "${ERROR_LOG}" && -s "${ERROR_LOG}" ]]; then
-			echo "Error Output:"
-			cat "${ERROR_LOG}"
-			echo "========================================="
-		fi
-	} | tee -a "${LOG}"
-	
-	# Skip error dialog if running in CLI mode or if zenity not available
-	if command -v zenity &> /dev/null && [[ "$(uname)" == "Darwin" || -n "${DISPLAY}" ]]; then
-		# Get last 40 lines of log for context
-		if [[ -f "${LOG}" ]]; then
-			last_lines=$(tail -n 40 "${LOG}" 2>/dev/null)
-		else
-			last_lines="Log file not yet created"
-		fi
-		
-		# Create error summary as plain text for text-info
-		error_text="========================================
-UPDATER ERROR
-
-Exit Code: ${exit_code}
-Line: ${line_number}
-Command: ${command}
-Time: $(date)
-
-Recent Log Output (last 40 lines):
-
-${last_lines}
-
-Full log file: ${LOG}
-========================================"
-		
-		# Show error in scrollable text dialog with Exit button only
-		echo "${error_text}" | zenity --text-info \
-			--title="Updater Error - Exit Code ${exit_code}" \
-			--ok-label="Exit" \
-			--no-cancel \
-			--width=1000 \
-			--height=800 \
-			--font="Monospace 10"
-	fi
-	
-	# Clean up error log
-	rm -f "${ERROR_LOG}"
-	
-	# Force exit - this will terminate the script
-	exit ${exit_code}
-}
-
-# Set up error trap with -E to trap errors in functions
-trap 'error_handler ${LINENO} "$BASH_COMMAND"' ERR
+# Simple script - error handling is done by launcher
 CURDIR="${PWD}"
 BACKUP_LOC="/tmp/update-emulators-backup"
 CONFIG_ROOT="${HOME}/.config/steamos-tools"
 APP_LOC="${HOME}/Applications"
-LOG="/tmp/steamos-software-updater.log"
 CLI=false
 
 # Detect if running in CLI mode
@@ -1168,7 +1094,6 @@ main() {
 
 }
 
-# Run and log
-main 2>&1 | tee "${LOG}"
-echo "[INFO] Done!"
-echo "[INFO] Log: ${LOG}. Exiting."
+# Run main (logging is handled by launcher)
+main
+echo "[INFO] Updater completed successfully"

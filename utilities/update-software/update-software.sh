@@ -6,7 +6,7 @@
 
 set -eE -o pipefail
 
-VERSION="0.8.17"
+VERSION="0.8.18"
 
 # Error log file for stderr capture
 ERROR_LOG="/tmp/steamos-software-updater-error.log"
@@ -40,32 +40,35 @@ error_handler() {
 	
 	# Skip error dialog if running in CLI mode or if zenity not available
 	if command -v zenity &> /dev/null && [[ "$(uname)" == "Darwin" || -n "${DISPLAY}" ]]; then
-		# Get last 30 lines of log for context
+		# Get last 40 lines of log for context
 		if [[ -f "${LOG}" ]]; then
-			last_lines=$(tail -n 30 "${LOG}" 2>/dev/null)
+			last_lines=$(tail -n 40 "${LOG}" 2>/dev/null)
 		else
 			last_lines="Log file not yet created"
 		fi
 		
-		# Create error summary with last lines
-		error_text="<b>Script Error - Exit Code ${exit_code}</b>
+		# Create error summary as plain text for text-info
+		error_text="========================================
+UPDATER ERROR
 
-<b>Line:</b> ${line_number}
-<b>Command:</b> ${command}
-<b>Time:</b> $(date)
+Exit Code: ${exit_code}
+Line: ${line_number}
+Command: ${command}
+Time: $(date)
 
-<b>Recent Log Output (last 30 lines):</b>
-<tt>${last_lines}</tt>
+Recent Log Output (last 40 lines):
 
-<b>Full log file:</b> ${LOG}"
+${last_lines}
+
+Full log file: ${LOG}
+========================================"
 		
-		# Show single error dialog with OK button
-		zenity --error \
-			--title="Updater Error" \
-			--text="${error_text}" \
-			--width=900 \
-			--height=700 \
-			--no-wrap
+		# Show error in scrollable text dialog
+		echo "${error_text}" | zenity --text-info \
+			--title="Updater Error - Exit Code ${exit_code}" \
+			--width=1000 \
+			--height=800 \
+			--font="Monospace 10"
 	fi
 	
 	# Clean up error log
@@ -576,7 +579,7 @@ show_installed_flatpaks() {
 		# Info button pressed - disable error trap for this operation
 		set +e
 		
-		# Get full app info from flatpak
+		# Get full app info from flatpak (local)
 		full_info=$(flatpak info "${selected_app}" 2>&1)
 		info_exit_code=$?
 		
@@ -587,18 +590,58 @@ show_installed_flatpaks() {
 				--width=500 \
 				--height=200
 		else
-			# Extract key details with safe grep (won't fail if no match)
+			# Extract local details
 			app_ref=$(echo "${full_info}" | grep "^Ref:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			app_arch=$(echo "${full_info}" | grep "^Arch:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			app_branch=$(echo "${full_info}" | grep "^Branch:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			app_origin=$(echo "${full_info}" | grep "^Origin:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			app_install_size=$(echo "${full_info}" | grep "^Installed size:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			
+			# Fetch additional info from Flathub API
+			flathub_data=$(curl -s "https://flathub.org/api/v2/appstream/${selected_app}" 2>/dev/null)
+			
+			if [[ -n "${flathub_data}" ]] && echo "${flathub_data}" | jq -e '.' >/dev/null 2>&1; then
+				# Extract Flathub details
+				app_developer=$(echo "${flathub_data}" | jq -r '.developer_name // "N/A"' 2>/dev/null || echo "N/A")
+				app_license=$(echo "${flathub_data}" | jq -r '.project_license // "N/A"' 2>/dev/null || echo "N/A")
+				app_homepage=$(echo "${flathub_data}" | jq -r '.urls.homepage // "N/A"' 2>/dev/null || echo "N/A")
+				app_categories=$(echo "${flathub_data}" | jq -r '.categories[]? // empty' 2>/dev/null | tr '\n' ', ' | sed 's/,$//' || echo "N/A")
+				
+				# Build comprehensive info text
+				info_text="<b>Name:</b> ${app_name}
+<b>App ID:</b> ${selected_app}
+<b>Version:</b> ${app_version}
+<b>Description:</b> ${app_description}
+
+<b>Developer:</b> ${app_developer}
+<b>License:</b> ${app_license}
+<b>Categories:</b> ${app_categories}
+<b>Homepage:</b> ${app_homepage}
+
+<b>Installation Details:</b>
+<b>Architecture:</b> ${app_arch}
+<b>Branch:</b> ${app_branch}
+<b>Origin:</b> ${app_origin}
+<b>Installed Size:</b> ${app_install_size}"
+			else
+				# Fallback if Flathub API fails
+				info_text="<b>Name:</b> ${app_name}
+<b>App ID:</b> ${selected_app}
+<b>Version:</b> ${app_version}
+<b>Description:</b> ${app_description}
+
+<b>Installation Details:</b>
+<b>Architecture:</b> ${app_arch}
+<b>Branch:</b> ${app_branch}
+<b>Origin:</b> ${app_origin}
+<b>Installed Size:</b> ${app_install_size}"
+			fi
+			
 			zenity --info \
 				--title="App Info: ${app_name}" \
-				--text="<b>Name:</b> ${app_name}\n<b>App ID:</b> ${selected_app}\n<b>Version:</b> ${app_version}\n<b>Description:</b> ${app_description}\n\n<b>Architecture:</b> ${app_arch}\n<b>Branch:</b> ${app_branch}\n<b>Origin:</b> ${app_origin}\n<b>Installed Size:</b> ${app_install_size}" \
-				--width=500 \
-				--height=350
+				--text="${info_text}" \
+				--width=600 \
+				--height=450
 		fi
 		
 		# Re-enable error trap
@@ -1069,9 +1112,9 @@ main() {
 				"Update Emulators and Associated Software" \
 				"Update User Flatpaks" \
 				"Update User Binaries" \
+				"Update Utilities (miscellaneous)" \
 				"Search and Install from Flathub" \
 				"Show Installed Flatpaks" \
-				"Update Utilities (miscellaneous)" \
 				"Exit" \
 				--width ${W} \
 				--height ${H} \

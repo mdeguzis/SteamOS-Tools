@@ -1,12 +1,37 @@
 #!/bin/bash
 # Spawns a new terminal window to run the script
 
+# Parse command-line arguments
+TEST_MODE=false
+SCRIPT_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+	case $1 in
+		--test)
+			TEST_MODE=true
+			shift
+			;;
+		*)
+			# Collect other arguments to pass to the script
+			SCRIPT_ARGS+=("$1")
+			shift
+			;;
+	esac
+done
+
 # Determine script location
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOCAL_SCRIPT="${SCRIPT_DIR}/update-software.sh"
 
-# Check if we're running from a git repository (for development/testing)
-if [[ -f "${LOCAL_SCRIPT}" ]] && git -C "${SCRIPT_DIR}" rev-parse --git-dir >/dev/null 2>&1; then
+# Check if we're in test mode or running from a git repository (for development/testing)
+if [[ "${TEST_MODE}" == true ]]; then
+	echo "[INFO] Test mode: using local version without update check"
+	if [[ ! -f "${LOCAL_SCRIPT}" ]]; then
+		echo "[ERROR] Local script not found: ${LOCAL_SCRIPT}"
+		exit 1
+	fi
+	SCRIPT_TO_RUN="${LOCAL_SCRIPT}"
+elif [[ -f "${LOCAL_SCRIPT}" ]] && git -C "${SCRIPT_DIR}" rev-parse --git-dir >/dev/null 2>&1; then
 	echo "[INFO] Running from git repository, using local version"
 	SCRIPT_TO_RUN="${LOCAL_SCRIPT}"
 else
@@ -25,6 +50,13 @@ else
 	SCRIPT_TO_RUN="${HOME}/.local/bin/update-software.sh"
 fi
 
+# Build command with any additional arguments
+if [[ ${#SCRIPT_ARGS[@]} -gt 0 ]]; then
+	SCRIPT_CMD="${SCRIPT_TO_RUN} ${SCRIPT_ARGS[*]}"
+else
+	SCRIPT_CMD="${SCRIPT_TO_RUN}"
+fi
+
 # Ignore dumb .so warnings by setting LD_PRELOAD to undefined
 export LD_PRELOAD=""
 
@@ -38,7 +70,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 			tell application "iTerm"
 				create window with default profile
 				tell current session of current window
-					write text "${SCRIPT_TO_RUN}"
+					write text "${SCRIPT_CMD}"
 				end tell
 			end tell
 		EOF
@@ -46,7 +78,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 		# Default macOS Terminal.app
 		osascript <<-EOF
 			tell application "Terminal"
-				do script "${SCRIPT_TO_RUN}; exit"
+				do script "${SCRIPT_CMD}; exit"
 				activate
 			end tell
 		EOF
@@ -56,16 +88,16 @@ if [[ "$(uname)" == "Darwin" ]]; then
 elif [[ -f "/usr/bin/xterm" ]]; then
 	xterm -fg white -bg black \
 		-maximized -fa 'Monospace' -fs 24 \
-		-e '$SHELL -c "${SCRIPT_TO_RUN}; exit; $SHELL"'
+		-e '$SHELL -c "${SCRIPT_CMD}; exit; $SHELL"'
 
 elif [[ -f "/usr/bin/konsole" ]]; then
-	konsole -e '$SHELL -c "${SCRIPT_TO_RUN}; exit; $SHELL"'
+	konsole -e '$SHELL -c "${SCRIPT_CMD}; exit; $SHELL"'
 
 elif [[ -f "/usr/bin/gnome-terminal" ]]; then
-	gnome-terminal -e '$SHELL -c "${SCRIPT_TO_RUN}; exit; $SHELL"'
+	gnome-terminal -e '$SHELL -c "${SCRIPT_CMD}; exit; $SHELL"'
 
 elif [[ -f "/usr/bin/kgx" ]]; then
-	kgx -e '$SHELL -c "${SCRIPT_TO_RUN}; exit; $SHELL"'
+	kgx -e '$SHELL -c "${SCRIPT_CMD}; exit; $SHELL"'
 
 else
 	echo "[ERROR] Unknown terminal in use"

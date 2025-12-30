@@ -4,43 +4,86 @@
 #	Where to put files: https://gitlab.com/es-de/emulationstation-de/-/blob/stable-3.0/resources/systems/linux/es_find_rules.xml
 #	Emulator files: https://emulation.gametechwiki.com/index.php/Emulator_files
 
-set -e -o pipefail
+set -eE -o pipefail
 
-VERSION="0.8.15"
+VERSION="0.8.16"
 
-# Global error handler
+# Error log file for stderr capture
+ERROR_LOG="/tmp/steamos-software-updater-error.log"
+
+# Global error handler with better error capture
 error_handler() {
 	local exit_code=$?
 	local line_number=$1
 	local command="$2"
 	
+	# Write error details to main log
+	{
+		echo ""
+		echo "========================================="
+		echo "[ERROR] Script failed!"
+		echo "========================================="
+		echo "Exit Code: ${exit_code}"
+		echo "Line Number: ${line_number}"
+		echo "Failed Command: ${command}"
+		echo "Time: $(date)"
+		echo "========================================="
+		echo ""
+		
+		# Include stderr if captured
+		if [[ -f "${ERROR_LOG}" && -s "${ERROR_LOG}" ]]; then
+			echo "Error Output:"
+			cat "${ERROR_LOG}"
+			echo "========================================="
+		fi
+	} | tee -a "${LOG}"
+	
 	# Skip error dialog if running in CLI mode or if zenity not available
 	if command -v zenity &> /dev/null && [[ "$(uname)" == "Darwin" || -n "${DISPLAY}" ]]; then
-		# Show full log file if it exists
+		# Create error summary
+		error_summary="Exit Code: ${exit_code}
+Line: ${line_number}
+Command: ${command}
+
+Recent Log Output (last 30 lines):"
+		
+		# Get last 30 lines of log
 		if [[ -f "${LOG}" ]]; then
-			# Display full log file in scrollable text box (will show from end)
-			cat "${LOG}" | zenity --text-info \
-				--title="Updater Error - Exit Code: ${exit_code} at line ${line_number}" \
-				--width=900 \
-				--height=700 \
-				--font="Monospace 9"
+			last_lines=$(tail -n 30 "${LOG}" 2>/dev/null || echo "Unable to read log")
 		else
-			# Fallback if log file doesn't exist yet
-			zenity --error \
-				--title="Updater Error" \
-				--text="An error occurred in the updater:\n\n<b>Exit Code:</b> ${exit_code}\n<b>Line:</b> ${line_number}\n\n<b>Log file:</b> ${LOG}\n\nPlease check the log file for more details." \
-				--width=500 \
-				--height=250
+			last_lines="Log file not found"
 		fi
+		
+		# Show error with last lines and option to view full log
+		full_error_msg="${error_summary}
+
+${last_lines}
+
+Full log file: ${LOG}"
+		
+		# Show error dialog and wait for user to close it
+		echo "${full_error_msg}" | zenity --text-info \
+			--title="Updater Error - Exit Code: ${exit_code}" \
+			--width=900 \
+			--height=700 \
+			--font="Monospace 9" || true
+		
+		# Additional error notification that definitely waits for OK
+		zenity --error \
+			--title="Script Terminated" \
+			--text="The updater has terminated due to an error.\n\nExit Code: ${exit_code}\n\nLog file: ${LOG}" \
+			--width=400 \
+			--height=200 || true
 	fi
 	
-	echo "[ERROR] Script failed at line ${line_number} with exit code ${exit_code}"
-	echo "[ERROR] Command: ${command}"
-	echo "[ERROR] See log file: ${LOG}"
+	# Clean up error log
+	rm -f "${ERROR_LOG}"
+	
+	# Force exit - this will terminate the script
 	exit ${exit_code}
 }
 
-# Set up error trap
+# Set up error trap with -E to trap errors in functions
 trap 'error_handler ${LINENO} "$BASH_COMMAND"' ERR
 CURDIR="${PWD}"
 BACKUP_LOC="/tmp/update-emulators-backup"

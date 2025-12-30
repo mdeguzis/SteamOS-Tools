@@ -6,7 +6,7 @@
 
 set -e -o pipefail
 
-VERSION="0.8.8"
+VERSION="0.8.9"
 CURDIR="${PWD}"
 BACKUP_LOC="/tmp/update-emulators-backup"
 CONFIG_ROOT="${HOME}/.config/steamos-tools"
@@ -439,6 +439,166 @@ update_user_flatpaks() {
 
 }
 
+show_installed_flatpaks() {
+	echo -e "\n[INFO] Showing installed Flatpaks"
+	
+	# Get list of installed flatpaks with names
+	installed_list=$(flatpak list --app --columns=application,name,description 2>/dev/null)
+	
+	if [[ -z "${installed_list}" ]]; then
+		zenity --info \
+			--title="No Apps Installed" \
+			--text="No Flatpak applications are currently installed." \
+			--width=400 \
+			--height=150
+		return 0
+	fi
+	
+	# Count installed apps
+	installed_count=$(echo "${installed_list}" | wc -l)
+	
+	# Build zenity list arguments
+	list_args=()
+	while IFS=$'\t' read -r app_id name description; do
+		# Truncate description if too long
+		if [[ ${#description} -gt 60 ]]; then
+			description="${description:0:57}..."
+		fi
+		list_args+=("${app_id}" "${name}" "${description}")
+	done < <(echo "${installed_list}")
+	
+	# Show installed apps in zenity list
+	selected_app=$(zenity --list \
+		--title="Installed Flatpaks - ${installed_count} apps" \
+		--text="Select an app to manage:" \
+		--column="App ID" \
+		--column="Name" \
+		--column="Description" \
+		"${list_args[@]}" \
+		--width=750 \
+		--height=450 \
+		--print-column=1)
+	
+	if [[ $? -ne 0 || -z "${selected_app}" ]]; then
+		return 0
+	fi
+	
+	# Get app name from the list
+	app_name=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f2)
+	app_description=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f3)
+	
+	# Show management dialog
+	action=$(zenity --list \
+		--title="Manage ${app_name}" \
+		--text="<b>${app_name}</b>\n\n<b>ID:</b> ${selected_app}\n<b>Description:</b> ${app_description}\n\nWhat would you like to do?" \
+		--column="Action" \
+		"Update" \
+		"Uninstall" \
+		"Cancel" \
+		--width=500 \
+		--height=280)
+	
+	if [[ "${action}" == "Update" ]]; then
+		# Update the app
+		(
+			echo "10" ; echo "# Updating ${app_name}..."
+			flatpak --user update "${selected_app}" -y 2>&1
+			exit_code=$?
+			if [[ ${exit_code} -eq 0 ]]; then
+				echo "100" ; echo "# Update complete!"
+			else
+				echo "# Update failed!"
+				exit ${exit_code}
+			fi
+		) | zenity --progress \
+			--title="Updating ${app_name}" \
+			--text="Updating..." \
+			--percentage=0 \
+			--auto-close \
+			--width=400 \
+			--height=150
+		
+		if [[ $? -eq 0 ]]; then
+			zenity --info \
+				--title="Update Complete" \
+				--text="<b>${app_name}</b> has been updated successfully!" \
+				--width=400 \
+				--height=150
+		else
+			zenity --error \
+				--title="Update Failed" \
+				--text="Failed to update <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
+				--width=400 \
+				--height=150
+		fi
+		
+		# Ask if user wants to manage more apps
+		zenity --question \
+			--title="Manage More Apps?" \
+			--text="Do you want to manage another installed app?" \
+			--width=400 \
+			--height=150
+		
+		if [[ $? -eq 0 ]]; then
+			show_installed_flatpaks
+		fi
+		
+	elif [[ "${action}" == "Uninstall" ]]; then
+		# Confirm uninstall
+		zenity --question \
+			--title="Confirm Uninstall" \
+			--text="Are you sure you want to uninstall <b>${app_name}</b>?" \
+			--width=400 \
+			--height=150
+		
+		if [[ $? -eq 0 ]]; then
+			# Uninstall the app
+			(
+				echo "10" ; echo "# Uninstalling ${app_name}..."
+				flatpak --user uninstall "${selected_app}" -y 2>&1
+				exit_code=$?
+				if [[ ${exit_code} -eq 0 ]]; then
+					echo "100" ; echo "# Uninstall complete!"
+				else
+					echo "# Uninstall failed!"
+					exit ${exit_code}
+				fi
+			) | zenity --progress \
+				--title="Uninstalling ${app_name}" \
+				--text="Uninstalling..." \
+				--percentage=0 \
+				--auto-close \
+				--width=400 \
+				--height=150
+			
+			if [[ $? -eq 0 ]]; then
+				zenity --info \
+					--title="Uninstall Complete" \
+					--text="<b>${app_name}</b> has been uninstalled successfully!" \
+					--width=400 \
+					--height=150
+					
+				# Ask if user wants to manage more apps
+				zenity --question \
+					--title="Manage More Apps?" \
+					--text="Do you want to manage another installed app?" \
+					--width=400 \
+					--height=150
+				
+				if [[ $? -eq 0 ]]; then
+					show_installed_flatpaks
+				fi
+			else
+				zenity --error \
+					--title="Uninstall Failed" \
+					--text="Failed to uninstall <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
+					--width=400 \
+					--height=150
+			fi
+		fi
+	fi
+}
+
 search_and_install_flathub() {
 	echo -e "\n[INFO] Flathub app search and install"
 	
@@ -524,6 +684,7 @@ search_and_install_flathub() {
 		done < <(echo "${search_results}" | jq -r '.hits[] | [.app_id, .name, .summary] | @tsv')
 		
 		# Show results in zenity list with status
+		# Optimize sizing for Steam Deck (1280x800) and other displays
 		selected_app=$(zenity --list \
 			--title="Flathub Search Results - ${results_count} apps found" \
 			--text="Select an app (searched for: '${search_query}'):" \
@@ -532,21 +693,13 @@ search_and_install_flathub() {
 			--column="Description" \
 			--column="Status" \
 			"${list_args[@]}" \
-			--width=${W:-900} \
-			--height=${H:-500} \
+			--width=750 \
+			--height=450 \
 			--print-column=1)
 		
 		if [[ $? -ne 0 || -z "${selected_app}" ]]; then
-			# User cancelled selection, ask if they want to search again
-			zenity --question \
-				--title="Search Again?" \
-				--text="Do you want to search for another app?" \
-				--width=400 \
-				--height=150
-			if [[ $? -ne 0 ]]; then
-				return 0
-			fi
-			continue
+			# User cancelled selection, return to main menu
+			return 0
 		fi
 		
 		# Get app details
@@ -564,7 +717,7 @@ search_and_install_flathub() {
 				"Uninstall" \
 				"Cancel" \
 				--width=500 \
-				--height=300)
+				--height=280)
 			
 			if [[ "${action}" == "Update" ]]; then
 				# Update the app
@@ -829,6 +982,7 @@ main() {
 				"User Flatpaks" \
 				"User binaries" \
 				"Search and install from Flathub" \
+				"Show installed Flatpaks" \
 				"Utilities (miscellaneous)" \
 				"Exit" \
 				--width ${W} \
@@ -862,6 +1016,8 @@ main() {
 			update_user_binaries
 		elif [[ "${ask}" == "Search and install from Flathub" ]]; then
 			search_and_install_flathub
+		elif [[ "${ask}" == "Show installed Flatpaks" ]]; then
+			show_installed_flatpaks
 		fi
 	fi
 

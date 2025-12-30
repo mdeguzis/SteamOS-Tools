@@ -6,7 +6,7 @@
 
 set -eE -o pipefail
 
-VERSION="0.8.16"
+VERSION="0.8.17"
 
 # Error log file for stderr capture
 ERROR_LOG="/tmp/steamos-software-updater-error.log"
@@ -40,40 +40,32 @@ error_handler() {
 	
 	# Skip error dialog if running in CLI mode or if zenity not available
 	if command -v zenity &> /dev/null && [[ "$(uname)" == "Darwin" || -n "${DISPLAY}" ]]; then
-		# Create error summary
-		error_summary="Exit Code: ${exit_code}
-Line: ${line_number}
-Command: ${command}
-
-Recent Log Output (last 30 lines):"
-		
-		# Get last 30 lines of log
+		# Get last 30 lines of log for context
 		if [[ -f "${LOG}" ]]; then
-			last_lines=$(tail -n 30 "${LOG}" 2>/dev/null || echo "Unable to read log")
+			last_lines=$(tail -n 30 "${LOG}" 2>/dev/null)
 		else
-			last_lines="Log file not found"
+			last_lines="Log file not yet created"
 		fi
 		
-		# Show error with last lines and option to view full log
-		full_error_msg="${error_summary}
+		# Create error summary with last lines
+		error_text="<b>Script Error - Exit Code ${exit_code}</b>
 
-${last_lines}
+<b>Line:</b> ${line_number}
+<b>Command:</b> ${command}
+<b>Time:</b> $(date)
 
-Full log file: ${LOG}"
+<b>Recent Log Output (last 30 lines):</b>
+<tt>${last_lines}</tt>
+
+<b>Full log file:</b> ${LOG}"
 		
-		# Show error dialog and wait for user to close it
-		echo "${full_error_msg}" | zenity --text-info \
-			--title="Updater Error - Exit Code: ${exit_code}" \
+		# Show single error dialog with OK button
+		zenity --error \
+			--title="Updater Error" \
+			--text="${error_text}" \
 			--width=900 \
 			--height=700 \
-			--font="Monospace 9" || true
-		
-		# Additional error notification that definitely waits for OK
-		zenity --error \
-			--title="Script Terminated" \
-			--text="The updater has terminated due to an error.\n\nExit Code: ${exit_code}\n\nLog file: ${LOG}" \
-			--width=400 \
-			--height=200 || true
+			--no-wrap
 	fi
 	
 	# Clean up error log
@@ -581,23 +573,20 @@ show_installed_flatpaks() {
 	app_version=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f4)
 	
 	if [[ ${button_pressed} -eq 5 ]]; then
-		# Info button pressed - wrap entire operation to prevent error trap
-		(
-			set +e
-			
-			# Get full app info from flatpak
-			full_info=$(flatpak info "${selected_app}" 2>&1)
-			info_exit_code=$?
-			
-			if [[ ${info_exit_code} -ne 0 ]]; then
-				zenity --error \
-					--title="Info Error" \
-					--text="Failed to get information for <b>${app_name}</b>.\n\nError: ${full_info}" \
-					--width=500 \
-					--height=200
-				exit 0
-			fi
-			
+		# Info button pressed - disable error trap for this operation
+		set +e
+		
+		# Get full app info from flatpak
+		full_info=$(flatpak info "${selected_app}" 2>&1)
+		info_exit_code=$?
+		
+		if [[ ${info_exit_code} -ne 0 ]]; then
+			zenity --error \
+				--title="Info Error" \
+				--text="Failed to get information for <b>${app_name}</b>.\n\nError: ${full_info}" \
+				--width=500 \
+				--height=200
+		else
 			# Extract key details with safe grep (won't fail if no match)
 			app_ref=$(echo "${full_info}" | grep "^Ref:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
 			app_arch=$(echo "${full_info}" | grep "^Arch:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
@@ -610,7 +599,10 @@ show_installed_flatpaks() {
 				--text="<b>Name:</b> ${app_name}\n<b>App ID:</b> ${selected_app}\n<b>Version:</b> ${app_version}\n<b>Description:</b> ${app_description}\n\n<b>Architecture:</b> ${app_arch}\n<b>Branch:</b> ${app_branch}\n<b>Origin:</b> ${app_origin}\n<b>Installed Size:</b> ${app_install_size}" \
 				--width=500 \
 				--height=350
-		)
+		fi
+		
+		# Re-enable error trap
+		set -e
 			
 	elif [[ ${button_pressed} -eq 6 ]]; then
 		# Update button pressed

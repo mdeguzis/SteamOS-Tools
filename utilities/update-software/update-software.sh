@@ -6,7 +6,7 @@
 
 set -e -o pipefail
 
-VERSION="0.8.14"
+VERSION="0.8.15"
 
 # Global error handler
 error_handler() {
@@ -16,13 +16,22 @@ error_handler() {
 	
 	# Skip error dialog if running in CLI mode or if zenity not available
 	if command -v zenity &> /dev/null && [[ "$(uname)" == "Darwin" || -n "${DISPLAY}" ]]; then
-		error_msg="An error occurred in the updater:\n\n<b>Exit Code:</b> ${exit_code}\n<b>Line:</b> ${line_number}\n<b>Command:</b> ${command}\n\n<b>Log file:</b> ${LOG}\n\nPlease check the log file for more details."
-		
-		zenity --error \
-			--title="Updater Error" \
-			--text="${error_msg}" \
-			--width=500 \
-			--height=250
+		# Show full log file if it exists
+		if [[ -f "${LOG}" ]]; then
+			# Display full log file in scrollable text box (will show from end)
+			cat "${LOG}" | zenity --text-info \
+				--title="Updater Error - Exit Code: ${exit_code} at line ${line_number}" \
+				--width=900 \
+				--height=700 \
+				--font="Monospace 9"
+		else
+			# Fallback if log file doesn't exist yet
+			zenity --error \
+				--title="Updater Error" \
+				--text="An error occurred in the updater:\n\n<b>Exit Code:</b> ${exit_code}\n<b>Line:</b> ${line_number}\n\n<b>Log file:</b> ${LOG}\n\nPlease check the log file for more details." \
+				--width=500 \
+				--height=250
+		fi
 	fi
 	
 	echo "[ERROR] Script failed at line ${line_number} with exit code ${exit_code}"

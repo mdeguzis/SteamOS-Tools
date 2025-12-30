@@ -6,7 +6,33 @@
 
 set -e -o pipefail
 
-VERSION="0.8.10"
+VERSION="0.8.12"
+
+# Global error handler
+error_handler() {
+	local exit_code=$?
+	local line_number=$1
+	local command="$2"
+	
+	# Skip error dialog if running in CLI mode or if zenity not available
+	if command -v zenity &> /dev/null && [[ "$(uname)" == "Darwin" || -n "${DISPLAY}" ]]; then
+		error_msg="An error occurred in the updater:\n\n<b>Exit Code:</b> ${exit_code}\n<b>Line:</b> ${line_number}\n<b>Command:</b> ${command}\n\n<b>Log file:</b> ${LOG}\n\nPlease check the log file for more details."
+		
+		zenity --error \
+			--title="Updater Error" \
+			--text="${error_msg}" \
+			--width=500 \
+			--height=250
+	fi
+	
+	echo "[ERROR] Script failed at line ${line_number} with exit code ${exit_code}"
+	echo "[ERROR] Command: ${command}"
+	echo "[ERROR] See log file: ${LOG}"
+	exit ${exit_code}
+}
+
+# Set up error trap
+trap 'error_handler ${LINENO} "$BASH_COMMAND"' ERR
 CURDIR="${PWD}"
 BACKUP_LOC="/tmp/update-emulators-backup"
 CONFIG_ROOT="${HOME}/.config/steamos-tools"
@@ -468,6 +494,7 @@ show_installed_flatpaks() {
 	done < <(echo "${installed_list}")
 	
 	# Show installed apps in zenity list with action buttons
+	# Button order: Info, Update, Uninstall (left to right after OK/Cancel)
 	selected_app=$(zenity --list \
 		--title="Installed Flatpaks - ${installed_count} apps" \
 		--text="Select an app and choose an action:" \
@@ -475,9 +502,9 @@ show_installed_flatpaks() {
 		--column="Name" \
 		--column="Description" \
 		"${list_args[@]}" \
+		--extra-button="Info" \
 		--extra-button="Update" \
 		--extra-button="Uninstall" \
-		--extra-button="Info" \
 		--width=750 \
 		--height=450 \
 		--print-column=1)
@@ -485,9 +512,14 @@ show_installed_flatpaks() {
 	button_pressed=$?
 	
 	# Check which button was pressed or if cancelled
-	# 0 = OK, 1 = Cancel/Escape, 5 = Extra button 1 (Update), 6 = Extra button 2 (Uninstall), 7 = Extra button 3 (Info)
-	if [[ ${button_pressed} -eq 1 || -z "${selected_app}" ]]; then
-		# User cancelled or no selection, return to main menu
+	# 0 = OK, 1 = Cancel/Escape, 5 = Extra button 1 (Info), 6 = Extra button 2 (Update), 7 = Extra button 3 (Uninstall)
+	if [[ ${button_pressed} -eq 1 || ${button_pressed} -eq 0 ]]; then
+		# User cancelled, pressed OK, or no selection - return to main menu
+		return 0
+	fi
+	
+	# Ensure an app was selected
+	if [[ -z "${selected_app}" ]]; then
 		return 0
 	fi
 	
@@ -497,6 +529,33 @@ show_installed_flatpaks() {
 	app_version=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f4)
 	
 	if [[ ${button_pressed} -eq 5 ]]; then
+		# Info button pressed
+		# Get full app info from flatpak
+		full_info=$(flatpak info "${selected_app}" 2>&1)
+		
+		if [[ $? -ne 0 ]]; then
+			zenity --error \
+				--title="Info Error" \
+				--text="Failed to get information for <b>${app_name}</b>.\n\nError: ${full_info}" \
+				--width=500 \
+				--height=200
+			return 0
+		fi
+		
+		# Extract key details (handle missing fields gracefully)
+		app_ref=$(echo "${full_info}" | grep "^Ref:" | cut -d: -f2- | xargs || echo "N/A")
+		app_arch=$(echo "${full_info}" | grep "^Arch:" | cut -d: -f2- | xargs || echo "N/A")
+		app_branch=$(echo "${full_info}" | grep "^Branch:" | cut -d: -f2- | xargs || echo "N/A")
+		app_origin=$(echo "${full_info}" | grep "^Origin:" | cut -d: -f2- | xargs || echo "N/A")
+		app_install_size=$(echo "${full_info}" | grep "^Installed size:" | cut -d: -f2- | xargs || echo "N/A")
+		
+		zenity --info \
+			--title="App Info: ${app_name}" \
+			--text="<b>Name:</b> ${app_name}\n<b>App ID:</b> ${selected_app}\n<b>Version:</b> ${app_version}\n<b>Description:</b> ${app_description}\n\n<b>Architecture:</b> ${app_arch}\n<b>Branch:</b> ${app_branch}\n<b>Origin:</b> ${app_origin}\n<b>Installed Size:</b> ${app_install_size}" \
+			--width=500 \
+			--height=350
+			
+	elif [[ ${button_pressed} -eq 6 ]]; then
 		# Update button pressed
 		(
 			echo "10" ; echo "# Updating ${app_name}..."
@@ -530,7 +589,7 @@ show_installed_flatpaks() {
 				--height=150
 		fi
 		
-	elif [[ ${button_pressed} -eq 6 ]]; then
+	elif [[ ${button_pressed} -eq 7 ]]; then
 		# Uninstall button pressed
 		zenity --question \
 			--title="Confirm Uninstall" \
@@ -573,23 +632,6 @@ show_installed_flatpaks() {
 			fi
 		fi
 		
-	elif [[ ${button_pressed} -eq 7 ]]; then
-		# Info button pressed
-		# Get full app info from flatpak
-		full_info=$(flatpak info "${selected_app}" 2>/dev/null)
-		
-		# Extract key details
-		app_ref=$(echo "${full_info}" | grep "^Ref:" | cut -d: -f2- | xargs)
-		app_arch=$(echo "${full_info}" | grep "^Arch:" | cut -d: -f2- | xargs)
-		app_branch=$(echo "${full_info}" | grep "^Branch:" | cut -d: -f2- | xargs)
-		app_origin=$(echo "${full_info}" | grep "^Origin:" | cut -d: -f2- | xargs)
-		app_install_size=$(echo "${full_info}" | grep "^Installed size:" | cut -d: -f2- | xargs)
-		
-		zenity --info \
-			--title="App Info: ${app_name}" \
-			--text="<b>Name:</b> ${app_name}\n<b>App ID:</b> ${selected_app}\n<b>Version:</b> ${app_version}\n<b>Description:</b> ${app_description}\n\n<b>Architecture:</b> ${app_arch}\n<b>Branch:</b> ${app_branch}\n<b>Origin:</b> ${app_origin}\n<b>Installed Size:</b> ${app_install_size}" \
-			--width=500 \
-			--height=350
 	fi
 	
 	# After any action, return to main menu
@@ -973,14 +1015,14 @@ main() {
 		ask=$(
 			zenity --list --title="Update which softare component?" \
 				--column=0 \
-				"All" \
-				"Core software" \
-				"Emulators and associated sofware" \
-				"User Flatpaks" \
-				"User binaries" \
-				"Search and install from Flathub" \
-				"Show installed Flatpaks" \
-				"Utilities (miscellaneous)" \
+				"Update All Software" \
+				"Update Core Software" \
+				"Update Emulators and Associated Software" \
+				"Update User Flatpaks" \
+				"Update User Binaries" \
+				"Search and Install from Flathub" \
+				"Show Installed Flatpaks" \
+				"Update Utilities (miscellaneous)" \
 				"Exit" \
 				--width ${W} \
 				--height ${H} \
@@ -997,23 +1039,23 @@ main() {
 	if [[ "${ask}" == "Exit" ]]; then
 		exit 0
 
-	elif [[ "${ask}" == "All" || ${ALL} ]]; then
+	elif [[ "${ask}" == "Update All Software" || ${ALL} ]]; then
 		update_core_software
 		update_emulator_software
 		update_user_binaries
 		update_user_flatpaks
 	else
-		if [[ "${ask}" == "Emulators and associated sofware" || ${UPDATE_EMULATORS} ]]; then
+		if [[ "${ask}" == "Update Emulators and Associated Software" || ${UPDATE_EMULATORS} ]]; then
 			update_emulator_software
-		elif [[ "${ask}" == "Core software" || ${CORE_SOFTWARE} ]]; then
+		elif [[ "${ask}" == "Update Core Software" || ${CORE_SOFTWARE} ]]; then
 			update_core_software
-		elif [[ "${ask}" == "User Flatpaks" || ${USER_FLATPAKS} ]]; then
+		elif [[ "${ask}" == "Update User Flatpaks" || ${USER_FLATPAKS} ]]; then
 			update_user_flatpaks
-		elif [[ "${ask}" == "User binaries" || ${USER_BINARIES} ]]; then
+		elif [[ "${ask}" == "Update User Binaries" || ${USER_BINARIES} ]]; then
 			update_user_binaries
-		elif [[ "${ask}" == "Search and install from Flathub" ]]; then
+		elif [[ "${ask}" == "Search and Install from Flathub" ]]; then
 			search_and_install_flathub
-		elif [[ "${ask}" == "Show installed Flatpaks" ]]; then
+		elif [[ "${ask}" == "Show Installed Flatpaks" ]]; then
 			show_installed_flatpaks
 		fi
 	fi

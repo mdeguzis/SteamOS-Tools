@@ -1022,6 +1022,9 @@ main() {
 		echo "[INFO] Git API test: [OK]"
 	fi
 
+	echo "[INFO] Ensuring user-scope Flathub remote exists"
+	flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 	######################################################################
 	# Update software based on selection
 	# Skip if using CLI

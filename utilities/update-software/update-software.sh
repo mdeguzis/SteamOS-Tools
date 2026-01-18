@@ -14,6 +14,8 @@ BACKUP_LOC="/tmp/update-emulators-backup"
 CONFIG_ROOT="${HOME}/.config/steamos-tools"
 APP_LOC="${HOME}/Applications"
 CLI=false
+DEBUG=false
+SKIP_UPDATER=false
 
 # Detect if running in CLI mode
 # On macOS, DISPLAY is not set but we still have GUI
@@ -38,6 +40,7 @@ function show_help() {
 		--update-emulators | -ue)	Install/update emulator software
 		--user-flatpaks | -uf)		Install/update user flatpaks
 		--user-binaries | -ub)		Install/update user binaries
+		 --debug)			Enable debug logging
 		--help | -h)			Show this help page
 
 
@@ -441,96 +444,87 @@ update_user_flatpaks() {
 }
 
 show_installed_flatpaks() {
-	echo -e "\n[INFO] Showing installed Flatpaks"
-	
-	# Get list of installed flatpaks with names
-	installed_list=$(flatpak list --app --columns=application,name,description,version 2>/dev/null)
-	
-	if [[ -z "${installed_list}" ]]; then
-		zenity --info \
-			--title="No Apps Installed" \
-			--text="No Flatpak applications are currently installed." \
-			--width=400 \
-			--height=150
-		return 0
-	fi
-	
-	# Count installed apps
-	installed_count=$(echo "${installed_list}" | wc -l)
-	
-	# Build zenity list arguments
-	list_args=()
-	while IFS=$'\t' read -r app_id name description version; do
-		# Truncate description if too long
-		if [[ ${#description} -gt 60 ]]; then
-			description="${description:0:57}..."
+$DEBUG && echo "[DEBUG] Showing installed Flatpaks"
+	while true; do
+		installed_list=$(flatpak list --app --columns=application,name,description,version 2>/dev/null)
+		if [[ -z "${installed_list}" ]]; then
+			zenity --info \
+				--title="No Apps Installed" \
+				--text="No Flatpak applications are currently installed." \
+				--width=400 \
+				--height=150
+			return 0
 		fi
-		list_args+=("${app_id}" "${name}" "${description}")
-	done < <(echo "${installed_list}")
-	
-	# Show installed apps in zenity list with action buttons
-	# Button order: Info, Update, Uninstall (left to right after OK/Cancel)
-	selected_app=$(zenity --list \
-		--title="Installed Flatpaks - ${installed_count} apps" \
-		--text="Select an app and choose an action:" \
-		--column="App ID" \
-		--column="Name" \
-		--column="Description" \
-		"${list_args[@]}" \
-		--extra-button="Info" \
-		--extra-button="Update" \
-		--extra-button="Uninstall" \
-		--width=750 \
-		--height=450 \
-		--print-column=1)
-	
-	button_pressed=$?
-	
-	# Check which button was pressed or if cancelled
-	# 0 = OK, 1 = Cancel/Escape, 5 = Extra button 1 (Info), 6 = Extra button 2 (Update), 7 = Extra button 3 (Uninstall)
-	if [[ ${button_pressed} -eq 1 || ${button_pressed} -eq 0 ]]; then
-		# User cancelled, pressed OK, or no selection - return to main menu
-		return 0
-	fi
-	
-	# Ensure an app was selected
-	if [[ -z "${selected_app}" ]]; then
-		return 0
-	fi
-	
-	# Get app details from the list
-	app_name=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f2)
-	app_description=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f3)
-	app_version=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f4)
-	
-	if [[ ${button_pressed} -eq 5 ]]; then
-		# Info button pressed - run in isolated subshell to prevent error propagation
-		(
-			# Completely disable error handling in subshell
-			set +eE +o pipefail
-			trap - ERR
-			
-			# Get full app info from flatpak (local)
-			full_info=$(flatpak info "${selected_app}" 2>&1 || echo "Error getting info")
-			
-			# Extract local details (all with fallbacks)
-			app_ref=$(echo "${full_info}" | grep "^Ref:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
-			app_arch=$(echo "${full_info}" | grep "^Arch:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
-			app_branch=$(echo "${full_info}" | grep "^Branch:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
-			app_origin=$(echo "${full_info}" | grep "^Origin:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
-			app_install_size=$(echo "${full_info}" | grep "^Installed size:" 2>/dev/null | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
-			
-			# Fetch additional info from Flathub API (with fallback)
-			flathub_data=$(curl -s "https://flathub.org/api/v2/appstream/${selected_app}" 2>/dev/null || echo "{}")
-			
-			# Try to extract Flathub details (all with fallbacks)
-			app_developer=$(echo "${flathub_data}" | jq -r '.developer_name // "N/A"' 2>/dev/null || echo "N/A")
-			app_license=$(echo "${flathub_data}" | jq -r '.project_license // "N/A"' 2>/dev/null || echo "N/A")
-			app_homepage=$(echo "${flathub_data}" | jq -r '.urls.homepage // "N/A"' 2>/dev/null || echo "N/A")
-			app_categories=$(echo "${flathub_data}" | jq -r '.categories[]? // empty' 2>/dev/null | tr '\n' ', ' | sed 's/,$//' 2>/dev/null || echo "N/A")
-			
-			# Build info text (works even if Flathub failed)
-			if [[ "${app_developer}" != "N/A" ]]; then
+		installed_count=$(echo "${installed_list}" | wc -l)
+		list_args=()
+		while IFS=$'\t' read -r app_id name description version; do
+			if [[ ${#description} -gt 60 ]]; then
+				description="${description:0:57}..."
+			fi
+			list_args+=("${app_id}" "${name}" "${description}")
+		done < <(echo "${installed_list}")
+		selected_app=$(zenity --list \
+			--title="Installed Flatpaks - ${installed_count} apps" \
+			--text="Select an app and choose an action:" \
+			--column="App ID" \
+			--column="Name" \
+			--column="Description" \
+			"${list_args[@]}" \
+			--extra-button="Info" \
+			--extra-button="Update" \
+			--extra-button="Uninstall" \
+			--width=750 \
+			--height=450 \
+			--print-column=1)
+		button_pressed=$?
+		$DEBUG && echo "[DEBUG] Show Installed Flatpaks: button_pressed=$button_pressed, selected_app='$selected_app'"
+		if [[ $button_pressed -eq 1 ]]; then
+			return 0
+		fi
+		if [[ "$selected_app" == "Info" || "$selected_app" == "Update" || "$selected_app" == "Uninstall" ]]; then
+			zenity --error \
+				--title="No App Selected" \
+				--text="Please select an app before clicking '${selected_app}'." \
+				--width=400 \
+				--height=120
+			continue
+		fi
+		if [[ -z "$selected_app" ]]; then
+			return 0
+		fi
+		action=$(zenity --list \
+			--title="App Actions" \
+			--text="Choose an action for <b>${selected_app}</b>:" \
+			--column="Action" "Info" "Update" "Uninstall" "Cancel" \
+			--width=400 --height=200)
+		if [[ "$action" == "Cancel" || -z "$action" ]]; then
+			return 0
+		fi
+		app_name=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f2)
+		app_description=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f3)
+		app_version=$(echo "${installed_list}" | grep "^${selected_app}" | cut -f4)
+		if [[ "$action" == "Info" ]]; then
+			$DEBUG && echo "[DEBUG] Info button pressed for: ${selected_app}"
+			(
+				set +eE +o pipefail
+				trap - ERR
+				$DEBUG && echo "[DEBUG] Running: flatpak info --show-details '${selected_app}'"
+				full_info=$(flatpak info --show-details "${selected_app}" 2>&1 || echo "Error getting info")
+				$DEBUG && echo "[DEBUG] flatpak info output:\n$full_info"
+				app_ref=$(echo "${full_info}" | grep -m1 "^Ref:" | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+				app_arch=$(echo "${full_info}" | grep -m1 "^Arch:" | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+				app_branch=$(echo "${full_info}" | grep -m1 "^Branch:" | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+				app_origin=$(echo "${full_info}" | grep -m1 "^Origin:" | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+				app_install_size=$(echo "${full_info}" | grep -m1 "^Installed size:" | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+				app_version=$(echo "${full_info}" | grep -m1 "^Version:" | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+				app_description=$(echo "${full_info}" | grep -m1 "^Description:" | cut -d: -f2- | xargs 2>/dev/null || echo "N/A")
+				$DEBUG && echo "[DEBUG] Fetching Flathub API info for: ${selected_app}"
+				flathub_data=$(curl -s "https://flathub.org/api/v2/appstream/${selected_app}" 2>/dev/null || echo "{}")
+				$DEBUG && echo "[DEBUG] Flathub API output:\n$flathub_data"
+				app_developer=$(echo "${flathub_data}" | jq -r '.developer_name // "N/A"' 2>/dev/null || echo "N/A")
+				app_license=$(echo "${flathub_data}" | jq -r '.project_license // "N/A"' 2>/dev/null || echo "N/A")
+				app_homepage=$(echo "${flathub_data}" | jq -r '.urls.homepage // "N/A"' 2>/dev/null || echo "N/A")
+				app_categories=$(echo "${flathub_data}" | jq -r '.categories[]? // empty' 2>/dev/null | tr '\n' ', ' | sed 's/,$//' 2>/dev/null || echo "N/A")
 				info_text="<b>Name:</b> ${app_name}
 <b>App ID:</b> ${selected_app}
 <b>Version:</b> ${app_version}
@@ -542,119 +536,95 @@ show_installed_flatpaks() {
 <b>Homepage:</b> ${app_homepage}
 
 <b>Installation Details:</b>
+<b>Ref:</b> ${app_ref}
 <b>Architecture:</b> ${app_arch}
 <b>Branch:</b> ${app_branch}
 <b>Origin:</b> ${app_origin}
 <b>Installed Size:</b> ${app_install_size}"
-			else
-				# Minimal fallback
-				info_text="<b>Name:</b> ${app_name}
-<b>App ID:</b> ${selected_app}
-<b>Version:</b> ${app_version}
-<b>Description:</b> ${app_description}
-
-<b>Installation Details:</b>
-<b>Architecture:</b> ${app_arch}
-<b>Branch:</b> ${app_branch}
-<b>Origin:</b> ${app_origin}
-<b>Installed Size:</b> ${app_install_size}"
-			fi
-			
-			# Show dialog (ignore exit code)
-			zenity --info \
-				--title="App Info: ${app_name}" \
-				--text="${info_text}" \
-				--width=600 \
-				--height=450 2>/dev/null || true
-			
-			# Always exit subshell with success
-			exit 0
-		)
-			
-	elif [[ ${button_pressed} -eq 6 ]]; then
-		# Update button pressed
-		(
-			echo "10" ; echo "# Updating ${app_name}..."
-			flatpak --user update "${selected_app}" -y 2>&1
-			exit_code=$?
-			if [[ ${exit_code} -eq 0 ]]; then
-				echo "100" ; echo "# Update complete!"
-			else
-				echo "# Update failed!"
-				exit ${exit_code}
-			fi
-		) | zenity --progress \
-			--title="Updating ${app_name}" \
-			--text="Updating..." \
-			--percentage=0 \
-			--auto-close \
-			--width=400 \
-			--height=150
-		
-		if [[ $? -eq 0 ]]; then
-			zenity --info \
-				--title="Update Complete" \
-				--text="<b>${app_name}</b> has been updated successfully!" \
-				--width=400 \
-				--height=150
-		else
-			zenity --error \
-				--title="Update Failed" \
-				--text="Failed to update <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
-				--width=400 \
-				--height=150
-		fi
-		
-	elif [[ ${button_pressed} -eq 7 ]]; then
-		# Uninstall button pressed
-		zenity --question \
-			--title="Confirm Uninstall" \
-			--text="Are you sure you want to uninstall <b>${app_name}</b>?" \
-			--width=400 \
-			--height=150
-		
-		if [[ $? -eq 0 ]]; then
-			# Uninstall the app
+				zenity --info \
+					--title="App Info: ${app_name}" \
+					--text="${info_text}" \
+					--width=600 \
+					--height=450 2>/dev/null || true
+				exit 0
+			)
+		elif [[ "$action" == "Update" ]]; then
+			$DEBUG && echo "[DEBUG] Update button pressed for: ${selected_app}"
 			(
-				echo "10" ; echo "# Uninstalling ${app_name}..."
-				flatpak --user uninstall "${selected_app}" -y 2>&1
+				echo "10" ; echo "# Updating ${app_name}..."
+				flatpak --user update "${selected_app}" -y 2>&1
 				exit_code=$?
 				if [[ ${exit_code} -eq 0 ]]; then
-					echo "100" ; echo "# Uninstall complete!"
+					echo "100" ; echo "# Update complete!"
 				else
-					echo "# Uninstall failed!"
+					echo "# Update failed!"
 					exit ${exit_code}
 				fi
 			) | zenity --progress \
-				--title="Uninstalling ${app_name}" \
-				--text="Uninstalling..." \
+				--title="Updating ${app_name}" \
+				--text="Updating..." \
 				--percentage=0 \
 				--auto-close \
 				--width=400 \
 				--height=150
-			
 			if [[ $? -eq 0 ]]; then
 				zenity --info \
-					--title="Uninstall Complete" \
-					--text="<b>${app_name}</b> has been uninstalled successfully!" \
+					--title="Update Complete" \
+					--text="<b>${app_name}</b> has been updated successfully!" \
 					--width=400 \
 					--height=150
 			else
 				zenity --error \
-					--title="Uninstall Failed" \
-					--text="Failed to uninstall <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
+					--title="Update Failed" \
+					--text="Failed to update <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
 					--width=400 \
 					--height=150
 			fi
+		elif [[ "$action" == "Uninstall" ]]; then
+			$DEBUG && echo "[DEBUG] Uninstall button pressed for: ${selected_app}"
+			zenity --question \
+				--title="Confirm Uninstall" \
+				--text="Are you sure you want to uninstall <b>${app_name}</b>?" \
+				--width=400 \
+				--height=150
+			if [[ $? -eq 0 ]]; then
+				(
+					echo "10" ; echo "# Uninstalling ${app_name}..."
+					flatpak --user uninstall "${selected_app}" -y 2>&1
+					exit_code=$?
+					if [[ ${exit_code} -eq 0 ]]; then
+						echo "100" ; echo "# Uninstall complete!"
+					else
+						echo "# Uninstall failed!"
+						exit ${exit_code}
+					fi
+				) | zenity --progress \
+					--title="Uninstalling ${app_name}" \
+					--text="Uninstalling..." \
+					--percentage=0 \
+					--auto-close \
+					--width=400 \
+					--height=150
+				if [[ $? -eq 0 ]]; then
+					zenity --info \
+						--title="Uninstall Complete" \
+						--text="<b>${app_name}</b> has been uninstalled successfully!" \
+						--width=400 \
+						--height=150
+				else
+					zenity --error \
+						--title="Uninstall Failed" \
+						--text="Failed to uninstall <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
+						--width=400 \
+						--height=150
+				fi
+			fi
 		fi
-		
-	fi
-	
-	# After any action, return to main menu
-	return 0
+	done
 }
 
 search_and_install_flathub() {
+	$DEBUG && echo "[DEBUG] Entered search_and_install_flathub screen"
 	echo -e "\n[INFO] Flathub app search and install"
 	
 	# Get list of installed flatpaks once
@@ -667,10 +637,11 @@ search_and_install_flathub() {
 			--text="Enter app name to search on Flathub:" \
 			--width=400 \
 			--height=150)
-		
+		$DEBUG && echo "[DEBUG] User search query: $search_query"
 		if [[ $? -ne 0 || -z "${search_query}" ]]; then
 			# User cancelled or entered empty query
-			return 0
+			$DEBUG && echo "[DEBUG] User cancelled search, returning to main menu"
+			return 1
 		fi
 		
 		echo "[INFO] Searching Flathub for: ${search_query}"
@@ -751,10 +722,11 @@ search_and_install_flathub() {
 			--width=750 \
 			--height=450 \
 			--print-column=1)
-		
+		$DEBUG && echo "[DEBUG] User selected app: $selected_app"
 		if [[ $? -ne 0 || -z "${selected_app}" ]]; then
 			# User cancelled selection, return to main menu
-			return 0
+			$DEBUG && echo "[DEBUG] User cancelled selection, returning to main menu"
+			return 1
 		fi
 		
 		# Get app details
@@ -861,47 +833,51 @@ search_and_install_flathub() {
 				--text="Install the following app?\n\n<b>Name:</b> ${app_name}\n<b>ID:</b> ${selected_app}\n<b>Description:</b> ${app_summary}\n\nThe app will be installed with user-level permissions." \
 				--width=500 \
 				--height=200
+			install_confirmed=$?
+			$DEBUG && echo "[DEBUG] User install_confirmed: $install_confirmed (0=yes, 1=no)"
+			if [[ $install_confirmed -ne 0 ]]; then
+				# User clicked No/Cancel, return to main menu immediately
+				$DEBUG && echo "[DEBUG] User cancelled install, returning to main menu"
+				return 1
+			fi
+			# Install the app with progress dialog
+			(
+				echo "10" ; echo "# Installing ${app_name}..."
+				update_install_flatpak "${app_name}" "${selected_app}" 2>&1
+				exit_code=$?
+				if [[ ${exit_code} -eq 0 ]]; then
+					echo "100" ; echo "# Installation complete!"
+				else
+					echo "# Installation failed!"
+					exit ${exit_code}
+				fi
+			) | zenity --progress \
+				--title="Installing ${app_name}" \
+				--text="Installing..." \
+				--percentage=0 \
+				--auto-close \
+				--width=400 \
+				--height=150
 			
-			if [[ $? -eq 0 ]]; then
-				# Install the app with progress dialog
-				(
-					echo "10" ; echo "# Installing ${app_name}..."
-					update_install_flatpak "${app_name}" "${selected_app}" 2>&1
-					exit_code=$?
-					if [[ ${exit_code} -eq 0 ]]; then
-						echo "100" ; echo "# Installation complete!"
-					else
-						echo "# Installation failed!"
-						exit ${exit_code}
-					fi
-				) | zenity --progress \
-					--title="Installing ${app_name}" \
-					--text="Installing..." \
-					--percentage=0 \
-					--auto-close \
+			install_status=$?
+			
+			if [[ ${install_status} -eq 0 ]]; then
+				# Refresh installed list
+				installed_flatpaks=$(flatpak list --app --columns=application 2>/dev/null || echo "")
+				
+				# Installation successful
+				zenity --info \
+					--title="Installation Complete" \
+					--text="<b>${app_name}</b> has been installed successfully!\n\nApp ID: ${selected_app}" \
 					--width=400 \
 					--height=150
-				
-				install_status=$?
-				
-				if [[ ${install_status} -eq 0 ]]; then
-					# Refresh installed list
-					installed_flatpaks=$(flatpak list --app --columns=application 2>/dev/null || echo "")
-					
-					# Installation successful
-					zenity --info \
-						--title="Installation Complete" \
-						--text="<b>${app_name}</b> has been installed successfully!\n\nApp ID: ${selected_app}" \
-						--width=400 \
-						--height=150
-				else
-					# Installation failed
-					zenity --error \
-						--title="Installation Failed" \
-						--text="Failed to install <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
-						--width=400 \
-						--height=150
-				fi
+			else
+				# Installation failed
+				zenity --error \
+					--title="Installation Failed" \
+					--text="Failed to install <b>${app_name}</b>.\n\nPlease check the log file: ${LOG}" \
+					--width=400 \
+					--height=150
 			fi
 		fi
 		
@@ -911,9 +887,11 @@ search_and_install_flathub() {
 			--text="Do you want to search for and install another app?" \
 			--width=400 \
 			--height=150
-		
-		if [[ $? -ne 0 ]]; then
-			return 0
+		more_apps=$?
+		$DEBUG && echo "[DEBUG] User more_apps: $more_apps (0=yes, 1=no)"
+		if [[ $more_apps -ne 0 ]]; then
+			$DEBUG && echo "[DEBUG] User chose not to install more apps, returning to main menu"
+			return 1
 		fi
 	done
 }
@@ -943,6 +921,14 @@ while :; do
 		USER_BINARIES=true
 		;;
 
+	--debug)
+		DEBUG=true
+		;;
+
+	--skip-updater)
+		SKIP_UPDATER=true
+		;;
+
 	--help | -h)
 		show_help
 		;;
@@ -969,7 +955,27 @@ while :; do
 done
 echo
 
+# Function to fetch latest version from remote (GitHub raw or repo URL)
+get_latest_version() {
+	# Example: fetch from GitHub raw file
+	LATEST_URL="https://raw.githubusercontent.com/mdeguzis/SteamOS-Tools/master/utilities/update-software/update-software.sh"
+	$DEBUG && echo "[DEBUG] Fetching latest version from $LATEST_URL"
+	latest_version=$(curl -fsSL "$LATEST_URL" | grep '^VERSION="' | head -n1 | cut -d'"' -f2)
+	if [[ -z "$latest_version" ]]; then
+		$DEBUG && echo "[DEBUG] Could not fetch latest version, defaulting to local version"
+		latest_version="$VERSION"
+	fi
+	echo "$latest_version"
+}
+
+# Compare two version strings (returns 0 if v1 < v2)
+version_lt() {
+	[ "$1" = "$2" ] && return 1
+	sort -V <(echo -e "$1\n$2") | head -n1 | grep -qx "$1"
+}
+
 main() {
+	$DEBUG && echo "[DEBUG] Entered main menu screen"
 	######################################################
 	# Set Zenity margins based on screen resolution
 	######################################################
@@ -1000,6 +1006,32 @@ main() {
 		echo "[INFO] Screen dimensions detected:"
 		echo "[INFO] Width: ${SCREEN_WIDTH}"
 		echo "[INFO] Height: ${SCREEN_HEIGHT}"
+	fi
+
+	######################################################################
+	# Version check and update prompt (unless --skip-updater)
+	######################################################################
+	if ! ${SKIP_UPDATER}; then
+		latest_version=$(get_latest_version)
+		$DEBUG && echo "[DEBUG] Local version: $VERSION, Latest version: $latest_version"
+		if version_lt "$VERSION" "$latest_version"; then
+			if ! ${CLI}; then
+				zenity --question \
+					--title="Update Available" \
+					--text="A newer version of this updater is available (Current: $VERSION, Latest: $latest_version).\n\nDo you want to update before continuing?" \
+					--width=400 --height=180
+				user_choice=$?
+				$DEBUG && echo "[DEBUG] User update prompt response: $user_choice (0=Yes, 1=No)"
+				if [[ $user_choice -ne 0 ]]; then
+					echo "[INFO] Update cancelled by user. Exiting."
+					exit 0
+				fi
+			else
+				# CLI mode: just print info and exit
+				echo "A newer version of this updater is available (Current: $VERSION, Latest: $latest_version). Please update before continuing."
+				exit 0
+			fi
+		fi
 	fi
 
 	######################################################################
@@ -1047,8 +1079,9 @@ main() {
 				--height ${H} \
 				--hide-header
 		)
+		$DEBUG && echo "[DEBUG] User main menu selection: $ask"
 		if [[ $? -ne 0 ]]; then
-			# Exit button pressed, exit cleanly
+			$DEBUG && echo "[DEBUG] User exited from main menu"
 			echo "[INFO] Exiting..."
 			exit 0
 		fi
@@ -1071,7 +1104,7 @@ main() {
 		elif [[ "${ask}" == "Update User Binaries" || ${USER_BINARIES} ]]; then
 			update_user_binaries
 		elif [[ "${ask}" == "Search and Install from Flathub" ]]; then
-			search_and_install_flathub
+			search_and_install_flathub || main
 		elif [[ "${ask}" == "Show Installed Flatpaks" ]]; then
 			show_installed_flatpaks
 		fi

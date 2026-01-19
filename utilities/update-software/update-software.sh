@@ -298,7 +298,6 @@ update_user_binaries() {
 	echo "Skipping, none for now"
 	# Use wine cellar
 	#update_binary "wine-staging_ge-proton" "Proton" "" "https://api.github.com/repos/mmtrt/WINE_AppImage/releases/latest" "AppImage"	
-
 	####################################
 	# Gamejolt
 	####################################
@@ -996,30 +995,6 @@ main() {
 		echo "[INFO] Screen dimensions detected:"
 		echo "[INFO] Width: ${SCREEN_WIDTH}"
 		echo "[INFO] Height: ${SCREEN_HEIGHT}"
-	fi
-
-	# Version check and update prompt (unless --skip-updater)
-	if ! ${SKIP_UPDATER}; then
-		latest_version=$(get_latest_version)
-		$DEBUG && echo "[DEBUG] Local version: $VERSION, Latest version: $latest_version"
-		if version_lt "$VERSION" "$latest_version"; then
-			if ! ${CLI}; then
-				zenity --question \
-					--title="Update Available" \
-					--text="A newer version of this updater is available (Current: $VERSION, Latest: $latest_version).\n\nDo you want to update before continuing?" \
-					--width=400 --height=180
-				user_choice=$?
-				$DEBUG && echo "[DEBUG] User update prompt response: $user_choice (0=Yes, 1=No)"
-				if [[ $user_choice -ne 0 ]]; then
-					echo "[INFO] Update cancelled by user. Exiting."
-					exit 0
-				fi
-			else
-				# CLI mode: just print info and exit
-				echo "A newer version of this updater is available (Current: $VERSION, Latest: $latest_version). Please update before continuing."
-				exit 0
-			fi
-		fi
 	fi
 
 	# Pre-reqs - run once at startup

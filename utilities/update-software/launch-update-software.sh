@@ -104,7 +104,6 @@ Full log file: ${LOG_FILE}
 		echo "${error_text}" | zenity --text-info \
 			--title="Updater Failed - Exit Code ${EXIT_CODE}" \
 			--ok-label="Exit" \
-			--no-cancel \
 			--width=1000 \
 			--height=800 \
 			--font="Monospace 10"

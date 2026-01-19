@@ -11,6 +11,11 @@ while [[ $# -gt 0 ]]; do
 			TEST_MODE=true
 			shift
 			;;
+		--help)
+			echo "Using --test to skip updater for local testing"
+			exit 0
+			;;
+	
 		*)
 			# Collect other arguments to pass to the script
 			SCRIPT_ARGS+=("$1")

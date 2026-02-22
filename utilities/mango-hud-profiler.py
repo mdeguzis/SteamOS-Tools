@@ -30,6 +30,12 @@ MANGOHUD_CONF_DIR = XDG_CONFIG / "MangoHud"
 MANGOHUD_CONF_FILE = MANGOHUD_CONF_DIR / "MangoHud.conf"
 MANGOHUD_LOG_DIR = pathlib.Path("/tmp/MangoHud")
 MANGOHUD_ALT_LOG = XDG_DATA / "MangoHud"
+BENCH_LOG_DIR = pathlib.Path.home() / "Documents" / "MangoBench_Logs"
+MAX_LOGS_PER_GAME = 30
+
+# FlightlessSomething is the primary MangoHud-compatible web viewer.
+# Upload multiple CSVs to the same Benchmark ID for side-by-side comparison.
+FLIGHTLESS_URL = "https://flightlesssomething.com/benchmarks/new"
 
 WEB_VIEWERS = [
     {"name": "FlightlessMango Log Viewer",
@@ -479,6 +485,187 @@ def cmd_summary(args: argparse.Namespace) -> int:
         _write_json_summary(paths, pathlib.Path(args.json_output))
     return 0
 
+# -- organize ---------------------------------------------------------------
+
+def _extract_game_name(stem: str) -> str:
+    """Extract game name from MangoHud log filename stem."""
+    m = re.match(r"^(.+?)_\d{4}[-_]", stem)
+    return m.group(1) if m else stem
+
+def _rotate_game_logs(game_dir: pathlib.Path, max_logs: int = MAX_LOGS_PER_GAME) -> int:
+    """Delete oldest logs if game folder exceeds max_logs. Returns deleted count."""
+    csvs = sorted(game_dir.glob("*.csv"), key=lambda p: p.stat().st_mtime)
+    removed = 0
+    while len(csvs) > max_logs:
+        oldest = csvs.pop(0)
+        oldest.unlink()
+        removed += 1
+        log.info("Rotated (deleted): %s", oldest)
+    return removed
+
+def cmd_organize(args: argparse.Namespace) -> int:
+    """Sort MangoHud logs into per-game/date folders with rotation.
+
+    Layout created:
+        ~/Documents/MangoBench_Logs/
+          <GameName>/
+            <GameName>_YYYY-MM-DD_HH-MM-SS.csv
+            current.csv  -> symlink to today's newest log
+    """
+    src_dir = pathlib.Path(args.source) if args.source else None
+    dest = pathlib.Path(args.dest) if args.dest else BENCH_LOG_DIR
+    max_logs = args.max_logs
+    dry = args.dry_run
+
+    raw_logs = find_logs(src_dir)
+    if not raw_logs:
+        print("  No MangoHud CSV logs found to organize.")
+        print(f"    Searched: {MANGOHUD_LOG_DIR}, {MANGOHUD_ALT_LOG}")
+        return 1
+
+    dest.mkdir(parents=True, exist_ok=True)
+    moved = 0; rotated = 0; skipped = 0
+    today = datetime.date.today().isoformat()
+
+    for src in raw_logs:
+        game = _extract_game_name(src.stem)
+        game_dir = dest / game
+        target = game_dir / src.name
+
+        if target.exists():
+            skipped += 1; continue
+
+        if dry:
+            print(f"    [dry-run] {src.name} -> {game_dir}/")
+            moved += 1; continue
+
+        game_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(str(src), str(target))
+        moved += 1
+        log.info("Copied: %s -> %s", src, target)
+
+    # Rotation + current symlinks
+    if not dry:
+        for game_dir in sorted(dest.iterdir()):
+            if not game_dir.is_dir():
+                continue
+            rotated += _rotate_game_logs(game_dir, max_logs)
+
+            # Update "current.csv" symlink -> today's newest CSV
+            day_logs = sorted(
+                [f for f in game_dir.glob("*.csv")
+                 if f.name != "current.csv" and today in f.name],
+                key=lambda p: p.stat().st_mtime,
+            )
+            current_link = game_dir / "current.csv"
+            if day_logs:
+                if current_link.is_symlink() or current_link.exists():
+                    current_link.unlink()
+                current_link.symlink_to(day_logs[-1].name)
+                log.info("current.csv -> %s", day_logs[-1].name)
+            elif not current_link.exists():
+                # No today-logs; link to newest overall
+                all_csvs = sorted(
+                    [f for f in game_dir.glob("*.csv") if f.name != "current.csv"],
+                    key=lambda p: p.stat().st_mtime,
+                )
+                if all_csvs:
+                    current_link.symlink_to(all_csvs[-1].name)
+
+    print(f"  Organize complete: {dest}")
+    print(f"    Copied  : {moved} log(s)")
+    print(f"    Skipped : {skipped} (already exist)")
+    print(f"    Rotated : {rotated} old log(s) deleted (max {max_logs}/game)")
+
+    # Show tree
+    for game_dir in sorted(dest.iterdir()):
+        if not game_dir.is_dir():
+            continue
+        csvs = sorted(game_dir.glob("*.csv"))
+        real_csvs = [c for c in csvs if c.name != "current.csv"]
+        cur = game_dir / "current.csv"
+        cur_target = cur.resolve().name if cur.is_symlink() else "none"
+        print(f"    {game_dir.name}/  ({len(real_csvs)} logs, current -> {cur_target})")
+    return 0
+
+
+# -- bundle -----------------------------------------------------------------
+
+def cmd_bundle(args: argparse.Namespace) -> int:
+    """Create a zip of selected logs for upload to FlightlessSomething.
+
+    FlightlessSomething accepts multiple CSV uploads per Benchmark.
+    Each CSV becomes a separate "Run" displayed side-by-side.
+    """
+    import zipfile
+
+    game = getattr(args, "game", None)
+    src_dir = pathlib.Path(args.source) if args.source else BENCH_LOG_DIR
+    out = pathlib.Path(args.output) if args.output else None
+
+    # Collect CSVs
+    csvs: List[pathlib.Path] = []
+    if game:
+        game_dir = src_dir / game
+        if game_dir.is_dir():
+            csvs = sorted([f for f in game_dir.glob("*.csv") if f.name != "current.csv"],
+                          key=lambda p: p.stat().st_mtime)
+        else:
+            # Fallback: search flat dir
+            csvs = find_logs(src_dir, game=game)
+    else:
+        # All games  pick the "current.csv" or newest from each game folder
+        if src_dir.is_dir():
+            for gd in sorted(src_dir.iterdir()):
+                if not gd.is_dir():
+                    continue
+                cur = gd / "current.csv"
+                if cur.is_symlink() or cur.exists():
+                    csvs.append(cur.resolve())
+                else:
+                    latest = sorted([f for f in gd.glob("*.csv")],
+                                    key=lambda p: p.stat().st_mtime)
+                    if latest:
+                        csvs.append(latest[-1])
+
+    if not csvs:
+        print(f"  No logs found to bundle.")
+        print(f"    Source: {src_dir}")
+        if game:
+            print(f"    Game filter: {game}")
+        print(f"\n    Run '{PROG_NAME} organize' first to sort logs into game folders.")
+        return 1
+
+    # Limit
+    limit = args.limit
+    if limit and len(csvs) > limit:
+        csvs = csvs[-limit:]
+
+    # Determine output path
+    if not out:
+        tag = game if game else "all-games"
+        ts = datetime.datetime.now().strftime("%Y%m%d_%H%M")
+        out = src_dir / f"benchmark_{tag}_{ts}.zip"
+
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(str(out), "w", zipfile.ZIP_DEFLATED) as zf:
+        for csv in csvs:
+            zf.write(str(csv), csv.name)
+
+    total_kb = sum(c.stat().st_size for c in csvs) / 1024
+    zip_kb = out.stat().st_size / 1024
+
+    print(f"  Bundle created: {out}")
+    print(f"    Files : {len(csvs)} CSV(s) ({total_kb:.0f} KB -> {zip_kb:.0f} KB zipped)")
+    print(f"    Upload to FlightlessSomething:")
+    print(f"      {FLIGHTLESS_URL}")
+    print(f"      Select all CSVs from the zip (or upload the individual files).")
+    print(f"\n    Included logs:")
+    for c in csvs:
+        print(f"      {c.name}  ({c.stat().st_size/1024:.1f} KB)")
+    return 0
+
+
 def _write_json_summary(paths: List[pathlib.Path], out: pathlib.Path) -> None:
     results = []
     for path in paths:
@@ -647,6 +834,69 @@ def build_parser() -> argparse.ArgumentParser:
     pl.add_argument("--log-dir", metavar="DIR",
                     help="Directory to scan (default: standard MangoHud log dirs).")
     pl.set_defaults(func=cmd_games)
+
+    # -- organize --
+    po = sub.add_parser("organize",
+        help="Sort MangoHud logs into per-game folders with rotation.",
+        description=textwrap.dedent(f"""\
+            Copy MangoHud CSV logs from /tmp/MangoHud into an organised tree:
+
+              ~/Documents/MangoBench_Logs/
+                Cyberpunk2077/
+                  Cyberpunk2077_2026-02-22_14-30-00.csv
+                  current.csv  ->  (symlink to today's newest)
+                HalfLife2/
+                  ...
+
+            Rotation: keeps at most --max-logs per game (default {MAX_LOGS_PER_GAME}),
+            deleting the oldest when exceeded.
+
+            current.csv: always symlinks to today's newest log for quick access.
+            This layout is FlightlessSomething-friendly: each game folder is a
+            natural set of "runs" you can upload as one Benchmark.
+        """),
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    po.add_argument("--source", metavar="DIR",
+                    help="Source directory for raw MangoHud logs (default: /tmp/MangoHud).")
+    po.add_argument("--dest", metavar="DIR", default=str(BENCH_LOG_DIR),
+                    help=f"Destination root (default: {BENCH_LOG_DIR}).")
+    po.add_argument("--max-logs", type=int, default=MAX_LOGS_PER_GAME,
+                    help=f"Max CSV files per game before oldest are deleted (default: {MAX_LOGS_PER_GAME}).")
+    po.add_argument("--dry-run", action="store_true",
+                    help="Show what would be done without copying/deleting.")
+    po.set_defaults(func=cmd_organize)
+
+    # -- bundle --
+    pb = sub.add_parser("bundle",
+        help="Create a zip of logs for FlightlessSomething upload.",
+        description=textwrap.dedent("""\
+            Package selected MangoHud CSV logs into a zip file ready for
+            batch upload to FlightlessSomething (or similar web viewers).
+
+            On FlightlessSomething, a "Benchmark" is a container. Uploading
+            multiple CSVs to the same Benchmark creates side-by-side
+            comparison of different games/runs  like benchmark #1937.
+
+            Without --game, bundles the "current.csv" (today's newest)
+            from each game folder.  With --game, bundles all logs for
+            that specific game.
+
+            Workflow:
+              1. Play games (MangoHud logs automatically)
+              2. mango-hud-profiler organize
+              3. mango-hud-profiler bundle
+              4. Upload the zip to FlightlessSomething
+        """),
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    pb.add_argument("-g", "--game", metavar="NAME",
+                    help="Bundle only logs for this game.")
+    pb.add_argument("--source", metavar="DIR", default=str(BENCH_LOG_DIR),
+                    help=f"Source directory (default: {BENCH_LOG_DIR}).")
+    pb.add_argument("-o", "--output", metavar="ZIP",
+                    help="Output zip path (default: auto-named in source dir).")
+    pb.add_argument("--limit", type=int, default=None,
+                    help="Max number of CSVs to include (newest first).")
+    pb.set_defaults(func=cmd_bundle)
 
     return p
 

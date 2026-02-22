@@ -421,9 +421,6 @@ def cmd_configure(args: argparse.Namespace) -> int:
             else:
                 print(f"  Config OK: {found}")
                 print("    All bottleneck + logging keys already present.")
-            # Also ensure log dir exists
-            MANGOHUD_LOG_DIR.mkdir(parents=True, exist_ok=True)
-            print(f"    Log directory: {MANGOHUD_LOG_DIR}")
             return 0
         else:
             print("  No existing MangoHud config found. Creating new one...")

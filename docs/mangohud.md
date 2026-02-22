@@ -1,406 +1,604 @@
-# MangoHud Profiling Guide for Bazzite / SteamOS
+# MangoHud, mangoplot & FlightlessSomething — Guide for Bazzite / SteamOS
 
-A comprehensive guide to MangoHud's default behaviour, log management, the
-FlightlessSomething web viewer, and the `mango-hud-profiler.py` utility
-included in this repository.
+This document covers everything you need to know about MangoHud performance
+monitoring, `mangoplot` chart generation, and uploading results to
+FlightlessSomething — specifically for **Bazzite** and **SteamOS** derivatives.
 
 ---
 
 ## Table of Contents
 
-1. [What is MangoHud?](#what-is-mangohud)
-2. [MangoHud Default Behaviour on Bazzite / SteamOS](#mangohud-default-behaviour-on-bazzite--steamos)
-3. [MangoHud CSV Log Format](#mangohud-csv-log-format)
-4. [Per-Game Configuration](#per-game-configuration)
-5. [FlightlessSomething Web Viewer](#flightlessomething-web-viewer)
-6. [mango-hud-profiler.py — Our Utility](#mango-hud-profilerpy--our-utility)
-7. [Typical Workflow](#typical-workflow)
-8. [Resources & References](#resources--references)
+- [What is MangoHud?](#what-is-mangohud)
+- [What is mangoplot?](#what-is-mangoplot)
+- [What is FlightlessSomething?](#what-is-flightlesssomething)
+- [Installation on Bazzite / SteamOS](#installation-on-bazzite--steamos)
+- [Configuration](#configuration)
+  - [Config File Locations](#config-file-locations)
+  - [Config Precedence](#config-precedence)
+  - [Per-Game Configs](#per-game-configs)
+  - [Recommended Config for Logging](#recommended-config-for-logging)
+  - [Bottleneck Detection Keys](#bottleneck-detection-keys)
+  - [All Config Options Reference](#all-config-options-reference)
+- [Logging](#logging)
+  - [Enabling Logging](#enabling-logging)
+  - [Log File Locations](#log-file-locations)
+  - [Log File Format](#log-file-format)
+- [Using mangoplot](#using-mangoplot)
+- [Using mango-hud-profiler.py](#using-mango-hud-profilerpy)
+- [FlightlessSomething Workflow](#flightlesssomething-workflow)
+  - [What is a Benchmark?](#what-is-a-benchmark)
+  - [Upload Workflow](#upload-workflow)
+  - [API Upload](#api-upload)
+- [References](#references)
 
 ---
 
 ## What is MangoHud?
 
-MangoHud is a Vulkan and OpenGL overlay for monitoring FPS, frame times,
-CPU/GPU temperatures, power draw, memory usage, and more. It can also log
-all of these metrics to CSV files for offline analysis.
+[MangoHud](https://github.com/flightlessmango/MangoHud) is a Vulkan and
+OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load, and more. It is
+the standard performance overlay on **SteamOS**, **Bazzite**, and the
+**Steam Deck**.
 
-On **Bazzite** (a SteamOS derivative based on Fedora Atomic), MangoHud is
-**pre-installed and always available**. It runs as a Vulkan layer that
-automatically hooks into every game launched through Steam or Gamescope.
+- **Repository**: <https://github.com/flightlessmango/MangoHud>
+- **License**: MIT
+- **Stars**: 8.3k+
+- **Languages**: C (53%), C++ (41%), Python, Shell
 
----
+MangoHud can:
+- Display a real-time OSD (on-screen display) with FPS, frametime, temps, etc.
+- **Log all metrics to CSV files** for offline analysis
+- Be configured globally or per-game
 
-## MangoHud Default Behaviour on Bazzite / SteamOS
-
-### OSD (On-Screen Display)
-
-- MangoHud's overlay is toggled via a keybind (default: `Right_Shift + F12`)
-- On SteamOS/Bazzite in Game Mode, the performance overlay is accessible via
-  the Quick Access Menu (QAM) → Performance → Performance Overlay Level (1–4)
-- Level 1 = FPS only, Level 4 = full metrics
-
-### Logging
-
-By default, MangoHud does **not** log to CSV automatically. Logging must be
-enabled via one of:
-
-| Method | How |
-|--------|-----|
-| **Config file** | Set `log_duration=0` and `autostart_log=1` in `MangoHud.conf` |
-| **Keybind** | Press `Right_Shift + F2` during gameplay to toggle logging on/off |
-| **Environment variable** | Launch with `MANGOHUD_LOG=1` |
-
-### Default Log Location
-
-When logging is active, MangoHud writes CSV files to:
-
-```
-/tmp/MangoHud/<GameName>_<YYYY-MM-DD_HH-MM-SS>.csv
-```
-
-- `/tmp/MangoHud/` is created automatically
-- Files are named after the game executable + timestamp
-- **Important**: `/tmp/` is cleared on reboot on most Linux systems, so logs
-  are ephemeral unless copied elsewhere
-
-### Default Config Location
-
-MangoHud reads its configuration from (in order of priority):
-
-1. `MANGOHUD_CONFIGFILE` environment variable (if set)
-2. `~/.config/MangoHud/<executable_name>.conf` (per-game config)
-3. `~/.config/MangoHud/MangoHud.conf` (global config)
-
-If no config file exists, MangoHud uses built-in defaults (OSD only, no logging).
-
-### Key Config Parameters
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `fps` | 1 | Show FPS on overlay |
-| `frametime` | 0 | Show frame time on overlay |
-| `cpu_stats` | 0 | Show CPU usage/frequency |
-| `gpu_stats` | 0 | Show GPU usage |
-| `cpu_temp` | 0 | Show CPU temperature |
-| `gpu_temp` | 0 | Show GPU temperature |
-| `ram` | 0 | Show RAM usage |
-| `vram` | 0 | Show VRAM usage |
-| `battery` | 0 | Show battery level (handhelds) |
-| `output_folder` | `/tmp/MangoHud` | Where CSV logs are written |
-| `log_duration` | 0 | Log duration in seconds (0 = unlimited) |
-| `log_interval` | 100 | Logging interval in milliseconds |
-| `log_versioning` | 0 | Append version numbers to log filenames |
-| `autostart_log` | 0 | Start logging automatically when game launches |
-
-Full parameter reference: https://github.com/flightlessmango/MangoHud#mangohud_config
+On Bazzite, MangoHud is pre-installed at `/usr/bin/mangohud` and is always
+active in gamescope (the SteamOS compositor).
 
 ---
 
-## MangoHud CSV Log Format
+## What is mangoplot?
 
-MangoHud CSV files have a header row followed by data rows. Example:
+`mangoplot` is a companion Python script that ships with MangoHud. It reads
+MangoHud CSV log files and generates **PNG charts** with:
 
-```csv
-os,cpu,gpu,ram,kernel,driver,cpuscheduler,fps,frametime,cpu_load,gpu_load,cpu_temp,gpu_temp,cpu_power,gpu_power,vram,ram_used,swap,battery
-Linux,AMD Ryzen 7 7840U,AMD Radeon 780M,...,60,16.67,45,62,71,68,15.2,8.1,4096,8192,0,85
+- FPS over time
+- Frametime graphs (pacing analysis)
+- CPU/GPU load
+- Per-core CPU load (`core_load`) — crucial for single-core bottleneck detection
+- GPU clock speeds — detects thermal throttling / downclocking
+
+On Bazzite/SteamOS, it is available as `mangoplot` in the system PATH (installed
+alongside MangoHud).
+
+**Usage:**
+```bash
+mangoplot /path/to/MangoHud_log.csv
 ```
 
-### Key Columns
-
-| Column | Unit | Description |
-|--------|------|-------------|
-| `fps` | frames/s | Frames per second |
-| `frametime` | ms | Time per frame |
-| `cpu_load` | % | CPU utilisation |
-| `gpu_load` | % | GPU utilisation |
-| `cpu_temp` | °C | CPU temperature |
-| `gpu_temp` | °C | GPU temperature |
-| `cpu_power` | W | CPU power draw |
-| `gpu_power` | W | GPU power draw |
-| `ram` / `ram_used` | MB | RAM usage |
-| `vram` | MB | VRAM usage |
-| `battery` | % | Battery level |
-| `battery_power` | W | Battery discharge rate |
-
-The exact columns present depend on your MangoHud config and hardware capabilities.
+Charts are saved as PNG files in the current working directory.
 
 ---
 
-## Per-Game Configuration
+## What is FlightlessSomething?
 
-MangoHud supports per-game configs by placing a file named after the game
-executable in the config directory:
+[FlightlessSomething](https://flightlesssomething.ambrosia.one/) is a
+**web-based MangoHud log viewer** for interactive performance analysis and
+comparison.
 
+- **URL**: <https://flightlesssomething.ambrosia.one/>
+- **Upload**: <https://flightlesssomething.ambrosia.one/benchmarks/new>
+- **API reference**: <https://github.com/erkexzcx/FlightlessSomething-auto>
+
+### Key Concepts
+
+- A **Benchmark** is a container (like a folder). Example: `/benchmarks/1937`
+- Each CSV you upload becomes a separate **Run** within that Benchmark
+- Multiple runs are displayed **side-by-side** for comparison
+- You can name each run (e.g. "Cyberpunk - Low" vs "Cyberpunk - Ultra")
+
+### What It Reads
+
+FlightlessSomething reads the `title` and `version` from MangoHud CSV headers.
+It supports all standard MangoHud log columns.
+
+> **Important**: Do NOT merge multiple game CSVs into one file. Upload them as
+> separate files to the same Benchmark for side-by-side comparison.
+
+### Other Web Viewers
+
+| Viewer | URL | Notes |
+|--------|-----|-------|
+| FlightlessMango (original) | <https://flightlessmango.com/games/new> | Upload CSV directly |
+| CapFrameX Web Analysis | <https://www.capframex.com/analysis> | Accepts MangoHud CSVs since v1.7 |
+
+---
+
+## Installation on Bazzite / SteamOS
+
+### Bazzite (default — already installed)
+
+MangoHud is part of the Bazzite image. The system binary is at:
+```
+/usr/bin/mangohud
+```
+
+It reads config from `~/.config/MangoHud/MangoHud.conf`.
+
+### If Not Installed
+
+```bash
+# Bazzite / Fedora Atomic
+rpm-ostree install mangohud
+
+# Or via Flatpak (Vulkan layer)
+flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+
+# Arch-based
+pacman -S mangohud
+
+# Debian/Ubuntu
+apt install mangohud
+```
+
+### Verify Installation
+
+```bash
+mangohud --version
+mangoplot --help
+```
+
+---
+
+## Configuration
+
+### Config File Locations
+
+| Target | Path |
+|--------|------|
+| **Global (user)** | `~/.config/MangoHud/MangoHud.conf` |
+| **Steam Flatpak** | `~/.var/app/com.valvesoftware.Steam/config/MangoHud/MangoHud.conf` |
+| **Per-game (Proton/Wine)** | `~/.config/MangoHud/wine-<GameName>.conf` |
+| **Per-game (native)** | `~/.config/MangoHud/<executable>.conf` |
+| **System example** | `/usr/share/doc/mangohud/MangoHud.conf.example` |
+| **Upstream example** | <https://github.com/flightlessmango/MangoHud/blob/master/data/MangoHud.conf> |
+
+### Config Precedence
+
+MangoHud checks these in order and **stops at the first one it finds**:
+
+1. **`MANGOHUD_CONFIGFILE`** environment variable (highest priority)
+2. **Per-game config**: `~/.config/MangoHud/wine-<GameName>.conf`
+3. **Global config**: `~/.config/MangoHud/MangoHud.conf`
+4. **Flatpak sandbox**: `~/.var/app/com.valvesoftware.Steam/config/MangoHud/MangoHud.conf`
+
+You can also override individual keys at runtime:
+```bash
+MANGOHUD_CONFIG="fps,frametime,cpu_stats,gpu_stats" mangohud %command%
+```
+
+### Per-Game Configs
+
+For **Proton/Wine** games (most Steam games):
+```
+~/.config/MangoHud/wine-<GameName>.conf
+```
+
+For **native Linux** games:
 ```
 ~/.config/MangoHud/<executable_name>.conf
 ```
 
-For example:
-- `~/.config/MangoHud/Cyberpunk2077.conf` — applies only to Cyberpunk 2077
-- `~/.config/MangoHud/hl2_linux.conf` — applies only to Half-Life 2
+Example:
+```bash
+# Create config specifically for Cyberpunk 2077 (Proton)
+cp ~/.config/MangoHud/MangoHud.conf ~/.config/MangoHud/wine-Cyberpunk2077.conf
+# Edit as needed
+```
 
-Per-game configs override the global `MangoHud.conf` for that specific game.
-This is useful for:
-- Enabling heavy logging for one game while keeping the HUD minimal for others
-- Using the `battery` preset for handheld gaming on specific titles
-- Disabling the overlay entirely for competitive games
+### Recommended Config for Logging
+
+This configuration enables comprehensive CSV logging with all metrics needed
+for bottleneck analysis. Place in `~/.config/MangoHud/MangoHud.conf`:
+
+```ini
+### Logging
+output_folder=~/Documents/MangoLogs
+toggle_logging=Shift_L+F2
+log_duration=0
+log_interval=100
+log_versioning=1
+
+### Performance metrics (essential for mangoplot bottleneck analysis)
+fps
+frametime
+frame_timing
+cpu_stats
+gpu_stats
+core_load
+gpu_core_clock
+
+### Detailed CPU
+cpu_temp
+cpu_power
+cpu_mhz
+
+### Detailed GPU
+gpu_temp
+gpu_power
+gpu_mem_clock
+gpu_mem_temp
+
+### Memory
+vram
+ram
+swap
+
+### Power / Battery (Steam Deck / handheld)
+battery
+battery_power
+gamepad_battery
+throttling_status
+
+### Wine/Proton info
+wine
+winesync
+engine_version
+vulkan_driver
+gpu_name
+
+### OSD appearance
+position=top-left
+background_alpha=0.4
+font_size=20
+```
+
+> **Note**: MangoHud does NOT save logs by default. You MUST set
+> `output_folder` and use `toggle_logging` (Shift+F2) to start/stop recording,
+> or set `autostart_log=1` to log automatically.
+
+### Bottleneck Detection Keys
+
+These keys are **critical** for useful `mangoplot` analysis:
+
+| Key | Why It Matters |
+|-----|---------------|
+| `cpu_stats` | Overall CPU usage — basic load monitoring |
+| `gpu_stats` | Overall GPU usage — basic load monitoring |
+| `core_load` | **Per-core CPU load** — finds single-core bottlenecks that `cpu_stats` misses |
+| `gpu_core_clock` | **GPU clock speed** — detects thermal throttling / power-limit downclocking |
+| `frametime` | **Frame pacing data** — the raw data behind frametime graphs |
+| `frame_timing` | Frametime line graph on the OSD |
+
+Without these keys, mangoplot output will be incomplete and you won't be able
+to diagnose bottlenecks.
+
+### All Config Options Reference
+
+The full list of MangoHud config options is in the upstream example:
+<https://github.com/flightlessmango/MangoHud/blob/master/data/MangoHud.conf>
+
+**Categories:**
+
+#### Performance Tuning
+- `fps_limit` — Limit FPS (e.g. `fps_limit=60`)
+- `vsync` — VSync mode (0=adaptive, 1=off, 2=mailbox, 3=on)
+
+#### OSD Presets
+- `preset` — Quick preset (-1=default, 0=no display, 1=fps only, 2=horizontal, 3=extended, 4=high detail)
+- `full` — Enable most toggleable parameters
+
+#### GPU Information
+- `gpu_stats`, `gpu_temp`, `gpu_junction_temp`, `gpu_core_clock`
+- `gpu_mem_temp`, `gpu_mem_clock`, `gpu_power`, `gpu_power_limit`
+- `gpu_fan`, `gpu_voltage` (AMD only)
+- `gpu_load_change`, `gpu_load_value`, `gpu_load_color`
+
+#### CPU Information
+- `cpu_stats`, `cpu_temp`, `cpu_power`, `cpu_mhz`
+- `core_load`, `core_load_change`, `core_bars`, `core_type`
+- `cpu_load_change`, `cpu_load_value`, `cpu_load_color`
+
+#### Memory
+- `vram`, `ram`, `swap`
+- `procmem`, `procmem_shared`, `procmem_virt`, `proc_vram`
+
+#### Battery (Steam Deck / Handheld)
+- `battery`, `battery_icon`, `battery_watt`, `battery_time`
+- `device_battery=gamepad,mouse`
+
+#### FPS & Frametime
+- `fps`, `frametime`, `frame_count`
+- `fps_sampling_period`, `fps_color_change`
+- `fps_metrics=avg,0.01` (percentile values)
+- `throttling_status`, `throttling_status_graph`
+
+#### I/O
+- `io_read`, `io_write`
+
+#### Misc Info
+- `engine_version`, `gpu_name`, `vulkan_driver`
+- `wine`, `winesync`, `exec_name`, `present_mode`
+- `arch`, `resolution`, `display_server`, `refresh_rate`
+
+#### Gamescope (SteamOS)
+- `fsr`, `hide_fsr_sharpness`, `debug`, `hdr`, `refresh_rate`
+
+#### Steam Deck Specific
+- `fan` — Show fan RPM
+- `show_fps_limit`
+
+#### Graphs
+- `graphs=gpu_load,cpu_load,gpu_core_clock,gpu_mem_clock,vram,ram,cpu_temp,gpu_temp`
+
+#### Logging
+- `output_folder` — Directory for CSV logs
+- `toggle_logging` — Keybind (e.g. `Shift_L+F2`)
+- `log_duration` — Seconds (0 = manual start/stop)
+- `log_interval` — Milliseconds between samples
+- `log_versioning` — Append version numbers to filenames
+- `autostart_log` — Start logging immediately
+
+#### Appearance
+- `position` — `top-left`, `top-right`, `bottom-left`, `bottom-right`
+- `font_size`, `font_scale`, `background_alpha`
+- `round_corners`, `hud_no_margin`, `hud_compact`
+- `text_outline`, `text_outline_color`, `text_outline_thickness`
 
 ---
 
-## FlightlessSomething Web Viewer
+## Logging
 
-**URL**: https://flightlesssomething.com
+### Enabling Logging
 
-FlightlessSomething is the primary web-based viewer for MangoHud CSV logs.
-It provides interactive charts, statistical analysis, and comparison views.
+Add these to your `MangoHud.conf`:
 
-### How It Works
+```ini
+output_folder=~/Documents/MangoLogs
+toggle_logging=Shift_L+F2
+log_duration=0
+log_interval=100
+log_versioning=1
+```
 
-1. **Benchmarks are containers**: Each "Benchmark" on FlightlessSomething is a
-   collection of one or more CSV uploads. A single Benchmark URL
-   (e.g., `/benchmarks/1937`) can contain multiple "Runs."
+Then while gaming:
+1. Press **Shift+F2** to start recording
+2. Play for your desired duration
+3. Press **Shift+F2** again to stop
 
-2. **Each CSV = one Run**: When you upload a MangoHud CSV, it becomes a
-   separate Run within the Benchmark. Multiple CSVs uploaded together create
-   side-by-side comparisons (like comparing FPS across different games or
-   settings).
+Or set `autostart_log=1` to log automatically whenever MangoHud is active.
 
-3. **Do NOT merge CSVs**: Never combine multiple game logs into one CSV file.
-   The timestamps, metadata, and column headers will break the visualiser.
-   Upload them as separate files to the same Benchmark instead.
+### Log File Locations
 
-### Upload Workflow
+| Source | Path |
+|--------|------|
+| Configured output | `~/Documents/MangoLogs/` (recommended) |
+| Default (if no config) | `/tmp/MangoHud/` |
+| XDG fallback | `~/.local/share/MangoHud/` |
 
-1. Go to https://flightlesssomething.com/benchmarks/new
-2. Select **multiple** CSV files at once (or upload one at a time)
-3. Each file becomes a separate Run in the same Benchmark
-4. The site reads game name, GPU info, and driver version from the CSV headers
+### Log File Format
 
-### Building Benchmarks Over Time
+MangoHud logs are CSV files named:
+```
+<GameName>_<YYYY-MM-DD_HH-MM-SS>.csv
+```
 
-- Create an account to save Benchmarks persistently
-- Return to an existing Benchmark page and use "Add Runs" to grow it
-- This lets you compare today's performance against yesterday's
+Example: `Cyberpunk2077_2026-02-22_14-30-00.csv`
 
-### What FlightlessSomething Reads from CSVs
+The CSV contains columns like:
+```
+fps,frametime,cpu_stats,gpu_stats,cpu_temp,gpu_temp,cpu_power,gpu_power,
+gpu_core_clock,vram,ram,battery,...
+```
 
-The site parses these MangoHud CSV header fields for metadata:
-- `os` — Operating system
-- `cpu` — CPU model
-- `gpu` — GPU model
-- `driver` — GPU driver version
-- `kernel` — Linux kernel version
-- `ram` — Total RAM
-
-These appear in the Benchmark sidebar for each Run.
-
-### Other Compatible Viewers
-
-| Viewer | URL | Notes |
-|--------|-----|-------|
-| FlightlessMango (legacy) | https://flightlessmango.com/games/new | Older upload portal, same backend |
-| CapFrameX | https://www.capframex.com/analysis | Accepts MangoHud CSVs since v1.7 |
-| mangoplot (CLI) | `pip install mangoplot` | Local terminal-based plot tool |
+Each row is one sample at the configured `log_interval` (default 100ms).
 
 ---
 
-## mango-hud-profiler.py — Our Utility
+## Using mangoplot
 
-Located at `utilities/mango-hud-profiler.py`, this script provides a complete
-CLI for managing MangoHud logging sessions on Bazzite/SteamOS.
+`mangoplot` ships with MangoHud and is available in PATH on Bazzite/SteamOS.
+
+### Basic Usage
+
+```bash
+# Generate charts from a log file
+mangoplot ~/Documents/MangoLogs/Cyberpunk2077_2026-02-22_14-30-00.csv
+```
+
+Charts are saved as PNG files in the current directory.
+
+### Best Results
+
+For the most informative charts, ensure your config includes:
+- `core_load` — shows per-core CPU load (finds single-core bottlenecks)
+- `gpu_core_clock` — shows if GPU is downclocking under load
+- `frametime` — the raw data for pacing analysis
+
+### Output
+
+mangoplot generates charts including:
+- **FPS over time** — see average, drops, stability
+- **Frametime graph** — identify stutter/pacing issues
+- **CPU/GPU load** — utilization analysis
+- **Core load** — per-core view for CPU bottleneck detection
+- **GPU clocks** — thermal throttling detection
+
+---
+
+## Using mango-hud-profiler.py
+
+The `utilities/mango-hud-profiler.py` script in this repo provides a complete
+workflow for MangoHud profiling:
 
 ### Subcommands
 
 | Command | Description |
 |---------|-------------|
-| `configure` | Generate MangoHud config files from presets (global or per-game) |
-| `profile` | Run a timed profiling session (launch → wait → stop → report) |
-| `graph` | Generate PNG/SVG/PDF graphs from MangoHud CSV logs |
-| `summary` | Print statistics with percentiles, FPS stability, frametime jitter |
-| `games` | List game names discovered from MangoHud log filenames |
-| `organize` | Sort raw logs into per-game folders with rotation (max 30/game) |
-| `bundle` | Create a zip of logs for FlightlessSomething batch upload |
+| `configure` | Generate MangoHud config from presets, per-game, or `--check` existing |
+| `profile` | Timed profiling session (launch, log, stop, report) |
+| `graph` | Generate charts via mangoplot (or matplotlib fallback) |
+| `summary` | Stats with percentiles, FPS stability, frametime jitter |
+| `games` | List profiled games from log filenames |
+| `organize` | Sort logs into per-game folders, rotate (keep 15), create `<game>-current-mangohud.csv` symlink |
+| `bundle` | Zip logs for FlightlessSomething manual upload |
+| `upload` | Upload directly to FlightlessSomething via API |
 
-### Config Presets
-
-| Preset | Description |
-|--------|-------------|
-| `logging` | Full CSV logging, minimal OSD — best for data collection |
-| `minimal` | FPS + frametime only, no logging |
-| `full` | Everything on OSD + all logging enabled |
-| `battery` | Power/battery metrics — ideal for Steam Deck and handhelds |
-
-### Organised Log Layout
-
-After running `organize`, logs are structured as:
-
-```
-~/Documents/MangoBench_Logs/
-├── Cyberpunk2077/
-│   ├── Cyberpunk2077_2026-02-22_14-30-00.csv
-│   ├── Cyberpunk2077_2026-02-21_20-15-00.csv
-│   ├── Cyberpunk2077_2026-02-20_18-00-00.csv
-│   └── current.csv  →  Cyberpunk2077_2026-02-22_14-30-00.csv
-├── HalfLife2/
-│   ├── HalfLife2_2026-02-22_16-00-00.csv
-│   └── current.csv  →  HalfLife2_2026-02-22_16-00-00.csv
-└── benchmark_all-games_20260222_1630.zip   (created by 'bundle')
-```
-
-- **Per-game folders**: Each game gets its own directory
-- **current.csv**: Always a symlink to today's newest log (1-day lifespan concept)
-- **Rotation**: Oldest logs deleted when a game exceeds 30 files (configurable)
-- **Bundle-ready**: Each game folder is a natural set of "Runs" for FlightlessSomething
-
-### Per-Game Config Generation
+### Quick Start
 
 ```bash
-# Global config (all games)
-mango-hud-profiler configure --preset logging
+# 1. Set up MangoHud config with all bottleneck keys
+./utilities/mango-hud-profiler.py configure --preset logging
 
-# Per-game config (only Cyberpunk)
-mango-hud-profiler configure --preset logging --game Cyberpunk2077
+# 2. Or just check/fix your existing config
+./utilities/mango-hud-profiler.py configure --check
 
-# Per-game with custom overrides
-mango-hud-profiler configure --preset battery --game PortalDeck \
-    --set log_interval=200 font_size=16
+# 3. Play games, press Shift+F2 to log
+
+# 4. Organize logs into per-game folders
+./utilities/mango-hud-profiler.py organize
+
+# 5. Generate charts (uses mangoplot)
+./utilities/mango-hud-profiler.py graph --game Cyberpunk2077
+
+# 6. View summary
+./utilities/mango-hud-profiler.py summary --game Cyberpunk2077
+
+# 7. Upload to FlightlessSomething
+export FLIGHTLESS_SESSION="your_mysession_cookie"
+./utilities/mango-hud-profiler.py upload --game Cyberpunk2077
 ```
 
-Per-game configs are written to `~/.config/MangoHud/<GameName>.conf` and
-MangoHud picks them up automatically for that executable.
+### Directory Layout
 
-### Summary Output
-
-The `summary` command produces per-metric statistics:
-
+After running `organize`:
 ```
-========================================================================
-  MANGOHUD LOG SUMMARY: Cyberpunk2077_2026-02-22_14-30-00.csv
-========================================================================
-  File       : /home/user/Documents/MangoBench_Logs/Cyberpunk2077/...
-  Size       : 245.3 KB
-  Samples    : 7200
-  OS         : Bazzite Linux 41
-  Platform   : Bazzite (SteamOS derivative)
+~/Documents/MangoLogs/
+  Cyberpunk2077/
+    Cyberpunk2077_2026-02-22_14-30-00.csv
+    Cyberpunk2077_2026-02-21_20-15-00.csv
+    Cyberpunk2077-current-mangohud.csv -> (symlink to newest)
+  HalfLife2/
+    ...
 
-  --- Performance ---
-  FPS                   avg=    62.4 fps  min=45.0  max=75.0  1%=48.2  99%=74.1
-  Frame Time            avg=    16.0 ms   min=13.3  max=22.2  1%=13.5  99%=20.8
-
-  --- Thermals ---
-  CPU Temp              avg=    72.3 C    min=65.0  max=85.0
-  GPU Temp              avg=    68.1 C    min=60.0  max=78.0
-
-  FPS Stability : 87.3%  (100%=perfectly stable)
-  Frametime Jitter (P99-P1): 7.30 ms
-
-  --- Upload to Web Viewers ---
-  Log file for upload: /home/user/Documents/MangoBench_Logs/Cyberpunk2077/...
-    * FlightlessMango Log Viewer: https://flightlessmango.com/games/new
-    * CapFrameX Web Analysis: https://www.capframex.com/analysis
-========================================================================
+~/mangohud-perf/
+  Cyberpunk2077/
+    charts/
+      *.png  (mangoplot output)
+  HalfLife2/
+    charts/
+      ...
 ```
-
-### Graph Output
-
-The `graph` command generates individual charts for each metric:
-- `<game>_fps.png` — FPS over time
-- `<game>_frametime.png` — Frame time over time
-- `<game>_cpu_temp.png` — CPU temperature
-- `<game>_gpu_temp.png` — GPU temperature
-- `<game>_cpu_power.png` / `<game>_gpu_power.png` — Power draw
-- `<game>_battery.png` — Battery level (if applicable)
-- `<game>_ram.png` / `<game>_vram.png` — Memory usage
-- `<game>_overview.png` — Combined FPS + frametime dual chart
-
-Requires `matplotlib`: `pip install matplotlib`
 
 ---
 
-## Typical Workflow
+## FlightlessSomething Workflow
 
-### One-Time Setup
+### What is a Benchmark?
+
+On FlightlessSomething, a **Benchmark** (e.g. `/benchmarks/1937`) is a
+container that holds multiple CSV uploads. Each CSV becomes a separate "Run"
+shown side-by-side.
+
+This means:
+- **Don't** merge game CSVs into one file
+- **Do** upload multiple CSVs to the same Benchmark
+- Each CSV = one game or one settings variant
+
+### Upload Workflow
+
+#### Manual (Web Browser)
+
+1. Play games and log (Shift+F2)
+2. Go to <https://flightlesssomething.ambrosia.one/benchmarks/new>
+3. Select multiple CSV files at once
+4. The site creates a single Benchmark URL with all runs side-by-side
+
+#### Using mango-hud-profiler.py
 
 ```bash
-# 1. Generate a logging-oriented MangoHud config
-mango-hud-profiler configure --preset logging --force
+# Organize logs first
+./utilities/mango-hud-profiler.py organize
 
-# 2. Or per-game configs
-mango-hud-profiler configure --preset logging --game Cyberpunk2077
-mango-hud-profiler configure --preset battery --game PortalDeck
+# Bundle into a zip (for manual upload)
+./utilities/mango-hud-profiler.py bundle
+
+# Or upload directly via API
+./utilities/mango-hud-profiler.py upload --session YOUR_TOKEN
 ```
 
-### Daily Gaming + Profiling
+### API Upload
 
+Based on [FlightlessSomething-auto](https://github.com/erkexzcx/FlightlessSomething-auto):
+
+```
+POST /benchmark
+Content-Type: multipart/form-data
+Cookie: mysession=<session_token>
+
+Fields:
+  title=<benchmark title>
+  description=<benchmark description>
+  files=@file1.csv
+  files=@file2.csv
+  ...
+
+Success: HTTP 303 with Location header -> /benchmarks/<ID>
+```
+
+**Getting your session token:**
+1. Log in at <https://flightlesssomething.ambrosia.one/>
+2. Open browser DevTools → Application → Cookies
+3. Copy the `mysession` cookie value
+
+**curl example:**
 ```bash
-# Play your games normally — MangoHud logs to /tmp/MangoHud/ automatically
-# (Press Right_Shift + F2 to toggle logging if autostart_log=0)
-
-# After gaming, organise the raw logs into per-game folders
-mango-hud-profiler organize
-
-# See what games have logs
-mango-hud-profiler games
-
-# Summarise a specific game
-mango-hud-profiler summary --game Cyberpunk2077
-
-# Generate graphs
-mango-hud-profiler graph --game Cyberpunk2077
-
-# Create a bundle for FlightlessSomething upload
-mango-hud-profiler bundle
-# Or for a specific game:
-mango-hud-profiler bundle --game Cyberpunk2077
+curl -i "https://flightlesssomething.ambrosia.one/benchmark" \
+  -X POST \
+  -H "Cookie: mysession=$MYSESSION" \
+  -F "title=My Benchmark" \
+  -F "description=Testing" \
+  -F "files=@Cyberpunk2077_2026-02-22.csv" \
+  -F "files=@HalfLife2_2026-02-22.csv"
 ```
-
-### Uploading to FlightlessSomething
-
-1. Run `mango-hud-profiler bundle` to create a zip
-2. Go to https://flightlesssomething.com/benchmarks/new
-3. Extract the zip and select all CSVs (or drag-drop them)
-4. Each CSV becomes a separate "Run" in the same Benchmark
-5. Share the Benchmark URL for comparison
-
-**Pro tip**: Create an account on FlightlessSomething to save Benchmarks and
-add more Runs over time (e.g., before/after a driver update).
 
 ---
 
-## Resources & References
+## References
 
-### MangoHud
+### Official MangoHud
 
-- **GitHub**: https://github.com/flightlessmango/MangoHud
-- **Configuration docs**: https://github.com/flightlessmango/MangoHud#mangohud_config
-- **Keybinds**: https://github.com/flightlessmango/MangoHud#keybindings
-- **FPS logging docs**: https://github.com/flightlessmango/MangoHud#fps-logging
-- **MangoHud Releases**: https://github.com/flightlessmango/MangoHud/releases
+| Resource | URL |
+|----------|-----|
+| GitHub repository | <https://github.com/flightlessmango/MangoHud> |
+| Upstream example config | <https://github.com/flightlessmango/MangoHud/blob/master/data/MangoHud.conf> |
+| Releases | <https://github.com/flightlessmango/MangoHud/releases> |
+| mangoplot (included) | Ships with MangoHud as `mangoplot` |
 
-### FlightlessSomething / FlightlessMango
+### FlightlessSomething
 
-- **FlightlessSomething** (primary viewer): https://flightlesssomething.com
-- **Upload new benchmark**: https://flightlesssomething.com/benchmarks/new
-- **FlightlessMango** (legacy): https://flightlessmango.com/games/new
-- **FlightlessMango GitHub**: https://github.com/flightlessmango
+| Resource | URL |
+|----------|-----|
+| Web viewer | <https://flightlesssomething.ambrosia.one/> |
+| Upload page | <https://flightlesssomething.ambrosia.one/benchmarks/new> |
+| API automation | <https://github.com/erkexzcx/FlightlessSomething-auto> |
 
-### Bazzite / SteamOS
+### Other Viewers
 
-- **Bazzite**: https://bazzite.gg
-- **Bazzite GitHub**: https://github.com/ublue-os/bazzite
-- **SteamOS**: https://store.steampowered.com/steamos
-- **Gamescope** (compositor): https://github.com/ValveSoftware/gamescope
+| Resource | URL |
+|----------|-----|
+| FlightlessMango (original) | <https://flightlessmango.com/games/new> |
+| CapFrameX | <https://www.capframex.com/analysis> |
 
-### Analysis Tools
+### SteamOS / Bazzite
 
-- **mangoplot** (CLI plotter): `pip install mangoplot` — https://github.com/flightlessmango/mangoplot
-- **CapFrameX**: https://www.capframex.com — Desktop app + web analysis
-- **matplotlib** (for `graph` subcommand): `pip install matplotlib`
+| Resource | URL |
+|----------|-----|
+| Bazzite | <https://bazzite.gg/> |
+| SteamOS | <https://store.steampowered.com/steamos> |
+| MangoHud on Bazzite | Pre-installed at `/usr/bin/mangohud` |
 
-### This Tool
+### This Repository
 
-- **Script**: `utilities/mango-hud-profiler.py`
-- **Help**: `mango-hud-profiler --help`
-- **Per-subcommand help**: `mango-hud-profiler <subcommand> --help`
-- **Dependencies**: Python 3.8+ (stdlib only; matplotlib optional for graphs)
+| Resource | Path |
+|----------|------|
+| mango-hud-profiler.py | `utilities/mango-hud-profiler.py` |
+| This documentation | `docs/mangohud.md` |

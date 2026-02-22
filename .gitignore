@@ -10,5 +10,5 @@ custom-pkg.txt
 *.vscode*
 
 # Python
-*.pyc
 *__pycache__
+*.pyc

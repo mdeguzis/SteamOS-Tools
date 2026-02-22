@@ -8,3 +8,7 @@ custom-pkg.txt
 *.iso
 .git/hooks
 *.vscode*
+
+# Python
+*.pyc
+*__pycache__

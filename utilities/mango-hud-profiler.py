@@ -394,6 +394,30 @@ def _ensure_bottleneck_keys(conf_path: pathlib.Path) -> List[str]:
         f.write(addition)
     return list(missing.keys())
 
+def sync_config_to_preset():
+    source_path = os.path.expanduser("~/.config/MangoHud/MangoHud.conf")
+    target_path = os.path.expanduser("~/.config/MangoHud/presets.conf")
+
+    if not os.path.exists(source_path):
+        print(f"❌ Source config not found at {source_path}")
+        return
+
+    # Read your existing master config
+    with open(source_path, 'r') as f:
+        master_config = f.read()
+
+    # Wrap it in the [preset 2] header
+    # This effectively "buffs" the Steam Slider Level 2 with your settings
+    preset_data = f"[preset 2]\n{master_config}"
+
+    # Write it to the presets file
+    try:
+        with open(target_path, 'w') as f:
+            f.write(preset_data)
+        print(f"✅ Successfully copied MangoHud.conf into Preset 2 hijack.")
+        print("🚀 Just set the Steam Overlay to Level 2 (Horizontal) to begin.")
+    except Exception as e:
+        print(f"❌ Error writing to presets.conf: {e}")
 
 def cmd_configure(args: argparse.Namespace) -> int:
     pn = args.preset
@@ -458,6 +482,12 @@ def cmd_configure(args: argparse.Namespace) -> int:
     if out.exists() and not args.force:
         log.warning("File exists: %s (use --force)", out)
         return 1
+
+    # TEMPORARY
+    # Copy to presets "2" so moving to slider 2 uses our config
+    # This allows skipping having to set launch options
+    sync_config_to_preset()
+
     out.write_text(txt, encoding="utf-8")
     scope = f"game '{args.game}' (wine-{args.game}.conf)" if args.game else "global"
     print(f"  Config written: {out}")

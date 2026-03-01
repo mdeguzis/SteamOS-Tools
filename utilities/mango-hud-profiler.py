@@ -44,7 +44,7 @@ XDG_DATA = pathlib.Path(
 MANGOHUD_CONF_DIR = XDG_CONFIG / "MangoHud"
 MANGOHUD_CONF_FILE = MANGOHUD_CONF_DIR / "MangoHud.conf"
 # Standard MangoHud log/output paths for Bazzite/SteamOS
-MANGOHUD_LOG_DIR = pathlib.Path.home() / "manglogs"
+MANGOHUD_LOG_DIR = pathlib.Path.home() / "mangologs"
 MANGOHUD_TMP_LOG = pathlib.Path("/tmp/MangoHud")
 MANGOHUD_ALT_LOG = XDG_DATA / "MangoHud"
 BENCH_LOG_DIR = MANGOHUD_LOG_DIR  # organized logs live alongside raw logs

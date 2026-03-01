@@ -189,12 +189,110 @@ CONFIG_PRESETS: Dict[str, Dict[str, Any]] = {
     },
 }
 
+# ── Valve / SteamOS preset definitions ─────────────────────────────────
+# These mirror what MangoHud ships in data/presets.conf (presets 1-2)
+# plus the built-in defaults that gamescope uses for presets 3-4.
+# The Steam Deck Performance Overlay slider selects among these.
+# We inject logging keys into every preset so that CSV recording works
+# regardless of which slider position the user picks.
+#
+# Valve originals (for reference):
+#   preset 1 = no_display  (overlay hidden)
+#   preset 2 = FPS only    (horizontal, fps_only)
+#   preset 3 = extended    (horizontal compact, CPU/GPU/frametime/battery)
+#   preset 4 = full detail (vertical, all stats)
+
+_PRESET_LOGGING_KEYS: Dict[str, Any] = {
+    "output_folder": str(MANGOHUD_LOG_DIR),
+    "toggle_logging": "Shift_L+F2",
+    "log_duration": 0,
+    "log_interval": 100,
+    "log_versioning": 1,
+    "autostart_log": 0,
+}
+
+VALVE_PRESETS: Dict[int, Dict[str, Any]] = {
+    # ── Preset 1: No display (overlay hidden, logging active in background) ─
+    1: {
+        "description": "Valve preset 1 (no display) + logging",
+        "values": {
+            "no_display": 1,
+            **_PRESET_LOGGING_KEYS,
+        },
+    },
+    # ── Preset 2: FPS only (horizontal bar, minimal) ───────────────────────
+    2: {
+        "description": "Valve preset 2 (FPS only) + logging",
+        "values": {
+            "legacy_layout": 0,
+            "cpu_stats": 0,
+            "gpu_stats": 0,
+            "fps": 1,
+            "fps_only": 1,
+            "frametime": 0,
+            **_PRESET_LOGGING_KEYS,
+        },
+    },
+    # ── Preset 3: Extended (horizontal compact with core stats) ────────────
+    3: {
+        "description": "Valve preset 3 (extended) + logging",
+        "values": {
+            "legacy_layout": 0,
+            "horizontal": 1,
+            "hud_compact": 1,
+            "gpu_stats": 1,
+            "cpu_stats": 1,
+            "fps": 1,
+            "frametime": 1,
+            "frame_timing": 1,
+            "battery": 1,
+            **_PRESET_LOGGING_KEYS,
+        },
+    },
+    # ── Preset 4: Full detail (vertical, everything visible) ───────────────
+    4: {
+        "description": "Valve preset 4 (full detail) + logging",
+        "values": {
+            "legacy_layout": 0,
+            "gpu_stats": 1,
+            "cpu_stats": 1,
+            "cpu_temp": 1,
+            "gpu_temp": 1,
+            "cpu_power": 1,
+            "gpu_power": 1,
+            "cpu_mhz": 1,
+            "gpu_core_clock": 1,
+            "gpu_mem_clock": 1,
+            "vram": 1,
+            "ram": 1,
+            "fps": 1,
+            "frametime": 1,
+            "frame_timing": 1,
+            "battery": 1,
+            "battery_power": 1,
+            "gamepad_battery": 1,
+            "fan": 1,
+            "throttling_status": 1,
+            "wine": 1,
+            "engine_version": 1,
+            "vulkan_driver": 1,
+            "gpu_name": 1,
+            "core_load": 1,
+            **_PRESET_LOGGING_KEYS,
+        },
+    },
+}
+
 LOG_FMT = "%(asctime)s [%(levelname)-7s] %(name)s: %(message)s"
 LOG_DATEFMT = "%Y-%m-%d %H:%M:%S"
 log = logging.getLogger(PROG_NAME)
 
 
 def setup_logging(verbosity: int = 0, logfile: Optional[str] = None) -> None:
+    """
+    Setup logging
+    """
+
     level = [logging.WARNING, logging.INFO, logging.DEBUG][min(verbosity, 2)]
     handlers: List[logging.Handler] = [logging.StreamHandler(sys.stderr)]
     if logfile:
@@ -285,7 +383,23 @@ def discover_games(d: Optional[pathlib.Path] = None) -> List[str]:
     return sorted(names, key=str.lower)
 
 
-def parse_csv(path: pathlib.Path) -> Tuple[List[str], List[Dict[str, str]]]:
+# ── MangoHud CSV spec header fields ────────────────────────────────────
+# FlightlessSomething expects this 3-line header in MangoHud CSVs:
+#   Line 1: os,cpu,gpu,ram,kernel,driver,cpuscheduler  (spec field names)
+#   Line 2: <actual spec values>
+#   Line 3: fps,frametime,cpu_load,...,elapsed          (data column headers)
+#   Line 4+: numeric data rows
+_MANGOHUD_SPEC_FIELDS = {"os", "cpu", "gpu", "ram", "kernel", "driver", "cpuscheduler"}
+
+
+def parse_csv(
+    path: pathlib.Path,
+) -> Tuple[List[str], List[Dict[str, str]]]:
+    """Parse a MangoHud CSV log, returning (column_names, rows).
+
+    Handles both the modern 3-line spec-header format (used by
+    FlightlessSomething) and the legacy ``#``-comment format.
+    """
     lines = [
         s
         for s in path.read_text(encoding="utf-8", errors="replace").splitlines()
@@ -293,6 +407,24 @@ def parse_csv(path: pathlib.Path) -> Tuple[List[str], List[Dict[str, str]]]:
     ]
     if not lines:
         return [], []
+
+    # ── Detect the modern spec-header format ───────────────────────────
+    # Line 1 fields are a subset of _MANGOHUD_SPEC_FIELDS
+    first_fields = {f.strip().lower() for f in lines[0].split(",")}
+    if first_fields & _MANGOHUD_SPEC_FIELDS and len(first_fields & _MANGOHUD_SPEC_FIELDS) >= 3:
+        # Modern format: skip spec header (line 0) and spec values (line 1)
+        # Data column headers are on line 2
+        if len(lines) < 3:
+            return [], []
+        cols = [c.strip() for c in lines[2].split(",")]
+        rows: List[Dict[str, str]] = []
+        for ln in lines[3:]:
+            vs = ln.split(",")
+            if len(vs) == len(cols):
+                rows.append(dict(zip(cols, [v.strip() for v in vs])))
+        return cols, rows
+
+    # ── Legacy format: skip # comments, find header by heuristic ──────
     hi = 0
     for i, ln in enumerate(lines):
         if ln.startswith("#"):
@@ -306,7 +438,7 @@ def parse_csv(path: pathlib.Path) -> Tuple[List[str], List[Dict[str, str]]]:
             hi = i
             break
     cols = [c.strip() for c in lines[hi].split(",")]
-    rows: List[Dict[str, str]] = []
+    rows = []
     for ln in lines[hi + 1 :]:
         vs = ln.split(",")
         if len(vs) == len(cols):
@@ -394,30 +526,63 @@ def _ensure_bottleneck_keys(conf_path: pathlib.Path) -> List[str]:
         f.write(addition)
     return list(missing.keys())
 
-def sync_config_to_preset():
-    source_path = os.path.expanduser("~/.config/MangoHud/MangoHud.conf")
-    target_path = os.path.expanduser("~/.config/MangoHud/presets.conf")
 
-    if not os.path.exists(source_path):
-        print(f"❌ Source config not found at {source_path}")
-        return
+def sync_config_to_preset(log_dir: Optional[pathlib.Path] = None) -> bool:
+    """Write all 4 Valve presets (with logging) to ~/.config/MangoHud/presets.conf.
 
-    # Read your existing master config
-    with open(source_path, 'r') as f:
-        master_config = f.read()
+    Each preset mirrors Valve's original OSD behaviour for that slider
+    position but adds CSV logging keys so performance data is always
+    captured regardless of which overlay level the user selects.
 
-    # Wrap it in the [preset 2] header
-    # This effectively "buffs" the Steam Slider Level 2 with your settings
-    preset_data = f"[preset 2]\n{master_config}"
+    Returns True on success, False on error.
+    """
+    target_path = MANGOHUD_CONF_DIR / "presets.conf"
+    target_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Write it to the presets file
+    # Ensure the log directory exists
+    effective_log_dir = log_dir or MANGOHUD_LOG_DIR
+    effective_log_dir.mkdir(parents=True, exist_ok=True)
+
+    ts = datetime.datetime.now().isoformat()
+    lines: List[str] = [
+        f"# MangoHud presets.conf -- generated by {PROG_NAME} v{VERSION}",
+        f"# Generated: {ts}",
+        "#",
+        "# Overrides Valve's default presets 1-4 to inject CSV logging.",
+        "# The Steam Performance Overlay slider picks [preset N].",
+        "# OSD appearance matches Valve's originals; logging runs silently.",
+        "#   Toggle logging: Shift_L+F2  |  Logs: " + str(effective_log_dir),
+        "",
+    ]
+
+    for num in sorted(VALVE_PRESETS):
+        preset = VALVE_PRESETS[num]
+        vals = dict(preset["values"])
+        # Allow caller to override log directory
+        if log_dir:
+            vals["output_folder"] = str(log_dir)
+        lines.append(f"[preset {num}]")
+        lines.append(f"# {preset['description']}")
+        for k, v in vals.items():
+            lines.append(f"{k}={v}")
+        lines.append("")
+
+    content = "\n".join(lines) + "\n"
+
     try:
-        with open(target_path, 'w') as f:
-            f.write(preset_data)
-        print(f"✅ Successfully copied MangoHud.conf into Preset 2 hijack.")
-        print("🚀 Just set the Steam Overlay to Level 2 (Horizontal) to begin.")
-    except Exception as e:
-        print(f"❌ Error writing to presets.conf: {e}")
+        target_path.write_text(content, encoding="utf-8")
+    except OSError as exc:
+        log.error("Failed to write presets.conf: %s", exc)
+        return False
+
+    print(f"  Presets written: {target_path}")
+    print(f"    Presets 1-4 now include CSV logging to {effective_log_dir}")
+    print("    Toggle logging: Shift_L+F2 at any slider position.")
+    for num in sorted(VALVE_PRESETS):
+        desc = VALVE_PRESETS[num]["description"]
+        print(f"      Preset {num}: {desc}")
+    return True
+
 
 def cmd_configure(args: argparse.Namespace) -> int:
     pn = args.preset
@@ -483,10 +648,9 @@ def cmd_configure(args: argparse.Namespace) -> int:
         log.warning("File exists: %s (use --force)", out)
         return 1
 
-    # TEMPORARY
-    # Copy to presets "2" so moving to slider 2 uses our config
-    # This allows skipping having to set launch options
-    sync_config_to_preset()
+    # Write Valve presets 1-4 with logging to presets.conf so the Steam
+    # Performance Overlay slider works with CSV recording at every level.
+    sync_config_to_preset(log_dir=log_dir)
 
     out.write_text(txt, encoding="utf-8")
     scope = f"game '{args.game}' (wine-{args.game}.conf)" if args.game else "global"
@@ -494,16 +658,16 @@ def cmd_configure(args: argparse.Namespace) -> int:
     print(f"    Preset: {pn} -- {pr['description']}")
     print(f"    Scope : {scope}")
     print(f"    Logs  : {log_dir}")
-    print(f"    Toggle: Shift_L+F2 to start/stop logging")
+    print("    Toggle: Shift_L+F2 to start/stop logging")
     if args.game:
         print(f"    MangoHud auto-applies when running '{args.game}' via Proton/Wine.")
     # Show all config paths for reference
-    print(f"\n    Config precedence (MangoHud checks in order):")
-    print(f"      1. MANGOHUD_CONFIGFILE env var")
+    print("\n    Config precedence (MangoHud checks in order):")
+    print("      1. MANGOHUD_CONFIGFILE env var")
     if args.game:
         print(f"      2. ~/.config/MangoHud/wine-{args.game}.conf  <-- this file")
     print(f"      3. {MANGOHUD_CONF_FILE}")
-    print(f"      4. ~/.var/app/com.valvesoftware.Steam/config/MangoHud/MangoHud.conf")
+    print("      4. ~/.var/app/com.valvesoftware.Steam/config/MangoHud/MangoHud.conf")
     if is_bazzite():
         print("    Bazzite: /usr/bin/mangohud reads from ~/.config/MangoHud/")
     return 0
@@ -567,11 +731,13 @@ def cmd_profile(args: argparse.Namespace) -> int:
             print(f"    {f}  ({f.stat().st_size/1024:.1f} KB)")
         if args.auto_summary:
             print()
-            [_print_summary(f) for f in new]
+            for logf in new:
+                _print_summary(logf)
         if args.auto_graph:
             print()
             od = pathlib.Path(args.graph_output) if args.graph_output else new[0].parent
-            [_gen_graphs(f, od, fmt=args.graph_format) for f in new]
+            for logf in new:
+                _gen_graphs(logf, od, fmt=args.graph_format)
     else:
         print(f"\n  No new logs found. Check config. Expected dir: {ld}")
     return 0
@@ -581,14 +747,53 @@ def cmd_profile(args: argparse.Namespace) -> int:
 
 _MPL = False
 try:
-    import matplotlib
+    import matplotlib  # type: ignore[import-not-found]
 
     matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
+    import matplotlib.pyplot as plt  # type: ignore[import-not-found]
 
     _MPL = True
 except ImportError:
     pass
+
+
+# ── FlightlessSomething-style dark theme ───────────────────────────────
+# Mirrors the Highcharts theme from https://github.com/erkexzcx/flightlesssomething
+# Dark background (#212529), white text, subtle grid, area-fill line charts.
+_FS_THEME = {
+    "bg": "#212529",
+    "text": "#FFFFFF",
+    "grid": "rgba(255, 255, 255, 0.1)",
+    "line": "#FFFFFF",
+    "tooltip_bg": "#1E1E1E",
+    # Default series palette (matches Highcharts defaults)
+    "palette": [
+        "#7cb5ec",
+        "#434348",
+        "#90ed7d",
+        "#f7a35c",
+        "#8085e9",
+        "#f15c80",
+        "#e4d354",
+        "#2b908f",
+        "#f45b5b",
+        "#91e8e1",
+    ],
+}
+
+
+def _apply_fs_theme(fig: Any, ax: Any, title: str, ylabel: str) -> None:
+    """Apply FlightlessSomething dark theme to a matplotlib axes."""
+    fig.patch.set_facecolor(_FS_THEME["bg"])
+    ax.set_facecolor(_FS_THEME["bg"])
+    ax.set_title(title, fontsize=16, fontweight="bold", color=_FS_THEME["text"])
+    ax.set_ylabel(ylabel, color=_FS_THEME["text"], fontsize=12)
+    ax.set_xlabel("Sample", color=_FS_THEME["text"], fontsize=12)
+    ax.tick_params(colors=_FS_THEME["text"], which="both")
+    ax.grid(True, color=_FS_THEME["text"], alpha=0.1, linewidth=0.5)
+    for spine in ax.spines.values():
+        spine.set_color(_FS_THEME["line"])
+        spine.set_alpha(0.3)
 
 
 def _plot(
@@ -603,14 +808,11 @@ def _plot(
 ) -> None:
     fig, ax = plt.subplots(figsize=sz, dpi=dpi)
     x = list(range(len(vals)))
-    ax.plot(x, vals, color=color, lw=0.7)
+    ax.plot(x, vals, color=color, lw=1.2)
     ax.fill_between(x, vals, alpha=fa, color=color)
-    ax.set_title(title, fontsize=13, fontweight="bold")
-    ax.set_ylabel(ylabel)
-    ax.set_xlabel("Sample")
-    ax.grid(True, alpha=0.3)
+    _apply_fs_theme(fig, ax, title, ylabel)
     fig.tight_layout()
-    fig.savefig(str(out))
+    fig.savefig(str(out), facecolor=fig.get_facecolor(), edgecolor="none")
     plt.close(fig)
     print(f"    Graph: {out}")
 
@@ -657,7 +859,7 @@ def _gen_graphs(
                 o = out_dir / f"{s}_{tag}.{fmt}"
                 _plot(vs, f"{label} -- {s}", unit, clr, fa, o, dpi, (w, h))
                 gen.append(o)
-    # Combined FPS+Frametime
+    # Combined FPS+Frametime (FlightlessSomething style)
     fk = _fcol(cols, ["fps", "FPS"])
     ftk = _fcol(cols, ["frametime", "frametime_ms", "Frametime"])
     if fk and ftk and _MPL:
@@ -665,22 +867,75 @@ def _gen_graphs(
         x = list(range(len(rows)))
         fv = [sf(r.get(fk, "0")) for r in rows]
         tv = [sf(r.get(ftk, "0")) for r in rows]
-        a1.plot(x, fv, color="#2ecc71", lw=0.7)
-        a1.fill_between(x, fv, alpha=0.2, color="#2ecc71")
-        a1.set_ylabel("FPS")
-        a1.set_title(f"Overview -- {s}", fontsize=13, fontweight="bold")
-        a1.grid(True, alpha=0.3)
-        a2.plot(x, tv, color="#e74c3c", lw=0.7)
-        a2.fill_between(x, tv, alpha=0.15, color="#e74c3c")
-        a2.set_ylabel("Frametime (ms)")
-        a2.set_xlabel("Sample")
-        a2.grid(True, alpha=0.3)
+        a1.plot(x, fv, color="#7cb5ec", lw=1.2)
+        a1.fill_between(x, fv, alpha=0.2, color="#7cb5ec")
+        _apply_fs_theme(fig, a1, f"FPS -- {s}", "FPS")
+        a1.set_xlabel("")  # shared x, only bottom gets label
+        a2.plot(x, tv, color="#f7a35c", lw=1.2)
+        a2.fill_between(x, tv, alpha=0.15, color="#f7a35c")
+        _apply_fs_theme(fig, a2, f"Frametime -- {s}", "ms")
         fig.tight_layout()
         o = out_dir / f"{s}_overview.{fmt}"
-        fig.savefig(str(o))
+        fig.savefig(str(o), facecolor=fig.get_facecolor(), edgecolor="none")
         plt.close(fig)
         gen.append(o)
         print(f"    Graph: {o}")
+
+    # ── Summary bar chart (FlightlessSomething "Summary" tab style) ────
+    # Horizontal bars: Average, 1% Low, 0.1% Low for FPS
+    if fk and _MPL:
+        fv_sorted = sorted([sf(r.get(fk, "0")) for r in rows])
+        if fv_sorted and max(fv_sorted) > 0:
+            avg_fps = sum(fv_sorted) / len(fv_sorted)
+            p1_fps = pctl(fv_sorted, 1)
+            p01_fps = pctl(fv_sorted, 0.1)
+            labels = ["Average", "1% Low", "0.1% Low"]
+            values = [avg_fps, p1_fps, p01_fps]
+            bar_colors = ["#7cb5ec", "#90ed7d", "#f7a35c"]
+
+            fig, ax = plt.subplots(figsize=(w, 3.5), dpi=dpi)
+            fig.patch.set_facecolor(_FS_THEME["bg"])
+            ax.set_facecolor(_FS_THEME["bg"])
+            bars = ax.barh(
+                labels,
+                values,
+                color=bar_colors,
+                edgecolor=_FS_THEME["line"],
+                linewidth=0.5,
+                height=0.5,
+            )
+            # Value labels on bars
+            for bar, val in zip(bars, values):
+                ax.text(
+                    bar.get_width() + max(values) * 0.02,
+                    bar.get_y() + bar.get_height() / 2,
+                    f"{val:.1f} fps",
+                    va="center",
+                    color=_FS_THEME["text"],
+                    fontsize=12,
+                    fontweight="bold",
+                )
+            ax.set_title(
+                f"FPS Summary -- {s}",
+                fontsize=16,
+                fontweight="bold",
+                color=_FS_THEME["text"],
+            )
+            ax.set_xlabel("FPS", color=_FS_THEME["text"], fontsize=12)
+            ax.tick_params(colors=_FS_THEME["text"], which="both")
+            ax.grid(True, axis="x", color=_FS_THEME["text"], alpha=0.1, linewidth=0.5)
+            ax.set_xlim(0, max(values) * 1.15)
+            for spine in ax.spines.values():
+                spine.set_color(_FS_THEME["line"])
+                spine.set_alpha(0.3)
+            ax.invert_yaxis()  # Average on top
+            fig.tight_layout()
+            o = out_dir / f"{s}_summary.{fmt}"
+            fig.savefig(str(o), facecolor=fig.get_facecolor(), edgecolor="none")
+            plt.close(fig)
+            gen.append(o)
+            print(f"    Graph: {o}")
+
     if gen:
         print(f"  {len(gen)} graph(s) generated in {out_dir}")
     return 0
@@ -697,7 +952,12 @@ def _run_mangoplot(csv_path: pathlib.Path, out_dir: pathlib.Path) -> int:
     log.info("Running: %s (output -> %s)", " ".join(cmd), out_dir)
     try:
         result = subprocess.run(
-            cmd, cwd=str(out_dir), capture_output=True, text=True, timeout=60
+            cmd,
+            cwd=str(out_dir),
+            capture_output=True,
+            text=True,
+            timeout=60,
+            check=False,
         )
         if result.returncode == 0:
             # mangoplot creates PNG files in the cwd
@@ -834,7 +1094,7 @@ def _print_summary(path: pathlib.Path) -> None:
             print(f"  Frametime Jitter (P99-P1): {jitter:.2f} ms")
 
     # Web viewer info
-    print(f"\n  --- Upload to Web Viewers ---")
+    print("\n  --- Upload to Web Viewers ---")
     print(f"  Log file for upload: {path}")
     for v in WEB_VIEWERS:
         print(f"    * {v['name']}: {v['url']}")
@@ -855,9 +1115,7 @@ def cmd_games(args: argparse.Namespace) -> int:
     for n in names:
         count = len(find_logs(d, game=n))
         print(f"    {n:30s}  ({count} log{'s' if count != 1 else ''})")
-    print(
-        f"\n  Use --game NAME with configure/graph/summary to target a specific game."
-    )
+    print("\n  Use --game NAME with configure/graph/summary to target a specific game.")
     return 0
 
 
@@ -1054,7 +1312,7 @@ def cmd_bundle(args: argparse.Namespace) -> int:
                         csvs.append(latest[-1])
 
     if not csvs:
-        print(f"  No logs found to bundle.")
+        print("  No logs found to bundle.")
         print(f"    Source: {src_dir}")
         if game:
             print(f"    Game filter: {game}")
@@ -1084,10 +1342,10 @@ def cmd_bundle(args: argparse.Namespace) -> int:
     print(
         f"    Files : {len(csvs)} CSV(s) ({total_kb:.0f} KB -> {zip_kb:.0f} KB zipped)"
     )
-    print(f"    Upload to FlightlessSomething:")
+    print("    Upload to FlightlessSomething:")
     print(f"      {FLIGHTLESS_URL}")
-    print(f"      Select all CSVs from the zip (or upload the individual files).")
-    print(f"\n    Included logs:")
+    print("      Select all CSVs from the zip (or upload the individual files).")
+    print("\n    Included logs:")
     for c in csvs:
         print(f"      {c.name}  ({c.stat().st_size/1024:.1f} KB)")
     return 0
@@ -1190,7 +1448,7 @@ def cmd_upload(args: argparse.Namespace) -> int:
     )
     description = args.description or f"Uploaded via {PROG_NAME} v{VERSION}"
 
-    print(f"  Uploading to FlightlessSomething:")
+    print("  Uploading to FlightlessSomething:")
     print(f"    Endpoint : {endpoint}")
     print(f"    Title    : {title}")
     print(f"    Files    : {len(csvs)} CSV(s)")
@@ -1267,7 +1525,7 @@ def cmd_upload(args: argparse.Namespace) -> int:
             try:
                 err_body = e.read().decode("utf-8", errors="replace")[:500]
                 log.error("Response: %s", err_body)
-            except Exception:
+            except OSError:
                 pass
             return 1
     except urllib.error.URLError as e:
@@ -1276,7 +1534,7 @@ def cmd_upload(args: argparse.Namespace) -> int:
 
     if status == 303 and location:
         full_url = f"{base_url}{location}" if location.startswith("/") else location
-        print(f"\n  Upload successful!")
+        print("\n  Upload successful!")
         print(f"    Benchmark URL: {full_url}")
         print(f"    {len(csvs)} CSV(s) uploaded as separate runs.")
         return 0
@@ -1480,7 +1738,7 @@ def build_parser() -> argparse.ArgumentParser:
         "graph",
         help="Generate graphs from MangoHud CSV logs (mangoplot or matplotlib).",
         description=textwrap.dedent(
-            f"""\
+            """\
             Generate performance charts from MangoHud CSV logs.
 
             By default uses mangoplot (ships with MangoHud on Bazzite/SteamOS)

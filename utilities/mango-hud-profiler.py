@@ -1271,7 +1271,11 @@ def cmd_summary(args: argparse.Namespace) -> int:
 def _extract_game_name(stem: str) -> str:
     """Extract game name from MangoHud log filename stem."""
     m = re.match(r"^(.+?)_\d{4}[-_]", stem)
-    return m.group(1) if m else stem
+    name = m.group(1) if m else stem
+    # Strip Windows .exe suffix common in Proton game logs
+    if name.lower().endswith(".exe"):
+        name = name[:-4]
+    return name
 
 
 def _rotate_game_logs(game_dir: pathlib.Path, max_logs: int = MAX_LOGS_PER_GAME) -> int:
@@ -1300,17 +1304,25 @@ def cmd_organize(args: argparse.Namespace) -> int:
     max_logs = args.max_logs
     dry = args.dry_run
 
-    raw_logs = find_logs(src_dir)
-    if not raw_logs:
+    raw_logs = [
+        p for p in find_logs(src_dir)
+        if not p.name.endswith("_summary.csv")
+        and not p.name.endswith("-current-mangohud.csv")
+    ]
+
+    dest.mkdir(parents=True, exist_ok=True)
+    dest_has_games = dest.exists() and any(p.is_dir() for p in dest.iterdir())
+
+    if not raw_logs and not dest_has_games:
         print("  No MangoHud CSV logs found to organize.")
         print(f"    Searched: {MANGOHUD_LOG_DIR}, {MANGOHUD_ALT_LOG}")
         return 1
-
-    dest.mkdir(parents=True, exist_ok=True)
     moved = 0
     rotated = 0
     skipped = 0
+    deleted = 0
     today = datetime.date.today().isoformat()
+    originals_to_delete: List[pathlib.Path] = []
 
     for src in raw_logs:
         game = _extract_game_name(src.stem)
@@ -1319,6 +1331,7 @@ def cmd_organize(args: argparse.Namespace) -> int:
 
         if target.exists():
             skipped += 1
+            originals_to_delete.append(src)
             continue
 
         if dry:
@@ -1329,7 +1342,18 @@ def cmd_organize(args: argparse.Namespace) -> int:
         game_dir.mkdir(parents=True, exist_ok=True)
         shutil.copy2(str(src), str(target))
         moved += 1
+        originals_to_delete.append(src)
         log.info("Copied: %s -> %s", src, target)
+
+    # Delete originals from source directory after successful copy
+    if not dry:
+        for src in originals_to_delete:
+            try:
+                src.unlink()
+                deleted += 1
+                log.info("Deleted original: %s", src)
+            except OSError as e:
+                log.warning("Could not delete %s: %s", src, e)
 
     # Rotation + current symlinks
     if not dry:
@@ -1338,12 +1362,15 @@ def cmd_organize(args: argparse.Namespace) -> int:
                 continue
             rotated += _rotate_game_logs(game_dir, max_logs)
 
-            # Update "current.csv" symlink -> today's newest CSV
+            # Update current symlink -> today's newest real CSV (not summary/current)
             day_logs = sorted(
                 [
                     f
                     for f in game_dir.glob("*.csv")
-                    if f.name != "current.csv" and today in f.name
+                    if today in f.name
+                    and not f.name.endswith("_summary.csv")
+                    and not f.name.endswith("-current-mangohud.csv")
+                    and f.name != "current.csv"
                 ],
                 key=lambda p: p.stat().st_mtime,
             )
@@ -1354,6 +1381,8 @@ def cmd_organize(args: argparse.Namespace) -> int:
                 f
                 for f in game_dir.glob("*.csv")
                 if not f.name.endswith("-current-mangohud.csv")
+                and not f.name.endswith("_summary.csv")
+                and f.name != "current.csv"
             ]
             if day_logs:
                 if current_link.is_symlink() or current_link.exists():
@@ -1368,6 +1397,7 @@ def cmd_organize(args: argparse.Namespace) -> int:
     print(f"  Organize complete: {dest}")
     print(f"    Copied  : {moved} log(s)")
     print(f"    Skipped : {skipped} (already exist)")
+    print(f"    Deleted : {deleted} original(s) from source")
     print(f"    Rotated : {rotated} old log(s) deleted (max {max_logs}/game)")
 
     # Show tree
@@ -1487,31 +1517,45 @@ def _collect_csvs_for_upload(args: argparse.Namespace) -> List[pathlib.Path]:
                 csvs.extend(sorted(pp.glob("*.csv")))
         return csvs
 
+    def _is_real_csv(p: pathlib.Path) -> bool:
+        """Exclude symlinks and summary/current helper files."""
+        return (
+            not p.name.endswith("-current-mangohud.csv")
+            and not p.name.endswith("_summary.csv")
+            and p.name != "current.csv"
+        )
+
     # Game-specific
     if game:
         game_dir = src_dir / game
         if game_dir.is_dir():
             csvs = sorted(
-                [f for f in game_dir.glob("*.csv") if f.name != "current.csv"],
+                [f for f in game_dir.glob("*.csv") if _is_real_csv(f)],
                 key=lambda p: p.stat().st_mtime,
             )
         else:
-            csvs = find_logs(src_dir, game=game)
+            csvs = [f for f in find_logs(src_dir, game=game) if _is_real_csv(f)]
     else:
-        # All games: pick current.csv or newest from each folder
+        # All games: pick *-current-mangohud.csv symlink target or newest real CSV
         if src_dir.is_dir():
             for gd in sorted(src_dir.iterdir()):
                 if not gd.is_dir():
                     continue
-                cur = gd / "current.csv"
+                gn = gd.name
+                cur = gd / f"{gn}-current-mangohud.csv"
+                if not cur.exists():
+                    cur = gd / "current.csv"
                 if cur.is_symlink() or cur.exists():
-                    csvs.append(cur.resolve())
+                    resolved = cur.resolve()
+                    if resolved.exists() and _is_real_csv(resolved):
+                        csvs.append(resolved)
                 else:
-                    latest = sorted(
-                        [f for f in gd.glob("*.csv")], key=lambda p: p.stat().st_mtime
+                    real = sorted(
+                        [f for f in gd.glob("*.csv") if _is_real_csv(f)],
+                        key=lambda p: p.stat().st_mtime,
                     )
-                    if latest:
-                        csvs.append(latest[-1])
+                    if real:
+                        csvs.append(real[-1])
     return csvs
 
 
@@ -1751,7 +1795,7 @@ def cmd_upload(args: argparse.Namespace) -> int:
             args.title
             or f"Benchmark: {game or 'All Games'} - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}"
         )
-        description = args.description or f"Uploaded via {PROG_NAME} v{VERSION}"
+        description = args.description or f"Uploaded via {PROG_NAME} v{VERSION} (SteamOS-Tools)"
         print("  Uploading to FlightlessSomething:")
         print(f"    Title    : {title}")
 

@@ -1499,6 +1499,222 @@ def cmd_bundle(args: argparse.Namespace) -> int:
 # -- upload -----------------------------------------------------------------
 
 
+def _is_real_csv(p: pathlib.Path) -> bool:
+    """Exclude summary/current helper files; keep only raw MangoHud logs."""
+    return (
+        not p.name.endswith("-current-mangohud.csv")
+        and not p.name.endswith("_summary.csv")
+        and p.name != "current.csv"
+    )
+
+
+def _tui_file_picker(
+    root: pathlib.Path,
+    already_uploaded: Optional[set] = None,
+    force: bool = False,
+) -> Optional[List[pathlib.Path]]:
+    """Curses-based file picker with checkbox selection and folder navigation.
+
+    Returns selected files, or None if the user cancelled (ESC).
+    Falls back to None on non-TTY / curses failure so caller can use text picker.
+    already_uploaded: set of file stems already in this benchmark.
+    """
+    import curses as _curses
+
+    already = already_uploaded or set()
+    selected: set = set()
+    result: Optional[List[pathlib.Path]] = [None]  # mutable container for wrapper
+
+    def _dir_files(d: pathlib.Path) -> List[pathlib.Path]:
+        try:
+            return sorted(
+                [f for f in d.iterdir() if f.is_file() and _is_real_csv(f)],
+                key=lambda p: p.name,
+            )
+        except OSError:
+            return []
+
+    def _dir_subdirs(d: pathlib.Path) -> List[pathlib.Path]:
+        try:
+            return sorted(
+                [p for p in d.iterdir() if p.is_dir()
+                 and any(_is_real_csv(f) for f in p.iterdir() if f.is_file())],
+                key=lambda p: p.name,
+            )
+        except OSError:
+            return []
+
+    def _build_items(d: pathlib.Path) -> list:
+        return _dir_subdirs(d) + _dir_files(d)
+
+    def _run(stdscr) -> None:
+        _curses.curs_set(0)
+        try:
+            _curses.use_default_colors()
+            _curses.init_pair(1, _curses.COLOR_CYAN, -1)    # dirs / header
+            _curses.init_pair(2, _curses.COLOR_GREEN, -1)   # selected files
+            _curses.init_pair(3, _curses.COLOR_YELLOW, -1)  # already-uploaded
+            _curses.init_pair(4, -1, _curses.COLOR_BLUE)    # cursor row
+        except Exception:
+            pass
+
+        nav_stack: list = []  # each entry: (dir, items, cursor, scroll)
+        cur_dir = root
+        items = _build_items(root)
+        cursor = 0
+        scroll = 0
+
+        while True:
+            h, w = stdscr.getmaxyx()
+            stdscr.erase()
+
+            # display list: None = ".." back entry, then items
+            display: list = ([None] if nav_stack else []) + items
+            cursor = max(0, min(cursor, len(display) - 1))
+
+            # scroll so cursor stays visible (header=2, footer=2, preview=1)
+            list_h = max(1, h - 5)
+            if cursor >= scroll + list_h:
+                scroll = cursor - list_h + 1
+            if cursor < scroll:
+                scroll = cursor
+
+            # ── header ──────────────────────────────────────────────────
+            rel = str(cur_dir).replace(str(pathlib.Path.home()), "~")
+            n_sel = len(selected)
+            right = f" [{n_sel} selected] "
+            left = f" {rel}/ "
+            pad = max(0, w - 1 - len(left) - len(right))
+            try:
+                stdscr.addstr(0, 0, (left + " " * pad + right)[:w - 1], _curses.A_BOLD)
+                stdscr.addstr(1, 0, "─" * (w - 1))
+            except _curses.error:
+                pass
+
+            # ── item rows ───────────────────────────────────────────────
+            for row in range(list_h):
+                idx = scroll + row
+                if idx >= len(display):
+                    break
+                y = row + 2
+                item = display[idx]
+                is_cur = idx == cursor
+
+                if item is None:
+                    line = "  [↑] .."
+                    attr = _curses.color_pair(1)
+                elif item.is_dir():
+                    files = _dir_files(item)
+                    n = len(files)
+                    n_s = sum(1 for f in files if f in selected)
+                    box = "[*]" if (n_s == n and n > 0) else ("[-]" if n_s > 0 else "[ ]")
+                    line = f"  {box} {item.name}/  ({n} file{'s' if n != 1 else ''})"
+                    attr = _curses.color_pair(1)
+                else:
+                    is_sel = item in selected
+                    is_old = item.stem in already
+                    box = "[*]" if is_sel else "[ ]"
+                    kb = item.stat().st_size / 1024
+                    tag = "  ↑" if is_old else ""
+                    line = f"  {box} {item.name}  ({kb:.1f} KB){tag}"
+                    attr = (
+                        _curses.color_pair(2) if is_sel
+                        else _curses.color_pair(3) if is_old
+                        else 0
+                    )
+
+                try:
+                    if is_cur:
+                        padded = (line + " " * w)[:w - 1]
+                        stdscr.addstr(y, 0, padded, _curses.color_pair(4) | _curses.A_BOLD)
+                    else:
+                        stdscr.addstr(y, 0, line[:w - 1], attr)
+                except _curses.error:
+                    pass
+
+            # ── title preview (above footer) ────────────────────────────
+            if selected and already is None:  # new benchmark mode
+                game_names = sorted({
+                    _extract_game_name(c.parent.name) if c.parent != root
+                    else _extract_game_name(c.stem)
+                    for c in selected
+                })
+                preview = " Benchmark title: " + (", ".join(game_names) or "(unknown)") + " "
+            elif selected and already is not None:
+                preview = f" Appending {len(selected)} run(s) to existing benchmark "
+            else:
+                preview = " (no files selected) "
+            try:
+                stdscr.addstr(h - 2, 0, preview[:w - 1], _curses.A_BOLD)
+            except _curses.error:
+                pass
+
+            # ── footer ──────────────────────────────────────────────────
+            footer = " ↑↓:move  SPC:toggle  ENTER:open folder  ←/BKSP:back  u:upload  ESC:cancel "
+            try:
+                stdscr.addstr(h - 1, 0, footer[:w - 1], _curses.A_DIM)
+            except _curses.error:
+                pass
+
+            stdscr.refresh()
+
+            # ── input ───────────────────────────────────────────────────
+            key = stdscr.getch()
+
+            if key == _curses.KEY_UP:
+                cursor = max(0, cursor - 1)
+            elif key == _curses.KEY_DOWN:
+                cursor = min(len(display) - 1, cursor + 1)
+            elif key in (_curses.KEY_BACKSPACE, 127, _curses.KEY_LEFT):
+                if nav_stack:
+                    cur_dir, items, cursor, scroll = nav_stack.pop()
+            elif key == 27:  # ESC → cancel
+                result[0] = None
+                return
+            elif key == ord('u'):  # u → confirm/upload
+                sel = list(selected)
+                if already and not force:
+                    sel = [p for p in sel if p.stem not in already]
+                result[0] = sel
+                return
+            elif key in (10, 13, ord(' ')):  # ENTER or SPACE
+                if not display:
+                    continue
+                item = display[cursor]
+                if item is None:
+                    if nav_stack:
+                        cur_dir, items, cursor, scroll = nav_stack.pop()
+                elif item.is_dir():
+                    if key in (10, 13):  # ENTER → drill in
+                        nav_stack.append((cur_dir, items, cursor, scroll))
+                        cur_dir = item
+                        items = _build_items(item)
+                        cursor = 0
+                        scroll = 0
+                    else:  # SPACE → toggle all files in dir
+                        files = _dir_files(item)
+                        if files and all(f in selected for f in files):
+                            for f in files:
+                                selected.discard(f)
+                        else:
+                            for f in files:
+                                selected.add(f)
+                else:
+                    if item in selected:
+                        selected.discard(item)
+                    else:
+                        selected.add(item)
+
+    if not sys.stdout.isatty():
+        return None
+    try:
+        _curses.wrapper(_run)
+    except Exception as exc:
+        log.debug("TUI picker error: %s", exc)
+        return None
+    return result[0]
+
+
 def _collect_csvs_for_upload(args: argparse.Namespace) -> List[pathlib.Path]:
     """Collect CSV files based on --game, --input, or organized folders."""
     game = getattr(args, "game", None)
@@ -1516,14 +1732,6 @@ def _collect_csvs_for_upload(args: argparse.Namespace) -> List[pathlib.Path]:
             elif pp.is_dir():
                 csvs.extend(sorted(pp.glob("*.csv")))
         return csvs
-
-    def _is_real_csv(p: pathlib.Path) -> bool:
-        """Exclude symlinks and summary/current helper files."""
-        return (
-            not p.name.endswith("-current-mangohud.csv")
-            and not p.name.endswith("_summary.csv")
-            and p.name != "current.csv"
-        )
 
     # Game-specific
     if game:
@@ -1652,6 +1860,7 @@ def _fetch_current_user_id(token: str, base_url: str) -> Optional[int]:
     """Return the authenticated user's ID from /api/tokens."""
     import urllib.request
 
+    print(f"  Authenticating with {base_url} ...", end="", flush=True)
     req = urllib.request.Request(
         f"{base_url}/api/tokens",
         headers={"Authorization": f"Bearer {token}"},
@@ -1659,9 +1868,13 @@ def _fetch_current_user_id(token: str, base_url: str) -> Optional[int]:
     try:
         data = json.loads(urllib.request.urlopen(req).read().decode("utf-8", errors="replace"))
         if isinstance(data, list) and data:
-            return data[0].get("UserID") or data[0].get("user_id")
+            uid = data[0].get("UserID") or data[0].get("user_id")
+            print(f" OK (user ID {uid})")
+            return uid
+        print(" OK (no tokens returned)")
         return None
     except Exception as exc:
+        print(f" FAILED")
         log.warning("Could not fetch current user ID: %s", exc)
         return None
 
@@ -1676,28 +1889,41 @@ def _fetch_benchmarks(
 
     all_benchmarks: List[Dict[str, Any]] = []
     page = 1
+    # Try filtering server-side by user_id first (avoids paginating all public benchmarks)
+    user_filter = f"&user_id={user_id}" if user_id else ""
     while True:
-        url = f"{base_url}/api/benchmarks?per_page={per_page}&page={page}"
+        url = f"{base_url}/api/benchmarks?per_page={per_page}&page={page}{user_filter}"
+        print(f"  Fetching benchmarks (page {page}) ...", end="", flush=True)
         req = urllib.request.Request(
             url, headers={"Authorization": f"Bearer {token}"}
         )
         try:
             data = json.loads(urllib.request.urlopen(req).read().decode("utf-8", errors="replace"))
         except Exception as exc:
+            print(" FAILED")
             log.error("Failed to fetch benchmark list: %s", exc)
             break
 
         benchmarks = data.get("benchmarks") or []
         if not benchmarks:
+            print(" done")
             break
 
-        for b in benchmarks:
-            bid = b.get("UserID") or b.get("user_id")
-            if user_id is None or bid == user_id:
-                all_benchmarks.append(b)
-
+        matched = [
+            b for b in benchmarks
+            if user_id is None or (b.get("UserID") or b.get("user_id")) == user_id
+        ]
+        all_benchmarks.extend(matched)
         total_pages = data.get("total_pages", 1)
+        print(f" {len(matched)} matched (total so far: {len(all_benchmarks)})")
+
         if page >= total_pages:
+            break
+        # If server-side filter isn't supported and we got a full page with
+        # zero matches, the results are sorted by newest-first so our benchmarks
+        # would appear early — stop after two empty pages to avoid scanning all.
+        if not user_filter and len(matched) == 0 and page >= 2:
+            log.debug("No matches on consecutive pages, stopping early.")
             break
         page += 1
 
@@ -1734,24 +1960,47 @@ def _mark_uploaded(benchmark_id: str, filenames: List[str]) -> None:
     _save_upload_history(history)
 
 
-def _select_csvs_for_append(
-    csvs: List[pathlib.Path], benchmark_id: str
+def _fetch_benchmark_run_names(token: str, base_url: str, benchmark_id: str) -> Optional[set]:
+    """Return set of filenames already in the benchmark from the API, or None on error."""
+    import urllib.request
+
+    url = f"{base_url}/api/benchmarks/{benchmark_id}"
+    req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
+    try:
+        data = json.loads(urllib.request.urlopen(req).read().decode("utf-8", errors="replace"))
+        # API returns run_labels as a list of name strings (no extension)
+        labels = data.get("run_labels") or []
+        return set(labels)
+    except Exception as exc:
+        log.debug("Could not fetch benchmark runs from API: %s", exc)
+        return None
+
+
+def _pick_csvs(
+    csvs: List[pathlib.Path],
+    already: Optional[set] = None,
+    force: bool = False,
 ) -> List[pathlib.Path]:
-    """Show a CSV picker; default (ENTER) = all not yet uploaded to this benchmark."""
-    history = _load_upload_history()
-    already = set(history.get(str(benchmark_id), []))
+    """Interactive CSV picker. already = set of stems already uploaded (optional)."""
+
+    def _is_already(p: pathlib.Path) -> bool:
+        return already is not None and p.stem in already
 
     print()
-    print("  Available CSVs (* = already uploaded to this benchmark):")
+    print("  Available CSVs (* = already uploaded):")
     print()
     for i, p in enumerate(csvs, 1):
-        marker = "* " if p.name in already else "  "
-        size = p.stat().st_size / 1024
-        print(f"    {i:>3}.  {marker}{p.name}  ({size:.1f} KB)")
+        marker = "* " if _is_already(p) else "  "
+        print(f"    {i:>3}.  {marker}{p.name}  ({p.stat().st_size/1024:.1f} KB)")
     print()
 
-    unuploaded = [p for p in csvs if p.name not in already]
-    default_label = f"all {len(unuploaded)} not yet uploaded" if unuploaded else "none (all already uploaded)"
+    if already is not None:
+        unuploaded = [p for p in csvs if not _is_already(p)]
+        default_label = f"all {len(unuploaded)} not yet uploaded" if unuploaded else "none (all already uploaded)"
+    else:
+        unuploaded = csvs
+        default_label = f"all {len(csvs)}"
+
     print(f"  Select CSVs to upload (e.g. 1,3 or 1-3), or ENTER for {default_label}:")
 
     while True:
@@ -1785,9 +2034,16 @@ def _select_csvs_for_append(
             else:
                 valid = False
                 break
+
         if valid and selected:
+            dupes = [p for p in selected if _is_already(p)]
+            if dupes and not force:
+                print(f"  Already uploaded: {', '.join(p.name for p in dupes)}")
+                print("  Use --force to re-upload existing runs.")
+                continue
             return selected
         print(f"  Enter numbers between 1 and {len(csvs)}, e.g. 1,2 or 1-3.")
+
 
 
 def _select_benchmark(
@@ -1834,20 +2090,26 @@ def cmd_upload(args: argparse.Namespace) -> int:
     import urllib.error
     import urllib.request
 
-    token = (
-        args.token
-        or os.environ.get("FLIGHTLESS_TOKEN", "")
-        or _load_token_file()
-        or _prompt_and_save_token()
-    )
+    token = args.token or os.environ.get("FLIGHTLESS_TOKEN", "")
+    if token:
+        print("  Token: from argument/environment")
+    else:
+        token = _load_token_file()
+        if token:
+            print(f"  Token: loaded from {FLIGHTLESS_TOKEN_FILE}")
+        else:
+            token = _prompt_and_save_token()
+    if not token:
+        log.error("No API token available.")
+        return 1
 
     base_url = args.url or FLIGHTLESS_BASE
     append_mode = getattr(args, "append", False)
 
     # ── Append mode: pick an existing benchmark ────────────────────────
+    benchmarks = _fetch_benchmarks(token, base_url)
     append_benchmark: Optional[Dict[str, Any]] = None
     if append_mode:
-        benchmarks = _fetch_benchmarks(token, base_url)
         append_benchmark = _select_benchmark(benchmarks)
         if not append_benchmark:
             print("  No benchmark selected. Cancelled.")
@@ -1857,23 +2119,54 @@ def cmd_upload(args: argparse.Namespace) -> int:
     else:
         endpoint = f"{base_url}/api/benchmarks"
 
-    csvs = _collect_csvs_for_upload(args)
+    force = getattr(args, "force", False)
+    src_dir = pathlib.Path(args.source) if args.source else BENCH_LOG_DIR
+    inputs = getattr(args, "input", None)
+
+    # Resolve already-uploaded set for append mode
+    already_set: Optional[set] = None
+    if append_mode and append_benchmark:
+        bid_str = str(append_benchmark.get("ID") or append_benchmark.get("id"))
+        print(f"  Checking existing runs in benchmark {bid_str} ...", end="", flush=True)
+        api_names = _fetch_benchmark_run_names(token, base_url, bid_str)
+        if api_names is not None:
+            print(f" {len(api_names)} run(s) found")
+            already_set = {pathlib.Path(n).stem for n in api_names}
+            _mark_uploaded(bid_str, list(api_names))
+        else:
+            print(" (API unavailable, using local history)")
+            history = _load_upload_history()
+            already_set = {pathlib.Path(n).stem for n in history.get(bid_str, [])}
+
+    # File picker: TUI when no explicit --input, else text picker
+    if inputs:
+        # Explicit files given — collect them and use text picker
+        csvs = _collect_csvs_for_upload(args)
+        if not csvs:
+            print("  No CSV files found to upload.")
+            return 1
+        csvs = _pick_csvs(csvs, already=already_set, force=force) or []
+    else:
+        # TUI folder browser, falling back to text picker
+        tui_result = _tui_file_picker(src_dir, already_uploaded=already_set, force=force)
+        if tui_result is None:
+            # TUI cancelled or unavailable — fall back to text picker on collected CSVs
+            csvs = _collect_csvs_for_upload(args)
+            if not csvs:
+                print("  No CSV files found to upload.")
+                print(f"  Run '{PROG_NAME} organize' first, or specify --input files.")
+                return 1
+            csvs = _pick_csvs(csvs, already=already_set, force=force) or []
+        else:
+            csvs = tui_result
+
     limit = args.limit
     if limit and len(csvs) > limit:
         csvs = csvs[-limit:]
 
     if not csvs:
-        print("  No CSV files found to upload.")
-        print(f"  Run '{PROG_NAME} organize' first, or specify --input files.")
-        return 1
-
-    # In append mode, let the user pick which CSVs to upload
-    if append_mode and append_benchmark:
-        bid_str = str(append_benchmark.get("ID") or append_benchmark.get("id"))
-        csvs = _select_csvs_for_append(csvs, bid_str)
-        if not csvs:
-            print("  No files selected. Cancelled.")
-            return 0
+        print("  No files selected. Cancelled.")
+        return 0
 
     game = getattr(args, "game", None)
 
@@ -1885,11 +2178,41 @@ def cmd_upload(args: argparse.Namespace) -> int:
         print(f"    Benchmark ID : {bid}")
         print(f"    URL          : {base_url}/benchmarks/{bid}")
     else:
-        title = (
-            args.title
-            or f"Benchmark: {game or 'All Games'} - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}"
-        )
+        if args.title:
+            title = args.title
+        else:
+            # Derive title from the selected files' parent folder name(s)
+            game_names = sorted({
+                _extract_game_name(c.parent.name) if c.parent != src_dir else _extract_game_name(c.stem)
+                for c in csvs
+            })
+            title = ", ".join(game_names) if game_names else (game or "All Games")
         description = args.description or f"Uploaded via {PROG_NAME} v{VERSION} (SteamOS-Tools)"
+        # Check for title conflict before prompting
+        existing_titles = {
+            (b.get("Title") or b.get("title") or "").strip().lower()
+            for b in benchmarks
+        }
+        if title.strip().lower() in existing_titles:
+            if not force:
+                log.error(
+                    "Benchmark \"%s\" already exists. Use --force to append the date and create new.",
+                    title,
+                )
+                return 1
+            log.warning("Benchmark \"%s\" already exists.", title)
+            title = f"{title} - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}"
+            print(f"  Benchmark title (date appended): {title}")
+        elif not args.yes and not args.title:
+            try:
+                edit = input(f"\n  Benchmark title: {title}\n  Edit title? [y/N] ").strip().lower()
+                if edit in ("y", "yes"):
+                    new_title = input("  Title: ").strip()
+                    if new_title:
+                        title = new_title
+            except (EOFError, KeyboardInterrupt):
+                print("\n  Cancelled.")
+                return 0
         print("  Uploading to FlightlessSomething:")
         print(f"    Title    : {title}")
 
@@ -1951,18 +2274,21 @@ def cmd_upload(args: argparse.Namespace) -> int:
         },
     )
 
+    print(f"\n  Uploading {len(csvs)} file(s) ...", end="", flush=True)
     log.info("POST %s (%d bytes, %d files)", endpoint, len(body), len(csvs))
 
     try:
         response = urllib.request.urlopen(req)
         status = response.status
         resp_body = response.read().decode("utf-8", errors="replace")
+        print(f" HTTP {status}")
     except urllib.error.HTTPError as e:
         status = e.code
         try:
             resp_body = e.read().decode("utf-8", errors="replace")
         except OSError:
             resp_body = ""
+        print(f" HTTP {status}")
         log.error("Upload failed: HTTP %d", status)
         if resp_body:
             log.error("Response: %s", resp_body[:500])
@@ -2600,6 +2926,11 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Append runs to an existing benchmark instead of creating a new one. "
         "Lists your benchmarks and prompts for selection.",
+    )
+    pu.add_argument(
+        "--force",
+        action="store_true",
+        help="Allow re-uploading files already present in the benchmark.",
     )
     pu.add_argument(
         "-g", "--game", metavar="NAME", help="Upload only logs for this game."

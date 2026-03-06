@@ -400,19 +400,64 @@ def discover_games(d: Optional[pathlib.Path] = None) -> List[str]:
 _MANGOHUD_SPEC_FIELDS = {"os", "cpu", "gpu", "ram", "kernel", "driver", "cpuscheduler"}
 
 
+def _strip_v1_preamble(lines: List[str]) -> List[str]:
+    """Remove MangoHud ≥0.8 preamble lines, leaving the 3-line spec format.
+
+    MangoHud 0.8.x prepends several lines before the standard spec header:
+      v1                                      <- format version tag
+      v0.8.1                                  <- MangoHud version
+      -----SYSTEM INFO-----                   <- separator
+      os,cpu,gpu,ram,kernel,driver,cpuscheduler
+      <spec values>
+      -----FRAME METRICS-----                 <- separator
+      fps,frametime,...
+      <data rows>
+
+    After stripping, the remaining lines match the 3-line spec format that
+    FlightlessSomething and the rest of this script expect.
+    """
+    return [
+        ln for ln in lines
+        if not re.match(r"^v\d", ln.strip())   # v1, v0.8.1, etc.
+        and not re.match(r"^-{3}", ln.strip())  # -----SYSTEM INFO-----, etc.
+    ]
+
+
+def _normalize_csv_for_flightless(path: pathlib.Path) -> str:
+    """Return CSV content normalized to the FlightlessSomething 3-line spec format.
+
+    Strips MangoHud 0.8+ preamble (v1 tag, version line, separator rows) so
+    that the upload contains only:
+      Line 1: os,cpu,gpu,ram,kernel,driver,cpuscheduler
+      Line 2: <spec values>
+      Line 3: fps,frametime,...
+      Line 4+: data rows
+    """
+    raw = path.read_text(encoding="utf-8", errors="replace").splitlines()
+    cleaned = _strip_v1_preamble([ln for ln in raw if ln.strip()])
+    return "\n".join(cleaned) + "\n"
+
+
 def parse_csv(
     path: pathlib.Path,
 ) -> Tuple[List[str], List[Dict[str, str]]]:
     """Parse a MangoHud CSV log, returning (column_names, rows).
 
-    Handles both the modern 3-line spec-header format (used by
-    FlightlessSomething) and the legacy ``#``-comment format.
+    Handles the modern 3-line spec-header format, MangoHud 0.8+ v1 format
+    (with preamble lines stripped automatically), and the legacy #-comment
+    format.
     """
     lines = [
         s
         for s in path.read_text(encoding="utf-8", errors="replace").splitlines()
         if s.strip()
     ]
+    if not lines:
+        return [], []
+
+    # Strip MangoHud 0.8+ preamble (v1, version string, --- separators)
+    # before format detection so the rest of the logic sees the clean header.
+    lines = _strip_v1_preamble(lines)
     if not lines:
         return [], []
 
@@ -1551,7 +1596,10 @@ def cmd_upload(args: argparse.Namespace) -> int:
             f'Content-Disposition: form-data; name="files"; filename="{filepath.name}"\r\n'.encode()
         )
         body_parts.append(b"Content-Type: text/csv\r\n\r\n")
-        body_parts.append(filepath.read_bytes())
+        # Normalize to 3-line spec format so FlightlessSomething can parse it.
+        # MangoHud 0.8+ writes preamble lines (v1, version, --- separators)
+        # that the upload parser doesn't handle.
+        body_parts.append(_normalize_csv_for_flightless(filepath).encode("utf-8"))
         body_parts.append(b"\r\n")
 
     _add_field("title", title)

@@ -1704,6 +1704,92 @@ def _fetch_benchmarks(
     return all_benchmarks
 
 
+_UPLOAD_HISTORY_FILE = (
+    pathlib.Path.home() / ".local" / "share" / "mango-hud-profiler" / "uploads.json"
+)
+
+
+def _load_upload_history() -> Dict[str, List[str]]:
+    """Return {benchmark_id: [filename, ...]} of previously uploaded files."""
+    if not _UPLOAD_HISTORY_FILE.exists():
+        return {}
+    try:
+        return json.loads(_UPLOAD_HISTORY_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _save_upload_history(history: Dict[str, List[str]]) -> None:
+    _UPLOAD_HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
+    _UPLOAD_HISTORY_FILE.write_text(
+        json.dumps(history, indent=2), encoding="utf-8"
+    )
+
+
+def _mark_uploaded(benchmark_id: str, filenames: List[str]) -> None:
+    history = _load_upload_history()
+    existing = set(history.get(benchmark_id, []))
+    existing.update(filenames)
+    history[benchmark_id] = sorted(existing)
+    _save_upload_history(history)
+
+
+def _select_csvs_for_append(
+    csvs: List[pathlib.Path], benchmark_id: str
+) -> List[pathlib.Path]:
+    """Show a CSV picker; default (ENTER) = all not yet uploaded to this benchmark."""
+    history = _load_upload_history()
+    already = set(history.get(str(benchmark_id), []))
+
+    print()
+    print("  Available CSVs (* = already uploaded to this benchmark):")
+    print()
+    for i, p in enumerate(csvs, 1):
+        marker = "* " if p.name in already else "  "
+        size = p.stat().st_size / 1024
+        print(f"    {i:>3}.  {marker}{p.name}  ({size:.1f} KB)")
+    print()
+
+    unuploaded = [p for p in csvs if p.name not in already]
+    default_label = f"all {len(unuploaded)} not yet uploaded" if unuploaded else "none (all already uploaded)"
+    print(f"  Select CSVs to upload (e.g. 1,3 or 1-3), or ENTER for {default_label}:")
+
+    while True:
+        try:
+            raw = input("  > ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print()
+            return []
+        if not raw:
+            return unuploaded
+
+        selected: List[pathlib.Path] = []
+        valid = True
+        for part in raw.replace(" ", "").split(","):
+            if "-" in part:
+                lo_s, _, hi_s = part.partition("-")
+                if lo_s.isdigit() and hi_s.isdigit():
+                    lo, hi = int(lo_s) - 1, int(hi_s) - 1
+                    if 0 <= lo <= hi < len(csvs):
+                        selected.extend(csvs[lo : hi + 1])
+                        continue
+                valid = False
+                break
+            elif part.isdigit():
+                idx = int(part) - 1
+                if 0 <= idx < len(csvs):
+                    selected.append(csvs[idx])
+                    continue
+                valid = False
+                break
+            else:
+                valid = False
+                break
+        if valid and selected:
+            return selected
+        print(f"  Enter numbers between 1 and {len(csvs)}, e.g. 1,2 or 1-3.")
+
+
 def _select_benchmark(
     benchmarks: List[Dict[str, Any]],
 ) -> Optional[Dict[str, Any]]:
@@ -1780,6 +1866,14 @@ def cmd_upload(args: argparse.Namespace) -> int:
         print("  No CSV files found to upload.")
         print(f"  Run '{PROG_NAME} organize' first, or specify --input files.")
         return 1
+
+    # In append mode, let the user pick which CSVs to upload
+    if append_mode and append_benchmark:
+        bid_str = str(append_benchmark.get("ID") or append_benchmark.get("id"))
+        csvs = _select_csvs_for_append(csvs, bid_str)
+        if not csvs:
+            print("  No files selected. Cancelled.")
+            return 0
 
     game = getattr(args, "game", None)
 
@@ -1886,6 +1980,8 @@ def cmd_upload(args: argparse.Namespace) -> int:
 
         print("\n  Success!")
         if append_benchmark:
+            bid_str = str(append_benchmark.get("ID") or append_benchmark.get("id"))
+            _mark_uploaded(bid_str, [c.name for c in csvs])
             runs_added = data.get("runs_added", len(csvs))
             total = data.get("total_run_count", "?")
             print(f"    Runs added   : {runs_added}")

@@ -90,7 +90,8 @@ LOGGING_REQUIRED_KEYS = {
 # Upload multiple CSVs to the same Benchmark ID for side-by-side comparison.
 FLIGHTLESS_URL = "https://flightlesssomething.com/benchmarks/new"
 FLIGHTLESS_BASE = "https://flightlesssomething.ambrosia.one"
-FLIGHTLESS_UPLOAD_ENDPOINT = f"{FLIGHTLESS_BASE}/benchmark"
+FLIGHTLESS_UPLOAD_ENDPOINT = f"{FLIGHTLESS_BASE}/api/benchmarks"
+FLIGHTLESS_TOKEN_FILE = pathlib.Path.home() / ".flightless-token"
 
 WEB_VIEWERS = [
     {
@@ -1514,36 +1515,114 @@ def _collect_csvs_for_upload(args: argparse.Namespace) -> List[pathlib.Path]:
     return csvs
 
 
+def _load_token_file() -> Optional[str]:
+    """Read API token from ~/.flightless-token, enforcing mode 600.
+
+    Returns the token string, or None if the file doesn't exist.
+    Exits with an error message if the file exists but has wrong permissions.
+    """
+    p = FLIGHTLESS_TOKEN_FILE
+    if not p.exists():
+        return None
+    mode = p.stat().st_mode & 0o777
+    if mode != 0o600:
+        log.error(
+            "%s has permissions %04o -- must be 600.\n"
+            "  Fix with: chmod 600 %s",
+            p, mode, p,
+        )
+        sys.exit(1)
+    token = p.read_text(encoding="utf-8").strip()
+    if not token:
+        log.error("%s is empty.", p)
+        sys.exit(1)
+    return token
+
+
+def _prompt_and_save_token() -> str:
+    """Interactively prompt for a FlightlessSomething API token.
+
+    Masks input with '*' as the user types or pastes.  On success writes
+    the token to ~/.flightless-token with mode 600 so future runs pick it
+    up automatically without any flags or env vars.
+    """
+    import termios
+    import tty
+
+    if not sys.stdin.isatty():
+        log.error(
+            "No API token found and stdin is not a terminal.\n"
+            "  Set FLIGHTLESS_TOKEN env var or create %s (mode 600).",
+            FLIGHTLESS_TOKEN_FILE,
+        )
+        sys.exit(1)
+
+    print()
+    print("  No FlightlessSomething API token found.")
+    print(f"  Get one at: {FLIGHTLESS_BASE}/api-tokens")
+    print()
+    print(f"  Token will be saved to {FLIGHTLESS_TOKEN_FILE} (mode 600).")
+    print("  Paste your API token then press Enter:")
+    print("  > ", end="", flush=True)
+
+    token_chars: List[str] = []
+    fd = sys.stdin.fileno()
+    old = termios.tcgetattr(fd)
+    try:
+        tty.cbreak(fd)
+        while True:
+            ch = sys.stdin.read(1)
+            if ch in ("\n", "\r"):
+                break
+            elif ch in ("\x7f", "\x08"):  # backspace / delete
+                if token_chars:
+                    token_chars.pop()
+                    sys.stdout.write("\b \b")
+                    sys.stdout.flush()
+            elif ch == "\x03":  # Ctrl-C
+                raise KeyboardInterrupt
+            elif ch == "\x04":  # Ctrl-D
+                break
+            else:
+                token_chars.append(ch)
+                sys.stdout.write("*")
+                sys.stdout.flush()
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old)
+
+    print()  # newline after masked input
+
+    token = "".join(token_chars).strip()
+    if not token:
+        log.error("No token entered.")
+        sys.exit(1)
+
+    FLIGHTLESS_TOKEN_FILE.write_text(token + "\n", encoding="utf-8")
+    FLIGHTLESS_TOKEN_FILE.chmod(0o600)
+    print(f"  Token saved to {FLIGHTLESS_TOKEN_FILE}")
+    print()
+    return token
+
+
 def cmd_upload(args: argparse.Namespace) -> int:
     """Upload MangoHud CSV logs to FlightlessSomething via their API.
 
-    API (from github.com/erkexzcx/FlightlessSomething-auto):
-      POST /benchmark  (multipart/form-data)
-      Cookie: mysession=<session_token>
-      Fields: title, description, files (multiple)
-      Success: HTTP 303 with Location header -> benchmark URL
+    API: POST /api/benchmarks  (multipart/form-data)
+    Auth: Authorization: Bearer <api_token>
+    Fields: title, description, files (multiple)
     """
     import urllib.error
     import urllib.request
 
-    session = args.session
-    if not session:
-        # Check environment variable
-        session = os.environ.get("FLIGHTLESS_SESSION", "")
-    if not session:
-        log.error(
-            "No session token provided. Use --session TOKEN or set "
-            "FLIGHTLESS_SESSION environment variable.\n"
-            "  To get your session token:\n"
-            "    1. Log in at %s\n"
-            "    2. Open browser DevTools -> Application -> Cookies\n"
-            "    3. Copy the 'mysession' cookie value",
-            FLIGHTLESS_BASE,
-        )
-        return 1
+    token = (
+        args.token
+        or os.environ.get("FLIGHTLESS_TOKEN", "")
+        or _load_token_file()
+        or _prompt_and_save_token()
+    )
 
     base_url = args.url or FLIGHTLESS_BASE
-    endpoint = f"{base_url}/benchmark"
+    endpoint = f"{base_url}/api/benchmarks"
 
     csvs = _collect_csvs_for_upload(args)
     limit = args.limit
@@ -1617,53 +1696,49 @@ def cmd_upload(args: argparse.Namespace) -> int:
         method="POST",
         headers={
             "Content-Type": content_type,
-            "Cookie": f"mysession={session}",
+            "Authorization": f"Bearer {token}",
         },
     )
 
     log.info("POST %s (%d bytes, %d files)", endpoint, len(body), len(csvs))
 
     try:
-        # FlightlessSomething returns 303 redirect on success
-        # urllib follows redirects by default, so we need a custom handler
-        class NoRedirect(urllib.request.HTTPRedirectHandler):
-            def redirect_request(self, req, fp, code, msg, headers, newurl):
-                return None  # Don't follow redirects
-
-        opener = urllib.request.build_opener(NoRedirect)
-        response = opener.open(req)
+        response = urllib.request.urlopen(req)
         status = response.status
-        location = response.getheader("Location", "")
+        resp_body = response.read().decode("utf-8", errors="replace")
     except urllib.error.HTTPError as e:
         status = e.code
-        location = e.headers.get("Location", "") if hasattr(e, "headers") else ""
-        if status != 303:
-            log.error("Upload failed: HTTP %d", status)
-            try:
-                err_body = e.read().decode("utf-8", errors="replace")[:500]
-                log.error("Response: %s", err_body)
-            except OSError:
-                pass
-            return 1
+        try:
+            resp_body = e.read().decode("utf-8", errors="replace")
+        except OSError:
+            resp_body = ""
+        log.error("Upload failed: HTTP %d", status)
+        if resp_body:
+            log.error("Response: %s", resp_body[:500])
+        return 1
     except urllib.error.URLError as e:
         log.error("Connection failed: %s", e.reason)
         return 1
 
-    if status == 303 and location:
-        full_url = f"{base_url}{location}" if location.startswith("/") else location
+    # API returns JSON: {"id": <int>, ...} on success (HTTP 200 or 201)
+    if status in (200, 201):
+        benchmark_id = None
+        try:
+            data = json.loads(resp_body)
+            benchmark_id = data.get("id")
+        except (json.JSONDecodeError, AttributeError):
+            pass
+
         print("\n  Upload successful!")
-        print(f"    Benchmark URL: {full_url}")
+        if benchmark_id:
+            print(f"    Benchmark URL: {base_url}/benchmarks/{benchmark_id}")
         print(f"    {len(csvs)} CSV(s) uploaded as separate runs.")
         return 0
-    elif status == 303:
-        print("\n  Upload successful! (no redirect URL returned)")
-        return 0
     else:
-        log.warning("Unexpected status: HTTP %d (expected 303)", status)
-        print(f"\n  Upload may have succeeded (HTTP {status}).")
-        if location:
-            print(f"    Location: {base_url}{location}")
-        return 0
+        log.warning("Unexpected status: HTTP %d", status)
+        if resp_body:
+            log.warning("Response: %s", resp_body[:300])
+        return 1
 
 
 def _write_json_summary(paths: List[pathlib.Path], out: pathlib.Path) -> None:
@@ -2230,35 +2305,36 @@ def build_parser() -> argparse.ArgumentParser:
             a new Benchmark with each CSV as a separate "Run" for side-by-side
             comparison.
 
-            Requires a session token from FlightlessSomething (log in via
-            browser, then extract the 'mysession' cookie from DevTools).
-
-            Auth via --session TOKEN or FLIGHTLESS_SESSION env var.
-
-            API based on: github.com/erkexzcx/FlightlessSomething-auto
+            Requires an API token from FlightlessSomething:
+              1. Log in at {FLIGHTLESS_BASE}
+              2. Go to /api-tokens and create a token
+              3. Store it (recommended):
+                   echo YOUR_TOKEN > ~/.flightless-token
+                   chmod 600 ~/.flightless-token
+              Token lookup order: --token > FLIGHTLESS_TOKEN env > ~/.flightless-token
 
             Examples:
               # Upload all current logs
-              {PROG_NAME} upload --session YOUR_TOKEN
+              {PROG_NAME} upload --token YOUR_TOKEN
 
               # Upload only Cyberpunk logs
-              {PROG_NAME} upload --game Cyberpunk2077 --session YOUR_TOKEN
+              {PROG_NAME} upload --game Cyberpunk2077 --token YOUR_TOKEN
 
               # Upload specific files
-              {PROG_NAME} upload --input file1.csv file2.csv --session YOUR_TOKEN
+              {PROG_NAME} upload --input file1.csv file2.csv --token YOUR_TOKEN
 
               # Non-interactive (skip confirmation)
-              {PROG_NAME} upload --game Cyberpunk2077 -y --session YOUR_TOKEN
+              {PROG_NAME} upload --game Cyberpunk2077 -y --token YOUR_TOKEN
         """
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     pu.add_argument(
-        "-s",
-        "--session",
+        "-t",
+        "--token",
         metavar="TOKEN",
-        help="FlightlessSomething 'mysession' cookie value. "
-        "Also reads FLIGHTLESS_SESSION env var.",
+        help="FlightlessSomething API token (from /api-tokens). "
+        "Also reads FLIGHTLESS_TOKEN env var.",
     )
     pu.add_argument(
         "-g", "--game", metavar="NAME", help="Upload only logs for this game."

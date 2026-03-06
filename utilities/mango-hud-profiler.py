@@ -2,8 +2,7 @@
 """
 mango-hud-profiler.py -- MangoHud Performance Profiler for Bazzite / SteamOS
 
-A fully-featured utility to configure, launch, profile, graph, and summarise
-MangoHud performance-logging sessions.  Designed for Bazzite (SteamOS
+A fully-featured utility to configure, launch, profile, graph, and summarise MangoHud performance-logging sessions.  Designed for Bazzite (SteamOS
 derivative) but works on any Linux distribution with MangoHud installed.
 
 Subcommands
@@ -50,6 +49,15 @@ MANGOHUD_ALT_LOG = XDG_DATA / "MangoHud"
 BENCH_LOG_DIR = MANGOHUD_LOG_DIR  # organized logs live alongside raw logs
 CHART_BASE_DIR = pathlib.Path.home() / "mangohud-perf"
 MAX_LOGS_PER_GAME = 15
+
+# On Bazzite/SteamOS the gamescope session sets MANGOHUD_CONFIGFILE to a temp
+# file managed by mangoapp.  This completely overrides MangoHud.conf and
+# presets.conf (MANGOHUD_CONFIGFILE is highest priority).  mangoapp only writes
+# display keys to that temp file -- logging keys are never applied.
+# Fix: write MANGOHUD_CONFIG (applied on top of MANGOHUD_CONFIGFILE) with the
+# logging keys to ~/.config/environment.d/ which gamescope-session-plus sources
+# at startup before Steam launches.
+MANGOHUD_ENV_CONF = XDG_CONFIG / "environment.d" / "mangohud-logging.conf"
 
 # MangoHud config search order (highest priority first)
 # Per-game wine configs: ~/.config/MangoHud/wine-<GameName>.conf
@@ -527,6 +535,56 @@ def _ensure_bottleneck_keys(conf_path: pathlib.Path) -> List[str]:
     return list(missing.keys())
 
 
+def sync_gamescope_logging_env(log_dir: Optional[pathlib.Path] = None) -> bool:
+    """Write MANGOHUD_CONFIG logging keys to ~/.config/environment.d/.
+
+    On Bazzite/SteamOS, gamescope-session-plus exports MANGOHUD_CONFIGFILE
+    pointing to a temp file managed by mangoapp.  Because MANGOHUD_CONFIGFILE
+    takes precedence over MangoHud.conf and presets.conf, logging keys set
+    there are never seen by game processes.
+
+    The MANGOHUD_CONFIG env var is applied *on top* of MANGOHUD_CONFIGFILE, so
+    writing it to ~/.config/environment.d/ (sourced by gamescope-session-plus
+    at startup) injects logging keys into every game without disturbing the
+    display behaviour that mangoapp controls.
+
+    Returns True on success, False on error.
+    """
+    effective_log_dir = log_dir or MANGOHUD_LOG_DIR
+    effective_log_dir.mkdir(parents=True, exist_ok=True)
+
+    # Build comma-separated MANGOHUD_CONFIG value (logging keys only -- display
+    # settings are still owned by mangoapp via MANGOHUD_CONFIGFILE).
+    logging_keys = {
+        "output_folder": str(effective_log_dir),
+        "toggle_logging": "Shift_L+F2",
+        "log_duration": "0",
+        "log_interval": "100",
+        "log_versioning": "1",
+    }
+    config_value = ",".join(f"{k}={v}" for k, v in logging_keys.items())
+
+    MANGOHUD_ENV_CONF.parent.mkdir(parents=True, exist_ok=True)
+    content = (
+        f"# MangoHud logging env -- written by {PROG_NAME} v{VERSION}\n"
+        f"# Injects logging keys via MANGOHUD_CONFIG so they survive the\n"
+        f"# gamescope-session MANGOHUD_CONFIGFILE temp-file override.\n"
+        f"# Sourced by gamescope-session-plus from ~/.config/environment.d/\n"
+        f"# Changes take effect on next gamescope session (re-login).\n"
+        f'MANGOHUD_CONFIG="{config_value}"\n'
+    )
+    try:
+        MANGOHUD_ENV_CONF.write_text(content, encoding="utf-8")
+    except OSError as exc:
+        log.error("Failed to write %s: %s", MANGOHUD_ENV_CONF, exc)
+        return False
+
+    print(f"  Gamescope logging env: {MANGOHUD_ENV_CONF}")
+    print(f"    MANGOHUD_CONFIG set with logging keys -> {effective_log_dir}")
+    print("    Re-login to gamescope session for changes to take effect.")
+    return True
+
+
 def sync_config_to_preset(log_dir: Optional[pathlib.Path] = None) -> bool:
     """Write all 4 Valve presets (with logging) to ~/.config/MangoHud/presets.conf.
 
@@ -581,6 +639,13 @@ def sync_config_to_preset(log_dir: Optional[pathlib.Path] = None) -> bool:
     for num in sorted(VALVE_PRESETS):
         desc = VALVE_PRESETS[num]["description"]
         print(f"      Preset {num}: {desc}")
+
+    # On Bazzite/SteamOS, gamescope-session-plus sets MANGOHUD_CONFIGFILE to a
+    # temp file managed by mangoapp, which overrides presets.conf.  Inject
+    # logging keys via MANGOHUD_CONFIG in environment.d to work around this.
+    if is_steamos():
+        sync_gamescope_logging_env(log_dir=log_dir)
+
     return True
 
 
@@ -668,8 +733,12 @@ def cmd_configure(args: argparse.Namespace) -> int:
         print(f"      2. ~/.config/MangoHud/wine-{args.game}.conf  <-- this file")
     print(f"      3. {MANGOHUD_CONF_FILE}")
     print("      4. ~/.var/app/com.valvesoftware.Steam/config/MangoHud/MangoHud.conf")
-    if is_bazzite():
-        print("    Bazzite: /usr/bin/mangohud reads from ~/.config/MangoHud/")
+    if is_steamos():
+        print("\n    Bazzite/SteamOS note:")
+        print("      gamescope-session sets MANGOHUD_CONFIGFILE to a temp file managed")
+        print("      by mangoapp, which overrides MangoHud.conf and presets.conf.")
+        print(f"      Logging keys written to: {MANGOHUD_ENV_CONF}")
+        print("      Re-login to your gamescope session for logging to take effect.")
     return 0
 
 

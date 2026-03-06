@@ -1604,6 +1604,96 @@ def _prompt_and_save_token() -> str:
     return token
 
 
+def _fetch_current_user_id(token: str, base_url: str) -> Optional[int]:
+    """Return the authenticated user's ID from /api/tokens."""
+    import urllib.request
+
+    req = urllib.request.Request(
+        f"{base_url}/api/tokens",
+        headers={"Authorization": f"Bearer {token}"},
+    )
+    try:
+        data = json.loads(urllib.request.urlopen(req).read().decode("utf-8", errors="replace"))
+        if isinstance(data, list) and data:
+            return data[0].get("UserID") or data[0].get("user_id")
+        return None
+    except Exception as exc:
+        log.warning("Could not fetch current user ID: %s", exc)
+        return None
+
+
+def _fetch_benchmarks(
+    token: str, base_url: str, per_page: int = 50
+) -> List[Dict[str, Any]]:
+    """Return all benchmarks belonging to the authenticated user."""
+    import urllib.request
+
+    user_id = _fetch_current_user_id(token, base_url)
+
+    all_benchmarks: List[Dict[str, Any]] = []
+    page = 1
+    while True:
+        url = f"{base_url}/api/benchmarks?per_page={per_page}&page={page}"
+        req = urllib.request.Request(
+            url, headers={"Authorization": f"Bearer {token}"}
+        )
+        try:
+            data = json.loads(urllib.request.urlopen(req).read().decode("utf-8", errors="replace"))
+        except Exception as exc:
+            log.error("Failed to fetch benchmark list: %s", exc)
+            break
+
+        benchmarks = data.get("benchmarks") or []
+        if not benchmarks:
+            break
+
+        for b in benchmarks:
+            bid = b.get("UserID") or b.get("user_id")
+            if user_id is None or bid == user_id:
+                all_benchmarks.append(b)
+
+        total_pages = data.get("total_pages", 1)
+        if page >= total_pages:
+            break
+        page += 1
+
+    return all_benchmarks
+
+
+def _select_benchmark(
+    benchmarks: List[Dict[str, Any]],
+) -> Optional[Dict[str, Any]]:
+    """Display a numbered benchmark list and prompt the user to pick one."""
+    if not benchmarks:
+        print("  No benchmarks found in your account.")
+        return None
+
+    print()
+    print("  Your benchmarks:")
+    print()
+    for i, b in enumerate(benchmarks, 1):
+        runs = b.get("run_count", "?")
+        ts = (b.get("CreatedAt") or b.get("created_at") or "")[:10]
+        title = b.get("Title") or b.get("title") or "(untitled)"
+        bid = b.get("ID") or b.get("id")
+        print(f"    {i:>3}.  {title}  [{runs} run(s), {ts}]  (id:{bid})")
+    print()
+
+    while True:
+        try:
+            raw = input(f"  Select benchmark to append to [1-{len(benchmarks)}]: ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print()
+            return None
+        if not raw:
+            return None
+        if raw.isdigit():
+            idx = int(raw) - 1
+            if 0 <= idx < len(benchmarks):
+                return benchmarks[idx]
+        print(f"  Enter a number between 1 and {len(benchmarks)}.")
+
+
 def cmd_upload(args: argparse.Namespace) -> int:
     """Upload MangoHud CSV logs to FlightlessSomething via their API.
 
@@ -1622,7 +1712,20 @@ def cmd_upload(args: argparse.Namespace) -> int:
     )
 
     base_url = args.url or FLIGHTLESS_BASE
-    endpoint = f"{base_url}/api/benchmarks"
+    append_mode = getattr(args, "append", False)
+
+    # ── Append mode: pick an existing benchmark ────────────────────────
+    append_benchmark: Optional[Dict[str, Any]] = None
+    if append_mode:
+        benchmarks = _fetch_benchmarks(token, base_url)
+        append_benchmark = _select_benchmark(benchmarks)
+        if not append_benchmark:
+            print("  No benchmark selected. Cancelled.")
+            return 0
+        bid = append_benchmark.get("ID") or append_benchmark.get("id")
+        endpoint = f"{base_url}/api/benchmarks/{bid}/runs"
+    else:
+        endpoint = f"{base_url}/api/benchmarks"
 
     csvs = _collect_csvs_for_upload(args)
     limit = args.limit
@@ -1635,27 +1738,36 @@ def cmd_upload(args: argparse.Namespace) -> int:
         return 1
 
     game = getattr(args, "game", None)
-    title = (
-        args.title
-        or f"Benchmark: {game or 'All Games'} - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}"
-    )
-    description = args.description or f"Uploaded via {PROG_NAME} v{VERSION}"
 
-    print("  Uploading to FlightlessSomething:")
-    print(f"    Endpoint : {endpoint}")
-    print(f"    Title    : {title}")
+    print()
+    if append_benchmark:
+        bid = append_benchmark.get("ID") or append_benchmark.get("id")
+        btitle = append_benchmark.get("Title") or append_benchmark.get("title") or "(untitled)"
+        print(f"  Appending runs to: \"{btitle}\"")
+        print(f"    Benchmark ID : {bid}")
+        print(f"    URL          : {base_url}/benchmarks/{bid}")
+    else:
+        title = (
+            args.title
+            or f"Benchmark: {game or 'All Games'} - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}"
+        )
+        description = args.description or f"Uploaded via {PROG_NAME} v{VERSION}"
+        print("  Uploading to FlightlessSomething:")
+        print(f"    Title    : {title}")
+
     print(f"    Files    : {len(csvs)} CSV(s)")
     for c in csvs:
         print(f"      {c.name}  ({c.stat().st_size/1024:.1f} KB)")
 
     if not args.yes:
+        action = "Append runs?" if append_benchmark else "Create new benchmark?"
         try:
-            answer = input("\n  Proceed with upload? [y/N] ").strip().lower()
+            answer = input(f"\n  {action} [y/N] ").strip().lower()
             if answer not in ("y", "yes"):
-                print("  Upload cancelled.")
+                print("  Cancelled.")
                 return 0
         except (EOFError, KeyboardInterrupt):
-            print("\n  Upload cancelled.")
+            print("\n  Cancelled.")
             return 0
 
     # Build multipart form data
@@ -1681,8 +1793,9 @@ def cmd_upload(args: argparse.Namespace) -> int:
         body_parts.append(_normalize_csv_for_flightless(filepath).encode("utf-8"))
         body_parts.append(b"\r\n")
 
-    _add_field("title", title)
-    _add_field("description", description)
+    if not append_benchmark:
+        _add_field("title", title)
+        _add_field("description", description)
     for csv_file in csvs:
         _add_file(csv_file)
     body_parts.append(f"--{boundary}--\r\n".encode())
@@ -1720,19 +1833,25 @@ def cmd_upload(args: argparse.Namespace) -> int:
         log.error("Connection failed: %s", e.reason)
         return 1
 
-    # API returns JSON: {"id": <int>, ...} on success (HTTP 200 or 201)
     if status in (200, 201):
-        benchmark_id = None
+        data = {}
         try:
             data = json.loads(resp_body)
-            benchmark_id = data.get("id")
-        except (json.JSONDecodeError, AttributeError):
+        except json.JSONDecodeError:
             pass
 
-        print("\n  Upload successful!")
-        if benchmark_id:
-            print(f"    Benchmark URL: {base_url}/benchmarks/{benchmark_id}")
-        print(f"    {len(csvs)} CSV(s) uploaded as separate runs.")
+        print("\n  Success!")
+        if append_benchmark:
+            runs_added = data.get("runs_added", len(csvs))
+            total = data.get("total_run_count", "?")
+            print(f"    Runs added   : {runs_added}")
+            print(f"    Total runs   : {total}")
+            print(f"    Benchmark URL: {base_url}/benchmarks/{bid}")
+        else:
+            benchmark_id = data.get("id")
+            if benchmark_id:
+                print(f"    Benchmark URL: {base_url}/benchmarks/{benchmark_id}")
+            print(f"    {len(csvs)} CSV(s) uploaded as separate runs.")
         return 0
     else:
         log.warning("Unexpected status: HTTP %d", status)
@@ -2335,6 +2454,12 @@ def build_parser() -> argparse.ArgumentParser:
         metavar="TOKEN",
         help="FlightlessSomething API token (from /api-tokens). "
         "Also reads FLIGHTLESS_TOKEN env var.",
+    )
+    pu.add_argument(
+        "--append",
+        action="store_true",
+        help="Append runs to an existing benchmark instead of creating a new one. "
+        "Lists your benchmarks and prompts for selection.",
     )
     pu.add_argument(
         "-g", "--game", metavar="NAME", help="Upload only logs for this game."

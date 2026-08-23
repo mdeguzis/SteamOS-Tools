@@ -245,6 +245,32 @@ EOF
     [[ -n "$gen_desktop" ]] && rm -f "$gen_desktop"
 }
 
+# ── Session detection ──────────────────────────────────────────────────────────
+# Returns 0 (true) if the current session is SteamOS/Bazzite Gaming Mode
+is_gaming_mode() {
+    # Gamescope session systemd unit active (most reliable on SteamOS/Bazzite)
+    systemctl --user is-active gamescope-session.service &>/dev/null && return 0
+    systemctl --user is-active gamescope-session-plus@steamos.service &>/dev/null && return 0
+    # STEAM_GAMEPADUI flag set in a running Steam process environment
+    local steam_pid
+    steam_pid=$(pgrep -x steam 2>/dev/null | head -1)
+    if [[ -n "$steam_pid" ]]; then
+        grep -q "STEAM_GAMEPADUI=1" "/proc/${steam_pid}/environ" 2>/dev/null && return 0
+    fi
+    # XDG_CURRENT_DESKTOP hint (gamescope sets this)
+    [[ "${XDG_CURRENT_DESKTOP:-}" == "gamescope" ]] && return 0
+    return 1
+}
+
+steam_restart_hint() {
+    if is_gaming_mode; then
+        log_warn "You are in Gaming Mode. Switch to Desktop Mode, restart Steam,"
+        log_warn "then switch back for the shortcut to appear in your library."
+    else
+        log_warn "Restart Steam for the shortcut to appear in your library."
+    fi
+}
+
 # ── Steam shortcut integration ─────────────────────────────────────────────────
 # Finds all shortcuts.vdf files under Steam userdata (handles multiple accounts)
 find_shortcuts_vdf() {
@@ -358,7 +384,7 @@ print(f"[aim] Steam shortcut added: '{app_name}'")
 PYEOF
     done
 
-    log_warn "Restart Steam for the shortcut to appear in your library."
+    steam_restart_hint
 }
 
 remove_desktop_entry() {

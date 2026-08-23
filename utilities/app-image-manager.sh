@@ -387,6 +387,77 @@ PYEOF
     steam_restart_hint
 }
 
+steam_remove_shortcut() {
+    local name="$1"
+    local display_name
+    display_name=$(echo "$name" | sed 's/-/ /g; s/\b./\u&/g')
+
+    local vdf_files
+    mapfile -t vdf_files < <(find_shortcuts_vdf)
+    if [[ ${#vdf_files[@]} -eq 0 ]]; then
+        log_warn "No shortcuts.vdf found; skipping Steam shortcut removal."
+        return 0
+    fi
+
+    for vdf in "${vdf_files[@]}"; do
+        log_info "Removing Steam shortcut from: ${vdf}"
+        python3 - "$vdf" "$display_name" <<'PYEOF'
+import sys, re, os, shutil
+
+vdf_path = sys.argv[1]
+target_name = sys.argv[2]
+
+with open(vdf_path, 'rb') as f:
+    data = f.read()
+
+HEADER = b'\x00shortcuts\x00'
+if not data.startswith(HEADER):
+    print("Unexpected shortcuts.vdf format", file=sys.stderr)
+    sys.exit(1)
+
+needle = b'\x01AppName\x00' + target_name.encode() + b'\x00'
+pos = data.find(needle)
+if pos == -1:
+    print(f"[aim] '{target_name}' not found in Steam shortcuts, skipping.")
+    sys.exit(0)
+
+# Walk backward from AppName to find the entry start (\x00<digits>\x00)
+entry_start = None
+for i in range(pos - 1, len(HEADER) - 1, -1):
+    if data[i] == 0x00:
+        j = i + 1
+        while j < len(data) and 0x30 <= data[j] <= 0x39:
+            j += 1
+        if j > i + 1 and j < len(data) and data[j] == 0x00:
+            entry_start = i
+            break
+
+if entry_start is None:
+    print("Could not locate entry start", file=sys.stderr)
+    sys.exit(1)
+
+# Entry ends after \x00tags\x00\x08\x08
+tags_pos = data.find(b'\x00tags\x00', pos)
+if tags_pos == -1:
+    print("Could not locate tags dict", file=sys.stderr)
+    sys.exit(1)
+
+# Skip past \x00tags\x00 then find \x08\x08 (end-of-tags + end-of-entry)
+entry_end = data.find(b'\x08\x08', tags_pos)
+if entry_end == -1:
+    print("Could not locate entry end", file=sys.stderr)
+    sys.exit(1)
+entry_end += 2  # include the \x08\x08
+
+shutil.copy2(vdf_path, vdf_path + '.bak')
+with open(vdf_path, 'wb') as f:
+    f.write(data[:entry_start] + data[entry_end:])
+
+print(f"[aim] Steam shortcut removed: '{target_name}'")
+PYEOF
+    done
+}
+
 remove_desktop_entry() {
     local name="$1"
     rm -f "${DESKTOP_DIR}/${name}.desktop"
@@ -718,8 +789,10 @@ cmd_uninstall() {
     rm -f "${BACKUP_DIR}/${name}.AppImage"
     rm -rf "${BACKUP_DIR}/${name}"
     rm -f "${CONFIG_DIR}/${name}.version"
+    rm -f "${CONFIG_DIR}/${name}.type"
     remove_app_registration "$name"
     remove_desktop_entry "$name"
+    steam_remove_shortcut "$name"
     log_ok "${name} uninstalled."
 }
 
@@ -863,10 +936,11 @@ Usage:
 
 Examples:
   app-image-manager install Optiscaler-Client/Optiscaler-Client
-  app-image-manager install https://github.com/Optiscaler-Client/Optiscaler-Client
-  app-image-manager upgrade optiscaler-client
+  app-image-manager install Optiscaler-Client/Optiscaler-Client --steam
+  app-image-manager update
+  app-image-manager update optiscaler-client
   app-image-manager uninstall optiscaler-client
-  app-image-manager --update-all
+  app-image-manager steam-add optiscaler-client
 
 The app name is derived from the repo name (lowercased).
 Install once; upgrade/uninstall by that short name thereafter.
@@ -883,6 +957,11 @@ EOF
 }
 
 # ── Entry point ────────────────────────────────────────────────────────────────
+# --help/-h wins no matter where it appears in the args
+for _arg in "$@"; do
+    [[ "$_arg" == "-h" || "$_arg" == "--help" ]] && usage && exit 0
+done
+
 init_dirs
 
 case "${1:-}" in

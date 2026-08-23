@@ -245,6 +245,122 @@ EOF
     [[ -n "$gen_desktop" ]] && rm -f "$gen_desktop"
 }
 
+# ── Steam shortcut integration ─────────────────────────────────────────────────
+# Finds all shortcuts.vdf files under Steam userdata (handles multiple accounts)
+find_shortcuts_vdf() {
+    # Collect unique real paths to avoid double-counting symlinks
+    find \
+        "${HOME}/.local/share/Steam/userdata" \
+        "${HOME}/.steam/steam/userdata" \
+        "${HOME}/.steam/root/userdata" \
+        -maxdepth 3 -name "shortcuts.vdf" 2>/dev/null \
+    -maxdepth 3 \
+    | while read -r vdf; do realpath "$vdf" 2>/dev/null || echo "$vdf"; done \
+    | sort -u
+}
+
+steam_add_shortcut() {
+    local name="$1" launcher="$2" icon="${3:-}"
+
+    local display_name
+    display_name=$(echo "$name" | sed 's/-/ /g; s/\b./\u&/g')
+    local start_dir
+    start_dir=$(dirname "$launcher")
+
+    # Resolve icon path if not given
+    if [[ -z "$icon" ]]; then
+        icon=$(find "${ICON_DIR}" -name "${name}.*" 2>/dev/null | head -1)
+    fi
+
+    local vdf_files
+    mapfile -t vdf_files < <(find_shortcuts_vdf)
+
+    if [[ ${#vdf_files[@]} -eq 0 ]]; then
+        log_warn "No shortcuts.vdf found — Steam may not be installed or never launched."
+        return 1
+    fi
+
+    for vdf in "${vdf_files[@]}"; do
+        log_info "Adding Steam shortcut in: ${vdf}"
+        python3 - "$vdf" "$display_name" "$launcher" "$start_dir" "$icon" <<'PYEOF'
+import sys, struct, zlib, os, shutil, time
+
+vdf_path, app_name, exe, start_dir, icon = sys.argv[1:6]
+
+def gen_appid(exe, name):
+    # Matches Steam's CRC-based non-Steam appid algorithm
+    key = exe + name
+    top = zlib.crc32(key.encode('utf-8')) | 0x80000000
+    return top & 0xFFFFFFFF
+
+def pack_str(key, val):
+    return b'\x01' + key.encode() + b'\x00' + val.encode() + b'\x00'
+
+def pack_int(key, val):
+    return b'\x02' + key.encode() + b'\x00' + struct.pack('<I', val)
+
+def build_entry(idx, app_name, exe, start_dir, icon):
+    appid = gen_appid(exe, app_name)
+    entry = (
+        b'\x00' + str(idx).encode() + b'\x00' +
+        pack_int('appid',              appid) +
+        pack_str('AppName',            app_name) +
+        pack_str('Exe',                exe) +
+        pack_str('StartDir',           start_dir) +
+        pack_str('icon',               icon) +
+        pack_str('ShortcutPath',       '') +
+        pack_str('LaunchOptions',      '') +
+        pack_int('IsHidden',           0) +
+        pack_int('AllowDesktopConfig', 1) +
+        pack_int('AllowOverlay',       1) +
+        pack_int('OpenVR',             0) +
+        pack_int('Devkit',             0) +
+        pack_str('DevkitGameID',       '') +
+        pack_int('DevkitOverrideAppID',0) +
+        pack_int('LastPlayTime',       int(time.time())) +
+        pack_str('FlatpakAppID',       '') +
+        b'\x00tags\x00\x08\x08'
+    )
+    return entry
+
+# Read existing file (or create minimal skeleton if missing/empty)
+if os.path.exists(vdf_path) and os.path.getsize(vdf_path) > 4:
+    with open(vdf_path, 'rb') as f:
+        data = f.read()
+else:
+    # Minimal valid shortcuts.vdf: \x00shortcuts\x00 ... \x08\x08
+    data = b'\x00shortcuts\x00\x08\x08'
+
+# Check if this app is already registered (by AppName)
+if app_name.encode() in data:
+    print(f"[aim] Steam shortcut for '{app_name}' already exists, skipping.")
+    sys.exit(0)
+
+# Count existing entries to get next index
+import re
+existing = re.findall(rb'\x00(\d+)\x00', data)
+next_idx = len(existing)
+
+new_entry = build_entry(next_idx, app_name, exe, start_dir, icon)
+
+# Backup and write
+shutil.copy2(vdf_path, vdf_path + '.bak')
+# Insert before final \x08\x08
+if data.endswith(b'\x08\x08'):
+    data = data[:-2] + new_entry + b'\x08\x08'
+else:
+    data = data + new_entry + b'\x08\x08'
+
+with open(vdf_path, 'wb') as f:
+    f.write(data)
+
+print(f"[aim] Steam shortcut added: '{app_name}'")
+PYEOF
+    done
+
+    log_warn "Restart Steam for the shortcut to appear in your library."
+}
+
 remove_desktop_entry() {
     local name="$1"
     rm -f "${DESKTOP_DIR}/${name}.desktop"
@@ -409,19 +525,30 @@ _fetch_and_install() {
 # ── Commands ───────────────────────────────────────────────────────────────────
 cmd_install() {
     local input="${1:?'GitHub repo required: org/repo or https://github.com/org/repo'}"
+    local add_steam=0
+    # Parse flags from remaining args
+    shift
+    for arg in "$@"; do
+        [[ "$arg" == "--steam" ]] && add_steam=1
+    done
+
     local repo name
     repo=$(parse_repo_input "$input")
     name=$(derive_name "$repo")
 
     local launcher="${APPS_DIR}/${name}.AppImage"
     if [[ -f "$launcher" ]]; then
-        log_warn "${name} is already installed ($(get_installed_version "$name")). Use 'reinstall' or 'upgrade'."
+        log_warn "${name} is already installed ($(get_installed_version "$name")). Use 'reinstall' or 'update'."
         exit 0
     fi
 
     log_info "Installing ${name} from ${repo}..."
     _fetch_and_install "$name" "$repo"
     register_app "$name" "$repo"
+
+    if [[ $add_steam -eq 1 ]]; then
+        steam_add_shortcut "$name" "$launcher"
+    fi
 }
 
 cmd_update() {
@@ -700,12 +827,13 @@ usage() {
 app-image-manager (aim) — AppImage/archive package manager for GitHub releases
 
 Usage:
-  app-image-manager install <org/repo|URL>     Install an app from a GitHub repo
-  app-image-manager reinstall <name|org/repo>  Force reinstall latest version
-  app-image-manager update [name|org/repo]     Check and apply updates (all apps if no arg)
-  app-image-manager uninstall <name|org/repo>  Remove app, launcher, desktop entry, and icon
-  app-image-manager list                       List all installed apps with location and type
-  app-image-manager view <name|org/repo>       Show full metadata for an app (checks for updates)
+  app-image-manager install <org/repo|URL> [--steam]  Install; --steam adds a Steam shortcut
+  app-image-manager reinstall <name|org/repo>         Force reinstall latest version
+  app-image-manager update [name|org/repo]            Check and apply updates (all if no arg)
+  app-image-manager uninstall <name|org/repo>         Remove app, launcher, desktop entry, icon
+  app-image-manager list                              List all installed apps with location/type
+  app-image-manager view <name|org/repo>              Full metadata (checks for updates)
+  app-image-manager steam-add <name|org/repo>         Add an already-installed app to Steam
 
 Examples:
   app-image-manager install Optiscaler-Client/Optiscaler-Client
@@ -732,12 +860,18 @@ EOF
 init_dirs
 
 case "${1:-}" in
-    install)   cmd_install "${2:-}" ;;
-    reinstall) cmd_reinstall "${2:-}" ;;
-    update)    cmd_update "${2:-}" ;;
-    uninstall) cmd_uninstall "${2:-}" ;;
-    list)      cmd_list ;;
-    view)      cmd_view "${2:-}" ;;
-    -h|--help) usage ;;
-    *)         usage; exit 1 ;;
+    install)    cmd_install "${2:-}" "${@:3}" ;;
+    reinstall)  cmd_reinstall "${2:-}" ;;
+    update)     cmd_update "${2:-}" ;;
+    uninstall)  cmd_uninstall "${2:-}" ;;
+    list)       cmd_list ;;
+    view)       cmd_view "${2:-}" ;;
+    steam-add)
+        input="${2:?'app name or org/repo required'}"
+        info=$(resolve_app "$input") || { log_err "'${input}' not found in registry."; exit 1; }
+        n="${info%%|*}"
+        steam_add_shortcut "$n" "${APPS_DIR}/${n}.AppImage"
+        ;;
+    -h|--help)  usage ;;
+    *)          usage; exit 1 ;;
 esac

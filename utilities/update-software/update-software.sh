@@ -16,6 +16,11 @@ APP_LOC="${HOME}/Applications"
 CLI=false
 DEBUG=false
 SKIP_UPDATER=false
+STEAM_SHORTCUT_ADDED=false
+STEAMGRIDDB_CONF="${HOME}/.steamgriddb"
+STEAMGRIDDB_API_KEY=""
+STEAMGRIDDB_PROMPTED=false
+STEAMGRIDDB_SKIP=false
 
 # Detect if running in CLI mode
 # On macOS, DISPLAY is not set but we still have GUI
@@ -40,6 +45,7 @@ function show_help() {
 		--update-emulators | -ue)	Install/update emulator software
 		--user-flatpaks | -uf)		Install/update user flatpaks
 		--user-binaries | -ub)		Install/update user binaries
+		--remove-deprecated | -rd)	Uninstall user Flatpaks that Flathub marks end-of-life
 		 --debug)			Enable debug logging
 		--help | -h)			Show this help page
 
@@ -100,6 +106,333 @@ curlit() {
 
 }
 
+######################################################################
+# Steam shortcut integration for Flatpaks
+# Mirrors the shortcuts.vdf writer used by app-image-manager.sh, but
+# points Exe at flatpak itself and sets FlatpakAppID so Steam treats
+# it as a native Flatpak entry (icon/name can be resolved from it).
+######################################################################
+
+# Finds all shortcuts.vdf files under Steam userdata (handles multiple accounts)
+find_shortcuts_vdf() {
+	find \
+		"${HOME}/.local/share/Steam/userdata" \
+		"${HOME}/.steam/steam/userdata" \
+		"${HOME}/.steam/root/userdata" \
+		-maxdepth 3 -name "shortcuts.vdf" 2>/dev/null \
+	| while read -r vdf; do realpath "$vdf" 2>/dev/null || echo "$vdf"; done \
+	| sort -u
+}
+
+# Locate an icon for a flatpak app id, preferring larger PNG sizes then SVG
+find_flatpak_icon() {
+	local app_id=$1
+	local size icon
+	for size in 512x512 256x256 128x128 64x64 48x48 32x32; do
+		icon=$(find \
+			"${HOME}/.local/share/flatpak/exports/share/icons/hicolor/${size}/apps" \
+			"/var/lib/flatpak/exports/share/icons/hicolor/${size}/apps" \
+			-iname "${app_id}.*" 2>/dev/null | head -1)
+		if [[ -n "${icon}" ]]; then
+			echo "${icon}"
+			return 0
+		fi
+	done
+	find \
+		"${HOME}/.local/share/flatpak/exports/share/icons/hicolor/scalable/apps" \
+		"/var/lib/flatpak/exports/share/icons/hicolor/scalable/apps" \
+		-iname "${app_id}.svg" 2>/dev/null | head -1
+}
+
+# Wraps find_flatpak_icon, but never hands back an SVG: Steam's shortcut
+# icon field cannot render SVG (it silently shows no icon at all), so an
+# SVG-only app is rasterized to PNG via ImageMagick and cached.
+resolve_flatpak_icon() {
+	local app_id=$1
+	local icon
+	icon=$(find_flatpak_icon "${app_id}")
+
+	if [[ -z "${icon}" ]]; then
+		return 0
+	fi
+
+	if [[ "${icon}" != *.svg ]]; then
+		echo "${icon}"
+		return 0
+	fi
+
+	if ! command -v magick &>/dev/null; then
+		echo "[WARN] Only an SVG icon is available for ${app_id} and ImageMagick (magick) is missing; leaving icon unset." >&2
+		return 0
+	fi
+
+	local cache_dir="${HOME}/.cache/update-software/icons"
+	local converted="${cache_dir}/${app_id}.png"
+	if [[ ! -f "${converted}" ]]; then
+		mkdir -p "${cache_dir}"
+		if ! magick "${icon}" -background none -resize 512x512 "${converted}" 2>/dev/null; then
+			echo "[WARN] Failed to convert SVG icon for ${app_id}; leaving icon unset." >&2
+			rm -f "${converted}"
+			return 0
+		fi
+	fi
+	echo "${converted}"
+}
+
+######################################################################
+# SteamGridDB artwork
+# Fetches library art (grid/hero/logo/icon) for a shortcut's computed
+# non-Steam appid and drops it in <userdata>/config/grid/ where Steam
+# reads it. API key lives in ~/.steamgriddb (shell-sourceable).
+######################################################################
+
+# Returns the API key on stdout, prompting once per run if none is
+# configured yet. Returns 1 (no output) if the user declines/cancels -
+# callers must treat that as "skip artwork for this run", not an error.
+steamgriddb_get_api_key() {
+	if [[ -n "${STEAMGRIDDB_API_KEY}" ]]; then
+		echo "${STEAMGRIDDB_API_KEY}"
+		return 0
+	fi
+
+	if [[ -f "${STEAMGRIDDB_CONF}" ]]; then
+		# shellcheck source=/dev/null
+		source "${STEAMGRIDDB_CONF}"
+		if [[ -n "${STEAMGRIDDB_API_KEY:-}" ]]; then
+			echo "${STEAMGRIDDB_API_KEY}"
+			return 0
+		fi
+	fi
+
+	if ${STEAMGRIDDB_SKIP} || ${STEAMGRIDDB_PROMPTED}; then
+		return 1
+	fi
+	STEAMGRIDDB_PROMPTED=true
+
+	local key
+	if ! ${CLI}; then
+		key=$(zenity --entry \
+			--title="SteamGridDB API Key" \
+			--text="Enter your SteamGridDB API key to fetch Steam library artwork for new shortcuts.\nGet one at: https://www.steamgriddb.com/profile/preferences/api\n\nLeave blank to skip artwork for this run." \
+			--width=500 2>/dev/null) || key=""
+	else
+		echo "[INFO] SteamGridDB API key not found at ${STEAMGRIDDB_CONF}"
+		echo "[INFO] Get one at: https://www.steamgriddb.com/profile/preferences/api"
+		read -rp "Enter SteamGridDB API key (blank to skip artwork): " key
+	fi
+
+	if [[ -z "${key}" ]]; then
+		echo "[WARN] No SteamGridDB API key provided; skipping artwork for this run."
+		STEAMGRIDDB_SKIP=true
+		return 1
+	fi
+
+	(
+		umask 077
+		printf 'STEAMGRIDDB_API_KEY=%q\n' "${key}" > "${STEAMGRIDDB_CONF}"
+	)
+	STEAMGRIDDB_API_KEY="${key}"
+	echo "[INFO] Saved SteamGridDB API key to ${STEAMGRIDDB_CONF}"
+	echo "${key}"
+}
+
+sgdb_api_get() {
+	local endpoint="$1" key="$2"
+	curl -sf -H "Authorization: Bearer ${key}" "https://www.steamgriddb.com/api/v2${endpoint}"
+}
+
+# Downloads the first result's image to dest. Returns 1 on any miss.
+sgdb_download_first_asset() {
+	local endpoint="$1" key="$2" dest="$3"
+	local json url
+	json=$(sgdb_api_get "${endpoint}" "${key}") || return 1
+	url=$(echo "${json}" | jq -r '.data[0].url // empty' 2>/dev/null) || url=""
+	[[ -n "${url}" && "${url}" != "null" ]] || return 1
+	curl -sfLo "${dest}" "${url}"
+}
+
+steamgriddb_fetch_artwork() {
+	local app_name="$1" appid="$2" grid_dir="$3"
+
+	# Already fetched on a prior run - don't hammer the API every time
+	# update-software runs against ~20 flatpaks.
+	if [[ -f "${grid_dir}/${appid}_icon.png" ]]; then
+		return 0
+	fi
+
+	local key
+	key=$(steamgriddb_get_api_key) || return 0
+
+	mkdir -p "${grid_dir}"
+
+	echo "[INFO] SteamGridDB: searching artwork for '${app_name}'"
+	local term search_json game_id
+	term=$(jq -rn --arg s "${app_name}" '$s|@uri')
+	search_json=$(sgdb_api_get "/search/autocomplete/${term}" "${key}") || {
+		echo "[ERROR] SteamGridDB: search request failed for '${app_name}'"
+		return 0
+	}
+	game_id=$(echo "${search_json}" | jq -r '.data[0].id // empty' 2>/dev/null) || game_id=""
+
+	if [[ -z "${game_id}" || "${game_id}" == "null" ]]; then
+		echo "[ERROR] SteamGridDB: no match found for '${app_name}'"
+		return 0
+	fi
+
+	sgdb_download_first_asset "/grids/game/${game_id}?dimensions=600x900" "${key}" "${grid_dir}/${appid}p.png" \
+		|| echo "[ERROR] SteamGridDB: failed to fetch portrait grid for '${app_name}'"
+	sgdb_download_first_asset "/grids/game/${game_id}?dimensions=460x215" "${key}" "${grid_dir}/${appid}.png" \
+		|| echo "[ERROR] SteamGridDB: failed to fetch grid for '${app_name}'"
+	sgdb_download_first_asset "/heroes/game/${game_id}" "${key}" "${grid_dir}/${appid}_hero.png" \
+		|| echo "[ERROR] SteamGridDB: failed to fetch hero art for '${app_name}'"
+	sgdb_download_first_asset "/logos/game/${game_id}" "${key}" "${grid_dir}/${appid}_logo.png" \
+		|| echo "[ERROR] SteamGridDB: failed to fetch logo for '${app_name}'"
+	sgdb_download_first_asset "/icons/game/${game_id}" "${key}" "${grid_dir}/${appid}_icon.png" \
+		|| echo "[ERROR] SteamGridDB: failed to fetch icon for '${app_name}'"
+
+	echo "[INFO] SteamGridDB: artwork applied for '${app_name}'"
+}
+
+# Matches Steam's CRC-based non-Steam appid algorithm
+compute_shortcut_appid() {
+	local exe="$1" name="$2"
+	python3 -c "
+import sys, zlib
+exe, name = sys.argv[1], sys.argv[2]
+print((zlib.crc32((exe + name).encode('utf-8')) | 0x80000000) & 0xFFFFFFFF)
+" "$exe" "$name"
+}
+
+steam_add_flatpak_shortcut() {
+	local app_id=$1 display_name=$2
+	local exe="/usr/bin/flatpak"
+	local appid
+	appid=$(compute_shortcut_appid "${exe}" "${display_name}")
+
+	local vdf_files
+	mapfile -t vdf_files < <(find_shortcuts_vdf)
+
+	if [[ ${#vdf_files[@]} -eq 0 ]]; then
+		echo "[WARN] No shortcuts.vdf found - Steam may not be installed or never launched. Skipping Steam shortcut for ${display_name}."
+		return 0
+	fi
+
+	local vdf grid_dir icon output
+	for vdf in "${vdf_files[@]}"; do
+		grid_dir="$(dirname "${vdf}")/config/grid"
+		steamgriddb_fetch_artwork "${display_name}" "${appid}" "${grid_dir}"
+
+		# Prefer the SteamGridDB icon we just fetched: it's a guaranteed-valid
+		# raster PNG in the same place Steam's own art picker writes to (this
+		# is exactly the shape Kodi's shortcut has after being set via the
+		# SteamGridDB Decky plugin). Steam's shortcut icon field cannot render
+		# SVG, so the flatpak-exported fallback is never left as an SVG path.
+		if [[ -f "${grid_dir}/${appid}_icon.png" ]]; then
+			icon="${grid_dir}/${appid}_icon.png"
+		else
+			icon=$(resolve_flatpak_icon "${app_id}")
+		fi
+
+		output=$(python3 - "$vdf" "$display_name" "$app_id" "$icon" "$appid" <<'PYEOF'
+import sys, struct, os, shutil, time, re
+
+vdf_path, app_name, app_id, icon, appid_str = sys.argv[1:6]
+exe = "/usr/bin/flatpak"
+start_dir = "/usr/bin/"
+launch_options = f"run {app_id}"
+appid = int(appid_str)
+
+def pack_str(key, val):
+    return b'\x01' + key.encode() + b'\x00' + val.encode() + b'\x00'
+
+def pack_int(key, val):
+    return b'\x02' + key.encode() + b'\x00' + struct.pack('<I', val)
+
+def build_entry(idx):
+    return (
+        b'\x00' + str(idx).encode() + b'\x00' +
+        pack_int('appid',              appid) +
+        pack_str('AppName',            app_name) +
+        pack_str('Exe',                exe) +
+        pack_str('StartDir',           start_dir) +
+        pack_str('icon',               icon) +
+        pack_str('ShortcutPath',       '') +
+        pack_str('LaunchOptions',      launch_options) +
+        pack_int('IsHidden',           0) +
+        pack_int('AllowDesktopConfig', 1) +
+        pack_int('AllowOverlay',       1) +
+        pack_int('OpenVR',             0) +
+        pack_int('Devkit',             0) +
+        pack_str('DevkitGameID',       '') +
+        pack_int('DevkitOverrideAppID',0) +
+        pack_int('LastPlayTime',       int(time.time())) +
+        pack_str('FlatpakAppID',       app_id) +
+        b'\x00tags\x00\x08\x08'
+    )
+
+if os.path.exists(vdf_path) and os.path.getsize(vdf_path) > 4:
+    with open(vdf_path, 'rb') as f:
+        data = f.read()
+else:
+    data = b'\x00shortcuts\x00\x08\x08'
+
+fp_marker = pack_str('FlatpakAppID', app_id)
+existing_pos = data.find(fp_marker)
+
+if existing_pos != -1:
+    # Entry already exists - only refresh its icon field in place. Leave
+    # everything else (tags, hidden state, launch options, play time) alone
+    # so we never clobber something the user customized in Steam's own UI.
+    starts = [m.start() for m in re.finditer(rb'\x00(\d+)\x00', data)]
+    ends = starts[1:] + [len(data) - 2]
+    entry_start = max(s for s in starts if s <= existing_pos)
+    entry_end = ends[starts.index(entry_start)]
+
+    icon_key = b'\x01icon\x00'
+    icon_key_pos = data.find(icon_key, entry_start, entry_end)
+    if icon_key_pos == -1:
+        print(f"[update-software] Could not locate icon field for '{app_name}', leaving shortcut untouched.")
+        sys.exit(0)
+
+    value_start = icon_key_pos + len(icon_key)
+    value_end = data.find(b'\x00', value_start)
+    current_icon = data[value_start:value_end]
+    new_icon_bytes = icon.encode()
+
+    if current_icon == new_icon_bytes:
+        print(f"[update-software] Steam shortcut for '{app_name}' already up to date, skipping.")
+        sys.exit(0)
+
+    shutil.copy2(vdf_path, vdf_path + '.bak')
+    data = data[:value_start] + new_icon_bytes + data[value_end:]
+    with open(vdf_path, 'wb') as f:
+        f.write(data)
+    print(f"[update-software] Steam shortcut icon updated: '{app_name}'")
+    sys.exit(0)
+
+existing = re.findall(rb'\x00(\d+)\x00', data)
+next_idx = len(existing)
+new_entry = build_entry(next_idx)
+
+shutil.copy2(vdf_path, vdf_path + '.bak')
+if data.endswith(b'\x08\x08'):
+    data = data[:-2] + new_entry + b'\x08\x08'
+else:
+    data = data + new_entry + b'\x08\x08'
+
+with open(vdf_path, 'wb') as f:
+    f.write(data)
+
+print(f"[update-software] Steam shortcut added: '{app_name}'")
+PYEOF
+)
+		echo "${output}"
+		if echo "${output}" | grep -q "Steam shortcut added:\|Steam shortcut icon updated:"; then
+			STEAM_SHORTCUT_ADDED=true
+		fi
+	done
+}
+
 update_install_flatpak() {
 	# Loop the list and install if update fails (not found)
 	# This is more useful so we know exactly what was attempted vs just
@@ -108,10 +441,10 @@ update_install_flatpak() {
 	name=$1
 	ID=$2
 	echo -e "\n[INFO] Installing/Updating $name"
-	
+
 	if ! flatpak --user update $ID -y; then
 		# Install if not found
-		if ! flatpak install --user -y --noninteractive $ID; then
+		if ! flatpak install --user -y --noninteractive flathub $ID; then
 			echo "[ERROR] Failed to install Flatpak!"
 			return 1
 		fi
@@ -120,6 +453,8 @@ update_install_flatpak() {
 	# Adjust common user permission
 	flatpak override $ID --filesystem=host --user
 	flatpak override $ID --share=network --user
+
+	steam_add_flatpak_shortcut "$ID" "$name"
 }
 
 update_binary() {
@@ -532,8 +867,32 @@ update_user_flatpaks() {
 	update_install_flatpak "Chrome" "com.google.Chrome"
 	update_install_flatpak "Limo" "io.github.limo_app.limo"
 
+	# Multimedia
+	update_install_flatpak "Kodi" "tv.kodi.Kodi"
+
 	# Update the rest of the user's Flatpaks
 	flatpak --user --noninteractive upgrade
+}
+
+remove_deprecated_flatpaks() {
+	echo -e "\n[INFO] Checking for end-of-life (deprecated) user Flatpaks"
+
+	local deprecated
+	deprecated=$(flatpak list --user --app --columns=application,name,options 2>/dev/null | awk -F'\t' '$3 ~ /eol=/')
+
+	if [[ -z "${deprecated}" ]]; then
+		echo "[INFO] No deprecated Flatpaks found."
+		return 0
+	fi
+
+	local id app_name reason
+	while IFS=$'\t' read -r id app_name options; do
+		reason="${options#*eol=}"
+		echo "[INFO] Removing deprecated Flatpak: ${app_name} (${id}) - ${reason}"
+		if ! flatpak uninstall --user -y "${id}"; then
+			echo "[ERROR] Failed to uninstall ${id}"
+		fi
+	done <<< "${deprecated}"
 }
 
 show_installed_flatpaks() {
@@ -904,6 +1263,10 @@ while :; do
 		USER_BINARIES=true
 		;;
 
+	--remove-deprecated | -rd)
+		REMOVE_DEPRECATED=true
+		;;
+
 	--debug)
 		DEBUG=true
 		;;
@@ -1032,6 +1395,7 @@ main() {
 		            "Update User Binaries" \
 		            "Search and Install from Flathub" \
 		            "Show Installed Flatpaks" \
+		            "Remove Deprecated Flatpaks" \
 		            --cancel-label="Exit" \
 		            --width ${W} \
 		            --height ${H} \
@@ -1070,15 +1434,23 @@ main() {
 					search_and_install_flathub || continue
 				elif [[ "${ask}" == "Show Installed Flatpaks" ]]; then
 					show_installed_flatpaks
+				elif [[ "${ask}" == "Remove Deprecated Flatpaks" || ${REMOVE_DEPRECATED} ]]; then
+					echo "Starting deprecated flatpak removal..."
+					remove_deprecated_flatpaks
 				fi
 			fi
 
 			# If we reach here, the operation completed successfully
+			if ${STEAM_SHORTCUT_ADDED}; then
+				echo -e "\n[INFO] New Steam shortcuts were added. Restart Steam"
+				echo "[INFO] (switch to Desktop Mode and back if in Gaming Mode) for them to appear in your library."
+			fi
+
 			# Pause a bit when running GameMode
 			if ! ${CLI}; then
 				sleep 2
-				exit 0
 			fi
+			exit 0
 		done
 }
 

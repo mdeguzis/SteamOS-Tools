@@ -1,5 +1,0 @@
-#!/bin/bash
-killall shutdown-wine-game.sh
-xfwm4 --replace --compositor=off --sm-client-disable &
-start-pulseaudio-x11 &
-feh -F --b -x --auto-zoom /home/steam/Pictures/steamos3.jpg

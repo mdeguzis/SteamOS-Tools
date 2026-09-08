@@ -1,9 +1,0 @@
-#!/bin/bash
-# Do not remove this or the Valve bug reporter will break.
-chmod 640 ~/.Xauthority
-
-xset -dpms s off
-# xterm &
-wgame=$(head -n1 //tmp/wgname)
-sh /home/wine/shutdown-wine-game.sh &
-sh /home/wine/wingame/$wgame.sh &

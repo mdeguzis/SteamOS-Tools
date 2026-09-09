@@ -33,6 +33,7 @@ import textwrap
 from pathlib import Path
 
 WRAP_COL_WIDTH = 42
+EVENTS_WRAP_COL_WIDTH = 90
 DEFAULT_MAX_BUCKET_AGE_DAYS = 7
 
 DEFAULT_STEAM_ROOT = Path.home() / ".local/share/Steam"
@@ -335,7 +336,7 @@ def cmd_show_events(ctx, appid, max_days):
         print("    no events in this window")
         return
     for dt, kind, text in events:
-        print_row([dt.strftime("%Y-%m-%d %H:%M:%S"), kind], [21, 14], text)
+        print_row([dt.strftime("%Y-%m-%d %H:%M:%S"), kind], [21, 14], text, wrap_width=EVENTS_WRAP_COL_WIDTH)
 
 
 def any_game_running():
@@ -400,12 +401,12 @@ def tools_text(h, hash_to_tools, extra_tool=None):
     return ", ".join(sorted(tools)) if tools else "unknown tool"
 
 
-def print_row(cols, widths, wrapped_text, indent="    "):
+def print_row(cols, widths, wrapped_text, indent="    ", wrap_width=WRAP_COL_WIDTH):
     """Print one or more fixed-width columns followed by a final
     column that word-wraps onto its own indented continuation lines
     instead of overflowing the terminal."""
     prefix = indent + "".join(f"{c:<{w}}" for c, w in zip(cols, widths))
-    wrapped = textwrap.wrap(wrapped_text, WRAP_COL_WIDTH) or [""]
+    wrapped = textwrap.wrap(wrapped_text, wrap_width) or [""]
     print(prefix + wrapped[0])
     for line in wrapped[1:]:
         print(" " * len(prefix) + line)

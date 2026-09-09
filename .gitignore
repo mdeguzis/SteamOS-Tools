@@ -12,3 +12,11 @@ custom-pkg.txt
 # Python
 *__pycache__
 *.pyc
+.venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+uv.lock

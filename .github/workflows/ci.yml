@@ -1,0 +1,118 @@
+name: CI
+
+on:
+  push:
+    branches: [master, python]
+    tags: ["v*"]
+  pull_request:
+    branches: [master, python]
+
+jobs:
+  # -- Run tests on every push/PR ---------------------------------------------
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Run tests
+        run: uv run pytest tests/ -v --cov=steamostools --cov-report=term-missing
+
+  # -- Auto-tag when pyproject.toml version is new (master only) -------------
+  autotag:
+    needs: test
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    outputs:
+      tag_created: ${{ steps.tag.outputs.tag_created }}
+      version: ${{ steps.tag.outputs.version }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # need full history to check existing tags
+
+      - name: Create tag if version is new
+        id: tag
+        run: |
+          VERSION=$(grep '^version = ' pyproject.toml | sed 's/version = "\(.*\)"/\1/')
+          TAG="v$VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if git ls-remote --tags origin "$TAG" | grep -q "$TAG"; then
+            echo "Tag $TAG already exists -- skipping"
+            echo "tag_created=false" >> "$GITHUB_OUTPUT"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git tag "$TAG"
+            git push origin "$TAG"
+            echo "Created tag $TAG"
+            echo "tag_created=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  # -- Build wheel + sdist on every push ---------------------------------------
+  build:
+    needs: [test, autotag]
+    if: always() && needs.test.result == 'success'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # required to create GitHub releases
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Build distributions
+        run: uv build
+
+      - name: Store dist for publish job
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Upload artifacts to GitHub Release
+        if: |
+          needs.autotag.outputs.tag_created == 'true' ||
+          (needs.autotag.result == 'skipped' && startsWith(github.ref, 'refs/tags/v'))
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.autotag.outputs.tag_created == 'true' && format('v{0}', needs.autotag.outputs.version) || github.ref_name }}
+          files: dist/*
+
+  # -- Publish to PyPI via OIDC trusted publishing (no token needed) -----------
+  publish:
+    needs: [build, autotag]
+    if: |
+      always() &&
+      needs.build.result == 'success' &&
+      (
+        needs.autotag.outputs.tag_created == 'true' ||
+        (needs.autotag.result == 'skipped' && startsWith(github.ref, 'refs/tags/v'))
+      )
+    runs-on: ubuntu-latest
+    environment: pypi
+
+    permissions:
+      id-token: write  # required for OIDC trusted publishing
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

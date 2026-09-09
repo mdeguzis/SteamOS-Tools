@@ -1,9 +1,0 @@
-[Desktop Entry] 
-Version=0.1.1 
-Name=Window Test
-Comment=Test basic Xephyr functionality
-Exec=/tmp/window-test.sh
-Icon=IMG_TMP 
-Terminal=false 
-Type=Application 
-Categories=Utility;Application 

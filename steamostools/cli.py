@@ -8,9 +8,41 @@ import sys
 from pathlib import Path
 
 from steamostools.logging_utils import initialize_logger
-from steamostools.tools import proton_ge, rom_tools, screenshots, shader_util, unlock
+from steamostools.tools import (
+    app_launcher,
+    ds4,
+    emudeck,
+    game_fixes,
+    proton_ge,
+    rom_tools,
+    screenshots,
+    shader_util,
+    skyscraper,
+    steam_runtime,
+    supertuxkart,
+    unlock,
+    x11_forwarding,
+    xboxdrv,
+    yay,
+)
 
-_TOOL_MODULES = (proton_ge, screenshots, rom_tools, unlock, shader_util)
+_TOOL_MODULES = (
+    proton_ge,
+    screenshots,
+    rom_tools,
+    unlock,
+    shader_util,
+    yay,
+    emudeck,
+    game_fixes,
+    steam_runtime,
+    app_launcher,
+    x11_forwarding,
+    supertuxkart,
+    skyscraper,
+    ds4,
+    xboxdrv,
+)
 
 
 def build_parser() -> argparse.ArgumentParser:

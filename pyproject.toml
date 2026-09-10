@@ -26,6 +26,9 @@ steamos-tools = "steamostools.cli:main"
 where = ["."]
 include = ["steamostools*"]
 
+[tool.setuptools.package-data]
+steamostools = ["data/**/*"]
+
 [dependency-groups]
 dev = [
     "pytest>=8",

@@ -25,6 +25,7 @@ from steamostools.tools import (
     skyscraper,
     steam_runtime,
     steamgrid,
+    supermodel,
     supertuxkart,
     unlock,
     vortex,
@@ -56,6 +57,7 @@ _TOOL_MODULES = (
     steamgrid,
     nexus_downloader,
     vortex,
+    supermodel,
 )
 
 

@@ -27,6 +27,7 @@ from steamostools.tools import (
     steamgrid,
     supermodel,
     supertuxkart,
+    systeminfo,
     unlock,
     vortex,
     x11_forwarding,
@@ -58,6 +59,7 @@ _TOOL_MODULES = (
     nexus_downloader,
     vortex,
     supermodel,
+    systeminfo,
 )
 
 

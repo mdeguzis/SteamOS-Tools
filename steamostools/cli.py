@@ -10,15 +10,20 @@ from pathlib import Path
 from steamostools.logging_utils import initialize_logger
 from steamostools.tools import (
     app_launcher,
+    decky_cloud_save,
     ds4,
     emudeck,
     game_fixes,
+    local_roms_transfer,
+    plex,
     proton_ge,
+    ps4_wake,
     rom_tools,
     screenshots,
     shader_util,
     skyscraper,
     steam_runtime,
+    steamgrid,
     supertuxkart,
     unlock,
     x11_forwarding,
@@ -42,6 +47,11 @@ _TOOL_MODULES = (
     skyscraper,
     ds4,
     xboxdrv,
+    ps4_wake,
+    local_roms_transfer,
+    plex,
+    decky_cloud_save,
+    steamgrid,
 )
 
 

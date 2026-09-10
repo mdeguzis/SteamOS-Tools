@@ -30,6 +30,30 @@ def test_latest_release_raises_on_http_error():
         client.latest_release("owner/repo")
 
 
+@responses.activate
+def test_list_releases_returns_all_including_prereleases():
+    responses.add(
+        responses.GET,
+        "https://api.github.com/repos/owner/repo/releases",
+        json=[{"tag_name": "v2.0.0-beta", "prerelease": True}, {"tag_name": "v1.0.0", "prerelease": False}],
+        status=200,
+    )
+    client = GitHubReleaseClient()
+    releases = client.list_releases("owner/repo")
+    assert releases[0]["tag_name"] == "v2.0.0-beta"
+    assert len(releases) == 2
+
+
+@responses.activate
+def test_list_releases_raises_on_http_error():
+    responses.add(
+        responses.GET, "https://api.github.com/repos/owner/repo/releases", status=404
+    )
+    client = GitHubReleaseClient()
+    with pytest.raises(Exception):
+        client.list_releases("owner/repo")
+
+
 def test_pick_asset_matches_pattern():
     client = GitHubReleaseClient()
     assets = [{"name": "foo-linux-x86_64.tar.gz"}, {"name": "foo-windows.zip"}]

@@ -15,6 +15,7 @@ from steamostools.tools import (
     emudeck,
     game_fixes,
     local_roms_transfer,
+    nexus_downloader,
     plex,
     proton_ge,
     ps4_wake,
@@ -26,6 +27,7 @@ from steamostools.tools import (
     steamgrid,
     supertuxkart,
     unlock,
+    vortex,
     x11_forwarding,
     xboxdrv,
     yay,
@@ -52,6 +54,8 @@ _TOOL_MODULES = (
     plex,
     decky_cloud_save,
     steamgrid,
+    nexus_downloader,
+    vortex,
 )
 
 

@@ -42,6 +42,17 @@ class GitHubReleaseClient:
         logger.debug("Latest release for %s: %s", repo, data.get("tag_name"))
         return data
 
+    def list_releases(self, repo: str) -> list[dict]:
+        """Fetch all releases for `owner/repo` (newest first), including
+        prereleases -- unlike `latest_release`, which GitHub's API excludes
+        prereleases from. Raises requests.HTTPError on a non-2xx response.
+        """
+        url = f"{GITHUB_API}/repos/{repo}/releases"
+        logger.debug("Fetching all releases: %s", url)
+        response = self.session.get(url, timeout=30)
+        response.raise_for_status()
+        return response.json()
+
     def pick_asset(self, assets: list[dict], patterns: list[str]) -> dict:
         """Return the first asset whose name matches any of `patterns`
         (regexes), in pattern order. Raises NoMatchingAssetError if none

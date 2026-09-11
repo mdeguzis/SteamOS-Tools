@@ -126,6 +126,55 @@ def test_add_then_remove_all_leaves_empty_skeleton(tmp_path):
     assert data == shortcuts.HEADER + shortcuts.FOOTER
 
 
+def test_add_or_update_flatpak_shortcut_adds_new_entry(tmp_path):
+    vdf_path = tmp_path / "shortcuts.vdf"
+    status = shortcuts.add_or_update_flatpak_shortcut(
+        vdf_path, "org.mozilla.firefox", "Firefox", "/icons/firefox.png"
+    )
+
+    assert status == "added"
+    data = vdf_path.read_bytes()
+    assert b"org.mozilla.firefox" in data
+    assert b"/usr/bin/flatpak" in data
+    assert b"run org.mozilla.firefox" in data
+
+
+def test_add_or_update_flatpak_shortcut_updates_icon_in_place(tmp_path):
+    vdf_path = tmp_path / "shortcuts.vdf"
+    shortcuts.add_or_update_flatpak_shortcut(vdf_path, "org.mozilla.firefox", "Firefox", "/icons/old.png")
+
+    status = shortcuts.add_or_update_flatpak_shortcut(
+        vdf_path, "org.mozilla.firefox", "Firefox", "/icons/new.png"
+    )
+
+    assert status == "icon_updated"
+    data = vdf_path.read_bytes()
+    assert b"/icons/new.png" in data
+    assert b"/icons/old.png" not in data
+
+
+def test_add_or_update_flatpak_shortcut_unchanged_when_icon_same(tmp_path):
+    vdf_path = tmp_path / "shortcuts.vdf"
+    shortcuts.add_or_update_flatpak_shortcut(vdf_path, "org.mozilla.firefox", "Firefox", "/icons/same.png")
+
+    status = shortcuts.add_or_update_flatpak_shortcut(
+        vdf_path, "org.mozilla.firefox", "Firefox", "/icons/same.png"
+    )
+
+    assert status == "unchanged"
+
+
+def test_add_or_update_flatpak_shortcut_preserves_other_entries(tmp_path):
+    vdf_path = tmp_path / "shortcuts.vdf"
+    shortcuts.add_shortcut(vdf_path, "Regular App", "/apps/regular", "/apps")
+    shortcuts.add_or_update_flatpak_shortcut(vdf_path, "org.mozilla.firefox", "Firefox", "/icons/a.png")
+    shortcuts.add_or_update_flatpak_shortcut(vdf_path, "org.mozilla.firefox", "Firefox", "/icons/b.png")
+
+    data = vdf_path.read_bytes()
+    assert b"Regular App" in data
+    assert b"/icons/b.png" in data
+
+
 def test_find_shortcuts_vdf_files_matches_userdata_layout(tmp_path):
     userdata = tmp_path / "userdata"
     vdf1 = userdata / "12345" / "config" / "shortcuts.vdf"

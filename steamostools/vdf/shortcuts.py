@@ -95,6 +95,90 @@ def _backup(vdf_path: Path) -> None:
         shutil.copy2(vdf_path, vdf_path.parent / f"{vdf_path.name}.bak")
 
 
+def build_flatpak_entry(index: int, app_name: str, app_id: str, icon: str, appid: int) -> bytes:
+    """Like build_entry, but points Exe at flatpak itself and sets
+    FlatpakAppID so Steam treats the shortcut as a native Flatpak entry."""
+    exe = "/usr/bin/flatpak"
+    start_dir = "/usr/bin/"
+    launch_options = f"run {app_id}"
+    return (
+        b"\x00" + str(index).encode() + b"\x00"
+        + _pack_int("appid", appid)
+        + _pack_str("AppName", app_name)
+        + _pack_str("Exe", exe)
+        + _pack_str("StartDir", start_dir)
+        + _pack_str("icon", icon)
+        + _pack_str("ShortcutPath", "")
+        + _pack_str("LaunchOptions", launch_options)
+        + _pack_int("IsHidden", 0)
+        + _pack_int("AllowDesktopConfig", 1)
+        + _pack_int("AllowOverlay", 1)
+        + _pack_int("OpenVR", 0)
+        + _pack_int("Devkit", 0)
+        + _pack_str("DevkitGameID", "")
+        + _pack_int("DevkitOverrideAppID", 0)
+        + _pack_int("LastPlayTime", int(time.time()))
+        + _pack_str("FlatpakAppID", app_id)
+        + b"\x00tags\x00\x08\x08"
+    )
+
+
+def _find_entry_bounds(data: bytes, pos_within_entry: int) -> tuple[int, int]:
+    """Given a byte offset that falls inside some entry, return
+    (entry_start, entry_end) for that entry using the \\x00<digits>\\x00
+    index markers as boundaries."""
+    starts = [m.start() for m in re.finditer(rb"\x00(\d+)\x00", data)]
+    ends = starts[1:] + [len(data) - len(FOOTER)]
+    entry_start = max(s for s in starts if s <= pos_within_entry)
+    entry_end = ends[starts.index(entry_start)]
+    return entry_start, entry_end
+
+
+def add_or_update_flatpak_shortcut(vdf_path: Path, app_id: str, display_name: str, icon: str) -> str:
+    """Add a Flatpak shortcut entry, or -- if one already exists for this
+    FlatpakAppID -- refresh only its icon field in place, leaving
+    everything else (tags, hidden state, launch options, play time)
+    untouched so a user's own Steam-UI customization isn't clobbered.
+
+    Returns one of: "added", "icon_updated", "unchanged".
+    """
+    data = load_or_init(vdf_path)
+    appid = generate_appid("/usr/bin/flatpak", display_name)
+
+    fp_marker = _pack_str("FlatpakAppID", app_id)
+    existing_pos = data.find(fp_marker)
+
+    if existing_pos != -1:
+        entry_start, entry_end = _find_entry_bounds(data, existing_pos)
+        icon_key = b"\x01icon\x00"
+        icon_key_pos = data.find(icon_key, entry_start, entry_end)
+        if icon_key_pos == -1:
+            return "unchanged"
+
+        value_start = icon_key_pos + len(icon_key)
+        value_end = data.find(b"\x00", value_start)
+        current_icon = data[value_start:value_end]
+        new_icon_bytes = icon.encode()
+
+        if current_icon == new_icon_bytes:
+            return "unchanged"
+
+        _backup(vdf_path)
+        data = data[:value_start] + new_icon_bytes + data[value_end:]
+        vdf_path.write_bytes(data)
+        return "icon_updated"
+
+    entry = build_flatpak_entry(count_entries(data), display_name, app_id, icon, appid)
+    _backup(vdf_path)
+    if data.endswith(FOOTER):
+        data = data[:-2] + entry + FOOTER
+    else:
+        data = data + entry + FOOTER
+    vdf_path.parent.mkdir(parents=True, exist_ok=True)
+    vdf_path.write_bytes(data)
+    return "added"
+
+
 def add_shortcut(vdf_path: Path, app_name: str, exe: str, start_dir: str, icon: str = "") -> bool:
     """Add a non-Steam-game shortcut entry to vdf_path. Returns False
     (no-op) if an entry with this AppName already exists -- an existing

@@ -11,6 +11,7 @@ from steamostools.logging_utils import initialize_logger
 from steamostools.tools import (
     app_image_manager,
     app_launcher,
+    flatpaks,
     decky_cloud_save,
     ds4,
     emudeck,
@@ -62,6 +63,7 @@ _TOOL_MODULES = (
     supermodel,
     systeminfo,
     app_image_manager,
+    flatpaks,
 )
 
 

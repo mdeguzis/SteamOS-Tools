@@ -21,6 +21,7 @@ from steamostools.tools import (
     plex,
     proton_ge,
     ps4_wake,
+    retroarch,
     rom_tools,
     screenshots,
     shader_util,
@@ -64,6 +65,7 @@ _TOOL_MODULES = (
     systeminfo,
     app_image_manager,
     flatpaks,
+    retroarch,
 )
 
 

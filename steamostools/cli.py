@@ -9,6 +9,7 @@ from pathlib import Path
 
 from steamostools.logging_utils import initialize_logger
 from steamostools.tools import (
+    app_image_manager,
     app_launcher,
     decky_cloud_save,
     ds4,
@@ -60,6 +61,7 @@ _TOOL_MODULES = (
     vortex,
     supermodel,
     systeminfo,
+    app_image_manager,
 )
 
 
